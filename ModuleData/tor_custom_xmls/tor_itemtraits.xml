@@ -523,8 +523,9 @@
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>ghyran_tendrils_enchant</WeaponScriptArgument>
-	    <WeaponScriptArgument>false</WeaponScriptArgument>
-        <WeaponScriptArgument>false</WeaponScriptArgument>
+        <WeaponScriptArgument>10</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -3914,7 +3915,7 @@
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_brutality_gork</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
-        <InventoryScriptArgument>100</InventoryScriptArgument>
+        <InventoryScriptArgument>50</InventoryScriptArgument>
         <InventoryScriptArgument>BigWaaagh</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
@@ -3927,6 +3928,7 @@
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_tuffness_gork</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
         <InventoryScriptArgument>100</InventoryScriptArgument>
         <InventoryScriptArgument>BigWaaagh</InventoryScriptArgument>
       </InventoryScriptArguments>
@@ -3940,6 +3942,7 @@
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_clobberin_shield</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
         <InventoryScriptArgument>100</InventoryScriptArgument>
         <InventoryScriptArgument>BigWaaagh</InventoryScriptArgument>
       </InventoryScriptArguments>
@@ -3953,7 +3956,8 @@
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_stunties_bane</InventoryScriptArgument>
-        <InventoryScriptArgument>100</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>125</InventoryScriptArgument>
         <InventoryScriptArgument>BigWaaagh</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
@@ -3966,7 +3970,8 @@
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_wallopin_krunch</InventoryScriptArgument>
-        <InventoryScriptArgument>100</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>200</InventoryScriptArgument>
         <InventoryScriptArgument>BigWaaagh</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
@@ -3979,7 +3984,8 @@
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_cunning_mork</InventoryScriptArgument>
-        <InventoryScriptArgument>100</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>50</InventoryScriptArgument>
         <InventoryScriptArgument>BigWaaagh</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
@@ -3992,7 +3998,8 @@
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_call_great_green</InventoryScriptArgument>
-        <InventoryScriptArgument>100</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>150</InventoryScriptArgument>
         <InventoryScriptArgument>BigWaaagh</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
@@ -4005,7 +4012,8 @@
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_backstabba_frenzy</InventoryScriptArgument>
-        <InventoryScriptArgument>100</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>125</InventoryScriptArgument>
         <InventoryScriptArgument>BigWaaagh</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
@@ -4018,7 +4026,8 @@
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_gaze_spider_god</InventoryScriptArgument>
-        <InventoryScriptArgument>100</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>150</InventoryScriptArgument>
         <InventoryScriptArgument>BigWaaagh</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
@@ -4031,7 +4040,8 @@
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_shadow_bad_moon</InventoryScriptArgument>
-        <InventoryScriptArgument>100</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>175</InventoryScriptArgument>
         <InventoryScriptArgument>BigWaaagh</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
@@ -4519,9 +4529,8 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>15% extra magical damage and +20% missile speed</ItemTraitDescription>
+    <ItemTraitDescription>15% extra magic damage</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Magical" Percent="0.15" />
-    <StatsTuple StatType="MissileSpeed" Value="20" />
     <WeaponParticlePreset ParticlePrefab="magic_trait" IsUniqueSingleCopy="false" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="ca_hagbane" ItemTraitName="Hagbane Tips" IsCraftable="false" ImbuedStatusEffectId="hagbane_debuff" ImbuedEffectChance="0.25" IconName="winds_icon_45">
@@ -4535,9 +4544,8 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>Adds armor penetration</ItemTraitDescription>
+    <ItemTraitDescription>"Shots apply an armor debuff, deal fire damage and apply damage over time"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Fire" Percent="0.20" />
-    <StatsTuple StatType="ArmorPenetration" Value="25" />
     <WeaponParticlePreset ParticlePrefab="psys_flaming_weapon" IsUniqueSingleCopy="false" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="ca_knightlystrike" ItemTraitName="Knightly Strike" IsCraftable="false" IconName="winds_icon_45">
@@ -4576,7 +4584,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>Charge your weapon with knightly power</ItemTraitDescription>
-    <StatsTuple StatType="ArmorPenetration" Value="25" />
+    <StatsTuple StatType="ArmorPenetration" Value="20" />
     <WeaponParticlePreset ParticlePrefab="psys_flaming_weapon" IsUniqueSingleCopy="false" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="ca_knight_religion_default" ItemTraitName="Default Religious Damage Bonus" IsCraftable="false" IconName="winds_icon_45">
@@ -4621,100 +4629,6 @@
     <ItemTraitDescription>Adds 20% extra holy damage</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Holy" Percent="0.20" />
   </ItemTrait>
-
-  <!-- Lethal Shot Career Ability Traits (Waywatcher) -->
-  <ItemTrait ItemTraitStringId="ca_lethal_shot" ItemTraitName="Lethal Shot" IsCraftable="false" IconName="winds_icon_45">
-    <ValidItemType>Invalid</ValidItemType>
-    <IngredientItem>Invalid</IngredientItem>
-    <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>Your arrows are imbued with deadly precision</ItemTraitDescription>
-    <AdditionalDamageTuple DamageType="Physical" Percent="0.50" />
-    <WeaponParticlePreset ParticlePrefab="hagbane_trait" IsUniqueSingleCopy="false" />
-    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.LethalShotHitScript" />
-  </ItemTrait>
-  <ItemTrait ItemTraitStringId="ca_lethal_shot_hagbane" ItemTraitName="Hagbane Tips" IsCraftable="false" ImbuedStatusEffectId="arrow_of_kurnous_debuff_mov" ImbuedEffectChance="1.00" IconName="winds_icon_45">
-    <ValidItemType>Invalid</ValidItemType>
-    <IngredientItem>Invalid</IngredientItem>
-    <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>Poisoned arrows that slow enemies on hit</ItemTraitDescription>
-    <WeaponParticlePreset ParticlePrefab="hagbane_trait" IsUniqueSingleCopy="false" />
-  </ItemTrait>
-  <ItemTrait ItemTraitStringId="ca_lethal_shot_loec" ItemTraitName="Trickery of Loec" IsCraftable="false" IconName="winds_icon_45">
-    <ValidItemType>Invalid</ValidItemType>
-    <IngredientItem>Invalid</IngredientItem>
-    <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>50% extra damage when striking at the backs of enemies or unaware targets</ItemTraitDescription>
-    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.StealthAttackScript">
-      <WeaponScriptArguments>
-        <WeaponScriptArgument>50</WeaponScriptArgument>
-      </WeaponScriptArguments>
-    </OnWeaponHitScript>
-  </ItemTrait>
-  <ItemTrait ItemTraitStringId="ca_lethal_shot_scatter" ItemTraitName="Hail of Arrows" IsCraftable="false" IconName="winds_icon_45">
-    <ValidItemType>Invalid</ValidItemType>
-    <IngredientItem>Invalid</IngredientItem>
-    <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>Arrows split into multiple projectiles</ItemTraitDescription>
-    <StatsTuple StatType="ScatterShot" Value="5" />
-  </ItemTrait>
-  <ItemTrait ItemTraitStringId="ca_lethal_shot_reload" ItemTraitName="Swift Nocking" IsCraftable="false" IconName="winds_icon_45">
-    <ValidItemType>Invalid</ValidItemType>
-    <IngredientItem>Invalid</IngredientItem>
-    <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>Increased reload speed</ItemTraitDescription>
-    <StatsTuple StatType="ReloadSpeed" Value="25" />
-  </ItemTrait>
-  <ItemTrait ItemTraitStringId="ca_lethal_shot_pierce" ItemTraitName="Piercing Shot" IsCraftable="false" IconName="winds_icon_45">
-    <ValidItemType>Invalid</ValidItemType>
-    <IngredientItem>Invalid</IngredientItem>
-    <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>Arrows pierce through targets</ItemTraitDescription>
-    <StatsTuple StatType="MultiPenetration" Value="1" />
-  </ItemTrait>
-  <ItemTrait ItemTraitStringId="ca_lethal_shot_swiftshiver" ItemTraitName="Swiftshiver Shards" IsCraftable="false" IconName="winds_icon_45">
-    <ValidItemType>Invalid</ValidItemType>
-    <IngredientItem>Invalid</IngredientItem>
-    <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>Adds 15% magical damage</ItemTraitDescription>
-    <AdditionalDamageTuple DamageType="Magical" Percent="0.15" />
-    <WeaponParticlePreset ParticlePrefab="magic_trait" IsUniqueSingleCopy="false" />
-  </ItemTrait>
-  <ItemTrait ItemTraitStringId="ca_lethal_shot_speed" ItemTraitName="Swift Arrows" IsCraftable="false" IconName="winds_icon_45">
-    <ValidItemType>Invalid</ValidItemType>
-    <IngredientItem>Invalid</IngredientItem>
-    <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>Increased missile speed</ItemTraitDescription>
-    <StatsTuple StatType="MissileSpeed" Value="20" />
-  </ItemTrait>
-  <ItemTrait ItemTraitStringId="ca_lethal_shot_starfire" ItemTraitName="Starfire Shafts" IsCraftable="false" IconName="winds_icon_45">
-    <ValidItemType>Invalid</ValidItemType>
-    <IngredientItem>Invalid</IngredientItem>
-    <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>Armor penetrating arrows</ItemTraitDescription>
-    <StatsTuple StatType="ArmorPenetration" Value="25" />
-    <WeaponParticlePreset ParticlePrefab="psys_flaming_weapon" IsUniqueSingleCopy="false" />
-  </ItemTrait>
-  <ItemTrait ItemTraitStringId="ca_lethal_shot_starfire_shield" ItemTraitName="Starfire Shield Pierce" IsCraftable="false" IconName="winds_icon_45">
-    <ValidItemType>Invalid</ValidItemType>
-    <IngredientItem>Invalid</IngredientItem>
-    <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>Arrows pierce shields</ItemTraitDescription>
-    <StatsTuple StatType="ShieldPenetration" Value="1" />
-  </ItemTrait>
-  <ItemTrait ItemTraitStringId="ca_lethal_shot_moonfire" ItemTraitName="Moonfire Arrows" IsCraftable="false" ImbuedStatusEffectId="arrow_of_kurnous_debuff_res" ImbuedEffectChance="1.00" IconName="winds_icon_45">
-    <ValidItemType>Invalid</ValidItemType>
-    <IngredientItem>Invalid</IngredientItem>
-    <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>Magical arrows that explode on impact and reduce enemy magic resistance</ItemTraitDescription>
-    <AdditionalDamageTuple DamageType="Magical" Percent="0.30" />
-    <WeaponParticlePreset ParticlePrefab="psys_magic_weapon" IsUniqueSingleCopy="false" />
-    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
-      <WeaponScriptArguments>
-        <WeaponScriptArgument>moonfire_explosion</WeaponScriptArgument>
-      </WeaponScriptArguments>
-    </OnWeaponHitScript>
-  </ItemTrait>
-
   <ItemTrait ItemTraitStringId="shld_phys_res_20" ItemTraitName="Physical Resistance (Shield)" IsCraftable="true" IconName="traits_holy_icon">
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>

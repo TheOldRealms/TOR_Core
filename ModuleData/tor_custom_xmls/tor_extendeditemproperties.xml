@@ -3443,7 +3443,7 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_thsword_de_lyonesse">
     <ItemTraits>
-      <ItemTrait>holy_add_10</ItemTrait>
+      <ItemTrait>holy_amp_10</ItemTrait>
     </ItemTraits>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />

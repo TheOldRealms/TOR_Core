@@ -505,6 +505,31 @@
       <EquipmentSet id="tor_smuggler_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_wanderer_mousillon_4" default_group="infantry" name="{=str_tor_wanderer_mousillon_4}{FIRSTNAME} the Vampire of Mousillon" occupation="Wanderer" culture="Culture.mousillon" voice="ironic" age="19" race="vampire" skill_template="SkillSet.tor_skills_wanderer_vampire" is_template="true" is_hero="false">
+    <face>
+      <face_key_template value="BodyProperty.vampire" />
+      <hair_tags>
+        <hair_tag name="ShortAndThin" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <Traits>
+      <Trait id="KnightFightingSkills" value="5" />
+      <Trait id="Manager" value="3" />
+      <Trait id="Commander" value="3" />
+      <Trait id="Calculating" value="3" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="SpellCasterSkills" value="5" />
+      <Trait id="NagashCorrupted" value="7" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_vampire_template" />
+      <EquipmentSet id="tor_generic_vampire_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_wanderer_vampire_0" default_group="infantry" name="{=str_tor_wanderer_vampire_0}{FIRSTNAME} the Necromancer" occupation="Wanderer" culture="Culture.khuzait" voice="ironic" age="55" skill_template="SkillSet.tor_skills_wanderer_wizard" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
@@ -729,8 +754,8 @@
       <Trait id="Valor" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_warrior_template" />
-      <EquipmentSet id="tor_dw_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_cc_dw_shield_breaker_3" />
+      <EquipmentSet id="tor_cc_dw_shield_breaker_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_wanderer_dawi_1" default_group="infantry" name="{=str_tor_wanderer_dawi_1}{FIRSTNAME} the Runesmith" occupation="Wanderer" culture="Culture.sturgia" voice="ironic" age="30" race="dwarf" skill_template="SkillSet.tor_skills_wanderer_runesmith" is_template="true" is_hero="false">
@@ -745,11 +770,27 @@
       <Trait id="Valor" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_runelord_template_001" />
-      <EquipmentSet id="tor_dw_runelord_template_001" civilian="true" />
+      <EquipmentSet id="tor_cc_dw_rune_smith_3" />
+      <EquipmentSet id="tor_cc_dw_rune_smith_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_greenskins_0" default_group="infantry" name="{=str_tor_wanderer_greenskins_0}{FIRSTNAME} the Big Boss" occupation="Wanderer" culture="Culture.aserai" voice="ironic" age="30" race="orc" skill_template="SkillSet.tor_skills_wanderer_bossorc" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_dawi_2" default_group="infantry" name="{=str_tor_wanderer_dawi_2}{FIRSTNAME} the Dwarf Engineer" occupation="Wanderer" culture="Culture.sturgia" voice="ironic" age="30" race="dwarf" is_template="true" is_hero="false">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_high_tier" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Calculating" value="5" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Valor" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_cc_dw_engineer_3" />
+      <EquipmentSet id="tor_cc_dw_engineer_3" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_wanderer_greenskins_0" default_group="infantry" name="{=str_tor_wanderer_greenskins_0}{FIRSTNAME} da Big Boss" occupation="Wanderer" culture="Culture.aserai" voice="ironic" age="30" race="orc" skill_template="SkillSet.tor_skills_wanderer_bossorc" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.orc_big" />
     </face>
@@ -761,11 +802,11 @@
       <Trait id="Valor" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_template" />
-      <EquipmentSet id="tor_gs_orc_template" civilian="true" />
+      <EquipmentSet id="tor_cc_gs_path_of_boss_3" />
+      <EquipmentSet id="tor_cc_gs_path_of_boss_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_greenskins_1" default_group="infantry" name="{=str_tor_wanderer_greenskins_1}{FIRSTNAME} the Shaman" occupation="Wanderer" culture="Culture.aserai" voice="ironic" age="30" race="orc" skill_template="SkillSet.tor_skills_wanderer_guardianmage" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_greenskins_1" default_group="infantry" name="{=str_tor_wanderer_greenskins_1}{FIRSTNAME} da Shaman" occupation="Wanderer" culture="Culture.aserai" voice="ironic" age="30" race="orc" skill_template="SkillSet.tor_skills_wanderer_guardianmage" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.orc_big" />
     </face>
@@ -777,11 +818,11 @@
       <Trait id="Valor" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_shaman_template_002" />
-      <EquipmentSet id="tor_gs_orc_shaman_template_002" civilian="true" />
+      <EquipmentSet id="tor_cc_gs_path_of_shaman_3" />
+      <EquipmentSet id="tor_cc_gs_path_of_shaman_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_greenskins_2" default_group="infantry" name="{=str_tor_wanderer_greenskins_2}{FIRSTNAME} the Bully" occupation="Wanderer" culture="Culture.aserai" voice="ironic" age="30" race="orc" skill_template="SkillSet.tor_skills_wanderer_bullyorc" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_greenskins_2" default_group="infantry" name="{=str_tor_wanderer_greenskins_2}{FIRSTNAME} da Bully" occupation="Wanderer" culture="Culture.aserai" voice="ironic" age="30" race="orc" skill_template="SkillSet.tor_skills_wanderer_bullyorc" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.orc_big" />
     </face>
@@ -793,11 +834,11 @@
       <Trait id="Valor" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_bully_template" />
-      <EquipmentSet id="tor_gs_orc_bully_template" civilian="true" />
+      <EquipmentSet id="tor_cc_gs_path_of_bully_3" />
+      <EquipmentSet id="tor_cc_gs_path_of_bully_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_greenskins_3" default_group="infantry" name="{=str_tor_wanderer_greenskins_3}{FIRSTNAME} the Tinkerer" occupation="Wanderer" culture="Culture.aserai" voice="ironic" age="30" race="goblin" skill_template="SkillSet.tor_skills_wanderer_goblinthinkerer" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_greenskins_3" default_group="infantry" name="{=str_tor_wanderer_greenskins_3}{FIRSTNAME} da Tinkerer" occupation="Wanderer" culture="Culture.aserai" voice="ironic" age="30" race="goblin" skill_template="SkillSet.tor_skills_wanderer_goblinthinkerer" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.goblin" />
     </face>
@@ -809,8 +850,8 @@
       <Trait id="Valor" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_template" />
+      <EquipmentSet id="tor_gs_goblin_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_empire_deserter_lord_0" default_group="cavalry" name="{=str_tor_empire_deserter_lord_0}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_commander_lord" is_template="true" is_hero="false">

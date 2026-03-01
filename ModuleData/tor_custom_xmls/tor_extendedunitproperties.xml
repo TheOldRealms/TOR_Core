@@ -9553,6 +9553,10 @@
     <Abilities />
     <Attributes>
       <string>Tough</string>
+      <string>MonsterAttack</string>
+      <string>Unstoppable</string>
+      <string>TrollRegeneration</string>
+      <string>LegendaryLord</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_bergerac_leader">
@@ -9990,6 +9994,17 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_wanderer_mousillon_4">
+    <Abilities>
+      <string>StrengthOfCombat</string>
+      <string>Chillwind</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+      <string>Unbreakable</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wanderer_vampire_0">
     <Abilities>
       <string>FoetidCloud</string>
@@ -10085,6 +10100,12 @@
       <string>AbilityUser</string>
       <string>Runesmith</string>
       <string>Tough</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_wanderer_dawi_2">
+    <Abilities />
+    <Attributes>
+      <string>EngineerCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wanderer_greenskins_0">

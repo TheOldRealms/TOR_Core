@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <NPCCharacters>
   <NPCCharacter id="tor_empire_villager" default_group="infantry" level="1" name="{=str_tor_empire_villager}Empire Villager" occupation="Villager" culture="Culture.empire" skill_template="SkillSet.tor_skills_level1">
     <face>
@@ -1512,7 +1512,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_commoner" default_group="infantry" level="1" name="{=str_tor_dw_commoner}Dawi Commoner" occupation="Villager" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_commoner" race="dwarf">
     <face>
-      <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
       <hair_tags>
         <hair_tag name="Bald" />
       </hair_tags>
@@ -1530,7 +1530,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_recruit" default_group="infantry" level="6" name="{=str_tor_dw_recruit}Dawi" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_dawi" is_basic_troop="true" race="dwarf">
     <face>
-      <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
       <hair_tags>
         <hair_tag name="Bald" />
       </hair_tags>
@@ -1549,7 +1549,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_militia" default_group="infantry" level="11" name="{=str_tor_dw_militia}Dawi Militia" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_militia" race="dwarf">
     <face>
-      <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
       <hair_tags>
         <hair_tag name="Bald" />
       </hair_tags>
@@ -1568,7 +1568,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_miner" default_group="infantry" level="16" name="{=str_tor_dw_miner}Dawi Miner" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_miner" race="dwarf">
     <face>
-      <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
       <hair_tags>
         <hair_tag name="Bald" />
       </hair_tags>
@@ -1586,7 +1586,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_prospector" default_group="infantry" level="21" name="{=str_tor_dw_prospector}Dawi Prospector" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_prospector" race="dwarf">
     <face>
-      <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <face_key_template value="BodyProperty.dwarf_mid_tier" />
       <hair_tags>
         <hair_tag name="Bald" />
       </hair_tags>
@@ -1602,7 +1602,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_warrior" default_group="infantry" level="21" name="{=str_tor_dw_warrior}Dawi Warrior" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_warrior" race="dwarf">
     <face>
-      <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <face_key_template value="BodyProperty.dwarf_mid_tier" />
       <hair_tags>
         <hair_tag name="Bald" />
       </hair_tags>
@@ -1620,7 +1620,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_longbeard" default_group="infantry" level="31" name="{=str_tor_dw_longbeard}Dawi Longbeard" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_longbeard" race="dwarf">
     <face>
-      <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <face_key_template value="BodyProperty.dwarf_mid_tier" />
       <hair_tags>
         <hair_tag name="Bald" />
       </hair_tags>
@@ -1636,7 +1636,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_scout" default_group="ranged" level="16" name="{=str_tor_dw_scout}Dawi Scout" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_scout" race="dwarf">
     <face>
-      <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
       <hair_tags>
         <hair_tag name="Bald" />
       </hair_tags>
@@ -1655,7 +1655,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_quarreller" default_group="ranged" level="21" name="{=str_tor_dw_quarreller}Dawi Quarreller" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_quarreller" race="dwarf">
     <face>
-      <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <face_key_template value="BodyProperty.dwarf_mid_tier" />
       <hair_tags>
         <hair_tag name="Bald" />
       </hair_tags>
@@ -1689,7 +1689,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_thunderer" default_group="ranged" level="21" name="{=str_tor_dw_thunderer}Dawi Thunderer" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_thunderer" race="dwarf">
     <face>
-      <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <face_key_template value="BodyProperty.dwarf_mid_tier" />
       <hair_tags>
         <hair_tag name="Bald" />
       </hair_tags>
@@ -1723,7 +1723,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_ranger" default_group="ranged" level="26" name="{=str_tor_dw_ranger}Dawi Ranger" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_ranger" race="dwarf">
     <face>
-      <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <face_key_template value="BodyProperty.dwarf_mid_tier" />
       <hair_tags>
         <hair_tag name="Bald" />
       </hair_tags>
@@ -1912,7 +1912,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_pilgrim" default_group="infantry" level="21" name="{=str_tor_dw_pilgrim}Dawi Pilgrim" occupation="CaravanGuard" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_level21" race="dwarf">
     <face>
-      <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <face_key_template value="BodyProperty.dwarf_mid_tier" />
       <hair_tags>
         <hair_tag name="Bald" />
       </hair_tags>
@@ -1930,7 +1930,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lookout" default_group="ranged" level="21" name="{=str_tor_dw_lookout}Dawi Lookout" occupation="CaravanGuard" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_level21" race="dwarf">
     <face>
-      <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <face_key_template value="BodyProperty.dwarf_mid_tier" />
       <hair_tags>
         <hair_tag name="Bald" />
       </hair_tags>
@@ -1948,7 +1948,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_veteran_guard" default_group="infantry" level="26" name="{=str_tor_dw_veteran_guard}Dawi Veteran Guard" occupation="CaravanGuard" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_level26" race="dwarf">
     <face>
-      <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <face_key_template value="BodyProperty.dwarf_mid_tier" />
       <hair_tags>
         <hair_tag name="Bald" />
       </hair_tags>
@@ -1964,7 +1964,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_master_trader" default_group="infantry" level="26" name="{=str_tor_dw_master_trader}Dawi Master Trader" occupation="CaravanGuard" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_level26" race="dwarf">
     <face>
-      <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <face_key_template value="BodyProperty.dwarf_mid_tier" />
       <hair_tags>
         <hair_tag name="Bald" />
       </hair_tags>
@@ -1978,7 +1978,7 @@
       <EquipmentSet id="tor_dw_master_trader_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_dw_artillery_crew" default_group="infantry" level="26" name="{=str_tor_dw_artillery_crew}Dawi Artillery Crew Beardling" occupation="CaravanGuard" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_level26" race="dwarf">
+  <NPCCharacter id="tor_dw_artillery_crew" default_group="infantry" level="11" name="{=str_tor_dw_artillery_crew}Dawi Artillery Crew" occupation="CaravanGuard" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_level11" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_high_tier" />
       <hair_tags>
@@ -2165,8 +2165,8 @@
       <upgrade_target id="NPCCharacter.tor_gs_goblin_wolf_rida_boss" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_template" />
-      <EquipmentSet id="tor_gs_goblin_template" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_wolf_rida_template" />
+      <EquipmentSet id="tor_gs_goblin_wolf_rida_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_gs_goblin_stikka" default_group="infantry" level="11" name="{=str_tor_gs_goblin_stikka}Goblin Stikka" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level11" race="goblin">
@@ -2179,8 +2179,8 @@
       <upgrade_target id="NPCCharacter.tor_gs_goblin_archer" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_template" />
-      <EquipmentSet id="tor_gs_goblin_template" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_stikka_template" />
+      <EquipmentSet id="tor_gs_goblin_stikka_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_gs_goblin_wolf_rida_archer" default_group="horsearcher" level="16" name="{=str_tor_gs_goblin_wolf_rida_archer}Goblin Wolf Rida Archer" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level16" race="goblin">
@@ -2199,8 +2199,8 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_template" />
-      <EquipmentSet id="tor_gs_goblin_template" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_nasty_skulker_template" />
+      <EquipmentSet id="tor_gs_goblin_nasty_skulker_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_gs_goblin_archer" default_group="ranged" level="16" name="{=str_tor_gs_goblin_archer}Goblin Archer" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level16" race="goblin">
@@ -2213,14 +2213,14 @@
       <EquipmentSet id="tor_gs_goblin_archer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_goblin_wolf_rida_boss" default_group="cavalry" level="21" name="{=str_tor_gs_goblin_wolf_rida_boss}Goblin Wolf Rida Boss" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level21" race="goblin">
+  <NPCCharacter id="tor_gs_goblin_wolf_rida_boss" default_group="horsearcher" level="21" name="{=str_tor_gs_goblin_wolf_rida_boss}Goblin Wolf Rida Boss" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level21" race="goblin">
     <face>
       <face_key_template value="BodyProperty.goblin" />
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_template" />
-      <EquipmentSet id="tor_gs_goblin_template" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_wolf_rida_boss_template" />
+      <EquipmentSet id="tor_gs_goblin_wolf_rida_boss_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_gs_goblin_boss" default_group="infantry" level="21" name="{=str_tor_gs_goblin_boss}Goblin Boss" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level21" race="goblin">
@@ -2229,8 +2229,8 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_template" />
-      <EquipmentSet id="tor_gs_goblin_template" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_boss_template" />
+      <EquipmentSet id="tor_gs_goblin_boss_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_gs_goblin_beast_prodda" default_group="infantry" level="16" name="{=str_tor_gs_goblin_beast_prodda}Goblin Beast Prodda" occupation="CaravanGuard" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level16" race="goblin">
@@ -2239,8 +2239,8 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_template" />
-      <EquipmentSet id="tor_gs_goblin_template" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_stikka_template" />
+      <EquipmentSet id="tor_gs_goblin_stikka_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_gs_goblin_stone_slugga" default_group="ranged" level="16" name="{=str_tor_gs_goblin_stone_slugga}Goblin Stone Slugga" occupation="CaravanGuard" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level16" race="goblin">

@@ -1877,6 +1877,12 @@
   <string id="str_weapon_usage.TorLance" text="{=str_tor_weapon_usage_TorLance}Lance" />
   <string id="str_weapon_usage.TorLance_Couchable" text="{=str_tor_weapon_usage_TorLance_Couchable}Couch Lance" />
   <string id="str_weapon_usage.TorDwarvenOneHandedAxe" text="{=str_tor_weapon_usage_TorDwarvenOneHandedAxe}Dwarven Axe" />
+  <string id="str_weapon_usage.TorOrcOneHandedMace" text="{=str_tor_weapon_usage_TorOrcOneHandedMace}Orc Mace" />
+  <string id="str_weapon_usage.TorOrcOneHandedSword" text="{=str_tor_weapon_usage_TorOrcOneHandedSword}Orc Sword" />
+  <string id="str_weapon_usage.TorOrcTwoHandedSword" text="{=str_tor_weapon_usage_TorOrcTwoHandedSword}Orc Greatsword" />
+  <string id="str_weapon_usage.TorOrcOneHandedAxe" text="{=str_tor_weapon_usage_TorOrcOneHandedAxe}Orc Axe" />
+  <string id="str_weapon_usage.TorOrcOneHandedPolearm" text="{=str_tor_weapon_usage_TorOrcOneHandedPolearm}Orc Polearm" />
+  <string id="str_weapon_usage.TorOrcTwoHandedPolearm" text="{=str_tor_weapon_usage_TorOrcTwoHandedPolearm}Orc Greatpolearm" />
 
   <!--inventory-->
   <string id="str_inventory_weapon.22" text="{=str_tor_inventory_weapon_22}Pistol" />
@@ -2327,6 +2333,15 @@
   <string id="tor_response_2.tor_wanderer_mousillon_3" text="{=str_tor_response_2_tor_wanderer_mousillon_3}A smuggler might be useful to me." />
   <string id="tor_backstory_d.tor_wanderer_mousillon_3" text="{=str_tor_backstory_d_tor_wanderer_mousillon_3}Mmm… These people have less and less money on them and I barely cover the margin." />
   <string id="tor_generic_backstory.tor_wanderer_mousillon_3" text="{=str_tor_generic_backstory_tor_wanderer_mousillon_3}If you promise me good profits on a regular basis and a down payment, I'm all yours." />
+
+  <string id="tor_prebackstory.tor_wanderer_mousillon_4" text="{=str_tor_prebackstory_tor_wanderer_mousillon_4}I do not remember much of my past life, there is only the now and the thirst." />
+  <string id="tor_backstory_a.tor_wanderer_mousillon_4" text="{=str_tor_backstory_a_tor_wanderer_mousillon_4}Being human feels like a dream, a dream I was happily liberated from." />
+  <string id="tor_backstory_b.tor_wanderer_mousillon_4" text="{=str_tor_backstory_b_tor_wanderer_mousillon_41}I was taken from my village for the blood tax, but instead I became the desire of my vampire master. I was blessed with the gift of Nagash" />
+  <string id="tor_backstory_c.tor_wanderer_mousillon_4" text="{=str_tor_backstory_c_tor_wanderer_mousillon_4}My master however perished during the vampire wars, with no one else I have been left to wander the night since." />
+  <string id="tor_response_1.tor_wanderer_mousillon_4" text="{=str_tor_response_1_tor_wanderer_mousillon_4}Intriguing." />
+  <string id="tor_response_2.tor_wanderer_mousillon_4" text="{=str_tor_response_2_tor_wanderer_mousillon_4}I couldn't really care less about your wretched origin." />
+  <string id="tor_backstory_d.tor_wanderer_mousillon_4" text="{=str_tor_backstory_d_tor_wanderer_mousillon_4}Right." />
+  <string id="tor_generic_backstory.tor_wanderer_mousillon_4" text="{=str_tor_generic_backstory_tor_wanderer_mousillon_4}I'm a fledgeling Vampire, powerful and undying." />
   
   <string id="tor_prebackstory.tor_wanderer_eonir_0" text="{=str_tor_prebackstory_tor_wanderer_eonir_0}About me? There is not much to tell." />
   <string id="tor_backstory_a.tor_wanderer_eonir_0" text="{=str_tor_backstory_a_tor_wanderer_eonir_0}I have fought all my life against ruinous powers. I made my own bow with the wood of trees so old that they stood tall when Ariel was just a mortal. I killed my first ungor at the age of eleven, and my first chaos spawn at fourteen. Recently, I struck a troll between the eyes with an arrow from two hundred paces away." />
@@ -2382,6 +2397,69 @@
   <string id="tor_backstory_d.tor_wanderer_woodelf_2" text="{=str_tor_backstory_d_tor_wanderer_woodelf_2}I am adept in the arts of survival, disruption, and ambush. I can approach my quarry, strike swiftly, and vanish before its body hits the ground. Alternatively, I can subtly lead it into one of my traps." />
   <string id="tor_generic_backstory.tor_wanderer_woodelf_2" text="{=str_tor_generic_backstory_tor_wanderer_woodelf_2}I have but one request. Although I seldom leave the forest, when I do, I seek the pleasures of civilised life. A fine wine in the tavern, pleasant company… I trust your group can provide these comforts." />
 
+  <string id="tor_prebackstory.tor_wanderer_dawi_0" text="{=str_tor_prebackstory_tor_wanderer_dawi_0}You are speaking to a gov, a thane, a champion of the Dawi, lad. Others would do well not to get in my way." />
+  <string id="tor_backstory_a.tor_wanderer_dawi_0" text="{=str_tor_backstory_a_tor_wanderer_dawi_0}I have fought in many wars and my warriors have secured many victories for me." />
+  <string id="tor_backstory_b.tor_wanderer_dawi_0" text="{=str_tor_backstory_b_tor_wanderer_dawi_0}Yet I am not deemed fit to lead. My Rik would have me wander the world, to taste true battle, to endure hardship, and to learn the intricacies of command." />
+  <string id="tor_backstory_c.tor_wanderer_dawi_0" text="{=str_tor_backstory_c_tor_wanderer_dawi_0}I’z been around fer sum time… I met da Great Green Prophet Wurrzag once… gave me a shroom too…" />
+  <string id="tor_response_1.tor_wanderer_dawi_0" text="{=str_tor_response_1_tor_wanderer_dawi_0}You’re actively looking for adventure? What a coincidence, I’m always looking for new companions to join me!" />
+  <string id="tor_response_2.tor_wanderer_dawi_0" text="{=str_tor_response_2_tor_wanderer_dawi_0}So you’re just the overlooked son of some clan, without any chinks in your armour to prove your worth." />
+  <string id="tor_backstory_d.tor_wanderer_dawi_0" text="{=str_tor_backstory_d_tor_wanderer_dawi_0}Careful now. You're lucky my composure is as steady as a mountain's roots. I could join your company - Keep my blood hot and the ale cold, and I will see your enemies dead upon the battlefield." />
+  <string id="tor_generic_backstory.tor_wanderer_dawi_0" text="{=str_tor_generic_backstory_tor_wanderer_dawi_0}Let us seal this pact with a round of Gorog, you can afford this, yes?"/>
+
+  <string id="tor_prebackstory.tor_wanderer_dawi_1" text="{=str_tor_prebackstory_tor_wanderer_dawi_1}*Grunt* Can’t ye see I’m busy?" />
+  <string id="tor_backstory_a.tor_wanderer_dawi_1" text="{=str_tor_backstory_a_tor_wanderer_dawi_1}I'm a Runesmith working alongside many esteemed Runelords of the Dawi." />
+  <string id="tor_backstory_b.tor_wanderer_dawi_1" text="{=str_tor_backstory_b_tor_wanderer_dawi_1}What we deal with are Runes of power, magic manifest and beaten into form! And I am a rhunki, learned in the ways of Thungni." />
+  <string id="tor_backstory_c.tor_wanderer_dawi_1" text="{=str_tor_backstory_c_tor_wanderer_dawi_1}One of the most ancient crafts that our ancestor Grungni and his son Thungni taught us. As all Dawi crafts, this is sturdy, no umgak like the magic that elgi and others cast. This is magic you can rely on." />
+  <string id="tor_response_1.tor_wanderer_dawi_1" text="{=str_tor_response_1_tor_wanderer_dawi_1}My apologies. I just couldn’t keep my eyes off your scribbles." />
+  <string id="tor_response_2.tor_wanderer_dawi_1" text="{=str_tor_response_2_tor_wanderer_dawi_1}I am sorry to disturb you, honoured Runesmith. I wish to employ you and I will pay handsomely should you work your craft for me." />
+  <string id="tor_backstory_d.tor_wanderer_dawi_1" text="{=str_tor_backstory_d_tor_wanderer_dawi_1}These are no mere scribbles, lad! Even one rune-engraved item can turn the tide of battle." />
+  <string id="tor_generic_backstory.tor_wanderer_dawi_1" text="{=str_tor_generic_backstory_tor_wanderer_dawi_1}If you can afford it, I shall pack up my tools. I hope you can pay for runecraft materials; they won’t come cheap."/>
+
+  <string id="tor_prebackstory.tor_wanderer_dawi_2" text="{=str_tor_prebackstory_tor_wanderer_dawi_2}Aye lad, what is it? You here to take a wee look at my plans?" />
+  <string id="tor_backstory_a.tor_wanderer_dawi_2" text="{=str_tor_backstory_a_tor_wanderer_dawi_2}I’d advise you not to, though. Many have lost one or both of their eyes peeking into my works." />
+  <string id="tor_backstory_b.tor_wanderer_dawi_2" text="{=str_tor_backstory_b_tor_wanderer_dawi_2}I hoard and protect them as any Dawi would protect their gold, for my contraptions are my gold, figuratively speaking." />
+  <string id="tor_backstory_c.tor_wanderer_dawi_2" text="{=str_tor_backstory_c_tor_wanderer_dawi_2}Speaking of, is that why you’re here? I can assure you, you’ll find no finer works than my inventions, be they weapons of war or a kuchungkuchung. I could employ them for you, for the right amount of gold, that is." />
+  <string id="tor_response_1.tor_wanderer_dawi_2" text="{=str_tor_response_1_tor_wanderer_dawi_2}I could see from the start that you’re a master inventor. Yes, I require your expertise." />
+  <string id="tor_response_2.tor_wanderer_dawi_2" text="{=str_tor_response_2_tor_wanderer_dawi_2}I’ve heard of that Makaisson fellow and his ‘inventions’. How can I trust you that yours will work?" />
+  <string id="tor_backstory_d.tor_wanderer_dawi_2" text="{=str_tor_backstory_d_tor_wanderer_dawi_2}We of the Engineers' Guild are the masters of innovation, there is no greatness without a few setbacks on the way." />
+  <string id="tor_generic_backstory.tor_wanderer_dawi_2" text="{=str_tor_generic_backstory_tor_wanderer_dawi_2}However; my services do not come cheap — if these conditions satisfy you, sign here for my employment and your non-disclosure agreement…"/>
+
+  <string id="tor_prebackstory.tor_wanderer_greenskins_0" text="{=str_tor_prebackstory_tor_wanderer_greenskins_0}OI GIT! Pay attenchun, I’z a big boss, an’ if I’z not gunna be dis-respekted. I’z gun get da boys in line, cuz I’m da biggest an da strongest!" />
+  <string id="tor_backstory_a.tor_wanderer_greenskins_0" text="{=str_tor_backstory_a_tor_wanderer_greenskins_0}Yoo ain’t got a clue how tuff I iz, I’z tellin you, green iz best!" />
+  <string id="tor_backstory_b.tor_wanderer_greenskins_0" text="{=str_tor_backstory_b_tor_wanderer_greenskins_0}I’z been doin dis fer ages, cuz da orcs ‘as alwayz been ready to foight anyone–an’ win!" />
+  <string id="tor_backstory_c.tor_wanderer_greenskins_0" text="{=str_tor_backstory_c_tor_wanderer_greenskins_0}I knew a git who worked fer Grimgor Ironhide, da biggest an’ baddest orc warlord since da old dayz! I’z da best!" />
+  <string id="tor_response_1.tor_wanderer_greenskins_0" text="{=str_tor_response_1_tor_wanderer_greenskins_0}You wuz wiv a git who knew Grimgor? Dats zoggin nuts!" />
+  <string id="tor_response_2.tor_wanderer_greenskins_0" text="{=str_tor_response_2_tor_wanderer_greenskins_0}All-roight yer tuff, but you answer to me! Listen wot I say or I’ll bash yer teef in!" />
+  <string id="tor_backstory_d.tor_wanderer_greenskins_0" text="{=str_tor_backstory_d_tor_wanderer_greenskins_0}Aye, if ya pay me I’ll follow ya, an' you dun look puny too. Das good." />
+  <string id="tor_generic_backstory.tor_wanderer_greenskins_0" text="{=str_tor_generic_backstory_tor_wanderer_greenskins_0}We'z gunna go or wot? Lez WAAAAGH!!!"/>
+  
+  <string id="tor_prebackstory.tor_wanderer_greenskins_1" text="{=str_tor_prebackstory_tor_wanderer_greenskins_1}Oi! Come closah… yoo wants da powah uv Gork an’ Mork on yer side? I’z got sum uv dat zappy stuffs…" />
+  <string id="tor_backstory_a.tor_wanderer_greenskins_1" text="{=str_tor_backstory_a_tor_wanderer_greenskins_1}Yoo need a shaman to guide any proppa WAAAAGH!!!, an I’z da right ‘un fer da job." />
+  <string id="tor_backstory_b.tor_wanderer_greenskins_1" text="{=str_tor_backstory_b_tor_wanderer_greenskins_1}Da shaman makes sure da boys are noice an’ hopped up fer da scrap, or I bring down da bolts from da godz to STOMP sum gits." />
+  <string id="tor_backstory_c.tor_wanderer_greenskins_1" text="{=str_tor_backstory_c_tor_wanderer_greenskins_1}I’z been around fer sum time… I met da Great Green Prophet Wurrzag once… gave me a shroom too…" />
+  <string id="tor_response_1.tor_wanderer_greenskins_1" text="{=str_tor_response_1_tor_wanderer_greenskins_1}You met da Great Green Prophet? Means you’z got sum powah in ya…" />
+  <string id="tor_response_2.tor_wanderer_greenskins_1" text="{=str_tor_response_2_tor_wanderer_greenskins_1}I’z lookin fer a weird ‘un to ‘ave Gork an’ Mork wiv us." />
+  <string id="tor_backstory_d.tor_wanderer_greenskins_1" text="{=str_tor_backstory_d_tor_wanderer_greenskins_1}Get me sum shinies, and we'z gunna go meet Gork an' Mork togeva'!" />
+  <string id="tor_generic_backstory.tor_wanderer_greenskins_1" text="{=str_tor_generic_backstory_tor_wanderer_greenskins_1}We'z gunna go or wot? Lez WAAAAGH!!!"/>
+  
+  <string id="tor_prebackstory.tor_wanderer_greenskins_2" text="{=str_tor_prebackstory_tor_wanderer_greenskins_2}Wozzat? I ain’t got time fer nonsense. Yoo look proppa green, so I’ll tell ya wot I do." />
+  <string id="tor_backstory_a.tor_wanderer_greenskins_2" text="{=str_tor_backstory_a_tor_wanderer_greenskins_2}I’z ‘ere to bash in da brainz uv’ da lil’ ‘uns an’ bully ‘em til dey GET IN LINE!" />
+  <string id="tor_backstory_b.tor_wanderer_greenskins_2" text="{=str_tor_backstory_b_tor_wanderer_greenskins_2}You’z got any puny gits or runts dat need smakkin’, any gobbos dat are too pansy an’ alwayz leave da fight JUS’ WHEN IT GETZ GUD? I’z da orc fer ya." />
+  <string id="tor_backstory_c.tor_wanderer_greenskins_2" text="{=str_tor_backstory_c_tor_wanderer_greenskins_2}I’z been bashin in skullz an’ makin sure da gobbos are da first to da fight fer long times. Dem puny runts are nuffin’ but weedy lil’ squigs, an’ dey’z gud fer nuffin but takin’ a good bashin ‘fore da BOYS get in to do sum CHOPPIN!" />
+  <string id="tor_response_1.tor_wanderer_greenskins_2" text="{=str_tor_response_1_tor_wanderer_greenskins_2}I been needin’ a proppa bully to keep da runts an’ gobbos in line." />
+  <string id="tor_response_2.tor_wanderer_greenskins_2" text="{=str_tor_response_2_tor_wanderer_greenskins_2}Iz true, da runty 'uns are smelly an' lazy, best to keep 'em motivated." />
+  <string id="tor_backstory_d.tor_wanderer_greenskins_2" text="{=str_tor_backstory_d_tor_wanderer_greenskins_2}If yoo need sum-wun to look ovah yer stuffs, I been watchin’ da loot piles uv da biggest bosses around, an’ dey ain’t lost even a lil’ ‘umie stabba to dem weedy goblin SNEAKZ!" />
+  <string id="tor_generic_backstory.tor_wanderer_greenskins_2" text="{=str_tor_generic_backstory_tor_wanderer_greenskins_2}Iz jus' need sum shinies to pay da uva' boss first. Den yoo say da word an’ we’z goin’."/>
+
+  <string id="tor_prebackstory.tor_wanderer_greenskins_3" text="{=str_tor_prebackstory_tor_wanderer_greenskins_3}Oi! Down ‘ere! You look loik a tuff git, noice an’ green! A real boss you iz, fo’ sure! Y–you needs a proppa brain to go wiv all’a dat brawn ya gots dere?" />
+  <string id="tor_backstory_a.tor_wanderer_greenskins_3" text="{=str_tor_backstory_a_tor_wanderer_greenskins_3}I ken whip up sum’a da nastiest gubbinz you evah’ seen! Need to take a–a fort? Dead ‘ard an’ not enuff ladderz? I’ll make sum stone throwaz to knock dem wallz right down!" />
+  <string id="tor_backstory_b.tor_wanderer_greenskins_3" text="{=str_tor_backstory_b_tor_wanderer_greenskins_3}I ‘membah I–I even made a spear chukka once, an den I shot it at wun uv dem big pointy ‘ead cow fellaz – it went right froo’, an’ knocked down a hundred uva' lil’ pointy ‘ead cowz! Only… dey didn’t ‘ave any ‘orns…" />
+  <string id="tor_backstory_c.tor_wanderer_greenskins_3" text="{=str_tor_backstory_c_tor_wanderer_greenskins_3}If you need sum-wun t-to make sum nice con…trapshunz, den throwaz an’ chukkas! Den I’z da git fer ya mob!" />
+  <string id="tor_response_1.tor_wanderer_greenskins_3" text="{=str_tor_response_1_tor_wanderer_greenskins_3}You'z downright runty. But… you make da throwas an’ spear chukkas. Hmmm…" />
+  <string id="tor_response_2.tor_wanderer_greenskins_3" text="{=str_tor_response_2_tor_wanderer_greenskins_3}Iz dem krafted gubbinz even wurf a squig?" />
+  <string id="tor_backstory_d.tor_wanderer_greenskins_3" text="{=str_tor_backstory_d_tor_wanderer_greenskins_3}I ken also make sum nasty choppaz fer da boys! I made a big ole’ choppa fer–fer da last boss I ‘ad, and it chopped right froo’ wun uv da spiky umies! Dat wuz before I got… errp… nevah-mind." />
+  <string id="tor_generic_backstory.tor_wanderer_greenskins_3" text="{=str_tor_generic_backstory_tor_wanderer_greenskins_3}Wot-evah ya say boss, I’z follow yah! Lemme into da Waaagh!!! Lemme in!"/>
+
   <string id="tor_prebackstory.tor_wanderer_chaos_0" text="{=str_tor_prebackstory_tor_wanderer_chaos_0}Do you hear them too? Those voices…" />
   <string id="tor_backstory_a.tor_wanderer_chaos_0" text="{=str_tor_backstory_a_tor_wanderer_chaos_0}Inside my head, those voices whisper to me, revealing to me the secrets of this world." />
   <string id="tor_backstory_b.tor_wanderer_chaos_0" text="{=str_tor_backstory_b_tor_wanderer_chaos_0}Before there was confusion, now I see everything clearly. My purpose has been revealed to me." />
@@ -2390,7 +2468,6 @@
   <string id="tor_response_2.tor_wanderer_chaos_0" text="{=str_tor_response_2_tor_wanderer_chaos_0}Where are the witch hunters when we need them?" />
   <string id="tor_backstory_d.tor_wanderer_chaos_0" text="{=str_tor_backstory_d_tor_wanderer_chaos_0}Chaos guides me, Chaos teaches me. I will shed the blood of non-believers if they refuse to see the truth." />
   <string id="tor_generic_backstory.tor_wanderer_chaos_0" text="{=str_tor_generic_backstory_tor_wanderer_chaos_0}You believe too, I know. That is why Chaos has brought you here. Are you committed to the cause?"/>
-
 
   <!-- Religions -->
 
