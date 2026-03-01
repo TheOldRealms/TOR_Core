@@ -783,7 +783,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_knight_errant" default_group="cavalry" level="21" name="{=str_tor_br_knight_errant}Bretonnian Knight Errant" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21">
     <face>
-      <face_key_template value="BodyProperty.fighter_vlandia" />
+      <face_key_template value="BodyProperty.bretonnianknight" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_br_realm_knight" />
@@ -795,7 +795,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_realm_knight" default_group="cavalry" level="31" name="{=str_tor_br_realm_knight}Bretonnian Knight of the Realm" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level31">
     <face>
-      <face_key_template value="BodyProperty.fighter_vlandia" />
+      <face_key_template value="BodyProperty.bretonnianknight" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_br_quest_knight" />
@@ -807,7 +807,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_quest_knight" default_group="cavalry" level="41" name="{=str_tor_br_quest_knight}Bretonnian Questing Knight" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level41">
     <face>
-      <face_key_template value="BodyProperty.fighter_vlandia" />
+      <face_key_template value="BodyProperty.bretonnianknight" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_br_grail_knight" />
@@ -819,7 +819,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_grail_knight" default_group="cavalry" level="46" name="{=str_tor_br_grail_knight}Bretonnian Grail Knight" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level46">
     <face>
-      <face_key_template value="BodyProperty.fighter_vlandia" />
+      <face_key_template value="BodyProperty.bretonnianknight" />
     </face>
     <upgrade_targets />
     <Equipments>
@@ -1012,7 +1012,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_m_knight_of_misfortune" default_group="cavalry" level="31" name="{=str_tor_m_knight_of_misfortune}Mousillon Knight of Misfortune" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level31">
     <face>
-      <face_key_template value="BodyProperty.fighter_vlandia" />
+      <face_key_template value="BodyProperty.bretonnianknight" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_m_doomed_questing_knight" />
@@ -1024,7 +1024,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_m_doomed_questing_knight" default_group="cavalry" level="41" name="{=str_tor_m_doomed_questing_knight}Mousillon Doomed Questing Knight" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level41">
     <face>
-      <face_key_template value="BodyProperty.fighter_vlandia" />
+      <face_key_template value="BodyProperty.bretonnianknight" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_m_knight_of_the_black_grail" />
@@ -1036,7 +1036,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_m_knight_of_the_black_grail" default_group="cavalry" level="46" name="{=str_tor_m_knight_of_the_black_grail}Mousillon Knight of the Black Grail" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level46">
     <face>
-      <face_key_template value="BodyProperty.fighter_vlandia" />
+      <face_key_template value="BodyProperty.bretonnianknight" />
     </face>
     <upgrade_targets />
     <Equipments>
@@ -1513,12 +1513,6 @@
   <NPCCharacter id="tor_dw_commoner" default_group="infantry" level="1" name="{=str_tor_dw_commoner}Dawi Commoner" occupation="Villager" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_commoner" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_low_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
-      <beard_tags>
-        <beard_tag name="DawiBeard" />
-      </beard_tags>
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_dw_recruit" />
@@ -1531,12 +1525,6 @@
   <NPCCharacter id="tor_dw_recruit" default_group="infantry" level="6" name="{=str_tor_dw_recruit}Dawi" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_dawi" is_basic_troop="true" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_low_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
-      <beard_tags>
-        <beard_tag name="BeardlingShort" />
-      </beard_tags>
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_dw_militia" />
@@ -1550,12 +1538,6 @@
   <NPCCharacter id="tor_dw_militia" default_group="infantry" level="11" name="{=str_tor_dw_militia}Dawi Militia" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_militia" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_low_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
-      <beard_tags>
-        <beard_tag name="DawiShortBeard" />
-      </beard_tags>
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_dw_miner" />
@@ -1569,12 +1551,6 @@
   <NPCCharacter id="tor_dw_miner" default_group="infantry" level="16" name="{=str_tor_dw_miner}Dawi Miner" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_miner" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_low_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
-      <beard_tags>
-        <beard_tag name="DawiShortBeard" />
-      </beard_tags>
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_dw_prospector" />
@@ -1587,12 +1563,6 @@
   <NPCCharacter id="tor_dw_prospector" default_group="infantry" level="21" name="{=str_tor_dw_prospector}Dawi Prospector" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_prospector" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_mid_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
-      <beard_tags>
-        <beard_tag name="DawiWarriorBeard" />
-      </beard_tags>
     </face>
     <upgrade_targets />
     <Equipments>
@@ -1603,12 +1573,6 @@
   <NPCCharacter id="tor_dw_warrior" default_group="infantry" level="21" name="{=str_tor_dw_warrior}Dawi Warrior" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_warrior" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_mid_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
-      <beard_tags>
-        <beard_tag name="DawiWarriorBeard" />
-      </beard_tags>
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_dw_longbeard" />
@@ -1621,9 +1585,6 @@
   <NPCCharacter id="tor_dw_longbeard" default_group="infantry" level="31" name="{=str_tor_dw_longbeard}Dawi Longbeard" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_longbeard" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_mid_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
       <beard_tags>
         <beard_tag name="LongbeardBeard" />
       </beard_tags>
@@ -1637,12 +1598,6 @@
   <NPCCharacter id="tor_dw_scout" default_group="ranged" level="16" name="{=str_tor_dw_scout}Dawi Scout" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_scout" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_low_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
-      <beard_tags>
-        <beard_tag name="DawiShortBeard" />
-      </beard_tags>
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_dw_quarreller" />
@@ -1656,12 +1611,6 @@
   <NPCCharacter id="tor_dw_quarreller" default_group="ranged" level="21" name="{=str_tor_dw_quarreller}Dawi Quarreller" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_quarreller" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_mid_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
-      <beard_tags>
-        <beard_tag name="DawiBeard" />
-      </beard_tags>
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_dw_veteran_quarreller" />
@@ -1674,12 +1623,6 @@
   <NPCCharacter id="tor_dw_veteran_quarreller" default_group="ranged" level="26" name="{=str_tor_dw_veteran_quarreller}Dawi Veteran Quarreller" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_veteran_quarreller" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_high_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
-      <beard_tags>
-        <beard_tag name="DawiBeard" />
-      </beard_tags>
     </face>
     <upgrade_targets />
     <Equipments>
@@ -1690,12 +1633,6 @@
   <NPCCharacter id="tor_dw_thunderer" default_group="ranged" level="21" name="{=str_tor_dw_thunderer}Dawi Thunderer" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_thunderer" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_mid_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
-      <beard_tags>
-        <beard_tag name="DawiBeard" />
-      </beard_tags>
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_dw_sharpshooter" />
@@ -1708,12 +1645,6 @@
   <NPCCharacter id="tor_dw_sharpshooter" default_group="ranged" level="26" name="{=str_tor_dw_sharpshooter}Dawi Sharpshooter" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_sharpshooter" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_high_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
-      <beard_tags>
-        <beard_tag name="DawiWarriorBeard" />
-      </beard_tags>
     </face>
     <upgrade_targets />
     <Equipments>
@@ -1724,9 +1655,6 @@
   <NPCCharacter id="tor_dw_ranger" default_group="ranged" level="26" name="{=str_tor_dw_ranger}Dawi Ranger" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_ranger" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_mid_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
       <beard_tags>
         <beard_tag name="RangerBeard" />
       </beard_tags>
@@ -1742,9 +1670,6 @@
   <NPCCharacter id="tor_dw_ol_deadeye" default_group="ranged" level="31" name="{=str_tor_dw_ol_deadeye}Dawi Ol' Deadeye" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_ol_deadeye" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_high_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
       <beard_tags>
         <beard_tag name="RangerBeard" />
       </beard_tags>
@@ -1758,9 +1683,6 @@
   <NPCCharacter id="tor_dw_oldguard" default_group="infantry" level="26" name="{=str_tor_dw_oldguard}Dawi Old Guard" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_oldguard" is_basic_troop="true" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_high_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
       <beard_tags>
         <beard_tag name="RangerBeard" />
       </beard_tags>
@@ -1777,9 +1699,6 @@
   <NPCCharacter id="tor_dw_ironbreaker" default_group="infantry" level="41" name="{=str_tor_dw_ironbreaker}Dawi Ironbreaker" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_ironbreaker" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_high_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
       <beard_tags>
         <beard_tag name="IronbreakerBeard" />
       </beard_tags>
@@ -1797,9 +1716,6 @@
   <NPCCharacter id="tor_dw_ironbeard" default_group="infantry" level="46" name="{=str_tor_dw_ironbeard}Dawi Ironbeard" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_ironbeard" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_high_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
       <beard_tags>
         <beard_tag name="LongbeardBeard" />
       </beard_tags>
@@ -1813,9 +1729,6 @@
   <NPCCharacter id="tor_dw_irondrake" default_group="infantry" level="46" name="{=str_tor_dw_irondrake}Dawi Irondrake" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_irondrake" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_high_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
       <beard_tags>
         <beard_tag name="IronbreakerBeard" />
       </beard_tags>
@@ -1829,9 +1742,6 @@
   <NPCCharacter id="tor_dw_irondrake_trollhammer" default_group="infantry" level="46" name="{=str_tor_dw_irondrake_trollhammer}Dawi Irondrake (Trollhammer Torpedos)" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_irondrake_trollhammer" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_high_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
       <beard_tags>
         <beard_tag name="IronbreakerBeard" />
       </beard_tags>
@@ -1845,9 +1755,6 @@
   <NPCCharacter id="tor_dw_hammerer" default_group="infantry" level="41" name="{=str_tor_dw_hammerer}Dawi Hammerer" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_hammerer" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_high_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
       <beard_tags>
         <beard_tag name="LongbeardBeard" />
       </beard_tags>
@@ -1863,9 +1770,6 @@
   <NPCCharacter id="tor_dw_gatekeeper" default_group="infantry" level="46" name="{=str_tor_dw_gatekeeper}Dawi Gate Keeper" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_gatekeeper" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_high_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
       <beard_tags>
         <beard_tag name="ThaneBeard" />
       </beard_tags>
@@ -1913,9 +1817,6 @@
   <NPCCharacter id="tor_dw_pilgrim" default_group="infantry" level="21" name="{=str_tor_dw_pilgrim}Dawi Pilgrim" occupation="CaravanGuard" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_level21" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_mid_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
       <beard_tags>
         <beard_tag name="DawiBeard" />
       </beard_tags>
@@ -1931,9 +1832,6 @@
   <NPCCharacter id="tor_dw_lookout" default_group="ranged" level="21" name="{=str_tor_dw_lookout}Dawi Lookout" occupation="CaravanGuard" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_level21" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_mid_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
       <beard_tags>
         <beard_tag name="DawiBeard" />
       </beard_tags>
@@ -1949,9 +1847,6 @@
   <NPCCharacter id="tor_dw_veteran_guard" default_group="infantry" level="26" name="{=str_tor_dw_veteran_guard}Dawi Veteran Guard" occupation="CaravanGuard" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_level26" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_mid_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
       <beard_tags>
         <beard_tag name="DawiBeard" />
       </beard_tags>
@@ -1965,9 +1860,6 @@
   <NPCCharacter id="tor_dw_master_trader" default_group="infantry" level="26" name="{=str_tor_dw_master_trader}Dawi Master Trader" occupation="CaravanGuard" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_level26" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_mid_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
       <beard_tags>
         <beard_tag name="DawiBeard" />
       </beard_tags>
@@ -1981,9 +1873,6 @@
   <NPCCharacter id="tor_dw_artillery_crew" default_group="infantry" level="11" name="{=str_tor_dw_artillery_crew}Dawi Artillery Crew" occupation="CaravanGuard" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_level11" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_high_tier" />
-      <hair_tags>
-        <hair_tag name="Bald" />
-      </hair_tags>
       <beard_tags>
         <beard_tag name="DawiBeard" />
       </beard_tags>

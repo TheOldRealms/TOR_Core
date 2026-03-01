@@ -248,4 +248,13 @@
         RegimentName="{=str_tor_ror_settlement_name_wild_rider}Wild Riders of Kurnous"
         RegimentHQName="{=str_tor_ror_settlement_hqname_wild_rider}Shrine of Kurnous"
     />
+	
+	<RORSettlementTemplate
+		SettlementId="town_KK1"
+        BaseTroopId="tor_dw_slayer"
+        MenuHeaderText="{=str_tor_ror_settlement_text_wild_rider}The Slayer Keep. Every slayers journey for redemption starts here."
+        MenuBackgroundImageId="invalid"
+        RegimentName="{=str_tor_ror_settlement_name_wild_rider}Slayer"
+        RegimentHQName="{=str_tor_ror_settlement_hqname_wild_rider}Slayer Keep"
+    />
 </ArrayOfRORSettlementTemplate>
