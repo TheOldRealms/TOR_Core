@@ -24,10 +24,12 @@ namespace TOR_Core.CampaignMechanics
         private CharacterObject _artilleryCrew;
         private CharacterObject _dwarfArtilleryCrew;
         private CharacterObject _troll;
+        private CharacterObject _slayer;
 
         private const int UndeadCountVillages = 5;
         private const int UndeadCountTowns = 20;
         private const int MaxTrollsPerParty = 20;
+        private const int MaxSlayersPerParty = 40;
 
         public override void RegisterEvents()
         {
@@ -36,6 +38,7 @@ namespace TOR_Core.CampaignMechanics
             CampaignEvents.AfterSettlementEntered.AddNonSerializedListener(this, AddUndeadToPartyOnEnteringSettlement);
             CampaignEvents.AfterSettlementEntered.AddNonSerializedListener(this, AddDryadsToPartyOnEnteringSettlement);
             CampaignEvents.AfterSettlementEntered.AddNonSerializedListener(this, AddTrollsToPartyOnEnteringSettlement);
+            CampaignEvents.AfterSettlementEntered.AddNonSerializedListener(this, AddSlayersToPartyOnEnteringSettlement);
             CampaignEvents.OnTroopRecruitedEvent.AddNonSerializedListener(this, TORRecruitmentBehavior);
             CampaignEvents.DailyTickPartyEvent.AddNonSerializedListener(this, DailyTickEvents);
         }
@@ -124,6 +127,14 @@ namespace TOR_Core.CampaignMechanics
                         party.MemberRoster.AddToCounts(_raider, 15);
                     }
                 }
+
+                // SlayerLord Recruitment in Dwarf Towns
+                if (party.LeaderHero.HasAttribute("SlayerLord") &&
+                    party.CurrentSettlement != null &&
+                    party.CurrentSettlement.IsDwarfKarak())
+                {
+                    ProcessSlayerRecruitment(party);
+                }
             }
         }
 
@@ -137,6 +148,7 @@ namespace TOR_Core.CampaignMechanics
             _artilleryCrew = MBObjectManager.Instance.GetObject<CharacterObject>("tor_empire_veteran_artillery_crew");
             _dwarfArtilleryCrew = MBObjectManager.Instance.GetObject<CharacterObject>("tor_dw_artillery_crew");
             _troll = MBObjectManager.Instance.GetObject<CharacterObject>("tor_gs_trolls");
+            _slayer = MBObjectManager.Instance.GetObject<CharacterObject>("tor_dw_slayer");
         }
 
         private void AddDryadsToPartyOnEnteringSettlement(MobileParty party, Settlement settlement, Hero leaderHero)
@@ -181,6 +193,32 @@ namespace TOR_Core.CampaignMechanics
             }
         }
 
+        private void AddSlayersToPartyOnEnteringSettlement(MobileParty party, Settlement settlement, Hero leaderHero)
+        {
+            if (party == null || settlement == null || leaderHero == null) return;
+            if (party.IsMainParty || settlement.IsHideout) return;
+            if (!leaderHero.HasAttribute("SlayerLord")) return;
+            if (!settlement.IsDwarfKarak()) return;
+            if (_slayer == null) return;
+
+            if (party.MemberRoster.TotalManCount < party.Party.PartySizeLimit)
+            {
+                int currentSlayers = party.MemberRoster.GetTroopCount(_slayer);
+                if (currentSlayers >= MaxSlayersPerParty) return;
+
+                // Recruit 5-10 slayers when entering a Karak
+                int slayersToRecruit = MBRandom.RandomInt(5, 11); // RandomInt is exclusive on upper bound, so 5-10
+                int maxToAdd = Math.Min(slayersToRecruit, MaxSlayersPerParty - currentSlayers);
+                int spaceAvailable = party.Party.PartySizeLimit - party.MemberRoster.TotalManCount;
+                int actualAdd = Math.Min(maxToAdd, spaceAvailable);
+
+                if (actualAdd > 0)
+                {
+                    party.MemberRoster.AddToCounts(_slayer, actualAdd, false, 0);
+                }
+            }
+        }
+
         private void AddUndeadToPartyOnEnteringSettlement(MobileParty party, Settlement settlement, Hero leaderHero)
         {
             if (party == null || settlement == null || leaderHero == null || !leaderHero.IsNecromancer() || settlement.IsHideout || party.IsMainParty) return;
@@ -191,6 +229,92 @@ namespace TOR_Core.CampaignMechanics
                     var number = settlement.IsVillage ? UndeadCountVillages : UndeadCountTowns;
                     party.MemberRoster.AddToCounts(_skeleton, Math.Min(number, party.Party.PartySizeLimit - party.MemberRoster.TotalManCount));
                 }
+            }
+        }
+
+        private void ProcessSlayerRecruitment(MobileParty party)
+        {
+            // Check current slayer count
+            int currentSlayers = party.MemberRoster.GetTroopCount(_slayer);
+            if (currentSlayers >= MaxSlayersPerParty)
+            {
+                // Only do replacements if already at max
+                ReplaceWeakestTroopsWithSlayers(party);
+                return;
+            }
+
+            // Step 1: Add 3-5 new slayers to the party
+            int slayerCount = MBRandom.RandomInt(3, 6); // RandomInt is exclusive on upper bound, so 3-5
+            int maxToAdd = Math.Min(slayerCount, MaxSlayersPerParty - currentSlayers);
+
+            // Check if party has room for new troops
+            if (party.Party.PartySizeLimit > party.MemberRoster.TotalManCount + maxToAdd)
+            {
+                party.MemberRoster.AddToCounts(_slayer, maxToAdd, false, 0);
+            }
+            else if (party.Party.PartySizeLimit > party.MemberRoster.TotalManCount)
+            {
+                // Add as many as we can fit
+                int spaceAvailable = party.Party.PartySizeLimit - party.MemberRoster.TotalManCount;
+                int actualAdd = Math.Min(spaceAvailable, maxToAdd);
+                party.MemberRoster.AddToCounts(_slayer, actualAdd, false, 0);
+            }
+
+            // Step 2: Replace weakest troops with slayers (25% chance per troop)
+            ReplaceWeakestTroopsWithSlayers(party);
+        }
+
+        private void ReplaceWeakestTroopsWithSlayers(MobileParty party)
+        {
+            // Get all troops in roster (excluding heroes)
+            var roster = party.MemberRoster.GetTroopRoster().ToList();
+
+            // Filter for weakest non-elite troops (tier 1-3, basic troops only)
+            var weakestTroops = roster
+                .Where(element =>
+                    !element.Character.IsHero &&
+                    element.Character.Tier >= 1 &&
+                    element.Character.Tier <= 3 &&
+                    element.Character.IsBasicTroop &&
+                    !element.Character.IsEliteTroop())
+                .ToList();
+
+            if (weakestTroops.Count == 0) return;
+
+            // Check current slayer count to respect max limit
+            int currentSlayers = party.MemberRoster.GetTroopCount(_slayer);
+            int totalReplacements = 0;
+
+            // Iterate through each weak troop type
+            foreach (var troopElement in weakestTroops)
+            {
+                int troopsToReplace = 0;
+
+                // Roll 25% chance for each individual troop
+                for (int i = 0; i < troopElement.Number; i++)
+                {
+                    // Stop if we'd exceed max slayers
+                    if (currentSlayers + totalReplacements >= MaxSlayersPerParty)
+                        break;
+
+                    if (MBRandom.RandomFloat < 0.25f)
+                    {
+                        troopsToReplace++;
+                    }
+                }
+
+                if (troopsToReplace > 0)
+                {
+                    // Remove the weak troops
+                    party.AddElementToMemberRoster(troopElement.Character, -troopsToReplace);
+                    totalReplacements += troopsToReplace;
+                }
+            }
+
+            // Add slayers to replace the removed troops
+            if (totalReplacements > 0)
+            {
+                party.MemberRoster.AddToCounts(_slayer, totalReplacements, false, 0);
             }
         }
 
