@@ -2336,7 +2336,7 @@
 
   <string id="tor_prebackstory.tor_wanderer_mousillon_4" text="{=str_tor_prebackstory_tor_wanderer_mousillon_4}I do not remember much of my past life, there is only the now and the thirst." />
   <string id="tor_backstory_a.tor_wanderer_mousillon_4" text="{=str_tor_backstory_a_tor_wanderer_mousillon_4}Being human feels like a dream, a dream I was happily liberated from." />
-  <string id="tor_backstory_b.tor_wanderer_mousillon_4" text="{=str_tor_backstory_b_tor_wanderer_mousillon_41}I was taken from my village for the blood tax, but instead I became the desire of my vampire master. I was blessed with the gift of Nagash" />
+  <string id="tor_backstory_b.tor_wanderer_mousillon_4" text="{=str_tor_backstory_b_tor_wanderer_mousillon_4}I was taken from my village for the blood tax, but instead I became the desire of my vampire master. I was blessed with the gift of Nagash" />
   <string id="tor_backstory_c.tor_wanderer_mousillon_4" text="{=str_tor_backstory_c_tor_wanderer_mousillon_4}My master however perished during the vampire wars, with no one else I have been left to wander the night since." />
   <string id="tor_response_1.tor_wanderer_mousillon_4" text="{=str_tor_response_1_tor_wanderer_mousillon_4}Intriguing." />
   <string id="tor_response_2.tor_wanderer_mousillon_4" text="{=str_tor_response_2_tor_wanderer_mousillon_4}I couldn't really care less about your wretched origin." />
@@ -2399,8 +2399,8 @@
 
   <string id="tor_prebackstory.tor_wanderer_dawi_0" text="{=str_tor_prebackstory_tor_wanderer_dawi_0}You are speaking to a gov, a thane, a champion of the Dawi, lad. Others would do well not to get in my way." />
   <string id="tor_backstory_a.tor_wanderer_dawi_0" text="{=str_tor_backstory_a_tor_wanderer_dawi_0}I have fought in many wars and my warriors have secured many victories for me." />
-  <string id="tor_backstory_b.tor_wanderer_dawi_0" text="{=str_tor_backstory_b_tor_wanderer_dawi_0}Yet I am not deemed fit to lead. My Rik would have me wander the world, to taste true battle, to endure hardship, and to learn the intricacies of command." />
-  <string id="tor_backstory_c.tor_wanderer_dawi_0" text="{=str_tor_backstory_c_tor_wanderer_dawi_0}I’z been around fer sum time… I met da Great Green Prophet Wurrzag once… gave me a shroom too…" />
+  <string id="tor_backstory_b.tor_wanderer_dawi_0" text="{=str_tor_backstory_b_tor_wanderer_dawi_0}Yet I am not deemed fit to lead. Although I am not directly in line, there still are my brothers." />
+  <string id="tor_backstory_c.tor_wanderer_dawi_0" text="{=str_tor_backstory_c_tor_wanderer_dawi_0}My Rik would have me wander the world, to taste true battle, to endure hardship, and to learn the intricacies of command. Leaves me more time to strol, you see?" />
   <string id="tor_response_1.tor_wanderer_dawi_0" text="{=str_tor_response_1_tor_wanderer_dawi_0}You’re actively looking for adventure? What a coincidence, I’m always looking for new companions to join me!" />
   <string id="tor_response_2.tor_wanderer_dawi_0" text="{=str_tor_response_2_tor_wanderer_dawi_0}So you’re just the overlooked son of some clan, without any chinks in your armour to prove your worth." />
   <string id="tor_backstory_d.tor_wanderer_dawi_0" text="{=str_tor_backstory_d_tor_wanderer_dawi_0}Careful now. You're lucky my composure is as steady as a mountain's roots. I could join your company - Keep my blood hot and the ale cold, and I will see your enemies dead upon the battlefield." />
@@ -4045,7 +4045,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_custom_resource_name.DarkEnergy" text="{=str_tor_custom_resource_name_darkenergy}Dark Energy" />
 	<string id="tor_custom_resource_name.ForestHarmony" text="{=str_tor_custom_resource_name_forestharmony}Forest Harmony" />
 	<string id="tor_custom_resource_name.CouncilFavor" text="{=str_tor_custom_resource_name_councilfavor}Eonir Council Favor" />
-	<string id="tor_custom_resource_name.OathGold" text="{=str_tor_custom_resource_name_oathgold}Oath Gold" />
+	<string id="tor_custom_resource_name.OathGold" text="{=str_tor_custom_resource_name_oathgold}Oathgold" />
 	<string id="tor_custom_resource_name.Teef" text="{=str_tor_custom_resource_name_teef}Teef" />
 	<string id="tor_custom_resource_name.Meat" text="{=str_tor_custom_resource_name_meat}Meat" />
 	<string id="tor_custom_resource_name.Waaagh" text="{=str_tor_custom_resource_name_waaagh}Fightiness" />

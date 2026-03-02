@@ -903,7 +903,7 @@
                      CrosshairType="TargetedAOE"
                      SpellTier="3"
                      BelongsToLoreID="LoreOfHeavens"
-                     TooltipDescription="{=harmonic_convergence_description_str}Divining favorable signs, the caster guides the minds of his fellow warriors. Allies in a 10 meter radius gain 50% physical resistance for 50 seconds.">
+                     TooltipDescription="{=harmonic_convergence_description_str}Divining favourable signs, the caster guides the minds of his fellow warriors. Allies in a 10 meter radius gain 50% physical resistance for 50 seconds.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -1861,7 +1861,7 @@
                      CrosshairType="SingleTarget"
                      SpellTier="4"
                      BelongsToLoreID="LoreOfDeath"
-                     TooltipDescription="{=snow_king_description_str}The priest roars with a grand prayer and calls freezing blast of blue flames to cleanse a targeted area of cowards and weaklings. Affected enemies take damage, suffer a -50% movement and attack speed penalty as well as damage over time.">
+                     TooltipDescription="{=taste_of_death_description_str}A skeletal hand is outstretched towards the target, their life snuffed out within a heartbeat. Deal massive single-target damage.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -1905,7 +1905,7 @@
                      AbilityTargetType="WorldPosition"
                      SpellTier="2"
                      BelongsToLoreID="LoreOfDeath"
-                     TooltipDescription="{=death_spasm_description_str}A crackling black bolt of energy that explodes in a fireball and sets victims on fire.">
+                     TooltipDescription="{=ashes_and_dust_description_str}The caster channels potent death magic and looses it upon the foe, leaving nothing but dust in the wind. Deal medium damage in a small area.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -1919,7 +1919,7 @@
     </AbilityTemplate>
 	
 	<AbilityTemplate StringID="PurpleSun"
-                     Name="{=black_horror_label_str}Purple Sun of Xereus"
+                     Name="{=purple_sun_label_str}Purple Sun of Xereus"
                      SpriteName="purplesun_icon"
                      CoolDown="70"
                      WindsOfMagicCost="35"
@@ -1955,7 +1955,7 @@
                      VisualsRotationVelocity="0"
                      SpellTier="4"
                      BelongsToLoreID="LoreOfDeath"
-                     TooltipDescription="{=black_horror_description_str}The caster tears down the walls between realities, and a black cloud of roiling energy sweeps across the battlefield. As the darkness travels, slimy tentacles lash out from its depths, draggin unfortunate victims screaming to an unknown fate.">
+                     TooltipDescription="{=purple_sun_description_str}The winds of Shyish blow strong as a vicious whirlwind of pure death is conjured upon the battlefield, tugging at the life energies of everything it touches.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -1969,7 +1969,7 @@
     </AbilityTemplate>
 	
 	<AbilityTemplate StringID="FateOfBjuna"
-                     Name="{=curse_of_anraheir_label_str}Fate of Bjuna"
+                     Name="{=fate_of_bjuna_label_str}Fate of Bjuna"
                      SpriteName="fate_of_bjuna_icon"
                      CoolDown="90"
                      WindsOfMagicCost="32"
@@ -2001,7 +2001,7 @@
                      CrosshairType="TargetedAOE"
                      SpellTier="4"
                      BelongsToLoreID="LoreOfDeath"
-                     TooltipDescription="{=curse_of_anraheir_description_str}Woodland sprites hinder all enemies caught in the area for 15 seconds, reducing movement (35%) and attack speed (50%) as well as causing 3 damage per second.">
+                     TooltipDescription="{=fate_of_bjuna_description_str}There was once a mighty warrior who never smiled, one that was cursed with eternal laughter until his sides split from the exertion. Targets suffer damage over time as well as a slowdown effect.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -2015,7 +2015,7 @@
     </AbilityTemplate>
 
     <AbilityTemplate StringID="Amaranth"
-                     Name="{=barkskin_label_str}Amaranth"
+                     Name="{=amaranth_label_str}Amaranth"
                      SpriteName="amaranth_icon"
                      CoolDown="100"
                      WindsOfMagicCost="25"
@@ -2047,7 +2047,7 @@
                      CrosshairType="Self"
                      SpellTier="3"
                      BelongsToLoreID="LoreOfDeath"
-                     TooltipDescription="{=barkskin_description_str}Hardens the skin of targets, making them tougher, providing 50% physical resistance for 80 secouds">
+                     TooltipDescription="{=amaranth_description_str}The spirits of the damned make for an effective barrier against magic, the spells aimed at the caster falter and lose 50% their potency.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -2061,13 +2061,12 @@
     </AbilityTemplate>
 	
 	<AbilityTemplate StringID="SpiritLeech"
-                     Name="{=flock_of_doom_label_str}Spirit Leech"
+                     Name="{=spirit_leech_label_str}Spirit Leech"
                      SpriteName="spiritleech_icon"
                      CoolDown="35"
                      WindsOfMagicCost="26"
                      BaseMisCastChance="0.05"
 					 Duration="0"
-                     
                      Radius="7.5"
                      AbilityType="Spell"
                      AbilityEffectType="Hex"
@@ -2094,7 +2093,7 @@
                      CrosshairType="TargetedAOE"
                      SpellTier="3"
                      BelongsToLoreID="LoreOfDeath"
-                     TooltipDescription="{=flock_of_doom_description_str}Summons a nightmare of crows in the targeted area. Affected enemies suffer light damage over time and their physical resistance is reduced by 20% for 10 seconds.">
+                     TooltipDescription="{=spirit_leech_description_str}With death comes life, as the caster drains the life force from the foe to restore his own withered flesh. Elite foes provide greater healing.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -2141,7 +2140,7 @@
                      CrosshairType="TargetedAOE"
                      SpellTier="3"
                      BelongsToLoreID="LoreOfDeath"
-                     TooltipDescription="{=flock_of_doom_description_str}Summons a nightmare of crows in the targeted area. Affected enemies suffer light damage over time and their physical resistance is reduced by 20% for 10 seconds.">
+                     TooltipDescription="{=caress_of_laniph_description_str}With an outstretched hand, the caster's enemies are surrounded by a purple mist that no armour can shield from. The mist gently caresses the targets, before solidifying, constricting and then crushing the life out of the foe.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
