@@ -446,6 +446,7 @@
     <Compile Include="BattleMechanics\CinematicCameraMissionView.cs" />
     <Compile Include="BattleMechanics\CustomArenaModes\ArcheryContestAgentController.cs" />
     <Compile Include="BattleMechanics\CustomArenaModes\ArcheryContestTournamentGame.cs" />
+    <Compile Include="BattleMechanics\CustomArenaModes\BrawlTournamentGame.cs" />
     <Compile Include="BattleMechanics\CustomArenaModes\CustomTournamentBehaviors.cs" />
     <Compile Include="BattleMechanics\CustomArenaModes\JoustLaneEndVolumeBox.cs" />
     <Compile Include="BattleMechanics\CustomArenaModes\JoustTournamentGame.cs" />
@@ -766,6 +767,7 @@
     <Compile Include="Items\WeaponHitScripts\WeaponScripts.cs" />
     <Compile Include="Missions\ArcheryContestMissionController.cs" />
     <Compile Include="Missions\BrawlMissionController.cs" />
+    <Compile Include="Missions\BrawlTournamentMissionController.cs" />
     <Compile Include="Missions\DuelFightMissionController.cs" />
     <Compile Include="Missions\GraveyardFightMissionController.cs" />
     <Compile Include="Missions\JoustFightMissionController.cs" />
@@ -942,7 +944,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CampaignMechanics\Diplomacy\" />
     <Folder Include="CampaignMechanics\Invasions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

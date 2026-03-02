@@ -14,6 +14,7 @@ using TaleWorlds.LinQuick;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.BattleMechanics.CustomArenaModes;
 using TOR_Core.CampaignMechanics.Assimilation;
+using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
@@ -32,6 +33,10 @@ namespace TOR_Core.Models
                 if (culture.StringId == TORConstants.Cultures.ASRAI)
                 {
                     return new ArcheryContestTournamentGame(town);
+                }
+                if (culture.StringId == TORConstants.Cultures.GREENSKIN)
+                {
+                    return new BrawlTournamentGame(town);
                 }
             }
             return base.CreateTournament(town);
@@ -60,7 +65,7 @@ namespace TOR_Core.Models
             MBList<ItemObject> mBList2 = new MBList<ItemObject>();
             foreach (ItemObject item in Game.Current.ObjectManager.GetObjectTypeList<ItemObject>())
             {
-                if (!item.NotMerchandise && item.Tier < ItemObject.ItemTiers.Tier5 && (item.IsCraftedWeapon || item.IsMountable || item.ArmorComponent != null) && !item.IsCraftedByPlayer)
+                if (!item.NotMerchandise && (item.Tier == ItemObject.ItemTiers.Tier3 || item.Tier == ItemObject.ItemTiers.Tier4) && (item.IsWeapon() || item.IsMountable || item.ArmorComponent != null || item.IsShield()) && !item.IsCraftedByPlayer && item.IsTorItem())
                 {
                     if (item.Culture == town.Culture)
                     {
@@ -88,7 +93,7 @@ namespace TOR_Core.Models
             MBList<ItemObject> mBList = new MBList<ItemObject>();
             foreach (ItemObject item in Game.Current.ObjectManager.GetObjectTypeList<ItemObject>())
             {
-                if (!item.NotMerchandise && item.Culture == town.Culture && item.Tier > ItemObject.ItemTiers.Tier4 && (item.IsCraftedWeapon || item.IsMountable || item.ArmorComponent != null) && !item.IsCraftedByPlayer)
+                if (!item.NotMerchandise && item.Culture == town.Culture && item.Tier > ItemObject.ItemTiers.Tier4 && (item.IsWeapon() || item.IsMountable || item.ArmorComponent != null || item.IsShield()) && !item.IsCraftedByPlayer && item.IsTorItem())
                 {
                     mBList.Add(item);
                 }

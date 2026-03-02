@@ -25,7 +25,7 @@ namespace TOR_Core.Models
             }
 
             // DwarfBrewers handling
-            if (party.IsMainParty && party.LeaderHero == Hero.MainHero)
+            if (party.IsMainParty && party.LeaderHero?.Culture.StringId == TORConstants.Cultures.DAWI)
             {
                 if (TORCommon.FindSettlementsAroundPosition(party.Position.ToVec2(), 30, (x) => x.Culture.StringId == TORConstants.Cultures.DAWI).Any())
                 {

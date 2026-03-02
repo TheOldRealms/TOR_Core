@@ -87,6 +87,31 @@ namespace TOR_Core.Missions
         }
 
         [MissionMethod]
+        public static Mission OpenBrawlTournamentMission(string scene, BrawlTournamentGame tournamentGame, Settlement settlement, CultureObject culture, bool isPlayerParticipating)
+        {
+            return MissionState.OpenNew("BrawlTournament", SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.Town), delegate (Mission missionController)
+            {
+                JoustFightMissionController joustFightMissionController = new JoustFightMissionController(culture);
+                return
+                [
+                    new CampaignMissionComponent(),
+                    new EquipmentControllerLeaveLogic(),
+                    joustFightMissionController,
+                    new JoustTournamentBehavior(tournamentGame, settlement, joustFightMissionController, isPlayerParticipating),
+                    new AgentVictoryLogic(),
+                    new MissionAgentPanicHandler(),
+                    new AgentHumanAILogic(),
+                    new ArenaAgentStateDeciderLogic(),
+                    new MissionHardBorderPlacer(),
+                    new MissionBoundaryPlacer(),
+                    new MissionOptionsComponent(),
+                    new HighlightsController(),
+                    new SandboxHighlightsController()
+                ];
+            }, true, true);
+        }
+
+        [MissionMethod]
         public static Mission OpenDuelMission(Action<bool> onMissionEnd, Hero duelHero = null, string scene = "TOR_duel_001")
         {
             return MissionState.OpenNew("InkDuelFight", SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All), (Mission mission) => new MissionBehavior[]
