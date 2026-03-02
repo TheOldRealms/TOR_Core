@@ -168,6 +168,7 @@ namespace TOR_Core.CampaignMechanics
                 var playerParty = MobileParty.MainParty;
                 if (playerParty == null) return; //PlayerBattleEndEvent shouldn't trigger on a loss so this should never be null
                 var heroes = playerParty.GetMemberHeroes();
+                heroes.Remove(Hero.MainHero);
                 foreach (var hero in heroes.Where(hero => !hero.IsHealthFull()))
                 {
                     var choice = TORCareerChoices.GetChoice("BookOfSigmarPassive3");
@@ -179,6 +180,7 @@ namespace TOR_Core.CampaignMechanics
 
         private void PlayerRecruitmentEvent(CharacterObject characterObject, int amount)
         {
+            //Sly : this event is dispatched with no tracking of where the recruitment came from so this applies equally to troop recruitment as it does to prisoners. May need to look at checking the callstack if we want to remove the 2nd case.
             if (Hero.MainHero.HasAnyCareer())
             {
                 var party = Hero.MainHero.PartyBelongedTo;
