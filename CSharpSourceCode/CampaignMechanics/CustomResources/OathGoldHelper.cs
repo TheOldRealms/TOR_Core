@@ -44,7 +44,7 @@ public class OathGoldHelper
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
 
         //could use textObject variables to only add "Reduced gun troop upkeep." when bonus > 0
-        list.Add(new TooltipProperty("Access to gunpowder arsenal. Reduced gun troop upkeep.", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        list.Add(new TooltipProperty(TORTextHelper.GetText("ADDID","Access to ranged weapons and artillery, reduce gunmen and Irondrake upgrade costs."), "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
         var gunTroopUpkeepReduction = 0; //can this find the amount elsewhere?
         if (Hero.MainHero.HasAttribute("DwarfEngineersIII"))
         {
@@ -67,38 +67,35 @@ public class OathGoldHelper
 
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
 
-        list.Add(new TooltipProperty("Runesmiths", runeSmithRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_runesmith_benefit","title","Runesmiths."), runeSmithRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
 
-        list.Add(new TooltipProperty("Access to stronger equipment. Reduce Ironbreaker upgrade costs.", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_runesmith_benefit","description","Access to melee weapons and Runecraft, reduce Ironbreaker upgrade costs."), "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
         var ironbreakerUpgradeReduction = 0;
         if (Hero.MainHero.HasAttribute("RuneSmithIII"))
         {
-            list.Add(new TooltipProperty("Artefacts", " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
+            list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_runesmith_benefit","anvil","Artefact"), " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
             ironbreakerUpgradeReduction = 20;
         }
         else if (Hero.MainHero.HasAttribute("RuneSmithII"))
         {
-            list.Add(new TooltipProperty("Weapons and armors", " ", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+            list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_runesmith_benefit","equipment2","Weapons and armors"), " ", 0, false, TooltipProperty.TooltipPropertyFlags.None));
             ironbreakerUpgradeReduction = 10;
         }
         else if (Hero.MainHero.HasAttribute("RuneSmithI"))
         {
-            list.Add(new TooltipProperty("Weapons", " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
+            list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_runesmith_benefit","equipment1","Weapons"), " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
         }
         if (ironbreakerUpgradeReduction > 0)
         {
-            list.Add(new TooltipProperty("Upkeep reduction for ironbreakers", "-" + ironbreakerUpgradeReduction.ToString() + "%", 0, true, TooltipProperty.TooltipPropertyFlags.None));
+            list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_runesmith_benefit","upgradecost","Ironbreaker upgrade cost reduction."), "-" + ironbreakerUpgradeReduction.ToString() + "%", 0, true, TooltipProperty.TooltipPropertyFlags.None));
         }
-
-
-        //list.Add(new TooltipProperty("Biweekly Enchantment Ingredients", ">2 weeks ago", 0, false, TooltipProperty.TooltipPropertyFlags.None));
 
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
 
-        list.Add(new TooltipProperty("Mining and Expeditions Guild", gemcutterRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_miners_benefit","description","Mining and Expeditions Guild"), gemcutterRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
-        list.Add(new TooltipProperty("Provide mining resources. Launch expeditions.", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_miners_benefit","description","Receive raw materials, increase mining production, launch expeditions."), "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
         var oreVillageBoost = 0;
         if (Hero.MainHero.HasAttribute("DwarfMinersIII"))
         {
@@ -126,7 +123,7 @@ public class OathGoldHelper
 
         list.Add(new TooltipProperty("Brewers", brewersRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
-        list.Add(new TooltipProperty("Receive care packages (new name plz). Increase food production. Improve spotting near Karaks (ancestral Karaks? also confusing).", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_brewers_benefit","description","Receive supplies, increase food production and spotting range near Dwarf holds, boost Rangers."), "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
         var dawiLoyaltyBoost = 0;
         var dawiFoodBoost = 0;
         var dawiSightBonus = 0;
@@ -153,19 +150,19 @@ public class OathGoldHelper
         }
         if (carePackageSize.Length > 0)//"" is empty string so it has length 0, right, right?
         {
-            list.Add(new TooltipProperty("Biweekly care package", carePackageSize, 0, true, TooltipProperty.TooltipPropertyFlags.None));
+            list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_brewers_benefit","supplies","Biweekly supplies"), carePackageSize, 0, true, TooltipProperty.TooltipPropertyFlags.None));
         }
         if (dawiFoodBoost > 0)
         {
-            list.Add(new TooltipProperty("Extra food production in Karaks (same confusion)", "+" + dawiFoodBoost + "%", 0, true, TooltipProperty.TooltipPropertyFlags.None));
+            list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_brewers_benefit","foodbonus","Food Production in Dwarf Karak"), "+" + dawiFoodBoost + "%", 0, true, TooltipProperty.TooltipPropertyFlags.None));
         }
         if (dawiLoyaltyBoost > 0)
         {
-            list.Add(new TooltipProperty("Global Town Loyality (is this also karaks?)", "+" + dawiLoyaltyBoost, 0, true, TooltipProperty.TooltipPropertyFlags.None));
+            list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_brewers_benefit","loyalty","Global Karak Loyality"), "+" + dawiLoyaltyBoost, 0, true, TooltipProperty.TooltipPropertyFlags.None));
         }
         if (dawiSightBonus > 0)
         {
-            list.Add(new TooltipProperty("Extra sight close to Dwarf settlements", "+" + dawiSightBonus + "%", 0, true, TooltipProperty.TooltipPropertyFlags.None));
+            list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_brewers_benefit","sightbonus","Extra sight close to Dwarf settlements"), "+" + dawiSightBonus + "%", 0, true, TooltipProperty.TooltipPropertyFlags.None));
         }
 
 
@@ -173,7 +170,7 @@ public class OathGoldHelper
 
         list.Add(new TooltipProperty("Warriors", warriorsRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
-        list.Add(new TooltipProperty("Reduce upgrade costs for warriors. Increase Oathgold gain. Increase settlement militias.", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_oathgold_warrior_benefit","description","Reduce upgrade costs of melee troops, increase Oathgold gains, boost militias."), "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
         var warriorUpgradeReduction = 0;
         var oathGoldBonus = 0f;
         var militiaBonus = 0;
@@ -196,15 +193,15 @@ public class OathGoldHelper
         }
         if (warriorUpgradeReduction > 0)
         {
-            list.Add(new TooltipProperty("Upgrade cost reduction for Slayers, Warriors and Longbeards", "+" + warriorUpgradeReduction.ToString() + "%", 0, true, TooltipProperty.TooltipPropertyFlags.None));
+            list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_oathgold_warriorguild_benefit","UPGRADECOST","Upgrade cost reduction for Slayers, Warriors and Longbeard"), "+" + warriorUpgradeReduction.ToString() + "%", 0, true, TooltipProperty.TooltipPropertyFlags.None));
         }
         if (oathGoldBonus > 0)
         {
-            list.Add(new TooltipProperty("Battle and tournament Oathgold gain", "+" + oathGoldBonus.ToString(), 0, true, TooltipProperty.TooltipPropertyFlags.None));
+            list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_oathgold_warriorguild_benefit","OATHGOLDGAIN","Battle and tournament Oathgold gain"), "+" + oathGoldBonus.ToString(), 0, true, TooltipProperty.TooltipPropertyFlags.None));
         }
         if (militiaBonus > 0)
         {
-            list.Add(new TooltipProperty("Additional Militia", "+" + militiaBonus.ToString(), 0, true, TooltipProperty.TooltipPropertyFlags.None));
+            list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_oathgold_warriorguild_benefit","MILITIABONUS","Additional Militia"), "+" + militiaBonus.ToString(), 0, true, TooltipProperty.TooltipPropertyFlags.None));
         }
 
 
