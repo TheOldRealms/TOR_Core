@@ -110,10 +110,11 @@ namespace TOR_Core.HarmonyPatches
         {
             var partyScreenLogic = __instance.PartyScreenLogic;
             var roster = type == PartyScreenLogic.TroopType.Prisoner ? partyScreenLogic.PrisonerRosters[(int)rosterSide] : partyScreenLogic.MemberRosters[(int)rosterSide];
+            var isPrisoner = type == PartyScreenLogic.TroopType.Prisoner;
 
             foreach (var elem in roster.GetTroopRoster())
             {
-                CustomResourceManager.OnTroopTransferred(__instance, rosterSide, elem.Character, elem.Number);
+                CustomResourceManager.OnTroopTransferred(__instance, rosterSide, elem.Character, elem.Number, isPrisoner);
             }
         }
 
@@ -125,7 +126,7 @@ namespace TOR_Core.HarmonyPatches
             int transferAmount,
             PartyScreenLogic.PartyRosterSide fromSide)
         {
-            CustomResourceManager.OnTroopTransferred(__instance, fromSide, troop.Character, transferAmount);
+            CustomResourceManager.OnTroopTransferred(__instance, fromSide, troop.Character, transferAmount, troop.IsPrisoner);
         }
 
         public static string GetUpgradeHint(int index, int numOfItems, int availableUpgrades, int upgradeCoinCost, bool hasRequiredPerk, PerkObject requiredPerk, CharacterObject character, TroopRosterElement troop, int partyGoldChangeAmount, bool areUpgradesDisabled)

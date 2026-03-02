@@ -65,6 +65,7 @@ namespace TOR_Core
     {
         private static float _tick = 0f;
         private static int _num = -1;
+        private static bool ENABLECOPYSHADERS = false;
         public static Harmony HarmonyInstance { get; private set; }
 
         protected override void OnBeforeInitialModuleScreenSetAsRoot()
@@ -80,7 +81,11 @@ namespace TOR_Core
             ConfigureLogging();
 
             // Copy TOR_Armory shader sources to game folder (must happen before shaders are compiled)
-            ShaderSourceManager.CopyShaderSourcesToGame();
+            if (ENABLECOPYSHADERS)
+            {
+                ShaderSourceManager.CopyShaderSourcesToGame();
+            }
+  
 
             ViewModelExtensionManager.Initialize(); //has to happen before harmony PatchAll
 
@@ -249,7 +254,9 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORDiplomacyModel());
                 gameStarterObject.AddModel(new TORAllianceModel());
                 gameStarterObject.AddModel(new TORTradeAgreementModel());
+                gameStarterObject.AddModel(new TORTradeItemPriceFactorModel());
                 gameStarterObject.AddModel(new TORSettlementLoyaltyModel());
+                gameStarterObject.AddModel(new TORSettlementProsperityModel());
                 gameStarterObject.AddModel(new TORBattleRewardModel());
                 gameStarterObject.AddModel(new TORTroopSupplierModel());
                 gameStarterObject.AddModel(new TORSettlementFoodModel());

@@ -973,7 +973,7 @@ namespace TOR_Core.AbilitySystem
             var sessionAgent = session.Caster;
 
             // Display results only for player or controlled agent
-            bool shouldDisplay = sessionAgent == Agent.Main;
+            bool shouldDisplay = sessionAgent == Agent.Main || sessionAgent.BelongsToMainParty();
 
             if (shouldDisplay)
             {

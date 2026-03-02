@@ -505,15 +505,15 @@
 	<MBPartyTemplate id="dawi_caravan_template" >
 		<stacks>
 			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_dw_pilgrim" />
-			<PartyTemplateStack min_value="6" max_value="6" troop="NPCCharacter.tor_dw_lookout" />
+			<PartyTemplateStack min_value="6" max_value="6" troop="NPCCharacter.tor_dw_ranger" />
 			<PartyTemplateStack min_value="2" max_value="2" troop="NPCCharacter.tor_dw_master_trader" />
 		</stacks>
 	</MBPartyTemplate>
 	<MBPartyTemplate id="dawi_elite_caravan_template" >
 		<stacks>
 			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_dw_pilgrim" />
-			<PartyTemplateStack min_value="6" max_value="6" troop="NPCCharacter.tor_dw_lookout" />
-			<PartyTemplateStack min_value="6" max_value="6" troop="NPCCharacter.tor_dw_veteran_guard" />
+			<PartyTemplateStack min_value="6" max_value="6" troop="NPCCharacter.tor_dw_ranger" />
+			<PartyTemplateStack min_value="6" max_value="6" troop="NPCCharacter.tor_dw_ol_deadeye" />
 			<PartyTemplateStack min_value="2" max_value="2" troop="NPCCharacter.tor_dw_master_trader" />
 		</stacks>
 	</MBPartyTemplate>
@@ -1022,25 +1022,25 @@
 	<!-- dwarf Patrol Templates -->
 	<MBPartyTemplate id="patrol_party_dw_template_level_1">
 		<stacks>
-			<PartyTemplateStack min_value="6" max_value="6" troop="NPCCharacter.tor_dw_militia" />
-			<PartyTemplateStack min_value="4" max_value="4" troop="NPCCharacter.tor_dw_scout" />
+			<PartyTemplateStack min_value="6" max_value="6" troop="NPCCharacter.tor_dw_ranger" />
+			<PartyTemplateStack min_value="4" max_value="4" troop="NPCCharacter.tor_dw_militia" />
 			<PartyTemplateStack min_value="2" max_value="2" troop="NPCCharacter.tor_dw_recruit" />
 		</stacks>
 	</MBPartyTemplate>
 	<MBPartyTemplate id="patrol_party_dw_template_level_2">
 		<stacks>
-			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_dw_militia" />
-			<PartyTemplateStack min_value="6" max_value="6" troop="NPCCharacter.tor_dw_scout" />
-			<PartyTemplateStack min_value="3" max_value="3" troop="NPCCharacter.tor_dw_oldguard" />
-			<PartyTemplateStack min_value="2" max_value="2" troop="NPCCharacter.tor_dw_sharpshooter" />
+			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_dw_ranger" />
+			<PartyTemplateStack min_value="6" max_value="6" troop="NPCCharacter.tor_dw_warrior" />
+			<PartyTemplateStack min_value="3" max_value="3" troop="NPCCharacter.tor_dw_thunderer" />
+			<PartyTemplateStack min_value="2" max_value="2" troop="NPCCharacter.tor_dw_ol_deadeye" />
 		</stacks>
 	</MBPartyTemplate>
 	<MBPartyTemplate id="patrol_party_dw_template_level_3">
 		<stacks>
-			<PartyTemplateStack min_value="10" max_value="10" troop="NPCCharacter.tor_dw_oldguard" />
-			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_dw_sharpshooter" />
-			<PartyTemplateStack min_value="6" max_value="6" troop="NPCCharacter.tor_dw_militia" />
-			<PartyTemplateStack min_value="4" max_value="4" troop="NPCCharacter.tor_dw_scout" />
+			<PartyTemplateStack min_value="10" max_value="10" troop="NPCCharacter.tor_dw_ranger" />
+			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_dw_oldguard" />
+			<PartyTemplateStack min_value="6" max_value="6" troop="NPCCharacter.tor_dw_thunderer" />
+			<PartyTemplateStack min_value="4" max_value="4" troop="NPCCharacter.tor_dw_ol_deadeye" />
 		</stacks>
 	</MBPartyTemplate>
 	<!-- chaos_culture Patrol Templates -->

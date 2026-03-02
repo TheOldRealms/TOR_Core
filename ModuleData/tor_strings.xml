@@ -308,7 +308,7 @@
 	<string id="tor_generic_garrisonUpkeep" text="{=str_tor_generic_garrisonUpkeep}Garrison Upkeep" />
 	<string id="tor_generic_armyMember" text="{=str_tor_generic_armyMember}Part of Army" />
 	<string id="tor_generic_siegeCampBonus" text="{=str_tor_generic_siegeCampBonus}Siege Camp Bonus" />
-	<string id="tor_generic_enchantedEquipment" text="{=str_tor_generic_enchantedEquipment}Equipped Enchanted Items - maybe just (Equipped Enchantments or Equipment Enchantments not sure on text length in UI) " />
+	<string id="tor_generic_enchantedEquipment" text="{=str_tor_generic_enchantedEquipment}Equipped Enchanted Items" />
 	<string id="tor_generic_isRaided" text="{=str_tor_generic_isRaided}{SETTLEMENT} is raided" />
 	<string id="tor_generic_isLooted" text="{=str_tor_generic_isLooted}{SETTLEMENT} is destroyed" />
 	<string id="tor_generic_isCaptured" text="{=str_tor_generic_isCaptured}{SETTLEMENT} is captured" />
@@ -378,18 +378,24 @@
   
    <!-- priest blessings -->
   <string id="tor_priest_hub_intro.cult_of_ulric" text="{=str_tor_priest_hub_intro_cult_of_ulric}In the name of Ulric, how can I help you?"/>
-  <string id="tor_priest_hub_reintro.cult_of_ulric" text="{=str_tor_priest_hub_reintro_cult_of_ulric}What else?"/>
+  <string id="tor_priest_hub_reintro.cult_of_ulric" text="{=str_tor_priest_hub_reintro_cult_of_ulric}Did you need something else?"/>
   
-  <string id="tor_priest_hub_blessings_p.cult_of_ulric" text="{=str_tor_priest_hub_blessings_p_cult_of_ulric}Can you show me how to bless weapons in the name of Ulric?"/>
-  <string id="tor_priest_hub_quit_p.cult_of_ulric" text="{=str_tor_priest_hub_quit_p_cult_of_ulric}Have a great day Mr Wolf man - Sir."/>
+  <string id="tor_priest_hub_blessings_p.cult_of_ulric" text="{=str_tor_priest_hub_blessings_p_cult_of_ulric}I wish to learn more about the Great Wolf."/>
+  <string id="tor_priest_hub_quit_p.cult_of_ulric" text="{=str_tor_priest_hub_quit_p_cult_of_ulric}I must leave, may Ulric guide your blade."/>
 
-  <string id="tor_priest_blessings_1.cult_of_ulric" text="{=str_tor_priest_blessings_1_cult_of_ulric}Sure, against a small donation I will show you scribes that allow a priest to bless your weapons."/>
-  <string id="tor_priest_blessings_decline.cult_of_ulric" text="{=str_tor_priest_blessings_decline_cult_of_ulric}You should talk to an Alchemist first. There is much more to learn before I can show you how you can bless your equipment."/>
-<string id="tor_priest_start_accept.cult_of_ulric" text="{=str_tor_priest_start_accept_cult_of_ulric}Welcome, follower of the White Wolf."/>  <string id="tor_priest_start_decline.cult_of_ulric" text="{=str_tor_priest_start_decline_cult_of_ulric}You need a follower of Ulric in your party if you wish to speak to me, stranger."/>  <string id="tor_priest_start_decline_hard.cult_of_ulric" text="{=str_tor_priest_start_decline_hard_cult_of_ulric}Begone from my sight, coward!"/>  <string id="tor_priest_hub_blessingshop_p.cult_of_ulric" text="{=str_tor_priest_hub_blessingshop_p_cult_of_ulric}Can you show me how to bless weapons in the name of Ulric?"/>  <string id="tor_priest_hub_party_blessing_p.cult_of_ulric" text="{=str_tor_priest_hub_party_blessing_p_cult_of_ulric}Can my party receive Ulric's blessing?"/>  <string id="tor_priest_blessingshop_1.cult_of_ulric" text="{=str_tor_priest_blessingshop_1_cult_of_ulric}Against a small donation, I will show you the sacred rites of the Winter Wolf."/>  <string id="tor_priest_blessing_party_1.cult_of_ulric" text="{=str_tor_priest_blessing_party_1_cult_of_ulric}In the name of Ulric, may his fury guide your strikes!"/>  <string id="tor_priest_hub_party_blessing_decline.cult_of_ulric" text="{=str_tor_priest_hub_party_blessing_decline_cult_of_ulric}You have been blessed by Ulric recently, there is no need for another blessing."/>  <string id="tor_priest_hub_quit.cult_of_ulric" text="{=str_tor_priest_hub_quit_cult_of_ulric}May the White Wolf watch over you."/>
-  
-  
-  
-  
+  <string id="tor_priest_blessings_1.cult_of_ulric" text="{=str_tor_priest_blessings_1_cult_of_ulric}PLEASE REPORT WHERE YOU SEE THIS For a donation in Sigmar's name, I can grant you access to our holy tomes."/>
+  <string id="tor_priest_blessings_decline.cult_of_ulric" text="{=str_tor_priest_blessings_decline_cult_of_ulric}PLEASE REPORT WHERE YOU SEE THIS You should talk to an Alchemist first. There is much more to learn before I can show you how you can bless your equipment."/>
+  <string id="tor_priest_start_accept.cult_of_ulric" text="{=str_tor_priest_start_accept_cult_of_ulric}Children of the Wolf, welcome!"/>
+  <string id="tor_priest_start_decline.cult_of_ulric" text="{=str_tor_priest_start_decline_cult_of_ulric}You need a follower of Ulric in your party if you wish to speak to me, stranger."/>
+  <string id="tor_priest_start_decline_hard.cult_of_ulric" text="{=str_tor_priest_start_decline_hard_cult_of_ulric}Leave, before I bare my fangs, outsider!"/>
+  <string id="tor_priest_hub_blessingshop_p.cult_of_ulric" text="{=str_tor_priest_hub_blessingshop_p_cult_of_ulric}Can you show me how to bless weapons in the name of Ulric?"/>
+  <string id="tor_priest_hub_party_blessing_p.cult_of_ulric" text="{=str_tor_priest_hub_party_blessing_p_cult_of_ulric}I wish for the White Wolf's blessing."/>
+  <string id="tor_priest_blessingshop_1.cult_of_ulric" text="{=str_tor_priest_blessingshop_1_cult_of_ulric}With gifts of gold, you may access our Tomes of the Wolf."/>
+  <string id="tor_priest_blessing_party_1.cult_of_ulric" text="{=str_tor_priest_blessing_party_1_cult_of_ulric}Oh, Great Wolf! With your blade and fang, allow this warrior to become one with the winter's cold…"/>
+  <string id="tor_priest_hub_party_blessing_decline.cult_of_ulric" text="{=str_tor_priest_hub_party_blessing_decline_cult_of_ulric}The Wolf stands with you already, return later."/>
+  <string id="tor_priest_hub_quit.cult_of_ulric" text="{=str_tor_priest_hub_quit_cult_of_ulric}I must leave."/>
+
+
   <string id="tor_priest_start_accept.cult_of_sigmar" text="{=str_tor_priest_start_accept_cult_of_sigmar}Welcome, friends of the Empire."/>
   <string id="tor_priest_start_decline.cult_of_sigmar" text="{=str_tor_priest_start_decline_cult_of_sigmar}You need a follower of Sigmar if you wish to speak to me, stranger."/>
   <string id="tor_priest_start_decline_hard.cult_of_sigmar" text="{=str_tor_priest_start_decline_hard_cult_of_sigmar}Begone from my sight, at once!"/>
@@ -397,44 +403,39 @@
   <string id="tor_priest_hub_intro.cult_of_sigmar" text="{=str_tor_priest_hub_intro_cult_of_sigmar}In the name of Sigmar, how can I help you?"/>
   <string id="tor_priest_hub_reintro.cult_of_sigmar" text="{=str_tor_priest_hub_reintro_cult_of_sigmar}Was there something else?"/>
 
-
   <string id="tor_priest_hub_blessings_p.cult_of_sigmar" text="{=str_tor_priest_hub_blessings_p_cult_of_sigmar}Can you show me how to bless weapons in the name of Sigmar?"/>
   <string id="tor_priest_hub_blessingshop_p.cult_of_sigmar" text="{=str_tor_priest_hub_blessingshop_p_cult_of_sigmar}Tell me more about blessing items in the name of Sigmar."/>
-<string id="tor_priest_hub_party_blessing_p.cult_of_sigmar" text="{=str_tor_priest_hub_party_blessing_p_cult_of_sigmar}Can my party receive Sigmar's blessing?"/>
+  <string id="tor_priest_hub_party_blessing_p.cult_of_sigmar" text="{=str_tor_priest_hub_party_blessing_p_cult_of_sigmar}Can we receive the Heldenhammer's Blessing?"/>
   <string id="tor_priest_hub_quit_p.cult_of_sigmar" text="{=str_tor_priest_hub_quit_p_cult_of_sigmar}I must leave."/>
 
-  <string id="tor_priest_blessingshop_1.cult_of_sigmar" text="{=str_tor_priest_blessingshop_1_cult_of_sigmar}Sure, against a small donation I will show you scribes that allow a priest to bless your weapons."/>
+  <string id="tor_priest_blessingshop_1.cult_of_sigmar" text="{=str_tor_priest_blessingshop_1_cult_of_sigmar}For a donation, in Sigmar's name, I can grant you access to our holy tomes."/>
   <string id="tor_priest_blessingshop_decline.cult_of_sigmar" text="{=str_tor_priest_blessingshop_decline_cult_of_sigmar}You should talk to an Alchemist first. There is much more to learn before I can show you how you can bless your equipment."/>
 
-
-    <string id="tor_priest_blessing_party_1.cult_of_sigmar" text="{=str_tor_priest_blessing_party_1_cult_of_sigmar}In the name of Sigmar, I bless you."/>
-  <string id="tor_priest_blessings_decline.cult_of_sigmar" text="{=str_tor_priest_blessings_decline_cult_of_sigmar}You have been blessed recently, there is no need of giving you the blessing of a god."/>
+  <string id="tor_priest_blessing_party_1.cult_of_sigmar" text="{=str_tor_priest_blessing_party_1_cult_of_sigmar}By Sigmar Heldenhammer and Ghal Maraz, may your righteous wrath smite the unclean. Suffer not the foul, the mutant, the heretic for Sigmar walks with thee…"/>
+  <string id="tor_priest_blessings_decline.cult_of_sigmar" text="{=str_tor_priest_blessings_decline_cult_of_sigmar}You have been blessed recently, there is no need of giving you the blessing."/>
   <string id="tor_priest_hub_party_blessing_decline.cult_of_sigmar" text="{=str_tor_priest_hub_party_blessing_decline_cult_of_sigmar}You have been blessed by Sigmar recently, there is no need for another blessing."/>
   <string id="tor_priest_hub_quit.cult_of_sigmar" text="{=str_tor_priest_hub_quit_cult_of_sigmar}Sigmar guide your path."/>
-  
-  
-
-  
+   
   
   <string id="tor_priest_start_accept.cult_of_shallya" text="{=str_tor_priest_start_accept_cult_of_shallya}Welcome, friend of Shallya."/>
   <string id="tor_priest_start_decline.cult_of_shallya" text="{=str_tor_priest_start_decline_cult_of_shallya}You need a follower of Shallya in your party if you wish to speak to me, stranger."/>
   <string id="tor_priest_start_decline_hard.cult_of_shallya" text="{=str_tor_priest_start_decline_hard_cult_of_shallya}You are not welcome here, leave at once!"/>
 
-  <string id="tor_priest_hub_intro.cult_of_shallya" text="{=str_tor_priest_hub_intro_cult_of_shallya}Shallya welcomes you with open arms."/>
+  <string id="tor_priest_hub_intro.cult_of_shallya" text="{=str_tor_priest_hub_intro_cult_of_shallya}The White Dove of Mercy welcomes you with open arms."/>
   <string id="tor_priest_hub_reintro.cult_of_shallya" text="{=str_tor_priest_hub_reintro_cult_of_shallya}Was there something else you needed, friend?"/>
 
-  <string id="tor_priest_hub_blessingshop_p.cult_of_shallya" text="{=str_tor_priest_hub_blessingshop_p_cult_of_shallya}Tell me more about blessing items in the name of Shallya."/>
+  <string id="tor_priest_hub_blessingshop_p.cult_of_shallya" text="{=str_tor_priest_hub_blessingshop_p_cult_of_shallya}Tell me more about the holy tomes of Shallya."/>
 
-<string id="tor_priest_hub_party_blessing_p.cult_of_shallya" text="{=str_tor_priest_hub_party_blessing_p_cult_of_shallya}We wish to be blessed by the Lady in White."/>
+  <string id="tor_priest_hub_party_blessing_p.cult_of_shallya" text="{=str_tor_priest_hub_party_blessing_p_cult_of_shallya}We wish to be blessed by the Lady in White."/>
   <string id="tor_priest_hub_quit_p.cult_of_shallya" text="{=str_tor_priest_hub_quit_p_cult_of_shallya}I must take my leave."/>
 
   <string id="tor_priest_blessingshop_1.cult_of_shallya" text="{=str_tor_priest_blessingshop_1_cult_of_shallya}For a small donation, you may access our tomes of healing and faith."/>
   <string id="tor_priest_blessingshop_decline.cult_of_shallya" text="{=str_tor_priest_blessingshop_decline_cult_of_shallya}You should talk to an Alchemist first. There is much more to learn before I can show you how you can bless your equipment."/>
 
 
-    <string id="tor_priest_blessing_party_1.cult_of_shallya" text="{=str_tor_priest_blessing_party_1_cult_of_shallya}In the name of Shallya, I bless you."/>
-  <string id="tor_priest_blessings_decline.cult_of_shallya" text="{=str_tor_priest_blessings_decline_cult_of_shallya}You have been blessed recently, there is no need of giving you the blessing of a god."/>
-  <string id="tor_priest_hub_party_blessing_decline.cult_of_shallya" text="{=str_tor_priest_hub_party_blessing_decline_cult_of_shallya}You have been blessed by Shallya recently, there is no need for another blessing."/>
+  <string id="tor_priest_blessing_party_1.cult_of_shallya" text="{=str_tor_priest_blessing_party_1_cult_of_shallya}May Her mercy and compassion serve Her humble followers…"/>
+  <string id="tor_priest_blessings_decline.cult_of_shallya" text="{=str_tor_priest_blessings_decline_cult_of_shallya}You have been blessed recently, there is no need of giving you the blessing of a deity."/>
+  <string id="tor_priest_hub_party_blessing_decline.cult_of_shallya" text="{=str_tor_priest_hub_party_blessing_decline_cult_of_shallya}The Lady's healing light is with you still, return at a later time."/>
   <string id="tor_priest_hub_quit.cult_of_shallya" text="{=str_tor_priest_hub_quit_cult_of_shallya}May Shallya's mercy be with you."/>
   
   
@@ -457,21 +458,34 @@
   	<string id="tor_teach_skills_dialog_p.EngineerEmpire" text="{=str_tor_teach_skills_dialog_p_EngineerEmpire}Can you teach my companion more about Engineering?"/>
 	<string id="tor_skill_teacher_train_1.EngineerEmpire" text="{=str_tor_skill_teacher_train_1_EngineerEmpire}Sure. I can teach your companions. They will stay here. But I can tell this will cost you dearly "/>
 	<string id="tor_skill_teacher_train_2.EngineerEmpire" text="{=str_tor_skill_teacher_train_2_EngineerEmpire}So how should we proceed?"/>
-	
 	<string id="tor_skill_train_hub_select_companion_p.EngineerEmpire" text="{=str_tor_skill_train_hub_select_companion_p_EngineerEmpire}Yes I agree. Let me tell you who to teach"/>
 	<string id="tor_priest_train_hub_quit_p.EngineerEmpire" text="{=str_tor_priest_train_hub_quit_p_EngineerEmpire}There is something else"/>
-	
 	<string id="tor_skill_train_hub_select_companion.EngineerEmpire" text="{=str_tor_skill_train_hub_select_companion_EngineerEmpire}Choose a companion you want to teach."/>
 	<string id="tor_skill_train_hub_select_companion_decline.EngineerEmpire" text="{=str_tor_skill_train_hub_select_companion_decline_EngineerEmpire}Your companions are not ready yet."/>
 	
-	<string id="tor_skill_teacher_train_1.EmpireMagister" text="{=str_tor_skill_teacher_train_1_EmpireMagister}I can teach your companion magic. if you allow him to stay at the college"/>
+	<string id="tor_skill_teacher_train_1.EmpireMagister" text="{=str_tor_skill_teacher_train_1_EmpireMagister}I can teach your companion magic, if you allow them to stay at the colleges."/>
 	<string id="tor_skill_teacher_train_2.EmpireMagister" text="{=str_tor_skill_teacher_train_2_EmpireMagister}Who should join the college and learn the art of the arkane?"/>
-	<string id="tor_teach_skills_dialog_p.EmpireMagister" text="{=str_tor_teach_skills_dialog_p_EmpireMagister}Can you teach my wizard companion the sacred arts of the runes?"/>
+	<string id="tor_teach_skills_dialog_p.EmpireMagister" text="{=str_tor_teach_skills_dialog_p_EmpireMagister}Can you teach my wizard companion the secrets of magic?"/>
 	<string id="tor_skill_train_hub_select_companion_p.EmpireMagister" text="{=str_tor_skill_train_hub_select_companion_p_EmpireMagister}Yes, please guide one of my companions."/>
 	<string id="tor_skill_train_hub_select_companion.EmpireMagister" text="{=str_tor_skill_train_hub_select_companion_EmpireMagister}Very well, I will pass down my teachings. Your friend will be sent back when his training is finished."/>	
 	<string id="tor_skill_train_hub_select_companion_decline.EmpireMagister" text="{=str_tor_skill_train_hub_select_companion_decline_EmpireMagister}There is nobody worth teaching in your party."/>	
 	<string id="tor_priest_train_hub_quit_p.EmpireMagister" text="{=str_tor_priest_train_hub_quit_p_EmpireMagister}Forgive me, I've changed my mind."/>
 	
+	<string id="tor_teach_skills_dialog_p.SigmarTrain" text="{=str_tor_teach_skills_dialog_p_SigmarPriest}My companion wishes to deepen his faith, can you guide them?"/>
+    <string id="tor_skill_teacher_train_1.SigmarTrain" text="{=str_tor_skill_teacher_train_1_SigmarPriest}It would be remiss of me not to pass on Sigmar's holy word. However; your companion must stay and train here."/>
+    <string id="tor_skill_teacher_train_2.SigmarTrain" text="{=str_tor_skill_teacher_train_2_SigmarPriest}Who among your companions shall learn the ways of our Lord Sigmar?"/>
+    <string id="tor_skill_train_hub_select_companion_p.SigmarTrain" text="{=str_tor_skill_train_hub_select_companion_p_SigmarPriest}Yes, please guide one of my companions in Sigmar's teachings."/>
+    <string id="tor_skill_train_hub_select_companion.SigmarTrain" text="{=str_tor_skill_train_hub_select_companion_SigmarPriest}Very well, they shall learn under Sigmar's guidance. Your companion will return when the training is complete."/>
+    <string id="tor_skill_train_hub_select_companion_decline.SigmarTrain" text="{=str_tor_skill_train_hub_select_companion_decline_SigmarPriest}None of your companions are worthy of Sigmar's teachings."/>
+	<string id="tor_priest_train_hub_quit_p.SigmarTrain" text="{=str_tor_priest_train_hub_quit_p_SigmarPriest}Sigmar guide you, I must take my leave."/>
+	
+	<string id="tor_skill_teacher_train_1.UlricTrain" text="{=str_tor_skill_teacher_train_1_UlricPriest}If Ulric deems them worthy, they may learn. Leave them with me."/>
+	<string id="tor_skill_teacher_train_2.UlricTrain" text="{=str_tor_skill_teacher_train_2_UlricPriest}Who shall learn of the Winter-Father's ways?"/>
+	<string id="tor_teach_skills_dialog_p.UlricTrain" text="{=str_tor_teach_skills_dialog_p_UlricPriest}My companion wishes to deepen his faith, can you guide them?"/>
+	<string id="tor_skill_train_hub_select_companion_p.UlricTrain" text="{=str_tor_skill_train_hub_select_companion_p_UlricPriest}Yes, please guide one of my companions."/>
+	<string id="tor_skill_train_hub_select_companion.UlricTrain" text="{=str_tor_skill_train_hub_select_companion_UlricPriest}Very well, they shall return with sharpened fangs."/>	
+	<string id="tor_skill_train_hub_select_companion_decline.UlricTrain" text="{=str_tor_skill_train_hub_select_companion_decline_UlricPriest}There is no one in your party worth teaching."/>	
+	<string id="tor_priest_train_hub_quit_p.UlricTrain" text="{=str_tor_priest_train_hub_quit_p_UlricPriest}Forgive me, I've changed my mind."/>
 	
 	<string id="tor_skill_training_prompt.title" text="{=str_tor_skill_training_prompt_title}Teach a companion {SKILL_NAME}"/>
 	<string id="tor_skill_training_prompt.skill_value" text="{=str_tor_skill_training_prompt_skill_value}Current Skill value: {SKILL_VALUE}"/>
@@ -482,27 +496,22 @@
 	<string id="tor_skill_training_hover.Costs" text="{=str_tor_skill_training_hover_Costs}Requires {GOLD_COST}{GOLD_ICON}, {CR_COST}{CUSTOMRESOURCE}"/>
 	<string id="tor_skill_training_hover.Full" text="{=str_tor_skill_training_hover_Full}{SKILLTRAINING_REASON} {SKILL_TRAINING_COSTS}"/>
 	
-	
-	<string id="tor_teach_skills_dialog_p.ShallyaTrainRE" text="{=str_tor_teach_skills_dialog_p_ShallyaTrainRE}Can you teach my companion more about Medicine?"/>
-	<string id="tor_teach_skills_dialog_p.ShallyaTrainCO" text="{=str_tor_teach_skills_dialog_p_ShallyaTrainCO}Can you teach my companion more about Faith?"/>
-  <string id="tor_skill_teacher_train_1.ShallyaTrainRE" text="{=str_tor_skill_teacher_train_1_ShallyaTrainRE}Shallya's mercy guides our hands in healing. I can teach your companion the ways of medicine."/>
+<string id="tor_teach_skills_dialog_p.ShallyaTrainRE" text="{=str_tor_teach_skills_dialog_p_ShallyaTrainRE}Can you teach my companions more about Medicine?"/>
+  <string id="tor_skill_teacher_train_1.ShallyaTrainRE" text="{=str_tor_skill_teacher_train_1_ShallyaTrainRE}The Dove's mercy guides our hands in healing. I can teach your companion the ways of the merciful."/>
   <string id="tor_skill_teacher_train_2.ShallyaTrainRE" text="{=str_tor_skill_teacher_train_2_ShallyaTrainRE}Who among your companions shall learn the healing arts?"/>
   <string id="tor_skill_train_hub_select_companion_p.ShallyaTrainRE" text="{=str_tor_skill_train_hub_select_companion_p_ShallyaTrainRE}Yes, please guide one of my companions in the healing arts."/>
-  <string id="tor_skill_train_hub_select_companion.ShallyaTrainRE" text="{=str_tor_skill_train_hub_select_companion_ShallyaTrainRE}Very well, they shall learn under Shallya's guidance. Your companion will return when the training is complete."/>
+  <string id="tor_skill_train_hub_select_companion.ShallyaTrainRE" text="{=str_tor_skill_train_hub_select_companion_ShallyaTrainRE}We will return them in time, they are in good hands."/>
   <string id="tor_skill_train_hub_select_companion_decline.ShallyaTrainRE" text="{=str_tor_skill_train_hub_select_companion_decline_ShallyaTrainRE}None of your companions are suited for learning the healing arts."/>
   <string id="tor_priest_train_hub_quit_p.ShallyaTrainRE" text="{=str_tor_priest_train_hub_quit_p_ShallyaTrainRE}Perhaps another time, sister."/>
-  <string id="tor_skill_teacher_train_1.ShallyaTrainCO" text="{=str_tor_skill_teacher_train_1_ShallyaTrainCO}The path of faith requires dedication and compassion. I can guide your companion in Shallya's ways."/>	<string id="tor_skill_teacher_train_2.ShallyaTrainCO" text="{=str_tor_skill_teacher_train_2_ShallyaTrainCO}Who among your companions seeks to walk the path of faith?"/>
+  
+  <string id="tor_teach_skills_dialog_p.ShallyaTrainCO" text="{=str_tor_teach_skills_dialog_p_ShallyaTrainCO}My companions wish to learn more of Shallya's mercy."/>
+  <string id="tor_skill_teacher_train_1.ShallyaTrainCO" text="{=str_tor_skill_teacher_train_1_ShallyaTrainCO}The path of faith requires dedication and compassion. I can guide your companion in Shallya's ways."/>
+  <string id="tor_skill_teacher_train_2.ShallyaTrainCO" text="{=str_tor_skill_teacher_train_2_ShallyaTrainCO}There is much on both mercy and compassion that we can teach."/>
   <string id="tor_skill_train_hub_select_companion_p.ShallyaTrainCO" text="{=str_tor_skill_train_hub_select_companion_p_ShallyaTrainCO}Yes, please guide one of my companions in the ways of faith."/>
-  <string id="tor_skill_train_hub_select_companion.ShallyaTrainCO" text="{=str_tor_skill_train_hub_select_companion_ShallyaTrainCO}Very well, they shall learn the sacred ways. Your companion will return when the training is complete."/>
+  <string id="tor_skill_train_hub_select_companion.ShallyaTrainCO" text="{=str_tor_skill_train_hub_select_companion_ShallyaTrainCO}We will return them in time, they are in good hands."/>
   <string id="tor_skill_train_hub_select_companion_decline.ShallyaTrainCO" text="{=str_tor_skill_train_hub_select_companion_decline_ShallyaTrainCO}None of your companions are suited for learning the ways of faith."/>
   <string id="tor_priest_train_hub_quit_p.ShallyaTrainCO" text="{=str_tor_priest_train_hub_quit_p_ShallyaTrainCO}Perhaps another time, sister."/>
-  <string id="tor_teach_skills_dialog_p.SigmarPriest" text="{=str_tor_teach_skills_dialog_p_SigmarPriest}Can you teach my companion the ways of Sigmar?"/>
-  <string id="tor_skill_teacher_train_1.SigmarPriest" text="{=str_tor_skill_teacher_train_1_SigmarPriest}Sigmar's wisdom can be shared with those who are worthy. Your companion must stay and train here."/>
-  <string id="tor_skill_teacher_train_2.SigmarPriest" text="{=str_tor_skill_teacher_train_2_SigmarPriest}Who among your companions shall learn the ways of our Lord Sigmar?"/>
-  <string id="tor_skill_train_hub_select_companion_p.SigmarPriest" text="{=str_tor_skill_train_hub_select_companion_p_SigmarPriest}Yes, please guide one of my companions in Sigmar's teachings."/>
-  <string id="tor_skill_train_hub_select_companion.SigmarPriest" text="{=str_tor_skill_train_hub_select_companion_SigmarPriest}Very well, they shall learn under Sigmar's guidance. Your companion will return when the training is complete."/>
-  <string id="tor_skill_train_hub_select_companion_decline.SigmarPriest" text="{=str_tor_skill_train_hub_select_companion_decline_SigmarPriest}None of your companions are worthy of Sigmar's teachings."/>
-  <string id="tor_priest_train_hub_quit_p.SigmarPriest" text="{=str_tor_priest_train_hub_quit_p_SigmarPriest}Sigmar guide you, I must take my leave."/>
+  
   <string id="tor_teach_skills_dialog_p.Necromancer" text="{=str_tor_teach_skills_dialog_p_Necromancer}Can you teach my companion the dark arts?"/>
   <string id="tor_skill_teacher_train_1.Necromancer" text="{=str_tor_skill_teacher_train_1_Necromancer}The secrets of death are not given freely. Your companion must remain here to study the forbidden knowledge."/>
   <string id="tor_skill_teacher_train_2.Necromancer" text="{=str_tor_skill_teacher_train_2_Necromancer}Who among your followers dares to walk the path of the undead?"/>
@@ -591,29 +600,29 @@
   <string id="tor_enchanter_info_hub_intro_read_book.empire" text="{=str_tor_enchanter_info_hub_intro_read_book_empire}Read the tome I gave you, it should cover all the basic principles of alchemy."/>
 
   <!-- BRETONNIA (vlandia) - TODO: Complete Bretonnian Prophetess dialogs following Empire pattern -->
-  <string id="tor_enchanter_start_p.vlandia" text="{=str_tor_enchanter_start_p_vlandia}TODO: BRETONNIA - Player initiates conversation about enchantment"/>
-  <string id="tor_enchanter_start_enchanter.vlandia" text="{=str_tor_enchanter_start_enchanter_vlandia}TODO: BRETONNIA - Prophetess greets fellow practitioner"/>
-  <string id="tor_enchanter_dialog_start.vlandia" text="{=str_tor_enchanter_dialog_start_vlandia}TODO: BRETONNIA - Prophetess greets general visitor"/>
-  <string id="tor_enchanter_dialog_start_quit.vlandia" text="{=str_tor_enchanter_dialog_start_quit_vlandia}TODO: BRETONNIA - Wrong culture rejection"/>
+  <string id="tor_enchanter_start_p.vlandia" text="{=str_tor_enchanter_start_p_vlandia}My lady, can we discuss the mysteries of the Grail?"/>
+  <string id="tor_enchanter_start_enchanter.vlandia" text="{=str_tor_enchanter_start_enchanter_vlandia}Fellow Daughter of the Grail, I shall gladly help you."/>
+  <string id="tor_enchanter_dialog_start.vlandia" text="{=str_tor_enchanter_dialog_start_vlandia}Friends of Bretonnia are always welcome here."/>
+  <string id="tor_enchanter_dialog_start_quit.vlandia" text="{=str_tor_enchanter_dialog_start_quit_vlandia}Vile filth, begone from my sight."/>
   <string id="tor_enchanter_dialog_start_1.vlandia" text="{=str_tor_enchanter_dialog_start_1_vlandia}TODO: BRETONNIA - Prophetess welcomes visitor"/>
   <string id="tor_enchanter_dialog_start_2.vlandia" text="{=str_tor_enchanter_dialog_start_2_vlandia}TODO: BRETONNIA - Prophetess greets fellow practitioner"/>
-  <string id="tor_enchanter_hub_intro.vlandia" text="{=str_tor_enchanter_hub_intro_vlandia}TODO: BRETONNIA - Hub introduction"/>
-  <string id="tor_enchanter_hub_reintro.vlandia" text="{=str_tor_enchanter_hub_reintro_vlandia}TODO: BRETONNIA - Hub return"/>
-  <string id="tor_enchanter_hub_info_p.vlandia" text="{=str_tor_enchanter_hub_info_p_vlandia}TODO: BRETONNIA - Ask about enchanting"/>
-  <string id="tor_enchanter_hub_blueprints_p.vlandia" text="{=str_tor_enchanter_hub_blueprints_p_vlandia}TODO: BRETONNIA - Request blueprints"/>
-  <string id="tor_enchanter_hub_donate_items_p.vlandia" text="{=str_tor_enchanter_hub_donate_items_p_vlandia}TODO: BRETONNIA - Offer items"/>
-  <string id="tor_enchanter_hub_open_enchanter_p.vlandia" text="{=str_tor_enchanter_hub_open_enchanter_p_vlandia}TODO: BRETONNIA - Open enchanter"/>
-  <string id="tor_enchanter_hub_return_p.vlandia" text="{=str_tor_enchanter_hub_return_p_vlandia}TODO: BRETONNIA - Leave"/>
-  <string id="tor_enchanter_blueprints.vlandia" text="{=str_tor_enchanter_blueprints_vlandia}TODO: BRETONNIA - Opens blueprint shop"/>
-  <string id="tor_enchanter_blueprints_decline.vlandia" text="{=str_tor_enchanter_blueprints_decline_vlandia}TODO: BRETONNIA - No eligible character"/>
-  <string id="tor_enchanter_donate_items_1.vlandia" text="{=str_tor_enchanter_donate_items_1_vlandia}TODO: BRETONNIA - Accepts donation"/>
-  <string id="tor_enchanter_donate_items_1_negative.vlandia" text="{=str_tor_enchanter_donate_items_1_negative_vlandia}TODO: BRETONNIA - Rejects donation"/>
-  <string id="tor_enchanter_donate_items_hub_p.vlandia" text="{=str_tor_enchanter_donate_items_hub_p_vlandia}TODO: BRETONNIA - Player offers items"/>
-  <string id="tor_enchanter_gift_items_hub_return_p.vlandia" text="{=str_tor_enchanter_gift_items_hub_return_p_vlandia}TODO: BRETONNIA - Player backs out"/>
-  <string id="tor_enchanter_donate_items_2.vlandia" text="{=str_tor_enchanter_donate_items_2_vlandia}TODO: BRETONNIA - Select items"/>
+  <string id="tor_enchanter_hub_intro.vlandia" text="{=str_tor_enchanter_hub_intro_vlandia}What do you wish to know?"/>
+  <string id="tor_enchanter_hub_reintro.vlandia" text="{=str_tor_enchanter_hub_reintro_vlandia}Was there anything else?"/>
+  <string id="tor_enchanter_hub_info_p.vlandia" text="{=str_tor_enchanter_hub_info_p_vlandia}My lady, I wish to know more of the Lady's teachings."/>
+  <string id="tor_enchanter_hub_blueprints_p.vlandia" text="{=str_tor_enchanter_hub_blueprints_p_vlandia}My lady, I wish to know more about the holy tomes."/>
+  <string id="tor_enchanter_hub_donate_items_p.vlandia" text="{=str_tor_enchanter_hub_donate_items_p_vlandia}My lady, will you accept these artifacts?"/>
+  <string id="tor_enchanter_hub_open_enchanter_p.vlandia" text="{=str_tor_enchanter_hub_open_enchanter_p_vlandia}May I make use of this altar?"/>
+  <string id="tor_enchanter_hub_return_p.vlandia" text="{=str_tor_enchanter_hub_return_p_vlandia}I wish to ask about something else."/>
+  <string id="tor_enchanter_blueprints.vlandia" text="{=str_tor_enchanter_blueprints_vlandia}Very well, let us begin in the name of the Lady."/>
+  <string id="tor_enchanter_blueprints_decline.vlandia" text="{=str_tor_enchanter_blueprints_decline_vlandia}I do not sense the gift of the Lady in you. Nor in your companions for that matter. Return in the company of a Grail Damsel."/>
+  <string id="tor_enchanter_donate_items_1.vlandia" text="{=str_tor_enchanter_donate_items_1_vlandia}I shall gladly take what you no longer need, however, the Lady shan't accept items you have enchanted yourself."/>
+  <string id="tor_enchanter_donate_items_1_negative.vlandia" text="{=str_tor_enchanter_donate_items_1_negative_vlandia}Alas, you carry nothing that would be of use to the realm."/>
+  <string id="tor_enchanter_donate_items_hub_p.vlandia" text="{=str_tor_enchanter_donate_items_hub_p_vlandia}I wish to donate the following items…"/>
+  <string id="tor_enchanter_gift_items_hub_return_p.vlandia" text="{=str_tor_enchanter_gift_items_hub_return_p_vlandia}Forgive me, I need to give this more thought."/>
+  <string id="tor_enchanter_donate_items_2.vlandia" text="{=str_tor_enchanter_donate_items_2_vlandia}What did you have in mind?"/>
   <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.vlandia" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_vlandia}TODO: BRETONNIA - First visit with career"/>
-  <string id="tor_enchanter_info_hub_intro_first_visit.vlandia" text="{=str_tor_enchanter_info_hub_intro_first_visit_vlandia}TODO: BRETONNIA - First visit general"/>
-  <string id="tor_enchanter_info_hub_intro_read_book.vlandia" text="{=str_tor_enchanter_info_hub_intro_read_book_vlandia}TODO: BRETONNIA - Already has manual"/>
+  <string id="tor_enchanter_info_hub_intro_first_visit.vlandia" text="{=str_tor_enchanter_info_hub_intro_first_visit_vlandia}Take this tome of knowledge. It should answer all your questions."/>
+  <string id="tor_enchanter_info_hub_intro_read_book.vlandia" text="{=str_tor_enchanter_info_hub_intro_read_book_vlandia}You already carry the tome of the Lady. Study it for the answers you seek."/>
 
   <!-- SYLVANIA (khuzait) - TODO: Complete Vampiric Necromancer dialogs following Empire pattern -->
   <string id="tor_enchanter_start_p.khuzait" text="{=str_tor_enchanter_start_p_khuzait}I wish to know more of magical and cursed items."/>
@@ -635,44 +644,44 @@
   <string id="tor_enchanter_donate_items_1_negative.khuzait" text="{=str_tor_enchanter_donate_items_1_negative_khuzait}These will likely not be of use to me or my master. Return with the treasures and artifacts of this world."/>
   <string id="tor_enchanter_donate_items_hub_p.khuzait" text="{=str_tor_enchanter_donate_items_hub_p_khuzait}Take these relics then."/>
   <string id="tor_enchanter_gift_items_hub_return_p.khuzait" text="{=str_tor_enchanter_gift_items_hub_return_p_khuzait}I think I would rather keep these for now."/>
-  <string id="tor_enchanter_donate_items_2.khuzait" text="{=str_tor_enchanter_donate_items_2_khuzait}TODO: SYLVANIA - Select items"/>
+  <string id="tor_enchanter_donate_items_2.khuzait" text="{=str_tor_enchanter_donate_items_2_khuzait}Is this all? Let us move on then."/>
   <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.khuzait" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_khuzait}There are dark energies coiling around you. I shall impart this knowledge to you."/>
   <string id="tor_enchanter_info_hub_intro_first_visit.khuzait" text="{=str_tor_enchanter_info_hub_intro_first_visit_khuzait}This tome holds everything you shall need."/>
   <string id="tor_enchanter_info_hub_intro_read_book.khuzait" text="{=str_tor_enchanter_info_hub_intro_read_book_khuzait}The grimoire I bestowed upon you covers all the required basics."/>
 
   <!-- MOUSILLON (mousillon) - TODO: Complete Mousillon Necromancer dialogs following Empire pattern -->
-  <string id="tor_enchanter_start_p.mousillon" text="{=str_tor_enchanter_start_p_mousillon}TODO: MOUSILLON - Player initiates conversation"/>
-  <string id="tor_enchanter_start_enchanter.mousillon" text="{=str_tor_enchanter_start_enchanter_mousillon}TODO: MOUSILLON - Dark practitioner greeting"/>
-  <string id="tor_enchanter_dialog_start.mousillon" text="{=str_tor_enchanter_dialog_start_mousillon}TODO: MOUSILLON - General greeting"/>
-  <string id="tor_enchanter_dialog_start_quit.mousillon" text="{=str_tor_enchanter_dialog_start_quit_mousillon}TODO: MOUSILLON - Wrong culture rejection"/>
-  <string id="tor_enchanter_dialog_start_1.mousillon" text="{=str_tor_enchanter_dialog_start_1_mousillon}TODO: MOUSILLON - Welcome message"/>
-  <string id="tor_enchanter_dialog_start_2.mousillon" text="{=str_tor_enchanter_dialog_start_2_mousillon}TODO: MOUSILLON - Fellow practitioner"/>
-  <string id="tor_enchanter_hub_intro.mousillon" text="{=str_tor_enchanter_hub_intro_mousillon}TODO: MOUSILLON - Hub intro"/>
-  <string id="tor_enchanter_hub_reintro.mousillon" text="{=str_tor_enchanter_hub_reintro_mousillon}TODO: MOUSILLON - Hub return"/>
-  <string id="tor_enchanter_hub_info_p.mousillon" text="{=str_tor_enchanter_hub_info_p_mousillon}TODO: MOUSILLON - Ask about dark arts"/>
-  <string id="tor_enchanter_hub_blueprints_p.mousillon" text="{=str_tor_enchanter_hub_blueprints_p_mousillon}TODO: MOUSILLON - Request blueprints"/>
-  <string id="tor_enchanter_hub_donate_items_p.mousillon" text="{=str_tor_enchanter_hub_donate_items_p_mousillon}TODO: MOUSILLON - Offer items"/>
-  <string id="tor_enchanter_hub_open_enchanter_p.mousillon" text="{=str_tor_enchanter_hub_open_enchanter_p_mousillon}TODO: MOUSILLON - Open enchanter"/>
-  <string id="tor_enchanter_hub_return_p.mousillon" text="{=str_tor_enchanter_hub_return_p_mousillon}TODO: MOUSILLON - Leave"/>
-  <string id="tor_enchanter_blueprints.mousillon" text="{=str_tor_enchanter_blueprints_mousillon}TODO: MOUSILLON - Opens blueprint shop"/>
-  <string id="tor_enchanter_blueprints_decline.mousillon" text="{=str_tor_enchanter_blueprints_decline_mousillon}TODO: MOUSILLON - No eligible character"/>
-  <string id="tor_enchanter_donate_items_1.mousillon" text="{=str_tor_enchanter_donate_items_1_mousillon}TODO: MOUSILLON - Accepts donation"/>
-  <string id="tor_enchanter_donate_items_1_negative.mousillon" text="{=str_tor_enchanter_donate_items_1_negative_mousillon}TODO: MOUSILLON - Rejects donation"/>
-  <string id="tor_enchanter_donate_items_hub_p.mousillon" text="{=str_tor_enchanter_donate_items_hub_p_mousillon}TODO: MOUSILLON - Player offers"/>
-  <string id="tor_enchanter_gift_items_hub_return_p.mousillon" text="{=str_tor_enchanter_gift_items_hub_return_p_mousillon}TODO: MOUSILLON - Player backs out"/>
-  <string id="tor_enchanter_donate_items_2.mousillon" text="{=str_tor_enchanter_donate_items_2_mousillon}TODO: MOUSILLON - Select items"/>
-  <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.mousillon" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_mousillon}TODO: MOUSILLON - First visit career"/>
-  <string id="tor_enchanter_info_hub_intro_first_visit.mousillon" text="{=str_tor_enchanter_info_hub_intro_first_visit_mousillon}TODO: MOUSILLON - First visit general"/>
-  <string id="tor_enchanter_info_hub_intro_read_book.mousillon" text="{=str_tor_enchanter_info_hub_intro_read_book_mousillon}TODO: MOUSILLON - Has manual"/>
+  <string id="tor_enchanter_start_p.mousillon" text="{=str_tor_enchanter_start_p_mousillon}I wish to know more of magical and cursed items."/>
+  <string id="tor_enchanter_start_enchanter.mousillon" text="{=str_tor_enchanter_start_enchanter_mousillon}Greetings, fellow practitioner of dark arts, shall we convene together?"/>
+  <string id="tor_enchanter_dialog_start.mousillon" text="{=str_tor_enchanter_dialog_start_mousillon}What do you require?"/>
+  <string id="tor_enchanter_dialog_start_quit.mousillon" text="{=str_tor_enchanter_dialog_start_quit_mousillon}I know you not, stranger; best be gone before a great misfortune falls upon you."/>
+  <string id="tor_enchanter_dialog_start_1.mousillon" text="{=str_tor_enchanter_dialog_start_1_mousillon}Greetings stranger, I sense the darkness within you."/>
+  <string id="tor_enchanter_dialog_start_2.mousillon" text="{=str_tor_enchanter_dialog_start_2_mousillon}Fellow practitioner of dark arts, shall we convene together?"/>
+  <string id="tor_enchanter_hub_intro.mousillon" text="{=str_tor_enchanter_hub_intro_mousillon}What do you require?"/>
+  <string id="tor_enchanter_hub_reintro.mousillon" text="{=str_tor_enchanter_hub_reintro_mousillon}What is it that you need?"/>
+  <string id="tor_enchanter_hub_info_p.mousillon" text="{=str_tor_enchanter_hub_info_p_mousillon}Part with me your knowledge of enchantments and curses."/>
+  <string id="tor_enchanter_hub_blueprints_p.mousillon" text="{=str_tor_enchanter_hub_blueprints_p_mousillon}Show me what magic formulas you possess."/>
+  <string id="tor_enchanter_hub_donate_items_p.mousillon" text="{=str_tor_enchanter_hub_donate_items_p_mousillon}Take these baubles, they are unfit for my retinue."/>
+  <string id="tor_enchanter_hub_open_enchanter_p.mousillon" text="{=str_tor_enchanter_hub_open_enchanter_p_mousillon}Show me the way to your dark altar."/>
+  <string id="tor_enchanter_hub_return_p.mousillon" text="{=str_tor_enchanter_hub_return_p_mousillon}We are finished."/>
+  <string id="tor_enchanter_blueprints.mousillon" text="{=str_tor_enchanter_blueprints_mousillon}Let us delve into grimoires and cursed tomes."/>
+  <string id="tor_enchanter_blueprints_decline.mousillon" text="{=str_tor_enchanter_blueprints_decline_mousillon}I sense no darkness within you, nor does it reside within your retinue. Return to me in the company of a wizard."/>
+  <string id="tor_enchanter_donate_items_1.mousillon" text="{=str_tor_enchanter_donate_items_1_mousillon}Very well, I shall take these and put them to good use."/>
+  <string id="tor_enchanter_donate_items_1_negative.mousillon" text="{=str_tor_enchanter_donate_items_1_negative_mousillon}These will likely not be of use to me or my master. Return with the treasures and artifacts of this world."/>
+  <string id="tor_enchanter_donate_items_hub_p.mousillon" text="{=str_tor_enchanter_donate_items_hub_p_mousillon}Take these relics then."/>
+  <string id="tor_enchanter_gift_items_hub_return_p.mousillon" text="{=str_tor_enchanter_gift_items_hub_return_p_mousillon}I think I would rather keep these for now."/>
+  <string id="tor_enchanter_donate_items_2.mousillon" text="{=str_tor_enchanter_donate_items_2_mousillon}Is this all? Let us move on then."/>
+  <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.mousillon" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_mousillon}There are dark energies coiling around you. I shall impart this knowledge to you."/>
+  <string id="tor_enchanter_info_hub_intro_first_visit.mousillon" text="{=str_tor_enchanter_info_hub_intro_first_visit_mousillon}This tome holds everything you shall need."/>
+  <string id="tor_enchanter_info_hub_intro_read_book.mousillon" text="{=str_tor_enchanter_info_hub_intro_read_book_mousillon}The grimoire I bestowed upon you covers all the required basics."/>
 
   <!-- DWARF CULTURE: Sturgia (Dawi)         -->
 
   <string id="tor_enchanter_start_p.sturgia" text="{=str_tor_enchanter_start_p_sturgia}I wish to know more about the art of runecraft."/>
   <string id="tor_enchanter_start_enchanter.sturgia" text="{=str_tor_enchanter_start_enchanter_sturgia}Ah, a fellow Rhunki, you are most welcome in the Grongaz."/>
-  <string id="tor_enchanter_dialog_start.sturgia" text="{=str_tor_enchanter_dialog_start_sturgia}TODO: STURGIA - Runelord greets visitor"/>
-  <string id="tor_enchanter_dialog_start_quit.sturgia" text="{=str_tor_enchanter_dialog_start_quit_sturgia}TODO: STURGIA - Wrong culture rejection"/>
-  <string id="tor_enchanter_dialog_start_1.sturgia" text="{=str_tor_enchanter_dialog_start_1_sturgia}TODO: STURGIA - Runelord welcomes loyal Dawi"/>
-  <string id="tor_enchanter_dialog_start_2.sturgia" text="{=str_tor_enchanter_dialog_start_2_sturgia}TODO: STURGIA - Runelord greets Runesmith"/>
+  <string id="tor_enchanter_dialog_start.sturgia" text="{=str_tor_enchanter_dialog_start_sturgia}A fellow Dawi! Welcome to the Grongaz."/>
+  <string id="tor_enchanter_dialog_start_quit.sturgia" text="{=str_tor_enchanter_dialog_start_quit_sturgia}To share the secrets of the Rhunki would shame my whole clan, outsider. The answer is nei."/>
+  <string id="tor_enchanter_dialog_start_1.sturgia" text="{=str_tor_enchanter_dialog_start_1_sturgia}{Player_Clan}, Dawongr! Do you have any business with the Rhunki?"/>
+  <string id="tor_enchanter_dialog_start_2.sturgia" text="{=str_tor_enchanter_dialog_start_2_sturgia}Trusted {Player_Clan}! Know the Rhunki consider our partnership a great honour!"/>
   <string id="tor_enchanter_hub_intro.sturgia" text="{=str_tor_enchanter_hub_intro_sturgia}So, what is it that you need?"/>
   <string id="tor_enchanter_hub_reintro.sturgia" text="{=str_tor_enchanter_hub_reintro_sturgia}Was there something else?"/>
   <string id="tor_enchanter_hub_info_p.sturgia" text="{=str_tor_enchanter_hub_info_p_sturgia}Can you teach me the fundamentals of runecraft?"/>
@@ -680,16 +689,16 @@
   <string id="tor_enchanter_hub_donate_items_p.sturgia" text="{=str_tor_enchanter_hub_donate_items_p_sturgia}I have magical items I no longer need, can you put them to good use?"/>
   <string id="tor_enchanter_hub_open_enchanter_p.sturgia" text="{=str_tor_enchanter_hub_open_enchanter_p_sturgia}I wish to use your forge, Master Smith."/>
   <string id="tor_enchanter_hub_return_p.sturgia" text="{=str_tor_enchanter_hub_return_p_sturgia}Let us discuss other matters."/>
-  <string id="tor_enchanter_blueprints.sturgia" text="{=str_tor_enchanter_blueprints_sturgia}TODO: STURGIA - Opens rune blueprint shop"/>
-  <string id="tor_enchanter_blueprints_decline.sturgia" text="{=str_tor_enchanter_blueprints_decline_sturgia}TODO: STURGIA - No eligible runesmith"/>
+  <string id="tor_enchanter_blueprints.sturgia" text="{=str_tor_enchanter_blueprints_sturgia}I wish to learn new Rhun carvings."/>
+  <string id="tor_enchanter_blueprints_decline.sturgia" text="{=str_tor_enchanter_blueprints_decline_sturgia}Judging by your mental capacities, you're too doh to grasp even the most basic runes. It is best to stick to using our weapons instead of making them. Return in a company of a Runesmith."/>
   <string id="tor_enchanter_donate_items_1.sturgia" text="{=str_tor_enchanter_donate_items_1_sturgia}I would be happy to receive and look over any magical gear you have collected. What do you have to offer?"/>
   <string id="tor_enchanter_donate_items_1_negative.sturgia" text="{=str_tor_enchanter_donate_items_1_negative_sturgia}You dont have anything of interest for me. Remember, will not accept items you have made yourself, as all that you know, we already know."/>
   <string id="tor_enchanter_donate_items_hub_p.sturgia" text="{=str_tor_enchanter_donate_items_hub_p_sturgia}Let me provide you these items…"/>
   <string id="tor_enchanter_gift_items_hub_return_p.sturgia" text="{=str_tor_enchanter_gift_items_hub_return_p_sturgia}I need to think about this."/>
   <string id="tor_enchanter_donate_items_2.sturgia" text="{=str_tor_enchanter_donate_items_2_sturgia}Which items do you want to donate?"/>
   <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.sturgia" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_sturgia}Take this Klinkarhun, upon which you can build the foundations of your own Rhunki future."/>
-  <string id="tor_enchanter_info_hub_intro_first_visit.sturgia" text="{=str_tor_enchanter_info_hub_intro_first_visit_sturgia}TODO: STURGIA - First visit general"/>
-  <string id="tor_enchanter_info_hub_intro_read_book.sturgia" text="{=str_tor_enchanter_info_hub_intro_read_book_sturgia}TODO: STURGIA - Already has runecraft manual"/>
+  <string id="tor_enchanter_info_hub_intro_first_visit.sturgia" text="{=str_tor_enchanter_info_hub_intro_first_visit_sturgia}I can give you a Klinkarhun, upon which you can build the foundations of your own Rhunki future."/>
+  <string id="tor_enchanter_info_hub_intro_read_book.sturgia" text="{=str_tor_enchanter_info_hub_intro_read_book_sturgia}The Klinkarhun I gave you has everything you need to get started."/>
 
   <!-- GREENSKIN CULTURE: Aserai              -->
   <!-- Greenskins use shamanic totems and tribal enchantment -->
@@ -722,54 +731,54 @@
   <!-- Elves use nature-based/arcane enchantment -->
 
   <!-- ASRAI / WOOD ELVES (battania) - TODO: Complete Spellsinger dialogs following Empire pattern -->
-  <string id="tor_enchanter_start_p.battania" text="{=str_tor_enchanter_start_p_battania}TODO: ASRAI - Player initiates conversation"/>
-  <string id="tor_enchanter_start_enchanter.battania" text="{=str_tor_enchanter_start_enchanter_battania}TODO: ASRAI - Spellsinger greets fellow mage"/>
-  <string id="tor_enchanter_dialog_start.battania" text="{=str_tor_enchanter_dialog_start_battania}TODO: ASRAI - Spellsinger general greeting"/>
-  <string id="tor_enchanter_dialog_start_quit.battania" text="{=str_tor_enchanter_dialog_start_quit_battania}TODO: ASRAI - Wrong culture rejection"/>
+  <string id="tor_enchanter_start_p.battania" text="{=str_tor_enchanter_start_p_battania}I wish to study the artifacts of the forest."/>
+  <string id="tor_enchanter_start_enchanter.battania" text="{=str_tor_enchanter_start_enchanter_battania}A fellow spellsinger? A rare pleasure in these times."/>
+  <string id="tor_enchanter_dialog_start.battania" text="{=str_tor_enchanter_dialog_start_battania}Your contributions to these woods have earnt a measure of tolerance."/>
+  <string id="tor_enchanter_dialog_start_quit.battania" text="{=str_tor_enchanter_dialog_start_quit_battania}You trespass on sacred ground, leave before my patience reaches its end."/>
   <string id="tor_enchanter_dialog_start_1.battania" text="{=str_tor_enchanter_dialog_start_1_battania}TODO: ASRAI - Welcome message"/>
   <string id="tor_enchanter_dialog_start_2.battania" text="{=str_tor_enchanter_dialog_start_2_battania}TODO: ASRAI - Fellow practitioner"/>
-  <string id="tor_enchanter_hub_intro.battania" text="{=str_tor_enchanter_hub_intro_battania}TODO: ASRAI - Hub intro"/>
-  <string id="tor_enchanter_hub_reintro.battania" text="{=str_tor_enchanter_hub_reintro_battania}TODO: ASRAI - Hub return"/>
-  <string id="tor_enchanter_hub_info_p.battania" text="{=str_tor_enchanter_hub_info_p_battania}TODO: ASRAI - Ask about forest magic"/>
-  <string id="tor_enchanter_hub_blueprints_p.battania" text="{=str_tor_enchanter_hub_blueprints_p_battania}TODO: ASRAI - Request blueprints"/>
-  <string id="tor_enchanter_hub_donate_items_p.battania" text="{=str_tor_enchanter_hub_donate_items_p_battania}TODO: ASRAI - Offer items"/>
-  <string id="tor_enchanter_hub_open_enchanter_p.battania" text="{=str_tor_enchanter_hub_open_enchanter_p_battania}TODO: ASRAI - Open enchanter"/>
-  <string id="tor_enchanter_hub_return_p.battania" text="{=str_tor_enchanter_hub_return_p_battania}TODO: ASRAI - Leave"/>
-  <string id="tor_enchanter_blueprints.battania" text="{=str_tor_enchanter_blueprints_battania}TODO: ASRAI - Opens blueprint shop"/>
-  <string id="tor_enchanter_blueprints_decline.battania" text="{=str_tor_enchanter_blueprints_decline_battania}TODO: ASRAI - No eligible character"/>
-  <string id="tor_enchanter_donate_items_1.battania" text="{=str_tor_enchanter_donate_items_1_battania}TODO: ASRAI - Accepts donation"/>
-  <string id="tor_enchanter_donate_items_1_negative.battania" text="{=str_tor_enchanter_donate_items_1_negative_battania}TODO: ASRAI - Rejects donation"/>
-  <string id="tor_enchanter_donate_items_hub_p.battania" text="{=str_tor_enchanter_donate_items_hub_p_battania}TODO: ASRAI - Player offers"/>
-  <string id="tor_enchanter_gift_items_hub_return_p.battania" text="{=str_tor_enchanter_gift_items_hub_return_p_battania}TODO: ASRAI - Player backs out"/>
-  <string id="tor_enchanter_donate_items_2.battania" text="{=str_tor_enchanter_donate_items_2_battania}TODO: ASRAI - Select items"/>
-  <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.battania" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_battania}TODO: ASRAI - First visit career"/>
-  <string id="tor_enchanter_info_hub_intro_first_visit.battania" text="{=str_tor_enchanter_info_hub_intro_first_visit_battania}TODO: ASRAI - First visit general"/>
-  <string id="tor_enchanter_info_hub_intro_read_book.battania" text="{=str_tor_enchanter_info_hub_intro_read_book_battania}TODO: ASRAI - Has manual"/>
+  <string id="tor_enchanter_hub_intro.battania" text="{=str_tor_enchanter_hub_intro_battania}What purpose carries you here?"/>
+  <string id="tor_enchanter_hub_reintro.battania" text="{=str_tor_enchanter_hub_reintro_battania}What purpose carries you here?"/>
+  <string id="tor_enchanter_hub_info_p.battania" text="{=str_tor_enchanter_hub_info_p_battania}I seek the wisdom of the forest and your knowledge of magical items."/>
+  <string id="tor_enchanter_hub_blueprints_p.battania" text="{=str_tor_enchanter_hub_blueprints_p_battania}May I impose on you for methods of enchanting?"/>
+  <string id="tor_enchanter_hub_donate_items_p.battania" text="{=str_tor_enchanter_hub_donate_items_p_battania}Please take these gifts, that you may use them to guard Athel Loren."/>
+  <string id="tor_enchanter_hub_open_enchanter_p.battania" text="{=str_tor_enchanter_hub_open_enchanter_p_battania}May I make use of your ritual spaces for my own works?"/>
+  <string id="tor_enchanter_hub_return_p.battania" text="{=str_tor_enchanter_hub_return_p_battania}This thread has reached its natural end."/>
+  <string id="tor_enchanter_blueprints.battania" text="{=str_tor_enchanter_blueprints_battania}Very well, let us study together for the betterment of Athel Loren."/>
+  <string id="tor_enchanter_blueprints_decline.battania" text="{=str_tor_enchanter_blueprints_decline_battania}I sense no gift of magic within you or your companions. Return in the company of a Spellsinger."/>
+  <string id="tor_enchanter_donate_items_1.battania" text="{=str_tor_enchanter_donate_items_1_battania}What is it that you wish to relinquish?"/>
+  <string id="tor_enchanter_donate_items_1_negative.battania" text="{=str_tor_enchanter_donate_items_1_negative_battania}The Forest can't make use of what you offer. Return when you find more artifacts."/>
+  <string id="tor_enchanter_donate_items_hub_p.battania" text="{=str_tor_enchanter_donate_items_hub_p_battania}Let me see…"/>
+  <string id="tor_enchanter_gift_items_hub_return_p.battania" text="{=str_tor_enchanter_gift_items_hub_return_p_battania}Please give me more time to think of this."/>
+  <string id="tor_enchanter_donate_items_2.battania" text="{=str_tor_enchanter_donate_items_2_battania}Will that be all? Very well."/>
+  <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.battania" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_battania}Of course. I have not the time to impart the knowledge myself, take these scrolls from Argwylon, and my own addition that I'm sure you shall appreciate."/>
+  <string id="tor_enchanter_info_hub_intro_first_visit.battania" text="{=str_tor_enchanter_info_hub_intro_first_visit_battania}This scroll hails from Argwylon's libraries, take it and study it in detail."/>
+  <string id="tor_enchanter_info_hub_intro_read_book.battania" text="{=str_tor_enchanter_info_hub_intro_read_book_battania}You already carry the scroll of Argwylon, do you not?"/>
 
   <!-- EONIR / HIGH ELVES (eonir) - TODO: Complete Eonir Spellsinger dialogs following Empire pattern -->
-  <string id="tor_enchanter_start_p.eonir" text="{=str_tor_enchanter_start_p_eonir}TODO: EONIR - Player initiates conversation"/>
-  <string id="tor_enchanter_start_enchanter.eonir" text="{=str_tor_enchanter_start_enchanter_eonir}TODO: EONIR - Spellsinger greets fellow mage"/>
-  <string id="tor_enchanter_dialog_start.eonir" text="{=str_tor_enchanter_dialog_start_eonir}TODO: EONIR - Spellsinger general greeting"/>
-  <string id="tor_enchanter_dialog_start_quit.eonir" text="{=str_tor_enchanter_dialog_start_quit_eonir}TODO: EONIR - Wrong culture rejection"/>
+  <string id="tor_enchanter_start_p.eonir" text="{=str_tor_enchanter_start_p_eonir}Can you tell me more about enchantments?"/>
+  <string id="tor_enchanter_start_enchanter.eonir" text="{=str_tor_enchanter_start_enchanter_eonir}Welcome to Laurelorn kindred; I hope your time outside our borders was fruitful."/>
+  <string id="tor_enchanter_dialog_start.eonir" text="{=str_tor_enchanter_dialog_start_eonir}Your deeds in these woods have earnt my ear, for a time."/>
+  <string id="tor_enchanter_dialog_start_quit.eonir" text="{=str_tor_enchanter_dialog_start_quit_eonir}You are not one of us. Leave before I call the guards."/>
   <string id="tor_enchanter_dialog_start_1.eonir" text="{=str_tor_enchanter_dialog_start_1_eonir}TODO: EONIR - Welcome message"/>
   <string id="tor_enchanter_dialog_start_2.eonir" text="{=str_tor_enchanter_dialog_start_2_eonir}TODO: EONIR - Fellow practitioner"/>
-  <string id="tor_enchanter_hub_intro.eonir" text="{=str_tor_enchanter_hub_intro_eonir}TODO: EONIR - Hub intro"/>
-  <string id="tor_enchanter_hub_reintro.eonir" text="{=str_tor_enchanter_hub_reintro_eonir}TODO: EONIR - Hub return"/>
-  <string id="tor_enchanter_hub_info_p.eonir" text="{=str_tor_enchanter_hub_info_p_eonir}TODO: EONIR - Ask about elven magic"/>
-  <string id="tor_enchanter_hub_blueprints_p.eonir" text="{=str_tor_enchanter_hub_blueprints_p_eonir}TODO: EONIR - Request blueprints"/>
-  <string id="tor_enchanter_hub_donate_items_p.eonir" text="{=str_tor_enchanter_hub_donate_items_p_eonir}TODO: EONIR - Offer items"/>
-  <string id="tor_enchanter_hub_open_enchanter_p.eonir" text="{=str_tor_enchanter_hub_open_enchanter_p_eonir}TODO: EONIR - Open enchanter"/>
-  <string id="tor_enchanter_hub_return_p.eonir" text="{=str_tor_enchanter_hub_return_p_eonir}TODO: EONIR - Leave"/>
-  <string id="tor_enchanter_blueprints.eonir" text="{=str_tor_enchanter_blueprints_eonir}TODO: EONIR - Opens blueprint shop"/>
-  <string id="tor_enchanter_blueprints_decline.eonir" text="{=str_tor_enchanter_blueprints_decline_eonir}TODO: EONIR - No eligible character"/>
-  <string id="tor_enchanter_donate_items_1.eonir" text="{=str_tor_enchanter_donate_items_1_eonir}TODO: EONIR - Accepts donation"/>
-  <string id="tor_enchanter_donate_items_1_negative.eonir" text="{=str_tor_enchanter_donate_items_1_negative_eonir}TODO: EONIR - Rejects donation"/>
-  <string id="tor_enchanter_donate_items_hub_p.eonir" text="{=str_tor_enchanter_donate_items_hub_p_eonir}TODO: EONIR - Player offers"/>
-  <string id="tor_enchanter_gift_items_hub_return_p.eonir" text="{=str_tor_enchanter_gift_items_hub_return_p_eonir}TODO: EONIR - Player backs out"/>
-  <string id="tor_enchanter_donate_items_2.eonir" text="{=str_tor_enchanter_donate_items_2_eonir}TODO: EONIR - Select items"/>
-  <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.eonir" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_eonir}TODO: EONIR - First visit career"/>
-  <string id="tor_enchanter_info_hub_intro_first_visit.eonir" text="{=str_tor_enchanter_info_hub_intro_first_visit_eonir}TODO: EONIR - First visit general"/>
-  <string id="tor_enchanter_info_hub_intro_read_book.eonir" text="{=str_tor_enchanter_info_hub_intro_read_book_eonir}TODO: EONIR - Has manual"/>
+  <string id="tor_enchanter_hub_intro.eonir" text="{=str_tor_enchanter_hub_intro_eonir}Blessings of Isha upon you, what aid can I bestow?"/>
+  <string id="tor_enchanter_hub_reintro.eonir" text="{=str_tor_enchanter_hub_reintro_eonir}Blessings of Isha upon you, what aid can I bestow?"/>
+  <string id="tor_enchanter_hub_info_p.eonir" text="{=str_tor_enchanter_hub_info_p_eonir}Can you help me learn the basics of enchanting?"/>
+  <string id="tor_enchanter_hub_blueprints_p.eonir" text="{=str_tor_enchanter_hub_blueprints_p_eonir}I come in search of new enchanting techniques."/>
+  <string id="tor_enchanter_hub_donate_items_p.eonir" text="{=str_tor_enchanter_hub_donate_items_p_eonir}I bring great grifts of arcane power for you and our kin."/>
+  <string id="tor_enchanter_hub_open_enchanter_p.eonir" text="{=str_tor_enchanter_hub_open_enchanter_p_eonir}May I make use of your enchanting equipment?"/>
+  <string id="tor_enchanter_hub_return_p.eonir" text="{=str_tor_enchanter_hub_return_p_eonir}I wish to discuss the matters of diplomacy."/>
+  <string id="tor_enchanter_blueprints.eonir" text="{=str_tor_enchanter_blueprints_eonir}So be it, let us unravel these mysteries together."/>
+  <string id="tor_enchanter_blueprints_decline.eonir" text="{=str_tor_enchanter_blueprints_decline_eonir}I sense no gift of magic within you or your companions. Return in the company of a spellcaster."/>
+  <string id="tor_enchanter_donate_items_1.eonir" text="{=str_tor_enchanter_donate_items_1_eonir}What is it that you wish to relinquish?"/>
+  <string id="tor_enchanter_donate_items_1_negative.eonir" text="{=str_tor_enchanter_donate_items_1_negative_eonir}I'm afraid nothing you carry is of any true value to us."/>
+  <string id="tor_enchanter_donate_items_hub_p.eonir" text="{=str_tor_enchanter_donate_items_hub_p_eonir}I was considering…"/>
+  <string id="tor_enchanter_gift_items_hub_return_p.eonir" text="{=str_tor_enchanter_gift_items_hub_return_p_eonir}Forgive me, I need more time to consider my options."/>
+  <string id="tor_enchanter_donate_items_2.eonir" text="{=str_tor_enchanter_donate_items_2_eonir}Will that be all? Very well."/>
+  <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.eonir" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_eonir}Take this scroll with instructions, it includes some of my own notations. May you live a thousand years, kin."/>
+  <string id="tor_enchanter_info_hub_intro_first_visit.eonir" text="{=str_tor_enchanter_info_hub_intro_first_visit_eonir}Take this scroll with instructions. May you live a thousand years, kin."/>
+  <string id="tor_enchanter_info_hub_intro_read_book.eonir" text="{=str_tor_enchanter_info_hub_intro_read_book_eonir}I do hope you kept the scroll I parted with…"/>
 
 
   <!-- oath gold mechanic-->
@@ -1431,6 +1440,122 @@
   <string id="tor_feudal_oath_line3.brasskeep" text="{=str_tor_feudal_oath_line3_brasskeep}From death our power grows." />
   <string id="tor_feudal_oath_line4.brasskeep" text="{=str_tor_feudal_oath_line4_brasskeep}In Nurgle's name we will deliver death!" />
 
+  <string id="tor_feudal_oath_line1.karak_kadrin" text="{=str_tor_feudal_oath_line1_kadrin}By axe and oath, I kneel before Slayer King Ungrim Ironfist, lord of Karak Kadrin and heir to Grimnir’s fury." />
+  <string id="tor_feudal_oath_line2.karak_kadrin" text="{=str_tor_feudal_oath_line2_kadrin}I swear to keep Peak Pass and stand unbroken where dawi fall and legends rise." />
+  <string id="tor_feudal_oath_line3.karak_kadrin" text="{=str_tor_feudal_oath_line3_kadrin}Let my blood join the Slayers’ toll, and my wrath echo through Khaz Drengi." />
+  <string id="tor_feudal_oath_line4.karak_kadrin" text="{=str_tor_feudal_oath_line4_kadrin}By the fire of Grimnir and the will of the King, I pledge my life to Karak Kadrin — and to doom, if need be." />
+
+  <string id="tor_feudal_oath_line1.karak_angazhar" text="{=str_tor_feudal_oath_line1_angazhar}By stone, steel, and the roaring forges of Karak Angazhar, I offer my service." />
+  <string id="tor_feudal_oath_line2.karak_angazhar" text="{=str_tor_feudal_oath_line2_angazhar}I kneel before King Duregar Sharpblade, whose name is etched in rune and rock—I pledge my axe to his command." />
+  <string id="tor_feudal_oath_line3.karak_angazhar" text="{=str_tor_feudal_oath_line3_angazhar}May the anvils of our ancestors ring true as I take up this oath." />
+  <string id="tor_feudal_oath_line4.karak_angazhar" text="{=str_tor_feudal_oath_line4_angazhar}With beard unshorn and grudges remembered, I will not yield a step while a forge still burns in this hold." />
+
+  <string id="tor_feudal_oath_line1.karak_azgaraz" text="{=str_tor_feudal_oath_line1_azgaraz}By the Fearless Axe and the halls of my forebears, I pledge my unwavering oath." />
+  <string id="tor_feudal_oath_line2.karak_azgaraz" text="{=str_tor_feudal_oath_line2_azgaraz}To King Thuringar Orc-hewer, bold son of the Grey Mountains, I swear my loyalty and strength." />
+  <string id="tor_feudal_oath_line3.karak_azgaraz" text="{=str_tor_feudal_oath_line3_azgaraz}May my deeds be carved in stone beside the honored dead, and my oath echo through Heroes’ Deep." />
+  <string id="tor_feudal_oath_line4.karak_azgaraz" text="{=str_tor_feudal_oath_line4_azgaraz}No grobi, wyrdspawn, nor oathbreaker shall breach our gates while I draw breath." />
+
+  <string id="tor_feudal_oath_line1.karak_eksfilaz" text="{=str_tor_feudal_oath_line1_eksfilaz}By stone oath and silver seal, I kneel before King Hergar Steelclad, lord of Karak Eksfilaz." />
+  <string id="tor_feudal_oath_line2.karak_eksfilaz" text="{=str_tor_feudal_oath_line2_eksfilaz}I swear to guard the gates of Eksfilaz and strike down all who skulk beneath the Vaults." />
+  <string id="tor_feudal_oath_line3.karak_eksfilaz" text="{=str_tor_feudal_oath_line3_eksfilaz}Let my axe serve the Vermin Hunters, and may my deeds honor Grung Mizpal." />
+  <string id="tor_feudal_oath_line4.karak_eksfilaz" text="{=str_tor_feudal_oath_line4_eksfilaz}By clan and kin, I pledge gold and steel to uphold the will of King Hergar." />
+
+  <string id="tor_feudal_oath_line1.karak_gantuk" text="{=str_tor_feudal_oath_line1_gantuk}By hammer’s ring and ore’s yield, I bend the knee to King Skag Hammerfist of Karak Gantuk." />
+  <string id="tor_feudal_oath_line2.karak_gantuk" text="{=str_tor_feudal_oath_line2_gantuk}I vow to shield our forges and keep the veins of Khazid Hafak flowing with iron." />
+  <string id="tor_feudal_oath_line3.karak_gantuk" text="{=str_tor_feudal_oath_line3_gantuk}Let my arm strike true for the hold, and may no greenskin tread the stones of Gantuk unchallenged." />
+  <string id="tor_feudal_oath_line4.karak_gantuk" text="{=str_tor_feudal_oath_line4_gantuk}In flame and steel, I pledge my strength to the throne and the craft of our forebears." />
+
+  <string id="tor_feudal_oath_line1.karak_hirn" text="{=str_tor_feudal_oath_line1_hirn}By hammer-sound and mountain breath, I kneel before King Alrik Ranulfsson of the Hornhold." />
+  <string id="tor_feudal_oath_line2.karak_hirn" text="{=str_tor_feudal_oath_line2_hirn}I swear to guard the cliff-roads and merchant halls, and sound the Horn in times of strife." />
+  <string id="tor_feudal_oath_line3.karak_hirn" text="{=str_tor_feudal_oath_line3_hirn}Let my axe strike down any foe, stoneborn or risen, who dares our gate." />
+  <string id="tor_feudal_oath_line4.karak_hirn" text="{=str_tor_feudal_oath_line4_hirn}By oath and ore, I stand for Hirn, and carve my name in its honored ledger." />
+
+  <string id="tor_feudal_oath_line1.karak_izor" text="{=str_tor_feudal_oath_line1_izor}By copper vein and mountain root, I swear fealty to King Kazran Grimbrow of Karak Izor." />
+  <string id="tor_feudal_oath_line2.karak_izor" text="{=str_tor_feudal_oath_line2_izor}I vow to defend the Vaults and shield our kin in the valley holds." />
+  <string id="tor_feudal_oath_line3.karak_izor" text="{=str_tor_feudal_oath_line3_izor}Let my axe answer troll-roar and daemon-howl alike, beneath these ancient peaks." />
+  <string id="tor_feudal_oath_line4.karak_izor" text="{=str_tor_feudal_oath_line4_izor}By stone, steel, and brewed oath, I serve the throne and honor the name of Izor." />
+
+  <string id="tor_feudal_oath_line1.karak_kaferkammaz" text="{=str_tor_feudal_oath_line1_kaferkammaz}By marble vein and mountain breath, I bend the knee to King Skalf Redbeard of Karak Kaferkammaz." />
+  <string id="tor_feudal_oath_line2.karak_kaferkammaz" text="{=str_tor_feudal_oath_line2_kaferkammaz}I vow to guard the escarpment heights and watch the forest’s edge from our white-stone towers." />
+  <string id="tor_feudal_oath_line3.karak_kaferkammaz" text="{=str_tor_feudal_oath_line3_kaferkammaz}Let my hammer ring true where the Kaferdrin winds, and my honor weigh as heavy as carved stone." />
+  <string id="tor_feudal_oath_line4.karak_kaferkammaz" text="{=str_tor_feudal_oath_line4_kaferkammaz}By Dawi craft and the cold light of the high Vaults, I pledge steel, stone, and soul to Kaferkammaz." />
+
+  <string id="tor_feudal_oath_line1.karak_norn" text="{=str_tor_feudal_oath_line1_norn}By oath unbroken and iron resolve, I bend the knee to King Brokk Ironpick of Karak Norn, where even barren stone bears Dawi pride." />
+  <string id="tor_feudal_oath_line2.karak_norn" text="{=str_tor_feudal_oath_line2_norn}I swear to hold the Montdidier Pass and guard the high Grey halls against treeborn shadow and lowland treachery alike." />
+  <string id="tor_feudal_oath_line3.karak_norn" text="{=str_tor_feudal_oath_line3_norn}Let my axe bite deep for the clans of Silverspear and the watchfires of Mad Dog Pass, lost but not forgotten." />
+  <string id="tor_feudal_oath_line4.karak_norn" text="{=str_tor_feudal_oath_line4_norn}By the bedrock beneath my boots, I pledge steel, spite, and silence to the will of Brokk Ironpick and the hold of Norn." />
+
+  <string id="tor_feudal_oath_line1.karak_zhufbar" text="{=str_tor_feudal_oath_line1_zhufbar}By smoke-wreathed peaks and the torrent's roar, I swear to King Morgrim Ironforge, Lord of Flame and Forge." />
+  <string id="tor_feudal_oath_line2.karak_zhufbar" text="{=str_tor_feudal_oath_line2_zhufbar}Let my craft serve the anvils of Zhufbar, where Gromril sings and engines wake." />
+  <string id="tor_feudal_oath_line3.karak_zhufbar" text="{=str_tor_feudal_oath_line3_zhufbar}I vow to shield the deep vaults from Skaven claw and greenskin horde alike." />
+  <string id="tor_feudal_oath_line4.karak_zhufbar" text="{=str_tor_feudal_oath_line4_zhufbar}By blast-wall, airship, and rune-wrought steel, I bind my life to the Iron Gate." />
+
+  <string id="tor_feudal_oath_line1.karak_ziflin" text="{=str_tor_feudal_oath_line1_ziflin}By granite grip and grudge-bound will, I swear to King Rorek Granitehand, lord of Ziflin’s high halls." />
+  <string id="tor_feudal_oath_line2.karak_ziflin" text="{=str_tor_feudal_oath_line2_ziflin}I vow to guard the traderoads and vault-forges, where Dwarfen steel still speaks louder than foreign gold." />
+  <string id="tor_feudal_oath_line3.karak_ziflin" text="{=str_tor_feudal_oath_line3_ziflin}May my shield hold fast where promises fail, and let no oath-breaker pass Axe Bite unchallenged." />
+  <string id="tor_feudal_oath_line4.karak_ziflin" text="{=str_tor_feudal_oath_line4_ziflin}For hold, clan, and king, I pledge hammer and heart to the stubborn stone of Ziflin." />
+
+  <string id="tor_feudal_oath_line1.bad_axes" text="{=str_tor_feudal_oath_line1_bad_axes}I’z lookin' at ya an' I sees a Boss. My choppa is sharp, an' da boyz is hungry fer a smashin'." />
+  <string id="tor_feudal_oath_line2.bad_axes" text="{=str_tor_feudal_oath_line2_bad_axes}Gromodrak Hoofslasha is da biggest git around—so I’z followin' you till da wurld iz green or red." />
+  <string id="tor_feudal_oath_line3.bad_axes" text="{=str_tor_feudal_oath_line3_bad_axes}Wiv da Bad Axes, we’z gonna chop 'em till dere’s nuffin' left of dem gitz." />
+  <string id="tor_feudal_oath_line4.bad_axes" text="{=str_tor_feudal_oath_line4_bad_axes}If you'z ever not happy by me choppa, Gork'll stomp me flat into da ground!" />
+  
+  <string id="tor_feudal_oath_line1.black_sunz" text="{=str_tor_feudal_oath_line1_black_sunz}Da Black Sun shines on us, an' we kill an' dance in itz… guhhh… shine!" />
+  <string id="tor_feudal_oath_line2.black_sunz" text="{=str_tor_feudal_oath_line2_black_sunz}Da great Zorbak Bearthwakka has shown uz da shinin' darkness an' we'z here to spread it!" />
+  <string id="tor_feudal_oath_line3.black_sunz" text="{=str_tor_feudal_oath_line3_black_sunz}We'z gun make da world blind, takin' eyez fer eyez an' lotz of dere teef as well!" />
+  <string id="tor_feudal_oath_line4.black_sunz" text="{=str_tor_feudal_oath_line4_black_sunz}In da name of da Bearthwakka, I'z going to shove 'iz enemiez where no Sunz shine!" />
+  
+  <string id="tor_feudal_oath_line1.crooked_eye" text="{=str_tor_feudal_oath_line1_crooked_eye}Da Crooked Eye sees all da gitz what needs killin'. I’z ready to stomp 'em fer ya." />
+  <string id="tor_feudal_oath_line2.crooked_eye" text="{=str_tor_feudal_oath_line2_crooked_eye}Bazglud, you’z da Daemonstompa! You’z bigga an' betta dan da weird fings, so I’z doin' wot you sez." />
+  <string id="tor_feudal_oath_line3.crooked_eye" text="{=str_tor_feudal_oath_line3_crooked_eye}Let dis 'un stomp you'z enemies wiv me boots an' smash them wiv me fists!" />
+  <string id="tor_feudal_oath_line4.crooked_eye" text="{=str_tor_feudal_oath_line4_crooked_eye}I'll join ya Waaaagh! to break an' bash an' fight!" />
+  
+  <string id="tor_feudal_oath_line1.deff_grindaz" text="{=str_tor_feudal_oath_line1_deff_grindaz}We'z the strongest, meanest, greenest der iz." />
+  <string id="tor_feudal_oath_line2.deff_grindaz" text="{=str_tor_feudal_oath_line2_deff_grindaz}An' Zorkar Throat Ripper iz da best uv all dis out dere." />
+  <string id="tor_feudal_oath_line3.deff_grindaz" text="{=str_tor_feudal_oath_line3_deff_grindaz}So, I join ya mob so ya can make me even more green dan I iz." />
+  <string id="tor_feudal_oath_line4.deff_grindaz" text="{=str_tor_feudal_oath_line4_deff_grindaz}Fer da Great Green Gods an' a good bashin'! WAAAAAGH!!!" />
+  
+  <string id="tor_feudal_oath_line1.iron_tribe" text="{=str_tor_feudal_oath_line1_iron_tribe}Oaf?! Who you'z callin' an oaf, ya pansy!?" />
+  <string id="tor_feudal_oath_line2.iron_tribe" text="{=str_tor_feudal_oath_line2_iron_tribe}I'z gunna teach ya a lesson! Any last of dem stoopid wordz, git?" />
+  <string id="tor_feudal_oath_line3.iron_tribe" text="{=str_tor_feudal_oath_line3_iron_tribe}What you'z sayin'? Oath, not oaf? Ughhrrrrp… we'z can fight togeva', fer sum time…" />
+  <string id="tor_feudal_oath_line4.iron_tribe" text="{=str_tor_feudal_oath_line4_iron_tribe}Da land iz big, plenty uv dem puny gits an' all dem stunties fer both uv us." />
+  
+  <string id="tor_feudal_oath_line1.massif_choppas" text="{=str_tor_feudal_oath_line1_massif_choppas}By Gork n Mork, I swear to ya Skulgul Horsesmakka dat I'll smash any gitz ya wants." />
+  <string id="tor_feudal_oath_line2.massif_choppas" text="{=str_tor_feudal_oath_line2_massif_choppas}Skulgul, you’z got da biggest choppa in da mob. It mean you da best Boss dere is." />
+  <string id="tor_feudal_oath_line3.massif_choppas" text="{=str_tor_feudal_oath_line3_massif_choppas}We'z gonna knock dem ridas an' big gitz right off der asses!" />
+  <string id="tor_feudal_oath_line4.massif_choppas" text="{=str_tor_feudal_oath_line4_massif_choppas}Dis choppa I’z yours. I’ll keep whackin' till dere’s nuffin' but red mud on da ground." />
+  
+  <string id="tor_feudal_oath_line1.neck_snappers" text="{=str_tor_feudal_oath_line1_neck_snappers}I'z been lookin' fer a propa Boss an' Morglum is da best dere is." />
+  <string id="tor_feudal_oath_line2.neck_snappers" text="{=str_tor_feudal_oath_line2_neck_snappers}We Waaagh! wiv da tuffest boyz an' da best choppas thanks to ya." />
+  <string id="tor_feudal_oath_line3.neck_snappers" text="{=str_tor_feudal_oath_line3_neck_snappers}I'll smash anyone 'oo dun showz da propa respect ta ya, Boss." />
+  <string id="tor_feudal_oath_line4.neck_snappers" text="{=str_tor_feudal_oath_line4_neck_snappers}Fer da world belongs to Morglum. Da world'll be green." />
+  
+  <string id="tor_feudal_oath_line1.skull_smasherz" text="{=str_tor_feudal_oath_line1_skull_smasherz}I want to do sum proppa skull crackin' an' you'z da best Boss fer dat." />
+  <string id="tor_feudal_oath_line2.skull_smasherz" text="{=str_tor_feudal_oath_line2_skull_smasherz}I'z swear by Gork an' Mork to follow Ugrok Craktoof to Waaaagh! An' bash 'iz enemies proppa!" />
+  <string id="tor_feudal_oath_line3.skull_smasherz" text="{=str_tor_feudal_oath_line3_skull_smasherz}Cuz you'z fist iz bigga dan me 'ead an' you meaner dan a pair uv dem big squigs" />
+  <string id="tor_feudal_oath_line4.skull_smasherz" text="{=str_tor_feudal_oath_line4_skull_smasherz}So let'z find sum gitz fer da Skull Smasherz to smash!" />
+  
+  <string id="tor_feudal_oath_line1.bloody_spearz" text="{=str_tor_feudal_oath_line1_bloody_spearz}We'z da Bloody Spearz, terrorz uv da stunties. We'z didn't Gunbad, we'z always been bad!" />
+  <string id="tor_feudal_oath_line2.bloody_spearz" text="{=str_tor_feudal_oath_line2_bloody_spearz}I'z to strike fear into da hearts of da stunties an' da gitz of da Red Face tribe, bloody softies an' pansies!" />
+  <string id="tor_feudal_oath_line3.bloody_spearz" text="{=str_tor_feudal_oath_line3_bloody_spearz}Wen I'z raidin' da stunties, da biggest share iz fer da Boss Gnashrak, an' wen I'z smashin' Red Face Gitz, I send 'iz regardz." />
+  <string id="tor_feudal_oath_line4.bloody_spearz" text="{=str_tor_feudal_oath_line4_bloody_spearz}If I'z to backstab da Bloody Spearz, I'z no betta den da stoopid Red Facez." />
+
+  <string id="tor_feudal_oath_line1.red_eye" text="{=str_tor_feudal_oath_line1_red_eye}We'z to fight fer da Ornery Backslider, an' fight we will." />
+  <string id="tor_feudal_oath_line2.red_eye" text="{=str_tor_feudal_oath_line2_red_eye}Cuz da Red Eye neva blinks, it looks froo' da cloudz, da gloom, da earth an' meat." />
+  <string id="tor_feudal_oath_line3.red_eye" text="{=str_tor_feudal_oath_line3_red_eye}So we'z sneaky an' stabby to da uva' gitz, but not to da own gitz." />
+  <string id="tor_feudal_oath_line4.red_eye" text="{=str_tor_feudal_oath_line4_red_eye}An' if I backstab da boyz, I'z to be fed to da wyverns 'til I'z ded." />
+
+  <string id="tor_feudal_oath_line1.reavaz" text="{=str_tor_feudal_oath_line1_reavaz}I'z will follow da code of da brothaz uv da Reavaz. To loot all dem humies, stunties, an' uva gitz stoopid enuff to cross da mob." />
+  <string id="tor_feudal_oath_line2.reavaz" text="{=str_tor_feudal_oath_line2_reavaz}Any booty I get iz to be shared wiv me brothaz an' da biggest share iz fer da Kap'n Snozzsnik Skumclaw." />
+  <string id="tor_feudal_oath_line3.reavaz" text="{=str_tor_feudal_oath_line3_reavaz}An' if I'z to be sunken I'z to be goin' down wiv da ship coz grovelin' befor da Kap'n is wors." />
+  <string id="tor_feudal_oath_line4.reavaz" text="{=str_tor_feudal_oath_line4_reavaz}I'z to keep tru to da wordz to ma wo'ery grave." />
+
+  <string id="tor_feudal_oath_line1.black_pit" text="{=str_tor_feudal_oath_line1_black_pit}I’z come from da deep web. Da Spider-Bod whispers you'z name, Snagla. I’z here." />
+  <string id="tor_feudal_oath_line2.black_pit" text="{=str_tor_feudal_oath_line2_black_pit}You da sneakiest an' stabbiest gobbo there is. I’z part of da Deff Creepers now." />
+  <string id="tor_feudal_oath_line3.black_pit" text="{=str_tor_feudal_oath_line3_black_pit}By da Black Pit, we'z gonna feed dem gitz to da spiders." />
+  <string id="tor_feudal_oath_line4.black_pit" text="{=str_tor_feudal_oath_line4_black_pit}Da webz guide us an' da boyz, fer da Spider-God! Fer Snagla Grobspit!" />
+
+
   <string id="tor_player_accept_vassalage.empire" text="{=str_tor_player_accept_vassalage_empire}I proclaim you a noble of the Empire. Your life and property shall be protected by our laws, and shall not be taken from you except by law. You may serve as an official over towns and villages and as a general over armies, if we call upon you to do so." />
   <string id="tor_player_accept_vassalage.khuzait" text="{=str_tor_player_accept_vassalage_khuzait}I proclaim you a noble of the Sylvania and a servant of the von Carsteins. You are expected to carry out our bidding and bear arms in times of war. " />
   <string id="tor_player_accept_vassalage.mousillon" text="{=str_tor_player_accept_vassalage_mousillon}I have great hopes for you {PLAYER.NAME}. I know you shall prove yourself worthy of the trust I have placed in you." />
@@ -1438,6 +1563,8 @@
   <string id="tor_player_accept_vassalage.vlandia" text="{=str_tor_player_accept_vassalage_vlandia}By the lady of the lake. I proclaim you a noble of Brettonia and defender of the realm.  " />
   <string id="tor_player_accept_vassalage.battania" text="{=str_tor_player_accept_vassalage_battania}I name you guardian of Athel Loren, noble of the Asrai, may thy bow aim true." />
   <string id="tor_player_accept_vassalage.eonir" text="{=str_tor_player_accept_vassalage_eonir}I proclaim you a noble of the Eonir, stand proud for you are now a protector of the holy forest of Laurelorn." />
+  <string id="tor_player_accept_vassalage.sturgia" text="{=str_tor_player_accept_vassalage_sturgia}Your oath is heard and hammered into the annals. Stand proud, for your kin shall weigh your deeds in stone." />
+  <string id="tor_player_accept_vassalage.aserai" text="{=str_tor_player_accept_vassalage_aserai}You'z part uv me mob now! Go an' get to smashin' before I stab ya. WAAAAAAAGH!!!" />
   <string id="tor_player_accept_vassalage.chaos_culture" text="{=str_tor_player_accept_vassalage_chaos_culture}May Nurgle gift you with his blessings." />
 
   <string id="str_liege_title.empire" text="{=str_tor_liege_title_empire}Elector Count of one of the Provinces of the Empire">
@@ -1750,6 +1877,12 @@
   <string id="str_weapon_usage.TorLance" text="{=str_tor_weapon_usage_TorLance}Lance" />
   <string id="str_weapon_usage.TorLance_Couchable" text="{=str_tor_weapon_usage_TorLance_Couchable}Couch Lance" />
   <string id="str_weapon_usage.TorDwarvenOneHandedAxe" text="{=str_tor_weapon_usage_TorDwarvenOneHandedAxe}Dwarven Axe" />
+  <string id="str_weapon_usage.TorOrcOneHandedMace" text="{=str_tor_weapon_usage_TorOrcOneHandedMace}Orc Mace" />
+  <string id="str_weapon_usage.TorOrcOneHandedSword" text="{=str_tor_weapon_usage_TorOrcOneHandedSword}Orc Sword" />
+  <string id="str_weapon_usage.TorOrcTwoHandedSword" text="{=str_tor_weapon_usage_TorOrcTwoHandedSword}Orc Greatsword" />
+  <string id="str_weapon_usage.TorOrcOneHandedAxe" text="{=str_tor_weapon_usage_TorOrcOneHandedAxe}Orc Axe" />
+  <string id="str_weapon_usage.TorOrcOneHandedPolearm" text="{=str_tor_weapon_usage_TorOrcOneHandedPolearm}Orc Polearm" />
+  <string id="str_weapon_usage.TorOrcTwoHandedPolearm" text="{=str_tor_weapon_usage_TorOrcTwoHandedPolearm}Orc Greatpolearm" />
 
   <!--inventory-->
   <string id="str_inventory_weapon.22" text="{=str_tor_inventory_weapon_22}Pistol" />
@@ -1838,7 +1971,7 @@
   <string id="tor_customsettlement_intro.grove_of_the_lady_05" text="{=str_tor_customsettlement_intro_grove_of_the_lady_05}You arrive at a grove of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the Lady of the Lake." />
   <string id="tor_customsettlement_disabled.grove_of_the_lady_05" text="{=str_tor_customsettlement_disabled_grove_of_the_lady_05}The shrine lies in ruins. There is nothing to do here." />
 
-  <string id="tor_customsettlement_intro.haunted_site_01" text="{=str_tor_customsettlement_intro_haunted_site_01}Verhungern by local Slyvanians, this dispersed land is a ghoul, and likely spirit, infested maze of briars and bogs. Only the insane or desperate would venture into its boughs. " />
+  <string id="tor_customsettlement_intro.haunted_site_01" text="{=str_tor_customsettlement_intro_haunted_site_01}Referred to as 'Verhungern' by local Sylvanians, this dispersed land is a ghoul, and likely spirit, infested maze of briars and bogs. Only the insane or desperate would venture into its boughs. " />
   <string id="tor_customsettlement_disabled.haunted_site_01" text="{=str_tor_customsettlement_disabled_haunted_site_01}You shouldn't see this." />
   <string id="tor_customsettlement_intro.haunted_site_02" text="{=str_tor_customsettlement_intro_haunted_site_02}Destroyed by unholy fire that rained from the skies eons ago, Hel Fenn is likely the most cursed area in the whole Reik Basin. Molded buildings, rotting trees and tar covered corpses dot the desolate landscape. This was also the site of Mannfred von Carsteins defeat and the end of the Vampire Wars. " />
   <string id="tor_customsettlement_disabled.haunted_site_02" text="{=str_tor_customsettlement_disabled_haunted_site_02}You shouldn't see this." />
@@ -1847,17 +1980,17 @@
   <string id="tor_customsettlement_intro.haunted_site_04" text="{=str_tor_customsettlement_intro_haunted_site_04}Centuries ago, the hills outside of Mousillon were used as a mass grave to bury the thousands who died of Red Pox. So many victims were there that to this day the soil covering their pits is visible from the city walls. The air here is sometimes poisonous and like the rest of the cursed land the long dead rest uneasily." />
   <string id="tor_customsettlement_disabled.haunted_site_04" text="{=str_tor_customsettlement_disabled_haunted_site_04}You shouldn't see this." />
 
-  <string id="tor_customsettlement_intro.manaan_shrine_01" text="{=str_tor_customsettlement_intro_manaan_shrine_01}You arrive at the shrine of the {RELIGION_LINK}. The temple is wet and priests are praying." />
+  <string id="tor_customsettlement_intro.manaan_shrine_01" text="{=str_tor_customsettlement_intro_manaan_shrine_01}You arrive at the shrine of the {RELIGION_LINK}. The air around the altar is humid and carries the smell of brine." />
   <string id="tor_customsettlement_disabled.manaan_shrine_01" text="{=str_tor_customsettlement_disabled_manaan_shrine_01}The shrine lies in ruins. There is nothing to do here." />
-  <string id="tor_customsettlement_intro.manaan_shrine_02" text="{=str_tor_customsettlement_intro_manaan_shrine_02}You arrive at the shrine of the {RELIGION_LINK}. The temple is wet and priests are praying." />
+  <string id="tor_customsettlement_intro.manaan_shrine_02" text="{=str_tor_customsettlement_intro_manaan_shrine_02}You arrive at the shrine of the {RELIGION_LINK}. The air around the altar is humid and carries the smell of brine." />
   <string id="tor_customsettlement_disabled.manaan_shrine_02" text="{=str_tor_customsettlement_disabled_manaan_shrine_02}The shrine lies in ruins. There is nothing to do here." />
-  <string id="tor_customsettlement_intro.manaan_shrine_03" text="{=str_tor_customsettlement_intro_manaan_shrine_03}You arrive at the shrine of the {RELIGION_LINK}. The temple is wet and priests are praying." />
+  <string id="tor_customsettlement_intro.manaan_shrine_03" text="{=str_tor_customsettlement_intro_manaan_shrine_03}You arrive at the shrine of the {RELIGION_LINK}. The air around the altar is humid and carries the smell of brine." />
   <string id="tor_customsettlement_disabled.manaan_shrine_03" text="{=str_tor_customsettlement_disabled_manaan_shrine_03}The shrine lies in ruins. There is nothing to do here." />
-  <string id="tor_customsettlement_intro.manaan_shrine_04" text="{=str_tor_customsettlement_intro_manaan_shrine_04}You arrive at the shrine of the {RELIGION_LINK}. The temple is wet and priests are praying." />
+  <string id="tor_customsettlement_intro.manaan_shrine_04" text="{=str_tor_customsettlement_intro_manaan_shrine_04}You arrive at the shrine of the {RELIGION_LINK}. The air around the altar is humid and carries the smell of brine." />
   <string id="tor_customsettlement_disabled.manaan_shrine_04" text="{=str_tor_customsettlement_disabled_manaan_shrine_04}The shrine lies in ruins. There is nothing to do here." />
-  <string id="tor_customsettlement_intro.manaan_shrine_05" text="{=str_tor_customsettlement_intro_manaan_shrine_05}You arrive at the shrine of the {RELIGION_LINK}. The temple is wet and priests are praying." />
+  <string id="tor_customsettlement_intro.manaan_shrine_05" text="{=str_tor_customsettlement_intro_manaan_shrine_05}You arrive at the shrine of the {RELIGION_LINK}. The air around the altar is humid and carries the smell of brine." />
   <string id="tor_customsettlement_disabled.manaan_shrine_05" text="{=str_tor_customsettlement_disabled_manaan_shrine_05}The shrine lies in ruins. There is nothing to do here." />
-  <string id="tor_customsettlement_intro.manaan_shrine_06" text="{=str_tor_customsettlement_intro_manaan_shrine_06}You arrive at the shrine of the {RELIGION_LINK}. The temple is wet and priests are praying." />
+  <string id="tor_customsettlement_intro.manaan_shrine_06" text="{=str_tor_customsettlement_intro_manaan_shrine_06}You arrive at the shrine of the {RELIGION_LINK}. The air around the altar is humid and carries the smell of brine." />
   <string id="tor_customsettlement_disabled.manaan_shrine_06" text="{=str_tor_customsettlement_disabled_manaan_shrine_06}The shrine lies in ruins. There is nothing to do here." />
 
   <string id="tor_customsettlement_intro.asuryan_shrine_01" text="{=str_tor_customsettlement_intro_asuryan_shrine_01}You arrive at the shrine of the {RELIGION_LINK}. The sacred flames of Asuryan burn hot." />
@@ -1885,38 +2018,64 @@
   <string id="tor_customsettlement_intro.shallya_shrine_05" text="{=str_tor_customsettlement_intro_shallya_shrine_05}You arrive at the shrine of the {RELIGION_LINK}. The sisterhood is tending the wounded." />
   <string id="tor_customsettlement_disabled.shallya_shrine_05" text="{=str_tor_customsettlement_disabled_shallya_shrine_05}The shrine lies in ruins. There is nothing to do here." />
 
-  <string id="tor_customsettlement_intro.loec_shrine_01" text="{=str_tor_customsettlement_intro_loec_shrine_01}You arrive at the shrine of the {RELIGION_LINK}. The shadows themselves seem to dance around the trees." />
+  <string id="tor_customsettlement_intro.myrmidia_shrine_01" text="{=str_tor_customsettlement_intro_myrmidia_shrine_01}You arrive at the shrine of the {RELIGION_LINK}. Pilgrims from all over the continent arrive to pray to the Goddess of War." />
+  <string id="tor_customsettlement_disabled.myrmidia_shrine_01" text="{=str_tor_customsettlement_disabled_myrmidia_shrine_01}The shrine lies in ruins. There is nothing to do here." />
+  <string id="tor_customsettlement_intro.myrmidia_shrine_02" text="{=str_tor_customsettlement_intro_myrmidia_shrine_02}You arrive at the shrine of the {RELIGION_LINK}. Pilgrims from all over the continent arrive to pray to the Goddess of War." />
+  <string id="tor_customsettlement_disabled.myrmidia_shrine_02" text="{=str_tor_customsettlement_disabled_myrmidia_shrine_02}The shrine lies in ruins. There is nothing to do here." />
+
+  <string id="tor_customsettlement_intro.loec_shrine_01" text="{=str_tor_customsettlement_intro_loec_shrine_01}You arrive at the shrine of the {RELIGION_LINK}. The altar to Loec the Trickster, the Laughing God, fills the air with a sweet aroma that inspires levity and mischief." />
   <string id="tor_customsettlement_disabled.loec_shrine_01" text="{=str_tor_customsettlement_disabled_loec_shrine_01}The shrine lies in ruins. There is nothing to do here." />
 
-  <string id="tor_customsettlement_intro.anath_shrine_01" text="{=str_tor_customsettlement_intro_anath_shrine_01}You arrive at the shrine of the {RELIGION_LINK}. Bowls filled with blood lie around the shrine." />
+  <string id="tor_customsettlement_intro.anath_shrine_01" text="{=str_tor_customsettlement_intro_anath_shrine_01}You arrive at the shrine of the {RELIGION_LINK}. The altar to Anath Raema, the Savage Huntress, emanates a palpable aura of quiet menace, and the scents of blood and crushed pine needles." />
   <string id="tor_customsettlement_disabled.anath_shrine_01" text="{=str_tor_customsettlement_disabled_anath_shrine_01}The shrine lies in ruins. There is nothing to do here." />
 
-  <string id="tor_customsettlement_intro.vaul_shrine_01" text="{=str_tor_customsettlement_intro_vaul_shrine_01}You arrive at the shrine of the {RELIGION_LINK}. Artisans and smiths from all corners of Athel Loren work the mighty forge." />
+  <string id="tor_customsettlement_intro.vaul_shrine_01" text="{=str_tor_customsettlement_intro_vaul_shrine_01}You arrive at the shrine of the {RELIGION_LINK}. Artisans and smiths from all corners of Athel Loren work the mighty forge, which fills the air with the scent of fire and the ring of hammer on anvil." />
   <string id="tor_customsettlement_disabled.vaul_shrine_01" text="{=str_tor_customsettlement_disabled_vaul_shrine_01}The shrine lies in ruins. There is nothing to do here." />
 
-  <string id="tor_customsettlement_intro.kurnous_shrine_01" text="{=str_tor_customsettlement_intro_kurnous_shrine_01}You arrive at the shrine of the {RELIGION_LINK}. You can see Wild Hunters bringing offerings to the God of the Hunt." />
+  <string id="tor_customsettlement_intro.kurnous_shrine_01" text="{=str_tor_customsettlement_intro_kurnous_shrine_01}You arrive at the shrine of the {RELIGION_LINK}. The altar to Kurnous the Hunter smells of animal musk and shed blood. The air is palpable with the anticipation of the chase." />
   <string id="tor_customsettlement_disabled.kurnous_shrine_01" text="{=str_tor_customsettlement_disabled_kurnous_shrine_01}The shrine lies in ruins. There is nothing to do here." />
 
-  <string id="tor_customsettlement_intro.isha_shrine_01" text="{=str_tor_customsettlement_intro_isha_shrine_01}You arrive at the shrine of the {RELIGION_LINK}. The altar of the Divine Mother emits rays of life and fertility." />
+  <string id="tor_customsettlement_intro.isha_shrine_01" text="{=str_tor_customsettlement_intro_isha_shrine_01}You arrive at the shrine of the {RELIGION_LINK}. The centrepiece is a statue of Isha, Mother of the Elves, the goddess of nature, fertility, and the harvest. The statue weeps, and her tears fill the air with magic." />
   <string id="tor_customsettlement_disabled.isha_shrine_01" text="{=str_tor_customsettlement_disabled_isha_shrine_01}The shrine lies in ruins. There is nothing to do here." />
  
   <string id="tor_customsettlement_intro.grimnir_shrine_01" text="{=str_tor_customsettlement_intro_grimnir_shrine_01}You arrive at the shrine of the {RELIGION_LINK}. The altar to Grimnir the Fearless, the Dwarfen Ancestor God of War, fills the air with somber determination." />
   <string id="tor_customsettlement_disabled.grimnir_shrine_01" text="{=str_tor_customsettlement_disabled_grimnir_shrine_01}The shrine lies in ruins. There is nothing to do here." />
-
   <string id="tor_customsettlement_intro.grimnir_shrine_02" text="{=str_tor_customsettlement_intro_grimnir_shrine_02}You arrive at the shrine of the {RELIGION_LINK}. The altar to Grimnir the Fearless, the Dwarfen Ancestor God of War, fills the air with somber determination." />
   <string id="tor_customsettlement_disabled.grimnir_shrine_02" text="{=str_tor_customsettlement_disabled_grimnir_shrine_02}The shrine lies in ruins. There is nothing to do here." />
-
   <string id="tor_customsettlement_intro.grimnir_shrine_03" text="{=str_tor_customsettlement_intro_grimnir_shrine_03}You arrive at the shrine of the {RELIGION_LINK}. The altar to Grimnir the Fearless, the Dwarfen Ancestor God of War, fills the air with somber determination." />
   <string id="tor_customsettlement_disabled.grimnir_shrine_03" text="{=str_tor_customsettlement_disabled_grimnir_shrine_03}The shrine lies in ruins. There is nothing to do here." />
-
   <string id="tor_customsettlement_intro.grimnir_shrine_04" text="{=str_tor_customsettlement_intro_grimnir_shrine_04}You arrive at the shrine of the {RELIGION_LINK}. The altar to Grimnir the Fearless, the Dwarfen Ancestor God of War, fills the air with somber determination." />
   <string id="tor_customsettlement_disabled.grimnir_shrine_04" text="{=str_tor_customsettlement_disabled_grimnir_shrine_04}The shrine lies in ruins. There is nothing to do here." />
 
-  <string id="tor_customsettlement_intro.myrmidia_shrine_01" text="{=str_tor_customsettlement_intro_myrmidia_shrine_01}You arrive at the shrine of the {RELIGION_LINK}. Pilgrims from all over the continent arrive to pray to the Goddess of War." />
-  <string id="tor_customsettlement_disabled.myrmidia_shrine_01" text="{=str_tor_customsettlement_disabled_myrmidia_shrine_01}The shrine lies in ruins. There is nothing to do here." />
+  <string id="tor_customsettlement_intro.grungni_shrine_01" text="{=str_tor_customsettlement_intro_grungni_shrine_01}You arrive at the shrine of the {RELIGION_LINK}. The altar to Grungni the Resolute, the Dwarfen Ancestor God of mining and smithing, fills the air with the scent of coal and iron." />
+  <string id="tor_customsettlement_disabled.grungni_shrine_01" text="{=str_tor_customsettlement_disabled_grungni_shrine_01}The shrine lies in ruins. There is nothing to do here." />
+  <string id="tor_customsettlement_intro.grungni_shrine_02" text="{=str_tor_customsettlement_intro_grungni_shrine_02}You arrive at the shrine of the {RELIGION_LINK}. The altar to Grungni the Resolute, the Dwarfen Ancestor God of mining and smithing, fills the air with the scent of coal and iron." />
+  <string id="tor_customsettlement_disabled.grungni_shrine_02" text="{=str_tor_customsettlement_disabled_grungni_shrine_02}The shrine lies in ruins. There is nothing to do here." />
+  <string id="tor_customsettlement_intro.grungni_shrine_03" text="{=str_tor_customsettlement_intro_grungni_shrine_03}You arrive at the shrine of the {RELIGION_LINK}. The altar to Grungni the Resolute, the Dwarfen Ancestor God of mining and smithing, fills the air with the scent of coal and iron." />
+  <string id="tor_customsettlement_disabled.grungni_shrine_03" text="{=str_tor_customsettlement_disabled_grungni_shrine_03}The shrine lies in ruins. There is nothing to do here." />
 
-  <string id="tor_customsettlement_intro.myrmidia_shrine_02" text="{=str_tor_customsettlement_intro_myrmidia_shrine_02}You arrive at the shrine of the {RELIGION_LINK}. Pilgrims from all over the continent arrive to pray to the Goddess of War." />
-  <string id="tor_customsettlement_disabled.myrmidia_shrine_02" text="{=str_tor_customsettlement_disabled_myrmidia_shrine_02}The shrine lies in ruins. There is nothing to do here." />
+  <string id="tor_customsettlement_intro.valaya_shrine_01" text="{=str_tor_customsettlement_intro_valaya_shrine_01}You arrive at the shrine of the {RELIGION_LINK}. The altar to Valaya the Mother, the Dwarfen Ancestor Goddess of Hearth and Home, fills the surrounding area with gentle warmth." />
+  <string id="tor_customsettlement_disabled.valaya_shrine_01" text="{=str_tor_customsettlement_disabled_valaya_shrine_01}The shrine lies in ruins. There is nothing to do here." />
+  <string id="tor_customsettlement_intro.valaya_shrine_02" text="{=str_tor_customsettlement_intro_valaya_shrine_02}You arrive at the shrine of the {RELIGION_LINK}. The altar to Valaya the Mother, the Dwarfen Ancestor Goddess of Hearth and Home, fills the surrounding area with gentle warmth." />
+  <string id="tor_customsettlement_disabled.valaya_shrine_02" text="{=str_tor_customsettlement_disabled_valaya_shrine_02}The shrine lies in ruins. There is nothing to do here." />
+
+  <string id="tor_customsettlement_intro.gork_shrine_01" text="{=str_tor_customsettlement_intro_gork_shrine_01}You arrive at the shrine of the {RELIGION_LINK}. The crude altar to Gork, the brutally cunning, fills the air with a sense of violence and glory." />
+  <string id="tor_customsettlement_disabled.gork_shrine_01" text="{=str_tor_customsettlement_disabled_gork_shrine_01}The shrine lies in ruins. There is nothing to do here." />
+  <string id="tor_customsettlement_intro.gork_shrine_02" text="{=str_tor_customsettlement_intro_gork_shrine_02}You arrive at the shrine of the {RELIGION_LINK}. The crude altar to Gork, the brutally cunning, fills the air with a sense of violence and glory." />
+  <string id="tor_customsettlement_disabled.gork_shrine_02" text="{=str_tor_customsettlement_disabled_gork_shrine_02}The shrine lies in ruins. There is nothing to do here." />
+  <string id="tor_customsettlement_intro.gork_shrine_03" text="{=str_tor_customsettlement_intro_gork_shrine_03}You arrive at the shrine of the {RELIGION_LINK}. The crude altar to Gork, the brutally cunning, fills the air with a sense of violence and glory." />
+  <string id="tor_customsettlement_disabled.gork_shrine_03" text="{=str_tor_customsettlement_disabled_gork_shrine_03}The shrine lies in ruins. There is nothing to do here." />
+  <string id="tor_customsettlement_intro.gork_shrine_04" text="{=str_tor_customsettlement_intro_gork_shrine_04}You arrive at the shrine of the {RELIGION_LINK}. The crude altar to Gork, the brutally cunning, fills the air with a sense of violence and glory." />
+  <string id="tor_customsettlement_disabled.gork_shrine_04" text="{=str_tor_customsettlement_disabled_gork_shrine_04}The shrine lies in ruins. There is nothing to do here." />
+
+  <string id="tor_customsettlement_intro.mork_shrine_01" text="{=str_tor_customsettlement_intro_mork_shrine_01}You arrive at the shrine of the {RELIGION_LINK}. The crude altar to Mork, the cunningly brutal, fills the air with a sense of ruthlessness and ambition." />
+  <string id="tor_customsettlement_disabled.mork_shrine_01" text="{=str_tor_customsettlement_disabled_mork_shrine_01}The shrine lies in ruins. There is nothing to do here." />
+  <string id="tor_customsettlement_intro.mork_shrine_02" text="{=str_tor_customsettlement_intro_mork_shrine_02}You arrive at the shrine of the {RELIGION_LINK}. The crude altar to Mork, the cunningly brutal, fills the air with a sense of ruthlessness and ambition." />
+  <string id="tor_customsettlement_disabled.mork_shrine_02" text="{=str_tor_customsettlement_disabled_mork_shrine_02}The shrine lies in ruins. There is nothing to do here." />
+  <string id="tor_customsettlement_intro.mork_shrine_03" text="{=str_tor_customsettlement_intro_mork_shrine_03}You arrive at the shrine of the {RELIGION_LINK}. The crude altar to Mork, the cunningly brutal, fills the air with a sense of ruthlessness and ambition." />
+  <string id="tor_customsettlement_disabled.mork_shrine_03" text="{=str_tor_customsettlement_disabled_mork_shrine_03}The shrine lies in ruins. There is nothing to do here." />
+  <string id="tor_customsettlement_intro.mork_shrine_04" text="{=str_tor_customsettlement_intro_mork_shrine_04}You arrive at the shrine of the {RELIGION_LINK}. The crude altar to Mork, the cunningly brutal, fills the air with a sense of ruthlessness and ambition." />
+  <string id="tor_customsettlement_disabled.mork_shrine_04" text="{=str_tor_customsettlement_disabled_mork_shrine_04}The shrine lies in ruins. There is nothing to do here." />
 
   <!--wanderer stories-->
   <string id="tor_prebackstory.tor_wanderer_empire_0" text="{=str_tor_prebackstory_tor_wanderer_empire_0}My story? Sure, I can share it." />
@@ -2174,6 +2333,15 @@
   <string id="tor_response_2.tor_wanderer_mousillon_3" text="{=str_tor_response_2_tor_wanderer_mousillon_3}A smuggler might be useful to me." />
   <string id="tor_backstory_d.tor_wanderer_mousillon_3" text="{=str_tor_backstory_d_tor_wanderer_mousillon_3}Mmm… These people have less and less money on them and I barely cover the margin." />
   <string id="tor_generic_backstory.tor_wanderer_mousillon_3" text="{=str_tor_generic_backstory_tor_wanderer_mousillon_3}If you promise me good profits on a regular basis and a down payment, I'm all yours." />
+
+  <string id="tor_prebackstory.tor_wanderer_mousillon_4" text="{=str_tor_prebackstory_tor_wanderer_mousillon_4}I do not remember much of my past life, there is only the now and the thirst." />
+  <string id="tor_backstory_a.tor_wanderer_mousillon_4" text="{=str_tor_backstory_a_tor_wanderer_mousillon_4}Being human feels like a dream, a dream I was happily liberated from." />
+  <string id="tor_backstory_b.tor_wanderer_mousillon_4" text="{=str_tor_backstory_b_tor_wanderer_mousillon_41}I was taken from my village for the blood tax, but instead I became the desire of my vampire master. I was blessed with the gift of Nagash" />
+  <string id="tor_backstory_c.tor_wanderer_mousillon_4" text="{=str_tor_backstory_c_tor_wanderer_mousillon_4}My master however perished during the vampire wars, with no one else I have been left to wander the night since." />
+  <string id="tor_response_1.tor_wanderer_mousillon_4" text="{=str_tor_response_1_tor_wanderer_mousillon_4}Intriguing." />
+  <string id="tor_response_2.tor_wanderer_mousillon_4" text="{=str_tor_response_2_tor_wanderer_mousillon_4}I couldn't really care less about your wretched origin." />
+  <string id="tor_backstory_d.tor_wanderer_mousillon_4" text="{=str_tor_backstory_d_tor_wanderer_mousillon_4}Right." />
+  <string id="tor_generic_backstory.tor_wanderer_mousillon_4" text="{=str_tor_generic_backstory_tor_wanderer_mousillon_4}I'm a fledgeling Vampire, powerful and undying." />
   
   <string id="tor_prebackstory.tor_wanderer_eonir_0" text="{=str_tor_prebackstory_tor_wanderer_eonir_0}About me? There is not much to tell." />
   <string id="tor_backstory_a.tor_wanderer_eonir_0" text="{=str_tor_backstory_a_tor_wanderer_eonir_0}I have fought all my life against ruinous powers. I made my own bow with the wood of trees so old that they stood tall when Ariel was just a mortal. I killed my first ungor at the age of eleven, and my first chaos spawn at fourteen. Recently, I struck a troll between the eyes with an arrow from two hundred paces away." />
@@ -2229,6 +2397,69 @@
   <string id="tor_backstory_d.tor_wanderer_woodelf_2" text="{=str_tor_backstory_d_tor_wanderer_woodelf_2}I am adept in the arts of survival, disruption, and ambush. I can approach my quarry, strike swiftly, and vanish before its body hits the ground. Alternatively, I can subtly lead it into one of my traps." />
   <string id="tor_generic_backstory.tor_wanderer_woodelf_2" text="{=str_tor_generic_backstory_tor_wanderer_woodelf_2}I have but one request. Although I seldom leave the forest, when I do, I seek the pleasures of civilised life. A fine wine in the tavern, pleasant company… I trust your group can provide these comforts." />
 
+  <string id="tor_prebackstory.tor_wanderer_dawi_0" text="{=str_tor_prebackstory_tor_wanderer_dawi_0}You are speaking to a gov, a thane, a champion of the Dawi, lad. Others would do well not to get in my way." />
+  <string id="tor_backstory_a.tor_wanderer_dawi_0" text="{=str_tor_backstory_a_tor_wanderer_dawi_0}I have fought in many wars and my warriors have secured many victories for me." />
+  <string id="tor_backstory_b.tor_wanderer_dawi_0" text="{=str_tor_backstory_b_tor_wanderer_dawi_0}Yet I am not deemed fit to lead. My Rik would have me wander the world, to taste true battle, to endure hardship, and to learn the intricacies of command." />
+  <string id="tor_backstory_c.tor_wanderer_dawi_0" text="{=str_tor_backstory_c_tor_wanderer_dawi_0}I’z been around fer sum time… I met da Great Green Prophet Wurrzag once… gave me a shroom too…" />
+  <string id="tor_response_1.tor_wanderer_dawi_0" text="{=str_tor_response_1_tor_wanderer_dawi_0}You’re actively looking for adventure? What a coincidence, I’m always looking for new companions to join me!" />
+  <string id="tor_response_2.tor_wanderer_dawi_0" text="{=str_tor_response_2_tor_wanderer_dawi_0}So you’re just the overlooked son of some clan, without any chinks in your armour to prove your worth." />
+  <string id="tor_backstory_d.tor_wanderer_dawi_0" text="{=str_tor_backstory_d_tor_wanderer_dawi_0}Careful now. You're lucky my composure is as steady as a mountain's roots. I could join your company - Keep my blood hot and the ale cold, and I will see your enemies dead upon the battlefield." />
+  <string id="tor_generic_backstory.tor_wanderer_dawi_0" text="{=str_tor_generic_backstory_tor_wanderer_dawi_0}Let us seal this pact with a round of Gorog, you can afford this, yes?"/>
+
+  <string id="tor_prebackstory.tor_wanderer_dawi_1" text="{=str_tor_prebackstory_tor_wanderer_dawi_1}*Grunt* Can’t ye see I’m busy?" />
+  <string id="tor_backstory_a.tor_wanderer_dawi_1" text="{=str_tor_backstory_a_tor_wanderer_dawi_1}I'm a Runesmith working alongside many esteemed Runelords of the Dawi." />
+  <string id="tor_backstory_b.tor_wanderer_dawi_1" text="{=str_tor_backstory_b_tor_wanderer_dawi_1}What we deal with are Runes of power, magic manifest and beaten into form! And I am a rhunki, learned in the ways of Thungni." />
+  <string id="tor_backstory_c.tor_wanderer_dawi_1" text="{=str_tor_backstory_c_tor_wanderer_dawi_1}One of the most ancient crafts that our ancestor Grungni and his son Thungni taught us. As all Dawi crafts, this is sturdy, no umgak like the magic that elgi and others cast. This is magic you can rely on." />
+  <string id="tor_response_1.tor_wanderer_dawi_1" text="{=str_tor_response_1_tor_wanderer_dawi_1}My apologies. I just couldn’t keep my eyes off your scribbles." />
+  <string id="tor_response_2.tor_wanderer_dawi_1" text="{=str_tor_response_2_tor_wanderer_dawi_1}I am sorry to disturb you, honoured Runesmith. I wish to employ you and I will pay handsomely should you work your craft for me." />
+  <string id="tor_backstory_d.tor_wanderer_dawi_1" text="{=str_tor_backstory_d_tor_wanderer_dawi_1}These are no mere scribbles, lad! Even one rune-engraved item can turn the tide of battle." />
+  <string id="tor_generic_backstory.tor_wanderer_dawi_1" text="{=str_tor_generic_backstory_tor_wanderer_dawi_1}If you can afford it, I shall pack up my tools. I hope you can pay for runecraft materials; they won’t come cheap."/>
+
+  <string id="tor_prebackstory.tor_wanderer_dawi_2" text="{=str_tor_prebackstory_tor_wanderer_dawi_2}Aye lad, what is it? You here to take a wee look at my plans?" />
+  <string id="tor_backstory_a.tor_wanderer_dawi_2" text="{=str_tor_backstory_a_tor_wanderer_dawi_2}I’d advise you not to, though. Many have lost one or both of their eyes peeking into my works." />
+  <string id="tor_backstory_b.tor_wanderer_dawi_2" text="{=str_tor_backstory_b_tor_wanderer_dawi_2}I hoard and protect them as any Dawi would protect their gold, for my contraptions are my gold, figuratively speaking." />
+  <string id="tor_backstory_c.tor_wanderer_dawi_2" text="{=str_tor_backstory_c_tor_wanderer_dawi_2}Speaking of, is that why you’re here? I can assure you, you’ll find no finer works than my inventions, be they weapons of war or a kuchungkuchung. I could employ them for you, for the right amount of gold, that is." />
+  <string id="tor_response_1.tor_wanderer_dawi_2" text="{=str_tor_response_1_tor_wanderer_dawi_2}I could see from the start that you’re a master inventor. Yes, I require your expertise." />
+  <string id="tor_response_2.tor_wanderer_dawi_2" text="{=str_tor_response_2_tor_wanderer_dawi_2}I’ve heard of that Makaisson fellow and his ‘inventions’. How can I trust you that yours will work?" />
+  <string id="tor_backstory_d.tor_wanderer_dawi_2" text="{=str_tor_backstory_d_tor_wanderer_dawi_2}We of the Engineers' Guild are the masters of innovation, there is no greatness without a few setbacks on the way." />
+  <string id="tor_generic_backstory.tor_wanderer_dawi_2" text="{=str_tor_generic_backstory_tor_wanderer_dawi_2}However; my services do not come cheap — if these conditions satisfy you, sign here for my employment and your non-disclosure agreement…"/>
+
+  <string id="tor_prebackstory.tor_wanderer_greenskins_0" text="{=str_tor_prebackstory_tor_wanderer_greenskins_0}OI GIT! Pay attenchun, I’z a big boss, an’ if I’z not gunna be dis-respekted. I’z gun get da boys in line, cuz I’m da biggest an da strongest!" />
+  <string id="tor_backstory_a.tor_wanderer_greenskins_0" text="{=str_tor_backstory_a_tor_wanderer_greenskins_0}Yoo ain’t got a clue how tuff I iz, I’z tellin you, green iz best!" />
+  <string id="tor_backstory_b.tor_wanderer_greenskins_0" text="{=str_tor_backstory_b_tor_wanderer_greenskins_0}I’z been doin dis fer ages, cuz da orcs ‘as alwayz been ready to foight anyone–an’ win!" />
+  <string id="tor_backstory_c.tor_wanderer_greenskins_0" text="{=str_tor_backstory_c_tor_wanderer_greenskins_0}I knew a git who worked fer Grimgor Ironhide, da biggest an’ baddest orc warlord since da old dayz! I’z da best!" />
+  <string id="tor_response_1.tor_wanderer_greenskins_0" text="{=str_tor_response_1_tor_wanderer_greenskins_0}You wuz wiv a git who knew Grimgor? Dats zoggin nuts!" />
+  <string id="tor_response_2.tor_wanderer_greenskins_0" text="{=str_tor_response_2_tor_wanderer_greenskins_0}All-roight yer tuff, but you answer to me! Listen wot I say or I’ll bash yer teef in!" />
+  <string id="tor_backstory_d.tor_wanderer_greenskins_0" text="{=str_tor_backstory_d_tor_wanderer_greenskins_0}Aye, if ya pay me I’ll follow ya, an' you dun look puny too. Das good." />
+  <string id="tor_generic_backstory.tor_wanderer_greenskins_0" text="{=str_tor_generic_backstory_tor_wanderer_greenskins_0}We'z gunna go or wot? Lez WAAAAGH!!!"/>
+  
+  <string id="tor_prebackstory.tor_wanderer_greenskins_1" text="{=str_tor_prebackstory_tor_wanderer_greenskins_1}Oi! Come closah… yoo wants da powah uv Gork an’ Mork on yer side? I’z got sum uv dat zappy stuffs…" />
+  <string id="tor_backstory_a.tor_wanderer_greenskins_1" text="{=str_tor_backstory_a_tor_wanderer_greenskins_1}Yoo need a shaman to guide any proppa WAAAAGH!!!, an I’z da right ‘un fer da job." />
+  <string id="tor_backstory_b.tor_wanderer_greenskins_1" text="{=str_tor_backstory_b_tor_wanderer_greenskins_1}Da shaman makes sure da boys are noice an’ hopped up fer da scrap, or I bring down da bolts from da godz to STOMP sum gits." />
+  <string id="tor_backstory_c.tor_wanderer_greenskins_1" text="{=str_tor_backstory_c_tor_wanderer_greenskins_1}I’z been around fer sum time… I met da Great Green Prophet Wurrzag once… gave me a shroom too…" />
+  <string id="tor_response_1.tor_wanderer_greenskins_1" text="{=str_tor_response_1_tor_wanderer_greenskins_1}You met da Great Green Prophet? Means you’z got sum powah in ya…" />
+  <string id="tor_response_2.tor_wanderer_greenskins_1" text="{=str_tor_response_2_tor_wanderer_greenskins_1}I’z lookin fer a weird ‘un to ‘ave Gork an’ Mork wiv us." />
+  <string id="tor_backstory_d.tor_wanderer_greenskins_1" text="{=str_tor_backstory_d_tor_wanderer_greenskins_1}Get me sum shinies, and we'z gunna go meet Gork an' Mork togeva'!" />
+  <string id="tor_generic_backstory.tor_wanderer_greenskins_1" text="{=str_tor_generic_backstory_tor_wanderer_greenskins_1}We'z gunna go or wot? Lez WAAAAGH!!!"/>
+  
+  <string id="tor_prebackstory.tor_wanderer_greenskins_2" text="{=str_tor_prebackstory_tor_wanderer_greenskins_2}Wozzat? I ain’t got time fer nonsense. Yoo look proppa green, so I’ll tell ya wot I do." />
+  <string id="tor_backstory_a.tor_wanderer_greenskins_2" text="{=str_tor_backstory_a_tor_wanderer_greenskins_2}I’z ‘ere to bash in da brainz uv’ da lil’ ‘uns an’ bully ‘em til dey GET IN LINE!" />
+  <string id="tor_backstory_b.tor_wanderer_greenskins_2" text="{=str_tor_backstory_b_tor_wanderer_greenskins_2}You’z got any puny gits or runts dat need smakkin’, any gobbos dat are too pansy an’ alwayz leave da fight JUS’ WHEN IT GETZ GUD? I’z da orc fer ya." />
+  <string id="tor_backstory_c.tor_wanderer_greenskins_2" text="{=str_tor_backstory_c_tor_wanderer_greenskins_2}I’z been bashin in skullz an’ makin sure da gobbos are da first to da fight fer long times. Dem puny runts are nuffin’ but weedy lil’ squigs, an’ dey’z gud fer nuffin but takin’ a good bashin ‘fore da BOYS get in to do sum CHOPPIN!" />
+  <string id="tor_response_1.tor_wanderer_greenskins_2" text="{=str_tor_response_1_tor_wanderer_greenskins_2}I been needin’ a proppa bully to keep da runts an’ gobbos in line." />
+  <string id="tor_response_2.tor_wanderer_greenskins_2" text="{=str_tor_response_2_tor_wanderer_greenskins_2}Iz true, da runty 'uns are smelly an' lazy, best to keep 'em motivated." />
+  <string id="tor_backstory_d.tor_wanderer_greenskins_2" text="{=str_tor_backstory_d_tor_wanderer_greenskins_2}If yoo need sum-wun to look ovah yer stuffs, I been watchin’ da loot piles uv da biggest bosses around, an’ dey ain’t lost even a lil’ ‘umie stabba to dem weedy goblin SNEAKZ!" />
+  <string id="tor_generic_backstory.tor_wanderer_greenskins_2" text="{=str_tor_generic_backstory_tor_wanderer_greenskins_2}Iz jus' need sum shinies to pay da uva' boss first. Den yoo say da word an’ we’z goin’."/>
+
+  <string id="tor_prebackstory.tor_wanderer_greenskins_3" text="{=str_tor_prebackstory_tor_wanderer_greenskins_3}Oi! Down ‘ere! You look loik a tuff git, noice an’ green! A real boss you iz, fo’ sure! Y–you needs a proppa brain to go wiv all’a dat brawn ya gots dere?" />
+  <string id="tor_backstory_a.tor_wanderer_greenskins_3" text="{=str_tor_backstory_a_tor_wanderer_greenskins_3}I ken whip up sum’a da nastiest gubbinz you evah’ seen! Need to take a–a fort? Dead ‘ard an’ not enuff ladderz? I’ll make sum stone throwaz to knock dem wallz right down!" />
+  <string id="tor_backstory_b.tor_wanderer_greenskins_3" text="{=str_tor_backstory_b_tor_wanderer_greenskins_3}I ‘membah I–I even made a spear chukka once, an den I shot it at wun uv dem big pointy ‘ead cow fellaz – it went right froo’, an’ knocked down a hundred uva' lil’ pointy ‘ead cowz! Only… dey didn’t ‘ave any ‘orns…" />
+  <string id="tor_backstory_c.tor_wanderer_greenskins_3" text="{=str_tor_backstory_c_tor_wanderer_greenskins_3}If you need sum-wun t-to make sum nice con…trapshunz, den throwaz an’ chukkas! Den I’z da git fer ya mob!" />
+  <string id="tor_response_1.tor_wanderer_greenskins_3" text="{=str_tor_response_1_tor_wanderer_greenskins_3}You'z downright runty. But… you make da throwas an’ spear chukkas. Hmmm…" />
+  <string id="tor_response_2.tor_wanderer_greenskins_3" text="{=str_tor_response_2_tor_wanderer_greenskins_3}Iz dem krafted gubbinz even wurf a squig?" />
+  <string id="tor_backstory_d.tor_wanderer_greenskins_3" text="{=str_tor_backstory_d_tor_wanderer_greenskins_3}I ken also make sum nasty choppaz fer da boys! I made a big ole’ choppa fer–fer da last boss I ‘ad, and it chopped right froo’ wun uv da spiky umies! Dat wuz before I got… errp… nevah-mind." />
+  <string id="tor_generic_backstory.tor_wanderer_greenskins_3" text="{=str_tor_generic_backstory_tor_wanderer_greenskins_3}Wot-evah ya say boss, I’z follow yah! Lemme into da Waaagh!!! Lemme in!"/>
+
   <string id="tor_prebackstory.tor_wanderer_chaos_0" text="{=str_tor_prebackstory_tor_wanderer_chaos_0}Do you hear them too? Those voices…" />
   <string id="tor_backstory_a.tor_wanderer_chaos_0" text="{=str_tor_backstory_a_tor_wanderer_chaos_0}Inside my head, those voices whisper to me, revealing to me the secrets of this world." />
   <string id="tor_backstory_b.tor_wanderer_chaos_0" text="{=str_tor_backstory_b_tor_wanderer_chaos_0}Before there was confusion, now I see everything clearly. My purpose has been revealed to me." />
@@ -2237,7 +2468,6 @@
   <string id="tor_response_2.tor_wanderer_chaos_0" text="{=str_tor_response_2_tor_wanderer_chaos_0}Where are the witch hunters when we need them?" />
   <string id="tor_backstory_d.tor_wanderer_chaos_0" text="{=str_tor_backstory_d_tor_wanderer_chaos_0}Chaos guides me, Chaos teaches me. I will shed the blood of non-believers if they refuse to see the truth." />
   <string id="tor_generic_backstory.tor_wanderer_chaos_0" text="{=str_tor_generic_backstory_tor_wanderer_chaos_0}You believe too, I know. That is why Chaos has brought you here. Are you committed to the cause?"/>
-
 
   <!-- Religions -->
 
@@ -2276,16 +2506,19 @@
   <string id="tor_religion_description.cult_of_khorne" text="{=str_tor_religion_description_cult_of_khorne}Khorne, also known as the 'Blood God', the 'Lord of Murder', the 'Lord of Skulls', 'Hunter of Souls' and 'the Hound' in Norsca, is the major Chaos God of war, hatred, wrath, rage, murder, blood, strength, courage and martial honour. Khorne is the second eldest of the major Ruinous Powers and his waxing strength in this time of constant conflict often renders him the mightiest of the Chaos Gods in his effect on the mortal world and in the Great Game between the gods. His domain encompasses the most basic and brutal of sentient emotions - hate, anger, rage, the desire for destruction and the joy of killing one's enemies. Every act of killing or murder in the mortal world feeds and empowers Khorne, the more senseless, vicious and bloodthirsty, the better." />
   <string id="tor_religion_description.cult_of_tzeentch" text="{=str_tor_religion_description_cult_of_tzeentch}Tzeentch, also known as the 'Changer of Ways', the 'Lord of Change', the 'Architect of Fate', the 'Wind-lord', the 'Raven God', and the 'Great Conspirator' is the major Chaos God of change, evolution, ambition, intrigue, destiny, lies, trickery, sorcery, knowledge, and mutation. Though weary scholars of daemonology know this god by the name of Tzeentch, in truth, he exceeds all the other Ruinous Powers in his number of facets, names and aspects. For he is change, said to embody every mortal creature's recognition of, and desire, to change, to grow, to move, to seek more -- more knowledge, more wealth, more power. His face and form shifts and turns from eternity unto eternity." />
 
-  <string id="tor_religion_description.cult_of_isha" text="{=str_tor_religion_description_cult_of_isha}" />
-  <string id="tor_religion_description.cult_of_kurnous" text="{=str_tor_religion_description_cult_of_kurnous}" />
-  <string id="tor_religion_description.cult_of_vaul" text="{=str_tor_religion_description_cult_of_vaul}" />
-  <string id="tor_religion_description.cult_of_anath_raema" text="{=str_tor_religion_description_cult_of_anath_raema}" />
-  <string id="tor_religion_description.cult_of_asuryan" text="{=str_tor_religion_description_cult_of_asuryan}" />
-  <string id="tor_religion_description.cult_of_loec" text="{=str_tor_religion_description_cult_of_loec}" />
+  <string id="tor_religion_description.cult_of_isha" text="{=str_tor_religion_description_cult_of_isha}At the dawn of time, the first elves were born from Isha, and her place in their pantheon is appropriately prominent, behind only the creator of the world, Asuryan. She is especially important to the Asrai, as is her avatar, Ariel, the Queen-In-The-Wood. It is Isha who first taught the elves to care for the land, and in turn how the land would care for them. Isha is a goddess of life, first and foremost, and weeps at the death of any of her creations, but especially the deaths of her elven children -- it is said that when Asuryan decreed that the Elves would be long-lived, but not immortal, Isha saw their deaths and despaired; her anguish flowed out of her with such force that the tears became the inner sea of Ulthuan. Though direct contact with mortals is forbidden by Asuryan, even the god of wisdom’s attention is finite, and whenever his eye is elsewhere, Isha slips past to infuse the lands of the elves with her protective magic; and when she cannot act to protect her children herself, she petitions her daughter Lileath, the goddess of dreams, to send omens and portents that they might be forewarned of coming harm." />
+  <string id="tor_religion_description.cult_of_kurnous" text="{=str_tor_religion_description_cult_of_kurnous}As Isha is the mother of the elven race, Kurnous, her husband, is the father. Kurnous the Hunter, Master of the Wild Places. He is of most importance to the Asrai, and his perennial avatar, Orion, is their King, reborn every spring by the hand of Ariel and the will of Kurnous. Kurnous’ sphere of concern is the hunt, and he has very specific opinions about how that hunt is to be done. His first commandment is to kill only those animals which you need to eat or who are lost to disease or madness. His second commandment is that Greenskins and Beastmen, or other chaos mutants, are to be driven from the forests and exterminated without pity. While his power is strongest in the ancient forests of the Asrai, especially Athel Loren and Laurelorn, he extends his will into all the wild places in the world, and woe betide those who disrespect his holdings." />
+  <string id="tor_religion_description.cult_of_vaul" text="{=str_tor_religion_description_cult_of_vaul}Vaul is the elven god of smiths and artisans. In ancient days, when the gods warred among themselves, Vaul was defeated by Khaine, who blinded the smith and chained him to his anvil, where he labours to this day forging and maintaining the great artifacts of the elven gods. It is in his captivity by Khaine that he forged the greatest of the artifacts, the Widowmaker, for Khaine himself. In the forging of the Widowmaker. Vaul enlisted the aid of Draugnir, the father of Dragons, to temper the blade -- but the Widowmaker was, and is, a greedy weapon, and drew something of the essence of the great dragon into itself; and so the fate of elves and dragons was, and will be, forever entwined. " />
+  <string id="tor_religion_description.cult_of_anath_raema" text="{=str_tor_religion_description_cult_of_anath_raema}In many ways Anath Raema is defined by what she is not. She is a hunter, like Kurnous, but she cares nothing for the balance of nature. Hers is the chase and the kill, nothing more. Some, primarily among the Druchii, tell a story of Anath Raema courting Kurnous, and her rejection -- and worship her as a patron of jealous lovers, seeing their pursuit of the object of their affections as a facet of the chase." />
+  <string id="tor_religion_description.cult_of_asuryan" text="{=str_tor_religion_description_cult_of_asuryan}The Creator God and Emperor of the Heavens, the oldest of the elven gods, rules the heavens and keeps the balance among gods and mortals from his throne in a great pyramid. Although he rarely speaks to his fellow gods and even less to the elves, it is said that every Phoenix King has come in contact with him. When a new Phoenix King ascends to the Phoenix Throne, he steps through the Flames of Asuryan, where the god himself touches the minds of the aspirant to judge his worth. Those deemed unworthy are burned by the flames, while the worthy are then reborn in the flames. So far, there has been only one that Asuryan rejected." />
+  <string id="tor_religion_description.cult_of_loec" text="{=str_tor_religion_description_cult_of_loec}Loec, also known as the Shadow Dancer, is the elven god of laughter and tricks, a patron to all arts. As a part of the Cadai, the Gods of Heaven, Loec is usually portrayed as a benevolent deity, but as with all, he has a darker side. In this, he is the god of vengeance, shadows, and dark deeds as well. As such, he is said to dance among the void, stirring the souls that dwell there. With his nature of tricks and mischief, he is said to steal elven souls from the Chaos Gods, even if this saps his strength. The main worshippers of Loec are the Wardancers of the Wood Elves as well as the elves from the shattered lands of Nagarythe." />
   
   <string id="tor_religion_description.cult_of_grimnir" text="{=str_tor_religion_description_cult_of_grimnir}It is said that in the age when the Ancestor Gods still walked the world, the Dwarfen god Grimnir ventured northwards clad in nothing but his famed red crest and bearing his mighty axe. There, he met his doom, cutting down countless daemons until he reached the collapsed warpgate, where he stood vigil to bar their passage into the south. Since that time, those who now bear the name of 'Slayer' have followed in Grimnir's footsteps, seeking out mighty foes and striving to meet their end in battle or die trying. Yet it was in the time of King Baragor, the first of the Slayer Kings, that the Slayer Cult took a steep rise. Karak Kadrin became a haven for these doomed warriors, a place where they could find food and rest before marching towards their doom once more. The Cult of Grimnir is open to all warriors, but only a Slayer can access sacred shrines in Karak Kadrin. These deadly berserkers are bound by an oath to find their death against worthy foes, while regular warriors must uphold the warrior's code set by the cult, which includes attacking when possible, defending when required, always aiding your brothers-in-arms, and slaying as many foes as possible." />
-  <string id="tor_religion_description.cult_of_valaya" text="{=str_tor_religion_description_cult_of_valaya}TODO: Add lore description for Cult of Valaya" />
-  <string id="tor_religion_description.cult_of_grungni" text="{=str_tor_religion_description_cult_of_grungni}TODO: Add lore description for Cult of Grungni" />
+  <string id="tor_religion_description.cult_of_valaya" text="{=str_tor_religion_description_cult_of_valaya}Valaya is the Ancestor Goddess of Home and Hearth, of Healing and of Brewing. She is responsible for the shaping of the Dwarfen culture, teaching her people the runic script known as Khazalid and instructing them in the art of brewing, for which the Dwarfs remain renowned to this day. It was also Valaya who bestowed upon her kin the arts of healing, a gift sorely needed during the first great incursion of Chaos. Whilst Grimnir ranged far in battle against the daemonic hosts, and Grungni laboured at the forge crafting weapons and armour, Valaya remained beside her people. She fought alongside them when needed and tended to the wounded when the battle was done. In the darkest days of the war, Valaya is said to have devised a mighty defensive rune, a warding barrier cast about the Dwarf holds. Any daemon that dared touch its power was banished back into the Realm of Chaos, unable to breach the sanctity of Dwarfen stone. When the war had passed and her teachings were complete, Valaya withdrew with the remaining Ancestor Gods, venturing deep into the mountains. Since that time she has not been seen, though her presence is felt in every hearthfire and every hold that stands unbroken against the dark." />
+  <string id="tor_religion_description.cult_of_grungni" text="{=str_tor_religion_description_cult_of_grungni}In elder days, when the Ancestor Gods walked amongst the Dwarfs, foremost among them was Grungni, master of smithing and lord of the forge. Grungni foresaw the coming of Chaos and guided his people beneath the earth and into the safety of the mountains. There he taught them to shape metal into weapons and armour of peerless craft, preparing them for the darkness that was to come. When the hordes of Chaos descended upon the world, Grungni led his kin forth to war. Yet Chaos was not so easily cast down, and in time the Dwarfs were driven back to their mountain holds. Only Grimnir, brother to Grungni, dared to venture beyond the mountains to combat the enemy. Grungni remained behind, forging artefacts of immense power to aid his people. Among these was the Throne of Power, upon which was set the Rune of Azamar, the Eternity Rune, a rune so powerful only one has ever existed, and can never be replicated. It was Grungni’s only work where he felt satisfied upon its completion, and with the rune came a promise, for as long as the rune endures, the Karaz Ankor shall never fall. After the great war, the surviving Ancestor Gods withdrew deep into the mountains, awaiting the hour when their children would have need of them once more." />
+
+  <string id="tor_religion_description.cult_of_gork" text="{=str_tor_religion_description_cult_of_gork}Little is known about the major greenskin gods, and for outsiders they are hard to differentiate. Gork and Mork, the twin gods, both share the attributes of being brutal and cunning, but for the greenskins, it is clear who to worship for which boons. Gork is the brutally cunning part of the twins, a god of raw strength and might. As such, his main worshippers are the orcs, who value strength above all. Shamans that beseech Gork will sometimes succeed in summoning the god himself, or at least part of him. If they should succeed, they can summon enormous grasping hands to pluck their enemies apart or gigantic feet to stomp the enemy forces. Such is the raw power of Gork." />
+  <string id="tor_religion_description.cult_of_mork" text="{=str_tor_religion_description_cult_of_mork}Little is known about the major greenskin gods, and for outsiders they are hard to differentiate. Gork and Mork, the twin gods, both share the attributes of being brutal and cunning, but for the greenskins it is clear who to worship for which boons. Mork is the cunningly brutal of the two twins and is primarily worshipped by goblins and other smarter varieties of greenskin. While the way of Gork is simply punching someone in the face, the way of Mork is much more refined: a worshipper of Mork would try to distract their foe and then punch them in the back of their head. Shamans that invoke the power of Mork do so not only to still damage their foes but also to protect their own. They can petition their god to hold his protecting hands over other greenskins or to manifest the piercing gaze of the god himself in the shaman’s own eyes, obliterating everything in his line of sight with deadly rays of energy." />
 
   <string id="tor_religion_name_of_god.cult_of_sigmar" text="{=str_tor_religion_name_of_god_cult_of_sigmar}Sigmar" />
   <string id="tor_religion_name_of_god.cult_of_taal" text="{=str_tor_religion_name_of_god_cult_of_taal}Taal" />
@@ -2885,7 +3118,7 @@
   <!-- GrailKnight Career Choice Descriptions -->
   <string id="tor_careerchoice_description.GrailKnightRoot" text="{=str_tor_careerchoice_description_GrailKnightRoot}The knight prepares a devastating charge, mounted or on foot, for the next 6 seconds, increasing the speed by 20%. When mounted, the knight receives perk buffs as well as a 20% chance of his lance not bouncing off after a couched lance attack. The couched lance attack chance increases by 0.1% for every point in Riding. When on foot, the knight only receives perk buffs." />
   <string id="tor_careerchoice_description.ErrantryWarKeystone" text="{=str_tor_careerchoice_description_ErrantryWarKeystone}10% extra physical damage and 20% extra speed during Knightly Charge." />
-  <string id="tor_careerchoice_description.EnhancedHorseCombatKeystone" text="{=str_tor_careerchoice_description_EnhancedHorseCombatKeystone}Ability scales now  with the Polearm skill and starts recharged." />
+  <string id="tor_careerchoice_description.EnhancedHorseCombatKeystone" text="{=str_tor_careerchoice_description_EnhancedHorseCombatKeystone}Ability now scales with the Polearm skill and starts recharged." />
   <string id="tor_careerchoice_description.QuestingVowKeyStone" text="{=str_tor_careerchoice_description_QuestingVowKeyStone}Knightly Charge grants 20% physical resistance. Mount will not rear during the ability." />
   <string id="tor_careerchoice_description.MonsterSlayerKeystone" text="{=str_tor_careerchoice_description_MonsterSlayerKeystone}Ability duration scales with Riding. Physical damage scales with Polearm." />
   <string id="tor_careerchoice_description.MasterHorsemanKeystone" text="{=str_tor_careerchoice_description_MasterHorsemanKeystone}Reduces cooldown of Knightly Charge by 30s. During the ability, all healing affects the horse." />
@@ -3625,9 +3858,9 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="TORKnightPuritySealName.UlricSeal2" text="{=str_torknightpuritysealname_ulricseal2}Ulric Seal" />
   <string id="TORKnightPuritySealName.UlricSeal3" text="{=str_torknightpuritysealname_ulricseal3}Greater Ulric Seal" />
 
-  <string id="TORKnightPuritySealName.ManaanSeal1" text="{=str_torknightpuritysealname_manaanseal1}Lesser Manaan Seal" />
-  <string id="TORKnightPuritySealName.ManaanSeal2" text="{=str_torknightpuritysealname_manaanseal2}Manaan Seal" />
-  <string id="TORKnightPuritySealName.ManaanSeal3" text="{=str_torknightpuritysealname_manaanseal3}Greater Manaan Seal" />
+  <string id="TORKnightPuritySealName.ManaanSeal1" text="{=str_torknightpuritysealname_manaanseal1}Lesser Manann Seal" />
+  <string id="TORKnightPuritySealName.ManaanSeal2" text="{=str_torknightpuritysealname_manaanseal2}Manann Seal" />
+  <string id="TORKnightPuritySealName.ManaanSeal3" text="{=str_torknightpuritysealname_manaanseal3}Greater Manann Seal" />
   
   <string id="TORKnightPuritySealName.ShallyaSeal1" text="{=str_torknightpuritysealname_shallyaseal1}Lesser Shallya Seal" />
   <string id="TORKnightPuritySealName.ShallyaSeal2" text="{=str_torknightpuritysealname_shallyaseal2}Shallya Seal" />
@@ -3686,10 +3919,12 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 
   <!--TOR Information and data !-->
 
-  <string id="tor_extendedInfo.Undead" text="{=str_tor_extendedinfo_undead}Undead- Is not affected by morale and instead of fleeing this unit crumble. If defeated, unit cannot be wounded."/>
-  <string id="tor_extendedInfo.ArtilleryCrew" text="{=str_tor_extendedinfo_artillerycrew}Artillery Crew -  Can and is required to operate a cannon"/>
-  <string id="tor_extendedInfo.Unbreakable" text="{=str_tor_extendedinfo_unbreakable}Unbreakable -  Unit will not flee due to low morale"/>
-  <string id="tor_extendedInfo.Unstoppable" text="{=str_tor_extendedinfo_unstoppable}Unstoppable -  Unit will not show any signs of pain when being hit"/>
+  <string id="tor_extendedInfo.Undead" text="{=str_tor_extendedinfo_undead}Undead - not affected by morale, and instead of fleeing, shall crumble to dust. If defeated, this unit cannot be wounded."/>
+  <string id="tor_extendedInfo.ArtilleryCrew" text="{=str_tor_extendedinfo_artillerycrew}Artillery Crew - required to operate most artillery pieces."/>
+  <string id="tor_extendedInfo.Unbreakable" text="{=str_tor_extendedinfo_unbreakable}Unbreakable - shall never flee due to low morale."/>
+  <string id="tor_extendedInfo.Unstoppable" text="{=str_tor_extendedinfo_unstoppable}Unstoppable - does not stagger upon receiving damage."/>
+  <string id="tor_extendedInfo.TrollRegeneration" text="{=str_tor_extendedinfo_troll_regeneration}Troll Regeneration - regenerates health over time."/>
+  
 
   <string id="tor_damagetype.Invalid" text="{=str_tor_damagetype_invalid}Invalid"/>
   <string id="tor_damagetype.Physical" text="{=str_tor_damagetype_physical}Physical"/>
@@ -3830,10 +4065,10 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 
 
 	<!-- Custom resource bonus strings -->
-	<string id="tor_custom_resource_bre_hireling" text="{=str_tor_custom_resource_bre_hireling}Knightly Service" />
+	<string id="tor_custom_resource_bre_hireling" text="{=str_tor_custom_resource_bre_hireling}Knightly service" />
 	<string id="tor_custom_resource_vc_mo_hireling" text="{=str_tor_custom_resource_vc_mo_hireling}Leeched Dark Energy" />
-	<string id="tor_custom_resource_eo_hireling" text="{=str_tor_custom_resource_eo_hireling}Gained Power - more evocative" />
-	<string id="tor_custom_resource_emp_hireling" text="{=str_tor_custom_resource_emp_hireling}Gained Respect - more evocative" />
+	<string id="tor_custom_resource_eo_hireling" text="{=str_tor_custom_resource_eo_hireling}Gained recognition of the Council" />
+	<string id="tor_custom_resource_emp_hireling" text="{=str_tor_custom_resource_emp_hireling}Gained Prestige within the Empire" />
 	
 	<string id="tor_custom_resource_vc_mo_darkTribute" text="{=str_tor_custom_resource_vc_mo_darktribute}Dark Tribute" />
 	<string id="tor_custom_resource_we_athelLorenHarmony" text="{=str_tor_custom_resource_we_athellorenharmony}Athel Loren Harmony" />
@@ -4198,6 +4433,19 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="tor_hirelingactivity3.Warden" text="{=str_tor_hirelingactivity3_Warden}Scout the perimeter together with your hawk" />
   <string id="tor_hirelingactivity4.Warden" text="{=str_tor_hirelingactivity4_Warden}Discuss army movements with other nobles" />
   
+  <string id="tor_hirelingactivity0.Runelord" text="{=str_tor_hirelingactivity0_Warden}Train with a grund-reugi" />
+  <string id="tor_hirelingactivity1.Runelord" text="{=str_tor_hirelingactivity1_Warden}Offer a prayer to Thungni" />
+  <string id="tor_hirelingactivity2.Runelord" text="{=str_tor_hirelingactivity2_Warden}Help with armour maintenance" />
+  <string id="tor_hirelingactivity3.Runelord" text="{=str_tor_hirelingactivity3_Warden}Train with an az" />
+  <string id="tor_hirelingactivity4.Runelord" text="{=str_tor_hirelingactivity4_Warden}Work on army materials inventory" />
+  
+  <string id="tor_hirelingactivity0.OrcShaman" text="{=str_tor_hirelingactivity0_OrcBoss}Smash fings wiv a clobba" />
+  <string id="tor_hirelingactivity1.OrcShaman" text="{=str_tor_hirelingactivity1_OrcBoss}Dance an' kunnect to da Waaagh!!!" />
+  <string id="tor_hirelingactivity2.OrcShaman" text="{=str_tor_hirelingactivity2_OrcBoss}Huff sum smoke an' talk wiv da Godz" />
+  <string id="tor_hirelingactivity3.OrcShaman" text="{=str_tor_hirelingactivity3_OrcBoss}Cut sum gobbos open" />
+  <string id="tor_hirelingactivity4.OrcShaman" text="{=str_tor_hirelingactivity4_OrcBoss}Look fer sum 'shrooms in da caves" />
+
+  
   
   <string id="tor_hireling_wage" text="{=str_tor_hireling_wage}Hireling Wage" />
 
@@ -4263,7 +4511,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_religion_cult_name_cult_of_taal" text="{=str_tor_religion_cult_name_cult_of_taal}Cult of Taal" />
 	<string id="tor_religion_cult_name_cult_of_ulric" text="{=str_tor_religion_cult_name_cult_of_ulric}Cult of Ulric" />
 	<string id="tor_religion_cult_name_cult_of_shallya" text="{=str_tor_religion_cult_name_cult_of_shallya}Cult of Shallya" />
-	<string id="tor_religion_cult_name_cult_of_manaan" text="{=str_tor_religion_cult_name_cult_of_manaan}Cult of Manaan" />
+	<string id="tor_religion_cult_name_cult_of_manaan" text="{=str_tor_religion_cult_name_cult_of_manaan}Cult of Manann" />
 	<string id="tor_religion_cult_name_cult_of_lady" text="{=str_tor_religion_cult_name_cult_of_lady}Cult of the Lady" />
 	<string id="tor_religion_cult_name_cult_of_nagash" text="{=str_tor_religion_cult_name_cult_of_nagash}Followers of Nagash" />
 	<string id="tor_religion_cult_name_chaos_undivided" text="{=str_tor_religion_cult_name_chaos_undivided}Chaos Undivided" />
@@ -4290,7 +4538,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_empire_prestigenoble_firstname" text="{=str_tor_empire_prestigenoble_firstname}Berthold" />
 	<string id="tor_empire_prestigenoble_lastname" text="{=str_tor_empire_prestigenoble_lastname}Wendehals" />
 	<string id="tor_empire_prestigenoble_title" text="{=str_tor_empire_prestigenoble_title} of Altdorf Nobles" />
-	<string id="tor_empire_prestigenoble_wrongculture" text="{=str_tor_empire_prestigenoble_wrongculture}You do not serve the Empire, stranger, begone. This implies the player's faction despite the conditional checking culture - will need clarification." />
+	<string id="tor_empire_prestigenoble_wrongculture" text="{=str_tor_empire_prestigenoble_wrongculture}You do not serve the Empire, stranger, begone." />
 	<string id="tor_empire_prestigenoble_lowclanlevel" text="{=str_tor_empire_prestigenoble_lowclanlevel}I do not do business with nobodies, stranger, and I do not know you. Now begone. (Low Clan Tier)." />
 	<string id="tor_empire_prestigenoble_nobleintroduction1" text="{=str_tor_empire_prestigenoble_nobleintroduction1}It is a pleasure to make your acquaintance, I am {SHORTTITLE}{FIRSTNAME} {LASTNAME}{TITLE}. You have been making quite a name for yourself it would seem, many amongst the Imperial courts know of your exploits." />
 	<string id="tor_empire_prestigenoble_nobleintroduction2" text="{=str_tor_empire_prestigenoble_nobleintroduction2}I make it my business to know important, and useful, people. Connections are my trade you see, I do believe a relationship between us could prove to be very lucrative." />
@@ -4596,6 +4844,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_trollcave_cannot_leave" text="{=str_tor_trollcave_cannot_leave}You cannot leave until the trolls are dealt with!"/>
 	<string id="tor_wounded" text="{=str_tor_wounded}You are wounded."/>
 	<string id="tor_troll_greeting" text="{=str_tor_troll_greeting}*GRAAAAWWWRR* *sniff* *sniff* ...MEAT!"/>
+	<string id="tor_trollcave_retreat" text="{=str_tor_trollcave_retreat}You chose to tactical retreat from the scene. Living to fight another day is often the wisest choice when facing such formidable foes."/>
 
 	<!--Goblin Recruitment-->
 	<string id="tor_goblin_orc_recruitment_message" text="{=str_tor_goblin_orc_recruitment_message}{GOBLIN_COUNT} goblin(s) joined by recruiting da big boys!"/>
@@ -4619,7 +4868,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_bloodkiss_blooddragon_player_receive_end" text="{=str_tor_bloodkiss_blooddragon_player_receive_end}Rise, young blood dragon."/>
 
 	<!--Necrarch Dialogs-->
-	<string id="tor_bloodkiss_necrach_request" text="{=str_tor_bloodkiss_necrach_request}My lord. Zacharias. The Everliving. The disciple of Melkihor the Ancient. The most powerful of necrarchs. I wish to shed my mortal shell and serve you eternally. -"/>
+	<string id="tor_bloodkiss_necrach_request" text="{=str_tor_bloodkiss_necrach_request}My lord. Zacharias. The Everliving. The disciple of Melkihor the Ancient. The most powerful of necrarchs. I wish to shed my mortal shell and serve you eternally."/>
 
 	<!--Black Grail Dialogs-->
 	<string id="tor_blackgrail_request" text="{=str_tor_blackgrail_request}You keep saying the Lady is not real. What exactly do you mean?"/>
@@ -4666,12 +4915,12 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_spelltrainer_prophetesse_damselsecond_lore" text="{=str_tor_spelltrainer_prophetesse_damselsecond_lore}My Fay Enchantress, I feel that {DAMSELNAME} has reached  a new level of magical potential, is there anything you can teach her?"/>
 
 	<!--Spell Trainer Spellsinger Dialogs-->
-	<string id="tor_spelltrainer_spellsinger_start" text="{=str_tor_spelltrainer_spellsinger_start}I welcome you child of Athel Loren."/>
+	<string id="tor_spelltrainer_spellsinger_start" text="{=str_tor_spelltrainer_spellsinger_start}I welcome you, child of Athel Loren."/>
 	<string id="tor_spelltrainer_spellsinger_open_book" text="{=str_tor_spelltrainer_spellsinger_open_book}I seek further knowledge of Athel Loren's Magic."/>
 	<string id="tor_spelltrainer_spellsinger_close_book" text="{=str_tor_spelltrainer_spellsinger_close_book}A new facet of Ariel's infinite knowledge."/>
 	<string id="tor_spelltrainer_spellsinger_choices" text="{=str_tor_spelltrainer_spellsinger_choices}Is there more you seek? Speak your desires."/>
-	<string id="tor_spelltrainer_spellsinger_player_goodbye" text="{=str_tor_spelltrainer_spellsinger_player_goodbye}Ariel with you."/>
-	<string id="tor_spelltrainer_spellsinger_goodbye" text="{=str_tor_spelltrainer_spellsinger_goodbye}May Ariel guide you on all your paths through her garden."/>
+	<string id="tor_spelltrainer_spellsinger_player_goodbye" text="{=str_tor_spelltrainer_spellsinger_player_goodbye}Ariel be with you."/>
+	<string id="tor_spelltrainer_spellsinger_goodbye" text="{=str_tor_spelltrainer_spellsinger_goodbye}May She guide you on all your paths through her garden."/>
 	<string id="tor_spelltrainer_spellsinger_learnmagic" text="{=str_tor_spelltrainer_spellsinger_learnmagic}Greetings wise Spellsinger. I am seeking the capabilities of performing magic."/>
 	<string id="tor_spelltrainer_spellsinger_learn_magic_warden" text="{=str_tor_spelltrainer_spellsinger_learn_magic_warden}Greetings wise Spellsinger. I am seeking the capabilities of performing magic."/>
 	<string id="tor_spelltrainer_spellsinger_learn_magic_warden_answer" text="{=str_tor_spelltrainer_spellsinger_learn_magic_warden_answer}Hm. You are not a spellsinger, yet I see your potential. If you are willing to show me how much you are bound to the forest. I am willing to teach you the first steps of the path of Ariel"/>
@@ -4741,9 +4990,9 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_spelltrainer_greenskin_player_goodbye_str" text="{=str_tor_spelltrainer_greenskin_player_goodbye_str}I'z outta 'ere." />
 	<string id="tor_spelltrainer_greenskin_goodbye_str" text="{=str_tor_spelltrainer_greenskin_goodbye_str}Get outta 'ere! You'z lettin' out da smoke!" />
 	
-	<!--Vanilla Perk Changes-->
+	<!--Vanilla Perks and Skills-->
 	<string id="tor_veterinarian_description" text="{=str_tor_veterinarian_description}A variable chance to recover a mount from lost cavalry after battles." />
-
+	<string id="tor_trade_skill_description" text="{=str_tor_trade_skill_description}Trade penalty Reduction +0.2% per level for trade goods and animals.\nTrade penalty Reduction +0.7% per level for equipment."/>
 
 	<!-- Powerstone Texts - Lesser -->
 	<string id="tor_powerstone_fire_dmg_10_name" text="{=str_tor_powerstone_fire_dmg_10_name}Lesser Sparkling Fire Ruby"/>
@@ -4897,13 +5146,13 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<!-- Vampire Bonus -->
 
 	<!-- Quartermaster/Shop Texts -->
-	<string id="tor_gs_quartermaster_intro_text" text="{=str_tor_gs_quartermaster_intro_text}Hey yu. wanna spend for the big boss?"/>
-	<string id="tor_gs_quartermaster_anything_else_text" text="{=str_tor_gs_quartermaster_anything_else_text}Anything else?"/>
+	<string id="tor_gs_quartermaster_intro_text" text="{=str_tor_gs_quartermaster_intro_text}Yoo dere, youz got sumfing fer da Boss?"/>
+	<string id="tor_gs_quartermaster_anything_else_text" text="{=str_tor_gs_quartermaster_anything_else_text}Wot, youz got more?"/>
 	<string id="tor_gs_quartermaster_shinies_option_text" text="{=str_tor_gs_quartermaster_shinies_option_text}Shinies"/>
 	<string id="tor_gs_quartermaster_loot_option_text" text="{=str_tor_gs_quartermaster_loot_option_text}Loot"/>
-	<string id="tor_gs_quartermaster_leave_option_text" text="{=str_tor_gs_quartermaster_leave_option_text}Leave"/>
-	<string id="tor_gs_quartermaster_owner_intro_text" text="{=str_tor_gs_quartermaster_owner_intro_text}Hey Big Boss. you wanna pile some loot?"/>
-	<string id="tor_gs_quartermaster_owner_anything_else_text" text="{=str_tor_gs_quartermaster_owner_anything_else_text}Anything else Big Boss?"/>
+	<string id="tor_gs_quartermaster_leave_option_text" text="{=str_tor_gs_quartermaster_leave_option_text}Iz outta 'ere!"/>
+	<string id="tor_gs_quartermaster_owner_intro_text" text="{=str_tor_gs_quartermaster_owner_intro_text}Oi, Boss, youz got sum loot fer da pile?"/>
+	<string id="tor_gs_quartermaster_owner_anything_else_text" text="{=str_tor_gs_quartermaster_owner_anything_else_text}Iz dere more, Boss?"/>
 	<string id="tor_gs_quartermaster_make_teefbags_option_text" text="{=str_tor_gs_quartermaster_make_teefbags_option_text}Make Teefbags"/>
 	<string id="tor_dw_shop_show_goods_text" text="{=str_tor_dw_shop_show_goods_text}Sure let me show what I got"/>
 	<string id="tor_dw_engineer_buy_weapons_text" text="{=str_tor_dw_engineer_buy_weapons_text}I need better weapons master engineer"/>
@@ -4968,7 +5217,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="eonir_envoy_foreign_text" text="{=str_eonir_envoy_foreign_text}You are not part of these people, begone."/>
 	<string id="eonir_envoy_low_clan_tier_text" text="{=str_eonir_envoy_low_clan_tier_text}You do not have the privilege to serve the council. You are of no use. (Low Clan Tier)."/>
 	<string id="eonir_envoy_why_are_you_here_text" text="{=str_eonir_envoy_why_are_you_here_text}Why are you here?"/>
-	<string id="eonir_envoy_close_text" text="{=str_eonir_envoy_close_text}That is all thank you."/>
+	<string id="eonir_envoy_close_text" text="{=str_eonir_envoy_close_text}That will be all, thank you."/>
 	<string id="eonir_envoy_understood_text" text="{=str_eonir_envoy_understood_text}Understood."/>
 	<string id="eonir_envoy_lets_do_this_text" text="{=str_eonir_envoy_lets_do_this_text}Let us do this. (Exchange 50 {FAVOR_ICON} for 30 {PRESTIGE_ICON})"/>
 	<string id="eonir_envoy_need_to_think_text" text="{=str_eonir_envoy_need_to_think_text}I need to think about this."/>
@@ -5037,19 +5286,19 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="eonir_empire_anything_else_text" text="{=str_eonir_empire_anything_else_text}Is there anything else I can help with?"/>
 
 	<!-- Eonir Spellsinger Envoy Texts -->
-	<string id="eonir_spellsinger_intro_text" text="{=str_eonir_spellsinger_intro_text}The forest told of me your coming, yet not why. What have you come to ask of me?"/>
-	<string id="eonir_spellsinger_world_roots_ask_text" text="{=str_eonir_spellsinger_world_roots_ask_text}I want to travel along the roots of the Asrai, can you be my guide?"/>
+	<string id="eonir_spellsinger_intro_text" text="{=str_eonir_spellsinger_intro_text}Blessings of Isha upon you, what aid can I bestow?"/>
+	<string id="eonir_spellsinger_world_roots_ask_text" text="{=str_eonir_spellsinger_world_roots_ask_text}I wish to travel along the roots of the Asrai, can you be my guide?"/>
 	<string id="eonir_spellsinger_troop_refill_ask_text" text="{=str_eonir_spellsinger_troop_refill_ask_text}We need the Forestborn, are there any who can come to our aid?"/>
-	<string id="tor_spellsinger_envoy_main_hub_spellsinger_magic" text="{=str_tor_spellsinger_envoy_main_hub_spellsinger_magic}I wish to learn magic from you."/>
+	<string id="tor_spellsinger_envoy_main_hub_spellsinger_magic" text="{=str_tor_spellsinger_envoy_main_hub_spellsinger_magic}I wish to study magic our of kin."/>
 	<string id="spellsinger_envoy_main_hub_spellsinger_lores" text="{=str_spellsinger_envoy_main_hub_spellsinger_lores}Teach me about the lores of magic."/>
-	<string id="eonir_spellsinger_world_roots_price_text" text="{=str_eonir_spellsinger_world_roots_price_text}I can, but for a price. Help our people, they need more power and then I will allow you to travel the worldroot."/>
+	<string id="eonir_spellsinger_world_roots_price_text" text="{=str_eonir_spellsinger_world_roots_price_text}I can, but there is a price. Help our people, and then I will allow you to travel the Worldroots."/>
 	<string id="eonir_spellsinger_world_roots_accept_text" text="{=str_eonir_spellsinger_world_roots_accept_text}Of course, I am willing to help. Now as my guide, please tell me how I can travel along these ancient pathways?"/>
 	<string id="eonir_spellsinger_world_roots_explain_text" text="{=str_eonir_spellsinger_world_roots_explain_text}There is an entranceway to the Worldroots here in Laurelorn."/>
-	<string id="eonir_spellsinger_troop_refill_offer_text" text="{=str_eonir_spellsinger_troop_refill_offer_text}There are many who live as nomads, far from our villages and deep within the woods. It will take time for any messages to reach them but it can be done. Is this what you desire?"/>
-	<string id="eonir_spellsinger_troop_refill_cooldown_text" text="{=str_eonir_spellsinger_troop_refill_cooldown_text}We recently called for the forestborn aid. We should wait longer for another call"/>
-	<string id="eonir_spellsinger_troop_refill_accept_text" text="{=str_eonir_spellsinger_troop_refill_accept_text}That would be kind. I am sure we will be able to pay that favor back one day. I will decide in favor of the forestborn"/>
-	<string id="eonir_spellsinger_learn_lore_offer_text" text="{=str_eonir_spellsinger_learn_lore_offer_text}I can teach you, but as much as you are ready to do so, I need your word in the Council."/>
-	<string id="eonir_spellsinger_learn_lore_accept_text" text="{=str_eonir_spellsinger_learn_lore_accept_text}It should not be for your disadvantage"/>
+	<string id="eonir_spellsinger_troop_refill_offer_text" text="{=str_eonir_spellsinger_troop_refill_offer_text}There are many who live as nomads, far from our villages and deep within the woods. It will take time for any messenger to reach them but it can be done. Is this what you desire?"/>
+	<string id="eonir_spellsinger_troop_refill_cooldown_text" text="{=str_eonir_spellsinger_troop_refill_cooldown_text}We recently called for the forestborn aid. We should wait longer for another call."/>
+	<string id="eonir_spellsinger_troop_refill_accept_text" text="{=str_eonir_spellsinger_troop_refill_accept_text}That would be kind. I am sure we will be able to return the favour  one day. I will decide in favor of the Forestborn."/>
+	<string id="eonir_spellsinger_learn_lore_offer_text" text="{=str_eonir_spellsinger_learn_lore_offer_text}I can teach you, but as much as you are ready to do so, I need your word on the Council."/>
+	<string id="eonir_spellsinger_learn_lore_accept_text" text="{=str_eonir_spellsinger_learn_lore_accept_text}It should not be to your disadvantage."/>
 	<string id="eonir_spellsinger_why_here_intro_text" text="{=str_eonir_spellsinger_why_here_intro_text}I am representing a coven of Spellsingers dedicated to the defense of Laurelorn."/>
 	<string id="eonir_spellsinger_why_here_displeased_text" text="{=str_eonir_spellsinger_why_here_displeased_text}The forest is beset by destructive beasts and men alike, what then, are you protecting?"/>
 	<string id="eonir_spellsinger_why_here_undecided_text" text="{=str_eonir_spellsinger_why_here_undecided_text}What matters can the Council solve for you? What can you give me in turn?"/>
@@ -5079,10 +5328,10 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_engineer_upgrade_decline_response" text="{=str_tor_engineer_upgrade_decline_response}What a shame. Is there anything else I can do?"/>
 
 	<!-- Spelltrainer Texts -->
-	<string id="tor_spelltrainer_spellsinger_reintro" text="{=str_tor_spelltrainer_spellsinger_reintro}Is there more you seek? Speak your desires"/>
+	<string id="tor_spelltrainer_spellsinger_reintro" text="{=str_tor_spelltrainer_spellsinger_reintro}Is there more you seek? Speak your desires."/>
 	<string id="tor_spelltrainer_spellsinger_learnlore" text="{=str_tor_spelltrainer_spellsinger_learnlore}Teach me one of Ariel's many pathways."/>
-	<string id="tor_spelltrainer_spellsinger_weaver_choice" text="{=str_tor_spelltrainer_spellsinger_weaver_choice}A spellsinger, can pick either the pathway of the Darkweaver or the one of the Highweaver. Choose wisely"/>
-	<string id="tor_spelltrainer_spellsinger_companion_choice" text="{=str_tor_spelltrainer_spellsinger_companion_choice}A Highweaver, or Darkweaver... tough choice"/>
+	<string id="tor_spelltrainer_spellsinger_weaver_choice" text="{=str_tor_spelltrainer_spellsinger_weaver_choice}A spellsinger can pick either the pathway of the Darkweaver or the one of the Highweaver. Choose wisely."/>
+	<string id="tor_spelltrainer_spellsinger_companion_choice" text="{=str_tor_spelltrainer_spellsinger_companion_choice}A Highweaver, or Darkweaver... a tough choice"/>
 	<string id="tor_spelltrainer_spellsinger_companion_choose" text="{=str_tor_spelltrainer_spellsinger_companion_choose}Let me choose."/>
 	<string id="tor_spelltrainer_vampire_dark_energy_request" text="{=str_tor_spelltrainer_vampire_dark_energy_request}Even if you have the everliving-gift, the access to forbidden knowledge is restricted by my master. Provide us a gift and I am not speaking of gold, I need you to pay with the essence of Life. Then my masters can give you access... ({DARK_ENERGY_COST}{DARKENERGYICON})"/>
 	<string id="tor_spelltrainer_vampire_agree_price" text="{=str_tor_spelltrainer_vampire_agree_price}Take my gift. Now give me what I demand! (Pay {DARK_ENERGY_COST}{DARKENERGYICON})"/>

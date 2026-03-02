@@ -2,7 +2,7 @@
 # title: Da Big Boss Rises
 # frequency: Special
 # development: false
-# illustration: campfirenight
+# illustration: orc_boss_career_2
 
 INCLUDE include.ink
 

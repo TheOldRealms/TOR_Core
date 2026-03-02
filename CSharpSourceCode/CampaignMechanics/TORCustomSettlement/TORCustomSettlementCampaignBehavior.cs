@@ -550,6 +550,49 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         {
             //with no check for the religion of the hero, a dedicated player can take nobles into their army and slowly change their religion by taking them to shrines that will give influence from a different religion than their current dominant one
             party.AddBlessingToParty(shrine.Religion.StringId);
+
+            // AI religious troop recruitment from shrines
+            if (shrine.Religion.ReligiousTroops != null && shrine.Religion.ReligiousTroops.Count > 0)
+            {
+                var heroReligion = leaderHero.GetDominantReligion();
+                if (heroReligion == shrine.Religion)
+                {
+                    var freeSlots = party.Party.PartySizeLimit - party.MemberRoster.TotalManCount;
+                    if (freeSlots > 0)
+                    {
+                        var troop = shrine.Religion.ReligiousTroops.FirstOrDefault(x => x.IsBasicTroop && x.Occupation == Occupation.Soldier);
+                        if (troop != null)
+                        {
+                            var devotion = leaderHero.GetDevotionLevelForReligion(heroReligion);
+                            int troopCount = 0;
+
+                            // Scale troops based on devotion level
+                            switch (devotion)
+                            {
+                                case DevotionLevel.Follower:
+                                    troopCount = MBRandom.RandomInt(2, 5); // 2-4 troops
+                                    break;
+                                case DevotionLevel.Devoted:
+                                    troopCount = MBRandom.RandomInt(5, 9); // 5-8 troops
+                                    break;
+                                case DevotionLevel.Fanatic:
+                                    troopCount = MBRandom.RandomInt(8, 13); // 8-12 troops
+                                    break;
+                                default:
+                                    troopCount = 0; // No troops for Skeptic/Believer
+                                    break;
+                            }
+
+                            if (troopCount > 0)
+                            {
+                                if (freeSlots < troopCount) troopCount = freeSlots;
+                                party.MemberRoster.AddToCounts(troop, troopCount);
+                                CampaignEventDispatcher.Instance.OnTroopRecruited(leaderHero, settlement, null, troop, troopCount);
+                            }
+                        }
+                    }
+                }
+            }
         }
         else if (settleComp is CursedSiteComponent)
         {

@@ -1,5 +1,6 @@
 using Helpers;
 using SandBox.GameComponents;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -22,6 +23,21 @@ namespace TOR_Core.Models
 {
     public class TORAgentApplyDamageModel : SandboxAgentApplyDamageModel
     {
+        // Crush through block (ctb)
+        // extra crush through chance for high energy swings when attacker outskills the defender
+        private const int EXTRA_CTB_SKILL_DEAD_ZONE = 30; //skill diff over 30 doesn't do ctb
+
+        private const int EXTRA_CTB_TARGET_SKILL_DIFF = 200; //max skill diff contribution
+        private const float EXTRA_CTB_TARGET_OVERHEAD_CHANCE_AT_TARGET_DIFF = 0.50f; // ^^ it's effect
+
+        private const float EXTRA_CTB_NON_OVERHEAD_CHANCE_MULTIPLIER = 0.5f; // non overhead swings are twice as less likely
+        private const float EXTRA_CTB_SKILL_GROWTH_RATE = 0.008097f; // 30 energy, 50 diff 50% ctb, 200 diff 50% ctb
+
+        // how quickly extra ctb reaches full effect after passing the base energy threshold
+        // reduce this number if you want momentum to matter less on ctb
+        private const float EXTRA_CTB_ENERGY_MARGIN_FOR_FULL_EFFECT = 0.27f;
+
+        private static readonly float ExtraCtbSkillGrowthRate = EXTRA_CTB_SKILL_GROWTH_RATE;
         public override void DecideMissileWeaponFlags(Agent attackerAgent, in MissionWeapon missileWeapon, ref WeaponFlags missileWeaponFlags)
         {
             base.DecideMissileWeaponFlags(attackerAgent, missileWeapon, ref missileWeaponFlags);
@@ -701,6 +717,15 @@ namespace TOR_Core.Models
                     {
                         resistances[(int)DamageType.Physical] += (TORPerks.Faith.Imperturbable.SecondaryBonus);
                     }
+
+                    // Brewers Guild Level III bonus: +15% physical resistance for ranger units
+                    if (agent.BelongsToMainParty() && agentLeader != null && agentLeader.HasAttribute("DwarfBrewersIII"))
+                    {
+                        if (agentCharacter.StringId.Contains("tor_dw_ranger"))
+                        {
+                            resistances[(int)DamageType.Physical] += 0.15f;
+                        }
+                    }
                 }
             }
 
@@ -979,35 +1004,190 @@ namespace TOR_Core.Models
             return newMomentum;
         }
 
+        // for crush through blocks converts the target overhead chance at skill diff into an exponential growth rate
+        private static float CalculateExtraCtbSkillGrowthRate()
+        {
+            int delta = EXTRA_CTB_TARGET_SKILL_DIFF - EXTRA_CTB_SKILL_DEAD_ZONE;
+            if (delta <= 0)
+            {
+                return 0f;
+            }
+
+            float targetChance = MBMath.ClampFloat(EXTRA_CTB_TARGET_OVERHEAD_CHANCE_AT_TARGET_DIFF, 0.001f, 0.999f);
+            return (float)(-Math.Log(1.0 - targetChance) / delta);
+        }
+
+        // for crush through blocks returns the overhead swing base chance coming purely from skill diff and ramps up with a exponential curve
+        private static float CalculateExtraCtbOverheadChanceFromSkillDiff(int attackerSkillValue, int defenderSkillValue)
+        {
+            int skillDiff = attackerSkillValue - defenderSkillValue;
+            if (skillDiff <= EXTRA_CTB_SKILL_DEAD_ZONE)
+            {
+                return 0f;
+            }
+
+            int delta = skillDiff - EXTRA_CTB_SKILL_DEAD_ZONE;
+            int targetDelta = EXTRA_CTB_TARGET_SKILL_DIFF - EXTRA_CTB_SKILL_DEAD_ZONE;
+            if (targetDelta <= 0)
+            {
+                return 0f;
+            }
+
+            float numerator = 1f - (float)Math.Exp(-delta * ExtraCtbSkillGrowthRate);
+            float denominator = 1f - (float)Math.Exp(-targetDelta * ExtraCtbSkillGrowthRate);
+            if (denominator <= 0f)
+            {
+                return 0f;
+            }
+
+            float normalized = numerator / denominator;
+            float chance = EXTRA_CTB_TARGET_OVERHEAD_CHANCE_AT_TARGET_DIFF * normalized;
+
+            return MBMath.ClampFloat(chance, 0f, 1f);
+        }
+
+
+        // for crush through blocks scales chance based on how far the attack is past the energy threshold. 0 at threshold, 1 at full effect
+        private static float CalculateExtraCtbEnergyFactor(float totalAttackEnergy, float threshold)
+        {
+            float fullEffectMargin = threshold * EXTRA_CTB_ENERGY_MARGIN_FOR_FULL_EFFECT;
+            float energyFactor = (totalAttackEnergy - threshold) / fullEffectMargin;
+            return MBMath.ClampFloat(energyFactor, 0f, 1f);
+        }
+
         public override bool DecideCrushedThrough(Agent attackerAgent, Agent defenderAgent, float totalAttackEnergy, Agent.UsageDirection attackDirection, StrikeType strikeType, WeaponComponentData defendItem, bool isPassiveUsage)
         {
             // Monster attacks (trolls, minotaurs, etc.) can only be blocked with shields
+            bool isShieldBlock = defendItem != null && defendItem.IsShield;
             if (attackerAgent != null && attackerAgent.HasAttribute("MonsterAttack"))
             {
                 if (defendItem == null || !defendItem.IsShield)
                 {
                     return true;
                 }
+
+                EquipmentIndex equipmentIndex = attackerAgent.GetOffhandWieldedItemIndex();
+                if (equipmentIndex == EquipmentIndex.None)
+                {
+                    equipmentIndex = attackerAgent.GetPrimaryWieldedItemIndex();
+                }
+
+                if (((equipmentIndex != EquipmentIndex.None) ? attackerAgent.Equipment[equipmentIndex].CurrentUsageItem : null) == null || isPassiveUsage || strikeType != 0 || (attackDirection != 0 && !attackerAgent.HasAttribute("CrushThrough")))
+                {
+                    return false;
+                }
+
+                float num = 58f;
+                if (defendItem != null && defendItem.IsShield)
+                {
+                    num *= 1.2f;
+                }
+
+                bool passed = totalAttackEnergy > num;
+                return passed;
             }
 
-            EquipmentIndex equipmentIndex = attackerAgent.GetOffhandWieldedItemIndex();
-            if (equipmentIndex == EquipmentIndex.None)
-            {
-                equipmentIndex = attackerAgent.GetPrimaryWieldedItemIndex();
-            }
-
-            if (((equipmentIndex != EquipmentIndex.None) ? attackerAgent.Equipment[equipmentIndex].CurrentUsageItem : null) == null || isPassiveUsage || strikeType != 0 || (attackDirection != 0 && !attackerAgent.HasAttribute("CrushThrough")))
+            // no ctb against shields
+            if (defendItem != null && defendItem.IsShield)
             {
                 return false;
             }
 
-            float num = 58f;
-            if (defendItem != null && defendItem.IsShield)
+            EquipmentIndex equipmentIndexNonMonster = attackerAgent.GetOffhandWieldedItemIndex();
+            if (equipmentIndexNonMonster == EquipmentIndex.None)
             {
-                num *= 1.2f;
+                equipmentIndexNonMonster = attackerAgent.GetPrimaryWieldedItemIndex();
             }
 
-            return totalAttackEnergy > num;
+            WeaponComponentData attackerUsageItem = (equipmentIndexNonMonster != EquipmentIndex.None)
+                ? attackerAgent.Equipment[equipmentIndexNonMonster].CurrentUsageItem
+                : null;
+
+            // base ctb
+            if (attackerUsageItem != null
+                && !isPassiveUsage
+                && strikeType == 0
+                && (attackDirection == 0 || attackerAgent.HasAttribute("CrushThrough"))
+                && totalAttackEnergy > 58f)
+            {
+            #if TOR_CTB_LOG
+                CrushThroughDecisionTrace.Trace(attackerAgent, defenderAgent, "BASE_PASS",
+                    $"E={totalAttackEnergy:0.0} thr=58.0 dir={attackDirection} shield={isShieldBlock}");
+            #endif
+
+                return true;
+            }
+
+            // only attempt extra ctb for valid swing attacks with enough energy
+            // skill diff over deadzone increases the chance
+            // extra energy past threshold pushes it toward full effect
+            // non overhand swings take a penalty
+            // custom ctb
+            const float threshold = 25f;
+
+            if (attackerUsageItem == null || isPassiveUsage || strikeType != 0 || totalAttackEnergy <= threshold)
+            {
+            #if TOR_CTB_LOG
+                string reason = attackerUsageItem == null ? "noUsageItem"
+                    : isPassiveUsage ? "passiveUsage"
+                    : strikeType != 0 ? "notSwing"
+                    : $"energyBelowThreshold need={(threshold - totalAttackEnergy):0.0}";
+
+                CrushThroughDecisionTrace.Trace(attackerAgent, defenderAgent, "EXTRA_FAIL_GATE",
+                    $"reason={reason} E={totalAttackEnergy:0.0} thr={threshold:0.0} dir={attackDirection}");
+            #endif
+
+                return false;
+            }
+
+            int attackerSkillValue = attackerUsageItem.RelevantSkill != null
+                ? attackerAgent.Character.GetSkillValue(attackerUsageItem.RelevantSkill)
+                : 0;
+
+            int defenderSkillValue = (defendItem != null && defendItem.RelevantSkill != null)
+                ? defenderAgent.Character.GetSkillValue(defendItem.RelevantSkill)
+                : 0;
+
+            // deadzone
+            float overheadChanceFromSkill = CalculateExtraCtbOverheadChanceFromSkillDiff(attackerSkillValue, defenderSkillValue);
+            if (overheadChanceFromSkill <= 0f)
+            {
+            #if TOR_CTB_LOG
+                int skillDiff = attackerSkillValue - defenderSkillValue;
+                CrushThroughDecisionTrace.Trace(attackerAgent, defenderAgent, "EXTRA_FAIL_SKILL",
+                    $"diff={skillDiff} deadzone<={EXTRA_CTB_SKILL_DEAD_ZONE} A={attackerSkillValue} D={defenderSkillValue} E={totalAttackEnergy:0.0} dir={attackDirection}");
+            #endif
+
+                return false;
+            }
+
+            // momentum still matters after threshold
+            float energyFactor = CalculateExtraCtbEnergyFactor(totalAttackEnergy, threshold);
+
+            float chance = overheadChanceFromSkill * energyFactor;
+
+            if (attackDirection != 0)
+            {
+                chance *= EXTRA_CTB_NON_OVERHEAD_CHANCE_MULTIPLIER;
+            }
+
+            chance = MBMath.ClampFloat(chance, 0f, 1f);
+            float roll = MBRandom.RandomFloat;
+            bool passedExtra = roll < chance;
+
+        #if TOR_CTB_LOG
+            int skillDiffRoll = attackerSkillValue - defenderSkillValue;
+            bool isNonOverhead = attackDirection != 0;
+
+            CrushThroughDecisionTrace.Trace(attackerAgent, defenderAgent, passedExtra ? "EXTRA_PASS" : "EXTRA_FAIL_ROLL",
+                $"diff={skillDiffRoll} A={attackerSkillValue} D={defenderSkillValue} " +
+                $"E={totalAttackEnergy:0.0} thr={threshold:0.0} energyFactor={energyFactor:0.00} " +
+                $"skillChanceOH={overheadChanceFromSkill:0.00} dir={(isNonOverhead ? "nonOH" : "OH")} " +
+                $"mult={(isNonOverhead ? EXTRA_CTB_NON_OVERHEAD_CHANCE_MULTIPLIER : 1f):0.00} " +
+                $"chance={chance:0.00} roll={roll:0.00}");
+        #endif
+
+            return passedExtra;
         }
     }
 }

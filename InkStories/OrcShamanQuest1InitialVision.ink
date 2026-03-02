@@ -2,7 +2,7 @@
 # title: Da Vision of Gork and Mork
 # frequency: Special
 # development: false
-# illustration: campfirenight
+# illustration: orc_shaman_career_2
 
 INCLUDE include.ink
 

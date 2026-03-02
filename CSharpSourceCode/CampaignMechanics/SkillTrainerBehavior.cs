@@ -33,8 +33,8 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
 
     private readonly Dictionary<string, (string TrainerDialogId, string SkillId, string HubId, string HubReintroKey, List<string> Restrictions)> _skilltrainers = new()
     {
-        {"tor_priest_trainer_empire_ulric_0",("EngineerEmpire","Faith", "priest_hubcult_of_ulric","priest_hub_reintrocult_of_ulric",[])},
-        {"tor_priest_trainer_empire_sigmar_0",("SigmarPriest","Faith", "priest_hubcult_of_sigmar","priest_hub_reintrocult_of_sigmar",[])},
+        {"tor_priest_trainer_empire_ulric_0",("UlricTrain","Faith", "priest_hubcult_of_ulric","priest_hub_reintrocult_of_ulric",[])},
+        {"tor_priest_trainer_empire_sigmar_0",("SigmarTrain","Faith", "priest_hubcult_of_sigmar","priest_hub_reintrocult_of_sigmar",[])},
         {"tor_priest_trainer_empire_shallya_0",("ShallyaTrainRE","Medicine", "priest_hubcult_of_shallya","priest_hub_reintrocult_of_shallya",[])},
         {"tor_priest_trainer_empire_shallya_1",("ShallyaTrainCO","Medicine", "priest_hubcult_of_shallya","priest_hub_reintrocult_of_shallya",[])},
         {"tor_nulnengineernpc_empire",("EngineerEmpire","Engineering", "hub","hubaftermission",[])},

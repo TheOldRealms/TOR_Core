@@ -14,8 +14,8 @@ namespace TOR_Core.Models
         public override void GetBattleAdvantage(MapEvent mapEvent, out ExplainedNumber defenderAdvantage, out ExplainedNumber attackerAdvantage)
         {
             base.GetBattleAdvantage(mapEvent, out defenderAdvantage, out attackerAdvantage);
-            var defenderLeader = mapEvent.GetLeaderParty(TaleWorlds.Core.BattleSideEnum.Attacker).LeaderHero;
-            var attackerLeader = mapEvent.GetLeaderParty(TaleWorlds.Core.BattleSideEnum.Defender).LeaderHero;
+            var defenderLeader = mapEvent.GetLeaderParty(TaleWorlds.Core.BattleSideEnum.Defender).LeaderHero;
+            var attackerLeader = mapEvent.GetLeaderParty(TaleWorlds.Core.BattleSideEnum.Attacker).LeaderHero;
             if (defenderLeader != null && defenderLeader.GetPerkValue(TORPerks.Spellcraft.WellControlled))
             {
                 defenderAdvantage.Add(TORPerks.Spellcraft.WellControlled.SecondaryBonus);

@@ -46,7 +46,7 @@ namespace TOR_Core.AbilitySystem.Spells
 
                 _lores.Add("LoreOfDeath", new LoreObject("LoreOfDeath", "Lore of Death", "deathmagic_symbol", new List<string>(TORConstants.Cultures.All.Where(x => x != TORConstants.Cultures.EMPIRE && x != TORConstants.Cultures.ASRAI && x != TORConstants.Cultures.EONIR && x != TORConstants.Cultures.SYLVANIA && x != TORConstants.Cultures.MOUSILLON).ToList()))); 
                 _lores.Add("RuneMagic", new LoreObject("RuneMagic", "Rune Magic", "runemagic_symbol", new List<string>(TORConstants.Cultures.All.Where(x => x != TORConstants.Cultures.DAWI).ToList()))); // Why again are we adding all cultures that DONT have access to it?
-                _lores.Add("BigWaaagh", new LoreObject("BigWaaagh", "Big Waaagh!", "waaagh_symbol", new List<string>(TORConstants.Cultures.All.Where(x => x != TORConstants.Cultures.GREENSKIN).ToList())));
+                _lores.Add("BigWaaagh", new LoreObject("BigWaaagh", "Big Waaagh!", "bigwaagh_symbol", new List<string>(TORConstants.Cultures.All.Where(x => x != TORConstants.Cultures.GREENSKIN).ToList())));
             }
             return _lores.Values.ToList();
         }

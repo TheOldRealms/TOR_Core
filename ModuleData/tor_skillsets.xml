@@ -25,7 +25,7 @@
 		<skill id="Roguery"
 		       value="0" />
 		<skill id="Steward"
-		       value="0" />
+		       value="50" />
 		<skill id="Medicine"
 		       value="0" />
 		<skill id="Engineering"
@@ -58,7 +58,7 @@
 		<skill id="Medicine"
 		       value="50" />
 		<skill id="Steward"
-		       value="0" />
+		       value="50" />
 		<skill id="Engineering"
 		       value="0" />
 		<skill id="Tactics"
@@ -729,6 +729,43 @@
 		       value="0" />
 		<skill id="Spellcraft"
 		       value="0" />
+	</SkillSet>
+	
+	<SkillSet id="tor_skills_wanderer_engineer">
+		<skill id="Athletics"
+		       value="0" />
+		<skill id="Riding"
+		       value="0" />
+		<skill id="OneHanded"
+		       value="20" />
+		<skill id="TwoHanded"
+		       value="0" />
+		<skill id="Polearm"
+		       value="0" />
+		<skill id="Bow"
+		       value="0" />
+		<skill id="Crossbow"
+		       value="100" />
+		<skill id="Gunpowder"
+		       value="170" />
+		<skill id="Throwing"
+		       value="0" />
+		<skill id="Scouting"
+		       value="0" />
+		<skill id="Roguery"
+		       value="0" />
+		<skill id="Steward"
+		       value="50" />
+		<skill id="Medicine"
+		       value="0" />
+		<skill id="Engineering"
+		       value="200" />
+		<skill id="Tactics"
+		       value="50" />
+		<skill id="Faith"
+		       value="0" />
+		<skill id="Spellcraft"
+	           value="0" />
 	</SkillSet>
 	
 	<SkillSet id="tor_skills_wanderer_bossorc">
@@ -1652,6 +1689,51 @@
 		       value="250" />
 		<skill id="Faith"
 		       value="200" />
+		<skill id="Spellcraft"
+		       value="0" />	 
+	</SkillSet>
+	
+	<SkillSet id="tor_skills_dwarf_slayer_lord">
+		<skill id="Athletics"
+		       value="180" />
+		<skill id="Riding"
+		       value="0" />
+		<skill id="OneHanded"
+		       value="330" />
+		<skill id="TwoHanded"
+		       value="330" />
+		<skill id="Polearm"
+		       value="0" />
+		<skill id="Bow"
+		       value="0" />
+		<skill id="Crossbow"
+		       value="0" />
+		<skill id="Throwing"
+		       value="200" />
+		<skill id="Smithing"
+		       value="0" />
+		<skill id="Engineering"
+		       value="250" />
+		<skill id="Medicine"
+		       value="0" />
+		<skill id="Steward"
+		       value="100" />
+		<skill id="Tactics"
+		       value="250" />
+		<skill id="Scouting"
+		       value="200" />
+		<skill id="Charm"
+		       value="0" />
+		<skill id="Leadership"
+		       value="230" />
+		<skill id="Roguery"
+		       value="0" />
+		<skill id="Trade"
+		       value="0" />
+		<skill id="Gunpowder"
+		       value="250" />
+		<skill id="Faith"
+		       value="400" />
 		<skill id="Spellcraft"
 		       value="0" />	 
 	</SkillSet>

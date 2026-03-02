@@ -104,6 +104,17 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
             },
             (args) => PlayerEncounter.Finish(true), true);
 
+        // Tactical retreat menu (player chose to retreat)
+        starter.AddGameMenu("trollcave_retreat", "{TROLLCAVE_RETREAT_TEXT}", TrollCaveRetreatInit);
+        starter.AddGameMenuOption("trollcave_retreat", "trollcave_retreat_continue",
+            TORTextHelper.GetText("tor_custom_settlement_menu_continue", "Continue"),
+            delegate (MenuCallbackArgs args)
+            {
+                args.optionLeaveType = GameMenuOption.LeaveType.Continue;
+                return true;
+            },
+            (args) => PlayerEncounter.Finish(true), true);
+
         // Troll attack encounter menu
         starter.AddGameMenu("trollcave_attack", "{TROLLCAVE_ATTACK_TEXT}", TrollCaveAttackInit);
         starter.AddGameMenuOption("trollcave_attack", "trollcave_attack_fight",
@@ -491,7 +502,14 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
     private void TrollCaveDefeatInit(MenuCallbackArgs args)
     {
         MBTextManager.SetTextVariable("TROLLCAVE_DEFEAT_TEXT",
-            TORTextHelper.GetTextObject("tor_trollcave_defeat",
-                "The trolls proved too powerful. You barely escaped with your life, dragging yourself from the cave as the beasts feasted on the fallen."));
+            TORTextHelper.GetTextObject("tor_trollcave_battle_defeat",
+                "The trolls proved too powerful. You barely escaped with your life."));
+    }
+
+    private void TrollCaveRetreatInit(MenuCallbackArgs args)
+    {
+        MBTextManager.SetTextVariable("TROLLCAVE_RETREAT_TEXT",
+            TORTextHelper.GetTextObject("tor_trollcave_retreat",
+                "You chose to tactical retreat from the scene. Living to fight another day is often the wisest choice when facing such formidable foes."));
     }
 }

@@ -77,7 +77,7 @@ namespace TOR_Core.Models
                 return traits;
             }
 
-            var amount = (int)(count * playerEarnedLootPercentage);
+            var amount = (int)(count * (playerEarnedLootPercentage / 100f)); // convert percent to ratio to avoid massively inflating the roll count
 
             for (var i = 0; i < amount; i++)
             {

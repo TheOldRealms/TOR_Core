@@ -628,6 +628,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                     {
                         AddChivarlyForUnit(ref explainedNumber, element.Character, element.Number);
                     }
+                    result += explainedNumber.ResultNumber;
                 }
             }
 

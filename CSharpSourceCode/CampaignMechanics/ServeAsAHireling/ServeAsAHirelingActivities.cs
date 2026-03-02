@@ -194,11 +194,11 @@ public class ServeAsAHirelingActivities
             },
             {
                 TORCareers.Runelord, [
-                    DefaultSkills.TwoHanded,     // TODO: Add activity string
-                    TORSkills.Faith,          // TODO: Add activity string
-                    DefaultSkills.Crafting,   // TODO: Add activity string
-                    DefaultSkills.OneHanded,  // TODO: Add activity string
-                    DefaultSkills.Trade       // TODO: Add activity string
+                    DefaultSkills.TwoHanded,   
+                    TORSkills.Faith,          
+                    DefaultSkills.Crafting,
+                    DefaultSkills.OneHanded, 
+                    DefaultSkills.Trade
                 ]
             },
 
@@ -214,11 +214,11 @@ public class ServeAsAHirelingActivities
             },
             {
                 TORCareers.OrcShaman, [
-                    TORSkills.Spellcraft,     // TODO: Add activity string
-                    TORSkills.Faith,          // TODO: Add activity string
-                    DefaultSkills.Medicine,   // TODO: Add activity string
-                    DefaultSkills.Leadership, // TODO: Add activity string
-                    DefaultSkills.Roguery     // TODO: Add activity string
+                    DefaultSkills.OneHanded,     // Smash fings wiv a clobba
+                    TORSkills.Spellcraft,          // Dance an' kunnect to da Waaagh!!!
+                    TORSkills.Faith,          // Huff sum smoke an' talk wiv da Godz
+                    DefaultSkills.Medicine,   //  Cut sum gobbos open
+                    DefaultSkills.Scouting, // Look fer sum 'shrooms in da caves
                 ]
             },
 

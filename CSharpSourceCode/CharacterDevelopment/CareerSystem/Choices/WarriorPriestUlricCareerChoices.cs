@@ -243,7 +243,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _furyOfWarPassive1.Initialize(CareerID, "+5% personal 'Physical' melee damage per equipped melee weapon.", "FuryOfWar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special, true));
             _furyOfWarPassive2.Initialize(CareerID, "+10% personal weapon swing speed.", "FuryOfWar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10f, PassiveEffectType.SwingSpeed, true));
             _furyOfWarPassive3.Initialize(CareerID, "Victory against a stronger force refreshes your blessing of Ulric.", "FuryOfWar", false, ChoiceType.Passive);
-            _furyOfWarPassive4.Initialize(CareerID, "Hits below 25 damage no longer stagger you.", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.ShruggedOff));
+            _furyOfWarPassive4.Initialize(CareerID, "Hits below 25 damage no longer stagger you.", "FuryOfWar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.ShruggedOff));
 
             _flameOfUlricPassive1.Initialize(CareerID, "Radius of prayers is increased by +25%.", "FlameOfUlric", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25f, PassiveEffectType.SpellRadius, true));
             _flameOfUlricPassive2.Initialize(CareerID, "+15% personal 'Armor Penetration' for melee attacks.", "FlameOfUlric", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));

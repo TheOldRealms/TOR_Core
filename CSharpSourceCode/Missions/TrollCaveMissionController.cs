@@ -40,6 +40,8 @@ namespace TOR_Core.Missions
         private readonly bool _stealthMode;
         private readonly MobileParty _defenderParty;
 
+        private const float DefeatDelaySeconds = 3f; // Delay before forcing mission end after defeat
+
         private List<MatrixFrame> _enemySpawnFrames = new List<MatrixFrame>();
         private int _enemySpawnIndex;
         private bool _isMissionInitialized;
@@ -47,6 +49,8 @@ namespace TOR_Core.Missions
         private bool _playerCanLeave;
         private bool _battleResolved;
         private BattleEndLogic _battleEndLogic;
+        private bool _isPlayerDefeated;
+        private float _defeatStartTime;
 
         public TrollCaveMissionController(TroopRoster selectedTroops, int trollCount, MobileParty defenderParty, bool stealthMode = false)
         {
@@ -88,25 +92,57 @@ namespace TOR_Core.Missions
             {
                 CheckBattleResolved();
             }
+
+            // Handle defeat with delay - show "Battle Lost" for a few seconds before closing
+            if (_isPlayerDefeated && Mission.CurrentTime - _defeatStartTime >= DefeatDelaySeconds)
+            {
+                HandleForcedDefeatEnd();
+            }
         }
 
         private void CheckBattleResolved()
         {
-            // Player defeated
+            // Player defeated - allow retreat or wait for auto-defeat
             if (Agent.Main == null || !Agent.Main.IsActive())
             {
-                _battleResolved = true;
-                _playerCanLeave = true;
-                _battleEndLogic?.ChangeCanCheckForEndCondition(true);
+                if (!_isPlayerDefeated)
+                {
+                    _battleResolved = true;
+                    _isPlayerDefeated = true;
+                    _defeatStartTime = Mission.CurrentTime;
+                    // Player can manually retreat, or mission will auto-end after delay
+                }
             }
             // Victory - all trolls dead
             else if (GetActiveTrollCount() == 0)
             {
                 _battleResolved = true;
+                _playerCanLeave = true;
                 _battleEndLogic?.ChangeCanCheckForEndCondition(true);
                 // Set winner to player (attacker) - this enables proper loot screen
                 MapEvent.PlayerMapEvent?.SetOverrideWinner(BattleSideEnum.Attacker);
             }
+        }
+
+        private void HandleForcedDefeatEnd()
+        {
+            // Called after DefeatDelaySeconds from player defeat
+            // Force close everything in the right order
+
+            // 1. Finish the PlayerEncounter to prevent "trapped by enemies"
+            if (PlayerEncounter.Current != null)
+            {
+                PlayerEncounter.Finish(true);
+            }
+
+            // 2. Show defeat menu
+            GameMenu.ActivateGameMenu("trollcave_defeat");
+
+            // 3. Force mission to end
+            Mission.EndMission();
+
+            // Reset flag so this only runs once
+            _isPlayerDefeated = false;
         }
 
         private void InitializeMission()
@@ -350,23 +386,33 @@ namespace TOR_Core.Missions
 
         public override InquiryData OnEndMissionRequest(out bool canLeave)
         {
-            // Allow leaving if battle is resolved (BattleEndLogic will handle the actual end)
-            canLeave = _battleResolved || _playerCanLeave;
-            if (!canLeave)
-            {
-                MBInformationManager.AddQuickInformation(
-                    TORTextHelper.GetTextObject("tor_trollcave_cannot_leave", "You cannot leave until the trolls are dealt with!"));
-            }
+            // Allow leaving at any time (like vanilla hideouts)
+            canLeave = true;
             return null;
         }
 
-        public override void OnMissionResultReady(MissionResult missionResult)
+        public override void OnRetreatMission()
         {
-            if (missionResult.PlayerDefeated)
+            // Player is retreating - finish encounter and go to appropriate menu
+            // This prevents "trapped by enemies" screen
+
+            if (PlayerEncounter.Current != null)
             {
-                _playerCanLeave = true;
+                PlayerEncounter.Finish(true);
             }
+
+            // If player won (all trolls dead), they're just leaving after victory
+            // If trolls are still alive, treat as tactical retreat
+            if (GetActiveTrollCount() > 0)
+            {
+                // Retreating with trolls still alive - go to retreat menu
+                GameMenu.ActivateGameMenu("trollcave_retreat");
+            }
+            // If all trolls dead, vanilla loot/prisoner screens already shown, just leave normally
+
+            base.OnRetreatMission();
         }
+
 
         private int GetActiveTrollCount()
         {
@@ -383,31 +429,12 @@ namespace TOR_Core.Missions
         {
             if (!_isMissionInitialized) return false;
 
-            if (Agent.Main == null || !Agent.Main.IsActive())
-            {
-                // Player defeated - handle specially to prevent imprisonment by trolls
-                // Finalize the MapEvent to prevent vanilla from processing imprisonment
-                var mapEvent = MapEvent.PlayerMapEvent;
-                if (mapEvent != null)
-                {
-                    mapEvent.FinalizeEvent();
-                }
-
-                // Destroy the defender party to clean up
-                if (_defenderParty != null && _defenderParty.IsActive)
-                {
-                    TrollCaveDefenderPartyComponent.DestroyDefenderParty(_defenderParty);
-                }
-
-                // Switch to custom defeat menu instead of imprisonment
-                GameMenu.ActivateGameMenu("trollcave_defeat");
-
-                missionResult = MissionResult.CreateDefeated(Mission);
-                return true;
-            }
+            // On defeat, don't end mission here - let the timer handle it after 3 seconds
+            // This is handled in HandleForcedDefeatEnd called from OnMissionTick
 
             if (GetActiveTrollCount() == 0)
             {
+                // Player victory - let vanilla handle loot/prisoners
                 missionResult = MissionResult.CreateSuccessful(Mission, false);
                 return true;
             }

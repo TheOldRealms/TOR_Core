@@ -106,8 +106,8 @@
                                               <ItemTemplate >
                                                 <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="40" StackLayout.LayoutMethod="HorizontalLeftToRight">
                                                   <Children>
-                                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="CareerSystem\skull_icon" Color="#7f695cFF" IsVisible="@IsFreeToTake" />
-                                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="CareerSystem\skull_icon" Color="#dfc395FF" IsVisible="@IsTaken" />
+                                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="@IconSprite" Color="#7f695cFF" IsVisible="@IsFreeToTake" />
+                                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="@IconSprite" Color="#dfc395FF" IsVisible="@IsTaken" />
                                                     <TextWidget DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="20" SuggestedWidth="500" HorizontalAlignment="Left" MarginLeft="25" MarginTop="5" MarginBottom="5" Text="@Description" Brush="TorCareerChoiceBrush" />
                                                   </Children>
                                                 </ListPanel>
@@ -152,8 +152,8 @@
                                               <ItemTemplate >
                                                 <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="40" StackLayout.LayoutMethod="HorizontalLeftToRight">
                                                   <Children>
-                                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="CareerSystem\skull_icon" Color="#7f695cFF" IsVisible="@IsFreeToTake" />
-                                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="CareerSystem\skull_icon" Color="#dfc395FF" IsVisible="@IsTaken" />
+                                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="@IconSprite" Color="#7f695cFF" IsVisible="@IsFreeToTake" />
+                                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="@IconSprite" Color="#dfc395FF" IsVisible="@IsTaken" />
                                                     <TextWidget DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="20" SuggestedWidth="500" HorizontalAlignment="Left" MarginLeft="25" MarginTop="5" MarginBottom="5" Text="@Description" Brush="TorCareerChoiceBrush"/>
                                                   </Children>
                                                 </ListPanel>
@@ -198,8 +198,8 @@
                                               <ItemTemplate >
                                                 <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="40" StackLayout.LayoutMethod="HorizontalLeftToRight">
                                                   <Children>
-                                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="CareerSystem\skull_icon" Color="#7f695cFF" IsVisible="@IsFreeToTake" />
-                                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="CareerSystem\skull_icon" Color="#dfc395FF" IsVisible="@IsTaken" />
+                                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="@IconSprite" Color="#7f695cFF" IsVisible="@IsFreeToTake" />
+                                                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="25" SuggestedWidth="20" HorizontalAlignment="Left" MarginLeft="30" MarginTop="5" MarginBottom="5" Sprite="@IconSprite" Color="#dfc395FF" IsVisible="@IsTaken" />
                                                     <TextWidget DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="20" SuggestedWidth="500" HorizontalAlignment="Left" MarginLeft="25" MarginTop="5" MarginBottom="5" Text="@Description" Brush="TorCareerChoiceBrush"/>
                                                   </Children>
                                                 </ListPanel>
