@@ -85,6 +85,13 @@ namespace TOR_Core.HarmonyPatches
                     // Reset the flag after using it
                     ShouldJumpToProfessionStage = false;
                 }
+                else
+                {
+                    var menuCharacters = __instance.CurrentMenu.Characters;
+                    var playerCharacter = menuCharacters.FirstOrDefault();
+                    playerCharacter?.SetEquipment(new MBEquipmentRoster());
+
+                }
             }
         }
 
