@@ -573,14 +573,26 @@ namespace TOR_Core.CharacterDevelopment
         public static float RunelordChargeSupplier(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue,
             AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
-            if (!affectingAgent.IsMainAgent && affectingAgent.IsPlayerTroop && Hero.MainHero.HasCareerChoice("TeachingsOfThungniKeystone"))
+            if (affectingAgent.IsMainAgent || affectingAgent.IsHero)
             {
-                if (affectingAgent.WieldedWeapon.Item.HasAnyTrait(affectingAgent))
+                if (affectingAgent.IsMainAgent || !affectingAgent.WieldedWeapon.IsEmpty && affectingAgent.WieldedWeapon.Item.HasAnyTrait())
+                {
+                    return chargeValue;
+                }
+            }
+
+            if (!affectingAgent.IsHero && affectingAgent.BelongsToMainParty() && Hero.MainHero.HasCareerChoice("TeachingsOfThungniKeystone"))
+            {
+                if (affectingAgent.Character.HasUnitRune())
                 {
                     chargeValue = (int)(chargeValue * 0.1f);
                 }
+
+                return chargeValue;
             }
-            return chargeValue;
+
+            return 0;
+
         }
     }
 }
