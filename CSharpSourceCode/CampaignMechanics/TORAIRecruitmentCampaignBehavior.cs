@@ -185,7 +185,7 @@ namespace TOR_Core.CampaignMechanics
                 int currentTrolls = party.MemberRoster.GetTroopCount(_troll);
                 if (currentTrolls >= MaxTrollsPerParty) return;
                 
-                if (MBRandom.RandomFloat < 0.25f)
+                if (MBRandom.RandomFloat < 0.15f)
                 {
                     party.MemberRoster.AddToCounts(_troll, 1);
                 }

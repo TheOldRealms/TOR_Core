@@ -351,24 +351,28 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                     return false;
                 }
                 args.optionLeaveType = GameMenuOption.LeaveType.Continue;
-                var enlistingParty = _hirelingEnlistingLord?.PartyBelongedTo;
-                if (enlistingParty?.MapEvent == null || enlistingParty.MapEventSide?.OtherSide?.LeaderParty == null)
-                {
-                    return false;
-                }
 
-                //Sly : this can return a null for PartyBelongedTo if the enlisted lord is part of a siege encampment and they lose with player being downed. (The original context was : besieger attacks town, I choose "Avoid Combat" to begin a simulation, an outside army attacks the encampment from behind, I then join join battle for a field one outside, we lose and the allied army retreats, I then had a native encounter menu, I choose "Attack" which creates another field battle, I down during the battle (enlisted lord was downed in one of the 2 battles), on battle end a NRE occurs here from null.CurrentSettlement.
-                //I believe that the issue stems from the player and lord being downed and therefore part of the prisoner loot roster for the otherside, ie. the lord is now without party, and the game attempts to restore the last relevant menu (hireling menu) which then checks this condition.
-                //This is probably intended to be addressed by the OnTick action which checks for a null enlisted party and ends enlistment if yes, but because the transition from mission end to restored menu occurs while the game is paused, no tick occurs and the _hirelingEnlistingLord field hasn't been cleared yet.
-                //There is the OnMobilePartyDestroyed action which I'd expect to trigger and therefore handle ending enlistment, but I'm unsure if it didn't occur because the lord being taken prisoner makes destroyedParty.Leader null and therefore the condition isn't true, or if the crash here predates the emprisoning of the lord and therefore the destruction of the party.
-                //this probably shouldn't even be hit now that it uses ExitToLast on event end
-
-                return _hirelingEnlistingLord.PartyBelongedTo.CurrentSettlement != null &&
-                _hirelingEnlistingLord.PartyBelongedTo.CurrentSettlement == PlayerEncounter.EncounterSettlement &&
-                PlayerEncounter.EncounterSettlement.IsTown;
+                // Show option when lord is in any settlement
+                return _hirelingEnlistingLord?.PartyBelongedTo?.CurrentSettlement != null;
             }, args =>
             {
-                GameMenu.SwitchToMenu("town");
+                var settlement = _hirelingEnlistingLord.PartyBelongedTo.CurrentSettlement;
+
+                // Apply settlement entry and start encounter
+                EnterSettlementAction.ApplyForParty(MobileParty.MainParty, settlement);
+
+                if (PlayerEncounter.Current == null)
+                {
+                    EncounterManager.StartSettlementEncounter(MobileParty.MainParty, settlement);
+                }
+
+                // Switch to appropriate menu based on settlement type
+                if (settlement.IsTown)
+                    GameMenu.SwitchToMenu("town");
+                else if (settlement.IsVillage)
+                    GameMenu.SwitchToMenu("village");
+                else if (settlement.IsCastle)
+                    GameMenu.SwitchToMenu("castle");
             }, true);
 
             var text = new TextObject("{PAUSE_ONOFF_TEXT}");

@@ -279,6 +279,10 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         {
             if (mapEvent == null || !mapEvent.IsPlayerMapEvent)
                 return;
+            if (mapEvent.EndedByRetreat)
+            {
+                TORCommon.Say("test");
+            }
             var playerWon = mapEvent.DefeatedSide != mapEvent.PlayerSide;
             var playerHero = Hero.MainHero;
             var playerParty = MobileParty.MainParty;
@@ -520,6 +524,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         
         private static int CalculateTeefFromBattle(MapEvent mapEvent)
         {
+            
             if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.GREENSKIN)
             {
                 return 0;
