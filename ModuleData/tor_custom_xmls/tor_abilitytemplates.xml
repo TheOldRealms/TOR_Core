@@ -6120,7 +6120,7 @@
                      SoundEffectToPlay="rocks_grinding"
                      ShouldSoundLoopOverDuration="false"
                      CastType="WindUp"
-                     CastTime="1.5"
+                     CastTime="0.5"
                      AnimationActionName="act_release_heavy_thrown"
                      Offset="100"
                      AbilityTargetType="GroundAtPosition"

@@ -1339,7 +1339,7 @@ namespace TOR_Core.CharacterDevelopment
 
             _brutalCunnin.Initialize("Brutal Cunnin'", TORCareers.OrcShaman, 2, (Hero hero, out string text) =>
             {
-                var hasUnlocked = hero.HasAttribute("PlayerOrcShaman");
+                var hasUnlocked = hero.HasAttribute("PlayerOrcShamanTier2");
                 text = "";
                 if (!hasUnlocked)
                 {
@@ -1351,12 +1351,12 @@ namespace TOR_Core.CharacterDevelopment
             _cunninBrutality.Initialize("Cunnin' Brutality", TORCareers.OrcShaman, 2, (Hero hero, out string text) =>
             {
                 text = string.Empty;
-                return hero.HasAttribute("PlayerOrcShaman");
+                return hero.HasAttribute("PlayerOrcShamanTier2");
             });
 
             _gorkAnMorkAreWatchin.Initialize("Gork an' Mork are watchin'", TORCareers.OrcShaman, 3, (Hero hero, out string text) =>
             {
-                var hasUnlocked = hero.HasAttribute("PlayerOrcShaman") && hero.HasAttribute("PlayerOrcFavouredUvDaGodz");
+                var hasUnlocked = hero.HasAttribute("PlayerOrcShamanTier2") && hero.HasAttribute("PlayerOrcShamanTier3");
                 text = "";
                 if (!hasUnlocked)
                 {
@@ -1368,7 +1368,7 @@ namespace TOR_Core.CharacterDevelopment
             _powerUvDaWaaagh.Initialize("Power uv da Waaagh!", TORCareers.OrcShaman, 3, (Hero hero, out string text) =>
             {
                 text = string.Empty;
-                return hero.HasAttribute("PlayerOrcShaman") && hero.HasAttribute("PlayerOrcFavouredUvDaGodz");
+                return hero.HasAttribute("PlayerOrcShaman2") && hero.HasAttribute("PlayerOrcShamanTier3");
             });
 
         }

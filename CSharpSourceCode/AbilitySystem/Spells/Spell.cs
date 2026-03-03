@@ -33,7 +33,13 @@ namespace TOR_Core.AbilitySystem.Spells
             if (hero != null && hero.GetExtendedInfo() != null)
             {
                 var info = hero.GetExtendedInfo();
-                info.AddCustomResource("WindsOfMagic", -hero.GetEffectiveWindsCostForSpell(this));
+                var windsCost = hero.GetEffectiveWindsCostForSpell(this);
+                info.AddCustomResource("WindsOfMagic", -windsCost);
+
+                if (Template.StringID == "GazeUvMork" && hero.HasAttribute("FreeGazeUvMorkNextCast"))
+                {
+                    hero.RemoveAttribute("FreeGazeUvMorkNextCast");
+                }
             }
         }
     }

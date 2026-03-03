@@ -1,5 +1,7 @@
 ﻿using HarmonyLib;
 using System;
+using System.Reflection;
+using Helpers;
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
@@ -106,13 +108,26 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
         private static readonly Dictionary<MapEvent, RetreatRoutingState> RetreatRoutingStateByMapEvent =
             new Dictionary<MapEvent, RetreatRoutingState>();
 
+        private static readonly Dictionary<MapEvent, List<PendingFugitivePartySpawn>> PendingFugitivePartySpawnsByMapEvent =
+            new Dictionary<MapEvent, List<PendingFugitivePartySpawn>>();
+
         // for vanilla overwriting later
         private static readonly HashSet<MobileParty> PostRetreatPartiesNeedingFinalOverrides =
             new HashSet<MobileParty>();
 
+        private static readonly MethodInfo BattleObserverGetterMethod =
+            typeof(MapEvent)
+                .GetProperty("BattleObserver", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                ?.GetGetMethod(nonPublic: true);
+
         private static readonly Func<MapEvent, IBattleObserver> BattleObserverGetter =
-            AccessTools.MethodDelegate<Func<MapEvent, IBattleObserver>>(
-                AccessTools.PropertyGetter(typeof(MapEvent), "BattleObserver"));
+            BattleObserverGetterMethod != null
+                ? (Func<MapEvent, IBattleObserver>)Delegate.CreateDelegate(
+                    typeof(Func<MapEvent, IBattleObserver>),
+                    firstArgument: null,
+                    method: BattleObserverGetterMethod,
+                    throwOnBindFailure: false)
+                : null;
 
         private sealed class RetreatRoutingState
         {
@@ -140,6 +155,18 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
             {
                 RetreatingParties = retreatingParties;
                 AttackerParty = attackerParty;
+            }
+        }
+
+        private sealed class PendingFugitivePartySpawn
+        {
+            public readonly Hero Hero;
+            public readonly Dictionary<CharacterObject, int> EscapedTroops;
+
+            public PendingFugitivePartySpawn(Hero hero, Dictionary<CharacterObject, int> escapedTroops)
+            {
+                Hero = hero;
+                EscapedTroops = new Dictionary<CharacterObject, int>(escapedTroops);
             }
         }
 
@@ -482,7 +509,7 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
         private static void NotifyTroopRouted(MapEventSide retreatingSide, PartyBase troopParty, CharacterObject troop)
         {
             var mapEvent = retreatingSide.MapEvent;
-            var battleObserver = mapEvent != null ? BattleObserverGetter(mapEvent) : null;
+            var battleObserver = mapEvent != null ? BattleObserverGetter?.Invoke(mapEvent) : null;
             if (battleObserver == null)
                 return;
 
@@ -651,7 +678,12 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
 
                 // allocated roster stays consistent
                 retreatingSide.OnTroopRouted(candidate.TroopDescriptor, isOrderRetreat: false);
-                RemoveTroopFromSimulationList(retreatingSide, candidate.TroopDescriptor); RecordEscapedTroop(candidate.TroopParty, candidate.Troop);
+                RemoveTroopFromSimulationList(retreatingSide, candidate.TroopDescriptor);
+
+                if (ShouldUsePostRetreatCustom(mapEvent, retreatingSide))
+                {
+                    RecordEscapedTroop(candidate.TroopParty, candidate.Troop);
+                }
                 NotifyTroopRouted(retreatingSide, candidate.TroopParty, candidate.Troop);
                 routedTroopCount++;
             }
@@ -660,12 +692,42 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
             return routedTroopCount > 0;
         }
 
+        private static bool ShouldUseRetreatRouting(MapEvent mapEvent, MapEventSide mapEventSide)
+        {
+            if (mapEvent == null || mapEventSide == null)
+                return false;
+
+            if (mapEvent.EventType == MapEvent.BattleTypes.FieldBattle)
+                return true;
+
+            return mapEvent.MapEventSettlement?.SiegeEvent != null;
+        }
+
+        private static bool ShouldUsePostRetreatCustom(MapEvent mapEvent, MapEventSide mapEventSide)
+        {
+            if (!ShouldUseRetreatRouting(mapEvent, mapEventSide))
+                return false;
+
+            var siegeEvent = mapEvent.MapEventSettlement?.SiegeEvent;
+            if (siegeEvent == null)
+                return true;
+
+            var besiegerLeaderParty = siegeEvent.BesiegerCamp?.LeaderParty?.Party;
+            if (besiegerLeaderParty == null)
+                return false;
+
+            return mapEventSide.LeaderParty == besiegerLeaderParty;
+        }
+
         [HarmonyPatch(typeof(MapEvent), "CheckSideRunAway")]
         private static class MapEvent_CheckSideRunAway_Patch
         {
             private static bool Prefix(MapEvent __instance, MapEventSide mapEventSide)
             {
                 if (__instance.RetreatingSide != BattleSideEnum.None)
+                    return true;
+
+                if (!ShouldUseRetreatRouting(__instance, mapEventSide))
                     return true;
 
                 var retreatLeaderParty = mapEventSide.LeaderParty;
@@ -736,6 +798,68 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
             }
         }
 
+        private static void RegisterPendingFugitivePartySpawn(
+    MapEvent mapEvent,
+    Hero fugitiveHero,
+    Dictionary<CharacterObject, int> escapedTroops)
+        {
+            if (mapEvent == null || fugitiveHero == null || escapedTroops == null || escapedTroops.Count <= 0)
+                return;
+
+            if (!PendingFugitivePartySpawnsByMapEvent.TryGetValue(mapEvent, out var pendingSpawns))
+            {
+                pendingSpawns = new List<PendingFugitivePartySpawn>();
+                PendingFugitivePartySpawnsByMapEvent[mapEvent] = pendingSpawns;
+            }
+
+            pendingSpawns.Add(new PendingFugitivePartySpawn(fugitiveHero, escapedTroops));
+        }
+
+        private static void SpawnPendingFugitivePartiesIfAny(MapEvent mapEvent)
+        {
+            if (mapEvent == null)
+                return;
+
+            if (!PendingFugitivePartySpawnsByMapEvent.TryGetValue(mapEvent, out var pendingSpawns) ||
+                pendingSpawns == null || pendingSpawns.Count <= 0)
+            {
+                PendingFugitivePartySpawnsByMapEvent.Remove(mapEvent);
+                return;
+            }
+
+            for (var i = 0; i < pendingSpawns.Count; i++)
+            {
+                var pendingSpawn = pendingSpawns[i];
+                var fugitiveHero = pendingSpawn.Hero;
+                if (fugitiveHero == null)
+                    continue;
+
+                var spawnSettlement = fugitiveHero.CurrentSettlement ?? SettlementHelper.GetBestSettlementToSpawnAround(fugitiveHero);
+                if (spawnSettlement == null)
+                    continue;
+
+                var targetParty = MobilePartyHelper.SpawnLordParty(fugitiveHero, spawnSettlement);
+                if (targetParty == null)
+                    continue;
+
+                if (targetParty.LeaderHero != fugitiveHero)
+                {
+                    fugitiveHero.ChangeState(Hero.CharacterStates.Active);
+                    AddHeroToPartyAction.Apply(fugitiveHero, targetParty, showNotification: false);
+                    targetParty.ChangePartyLeader(fugitiveHero);
+                }
+
+                foreach (var kvp in pendingSpawn.EscapedTroops)
+                {
+                    targetParty.MemberRoster.AddToCounts(kvp.Key, kvp.Value, insertAtFront: false, woundedCount: 0);
+                }
+
+                AdjustMobilePartyMoraleToTarget(targetParty, POST_RETREAT_TARGET_MORALE);
+                SetDisorganizedForHours(targetParty, POST_RETREAT_DISORGANIZED_HOURS);
+            }
+
+            PendingFugitivePartySpawnsByMapEvent.Remove(mapEvent);
+        }
         private static void AdjustMobilePartyMoraleToTarget(MobileParty mobileParty, float targetMorale)
         {
             var moraleDelta = targetMorale - mobileParty.Morale;
@@ -766,6 +890,7 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
                 }
 
                 PendingRetreatCooldownByMapEvent.Remove(__instance);
+                SpawnPendingFugitivePartiesIfAny(__instance);
                 RetreatRoutingStateByMapEvent.Remove(__instance);
             }
         }
@@ -786,6 +911,8 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
                 }
 
                 var mapEvent = partySide.MapEvent;
+                if (!ShouldUseRetreatRouting(mapEvent, partySide))
+                    return true;
 
                 // once retreat has started keep vanilla behavior
                 if (mapEvent.RetreatingSide != BattleSideEnum.None)
@@ -841,6 +968,8 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
             {
                 if (defeatedParties == null || defeatedParties.Count <= 0)
                     return;
+                if (__instance.EventType != MapEvent.BattleTypes.FieldBattle && __instance.MapEventSettlement?.SiegeEvent == null)
+                    return;
 
                 for (var i = 0; i < defeatedParties.Count; i++)
                 {
@@ -851,6 +980,11 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
 
                     if (!EscapedTroopsByParty.TryGetValue(partyBase, out var cache))
                         continue;
+                    if (!ShouldUsePostRetreatCustom(__instance, partyBase.MapEventSide))
+                    {
+                        EscapedTroopsByParty.Remove(partyBase);
+                        continue;
+                    }
 
                     var shouldKeepEscapedTroops = !cache.IsLordParty;
 
@@ -866,17 +1000,15 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
                             cache.OriginalLeaderHero != null &&
                             cache.OriginalLeaderHero.HeroState == Hero.CharacterStates.Fugitive)
                         {
-                            cache.OriginalLeaderHero.ChangeState(Hero.CharacterStates.Active);
-                            AddHeroToPartyAction.Apply(cache.OriginalLeaderHero, partyBase.MobileParty, showNotification: false);
-                            partyBase.MobileParty.ChangePartyLeader(cache.OriginalLeaderHero);
+                            RegisterPendingFugitivePartySpawn(__instance, cache.OriginalLeaderHero, cache.EscapedTroops);
+                            EscapedTroopsByParty.Remove(partyBase);
+                            continue;
                         }
 
                         foreach (var kvp in cache.EscapedTroops)
                         {
                             partyBase.MemberRoster.AddToCounts(kvp.Key, kvp.Value, insertAtFront: false, woundedCount: 0);
                         }
-                        AdjustMobilePartyMoraleToTarget(partyBase.MobileParty, POST_RETREAT_TARGET_MORALE);
-                        SetDisorganizedForHours(partyBase.MobileParty, POST_RETREAT_DISORGANIZED_HOURS);
                         PostRetreatPartiesNeedingFinalOverrides.Add(partyBase.MobileParty);
                     }
 
@@ -885,17 +1017,9 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
             }
         }
 
-        [HarmonyPatch]
-        private static class DisorganizedStateCampaignBehavior_OnMapEventEnd_Patch
+        [HarmonyPatch(typeof(CampaignEventDispatcher), nameof(CampaignEventDispatcher.OnMapEventEnded))]
+        private static class CampaignEventDispatcher_OnMapEventEnded_Patch
         {
-            private static System.Reflection.MethodBase TargetMethod()
-            {
-                var behaviorType =
-                    AccessTools.TypeByName("TaleWorlds.CampaignSystem.CampaignBehaviors.DisorganizedStateCampaignBehavior");
-
-                return AccessTools.Method(behaviorType, "OnMapEventEnd");
-            }
-
             private static void Postfix(MapEvent mapEvent)
             {
                 if (PostRetreatPartiesNeedingFinalOverrides.Count <= 0)
@@ -908,6 +1032,30 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
                 }
 
                 PostRetreatPartiesNeedingFinalOverrides.Clear();
+            }
+        }
+
+        [HarmonyPatch(typeof(DefaultSettlementValueModel), "GeographicalAdvantageForFaction")]
+        private static class DefaultSettlementValueModel_GeographicalAdvantageForFaction_Patch
+        {
+            private static bool Prefix(IFaction faction, ref float __result)
+            {
+                if (faction == null)
+                    return true;
+
+                if (faction.FactionMidSettlement != null)
+                    return true;
+
+                if (faction is Clan clan)
+                {
+                    clan.CalculateMidSettlement();
+
+                    if (clan.FactionMidSettlement != null)
+                        return true;
+                }
+
+                __result = 0f;
+                return false;
             }
         }
     }

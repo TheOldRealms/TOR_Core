@@ -77,6 +77,16 @@ public class WaaaghBehavior : CampaignBehaviorBase
         // Only apply to Greenskin players
         if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.GREENSKIN) return;
         if (mapEvent == null || !mapEvent.IsPlayerMapEvent) return;
+        // aborting raid
+        if (mapEvent.IsRaid
+            && mapEvent.MapEventSettlement?.IsVillage == true
+            && mapEvent.BattleState == BattleState.None
+            && mapEvent.PlayerSide == BattleSideEnum.Attacker
+            && mapEvent.AttackerSide.TroopCount > 0)
+        {
+            UpdateWaaaghState();
+            return;
+        }
 
         var playerWon = mapEvent.WinningSide == mapEvent.PlayerSide;
         if (!playerWon)

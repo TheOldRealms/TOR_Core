@@ -72,15 +72,25 @@ public class OrcShamanCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
     private static bool IsWearingLightArmor(Agent agent)
     {
         if (agent == null) return false;
-        float totalWeight = 0f;
-        for (var i = 0; i < 4; i++)
-        {
-            if (!agent.SpawnEquipment[i].IsEmpty)
-            {
-                totalWeight += agent.SpawnEquipment[i].GetEquipmentElementWeight();
-            }
-        }
-        return totalWeight < 15f;
+
+        float totalArmorWeight = 0f;
+
+        var head = agent.SpawnEquipment[EquipmentIndex.Head];
+        if (!head.IsEmpty) totalArmorWeight += head.GetEquipmentElementWeight();
+
+        var body = agent.SpawnEquipment[EquipmentIndex.Body];
+        if (!body.IsEmpty) totalArmorWeight += body.GetEquipmentElementWeight();
+
+        var legs = agent.SpawnEquipment[EquipmentIndex.Leg];
+        if (!legs.IsEmpty) totalArmorWeight += legs.GetEquipmentElementWeight();
+
+        var gloves = agent.SpawnEquipment[EquipmentIndex.Gloves];
+        if (!gloves.IsEmpty) totalArmorWeight += gloves.GetEquipmentElementWeight();
+
+        var cape = agent.SpawnEquipment[EquipmentIndex.Cape];
+        if (!cape.IsEmpty) totalArmorWeight += cape.GetEquipmentElementWeight();
+
+        return totalArmorWeight < 15f;
     }
 
     protected override void RegisterAll()
@@ -211,9 +221,12 @@ public class OrcShamanCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                 attacker.IsMainAgent && mask == AttackTypeMask.Spell && IsWearingLightArmor(attacker)));
         _visionsUvDaOrcaynePassive3.Initialize(CareerID, "Shrine defilement provides more meat and shinies.", "VisionsUvDaOrcayne", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special, true)); // CUSTOM - needs implementation
-        _visionsUvDaOrcaynePassive4.Initialize(CareerID, "10% extra damage when wielding a staff.", "VisionsUvDaOrcayne", false, ChoiceType.Passive, null,
-            new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.Spell, (attacker, victim, mask) =>
-                attacker.IsMainAgent && mask == AttackTypeMask.Melee && !attacker.WieldedWeapon.IsEmpty && attacker.WieldedWeapon.Item.IsMagicalStaff()));
+        _visionsUvDaOrcaynePassive4.Initialize(CareerID, "10% extra melee damage when wielding a staff.", "VisionsUvDaOrcayne", false, ChoiceType.Passive, null,
+            new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.Melee, (attacker, victim, mask) =>
+                attacker.IsMainAgent
+                && mask == AttackTypeMask.Melee
+                && !attacker.WieldedWeapon.IsEmpty
+                && attacker.WieldedWeapon.Item.IsMagicalStaff()));
 
         // Giftz from Da Great Green Passives
         _giftzFromDaGreatGreenPassive1.Initialize(CareerID, "Looting shrines grants Faith experience.", "GiftzFromDaGreatGreen", false, ChoiceType.Passive, null,
@@ -256,7 +269,7 @@ public class OrcShamanCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
         _gorkAnMorkAreWatchinPassive3.Initialize(CareerID, "10% Wardsave for Greenskins.", "GorkAnMorkAreWatchin", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.All, (attacker, victim, mask) =>
-                victim.BelongsToMainParty() && !victim.IsHero && (victim.Character as CharacterObject).IsOrc()));
+                victim.BelongsToMainParty() && !victim.IsHero && (victim.Character as CharacterObject).IsGreenskin()));
         _gorkAnMorkAreWatchinPassive4.Initialize(CareerID, "+70 HP for Shaman Boss companion.", "GorkAnMorkAreWatchin", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(70, PassiveEffectType.Special, true)); // CUSTOM - companion-specific buff
 

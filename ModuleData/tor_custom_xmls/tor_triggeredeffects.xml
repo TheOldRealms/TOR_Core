@@ -1209,8 +1209,22 @@
 							 ScriptNameToTrigger="none" >
 							 <ImbuedStatusEffect>kow_secular_phys</ImbuedStatusEffect>
 	 </TriggeredEffectTemplate>
-                             	
-							 
+	 
+	<TriggeredEffectTemplate StringID="swiftshiver_reload_bonus"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             Radius="5"
+                             HasShockWave="false"
+                             TargetType="Self"
+                             ImbuedStatusEffectDuration="20"
+                             DamageVariance="0"
+                             ScriptNameToTrigger="none">
+        <ImbuedStatusEffect>swiftshiver_reload_bonus</ImbuedStatusEffect>
+    </TriggeredEffectTemplate>
+                             							 
 	<TriggeredEffectTemplate StringID="apply_secular_seal_trait2"
                              BurstParticleEffectPrefab="none"
                              SoundEffectId="none"
@@ -2505,6 +2519,20 @@
         <ImbuedStatusEffect>arcane_conduit_res_debuff</ImbuedStatusEffect>
         <ImbuedStatusEffect>arcane_conduit_winds_reg</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
+	<TriggeredEffectTemplate StringID="troll_regeneration"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             Radius="3"
+                             HasShockWave="false"
+                             TargetType="Self"
+                             ImbuedStatusEffectDuration="2.1"
+                             DamageVariance="0.0"
+                             ScriptNameToTrigger="none">
+        <ImbuedStatusEffect>troll_regeneration</ImbuedStatusEffect>
+    </TriggeredEffectTemplate>
     <TriggeredEffectTemplate StringID="apply_knightly_charge"
                              BurstParticleEffectPrefab="none"
                              SoundEffectId="none"
@@ -2560,6 +2588,34 @@
                              ScriptNameToTrigger="none">
         <ImbuedStatusEffect>let_them_have_it_unstoppable</ImbuedStatusEffect>
         <ImbuedStatusEffect>let_them_have_it_unbreakable</ImbuedStatusEffect>
+    </TriggeredEffectTemplate>
+	    <TriggeredEffectTemplate StringID="loec_blessing_mvs"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             Radius="3"
+                             HasShockWave="false"
+                             TargetType="Self"
+                             ImbuedStatusEffectDuration="2.1"
+                             DamageVariance="0.0"
+                             ScriptNameToTrigger="none">
+        <ImbuedStatusEffect>loec_blessing_mvs</ImbuedStatusEffect>
+    </TriggeredEffectTemplate>
+    <TriggeredEffectTemplate StringID="loec_blessing_ats"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             Radius="3"
+                             HasShockWave="false"
+                             TargetType="Self"
+                             ImbuedStatusEffectDuration="2.1"
+                             DamageVariance="0.0"
+                             ScriptNameToTrigger="none">
+        <ImbuedStatusEffect>loec_blessing_ats</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
     <TriggeredEffectTemplate StringID="apply_arrow_of_kurnous"
                              BurstParticleEffectPrefab="none"
@@ -3481,6 +3537,20 @@
                              ScriptNameToTrigger="none">
 		<ImbuedStatusEffect>physical_bonus_20</ImbuedStatusEffect>
 	</TriggeredEffectTemplate>
+    <TriggeredEffectTemplate StringID="greenskin_extorsion_debuff"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             Radius="10"
+                             HasShockWave="false"
+                             TargetType="Friendly"
+                             ImbuedStatusEffectDuration="10"
+                             DamageVariance="0.0"
+                             ScriptNameToTrigger="none">
+        <ImbuedStatusEffect>greenskin_extorsion_debuff</ImbuedStatusEffect>
+    </TriggeredEffectTemplate>
 
 	<!-- Big Waaagh! Magic -->
 	<TriggeredEffectTemplate StringID="call_of_da_green_buff"

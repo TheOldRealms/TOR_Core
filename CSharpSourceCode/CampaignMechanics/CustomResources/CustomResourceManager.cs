@@ -538,8 +538,8 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 foreach (var killed in killedTroops)
                 {
                     // Teef based on tier: higher tier enemies = more valuable loot
-                    int teefFromTroop = BaseTeefPerKill * Math.Min(1, killed.Troop.Tier);
-
+                    int tierMultiplier = Math.Max(1, killed.Troop.Tier);
+                    int teefFromTroop = BaseTeefPerKill * tierMultiplier;
                     if (killed.Troop.IsHero)
                     {
                         teefFromTroop += 50;
@@ -574,6 +574,8 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             if (PartyScreenHelper.GetActivePartyState().PartyScreenLogic == null) return;
 
             if (PartyScreenHelper.GetActivePartyState().PartyScreenMode != PartyScreenMode.Loot) return;
+
+            if (mapEvent.DefeatedSide == BattleSideEnum.None) return;
 
 
             var result = 0f;

@@ -26,6 +26,7 @@ namespace TOR_Core.AbilitySystem.Scripts
     public class CallOfDaGreen : CareerAbilityScript
     {
         private const string GAZE_UV_MORK_ID = "GazeUvMork";
+        private const string FREE_GAZE_UV_MORK_NEXT_CAST_ATTRIBUTE = "FreeGazeUvMorkNextCast";
         private const string WINDS_LINK_EFFECT = "callofdagreen_windslink";
         private const string WINDS_DEATH_LINK_EFFECT = "callofdagreen_windsdeathlink";
         private const string PHYSICAL_RESISTANCE_10_EFFECT = "callofdagreen_physical_resistance_10";
@@ -108,8 +109,11 @@ namespace TOR_Core.AbilitySystem.Scripts
             if (CasterAgent == null || !CasterAgent.IsActive()) return;
 
             float duration = Ability.Template.Duration;
-            
-            
+            if (Hero.MainHero.HasCareerChoice("BrutalCunninKeystone"))
+            {
+                CasterAgent.ApplyStatusEffect(PHYSICAL_RESISTANCE_10_EFFECT, CasterAgent, duration, false);
+            }
+
             // PowerUvDaWaaaghKeystone: 50% physical resistance
             if (Hero.MainHero.HasCareerChoice("PowerUvDaWaaaghKeystone"))
             {
@@ -151,6 +155,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             if (gazeUvMork != null)
             {
                 gazeUvMork.SetCoolDown(0);
+                Hero.MainHero.AddAttribute(FREE_GAZE_UV_MORK_NEXT_CAST_ATTRIBUTE);
             }
         }
     }

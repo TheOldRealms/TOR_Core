@@ -256,7 +256,13 @@ namespace TOR_Core.BattleMechanics
 
         private static void TryWieldSlotIfNotAlready(Agent agent, EquipmentIndex weaponSlot)
         {
-            if (agent.GetPrimaryWieldedItemIndex() == weaponSlot)
+            EquipmentIndex currentSlot = agent.GetPrimaryWieldedItemIndex();
+            if (currentSlot == weaponSlot)
+            {
+                return;
+            }
+
+            if (currentSlot == EquipmentIndex.None && !agent.WieldedWeapon.IsEmpty)
             {
                 return;
             }

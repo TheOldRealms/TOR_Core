@@ -33,6 +33,8 @@ namespace TOR_Core.Models
 {
     public class TORAbilityModel : GameModel
     {
+        private const string GAZE_UV_MORK_ID = "GazeUvMork";
+        private const string FREE_GAZE_UV_MORK_NEXT_CAST_ATTRIBUTE = "FreeGazeUvMorkNextCast";
         public SkillObject GetRelevantSkillForAbility(AbilityTemplate ability)
         {
             return ability.AbilityType switch
@@ -474,6 +476,10 @@ namespace TOR_Core.Models
                 if (character.IsPlayerCharacter)
                 {
                     var player = Hero.MainHero;
+                    if (template.StringID == GAZE_UV_MORK_ID && player.HasAttribute(FREE_GAZE_UV_MORK_NEXT_CAST_ATTRIBUTE))
+                    {
+                        return 0;
+                    }
 
                     CareerHelper.ApplyBasicCareerPassives(player, ref cost, PassiveEffectType.WindsCostReduction, true);
                 }

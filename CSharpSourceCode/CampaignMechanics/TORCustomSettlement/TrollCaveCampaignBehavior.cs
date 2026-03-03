@@ -20,7 +20,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         public override void RegisterEvents()
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, EnforceWarWithTrolls);
-            CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, OnDailyTickSettlement);
+            CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, OnDailyTick);
             CampaignEvents.MapEventEnded.AddNonSerializedListener(this, OnMapEventEnded);
         }
 
@@ -58,19 +58,21 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             dataStore.SyncData("_caveClearedTime", ref _caveClearedTime);
         }
 
-        private void OnDailyTickSettlement(Settlement settlement)
+        private void OnDailyTick()
         {
-            if (settlement.SettlementComponent is not TrollCaveComponent trollCave)
-                return;
-
-            // Check if cooldown has expired and reactivate
-            if (!trollCave.IsActive && _caveClearedTime.TryGetValue(settlement.StringId, out var clearedTime))
+            foreach (var settlementId in _caveClearedTime.Keys.ToList())
             {
-                if (CampaignTime.Now.ToDays - clearedTime.ToDays >= CooldownDays)
+                var clearedTime = _caveClearedTime[settlementId];
+                if (CampaignTime.Now.ToDays - clearedTime.ToDays < CooldownDays)
                 {
-                    trollCave.IsActive = true;
-                    _caveClearedTime.Remove(settlement.StringId);
+                    continue;
                 }
+
+                var settlement = Settlement.Find(settlementId);
+                var trollCave = (TrollCaveComponent)settlement.SettlementComponent;
+
+                trollCave.IsActive = true;
+                _caveClearedTime.Remove(settlementId);
             }
         }
 

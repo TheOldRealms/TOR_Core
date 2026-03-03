@@ -130,22 +130,34 @@ namespace TOR_Core.AbilitySystem
                     _hasInitializedForMainAgent = true;
                 }
             }
-            else if (IsAbilityModeAvailableForMainAgent())
+            else
             {
-                CheckIfMainAgentHasPendingActivation();
+                if (_shouldSheathWeapon || _shouldWieldWeapon)
+                {
+                    UpdateWieldedItems();
+                }
 
-                HandleInput(dt);
-
-                UpdateWieldedItems();
-
-                HandleAnimations();
+                if (IsAbilityModeAvailableForMainAgent())
+                {
+                    CheckIfMainAgentHasPendingActivation();
+                    HandleInput(dt);
+                    HandleAnimations();
+                }
             }
+        }
+
+        private void CacheWieldedItemsForRestore()
+        {
+            if (_shouldWieldWeapon)
+                return;
+
+            _mainHand = Agent.Main.GetPrimaryWieldedItemIndex();
+            _offHand = Agent.Main.GetOffhandWieldedItemIndex();
         }
 
         private void EnableTargetingMode()
         {
-            _mainHand = Agent.Main.GetPrimaryWieldedItemIndex();
-            _offHand = Agent.Main.GetOffhandWieldedItemIndex();
+            CacheWieldedItemsForRestore();
             _currentState = AbilityModeState.Targeting;
             _abilityView.MissionScreen?.UnregisterRadialMenuObject(_abilityView);
 
@@ -192,8 +204,7 @@ namespace TOR_Core.AbilitySystem
         {
             _currentState = AbilityModeState.QuickMenuSelection;
             _abilityView.MissionScreen?.RegisterRadialMenuObject(_abilityView);
-            _mainHand = Agent.Main.GetPrimaryWieldedItemIndex();
-            _offHand = Agent.Main.GetOffhandWieldedItemIndex();
+            CacheWieldedItemsForRestore();
             ChangeKeyBindings();
             SlowDownTime(true);
         }
@@ -354,8 +365,7 @@ namespace TOR_Core.AbilitySystem
                                     }
                                     else
                                     {
-                                        _mainHand = Agent.Main.GetPrimaryWieldedItemIndex();
-                                        _offHand = Agent.Main.GetOffhandWieldedItemIndex();
+                                        CacheWieldedItemsForRestore();
                                         _lastActivationDeltaTime = dt;
                                         _elapsedTimeSinceLastActivation = 0;
                                         _disableCombatActionsAfterCast = true;
@@ -371,8 +381,7 @@ namespace TOR_Core.AbilitySystem
                         {
                             if (_abilityComponent.CurrentAbility != null && !_abilityComponent.CurrentAbility.IsDisabled(Agent.Main, out _) && IsSniperScopeDisabled())
                             {
-                                _mainHand = Agent.Main.GetPrimaryWieldedItemIndex();
-                                _offHand = Agent.Main.GetOffhandWieldedItemIndex();
+                                CacheWieldedItemsForRestore();
                                 _abilityComponent.LastCastWasQuickCast = true;
                                 if (!Agent.Main.TryCastCurrentAbility(out TextObject failureReason))
                                 {
@@ -404,8 +413,7 @@ namespace TOR_Core.AbilitySystem
                                 }
                                 else
                                 {
-                                    _mainHand = Agent.Main.GetPrimaryWieldedItemIndex();
-                                    _offHand = Agent.Main.GetOffhandWieldedItemIndex();
+                                    CacheWieldedItemsForRestore();
                                     _lastActivationDeltaTime = dt;
                                     _elapsedTimeSinceLastActivation = 0;
                                     _disableCombatActionsAfterCast = true;
@@ -471,6 +479,7 @@ namespace TOR_Core.AbilitySystem
                 if (Agent.Main.GetPrimaryWieldedItemIndex() != EquipmentIndex.None)
                 {
                     Agent.Main.TryToSheathWeaponInHand(Agent.HandIndex.MainHand, Agent.WeaponWieldActionType.WithAnimation);
+                    return;
                 }
 
                 if (Agent.Main.GetOffhandWieldedItemIndex() != EquipmentIndex.None)
@@ -478,23 +487,41 @@ namespace TOR_Core.AbilitySystem
                     if (!Agent.Main.WieldedOffhandWeapon.Item.IsMagicalStaff())
                     {
                         Agent.Main.TryToSheathWeaponInHand(Agent.HandIndex.OffHand, Agent.WeaponWieldActionType.WithAnimation);
+                        return;
                     }
-
                 }
+
                 _shouldSheathWeapon = false;
             }
 
             if (_currentState == AbilityModeState.Off && _shouldWieldWeapon)
             {
-                if (Agent.Main.GetPrimaryWieldedItemIndex() != _mainHand)
+                if (_disableCombatActionsAfterCast)
+                    return;
+
+                var currentMainHand = Agent.Main.GetPrimaryWieldedItemIndex();
+                var currentOffhand = Agent.Main.GetOffhandWieldedItemIndex();
+
+                bool isMainHandRestored = _mainHand == EquipmentIndex.None || currentMainHand == _mainHand;
+                bool isOffhandRestored = _offHand == EquipmentIndex.None || currentOffhand == _offHand;
+
+                if (isMainHandRestored && isOffhandRestored)
+                {
+                    _shouldWieldWeapon = false;
+                    return;
+                }
+
+                if (_mainHand != EquipmentIndex.None && !isMainHandRestored)
                 {
                     Agent.Main.TryToWieldWeaponInSlot(_mainHand, Agent.WeaponWieldActionType.WithAnimation, false);
+                    return;
                 }
-                else if (Agent.Main.GetOffhandWieldedItemIndex() != _offHand)
+
+                if (_offHand != EquipmentIndex.None && !isOffhandRestored)
                 {
                     Agent.Main.TryToWieldWeaponInSlot(_offHand, Agent.WeaponWieldActionType.WithAnimation, false);
+                    return;
                 }
-                _shouldWieldWeapon = false;
             }
         }
 
