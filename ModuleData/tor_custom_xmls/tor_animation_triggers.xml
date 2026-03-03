@@ -24,5 +24,45 @@
         action_name="act_lhm_stomp_attack_down_troll"
         animation_percent_to_trigger="0.5"
         bone_index="7"
+        triggered_effect="troll_smash" />
+    <AnimationTrigger
+        action_name="act_quick_release_slashleft_2h_troll"
+        animation_percent_to_trigger="0.5"
+        bone_index="7"
+        triggered_effect="troll_smash" />
+    <AnimationTrigger
+        action_name="act_release_slashleft_2h_troll"
+        animation_percent_to_trigger="0.5"
+        bone_index="7"
+        triggered_effect="troll_smash" />
+    <AnimationTrigger
+        action_name="act_quick_release_slashleft_2h_left_stance_troll"
+        animation_percent_to_trigger="0.5"
+        bone_index="7"
+        triggered_effect="troll_smash" />
+    <AnimationTrigger
+        action_name="act_release_slashleft_2h_left_stance_troll"
+        animation_percent_to_trigger="0.5"
+        bone_index="7"
+        triggered_effect="troll_smash" />
+    <AnimationTrigger
+        action_name="act_quick_release_slashright_2h_troll"
+        animation_percent_to_trigger="0.5"
+        bone_index="7"
+        triggered_effect="troll_smash" />
+    <AnimationTrigger
+        action_name="act_release_slashright_2h_troll"
+        animation_percent_to_trigger="0.5"
+        bone_index="7"
+        triggered_effect="troll_smash" />
+    <AnimationTrigger
+        action_name="act_quick_release_slashright_2h_left_stance_troll"
+        animation_percent_to_trigger="0.5"
+        bone_index="7"
+        triggered_effect="troll_smash" />
+    <AnimationTrigger
+        action_name="act_release_slashright_2h_left_stance_troll"
+        animation_percent_to_trigger="0.5"
+        bone_index="7"
         triggered_effect="troll_smash" />		
 </AnimationTriggers>
