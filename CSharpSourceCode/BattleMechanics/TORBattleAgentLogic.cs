@@ -267,6 +267,12 @@ namespace TOR_Core.BattleMechanics
                 return;
             }
 
+            MissionWeapon missionWeapon = agent.Equipment[weaponSlot];
+            if (missionWeapon.IsEmpty || missionWeapon.CurrentUsageItem == null)
+            {
+                return;
+            }
+
             agent.TryToWieldWeaponInSlot(weaponSlot, Agent.WeaponWieldActionType.WithAnimation, false);
         }
 
