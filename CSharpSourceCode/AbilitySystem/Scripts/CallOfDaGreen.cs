@@ -69,7 +69,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             {
                 if (!agent.IsActive()) continue;
                 if (agent == CasterAgent) continue;  // Exclude the player
-                if (!agent.BelongsToMainParty()) continue;
+                if (!agent.Team.IsPlayerAlly) continue;
 
                 var character = agent.Character as CharacterObject;
                 if (character == null) continue;
