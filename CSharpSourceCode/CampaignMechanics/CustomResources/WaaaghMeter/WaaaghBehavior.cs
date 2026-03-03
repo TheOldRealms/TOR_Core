@@ -227,7 +227,7 @@ public class WaaaghBehavior : CampaignBehaviorBase
         {
             _troops = CharacterObject.All.WhereQ(x =>
                 x.Culture.StringId == TORConstants.Cultures.GREENSKIN && x.Tier >= 1 && x.Tier <= 3 && x.Occupation == Occupation.Soldier &&
-                !x.IsHero).ToList();
+                !x.IsHero && x.IsGoblin() || x.IsOrc()).ToList();
         }
 
         if (_troops.Count == 0) return;

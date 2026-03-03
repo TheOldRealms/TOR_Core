@@ -184,9 +184,8 @@ namespace TOR_Core.CampaignMechanics
             {
                 int currentTrolls = party.MemberRoster.GetTroopCount(_troll);
                 if (currentTrolls >= MaxTrollsPerParty) return;
-
-                // 5% chance to recruit 1 troll, same as treemen
-                if (MBRandom.RandomFloat < 0.05f)
+                
+                if (MBRandom.RandomFloat < 0.25f)
                 {
                     party.MemberRoster.AddToCounts(_troll, 1);
                 }
