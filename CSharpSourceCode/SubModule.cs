@@ -65,7 +65,7 @@ namespace TOR_Core
     {
         private static float _tick = 0f;
         private static int _num = -1;
-        private static bool ENABLECOPYSHADERS = false;
+        private static bool ENABLECOPYSHADERS = true;
         public static Harmony HarmonyInstance { get; private set; }
 
         protected override void OnBeforeInitialModuleScreenSetAsRoot()
