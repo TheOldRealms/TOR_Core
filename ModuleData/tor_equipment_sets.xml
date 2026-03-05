@@ -5555,13 +5555,13 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_dwarf_weapon_mace_002" />
-      <Equipment slot="Body" id="Item.tor_dw_body_armour_basic_dawi_002" />
+      <Equipment slot="Body" id="Item.tor_dw_body_armour_apprentice_001" />
       <Equipment slot="Gloves" id="Item.tor_dw_arm_bracers_militia_001" />
       <Equipment slot="Leg" id="Item.tor_dw_leg_boots_basic_dawi_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_dwarf_weapon_mace_002" />
-      <Equipment slot="Body" id="Item.tor_dw_body_armour_basic_dawi_002" />
+      <Equipment slot="Body" id="Item.tor_dw_body_armour_apprentice_001" />
       <Equipment slot="Gloves" id="Item.tor_dw_arm_bracers_militia_001" />
       <Equipment slot="Leg" id="Item.tor_dw_leg_boots_basic_dawi_001" />
     </EquipmentSet>
@@ -8972,9 +8972,9 @@
       <Equipment slot="Item1" id="Item.tor_we_weapon_2h_sword_001" />
       <Equipment slot="Item2" id="Item.piercing_arrows" />
       <Equipment slot="Item3" id="Item.piercing_arrows" />
-      <Equipment slot="Head" id="Item.tor_we_head_mask_fabric_001" />
+      <Equipment slot="Head" id="tor_we_head_mask_leather_001" />
       <Equipment slot="Body" id="Item.tor_we_body_armor_eternalguard_001" />
-      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_gladeguard_001" />
+      <Equipment slot="Cape" id="tor_we_shoulder_cape_ranger_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_ranger_001" />
     </EquipmentSet>
@@ -8983,9 +8983,9 @@
       <Equipment slot="Item1" id="Item.tor_we_weapon_2h_sword_001" />
       <Equipment slot="Item2" id="Item.piercing_arrows" />
       <Equipment slot="Item3" id="Item.piercing_arrows" />
-      <Equipment slot="Head" id="Item.tor_we_head_mask_fabric_001" />
+      <Equipment slot="Head" id="tor_we_head_mask_leather_001" />
       <Equipment slot="Body" id="Item.tor_we_body_armor_eternalguard_001" />
-      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_gladeguard_001" />
+      <Equipment slot="Cape" id="tor_we_shoulder_cape_ranger_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_ranger_001" />
     </EquipmentSet>

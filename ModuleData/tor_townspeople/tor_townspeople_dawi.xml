@@ -10,8 +10,8 @@
       <Trait id="Calculating" value="1"/>
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template"/>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true"/>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true"/>
     </Equipments>
   </NPCCharacter>
 
@@ -24,8 +24,8 @@
       <Trait id="Calculating" value="1"/>
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template"/>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true"/>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true"/>
     </Equipments>
   </NPCCharacter>
 
@@ -38,8 +38,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 
@@ -53,8 +53,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 
@@ -67,8 +67,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 
@@ -81,8 +81,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 
@@ -96,8 +96,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 
@@ -110,8 +110,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 
@@ -124,8 +124,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 
@@ -138,8 +138,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 
@@ -152,8 +152,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 
@@ -166,8 +166,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 
@@ -181,8 +181,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 
@@ -195,8 +195,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 
@@ -209,8 +209,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 
@@ -223,8 +223,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 
@@ -237,8 +237,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 
@@ -251,8 +251,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 
@@ -265,8 +265,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 
@@ -279,8 +279,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 
@@ -293,8 +293,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 
@@ -307,8 +307,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 
@@ -321,8 +321,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 
@@ -335,8 +335,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 
@@ -349,8 +349,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_dawi_merch2" name="{=str_tor_notable_dawi_merch2}curt Dawi merchant" voice="curt" is_template="true" default_group="Infantry" is_hero="false" race ="dwarf" culture="Culture.sturgia" occupation="Merchant">
@@ -364,8 +364,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_dawi_merch3" name="{=str_tor_notable_dawi_merch3}Daring Dawi merchant" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" race ="dwarf" culture="Culture.sturgia" occupation="Merchant">
@@ -378,8 +378,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_dawi_merch4" name="{=str_tor_notable_dawi_merch4}Softspoken Dawi merchant" voice="softspoken" is_template="true" default_group="Infantry" race ="dwarf" is_hero="false" culture="Culture.sturgia" occupation="Merchant">
@@ -392,8 +392,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_dawi_merch5" name="{=str_tor_notable_dawi_merch5}{FIRSTNAME} the Manciple" voice="softspoken" is_template="true" default_group="Infantry" race ="dwarf" is_hero="false" culture="Culture.sturgia" occupation="Merchant">
@@ -406,8 +406,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_dawi_1" name="{=str_tor_notable_dawi_1}{FIRSTNAME} the Warehouser" voice="ironic" is_template="true" is_female="false" default_group="Infantry" race ="dwarf" is_hero="false" culture="Culture.sturgia" occupation="Merchant">
@@ -419,8 +419,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_dawi_1b" name="{=str_tor_notable_dawi_b}{FIRSTNAME} the Heiress" voice="ironic" is_template="true" is_female="false" default_group="Infantry" race ="dwarf" is_hero="false" culture="Culture.sturgia" occupation="Merchant">
@@ -433,8 +433,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_dawi_2" name="{=str_tor_notable_dawi_2}Puritan male preacher" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" race ="dwarf" culture="Culture.sturgia" occupation="Preacher">
@@ -446,8 +446,8 @@
       <Trait id="Honor" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_dawi_3" name="{=str_tor_notable_dawi_3}Rebellious female preacher" voice="earnest" is_template="true" default_group="Infantry" is_female="false" race ="dwarf" culture="Culture.sturgia" occupation="Preacher">
@@ -459,8 +459,8 @@
       <Trait id="Honor" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dawi_gangleader_1" name="{=str_tor_dawi_gangleader_1}Standard male gang leader" voice="curt" is_template="true" default_group="Infantry" is_hero="false" race ="dwarf" culture="Culture.sturgia" occupation="GangLeader">
@@ -472,8 +472,8 @@
       <Trait id="Mercy" value="-1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dawi_gangleader_2" name="{=str_tor_dawi_gangleader_2}Female gang leader" voice="ironic" is_template="true" default_group="Infantry" is_female="false" race ="dwarf" culture="Culture.sturgia" occupation="GangLeader">
@@ -485,8 +485,8 @@
       <Trait id="Mercy" value="-1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dawi_gangleader_3" name="{=str_tor_dawi_gangleader_3}Male gang leader" voice="ironic" is_template="true" default_group="Infantry" is_female="false" race ="dwarf" culture="Culture.sturgia" occupation="GangLeader">
@@ -500,8 +500,8 @@
       <Trait id="Honor" value="-1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_dawi_artisan_1" name="{=str_tor_notable_dawi_artisan_1}Dawi artisan 1" voice="earnest" is_template="true" default_group="Infantry" culture="Culture.sturgia" race ="dwarf" occupation="Artisan">
@@ -512,8 +512,8 @@
       <Trait id="Generosity" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_dawi_artisan_2" name="{=str_tor_notable_dawi_artisan_2}Dawi artisan 2" voice="curt" is_template="true" default_group="Infantry" culture="Culture.sturgia" race ="dwarf" occupation="Artisan">
@@ -524,8 +524,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_dawi_rural_1" name="{=str_tor_notable_dawi_rural_1}Dawi yeoman" voice="curt" is_template="true" default_group="Infantry" culture="Culture.sturgia" race ="dwarf" occupation="RuralNotable">
@@ -536,8 +536,8 @@
       <Trait id="Generosity" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_dawi_rural_2" name="{=str_tor_notable_dawi_rural_2}Dawi yeoman" voice="softspoken" is_template="true" default_group="Infantry" culture="Culture.sturgia" race ="dwarf" occupation="RuralNotable">
@@ -549,8 +549,8 @@
       <Trait id="Generosity" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dawi_headman_1" name="{=str_dawi_headman_1}Dawi rebellious headman" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.sturgia" race ="dwarf" occupation="Headman">
@@ -562,8 +562,8 @@
       <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dawi_headman_2" name="{=str_dawi_headman_2}Dawi conservative headman" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.sturgia"  race ="dwarf" occupation="Headman">
@@ -575,8 +575,8 @@
       <Trait id="Generosity" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dawi_headman_3" name="{=str_dawi_headman_3}Dawi devious headman" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.sturgia" race ="dwarf" occupation="Headman">
@@ -588,8 +588,8 @@
       <Trait id="Honor" value="-1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" />
-      <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 </NPCCharacters>

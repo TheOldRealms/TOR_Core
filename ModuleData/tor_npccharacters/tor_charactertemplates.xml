@@ -11,13 +11,11 @@
       </beard_tags>
     </face>
     <Traits>
-      <Trait id="HopliteFightingSkills" value="1" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="3" />
-      <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="1" />
-      <Trait id="Valor" value="1" />
-      <Trait id="SpellCasterSkills" value="7" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_bright_wizard_template" />
@@ -35,13 +33,11 @@
       </beard_tags>
     </face>
     <Traits>
-      <Trait id="KnightFightingSkills" value="5" />
-      <Trait id="Commander" value="3" />
-      <Trait id="Surgeon" value="5" />
-      <Trait id="Calculating" value="1" />
-      <Trait id="Mercy" value="3" />
-      <Trait id="Valor" value="1" />
-      <Trait id="SigmarDevoted" value="9" />
+      <Trait id="Mercy" value="2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_warrior_priest_template" />
@@ -59,13 +55,11 @@
       </beard_tags>
     </face>
     <Traits>
-      <Trait id="HopliteFightingSkills" value="5" />
-      <Trait id="RogueSkills" value="3" />
-      <Trait id="ScoutSkills" value="3" />
-      <Trait id="Calculating" value="3" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="Gunner" value="4" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_witch_hunter_template" />
@@ -83,13 +77,11 @@
       </beard_tags>
     </face>
     <Traits>
-      <Trait id="HopliteFightingSkills" value="1" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="3" />
-      <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="1" />
-      <Trait id="Valor" value="1" />
-      <Trait id="SpellCasterSkills" value="7" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_light_wizard_template" />
@@ -107,13 +99,11 @@
       </beard_tags>
     </face>
     <Traits>
-      <Trait id="HopliteFightingSkills" value="1" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="3" />
-      <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="1" />
-      <Trait id="Valor" value="1" />
-      <Trait id="SpellCasterSkills" value="7" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_celestial_wizard_template" />
@@ -131,14 +121,11 @@
       </beard_tags>
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="1" />
-      <Trait id="Manager" value="6" />
-      <Trait id="EngineerSkills" value="7" />
-      <Trait id="Blacksmith" value="4" />
-      <Trait id="Calculating" value="-1" />
-      <Trait id="Mercy" value="1" />
-      <Trait id="Valor" value="1" />
-      <Trait id="Gunner" value="7" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="2" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_engineer_companion_template" />
@@ -150,12 +137,11 @@
       <face_key_template value="BodyProperty.townswoman_empire" />
     </face>
     <Traits>
-      <Trait id="HopliteFightingSkills" value="1" />
-      <Trait id="Surgeon" value="8" />
-      <Trait id="Calculating" value="1" />
-      <Trait id="Mercy" value="5" />
-      <Trait id="Valor" value="7" />
-      <Trait id="ShallyaDevoted" value="7" />
+      <Trait id="Mercy" value="2" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_priestess_of_shallya_template" />
@@ -167,12 +153,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="ArcherFIghtingSkills" value="4" />
-      <Trait id="ScoutSkills" value="7" />
-      <Trait id="RogueSkills" value="3" />
-      <Trait id="Valor" value="1" />
-      <Trait id="Honor" value="1" />
-      <Trait id="Generosity" value="-1" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="2" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_huntsman_wanderer_template" />
@@ -190,14 +175,11 @@
       </beard_tags>
     </face>
     <Traits>
-      <Trait id="HopliteFightingSkills" value="1" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="3" />
-      <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="1" />
-      <Trait id="Valor" value="1" />
-      <Trait id="SpellCasterSkills" value="7" />
-      <Trait id="Blacksmith" value="3" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_gold_wizard_template" />
@@ -215,13 +197,11 @@
       </beard_tags>
     </face>
     <Traits>
-      <Trait id="HopliteFightingSkills" value="1" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="3" />
-      <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="1" />
-      <Trait id="Valor" value="1" />
-      <Trait id="SpellCasterSkills" value="7" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_life_wizard_template" />
@@ -236,13 +216,11 @@
       </beard_tags>
     </face>
     <Traits>
-      <Trait id="HopliteFightingSkills" value="1" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="3" />
-      <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="1" />
-      <Trait id="Valor" value="1" />
-      <Trait id="SpellCasterSkills" value="7" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_beast_wizard_template" />
@@ -254,13 +232,11 @@
       <face_key_template value="BodyProperty.ulric_warrior" />
     </face>
     <Traits>
-      <Trait id="KnightFightingSkills" value="6" />
-      <Trait id="Commander" value="3" />
-      <Trait id="ScoutSkills" value="5" />
-      <Trait id="Calculating" value="1" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="1" />
-      <Trait id="UlricDevoted" value="9" />
+      <Trait id="Mercy" value="2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_priest_of_ulric_template" />
@@ -272,12 +248,11 @@
       <face_key_template value="BodyProperty.empire_captain" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="6" />
-      <Trait id="Commander" value="7" />
-      <Trait id="Manager" value="5" />
-      <Trait id="Calculating" value="2" />
-      <Trait id="Mercy" value="-2" />
-      <Trait id="Valor" value="2" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_empire_captain_template" />
@@ -289,13 +264,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="4" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Manager" value="7" />
-      <Trait id="Politician" value="7" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="2" />
       <Trait id="Calculating" value="2" />
-      <Trait id="Mercy" value="-2" />
-      <Trait id="Valor" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_empire_noble_template" />
@@ -313,12 +286,11 @@
       </beard_tags>
     </face>
     <Traits>
-      <Trait id="KnightFightingSkills" value="5" />
-      <Trait id="Manager" value="5" />
-      <Trait id="Commander" value="3" />
-      <Trait id="Calculating" value="3" />
-      <Trait id="Mercy" value="1" />
-      <Trait id="Valor" value="1" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_bretonnian_knight_template" />
@@ -330,14 +302,11 @@
       <face_key_template value="BodyProperty.townswoman_empire" />
     </face>
     <Traits>
-      <Trait id="HopliteFightingSkills" value="1" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="3" />
-      <Trait id="Calculating" value="3" />
-      <Trait id="Mercy" value="1" />
-      <Trait id="Valor" value="1" />
-      <Trait id="SpellCasterSkills" value="7" />
-      <Trait id="LadyDevoted" value="9" />
+      <Trait id="Mercy" value="2" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="2" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_prophetess_template" />
@@ -352,13 +321,11 @@
       </beard_tags>
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="3" />
-      <Trait id="Commander" value="2" />
-      <Trait id="Manager" value="5" />
-      <Trait id="Politician" value="7" />
-      <Trait id="Calculating" value="1" />
-      <Trait id="Mercy" value="1" />
-      <Trait id="Valor" value="-4" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_yeoman_template" />
@@ -373,12 +340,11 @@
       </beard_tags>
     </face>
     <Traits>
-      <Trait id="ArcherFIghtingSkills" value="4" />
-      <Trait id="ScoutSkills" value="5" />
-      <Trait id="RogueSkills" value="7" />
-      <Trait id="Valor" value="1" />
-      <Trait id="Honor" value="1" />
-      <Trait id="Generosity" value="-1" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_herrimault_template" />
@@ -390,13 +356,11 @@
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="1" />
-      <Trait id="Manager" value="3" />
-      <Trait id="EngineerSkills" value="7" />
-      <Trait id="Blacksmith" value="5" />
-      <Trait id="Calculating" value="-1" />
-      <Trait id="Mercy" value="1" />
-      <Trait id="Valor" value="1" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_wall_warden_template" />
@@ -408,12 +372,11 @@
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="2" />
-      <Trait id="ScoutSkills" value="5" />
-      <Trait id="Trader" value="7" />
-      <Trait id="Valor" value="1" />
-      <Trait id="Honor" value="1" />
-      <Trait id="Generosity" value="-1" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_marchand_template" />
@@ -431,13 +394,11 @@
       </beard_tags>
     </face>
     <Traits>
-      <Trait id="KnightFightingSkills" value="5" />
-      <Trait id="Manager" value="5" />
-      <Trait id="Commander" value="3" />
-      <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="1" />
-      <Trait id="NagashCorrupted" value="7" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="-1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_fallen_knight" />
@@ -455,14 +416,11 @@
       </beard_tags>
     </face>
     <Traits>
-      <Trait id="HopliteFightingSkills" value="1" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="3" />
-      <Trait id="Calculating" value="3" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="SpellCasterSkills" value="7" />
-      <Trait id="NagashCorrupted" value="7" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="2" />
+      <Trait id="Calculating" value="-2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_necromancer_template" />
@@ -474,13 +432,11 @@
       <face_key_template value="BodyProperty.townswoman_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="1" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="6" />
-      <Trait id="Calculating" value="3" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="SpellCasterSkills" value="5" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="-1" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_hedge_witch_template" />
@@ -492,13 +448,11 @@
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="2" />
-      <Trait id="ScoutSkills" value="5" />
-      <Trait id="Trader" value="5" />
-      <Trait id="RogueSkills" value="7" />
-      <Trait id="Valor" value="1" />
-      <Trait id="Honor" value="1" />
-      <Trait id="Generosity" value="-1" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_smuggler_template" />
@@ -516,14 +470,11 @@
       </beard_tags>
     </face>
     <Traits>
-      <Trait id="KnightFightingSkills" value="5" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Commander" value="3" />
-      <Trait id="Calculating" value="3" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="SpellCasterSkills" value="5" />
-      <Trait id="NagashCorrupted" value="7" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="2" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_generic_vampire_template" />
@@ -541,14 +492,11 @@
       </beard_tags>
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="1" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="3" />
-      <Trait id="Calculating" value="3" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="SpellCasterSkills" value="7" />
-      <Trait id="NagashCorrupted" value="7" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="2" />
+      <Trait id="Calculating" value="-2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_necromancer_template" />
@@ -566,14 +514,11 @@
       </beard_tags>
     </face>
     <Traits>
-      <Trait id="KnightFightingSkills" value="5" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Commander" value="3" />
-      <Trait id="Calculating" value="3" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="SpellCasterSkills" value="5" />
-      <Trait id="NagashCorrupted" value="7" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="2" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_generic_vampire_template" />
@@ -585,12 +530,11 @@
       <face_key_template value="BodyProperty.skeleton" />
     </face>
     <Traits>
-      <Trait id="HuscarlFightingSkills" value="7" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="NagashCorrupted" value="7" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_wight_king_template" />
@@ -602,14 +546,11 @@
       <face_key_template value="BodyProperty.vampire_female" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="4" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Commander" value="3" />
-      <Trait id="Calculating" value="3" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="SpellCasterSkills" value="5" />
-      <Trait id="NagashCorrupted" value="7" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="2" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_vc_lahmian_countess_template" />
@@ -621,14 +562,11 @@
       <face_key_template value="BodyProperty.townswoman_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="1" />
-      <Trait id="Surgeon" value="5" />
-      <Trait id="ScoutSkills" value="4" />
-      <Trait id="RogueSkills" value="4" />
-      <Trait id="Trader" value="4" />
+      <Trait id="Mercy" value="-1" />
       <Trait id="Valor" value="1" />
-      <Trait id="Honor" value="1" />
-      <Trait id="Generosity" value="-1" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="-1" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_strigany_female_template" />
@@ -640,13 +578,11 @@
       <face_key_template value="BodyProperty.female_wood_elf" />
     </face>
     <Traits>
-      <Trait id="HopliteFightingSkills" value="1" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="3" />
-      <Trait id="Calculating" value="3" />
-      <Trait id="Mercy" value="1" />
+      <Trait id="Mercy" value="0" />
       <Trait id="Valor" value="1" />
-      <Trait id="SpellCasterSkills" value="7" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="2" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_spellsinger_template" />
@@ -658,12 +594,11 @@
       <face_key_template value="BodyProperty.female_wood_elf" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="ScoutSkills" value="4" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="2" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_glade_captain_template" />
@@ -675,13 +610,11 @@
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
-      <Trait id="ArcherFightingSkillsArcherFIghtingSkills" value="3" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="ScoutSkills" value="6" />
-      <Trait id="ArcherFIghtingSkills" value="3" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="2" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_waywatcher_template" />
@@ -693,13 +626,11 @@
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
-      <Trait id="ArcherFIghtingSkills" value="3" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="RogueSkills" value="-1" />
-      <Trait id="ScoutSkills" value="7" />
-      <Trait id="ArcherFIghtingSkills" value="3" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="2" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_eo_ghoststrider_template" />
@@ -711,13 +642,11 @@
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
-      <Trait id="HopliteFightingSkills" value="1" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="3" />
-      <Trait id="Calculating" value="3" />
-      <Trait id="Mercy" value="1" />
-      <Trait id="Valor" value="1" />
-      <Trait id="SpellCasterSkills" value="7" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_eo_guardian_mage_template" />
@@ -729,13 +658,11 @@
       <face_key_template value="BodyProperty.female_wood_elf" />
     </face>
     <Traits>
-      <Trait id="ArcherFIghtingSkills" value="3" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="RogueSkills" value="-1" />
-      <Trait id="ScoutSkills" value="7" />
-      <Trait id="ArcherFIghtingSkills" value="3" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="2" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cc_eo_envoy_3" />
@@ -747,11 +674,11 @@
       <face_key_template value="BodyProperty.dwarf_high_tier" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="1" />
+      <Trait id="Mercy" value="-1" />
       <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cc_dw_shield_breaker_3" />
@@ -763,11 +690,11 @@
       <face_key_template value="BodyProperty.dwarf_high_tier" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="1" />
+      <Trait id="Mercy" value="-1" />
       <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cc_dw_rune_smith_3" />
@@ -779,11 +706,11 @@
       <face_key_template value="BodyProperty.dwarf_high_tier" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="1" />
-      <Trait id="Valor" value="1" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cc_dw_engineer_3" />
@@ -795,11 +722,11 @@
       <face_key_template value="BodyProperty.orc_big" />
     </face>
     <Traits>
-      <Trait id="HuscarlFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="1" />
-      <Trait id="Valor" value="1" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="-2" />
+      <Trait id="Calculating" value="-2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cc_gs_path_of_boss_3" />
@@ -811,11 +738,11 @@
       <face_key_template value="BodyProperty.orc_big" />
     </face>
     <Traits>
-      <Trait id="HuscarlFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="1" />
-      <Trait id="Valor" value="1" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="-2" />
+      <Trait id="Calculating" value="-2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cc_gs_path_of_shaman_3" />
@@ -827,11 +754,11 @@
       <face_key_template value="BodyProperty.orc_big" />
     </face>
     <Traits>
-      <Trait id="HuscarlFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="1" />
-      <Trait id="Valor" value="1" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="-2" />
+      <Trait id="Calculating" value="-2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cc_gs_path_of_bully_3" />
@@ -843,11 +770,11 @@
       <face_key_template value="BodyProperty.goblin" />
     </face>
     <Traits>
-      <Trait id="HuscarlFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="1" />
-      <Trait id="Valor" value="1" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="-2" />
+      <Trait id="Calculating" value="-2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_gs_goblin_template" />
@@ -859,11 +786,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_empire_deserter_leader_template" />
@@ -875,11 +802,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_empire_deserter_leader_template" />
@@ -891,11 +818,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_empire_deserter_leader_2h_template" />
@@ -907,11 +834,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_empire_deserter_leader_2h_template" />
@@ -923,11 +850,11 @@
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" />
@@ -939,11 +866,11 @@
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" />
@@ -955,11 +882,11 @@
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" />
@@ -971,12 +898,11 @@
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="1" />
-      <Trait id="NagashCorrupted" value="7" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="-1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_m_knight_of_misfortune_template" />
@@ -988,12 +914,11 @@
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="1" />
-      <Trait id="NagashCorrupted" value="7" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="-1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_m_knight_of_misfortune_template" />
@@ -1005,12 +930,11 @@
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="1" />
-      <Trait id="NagashCorrupted" value="7" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="-1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_m_knight_of_misfortune_template" />
@@ -1022,12 +946,11 @@
       <face_key_template value="BodyProperty.skeleton" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="NagashCorrupted" value="7" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_wight_king_template" />
@@ -1039,12 +962,11 @@
       <face_key_template value="BodyProperty.skeleton" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="NagashCorrupted" value="7" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_wight_king_template" />
@@ -1056,12 +978,11 @@
       <face_key_template value="BodyProperty.skeleton" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="NagashCorrupted" value="7" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_wight_king_template" />
@@ -1073,13 +994,11 @@
       <face_key_template value="BodyProperty.female_wood_elf" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="ScoutSkills" value="4" />
-      <Trait id="ArcherFIghtingSkills" value="7" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="2" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_glade_captain_template" />
@@ -1091,13 +1010,11 @@
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="ScoutSkills" value="4" />
-      <Trait id="ArcherFIghtingSkills" value="7" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="2" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_waywatcher_template" />
@@ -1109,13 +1026,11 @@
       <face_key_template value="BodyProperty.female_wood_elf" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="ScoutSkills" value="4" />
-      <Trait id="ArcherFIghtingSkills" value="7" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="2" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_glade_captain_template" />
@@ -1127,13 +1042,11 @@
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="3" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="RogueSkills" value="-1" />
-      <Trait id="ScoutSkills" value="7" />
-      <Trait id="ArcherFIghtingSkills" value="3" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="2" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_eo_ghoststrider_template" />
@@ -1145,13 +1058,11 @@
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="3" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="RogueSkills" value="-1" />
-      <Trait id="ScoutSkills" value="7" />
-      <Trait id="ArcherFIghtingSkills" value="3" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="2" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_eo_ghoststrider_template" />
@@ -1163,13 +1074,11 @@
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="3" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="RogueSkills" value="-1" />
-      <Trait id="ScoutSkills" value="7" />
-      <Trait id="ArcherFIghtingSkills" value="3" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="2" />
+      <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_eo_ghoststrider_template" />
@@ -1181,11 +1090,11 @@
       <face_key_template value="BodyProperty.dwarf_high_tier" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
@@ -1197,11 +1106,11 @@
       <face_key_template value="BodyProperty.dwarf_high_tier" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
@@ -1213,11 +1122,11 @@
       <face_key_template value="BodyProperty.dwarf_high_tier" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
@@ -1229,11 +1138,11 @@
       <face_key_template value="BodyProperty.orc_big" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="-2" />
+      <Trait id="Calculating" value="-2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_gs_orc_warboss_template_001" />
@@ -1245,11 +1154,11 @@
       <face_key_template value="BodyProperty.orc_big" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="-2" />
+      <Trait id="Calculating" value="-2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_gs_orc_warboss_template_001" />
@@ -1261,11 +1170,11 @@
       <face_key_template value="BodyProperty.orc_big" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="-2" />
+      <Trait id="Calculating" value="-2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_gs_orc_warboss_template_001" />
@@ -1277,11 +1186,11 @@
       <face_key_template value="BodyProperty.troll" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="-2" />
+      <Trait id="Calculating" value="-2" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_gs_troll_template" />
@@ -1293,11 +1202,11 @@
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_ror_bergerac_bowman_template" />
@@ -1309,11 +1218,11 @@
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_peasant_knight_leader_template" />
@@ -1325,11 +1234,11 @@
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" />
@@ -1341,11 +1250,11 @@
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_2" />
@@ -1357,11 +1266,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_braganza_hero_template" />
@@ -1373,11 +1282,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_braganza_hero_template" />
@@ -1389,11 +1298,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_braganza_hero_template" />
@@ -1405,11 +1314,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_braganza_hero_template" />
@@ -1421,11 +1330,11 @@
       <face_key_template value="BodyProperty.skeleton" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_cursed_hero_template" />
@@ -1437,11 +1346,11 @@
       <face_key_template value="BodyProperty.skeleton" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_cursed_hero_template" />
@@ -1453,11 +1362,11 @@
       <face_key_template value="BodyProperty.skeleton" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_cursed_hero_template" />
@@ -1469,11 +1378,11 @@
       <face_key_template value="BodyProperty.skeleton" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_cursed_hero_template" />
@@ -1485,11 +1394,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_leopard_hero_template" />
@@ -1501,11 +1410,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_leopard_hero_template" />
@@ -1517,11 +1426,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_leopard_hero_template" />
@@ -1533,11 +1442,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_leopard_hero_template" />
@@ -1549,11 +1458,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_voland_hero_template" />
@@ -1565,11 +1474,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_voland_hero_template" />
@@ -1581,11 +1490,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_voland_hero_template" />
@@ -1597,11 +1506,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_voland_hero_template" />
@@ -1613,11 +1522,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_miragliano_hero_template" />
@@ -1629,11 +1538,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_miragliano_hero_template" />
@@ -1645,11 +1554,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_miragliano_hero_template" />
@@ -1661,11 +1570,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_miragliano_hero_template" />
@@ -1677,11 +1586,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_ricco_hero_template" />
@@ -1693,11 +1602,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_ricco_hero_template" />
@@ -1709,11 +1618,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_ricco_hero_template" />
@@ -1725,11 +1634,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_ricco_hero_template" />
@@ -1741,11 +1650,11 @@
       <face_key_template value="BodyProperty.fighter_aserai" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_muktar_hero_template" />
@@ -1757,11 +1666,11 @@
       <face_key_template value="BodyProperty.fighter_aserai" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_muktar_hero_template" />
@@ -1773,11 +1682,11 @@
       <face_key_template value="BodyProperty.fighter_aserai" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_muktar_hero_template" />
@@ -1789,11 +1698,11 @@
       <face_key_template value="BodyProperty.fighter_aserai" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="dog_muktar_hero_template" />
@@ -1805,13 +1714,11 @@
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="2" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="3" />
-      <Trait id="Calculating" value="3" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="SpellCasterSkills" value="3" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_bw_grand_magister_template" />
@@ -1823,13 +1730,11 @@
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="2" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="3" />
-      <Trait id="Calculating" value="3" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="SpellCasterSkills" value="3" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_bw_grand_magister_template" />
@@ -1841,13 +1746,11 @@
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="2" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="3" />
-      <Trait id="Calculating" value="3" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="SpellCasterSkills" value="3" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_bw_grand_magister_template" />
@@ -1859,13 +1762,11 @@
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="2" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="3" />
-      <Trait id="Calculating" value="3" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="SpellCasterSkills" value="3" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_bw_grand_magister_template" />
@@ -1877,13 +1778,11 @@
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="2" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="3" />
-      <Trait id="Calculating" value="3" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="SpellCasterSkills" value="3" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_coi_grand_master_template" />
@@ -1895,13 +1794,11 @@
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="2" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="3" />
-      <Trait id="Calculating" value="3" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="SpellCasterSkills" value="3" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_coi_grand_master_template" />
@@ -1913,13 +1810,11 @@
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="2" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="3" />
-      <Trait id="Calculating" value="3" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="SpellCasterSkills" value="3" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_coi_grand_master_template" />
@@ -1931,13 +1826,11 @@
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="2" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="3" />
-      <Trait id="Calculating" value="3" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="SpellCasterSkills" value="3" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_coi_grand_master_template" />
@@ -1949,13 +1842,11 @@
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="2" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="3" />
-      <Trait id="Calculating" value="3" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="SpellCasterSkills" value="3" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_fsf_archbacillus_template" />
@@ -1967,13 +1858,11 @@
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="2" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="3" />
-      <Trait id="Calculating" value="3" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="SpellCasterSkills" value="3" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_fsf_archbacillus_template" />
@@ -1985,13 +1874,11 @@
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="2" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="3" />
-      <Trait id="Calculating" value="3" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="SpellCasterSkills" value="3" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_fsf_archbacillus_template" />
@@ -2003,13 +1890,11 @@
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="2" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Surgeon" value="3" />
-      <Trait id="Calculating" value="3" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
-      <Trait id="SpellCasterSkills" value="3" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_cult_fsf_archbacillus_template" />
@@ -2021,11 +1906,11 @@
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_chaos_wanderer_template" />
@@ -2037,11 +1922,11 @@
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_chaos_undivided_knight_template" />
@@ -2053,11 +1938,11 @@
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_chaos_undivided_knight_template" />
@@ -2069,11 +1954,11 @@
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_chaos_undivided_knight_template" />
@@ -2085,11 +1970,11 @@
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_generic_druchii_lord_template" />
@@ -2101,11 +1986,11 @@
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_generic_druchii_lord_template" />
@@ -2117,11 +2002,11 @@
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_generic_druchii_lord_template" />
@@ -2133,11 +2018,11 @@
       <face_key_template value="BodyProperty.ungor" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_beast_ungor_chief_template" />
@@ -2149,11 +2034,11 @@
       <face_key_template value="BodyProperty.ungor" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_beast_ungor_chief_template" />
@@ -2165,11 +2050,11 @@
       <face_key_template value="BodyProperty.ungor" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="-1" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_beast_ungor_chief_template" />
@@ -2181,11 +2066,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_qnpc_engineerquest_goswin_template" />
@@ -2197,11 +2082,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-1" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_qnpc_witchhunter_template" />
@@ -2213,11 +2098,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-2" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_qnpc_masterengineer_template" />
@@ -2229,11 +2114,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-2" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_qnpc_prestige_noble_template" />
@@ -2245,11 +2130,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-3" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_qnpc_collegemagister_template" />
@@ -2261,11 +2146,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-3" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_gold_wizard_template" />
@@ -2277,11 +2162,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-3" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_warrior_priest_template" />
@@ -2293,11 +2178,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-3" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_priest_of_ulric_template" />
@@ -2309,11 +2194,11 @@
       <face_key_template value="BodyProperty.BodyProperty.fey_enchantress" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-3" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_priestess_of_shallya_template" />
@@ -2325,11 +2210,11 @@
       <face_key_template value="BodyProperty.BodyProperty.fey_enchantress" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-3" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_priestess_of_shallya_template" />
@@ -2341,11 +2226,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-4" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_qnpc_necromagister_template" />
@@ -2357,11 +2242,11 @@
       <face_key_template value="BodyProperty.fey_enchantress" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-3" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_fay_enchantress_template" />
@@ -2373,11 +2258,11 @@
       <face_key_template value="BodyProperty.female_wood_elf" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-3" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_spellsinger_female_template" />
@@ -2389,11 +2274,11 @@
       <face_key_template value="BodyProperty.orc_big" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-3" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_gs_orc_shaman_template_001" />
@@ -2405,11 +2290,11 @@
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-4" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_qnpc_eonir_envoy_druchii" />
@@ -2421,11 +2306,11 @@
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-4" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_qnpc_eonir_envoy_asur" />
@@ -2437,11 +2322,11 @@
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-3" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_qnpc_eonir_envoy_empire" />
@@ -2453,11 +2338,11 @@
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-3" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_qnpc_eonir_envoy_spellsinger" />
@@ -2469,11 +2354,11 @@
       <face_key_template value="BodyProperty.dwarf_high_tier" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="1" />
-      <Trait id="Valor" value="1" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_qnpc_dw_rune_smith" />
@@ -2485,11 +2370,11 @@
       <face_key_template value="BodyProperty.dwarf_high_tier" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="1" />
-      <Trait id="Valor" value="1" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_thunderer_template" />
@@ -2501,11 +2386,11 @@
       <face_key_template value="BodyProperty.dwarf_high_tier" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="1" />
-      <Trait id="Valor" value="1" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_miner_template" />
@@ -2517,11 +2402,11 @@
       <face_key_template value="BodyProperty.dwarf_high_tier" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="1" />
-      <Trait id="Valor" value="1" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_recruit_template" />
@@ -2533,11 +2418,11 @@
       <face_key_template value="BodyProperty.dwarf_high_tier" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="1" />
-      <Trait id="Valor" value="1" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_longbeard_template" />
@@ -2549,11 +2434,11 @@
       <face_key_template value="BodyProperty.orc_big" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-3" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_gs_kwartamasta_template" />

@@ -1215,7 +1215,7 @@
       <EquipmentSet id="tor_we_eternal_warden_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_master_scout" default_group="ranged" level="21" name="{=str_tor_we_master_scout}Asrai Master Scout" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" race="elf">
+  <NPCCharacter id="tor_we_master_scout" default_group="ranged" level="31" name="{=str_tor_we_master_scout}Asrai Master Scout" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level31" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1265,7 +1265,7 @@
       <EquipmentSet id="tor_we_glade_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_waywatcher_sentinel" default_group="ranged" level="26" name="{=str_tor_we_waywatcher_sentinel}Asrai Waywatcher Sentinel" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level26" race="elf">
+  <NPCCharacter id="tor_we_waywatcher_sentinel" default_group="ranged" level="31" name="{=str_tor_we_waywatcher_sentinel}Asrai Waywatcher Sentinel" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level31" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
