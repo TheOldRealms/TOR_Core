@@ -1418,7 +1418,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_vampire_castle_001" scene_name_1="TOR_vampire_castle_001" scene_name_2="TOR_vampire_castle_001" scene_name_3="TOR_vampire_castle_001" />
+      <Location id="center" scene_name="TOR_vampire_castle_001_atmo_w_night" scene_name_1="TOR_vampire_castle_001_atmo_w_night" scene_name_2="TOR_vampire_castle_001_atmo_w_night" scene_name_3="TOR_vampire_castle_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -1556,7 +1556,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_vampire_castle_001" scene_name_1="TOR_vampire_castle_001" scene_name_2="TOR_vampire_castle_001" scene_name_3="TOR_vampire_castle_001" />
+      <Location id="center" scene_name="TOR_vampire_castle_001_atmo_w_night" scene_name_1="TOR_vampire_castle_001_atmo_w_night" scene_name_2="TOR_vampire_castle_001_atmo_w_night" scene_name_3="TOR_vampire_castle_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -1593,7 +1593,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_vampire_castle_001" scene_name_1="TOR_vampire_castle_001" scene_name_2="TOR_vampire_castle_001" scene_name_3="TOR_vampire_castle_001" />
+      <Location id="center" scene_name="TOR_vampire_castle_001_atmo_w_night" scene_name_1="TOR_vampire_castle_001_atmo_w_night" scene_name_2="TOR_vampire_castle_001_atmo_w_night" scene_name_3="TOR_vampire_castle_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -1643,7 +1643,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_vampire_castle_001" scene_name_1="TOR_vampire_castle_001" scene_name_2="TOR_vampire_castle_001" scene_name_3="TOR_vampire_castle_001" />
+      <Location id="center" scene_name="TOR_vampire_castle_001_atmo_w_night" scene_name_1="TOR_vampire_castle_001_atmo_w_night" scene_name_2="TOR_vampire_castle_001_atmo_w_night" scene_name_3="TOR_vampire_castle_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -1680,7 +1680,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_vampire_castle_001" scene_name_1="TOR_vampire_castle_001" scene_name_2="TOR_vampire_castle_001" scene_name_3="TOR_vampire_castle_001" />
+      <Location id="center" scene_name="TOR_vampire_castle_001_atmo_w_night" scene_name_1="TOR_vampire_castle_001_atmo_w_night" scene_name_2="TOR_vampire_castle_001_atmo_w_night" scene_name_3="TOR_vampire_castle_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -1717,7 +1717,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_vampire_castle_001" scene_name_1="TOR_vampire_castle_001" scene_name_2="TOR_vampire_castle_001" scene_name_3="TOR_vampire_castle_001" />
+      <Location id="center" scene_name="TOR_vampire_castle_001_atmo_w_night" scene_name_1="TOR_vampire_castle_001_atmo_w_night" scene_name_2="TOR_vampire_castle_001_atmo_w_night" scene_name_3="TOR_vampire_castle_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -1767,7 +1767,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_vampire_castle_001" scene_name_1="TOR_vampire_castle_001" scene_name_2="TOR_vampire_castle_001" scene_name_3="TOR_vampire_castle_001" />
+      <Location id="center" scene_name="TOR_vampire_castle_001_atmo_w_night" scene_name_1="TOR_vampire_castle_001_atmo_w_night" scene_name_2="TOR_vampire_castle_001_atmo_w_night" scene_name_3="TOR_vampire_castle_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -6082,7 +6082,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_vampire_castle_001" scene_name_1="TOR_vampire_castle_001" scene_name_2="TOR_vampire_castle_001" scene_name_3="TOR_vampire_castle_001" />
+      <Location id="center" scene_name="TOR_vampire_castle_001_atmo_w_night" scene_name_1="TOR_vampire_castle_001_atmo_w_night" scene_name_2="TOR_vampire_castle_001_atmo_w_night" scene_name_3="TOR_vampire_castle_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
@@ -10508,7 +10508,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_vampire_castle_001" scene_name_1="TOR_vampire_castle_001" scene_name_2="TOR_vampire_castle_001" scene_name_3="TOR_vampire_castle_001" />
+      <Location id="center" scene_name="TOR_vampire_castle_001_atmo_w_night" scene_name_1="TOR_vampire_castle_001_atmo_w_night" scene_name_2="TOR_vampire_castle_001_atmo_w_night" scene_name_3="TOR_vampire_castle_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
