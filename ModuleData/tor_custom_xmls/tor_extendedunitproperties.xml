@@ -1070,7 +1070,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="ForestHarmony" UpkeepCost="0" UpgradeCost="10" />
+    <ResourceCost ResourceType="ForestHarmony" UpkeepCost="0" UpgradeCost="15" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_waywatcher">
     <Abilities />
@@ -2059,7 +2059,7 @@
       <string>MonsterAttack</string>
       <string>Unstoppable</string>
       <string>TrollRegeneration</string>
-      <string>HasAnimationTriggeredEffects</string>	  
+      <string>HasAnimationTriggeredEffects</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.50" />
@@ -10017,6 +10017,17 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_wanderer_mousillon_4">
+    <Abilities>
+      <string>StrengthOfCombat</string>
+      <string>Chillwind</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+      <string>Unbreakable</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wanderer_vampire_0">
     <Abilities>
       <string>FoetidCloud</string>
@@ -10112,6 +10123,12 @@
       <string>AbilityUser</string>
       <string>Runesmith</string>
       <string>Tough</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_wanderer_dawi_2">
+    <Abilities />
+    <Attributes>
+      <string>EngineerCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wanderer_greenskins_0">
@@ -10244,6 +10261,10 @@
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_rogue_lord_2">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_troll_lord_0">
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
@@ -10513,6 +10534,7 @@
   <CharacterExtendedInfo id="tor_priest_trainer_empire_ulric_0">
     <Abilities />
     <Attributes>
+      <string>UlricTrain</string>
       <string>PriestTrainer</string>
       <string>SkillTrainer</string>
     </Attributes>
