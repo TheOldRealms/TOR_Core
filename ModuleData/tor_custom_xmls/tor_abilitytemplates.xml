@@ -5815,7 +5815,7 @@
                      WindsOfMagicCost="0"
                      BaseMisCastChance="0"
                      Duration="15"
-                     Radius="15"
+                     Radius="25"
                      AbilityType="CareerAbility"
                      AbilityEffectType="CareerAbilityEffect"
                      BaseMovementSpeed="0"
@@ -5837,7 +5837,7 @@
                      Offset="0"
                      AbilityTargetType="Self"
                      CrosshairType="Self"
-                     TargetCapturingRadius="15"
+                     TargetCapturingRadius="25"
                      TooltipDescription="{=call_of_da_green_description_str}Focus on your connection to Da Great Green. For 15 seconds, nearby Greenskins dealing damage generate Winds of Magic. Beware - dying Greenskins drain your power!">
         <LightColorRGB x="50"
                        y="200"
