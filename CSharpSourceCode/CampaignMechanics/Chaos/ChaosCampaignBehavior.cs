@@ -112,26 +112,52 @@ namespace TOR_Core.CampaignMechanics.Chaos
 
             foreach (var comp in clan.WarPartyComponents)
             {
-                if (comp.MobileParty != null &&
-                    comp.MobileParty.Army == null &&
+                var mobileParty = comp.MobileParty;
+                if (mobileParty != null &&
+                    mobileParty.Army == null &&
+                    mobileParty.AttachedTo == null &&
+                    mobileParty.CurrentSettlement == null &&
+                    mobileParty.BesiegedSettlement == null &&
                     comp.Party.MapEvent == null &&
-                    comp.MobileParty.LeaderHero != null &&
+                    mobileParty.LeaderHero != null &&
                     comp.Party.IsValid &&
-                    comp.MobileParty.IsActive)
+                    mobileParty.IsActive)
                 {
-                    comp.MobileParty.Position = settlement.GatePosition;
+                    var relocationPosition = NavigationHelper.FindReachablePointAroundPosition(
+                        settlement.GatePosition,
+                        mobileParty.NavigationCapability,
+                        8f,
+                        1f);
+
+                    mobileParty.Position = relocationPosition;
                     comp.Party.SetVisualAsDirty();
                 }
             }
 
-            ChangeOwnerOfSettlementAction.ApplyByRebellion(clan.Leader, settlement); //Sly : this can probably be done first before handling war parties
+            ChangeOwnerOfSettlementAction.ApplyByRebellion(clan.Leader, settlement);
 
-            var chosenGovernor = clan.AliveLords.WhereQ(x => x.IsAlive && x.GovernorOf == null && x != clan.Leader).GetRandomElementInefficiently();
-            var chosenGovernorParty = chosenGovernor.PartyBelongedTo;
+            var chosenGovernor = clan.AliveLords
+                .WhereQ(x => x.IsAlive && x.GovernorOf == null && x != clan.Leader)
+                .GetRandomElementInefficiently();
 
-            ChangeGovernorAction.Apply(settlement.Town, chosenGovernor); //this will be inconsistent, ChangeGovernor makes use of the TeleportHeroAction which will be prevented if the party is in a map event, etc...
+            if (chosenGovernor != null)
+            {
+                var chosenGovernorParty = chosenGovernor.PartyBelongedTo;
 
-            if (chosenGovernorParty != null) DestroyPartyAction.ApplyForDisbanding(chosenGovernorParty, settlement); //risky, this doesn't check on-going map events so the above governor change may fail due to a map event, then the party is deleted mid-event
+                ChangeGovernorAction.Apply(settlement.Town, chosenGovernor);
+
+                bool governorSuccessfullyLeftOldParty = chosenGovernorParty != null &&
+                                                        chosenGovernor.PartyBelongedTo != chosenGovernorParty;
+
+                bool oldGovernorPartyShouldBeDisbanded = governorSuccessfullyLeftOldParty &&
+                                                         chosenGovernorParty.IsActive &&
+                                                         chosenGovernorParty.MapEvent == null;
+
+                if (oldGovernorPartyShouldBeDisbanded)
+                {
+                    DestroyPartyAction.ApplyForDisbanding(chosenGovernorParty, settlement);
+                }
+            }
 
             clan.Leader.ChangeHeroGold(100000);
 
