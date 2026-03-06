@@ -135,16 +135,24 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
             {
                 return;
             }
-            _weaponCrosshair.FinalizeCrosshair();
-            _abilityComponent = null;
-            _abilityCrosshair = null;
-            _sniperScope.FinalizeCrosshair();
-            _sniperScope = null;
-            _areCrosshairsInitialized = false;
+
+            _currentCrosshair?.Hide();
+
             if (_abilityComponent != null)
             {
                 _abilityComponent.CurrentAbilityChanged -= ChangeAbilityCrosshair;
             }
+
+            _weaponCrosshair.FinalizeCrosshair();
+            _sniperScope.FinalizeCrosshair();
+
+            _careerAbility = null;
+            _missionLogic = null;
+            _abilityComponent = null;
+            _abilityCrosshair = null;
+            _sniperScope = null;
+            _currentCrosshair = null;
+            _areCrosshairsInitialized = false;
         }
 
         private bool CanUseSniperScope()

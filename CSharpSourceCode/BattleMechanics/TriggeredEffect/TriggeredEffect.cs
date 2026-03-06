@@ -12,7 +12,6 @@ using TOR_Core.BattleMechanics.TriggeredEffect.Scripts;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
-using Timer = System.Timers.Timer;
 
 namespace TOR_Core.BattleMechanics.TriggeredEffect
 {
@@ -21,14 +20,58 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         private TriggeredEffectTemplate _template = template;
         private int _soundIndex;
         private SoundEvent _sound;
-        private Timer _timer;
-        private readonly object _sync = new();
         private readonly bool _isTemplateMutated = isTemplateMutated;
+        private static readonly object _pendingDisposeLock = new();
+
+        private static readonly List<PendingDisposal> _pendingDisposals = new();
 
         public float EffectRadius => _template.Radius;
         public string SummonedTroopId => _template.TroopIdToSummon;
         public float ImbuedStatusEffectDuration => _template.ImbuedStatusEffectDuration;
         public List<string> StatusEffects => _template.ImbuedStatusEffects;
+
+        private struct PendingDisposal
+        {
+            public TriggeredEffect Effect;
+            public float DisposeAtMissionTime;
+
+            public PendingDisposal(TriggeredEffect effect, float disposeAtMissionTime)
+            {
+                Effect = effect;
+                DisposeAtMissionTime = disposeAtMissionTime;
+            }
+        }
+
+        internal static void ProcessPendingDisposals(float currentMissionTime)
+        {
+            lock (_pendingDisposeLock)
+            {
+                for (int i = _pendingDisposals.Count - 1; i >= 0; i--)
+                {
+                    var pending = _pendingDisposals[i];
+                    if (currentMissionTime < pending.DisposeAtMissionTime)
+                        continue;
+
+                    _pendingDisposals.RemoveAt(i);
+                    pending.Effect.Dispose();
+                }
+            }
+        }
+
+        internal static void ClearPendingDisposals(float currentMissionTime)
+        {
+            _ = currentMissionTime;
+
+            lock (_pendingDisposeLock)
+            {
+                for (int i = _pendingDisposals.Count - 1; i >= 0; i--)
+                {
+                    var pending = _pendingDisposals[i];
+                    _pendingDisposals.RemoveAt(i);
+                    pending.Effect.Dispose();
+                }
+            }
+        }
         public void Trigger(Vec3 position, Vec3 normal, Agent triggererAgent, AbilityTemplate originAbilityTemplate = null, MBList<Agent> targets = null, int castId = -1)
         {
             if (_template == null || !triggererAgent.IsActive()) return;
@@ -137,26 +180,11 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             TriggerScript(position, triggererAgent, targets, statusEffectDuration);
             if (_sound != null)
             {
-                _timer = new Timer(2000)
+                float disposeDelaySeconds = _template.SoundEffectLength > 0f ? _template.SoundEffectLength : 2f;
+                lock (_pendingDisposeLock)
                 {
-                    AutoReset = false,
-                    Enabled = false
-                };
-
-                _timer.Elapsed += (s, e) =>
-                {
-                    lock (_sync)
-                    {
-                        Dispose();
-                    }
-                };
-
-                if (_template.SoundEffectLength > 0)
-                {
-                    _timer.Interval = _template.SoundEffectLength * 1000;
+                    _pendingDisposals.Add(new PendingDisposal(this, Mission.Current.CurrentTime + disposeDelaySeconds));
                 }
-
-                _timer.Start();
             }
             else
             {
@@ -260,9 +288,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             _sound = null;
             _soundIndex = -1;
             _template = null;
-            _timer?.Stop();
-            _timer?.Dispose();
-            _timer = null;
         }
     }
 }

@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using System.Timers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
@@ -16,15 +15,14 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
-using Timer = System.Timers.Timer;
 
 namespace TOR_Core.AbilitySystem
 {
     public abstract class Ability : IDisposable
     {
         private int _coolDownLeft = 0;
-        private Timer _timer = null;
-        private float _cooldown_end_time;
+        private float _cooldownEndTime;
+        private float _windUpCastEndTime = -1f;
 
         protected bool _isLocked = false;
         public bool IsCasting { get; private set; }
@@ -35,10 +33,28 @@ namespace TOR_Core.AbilitySystem
         public bool IsActivationPending { get; private set; }
         public bool IsActive => IsCasting || IsActivationPending || (AbilityScript != null && !AbilityScript.IsFading);
         public AbilityEffectType AbilityEffectType => Template.AbilityEffectType;
-        public bool IsOnCooldown() => _timer.Enabled;
-        public int GetCoolDownLeft() => _coolDownLeft;
         public bool IsSingleTarget => Template.AbilityTargetType == AbilityTargetType.SingleAlly || Template.AbilityTargetType == AbilityTargetType.SingleEnemy; //Sly : Self isn't necessarily SingleTarget because some abilities have triggered effects that are aoe even if the target is self-centered
         public bool RequiresTargeting => Template.AbilityTargetType != AbilityTargetType.Self;
+        public bool IsOnCooldown()
+        {
+            if (Mission.Current == null) return false;
+
+            float remainingSeconds = _cooldownEndTime - Mission.Current.CurrentTime;
+            if (remainingSeconds <= 0f)
+            {
+                _coolDownLeft = 0;
+                return false;
+            }
+
+            _coolDownLeft = (int)Math.Ceiling(remainingSeconds);
+            return true;
+        }
+
+        public int GetCoolDownLeft()
+        {
+            _ = IsOnCooldown();
+            return _coolDownLeft;
+        }
 
         public delegate void OnCastCompleteHandler(Ability ability);
 
@@ -52,30 +68,6 @@ namespace TOR_Core.AbilitySystem
         {
             StringID = template.StringID;
             Template = template;
-            _timer = new Timer(1000);
-            _timer.Elapsed += TimerElapsed;
-            _timer.Enabled = false;
-        }
-
-        private void TimerElapsed(object sender, ElapsedEventArgs e)
-        {
-            if (Mission.Current == null)
-            {
-                FinalizeTimer();
-                return;
-            }
-
-            _coolDownLeft = (int)(_cooldown_end_time - Mission.Current.CurrentTime);
-            if (_coolDownLeft <= 0)
-            {
-                FinalizeTimer();
-            }
-        }
-
-        private void FinalizeTimer()
-        {
-            _coolDownLeft = 0;
-            _timer.Stop();
         }
 
         public virtual bool IsDisabled(Agent casterAgent, out TextObject disabledReason)
@@ -180,28 +172,25 @@ namespace TOR_Core.AbilitySystem
             else if (Template.CastType == CastType.WindUp)
             {
                 IsCasting = true;
-
-                var activationTimer = new Timer(Template.CastTime * 1000)
-                {
-                    AutoReset = false
-                };
-
-                activationTimer.Elapsed += (s, e) =>
-                {
-                    IsActivationPending = true;
-                    activationTimer.Stop();
-                    activationTimer.Dispose();
-                };
-
-                activationTimer.Start();
+                _windUpCastEndTime = Mission.Current.CurrentTime + Template.CastTime;
             }
         }
 
         public void SetCoolDown(int cooldownTime)
         {
             _coolDownLeft = cooldownTime;
-            _cooldown_end_time = Mission.Current.CurrentTime + _coolDownLeft + 0.8f; //Adjustment was needed for natural tick on UI
-            _timer.Start();
+            _cooldownEndTime = Mission.Current.CurrentTime + _coolDownLeft + 0.8f; // Adjustment was needed for natural tick on UI
+        }
+
+        internal void TickCastingState()
+        {
+            if (!IsCasting || IsActivationPending || Template.CastType != CastType.WindUp)
+                return;
+
+            if (Mission.Current.CurrentTime >= _windUpCastEndTime)
+            {
+                IsActivationPending = true;
+            }
         }
 
         public virtual void DeactivateAbility()
@@ -717,8 +706,6 @@ namespace TOR_Core.AbilitySystem
 
         public void Dispose()
         {
-            _timer.Dispose();
-            _timer = null;
             Template = null;
             OnCastComplete = null;
             OnCastStart = null;

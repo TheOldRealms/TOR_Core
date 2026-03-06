@@ -32,7 +32,8 @@ namespace TOR_Core.BattleMechanics.AI.CommonAIFunctions
         {
             var x = _parameterFunction.Invoke(target);
             _input = x;
-            var range = (Math.Max(_min, Math.Min(_max, x)) - _min) / _range;
+            var clampedInput = Math.Max(_min, Math.Min(_max, x));
+            var range = _range > 0f ? (clampedInput - _min) / _range : 0f;
             var invoke = _outputFunction.Invoke(range);
             var result = Math.Max(0f, Math.Min(1.0f, invoke));
             _result = result;

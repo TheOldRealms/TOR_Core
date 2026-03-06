@@ -260,12 +260,11 @@ namespace TOR_Core.AbilitySystem
                 CurrentAbility = _knownAbilitySystem[index];
             }
         }
-
         public void OnInterrupt()
         {
-            if (CareerAbility.AbilityScript != null && CareerAbility.AbilityScript is ShadowStepScript)
+            if (CareerAbility?.AbilityScript is ShadowStepScript shadowStepScript)
             {
-                ((ShadowStepScript)CareerAbility.AbilityScript)?.Stop();
+                shadowStepScript.Stop();
             }
         }
 
@@ -300,7 +299,10 @@ namespace TOR_Core.AbilitySystem
         {
             foreach (var ability in _knownAbilitySystem)
             {
-                if (ability.IsActivationPending) ability.ActivateAbility(Agent);
+                ability.TickCastingState();
+
+                if (ability.IsActivationPending)
+                    ability.ActivateAbility(Agent);
             }
         }
 

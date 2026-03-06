@@ -43,12 +43,16 @@ namespace TOR_Core.BattleMechanics.AI.CommonAIFunctions
                 if (target.Formation != null)
                 {
                     var querySystemClosestEnemyFormation = target.Formation.CachedClosestEnemyFormation;
-                    if (querySystemClosestEnemyFormation == null)
+                    if (querySystemClosestEnemyFormation == null || querySystemClosestEnemyFormation.Formation == null)
                     {
                         return float.MaxValue;
                     }
 
-                    return target.GetPositionPrioritizeCalculated().AsVec2.Distance(querySystemClosestEnemyFormation.AverageAllyPosition);
+                    var targetPoint = target.GetPositionPrioritizeCalculated();
+                    if (targetPoint == Vec3.Invalid)
+                        return float.MaxValue;
+
+                    return targetPoint.AsVec2.Distance(querySystemClosestEnemyFormation.Formation.CachedMedianPosition.AsVec2);
                 }
 
                 return 0f;
@@ -71,7 +75,14 @@ namespace TOR_Core.BattleMechanics.AI.CommonAIFunctions
 
         public static Func<Target, float> DistanceToTarget(Func<Vec3> provider)
         {
-            return target => provider.Invoke().Distance(target.GetPosition());
+            return target =>
+            {
+                var targetPosition = target.GetPosition();
+                if (targetPosition == Vec3.Invalid)
+                    return float.MaxValue;
+
+                return provider.Invoke().Distance(targetPosition);
+            };
         }
 
         public static Func<Target, float> FormationPower()
@@ -216,12 +227,23 @@ namespace TOR_Core.BattleMechanics.AI.CommonAIFunctions
 
         public static bool HasLineOfSight(Vec3 from, Vec3 to, float atLeast = 70)
         {
-            float distanceE;
+            float segmentLength = from.Distance(to);
+
+            float distanceToFirstHit;
             using (new TWSharedMutexReadLock(Scene.PhysicsAndRayCastLock))
             {
-                Mission.Current.Scene.RayCastForClosestEntityOrTerrain(from, to, out distanceE, out _, out _);
+                Mission.Current.Scene.RayCastForClosestEntityOrTerrain(from, to, out distanceToFirstHit, out _, out _);
             }
-            return distanceE > atLeast;
+
+            // raycast returns nan when it doesnt hit anything
+            if (float.IsNaN(distanceToFirstHit))
+                return true;
+
+            const float hitTolerance = 0.3f;
+            float minimumClearDistance = Math.Min(atLeast, Math.Max(0f, segmentLength - hitTolerance));
+
+            bool hitAtTargetDistance = Math.Abs(distanceToFirstHit - segmentLength) <= hitTolerance;
+            return hitAtTargetDistance && distanceToFirstHit >= minimumClearDistance;
         }
     }
 }

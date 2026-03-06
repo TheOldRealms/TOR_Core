@@ -90,23 +90,24 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI
                         Agent = agent
                     }
                 };
+            List<Target> enemyTargets;
             try
             {
-                return agent.Team.GetEnemyTeams()
-                .SelectMany(team => team.GetFormations())
-                .Select(form => new Target { Formation = form })
-                .ToList();
+                enemyTargets = agent.Team.GetEnemyTeams()
+                    .SelectMany(team => team.GetFormations())
+                    .Select(form => new Target { Formation = form })
+                    .ToList();
             }
             catch (AccessViolationException e)
             {
-                TORCommon.Log("AgentCastingBehaviorConfig : access violation exception when creating the list of enemy formations.", NLog.LogLevel.Fatal);
-                Process.GetCurrentProcess().Kill();
+                TORCommon.Log(
+                    "AgentCastingBehaviorConfig : access violation exception when creating the list of enemy formations.\n" + e,
+                    NLog.LogLevel.Fatal);
+
+                enemyTargets = new List<Target>();
             }
 
-            return agent.Team.GetEnemyTeams()
-                .SelectMany(team => team.GetFormations())
-                .Select(form => new Target { Formation = form })
-                .ToList(); //Sly : yes this is the exact same return which does nothing if the try succeeds; I don't want to determine a default behaviour at this time to replace it.
+            return enemyTargets;
         }
 
         public static readonly Dictionary<Type, Func<AbstractAgentCastingBehavior, List<Axis>>> UtilityByType =
@@ -235,7 +236,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI
                 return new List<Axis>
                 {
                     new Axis(0, 50, x => ScoringFunctions.Logistic(0.4f, 1, 20).Invoke(1 - x), CommonAIDecisionFunctions.DistanceToTarget(() => behavior.Agent.Position)),
-                    new Axis(0, 15, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToHostiles()),
+                    new Axis(0, 20, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToHostiles()),
                     new Axis(0, CommonAIDecisionFunctions.CalculateTeamTotalPower(behavior.Agent.Team), x => x, CommonAIDecisionFunctions.FormationPower()),
                     new Axis(1, 2.5f, x => 1 - x, CommonAIDecisionFunctions.Dispersedness()),
                 };

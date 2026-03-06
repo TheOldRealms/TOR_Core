@@ -50,8 +50,10 @@ namespace TOR_Core.AbilitySystem.Crosshairs
             }
             var targetType = _template.AbilityTargetType;
             bool isTargetMatching = collisionDistance <= _template.MaxDistance &&
-                                    ((targetType == AbilityTargetType.SingleEnemy || targetType == AbilityTargetType.EnemiesInAOE) && newTarget.IsEnemyOf(_caster)) ||          // the target filter can be single, but the effect for multiple
-                                    ((targetType == AbilityTargetType.SingleAlly || targetType == AbilityTargetType.AlliesInAOE) && !newTarget.IsEnemyOf(_caster));
+                                    (
+                                        ((targetType == AbilityTargetType.SingleEnemy || targetType == AbilityTargetType.EnemiesInAOE) && newTarget.IsEnemyOf(_caster)) ||          // the target filter can be single, but the effect for multiple
+                                        ((targetType == AbilityTargetType.SingleAlly || targetType == AbilityTargetType.AlliesInAOE) && !newTarget.IsEnemyOf(_caster))
+                                    );
             if (isTargetMatching)
             {
                 if (newTarget != _cachedTarget)

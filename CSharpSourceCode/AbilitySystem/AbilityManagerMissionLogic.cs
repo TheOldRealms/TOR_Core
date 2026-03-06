@@ -14,6 +14,7 @@ using TaleWorlds.MountAndBlade.View.MissionViews;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.Battle.CrosshairMissionBehavior;
+using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.BattleMechanics.AI.CastingAI.Components;
 using TOR_Core.BattleMechanics.Crosshairs;
 using TOR_Core.BattleMechanics.StatusEffect;
@@ -107,6 +108,7 @@ namespace TOR_Core.AbilitySystem
         {
             // Process any pending spell sessions that are ready to collect
             ProcessPendingSpellSessions();
+            TriggeredEffect.ProcessPendingDisposals(Mission.Current.CurrentTime);
 
             _elapsedTimeSinceLastActivation += dt;
             if (_disableCombatActionsAfterCast && _elapsedTimeSinceLastActivation > (_lastActivationDeltaTime + _disableCombatActionsDuration))
@@ -258,6 +260,7 @@ namespace TOR_Core.AbilitySystem
             if (agent == Agent.Main)
             {
                 _currentState = AbilityModeState.Casting;
+                SlowDownTime(false);
             }
 
             if (agent.GetHero().HasAnyCareer())
@@ -613,6 +616,7 @@ namespace TOR_Core.AbilitySystem
             Mission.OnItemPickUp -= OnItemPickup;
 
             // Reset Anvil of Doom position for Runelord rune magic
+            TriggeredEffect.ClearPendingDisposals(Mission.Current.CurrentTime);
         }
 
         public override void OnAgentCreated(Agent agent)

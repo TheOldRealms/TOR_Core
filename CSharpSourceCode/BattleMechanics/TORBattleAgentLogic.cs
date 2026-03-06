@@ -36,6 +36,11 @@ namespace TOR_Core.BattleMechanics
                 return;
             }
 
+            if (Mission.IsTeleportingAgents)
+            {
+                return;
+            }
+
             _elapsedSinceLastTick = 0f;
 
             foreach (var agent in Mission.Agents)
@@ -263,6 +268,11 @@ namespace TOR_Core.BattleMechanics
             }
 
             if (currentSlot == EquipmentIndex.None && !agent.WieldedWeapon.IsEmpty)
+            {
+                return;
+            }
+
+            if (!agent.GetAgentFlags().HasAnyFlag(AgentFlag.CanWieldWeapon))
             {
                 return;
             }
