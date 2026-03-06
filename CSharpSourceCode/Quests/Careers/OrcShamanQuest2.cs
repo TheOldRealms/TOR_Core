@@ -61,7 +61,7 @@ namespace TOR_Core.Quests.Careers
             _currentFaithLevel = Hero.MainHero?.GetSkillValue(TORSkills.Faith) ?? 0;
 
             // TODO: Get actual values from behaviors when they're implemented
-            _currentEnchantsLearned = 0;
+            _currentEnchantsLearned = Hero.MainHero.GetExtendedInfo().KnownEnchantmentBlueprints.Count;
             _currentTeefTransferred = 0;
             _currentCitiesCaptured = 0;
 

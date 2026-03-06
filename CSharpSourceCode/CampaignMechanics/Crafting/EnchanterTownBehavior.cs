@@ -526,9 +526,10 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                 var selectableItems = new List<InquiryElement>();
                 foreach (var elem in roster)
                 {
-                    var item = elem.EquipmentElement.Item;
+                    var equipmentElement = elem.EquipmentElement;
+                    var item = equipmentElement.Item;
                     if (item.HasAnyTrait() && (item.IsWeapon() || item.IsArmor() || item.IsShield()))
-                        selectableItems.Add(new InquiryElement(item, item.Name.ToString(), new ItemImageIdentifier(item)));
+                        selectableItems.Add(new InquiryElement(equipmentElement, item.Name.ToString(), new ItemImageIdentifier(item)));
                 }
 
                 GameTexts.SetVariable("CUSTOMRESOURCE_ICON", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText());
@@ -560,7 +561,8 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                     {
                         var customResourceElem = 0;
                         var customResourceFactor = 1 / 3f;
-                        var item = (ItemObject)element.Identifier;
+                        var equipmentElement = (EquipmentElement)element.Identifier;
+                        var item = equipmentElement.Item;
 
                         if (!item.IsCraftedByPlayer)
                         {
@@ -572,8 +574,7 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
                         if (!traits.Any()) return;
 
-                        Hero.MainHero.PartyBelongedTo.ItemRoster.Add(new ItemRosterElement(item, -1));
-
+                        Hero.MainHero.PartyBelongedTo.ItemRoster.AddToCounts(equipmentElement, -1);
 
                         foreach (var trait in item.GetTraits())
                             foreach (TorTradeGoodType type in Enum.GetValues(typeof(TorTradeGoodType)))

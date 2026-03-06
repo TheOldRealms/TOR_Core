@@ -104,7 +104,11 @@ public static class EnchantmentHelper
                             }
                         }
                     }
-                    list.Add(item);
+
+                    if (!list.Contains(item))
+                    {
+                        list.Add(item);
+                    }
                 }
             }
         }
