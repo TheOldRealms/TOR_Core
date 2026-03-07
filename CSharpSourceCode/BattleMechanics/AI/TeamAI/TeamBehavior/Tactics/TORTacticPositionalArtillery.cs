@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,11 +51,15 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
 
         protected override float GetTacticWeight()
         {
-            if (Team.GeneralAgent == null ||
-                !Team.GeneralAgent.IsAbilityUser() ||
-                !Team.GeneralAgent.GetComponent<AbilityComponent>().GetKnownAbilityTemplates().Exists(item => item.AbilityEffectType == AbilityEffectType.ArtilleryPlacement) ||
-                Team.ActiveAgents.Select(agent => agent.HasAttribute("ArtilleryCrew")).Count() < 2 ||
-                Team.GeneralAgent.Controller == AgentControllerType.Player)
+            // Break down conditions for easier debugging
+            bool hasGeneralAgent = Team.GeneralAgent != null;
+            bool generalIsAbilityUser = hasGeneralAgent && Team.GeneralAgent.IsAbilityUser();
+            bool generalHasArtilleryAbility = generalIsAbilityUser && Team.GeneralAgent.GetComponent<AbilityComponent>().GetKnownAbilityTemplates().Exists(item => item.AbilityEffectType == AbilityEffectType.ArtilleryPlacement);
+            int artilleryCrewCount = Team.ActiveAgents.Count(agent => agent.HasAttribute("ArtilleryCrew")); // FIXED: Use Count() with predicate, not Select().Count()
+            bool hasEnoughArtilleryCrew = artilleryCrewCount >= 2;
+            bool generalIsAIControlled = hasGeneralAgent && Team.GeneralAgent.Controller != AgentControllerType.Player;
+
+            if (!hasGeneralAgent || !generalIsAbilityUser || !generalHasArtilleryAbility || !hasEnoughArtilleryCrew)
                 return 0.0f;
 
             // if (!Team.TeamAI.IsDefenseApplicable || !CheckAndDetermineFormation(ref _mainInfantry, f => f.QuerySystem.IsInfantryFormation))
