@@ -498,10 +498,11 @@ namespace TOR_Core.BattleMechanics.Artillery
         private void SetWaitingTimer()
         {
             var speed = 5f;
-            var model = Campaign.Current.Models.GetSiegeEngineCalculationModel();
+
             
-            if (Campaign.Current != null && model!=null)
+            if (Campaign.Current != null)
             { 
+                var model = Campaign.Current.Models.GetSiegeEngineCalculationModel();
                 speed = model.CalculateCannonReloadSpeed(model.BaseCannonReloadSpeed, PilotAgent, _lastLoaderAgent);
             }
             _timer = new Timer(Mission.Current.CurrentTime, speed, false);
