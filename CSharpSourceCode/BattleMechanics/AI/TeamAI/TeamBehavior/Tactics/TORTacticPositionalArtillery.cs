@@ -1,4 +1,4 @@
-using HarmonyLib;
+﻿using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -272,8 +272,44 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
             var gatherCandidatePositions = TeamAiAPositions
                 .Concat(extractedPositions)
                 .AddItem(tacticalPosition1)
-                .Where(position => LineOfSightAllowsArtillery(position, enemyPosition)).ToList();
+                .Where(position => LineOfSightAllowsArtillery(position, enemyPosition))
+                .Where(position => IsPositionValidForArtillery(position))  // CRITICAL FIX: Filter out unreachable positions
+                .ToList();
             return gatherCandidatePositions;
+        }
+
+        private bool IsPositionValidForArtillery(TacticalPosition position)
+        {
+            var pos2D = position.Position.AsVec2;
+            var pos3D = position.Position.GetGroundVec3MT();
+
+            // Check if position is too close to map boundaries (30 meter buffer)
+            var scene = Mission.Current.Scene;
+            scene.GetBoundingBox(out Vec3 min, out Vec3 max);
+            float boundaryBuffer = 30f;
+
+            if (pos3D.x < min.x + boundaryBuffer || pos3D.x > max.x - boundaryBuffer ||
+                pos3D.y < min.y + boundaryBuffer || pos3D.y > max.y - boundaryBuffer)
+            {
+                return false; // Too close to map edge
+            }
+
+            // Check if position is accessible (on valid navmesh)
+            var navMeshVec3 = position.Position.GetNavMeshVec3();
+            if (!navMeshVec3.IsValid || navMeshVec3.IsNonZero == false)
+            {
+                return false; // Not on valid navmesh
+            }
+
+            // Check if position is reachable from team's deployment area (not too far)
+            float maxDistanceFromDeployment = 250f; // Maximum distance from team's median position
+            float distanceFromTeam = pos2D.Distance(Team.QuerySystem.MedianPosition.AsVec2);
+            if (distanceFromTeam > maxDistanceFromDeployment)
+            {
+                return false; // Too far from team deployment
+            }
+
+            return true;
         }
 
         private bool LineOfSightAllowsArtillery(TacticalPosition position, Vec3 enemyPosition)
@@ -351,7 +387,52 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
 
         private void UpdateArtilleryPlacementTargets()
         {
+            // CRITICAL: Don't place artillery if we don't have enough crew to man it
+            int artilleryCrewCount = Team.ActiveAgents.Count(agent => agent.HasAttribute("ArtilleryCrew"));
+            if (artilleryCrewCount < 2)
+            {
+                return; // Not enough artillery crew, don't tell general to place cannons
+            }
+
+            // Ensure the general's WizardAIComponent is in the list
+            EnsureGeneralInPlacerComponents();
+
             _artilleryPlacerComponents.ForEach(component => component.UpdateArtilleryTargetPosition(_chosenArtilleryPosition));
+        }
+
+        private void EnsureGeneralInPlacerComponents()
+        {
+            if (Team.GeneralAgent != null)
+            {
+                var generalComponent = Team.GeneralAgent.GetComponent<WizardAIComponent>();
+                if (generalComponent != null && !_artilleryPlacerComponents.Contains(generalComponent))
+                {
+                    _artilleryPlacerComponents.Add(generalComponent);
+                }
+            }
+        }
+
+        private void AssignArtilleryCrewToCannons()
+        {
+            if (_chosenArtilleryPosition == null || _artilleryFormation == null || _artilleryFormation.CountOfUnits == 0)
+                return;
+
+            // Find all cannons near the chosen artillery position
+            var artilleryPos = _chosenArtilleryPosition.TacticalPosition.Position.GetGroundVec3MT();
+            var cannonsNearPosition = Mission.Current.GetActiveEntitiesWithScriptComponentOfType<BaseFieldSiegeWeapon>()
+                .Where(entity => entity.GlobalPosition.Distance(artilleryPos) < 50f) // Within 50 meters of artillery position
+                .Where(entity => entity is UsableMachine) // Can be used as a machine
+                .Cast<UsableMachine>()
+                .ToList();
+
+            // Tell the artillery formation to use each cannon
+            foreach (var cannon in cannonsNearPosition)
+            {
+                if (!_artilleryFormation.GetUsedMachines().Contains(cannon))
+                {
+                    _artilleryFormation.StartUsingMachine(cannon);
+                }
+            }
         }
 
 
@@ -404,9 +485,16 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
             {
                 _artilleryFormation.AI.ResetBehaviorWeights();
                 SetDefaultBehaviorWeights(_artilleryFormation);
+
+                // CRITICAL FIX: Position formation AWAY from cannons (35m instead of 12m)
+                // This prevents them from crowding on the cannons themselves
                 var enemyDirection = (_chosenArtilleryPosition.TacticalPosition.Position.AsVec2 - Team.QuerySystem.AverageEnemyPosition).Normalized();
-                _artilleryFormation.AI.SetBehaviorWeight<BehaviorDefend>(15f).DefensePosition = new WorldPosition(Mission.Current.Scene, _chosenArtilleryPosition.TacticalPosition.Position.GetGroundVec3MT() + enemyDirection.ToVec3() * 12);
-                _artilleryFormation.AI.SetBehaviorWeight<BehaviorSkirmishLine>(1f);
+                var defendPosition = new WorldPosition(Mission.Current.Scene, _chosenArtilleryPosition.TacticalPosition.Position.GetGroundVec3MT() + enemyDirection.ToVec3() * 35f);
+
+                // CRITICAL FIX: Lower Defend weight (5f instead of 15f) so formation spreads out naturally
+                // Higher weight makes everyone crowd the exact defense point
+                _artilleryFormation.AI.SetBehaviorWeight<BehaviorDefend>(5f).DefensePosition = defendPosition;
+                _artilleryFormation.AI.SetBehaviorWeight<BehaviorSkirmishLine>(3f);  // Increased weight to encourage spreading
                 _artilleryFormation.AI.SetBehaviorWeight<BehaviorScreenedSkirmish>(1f);
             }
 
