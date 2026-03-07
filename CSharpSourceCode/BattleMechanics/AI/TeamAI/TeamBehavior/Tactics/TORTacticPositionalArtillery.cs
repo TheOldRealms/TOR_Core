@@ -170,18 +170,47 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
 
         public void DeterminePositions()
         {
+            // CRITICAL FIX: Recalculate scoring if armies are now deployed but weren't when scoring was first created
+            // This handles the case where scoring was initialized before deployment (distance = 0)
+            if (_positionScoring != null)
+            {
+                var currentDistance = Team.QuerySystem.AveragePosition.Distance(Team.QuerySystem.AverageEnemyPosition);
+                if (currentDistance > 10f) // Armies have deployed and moved apart
+                {
+                    // Invalidate old scoring that was calculated when distance was 0
+                    _positionScoring = null;
+                }
+            }
+
             if (_chosenArtilleryPosition == null || !IsArtilleryAtPosition(_chosenArtilleryPosition.TacticalPosition))
             {
-                _latestScoredPositions = GatherCandidatePositions()
+                // DEBUG: Break down for easier debugging
+                var candidatePositions = GatherCandidatePositions().ToList();
+                int candidateCount = candidatePositions.Count;
+
+                _latestScoredPositions = candidatePositions
                     .Select(pos => new Target { TacticalPosition = pos })
                     .Select(target =>
                     {
+                        // DEBUG: Evaluate each axis individually to find which is returning 0
+                        float axis1_DistanceToHostiles = PositionScoring[0].Evaluate(target);
+                        float axis2_DistanceToOwnArmy = PositionScoring[1].Evaluate(target);
+                        float axis3_AssessPositionForArtillery = PositionScoring[2].Evaluate(target);
+                        float axis4_PositionHeight = PositionScoring[3].Evaluate(target);
+
                         target.UtilityValue = PositionScoring.GeometricMean(target);
                         return target;
                     }).ToList();
+
+                int scoredPositionsCount = _latestScoredPositions.Count;
+
                 if (_latestScoredPositions.Count > 0)
                 {
                     var candidate = _latestScoredPositions.MaxBy(target => target.UtilityValue);
+                    float candidateUtility = candidate?.UtilityValue ?? float.NaN;
+                    bool isUtilityNaN = float.IsNaN(candidateUtility);
+                    bool isUtilityZero = candidateUtility == 0.0;
+
                     if (float.IsNaN(candidate.UtilityValue)) _positionScoring = null;
                     if (candidate != null && candidate.UtilityValue != 0.0 && !float.IsNaN(candidate.UtilityValue)) _chosenArtilleryPosition = candidate;
                 }
@@ -265,8 +294,27 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
         private List<Axis> CreateArtilleryPositionAssessment()
         {
             var function = new List<Axis>();
+
             var distance = Team.QuerySystem.AveragePosition.Distance(Team.QuerySystem.AverageEnemyPosition);
+
+            // CRITICAL FIX: At mission start, armies haven't deployed yet and are at the same position (distance ≈ 0)
+            // If we create axes with range = 0, they will ALWAYS return 0 (see Axis.Evaluate line 36)
+            // Use fallback distance until armies deploy
+            if (distance < 10f)
+            {
+                distance = 150f; // Typical battle deployment distance
+            }
+
             Mission.Current.Scene.GetTerrainMinMaxHeight(out float minHeight, out float maxHeight);
+            float heightRange = maxHeight - minHeight;
+
+            // CRITICAL FIX: On flat terrain, height range = 0, causing axes to always return 0
+            if (heightRange < 1f)
+            {
+                minHeight = 0f;
+                maxHeight = 100f;
+            }
+
             function.Add(new Axis(0, distance, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles(Team)));
             function.Add(new Axis(0, distance, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToOwnArmy(Team)));
             function.Add(new Axis(0, 1, x => x, CommonAIDecisionFunctions.AssessPositionForArtillery()));
