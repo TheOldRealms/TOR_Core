@@ -115,10 +115,23 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
         _knightOldWorldRoot.Initialize(CareerID, "Slay the Empire's foes with a Knightly Strike! Gain +20% personal 'Physical' melee damage on the next enemy hit within 15s. Every 'Keystone' career talent unlocked provides +1 charge of Knightly Strike. Each level in the One Handed skill increases the damage of Knightly Strike by 1%. (Ability charges by dealing 'Physical' melee damage.)", null, true,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
-
+                new CareerChoiceObject.MutationObject()
+                {
+                    MutationTargetType = typeof(AbilityTemplate),
+                    MutationTargetOriginalId = "KnightlyStrike",
+                    PropertyName = "ScaleVariable1",
+                    PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded, DefaultSkills.TwoHanded, DefaultSkills.Polearm }, 0.02f, false,false),
+                    MutationType = OperationType.Add
+                }
             });
 
-        _secularOrdersKeystone.Initialize(CareerID, "Knightly Strike gains a charge every 100 points in a melee weapon skill up to a max of 15.", "SecularOrders", false,
+        _secularOrdersKeystone.Initialize(CareerID, "Knightly Strike gains +1 charge and starts charged.", "SecularOrders", false,
+            ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+            {
+                
+            }, new CareerChoiceObject.PassiveEffect());
+
+        _pathOfConquestKeystone.Initialize(CareerID, "Knightly Strike also scales with Two-Handed weapon skill and now cleaves.", "PathOfConquest", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -126,17 +139,12 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
                     MutationTargetType = typeof(AbilityTemplate),
                     MutationTargetOriginalId = "KnightlyStrike",
                     PropertyName = "ScaleVariable1",
-                    PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded, DefaultSkills.TwoHanded, DefaultSkills.Polearm }, 0.0034f),
+                    PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.TwoHanded }, 0.02f, false,false),
                     MutationType = OperationType.Add
                 }
-            }, new CareerChoiceObject.PassiveEffect());
-
-        _pathOfConquestKeystone.Initialize(CareerID, "Knightly Strike now cleaves, and can be used at battle start.", "PathOfConquest", false,
-            ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
-            {
             });
 
-        _squiresKeystone.Initialize(CareerID, "Knightly Strike lasts +1s longer per 50 Riding, and grants +10% personal 'Physical' melee damage.", "Squires", false,
+        _squiresKeystone.Initialize(CareerID, "Knightly Strike also scales with Riding, and gains +20% personal melee 'Physical' damage.", "Squires", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -149,7 +157,7 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
                 }
             });
 
-        _templarOrdersKeystone.Initialize(CareerID, "Knightly Strike gains +2 charges, -15s cooldown, and scales with Faith.", "TemplarOrders", false,
+        _templarOrdersKeystone.Initialize(CareerID, "Knightly Strike gains +1 charge, and also scales with Faith.", "TemplarOrders", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -157,7 +165,7 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
                     MutationTargetType = typeof(AbilityTemplate),
                     MutationTargetOriginalId = "KnightlyStrike",
                     PropertyName = "ScaleVariable1",
-                    PropertyValue = (choice, originalValue, agent) => 0.2f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.02f),
+                    PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.02f),
                     MutationType = OperationType.Add
                 },
             });

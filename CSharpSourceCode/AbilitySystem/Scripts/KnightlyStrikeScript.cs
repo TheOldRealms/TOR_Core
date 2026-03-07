@@ -31,10 +31,29 @@ namespace TOR_Core.AbilitySystem.Scripts
                 if (cleaveTrait != null && cleaveTrait != ItemTrait.Invalid) traitList.Add(cleaveTrait);
             }
             
+            if (Hero.MainHero.HasCareerChoice("SecularOrdersKeystone"))
+            {
+                additionalLoads +=  1;
+                
+            }
+            
             if (Hero.MainHero.HasCareerChoice("SquiresKeystone"))
             {
                 var damagetrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "ca_knightlystrike_extra_damage");
                 if (damagetrait != null && damagetrait != ItemTrait.Invalid) traitList.Add(damagetrait);
+            }
+            
+            if (Hero.MainHero.HasCareerChoice("TemplarOrdersKeystone"))
+            {
+                additionalLoads +=  1;
+                
+            }
+            
+
+            if (Hero.MainHero.HasCareerChoice("PathOfVigilanceKeystone"))
+            {
+                var swingSpeedTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "ca_knightlystrike_swing_speed");
+                if (swingSpeedTrait != null && swingSpeedTrait != ItemTrait.Invalid) traitList.Add(swingSpeedTrait);
             }
             
             if (Hero.MainHero.HasCareerChoice("WrathAgainstChaosKeystone"))
@@ -42,12 +61,7 @@ namespace TOR_Core.AbilitySystem.Scripts
                 var armorPenTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "ca_knightlystrike_extra_armorpen");
                 if (armorPenTrait != null && armorPenTrait != ItemTrait.Invalid) traitList.Add(armorPenTrait);
             }
-            
-            if (Hero.MainHero.HasCareerChoice("PathOfVigilanceKeystone"))
-            {
-                var swingSpeedTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "ca_knightlystrike_swing_speed");
-                if (swingSpeedTrait != null && swingSpeedTrait != ItemTrait.Invalid) traitList.Add(swingSpeedTrait);
-            }
+
 
             if (Hero.MainHero.HasCareerChoice("PathOfGloryKeystone"))
             {
