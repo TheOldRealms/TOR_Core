@@ -103,6 +103,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI
                                 team.AddTacticOption(new TacticFrontalCavalryCharge(team));
                                 team.AddTacticOption(new TacticRangedHarrassmentOffensive(team));
                                 team.AddTacticOption(new TacticCoordinatedRetreat(team));
+                                team.AddTacticOption(new TORTacticPositionalArtillery(team));
                             }
                         }
 
