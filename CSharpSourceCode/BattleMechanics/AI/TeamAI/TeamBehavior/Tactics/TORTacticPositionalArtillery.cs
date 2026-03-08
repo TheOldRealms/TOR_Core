@@ -444,31 +444,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
                 }
             }
         }
-
-        private void AssignArtilleryCrewToCannons()
-        {
-            if (_chosenArtilleryPosition == null || _artilleryFormation == null || _artilleryFormation.CountOfUnits == 0)
-                return;
-
-            // Find all cannons near the chosen artillery position
-            var artilleryPos = _chosenArtilleryPosition.TacticalPosition.Position.GetGroundVec3MT();
-            var cannonsNearPosition = Mission.Current.GetActiveEntitiesWithScriptComponentOfType<BaseFieldSiegeWeapon>()
-                .Where(entity => entity.GlobalPosition.Distance(artilleryPos) < 50f) // Within 50 meters of artillery position
-                .Where(entity => entity is UsableMachine) // Can be used as a machine
-                .Cast<UsableMachine>()
-                .ToList();
-
-            // Tell the artillery formation to use each cannon
-            foreach (var cannon in cannonsNearPosition)
-            {
-                if (!_artilleryFormation.GetUsedMachines().Contains(cannon))
-                {
-                    _artilleryFormation.StartUsingMachine(cannon);
-                }
-            }
-        }
-
-
+        
         private bool HasBattleBeenJoined() => _mainInfantry?.QuerySystem.ClosestSignificantlyLargeEnemyFormation == null || _mainInfantry.AI.ActiveBehavior is BehaviorCharge || _mainInfantry.AI.ActiveBehavior is BehaviorTacticalCharge ||
                                               _mainInfantry.CachedMedianPosition.AsVec2.Distance(_mainInfantry.QuerySystem.ClosestSignificantlyLargeEnemyFormation.Formation.CachedMedianPosition.AsVec2) / (double)_mainInfantry.QuerySystem.ClosestSignificantlyLargeEnemyFormation.MovementSpeedMaximum <=
                                               5.0 + (_hasBattleBeenJoined ? 5.0 : 0.0); //TODO: Need to improve logic for detecting that battle has started.
@@ -493,12 +469,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
 
             return _rangedCavalry != null && (_rangedCavalry.CountOfUnits == 0 || !_rangedCavalry.QuerySystem.IsRangedCavalryFormation);
         }
-
-        protected override bool ResetTacticalPositions()
-        {
-            DeterminePositions();
-            return true;
-        }
+        
 
         private void Defend()
         {
