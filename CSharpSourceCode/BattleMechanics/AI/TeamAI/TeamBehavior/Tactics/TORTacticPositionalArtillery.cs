@@ -43,8 +43,8 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
             _artilleryPlacerComponents = new List<WizardAIComponent>();
 
             //TODO: Reminder, might need this if certain updates dont work.
-            // var method = Traverse.Create(this.Team).Method("FormationAI_OnActiveBehaviorChanged").GetValue();
-            // _artilleryFormation.AI.OnActiveBehaviorChanged += new Action<Formation>(this.Team.FormationAI_OnActiveBehaviorChanged);
+            //var method = Traverse.Create(this.Team).Method("FormationAI_OnActiveBehaviorChanged").GetValue();
+            //_artilleryFormation.AI.OnActiveBehaviorChanged += new Action<Formation>(this.Team.FormationAI_OnActiveBehaviorChanged);
             // _guardFormation.AI.OnActiveBehaviorChanged += new Action<Formation>(this.Team.FormationAI_OnActiveBehaviorChanged);
         }
 
@@ -57,10 +57,49 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
             bool generalHasArtilleryAbility = generalIsAbilityUser && Team.GeneralAgent.GetComponent<AbilityComponent>().GetKnownAbilityTemplates().Exists(item => item.AbilityEffectType == AbilityEffectType.ArtilleryPlacement);
             int artilleryCrewCount = Team.ActiveAgents.Count(agent => agent.HasAttribute("ArtilleryCrew")); // FIXED: Use Count() with predicate, not Select().Count()
             bool hasEnoughArtilleryCrew = artilleryCrewCount >= 2;
-            bool generalIsAIControlled = hasGeneralAgent && Team.GeneralAgent.Controller != AgentControllerType.Player;
 
-            if (!hasGeneralAgent || !generalIsAbilityUser || !generalHasArtilleryAbility || !hasEnoughArtilleryCrew)
+            // CRITICAL: Check if general can still place artillery
+            int artillerySlotsLeft = Mission.Current.GetArtillerySlotsLeftForTeam(Team);
+            bool hasArtillerySlots = artillerySlotsLeft > 0;
+
+            bool hasAbilityCharges = false;
+            if (generalHasArtilleryAbility)
+            {
+                var artilleryAbility = Team.GeneralAgent.GetComponent<AbilityComponent>()
+                    .GetKnownAbilityTemplates()
+                    .FirstOrDefault(item => item.AbilityEffectType == AbilityEffectType.ArtilleryPlacement);
+                if (artilleryAbility != null)
+                {
+                    var abilities = Team.GeneralAgent.Team.GeneralAgent.GetComponent<AbilityComponent>().KnownAbilitySystem;
+
+                    foreach (var ability in abilities)
+                    {
+                        if (ability is not ItemBoundAbility boundAbility)
+                        {
+                            continue;
+                        }
+
+                        if (boundAbility.GetRemainingCharges() <= 0)
+                        {
+                            continue;
+                        }
+
+                        hasAbilityCharges = true;
+                        break;
+                    }
+
+                }
+            }
+
+            // If general can't place artillery anymore, this tactic has NO weight
+            // This allows the army to switch to offensive tactics after artillery is placed
+            if (!hasGeneralAgent || !generalIsAbilityUser || !generalHasArtilleryAbility ||
+                !hasEnoughArtilleryCrew || !hasArtillerySlots || !hasAbilityCharges)
+            {
+                
                 return 0.0f;
+            }
+       
 
             // if (!Team.TeamAI.IsDefenseApplicable || !CheckAndDetermineFormation(ref _mainInfantry, f => f.QuerySystem.IsInfantryFormation))
             //     return 0.0f;
@@ -80,6 +119,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
 
             return 0.0f;
         }
+        
 
         protected override void ManageFormationCounts()
         {
@@ -387,13 +427,6 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
 
         private void UpdateArtilleryPlacementTargets()
         {
-            // CRITICAL: Don't place artillery if we don't have enough crew to man it
-            int artilleryCrewCount = Team.ActiveAgents.Count(agent => agent.HasAttribute("ArtilleryCrew"));
-            if (artilleryCrewCount < 2)
-            {
-                return; // Not enough artillery crew, don't tell general to place cannons
-            }
-
             // Ensure the general's WizardAIComponent is in the list
             EnsureGeneralInPlacerComponents();
 
