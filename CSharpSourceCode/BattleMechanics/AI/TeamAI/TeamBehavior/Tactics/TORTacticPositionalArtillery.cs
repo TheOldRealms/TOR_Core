@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -183,6 +183,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
             bool battleJoinedNew = HasBattleBeenJoined();
             var checkAndSetAvailableFormationsChanged = CheckAndSetAvailableFormationsChanged();
             DeterminePositions();
+            
             if (_chosenArtilleryPosition == null || checkAndSetAvailableFormationsChanged || battleJoinedNew != _hasBattleBeenJoined || IsTacticReapplyNeeded)
             {
                 if (checkAndSetAvailableFormationsChanged) ManageFormationCounts();
@@ -318,6 +319,12 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
             return gatherCandidatePositions;
         }
 
+        
+        /// <summary>
+        /// A bandaid attempt to fix AI placing Artillery at the very border of a map, leading to very weird placement
+        /// </summary>
+        /// <param name="position"></param>
+        /// <returns></returns>
         private bool IsPositionValidForArtillery(TacticalPosition position)
         {
             var pos2D = position.Position.AsVec2;
@@ -428,22 +435,10 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
         private void UpdateArtilleryPlacementTargets()
         {
             // Ensure the general's WizardAIComponent is in the list
-            EnsureGeneralInPlacerComponents();
 
             _artilleryPlacerComponents.ForEach(component => component.UpdateArtilleryTargetPosition(_chosenArtilleryPosition));
         }
-
-        private void EnsureGeneralInPlacerComponents()
-        {
-            if (Team.GeneralAgent != null)
-            {
-                var generalComponent = Team.GeneralAgent.GetComponent<WizardAIComponent>();
-                if (generalComponent != null && !_artilleryPlacerComponents.Contains(generalComponent))
-                {
-                    _artilleryPlacerComponents.Add(generalComponent);
-                }
-            }
-        }
+        
         
         private bool HasBattleBeenJoined() => _mainInfantry?.QuerySystem.ClosestSignificantlyLargeEnemyFormation == null || _mainInfantry.AI.ActiveBehavior is BehaviorCharge || _mainInfantry.AI.ActiveBehavior is BehaviorTacticalCharge ||
                                               _mainInfantry.CachedMedianPosition.AsVec2.Distance(_mainInfantry.QuerySystem.ClosestSignificantlyLargeEnemyFormation.Formation.CachedMedianPosition.AsVec2) / (double)_mainInfantry.QuerySystem.ClosestSignificantlyLargeEnemyFormation.MovementSpeedMaximum <=

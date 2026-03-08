@@ -30,7 +30,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior
             else
             {
                 if (GameNetwork.IsClientOrReplay || formation.AI.GetBehavior<BehaviorCharge>() != null)
-                    return;
+                    return; 
                 formation.ForceCalculateCaches();
                 AddFormationBehaviors(formation);
             }
@@ -68,8 +68,6 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior
 
             formation.AI.AddAiBehavior(new TORBehaviorDefend(formation));
             formation.AI.AddAiBehavior(new TORBehaviorProtectArtillery(formation));
-            
-
         }
     }
 }
