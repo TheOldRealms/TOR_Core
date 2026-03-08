@@ -1155,6 +1155,8 @@
                              DamageVariance="0"
                              ScriptNameToTrigger="none">
 		<ImbuedStatusEffect>doom_seeking_attribute</ImbuedStatusEffect>
+		<ImbuedStatusEffect>doom_seeking_ats</ImbuedStatusEffect>
+		<ImbuedStatusEffect>doom_seeking_mvs</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
 	
     <TriggeredEffectTemplate StringID="apply_swift_shiver_trait"
