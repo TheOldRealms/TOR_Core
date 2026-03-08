@@ -524,6 +524,7 @@
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\MousillonTag.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\VampireTags.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\CustomDialogCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\CustomDialogs\TORCompanionDialogBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\DuelBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomEvents\CustomEvent.cs" />
     <Compile Include="CampaignMechanics\CustomEvents\CustomEventsCampaignBehavior.cs" />
@@ -666,6 +667,7 @@
     <Compile Include="Extensions\CharacterObjectExtensions.cs" />
     <Compile Include="Extensions\ClanExtensions.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="Extensions\ConversationManagerExtensions.cs" />
     <Compile Include="Extensions\DebugMethods.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\CharacterExtendedInfo.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\ExtendedInfoManager.cs" />
@@ -861,6 +863,7 @@
     <Compile Include="Utilities\TORConsoleCommands.cs" />
     <Compile Include="Utilities\TORConstants.cs" />
     <Compile Include="Utilities\TORDamageDisplay.cs" />
+    <Compile Include="Utilities\TORDialogHelper.cs" />
     <Compile Include="Utilities\TOREntityRotator.cs" />
     <Compile Include="Utilities\TOREquipmentHelper.cs" />
     <Compile Include="Utilities\TORExtendedInfoHelper.cs" />
@@ -947,7 +950,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CampaignMechanics\Combat\" />
-    <Folder Include="CampaignMechanics\Diplomacy\" />
     <Folder Include="CampaignMechanics\Invasions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
