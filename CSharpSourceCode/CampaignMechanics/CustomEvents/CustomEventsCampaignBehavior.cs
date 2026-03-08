@@ -23,6 +23,7 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
         private const float CommonChance = 5f;
         private const float AbundantChance = 7f;
         private const int CoolDown = 168;
+        private int _lastTriggeredMorrsliebCycleYear = -1;
 
         List<CustomEvent> _events = new List<CustomEvent>();
         Dictionary<string, double> _triggerTimes = new Dictionary<string, double>();
@@ -45,10 +46,30 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             chaosRebellionText.SetTextVariable("SETTLEMENT_NAME", e.Settlement.Name);
             MBInformationManager.AddQuickInformation(chaosRebellionText);
         }
-
         private void WeeklyTick()
-        {//7 days in a week, first day numbered 1, the start day for tor offsets the week so the weekly tick occurs around the 5th day into the year
-            if (CampaignTime.Now.GetDayOfYear <= 7) InkStoryManager.OpenStory("MorrsliebWaxes");//no WeekOfYear property :(
+        {
+            int daysInCurrentWeek = Campaign.Current.Models.CampaignTimeModel.DaysInWeek;
+            int currentYear = CampaignTime.Now.GetYear;
+
+            if (CampaignTime.Now.GetDayOfYear <= daysInCurrentWeek && _lastTriggeredMorrsliebCycleYear != currentYear)
+            {
+                InkStoryManager.OpenStory("MorrsliebWaxes");
+                _lastTriggeredMorrsliebCycleYear = currentYear;
+            }
+        }
+
+        // normalize cooldowns to the vanilla calendar so fastmode wont increase custom event frequency
+        private static int GetCalendarNormalizedCooldownHours(int normalModeCooldownHours)
+        {
+            if (Campaign.Current.Options.AccelerationMode != GameAccelerationMode.Fast)
+            {
+                return normalModeCooldownHours;
+            }
+
+            var campaignTimeModel = Campaign.Current.Models.CampaignTimeModel;
+            float calendarCompressionFactor = (7f / campaignTimeModel.DaysInWeek) * (3f / campaignTimeModel.WeeksInSeason);
+
+            return TaleWorlds.Library.MathF.Round(normalModeCooldownHours * calendarCompressionFactor);
         }
 
         private void OnSessionStart(CampaignGameStarter starter)
@@ -82,8 +103,7 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             if (GetRandomFrequency(out CustomEventFrequency chosenFrequency) && HasCooldownExpired())
             {
                 var chosenEvent = _events.GetRandomElementWithPredicate(x => x.Frequency == chosenFrequency && x.DoesConditionHold() && x.StringId != InkStoryManager.LastStoryId && !_triggerTimes.ContainsKey(x.StringId));
-                if (chosenEvent == null) chosenEvent = _events.GetRandomElementWithPredicate(x => x.Frequency == chosenFrequency && x.DoesConditionHold() && x.Cooldown < GetElapsedTimeSinceLastTrigger(x));
-                if (chosenEvent != null)
+                if (chosenEvent == null) chosenEvent = _events.GetRandomElementWithPredicate(x => x.Frequency == chosenFrequency && x.DoesConditionHold() && GetCalendarNormalizedCooldownHours(x.Cooldown) < GetElapsedTimeSinceLastTrigger(x)); if (chosenEvent != null)
                 {
                     chosenEvent.Trigger();
                     if (_triggerTimes.ContainsKey(chosenEvent.StringId)) _triggerTimes[chosenEvent.StringId] = CampaignTime.Now.ToHours;
@@ -99,7 +119,7 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             else return 999;
         }
 
-        private bool HasCooldownExpired() => CampaignTime.Now.ToHours - _triggerTimes["Global"] > CoolDown;
+        private bool HasCooldownExpired() => CampaignTime.Now.ToHours - _triggerTimes["Global"] > GetCalendarNormalizedCooldownHours(CoolDown);
 
         private bool GetRandomFrequency(out CustomEventFrequency chosenFrequency)
         {
@@ -117,6 +137,7 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
         public override void SyncData(IDataStore dataStore)
         {
             dataStore.SyncData("_triggerTimes", ref _triggerTimes);
+            dataStore.SyncData("_lastTriggeredMorrsliebCycleYear", ref _lastTriggeredMorrsliebCycleYear);
         }
 
         ~CustomEventsCampaignBehavior()
