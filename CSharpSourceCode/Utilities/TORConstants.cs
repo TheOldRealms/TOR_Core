@@ -68,7 +68,8 @@ namespace TOR_Core.Utilities
             public const string TALABECLAND = "talabecland";
             public const string NORDLAND = "nordland";
             public const string MOOT = "moot";
-
+            public const string WASTELAND = "wasteland";
+            
             // Bretonnia Duchies
             public const string COURONNE = "couronne";
             public const string AQUITAINE = "aquitaine";
@@ -120,10 +121,8 @@ namespace TOR_Core.Utilities
             public const string NECK_SNAPPERS = "neck_snappers";
             public const string RED_EYE = "red_eye";
             public const string SKULL_SMASHERZ = "skull_smasherz";
-
-            // Other
             public const string REAVAZ = "reavaz";
-            public const string WASTELAND = "wasteland";
+
 
             public static readonly List<string> AllEmpire =
             [

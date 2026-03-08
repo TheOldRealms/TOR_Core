@@ -47,47 +47,7 @@ namespace TOR_Core.HarmonyPatches
             }
             return true;
         }
-
-        /* Moved to TORAgentApplyDamageModel.CalculateRemainingMomentum - to be removed after further testing. The melee hit callback calls AgentApplyDamageModel.CalculateRemainingMomentum and model overrides then take effect, so there's no need to postfix when we already have access to the method.
-        [HarmonyPostfix]
-        [HarmonyPatch(typeof(Mission), "MeleeHitCallback")]
-        public static void MeleeHitCallbackPostfix(
-            ref AttackCollisionData collisionData,
-            Agent attacker,
-            Agent victim,
-            GameEntity realHitEntity,
-            ref float inOutMomentumRemaining,
-            ref MeleeCollisionReaction colReaction,
-            CrushThroughState crushThroughState,
-            Vec3 blowDir,
-            Vec3 swingDir,
-            ref HitParticleResultData hitParticleResultData,
-            bool crushedThroughWithoutAgentCollision)
-        {
-            if (Campaign.Current == null) return;
-
-            int inflictedDamage = collisionData.InflictedDamage + collisionData.AbsorbedByArmor;
-            if (inflictedDamage < 1)
-            {
-                return;
-            }
-
-            var model = MissionGameModels.Current.AgentApplyDamageModel as TORAgentApplyDamageModel;
-            if (model == null)
-            {
-                return;
-            }
-
-            if (!model.ShouldCutThrough(collisionData, attacker, victim))
-                return;
-
-            float num2 = (float)collisionData.InflictedDamage / (float)inflictedDamage;
-            inOutMomentumRemaining = num2 * 0.25f;
-        }
-        */
-
-
-
+        
         [HarmonyPrefix]
         [HarmonyPatch(typeof(HideoutCinematicController), "StartCinematic")]
         public static bool PostOnInitialFadeOutOver()
@@ -204,6 +164,22 @@ namespace TOR_Core.HarmonyPatches
             {
                 damageBonus = TORAgentApplyDamageModel.CalculateCustomMissileDamage(shooterAgent);
             }
+        }
+
+        // Prefix patch for BehaviorHorseArcherSkirmish.CalculateCurrentOrder to prevent null reference when CachedClosestEnemyFormation is null
+        // This happens during mission initialization when enemy formations haven't been cached yet
+        [HarmonyPatch(typeof(BehaviorHorseArcherSkirmish), "CalculateCurrentOrder")]
+        [HarmonyPrefix]
+        public static bool BehaviorHorseArcherSkirmish_CalculateCurrentOrder_Prefix(BehaviorHorseArcherSkirmish __instance)
+        {
+            // If CachedClosestEnemyFormation is null, skip the base game's implementation to avoid null reference
+            // The behavior will recalculate on next tick when formations are properly initialized
+            if (__instance.Formation.CachedClosestEnemyFormation == null)
+            {
+                var currentOrder = MovementOrder.MovementOrderMove(__instance.Formation.CachedMedianPosition); 
+                Traverse.Create(__instance).Property("CurrentOrder").SetValue(currentOrder);           
+            }
+            return true; // Run original method
         }
     }
 }

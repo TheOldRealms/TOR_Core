@@ -102,6 +102,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         /// <summary>
         /// Applies resistance buffs to the caster based on active keystones.
         /// - BrutalCunninKeystone: 10% physical resistance
+        /// - BrutalCunninKeystone: 15% melee damage
         /// - PowerUvDaWaaaghKeystone: 50% physical resistance
         /// </summary>
         private void ApplyResistanceBuffsToCaster()
@@ -112,6 +113,11 @@ namespace TOR_Core.AbilitySystem.Scripts
             if (Hero.MainHero.HasCareerChoice("BrutalCunninKeystone"))
             {
                 CasterAgent.ApplyStatusEffect(PHYSICAL_RESISTANCE_10_EFFECT, CasterAgent, duration, false);
+            }
+            
+            if (Hero.MainHero.HasCareerChoice("CunninBrutalityKeystone"))
+            {
+                CasterAgent.ApplyStatusEffect(DAMAGE_BONUS_15_EFFECT, CasterAgent, duration, false);
             }
 
             // PowerUvDaWaaaghKeystone: 50% physical resistance

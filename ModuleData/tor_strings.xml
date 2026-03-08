@@ -4642,6 +4642,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_greenskin_brawl_defeat_desc" text="{=str_tor_greenskin_brawl_defeat_desc}You lost {GOLD_LOSS} shinies and {TEEF_LOSS}{CR_ICON} due to your defeat." />
 	<string id="tor_greenskin_brawl_defeat_accept" text="{=str_tor_greenskin_brawl_defeat_accept}Accept your defeat" />
 	<string id="tor_greenskin_brawl_disabled" text="{=str_tor_greenskin_brawl_disabled}You need to wait at least {COOLDOWN_DAYS} days" />
+	<string id="tor_greenskin_brawl_disabled_hireling" text="{=str_tor_greenskin_brawl_disabled_hireling}Da Boss izn't gunna like dis" />
 	<!-- Goblin Recruitment Mechanic -->
 	<string id="tor_goblin_recruitment_start" text="{=str_tor_goblin_recruitment_start}Look for goblins" />
 	<string id="tor_goblin_recruitment_no_goblins" text="{=str_tor_goblin_recruitment_no_goblins}No goblins found after searching…" />

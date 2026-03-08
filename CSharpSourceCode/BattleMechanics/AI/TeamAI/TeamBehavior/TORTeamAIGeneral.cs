@@ -22,6 +22,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior
         {
             if (GameNetwork.IsServer)
             {
+                formation.ForceCalculateCaches();
                 if (formation.AI.GetBehavior<BehaviorCharge>() != null)
                     return;
                 AddFormationBehaviors(formation);
@@ -29,7 +30,8 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior
             else
             {
                 if (GameNetwork.IsClientOrReplay || formation.AI.GetBehavior<BehaviorCharge>() != null)
-                    return;
+                    return; 
+                formation.ForceCalculateCaches();
                 AddFormationBehaviors(formation);
             }
         }
@@ -55,6 +57,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior
             formation.AI.AddAiBehavior(new BehaviorFireFromInfantryCover(formation));
             formation.AI.AddAiBehavior(new BehaviorFlank(formation));
             formation.AI.AddAiBehavior(new BehaviorHoldHighGround(formation));
+            formation.AI.AddAiBehavior(new BehaviorHorseArcherSkirmish(formation));
             formation.AI.AddAiBehavior(new BehaviorMountedSkirmish(formation));
             formation.AI.AddAiBehavior(new BehaviorProtectFlank(formation));
             formation.AI.AddAiBehavior(new BehaviorScreenedSkirmish(formation));

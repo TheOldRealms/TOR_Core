@@ -18,6 +18,7 @@ using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics;
+using TOR_Core.BattleMechanics.AI.TeamAI;
 using TOR_Core.BattleMechanics.Banners;
 using TOR_Core.BattleMechanics.Dismemberment;
 using TOR_Core.BattleMechanics.Firearms;
@@ -58,6 +59,7 @@ using TOR_Core.Models.CustomBattleModels;
 using TOR_Core.Quests;
 using TOR_Core.Utilities;
 using TOR_Core.BattleMechanics.Voice;
+using TOR_Core.Extensions;
 
 namespace TOR_Core
 {
@@ -283,14 +285,12 @@ namespace TOR_Core
 
         public override void OnBeforeMissionBehaviorInitialize(Mission mission)
         {
-            /*
             var missionCombatantsLogic = mission.GetMissionBehavior<MissionCombatantsLogic>();
 
             if (missionCombatantsLogic == null)
                 return;
 
             mission.AddMissionLogicAtIndexOf(missionCombatantsLogic, TORMissionCombatantsLogic.CreateFromInstance(missionCombatantsLogic));
-            */
         }
 
         public override void OnMissionBehaviorInitialize(Mission mission)
