@@ -585,8 +585,8 @@
       <Trait id="Calculating" value="2" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_we_spellsinger_template" />
-      <EquipmentSet id="tor_we_spellsinger_template" civilian="true" />
+      <EquipmentSet id="tor_we_spellsinger_female_template" />
+      <EquipmentSet id="tor_we_spellsinger_female_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_wanderer_woodelf_1" default_group="infantry" name="{=str_tor_wanderer_woodelf_1}{FIRSTNAME} the Glade Captain" occupation="Wanderer" culture="Culture.battania" voice="curt" age="19" race="elf" is_female="true" skill_template="SkillSet.tor_skills_wanderer_gladecaptain" is_template="true" is_hero="false">
@@ -701,7 +701,7 @@
       <EquipmentSet id="tor_cc_dw_rune_smith_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_dawi_2" default_group="infantry" name="{=str_tor_wanderer_dawi_2}{FIRSTNAME} the Dwarf Engineer" occupation="Wanderer" culture="Culture.sturgia" voice="ironic" age="30" race="dwarf" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_dawi_2" default_group="infantry" name="{=str_tor_wanderer_dawi_2}{FIRSTNAME} the Dwarf Engineer" occupation="Wanderer" culture="Culture.sturgia" voice="ironic" age="30" race="dwarf" skill_template="SkillSet.tor_skills_wanderer_dwarf_engineer" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.dwarf_high_tier" />
     </face>

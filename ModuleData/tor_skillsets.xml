@@ -731,7 +731,7 @@
 		       value="0" />
 	</SkillSet>
 	
-	<SkillSet id="tor_skills_wanderer_engineer">
+	<SkillSet id="tor_skills_wanderer_dwarf_engineer">
 		<skill id="Athletics"
 		       value="0" />
 		<skill id="Riding"
