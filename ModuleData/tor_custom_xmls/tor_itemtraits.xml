@@ -4576,7 +4576,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>Charge your weapon with knightly power</ItemTraitDescription>
-    <AdditionalDamageTuple DamageType="Physical" Percent="0.10" />
+    <AdditionalDamageTuple DamageType="Physical" Percent="0.20" />
     <WeaponParticlePreset ParticlePrefab="psys_flaming_weapon" IsUniqueSingleCopy="false" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="ca_knightlystrike_extra_armorpen" ItemTraitName="Knightly Strike Armor Pen" IsCraftable="false" IconName="winds_icon_45">
