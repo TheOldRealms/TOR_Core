@@ -3,6 +3,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics
 {
@@ -10,23 +11,66 @@ namespace TOR_Core.CampaignMechanics
     {
         public override void RegisterEvents()
         {
+            CampaignEvents.HourlyTickSettlementEvent.AddNonSerializedListener(this, ExtraUnits);
             CampaignEvents.HourlyTickSettlementEvent.AddNonSerializedListener(this, ExtraFood);
             CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this, AfterNewGameStart);
         }
 
-        public void ExtraFood(Settlement settlement)
+        private void ExtraUnits(Settlement settlement)
         {
-            if (settlement.IsBloodKeep())
+            if(settlement.Owner==null)
             {
-                if (settlement.ItemRoster.TotalFood < 500)
+                return;
+            }
+            if (!settlement.Owner.Clan.IsCastleFaction()) return;
+            
+            if (settlement.StringId == "castle_RZ1" ||settlement.StringId == "castle_BP1")
+            {
+                foreach (var  party in settlement.Parties)
                 {
-                    settlement.ItemRoster.AddToCounts(DefaultItems.Meat, 100);
-                    settlement.ItemRoster.AddToCounts(DefaultItems.Grain, 100);
+
+                    if (party.IsLordParty &&party.Party.MemberRoster.TotalManCount < 85)
+                    {
+                        if (party.Owner.Clan.StringId.Contains(TORConstants.Factions.BLACK_PIT) || party.Owner.Clan.StringId.Contains(TORConstants.Factions.REAVAZ))
+                        {
+                            var goblinArcher = MBObjectManager.Instance.GetObject<CharacterObject>("tor_gs_goblin_archer");
+                            var goblinStikka = MBObjectManager.Instance.GetObject<CharacterObject>("tor_gs_goblin_stikka");
+
+                            var random = new System.Random();
+                            var archerCount = random.Next(0, 6);
+                            var stikkaCount = 5 - archerCount;
+
+                            if (goblinArcher != null && archerCount > 0)
+                                party.Party.MemberRoster.AddToCounts(goblinArcher, archerCount);
+                            if (goblinStikka != null && stikkaCount > 0)
+                                party.Party.MemberRoster.AddToCounts(goblinStikka, stikkaCount);
+                        }
+                    }
                 }
             }
+        }
 
-            if (settlement.StringId == "castle_BK2")
+        public void ExtraFood(Settlement settlement)
+        {
+            if(settlement.Owner==null)
             {
+                return;
+            }
+            if (!settlement.Owner.Clan.IsCastleFaction()) return;
+            
+            if (settlement.IsBloodKeep() || settlement.StringId == "castle_BK2" || settlement.StringId == "castle_RZ1" ||settlement.StringId == "castle_BP1")
+            {
+                foreach (var  party in settlement.Parties)
+                {
+                    if (settlement.MapFaction == party.MapFaction && settlement.Owner.Clan.IsCastleFaction())
+                    {
+                        if (party.ItemRoster.TotalFood < 5)
+                        {
+                            party.ItemRoster.AddToCounts(DefaultItems.Meat, 25);
+                            party.ItemRoster.AddToCounts(DefaultItems.Grain, 25);
+                        }
+                    }
+                }
                 if (settlement.ItemRoster.TotalFood < 500)
                 {
                     settlement.ItemRoster.AddToCounts(DefaultItems.Meat, 100);

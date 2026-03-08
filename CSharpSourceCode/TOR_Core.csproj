@@ -500,7 +500,6 @@
     <Compile Include="CampaignMechanics\CharacterCreation\FaceGenHelper.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\TORCharacterCreationContentHandler.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\TORCharacterCreationException.cs" />
-    <Compile Include="CampaignMechanics\Combat\GreenskinBrawlBehavior.cs" />
     <Compile Include="CampaignMechanics\Companions\TORCompanionsCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantableItemVM.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantableTraitVM.cs" />
@@ -947,6 +946,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="CampaignMechanics\Combat\" />
     <Folder Include="CampaignMechanics\Diplomacy\" />
     <Folder Include="CampaignMechanics\Invasions\" />
   </ItemGroup>
