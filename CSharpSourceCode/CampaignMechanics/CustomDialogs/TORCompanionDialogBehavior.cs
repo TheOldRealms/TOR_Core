@@ -55,12 +55,6 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
                 "{=!}{TOR_HIRE_TEXT}",
                 TORCompanionHireWithTextCondition, null, 100, TORCompanionHireClickable, null);
 
-            // Player option to leave conversation (character-specific)
-            // Uses tor_leave_p.{characterStringId}
-            campaignGameStarter.AddPlayerLine("tor_companion_leave", "hero_main_options", "close_window",
-                "{=!}{TOR_LEAVE_TEXT}",
-                TORWandererLeaveCondition, null, 85, null, null);
-
             // NPC response to hire request
             campaignGameStarter.AddDialogLine("tor_companion_hire_response", "tor_companion_hire_start", "tor_companion_hire_gold",
                 TORTextHelper.GetText("tor_companion_hire_response", "I could be persuaded to join you. My fee is {GOLD_AMOUNT}{GOLD_ICON}."),
@@ -77,7 +71,7 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
                 () => !TORCompanionCanAffordCondition(), null, 100, null, null);
 
             // Player declines
-            campaignGameStarter.AddPlayerLine("tor_companion_hire_decline", "tor_companion_hire_gold", "hero_main_options",
+            campaignGameStarter.AddPlayerLine("tor_companion_hire_decline", "tor_companion_hire_gold", "close_window",
                 TORTextHelper.GetText("tor_companion_hire_decline", "That's too steep for me. Never mind."),
                 null, null, 90, null, null);
         }
@@ -104,14 +98,6 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             if (!TORCompanionHireCondition()) return false;
 
             SetHireText();
-            return true;
-        }
-
-        private bool TORWandererLeaveCondition()
-        {
-            if (!TORWandererCondition()) return false;
-
-            SetLeaveText();
             return true;
         }
 
