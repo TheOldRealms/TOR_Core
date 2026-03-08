@@ -205,7 +205,9 @@ namespace TOR_Core.BattleMechanics
             }
 
 
-            if (!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent)) return;
+            if (!(affectorAgent != null &&
+                  (affectorAgent.HasAttribute("WindsLink") || affectedAgent.HasAttribute("WindsDeathLink"))) &&
+                !CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent)) return;
 
             var playerHero = affectorAgent.GetHero();
 
