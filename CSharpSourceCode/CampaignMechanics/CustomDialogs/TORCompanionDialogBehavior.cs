@@ -21,19 +21,40 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
 
         private void OnAfterSessionLaunched(CampaignGameStarter campaignGameStarter)
         {
-            // Remove vanilla companion hire dialogs after base game adds them
-            RemoveVanillaCompanionDialogs();
+            // Remove vanilla player dialog options (AddPlayerLine doesn't support priority override)
+            // NPC dialog lines (AddDialogLine) can be overridden with priority, so we use vanilla IDs with priority 200
+            RemovePlayerLinesForCompanionHiring();
             // Add TOR custom companion dialogs
             AddTORCompanionDialogs(campaignGameStarter);
         }
 
         /// <summary>
-        /// Removes vanilla companion hire dialog lines by ID.
+        /// Removes vanilla player dialog lines for companion hiring.
+        /// Player lines cannot be overridden with priority like NPC dialog lines can.
+        /// Based on LordConversationsCampaignBehavior lines 707-733.
         /// </summary>
-        private void RemoveVanillaCompanionDialogs()
+        private void RemovePlayerLinesForCompanionHiring()
         {
-            int removed = TORDialogHelper.RemoveVanillaCompanionDialogs();
-            TORCommon.Log($"Removed {removed} vanilla companion dialog line(s)", NLog.LogLevel.Info);
+            var manager = Campaign.Current?.ConversationManager;
+            if (manager == null) return;
+
+            int count = 0;
+
+            // Vanilla companion hire player dialog IDs
+            var playerDialogIds = new[]
+            {
+                "main_option_faction_hire",           // Line 707: Player option "I can use someone like you in my company."
+                "companion_hire_capacity_full",       // Line 731: Player response when companion limit reached
+                "player_companion_hire_response_1",   // Line 732: Player accepts and pays
+                "player_companion_hire_response_2"    // Line 733: Player can't afford
+            };
+
+            foreach (var id in playerDialogIds)
+            {
+                count += manager.RemoveDialogLineById(id);
+            }
+
+            TORCommon.Log($"Removed {count} vanilla companion player dialog line(s)", NLog.LogLevel.Info);
         }
 
         /// <summary>
@@ -45,35 +66,40 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
         {
             // Character-specific introduction (NPC greeting at "start")
             // Uses tor_introduction.{characterStringId}
-            campaignGameStarter.AddDialogLine("tor_wanderer_introduction", "start", "hero_main_options",
+            // SAME ID as vanilla "start_wanderer_unmet" with priority 200 to override (vanilla uses 110)
+            campaignGameStarter.AddDialogLine("start_wanderer_unmet", "start", "hero_main_options",
                 "{=!}{TOR_INTRO_TEXT}",
-                TORWandererIntroductionCondition, null, 110, null);
+                TORWandererIntroductionCondition, null, 200, null);
 
             // Player option to hire companion (character-specific)
             // Uses tor_hire_companion_p.{characterStringId}
-            campaignGameStarter.AddPlayerLine("tor_companion_hire_option", "hero_main_options", "tor_companion_hire_start",
+            // SAME ID as vanilla "main_option_faction_hire" with priority 200 to override (vanilla uses ~100)
+            campaignGameStarter.AddPlayerLine("main_option_faction_hire", "hero_main_options", "companion_hire",
                 "{=!}{TOR_HIRE_TEXT}",
-                TORCompanionHireWithTextCondition, null, 100, TORCompanionHireClickable, null);
+                TORCompanionHireWithTextCondition, null, 200, TORCompanionHireClickable, null);
 
             // NPC response to hire request
-            campaignGameStarter.AddDialogLine("tor_companion_hire_response", "tor_companion_hire_start", "tor_companion_hire_gold",
+            // SAME ID as vanilla "companion_hire" with priority 200 to override
+            campaignGameStarter.AddDialogLine("companion_hire", "companion_hire", "player_companion_hire_response",
                 TORTextHelper.GetText("tor_companion_hire_response", "I could be persuaded to join you. My fee is {GOLD_AMOUNT}{GOLD_ICON}."),
-                TORCompanionHireGoldCondition, null, 100, null);
+                TORCompanionHireGoldCondition, null, 200, null);
+
+            // Player can't afford (capacity check now in clickable condition)
+            // SAME ID as vanilla "player_companion_hire_response_2" with priority 200 to override
+            campaignGameStarter.AddPlayerLine("player_companion_hire_response_2", "player_companion_hire_response", "hero_main_options",
+                TORTextHelper.GetText("tor_companion_hire_cant_afford", "I don't have that much gold right now."),
+                () => !TORCompanionCanAffordCondition(), null, 200, null, null);
 
             // Player accepts gold price
-            campaignGameStarter.AddPlayerLine("tor_companion_hire_accept", "tor_companion_hire_gold", "close_window",
+            // SAME ID as vanilla "player_companion_hire_response_1" with priority 200 to override
+            campaignGameStarter.AddPlayerLine("player_companion_hire_response_1", "player_companion_hire_response", "hero_leave",
                 TORTextHelper.GetText("tor_companion_hire_accept", "Here's your gold. Welcome aboard."),
-                TORCompanionCanAffordCondition, TORCompanionHireConsequence, 100, null, null);
+                TORCompanionCanAffordCondition, TORCompanionHireConsequence, 200, null, null);
 
-            // Player can't afford
-            campaignGameStarter.AddPlayerLine("tor_companion_hire_cant_afford", "tor_companion_hire_gold", "hero_main_options",
-                TORTextHelper.GetText("tor_companion_hire_cant_afford", "I don't have that much gold right now."),
-                () => !TORCompanionCanAffordCondition(), null, 100, null, null);
-
-            // Player declines
-            campaignGameStarter.AddPlayerLine("tor_companion_hire_decline", "tor_companion_hire_gold", "close_window",
-                TORTextHelper.GetText("tor_companion_hire_decline", "That's too steep for me. Never mind."),
-                null, null, 90, null, null);
+            // Wanderer leave dialog (when player leaves without hiring - overrides vanilla with priority 200)
+            campaignGameStarter.AddDialogLine("tor_wanderer_leave", "hero_leave", "close_window",
+                TORTextHelper.GetText("tor_wanderer_leave", "Safe travels, stranger."),
+                TORWandererLeaveCondition, null, 200, null);
         }
 
         #region Dialog Conditions and Consequences
@@ -222,6 +248,12 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             // For example: culture bonuses, reputation effects, etc.
 
             return basePrice;
+        }
+
+        private bool TORWandererLeaveCondition()
+        {
+            var hero = Hero.OneToOneConversationHero;
+            return hero != null && hero.IsWanderer && !hero.IsPlayerCompanion;
         }
 
         #endregion
