@@ -2394,7 +2394,11 @@
   <string id="tor_response_1.tor_wanderer_eonir_0" text="{=str_tor_response_1_tor_wanderer_eonir_0}It's always good that there are fewer of those disgusting creatures in this world." />
   <string id="tor_response_2.tor_wanderer_eonir_0" text="{=str_tor_response_2_tor_wanderer_eonir_0}A boy killing beasts? I find it hard to believe." />
   <string id="tor_backstory_d.tor_wanderer_eonir_0" text="{=str_tor_backstory_d_tor_wanderer_eonir_0}I am a Ghost Strider of the Toriour caste, an expert in the art of ambush. I shall deliver the justice of the Eonir." />
-  <string id="tor_generic_backstory.tor_wanderer_eonir_0" text="{=str_tor_generic_backstory_tor_wanderer_eonir_0}I would prefer not to leave my beloved forests, but for a reasonable fee, I might be persuaded to accompany you on your travels for a time." />
+  <string id="tor_hire_companion_p.tor_wanderer_eonir_0" text="{=str_tor_prebackstory_tor_wanderer_eonir_0}I am interested in your skills." />
+  <string id="tor_hire_companion_payment.tor_wanderer_eonir_0" text="{=str_tor_generic_backstory_tor_wanderer_eonir_0}I would prefer not to leave my beloved forests, but for a reasonable fee, I might be persuaded to accompany you on your travels for a time." />
+  <string id="tor_hire_companion_payment_p.tor_wanderer_eonir_0" text="{=str_tor_generic_backstory_tor_wanderer_eonir_0}I would prefer not to leave my beloved forests, but for a reasonable fee, I might be persuaded to accompany you on your travels for a time." />
+  <string id="tor_hire_accept_p.tor_wanderer_eonir_0" text="{=str_tor_hire_accept_p_tor_wanderer_eonir_0}Right... {GOLD_AMOUNT} Here you are some coinies." />
+  <string id="tor_hire_decline_p.tor_wanderer_eonir_0" text="{=str_tor_hire_decline_p_tor_wanderer_eonir_0}I can't afford that just now elf." />  
 
   <string id="tor_prebackstory.tor_wanderer_eonir_1" text="{=str_tor_prebackstory_tor_wanderer_eonir_1}Insolent boy, you stand before a Guardian Mage of the Eonir." />
   <string id="tor_backstory_a.tor_wanderer_eonir_1" text="{=str_tor_backstory_a_tor_wanderer_eonir_1}Surely you don't have the slightest idea about our arcane power and bloodline." />
