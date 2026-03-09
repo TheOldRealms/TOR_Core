@@ -419,53 +419,55 @@ namespace TOR_Core.Models
             {
                 foreach (var equipmentItem in agent.Character.GetCharacterEquipment(EquipmentIndex.ArmorItemBeginSlot, EquipmentIndex.ArmorItemEndSlot))
                 {
-                    var traits = equipmentItem.GetTraits();
-                    foreach (var trait in traits.WhereQ(trait => trait.StatsTuple != null && trait.StatsTuple.StatType == ItemTraitStatType.MovementSpeed))
+                    foreach (var trait in equipmentItem.GetTraits())
                     {
-                        agentDrivenProperties.MaxSpeedMultiplier *= (1 + trait.StatsTuple.Value / 100);
+                        if (trait.StatsTuple?.StatType == ItemTraitStatType.MovementSpeed)
+                        {
+                            agentDrivenProperties.MaxSpeedMultiplier *= 1f + trait.StatsTuple.Value / 100f;
+                        }
                     }
                 }
+
                 if (!agent.WieldedWeapon.IsEmpty)
                 {
                     if (agent.WieldedWeapon.Item.IsMeleeWeapon())
                     {
-                        var traits = agent.WieldedWeapon.Item.GetTraits().WhereQ(x => x.StatsTuple?.StatType == ItemTraitStatType.SwingSpeed).ToListQ();
-                        foreach (var trait in traits)
+                        foreach (var trait in agent.WieldedWeapon.Item.GetTraits())
                         {
-                            agentDrivenProperties.SwingSpeedMultiplier *= (1 + trait.StatsTuple.Value / 100);
+                            if (trait.StatsTuple?.StatType == ItemTraitStatType.SwingSpeed)
+                            {
+                                agentDrivenProperties.SwingSpeedMultiplier *= 1f + trait.StatsTuple.Value / 100f;
+                            }
                         }
                     }
 
                     if (agent.WieldedWeapon.CurrentUsageItem.IsRangedWeapon)
                     {
-                        var traits = new List<ItemTrait>();
+                        foreach (var trait in agent.WieldedWeapon.Item.GetTraits())
+                        {
+                            if (trait.StatsTuple?.StatType == ItemTraitStatType.ReloadSpeed)
+                            {
+                                agentDrivenProperties.ReloadSpeed *= 1f + trait.StatsTuple.Value / 100f;
+                            }
 
-                        traits.AddRange(agent.WieldedWeapon.Item.GetTraits().WhereQ(x => x.StatsTuple?.StatType == ItemTraitStatType.ReloadSpeed).ToListQ());
-                        traits.AddRange(agent.WieldedWeapon.Item.GetTraits().WhereQ(x => x.StatsTuple?.StatType == ItemTraitStatType.MissileSpeed).ToListQ());
+                            if (trait.StatsTuple?.StatType == ItemTraitStatType.MissileSpeed)
+                            {
+                                agentDrivenProperties.MissileSpeedMultiplier *= 1f + trait.StatsTuple.Value / 100f;
+                            }
+                        }
 
                         if (!agent.WieldedWeapon.AmmoWeapon.IsEmpty)
                         {
-                            traits.AddRange(agent.WieldedWeapon.AmmoWeapon.Item.GetTraits().WhereQ(x => x.StatsTuple?.StatType == ItemTraitStatType.MissileSpeed).ToListQ());
-                        }
-
-
-                        foreach (var trait in traits)
-                        {
-                            if (trait.StatsTuple.StatType == ItemTraitStatType.ReloadSpeed)
+                            foreach (var trait in agent.WieldedWeapon.AmmoWeapon.Item.GetTraits())
                             {
-                                agentDrivenProperties.ReloadSpeed *= (1 + trait.StatsTuple.Value / 100);
-                            }
-
-                            if (trait.StatsTuple.StatType == ItemTraitStatType.MissileSpeed)
-                            {
-                                agentDrivenProperties.MissileSpeedMultiplier *= (1 + trait.StatsTuple.Value / 100);
+                                if (trait.StatsTuple?.StatType == ItemTraitStatType.MissileSpeed)
+                                {
+                                    agentDrivenProperties.MissileSpeedMultiplier *= 1f + trait.StatsTuple.Value / 100f;
+                                }
                             }
                         }
-
                     }
-
                 }
-
             }
 
             UpdateDynamicAgentDrivenProperties(agent, agentDrivenProperties);
@@ -473,124 +475,140 @@ namespace TOR_Core.Models
 
         private void UpdateDynamicAgentDrivenProperties(Agent agent, AgentDrivenProperties agentDrivenProperties)
         {
-            var statusEffectComponent = agent.IsMount ? agent.RiderAgent?.GetComponent<StatusEffectComponent>() : agent.GetComponent<StatusEffectComponent>();
+            var statusEffectComponent = agent.IsMount
+                ? agent.RiderAgent?.GetComponent<StatusEffectComponent>()
+                : agent.GetComponent<StatusEffectComponent>();
+
             if (statusEffectComponent == null)
                 return;
 
-            if (!statusEffectComponent.AreBaseValuesInitialized() || !statusEffectComponent.ModifiedDrivenProperties) return;
-            var speedModifier = statusEffectComponent.GetMovementSpeedModifier();
-            if (speedModifier != 0f)
+            if (!statusEffectComponent.AreBaseValuesInitialized() || !statusEffectComponent.ModifiedDrivenProperties)
+                return;
+
+            bool isMount = agent.IsMount;
+
+            float speedModifier = statusEffectComponent.GetMovementSpeedModifier();
+            float speedMultiplier = speedModifier != 0f
+                ? Mathf.Clamp(speedModifier + 1f, 0f, 2f) //to set in the right offset, where -100% would actually result in 0% movement speed
+                : 1f;
+
+            if (isMount)
             {
-                var speedMultiplier = Mathf.Clamp(speedModifier + 1, 0, 2); //to set in the right offset, where -100% would actually result in 0% movement speed
-                if (agent.IsMount)
-                {
-                    agentDrivenProperties.SetDynamicMountMovementProperties(statusEffectComponent, speedMultiplier);
-                }
-                else
-                {
-                    agentDrivenProperties.SetDynamicHumanoidMovementProperties(statusEffectComponent, speedMultiplier);
-                }
+                agentDrivenProperties.SetDynamicMountMovementProperties(statusEffectComponent, speedMultiplier);
             }
             else
             {
-                if (agent.IsMount)
-                {
-                    agentDrivenProperties.SetDynamicMountMovementProperties(statusEffectComponent, 1);
-                }
-                else
-                {
-                    agentDrivenProperties.SetDynamicHumanoidMovementProperties(statusEffectComponent, 1);
-                }
+                agentDrivenProperties.SetDynamicHumanoidMovementProperties(statusEffectComponent, speedMultiplier);
             }
 
-            var weaponSwingSpeedModifier = statusEffectComponent.GetAttackSpeedModifier();
-            if (weaponSwingSpeedModifier != 0)
+            float weaponSwingSpeedModifier = statusEffectComponent.GetAttackSpeedModifier();
+            if (weaponSwingSpeedModifier != 0f)
             {
-                var swingSpeedMultiplier = Mathf.Clamp(weaponSwingSpeedModifier + 1, 0.05f, 2); //I guess its better to set here a minimum, just in case something breaks.
-                if (agent.IsMount) return;
+                if (isMount)
+                    return;
 
-
+                float swingSpeedMultiplier = Mathf.Clamp(weaponSwingSpeedModifier + 1f, 0.05f, 2f);
                 agentDrivenProperties.SetDynamicCombatProperties(statusEffectComponent, swingSpeedMultiplier);
             }
             else
             {
-                agentDrivenProperties.SetDynamicCombatProperties(statusEffectComponent, 1); //I have the feeling this call is not necessary given the many updates that are done per frame.
+                agentDrivenProperties.SetDynamicCombatProperties(statusEffectComponent, 1f); //I have the feeling this call is not necessary given the many updates that are done per frame.
             }
 
-            var reloadSpeedModifier = statusEffectComponent.GetReloadSpeedModifier();
-
-            if (reloadSpeedModifier != 0)
+            float reloadSpeedModifier = statusEffectComponent.GetReloadSpeedModifier();
+            if (reloadSpeedModifier != 0f)
             {
-                var reloadSpeed = Mathf.Clamp(reloadSpeedModifier + 1, 0.05f, 2);
-                if (agent.IsMount) return;
+                if (isMount)
+                    return;
 
-                agentDrivenProperties.SetDynamicReloadProperties(statusEffectComponent, reloadSpeed);
+                float reloadSpeedMultiplier = Mathf.Clamp(reloadSpeedModifier + 1f, 0.05f, 2f);
+                agentDrivenProperties.SetDynamicReloadProperties(statusEffectComponent, reloadSpeedMultiplier);
             }
             else
             {
-                agentDrivenProperties.SetDynamicReloadProperties(statusEffectComponent, 1);
+                agentDrivenProperties.SetDynamicReloadProperties(statusEffectComponent, 1f);
             }
         }
 
         private void AddSkillEffectsForAgent(Agent agent, AgentDrivenProperties agentDrivenProperties)
         {
             EquipmentIndex wieldedItemIndex = agent.GetPrimaryWieldedItemIndex();
-            WeaponComponentData weapon = (wieldedItemIndex != EquipmentIndex.None) ? agent.Equipment[wieldedItemIndex].CurrentUsageItem : null;
-            var character = agent.Character as CharacterObject;
-            var captain = agent.GetCaptainCharacter();
-            if (weapon != null && character != null)
-            {
-                int effectiveSkill = GetEffectiveSkill(agent, weapon.RelevantSkill);
-                ExplainedNumber reloadSpeed = new ExplainedNumber(agentDrivenProperties.ReloadSpeed);
-                if (weapon.RelevantSkill == TORSkills.GunPowder)
-                {
-                    SkillHelper.AddSkillBonusForCharacter(TORSkillEffects.GunReloadSpeed, character, ref reloadSpeed);
-                }
+            WeaponComponentData weapon = wieldedItemIndex != EquipmentIndex.None ? agent.Equipment[wieldedItemIndex].CurrentUsageItem : null;
+            CharacterObject character = agent.Character as CharacterObject;
 
-                agentDrivenProperties.ReloadSpeed = reloadSpeed.ResultNumber;
-            }
+            if (weapon == null || character == null || weapon.RelevantSkill != TORSkills.GunPowder)
+                return;
+
+            int effectiveSkill = GetEffectiveSkill(agent, weapon.RelevantSkill);
+            ExplainedNumber reloadSpeed = new ExplainedNumber(agentDrivenProperties.ReloadSpeed);
+            SkillHelper.AddSkillBonusForCharacter(TORSkillEffects.GunReloadSpeed, character, ref reloadSpeed);
+            agentDrivenProperties.ReloadSpeed = reloadSpeed.ResultNumber;
         }
 
         private void AddPerkEffectsForAgent(Agent agent, AgentDrivenProperties agentDrivenProperties)
         {
             EquipmentIndex wieldedItemIndex = agent.GetPrimaryWieldedItemIndex();
-            WeaponComponentData weapon = (wieldedItemIndex != EquipmentIndex.None) ? agent.Equipment[wieldedItemIndex].CurrentUsageItem : null;
-            var character = agent.Character as CharacterObject;
-            var captain = agent.GetCaptainCharacter();
-            ExplainedNumber movementAccuracyPenalty = new ExplainedNumber(agentDrivenProperties.WeaponMaxMovementAccuracyPenalty);
-            ExplainedNumber accuracyPenalty = new ExplainedNumber(agentDrivenProperties.WeaponInaccuracy);
-            ExplainedNumber swingSpeed = new ExplainedNumber(agentDrivenProperties.SwingSpeedMultiplier);
-            ExplainedNumber movementSpeed = new ExplainedNumber(agentDrivenProperties.MaxSpeedMultiplier);
-            if (weapon != null && character != null)
+            WeaponComponentData weapon = wieldedItemIndex != EquipmentIndex.None ? agent.Equipment[wieldedItemIndex].CurrentUsageItem : null;
+            CharacterObject character = agent.Character as CharacterObject;
+
+            bool applyRunAndGun = weapon != null
+                                  && character != null
+                                  && weapon.WeaponClass == WeaponClass.Pistol
+                                  && !agent.HasMount;
+
+            bool applyMainAgentCareerPassives = agent.IsMainAgent && agent.GetHero().HasAnyCareer();
+            bool applyWardancerSymbol = agent.IsMainAgent && Hero.MainHero.HasAttribute("WEWardancerSymbol");
+
+            if (!applyRunAndGun && !applyMainAgentCareerPassives && !applyWardancerSymbol)
+                return;
+
+            if (applyRunAndGun || applyMainAgentCareerPassives)
             {
-                if (weapon.WeaponClass == WeaponClass.Pistol && !agent.HasMount)
+                ExplainedNumber movementAccuracyPenalty = new ExplainedNumber(agentDrivenProperties.WeaponMaxMovementAccuracyPenalty);
+
+                if (applyRunAndGun)
                 {
                     PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.RunAndGun, character, true, ref movementAccuracyPenalty);
                 }
+
+                if (applyMainAgentCareerPassives)
+                {
+                    CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref movementAccuracyPenalty, PassiveEffectType.RangedMovementPenalty);
+                }
+
+                agentDrivenProperties.WeaponMaxMovementAccuracyPenalty = movementAccuracyPenalty.ResultNumber;
             }
 
-            if (agent.IsMainAgent && agent.GetHero().HasAnyCareer())
+            if (applyMainAgentCareerPassives)
             {
-                CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref movementAccuracyPenalty, PassiveEffectType.RangedMovementPenalty);
-
+                ExplainedNumber accuracyPenalty = new ExplainedNumber(agentDrivenProperties.WeaponInaccuracy);
                 CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref accuracyPenalty, PassiveEffectType.AccuracyPenalty);
-
-                CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref swingSpeed, PassiveEffectType.SwingSpeed);
-
-                CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref movementSpeed, PassiveEffectType.MovementSpeed);
+                agentDrivenProperties.WeaponInaccuracy = accuracyPenalty.ResultNumber;
             }
 
-            // WEWardancerSymbol: +10% swing speed
-            if (agent.IsMainAgent && Hero.MainHero.HasAttribute("WEWardancerSymbol"))
+            if (applyMainAgentCareerPassives || applyWardancerSymbol)
             {
-                swingSpeed.AddFactor(0.10f);
+                ExplainedNumber swingSpeed = new ExplainedNumber(agentDrivenProperties.SwingSpeedMultiplier);
+
+                if (applyMainAgentCareerPassives)
+                {
+                    CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref swingSpeed, PassiveEffectType.SwingSpeed);
+                }
+
+                if (applyWardancerSymbol)
+                {
+                    swingSpeed.AddFactor(0.10f);
+                }
+
+                agentDrivenProperties.SwingSpeedMultiplier = swingSpeed.ResultNumber;
             }
 
-            agentDrivenProperties.WeaponMaxMovementAccuracyPenalty = movementAccuracyPenalty.ResultNumber;
-            agentDrivenProperties.WeaponInaccuracy = accuracyPenalty.ResultNumber;
-            agentDrivenProperties.SwingSpeedMultiplier = swingSpeed.ResultNumber;
-            agentDrivenProperties.MaxSpeedMultiplier = movementSpeed.ResultNumber;
-
+            if (applyMainAgentCareerPassives)
+            {
+                ExplainedNumber movementSpeed = new ExplainedNumber(agentDrivenProperties.MaxSpeedMultiplier);
+                CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref movementSpeed, PassiveEffectType.MovementSpeed);
+                agentDrivenProperties.MaxSpeedMultiplier = movementSpeed.ResultNumber;
+            }
         }
 
         public override float GetMaxCameraZoom(Agent agent)

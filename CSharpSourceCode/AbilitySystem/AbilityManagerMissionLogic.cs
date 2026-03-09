@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.InputSystem;
@@ -38,6 +39,7 @@ namespace TOR_Core.AbilitySystem
         private bool _shouldPlayIdleCastStanceAnim;
         private bool _hasInitializedForMainAgent;
         private bool _hasAppliedStartingPerkEffects;
+        private static MapEvent _lastCatalystGrantedMapEvent;
         private AbilityModeState _currentState = AbilityModeState.Off;
         private EquipmentIndex _mainHand;
         private EquipmentIndex _offHand;
@@ -253,6 +255,29 @@ namespace TOR_Core.AbilitySystem
             {
                 _abilityView.DisplayErrorMessage(errorMessage.ToString());
             }
+        }
+
+        private void ClearMainAgentAbilityStateAfterRemoval()
+        {
+            _shouldSheathWeapon = false;
+            _shouldWieldWeapon = false;
+            _shouldPlayIdleCastStanceAnim = false;
+            _disableCombatActionsAfterCast = false;
+            _elapsedTimeSinceLastActivation = 0f;
+            _wieldOffHandStaff = false;
+            _mainHand = EquipmentIndex.None;
+            _offHand = EquipmentIndex.None;
+            _currentState = AbilityModeState.Off;
+
+            if (_abilityComponent != null)
+            {
+                _abilityComponent.LastCastWasQuickCast = false;
+            }
+
+            SlowDownTime(false);
+            _abilityView?.MissionScreen?.UnregisterRadialMenuObject(_abilityView);
+            EnableCastStanceParticles(false);
+            BindWeaponKeys();
         }
 
         internal void OnCastStart(Ability ability, Agent agent)
@@ -477,6 +502,12 @@ namespace TOR_Core.AbilitySystem
 
         private void UpdateWieldedItems()
         {
+            if (Agent.Main == null || !Agent.Main.IsActive())
+            {
+                ClearMainAgentAbilityStateAfterRemoval();
+                return;
+            }
+
             if (_currentState == AbilityModeState.Targeting && _shouldSheathWeapon)
             {
                 if (Agent.Main.GetPrimaryWieldedItemIndex() != EquipmentIndex.None)
@@ -636,6 +667,11 @@ namespace TOR_Core.AbilitySystem
 
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {
+            if (affectedAgent == Agent.Main)
+            {
+                ClearMainAgentAbilityStateAfterRemoval();
+            }
+
             if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent))
             {
                 var attackMask = TORDamageHelper.DetermineMask(blow);
@@ -793,6 +829,11 @@ namespace TOR_Core.AbilitySystem
                 return;
             var mainParty = Campaign.Current.MainParty;
 
+            var currentPlayerMapEvent = MapEvent.PlayerMapEvent;
+            bool shouldGrantCatalystForThisMission =
+                currentPlayerMapEvent == null ||
+                !ReferenceEquals(_lastCatalystGrantedMapEvent, currentPlayerMapEvent);
+
             // apply to all heroes
             var roster = mainParty.MemberRoster.GetTroopRoster();
             for (int i = 0; i < roster.Count; i++)
@@ -812,7 +853,7 @@ namespace TOR_Core.AbilitySystem
                     info.SetCustomResourceValue("WindsOfMagic", TORPerks.Spellcraft.Improvision.PrimaryBonus);
                 }
 
-                if (hero.GetPerkValue(TORPerks.Spellcraft.Catalyst))
+                if (shouldGrantCatalystForThisMission && hero.GetPerkValue(TORPerks.Spellcraft.Catalyst))
                 {
                     int magicItemCount = 0;
                     for (int slotIndex = 0; slotIndex < (int)EquipmentIndex.NumEquipmentSetSlots; slotIndex++)
@@ -833,6 +874,11 @@ namespace TOR_Core.AbilitySystem
                         );
                     }
                 }
+            }
+
+            if (shouldGrantCatalystForThisMission && currentPlayerMapEvent != null)
+            {
+                _lastCatalystGrantedMapEvent = currentPlayerMapEvent;
             }
 
             var mainHero = Agent.Main?.GetHero();
