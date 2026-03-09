@@ -947,7 +947,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CampaignMechanics\Combat\" />
-    <Folder Include="CampaignMechanics\Diplomacy\" />
     <Folder Include="CampaignMechanics\Invasions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
