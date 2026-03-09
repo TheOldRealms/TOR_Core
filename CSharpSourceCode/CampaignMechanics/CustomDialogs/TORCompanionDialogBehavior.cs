@@ -142,13 +142,15 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
                 TORCompanionHireGoldCondition, null, 100, null);
 
             // Player accepts gold price (mirrors vanilla player_companion_hire_response_1)
+            // Uses character-specific tor_hire_accept_p.{characterStringId}
             campaignGameStarter.AddPlayerLine("tor_player_companion_hire_response_1", "tor_player_companion_hire_response", "hero_leave",
-                "{=EiFPu9Np}Right... {GOLD_AMOUNT} Here you are.",
+                "{=!}{TOR_HIRE_ACCEPT_TEXT}",
                 TORCompanionHireOnCondition, TORCompanionHireOnConsequence, 100, null, null);
 
             // Player can't afford (mirrors vanilla player_companion_hire_response_2)
+            // Uses character-specific tor_hire_decline_p.{characterStringId}
             campaignGameStarter.AddPlayerLine("tor_player_companion_hire_response_2", "tor_player_companion_hire_response", "lord_pretalk",
-                "{=65UMAav2}I can't afford that just now.",
+                "{=!}{TOR_HIRE_DECLINE_TEXT}",
                 TORCompanionHireOnCondition, null, 100, null, null);
 
             // Wanderer leave dialog (when player leaves without hiring - overrides vanilla with priority 200)
@@ -318,6 +320,7 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
         /// <summary>
         /// Mirrors vanilla conversation_companion_hire_on_condition.
         /// Checks if player can afford companion AND sets GOLD_AMOUNT variable for display.
+        /// Sets character-specific player response text variables.
         /// </summary>
         private bool TORCompanionHireOnCondition()
         {
@@ -330,6 +333,19 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             GameTexts.SetVariable("STR1", hirePrice);
             GameTexts.SetVariable("STR2", "{=!}<img src=\"General\\Icons\\Coin@2x\" extend=\"8\">");
             MBTextManager.SetTextVariable("GOLD_AMOUNT", GameTexts.FindText("str_STR1_STR2"));
+
+            // Set character-specific player response text variables
+            string characterId = hero.Template?.StringId;
+            if (!string.IsNullOrEmpty(characterId))
+            {
+                var acceptText = TORTextHelper.GetTextObject("tor_hire_accept_p", characterId,
+                    "Right... {GOLD_AMOUNT} Here you are.", skipValidation: true);
+                MBTextManager.SetTextVariable("TOR_HIRE_ACCEPT_TEXT", acceptText);
+
+                var declineText = TORTextHelper.GetTextObject("tor_hire_decline_p", characterId,
+                    "I can't afford that just now.", skipValidation: true);
+                MBTextManager.SetTextVariable("TOR_HIRE_DECLINE_TEXT", declineText);
+            }
 
             // Check if player can afford AND hasn't reached companion limit
             bool tooManyCompanions = Clan.PlayerClan.Companions.Count >= Clan.PlayerClan.CompanionLimit;
