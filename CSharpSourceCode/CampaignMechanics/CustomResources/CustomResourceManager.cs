@@ -283,7 +283,10 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             {
                 TORCommon.Say("test");
             }
-            var playerWon = mapEvent.DefeatedSide != mapEvent.PlayerSide;
+
+            if (!mapEvent.HasWinner) return; //prevents the case of player dying in hideout, their side retreats, and the BattleState is in no victory state leading to DefeatedSide and WinningSide having the default -1 enum value
+
+            var playerWon = mapEvent.WinningSide == mapEvent.PlayerSide;
             var playerHero = Hero.MainHero;
             var playerParty = MobileParty.MainParty;
             var playerCulture = playerHero.Culture;
@@ -419,6 +422,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                                 if (party.Troops.Any(elem => elem.Troop.Race == 0))
                                 {
                                     hasgrudge = true;
+                                    break;
                                 }
 
                             }
@@ -503,7 +507,8 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                     cultureSpecificResourceChange = Math.Max(1, cultureSpecificResourceChange);
                 }
 
-                playerHero.AddCultureSpecificCustomResource(cultureSpecificResourceChange);            }
+                playerHero.AddCultureSpecificCustomResource(cultureSpecificResourceChange);
+            }
         }
 
         private static void ScreenManager_OnPopScreen(ScreenBase poppedScreen)
