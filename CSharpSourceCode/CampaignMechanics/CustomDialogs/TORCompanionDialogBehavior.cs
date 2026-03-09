@@ -1,5 +1,7 @@
+using Helpers;
 using System;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
@@ -29,9 +31,10 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
         }
 
         /// <summary>
-        /// Removes vanilla player dialog lines for companion hiring.
-        /// Player lines cannot be overridden with priority like NPC dialog lines can.
-        /// Based on LordConversationsCampaignBehavior lines 707-733.
+        /// Removes vanilla player dialog lines at hero_main_options.
+        /// Player lines cannot be hidden by conditions alone - both vanilla and TOR lines would show.
+        /// Our entire dialog chain uses TOR-specific tokens, so only need removal at hero_main_options hub.
+        /// Based on LordConversationsCampaignBehavior line 707.
         /// </summary>
         private void RemovePlayerLinesForCompanionHiring()
         {
@@ -40,13 +43,11 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
 
             int count = 0;
 
-            // Vanilla companion hire player dialog IDs
+            // Only remove the vanilla hire option at hero_main_options
+            // Our complete dialog flow uses tor_* tokens, so no vanilla conflicts elsewhere
             var playerDialogIds = new[]
             {
-                "main_option_faction_hire",           // Line 707: Player option "I can use someone like you in my company."
-                "companion_hire_capacity_full",       // Line 731: Player response when companion limit reached
-                "player_companion_hire_response_1",   // Line 732: Player accepts and pays
-                "player_companion_hire_response_2"    // Line 733: Player can't afford
+                "main_option_faction_hire"           // Line 707: Player option "I can use someone like you in my company."
             };
 
             foreach (var id in playerDialogIds)
@@ -64,37 +65,91 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
         /// </summary>
         private void AddTORCompanionDialogs(CampaignGameStarter campaignGameStarter)
         {
+            // === WANDERER INTRODUCTION FLOW ===
             // Character-specific introduction (NPC greeting at "start")
-            // Uses tor_introduction.{characterStringId}
             // SAME ID as vanilla "start_wanderer_unmet" with priority 200 to override (vanilla uses 110)
-            campaignGameStarter.AddDialogLine("start_wanderer_unmet", "start", "hero_main_options",
+            // Uses tor_introduction.{characterStringId}
+            // Output to TOR-specific token to avoid vanilla player line duplication
+            campaignGameStarter.AddDialogLine("start_wanderer_unmet", "start", "tor_wanderer_meet_player_response",
                 "{=!}{TOR_INTRO_TEXT}",
-                TORWandererIntroductionCondition, null, 200, null);
+                TORWandererMeetCondition, null, 200, null);
 
-            // Player option to hire companion (character-specific)
+            // Player response options - using TOR tokens for completely separate dialog chain
+            campaignGameStarter.AddPlayerLine("tor_wanderer_meet_player_response1", "tor_wanderer_meet_player_response", "tor_wanderer_preintroduction",
+                "(TOR) My name is {PLAYER.NAME}, {?CONVERSATION_NPC.GENDER}madam{?}sir{\\?}. Tell me about yourself.",
+                TORWandererCondition, null, 100, null, null);
+
+            campaignGameStarter.AddPlayerLine("tor_wanderer_meet_player_response2", "tor_wanderer_meet_player_response", "tor_wanderer_skip_intro",
+                "(TOR) I'm {PLAYER.NAME}. Let's skip the pleasantries and get right to business.",
+                TORWandererCondition, null, 100, null, null);
+
+            // Skip intro option - goes straight to hero_main_options
+            campaignGameStarter.AddDialogLine("tor_wanderer_skip_intro", "tor_wanderer_skip_intro", "hero_main_options",
+                "{=LUiQ6bpo}Very well, then. What is it?",
+                null, null, 100, null);
+
+            // === TOR BACKSTORY DIALOG CHAIN (completely separate from vanilla) ===
+            // Acknowledgment before backstory (optional prebackstory when not in tavern)
+            campaignGameStarter.AddDialogLine("tor_wanderer_prebackstory", "tor_wanderer_preintroduction", "tor_wanderer_introduction_a",
+                "{=!}{WANDERER_PREBACKSTORY}",
+                TORWandererPrebackstoryCondition, null, 100, null);
+
+            // Backstory A
+            campaignGameStarter.AddDialogLine("tor_wanderer_introduction_a", "tor_wanderer_introduction_a", "tor_wanderer_introduction_b",
+                "{=!}{WANDERER_BACKSTORY_A}",
+                TORWandererBackstoryCondition, null, 100, null);
+
+            // Backstory B
+            campaignGameStarter.AddDialogLine("tor_wanderer_introduction_b", "tor_wanderer_introduction_b", "tor_wanderer_introduction_c",
+                "{=!}{WANDERER_BACKSTORY_B}",
+                null, null, 100, null);
+
+            // Backstory C
+            campaignGameStarter.AddDialogLine("tor_wanderer_introduction_c", "tor_wanderer_introduction_c", "tor_wanderer_player_reaction",
+                "{=!}{WANDERER_BACKSTORY_C}",
+                null, null, 100, null);
+
+            // Player reactions to backstory
+            campaignGameStarter.AddPlayerLine("tor_wanderer_player_response1_2", "tor_wanderer_player_reaction", "tor_wanderer_introduction_d",
+                "{=!}{BACKSTORY_RESPONSE_1}",
+                null, null, 100, null, null);
+
+            campaignGameStarter.AddPlayerLine("tor_wanderer_player_response2_2", "tor_wanderer_player_reaction", "tor_wanderer_introduction_d",
+                "{=!}{BACKSTORY_RESPONSE_2}",
+                null, null, 100, null, null);
+
+            // Backstory D (final part)
+            campaignGameStarter.AddDialogLine("tor_wanderer_introduction_d", "tor_wanderer_introduction_d", "tor_wanderer_job_status",
+                "{=!}{WANDERER_BACKSTORY_D}",
+                null, null, 100, null);
+
+            // Job status (leads to hero_main_options) - end of our separate chain
+            campaignGameStarter.AddDialogLine("tor_wanderer_job_status", "tor_wanderer_job_status", "hero_main_options",
+                "{=!}{WANDERER_JOB_OFFER}",
+                TORWandererJobOfferCondition, null, 100, null);
+
+            // === COMPANION HIRING FLOW ===
+            // Player option to hire companion (TOR-specific ID, output to TOR token)
             // Uses tor_hire_companion_p.{characterStringId}
-            // SAME ID as vanilla "main_option_faction_hire" with priority 200 to override (vanilla uses ~100)
-            campaignGameStarter.AddPlayerLine("main_option_faction_hire", "hero_main_options", "companion_hire",
+            campaignGameStarter.AddPlayerLine("tor_main_option_faction_hire", "hero_main_options", "tor_companion_hire",
                 "{=!}{TOR_HIRE_TEXT}",
-                TORCompanionHireWithTextCondition, null, 200, TORCompanionHireClickable, null);
+                TORCompanionHireWithTextCondition, null, 100, TORCompanionHireClickable, null);
 
-            // NPC response to hire request
-            // SAME ID as vanilla "companion_hire" with priority 200 to override
-            campaignGameStarter.AddDialogLine("companion_hire", "companion_hire", "player_companion_hire_response",
-                TORTextHelper.GetText("tor_companion_hire_response", "I could be persuaded to join you. My fee is {GOLD_AMOUNT}{GOLD_ICON}."),
-                TORCompanionHireGoldCondition, null, 200, null);
+            // NPC response to hire request (TOR-specific token to avoid vanilla conflicts)
+            // Uses character-specific tor_hire_companion_payment.{characterStringId}
+            campaignGameStarter.AddDialogLine("tor_companion_hire", "tor_companion_hire", "tor_player_companion_hire_response",
+                "{=!}{TOR_HIRE_PAYMENT_TEXT}",
+                TORCompanionHireGoldCondition, null, 100, null);
 
-            // Player can't afford (capacity check now in clickable condition)
-            // SAME ID as vanilla "player_companion_hire_response_2" with priority 200 to override
-            campaignGameStarter.AddPlayerLine("player_companion_hire_response_2", "player_companion_hire_response", "hero_main_options",
-                TORTextHelper.GetText("tor_companion_hire_cant_afford", "I don't have that much gold right now."),
-                () => !TORCompanionCanAffordCondition(), null, 200, null, null);
+            // Player accepts gold price (mirrors vanilla player_companion_hire_response_1)
+            campaignGameStarter.AddPlayerLine("tor_player_companion_hire_response_1", "tor_player_companion_hire_response", "hero_leave",
+                "{=EiFPu9Np}Right... {GOLD_AMOUNT} Here you are.",
+                TORCompanionHireOnCondition, TORCompanionHireOnConsequence, 100, null, null);
 
-            // Player accepts gold price
-            // SAME ID as vanilla "player_companion_hire_response_1" with priority 200 to override
-            campaignGameStarter.AddPlayerLine("player_companion_hire_response_1", "player_companion_hire_response", "hero_leave",
-                TORTextHelper.GetText("tor_companion_hire_accept", "Here's your gold. Welcome aboard."),
-                TORCompanionCanAffordCondition, TORCompanionHireConsequence, 200, null, null);
+            // Player can't afford (mirrors vanilla player_companion_hire_response_2)
+            campaignGameStarter.AddPlayerLine("tor_player_companion_hire_response_2", "tor_player_companion_hire_response", "lord_pretalk",
+                "{=65UMAav2}I can't afford that just now.",
+                TORCompanionHireOnCondition, null, 100, null, null);
 
             // Wanderer leave dialog (when player leaves without hiring - overrides vanilla with priority 200)
             campaignGameStarter.AddDialogLine("tor_wanderer_leave", "hero_leave", "close_window",
@@ -110,12 +165,81 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             return hero != null && hero.IsWanderer;
         }
 
-        private bool TORWandererIntroductionCondition()
+        private bool TORWandererMeetCondition()
+        {
+            if (!TORWandererCondition()) return false;
+            if (Hero.OneToOneConversationHero.HeroState == Hero.CharacterStates.Prisoner) return false;
+
+            // Set TOR-specific introduction text
+            var hero = Hero.OneToOneConversationHero;
+            var characterId = hero.Template?.StringId;
+            if (string.IsNullOrEmpty(characterId)) return false;
+
+            var introText = TORTextHelper.GetTextObject("tor_introduction", characterId, "What can I do for you?", skipValidation: true);
+            MBTextManager.SetTextVariable("TOR_INTRO_TEXT", introText);
+
+            return true;
+        }
+
+        private bool TORWandererPrebackstoryCondition()
+        {
+            // Only show prebackstory when NOT in tavern
+
+                var hero = Hero.OneToOneConversationHero;
+                var characterId = hero?.Template?.StringId;
+
+                // Use TOR-specific prebackstory text if available, otherwise generic
+                var prebackstoryText = !string.IsNullOrEmpty(characterId)
+                    ? TORTextHelper.GetTextObject("tor_prebackstory", characterId, "", skipValidation: true)
+                    : TextObject.GetEmpty();
+
+                // Fallback to vanilla generic if no TOR text
+                if (string.IsNullOrEmpty(prebackstoryText?.ToString()))
+                {
+                    prebackstoryText = GameTexts.FindText("spc_prebackstory_generic");
+                }
+
+                MBTextManager.SetTextVariable("WANDERER_PREBACKSTORY", prebackstoryText);
+                
+            return true;
+        }
+
+        private bool TORWandererBackstoryCondition()
         {
             var hero = Hero.OneToOneConversationHero;
             if (hero == null || !hero.IsWanderer) return false;
 
-            SetIntroductionText();
+            StringHelpers.SetCharacterProperties("CONVERSATION_CHARACTER", hero.CharacterObject, null);
+            string characterId = hero.Template?.StringId;
+            if (string.IsNullOrEmpty(characterId)) return false;
+
+            // Set TOR-specific backstory text variables
+            MBTextManager.SetTextVariable("IMPERIALCAPITAL", new TextObject("Altdorf"));
+            MBTextManager.SetTextVariable("WANDERER_BACKSTORY_A", TORTextHelper.GetTextObject("tor_backstory_a", characterId, "Backstory A", skipValidation: true));
+            MBTextManager.SetTextVariable("WANDERER_BACKSTORY_B", TORTextHelper.GetTextObject("tor_backstory_b", characterId, "Backstory B", skipValidation: true));
+            MBTextManager.SetTextVariable("WANDERER_BACKSTORY_C", TORTextHelper.GetTextObject("tor_backstory_c", characterId, "Backstory C", skipValidation: true));
+            MBTextManager.SetTextVariable("BACKSTORY_RESPONSE_1", TORTextHelper.GetTextObject("tor_response_1", characterId, "Response 1", skipValidation: true));
+            MBTextManager.SetTextVariable("BACKSTORY_RESPONSE_2", TORTextHelper.GetTextObject("tor_response_2", characterId, "Response 2", skipValidation: true));
+            MBTextManager.SetTextVariable("WANDERER_BACKSTORY_D", TORTextHelper.GetTextObject("tor_backstory_d", characterId, "Backstory D", skipValidation: true));
+            StringHelpers.SetCharacterProperties("MET_WANDERER", hero.CharacterObject, null);
+
+            return true;
+        }
+
+        private bool TORWandererJobOfferCondition()
+        {
+            var hero = Hero.OneToOneConversationHero;
+            if (hero == null || !hero.IsWanderer) return false;
+            if (hero.IsPlayerCompanion) return false;
+            if (hero.PartyBelongedTo != null) return false;
+
+            // Set job offer text
+            string characterId = hero.Template?.StringId;
+            if (string.IsNullOrEmpty(characterId)) return false;
+
+            var jobOfferText = TORTextHelper.GetTextObject("tor_job_offer", characterId, "I'm looking for work. Do you have any need of my services?", skipValidation: true);
+            MBTextManager.SetTextVariable("WANDERER_JOB_OFFER", jobOfferText);
+
             return true;
         }
 
@@ -123,44 +247,17 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
         {
             if (!TORCompanionHireCondition()) return false;
 
-            SetHireText();
-            return true;
-        }
-
-        private void SetIntroductionText()
-        {
+            // Set hire text variable
             var hero = Hero.OneToOneConversationHero;
-            if (hero == null) return;
+            if (hero == null) return false;
 
             var characterId = hero.Template?.StringId;
-            if (string.IsNullOrEmpty(characterId)) return;
-
-            var introText = TORTextHelper.GetTextObject("tor_introduction", characterId, "What can I do for you?", skipValidation: true);
-            MBTextManager.SetTextVariable("TOR_INTRO_TEXT", introText);
-        }
-
-        private void SetHireText()
-        {
-            var hero = Hero.OneToOneConversationHero;
-            if (hero == null) return;
-
-            var characterId = hero.Template?.StringId;
-            if (string.IsNullOrEmpty(characterId)) return;
+            if (string.IsNullOrEmpty(characterId)) return false;
 
             var hireText = TORTextHelper.GetTextObject("tor_hire_companion_p", characterId, "I am interested in your skills.", skipValidation: true);
             MBTextManager.SetTextVariable("TOR_HIRE_TEXT", hireText);
-        }
 
-        private void SetLeaveText()
-        {
-            var hero = Hero.OneToOneConversationHero;
-            if (hero == null) return;
-
-            var characterId = hero.Template?.StringId;
-            if (string.IsNullOrEmpty(characterId)) return;
-
-            var leaveText = TORTextHelper.GetTextObject("tor_leave_p", characterId, "Nevermind.", skipValidation: true);
-            MBTextManager.SetTextVariable("TOR_LEAVE_TEXT", leaveText);
+            return true;
         }
 
         private bool TORCompanionHireCondition()
@@ -194,60 +291,71 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             return true;
         }
 
+        /// <summary>
+        /// Sets the hire price text variable for display in NPC response.
+        /// Uses character-specific tor_hire_companion_payment.{characterId} text.
+        /// Uses vanilla CompanionHiringPriceCalculationModel.
+        /// </summary>
         private bool TORCompanionHireGoldCondition()
         {
             var hero = Hero.OneToOneConversationHero;
             if (hero == null) return false;
 
-            int hirePrice = CalculateTORHirePrice(hero);
+            int hirePrice = Campaign.Current.Models.CompanionHiringPriceCalculationModel.GetCompanionHiringPrice(hero);
             MBTextManager.SetTextVariable("GOLD_AMOUNT", hirePrice);
+
+            // Set character-specific hire payment text
+            string characterId = hero.Template?.StringId;
+            if (string.IsNullOrEmpty(characterId)) return false;
+
+            var paymentText = TORTextHelper.GetTextObject("tor_hire_companion_payment", characterId,
+                "I could be persuaded to join you. My fee is {GOLD_AMOUNT}{GOLD_ICON}.", skipValidation: true);
+            MBTextManager.SetTextVariable("TOR_HIRE_PAYMENT_TEXT", paymentText);
 
             return true;
         }
 
-        private bool TORCompanionCanAffordCondition()
+        /// <summary>
+        /// Mirrors vanilla conversation_companion_hire_on_condition.
+        /// Checks if player can afford companion AND sets GOLD_AMOUNT variable for display.
+        /// </summary>
+        private bool TORCompanionHireOnCondition()
         {
             var hero = Hero.OneToOneConversationHero;
             if (hero == null) return false;
 
-            int hirePrice = CalculateTORHirePrice(hero);
-            return Hero.MainHero.Gold >= hirePrice;
+            int hirePrice = Campaign.Current.Models.CompanionHiringPriceCalculationModel.GetCompanionHiringPrice(hero);
+
+            // Set GOLD_AMOUNT variable for display in dialog text
+            GameTexts.SetVariable("STR1", hirePrice);
+            GameTexts.SetVariable("STR2", "{=!}<img src=\"General\\Icons\\Coin@2x\" extend=\"8\">");
+            MBTextManager.SetTextVariable("GOLD_AMOUNT", GameTexts.FindText("str_STR1_STR2"));
+
+            // Check if player can afford AND hasn't reached companion limit
+            bool tooManyCompanions = Clan.PlayerClan.Companions.Count >= Clan.PlayerClan.CompanionLimit;
+            return Hero.MainHero.Gold >= hirePrice && !tooManyCompanions;
         }
 
-        private void TORCompanionHireConsequence()
+        /// <summary>
+        /// Mirrors vanilla conversation_companion_hire_on_consequence.
+        /// Uses vanilla actions to properly hire the companion.
+        /// </summary>
+        private void TORCompanionHireOnConsequence()
         {
             var hero = Hero.OneToOneConversationHero;
             if (hero == null) return;
 
-            int hirePrice = CalculateTORHirePrice(hero);
+            int hirePrice = Campaign.Current.Models.CompanionHiringPriceCalculationModel.GetCompanionHiringPrice(hero);
 
-            // Deduct gold
-            Hero.MainHero.ChangeHeroGold(-hirePrice);
-
-            // Add companion to clan
-            hero.CompanionOf = Clan.PlayerClan;
-
-            // Add to party
-            MobileParty.MainParty.MemberRoster.AddToCounts(hero.CharacterObject, 1);
+            // Use vanilla actions (mirrors vanilla exactly)
+            GiveGoldAction.ApplyBetweenCharacters(Hero.MainHero, hero, hirePrice);
+            AddCompanionAction.Apply(Clan.PlayerClan, hero);
+            AddHeroToPartyAction.Apply(hero, MobileParty.MainParty);
 
             TORCommon.Log($"TORCompanionDialogBehavior: Hired companion {hero.Name} for {hirePrice} gold", NLog.LogLevel.Info);
 
             // Add any TOR-specific initialization here
             // For example: apply special traits, adjust equipment, etc.
-        }
-
-        private int CalculateTORHirePrice(Hero hero)
-        {
-            // Base vanilla calculation or custom TOR logic
-            int basePrice = 500; // Default base price
-
-            // Adjust based on hero level
-            basePrice += hero.Level * 50;
-
-            // Add TOR-specific modifiers here
-            // For example: culture bonuses, reputation effects, etc.
-
-            return basePrice;
         }
 
         private bool TORWandererLeaveCondition()

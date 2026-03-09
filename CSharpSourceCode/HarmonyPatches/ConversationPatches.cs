@@ -14,6 +14,9 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public static class ConversationPatches
     {
+        // NO LONGER NEEDED - Wanderer backstory texts now handled in TORCompanionDialogBehavior
+        // Using dialog priority override instead of Harmony patching
+        /*
         [HarmonyPrefix]
         [HarmonyPatch(typeof(LordConversationsCampaignBehavior), "conversation_wanderer_introduction_on_condition")]
         public static bool WandererString(ref bool __result, ref Dictionary<CharacterObject, CharacterObject> ____previouslyMetWandererTemplates)
@@ -48,6 +51,7 @@ namespace TOR_Core.HarmonyPatches
             else __result = false;
             return false;
         }
+        */
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(SettlementMenuOverlayVM), "ExecuteOnSetAsActiveContextMenuItem")]
