@@ -78,18 +78,12 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             campaignGameStarter.AddPlayerLine("tor_wanderer_meet_player_response1", "tor_wanderer_meet_player_response", "tor_wanderer_preintroduction",
                 "(TOR) My name is {PLAYER.NAME}, {?CONVERSATION_NPC.GENDER}madam{?}sir{\\?}. Tell me about yourself.",
                 TORWandererCondition, null, 100, null, null);
-
-            campaignGameStarter.AddPlayerLine("tor_wanderer_meet_player_response2", "tor_wanderer_meet_player_response", "tor_wanderer_skip_intro",
+            
+            // Skip intro option - goes to backstory D (final part with job offer)
+            campaignGameStarter.AddPlayerLine("tor_wanderer_meet_player_response2", "tor_wanderer_meet_player_response", "tor_wanderer_introduction_d",
                 "(TOR) I'm {PLAYER.NAME}. Let's skip the pleasantries and get right to business.",
                 TORWandererCondition, null, 100, null, null);
-
-            // Skip intro option - goes straight to hero_main_options
-            campaignGameStarter.AddDialogLine("tor_wanderer_skip_intro", "tor_wanderer_skip_intro", "hero_main_options",
-                "{=LUiQ6bpo}Very well, then. What is it?",
-                null, null, 100, null);
-
-            // === TOR BACKSTORY DIALOG CHAIN (completely separate from vanilla) ===
-            // Acknowledgment before backstory (optional prebackstory when not in tavern)
+            
             campaignGameStarter.AddDialogLine("tor_wanderer_prebackstory", "tor_wanderer_preintroduction", "tor_wanderer_introduction_a",
                 "{=!}{WANDERER_PREBACKSTORY}",
                 TORWandererPrebackstoryCondition, null, 100, null);
@@ -118,15 +112,10 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
                 "{=!}{BACKSTORY_RESPONSE_2}",
                 null, null, 100, null, null);
 
-            // Backstory D (final part)
-            campaignGameStarter.AddDialogLine("tor_wanderer_introduction_d", "tor_wanderer_introduction_d", "tor_wanderer_job_status",
+            // Backstory D (final part - leads to hero_main_options)
+            campaignGameStarter.AddDialogLine("tor_wanderer_introduction_d", "tor_wanderer_introduction_d", "hero_main_options",
                 "{=!}{WANDERER_BACKSTORY_D}",
                 null, null, 100, null);
-
-            // Job status (leads to hero_main_options) - end of our separate chain
-            campaignGameStarter.AddDialogLine("tor_wanderer_job_status", "tor_wanderer_job_status", "hero_main_options",
-                "{=!}{WANDERER_JOB_OFFER}",
-                TORWandererJobOfferCondition, null, 100, null);
 
             // === COMPANION HIRING FLOW ===
             // Player option to hire companion (TOR-specific ID, output to TOR token)
@@ -143,7 +132,7 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
 
             // Player accepts gold price (mirrors vanilla player_companion_hire_response_1)
             // Uses character-specific tor_hire_accept_p.{characterStringId}
-            campaignGameStarter.AddPlayerLine("tor_player_companion_hire_response_1", "tor_player_companion_hire_response", "hero_leave",
+            campaignGameStarter.AddPlayerLine("tor_player_companion_hire_response_1", "tor_player_companion_hire_response", "close_window",
                 "{=!}{TOR_HIRE_ACCEPT_TEXT}",
                 TORCompanionHireOnCondition, TORCompanionHireOnConsequence, 100, null, null);
 
@@ -224,23 +213,6 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             MBTextManager.SetTextVariable("BACKSTORY_RESPONSE_2", TORTextHelper.GetTextObject("tor_response_2", characterId, "Response 2", skipValidation: true));
             MBTextManager.SetTextVariable("WANDERER_BACKSTORY_D", TORTextHelper.GetTextObject("tor_backstory_d", characterId, "Backstory D", skipValidation: true));
             StringHelpers.SetCharacterProperties("MET_WANDERER", hero.CharacterObject, null);
-
-            return true;
-        }
-
-        private bool TORWandererJobOfferCondition()
-        {
-            var hero = Hero.OneToOneConversationHero;
-            if (hero == null || !hero.IsWanderer) return false;
-            if (hero.IsPlayerCompanion) return false;
-            if (hero.PartyBelongedTo != null) return false;
-
-            // Set job offer text
-            string characterId = hero.Template?.StringId;
-            if (string.IsNullOrEmpty(characterId)) return false;
-
-            var jobOfferText = TORTextHelper.GetTextObject("tor_job_offer", characterId, "I'm looking for work. Do you have any need of my services?", skipValidation: true);
-            MBTextManager.SetTextVariable("WANDERER_JOB_OFFER", jobOfferText);
 
             return true;
         }
