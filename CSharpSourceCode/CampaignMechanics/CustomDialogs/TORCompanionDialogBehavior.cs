@@ -198,8 +198,11 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             var characterId = hero.Template?.StringId;
             if (string.IsNullOrEmpty(characterId)) return false;
 
-            // Check if player can hire this wanderer based on race
-            bool canHire = TORHireHelper.CanPlayerHireBasedOnRace(Hero.MainHero, hero);
+            // Check if player can hire this wanderer based on race using the model
+            var model = Campaign.Current.Models.GetCompanionHiringCompatibilityModel();
+            if (model == null) return false; // Model not available, allow hiring
+
+            bool canHire = model.CanPlayerHireWanderer(Hero.MainHero, hero);
 
             if (!canHire)
             {
