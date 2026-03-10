@@ -63,9 +63,36 @@ public static class EnchantmentHelper
             .WhereQ(x => x.GetTraits().Any(x => prefixList.Any(prefix => x.ItemTraitStringId.Contains(prefix)))).ToList();
 
         var list = new List<ItemObject>();
-        foreach (var hero in Hero.MainHero.PartyBelongedTo.GetMemberHeroes())
+        foreach (var item in blueprints)
         {
-            foreach (var item in blueprints)
+            var blueprintTrait = item.GetTraits().FirstOrDefault();
+            if (blueprintTrait == null || blueprintTrait.OnInventoryUseScript == null)
+            {
+                continue;
+            }
+
+            var blueprintArguments = blueprintTrait.OnInventoryUseScript.InventoryScriptArguments;
+            if (blueprintArguments == null || blueprintArguments.Count == 0)
+            {
+                continue;
+            }
+
+            var blueprintId = blueprintArguments[0];
+            var underlyingTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == blueprintId);
+
+            var isCurrentlyApplicableToParty =
+                underlyingTrait != null &&
+                Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(hero => hero.HasKnownEnchantmentBlueprint(blueprintId)) &&
+                Hero.MainHero.PartyBelongedTo.ItemRoster.Any(rosterElement =>
+                    rosterElement.EquipmentElement.Item.IsEnchantable() &&
+                    ItemTrait.IsValidFor(underlyingTrait, rosterElement.EquipmentElement.Item.ItemType));
+
+            if (isCurrentlyApplicableToParty)
+            {
+                continue;
+            }
+
+            foreach (var hero in Hero.MainHero.PartyBelongedTo.GetMemberHeroes())
             {
                 foreach (var trait in item.GetTraits())
                 {

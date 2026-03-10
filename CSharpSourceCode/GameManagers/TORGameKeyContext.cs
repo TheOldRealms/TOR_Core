@@ -24,8 +24,8 @@ namespace TOR_Core.GameManagers
 
     public enum TorKeyMap
     {
-        QuickCastSelectionMenu = 109,
-        QuickCast = 110,
-        CareerAbilityCast = 111
+        QuickCastSelectionMenu = 111,
+        QuickCast = 112,
+        CareerAbilityCast = 113
     }
 }
