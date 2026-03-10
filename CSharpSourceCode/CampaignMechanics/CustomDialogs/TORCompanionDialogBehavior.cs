@@ -189,7 +189,6 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
         /// <summary>
         /// Checks if player and wanderer are racially/factionally incompatible.
         /// Returns true if incompatible (triggers rejection dialog).
-        /// Placeholder: Tests if player is dwarf and wanderer is eonir.
         /// </summary>
         private bool TORWandererRaceIncompatibleCondition()
         {
@@ -199,12 +198,10 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             var characterId = hero.Template?.StringId;
             if (string.IsNullOrEmpty(characterId)) return false;
 
-            // TODO: Replace with proper race/faction incompatibility checks
-            // Placeholder: Prevent dwarf from hiring eonir
-            bool isPlayerDwarf = Hero.MainHero.Culture?.StringId == TORConstants.Cultures.DAWI;
-            bool isWandererEonir = hero.Culture.StringId == TORConstants.Cultures.EONIR;
+            // Check if player can hire this wanderer based on race
+            bool canHire = TORHireHelper.CanPlayerHireBasedOnRace(Hero.MainHero, hero);
 
-            if (isPlayerDwarf && isWandererEonir)
+            if (!canHire)
             {
                 // Set rejection text
                 var begoneText = TORTextHelper.GetTextObject("tor_hire_companion_begone", characterId,
