@@ -65,6 +65,9 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
         /// </summary>
         private void AddTORCompanionDialogs(CampaignGameStarter campaignGameStarter)
         {
+            campaignGameStarter.AddDialogLine("tor_wanderer_race_incompatible", "start", "close_window",
+                "{=!}{TOR_BEGONE_TEXT}",
+                ()=>TORWandererMeetCondition() && TORWandererRaceIncompatibleCondition(), null, 220, null);
             // === WANDERER INTRODUCTION FLOW ===
             // Character-specific introduction (NPC greeting at "start")
             // SAME ID as vanilla "start_wanderer_unmet" with priority 200 to override (vanilla uses 110)
@@ -74,15 +77,21 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
                 "{=!}{TOR_INTRO_TEXT}",
                 TORWandererMeetCondition, null, 200, null);
 
+            // Race/faction incompatibility check - NPC rejects player early if incompatible
+            // Uses character-specific tor_begone.{characterStringId}
+
+
             // Player response options - using TOR tokens for completely separate dialog chain
+            // Uses character-specific tor_player_tell_me_p.{characterStringId}
             campaignGameStarter.AddPlayerLine("tor_wanderer_meet_player_response1", "tor_wanderer_meet_player_response", "tor_wanderer_preintroduction",
-                "(TOR) My name is {PLAYER.NAME}, {?CONVERSATION_NPC.GENDER}madam{?}sir{\\?}. Tell me about yourself.",
-                TORWandererCondition, null, 100, null, null);
-            
+                "{=!}{TOR_PLAYER_TELL_ME_TEXT}",
+                TORWandererPlayerResponseCondition, null, 100, null, null);
+
             // Skip intro option - goes to backstory D (final part with job offer)
+            // Uses character-specific tor_player_skip_p.{characterStringId}
             campaignGameStarter.AddPlayerLine("tor_wanderer_meet_player_response2", "tor_wanderer_meet_player_response", "tor_wanderer_introduction_d",
-                "(TOR) I'm {PLAYER.NAME}. Let's skip the pleasantries and get right to business.",
-                TORWandererCondition, null, 100, null, null);
+                "{=!}{TOR_PLAYER_SKIP_TEXT}",
+                TORWandererPlayerResponseCondition, null, 100, null, null);
             
             campaignGameStarter.AddDialogLine("tor_wanderer_prebackstory", "tor_wanderer_preintroduction", "tor_wanderer_introduction_a",
                 "{=!}{WANDERER_PREBACKSTORY}",
@@ -112,17 +121,22 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
                 "{=!}{BACKSTORY_RESPONSE_2}",
                 null, null, 100, null, null);
 
-            // Backstory D (final part - leads to hero_main_options)
-            campaignGameStarter.AddDialogLine("tor_wanderer_introduction_d", "tor_wanderer_introduction_d", "hero_main_options",
+            // Backstory D (final part)
+            campaignGameStarter.AddDialogLine("tor_wanderer_introduction_d", "tor_wanderer_introduction_d", "tor_companion_hire_options",
                 "{=!}{WANDERER_BACKSTORY_D}",
                 null, null, 100, null);
 
-            // === COMPANION HIRING FLOW ===
-            // Player option to hire companion (TOR-specific ID, output to TOR token)
-            // Uses tor_hire_companion_p.{characterStringId}
-            campaignGameStarter.AddPlayerLine("tor_main_option_faction_hire", "hero_main_options", "tor_companion_hire",
+
+            // Player option to hire companion
+            campaignGameStarter.AddPlayerLine("tor_companion_hire_option", "tor_companion_hire_options", "tor_companion_hire",
                 "{=!}{TOR_HIRE_TEXT}",
                 TORCompanionHireWithTextCondition, null, 100, TORCompanionHireClickable, null);
+
+            // Player option to decline and leave
+            // Uses character-specific tor_companion_leave_p.{characterStringId}
+            campaignGameStarter.AddPlayerLine("tor_companion_leave_option", "tor_companion_hire_options", "close_window",
+                "{=!}{TOR_COMPANION_LEAVE_TEXT}",
+                TORCompanionLeaveWithTextCondition, null, 100, null, null);
 
             // NPC response to hire request (TOR-specific token to avoid vanilla conflicts)
             // Uses character-specific tor_hire_companion_payment.{characterStringId}
@@ -166,8 +180,58 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             var characterId = hero.Template?.StringId;
             if (string.IsNullOrEmpty(characterId)) return false;
 
-            var introText = TORTextHelper.GetTextObject("tor_introduction", characterId, "What can I do for you?", skipValidation: true);
+            var introText = TORTextHelper.GetTextObject("tor_hire_companion_introduction", characterId, "What can I do for you?", skipValidation: true);
             MBTextManager.SetTextVariable("TOR_INTRO_TEXT", introText);
+
+            return true;
+        }
+
+        /// <summary>
+        /// Checks if player and wanderer are racially/factionally incompatible.
+        /// Returns true if incompatible (triggers rejection dialog).
+        /// Placeholder: Tests if player is dwarf and wanderer is eonir.
+        /// </summary>
+        private bool TORWandererRaceIncompatibleCondition()
+        {
+            if (!TORWandererCondition()) return false;
+
+            var hero = Hero.OneToOneConversationHero;
+            var characterId = hero.Template?.StringId;
+            if (string.IsNullOrEmpty(characterId)) return false;
+
+            // TODO: Replace with proper race/faction incompatibility checks
+            // Placeholder: Prevent dwarf from hiring eonir
+            bool isPlayerDwarf = Hero.MainHero.Culture?.StringId == TORConstants.Cultures.DAWI;
+            bool isWandererEonir = hero.Culture.StringId == TORConstants.Cultures.EONIR;
+
+            if (isPlayerDwarf && isWandererEonir)
+            {
+                // Set rejection text
+                var begoneText = TORTextHelper.GetTextObject("tor_hire_companion_begone", characterId,
+                    "Begone. I have no business with your kind.", skipValidation: true);
+                MBTextManager.SetTextVariable("TOR_BEGONE_TEXT", begoneText);
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool TORWandererPlayerResponseCondition()
+        {
+            if (!TORWandererCondition()) return false;
+
+            var hero = Hero.OneToOneConversationHero;
+            var characterId = hero.Template?.StringId;
+            if (string.IsNullOrEmpty(characterId)) return false;
+
+            // Set player response text variables
+            var tellMeText = TORTextHelper.GetTextObject("tor_hire_companion_tell_me_p", characterId,
+                "My name is {PLAYER.NAME}, {?CONVERSATION_NPC.GENDER}madam{?}sir{\\?}. Tell me about yourself.", skipValidation: true);
+            MBTextManager.SetTextVariable("TOR_PLAYER_TELL_ME_TEXT", tellMeText);
+
+            var skipText = TORTextHelper.GetTextObject("tor_hire_companion_skip_p", characterId,
+                "I'm {PLAYER.NAME}. Let's skip the pleasantries and get right to business.", skipValidation: true);
+            MBTextManager.SetTextVariable("TOR_PLAYER_SKIP_TEXT", skipText);
 
             return true;
         }
@@ -230,6 +294,21 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
 
             var hireText = TORTextHelper.GetTextObject("tor_hire_companion_p", characterId, "I am interested in your skills.", skipValidation: true);
             MBTextManager.SetTextVariable("TOR_HIRE_TEXT", hireText);
+
+            return true;
+        }
+
+        private bool TORCompanionLeaveWithTextCondition()
+        {
+            var hero = Hero.OneToOneConversationHero;
+            if (hero == null || !hero.IsWanderer) return false;
+
+            var characterId = hero.Template?.StringId;
+            if (string.IsNullOrEmpty(characterId)) return false;
+
+            var leaveText = TORTextHelper.GetTextObject("tor_companion_leave_p", characterId,
+                "Farewell for now.", skipValidation: true);
+            MBTextManager.SetTextVariable("TOR_COMPANION_LEAVE_TEXT", leaveText);
 
             return true;
         }
