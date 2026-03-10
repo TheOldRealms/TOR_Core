@@ -2,9 +2,14 @@ using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
+using TaleWorlds.LinQuick;
+using TaleWorlds.MountAndBlade;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.UI;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -185,6 +190,28 @@ namespace TOR_Core.HarmonyPatches
             extension.ExecuteCommand(commandName, parameters);
             return false;
 
+        }
+    }
+
+    // Patch to prevent death UI from showing when Harbinger (summoned champion) dies
+    [HarmonyPatch]
+    [HarmonyPatchCategory("LatePatches")]
+    public static class ScoreboardBaseVMPatches
+    {
+        [HarmonyPrefix]
+        [HarmonyPatch("TaleWorlds.MountAndBlade.ViewModelCollection.Scoreboard.ScoreboardBaseVM", "OnMainHeroDeath")]
+        public static bool OnMainHeroDeath_Prefix()
+        {
+            if (TaleWorlds.MountAndBlade.Agent.Main == null && Hero.MainHero.HasCareer(TORCareers.Necromancer))
+            {
+                if (Mission.Current.Agents.AnyQ(x => x.IsHero && x.IsActive() && x.GetHero() == Hero.MainHero))
+                {
+                    return false;
+                }
+            }
+
+            // For all other cases, let the original method run
+            return true;
         }
     }
 }
