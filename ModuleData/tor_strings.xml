@@ -2118,6 +2118,12 @@
   <string id="tor_customsettlement_intro.mork_shrine_04" text="{=str_tor_customsettlement_intro_mork_shrine_04}You arrive at the shrine of the {RELIGION_LINK}. The crude altar to Mork, the cunningly brutal, fills the air with a sense of ruthlessness and ambition." />
   <string id="tor_customsettlement_disabled.mork_shrine_04" text="{=str_tor_customsettlement_disabled_mork_shrine_04}The shrine lies in ruins. There is nothing to do here." />
 
+
+  <!--wanderer stories-->
+  
+  
+
+
   <!--wanderer stories-->
   <string id="tor_prebackstory.tor_wanderer_empire_0" text="{=str_tor_prebackstory_tor_wanderer_empire_0}My story? Sure, I can share it." />
   <string id="tor_backstory_a.tor_wanderer_empire_0" text="{=str_tor_backstory_a_tor_wanderer_empire_0}As a boy I discovered I was not like most children, it was not long before the colleges realised this as well." />
@@ -2384,9 +2390,15 @@
   <string id="tor_backstory_d.tor_wanderer_mousillon_4" text="{=str_tor_backstory_d_tor_wanderer_mousillon_4}Right." />
   <string id="tor_generic_backstory.tor_wanderer_mousillon_4" text="{=str_tor_generic_backstory_tor_wanderer_mousillon_4}I'm a fledgeling Vampire, powerful and undying." />
   
-  <string id="tor_introduction.tor_wanderer_eonir_0" text="{=str_tor_prebackstory_tor_wanderer_eonir_0}What can a Ghoststrider do for you?." />
-  <string id="tor_hire_companion_p.tor_wanderer_eonir_0" text="{=str_tor_prebackstory_tor_wanderer_eonir_0}I am interested in your skills." />
-  <string id="tor_leave_p.tor_wanderer_eonir_0" text="{=str_tor_prebackstory_tor_wanderer_eonir_0}Nevermind I don't talk to Dagger ears." />
+<!-- ========================================== -->
+<!-- EONIR COMPANIONS -->
+<!-- ========================================== -->
+
+<!-- Eonir 0 - Ghost Strider -->
+  <string id="tor_hire_companion_begone.tor_wanderer_eonir_0" text="{=str_tor_hire_companion_begone_tor_wanderer_eonir_0}Begone. I have no business with your kind." />
+  <string id="tor_introduction.tor_wanderer_eonir_0" text="{=str_tor_introduction_tor_wanderer_eonir_0}What can a Ghoststrider do for you?" />
+  <string id="tor_hire_companion_tell_me_p.tor_wanderer_eonir_0" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_eonir_0}My name is {PLAYER.NAME}, {?CONVERSATION_NPC.GENDER}madam{?}sir{\\?}. Tell me about yourself." />
+  <string id="tor_hire_companion_skip_p.tor_wanderer_eonir_0" text="{=str_tor_hire_companion_skip_p_tor_wanderer_eonir_0}I'm {PLAYER.NAME}. Let's skip the pleasantries and get right to business." />
   <string id="tor_prebackstory.tor_wanderer_eonir_0" text="{=str_tor_prebackstory_tor_wanderer_eonir_0}About me? There is not much to tell." />
   <string id="tor_backstory_a.tor_wanderer_eonir_0" text="{=str_tor_backstory_a_tor_wanderer_eonir_0}I have fought all my life against ruinous powers. I made my own bow with the wood of trees so old that they stood tall when Ariel was just a mortal. I killed my first ungor at the age of eleven, and my first chaos spawn at fourteen. Recently, I struck a troll between the eyes with an arrow from two hundred paces away." />
   <string id="tor_backstory_b.tor_wanderer_eonir_0" text="{=str_tor_backstory_b_tor_wanderer_eonir_0}Beasts, monsters, humans, or even other elves, if necessary—any creature that threatens the forest shall feel the sting of my arrows." />
@@ -2394,12 +2406,17 @@
   <string id="tor_response_1.tor_wanderer_eonir_0" text="{=str_tor_response_1_tor_wanderer_eonir_0}It's always good that there are fewer of those disgusting creatures in this world." />
   <string id="tor_response_2.tor_wanderer_eonir_0" text="{=str_tor_response_2_tor_wanderer_eonir_0}A boy killing beasts? I find it hard to believe." />
   <string id="tor_backstory_d.tor_wanderer_eonir_0" text="{=str_tor_backstory_d_tor_wanderer_eonir_0}I am a Ghost Strider of the Toriour caste, an expert in the art of ambush. I shall deliver the justice of the Eonir." />
-  <string id="tor_hire_companion_p.tor_wanderer_eonir_0" text="{=str_tor_prebackstory_tor_wanderer_eonir_0}I am interested in your skills." />
-  <string id="tor_hire_companion_payment.tor_wanderer_eonir_0" text="{=str_tor_generic_backstory_tor_wanderer_eonir_0}I would prefer not to leave my beloved forests, but for a reasonable fee, I might be persuaded to accompany you on your travels for a time." />
-  <string id="tor_hire_companion_payment_p.tor_wanderer_eonir_0" text="{=str_tor_generic_backstory_tor_wanderer_eonir_0}I would prefer not to leave my beloved forests, but for a reasonable fee, I might be persuaded to accompany you on your travels for a time." />
-  <string id="tor_hire_accept_p.tor_wanderer_eonir_0" text="{=str_tor_hire_accept_p_tor_wanderer_eonir_0}Right... {GOLD_AMOUNT} Here you are some coinies." />
-  <string id="tor_hire_decline_p.tor_wanderer_eonir_0" text="{=str_tor_hire_decline_p_tor_wanderer_eonir_0}I can't afford that just now elf." />  
+  <string id="tor_hire_companion_p.tor_wanderer_eonir_0" text="{=str_tor_hire_companion_p_tor_wanderer_eonir_0}I am interested in your skills." />
+  <string id="tor_companion_leave_p.tor_wanderer_eonir_0" text="{=str_tor_companion_leave_p_tor_wanderer_eonir_0}Farewell for now." />
+  <string id="tor_hire_companion_payment.tor_wanderer_eonir_0" text="{=str_tor_hire_companion_payment_tor_wanderer_eonir_0}I would prefer not to leave my beloved forests, but for a reasonable fee, I might be persuaded to accompany you on your travels for a time." />
+  <string id="tor_hire_accept_p.tor_wanderer_eonir_0" text="{=str_tor_hire_accept_p_tor_wanderer_eonir_0}Right... {GOLD_AMOUNT} Here you are some coins." />
+  <string id="tor_hire_decline_p.tor_wanderer_eonir_0" text="{=str_tor_hire_decline_p_tor_wanderer_eonir_0}I can't afford that just now elf." />
 
+<!-- Eonir 1 - Guardian Mage -->
+  <string id="tor_hire_companion_begone.tor_wanderer_eonir_1" text="{=str_tor_hire_companion_begone_tor_wanderer_eonir_1}Begone. I have no business with your kind." />
+  <string id="tor_introduction.tor_wanderer_eonir_1" text="{=str_tor_introduction_tor_wanderer_eonir_1}A Guardian Mage stands before you. State your business." />
+  <string id="tor_hire_companion_tell_me_p.tor_wanderer_eonir_1" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_eonir_1}My name is {PLAYER.NAME}, {?CONVERSATION_NPC.GENDER}madam{?}sir{\\?}. Tell me about yourself." />
+  <string id="tor_hire_companion_skip_p.tor_wanderer_eonir_1" text="{=str_tor_hire_companion_skip_p_tor_wanderer_eonir_1}I'm {PLAYER.NAME}. Let's skip the pleasantries and get right to business." />
   <string id="tor_prebackstory.tor_wanderer_eonir_1" text="{=str_tor_prebackstory_tor_wanderer_eonir_1}Insolent boy, you stand before a Guardian Mage of the Eonir." />
   <string id="tor_backstory_a.tor_wanderer_eonir_1" text="{=str_tor_backstory_a_tor_wanderer_eonir_1}Surely you don't have the slightest idea about our arcane power and bloodline." />
   <string id="tor_backstory_b.tor_wanderer_eonir_1" text="{=str_tor_backstory_b_tor_wanderer_eonir_1}My lineage descends from an ancient line of warriors, tracing its origins to the War of the Beard itself." />
@@ -2407,8 +2424,17 @@
   <string id="tor_response_1.tor_wanderer_eonir_1" text="{=str_tor_response_1_tor_wanderer_eonir_1}A proud lineage." />
   <string id="tor_response_2.tor_wanderer_eonir_1" text="{=str_tor_response_2_tor_wanderer_eonir_1}Many people claim to be descended from great heroes of the past." />
   <string id="tor_backstory_d.tor_wanderer_eonir_1" text="{=str_tor_backstory_d_tor_wanderer_eonir_1}Right." />
-  <string id="tor_generic_backstory.tor_wanderer_eonir_1" text="{=str_tor_generic_backstory_tor_wanderer_eonir_1}Hold a moment, stranger. My services do not come cheap — you'd best prove your worth." />
-  
+  <string id="tor_hire_companion_p.tor_wanderer_eonir_1" text="{=str_tor_hire_companion_p_tor_wanderer_eonir_1}I am interested in your skills." />
+  <string id="tor_companion_leave_p.tor_wanderer_eonir_1" text="{=str_tor_companion_leave_p_tor_wanderer_eonir_1}Farewell." />
+  <string id="tor_hire_companion_payment.tor_wanderer_eonir_1" text="{=str_tor_hire_companion_payment_tor_wanderer_eonir_1}Hold a moment, stranger. My services do not come cheap — you'd best prove your worth. My fee is {GOLD_AMOUNT}{GOLD_ICON}." />
+  <string id="tor_hire_accept_p.tor_wanderer_eonir_1" text="{=str_tor_hire_accept_p_tor_wanderer_eonir_1}Right... {GOLD_AMOUNT} Here you are." />
+  <string id="tor_hire_decline_p.tor_wanderer_eonir_1" text="{=str_tor_hire_decline_p_tor_wanderer_eonir_1}I can't afford that just now." />
+
+<!-- Eonir 2 - Envoy -->
+  <string id="tor_hire_companion_begone.tor_wanderer_eonir_2" text="{=str_tor_hire_companion_begone_tor_wanderer_eonir_2}Begone. I have no business with your kind." />
+  <string id="tor_introduction.tor_wanderer_eonir_2" text="{=str_tor_introduction_tor_wanderer_eonir_2}As the envoy of Laurelorn, I speak with the authority of the Eonir Senate and Crown." />
+  <string id="tor_hire_companion_tell_me_p.tor_wanderer_eonir_2" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_eonir_2}My name is {PLAYER.NAME}, {?CONVERSATION_NPC.GENDER}madam{?}sir{\\?}. Tell me about yourself." />
+  <string id="tor_hire_companion_skip_p.tor_wanderer_eonir_2" text="{=str_tor_hire_companion_skip_p_tor_wanderer_eonir_2}I'm {PLAYER.NAME}. Let's skip the pleasantries and get right to business." />
   <string id="tor_prebackstory.tor_wanderer_eonir_2" text="{=str_tor_prebackstory_tor_wanderer_eonir_2}As the envoy of Laurelorn, i speak with the authority of the Eonir Senate and Crown" />
   <string id="tor_backstory_a.tor_wanderer_eonir_2" text="{=str_tor_backstory_a_tor_wanderer_eonir_2}You should leave the treacherous tides of politics to me, content yourself with the shallow streams more suitable for your talents." />
   <string id="tor_backstory_b.tor_wanderer_eonir_2" text="{=str_tor_backstory_b_tor_wanderer_eonir_2}All Toriour trace their lines to the war of the beard, when the Asur abandoned us." />
@@ -2416,7 +2442,11 @@
   <string id="tor_response_1.tor_wanderer_eonir_2" text="{=str_tor_response_1_tor_wanderer_eonir_2}A proud lineage." />
   <string id="tor_response_2.tor_wanderer_eonir_2" text="{=str_tor_response_2_tor_wanderer_eonir_2}Anyone can claim an ancestory they do not deserve." />
   <string id="tor_backstory_d.tor_wanderer_eonir_2" text="{=str_tor_backstory_d_tor_wanderer_eonir_2}Hhm." />
-  <string id="tor_generic_backstory.tor_wanderer_eonir_2" text="{=str_tor_generic_backstory_tor_wanderer_eonir_2}My time is valuable, I am not yet sure I can say the same of yours." />
+  <string id="tor_hire_companion_p.tor_wanderer_eonir_2" text="{=str_tor_hire_companion_p_tor_wanderer_eonir_2}I am interested in your skills." />
+  <string id="tor_companion_leave_p.tor_wanderer_eonir_2" text="{=str_tor_companion_leave_p_tor_wanderer_eonir_2}Farewell." />
+  <string id="tor_hire_companion_payment.tor_wanderer_eonir_2" text="{=str_tor_hire_companion_payment_tor_wanderer_eonir_2}My time is valuable, I am not yet sure I can say the same of yours. My fee is {GOLD_AMOUNT}{GOLD_ICON}." />
+  <string id="tor_hire_accept_p.tor_wanderer_eonir_2" text="{=str_tor_hire_accept_p_tor_wanderer_eonir_2}Right... {GOLD_AMOUNT} Here you are." />
+  <string id="tor_hire_decline_p.tor_wanderer_eonir_2" text="{=str_tor_hire_decline_p_tor_wanderer_eonir_2}I can't afford that just now." />
 
   <string id="tor_prebackstory.tor_wanderer_woodelf_0" text="{=str_tor_prebackstory_tor_wanderer_woodelf_0}Ah, I do not believe we have met. Peace be upon you, stranger." />
   <string id="tor_backstory_a.tor_wanderer_woodelf_0" text="{=str_tor_backstory_a_tor_wanderer_woodelf_0}Have you not encountered someone like me before? It is not surprising for I am a Spellsinger of the Asrai." />
