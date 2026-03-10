@@ -23,6 +23,8 @@ namespace TOR_Core.BattleMechanics
         private const float CLOSE_MELEE_DISTANCE_TO_FORCE_SIDEARM = 4f;
         // ignore mounted enemies that are already too close to be a meaningful lance target, wont switch if they're this close
         private const float MIN_CAVALRY_DISTANCE_FOR_CHARGE_THREAT = 6.75f;
+        // if the agent already has a close on foot target, prefer sidearm handling before broader local threat scanning
+        private const float TARGET_AGENT_DISTANCE_TO_FORCE_SIDEARM = 6f;
 
         private float _elapsedSinceLastTick;
 
@@ -55,6 +57,32 @@ namespace TOR_Core.BattleMechanics
                 if (!lanceSlot.HasValue)
                 {
                     continue;
+                }
+
+                Agent targetAgent = agent.GetTargetAgent();
+                if (targetAgent != null &&
+                    targetAgent.IsActive() &&
+                    targetAgent.IsHuman &&
+                    targetAgent.IsEnemyOf(agent))
+                {
+                    Vec2 targetOffset = targetAgent.Position.AsVec2 - agent.Position.AsVec2;
+                    float targetDistanceSq = targetOffset.LengthSquared;
+                    float targetDistanceThresholdSq =
+                        TARGET_AGENT_DISTANCE_TO_FORCE_SIDEARM * TARGET_AGENT_DISTANCE_TO_FORCE_SIDEARM;
+
+                    if (targetAgent.MountAgent == null && targetDistanceSq <= targetDistanceThresholdSq)
+                    {
+                        if (IsLanceUsage(agent.WieldedWeapon.CurrentUsageItem))
+                        {
+                            var targetSidearmSlot = FindBestNonLanceMeleeWeaponSlot(agent);
+                            if (targetSidearmSlot.HasValue)
+                            {
+                                TryWieldSlotIfNotAlready(agent, targetSidearmSlot.Value);
+                            }
+                        }
+
+                        continue;
+                    }
                 }
 
                 EvaluateLocalThreats(agent,
