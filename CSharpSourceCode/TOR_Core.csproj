@@ -796,6 +796,7 @@
     <Compile Include="Models\TORClanTierModel.cs" />
     <Compile Include="Models\TORCombatSimulationModel.cs" />
     <Compile Include="Models\TORCombatXpModel.cs" />
+    <Compile Include="Models\TORCompanionHiringCompatibilityModel.cs" />
     <Compile Include="Models\TORCompanionHiringPriceCalculationModel.cs" />
     <Compile Include="Models\TORCompanionTrainingModel.cs" />
     <Compile Include="Models\TORCustomResourceModel.cs" />
@@ -862,6 +863,7 @@
     <Compile Include="Utilities\TORConfig.cs" />
     <Compile Include="Utilities\TORConsoleCommands.cs" />
     <Compile Include="Utilities\TORConstants.cs" />
+    <Compile Include="Utilities\TORHireHelper.cs" />
     <Compile Include="Utilities\TORDamageDisplay.cs" />
     <Compile Include="Utilities\TOREntityRotator.cs" />
     <Compile Include="Utilities\TOREquipmentHelper.cs" />
