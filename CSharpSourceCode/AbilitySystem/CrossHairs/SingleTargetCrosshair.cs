@@ -2,6 +2,7 @@
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.AbilitySystem.Crosshairs
 {
@@ -74,14 +75,17 @@ namespace TOR_Core.AbilitySystem.Crosshairs
         private void LockTarget(Agent newTarget)
         {
             _cachedTarget = newTarget;
+
+            // stale AgentVisuals while mission transitions, agent can still be around for a bit after its visuals are should not be interfered
             if (newTarget.IsEnemyOf(_caster))
             {
-                _cachedTarget.AgentVisuals.SetContourColor(enemyColor);
+                _cachedTarget.TrySetContourColor(enemyColor);
             }
             else
             {
-                _cachedTarget.AgentVisuals.SetContourColor(friendColor);
+                _cachedTarget.TrySetContourColor(friendColor);
             }
+
             _isTargetLocked = true;
         }
 
@@ -89,11 +93,8 @@ namespace TOR_Core.AbilitySystem.Crosshairs
         {
             if (Mission.Current.CurrentState != Mission.State.Over)
             {
-                if (_cachedTarget != null && !_cachedTarget.IsFadingOut())
-                {
-                    _cachedTarget.AgentVisuals?.SetContourColor(colorLess); //Sly : I've had a memory access violation occur here previously when switching between prayers on ulric - not sure exactly what occurred, I probably went from a prayer that highlighted a group of agents with an aoe to the Snow King's Decree single target circle and something went wrong with the unhighlighting?
-                }
-
+                // it seems this exact unhighlight path has already caused a memory access violation once, skip the native contour write if visuals are already gone
+                _cachedTarget.TrySetContourColor(colorLess);
             }
 
             _isTargetLocked = false;

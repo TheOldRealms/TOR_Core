@@ -2,6 +2,7 @@
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.AbilitySystem.Crosshairs
 {
@@ -86,46 +87,72 @@ namespace TOR_Core.AbilitySystem.Crosshairs
             }
         }
 
+        private void SetAgentContour(Agent agent, uint? color)
+        {
+            if (agent == null)
+            {
+                return;
+            }
+
+            if (agent.State != TaleWorlds.Core.AgentState.Active &&
+                agent.State != TaleWorlds.Core.AgentState.Routed)
+            {
+                return;
+            }
+
+            // agents lingering in the target list for a frame while dying, better be safe than sorry
+            agent.TrySetContourColor(color, true);
+        }
+
+        private void ClearAgentContour(Agent agent)
+        {
+            agent.TrySetContourColor(colorLess, true);
+        }
+
         private void UpdateAgentsGlow()
         {
             if (Targets != null)
             {
                 foreach (var agent in Targets)
                 {
-                    if (agent == null) continue;
-                    if (agent.State == TaleWorlds.Core.AgentState.Active || agent.State == TaleWorlds.Core.AgentState.Routed)
+                    switch (_targetType)
                     {
-                        switch (_targetType)
-                        {
-                            case AbilityTargetType.AlliesInAOE:
-                                {
-                                    agent.AgentVisuals.GetEntity().Root.SetContourColor(friendColor, true);
-                                    break;
-                                }
-                            case AbilityTargetType.EnemiesInAOE:
-                                {
-                                    agent.AgentVisuals.GetEntity().Root.SetContourColor(enemyColor, true);
-                                    break;
-                                }
-                        }
+                        case AbilityTargetType.AlliesInAOE:
+                            SetAgentContour(agent, friendColor);
+                            break;
+                        case AbilityTargetType.EnemiesInAOE:
+                            SetAgentContour(agent, enemyColor);
+                            break;
                     }
                 }
             }
             if (_previousTargets != null)
             {
-                foreach (Agent agent in _previousTargets.Except(Targets))
-                    agent.AgentVisuals.GetEntity().Root.SetContourColor(colorLess, true);
+                foreach (var agent in _previousTargets.Except(Targets))
+                {
+                    ClearAgentContour(agent);
+                }
             }
         }
 
         private void ClearArrays()
         {
             if (Targets != null)
-                foreach (Agent agent in Targets)
-                    agent.AgentVisuals.GetEntity().Root.SetContourColor(colorLess, true);
+            {
+                foreach (var agent in Targets)
+                {
+                    ClearAgentContour(agent);
+                }
+            }
+
             if (_previousTargets != null)
-                foreach (Agent agent in _previousTargets.Except(Targets))
-                    agent.AgentVisuals.GetEntity().Root.SetContourColor(colorLess, true);
+            {
+                foreach (var agent in _previousTargets.Except(Targets))
+                {
+                    ClearAgentContour(agent);
+                }
+            }
+
             _previousTargets = null;
             Targets.Clear();
         }

@@ -11,6 +11,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.Engine;
 using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
@@ -493,6 +494,35 @@ namespace TOR_Core.Extensions
             agent.SetActionChannel(0, ActionIndexCache.Create("act_strike_fall_back_heavy_back_rise_continue"));
         }
 
+        public static bool HasUsableVisuals(this Agent agent)
+        {
+            return agent != null &&
+                   !agent.IsFadingOut() &&
+                   agent.AgentVisuals != null &&
+                   agent.AgentVisuals.IsValid();
+        }
+
+        public static bool TrySetContourColor(this Agent agent, uint? color, bool alwaysVisible = true)
+        {
+            if (!agent.HasUsableVisuals())
+            {
+                return false;
+            }
+
+            agent.AgentVisuals.SetContourColor(color, alwaysVisible);
+            return true;
+        }
+
+        public static bool TryRemoveChildEntity(this Agent agent, GameEntity entity, int removeReason = 0)
+        {
+            if (!agent.HasUsableVisuals() || entity == null)
+            {
+                return false;
+            }
+
+            agent.AgentVisuals.RemoveChildEntity(entity, removeReason);
+            return true;
+        }
         public static void Appear(this Agent agent)
         {
             agent.AgentVisuals?.SetVisible(true);

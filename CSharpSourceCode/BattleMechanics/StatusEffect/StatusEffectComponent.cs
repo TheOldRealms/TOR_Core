@@ -241,7 +241,12 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         private void UpdateDummyEntity(float dt)
         {
-            _dummyEntity?.SetGlobalFrame(new MatrixFrame(_dummyEntity.GetFrame().rotation, Agent.GetChestGlobalPosition()));
+            if (_dummyEntity == null || Agent == null || !Agent.IsActive() || Agent.IsFadingOut())
+            {
+                return;
+            }
+
+            _dummyEntity.SetGlobalFrame(new MatrixFrame(_dummyEntity.GetFrame().rotation, Agent.GetChestGlobalPosition()));
         }
 
         private void RemoveEffect(StatusEffect effect)
@@ -252,12 +257,17 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             {
                 foreach (var entity in data.Entities)
                 {
+                    if (entity == null)
+                    {
+                        continue;
+                    }
                     entity.FadeOut(1, true);
                     entity.RemoveAllParticleSystems();
-                    Agent.AgentVisuals.RemoveChildEntity(entity, 0);
+                    // attached effect outliving the ownin visuals, only detach through AgentVisuals while that object is still safe
+                    Agent.TryRemoveChildEntity(entity);
                 }
             }
-            _dummyEntity.RemoveAllParticleSystems();
+            _dummyEntity?.RemoveAllParticleSystems();
 
             if (data.Effect.Template.Type == StatusEffectTemplate.EffectType.MovementManipulation)
             {

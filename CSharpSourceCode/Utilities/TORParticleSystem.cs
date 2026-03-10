@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.Utilities
 {
@@ -38,10 +39,12 @@ namespace TOR_Core.Utilities
                 }
                 for (byte i = 0; i < boneIndexes.Length / (int)intensity; i++)
                 {
-                    GameEntity childEntity;
-                    ParticleSystem particle = ApplyParticleToAgentBone(agent, particleId, (sbyte)boneIndexes[i], out childEntity);
-                    particleList.Add(particle);
-                    childEntities.Add(childEntity);
+                    var particle = ApplyParticleToAgentBone(agent, particleId, (sbyte)boneIndexes[i], out var childEntity);
+                    if (particle != null && childEntity != null)
+                    {
+                        particleList.Add(particle);
+                        childEntities.Add(childEntity);
+                    }
                 }
             }
 
@@ -58,25 +61,45 @@ namespace TOR_Core.Utilities
         /// <returns>The ParticleSystem that was attached to the agent's bone.</returns>
         public static ParticleSystem ApplyParticleToAgentBone(Agent agent, string particleId, sbyte boneIndex, out GameEntity childEntity, float elevationOffset = 0, Vec3 rotationOffset = default)
         {
-            Skeleton skeleton = agent.AgentVisuals.GetSkeleton();
-            Scene scene = Mission.Current.Scene;
+            childEntity = null;
+
+            // for battle transitions an agent existing while its visuals are already invalid
+            if (!agent.HasUsableVisuals())
+            {
+                return null;
+            }
+
+            var scene = Mission.Current?.Scene;
+            if (scene == null)
+            {
+                return null;
+            }
+
+            var skeleton = agent.AgentVisuals.GetSkeleton();
+            if (skeleton == null)
+            {
+                return null;
+            }
+
             childEntity = GameEntity.CreateEmpty(scene);
+
             MatrixFrame localFrame = new MatrixFrame(Mat3.Identity, new Vec3(0, 0, 0));
             localFrame.rotation.RotateAboutSide(rotationOffset.x.ToRadians());
             localFrame.rotation.RotateAboutForward(rotationOffset.y.ToRadians());
             localFrame.rotation.RotateAboutUp(rotationOffset.z.ToRadians());
             localFrame.Elevate(elevationOffset);
-            ParticleSystem particle = ParticleSystem.CreateParticleSystemAttachedToEntity(particleId, childEntity, ref localFrame);
-            if (particle != null)
-            {
-                agent.AgentVisuals.AddChildEntity(childEntity);
-                skeleton.AddComponentToBone(boneIndex, particle);
-            }
-            else
+
+            var particle = ParticleSystem.CreateParticleSystemAttachedToEntity(particleId, childEntity, ref localFrame);
+            if (particle == null)
             {
                 TORCommon.Log("Attempted to apply a null particle to agent bone. Particle ID: " + particleId + ". Agent name: " + agent.Name, LogLevel.Warn);
+                childEntity.Remove(0);
+                childEntity = null;
+                return null;
             }
 
+            agent.AgentVisuals.AddChildEntity(childEntity);
+            skeleton.AddComponentToBone(boneIndex, particle);
             return particle;
         }
 
