@@ -64,6 +64,11 @@ public class SlayerCareerButtonBehavior(CareerObject career) : CareerButtonBehav
             return false;
         }
 
+        if (characterObject.StringId.Contains("slayer"))
+        {
+            return false;
+        }
+
         return true;
     }
 
