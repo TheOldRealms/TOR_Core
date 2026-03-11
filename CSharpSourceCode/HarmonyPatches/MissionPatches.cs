@@ -192,6 +192,9 @@ namespace TOR_Core.HarmonyPatches
         public static bool RetreatMission_Prefix(Mission __instance)
         {
             // Check if the main hero has the Necromancer career
+            if (Game.Current.GameType is not Campaign)
+                return true;
+            
             if (Hero.MainHero != null && Hero.MainHero.HasCareer(TORCareers.Necromancer))
             {
                 // Check if any agent has the NecromancerChampion attribute
