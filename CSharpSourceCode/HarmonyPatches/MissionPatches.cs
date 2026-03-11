@@ -12,8 +12,11 @@ using TaleWorlds.CampaignSystem.Siege;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
+using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
+using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Models;
 using TOR_Core.Utilities;
@@ -176,10 +179,32 @@ namespace TOR_Core.HarmonyPatches
             // The behavior will recalculate on next tick when formations are properly initialized
             if (__instance.Formation.CachedClosestEnemyFormation == null)
             {
-                var currentOrder = MovementOrder.MovementOrderMove(__instance.Formation.CachedMedianPosition); 
-                Traverse.Create(__instance).Property("CurrentOrder").SetValue(currentOrder);           
+                var currentOrder = MovementOrder.MovementOrderMove(__instance.Formation.CachedMedianPosition);
+                Traverse.Create(__instance).Property("CurrentOrder").SetValue(currentOrder);
             }
             return true; // Run original method
+        }
+
+        // Prefix patch for Mission.RetreatMission to prevent retreat when Necromancer's Champion is still active
+        // Applies the logic from CareerPerkMissionBehavior.OnEndMissionRequest
+        [HarmonyPatch(typeof(Mission), "RetreatMission")]
+        [HarmonyPrefix]
+        public static bool RetreatMission_Prefix(Mission __instance)
+        {
+            // Check if the main hero has the Necromancer career
+            if (Hero.MainHero != null && Hero.MainHero.HasCareer(TORCareers.Necromancer))
+            {
+                // Check if any agent has the NecromancerChampion attribute
+                if (__instance.Agents.AnyQ(x => x.HasAttribute("NecromancerChampion")))
+                {
+                    // Prevent the retreat by returning false (skips the original method)
+                    InformationManager.DisplayMessage(new InformationMessage("Cannot retreat while your Champion is still active.", Colors.Red));
+                    return false;
+                }
+            }
+
+            // Allow the original method to execute
+            return true;
         }
     }
 }
