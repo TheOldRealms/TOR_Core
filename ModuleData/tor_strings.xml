@@ -325,6 +325,7 @@
 
   <!-- Greenskin Mechanics -->
   <string id="tor_greenskin_internal_fightin_text" text="{=str_tor_greenskin_internal_fightin_text}Internal Fightin'"/>
+  <string id="tor_greenskin_internal_fightin_bonus_low_member_text" text="{=str_tor_greenskin_internal_fightin_bonus_low_member_text}Small Mob Pansies"/>
   <string id="tor_greenskin_petty_squabblin_text" text="{=str_tor_greenskin_petty_squabblin_text}Petty Squabblin'"/>
   <string id="tor_greenskin_ere_we_go_text" text="{=str_tor_greenskin_ere_we_go_text}'Ere We Go!"/>
   <string id="tor_greenskin_waaagh_text" text="{=str_tor_greenskin_waaagh_text}WAAAGH!!!!"/>

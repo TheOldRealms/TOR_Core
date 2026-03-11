@@ -75,6 +75,11 @@ namespace TOR_Core.Models
                 if (Hero.MainHero.HasAttribute("Waaagh0"))
                 {
                     result.Add(-40f, TORTextHelper.GetTextObject("tor_greenskin_internal_fightin_text", "Internal Fightin'"));
+                    if (Hero.MainHero.PartyBelongedTo != null &&
+                        Hero.MainHero.PartyBelongedTo.Party.NumberOfAllMembers < 50)
+                    {
+                        result.Add(20f, TORTextHelper.GetTextObject("tor_greenskin_internal_fightin_bonus_low_member_text", "Small Mob Pansies"));
+                    }
                 }
                 else if (Hero.MainHero.HasAttribute("Waaagh1"))
                 {
