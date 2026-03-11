@@ -41,10 +41,10 @@ namespace TOR_Core.Extensions
             return result == null ? null : (TORCompanionTrainingModel)result;
         }
 
-        public static TORCompanionHiringCompatibilityModel GetCompanionHiringCompatibilityModel(this GameModels models)
+        public static TORHiringCompatibilityModel GetHiringCompatibilityModel(this GameModels models)
         {
-            var result = models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TORCompanionHiringCompatibilityModel));
-            return result == null ? null : (TORCompanionHiringCompatibilityModel)result;
+            var result = models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TORHiringCompatibilityModel));
+            return result == null ? null : (TORHiringCompatibilityModel)result;
         }
 
         public static TORSiegeEngineCalculationModel GetSiegeEngineCalculationModel(this GameModels models)

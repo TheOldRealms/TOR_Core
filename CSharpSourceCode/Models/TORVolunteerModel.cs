@@ -136,6 +136,17 @@ namespace TOR_Core.Models
                 return -1;
             }
 
+            if (buyerHero == Hero.MainHero)
+            {
+                var model = Campaign.Current.Models.GetHiringCompatibilityModel();
+                if (model == null) return value;
+
+                if (!model.CanPlayerHireTroopFromSeller(buyerHero, sellerHero))
+                {
+                    return -1;
+                }
+            }
+
             return value;
         }
     }
