@@ -153,6 +153,7 @@ namespace TOR_Core
                 starter.AddBehavior(new TrollCaveCampaignBehavior());
                 starter.AddBehavior(new RaidingPartyCampaignBehavior());
                 starter.AddBehavior(new CustomDialogCampaignBehavior());
+                starter.AddBehavior(new TORCompanionDialogBehavior());
                 starter.AddBehavior(new PostBattleCampaignBehavior());
                 starter.AddBehavior(new RaiseDeadInTownBehavior());
                 starter.AddBehavior(new RORCampaignBehavior());
@@ -272,6 +273,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TOREnchantmentCraftingModel());
                 gameStarterObject.AddModel(new TORCampaignTimeModel());
                 gameStarterObject.AddModel(new TORSiegeEngineCalculationModel());
+                gameStarterObject.AddModel(new TORCompanionHiringCompatibilityModel());
 
                 CampaignOptions.IsLifeDeathCycleDisabled = true;
             }
