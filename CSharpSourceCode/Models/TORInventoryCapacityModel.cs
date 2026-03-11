@@ -3,6 +3,7 @@ using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
@@ -19,6 +20,12 @@ namespace TOR_Core.Models
             if (mobileParty == MobileParty.MainParty)
             {
                 CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref result, PassiveEffectType.InventoryCapacity, true);
+            }
+
+            if (mobileParty.LeaderHero != null &&
+                mobileParty.LeaderHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
+            {
+                result.AddFactor(0.2f);
             }
 
             return result;
