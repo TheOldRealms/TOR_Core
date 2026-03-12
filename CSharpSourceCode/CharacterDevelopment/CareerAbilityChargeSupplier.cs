@@ -338,6 +338,8 @@ namespace TOR_Core.CharacterDevelopment
                 if(mask == AttackTypeMask.Melee && ! Hero.MainHero.HasCareerChoice("PathfinderKeystone"))
                 return 0;
             }
+
+            if (affectedAgent == null) return 0;
             if (chargeType == ChargeType.NumberOfKills) return 0;
             if (collisionFlag == CareerHelper.ChargeCollisionFlag.HitShield) return 0;
             if (affectingAgent.Team == affectedAgent.Team) return 0;
