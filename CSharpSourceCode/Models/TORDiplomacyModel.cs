@@ -869,11 +869,50 @@ namespace TOR_Core.Models
             return kingdom.GetWarCount();
         }
 
+        public override float GetScoreOfMercenaryToLeaveKingdom(Clan mercenaryClan, Kingdom kingdom)
+        {
+            var score =  base.GetScoreOfMercenaryToLeaveKingdom(mercenaryClan, kingdom);
+
+            if (mercenaryClan.Culture.StringId == TORConstants.Cultures.EMPIRE &&
+                mercenaryClan.StringId.Contains("rogue"))
+            {
+                var reikland = Kingdom.All.FirstOrDefaultQ(x => x.StringId == TORConstants.Cultures.EMPIRE);
+
+                if (reikland != null)
+                {
+                    if (kingdom.IsAtWarWith(reikland))
+                    {
+                        score += 10000;
+                    }
+                }
+        
+            }
+
+            return score;
+        }
+
         public override float GetScoreOfMercenaryToJoinKingdom(Clan mercenaryClan, Kingdom kingdom)
         {
             var score = base.GetScoreOfMercenaryToJoinKingdom(mercenaryClan, kingdom);
 
             if (kingdom == null || mercenaryClan == null) return score;
+
+            if (kingdom.Culture.StringId == TORConstants.Cultures.BRETONNIA)
+            {
+                score = -10000;
+            }
+
+            if (kingdom.Culture.StringId == TORConstants.Cultures.EMPIRE)
+            {
+                if (mercenaryClan.Culture.StringId == TORConstants.Cultures.EMPIRE && mercenaryClan.StringId.Contains("rogue"))
+                {
+                    score = +1000;
+                }
+                else
+                {
+                    score = -10000;
+                }
+            }
 
             if (kingdom.Culture.StringId == TORConstants.Cultures.BRETONNIA)
             {
@@ -885,6 +924,11 @@ namespace TOR_Core.Models
                 {
                     score = -10000;
                 }
+            }
+            
+            if (kingdom.Culture.StringId != TORConstants.Cultures.EMPIRE && mercenaryClan.Culture.StringId == TORConstants.Cultures.EMPIRE && mercenaryClan.StringId.Contains("rogue")) // Sigmar cult, and Imperial College Mage
+            {
+                score = -10000;
             }
 
             if (kingdom.Culture.StringId != TORConstants.Cultures.BRETONNIA && mercenaryClan.Culture.StringId == TORConstants.Cultures.BRETONNIA)

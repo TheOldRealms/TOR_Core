@@ -4994,7 +4994,7 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_emp_lord_averland_golden_1">
+  <CharacterExtendedInfo id="tor_emp_lord_college_magic_1">
     <Abilities>
       <string>QuicksilverSwords</string>
       <string>GleamingArrow</string>
@@ -5010,15 +5010,15 @@
       <string>LegendaryLord</string>
     </Attributes>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_emp_lord_averland_golden_2">
+  <CharacterExtendedInfo id="tor_emp_lord_college_magic_2">
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_emp_lord_averland_golden_3">
+  <CharacterExtendedInfo id="tor_emp_lord_college_magic_3">
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_emp_lord_averland_golden_4">
+  <CharacterExtendedInfo id="tor_emp_lord_college_magic_4">
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
@@ -5105,7 +5105,7 @@
       <string>CanPlaceArtillery</string>
     </Attributes>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_emp_lord_stirland_sigmarcult_1">
+  <CharacterExtendedInfo id="tor_emp_lord_sigmarcult_1">
     <Abilities>
       <string>HealingHand</string>
       <string>CometOfSigmar</string>
@@ -5117,7 +5117,7 @@
       <string>LegendaryLord</string>
     </Attributes>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_emp_lord_stirland_sigmarcult_2">
+  <CharacterExtendedInfo id="tor_emp_lord_sigmarcult_2">
     <Abilities>
       <string>HealingHand</string>
       <string>CometOfSigmar</string>
@@ -5129,7 +5129,7 @@
       <string>LegendaryLord</string>
     </Attributes>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_emp_lord_stirland_sigmarcult_3">
+  <CharacterExtendedInfo id="tor_emp_lord_sigmarcult_3">
     <Abilities>
       <string>HealingHand</string>
       <string>CometOfSigmar</string>
@@ -5775,14 +5775,13 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_hochland_first_6">
     <Abilities>
-      <string>ShemGaze</string>
-      <string>StoneAssault</string>
-      <string>HealingLight</string>
-      <string>PhaProtection</string>
-      <string>DeathlyShards</string>
-      <string>RadiancePillar</string>
-      <string>RadiantGaze</string>
-      <string>NetOfAmyntok</string>
+      <string>DwellersBelow</string>
+      <string>TheGreenEye</string>
+      <string>Barkskin</string>
+      <string>SummerHeat</string>
+      <string>Regrowth</string>
+      <string>DrainLife</string>
+      <string>StormOfRenewal</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>

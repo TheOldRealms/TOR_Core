@@ -36,7 +36,7 @@
       <EquipmentSet id="tor_hisme_stoutheart_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_averland_golden_1" default_group="cavalry" name="{=str_tor_emp_lord_averland_golden_1}Supreme Patriarch Balthazar Gelt" occupation="Lord" culture="Culture.empire" voice="curt" age="25" skill_template="SkillSet.tor_skills_caster_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_college_magic_1" default_group="cavalry" name="{=str_tor_emp_lord_college_magic_1}Supreme Patriarch Balthazar Gelt" occupation="Lord" culture="Culture.empire" voice="curt" age="25" skill_template="SkillSet.tor_skills_caster_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="45" weight="0.1" build="0.3" key="0005C00AC544300034F0083EA595AF5989A8571076A85848828603DF8CC866A50086160308756D64000000000000000000000000000000000000000023047046" />
     </face>
@@ -54,7 +54,7 @@
       <EquipmentSet id="tor_balthazar_gelt_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_averland_golden_2" default_group="cavalry" name="{=str_tor_emp_lord_averland_golden_2}Albrecht Helseher" occupation="Lord" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_college_magic_2" default_group="cavalry" name="{=str_tor_emp_lord_college_magic_2}Albrecht Helseher" occupation="Lord" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="45" weight="0.5" build="0.5" key="000D7C06DA0034CB8C766487675379467577D66257669889C4B647398C95A0370097760309A7497300000000000000000000000000000000000000003B347002" />
     </face>
@@ -72,7 +72,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_averland_golden_3" default_group="cavalry" name="{=str_tor_emp_lord_averland_golden_3}Haqiqah Al-Hikmah" occupation="Lord" culture="Culture.empire" voice="ironic" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_college_magic_3" default_group="cavalry" name="{=str_tor_emp_lord_college_magic_3}Haqiqah Al-Hikmah" occupation="Lord" culture="Culture.empire" voice="ironic" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="45" weight="0.4" build="0.4" key="0034F00FCE2C3849AC7664876753888A7654995054C07648C4230AC98C9BA077005776030597B15600000000000000000000000000000000000000003ABC9002" />
     </face>
@@ -90,7 +90,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_gsword_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_averland_golden_4" default_group="cavalry" name="{=str_tor_emp_lord_averland_golden_4}Benedict Stross" occupation="Lord" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_college_magic_4" default_group="cavalry" name="{=str_tor_emp_lord_college_magic_4}Benedict Stross" occupation="Lord" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="45" weight="0.3" build="0.7" key="0020B80D1E0038CE7C7664876753888A7577866254C6964AC4B647398C95A03700BC56030BABACA800000000000000000000000000000000000000003B743002" />
     </face>
@@ -414,7 +414,7 @@
       <EquipmentSet id="tor_empire_kobs_lord_1_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_stirland_sigmarcult_1" default_group="cavalry" name="{=str_tor_emp_lord_stirland_sigmarcult_1}Luthor Huss" occupation="Lord" culture="Culture.empire" voice="curt" age="50" skill_template="SkillSet.tor_skills_berserker_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_sigmarcult_1" default_group="cavalry" name="{=str_tor_emp_lord_sigmarcult_1}Luthor Huss" occupation="Lord" culture="Culture.empire" voice="curt" age="50" skill_template="SkillSet.tor_skills_berserker_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="60" weight="0.1" build="0.7" key="001E4806D5CC1000A143754FB69091014005239051098A00903800886A89F932067B066707288A0200000000000000000000000000000000000000003AE45142" />
     </face>
@@ -432,7 +432,7 @@
       <EquipmentSet id="tor_luthor_huss_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_stirland_sigmarcult_2" default_group="cavalry" name="{=str_tor_emp_lord_stirland_sigmarcult_2}Grand Theogonist Volkmar the Grim" occupation="Lord" culture="Culture.empire" voice="ironic" age="68" skill_template="SkillSet.tor_skills_berserker_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_sigmarcult_2" default_group="cavalry" name="{=str_tor_emp_lord_sigmarcult_2}Grand Theogonist Volkmar the Grim" occupation="Lord" culture="Culture.empire" voice="ironic" age="68" skill_template="SkillSet.tor_skills_berserker_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="62" weight="0.5" build="0.5" key="0002D80A50003140FB1D3398D010703F963B079168E3120454BB48208BECA93500A776030AC78738000000000000000000000000000000000000000019543102" />
     </face>
@@ -450,7 +450,7 @@
       <EquipmentSet id="tor_volkmar_grim_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_stirland_sigmarcult_3" default_group="cavalry" name="{=str_tor_emp_lord_stirland_sigmarcult_3}Adso Theiss" occupation="Lord" culture="Culture.empire" voice="curt" age="88" skill_template="SkillSet.tor_skills_berserker_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_sigmarcult_3" default_group="cavalry" name="{=str_tor_emp_lord_sigmarcult_3}Adso Theiss" occupation="Lord" culture="Culture.empire" voice="curt" age="88" skill_template="SkillSet.tor_skills_berserker_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="88" weight="0.6" build="0.6" key="0002080FD42C3000F43B369F5568568979FF09F058960800F001806780FC6A5700A99603FACCA5A9000000000000000000000000000000000000000003542105" />
     </face>
@@ -3690,7 +3690,7 @@
       <EquipmentSet id="tor_generic_empire_lord_wasteland_norsemerc" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_wasteland_third_1" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_third_1}Heer Egmond den Euwe" occupation="Lord" culture="Culture.empire" voice="softspoken" age="18" skill_template="SkillSet.tor_skills_caster_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_wasteland_third_1" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_third_1}Heer Egmond den Euwe" occupation="Lord" culture="Culture.empire" voice="softspoken" age="18" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="18" weight="0.5046" build="0.9969" key="0005E40F000010097C7464ABFF12888B99F3989DB7FFFC43C4B647398C95A077EF5636620BA57935F877BFC5667B9BBF000000000000006F0000000019FC7002" />
     </face>
@@ -8550,7 +8550,7 @@
       <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_dw_lord_karak_hirn_first_7" default_group="infantry" name="{=str_tor_dw_lord_karak_hirn_first_7}Daemon Slayer Vikram Grimflame" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
+  <NPCCharacter id="tor_dw_lord_karak_hirn_first_7" default_group="infantry" name="{=str_tor_dw_lord_karak_hirn_first_7}Daemon Slayer Vikram Grimflame" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_slayer_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.3842" build="0.4202" key="0005A8008744128687376BC8D95C7975D592B9BAC76E8B734EA5EDB6789ABAAC00A666030AA54F813600000000000000000000000000000700000000475C3002" />
     </face>
@@ -8564,8 +8564,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_slayer_lord_template" />
+      <EquipmentSet id="tor_dw_slayer_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_hirn_first_8" default_group="infantry" name="{=str_tor_dw_lord_karak_hirn_first_8}Lord Manrak Ironspike" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -8676,7 +8676,7 @@
       <EquipmentSet id="tor_dw_runelord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_dw_lord_karak_izor_first_4" default_group="infantry" name="{=str_tor_dw_lord_karak_izor_first_4}Daemon Slayer Hugnir Firemane" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
+  <NPCCharacter id="tor_dw_lord_karak_izor_first_4" default_group="infantry" name="{=str_tor_dw_lord_karak_izor_first_4}Daemon Slayer Hugnir Firemane" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_slayer_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.6638" build="0.8726" key="00005C0E527013078958978992784666B8AB7B38C2579859934D8D7B866A98B400ADA6030A8368793600000000000000000000000000000700000000534C3002" />
     </face>
@@ -8690,8 +8690,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_slayer_lord_template" />
+      <EquipmentSet id="tor_dw_slayer_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_izor_first_5" default_group="infantry" name="{=str_tor_dw_lord_karak_izor_first_5}Lord Drakk Gunmarsson" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
