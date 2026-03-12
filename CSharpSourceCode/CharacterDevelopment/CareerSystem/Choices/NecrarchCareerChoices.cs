@@ -143,7 +143,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _witchSightKeystone.Initialize(CareerID, "For every hit enemy gain 0.15% of your maximum Winds of magic", "WitchSight", false,
+            _witchSightKeystone.Initialize(CareerID, "For every hit enemy gain 2.5% of your maximum Winds of magic", "WitchSight", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
