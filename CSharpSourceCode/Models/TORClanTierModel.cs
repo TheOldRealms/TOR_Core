@@ -7,6 +7,9 @@ namespace TOR_Core.Models
 {
     class TORClanTierModel : DefaultClanTierModel
     {
+        
+        public override int MercenaryEligibleTier => 0;
+        
         public override int GetPartyLimitForTier(Clan clan, int clanTierToCheck)
         {
             // Patch AI clans to have unlimited parties so that new lords aren't
