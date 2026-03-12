@@ -608,7 +608,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 mapState.Handler.ResetCamera(true, true);
                 mapState.Handler.TeleportCameraToMainParty();
             }
-
+            
+            Hero.MainHero.HeroDeveloper.ClearUnspentPoints();
+            
             SetHeroAge(25);
         }
 
@@ -897,11 +899,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Spellcraft, 25);
                     hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
                     hero.AddCareer(TORCareers.OrcShaman);
-                    break;
-
-                // Empire knight from stage 2 (not stage 3, but included for completeness)
-                case "option_empire_knight":
-                    hero.AddCareer(TORCareers.KnightOldWorld);
                     break;
             }
 
