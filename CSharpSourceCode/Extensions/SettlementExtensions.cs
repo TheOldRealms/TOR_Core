@@ -64,6 +64,15 @@ namespace TOR_Core.Extensions
             return false;
         }
 
+        public static bool IsTorLithanel(this Settlement settlement)
+        {
+            if (!settlement.IsTown) return false;
+
+            if (settlement.Owner.Culture.StringId != TORConstants.Cultures.EONIR) return false;
+
+            return settlement.StringId.Contains("town_LL1");
+        }
+
         public static bool IsDwarfKarak(this Settlement settlement)
         {
             if (!settlement.IsTown) return false;

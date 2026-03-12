@@ -68,7 +68,7 @@ namespace TOR_Core.Models
 
             if (settlement.Culture.StringId == TORConstants.Cultures.EONIR)
             {
-                if (settlement.IsTown)
+                if (settlement.IsTown && settlement.IsTorLithanel())
                 {
                     return settlement.Culture.EliteBasicTroop;
                 }
