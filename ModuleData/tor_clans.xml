@@ -1514,7 +1514,7 @@
     </Faction>
     <Faction id="empire_cult_sigmar"
              default_party_template="PartyTemplate.cult_sigmar_01"
-             name="{=str_tor_clan_college_magic_clan_1_name}The Cult of Sigmar"
+             name="{=str_tor_clan_sigmar_clan_1_name}The Cult of Sigmar"
              tier="3"
              is_minor_faction="true"
              is_outlaw="false"

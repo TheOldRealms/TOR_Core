@@ -4622,7 +4622,7 @@
 	<AbilityTemplate StringID="WisdomOfThungni"
                      Name="{=doom_seeking_label_str}Wisdom of Thungni"
                      SpriteName="wisdom_of_thungni_icon"
-                     CoolDown="15"
+                     CoolDown="60"
                      WindsOfMagicCost="0"
                      BaseMisCastChance="0.05"
                      Duration="12"
