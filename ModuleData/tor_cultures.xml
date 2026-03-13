@@ -6104,13 +6104,13 @@
 		</elite_caravan_party_templates>
 		<available_ship_hulls></available_ship_hulls>
 		<vassal_reward_items>
-			<item id="Item.sentinel_2hsword" />
+			<item id="Item.tor_greenskin_weapon_sword_004" />
 		</vassal_reward_items>
 		<banner_bearer_replacement_weapons>
-			<item id="Item.vlandia_sword_1_t2" />
-			<item id="Item.vlandia_sword_2_t3" />
-			<item id="Item.vlandia_sword_3_t4" />
-			<item id="Item.vlandia_sword_5_t5" />
+			<item id="Item.tor_greenskin_weapon_mace_001" />
+			<item id="Item.tor_greenskin_weapon_mace_002" />
+			<item id="Item.tor_greenskin_weapon_sword_002" />
+			<item id="Item.tor_greenskin_weapon_sword_001" />
 		</banner_bearer_replacement_weapons>
 		<default_policies>
 			<policy id="policy_feudal_inheritance" />
@@ -6829,13 +6829,11 @@
 		</elite_caravan_party_templates>
 		<available_ship_hulls></available_ship_hulls>
 		<vassal_reward_items>
-			<item id="Item.sentinel_2hsword" />
+			<item id="Item.tor_dwarf_weapon_mace_001" />
 		</vassal_reward_items>
 		<banner_bearer_replacement_weapons>
-			<item id="Item.vlandia_sword_1_t2" />
-			<item id="Item.vlandia_sword_2_t3" />
-			<item id="Item.vlandia_sword_3_t4" />
-			<item id="Item.vlandia_sword_5_t5" />
+			<item id="Item.tor_dwarf_weapon_1h_axe_001" />
+			<item id="Item.tor_dwarf_weapon_1h_axe_007" />
 		</banner_bearer_replacement_weapons>
 		<default_policies>
 			<policy id="policy_feudal_inheritance" />
