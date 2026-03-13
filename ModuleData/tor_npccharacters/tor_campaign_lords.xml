@@ -3818,7 +3818,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_sylvania_factionleader" default_group="cavalry" name="{=str_tor_vc_lord_sylvania_factionleader}Mannfred von Carstein" occupation="Lord" culture="Culture.khuzait" voice="curt" age="51" skill_template="SkillSet.tor_skills_mannfredvoncarstein" race="vampire" is_hero="true">
     <face>
-      <BodyProperties version="4" age="19" weight="0" build="0.7114" key="001FC80FC00000001097595CB8A5528936D18339F101A44D7534855A7CA22826097626130B6A1DDDB064C5006D040000000000000000001B0000000043649080" />
+      <BodyProperties version="4" age="22" weight="0" build="0.7114" key="0000FC0F0014000022BFAFBC9244209A9FC17988765C7895644F08488FF0000000BB06030BD8F8A60000000000000000000000000000000000000000256C00C0" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="10" />
@@ -3836,7 +3836,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_sylvania_first_2" default_group="cavalry" name="{=str_tor_vc_lord_sylvania_first_2}Anark von Carstein" occupation="Lord" culture="Culture.khuzait" voice="curt" age="57" skill_template="SkillSet.tor_skills_vampire_lord" race="vampire" is_hero="true">
     <face>
-      <BodyProperties version="4" age="19" weight="0.2905" build="1" key="0000380FC00010032735994769806968753B8A8C57A47C07798C83576424984B00FF4603FFA4683700000000000000000000000000000000000000005DFC1000" />
+      <BodyProperties version="4" age="22" weight="0" build="0.4645" key="001F540F004400031F648BFF86A05C5060FFC3A9A998B808AAA30F767FFA000000A706030AAAF674000000000000000000000000000000000000000037440040" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -3854,7 +3854,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_sylvania_first_3" default_group="cavalry" name="{=str_tor_vc_lord_sylvania_first_3}Dietrich von Dohl" occupation="Lord" culture="Culture.khuzait" voice="curt" age="50" skill_template="SkillSet.tor_skills_vampire_lord" race="vampire" is_hero="true">
     <face>
-      <BodyProperties version="4" age="19" weight="0.5752" build="0.7535" key="0015340000003003B8398BDCEAA22C6756648B3ABDFE344CD22D3DD55796B3A600CB9603FC96723B00000000000000000000000000000000000000003F941000" />
+      <BodyProperties version="4" age="22" weight="0" build="0.4645" key="001F340000000001B8398BDCEAA22C67F00F8B3ABDFE344CD22D37055793020000A706030A96755E00000000000000000000000000000000000000003F440000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -3908,7 +3908,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_sylvania_first_6" default_group="cavalry" name="{=str_tor_vc_lord_sylvania_first_6}Erikan Crowfiend" occupation="Lord" culture="Culture.khuzait" voice="curt" age="63" skill_template="SkillSet.tor_skills_vampire_lord" race="vampire" is_hero="true">
     <face>
-      <BodyProperties version="4" age="19" weight="0.2905" build="1" key="0000380FC00010032735994769806968753B8A8C57A47C07798C83576424984B00FF4603FFA4683700000000000000000000000000000000000000005DFC1000" />
+      <BodyProperties version="4" age="22" weight="0" build="1" key="0000140F000000032735994869806968A93B8A8C46AFF907798C835768D4200000AF06030AA4F83A00000000000000000000000000000000000000005D440000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="6" />
@@ -3926,7 +3926,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_sylvania_first_7" default_group="cavalry" name="{=str_tor_vc_lord_sylvania_first_7}Markos von Carstein" occupation="Lord" culture="Culture.khuzait" voice="curt" age="50" skill_template="SkillSet.tor_skills_vampire_lord" race="vampire" is_hero="true">
     <face>
-      <BodyProperties version="4" age="19" weight="0.7766" build="0.8785" key="00006C000000300041398BDCEAA22C675664A733ACD8887DD22D3DD55796B3A6007DC603F796723B00000000000000000000000000000000000000003EFC8000" />
+      <BodyProperties version="4" age="22" weight="0" build="0.8785" key="0000FC000000000979398B7C00550C6B5664A735FEFFD89AD22D3DD55796B3A600AD06030A86F2AD00000000000000000000000000000000000000003F440000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -3944,7 +3944,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_sylvania_first_8" default_group="cavalry" name="{=str_tor_vc_lord_sylvania_first_8}Adolphus Krieger" occupation="Lord" culture="Culture.khuzait" voice="curt" age="51" skill_template="SkillSet.tor_skills_lahmian_lord" race="vampire" is_hero="true">
     <face>
-      <BodyProperties version="4" age="19" weight="0.3009" build="0.5495" key="0000CC0FC088100378926AC77882AD7386BA568C7B8E79C286D6A662B5A9A1A900C85603FCD8B86600000000000000000000000000000000000000004B9C30C0" />
+      <BodyProperties version="4" age="22" weight="0" build="0.5495" key="0000CC0FC08800057896FAC77482AD7386BA568C7B8E79C286D6A662B5A9110500A806030AD8B86600000000000000000000000000000000000000004B4400C0" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -4160,7 +4160,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_sylvania_fourth_1" default_group="cavalry" name="{=str_tor_vc_lord_sylvania_fourth_1}Gorgivich Krakvald" occupation="Lord" culture="Culture.khuzait" voice="curt" age="43" skill_template="SkillSet.tor_skills_vampire_lord" race="vampire" is_hero="true">
     <face>
-      <BodyProperties version="4" age="43" weight="0.2135" build="0.6785" key="00028C0F1D2C3000BD87A47B9B7443C48557985898E75356765E3E79498858BB004A3603F4AA7CC500000000000000000000000000000000000000004C843100" />
+      <BodyProperties version="4" age="22" weight="0" build="0.7312" key="001F440E40FC01407B6676FA79BA7C6566C757686585287877BA3A8666D3A88800AB06030AC97CD300000000000000000000000000000000000000003D540000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -4178,7 +4178,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_sylvania_fourth_2" default_group="cavalry" name="{=str_tor_vc_lord_sylvania_fourth_2}Sir Tiberius Kael" occupation="Lord" culture="Culture.khuzait" voice="curt" age="43" skill_template="SkillSet.tor_skills_vampire_lord" race="vampire" is_hero="true">
     <face>
-      <BodyProperties version="4" age="43" weight="0.6308" build="0.6785" key="00028C0E512C3A49BD293A3898348B8B8557985898E75356765E3E79498858BB00BA9603FBAA7CC5000000000000000000000000000000000000000065743100" />
+      <BodyProperties version="4" age="22" weight="0" build="0.5502" key="0000A00D92440657465A63777E6816998AC99295679E4A55329355AA68A6569400B806030B86295600000000000000000000000000000000000000002D6400C0" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -4196,7 +4196,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_sylvania_fourth_3" default_group="cavalry" name="{=str_tor_vc_lord_sylvania_fourth_3}Rabe von Stahl" occupation="Lord" culture="Culture.khuzait" voice="curt" age="43" skill_template="SkillSet.tor_skills_vampire_lord" race="vampire" is_hero="true">
     <face>
-      <BodyProperties version="4" age="43" weight="0.6308" build="0.4392" key="001374035E8812CF785898A83C345948C78E367C66579E72930937689947A79B00B79603FB2A55590000000000000000000000000000000000000000396C5080" />
+      <BodyProperties version="4" age="22" weight="0" build="0.4392" key="0000FC06C01403C48A6E8B5845D976A5A8DA9890976989A6D992E7769A6A7E4A00A606030AA4A7D800000000000000000000000000000000000000002D440000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -4214,7 +4214,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_sylvania_fourth_4" default_group="cavalry" name="{=str_tor_vc_lord_sylvania_fourth_4}Frich von Haas" occupation="Lord" culture="Culture.khuzait" voice="curt" age="43" skill_template="SkillSet.tor_skills_vampire_lord" race="vampire" is_hero="true">
     <face>
-      <BodyProperties version="4" age="43" weight="0.4657" build="0.3965" key="0000900E55881543424ACE7565C5A849A6659AA7A554A738D7365AAC6479977400767603F77198A6000000000000000000000000000000000000000048FC5080" />
+      <BodyProperties version="4" age="22" weight="0" build="0.3965" key="0000FC0F001402888A6E8B5FD5D6269558DA9890976989A6D992EF4F9A60020500A606030AA4A7D800000000000000000000000000000000000000002D440000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -4232,7 +4232,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_blooddragons_factionleader" default_group="cavalry" name="{=str_tor_vc_lord_blooddragons_factionleader}Walach Harkon" occupation="Lord" culture="Culture.khuzait" voice="curt" age="43" skill_template="SkillSet.tor_skills_walachharkon" race="vampire" is_hero="true">
     <face>
-      <BodyProperties version="4" age="25" weight="0.4974" build="0.7497" key="001FA80F00FC00025F9FF9EDAC0502A247F4888380AE9E00F1B10FCF9F01D53C01BB76130BEFF8BE00000000000000000000000000000000000000004B7C20C0" />
+      <BodyProperties version="4" age="22" weight="0" build="0.9954" key="0000FC0F002C000276C47DCBA7B2B5B86823D89989BBE62B2756002276AAC34400FF06030FAAEA8C000000000000000000000000000000000000000015FC0040" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -4250,7 +4250,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_blooddragons_first_2" default_group="cavalry" name="{=str_tor_vc_lord_blooddragons_first_2}Draku" occupation="Lord" culture="Culture.khuzait" voice="curt" age="45" skill_template="SkillSet.tor_skills_bloodknight_lord" race="vampire" is_hero="true">
     <face>
-      <BodyProperties version="4" age="25" weight="0.6616" build="0.7303" key="003F7C0D80880009BAC7A4A8BDD5378288A688A98DD992887B67C4962D8A6663019BA6130994AD4B0000000000000000000000000000000000000000371C9040" />
+      <BodyProperties version="4" age="22" weight="0" build="0.6943" key="001FAC0F00B40281AB5BA8EA9B575A7758B97D45657C9BE54359A83D6B98DB84009A060309D8ABC500000000000000000000000000000000000000005F2C0040" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -4268,7 +4268,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_blooddragons_first_3" default_group="cavalry" name="{=str_tor_vc_lord_blooddragons_first_3}Drashlohav of Brasov" occupation="Lord" culture="Culture.khuzait" voice="curt" age="68" skill_template="SkillSet.tor_skills_bloodknight_lord" race="vampire" is_hero="true">
     <face>
-      <BodyProperties version="4" age="43" weight="0.6962" build="0.7357" key="003F5809802C0006A88829DC68BC8458954D49B7367BBE7C78CE8666AD36A65F01BBA6130B8D8578000000000000000000000000000000000000000059648000" />
+      <BodyProperties version="4" age="22" weight="0" build="0.6558" key="0000740F007001C479128B787A6899758587529324448194645ABAA3729DAB59008A0603087CC63E00000000000000000000000000000000000000003F1C00C0" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -4286,7 +4286,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_blooddragons_first_4" default_group="cavalry" name="{=str_tor_vc_lord_blooddragons_first_4}Dardiolai the Dacian" occupation="Lord" culture="Culture.khuzait" voice="curt" age="45" skill_template="SkillSet.tor_skills_bloodknight_lord" race="vampire" is_hero="true">
     <face>
-      <BodyProperties version="4" age="43" weight="0.6783" build="0.6183" key="003F9800008800069B78AE6EA26455579B6896459AB7A69765E8B7584C5B7CB801B9A6130BD568CB000000000000000000000000000000000000000033743040" />
+      <BodyProperties version="4" age="22" weight="0" build="0.8935" key="001FE80D00880813689CB889977835BDA8499825861757A9488B17364A677597005D060305844B69000000000000000000000000000000000000000052A40080" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -4304,7 +4304,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_blooddragons_first_5" default_group="cavalry" name="{=str_tor_vc_lord_blooddragons_first_5}Corbus" occupation="Lord" culture="Culture.khuzait" voice="curt" age="43" skill_template="SkillSet.tor_skills_bloodknight_lord" race="vampire" is_hero="true">
     <face>
-      <BodyProperties version="4" age="43" weight="0.0355" build="0.8234" key="0000C80F00B4018DE78789887E8A4B985467936B8C9B6AC888ACA4B549A979768926B603098672A7C1649AD85883B398000000000000000900000000252C60C0" />
+      <BodyProperties version="4" age="22" weight="0" build="0.8234" key="00004C0F00B4018DE78789887E8A4B985467936B8C9B6AC888ACA4B549A97976009C0603098672A741649AD85883B398000000000000000900000000252C00C0" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -4322,7 +4322,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord_blooddragons_first_6" default_group="cavalry" name="{=str_tor_vc_lord_blooddragons_first_6}Karsten Geisteskrank" occupation="Lord" culture="Culture.khuzait" voice="curt" age="43" skill_template="SkillSet.tor_skills_bloodknight_lord" race="vampire" is_hero="true">
     <face>
-      <BodyProperties version="4" age="43" weight="0.2824" build="0.9767" key="0000080340E40A1C6B467FC469C76B79847A73077A85A9BA24765695C529C24396AA96030A6A6489F43A437BE54495B1000000000000000A00000000394C4080" />
+      <BodyProperties version="4" age="22" weight="0" build="0.9767" key="0000080340E407186B467FC469C76B79847A73077A85A9BA24765695C529C24300AF06030A6A6489743A437B654495B1000000000000000A00000000394C0080" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -6626,7 +6626,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_m_lord_mousillon_second_1" default_group="cavalry" name="{=str_tor_m_lord_mousillon_second_1}Lord Aucassin" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_bloodknight_lord" race="vampire" is_hero="true">
     <face>
-      <BodyProperties version="4" age="24" weight="0.5" build="0.8009" key="0000B8014000015C7C78688FE7838072FAE7866254C69643C4B647398095A037009C760309A96973000000000000000000000000000000000000000029342000" />
+      <BodyProperties version="4" age="22" weight="0" build="0.8009" key="0000B8014000015C7C78688FE7838072FAE7866254C69643C4B647398095A037009C760309A96973000000000000000000000000000000000000000029342000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -13266,7 +13266,7 @@
       <EquipmentSet id="tor_beast_ungor_chief_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_troll_lord_factionleader" default_group="infantry" name="{=str_tor_troll_lord_factionleader}Thrugg" occupation="Lord" culture="Culture.aserai" voice="curt" age="25" skill_template="SkillSet.tor_skills_warrior_lord" race="ungor" is_hero="true">
+  <NPCCharacter id="tor_troll_lord_factionleader" default_group="infantry" name="{=str_tor_troll_lord_factionleader}Thrugg" occupation="Lord" culture="Culture.aserai" voice="curt" age="25" skill_template="SkillSet.tor_skills_warrior_lord" race="troll" is_hero="true">
     <face>
       <BodyProperties version="4" age="51" weight="0.4" build="2" key="0002F40FD5FC110FFFCA595F5A9939BE86AB678859570700D397AB5675658B9A009F56030993594C00000000000000000000000000000000000000004F245145" />
     </face>
