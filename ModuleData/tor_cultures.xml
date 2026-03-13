@@ -1305,7 +1305,7 @@
 			<name name="{=empire_female_393}Zena" />
 		</female_names>
 		<clan_names>
-			<name name="{=empire_generic_clan_name}von {ORIGIN_SETTLEMENT}" />
+			<name name="{=empire_generic_clan_name}von{ORIGIN_SETTLEMENT}" />
 		</clan_names>
 		<cultural_feats>
 			<feat id="empire_decreased_garrison_wage" />
@@ -2712,7 +2712,7 @@
 			<name name="{=empire_female_393}Zena" />
 		</female_names>
 		<clan_names>
-			<name name="{=vampire_counts_generic_clan_name}von {ORIGIN_SETTLEMENT}" />
+			<name name="{=vampire_counts_generic_clan_name}von{ORIGIN_SETTLEMENT}" />
 		</clan_names>
 		<cultural_feats>
 			<feat id="khuzait_cheaper_recruits_mounted" />
@@ -4092,7 +4092,7 @@
 			<name name="{=empire_female_393}Zena" />
 		</female_names>
 		<clan_names>
-			<name name="{=vampire_counts_generic_clan_name}von {ORIGIN_SETTLEMENT}" />
+			<name name="{=vampire_counts_generic_clan_name}von{ORIGIN_SETTLEMENT}" />
 		</clan_names>
 		<cultural_feats>
 			<feat id="khuzait_cheaper_recruits_mounted" />
@@ -4737,7 +4737,7 @@
 			<name name="{=bretonnia_female_name_245}Jevena" />
 		</female_names>
 		<clan_names>
-			<name name="{=!}de {ORIGIN_SETTLEMENT}" />
+			<name name="{=!}de{ORIGIN_SETTLEMENT}" />
 		</clan_names>
 		<cultural_feats>
 			<feat id="vlandian_renown_mercenary_income" />
@@ -5379,7 +5379,7 @@
 			<name name="{=bretonnia_female_name_245}Jevena" />
 		</female_names>
 		<clan_names>
-			<name name="{=!}de {ORIGIN_SETTLEMENT}" />
+			<name name="{=!}de{ORIGIN_SETTLEMENT}" />
 		</clan_names>
 		<cultural_feats>
 			<feat id="vlandian_renown_mercenary_income" />
@@ -5777,7 +5777,7 @@
 			<name name="{=wood_elf_female_name_75}yealwine" />
 		</female_names>
 		<clan_names>
-			<name name="{=!}of {ORIGIN_SETTLEMENT}" />
+			<name name="{=!}of{ORIGIN_SETTLEMENT}" />
 		</clan_names>
 		<cultural_feats>
 			<feat id="battanian_forest_speed" />

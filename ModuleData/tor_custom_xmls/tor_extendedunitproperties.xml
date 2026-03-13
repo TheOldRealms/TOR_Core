@@ -5011,16 +5011,49 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_college_magic_2">
-    <Abilities />
-    <Attributes />
+    <Abilities>
+      <string>QuicksilverSwords</string>
+      <string>GleamingArrow</string>
+      <string>MeteroicIronclad</string>
+      <string>PlagueOfRust</string>
+      <string>GehennasGoldenGlobe</string>
+      <string>FinalTransmutation</string>
+      <string>GehennasGoldenHounds</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_college_magic_3">
-    <Abilities />
-    <Attributes />
+    <Abilities>
+      <string>QuicksilverSwords</string>
+      <string>GleamingArrow</string>
+      <string>MeteroicIronclad</string>
+      <string>PlagueOfRust</string>
+      <string>GehennasGoldenGlobe</string>
+      <string>FinalTransmutation</string>
+      <string>GehennasGoldenHounds</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_college_magic_4">
-    <Abilities />
-    <Attributes />
+    <Abilities>
+      <string>QuicksilverSwords</string>
+      <string>GleamingArrow</string>
+      <string>MeteroicIronclad</string>
+      <string>PlagueOfRust</string>
+      <string>GehennasGoldenGlobe</string>
+      <string>FinalTransmutation</string>
+      <string>GehennasGoldenHounds</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_averland_first_2">
     <Abilities />
@@ -5446,13 +5479,7 @@
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_first_6">
-    <Abilities>
-      <string>Chillwind</string>
-      <string>DoomBolt</string>
-      <string>SoulDrain</string>
-      <string>PowerOfDarkness</string>
-      <string>SoulStealer</string>
-    </Abilities>
+    <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_first_7">
@@ -10172,6 +10199,99 @@
   <CharacterExtendedInfo id="tor_empire_deserter_lord_3">
     <Abilities />
     <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_empire_rogue_lord_0">
+    <Abilities>
+      <string>Fireball</string>
+      <string>CinderBlast</string>
+      <string>BoltOfAqshy</string>
+      <string>Sear</string>
+      <string>FlamingSwords</string>
+      <string>BurningHead</string>
+      <string>FlameStorm</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_empire_rogue_lord_1">
+    <Abilities>
+      <string>ShemGaze</string>
+      <string>StoneAssault</string>
+      <string>HealingLight</string>
+      <string>PhaProtection</string>
+      <string>DeathlyShards</string>
+      <string>RadiancePillar</string>
+      <string>RadiantGaze</string>
+      <string>NetOfAmyntok</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_empire_rogue_lord_2">
+    <Abilities>
+      <string>ChainLightning</string>
+      <string>HarmonicConvergence</string>
+      <string>Blizzard</string>
+      <string>CometOfCasandora</string>
+      <string>Thunderbolt</string>
+      <string>CurseOfMidnightWind</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_empire_rogue_lord_3">
+    <Abilities>
+      <string>QuicksilverSwords</string>
+      <string>GleamingArrow</string>
+      <string>MeteroicIronclad</string>
+      <string>PlagueOfRust</string>
+      <string>GehennasGoldenGlobe</string>
+      <string>FinalTransmutation</string>
+      <string>GehennasGoldenHounds</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_empire_rogue_lord_4">
+    <Abilities>
+      <string>HealingHand</string>
+      <string>CometOfSigmar</string>
+      <string>ArmourOfRighteousness</string>
+      <string>Vanquish</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_empire_rogue_lord_5">
+    <Abilities>
+      <string>HealingHand</string>
+      <string>CometOfSigmar</string>
+      <string>ArmourOfRighteousness</string>
+      <string>Vanquish</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_empire_rogue_lord_6">
+    <Abilities>
+      <string>HealingHand</string>
+      <string>CometOfSigmar</string>
+      <string>ArmourOfRighteousness</string>
+      <string>Vanquish</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_rogue_lord_0">
     <Abilities />

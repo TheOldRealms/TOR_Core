@@ -54,7 +54,7 @@
       <EquipmentSet id="tor_balthazar_gelt_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_college_magic_2" default_group="cavalry" name="{=str_tor_emp_lord_college_magic_2}Albrecht Helseher" occupation="Lord" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_college_magic_2" default_group="cavalry" name="{=str_tor_emp_lord_college_magic_2}Albrecht Helseher" occupation="Lord" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_caster_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="45" weight="0.5" build="0.5" key="000D7C06DA0034CB8C766487675379467577D66257669889C4B647398C95A0370097760309A7497300000000000000000000000000000000000000003B347002" />
     </face>
@@ -68,11 +68,11 @@
       <Trait id="Generosity" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_generic_empire_lord_medium_template" />
-      <EquipmentSet id="tor_generic_empire_lord_medium_template" civilian="true" />
+      <EquipmentSet id="tor_gold_wizard_template" />
+      <EquipmentSet id="tor_gold_wizard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_college_magic_3" default_group="cavalry" name="{=str_tor_emp_lord_college_magic_3}Haqiqah Al-Hikmah" occupation="Lord" culture="Culture.empire" voice="ironic" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_college_magic_3" default_group="cavalry" name="{=str_tor_emp_lord_college_magic_3}Haqiqah Al-Hikmah" occupation="Lord" culture="Culture.empire" voice="ironic" age="35" skill_template="SkillSet.tor_skills_caster_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="45" weight="0.4" build="0.4" key="0034F00FCE2C3849AC7664876753888A7654995054C07648C4230AC98C9BA077005776030597B15600000000000000000000000000000000000000003ABC9002" />
     </face>
@@ -86,11 +86,11 @@
       <Trait id="Generosity" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_generic_empire_lord_medium_gsword_template" />
-      <EquipmentSet id="tor_generic_empire_lord_medium_gsword_template" civilian="true" />
+      <EquipmentSet id="tor_gold_wizard_template" />
+      <EquipmentSet id="tor_gold_wizard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_college_magic_4" default_group="cavalry" name="{=str_tor_emp_lord_college_magic_4}Benedict Stross" occupation="Lord" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_college_magic_4" default_group="cavalry" name="{=str_tor_emp_lord_college_magic_4}Benedict Stross" occupation="Lord" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_caster_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="45" weight="0.3" build="0.7" key="0020B80D1E0038CE7C7664876753888A7577866254C6964AC4B647398C95A03700BC56030BABACA800000000000000000000000000000000000000003B743002" />
     </face>
@@ -104,8 +104,8 @@
       <Trait id="Generosity" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_generic_empire_lord_heavyblack_template" />
-      <EquipmentSet id="tor_generic_empire_lord_heavyblack_template" civilian="true" />
+      <EquipmentSet id="tor_gold_wizard_template" />
+      <EquipmentSet id="tor_gold_wizard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_emp_lord_averland_first_2" default_group="cavalry" name="{=str_tor_emp_lord_averland_first_2}Filibert Leitdorf" occupation="Lord" culture="Culture.empire" voice="ironic" age="26" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
@@ -252,7 +252,7 @@
       <EquipmentSet id="tor_generic_empire_femlord_medium_pistol_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_averland_second_3" default_group="cavalry" name="{=str_tor_emp_lord_averland_second_3}Ferenc Alptraum" occupation="Lord" culture="Culture.empire" voice="curt" age="33" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_averland_second_3" default_group="cavalry" name="{=str_tor_emp_lord_averland_second_3}Ferenc Alptraum" occupation="Lord" culture="Culture.empire" voice="curt" age="33" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="33" weight="0.33" build="0.625" key="0005B00D8000300E7C7664336A7535933885867254A69647846281168C79283300A956030A15A43300000000000000000000000000000000000000005D4C7000" />
     </face>
@@ -306,7 +306,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_averland_third_1" default_group="cavalry" name="{=str_tor_emp_lord_averland_third_1}Countess Selena von Kusch" occupation="Lord" culture="Culture.empire" voice="curt" age="36" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_averland_third_1" default_group="cavalry" name="{=str_tor_emp_lord_averland_third_1}Countess Selena von Kusch" occupation="Lord" culture="Culture.empire" voice="curt" age="36" skill_template="SkillSet.tor_skills_commander_lord" is_female="true" is_hero="true">
     <face>
       <BodyProperties version="4" age="36" weight="0.75" build="0.3" key="0000B800000010079C866645F0CBB8891DB7866254C2DD64C4B647398C95A0330044B60304B064B600000000000000000000000000000000000000003A943003" />
     </face>
@@ -342,7 +342,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_averland_third_3" default_group="cavalry" name="{=str_tor_emp_lord_averland_third_3}Baroness Elise Alder" occupation="Lord" culture="Culture.empire" voice="curt" age="42" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_averland_third_3" default_group="cavalry" name="{=str_tor_emp_lord_averland_third_3}Baroness Elise Alder" occupation="Lord" culture="Culture.empire" voice="curt" age="42" skill_template="SkillSet.tor_skills_commander_lord" is_female="true" is_hero="true">
     <face>
       <BodyProperties version="4" age="42" weight="0.5" build="0.7" key="000D900D1500300346766487772828347566866654A696477423487584754037007C760307D7763600000000000000000000000000000000000000003AF41003" />
     </face>
@@ -360,7 +360,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_averland_third_4" default_group="cavalry" name="{=str_tor_emp_lord_averland_third_4}Mathias Von Grünwald" occupation="Lord" culture="Culture.empire" voice="curt" age="42" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_averland_third_4" default_group="cavalry" name="{=str_tor_emp_lord_averland_third_4}Mathias Von Grünwald" occupation="Lord" culture="Culture.empire" voice="curt" age="42" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="45" weight="0.9" build="1" key="000A380FCFB412CE46846E755B76248930F078CCB5A30979AF980867876A256905DFE6560D6E5CA900000000000000000000000000000000000000003DAC4106" />
     </face>
@@ -464,8 +464,8 @@
       <Trait id="Generosity" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" />
-      <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" civilian="true" />
+      <EquipmentSet id="tor_warrior_priest_template" />
+      <EquipmentSet id="tor_warrior_priest_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_emp_lord_stirland_factionleader" default_group="cavalry" name="{=str_tor_emp_lord_stirland_factionleader}Elector Count Alberich Haupt-Anderssen" occupation="Lord" culture="Culture.empire" voice="softspoken" age="55" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
@@ -486,7 +486,7 @@
       <EquipmentSet id="tor_albeich_haupt-anderssen_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_stirland_first_2" default_group="cavalry" name="{=str_tor_emp_lord_stirland_first_2}Rudolf Haupt-Anderssen" occupation="Lord" culture="Culture.empire" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_stirland_first_2" default_group="cavalry" name="{=str_tor_emp_lord_stirland_first_2}Rudolf Haupt-Anderssen" occupation="Lord" culture="Culture.empire" voice="curt" age="50" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="45" weight="0.4306" build="0.662" key="000DCC0D000012444074733645229EA5754587455485C9836AB7578787597893009A66030969A9B8000000000000000000000000000000000000000041344000" />
     </face>
@@ -522,7 +522,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_gsword_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_stirland_first_4" default_group="cavalry" name="{=str_tor_emp_lord_stirland_first_4}Countess Petra Harden" occupation="Lord" culture="Culture.empire" voice="curt" age="57" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_stirland_first_4" default_group="cavalry" name="{=str_tor_emp_lord_stirland_first_4}Countess Petra Harden" occupation="Lord" culture="Culture.empire" voice="curt" age="57" skill_template="SkillSet.tor_skills_commander_lord" is_female="true" is_hero="true">
     <face>
       <BodyProperties version="4" age="57" weight="0.4336" build="0.446" key="0000B800000030107C7B88E13B58DEB01671866458C4A643C4B64313864550920077760307D8A97C00000000000000000000000000000000000000003AF42003" />
     </face>
@@ -540,7 +540,7 @@
       <EquipmentSet id="tor_generic_empire_femlord_medium_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_stirland_first_5" default_group="cavalry" name="{=str_tor_emp_lord_stirland_first_5}Count Artur von Treitschke" occupation="Lord" culture="Culture.empire" voice="curt" age="61" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_stirland_first_5" default_group="cavalry" name="{=str_tor_emp_lord_stirland_first_5}Count Artur von Treitschke" occupation="Lord" culture="Culture.empire" voice="curt" age="61" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="60" weight="0.5633" build="0.5139" key="0005B803400031857C788C5132A1D5C0A6B5866458C42643C4B64313864550950078860307D8A97C00000000000000000000000000000000000000003AF47000" />
     </face>
@@ -594,7 +594,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_stirland_first_8" default_group="ranged" name="{=str_tor_emp_lord_stirland_first_8}Otto Bachrach" occupation="Special" culture="Culture.empire" voice="ironic" age="33" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_stirland_first_8" default_group="ranged" name="{=str_tor_emp_lord_stirland_first_8}Otto Bachrach" occupation="Special" culture="Culture.empire" voice="ironic" age="33" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="33" weight="0.2782" build="0.732" key="0002A40400441308373B969575796C4E5A82B9387D9269928C766894A896CC8D5AC786030746D4D5B4593547867973790000000000000007000000004ADC8002" />
     </face>
@@ -666,7 +666,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_gsword_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_stirland_second_4" default_group="cavalry" name="{=str_tor_emp_lord_stirland_second_4}Darius Geistwächt" occupation="Lord" culture="Culture.empire" voice="curt" age="41" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_stirland_second_4" default_group="cavalry" name="{=str_tor_emp_lord_stirland_second_4}Darius Geistwächt" occupation="Lord" culture="Culture.empire" voice="curt" age="41" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="41" weight="0.5633" build="0.0664" key="0002300000003000707664803B1091981CED869699C59B9964B240108CD720B2003186030380895300000000000000000000000000000000000000003A641000" />
     </face>
@@ -702,7 +702,7 @@
       <EquipmentSet id="tor_generic_empire_femlord_medium_bow_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_stirland_third_2" default_group="cavalry" name="{=str_tor_emp_lord_stirland_third_2}Count Andreas Von Webern" occupation="Lord" culture="Culture.empire" voice="curt" age="48" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_stirland_third_2" default_group="cavalry" name="{=str_tor_emp_lord_stirland_third_2}Count Andreas Von Webern" occupation="Lord" culture="Culture.empire" voice="curt" age="48" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="40" weight="0.5021" build="0.7973" key="00057C0980B4310476B8A28284A4957B6A21AB557A66379A51298D8845997C6D008C86030846CDAA000000000000000000000000000000000000000063049000" />
     </face>
@@ -936,7 +936,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_wissenland_second_4" default_group="cavalry" name="{=str_tor_emp_lord_wissenland_second_4}Petir Naubhoffer" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_wissenland_second_4" default_group="cavalry" name="{=str_tor_emp_lord_wissenland_second_4}Petir Naubhoffer" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="43" weight="0.671" build="0.6528" key="0008DC0F00FC315CB8778AC8D7D966297AA7CA5436E78C4624A36A7DABCC8EC500CAA6030CE5678400000000000000000000000000000000000000000F946000" />
     </face>
@@ -954,7 +954,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_wissenland_second_5" default_group="cavalry" name="{=str_tor_emp_lord_wissenland_second_5}Baron Frederich Herbart" occupation="Lord" culture="Culture.empire" voice="ironic" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_wissenland_second_5" default_group="cavalry" name="{=str_tor_emp_lord_wissenland_second_5}Baron Frederich Herbart" occupation="Lord" culture="Culture.empire" voice="ironic" age="30" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="30" weight="0.6265" build="0.7654" key="001EB00AD50038C0FD9F04EE0110F0111110466250480F43C4B6473981F010F0046B964606A7497300000000000000000000000000000000000000003ADC7002" />
     </face>
@@ -1008,7 +1008,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_wissenland_third_2" default_group="cavalry" name="{=str_tor_emp_lord_wissenland_third_2}Baron Johann von Kalb" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_wissenland_third_2" default_group="cavalry" name="{=str_tor_emp_lord_wissenland_third_2}Baron Johann von Kalb" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="30" weight="0.4415" build="0.6484" key="001048080000200D3A5D96988AAA3A78AC299385B97994C86DAC4558982C3889047A764607CA1787000000000000000000000000000000000000000056E43042" />
     </face>
@@ -1044,7 +1044,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_wissenland_third_4" default_group="cavalry" name="{=str_tor_emp_lord_wissenland_third_4}Baroness Katarina von Heisenberg" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_wissenland_third_4" default_group="cavalry" name="{=str_tor_emp_lord_wissenland_third_4}Baroness Katarina von Heisenberg" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_commander_lord" is_female="true" is_hero="true">
     <face>
       <BodyProperties version="4" age="30" weight="0.3056" build="0.1173" key="001B840FC000300F7C626789968081963575866254CA9D93C4B647398C956014033256350311497300000000000000000000000000000000000000003A640003" />
     </face>
@@ -1098,7 +1098,7 @@
       <EquipmentSet id="tor_generic_empire_lord_huntsman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_talabecland_factionleader" default_group="cavalry" name="{=str_tor_emp_lord_talabecland_factionleader}Elector Count Helmut Feuerbach" occupation="Lord" culture="Culture.empire" voice="earnest" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_talabecland_factionleader" default_group="cavalry" name="{=str_tor_emp_lord_talabecland_factionleader}Elector Count Helmut Feuerbach" occupation="Lord" culture="Culture.empire" voice="earnest" age="35" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="35" weight="0.5046" build="0.6698" key="0002AC04D344144DFC765877989855866B7C866384C696003D7B43A479D4742C028A862408F85C1943100000000000000000000000000010000000003B143084" />
     </face>
@@ -1116,7 +1116,7 @@
       <EquipmentSet id="tor_albeich_haupt-anderssen_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_talabecland_first_2" default_group="cavalry" name="{=str_tor_emp_lord_talabecland_first_2}Countess Elise Krieglitz-Untern" occupation="Lord" culture="Culture.empire" voice="curt" age="31" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_talabecland_first_2" default_group="cavalry" name="{=str_tor_emp_lord_talabecland_first_2}Countess Elise Krieglitz-Untern" occupation="Lord" culture="Culture.empire" voice="curt" age="31" skill_template="SkillSet.tor_skills_commander_lord" is_female="true" is_hero="true">
     <face>
       <BodyProperties version="4" age="31" weight="0.4105" build="0.4444" key="001BB80E530000150C7664866753888A789A866E34C6960EB758716889C9251A0167661406AA65CC000000000000000000000000000000000000000042DC10C4" />
     </face>
@@ -1314,7 +1314,7 @@
       <EquipmentSet id="tor_generic_empire_lord_huntsman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_talabecland_second_5" default_group="cavalry" name="{=str_tor_emp_lord_talabecland_second_5}Baron Lorenz der Runden" occupation="Lord" culture="Culture.empire" voice="curt" age="45" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_talabecland_second_5" default_group="cavalry" name="{=str_tor_emp_lord_talabecland_second_5}Baron Lorenz der Runden" occupation="Lord" culture="Culture.empire" voice="curt" age="45" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="45" weight="1" build="0.3318" key="0005600F00003901E88C988199CEE4AEA8257888F958F60053D649177835B914E395F635096C27CA784D6FF00F0EFFFF00000000000000550000000053344084" />
     </face>
@@ -1386,7 +1386,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_demi_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_talabecland_third_4" default_group="cavalry" name="{=str_tor_emp_lord_talabecland_third_4}Baron Leberecht Fröbel" occupation="Lord" culture="Culture.empire" voice="curt" age="53" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_talabecland_third_4" default_group="cavalry" name="{=str_tor_emp_lord_talabecland_third_4}Baron Leberecht Fröbel" occupation="Lord" culture="Culture.empire" voice="curt" age="53" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="53" weight="0.3225" build="0.9583" key="00237C0C59A03A548C769887635D6B728EA486B56762E45777A2381673CCB6D6D5AE56560A75AD67CB335B8AA57A8C6700000000000000AB00000000214C9084" />
     </face>
@@ -1404,7 +1404,7 @@
       <EquipmentSet id="tor_generic_empire_lord_huntsman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_talabecland_third_5" default_group="cavalry" name="{=str_tor_emp_lord_talabecland_third_5}Count Ulrich von Bülow" occupation="Lord" culture="Culture.empire" voice="curt" age="44" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_talabecland_third_5" default_group="cavalry" name="{=str_tor_emp_lord_talabecland_third_5}Count Ulrich von Bülow" occupation="Lord" culture="Culture.empire" voice="curt" age="44" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="44" weight="0.4367" build="0.6806" key="0002140000A003CD8786C869C686E2869E7B88C7347857583E84B66885789AB6639A763509896999677758BC379A58230000000000000096000000003D3460C4" />
     </face>
@@ -1476,7 +1476,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_demi_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_reikland_first_3" default_group="cavalry" name="{=str_tor_emp_lord_reikland_first_3}Ludwig Schwarzhelm" occupation="Special" culture="Culture.empire" voice="curt" age="45" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_reikland_first_3" default_group="cavalry" name="{=str_tor_emp_lord_reikland_first_3}Ludwig Schwarzhelm" occupation="Special" culture="Culture.empire" voice="curt" age="45" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="45" weight="0.75" build="0.83" key="001BB8001A00395B39D67B4366A38DCB7A358B5254C69B1384874BA947A9E07500BCB6030B974A5900000000000000000000000000000000000000003B6C3002" />
     </face>
@@ -1620,7 +1620,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavyblack_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_reikland_second_3" default_group="cavalry" name="{=str_tor_emp_lord_reikland_second_3}Baroness Magritta von Wittgenstein" occupation="Lord" culture="Culture.empire" voice="curt" age="32" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_reikland_second_3" default_group="cavalry" name="{=str_tor_emp_lord_reikland_second_3}Baroness Magritta von Wittgenstein" occupation="Lord" culture="Culture.empire" voice="curt" age="32" skill_template="SkillSet.tor_skills_commander_lord" is_female="true" is_hero="true">
     <face>
       <BodyProperties version="4" age="32" weight="0.341" build="0.4275" key="0010A40000000002C6855241667DC4639754D86644992622BB18174479A286B600765603073B8354000000000000000000000000000000000000000022F44083" />
     </face>
@@ -1674,7 +1674,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_reikland_third_1" default_group="cavalry" name="{=str_tor_emp_lord_reikland_third_1}Margrave Reinhart von Mackensen" occupation="Lord" culture="Culture.empire" voice="curt" age="45" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_reikland_third_1" default_group="cavalry" name="{=str_tor_emp_lord_reikland_third_1}Margrave Reinhart von Mackensen" occupation="Lord" culture="Culture.empire" voice="curt" age="45" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="45" weight="0.3687" build="0.9042" key="0000D40E57CC310D38767976529BB74BA78AB8A8789A795C53A5D51BC69A895573CE66350C9D17674241687AD3B72A5600000000000000AB0000000043942044" />
     </face>
@@ -1692,7 +1692,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_reikland_third_2" default_group="cavalry" name="{=str_tor_emp_lord_reikland_third_2}Graf Bernhard Leutze" occupation="Lord" culture="Culture.empire" voice="curt" age="47" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_reikland_third_2" default_group="cavalry" name="{=str_tor_emp_lord_reikland_third_2}Graf Bernhard Leutze" occupation="Lord" culture="Culture.empire" voice="curt" age="47" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="47" weight="0.341" build="0.4275" key="0000A40980002A4456855241612114699754D86644979653BB18174479A286B600765603073B8354000000000000000000000000000000000000000022F49142" />
     </face>
@@ -1818,7 +1818,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_middenland_first_3" default_group="cavalry" name="{=str_tor_emp_lord_middenland_first_3}Count Michael Immelscheid" occupation="Lord" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_middenland_first_3" default_group="cavalry" name="{=str_tor_emp_lord_middenland_first_3}Count Michael Immelscheid" occupation="Lord" culture="Culture.empire" voice="curt" age="35" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="35" weight="0.9861" build="0.7022" key="0002800F0058114E58EC798CD89FF9AF986984996481B639B4A76C3846876DB4A85BE6030A79F6DFBFB9A998B798A68A000000000000000A00000000774C40C2" />
     </face>
@@ -1872,7 +1872,7 @@
       <EquipmentSet id="tor_generic_empire_lord_kotww_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_middenland_first_6" default_group="cavalry" name="{=str_tor_emp_lord_middenland_first_6}Baron Heinrich von Torlichhelm" occupation="Lord" culture="Culture.empire" voice="curt" age="20" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_middenland_first_6" default_group="cavalry" name="{=str_tor_emp_lord_middenland_first_6}Baron Heinrich von Torlichhelm" occupation="Lord" culture="Culture.empire" voice="curt" age="20" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.2489" build="0.5299" key="000D480D9EFC23425F835895B231DE0627F8DCB9A182AA00C6375A563A867AA88673D6030AB8864B845B83A73A75996B000000000000000A00000000315C2002" />
     </face>
@@ -1890,7 +1890,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavyblack_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_middenland_first_7" default_group="cavalry" name="{=str_tor_emp_lord_middenland_first_7}Ar-Ulric Emil Valgeir" occupation="Lord" culture="Culture.empire" voice="earnest" age="40" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_middenland_first_7" default_group="cavalry" name="{=str_tor_emp_lord_middenland_first_7}Ar-Ulric Emil Valgeir" occupation="Lord" culture="Culture.empire" voice="earnest" age="40" skill_template="SkillSet.tor_skills_berserker_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="50" weight="0.1034" build="0.6477" key="00184804C0701C50847939EFBDF195F07C95949C90809E01F360108E4628A22C249656460FAB9EBBA243684A4649857A000000000000004F000000003FFC1142" />
     </face>
@@ -1904,8 +1904,8 @@
       <Trait id="Generosity" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" />
-      <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" civilian="true" />
+      <EquipmentSet id="tor_generic_empire_lord_kotww_template" />
+      <EquipmentSet id="tor_generic_empire_lord_kotww_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_emp_lord_middenland_first_8" default_group="cavalry" name="{=str_tor_emp_lord_middenland_first_8}Vorn Thugenheim" occupation="Special" culture="Culture.empire" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
@@ -1944,7 +1944,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_middenland_second_2" default_group="cavalry" name="{=str_tor_emp_lord_middenland_second_2}Baron Siegfried von Bildhofen" occupation="Lord" culture="Culture.empire" voice="earnest" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_middenland_second_2" default_group="cavalry" name="{=str_tor_emp_lord_middenland_second_2}Baron Siegfried von Bildhofen" occupation="Lord" culture="Culture.empire" voice="earnest" age="35" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="35" weight="0.3503" build="0.7855" key="00053C09801427C857A8A79DAC8DC828989BA4679363FB074A1876BA8E83DD8FB859D6240A83A85BC5955781ACEDAA6A000000000000002A00000000174490C2" />
     </face>
@@ -1962,7 +1962,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_middenland_second_3" default_group="cavalry" name="{=str_tor_emp_lord_middenland_second_3}Udo von Bildhofen" occupation="Lord" culture="Culture.empire" voice="curt" age="20" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_middenland_second_3" default_group="cavalry" name="{=str_tor_emp_lord_middenland_second_3}Udo von Bildhofen" occupation="Lord" culture="Culture.empire" voice="curt" age="20" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="20" weight="0.1543" build="0.3071" key="00053C008014100B68A7674A2620082418FBA4A8F3B1BB014A1B165D8E83DD88B859D6D20C36E006527EDB22ACEDAA6A00000000000000DB000000001D7470C2" />
     </face>
@@ -2034,7 +2034,7 @@
       <EquipmentSet id="tor_generic_empire_lord_kotww_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_middenland_third_2" default_group="cavalry" name="{=str_tor_emp_lord_middenland_third_2}Wolfpriest Heimdal" occupation="Lord" culture="Culture.empire" voice="earnest" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_middenland_third_2" default_group="cavalry" name="{=str_tor_emp_lord_middenland_third_2}Wolfpriest Heimdal" occupation="Lord" culture="Culture.empire" voice="earnest" age="30" skill_template="SkillSet.tor_skills_berserker_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="30" weight="0.1836" build="1" key="000DB000145834826BB59D7FB9516867E5F27A847AB7D918477A799B57662C7DCC8666140F967539F39CFEB3BD82D59F000000000000001F0000000005FC3042" />
     </face>
@@ -2106,7 +2106,7 @@
       <EquipmentSet id="tor_generic_empire_femlord_medium_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_middenland_third_6" default_group="cavalry" name="{=str_tor_emp_lord_middenland_third_6}Baron Hans Holzbek" occupation="Lord" culture="Culture.empire" voice="earnest" age="29" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_middenland_third_6" default_group="cavalry" name="{=str_tor_emp_lord_middenland_third_6}Baron Hans Holzbek" occupation="Lord" culture="Culture.empire" voice="earnest" age="29" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="29" weight="0.574" build="0.654" key="0005A00E58441614A2F778BF7CA8F57AA47868BA8991AEB4BE99AC7689E647141599C61309285A53A96532B83776644A000000000000001900000000513C5002" />
     </face>
@@ -2214,7 +2214,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_ostermark_first_5" default_group="cavalry" name="{=str_tor_emp_lord_ostermark_first_5}Margrave Richard Dornier" occupation="Lord" culture="Culture.empire" voice="ironic" age="39" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_ostermark_first_5" default_group="cavalry" name="{=str_tor_emp_lord_ostermark_first_5}Margrave Richard Dornier" occupation="Lord" culture="Culture.empire" voice="ironic" age="39" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="40" weight="0.3333" build="0.8272" key="00020C00800007C10376638F664387EA757787FF43F696F0C4B647398CF5A0370067763509A74973C5854200000011010000000000000039000000002D343002" />
     </face>
@@ -2232,7 +2232,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_ostermark_first_6" default_group="cavalry" name="{=str_tor_emp_lord_ostermark_first_6}Margrave Oswald Cranach" occupation="Lord" culture="Culture.empire" voice="softspoken" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_ostermark_first_6" default_group="cavalry" name="{=str_tor_emp_lord_ostermark_first_6}Margrave Oswald Cranach" occupation="Lord" culture="Culture.empire" voice="softspoken" age="35" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="35" weight="0.9954" build="0.9985" key="00056C0B8000284C1C766F87FF0FF87975778622F4D866FF03B2FF3F8C95A037EFFEF62409576767FF0100000100010F000000000000002900000000152C9046" />
     </face>
@@ -2268,7 +2268,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_ostermark_first_8" default_group="cavalry" name="{=str_tor_emp_lord_ostermark_first_8}General André Eislaufer" occupation="Lord" culture="Culture.empire" voice="ironic" age="37" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_ostermark_first_8" default_group="cavalry" name="{=str_tor_emp_lord_ostermark_first_8}General André Eislaufer" occupation="Lord" culture="Culture.empire" voice="ironic" age="37" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="37" weight="0.7685" build="0.7932" key="00004C054F0031030C7E6F8067438F8A757786F004E696E0CFB64E398CC5E0FF0077762408FAAAACCCF78800000000000000000000000028000000002B1C9045" />
     </face>
@@ -2322,7 +2322,7 @@
       <EquipmentSet id="tor_generic_empire_lord_huntsman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_ostermark_first_11" default_group="infantry" name="{=str_tor_emp_lord_ostermark_first_11}Albin Eberhart" occupation="Special" culture="Culture.empire" voice="ironic" age="33" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_ostermark_first_11" default_group="infantry" name="{=str_tor_emp_lord_ostermark_first_11}Albin Eberhart" occupation="Special" culture="Culture.empire" voice="ironic" age="33" skill_template="SkillSet.tor_skills_berserker_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="33" weight="0.4996" build="0.3435" key="0002BC0812583680472848BCC65B667BE7509398C847653C66299B67599952EC1A83E6030634987C578676636D83F88700000000000000060000000028C40082" />
     </face>
@@ -2394,7 +2394,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_gsword_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_ostermark_second_4" default_group="cavalry" name="{=str_tor_emp_lord_ostermark_second_4}Count Walbrecht der Mäher" occupation="Lord" culture="Culture.empire" voice="softspoken" age="32" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_ostermark_second_4" default_group="cavalry" name="{=str_tor_emp_lord_ostermark_second_4}Count Walbrecht der Mäher" occupation="Lord" culture="Culture.empire" voice="softspoken" age="32" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="32" weight="0.3627" build="0.6281" key="0005A8000000330F068A57A96C22289266A48379591FEAF077854F8A68644D56007776240816C64C957684000000000000000000000000280000000031043102" />
     </face>
@@ -2412,7 +2412,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_ostermark_second_5" default_group="cavalry" name="{=str_tor_emp_lord_ostermark_second_5}Count Karol Steinbergmann" occupation="Lord" culture="Culture.empire" voice="softspoken" age="45" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_ostermark_second_5" default_group="cavalry" name="{=str_tor_emp_lord_ostermark_second_5}Count Karol Steinbergmann" occupation="Lord" culture="Culture.empire" voice="softspoken" age="45" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="45" weight="0.3812" build="0.659" key="0000780F00001A40648BCAA59D6925E6739B848BC2127A5698B0639BC5AAA7940077763507898A98A6969800007A68000000000000000037000000003AF49146" />
     </face>
@@ -2448,7 +2448,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_ostermark_third_1" default_group="cavalry" name="{=str_tor_emp_lord_ostermark_third_1}Margrave Hermann Mach" occupation="Lord" culture="Culture.empire" voice="earnest" age="55" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_ostermark_third_1" default_group="cavalry" name="{=str_tor_emp_lord_ostermark_third_1}Margrave Hermann Mach" occupation="Lord" culture="Culture.empire" voice="earnest" age="55" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="55" weight="0.162" build="0.7978" key="0000EC0FD50031CECF7664876753888AC5DAA24849A7AD8575987EB54872677C007776560895B184C285A590100000000000000000000058000000003B1C90C2" />
     </face>
@@ -2880,7 +2880,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_nordland_first_4" default_group="cavalry" name="{=str_tor_emp_lord_nordland_first_4}Horst Zeckel" occupation="Lord" culture="Culture.empire" voice="softspoken" age="34" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_nordland_first_4" default_group="cavalry" name="{=str_tor_emp_lord_nordland_first_4}Horst Zeckel" occupation="Lord" culture="Culture.empire" voice="softspoken" age="34" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.7269" build="0.5509" key="0008D408D0142C858849ADC83A869CAA7E3AAB9C779B8A86C8290672B96B25575684560308DAADCB8B66BB9B979AA967000000000000000800000000670C7042" />
     </face>
@@ -2934,7 +2934,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_nordland_first_7" default_group="ranged" name="{=str_tor_emp_lord_nordland_first_7}Albrecht Schipbreuk" occupation="Special" culture="Culture.empire" voice="curt" age="47" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_nordland_first_7" default_group="ranged" name="{=str_tor_emp_lord_nordland_first_7}Albrecht Schipbreuk" occupation="Special" culture="Culture.empire" voice="curt" age="47" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="47" weight="0.6478" build="0.3168" key="002B8000001411413569EE887EC89D7D9B7216E473896B4447A567634F9176868956560309D68AA35A89B3E8B4B8ADCA0000000000000009000000004B347142" />
     </face>
@@ -2970,7 +2970,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_nordland_second_2" default_group="cavalry" name="{=str_tor_emp_lord_nordland_second_2}Baron Gunther von Hargenfels" occupation="Lord" culture="Culture.empire" voice="ironic" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_nordland_second_2" default_group="cavalry" name="{=str_tor_emp_lord_nordland_second_2}Baron Gunther von Hargenfels" occupation="Lord" culture="Culture.empire" voice="ironic" age="35" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="42" weight="0.9583" build="0.7948" key="0020880E5D14255A9938734B8B0EA3A744369AC7CB636BE38AD6591496D337D78A5786350CA5695ACE65C40A7A266539000000000000003C0000000063944102" />
     </face>
@@ -3132,7 +3132,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_nordland_third_5" default_group="infantry" name="{=str_tor_emp_lord_nordland_third_5}Arch Lector Otto von Leidenschaft" occupation="Lord" culture="Culture.empire" voice="earnest" age="38" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_nordland_third_5" default_group="infantry" name="{=str_tor_emp_lord_nordland_third_5}Arch Lector Otto von Leidenschaft" occupation="Lord" culture="Culture.empire" voice="earnest" age="38" skill_template="SkillSet.tor_skills_berserker_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="38" weight="0.6327" build="0.6335" key="000D4C06C0703A44AA7B6488D59B85C8452583786946564B76739B3A775ADA68AB6AD624077AA8A9A97C79A876488B970000000000000027000000003AF49042" />
     </face>
@@ -3222,7 +3222,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_ostland_first_4" default_group="cavalry" name="{=str_tor_emp_lord_ostland_first_4}Grand Master Leopold von Raukov" occupation="Lord" culture="Culture.empire" voice="curt" age="36" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_ostland_first_4" default_group="cavalry" name="{=str_tor_emp_lord_ostland_first_4}Grand Master Leopold von Raukov" occupation="Lord" culture="Culture.empire" voice="curt" age="36" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="36" weight="0.8194" build="0.6991" key="0010940FD9883A0083A8858F799832C9CBD0B9B8B8705803A7B677A568B8ADE9727146240D07A8DCAC8BCB8BACA83B67000000000000002D000000000FAC9142" />
     </face>
@@ -3294,7 +3294,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_ostland_second_2" default_group="cavalry" name="{=str_tor_emp_lord_ostland_second_2}Baron Marquand Beckburg" occupation="Lord" culture="Culture.empire" voice="curt" age="27" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_ostland_second_2" default_group="cavalry" name="{=str_tor_emp_lord_ostland_second_2}Baron Marquand Beckburg" occupation="Lord" culture="Culture.empire" voice="curt" age="27" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="27" weight="0.5824" build="0.7554" key="0005C40D8070078259E96BAA2C49966946444CC9148C7798C167693819A5B3B0A96AB61306687B89B93C77375557946C0000000000000016000000004ED41142" />
     </face>
@@ -3312,7 +3312,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_ostland_second_3" default_group="cavalry" name="{=str_tor_emp_lord_ostland_second_3}Margrave Georg von Döbreiner" occupation="Lord" culture="Culture.empire" voice="ironic" age="52" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_ostland_second_3" default_group="cavalry" name="{=str_tor_emp_lord_ostland_second_3}Margrave Georg von Döbreiner" occupation="Lord" culture="Culture.empire" voice="ironic" age="52" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="52" weight="0.625" build="0.8077" key="00103C0C40583240636B99456B539B89879579946A7A56944A369B4D75846EA2454A4646082A7888C9A5C495385B949B0000000000000048000000002B0490C2" />
     </face>
@@ -3366,7 +3366,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_ostland_third_2" default_group="cavalry" name="{=str_tor_emp_lord_ostland_third_2}Grand Admiral Hrofil Halfdane" occupation="Lord" culture="Culture.empire" voice="earnest" age="40" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_ostland_third_2" default_group="cavalry" name="{=str_tor_emp_lord_ostland_third_2}Grand Admiral Hrofil Halfdane" occupation="Lord" culture="Culture.empire" voice="earnest" age="40" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="40" weight="0.5941" build="0.9892" key="000A240554E434CA848B3C921A7B698883AD8BA7CB66C5B9C7A96535A7174C6AA98946350EDA7B69F9FEFEABFF875B37000000000000003E0000000071CC5002" />
     </face>
@@ -3672,7 +3672,7 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_wasteland_second_3" default_group="infantry" name="{=str_tor_emp_lord_wasteland_second_3}Knight-Commander Kjerlan of the Skaelings" occupation="Lord" culture="Culture.empire" voice="curt" age="26" skill_template="SkillSet.tor_skills_warrior_lord" race="marauder" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_wasteland_second_3" default_group="infantry" name="{=str_tor_emp_lord_wasteland_second_3}Knight-Commander Kjerlan of the Skaelings" occupation="Lord" culture="Culture.empire" voice="curt" age="26" skill_template="SkillSet.tor_skills_commander_lord" race="marauder" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0" build="0.5804" key="00004C0012A004DB974874CBAA5056D74DA8765770F0854B8A386A58D946935B6E86B603055BA8799075C1728858555300000000000000050000000012B43002" />
     </face>
@@ -3690,7 +3690,7 @@
       <EquipmentSet id="tor_generic_empire_lord_wasteland_norsemerc" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_wasteland_third_1" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_third_1}Heer Egmond den Euwe" occupation="Lord" culture="Culture.empire" voice="softspoken" age="18" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_wasteland_third_1" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_third_1}Heer Egmond den Euwe" occupation="Lord" culture="Culture.empire" voice="softspoken" age="18" skill_template="SkillSet.tor_skills_caster_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="18" weight="0.5046" build="0.9969" key="0005E40F000010097C7464ABFF12888B99F3989DB7FFFC43C4B647398C95A077EF5636620BA57935F877BFC5667B9BBF000000000000006F0000000019FC7002" />
     </face>
@@ -3762,7 +3762,7 @@
       <EquipmentSet id="tor_generic_empire_lord_medium_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_wasteland_fourth_1" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_fourth_1}Heer Crispijn van Haagen" occupation="Lord" culture="Culture.empire" voice="ironic" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_wasteland_fourth_1" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_fourth_1}Heer Crispijn van Haagen" occupation="Lord" culture="Culture.empire" voice="ironic" age="35" skill_template="SkillSet.tor_skills_commander_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="35" weight="0.5587" build="0.6976" key="00050C0F15B410CD87433787A315697D8D4B76D38D789597B874877A5A68377F838476030E76F398A8C66A2363466844000000000000000E0000000063D43142" />
     </face>
@@ -7575,7 +7575,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kadrin_second_1" default_group="infantry" name="{=str_tor_dw_lord_karak_kadrin_second_1}King Dorin Silverfoot" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -7665,7 +7665,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kadrin_second_6" default_group="infantry" name="{=str_tor_dw_lord_karak_kadrin_second_6}Lord Haming the Rock" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -7773,7 +7773,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_angazhar_first_4" default_group="infantry" name="{=str_tor_dw_lord_karak_angazhar_first_4}Lord Drong Steelpick" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -7881,7 +7881,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_angazhar_first_10" default_group="infantry" name="{=str_tor_dw_lord_karak_angazhar_first_10}Lord Durgin Galazbar" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -7899,7 +7899,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_azgaraz_factionleader" default_group="infantry" name="{=str_tor_dw_lord_karak_azgaraz_factionleader}King Thuringar Orc-Hewer" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -8007,7 +8007,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_azgaraz_first_7" default_group="infantry" name="{=str_tor_dw_lord_karak_azgaraz_first_7}Lord Durak Irebeard" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -8043,7 +8043,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_azgaraz_first_9" default_group="infantry" name="{=str_tor_dw_lord_karak_azgaraz_first_9}Lord Kallon Falconshield" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -8205,7 +8205,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_miner_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_eksfilaz_first_8" default_group="infantry" name="{=str_tor_dw_lord_karak_eksfilaz_first_8}Lord Grimbold Stonecleaver" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -8241,7 +8241,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_eksfilaz_first_10" default_group="infantry" name="{=str_tor_dw_lord_karak_eksfilaz_first_10}Lord Thungi Stonehammer" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -8259,7 +8259,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_gantuk_factionleader" default_group="infantry" name="{=str_tor_dw_lord_karak_gantuk_factionleader}King Skag Hammerfist" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -8313,7 +8313,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_miner_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_gantuk_first_4" default_group="infantry" name="{=str_tor_dw_lord_karak_gantuk_first_4}Lord Durn Wavebreaker" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -8367,7 +8367,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_gantuk_first_7" default_group="infantry" name="{=str_tor_dw_lord_karak_gantuk_first_7}Lord Garin Thunderhammer" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -8421,7 +8421,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_gantuk_first_10" default_group="infantry" name="{=str_tor_dw_lord_karak_gantuk_first_10}Lord Varrik Dúmdrengi" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarfrune_lord" is_female="false" race="dwarf" is_hero="true">
@@ -8493,7 +8493,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_miner_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_hirn_first_4" default_group="infantry" name="{=str_tor_dw_lord_karak_hirn_first_4}Lord Skalf Ironpeak" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -8583,7 +8583,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_hirn_first_9" default_group="infantry" name="{=str_tor_dw_lord_karak_hirn_first_9}Lord Thormar Rockhewer" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -8727,7 +8727,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_izor_first_7" default_group="infantry" name="{=str_tor_dw_lord_karak_izor_first_7}Lord Barik Stonehelm" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -8835,7 +8835,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kaferkammaz_first_3" default_group="infantry" name="{=str_tor_dw_lord_karak_kaferkammaz_first_3}Lord Kazran Firebrand" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -8853,7 +8853,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kaferkammaz_first_4" default_group="infantry" name="{=str_tor_dw_lord_karak_kaferkammaz_first_4}Runelord Grumli Runesoul" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarfrune_lord" is_female="false" race="dwarf" is_hero="true">
@@ -8943,7 +8943,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_002" />
-      <EquipmentSet id="tor_dw_miner_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kaferkammaz_first_9" default_group="infantry" name="{=str_tor_dw_lord_karak_kaferkammaz_first_9}Lord Kargun Stoneheart" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -9069,7 +9069,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_miner_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_norn_first_6" default_group="infantry" name="{=str_tor_dw_lord_karak_norn_first_6}Lord Varnik Hammerdeep" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -9159,7 +9159,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_002" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_zhufbar_factionleader" default_group="infantry" name="{=str_tor_dw_lord_karak_zhufbar_factionleader}King Morgrim Ironforge" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -9177,7 +9177,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_zhufbar_first_2" default_group="infantry" name="{=str_tor_dw_lord_karak_zhufbar_first_2}Master Engineer Grimm Burloksson" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarfengineer_lord" is_female="false" race="dwarf" is_hero="true">
@@ -9249,7 +9249,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_zhufbar_first_6" default_group="infantry" name="{=str_tor_dw_lord_karak_zhufbar_first_6}Lord Rungni Ulfarsson" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -9303,7 +9303,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_zhufbar_first_9" default_group="infantry" name="{=str_tor_dw_lord_karak_zhufbar_first_9}Elder Hruunor the Grumbler" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -9321,7 +9321,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_zhufbar_first_10" default_group="infantry" name="{=str_tor_dw_lord_karak_zhufbar_first_10}Lord Snorri of Karak Varn" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -9393,7 +9393,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_ziflin_first_4" default_group="infantry" name="{=str_tor_dw_lord_karak_ziflin_first_4}Lord Garatrik Mountainhelm" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -9411,7 +9411,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_ziflin_first_5" default_group="infantry" name="{=str_tor_dw_lord_karak_ziflin_first_5}Lord Drognir Gruumspit" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -9447,7 +9447,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_ziflin_first_7" default_group="infantry" name="{=str_tor_dw_lord_karak_ziflin_first_7}Lord Marek the Elderpick" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -9519,7 +9519,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_bad_axes_factionleader" default_group="infantry" name="{=str_tor_greenskin_lord_bad_axes_factionleader}Warlord Gromodrak Hoofslasha" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -9572,8 +9572,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_bad_axes_first_4" default_group="infantry" name="{=str_tor_greenskin_lord_bad_axes_first_4}Warboss Kragdrut" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -9590,8 +9590,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_bad_axes_first_5" default_group="infantry" name="{=str_tor_greenskin_lord_bad_axes_first_5}Warboss Zoghag" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -9789,7 +9789,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_gs_orc_shaman_template_001" />
-      <EquipmentSet id="tor_gs_orc_shaman_template_002" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_shaman_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_black_sunz_factionleader" default_group="infantry" name="{=str_tor_greenskin_lord_black_sunz_factionleader}Warlord Zorbak Bearthwakka" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_blackorc_lord" is_female="false" race="orc" is_hero="true">
@@ -9824,8 +9824,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_black_sunz_first_3" default_group="infantry" name="{=str_tor_greenskin_lord_black_sunz_first_3}Warboss Zagdug Bonecrusha" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -9896,8 +9896,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_black_sunz_first_7" default_group="infantry" name="{=str_tor_greenskin_lord_black_sunz_first_7}Warboss Gazodrag" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -9914,8 +9914,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_black_sunz_first_8" default_group="infantry" name="{=str_tor_greenskin_lord_black_sunz_first_8}Warboss Dazgut Gitmangla" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -10004,8 +10004,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_black_sunz_second_3" default_group="infantry" name="{=str_tor_greenskin_lord_black_sunz_second_3}Warboss Umlodd Tuffgit" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -10022,8 +10022,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_black_sunz_second_4" default_group="infantry" name="{=str_tor_greenskin_lord_black_sunz_second_4}Warboss Nog Gutgrowla" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -10202,8 +10202,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_crooked_eye_first_9" default_group="infantry" name="{=str_tor_greenskin_lord_crooked_eye_first_9}Warboss Boggurk Nosebeater" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -10220,8 +10220,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_crooked_eye_first_10" default_group="infantry" name="{=str_tor_greenskin_lord_crooked_eye_first_10}Warboss Thunderfoot" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -10346,8 +10346,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_crooked_eye_second_6" default_group="infantry" name="{=str_tor_greenskin_lord_crooked_eye_second_6}Shaman Azzlod Grimgit" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orcshaman_lord" is_female="false" race="orc" is_hero="true">
@@ -10364,8 +10364,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_shaman_template_001" />
-      <EquipmentSet id="tor_gs_orc_shaman_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_crooked_eye_second_7" default_group="infantry" name="{=str_tor_greenskin_lord_crooked_eye_second_7}Warboss Cragga Spiky Tusk" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -10490,8 +10490,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_deff_grindaz_first_5" default_group="infantry" name="{=str_tor_greenskin_lord_deff_grindaz_first_5}Warboss Olork" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -10562,8 +10562,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_deff_grindaz_first_9" default_group="infantry" name="{=str_tor_greenskin_lord_deff_grindaz_first_9}Warboss Dolglut Stuntysmasha" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -10598,8 +10598,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_deff_grindaz_second_2" default_group="infantry" name="{=str_tor_greenskin_lord_deff_grindaz_second_2}Warboss Glob Arrerkatcha" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -10742,8 +10742,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_iron_tribe_first_2" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_first_2}Warboss Guzor Deffbringa" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -10778,8 +10778,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_iron_tribe_first_4" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_first_4}Warboss Rugud Boartoof" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -10814,8 +10814,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_iron_tribe_first_6" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_first_6}Warboss Narlok Da Weird" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_blackorc_lord" is_female="false" race="orc" is_hero="true">
@@ -10850,8 +10850,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_iron_tribe_first_8" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_first_8}Warboss Skargut Snotbreff" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -10868,8 +10868,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_iron_tribe_first_9" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_first_9}Great Shaman Trug Far-Seer" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orcshaman_lord" is_female="false" race="orc" is_hero="true">
@@ -11138,8 +11138,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_massif_choppas_first_7" default_group="infantry" name="{=str_tor_greenskin_lord_massif_choppas_first_7}Warboss Kraggut" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -11228,8 +11228,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_massif_choppas_first_12" default_group="infantry" name="{=str_tor_greenskin_lord_massif_choppas_first_12}Warboss Zoggark" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -11264,8 +11264,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_massif_choppas_second_2" default_group="infantry" name="{=str_tor_greenskin_lord_massif_choppas_second_2}Warboss Grommal Blackfang" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -11282,8 +11282,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_massif_choppas_second_3" default_group="infantry" name="{=str_tor_greenskin_lord_massif_choppas_second_3}Shaman Grukka Bonechewer" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orcshaman_lord" is_female="false" race="orc" is_hero="true">
@@ -11336,8 +11336,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_massif_choppas_second_6" default_group="infantry" name="{=str_tor_greenskin_lord_massif_choppas_second_6}Warboss Mguk Headslasha" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -11354,8 +11354,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_massif_choppas_second_7" default_group="infantry" name="{=str_tor_greenskin_lord_massif_choppas_second_7}Warboss Golub Thunderskull" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -11408,8 +11408,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_massif_choppas_second_10" default_group="infantry" name="{=str_tor_greenskin_lord_massif_choppas_second_10}Warboss Bagdud" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -11426,8 +11426,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_neck_snappers_factionleader" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_factionleader}Warlord Morglum Necksnapper" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_blackorc_lord" is_female="false" race="orc" is_hero="true">
@@ -11448,7 +11448,7 @@
       <EquipmentSet id="tor_gs_black_orc_warboss_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_greenskin_lord_neck_snappers_first_2" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_first_2}Warboss Oglok the 'Orrible" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
+  <NPCCharacter id="tor_greenskin_lord_neck_snappers_first_2" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_first_2}Warboss Oglok the 'Orrible" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_blackorc_lord" is_female="false" race="orc" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.8596" build="0.9028" key="0020D00003FC00007976949AA1988274779D85455D8D445D4643448764AA5EAC00DED6030D3745C445CCBADB4CBCBABC00000000000000160000000045B40000" />
     </face>
@@ -11462,11 +11462,11 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_black_orc_boss_template" />
+      <EquipmentSet id="tor_gs_black_orc_boss_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_greenskin_lord_neck_snappers_first_3" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_first_3}Warboss Gazak" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
+  <NPCCharacter id="tor_greenskin_lord_neck_snappers_first_3" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_first_3}Warboss Gazak" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_blackorc_lord" is_female="false" race="orc" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.517" build="0.7269" key="0023A40000FC000079749455614452749667E849C5354454F799983564AE57AC009B8603099A752445CCBADB4CBCBABC00000000000000160000000037342000" />
     </face>
@@ -11480,11 +11480,11 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_black_orc_boss_template" />
+      <EquipmentSet id="tor_gs_black_orc_boss_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_greenskin_lord_neck_snappers_first_4" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_first_4}Warboss Skulgud" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
+  <NPCCharacter id="tor_greenskin_lord_neck_snappers_first_4" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_first_4}Warboss Skulgud" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_blackorc_lord" is_female="false" race="orc" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.5756" build="0.5417" key="0020680003CC000074A99A5587778C7D94025279B4A5AB5B979CDC51A8586FA900B896030B344B2C45CCBADB4CBCBABC000000000000001600000000436C0000" />
     </face>
@@ -11498,8 +11498,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_black_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_black_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_neck_snappers_first_5" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_first_5}Warboss Dakkgad" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_blackorc_lord" is_female="false" race="orc" is_hero="true">
@@ -11516,11 +11516,11 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_black_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_black_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_black_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_black_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_greenskin_lord_neck_snappers_first_6" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_first_6}Warboss Agdrut" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
+  <NPCCharacter id="tor_greenskin_lord_neck_snappers_first_6" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_first_6}Warboss Agdrut" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_blackorc_lord" is_female="false" race="orc" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.2246" build="0.1452" key="00205C08C014000078848694657794992631DD766C38A54C59A645AABC9EB27900F236030FD3564945CCBADB4CBCBABC00000000000000160000000035FC0000" />
     </face>
@@ -11534,11 +11534,11 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_black_orc_warboss_template_001" />
+      <EquipmentSet id="tor_gs_black_orc_warboss_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_greenskin_lord_neck_snappers_first_7" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_first_7}Warboss Skorbad Spleenchewa" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
+  <NPCCharacter id="tor_greenskin_lord_neck_snappers_first_7" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_first_7}Warboss Skorbad Spleenchewa" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_blackorc_lord" is_female="false" race="orc" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.7978" build="0.8349" key="00267C0603A00000A6249C3365723BA377BA6C7B9D2A97876A6934559B6471A200CDC6030C49C97A45CCBADB4CBCBABC000000000000001600000000439C1000" />
     </face>
@@ -11552,11 +11552,11 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_black_orc_boss_template" />
+      <EquipmentSet id="tor_gs_black_orc_boss_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_greenskin_lord_neck_snappers_first_8" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_first_8}Warboss Ugfang" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
+  <NPCCharacter id="tor_greenskin_lord_neck_snappers_first_8" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_first_8}Warboss Ugfang" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_blackorc_lord" is_female="false" race="orc" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.6744" build="0.7176" key="002620060070000098AB3968769B65AA97997A6D4576967848AB8BCA355944D800ABA6030A598BE545CCBADB4CBCBABC00000000000000160000000043542000" />
     </face>
@@ -11570,11 +11570,11 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_black_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_black_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_greenskin_lord_neck_snappers_first_9" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_first_9}Warboss Skarglud" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
+  <NPCCharacter id="tor_greenskin_lord_neck_snappers_first_9" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_first_9}Warboss Skarglud" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_blackorc_lord" is_female="false" race="orc" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.7269" build="0.8657" key="002360060070000092AB52AB279897C85AA4BC785CB68A159377898BBCA89764009DB60309529CA445CCBADB4CBCBABC000000000000001600000000432C2000" />
     </face>
@@ -11588,8 +11588,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_black_orc_boss_template" />
+      <EquipmentSet id="tor_gs_black_orc_boss_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_neck_snappers_first_10" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_first_10}Great Shaman Ugmuzz Bonehat" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orcshaman_lord" is_female="false" race="orc" is_hero="true">
@@ -11624,11 +11624,11 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_black_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_black_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_black_orc_boss_template" />
+      <EquipmentSet id="tor_gs_black_orc_boss_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_greenskin_lord_neck_snappers_second_2" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_second_2}Warboss Orlob Fangrippa" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
+  <NPCCharacter id="tor_greenskin_lord_neck_snappers_second_2" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_second_2}Warboss Orlob Fangrippa" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_blackorc_lord" is_female="false" race="orc" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.517" build="0.7269" key="00005C0D04B40000A2989A3D591A77A58576D689867A26A2ACA972654AE827570089A6030848594A45CCBADB4CBCBABC0000000000000016000000004F040000" />
     </face>
@@ -11642,8 +11642,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_black_orc_warboss_template_001" />
+      <EquipmentSet id="tor_gs_black_orc_warboss_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_neck_snappers_second_3" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_second_3}Shaman Grubzza Fire Danca" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orcshaman_lord" is_female="false" race="orc" is_hero="true">
@@ -11682,7 +11682,7 @@
       <EquipmentSet id="tor_gs_black_orc_warboss_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_greenskin_lord_neck_snappers_second_5" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_second_5}Warboss Kazbad Mawgouger" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
+  <NPCCharacter id="tor_greenskin_lord_neck_snappers_second_5" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_second_5}Warboss Kazbad Mawgouger" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_blackorc_lord" is_female="false" race="orc" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.7145" build="1" key="001EB0060000000084888878398D9778479D549C7A645A4476667C57295766A100AFB6030AB8678745CCBADB4CBCBABC00000000000000160000000043442000" />
     </face>
@@ -11696,11 +11696,11 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_black_orc_boss_template" />
+      <EquipmentSet id="tor_gs_black_orc_boss_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_greenskin_lord_neck_snappers_second_6" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_second_6}Warboss Azgor" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
+  <NPCCharacter id="tor_greenskin_lord_neck_snappers_second_6" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_second_6}Warboss Azgor" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_blackorc_lord" is_female="false" race="orc" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.5756" build="1" key="0026A406000000005259CABB95499B3764839955B947BB98868777874BA9A9C6008F960308957E7745CCBADB4CBCBABC000000000000001600000000470C0000" />
     </face>
@@ -11714,11 +11714,11 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_black_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_black_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_greenskin_lord_neck_snappers_second_7" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_second_7}Warboss Skulotrag" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
+  <NPCCharacter id="tor_greenskin_lord_neck_snappers_second_7" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_second_7}Warboss Skulotrag" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_blackorc_lord" is_female="false" race="orc" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.3657" build="0.4769" key="00207406000000008A97A93551663CBCB4B68C769C687E4BA9E97CB6653B745900AC76030A276CBC45CCBADB4CBCBABC0000000000000016000000002B4C2000" />
     </face>
@@ -11732,8 +11732,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_black_orc_boss_template" />
+      <EquipmentSet id="tor_gs_black_orc_boss_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_skull_smasherz_factionleader" default_group="infantry" name="{=str_tor_greenskin_lord_skull_smasherz_factionleader}Warlord Ugrok Craktoof" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">
@@ -11894,8 +11894,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_skull_smasherz_second_2" default_group="infantry" name="{=str_tor_greenskin_lord_skull_smasherz_second_2}Warboss Buwarg Red Boar" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">

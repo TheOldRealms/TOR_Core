@@ -884,12 +884,7 @@
 			<PartyTemplateStack min_value="0" max_value="2" troop="NPCCharacter.tor_ror_griffon_innercircle_knight" />
 			<PartyTemplateStack min_value="0" max_value="1" troop="NPCCharacter.tor_ror_griffon_demi_knight" />
 			<PartyTemplateStack min_value="0" max_value="1" troop="NPCCharacter.tor_ror_griffon_demi_preceptor_knight" />
-			<PartyTemplateStack min_value="0" max_value="2" troop="NPCCharacter.tor_ror_blazing_sun_initiate" />
-			<PartyTemplateStack min_value="0" max_value="2" troop="NPCCharacter.tor_ror_blazing_sun_knight" />
-			<PartyTemplateStack min_value="0" max_value="2" troop="NPCCharacter.tor_ror_blazing_sun_preceptor" />
-			<PartyTemplateStack min_value="0" max_value="2" troop="NPCCharacter.tor_ror_blazing_sun_innercircle" />
-			<PartyTemplateStack min_value="0" max_value="1" troop="NPCCharacter.tor_ror_blazing_sun_demigryph_knight" />
-			<PartyTemplateStack min_value="0" max_value="1" troop="NPCCharacter.tor_ror_blazing_sun_demigryph_innercircle" />
+			<PartyTemplateStack min_value="20" max_value="40" troop="NPCCharacter.tor_empire_flagellant" />
 		</stacks>
 	</MBPartyTemplate>
 	
