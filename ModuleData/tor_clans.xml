@@ -654,7 +654,7 @@
 			 default_party_template="PartyTemplate.bretonnia_lordparty_template"
              super_faction="Kingdom.bastonne"
              is_noble="true"
-             text="{=str_tor_clan_bastonne_clan_1_desc}At the very heart of Bretonnia lies the Duchy of Bastonne. Indeed located at the heart, but also many believe that Bastonne is the Heart of Bretonnia. Founded by Gilles le Breton, the Cathedral for the Cult of the Lady is housed within Castle Bastonne’s walls. Indeed, just in the Forest of Chȃlons is said to be where Gilles and the Companions first met The Lady. Because Bastonne is the Heart of Bretonnia, the people of Bastonne are the most haughty and cocky of the Bretonnians. Bastonne holds in its service most of Bretonnia’s grail Knights, and rightly claims to be the most important of all Duchies."
+             text="{=str_tor_clan_bastonne_clan_1_desc}At the very heart of Bretonnia lies the Duchy of Bastonne. Indeed located at the heart, but also many believe that Bastonne is the Heart of Bretonnia. Founded by Gilles le Breton, the Cathedral for the Cult of the Lady is housed within Castle Bastonne’s walls. Indeed, just in the Forest of Chalons is said to be where Gilles and the Companions first met The Lady. Because Bastonne is the Heart of Bretonnia, the people of Bastonne are the most haughty and cocky of the Bretonnians. Bastonne holds in its service most of Bretonnia’s grail Knights, and rightly claims to be the most important of all Duchies."
              banner_key="11.131.148.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_bastonne" />
     <Faction id="bastonne_clan_2"
              name="{=str_tor_clan_bastonne_clan_2_name}de Garamont"
@@ -1498,13 +1498,13 @@
              is_clan_type_mercenary="true"
              owner="Hero.tor_emp_lord_college_magic_1"
              culture="Culture.empire"
-             banner_key="1.122.92.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_wainfleet"
-             label_color="FFe9a74d"
-             color="FFe9a74d"
-             color2="FF714214"
+             banner_key="11.97.7.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_magic_college"
+             label_color="FF3b332e"
+             color="FF3b332e"
+             color2="FFe0be47"
              alternative_color="FFe9a74d"
              alternative_color2="FF714214"
-             text="{=str_tor_clan_pesant_knight_clan_1_desc}The famous Geg of wainfleet is the one and only peasant ever to be granted knighthood and sip from the holy grail. Together with his peasant knights he roams brettonia to rid the land of all evil.">
+             text="{=str_tor_clan_pesant_knight_clan_1_desc}WIP">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_empire_rogue_lord_0" />
             <template id="NPCCharacter.tor_empire_rogue_lord_1" />
@@ -1522,13 +1522,13 @@
              is_clan_type_mercenary="true"
              owner="Hero.tor_emp_lord_sigmarcult_2"
              culture="Culture.empire"
-             banner_key="1.122.92.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_wainfleet"
-             label_color="FFe9a74d"
-             color="FFe9a74d"
-             color2="FF714214"
+             banner_key="3.43.7.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_sigmar"
+             label_color="FFc18009"
+             color="FFc18009"
+             color2="FFffe6a1"
              alternative_color="FFe9a74d"
              alternative_color2="FF714214"
-             text="{=str_tor_clan_pesant_knight_clan_1_desc}The famous Geg of wainfleet is the one and only peasant ever to be granted knighthood and sip from the holy grail. Together with his peasant knights he roams brettonia to rid the land of all evil.">
+             text="{=str_tor_clan_pesant_knight_clan_1_desc}WIP">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_empire_rogue_lord_4" />     
             <template id="NPCCharacter.tor_empire_rogue_lord_5" />
