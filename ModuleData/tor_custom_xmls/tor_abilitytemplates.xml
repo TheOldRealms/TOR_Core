@@ -4273,7 +4273,7 @@
         <TriggeredEffect>apply_red_fury</TriggeredEffect>
     </AbilityTemplate>
     <AbilityTemplate StringID="LetThemHaveIt"
-                     Name="{=let_them_have_it_label_str}Let Them Have It"
+                     Name="{=let_them_have_it_label_str}Rallying Cry"
                      SpriteName="let_them_have_it_icon"
                      CoolDown="15"
                      WindsOfMagicCost="0"
