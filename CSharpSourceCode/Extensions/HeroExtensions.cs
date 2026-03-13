@@ -117,6 +117,7 @@ namespace TOR_Core.Extensions
 
             var chance = new ExplainedNumber();
             var skillValue = hero.GetSkillValue(TORSkills.Spellcraft);
+            if (hero.HasCareer(TORCareers.BloodKnight)) return 0.1f;
 
             var chanceValue = Mathf.Clamp(skillValue * 0.005f, 0.05f, 0.7f);
             chance.Add(chanceValue);
