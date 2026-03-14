@@ -5248,8 +5248,15 @@
 
 	<!-- Cooldown Messages -->
 	<string id="tor_greenskin_brawl_no_space" text="{=str_tor_greenskin_brawl_no_space}Your party is full - no troops could join you!" />
-	
+
 	<string id="tor_goblin_recruitment_party_full" text="{=str_tor_goblin_recruitment_party_full}Your party is full - no room for more goblins" />
+
+	<!-- Blood Keep Hiring -->
+	<string id="tor_bloodkeep_hire_start" text="{=str_tor_bloodkeep_hire_start}Hire Blood Knights" />
+	<string id="tor_bloodkeep_hire_success" text="{=str_tor_bloodkeep_hire_success}You have recruited {KNIGHT_COUNT} Blood Knights for {ENERGY_COST}{CR_ICON}." />
+	<string id="tor_bloodkeep_hire_disabled_energy" text="{=str_tor_bloodkeep_hire_disabled_energy}Not enough Dark Energy (Need: {ENERGY_COST}, Have: {CURRENT_ENERGY})" />
+	<string id="tor_bloodkeep_hire_disabled_space" text="{=str_tor_bloodkeep_hire_disabled_space}Not enough party space (Need at least {MIN_KNIGHTS} free slots)" />
+	<string id="tor_bloodkeep_hire_disabled_hireling" text="{=str_tor_bloodkeep_hire_disabled_hireling}You cannot recruit while enlisted in another lord's army" />
 
 	<!-- Duel System - Greenskin -->
 	<string id="tor_greenskin_duel_challenge" text="{=str_tor_greenskin_duel_challenge}OI! Let's see who's da biggest an' strongest! WAAAGH!" />

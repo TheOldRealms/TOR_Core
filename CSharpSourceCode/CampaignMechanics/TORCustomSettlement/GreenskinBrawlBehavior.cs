@@ -68,15 +68,19 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
             args =>
             {
                 args.optionLeaveType = GameMenuOption.LeaveType.HostileAction;
+                bool canBrawl = CanStartBrawl();
+                bool shouldBeDisabled = ShouldBeDisabled(canBrawl, out TextObject disableReason);
+
+                
                 bool isHireling = Hero.MainHero.IsEnlisted();
-                if (isHireling)
+                if (canBrawl && isHireling)
                 {
                     var hirelingDisableReason = GameTexts.FindText("tor_greenskin_brawl_disabled_hireling");
                     return MenuHelper.SetOptionProperties(args, false, true, hirelingDisableReason);
                 }
 
-                bool canBrawl = CanStartBrawl();
-                bool shouldBeDisabled = ShouldBeDisabled(canBrawl, out TextObject disableReason);
+
+
                 if (shouldBeDisabled)
                 {
                     canBrawl = false;
