@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.BarterSystem.Barterables;
 using TaleWorlds.CampaignSystem.CharacterCreationContent;
 using TaleWorlds.CampaignSystem.Extensions;
 using TaleWorlds.CampaignSystem.GameState;
@@ -1023,6 +1025,13 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     }
                 case "bloodline_blood_dragon":
                     hero.AddCareer(TORCareers.BloodKnight);
+
+                    var bloodragons = Kingdom.All.FirstOrDefault(x => x.StringId == TORConstants.Factions.BLOODDRAGONS);
+                    if (bloodragons != null)
+                    {
+                        ChangeKingdomAction.ApplyByJoinToKingdom(Hero.MainHero.Clan, bloodragons);
+                    }
+                    
                     _storedSpawnPosition = new CampaignVec2(new Vec2(1277.776f, 942.5178f), true); // Blood Dragon location
                     break;
                 // MOUSILLON VAMPIRE BLOODLINE OPTIONS

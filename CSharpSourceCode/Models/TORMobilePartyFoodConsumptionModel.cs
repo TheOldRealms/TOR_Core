@@ -56,7 +56,7 @@ namespace TOR_Core.Models
 
 
             // Apply greenskin-specific food consumption rates
-            if (party.Party.Culture.StringId == TORConstants.Cultures.GREENSKIN)
+            if (party.IsMainParty && party.Party.Culture.StringId == TORConstants.Cultures.GREENSKIN)       //Main party only - npcs are dumb sadly
             {
                 var totalMembers = party.Party.MemberRoster.Sum(item => item.Number);
                 if (totalMembers > 0)
@@ -64,14 +64,13 @@ namespace TOR_Core.Models
                     var eliteOrcCount = party.Party.MemberRoster.Sum(item => item.Character.IsOrc() && item.Character.IsEliteTroop() ? item.Number : 0);
                     var regularOrcCount = party.Party.MemberRoster.Sum(item => item.Character.IsOrc() && !item.Character.IsEliteTroop() ? item.Number : 0);
                     var trollCount = party.Party.MemberRoster.Sum(item => item.Character.IsTroll() ? item.Number : 0);
-                    var goblinCount = party.Party.MemberRoster.Sum(item => item.Character.IsGoblin() ? item.Number : 0);
 
                     // Calculate additional food consumption:
                     // Goblins eat 1x (normal), Orcs eat 2x (1x extra), Elite Orcs eat 4x (3x extra), Trolls eat 10x (9x extra)
                     float baseFoodPerTroop = consumption.ResultNumber / totalMembers;
-                    float additionalRegularOrcFood = regularOrcCount * baseFoodPerTroop * 1.0f; // 1x extra (double total = 2x)
-                    float additionalEliteOrcFood = eliteOrcCount * baseFoodPerTroop * 3.0f; // 3x extra (quadruple total = 4x)
-                    float additionalTrollFood = trollCount * baseFoodPerTroop * 9.0f; // 9x extra (10x total)
+                    float additionalRegularOrcFood = regularOrcCount * baseFoodPerTroop * 0.5f; // 1x extra (double total = 1.5x)
+                    float additionalEliteOrcFood = eliteOrcCount * baseFoodPerTroop * 2.0f; // 3x extra (quadruple total = 4x)
+                    float additionalTrollFood = trollCount * baseFoodPerTroop * 7.0f; // 7x extra (8x total)
 
                     float totalAdditionalFood = additionalRegularOrcFood + additionalEliteOrcFood + additionalTrollFood;
 
