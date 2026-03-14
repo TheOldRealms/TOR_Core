@@ -118,16 +118,49 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
                 list.Add(new InquiryElement(unitRune, unitRune.RuneName.ToString(), null, false, hint.ToString()));
                 continue;
             }
+
+            // Build cost display - aggregate costs by ingredient type
+            var costEntries = new StringBuilder();
+            var itemTraits = ItemTrait.All.WhereQ(x => blueprintList.Contains(x.ItemTraitStringId));
+            var itemRoster = Hero.MainHero.PartyBelongedTo.Party.ItemRoster;
+
+            // Aggregate total cost per ingredient
+            var ingredientCosts = new Dictionary<ItemObject, int>();
+            foreach (var itemTrait in itemTraits)
+            {
+                var cost = GetIngredientCost(itemTrait);
+                var ingredient = TorEnchantingIngredients.GetItemObjectForIngredient(itemTrait.IngredientItem);
+
+                if (ingredient != null)
+                {
+                    if (ingredientCosts.ContainsKey(ingredient))
+                    {
+                        ingredientCosts[ingredient] += cost;
+                    }
+                    else
+                    {
+                        ingredientCosts[ingredient] = cost;
+                    }
+                }
+            }
+
+            // Display aggregated costs
+            foreach (var kvp in ingredientCosts)
+            {
+                var availableCount = itemRoster.GetItemNumber(kvp.Key);
+                costEntries.Append(kvp.Value + " (" + availableCount + ") " + kvp.Key.Name + "{newline}");
+            }
+
+            GameTexts.SetVariable("RUNE_COST_LIST", costEntries.ToString());
+            GameTexts.SetVariable("RUNE_DESCRIPTION", hint.ToString());
+
             if (!hasIngredients)
             {
-                var entries = new StringBuilder();
-                foreach (var entry in failed)
-                {
-                    entries.Append(entry.cost + " " + "(" + entry.available + ")" + entry.ingredient.Name + "{newline}");
-                }
-
-                GameTexts.SetVariable("RUNECRAFT_FAILED_ENTRIES", entries.ToString());
-                hint = TORTextHelper.GetTextObject("tor_unit_rune_not_enough_ingredients_text", "You  do not have enough ingredients requires : {RUNECRAFT_FAILED_ENTRIES}");
+                hint = TORTextHelper.GetTextObject("tor_unit_rune_cost_insufficient", "{RUNE_DESCRIPTION}{newline}{newline}Required ingredients:{newline}{RUNE_COST_LIST}{newline}You do not have enough ingredients!");
+            }
+            else
+            {
+                hint = TORTextHelper.GetTextObject("tor_unit_rune_cost_display", "{RUNE_DESCRIPTION}{newline}{newline}Required ingredients:{newline}{RUNE_COST_LIST}");
             }
 
             list.Add(new InquiryElement(unitRune, unitRune.RuneName.ToString(), null, hasIngredients, hint.ToString()));
@@ -156,14 +189,32 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
         var rune = (UnitRune)inquirydata.FirstOrDefault().Identifier;
 
         var itemRoster = Hero.MainHero.PartyBelongedTo.ItemRoster;
+
+        // Aggregate total cost per ingredient type
+        var ingredientCosts = new Dictionary<ItemObject, int>();
         foreach (var traitId in rune.EnchantmentBluePrintIdList)
         {
             var itemTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == traitId);
+            if (itemTrait == null) continue;
+
             var cost = GetIngredientCost(itemTrait);
             var ingredient = TorEnchantingIngredients.GetItemObjectForIngredient(itemTrait.IngredientItem);
+            if (ingredient == null) continue;
 
-            itemRoster.AddToCounts(ingredient, -cost);
+            if (ingredientCosts.ContainsKey(ingredient))
+            {
+                ingredientCosts[ingredient] += cost;
+            }
+            else
+            {
+                ingredientCosts[ingredient] = cost;
+            }
+        }
 
+        // Remove aggregated costs
+        foreach (var kvp in ingredientCosts)
+        {
+            itemRoster.AddToCounts(kvp.Key, -kvp.Value);
         }
 
         var currentRuneId = GetCurrentRuneId(_currentCharacter);
@@ -203,16 +254,55 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
 
         var itemRoster = Hero.MainHero.PartyBelongedTo.Party.ItemRoster;
 
+        // First check for unknown runes
         foreach (var itemTrait in itemTraits)
         {
             bool notKnown = !Hero.MainHero.HasKnownEnchantmentBlueprint(itemTrait.ItemTraitStringId);
+            if (notKnown)
+            {
+                var cost = GetIngredientCost(itemTrait);
+                var ingredient = TorEnchantingIngredients.GetItemObjectForIngredient(itemTrait.IngredientItem);
+                var available = itemRoster.GetItemNumber(ingredient);
+                failed.Add((itemTrait.ItemTraitStringId, ingredient, cost, available, notKnown));
+            }
+        }
+
+        // If any runes are unknown, return early
+        if (failed.Any())
+        {
+            return false;
+        }
+
+        // Aggregate total cost per ingredient type
+        var ingredientCosts = new Dictionary<ItemObject, int>();
+        foreach (var itemTrait in itemTraits)
+        {
             var cost = GetIngredientCost(itemTrait);
             var ingredient = TorEnchantingIngredients.GetItemObjectForIngredient(itemTrait.IngredientItem);
 
-            var available = itemRoster.GetItemNumber(ingredient);
-            if (notKnown || available < cost)
+            if (ingredient != null)
             {
-                failed.Add((itemTrait.ItemTraitStringId, ingredient, cost, available, notKnown));
+                if (ingredientCosts.ContainsKey(ingredient))
+                {
+                    ingredientCosts[ingredient] += cost;
+                }
+                else
+                {
+                    ingredientCosts[ingredient] = cost;
+                }
+            }
+        }
+
+        // Check if we have enough of each aggregated ingredient
+        foreach (var kvp in ingredientCosts)
+        {
+            var ingredient = kvp.Key;
+            var totalCost = kvp.Value;
+            var available = itemRoster.GetItemNumber(ingredient);
+
+            if (available < totalCost)
+            {
+                failed.Add(("", ingredient, totalCost, available, false));
             }
         }
 
@@ -240,10 +330,15 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
             var id = GetCurrentRuneId(characterObject);
             if (id != null)
             {
-                var rune = UnitRunes.FirstOrDefault(x => x.Id == id);
+                var rune = UnitRunes.FirstOrDefault(x => x.EffectId == id);
 
-                displayText = new TextObject(rune.RuneName.ToString());
-                hasRune = true;
+                if (rune != null)
+                {
+                    GameTexts.SetVariable("RUNE_NAME", rune.RuneName.ToString());
+                    GameTexts.SetVariable("RUNE_DESC", rune.HintText.ToString());
+                    displayText = TORTextHelper.GetTextObject("tor_unit_rune_active_display", "{RUNE_NAME}{newline}{RUNE_DESC}");
+                    hasRune = true;
+                }
             }
 
         }

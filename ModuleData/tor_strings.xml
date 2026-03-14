@@ -5717,8 +5717,22 @@
 	<string id="tor_powerstone_metal_magic_dmg_phys_desc" text="{=str_tor_powerstone_metal_magic_dmg_phys_desc}40% Armor penetration, 20% magical, 20% fire"/>
 	<string id="tor_powerstone_death_magic_surv_100_name" text="{=str_tor_powerstone_death_magic_surv_100_name}Mighty Endstone"/>
 	<string id="tor_powerstone_death_magic_surv_100_desc" text="{=str_tor_powerstone_death_magic_surv_100_desc}100% survival Chance for Unit"/>
+	
+  <!-- Unit Rune Texts -->
+  <string id="tor_unit_rune_cost_display" text="{=str_tor_unit_rune_cost_display}{RUNE_DESCRIPTION}{newline}{newline}Required ingredients:{newline}{RUNE_COST_LIST}"/>                                                                                             
+  <string id="tor_unit_rune_cost_insufficient" text="{=str_tor_unit_rune_cost_insufficient}{RUNE_DESCRIPTION}{newline}{newline}Required ingredients:{newline}{RUNE_COST_LIST}{newline}You do not have enough ingredients!"/>                                                
+  <string id="tor_unit_rune_active_display" text="{=str_tor_unit_rune_active_display}{RUNE_NAME}{newline}{RUNE_DESC}"/> 
+  <string id="tor_unit_rune_warning_text" text="{=str_tor_unit_rune_warning_text}WARNING : Current {CURRENT_RUNE} will be removed without compensation."/>                                                                                                             
+  <string id="tor_unit_rune_unknown_runes_text" text="{=str_tor_unit_rune_unknown_runes_text}You do not know the required runes:{UNKNOWN_RUNES_LIST}"/>                                                                                                              
+  <string id="tor_unit_rune_title" text="{=str_tor_unit_rune_title}Unit Runes"/>                                                       
+  <string id="tor_unit_rune_description" text="{=str_tor_unit_rune_description}Choose a rune to add to the equipment of your units. {RUNE_WARNING_TEXT}"/>                                                                                                               
+  <string id="tor_inquiry_confirm_text" text="{=str_tor_inquiry_confirm_text}Confirm"/>                                                
+  <string id="tor_inquiry_cancel_text" text="{=str_tor_inquiry_cancel_text}Cancel"/>                                                   
+  <string id="tor_unit_rune_not_for_heroes_text" text="{=str_tor_unit_rune_not_for_heroes_text}Doesn't work for heroes"/>              
+  <string id="tor_unit_rune_no_runes_known_text" text="{=str_tor_unit_rune_no_runes_known_text}Hero doesn't know any Runes yet"/>      
+  <string id="tor_unit_rune_only_in_karak_text" text="{=str_tor_unit_rune_only_in_karak_text}Only possible inside a Dwarf Karak. Visit a Dwarf Karak"/>                                                                                                                     
+  <string id="tor_unit_rune_add_rune_text" text="{=str_tor_unit_rune_add_rune_text}Add a Rune for Units"/>                                                                                                                                                                       
 
-	<!-- Unit Rune Texts -->
 	<string id="tor_unit_rune_guarding_name" text="{=str_tor_unit_rune_guarding_name}Rune of Guarding"/>
 	<string id="tor_unit_rune_guarding_desc" text="{=str_tor_unit_rune_guarding_desc}15% extra physical resistance."/>
 	<string id="tor_unit_rune_sanctuary_name" text="{=str_tor_unit_rune_sanctuary_name}Rune of Sanctuary"/>
