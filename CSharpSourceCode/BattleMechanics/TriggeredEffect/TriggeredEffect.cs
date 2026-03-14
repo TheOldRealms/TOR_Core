@@ -99,6 +99,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 }
                 else if (_template.TargetType == TargetType.Enemy)
                 {
+                    //Check triggererAgenTeam. It can be null in fastforward mode
                     targets = Mission.Current.GetNearbyEnemyAgents(position.AsVec2, radius, triggererAgent.Team, targets);
                 }
                 else if (_template.TargetType == TargetType.Friendly)

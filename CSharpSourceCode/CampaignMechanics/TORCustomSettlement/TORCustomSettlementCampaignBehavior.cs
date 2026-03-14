@@ -1,8 +1,10 @@
+using Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
@@ -116,6 +118,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
     public override void RegisterEvents()
     {
         CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
+        CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, AfterSessionLaunched);
         CampaignEvents.HourlyTickSettlementEvent.AddNonSerializedListener(this, OnSettlementHourlyTick);
         CampaignEvents.OnMissionEndedEvent.AddNonSerializedListener(this, OnMissionEnded);
         CampaignEvents.TickPartialHourlyAiEvent.AddNonSerializedListener(this, OnAiTick);
@@ -663,6 +666,12 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         }
     }
 
+    private void AfterSessionLaunched(CampaignGameStarter obj)
+    {
+        var castleMenu = Campaign.Current.GameMenuManager.GetGameMenu("castle");
+        TORSettlementMenuHelpers.RearrangeTownMenus(castleMenu, "town_bloodkeep_hire", "castle_prison");
+    }
+
     private void OnSessionLaunched(CampaignGameStarter starter)
     {
         _model = Campaign.Current.Models.GetFaithModel();
@@ -676,6 +685,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
             new TrollCaveMenuLogic(starter)
         };
 
+        AddBloodKeepHiringButton(starter);
 
         foreach (var entry in _customSettlementActiveStates)
         {
@@ -731,6 +741,138 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
             }
             else site.HourlyTick();
         }
+    }
+
+    private void AddBloodKeepHiringButton(CampaignGameStarter starter)
+    {
+        starter.AddGameMenuOption("castle", "town_bloodkeep_hire",
+            GameTexts.FindText("tor_bloodkeep_hire_start").ToString(),
+            args =>
+            {
+                args.optionLeaveType = GameMenuOption.LeaveType.Recruit;
+                bool canHire = CanHireBloodKnights();
+                bool shouldBeDisabled = ShouldBeDisabledBloodKeep(canHire, out TextObject disableReason);
+
+                if (shouldBeDisabled)
+                {
+                    canHire = false;
+                }
+                return MenuHelper.SetOptionProperties(args, canHire, shouldBeDisabled, disableReason ?? TextObject.GetEmpty());
+            },
+            args =>
+            {
+                HireBloodKnights();
+            },
+            false, 7, false, null);
+    }
+
+    private bool ShouldBeDisabledBloodKeep(bool canHire, out TextObject disableReason)
+    {
+        disableReason = null;
+
+        if (!Hero.MainHero.IsVampire())
+        {
+            return false; // Button should not appear at all
+        }
+
+        if (!canHire)
+        {
+            return false; // Already handled by CanHireBloodKnights
+        }
+
+        const int darkEnergyCost = 100;
+        const int minBloodKnights = 3;
+
+        // Check if player has enough dark energy
+        var darkEnergy = Hero.MainHero.GetCustomResourceValue("DarkEnergy");
+        if (darkEnergy < darkEnergyCost)
+        {
+            var disableText = GameTexts.FindText("tor_bloodkeep_hire_disabled_energy");
+            disableText.SetTextVariable("ENERGY_COST", darkEnergyCost);
+            disableText.SetTextVariable("CURRENT_ENERGY", (int)darkEnergy);
+            disableReason = disableText;
+            return true;
+        }
+
+        // Check if player has enough party space
+        var availableSpace = Hero.MainHero.PartyBelongedTo.Party.PartySizeLimit -
+                            Hero.MainHero.PartyBelongedTo.MemberRoster.TotalManCount;
+        if (availableSpace < minBloodKnights)
+        {
+            var disableText = GameTexts.FindText("tor_bloodkeep_hire_disabled_space");
+            disableText.SetTextVariable("MIN_KNIGHTS", minBloodKnights);
+            disableReason = disableText;
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool CanHireBloodKnights()
+    {
+        // Player must be a vampire
+        if (!Hero.MainHero.IsVampire())
+        {
+            return false;
+        }
+
+        // Must be at the Blood Keep
+        if (Settlement.CurrentSettlement == null || !Settlement.CurrentSettlement.IsBloodKeep())
+        {
+            return false;
+        }
+
+        // Blood Keep must be owned by vampires
+        var owner = Settlement.CurrentSettlement.Owner;
+        if (owner == null || owner.Culture == null)
+        {
+            return false;
+        }
+
+        var ownerCulture = owner.Culture.StringId;
+        if (ownerCulture != TORConstants.Cultures.SYLVANIA && ownerCulture != TORConstants.Cultures.MOUSILLON)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    private void HireBloodKnights()
+    {
+        const int darkEnergyCost = 100;
+        const int minBloodKnights = 3;
+        const int maxBloodKnights = 5;
+        const string bloodKnightTroopId = "tor_bd_blooddragon_knight";
+
+        // Deduct dark energy
+        Hero.MainHero.AddCustomResource("DarkEnergy", -darkEnergyCost);
+
+        // Calculate number of Blood Knights to recruit (3-5)
+        var bloodKnightCount = MBRandom.RandomInt(minBloodKnights, maxBloodKnights + 1);
+
+        // Check available party space
+        var availableSpace = Hero.MainHero.PartyBelongedTo.Party.PartySizeLimit -
+                            Hero.MainHero.PartyBelongedTo.MemberRoster.TotalManCount;
+        bloodKnightCount = Math.Min(bloodKnightCount, availableSpace);
+
+        // Add Blood Knights to party
+        var bloodKnight = MBObjectManager.Instance.GetObject<CharacterObject>(bloodKnightTroopId);
+        if (bloodKnight != null && bloodKnightCount > 0)
+        {
+            Hero.MainHero.PartyBelongedTo.MemberRoster.AddToCounts(bloodKnight, bloodKnightCount);
+
+            // Show success message
+            var successText = GameTexts.FindText("tor_bloodkeep_hire_success");
+            successText.SetTextVariable("KNIGHT_COUNT", bloodKnightCount);
+            successText.SetTextVariable("ENERGY_COST", darkEnergyCost);
+            successText.SetTextVariable("CR_ICON", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText());
+
+            InformationManager.DisplayMessage(new InformationMessage(successText.ToString()));
+        }
+
+        // Return to town menu
+        GameMenu.SwitchToMenu("castle");
     }
 
     public override void SyncData(IDataStore dataStore)
