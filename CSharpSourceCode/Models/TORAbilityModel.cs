@@ -808,7 +808,7 @@ namespace TOR_Core.Models
             resultDamage = ApplyDamageModifiers(resultDamage, attacker, victim, damageType, abilityTemplate, damageAmplifications, additionalDamagePercentages, resistancePercentages);
 
             // Calculate ward save
-            float wardSaveFactor = damageModel.CalculateWardSaveFactor(victim, resistancePercentages, friendlyFire);
+            float wardSaveFactor = damageModel.CalculateWardSaveFactor(attacker, victim, resistancePercentages, friendlyFire);
 
             // Apply amplifications and resistances
             damageAmplifications[damageTypeIndex] += additionalDamagePercentages[damageTypeIndex];

@@ -334,7 +334,7 @@ namespace TOR_Core.Models
                 additionalDamagePercentages, resistancePercentages, out float[] damageCategories);
 
             // Apply ward save
-            float wardSaveFactor = CalculateWardSaveFactor(victimAgent, resistancePercentages, friendlyFire);
+            float wardSaveFactor = CalculateWardSaveFactor(attackerAgent, victimAgent, resistancePercentages, friendlyFire);
             resultDamage *= wardSaveFactor;
 
             return resultDamage;
@@ -942,7 +942,7 @@ namespace TOR_Core.Models
             }
         }
 
-        public float CalculateWardSaveFactor(Agent victim, float[] resistances, bool friendlyFire)
+        public float CalculateWardSaveFactor(Agent attacker, Agent victim, float[] resistances, bool friendlyFire)
         {
             var result = new ExplainedNumber(1f);
             var victimCharacter = victim.Character as CharacterObject;
@@ -961,6 +961,11 @@ namespace TOR_Core.Models
                 }
                 SkillHelper.AddSkillBonusForCharacter(TORSkillEffects.FaithWardSave, victimCharacter, ref result);
             }
+
+            if (friendlyFire && !attacker.IsMainAgent && victimCharacter.IsDwarf())
+            {
+                result.AddFactor(-0.9f);
+            } 
 
             result.LimitMax(1);
             if (!friendlyFire)
