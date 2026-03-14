@@ -296,11 +296,11 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_1_p", hub, "tor_dw_guildmaster_rune_smith_hub_rune_lord_career",
             GameTexts.FindText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_1_p").ToString(),
-            () => !Hero.MainHero.HasAttribute("PlayerRunesmith"), () => FinalizeCareerQuest("runelord_quest_1", 3, "PlayerRunesmith"), 200);
+            () => !Hero.MainHero.HasAttribute("PlayerRunesmith") && Hero.MainHero.HasCareer(TORCareers.Runelord), () => FinalizeCareerQuest("runelord_quest_1", 3, "PlayerRunesmith"), 200);
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2_p", hub, "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord",
             GameTexts.FindText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2_p").ToString(),
-            () => Hero.MainHero.HasAttribute("PlayerRunesmith") && !Hero.MainHero.HasAttribute("PlayerRunelord"), () => FinalizeCareerQuest("runelord_quest_2", 5, "PlayerRunelord"), 200);
+            () => Hero.MainHero.HasCareer(TORCareers.Runelord) && Hero.MainHero.HasAttribute("PlayerRunesmith") && !Hero.MainHero.HasAttribute("PlayerRunelord"), () => FinalizeCareerQuest("runelord_quest_2", 5, "PlayerRunelord"), 200);
 
         //HUB
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_buy_equipment_p", hub, "tor_dw_guildmaster_rune_smith_buy_equipment", GameTexts.FindText("tor_dw_guildmaster_rune_smith_hub_buy_equipment_p").ToString(),
@@ -347,7 +347,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
         //Runelord Career real talk
         campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_0", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career", reintro,
             GameTexts.FindText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_0").ToString(),
-            () => !Hero.MainHero.HasAttribute("PlayerRunesmith"), () =>
+            () => !Hero.MainHero.HasAttribute("PlayerRunesmith") && Hero.MainHero.HasCareer(TORCareers.Runelord), () =>
             {
                 var quest = TORQuestHelper.GetCurrentQuest<RunesmithQuest>("runelord_quest_1", true, IsRunelordInFront, out var existent);
 
@@ -360,7 +360,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
 
         campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2", GameTexts.FindText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career").ToString(),
-            () => Hero.MainHero.HasAttribute("PlayerRunesmith"), null);
+            () => Hero.MainHero.HasAttribute("PlayerRunesmith") && Hero.MainHero.HasCareer(TORCareers.Runelord), null);
 
         campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_3", GameTexts.FindText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2").ToString(),
             null, null, 200);
