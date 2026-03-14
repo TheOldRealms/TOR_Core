@@ -900,7 +900,7 @@ namespace TOR_Core.Models
 
             if (kingdom.Culture.StringId == TORConstants.Cultures.EMPIRE)
             {
-                if (mercenaryClan.Culture.StringId == TORConstants.Cultures.EMPIRE && mercenaryClan.StringId.Contains("rogue"))
+                if (mercenaryClan.Culture.StringId == TORConstants.Cultures.EMPIRE && (mercenaryClan.StringId.Contains("empire_college_magic") || mercenaryClan.StringId.Contains("empire_cult_sigmar"))  )
                 {
                     score += 1000;
                 }
@@ -918,7 +918,7 @@ namespace TOR_Core.Models
                 }
             }
             
-            if (kingdom.Culture.StringId != TORConstants.Cultures.EMPIRE && mercenaryClan.Culture.StringId == TORConstants.Cultures.EMPIRE && mercenaryClan.StringId.Contains("rogue")) // Sigmar cult, and Imperial College Mage
+            if (kingdom.Culture.StringId != TORConstants.Cultures.EMPIRE && mercenaryClan.Culture.StringId == TORConstants.Cultures.EMPIRE && (mercenaryClan.StringId.Contains("empire_college_magic") || mercenaryClan.StringId.Contains("empire_cult_sigmar")) ) // Sigmar cult, and Imperial College Mage
             {
                 return -10000;
             }
