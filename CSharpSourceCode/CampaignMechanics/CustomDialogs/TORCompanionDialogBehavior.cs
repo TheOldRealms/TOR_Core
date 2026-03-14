@@ -227,11 +227,11 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             // Set player response text variables
             var tellMeText = TORTextHelper.GetTextObject("tor_hire_companion_tell_me_p", characterId,
                 "My name is {PLAYER.NAME}, {?CONVERSATION_NPC.GENDER}madam{?}sir{\\?}. Tell me about yourself.", skipValidation: true);
-            MBTextManager.SetTextVariable("TOR_PLAYER_TELL_ME_TEXT", tellMeText);
+            MBTextManager.SetTextVariable("TOR_PLAYER_TELL_ME_TEXT", tellMeText.ToString());
 
             var skipText = TORTextHelper.GetTextObject("tor_hire_companion_skip_p", characterId,
                 "I'm {PLAYER.NAME}. Let's skip the pleasantries and get right to business.", skipValidation: true);
-            MBTextManager.SetTextVariable("TOR_PLAYER_SKIP_TEXT", skipText);
+            MBTextManager.SetTextVariable("TOR_PLAYER_SKIP_TEXT", skipText.ToString());
 
             return true;
         }

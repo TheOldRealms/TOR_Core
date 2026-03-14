@@ -753,6 +753,13 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                 bool canHire = CanHireBloodKnights();
                 bool shouldBeDisabled = ShouldBeDisabledBloodKeep(canHire, out TextObject disableReason);
 
+                bool isHireling = Hero.MainHero.IsEnlisted();
+                if (canHire && isHireling)
+                {
+                    var hirelingDisableReason = GameTexts.FindText("tor_bloodkeep_hire_disabled_hireling");
+                    return MenuHelper.SetOptionProperties(args, false, true, hirelingDisableReason);
+                }
+
                 if (shouldBeDisabled)
                 {
                     canHire = false;
@@ -841,36 +848,51 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
     private void HireBloodKnights()
     {
         const int darkEnergyCost = 100;
-        const int minBloodKnights = 3;
         const int maxBloodKnights = 5;
         const string bloodKnightTroopId = "tor_bd_blooddragon_knight";
-
+        const string knightIntiateTroopId = "tor_bd_blooddragon_initiate";
         // Deduct dark energy
         Hero.MainHero.AddCustomResource("DarkEnergy", -darkEnergyCost);
 
         // Calculate number of Blood Knights to recruit (3-5)
-        var bloodKnightCount = MBRandom.RandomInt(minBloodKnights, maxBloodKnights + 1);
+        var knightCount = 0;
+
+        for (int i = 0; i < maxBloodKnights; i++)
+        {
+            if (MBRandom.RandomFloat < 0.1f)
+            {
+                knightCount++;
+            }
+        }
+
+        var knightInitiates = maxBloodKnights-knightCount; 
 
         // Check available party space
         var availableSpace = Hero.MainHero.PartyBelongedTo.Party.PartySizeLimit -
                             Hero.MainHero.PartyBelongedTo.MemberRoster.TotalManCount;
-        bloodKnightCount = Math.Min(bloodKnightCount, availableSpace);
+        knightCount = Math.Min(knightCount, availableSpace);
+        knightInitiates = Math.Min(knightInitiates, availableSpace);
 
         // Add Blood Knights to party
         var bloodKnight = MBObjectManager.Instance.GetObject<CharacterObject>(bloodKnightTroopId);
-        if (bloodKnight != null && bloodKnightCount > 0)
+        var knightInitates = MBObjectManager.Instance.GetObject<CharacterObject>(knightIntiateTroopId);
+
+        if (bloodKnight != null && knightCount > 0)
         {
-            Hero.MainHero.PartyBelongedTo.MemberRoster.AddToCounts(bloodKnight, bloodKnightCount);
-
-            // Show success message
-            var successText = GameTexts.FindText("tor_bloodkeep_hire_success");
-            successText.SetTextVariable("KNIGHT_COUNT", bloodKnightCount);
-            successText.SetTextVariable("ENERGY_COST", darkEnergyCost);
-            successText.SetTextVariable("CR_ICON", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText());
-
-            InformationManager.DisplayMessage(new InformationMessage(successText.ToString()));
+            Hero.MainHero.PartyBelongedTo.MemberRoster.AddToCounts(bloodKnight, knightInitiates);
         }
+        
+        if (knightInitates != null && knightInitiates > 0)
+        {
+            Hero.MainHero.PartyBelongedTo.MemberRoster.AddToCounts(knightInitates, knightInitiates);
+        }
+        // Show success message
+        var successText = GameTexts.FindText("tor_bloodkeep_hire_success");
+        successText.SetTextVariable("KNIGHT_COUNT", maxBloodKnights);
+        successText.SetTextVariable("ENERGY_COST", darkEnergyCost);
+        successText.SetTextVariable("CR_ICON", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText());
 
+        InformationManager.DisplayMessage(new InformationMessage(successText.ToString()));
         // Return to town menu
         GameMenu.SwitchToMenu("castle");
     }
