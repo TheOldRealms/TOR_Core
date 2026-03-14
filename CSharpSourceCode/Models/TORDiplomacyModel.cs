@@ -896,21 +896,13 @@ namespace TOR_Core.Models
             var score = base.GetScoreOfMercenaryToJoinKingdom(mercenaryClan, kingdom);
 
             if (kingdom == null || mercenaryClan == null) return score;
-
-            if (kingdom.Culture.StringId == TORConstants.Cultures.BRETONNIA)
-            {
-                score = -10000;
-            }
+            
 
             if (kingdom.Culture.StringId == TORConstants.Cultures.EMPIRE)
             {
                 if (mercenaryClan.Culture.StringId == TORConstants.Cultures.EMPIRE && mercenaryClan.StringId.Contains("rogue"))
                 {
-                    score = +1000;
-                }
-                else
-                {
-                    score = -10000;
+                    score += 1000;
                 }
             }
 
@@ -928,17 +920,17 @@ namespace TOR_Core.Models
             
             if (kingdom.Culture.StringId != TORConstants.Cultures.EMPIRE && mercenaryClan.Culture.StringId == TORConstants.Cultures.EMPIRE && mercenaryClan.StringId.Contains("rogue")) // Sigmar cult, and Imperial College Mage
             {
-                score = -10000;
+                return -10000;
             }
 
             if (kingdom.Culture.StringId != TORConstants.Cultures.BRETONNIA && mercenaryClan.Culture.StringId == TORConstants.Cultures.BRETONNIA)
             {
-                score = -10000;
+                return -10000;
             }
 
             if (mercenaryClan.StringId == "tor_dog_clan_hero_curse" && (kingdom.Culture.StringId == TORConstants.Cultures.SYLVANIA || kingdom.Culture.StringId == TORConstants.Cultures.MOUSILLON || kingdom.Culture.StringId == TORConstants.Cultures.BRETONNIA))
             {
-                score = -10000;
+                return -10000;
             }
 
             if (mercenaryClan.Culture.StringId == TORConstants.Cultures.DRUCHII)
