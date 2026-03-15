@@ -75,6 +75,14 @@ namespace TOR_Core.HarmonyPatches
                 {
                     return true;
                 }
+                // vanilla would normally finish an ended encounter here
+                // if rerouted straight to the hireling menu first, it will cause a ghost encounter
+                if (PlayerEncounter.Current != null
+                    && PlayerEncounter.Current.EncounterState == PlayerEncounterState.End
+                    && PlayerEncounter.EncounterSettlement == null)
+                {
+                    PlayerEncounter.Finish(false);
+                }
 
                 var hasActiveBattle = Hero.MainHero.PartyBelongedTo?.MapEvent != null;
                 if (hasActiveBattle)
@@ -97,8 +105,12 @@ namespace TOR_Core.HarmonyPatches
             // This prevents crashes from AI party ticks while allowing normal siege/encounter flow
             if (Hero.MainHero.IsEnlisted() && ServeAsAHirelingCampaignBehavior.InPostBattleTransition)
             {
-                return false;
+                if (PlayerEncounter.EncounterSettlement != null)
+                {
+                    return false;
+                }
             }
+
             return true;
         }
 

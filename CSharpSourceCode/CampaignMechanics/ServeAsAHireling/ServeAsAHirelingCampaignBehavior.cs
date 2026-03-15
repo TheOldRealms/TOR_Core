@@ -194,10 +194,35 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             return 1;
         }
 
+        private void EnsureHirelingSettlementEncounter(Settlement settlement)
+        {
+            if (settlement == null)
+            {
+                return;
+            }
+
+            if (PlayerEncounter.Current != null && PlayerEncounter.EncounterSettlement != settlement)
+            {
+                // old encounter junk
+                _inPostBattleTransition = false;
+                PlayerEncounter.Finish(false);
+            }
+
+            EnterSettlementAction.ApplyForParty(MobileParty.MainParty, settlement);
+
+            if (PlayerEncounter.Current == null || PlayerEncounter.EncounterSettlement != settlement)
+            {
+                // re open on the right place
+                EncounterManager.StartSettlementEncounter(MobileParty.MainParty, settlement);
+            }
+        }
+
         private void MenuOpened(MenuCallbackArgs obj)
         {
+            var menuId = obj.MenuContext.GameMenu.StringId;
+
             // Intercept encounter menu when enlisted to prevent crashes from bad PlayerEncounter state
-            if (IsEnlisted() && obj.MenuContext.GameMenu.StringId == "encounter" && !_startBattle)
+            if (IsEnlisted() && menuId == "encounter" && !_startBattle)
             {
                 // After a battle ends, the game may try to open the encounter menu
                 // but the PlayerEncounter is in a bad state - redirect to hireling menu
@@ -206,7 +231,14 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 return;
             }
 
-            if (_startBattle && obj.MenuContext.GameMenu.StringId == "encounter" && !_debugSkipBattles)
+            if (_startBattle && menuId == "join_encounter" && !_debugSkipBattles)
+            {
+                PlayerEncounter.JoinBattle(_hirelingEnlistingLord.PartyBelongedTo.MapEventSide.MissionSide);
+                GameMenu.SwitchToMenu("encounter");
+                return;
+            }
+
+            if (_startBattle && menuId == "encounter" && !_debugSkipBattles)
             {
                 _startBattle = false;
 
@@ -358,13 +390,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             {
                 var settlement = _hirelingEnlistingLord.PartyBelongedTo.CurrentSettlement;
 
-                // Apply settlement entry and start encounter
-                EnterSettlementAction.ApplyForParty(MobileParty.MainParty, settlement);
-
-                if (PlayerEncounter.Current == null)
-                {
-                    EncounterManager.StartSettlementEncounter(MobileParty.MainParty, settlement);
-                }
+                // fix stale encounter first
+                EnsureHirelingSettlementEncounter(settlement);
 
                 // Switch to appropriate menu based on settlement type
                 if (settlement.IsTown)
@@ -521,18 +548,19 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                         var forceOutOfSettlement = eventAlliedLeaderParty.SiegeEvent == null;
 
                         if (mapEvent.IsSiegeAssault) //a siege event is SiegeOutside when the player is not present - is the PlayerEncounter.Init patch in EncounterPatches meant to solve this issue and it had a side effect of causing an issue when not enlisted?
-                        //SiegeAssault doesn't know whether it's the attacker or defender, it's just that the map event is in a Siege state
+                                                     //SiegeAssault doesn't know whether it's the attacker or defender, it's just that the map event is in a Siege state
                         {//Sly : why is this doing the same thing as the StartBattleAction call above, but behind further conditionals?
-                            //Likely can be removed as I think it never gets past the conditionals inside and the map event won't be a siege assault unless it has already started a player-involved map event
+                         //Likely can be removed as I think it never gets past the conditionals inside and the map event won't be a siege assault unless it has already started a player-involved map event
                             Game.Current.AfterTick += InitializeSiegeBattle;
                             _siegeBattleMissionStarted = true;
+                            _startBattle = true;
                         }
                         else
                         {
-                            StartBattleAction.Apply(PartyBase.MainParty, enemyLeaderBase); //(Zerca's prior comment?) : changing the direction fixed the sole defender bug for the player.
+                            _startBattle = true;
+                            EncounterManager.StartPartyEncounter(PartyBase.MainParty, enemyLeaderBase); //(Zerca's prior comment?) : changing the direction fixed the sole defender bug for the player.
                             //It seems the defense has in joining no meaning
                         }
-                        _startBattle = true;
                         _hirelingLordIsFightingWithoutPlayer = false;
                     }
                 }
@@ -545,7 +573,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                    _hirelingLordIsFightingWithoutPlayer = true;
                    _startBattle = false;
 
-                   // Clean up player party associations to prevent siege abort
                    var playerParty = MobileParty.MainParty;
                    playerParty.MapEventSide = null;
                    playerParty.BesiegerCamp = null;
@@ -861,18 +888,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             if (MobileParty.MainParty.CurrentSettlement == settlement && PlayerEncounter.EncounterSettlement == settlement) return;
             if (_hirelingEnlistingLord != null && _hirelingEnlistingLord.PartyBelongedTo == mobileParty)
             {
-                // Only start settlement encounter if there isn't already one active for this settlement
-                // After a siege, the encounter might be in an intermediate state - let the game handle cleanup
-                if (PlayerEncounter.Current == null || PlayerEncounter.EncounterSettlement != settlement)
-                {
-                    EnterSettlementAction.ApplyForParty(MobileParty.MainParty, _hirelingEnlistingLord.CurrentSettlement);
-
-                    // Only start a new encounter if there isn't one already
-                    if (PlayerEncounter.Current == null)
-                    {
-                        EncounterManager.StartSettlementEncounter(MobileParty.MainParty, settlement);
-                    }
-                }
+                // callback settlement
+                EnsureHirelingSettlementEncounter(settlement);
 
                 // Clear post-battle transition flag - settlement encounter is now stable
                 _inPostBattleTransition = false;
@@ -990,7 +1007,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
             // Finish the PlayerEncounter from the conversation with the lord
             // This prevents EncounteredMobileParty from blocking the lord's siege initiation
-            if (PlayerEncounter.Current != null)
+            if (PlayerEncounter.Current != null && PlayerEncounter.EncounterSettlement == null)
                 PlayerEncounter.Finish(false);
 
             _hirelingEnlisted = true;
