@@ -177,6 +177,7 @@ namespace TOR_Core
                 starter.AddBehavior(new RaceFixCampaignBehavior());
                 starter.AddBehavior(new TORAIRecruitmentCampaignBehavior());
                 starter.AddBehavior(new TORSpecialSettlementBehavior());
+                starter.AddBehavior(new GreenskinAICampaignBehavior());
                 starter.AddBehavior(new CustomEventsCampaignBehavior());
                 starter.AddBehavior(new SimpleCareerQuestBehavior());
                 starter.AddBehavior(new PlaguedVillageQuestCampaignBehavior());

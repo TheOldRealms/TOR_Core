@@ -11,43 +11,8 @@ namespace TOR_Core.CampaignMechanics
     {
         public override void RegisterEvents()
         {
-            CampaignEvents.HourlyTickSettlementEvent.AddNonSerializedListener(this, ExtraUnits);
             CampaignEvents.HourlyTickSettlementEvent.AddNonSerializedListener(this, ExtraFood);
             CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this, AfterNewGameStart);
-        }
-
-        private void ExtraUnits(Settlement settlement)
-        {
-            if(settlement.Owner==null)
-            {
-                return;
-            }
-            if (!settlement.Owner.Clan.IsCastleFaction()) return;
-            
-            if (settlement.StringId == "castle_RZ1" ||settlement.StringId == "castle_BP1")
-            {
-                foreach (var  party in settlement.Parties)
-                {
-
-                    if (party.IsLordParty &&party.Party.MemberRoster.TotalManCount < 85)
-                    {
-                        if (party.Owner.Clan.StringId.Contains(TORConstants.Factions.BLACK_PIT) || party.Owner.Clan.StringId.Contains(TORConstants.Factions.REAVAZ))
-                        {
-                            var goblinArcher = MBObjectManager.Instance.GetObject<CharacterObject>("tor_gs_goblin_archer");
-                            var goblinStikka = MBObjectManager.Instance.GetObject<CharacterObject>("tor_gs_goblin_stikka");
-
-                            var random = new System.Random();
-                            var archerCount = random.Next(0, 6);
-                            var stikkaCount = 5 - archerCount;
-
-                            if (goblinArcher != null && archerCount > 0)
-                                party.Party.MemberRoster.AddToCounts(goblinArcher, archerCount);
-                            if (goblinStikka != null && stikkaCount > 0)
-                                party.Party.MemberRoster.AddToCounts(goblinStikka, stikkaCount);
-                        }
-                    }
-                }
-            }
         }
 
         public void ExtraFood(Settlement settlement)
@@ -57,8 +22,9 @@ namespace TOR_Core.CampaignMechanics
                 return;
             }
             if (!settlement.Owner.Clan.IsCastleFaction()) return;
-            
-            if (settlement.IsBloodKeep() || settlement.StringId == "castle_BK2" || settlement.StringId == "castle_RZ1" ||settlement.StringId == "castle_BP1")
+
+            // Castle faction food support (Blood Keep, Brass Keep only - greenskins handled separately)
+            if (settlement.IsBloodKeep() || settlement.StringId == "castle_BK2")
             {
                 foreach (var  party in settlement.Parties)
                 {

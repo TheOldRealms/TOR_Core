@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.MapEvents;
@@ -142,6 +143,55 @@ namespace TOR_Core.Models
             value += (troop.Level * 0.0005f);
 
             return value;
+        }
+
+        /// <summary>
+        /// Calculates meat gained from battle based on killed troops.
+        /// Used for both player and AI greenskin parties.
+        /// </summary>
+        /// <param name="mapEvent">The battle map event</param>
+        /// <returns>Amount of meat gained from killed enemies</returns>
+        public int CalculateMeatFromBattle(MapEvent mapEvent)
+        {
+            int rawMeat = 0;
+
+            var partiesOnSide = mapEvent.PartiesOnSide(mapEvent.DefeatedSide);
+
+            // Collect all potential meat from killed troops
+            foreach (var party in partiesOnSide)
+            {
+                var killedTroops = party.Troops.Where(x => x.IsKilled);
+
+                foreach (var killed in killedTroops)
+                {
+                    // No meat from undead
+                    if (killed.Troop.IsUndead())
+                        continue;
+
+                    // 5 meat for large targets (mounted/trolls/minotaurs)
+                    if (killed.Troop.IsLargeTarget())
+                    {
+                        rawMeat += 5;
+                        continue;
+                    }
+
+                    // 2 meat for beastmen
+                    if (killed.Troop.IsBeastman())
+                    {
+                        rawMeat += 2;
+                        continue;
+                    }
+
+                    // 1 meat for regular troops
+                    rawMeat += 1;
+                }
+            }
+
+            // Apply random 15%-35% conversion rate (not all kills yield meat)
+            float meatPercent = MBRandom.RandomFloatRanged(0.15f, 0.35f);
+            int totalMeat = (int)(rawMeat * meatPercent);
+
+            return totalMeat;
         }
     }
 }

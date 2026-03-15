@@ -644,15 +644,23 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 }
             }
 
-            // Meat from killed troops
-            var meatGained = CalculateMeatFromBattle(mapEvent);
-            if (meatGained > 0)
+            // Meat from killed troops (Greenskins only)
+            if (mapEvent.PartiesOnSide(mapEvent.WinningSide).Any(x => x.Party.Culture.StringId == TORConstants.Cultures.GREENSKIN))
             {
-                var meatResource = GetResourceObject("Meat");
-                if (meatResource != null)
+                var rewardModel = (TORBattleRewardModel) Campaign.Current.Models.BattleRewardModel;
+                if (rewardModel != null)
                 {
-                    AddResourceChanges(meatResource, -meatGained);
+                    var meatGained = rewardModel.CalculateMeatFromBattle(mapEvent);
+                    if (meatGained > 0)
+                    {
+                        var meatResource = GetResourceObject("Meat");
+                        if (meatResource != null)
+                        {
+                            AddResourceChanges(meatResource, -meatGained);
+                        }
+                    }
                 }
+
             }
 
             // Teef from killed troops (Greenskins only)
@@ -761,51 +769,6 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             {
                 number.Add(2 * amount);
             }
-        }
-
-        private static int CalculateMeatFromBattle(MapEvent mapEvent)
-        {
-            if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.GREENSKIN)
-                return 0;
-            
-            int rawMeat = 0;
-
-            var partiesOnSide = mapEvent.PartiesOnSide(mapEvent.DefeatedSide);
-
-            // First collect all potential meat
-            foreach (var party in partiesOnSide)
-            {
-                var killedTroops = party.Troops.Where(x => x.IsKilled);
-
-                foreach (var killed in killedTroops)
-                {
-                    // No meat from undead
-                    if (killed.Troop.IsUndead())
-                        continue;
-
-                    // 5 meat chances for large targets, 1 for regular
-                    if (killed.Troop.IsLargeTarget())
-                    {
-                        rawMeat += 5;
-                        continue;
-                    }
-
-                    if (killed.Troop.IsBeastman())
-                    {
-                        rawMeat += 2;
-                        continue;
-                    }
-
-                    rawMeat += 1;
-                    continue;
-                }
-            }
-
-            // Apply random 15%-30% of meat chances
-            float meatPercent = MBRandom.RandomFloatRanged(0.15f, 0.35f);
-            int totalMeat = (int)(rawMeat * meatPercent);
-
-            return totalMeat;
         }
 
         public static void OnPartyScreenTroopUpgrade(PartyVM partyVM, PartyScreenLogic.PartyCommand command)
