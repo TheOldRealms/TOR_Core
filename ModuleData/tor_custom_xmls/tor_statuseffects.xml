@@ -2672,6 +2672,16 @@
 		type="DamageAmplification"
 		damage_type="Physical">
 	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
+		id="doom_seeking_unblockable"
+		particle_id=""
+		do_not_attach_to_agent_skeleton="true"
+		applies_for_attack_type="All"
+		type="TemporaryAttributeOnly"
+		damage_type="Physical">
+		<temporary_attribute>MonsterAttack</temporary_attribute>
+	</StatusEffectTemplate>
 	
 	<StatusEffectTemplate
 		id="impenetrable_attribute"

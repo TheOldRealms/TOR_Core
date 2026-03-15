@@ -182,9 +182,17 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             {
             });
 
-        _theLastJourneyKeystone.Initialize(CareerID, "When Doom Seeking, gain +0.5% 'Physical' damage when taking a hit.", "LastJourney", false,
+        _theLastJourneyKeystone.Initialize(CareerID, "When Doom Seeking, your attacks become unparryable.", "LastJourney", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
+                new CareerChoiceObject.MutationObject()
+                {
+                    MutationTargetType = typeof(TriggeredEffectTemplate),
+                    MutationTargetOriginalId = "apply_doom_seeking",
+                    PropertyName = "ImbuedStatusEffects",
+                    PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "doom_seeking_unblockable" }).ToList(),
+                    MutationType = OperationType.Replace
+                }
             });
 
     }

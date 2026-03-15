@@ -4212,7 +4212,7 @@
   <string id="tor_careerchoice_description.BaneOfChaosPassive3" text="{=str_tor_careerchoice_description_BaneOfChaosPassive3}+25% personal 'Armor Penetration' for melee attacks." />
   <string id="tor_careerchoice_description.BaneOfChaosPassive4" text="{=str_tor_careerchoice_description_BaneOfChaosPassive4}If armour weight is less than 9, gain +20% personal melee damage against the forces of Chaos." />
 
-  <string id="tor_careerchoice_description.TheLastJourneyKeystone" text="{=str_tor_careerchoice_description_TheLastJourneyKeystone}When Doom Seeking, gain +0.5% 'Physical' damage when taking a hit." />
+  <string id="tor_careerchoice_description.TheLastJourneyKeystone" text="{=str_tor_careerchoice_description_TheLastJourneyKeystone}When Doom Seeking, your attacks become unparryable." />
   <string id="tor_careerchoice_description.TheLastJourneyPassive1" text="{=str_tor_careerchoice_description_TheLastJourneyPassive1}+15 personal Hitpoints." />
   <string id="tor_careerchoice_description.TheLastJourneyPassive2" text="{=str_tor_careerchoice_description_TheLastJourneyPassive2}If armour weight is less than 9, gain +25% personal melee 'Physical Resistance'." />
   <string id="tor_careerchoice_description.TheLastJourneyPassive3" text="{=str_tor_careerchoice_description_TheLastJourneyPassive3}+15% melee 'Physical Resistance' for all 'Slayer' troops." />

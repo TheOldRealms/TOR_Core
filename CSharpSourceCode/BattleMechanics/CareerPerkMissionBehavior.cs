@@ -134,15 +134,6 @@ namespace TOR_Core.BattleMechanics
             {
                 affectorAgent.ApplyDamage((int)(blow.InflictedDamage * 0.25f), affectedAgent.Position);
             }
-
-            // TheLastJourneyKeystone: Increment damage when taking a hit while DoomSeeking
-            if (affectedAgent.IsMainAgent && Hero.MainHero.HasCareer(TORCareers.Slayer) && Hero.MainHero.HasCareerChoice("TheLastJourneyKeystone"))
-            {
-                if (Agent.Main.HasAttribute("DoomSeeking"))
-                {
-                    CareerMissionVariables[0]++;
-                }
-            }
         }
 
         private void GromrilArmorBehavior()
