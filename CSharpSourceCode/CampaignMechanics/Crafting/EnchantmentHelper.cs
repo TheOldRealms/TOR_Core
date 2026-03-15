@@ -206,16 +206,26 @@ public static class EnchantmentHelper
 
             foreach (var hero in eligableHeroes.ToList())
             {
-                if (!int.TryParse(arguments[2], out skillValue) || hero.GetSkillValue(skill) < skillValue)
+                if (int.TryParse(arguments[2], out  skillValue) )
                 {
-                    hintText.SetTextVariable("REQUIREMENT_TEXT", "{B}You can't learn this. Requires : {B}" + skill.Name + " " + skillValue);
-                    enabled = false;
+                    var value = hero.GetSkillValue(skill);
+                    if (value < skillValue)
+                    {
+                        hintText.SetTextVariable("REQUIREMENT_TEXT", "{B}You can't learn this. Requires : {B}" + skill.Name + " " + skillValue);
+                        enabled = false;
+                        
+                    }
+                    else
+                    {
+                        hintText.SetTextVariable("REQUIREMENT_TEXT", "");
+                        enabled = true;
+                        break;
+                    }
+
                 }
-                else
-                {
-                    hintText.SetTextVariable("REQUIREMENT_TEXT", "");
-                    enabled = true;
-                }
+
+                enabled = false;
+                break;
             }
 
             var crCost = 0;
