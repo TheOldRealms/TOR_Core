@@ -4892,7 +4892,7 @@
 		</elite_caravan_party_templates>
 		<available_ship_hulls></available_ship_hulls>
 		<vassal_reward_items>
-			<item id="Item.sentinel_2hsword" />
+			<item id="Item.sturgia_mace_2_t4" />
 		</vassal_reward_items>
 		<banner_bearer_replacement_weapons>
 			<item id="Item.vlandia_sword_1_t2" />
@@ -5534,7 +5534,7 @@
 		</elite_caravan_party_templates>
 		<available_ship_hulls></available_ship_hulls>
 		<vassal_reward_items>
-			<item id="Item.sentinel_2hsword" />
+			<item id="Item.tor_he_weapon_2h_sword_001" />
 		</vassal_reward_items>
 		<banner_bearer_replacement_weapons>
 			<item id="Item.tor_we_weapon_sword_001" />

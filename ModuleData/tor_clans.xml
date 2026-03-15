@@ -773,7 +773,7 @@
              super_faction="Kingdom.moot"
              is_noble="true"
              text="{=str_tor_clan_moot_clan_1_desc}The Halflings are a peaceful and friendly people, very fond of festivities and large banquets, enjoying fun and especially food. They are a people with little ambition, so they hardly care about military matters, little interested in what may happen outside their lands. Consequently, life in the Assembly is often very boring for young Halflings, and although Halflings are generally not fond of travel, some do seek adventure in the outside world."
-             banner_key="11.126.148.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_mootland" />
+             banner_key="11.126.148.1501.1501.764.764.1.1.0.122.20.41.604.604.764.764.0.0.0:kingdom_mootland" />
     <!-- Wood Elf faction -->
     <Faction id="athel_loren_clan_1"
              name="{=str_tor_clan_athel_loren_clan_1_name}Talsyn"

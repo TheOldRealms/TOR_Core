@@ -1958,6 +1958,49 @@
       <EquipmentSet id="tor_dw_artillery_crew_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_dw_thug" default_group="infantry" level="11" name="{=str_tor_dw_thug}Dawi Outcast Slayer" occupation="Gangster" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true" race="dwarf">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_slayer" />
+      <hair_tags>
+        <hair_tag name="SlayerHair" />
+      </hair_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_dw_expert_thug" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_dw_slayer_template" />
+      <EquipmentSet id="tor_dw_slayer_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_dw_expert_thug" default_group="infantry" level="16" name="{=str_tor_dw_expert_thug}Dawi Honorless Slayer" occupation="Gangster" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_level16" race="dwarf">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_slayer" />
+      <hair_tags>
+        <hair_tag name="SlayerHair" />
+      </hair_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_dw_master_thug" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_dw_slayer_template" />
+      <EquipmentSet id="tor_dw_slayer_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_dw_master_thug" default_group="infantry" level="21" name="{=str_tor_dw_master_thug}Dawi Kin Slayer" occupation="Gangster" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_level21" race="dwarf">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_slayer" />
+      <hair_tags>
+        <hair_tag name="SlayerHair" />
+      </hair_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_dw_troll_slayer_template" />
+      <EquipmentSet id="tor_dw_troll_slayer_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_gs_orc" default_group="infantry" level="1" name="{=str_tor_gs_orc}Orc" occupation="Villager" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level1" race="orc">
     <face>
       <face_key_template value="BodyProperty.orc_small" />
@@ -2221,7 +2264,9 @@
     <face>
       <face_key_template value="BodyProperty.orc_small" />
     </face>
-    <upgrade_targets />
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_gs_orc_bully_bigun" />
+    </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_gs_orc_bully_template" />
       <EquipmentSet id="tor_gs_orc_bully_template" civilian="true" />
@@ -2245,6 +2290,40 @@
     <Equipments>
       <EquipmentSet id="tor_gs_troll_template" />
       <EquipmentSet id="tor_gs_troll_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_gs_thug" default_group="infantry" level="6" name="{=str_tor_gs_thug}Orc Thug" occupation="Gangster" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="orc">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_gs_expert_thug" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_gs_orc_bully_template" />
+      <EquipmentSet id="tor_gs_orc_bully_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_gs_expert_thug" default_group="infantry" level="11" name="{=str_tor_gs_expert_thug}Orc Thug Big 'Un" occupation="Gangster" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level11" race="orc">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_gs_master_thug" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_gs_orc_bully_bigun_template" />
+      <EquipmentSet id="tor_gs_orc_bully_bigun_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_gs_master_thug" default_group="infantry" level="21" name="{=str_tor_gs_master_thug}Orc Thug Boss" occupation="Gangster" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level21" race="orc">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_gs_orc_bully_bigun_template" />
+      <EquipmentSet id="tor_gs_orc_bully_bigun_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_eo_forestborn" default_group="infantry" level="1" name="{=str_tor_eo_forestborn}Eonir Forestborn" occupation="Villager" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level1" race="elf">
@@ -5237,14 +5316,13 @@
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_br_bandit_scout" />
-      <upgrade_target id="NPCCharacter.tor_br_bandit_leader" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_br_bandit_template" />
       <EquipmentSet id="tor_br_bandit_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_bandit_leader" default_group="ranged" level="16" name="{=str_tor_br_bandit_leader}Herrimault" occupation="Bandit" culture="Culture.desert_bandits" skill_template="SkillSet.tor_skills_level16">
+  <NPCCharacter id="tor_br_bandit_leader" default_group="ranged" level="21" name="{=str_tor_br_bandit_leader}Faceless" occupation="Bandit" culture="Culture.desert_bandits" skill_template="SkillSet.tor_skills_level21">
     <face>
       <face_key_template value="BodyProperty.brute" />
     </face>
@@ -5254,11 +5332,13 @@
       <EquipmentSet id="tor_br_bandit_leader_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_bandit_scout" default_group="infantry" level="16" name="{=str_tor_br_bandit_scout}Thief" occupation="Bandit" culture="Culture.desert_bandits" skill_template="SkillSet.tor_skills_level16">
+  <NPCCharacter id="tor_br_bandit_scout" default_group="ranged" level="16" name="{=str_tor_br_bandit_scout}Herrimault" occupation="Bandit" culture="Culture.desert_bandits" skill_template="SkillSet.tor_skills_level16">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
-    <upgrade_targets />
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_br_bandit_leader" />
+    </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_br_bandit_scout_template" />
       <EquipmentSet id="tor_br_bandit_scout_template" civilian="true" />
