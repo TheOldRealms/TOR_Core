@@ -15,7 +15,7 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 
-public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBehaviorBase(career)
+public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
 {
     private string _fireIcon = "CareerSystem\\aqshy";
     private string _lightIcon = "CareerSystem\\hysh";
@@ -24,6 +24,23 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
     private string _beastIcon = "CareerSystem\\ghur";
     private string _grungniRune = "CareerSystem\\chamon";
     private string _deathIcon = "CareerSystem\\chamon";
+
+    private string _runeEmptyIcon = "CareerSystem\\rune_empty";
+    private string _runeBattleIcon = "CareerSystem\\rune_battle";
+    private string _runeGuardingIcon = "CareerSystem\\rune_guarding";
+    private string _runeRapidFireIcon = "CareerSystem\\rune_rapid_fire";
+    private string _runeSanctuaryIcon = "CareerSystem\\rune_sanctuary";
+    private string _runeStrollazIcon = "CareerSystem\\strollaz_rune";
+
+    public RunelordCareerButtonBehavior(CareerObject career) : base(career)
+    {
+        MBTextManager.SetTextVariable("RUNE_EMPTY_ICON", string.Format("<img src=\"{0}\"/>", _runeEmptyIcon));
+        MBTextManager.SetTextVariable("RUNE_BATTLE_ICON", string.Format("<img src=\"{0}\"/>", _runeBattleIcon));
+        MBTextManager.SetTextVariable("RUNE_GUARDING_ICON", string.Format("<img src=\"{0}\"/>", _runeGuardingIcon));
+        MBTextManager.SetTextVariable("RUNE_RAPID_FIRE_ICON", string.Format("<img src=\"{0}\"/>", _runeRapidFireIcon));
+        MBTextManager.SetTextVariable("RUNE_SANCTUARY_ICON", string.Format("<img src=\"{0}\"/>", _runeSanctuaryIcon));
+        MBTextManager.SetTextVariable("RUNE_STROLLAZ_ICON", string.Format("<img src=\"{0}\"/>", _runeStrollazIcon));
+    }
 
     private static readonly List<UnitRune> UnitRunes =
     [
@@ -51,7 +68,30 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
     public static List<string> GetRuneIds => UnitRunes.SelectQ(x => x.EffectId).ToListQ();
 
     private CharacterObject _currentCharacter = null;
+    private CharacterObject _setCharacter;
 
+    public override string CareerButtonIcon
+    {
+        get
+        {
+            var currentRuneId = GetCurrentRuneId(_setCharacter);
+
+            if (currentRuneId == null)
+            {
+                return "CareerSystem\\rune_empty";
+            }
+
+            return currentRuneId switch
+            {
+                "unit_rune_guarding" => "CareerSystem\\rune_guarding",
+                "unit_rune_sanctuary" => "CareerSystem\\rune_sanctuary",
+                "unit_rune_battle" => "CareerSystem\\rune_battle",
+                "unit_rune_rapid_fire" => "CareerSystem\\rune_rapid_fire",
+                "unit_rune_strollaz" => "CareerSystem\\strollaz_rune",
+                _ => "CareerSystem\\rune_empty"
+            };
+        }
+    }
 
     public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner, bool shiftClick)
     {
@@ -70,6 +110,19 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
         }
 
         PromptUnitRunes(tier);
+    }
+
+    private string GetRuneIcon(string runeEffectId)
+    {
+        return runeEffectId switch
+        {
+            "unit_rune_guarding" => "RUNE_GUARDING_ICON",
+            "unit_rune_sanctuary" => "RUNE_SANCTUARY_ICON",
+            "unit_rune_battle" => "RUNE_BATTLE_ICON",
+            "unit_rune_rapid_fire" => "RUNE_RAPID_FIRE_ICON",
+            "unit_rune_strollaz" => "RUNE_STROLLAZ_ICON",
+            _ => "RUNE_EMPTY_ICON"
+        };
     }
 
     private void PromptUnitRunes(int tier)
@@ -105,6 +158,9 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
 
             var hasIngredients = HasIngredientsForUse(blueprintList, out var failed);
 
+            var icon = GetRuneIcon(unitRune.EffectId);
+            var displayText = $"{{{icon}}}{unitRune.RuneName}";
+
             if (failed.Any(x => x.notKnown == true))
             {
                 var entries = new StringBuilder();
@@ -115,7 +171,7 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
                 }
 
                 hint = TORTextHelper.GetTextObject("tor_unit_rune_unknown_runes_text", "You do not know the required runes: " + entries.ToString());
-                list.Add(new InquiryElement(unitRune, unitRune.RuneName.ToString(), null, false, hint.ToString()));
+                list.Add(new InquiryElement(unitRune, new TextObject(displayText).ToString(), null, false, hint.ToString()));
                 continue;
             }
 
@@ -163,7 +219,7 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
                 hint = TORTextHelper.GetTextObject("tor_unit_rune_cost_display", "{RUNE_DESCRIPTION}{newline}{newline}Required ingredients:{newline}{RUNE_COST_LIST}");
             }
 
-            list.Add(new InquiryElement(unitRune, unitRune.RuneName.ToString(), null, hasIngredients, hint.ToString()));
+            list.Add(new InquiryElement(unitRune, new TextObject(displayText).ToString(), null, hasIngredients, hint.ToString()));
         }
         var title = TORTextHelper.GetTextObject("tor_unit_rune_title", "Unit runes");
         var text = TORTextHelper.GetTextObject("tor_unit_rune_description", "Choose a rune to add to the equipment of your units. {RUNE_WARNING_TEXT}");
@@ -311,6 +367,7 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
 
     public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner)
     {
+        _setCharacter = characterObject;
         return isPrisoner == false && characterObject.Culture.StringId == TORConstants.Cultures.DAWI;
     }
 
