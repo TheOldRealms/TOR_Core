@@ -57,6 +57,12 @@ namespace TOR_Core.Models
                 explainedNumber.Add(shinies / 20, new TextObject("Shiny Pile"));
             }
 
+            // Squigherds bonus for greenskin-owned towns
+            if (town.Settlement.OwnerClan?.Culture?.StringId == TORConstants.Cultures.GREENSKIN && town.Settlement.IsGreenskinCamp())
+            {
+                explainedNumber.Add(60, new TextObject("Squigherds"));
+            }
+
             return explainedNumber;
         }
 

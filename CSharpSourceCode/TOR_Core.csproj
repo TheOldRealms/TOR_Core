@@ -596,6 +596,7 @@
     <Compile Include="Extensions\UI\TORMapInfoVMExtension.cs" />
     <Compile Include="CampaignMechanics\TORPartyUpgraderCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TorRecruitmentHelpers.cs" />
+    <Compile Include="CampaignMechanics\GreenskinAICampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORSpecialSettlementBehavior.cs" />
     <Compile Include="CampaignMechanics\TORStartupBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerAbilityChargeSupplier.cs" />
