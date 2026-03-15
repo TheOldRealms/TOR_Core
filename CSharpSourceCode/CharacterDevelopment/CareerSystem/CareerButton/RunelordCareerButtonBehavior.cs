@@ -234,6 +234,7 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
 
     private string GetCurrentRuneId(CharacterObject character)
     {
+        if (character == null) return null;
         var partyExtendedInfo =
             ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
         var attributes = partyExtendedInfo.TroopAttributes.FirstOrDefault(x => x.Key == character.StringId).Value;

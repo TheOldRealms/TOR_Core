@@ -169,7 +169,7 @@ namespace TOR_Core.CharacterDevelopment
             _ironbreaker.Initialize("Ironbreaker", null, "Impenetrable", CareerAbilityChargeSupplier.IronbreakerChargeSupplier, 50, typeof(ImpenetrableScript));
             _slayer.Initialize("Slayer", null, "DoomSeeking", CareerAbilityChargeSupplier.SlayerChargeSupplier, 500, typeof(DoomSeekingScript));
             _warden.Initialize("Warden", null, "HawkEye", null, 100, typeof(HawkEyeScript));
-            _runelord.Initialize("Runelord", null, "WisdomOfThungni", CareerAbilityChargeSupplier.RunelordChargeSupplier, 0, typeof(WisdomOfThungniScript));
+            _runelord.Initialize("Runelord", null, "WisdomOfThungni", CareerAbilityChargeSupplier.RunelordChargeSupplier, 100, typeof(WisdomOfThungniScript));
             _orcBoss.Initialize("Orc Boss", null, "ArmedToDaTeef", null, 100, typeof(ArmedToDaTeef));
             _orcShaman.Initialize("Orc Shaman", null, "CallOfDaGreen", null, 100, typeof(CallOfDaGreen));
         }
