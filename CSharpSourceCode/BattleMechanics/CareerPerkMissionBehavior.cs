@@ -223,13 +223,6 @@ namespace TOR_Core.BattleMechanics
                     }
                 }
 
-                if (affectorAgent.BelongsToMainParty())
-                {
-                    if (Hero.MainHero.HasCareerChoice("TheLastJourneyKeystone") && affectorAgent.IsSlayer())
-                    {
-                        CareerMissionVariables[0]++;
-                    }
-                }
             }
 
             // Call of da Green: WoM from linked Greenskin kills/deaths
