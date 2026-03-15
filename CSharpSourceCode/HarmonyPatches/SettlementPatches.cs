@@ -162,10 +162,12 @@ namespace TOR_Core.HarmonyPatches
                         break;
                 }
 
+                nameplate.OnFinalize();
                 return false;
             }
             GameEntity entity = AccessTools.Field(typeof(SettlementNameplateVM), "_entity").GetValue(nameplate) as GameEntity;
             ToRSettlementNameplateVM torNameplate = new(nameplate.Settlement, entity, ____mapCamera, ____fastMoveCameraToPosition);
+            nameplate.OnFinalize(); // delete this if there's any issues with nametemplates
 
             if (!____allNameplates.Contains(torNameplate)) ____allNameplates.Add(torNameplate);
             ____allNameplatesBySettlements[nameplate.Settlement] = torNameplate;
