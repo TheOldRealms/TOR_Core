@@ -371,17 +371,17 @@
       <CursedSite id="haunted_site_04" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="cursed_battlesite" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="troll_cave_01" name="{=str_tor_settlements_troll_cave}Troll Cave" owner="Faction.troll_clan_1" posX="1565.3" posY="1294.267" culture="Culture.greenskin" text="{=!}Centuries ago, the hills outside of Mousillon were used as a mass grave to bury the thousands who died of Red Pox. So many victims were there that to this day the soil covering their pits is visible from the city walls. The air here is sometimes poisonous and like the rest of the cursed land the long dead rest uneasily." >
+  <Settlement id="troll_cave_01" name="{=str_tor_settlements_troll_cave}Troll Cave" owner="Faction.troll_clan_1" posX="1565.3" posY="1294.267" culture="Culture.greenskin" text="{=!}Centuries ago, the hills outside of Mousillon were used as a mass grave to bury the thousands who died of Red Pox. So many victims were there that to this day the soil covering their pits is visible from the city walls. The air here is sometimes poisonous and like the rest of the cursed land the long dead rest uneasily.">
     <Components>
-      <TrollCave id="troll_cave_01"  background_crop_position="0.0" background_mesh="cursed_battlesite" battle_scene="TOR_troll_hideout_01" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <TrollCave id="troll_cave_01" background_crop_position="0.0" background_mesh="cursed_battlesite" battle_scene="TOR_troll_hideout_01" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="troll_cave_02" name="{=str_tor_settlements_troll_cave}Troll Cave" owner="Faction.troll_clan_1" posX="1057.335" posY="998.37" culture="Culture.greenskin" text="{=!}Centuries ago, the hills outside of Mousillon were used as a mass grave to bury the thousands who died of Red Pox. So many victims were there that to this day the soil covering their pits is visible from the city walls. The air here is sometimes poisonous and like the rest of the cursed land the long dead rest uneasily." >
+  <Settlement id="troll_cave_02" name="{=str_tor_settlements_troll_cave}Troll Cave" owner="Faction.troll_clan_1" posX="1057.335" posY="998.37" culture="Culture.greenskin" text="{=!}Centuries ago, the hills outside of Mousillon were used as a mass grave to bury the thousands who died of Red Pox. So many victims were there that to this day the soil covering their pits is visible from the city walls. The air here is sometimes poisonous and like the rest of the cursed land the long dead rest uneasily.">
     <Components>
-      <TrollCave id="troll_cave_02"  background_crop_position="0.0" background_mesh="cursed_battlesite" battle_scene="TOR_troll_hideout_01" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <TrollCave id="troll_cave_02" background_crop_position="0.0" background_mesh="cursed_battlesite" battle_scene="TOR_troll_hideout_01" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="troll_cave_03" name="{=str_tor_settlements_troll_cave}Troll Cave" owner="Faction.troll_clan_1" posX="1719.524" posY="867.392" culture="Culture.greenskin" text="{=!}Centuries ago, the hills outside of Mousillon were used as a mass grave to bury the thousands who died of Red Pox. So many victims were there that to this day the soil covering their pits is visible from the city walls. The air here is sometimes poisonous and like the rest of the cursed land the long dead rest uneasily." >
+  <Settlement id="troll_cave_03" name="{=str_tor_settlements_troll_cave}Troll Cave" owner="Faction.troll_clan_1" posX="1719.524" posY="867.392" culture="Culture.greenskin" text="{=!}Centuries ago, the hills outside of Mousillon were used as a mass grave to bury the thousands who died of Red Pox. So many victims were there that to this day the soil covering their pits is visible from the city walls. The air here is sometimes poisonous and like the rest of the cursed land the long dead rest uneasily.">
     <Components>
       <TrollCave id="troll_cave_03" background_crop_position="0.0" background_mesh="cursed_battlesite" battle_scene="TOR_troll_hideout_01" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
@@ -11804,7 +11804,7 @@
   </Settlement>
   <Settlement id="castle_village_KI2_2" name="{=Settlements.Settlement.name.castle_village_KI2_2}Khazid Nekewuka" posX="1243.996" posY="675.731" culture="Culture.sturgia" text="{=Settlements.Settlement.text.castle_village_KI2_2}A small garrisoned settlement but its fortifications have been destroyed in a Greenskin raid. The town mostly produces meat from cattle.">
     <Components>
-      <Village id="castle_village_comp_KI2_2" village_type="VillageType.cattle_farm" hearth="200" bound="Settlement.castle_KI2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_KI2_2" village_type="VillageType.lumberjack" hearth="200" bound="Settlement.castle_KI2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_dwarf_village_04" />
@@ -11967,7 +11967,7 @@
   </Settlement>
   <Settlement id="village_KF1_2" name="{=Settlements.Settlement.name.village_KF1_2}Mont Pace" posX="1198.087" posY="683.5601" culture="Culture.sturgia" text="{=Settlements.Settlement.text.village_KF1_2}A small human town located near the Montdidier Pass and dedicated to agriculture.">
     <Components>
-      <Village id="village_comp_KF1_2" village_type="VillageType.wheat_farm" hearth="250" bound="Settlement.town_KF1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_KF1_2" village_type="VillageType.lumberjack" hearth="250" bound="Settlement.town_KF1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_dwarf_village_01" />
@@ -12567,7 +12567,7 @@
   </Settlement>
   <Settlement id="village_KK1_1" name="{=Settlements.Settlement.name.village_KK1_1}Baraz Bar" posX="1775.324" posY="1032.4" culture="Culture.sturgia" text="{=Settlements.Settlement.text.village_KK1_1}From the Dwarf language 'Baraz' meaning oath, and Bar 'entrance'; it is a small lookout post at the foot of the mountain where the path leading to the entrance of the Karak Kadrin Slayers' fortress begins. This name is quite a statement of intent.">
     <Components>
-      <Village id="village_comp_KK1_1" village_type="VillageType.cattle_farm" hearth="250" bound="Settlement.town_KK1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_KK1_1" village_type="VillageType.lumberjack" hearth="250" bound="Settlement.town_KK1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_dwarf_village_04" />
