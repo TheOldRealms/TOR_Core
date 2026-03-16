@@ -148,7 +148,7 @@ namespace TOR_Core.Items
         /// <returns></returns>
         private ItemObject FindBrokenShield(Agent agent)
         {
-            var possibleItems = agent.GetHero().CharacterObject.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Weapon3).Where(x => x.IsShield() && x.HasAnyTrait());
+            var possibleItems = agent.GetHero()?.CharacterObject.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Weapon3).Where(x => x.IsShield() && x.HasAnyTrait());
             ItemObject targetItem = null;
             foreach (var itemObject in possibleItems)
             {

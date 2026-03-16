@@ -23,6 +23,8 @@ namespace TOR_Core.Models
     {
         public override ExplainedNumber GetPartyMemberSizeLimit(PartyBase party, bool includeDescriptions = false)
         {
+            //Sly : PartyBase.Culture is actually PartyBase.MapFaction.Culture with no null protection on MapFaction in native
+
             var num = base.GetPartyMemberSizeLimit(party, includeDescriptions);
             if (party?.MapFaction != null && party.Culture != null && party.Culture.StringId == TORConstants.Cultures.SYLVANIA)
             {
@@ -51,7 +53,7 @@ namespace TOR_Core.Models
                 }
             }
 
-            if (party?.Culture?.StringId == TORConstants.Cultures.GREENSKIN &&
+            if (party?.MapFaction != null && party.Culture?.StringId == TORConstants.Cultures.GREENSKIN &&
                 party.IsMobile &&
                 party.LeaderHero != Hero.MainHero)
             {
@@ -73,7 +75,7 @@ namespace TOR_Core.Models
                 AddCareerPassivesForPartySize(Hero.MainHero, party, ref num);
             }
 
-            if (party.Culture?.StringId == TORConstants.Cultures.ASRAI)
+            if (party.MapFaction != null && party.Culture?.StringId == TORConstants.Cultures.ASRAI)
             {
                 num.AddFactor(-0.25f, new TextObject("Woodelf cultural penalty"));
 
