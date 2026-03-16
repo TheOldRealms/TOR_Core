@@ -51,6 +51,13 @@ namespace TOR_Core.Models
                 }
             }
 
+            if (party?.Culture?.StringId == TORConstants.Cultures.GREENSKIN &&
+                party.IsMobile &&
+                party.LeaderHero != Hero.MainHero)
+            {
+                num.AddFactor(0.5f, new TextObject("Greenskins"));
+            }
+
             //Sly : prevents the parties from taking Overmanned speed penalties, they'll now move as fast as parties of foot bandits.
             if (party.MobileParty.PartyComponent is RaidingPartyComponent)
             {
