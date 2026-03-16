@@ -1,6 +1,7 @@
 ﻿using Helpers;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Party;
@@ -28,9 +29,13 @@ namespace TOR_Core.CampaignMechanics
 
         private const int UndeadCountVillages = 5;
         private const int UndeadCountTowns = 20;
+        private const int SkeletonVillageCooldownHours = 4;
+        private const int SkeletonTownCooldownHours = 10;
         private const int MaxTrollsPerParty = 20;
         private const int MaxSlayersPerParty = 40;
 
+        private Dictionary<string, CampaignTime> _lastVillageSkeletonRecruitmentTimeByLeaderId = new();
+        private Dictionary<string, CampaignTime> _lastTownSkeletonRecruitmentTimeByLeaderId = new();
         public override void RegisterEvents()
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, Initialize);
@@ -221,14 +226,32 @@ namespace TOR_Core.CampaignMechanics
         private void AddUndeadToPartyOnEnteringSettlement(MobileParty party, Settlement settlement, Hero leaderHero)
         {
             if (party == null || settlement == null || leaderHero == null || !leaderHero.IsNecromancer() || settlement.IsHideout || party.IsMainParty) return;
-            if (party.MemberRoster.TotalManCount < party.Party.PartySizeLimit)
+            if (_skeleton == null) return;
+            if (party.MemberRoster.TotalManCount >= party.Party.PartySizeLimit) return;
+
+            var leaderId = leaderHero.StringId;
+            var isVillageRecruitment = settlement.IsVillage;
+            var cooldownsByLeaderId = isVillageRecruitment
+                ? _lastVillageSkeletonRecruitmentTimeByLeaderId
+                : _lastTownSkeletonRecruitmentTimeByLeaderId;
+
+            var cooldownHours = isVillageRecruitment
+                ? SkeletonVillageCooldownHours
+                : SkeletonTownCooldownHours;
+
+            if (cooldownsByLeaderId.TryGetValue(leaderId, out var lastRecruitmentTime) &&
+                lastRecruitmentTime.ElapsedHoursUntilNow < CampaignTime.Hours(cooldownHours).ToHours)
             {
-                if (_skeleton != null)
-                {
-                    var number = settlement.IsVillage ? UndeadCountVillages : UndeadCountTowns;
-                    party.MemberRoster.AddToCounts(_skeleton, Math.Min(number, party.Party.PartySizeLimit - party.MemberRoster.TotalManCount));
-                }
+                return;
             }
+
+            var skeletonsToAdd = Math.Min(isVillageRecruitment ? UndeadCountVillages : UndeadCountTowns,
+                party.Party.PartySizeLimit - party.MemberRoster.TotalManCount);
+
+            if (skeletonsToAdd <= 0) return;
+
+            party.MemberRoster.AddToCounts(_skeleton, skeletonsToAdd);
+            cooldownsByLeaderId[leaderId] = CampaignTime.Now;
         }
 
         private void ProcessSlayerRecruitment(MobileParty party)
@@ -317,8 +340,11 @@ namespace TOR_Core.CampaignMechanics
             }
         }
 
-        public override void SyncData(IDataStore dataStore) { }
-
+        public override void SyncData(IDataStore dataStore)
+        {
+            dataStore.SyncData("_lastVillageSkeletonRecruitmentTimeByLeaderId", ref _lastVillageSkeletonRecruitmentTimeByLeaderId);
+            dataStore.SyncData("_lastTownSkeletonRecruitmentTimeByLeaderId", ref _lastTownSkeletonRecruitmentTimeByLeaderId);
+        }
         private void TORRecruitmentBehavior(Hero recruiter, Settlement settlement, Hero recruitmentSource, CharacterObject troop, int amount)
         {
             if (recruiter == null) return;
