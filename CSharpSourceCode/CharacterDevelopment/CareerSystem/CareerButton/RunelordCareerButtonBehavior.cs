@@ -369,6 +369,12 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
     public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner)
     {
         _setCharacter = characterObject;
+        
+        if (!Hero.MainHero.HasAttribute("PlayerRunesmith"))
+        {
+            return false;
+        }
+        
         return isPrisoner == false && characterObject.Culture.StringId == TORConstants.Cultures.DAWI;
     }
 
