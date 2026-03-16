@@ -174,6 +174,9 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
         {
             if (!TORWandererCondition()) return false;
             if (Hero.OneToOneConversationHero.HeroState == Hero.CharacterStates.Prisoner) return false;
+            if(Hero.OneToOneConversationHero.PartyBelongedTo != null) return false;
+            if(Hero.OneToOneConversationHero.Clan != Hero.MainHero.Clan) return false;
+
 
             // Set TOR-specific introduction text
             var hero = Hero.OneToOneConversationHero;
