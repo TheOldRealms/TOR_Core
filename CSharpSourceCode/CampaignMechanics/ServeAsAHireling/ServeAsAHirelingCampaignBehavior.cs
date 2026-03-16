@@ -922,8 +922,21 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 _inPostBattleTransition = true;
 
                 _hirelingLordIsFightingWithoutPlayer = false;
-                GameMenu.ActivateGameMenu("hireling_menu");
-                _hirelingWaitMenuShown = true;
+
+                var waitingForNativeEncounterCleanup = mapEvent.IsPlayerMapEvent
+                    && PlayerEncounter.Current != null
+                    && PlayerEncounter.EncounterSettlement == null;
+
+                if (waitingForNativeEncounterCleanup)
+                {
+                    // let native clean this up first
+                    _hirelingWaitMenuShown = false;
+                }
+                else
+                {
+                    GameMenu.ActivateGameMenu("hireling_menu");
+                    _hirelingWaitMenuShown = true;
+                }
             }
         }
 
@@ -942,7 +955,11 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 _durationInDays = timeModel.CampaignStartTime.ElapsedDaysUntilNow - _entryServiceTimeStamp;//could be in an hourly or daily tick instead
                 menu.RunOnTick(Campaign.Current.CurrentMenuContext, dt);
 
-                if (!_hirelingWaitMenuShown)
+                var waitingForNativeEncounterCleanup = _inPostBattleTransition
+                    && PlayerEncounter.Current != null
+                    && PlayerEncounter.EncounterSettlement == null;
+
+                if (!_hirelingWaitMenuShown && !waitingForNativeEncounterCleanup)
                 {
                     GameMenu.ActivateGameMenu("hireling_menu");
                     _hirelingWaitMenuShown = true;
