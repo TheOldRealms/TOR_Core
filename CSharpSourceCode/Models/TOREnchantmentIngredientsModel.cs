@@ -207,7 +207,7 @@ public class TOREnchantmentIngredientsModel : GameModel
                 }
                 break;
             case TorTradeGoodType.GemStone:
-                if (character.Culture.StringId == TORConstants.Cultures.DAWI || character.Culture.StringId == TORConstants.Cultures.GREENSKIN)
+                if (character.Culture.StringId == TORConstants.Cultures.DAWI || character.Culture.StringId == TORConstants.Cultures.GREENSKIN || character.Culture.StringId == TORConstants.Cultures.GREENSKIN_BANDIT)
                 {
                     result += 1;
 
