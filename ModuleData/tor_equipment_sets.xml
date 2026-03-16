@@ -6342,7 +6342,7 @@
       <Equipment slot="Item2" id="Item.tor_dw_weapon_gun_drakegun" />
       <Equipment slot="Item3" id="Item.tor_dw_drakegun_canister" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_irondrake_001" />
-      <Equipment slot="Body" id="tem.tor_dw_body_armour_irondrake_001" />
+      <Equipment slot="Body" id="Item.tor_dw_body_armour_irondrake_001" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulder_shoulderpads_irondrake_001" />
       <Equipment slot="Gloves" id="Item.tor_dw_arm_bracers_irondrake_001" />
       <Equipment slot="Leg" id="Item.tor_dw_leg_boots_irondrake_001" />
@@ -6352,7 +6352,7 @@
       <Equipment slot="Item2" id="Item.tor_dw_weapon_gun_drakegun" />
       <Equipment slot="Item3" id="Item.tor_dw_drakegun_canister" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_irondrake_001" />
-      <Equipment slot="Body" id="tem.tor_dw_body_armour_irondrake_001" />
+      <Equipment slot="Body" id="Item.tor_dw_body_armour_irondrake_001" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulder_shoulderpads_irondrake_001" />
       <Equipment slot="Gloves" id="Item.tor_dw_arm_bracers_irondrake_001" />
       <Equipment slot="Leg" id="Item.tor_dw_leg_boots_irondrake_001" />
@@ -6364,7 +6364,7 @@
       <Equipment slot="Item2" id="Item.tor_dw_weapon_gun_drakegun" />
       <Equipment slot="Item3" id="Item.tor_dw_drakegun_canister" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_irondrake_001" />
-      <Equipment slot="Body" id="tem.tor_dw_body_armour_irondrake_001" />
+      <Equipment slot="Body" id="Item.tor_dw_body_armour_irondrake_001" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulder_shoulderpads_irondrake_001" />
       <Equipment slot="Gloves" id="Item.tor_dw_arm_bracers_irondrake_001" />
       <Equipment slot="Leg" id="Item.tor_dw_leg_boots_irondrake_001" />
@@ -6374,7 +6374,7 @@
       <Equipment slot="Item2" id="Item.tor_dw_weapon_gun_drakegun" />
       <Equipment slot="Item3" id="Item.tor_dw_drakegun_canister" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_irondrake_001" />
-      <Equipment slot="Body" id="tem.tor_dw_body_armour_irondrake_001" />
+      <Equipment slot="Body" id="Item.tor_dw_body_armour_irondrake_001" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulder_shoulderpads_irondrake_001" />
       <Equipment slot="Gloves" id="Item.tor_dw_arm_bracers_irondrake_001" />
       <Equipment slot="Leg" id="Item.tor_dw_leg_boots_irondrake_001" />
@@ -17319,14 +17319,14 @@
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_1h_black_orc_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_orc_boar_boyz_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_boyz_001" />
-      <Equipment slot="Gloves" id="tem.tor_greenskin_bracers_orc_boar_boyz_003" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_orc_boar_boyz_003" />
       <Equipment slot="Leg" id="Item.tor_greenskin_boots_orc_choppa_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_1h_black_orc_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_orc_boar_boyz_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_boyz_001" />
-      <Equipment slot="Gloves" id="tem.tor_greenskin_bracers_orc_boar_boyz_003" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_orc_boar_boyz_003" />
       <Equipment slot="Leg" id="Item.tor_greenskin_boots_orc_choppa_001" />
     </EquipmentSet>
   </EquipmentRoster>
