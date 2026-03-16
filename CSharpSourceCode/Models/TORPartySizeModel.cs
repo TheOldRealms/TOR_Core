@@ -55,7 +55,7 @@ namespace TOR_Core.Models
                 party.IsMobile &&
                 party.LeaderHero != Hero.MainHero)
             {
-                num.AddFactor(0.5f, new TextObject("Greenskins"));
+                num.AddFactor(0.35f, new TextObject("Greenskins"));
             }
 
             //Sly : prevents the parties from taking Overmanned speed penalties, they'll now move as fast as parties of foot bandits.
