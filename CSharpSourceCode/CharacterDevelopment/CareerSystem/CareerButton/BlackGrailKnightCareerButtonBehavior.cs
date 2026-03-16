@@ -34,7 +34,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 for (int i = 0; i < affordable; i++)
                 {
                     CustomResourceManager.AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(), ExchangeCost);
-                    CareerButtonHelper.ExchangeUnitForNewUnit(characterObject, knightUnit, isPrisoner);
+                    CareerButtonHelper.ExchangeUnitForNewUnit(characterObject, knightUnit, true, isPrisoner);
                 }
             }
             else
