@@ -42,11 +42,10 @@ namespace TOR_Core.Extensions.UI
         protected override void OnInitialize()
         {
             base.OnInitialize();
-          //  Common.MemoryCleanupGC(false); //Sly : Game.Destroy runs this at the end - no need to run it twice in a row
-          //  if (Game.Current != null)
-           // {
-           //     Game.Current.Destroy();
-          //  }
+            if (Game.Current != null) // what was the purpose of removing the destroy? 
+            {
+                Game.Current.Destroy();
+            }
             MBMusicManager.Initialize();
 
             _dataSource = new InitialMenuVM(_initialState);
