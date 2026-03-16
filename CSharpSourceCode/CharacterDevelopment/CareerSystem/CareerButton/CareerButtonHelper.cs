@@ -111,20 +111,20 @@ public static class CareerButtonHelper
                 //this way is a bit clunky but works best for manually setting visual elements.
                 //the update kills the characterViewModel we have to reinitialize it. Note that in the other case we dont do this, this would create a copy roster we dont want.
                 var characterViewModel = troops.FirstOrDefault(x => x.Character == targetCharacterObject);
-                var wasNull = false;
+                var insertIndex = indexOfCharacter;
                 if (characterViewModel == null)
                 {
-                    wasNull = true;
                     characterViewModel = new PartyCharacterVM(partyScreenLogic, PartyVMExtension.ViewModelInstance, roster, indexOfCharacter, rosterType, PartyScreenLogic.PartyRosterSide.Right, true);
                 }
 
-                if (!wasNull)
+                else
                 {
-                    troops.RemoveAt(characterViewModel.Index);
+                    insertIndex = troops.IndexOf(characterViewModel);
+                    troops.Remove(characterViewModel);
                 }
                 characterViewModel.Troop = rosterElment;
 
-                troops.Insert(characterViewModel.Index, characterViewModel);
+                troops.Insert(insertIndex, characterViewModel);
             }
         }
 
