@@ -40,7 +40,7 @@ public class OathGoldHelper
 
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
 
-        list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_engineer_benefit","title","Engineers"), engineerRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        list.Add(new TooltipProperty(new TextObject("{ENGINEERS_GUILD_ICON} " + TORTextHelper.GetText("tor_dw_engineer_benefit","title","Engineers")).ToString(), engineerRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
 
         //could use textObject variables to only add "Reduced gun troop upkeep." when bonus > 0
@@ -67,7 +67,7 @@ public class OathGoldHelper
 
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
 
-        list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_runesmith_benefit","title","Runesmiths."), runeSmithRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        list.Add(new TooltipProperty(new TextObject("{RUNESMITHS_GUILD_ICON} " + TORTextHelper.GetText("tor_dw_runesmith_benefit","title","Runesmiths.")).ToString(), runeSmithRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
 
         list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_runesmith_benefit","description","Access to melee weapons and Runecraft, reduce Ironbreaker upgrade costs."), "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
@@ -93,7 +93,7 @@ public class OathGoldHelper
 
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
 
-        list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_miners_benefit","title","Mining and Expeditions Guild"), gemcutterRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        list.Add(new TooltipProperty(new TextObject("{MINERS_GUILD_ICON} " + TORTextHelper.GetText("tor_dw_miners_benefit","title","Mining and Expeditions Guild")).ToString(), gemcutterRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
         list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_miners_benefit","description","Receive raw materials, increase mining production, launch expeditions."), "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
         var oreVillageBoost = 0;
@@ -121,7 +121,7 @@ public class OathGoldHelper
 
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
 
-        list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_brewers_benefit","title","Brewers"), brewersRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        list.Add(new TooltipProperty(new TextObject("{BREWERS_GUILD_ICON} " + TORTextHelper.GetText("tor_dw_brewers_benefit","title","Brewers")).ToString(), brewersRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
         list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_brewers_benefit","description","Receive supplies, increase food production and spotting range near Dwarf holds, boost Rangers."), "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
         var dawiLoyaltyBoost = 0;
@@ -168,7 +168,7 @@ public class OathGoldHelper
 
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
 
-        list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_oathgold_warrior_benefit","title","Warriors"), warriorsRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        list.Add(new TooltipProperty(new TextObject("{WARRIORS_GUILD_ICON} " + TORTextHelper.GetText("tor_dw_oathgold_warrior_benefit","title","Warriors")).ToString(), warriorsRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
         list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_oathgold_warrior_benefit","description","Reduce upgrade costs of melee troops, increase Oathgold gains, boost militias."), "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
         var warriorUpgradeReduction = 0;
