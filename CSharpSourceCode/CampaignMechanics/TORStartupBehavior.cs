@@ -6,6 +6,7 @@ using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.Core;
 using TOR_Core.CampaignMechanics.Diplomacy;
 using TOR_Core.Extensions;
+using TOR_Core.Models;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics
@@ -23,18 +24,17 @@ namespace TOR_Core.CampaignMechanics
         /// All heroes are spawned with parties and some food on game creation.
         /// </summary>
         /// <remarks>
-        /// The game already calls this through the OnNewGameCreatedPartialFollowUp event in HeroSpawnCampaignBehavior with the OnNonBanditClanDailyTick method call, but evidently that's occuring too soon as tor's nobles aren't spawning with parties.
+        /// The game already calls this through the OnNewGameCreatedPartialFollowUp event in HeroSpawnCampaignBehavior with the OnNonBanditClanDailyTick method call, but that's occurring too soon as tor's nobles aren't spawning with parties.
         ///
         /// LordPartyComponent.InitializeLordPartyProperties will check if GameStarted != true (ie. during the campaign initialization), then it will pass through a larger value to InitializeMobilePartyAroundPosition(PartyTemplate, ...) which in turn passes it into FillPartyStacks
         /// SpawnLordParty after Game start will grant the minimum between 19 troops + leader or 10% of their max party size
-        ///
-        /// Sly : This could be at risk of causing a crash due to mobParty data caching not being fast enough to complete before the method will attempt to spawn parties; no issues so far, but I ran into a crash with another mod when attempting to run a similar method on the CharacterCreationOverEvent where the parallel methods for data caching were too slow compared to the time it took to exit char creation.
         /// </remarks>
-        ///
 
-        //Sly : this is likely resolved by clans/kingdoms having an initial home settlement now
+        //Sly : this could likely resolved be by clans/kingdoms having an initial home settlement now. This is what is done to handle the raider clans, empire deserters, etc..
         private void SpawnAiHeroParties(CampaignGameStarter starter, int i)
         {
+            if (i != 90) return;//Sly : arbitrary choice
+
             var heroSpawnCampaignBehaviorInstance = Activator.CreateInstance(typeof(HeroSpawnCampaignBehavior));
             var considerSpawningLordPartiesMethod = AccessTools.Method(typeof(HeroSpawnCampaignBehavior), "ConsiderSpawningLordParties");
 
@@ -43,7 +43,6 @@ namespace TOR_Core.CampaignMechanics
             {
                 considerSpawningLordPartiesMethod.Invoke(heroSpawnCampaignBehaviorInstance, new object[] { clan, true });
             }
-            //place chaos, beastmen, and bandit nobles on top of settlements of their culture maybe?
 
         }
 
@@ -81,10 +80,13 @@ namespace TOR_Core.CampaignMechanics
             // var middenland = Kingdom.All.Find(k => k.StringId == "middenland");
         }
 
-        // late init, override TradePenaltyReduction description once effects are initialized
+        // late init
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
+            //override TradePenaltyReduction description once effects are initialized
             TOR_Core.Models.TORTradeItemPriceFactorModel.ApplyTradePenaltyReductionDescriptionOverride();
+
+            TORPartySizeModel.RecalculateMainPartySize();//Forces the main party's size to be recalculated so it performs a full calculation using all of TOR's bonuses
         }
     }
 }

@@ -59,7 +59,7 @@ namespace TOR_Core.Models
             }
 
             //Sly : prevents the parties from taking Overmanned speed penalties, they'll now move as fast as parties of foot bandits.
-            if (party.MobileParty.PartyComponent is RaidingPartyComponent)
+            if (party.MobileParty.IsRaidingParty())
             {
                 num.Add(80);//Sly : raiding components are AI parties only, description left blank.
             }
@@ -124,7 +124,7 @@ namespace TOR_Core.Models
 
         public override TroopRoster FindAppropriateInitialRosterForMobileParty(MobileParty party, PartyTemplateObject partyTemplate)
         {
-            if (party?.PartyComponent is not RaidingPartyComponent) return base.FindAppropriateInitialRosterForMobileParty(party, partyTemplate);
+            if (!party.IsRaidingParty()) return base.FindAppropriateInitialRosterForMobileParty(party, partyTemplate);
 
             //scales the party size to the approximately approriate amount based on the field that stores the intended amount during component initialization
             var raidingComponent = party.PartyComponent as RaidingPartyComponent;
@@ -313,6 +313,11 @@ namespace TOR_Core.Models
             {
                 number.Add(0.5f * goblinCount, new TextObject("Goblin weight"));
             }
+        }
+
+        public static void RecalculateMainPartySize()
+        {
+            var _ = PartyBase.MainParty.PartySizeLimit;//recalculate to force a cache refresh of the underlying PartyBase's PartySizeLimit - the value is of no consequence.
         }
     }
 }

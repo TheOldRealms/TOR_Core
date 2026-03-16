@@ -10,9 +10,6 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.Models;
 
-/// <summary>
-/// 
-/// </summary>
 /// <remarks>
 /// Mousing over a notable in the encyclopedia that owns an alley causes the AlleyModel to be called. If the player is not in a settlement at the time, MainParty.CurrentSettlement causes a NRE. I've added a, probably unnecessary, null operator on MainParty as well just in case.
 /// </remarks>

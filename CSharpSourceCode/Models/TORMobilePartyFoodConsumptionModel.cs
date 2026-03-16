@@ -118,7 +118,7 @@ namespace TOR_Core.Models
             var value = base.DoesPartyConsumeFood(mobileParty);
 
             //Sly : Raiding parties would stop starving once they've been away from their spawn settlement after ~40 days (they receive 2 food per party member on spawn).
-            if (mobileParty.PartyComponent is RaidingPartyComponent)
+            if (mobileParty.IsRaidingParty())
             {
                 return false;
             }
@@ -129,10 +129,16 @@ namespace TOR_Core.Models
                 return false;
             }
 
+            //Sly : greenskin stronghold factions have no food consumption for parties as they have no direct way to gain food.
+            if (mobileParty.Party.MapFaction?.Culture.StringId == TORConstants.Cultures.GREENSKIN && (mobileParty.Party.MapFaction.StringId == TORConstants.Factions.BLACK_PIT || mobileParty.Party.MapFaction.StringId == TORConstants.Factions.REAVAZ))
+            {
+                return false;
+            }
+
             //Sly : rogue engineer party won't starve. This will need to be finessed as more quests are added.
             if (mobileParty.IsCurrentlyUsedByAQuest)
             {
-                return true;
+                return false;
             }
 
             if (MobileParty.MainParty == mobileParty && Hero.MainHero.IsEnlisted())

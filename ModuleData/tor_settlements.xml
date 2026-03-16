@@ -15334,7 +15334,7 @@
       <Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
-  <!-- Deserterts Hideouts -->
+  <!-- Deserters Hideouts -->
   <Settlement id="hideout_mountain_1" name="{=Settlements.Settlement.name.hideout_mountain_1}Deserter Hideout" type="Hideout" posX="1343.589" posY="1184.877" culture="Culture.mountain_bandits">
     <Components>
       <Hideout id="hideout_mountain_1" map_icon="bandit_hideout_d" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />

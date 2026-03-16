@@ -263,7 +263,7 @@ namespace TOR_Core.Models
 
                     if (Hero.MainHero.HasAttribute("WEWardancerSymbol"))
                     {
-                        number.AddFactor(0.15f, ForestHarmonyHelper.TreeSymbolText("WEWardancerSymbol"));
+                        number.AddFactor(0.25f, ForestHarmonyHelper.TreeSymbolText("WEWardancerSymbol"));
                     }
 
                     if (hero == Hero.MainHero && Hero.MainHero.HasAttribute("WEDurthuSymbol"))

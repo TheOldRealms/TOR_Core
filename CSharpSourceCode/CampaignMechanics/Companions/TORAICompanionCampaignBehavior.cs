@@ -55,7 +55,7 @@ namespace TOR_Core.CampaignMechanics.Companions
 
         private void HandleRemoveParty(MobileParty party)
         {
-            //CanBecomePrisoner returning false hopefully makes this redundant
+            //CanBecomePrisoner returning false hopefully makes this redundant. No, breakpoints are still hit at least in the case of ai party vs ai party. Is CBP actually making this guaranteed to be hit because they can't be removed from the party by becoming a prisoner?
             //has the hero already been added to the prison roster to divide up after battle? what resolves first, the forced settlement entrance or the loot distribution?
             if (party.GetMemberHeroes().Any(x => x.IsAICompanion()))
             {

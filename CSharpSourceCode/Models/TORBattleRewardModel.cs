@@ -31,6 +31,7 @@ namespace TOR_Core.Models
 
         //public override float GetPartySavePrisonerAsMemberShareProbability(PartyBase winnerParty, float lootAmount) => 0f;
 
+        //the % of an item's value that the AI gets when it liquidates looted equipment after winning a battle, ish
         public override float GetAITradePenalty()
         {
             return 0.3f;

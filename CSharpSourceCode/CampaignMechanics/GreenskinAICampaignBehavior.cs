@@ -65,7 +65,7 @@ namespace TOR_Core.CampaignMechanics
         {
             if (settlement.Owner == null) return;
             
-            if(!settlement.IsCastle && !settlement.IsTown )return;
+            if(!settlement.IsFortification)return;
 
             // Only process greenskin-owned settlements
             if (settlement.OwnerClan?.Culture?.StringId != TORConstants.Cultures.GREENSKIN) return;
@@ -87,8 +87,8 @@ namespace TOR_Core.CampaignMechanics
             {
                 if (settlement.MapFaction == party.MapFaction)
                 {
-                    var garrisonSize = party.Party.NumberOfAllMembers;
-                    var foodThreshold = garrisonSize * 0.5f; // 0.5 days of food per troop
+                    var partySize = party.Party.NumberOfAllMembers;
+                    var foodThreshold = partySize * 0.5f; // 0.5 days of food per troop
 
                     if (party.ItemRoster.TotalFood < foodThreshold)
                     {
@@ -111,12 +111,11 @@ namespace TOR_Core.CampaignMechanics
         private void OnDailyTick()
         {
             // Process all greenskin AI parties
-            foreach (var mobileParty in MobileParty.All)
+            foreach (var mobileParty in MobileParty.AllLordParties)
             {
                 // Skip player party and non-greenskin parties
                 if (mobileParty.IsMainParty) continue;
                 if (mobileParty.Party?.Culture?.StringId != TORConstants.Cultures.GREENSKIN) continue;
-                if (!mobileParty.IsLordParty) continue;
                 
                 if(!IsTribeInDefensiveWaaagh(mobileParty.ActualClan.Kingdom))
                     continue;
@@ -137,8 +136,8 @@ namespace TOR_Core.CampaignMechanics
         {
             if (kingdom == null) return false;
 
-            var castleCount = kingdom.Settlements.Count(s => s.IsCastle);
-            var townCount = kingdom.Settlements.Count(s => s.IsTown);
+            var castleCount = kingdom.Fiefs.Count(s => s.IsCastle);
+            var townCount = kingdom.Fiefs.Count(s => s.IsTown);
 
             return castleCount < MIN_CASTLES_FOR_STABILITY || townCount < MIN_TOWNS_FOR_STABILITY;
         }
