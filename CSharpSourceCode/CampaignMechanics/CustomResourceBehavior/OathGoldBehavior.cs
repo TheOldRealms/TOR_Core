@@ -252,11 +252,11 @@ public class OathGoldBehavior : CampaignBehaviorBase
     private void OnSessionLaunched(CampaignGameStarter campaignGameStarter)
     {
         // Initialize guild icon text variables
-        MBTextManager.SetTextVariable("ENGINEERS_GUILD_ICON", "<img src=\"engineers_icon\"/>");
-        MBTextManager.SetTextVariable("RUNESMITHS_GUILD_ICON", "<img src=\"runesmiths_icon\"/>");
-        MBTextManager.SetTextVariable("MINERS_GUILD_ICON", "<img src=\"miners_icon\"/>");
-        MBTextManager.SetTextVariable("BREWERS_GUILD_ICON", "<img src=\"brewers_icon\"/>");
-        MBTextManager.SetTextVariable("WARRIORS_GUILD_ICON", "<img src=\"warriors_icon\"/>");
+        MBTextManager.SetTextVariable("ENGINEERS_GUILD_ICON", "<img src=\"engineers_icon\" extend=\"8\">");
+        MBTextManager.SetTextVariable("RUNESMITHS_GUILD_ICON", "<img src=\"runesmiths_icon\" extend=\"8\">");
+        MBTextManager.SetTextVariable("MINERS_GUILD_ICON", "<img src=\"miners_icon\" extend=\"8\">");
+        MBTextManager.SetTextVariable("BREWERS_GUILD_ICON", "<img src=\"brewers_icon\" extend=\"8\">");
+        MBTextManager.SetTextVariable("WARRIORS_GUILD_ICON", "<img src=\"warriors_icon\" extend=\"8\">");
 
         AddRuneSmithDialogue(campaignGameStarter);
         AddEngineerDialogue(campaignGameStarter);
@@ -580,6 +580,9 @@ public class OathGoldBehavior : CampaignBehaviorBase
             title = TORTextHelper.GetTextObject("tor_dw_oath_gold_spending_title_text", "Spend Oath Gold");
         }
 
+        // Add guild icon to title
+        title = new TextObject(title + " " + guildIcon);
+
         if (!GameTexts.TryGetText("oath_gold_spending_description", out var description, guildmaster))
         {
             description = TORTextHelper.GetTextObject("tor_dw_oath_gold_spending_description_text", "Select how much Oath Gold you want to spend");
@@ -595,9 +598,8 @@ public class OathGoldBehavior : CampaignBehaviorBase
         if (currentOathGold >= 20)
         {
             value = 20;
-            var option = new TextObject("{OATHGOLD_COST}{OATHGOLD_SYMBOL} ({GUILD_ICON})");
+            var option = new TextObject("{OATHGOLD_COST}{OATHGOLD_SYMBOL}");
             option.SetTextVariable("OATHGOLD_COST", value);
-            option.SetTextVariable("GUILD_ICON", guildIcon);
             var hint = TORTextHelper.GetTextObject("tor_dw_spend_oath_gold_hint_text", "Spend {OATHGOLD_COST} Oath Gold on this guild");
             hint.SetTextVariable("OATHGOLD_COST", value);
             selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, hint.ToString()));
@@ -606,9 +608,8 @@ public class OathGoldBehavior : CampaignBehaviorBase
         if (currentOathGold >= 50)
         {
             value = 50;
-            var option = new TextObject("{OATHGOLD_COST}{OATHGOLD_SYMBOL} ({GUILD_ICON})");
+            var option = new TextObject("{OATHGOLD_COST}{OATHGOLD_SYMBOL}");
             option.SetTextVariable("OATHGOLD_COST", value);
-            option.SetTextVariable("GUILD_ICON", guildIcon);
             GameTexts.SetVariable("OATHGOLD_COST", value);
             var hint = TORTextHelper.GetTextObject("tor_dw_spend_oath_gold_hint_text", "Spend {OATHGOLD_COST} Oath Gold on this guild");
             hint.SetTextVariable("OATHGOLD_COST", value);
@@ -618,9 +619,8 @@ public class OathGoldBehavior : CampaignBehaviorBase
         if (currentOathGold >= 100)
         {
             value = 100;
-            var option = new TextObject("{OATHGOLD_COST}{OATHGOLD_SYMBOL} ({GUILD_ICON})");
+            var option = new TextObject("{OATHGOLD_COST}{OATHGOLD_SYMBOL}");
             option.SetTextVariable("OATHGOLD_COST", value);
-            option.SetTextVariable("GUILD_ICON", guildIcon);
             GameTexts.SetVariable("OATHGOLD_COST", value);
             var hint = TORTextHelper.GetTextObject("tor_dw_spend_oath_gold_hint_text", "Spend {OATHGOLD_COST} Oath Gold on this guild");
             hint.SetTextVariable("OATHGOLD_COST", value);
@@ -630,9 +630,8 @@ public class OathGoldBehavior : CampaignBehaviorBase
         if (currentOathGold >= 250)
         {
             value = 250;
-            var option = new TextObject("{OATHGOLD_COST}{OATHGOLD_SYMBOL} ({GUILD_ICON})");
+            var option = new TextObject("{OATHGOLD_COST}{OATHGOLD_SYMBOL}");
             option.SetTextVariable("OATHGOLD_COST", value);
-            option.SetTextVariable("GUILD_ICON", guildIcon);
             GameTexts.SetVariable("OATHGOLD_COST", value);
             var hint = TORTextHelper.GetTextObject("tor_dw_spend_oath_gold_hint_text", "Spend {OATHGOLD_COST} Oath Gold on this guild");
             hint.SetTextVariable("OATHGOLD_COST", value);
