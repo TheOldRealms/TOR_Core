@@ -16,9 +16,10 @@ namespace TOR_Core.HarmonyPatches
     public enum TemplateWeaponCategory
     {
         Sword,          // 1H/2H swords, rapiers
-        Axe,            // 1H/2H axes
-        Mace,           // 1H/2H maces, hammers
+        Axe,            // 1H/2H axes (generic)
+        Mace,           // 1H/2H maces, hammers (generic)
         Polearm,        // Polearms, spears, staves, scythes, lances
+        DwarfWeapon,    // Dwarf-specific weapons (smaller axes, distinct style)
         OrcWeapon,      // All orc-specific templates
         Hidden          // Monster/troll/dual-wield
     }
@@ -26,7 +27,7 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public static class CraftingPatches
     {
-        public static List<string> HiddenCraftingTemplateIds => ["tor_large_monster_weapon_template", "tor_dual_wield_mainhand", "tor_trolltwohandedmace"];
+        public static List<string> HiddenCraftingTemplateIds => ["tor_large_monster_weapon_template", "tor_dual_wield_mainhand", "tor_trolltwohandedmace", "tor_staff_template"];
 
         private static readonly Dictionary<string, TemplateWeaponCategory> TemplateCategoryMap = new()
         {
@@ -41,6 +42,7 @@ namespace TOR_Core.HarmonyPatches
             { "tor_large_monster_weapon_template", TemplateWeaponCategory.Hidden },
             { "tor_dual_wield_mainhand", TemplateWeaponCategory.Hidden },
             { "tor_trolltwohandedmace", TemplateWeaponCategory.Hidden },
+            { "tor_staff_template", TemplateWeaponCategory.Hidden },
 
             // Sword templates
             { "tor_sword_template", TemplateWeaponCategory.Sword },
@@ -49,8 +51,10 @@ namespace TOR_Core.HarmonyPatches
 
             // Axe templates
             { "tor_axe_template", TemplateWeaponCategory.Axe },
-            { "tor_dwarven_axe_template", TemplateWeaponCategory.Axe },
             { "tor_twohandedaxe", TemplateWeaponCategory.Axe },
+
+            // Dwarf-specific templates
+            { "tor_dwarven_axe_template", TemplateWeaponCategory.DwarfWeapon },
 
             // Mace templates
             { "tor_mace_template", TemplateWeaponCategory.Mace },
@@ -58,16 +62,15 @@ namespace TOR_Core.HarmonyPatches
 
             // Polearm templates
             { "tor_polearm_template", TemplateWeaponCategory.Polearm },
-            { "tor_staff_template", TemplateWeaponCategory.Polearm },
             { "tor_scythe_template", TemplateWeaponCategory.Polearm },
             { "tor_lance_template", TemplateWeaponCategory.Polearm }
         };
 
         private static readonly Dictionary<string, HashSet<TemplateWeaponCategory>> CultureAllowedCategories = new()
         {
-            // Dwarfs - Axes, Hammers, Maces
+            // Dwarfs - Axes, Hammers, Maces, and Dwarf-specific weapons
             { TORConstants.Cultures.DAWI, new HashSet<TemplateWeaponCategory>
-                { TemplateWeaponCategory.Axe, TemplateWeaponCategory.Mace } },
+                { TemplateWeaponCategory.Axe, TemplateWeaponCategory.Mace, TemplateWeaponCategory.DwarfWeapon } },
 
             // Wood Elves - Swords, Daggers, Polearms
             { TORConstants.Cultures.ASRAI, new HashSet<TemplateWeaponCategory>
@@ -79,9 +82,9 @@ namespace TOR_Core.HarmonyPatches
 
             // Greenskins - All weapons INCLUDING Orc weapons
             { TORConstants.Cultures.GREENSKIN, new HashSet<TemplateWeaponCategory>
-                { TemplateWeaponCategory.Sword, TemplateWeaponCategory.Axe,
-                  TemplateWeaponCategory.Mace, TemplateWeaponCategory.Polearm,
-                  TemplateWeaponCategory.OrcWeapon } },
+            {
+                TemplateWeaponCategory.OrcWeapon
+            } },
 
             // Empire - All except Orc weapons
             { TORConstants.Cultures.EMPIRE, new HashSet<TemplateWeaponCategory>
