@@ -5,6 +5,7 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.AgentOrigins;
+using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
@@ -28,6 +29,23 @@ namespace TOR_Core.CampaignMechanics.Companions
             CampaignEvents.MobilePartyDestroyed.AddNonSerializedListener(this, OnPartyDestroyed);
             CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this, OnNewGameCreated);
             CampaignEvents.CanHeroBecomePrisonerEvent.AddNonSerializedListener(this, new ReferenceAction<Hero, bool>(this.CanHeroBecomePrisoner));
+            CampaignEvents.MapEventEnded.AddNonSerializedListener(this, OnMapEventEnded);
+            return;
+
+            void OnMapEventEnded(MapEvent mapEvent)
+            {
+                var side = mapEvent.DefeatedSide;
+                var parties = mapEvent.InvolvedParties;
+
+                foreach (var party in parties.Where(party => party.IsMobile&& party.MobileParty.IsLordParty))
+                {
+                    if (party.MobileParty.Party.NumberOfAllMembers <= party.MobileParty.GetMemberHeroes().Count)
+                    {
+                        HandleRemoveParty(party.MobileParty);
+                    }
+                    
+                }
+            }
         }
 
         /// <remarks>
