@@ -217,6 +217,31 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             }
         }
 
+        private MobileParty GetCurrentHirelingBattleParty()
+        {
+            var lordParty = _hirelingEnlistingLord?.PartyBelongedTo;
+            if (lordParty == null)
+            {
+                return null;
+            }
+
+            if (lordParty.MapEvent != null)
+            {
+                return lordParty;
+            }
+
+            var armyOwnerParty = lordParty.Army?.ArmyOwner?.PartyBelongedTo;
+            if (armyOwnerParty?.MapEvent != null
+                && armyOwnerParty.MapEvent.IsSiegeAssault
+                && armyOwnerParty.MapEvent.InvolvedParties.Any(x => x == lordParty.Party))
+            {
+                // siege can sit on army owner
+                return armyOwnerParty;
+            }
+
+            return null;
+        }
+
         private void MenuOpened(MenuCallbackArgs obj)
         {
             var menuId = obj.MenuContext.GameMenu.StringId;
@@ -233,7 +258,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
             if (_startBattle && menuId == "join_encounter" && !_debugSkipBattles)
             {
-                PlayerEncounter.JoinBattle(_hirelingEnlistingLord.PartyBelongedTo.MapEventSide.MissionSide);
+                PlayerEncounter.JoinBattle(GetCurrentHirelingBattleParty().MapEventSide.MissionSide);
                 GameMenu.SwitchToMenu("encounter");
                 return;
             }
@@ -496,7 +521,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
             _currentTrainedSkill = activities[i];
             args.MenuContext.Refresh();
-            if (_hirelingEnlistingLord?.PartyBelongedTo?.MapEvent != null)
+            if (GetCurrentHirelingBattleParty()?.MapEvent != null)
             {
                 GameMenu.ActivateGameMenu("hireling_battle_menu");
             }
@@ -523,10 +548,10 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                     {
                         GameMenu.ExitToLast();
                     }
-                    if (_hirelingEnlistingLord.PartyBelongedTo.MapEvent != null)
+                    var eventAlliedLeaderParty = GetCurrentHirelingBattleParty();
+                    if (eventAlliedLeaderParty != null)
                     {
-                        var mapEvent = _hirelingEnlistingLord.PartyBelongedTo.MapEvent;
-                        var eventAlliedLeaderParty = _hirelingEnlistingLord.PartyBelongedTo;
+                        var mapEvent = eventAlliedLeaderParty.MapEvent;
 
                         if (eventAlliedLeaderParty == null)
                         {
@@ -660,7 +685,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
         {
             if (_hirelingEnlistingLord == null) return false;
 
-            var lordParty = _hirelingEnlistingLord.PartyBelongedTo;
+            var lordParty = GetCurrentHirelingBattleParty();
 
             if (lordParty?.MapEvent == null) return false;
 
@@ -783,14 +808,15 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
         private void hireling_battle_menu_on_init(MenuCallbackArgs args)
         {
-            if (_hirelingEnlistingLord?.PartyBelongedTo?.MapEvent == null)
+            var battleParty = GetCurrentHirelingBattleParty();
+            if (battleParty?.MapEvent == null)
             {
                 MBTextManager.SetTextVariable("BATTLE_INFO", TORTextHelper.GetTextObject("tor_hireling_battle_fallback", "Your Lord engages in a battle."));
                 return;
             }
 
-            var mapEvent = _hirelingEnlistingLord.PartyBelongedTo.MapEvent;
-            var lordSide = _hirelingEnlistingLord.PartyBelongedTo.MapEventSide;
+            var mapEvent = battleParty.MapEvent;
+            var lordSide = battleParty.MapEventSide;
             var enemySide = lordSide?.OtherSide;
 
             // Battle type
@@ -945,7 +971,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             if (_hirelingEnlisted && _hirelingEnlistingLord?.PartyBelongedTo != null)
             {
                 // Clear post-battle transition flag once we're stable (no active battle, menu shown)
-                if (_inPostBattleTransition && _hirelingWaitMenuShown && _hirelingEnlistingLord.PartyBelongedTo.MapEvent == null)
+                var currentBattleParty = GetCurrentHirelingBattleParty();
+                if (_inPostBattleTransition && _hirelingWaitMenuShown && currentBattleParty?.MapEvent == null)
                 {
                     _inPostBattleTransition = false;
                 }
@@ -969,10 +996,11 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
                 HidePlayerParty();
                 PartyBase.MainParty.MobileParty.Position = _hirelingEnlistingLord.PartyBelongedTo.Position;
-                if (_hirelingEnlistingLord.PartyBelongedTo.MapEvent != null)
+                var battleParty = GetCurrentHirelingBattleParty();
+                if (battleParty?.MapEvent != null)
                 {
-                    var mapEvent = _hirelingEnlistingLord.PartyBelongedTo.MapEvent;
-                    
+                    var mapEvent = battleParty.MapEvent;
+
                     if (mapEvent.IsRaid || mapEvent.IsForcingSupplies || mapEvent.IsForcingVolunteers)
                     {
                         var lordRaidsParty = mapEvent.AttackerSide.Parties.FirstOrDefault(x => x.Party == _hirelingEnlistingLord.PartyBelongedTo.Party)!=null;
@@ -1073,8 +1101,19 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
         {
             if (mapEvent == null) return false;
 
-            if (_hirelingEnlistingLord?.PartyBelongedTo?.MapEvent == mapEvent) return true;
+            var lordParty = _hirelingEnlistingLord?.PartyBelongedTo?.Party;
+            if (lordParty == null)
+            {
+                return false;
+            }
 
+            foreach (var involvedParty in mapEvent.InvolvedParties)
+            {
+                if (involvedParty == lordParty)
+                {
+                    return true;
+                }
+            }
             return false;
         }
     }
