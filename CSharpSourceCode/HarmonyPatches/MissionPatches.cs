@@ -209,5 +209,19 @@ namespace TOR_Core.HarmonyPatches
             // Allow the original method to execute
             return true;
         }
+
+        // using troll weapons as the player crashes
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(MissionEquipment), nameof(MissionEquipment.SelectWeaponPickUpSlot))]
+        public static bool BlockTrollLockedGroundPickup(ref EquipmentIndex __result, MissionWeapon weaponBeingPickedUp)
+        {
+            var raceLock = weaponBeingPickedUp.Item.GetTorSpecificDataReadOnly()?.RaceLock;
+            if (raceLock != "troll")
+            {
+                return true;
+            }
+            __result = EquipmentIndex.None;
+            return false;
+        }
     }
 }
