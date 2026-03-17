@@ -1352,7 +1352,7 @@
       <Village id="village_comp_SY1_1" village_type="VillageType.sheep_farm" hearth="250" bound="Settlement.town_SY1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vampire_village_004" />
+      <Location id="village_center" scene_name="TOR_vampire_village_003_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1365,7 +1365,7 @@
       <Village id="village_comp_SY1_2" village_type="VillageType.iron_mine" hearth="250" bound="Settlement.town_SY1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vampire_village_005" />
+      <Location id="village_center" scene_name="TOR_vampire_village_005_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1378,7 +1378,7 @@
       <Village id="village_comp_SY1_3" village_type="VillageType.swine_farm" hearth="250" bound="Settlement.town_SY1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vampire_village_001" />
+      <Location id="village_center" scene_name="TOR_vampire_village_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1391,7 +1391,7 @@
       <Village id="village_comp_SY1_4" village_type="VillageType.wheat_farm" hearth="250" bound="Settlement.town_SY1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vampire_village_001" />
+      <Location id="village_center" scene_name="TOR_vampire_village_005_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1428,7 +1428,7 @@
       <Village id="castle_village_comp_SY1_1" village_type="VillageType.sheep_farm" hearth="120" bound="Settlement.castle_SY1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vampire_village_001" />
+      <Location id="village_center" scene_name="TOR_vampire_village_002_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1441,7 +1441,7 @@
       <Village id="castle_village_comp_SY1_2" village_type="VillageType.silver_mine" hearth="250" bound="Settlement.castle_SY1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vampire_village_001" />
+      <Location id="village_center" scene_name="TOR_vampire_village_004_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1490,7 +1490,7 @@
       <Village id="village_comp_SY2_1" village_type="VillageType.sheep_farm" hearth="250" bound="Settlement.town_SY2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vampire_village_001" />
+      <Location id="village_center" scene_name="TOR_vampire_village_002_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1503,7 +1503,7 @@
       <Village id="village_comp_SY2_2" village_type="VillageType.fisherman" hearth="250" bound="Settlement.town_SY2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vampire_village_001" />
+      <Location id="village_center" scene_name="TOR_vampire_village_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1516,7 +1516,7 @@
       <Village id="village_comp_SY2_3" village_type="VillageType.trapper" hearth="250" bound="Settlement.town_SY2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vampire_village_001" />
+      <Location id="village_center" scene_name="TOR_vampire_village_003_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1529,7 +1529,7 @@
       <Village id="village_comp_SY2_4" village_type="VillageType.wheat_farm" hearth="250" bound="Settlement.town_SY2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vampire_village_001" />
+      <Location id="village_center" scene_name="TOR_vampire_village_005_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1566,7 +1566,7 @@
       <Village id="castle_village_comp_SY2_1" village_type="VillageType.sheep_farm" hearth="250" bound="Settlement.castle_SY2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vampire_village_001" />
+      <Location id="village_center" scene_name="TOR_vampire_village_005_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1603,7 +1603,7 @@
       <Village id="castle_village_comp_SY3_1" village_type="VillageType.sheep_farm" hearth="250" bound="Settlement.castle_SY3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vampire_village_001" />
+      <Location id="village_center" scene_name="TOR_vampire_village_005_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1616,7 +1616,7 @@
       <Village id="castle_village_comp_SY3_2" village_type="VillageType.europe_horse_ranch" hearth="250" bound="Settlement.castle_SY3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vampire_village_001" />
+      <Location id="village_center" scene_name="TOR_vampire_village_004_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1653,7 +1653,7 @@
       <Village id="castle_village_comp_SY4_1" village_type="VillageType.flax_plant" hearth="250" bound="Settlement.castle_SY4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vampire_village_001" />
+      <Location id="village_center" scene_name="TOR_vampire_village_003_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1690,7 +1690,7 @@
       <Village id="castle_village_comp_SY5_1" village_type="VillageType.flax_plant" hearth="250" bound="Settlement.castle_SY5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vampire_village_001" />
+      <Location id="village_center" scene_name="TOR_vampire_village_003_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1727,7 +1727,7 @@
       <Village id="castle_village_comp_SY6_1" village_type="VillageType.europe_horse_ranch" hearth="250" bound="Settlement.castle_SY6" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vampire_village_001" />
+      <Location id="village_center" scene_name="TOR_vampire_village_005_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1740,7 +1740,7 @@
       <Village id="castle_village_comp_SY6_2" village_type="VillageType.lumberjack" hearth="250" bound="Settlement.castle_SY6" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vampire_village_001" />
+      <Location id="village_center" scene_name="TOR_vampire_village_003_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1777,7 +1777,7 @@
       <Village id="castle_village_comp_SY7_1" village_type="VillageType.clay_mine" hearth="250" bound="Settlement.castle_SY7" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vampire_village_001" />
+      <Location id="village_center" scene_name="TOR_vampire_village_003_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -1790,7 +1790,7 @@
       <Village id="castle_village_comp_SY7_2" village_type="VillageType.lumberjack" hearth="101" bound="Settlement.castle_SY7" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_vampire_village_001" />
+      <Location id="village_center" scene_name="TOR_vampire_village_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
