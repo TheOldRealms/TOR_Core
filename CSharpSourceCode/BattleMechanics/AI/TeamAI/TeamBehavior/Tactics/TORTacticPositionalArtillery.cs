@@ -70,7 +70,10 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
                     .FirstOrDefault(item => item.AbilityEffectType == AbilityEffectType.ArtilleryPlacement);
                 if (artilleryAbility != null)
                 {
-                    var abilities = Team.GeneralAgent.Team.GeneralAgent.GetComponent<AbilityComponent>().KnownAbilitySystem;
+                    var abilities = Team.GeneralAgent?.GetComponent<AbilityComponent>().KnownAbilitySystem;
+
+                    if (abilities == null)
+                        return 0.0f;
 
                     foreach (var ability in abilities)
                     {
