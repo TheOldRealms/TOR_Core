@@ -28,6 +28,14 @@ public class TORAlleyModel : DefaultAlleyModel
                 {
                     return MBObjectManager.Instance.GetObject<CharacterObject>("tor_eo_thug");
                 }
+                if (culture.StringId == TORConstants.Cultures.DAWI)
+                {
+                    return MBObjectManager.Instance.GetObject<CharacterObject>("tor_dw_thug");
+                }
+                if (culture.StringId == TORConstants.Cultures.GREENSKIN)
+                {
+                    return MBObjectManager.Instance.GetObject<CharacterObject>("tor_gs_thug");
+                }
             }
 
 
@@ -46,6 +54,14 @@ public class TORAlleyModel : DefaultAlleyModel
                 {
                     return MBObjectManager.Instance.GetObject<CharacterObject>("tor_eo_expert_thug");
                 }
+                if (culture.StringId == TORConstants.Cultures.DAWI)
+                {
+                    return MBObjectManager.Instance.GetObject<CharacterObject>("tor_dw_expert_thug");
+                }
+                if (culture.StringId == TORConstants.Cultures.GREENSKIN)
+                {
+                    return MBObjectManager.Instance.GetObject<CharacterObject>("tor_gs_expert_thug");
+                }
             }
             return MBObjectManager.Instance.GetObject<CharacterObject>("gangster_2");
         }
@@ -61,6 +77,14 @@ public class TORAlleyModel : DefaultAlleyModel
                 if (culture.StringId == TORConstants.Cultures.EONIR || culture.StringId == TORConstants.Cultures.ASRAI)
                 {
                     return MBObjectManager.Instance.GetObject<CharacterObject>("tor_eo_master_thug");
+                }
+                if (culture.StringId == TORConstants.Cultures.DAWI)
+                {
+                    return MBObjectManager.Instance.GetObject<CharacterObject>("tor_dw_master_thug");
+                }
+                if (culture.StringId == TORConstants.Cultures.GREENSKIN)
+                {
+                    return MBObjectManager.Instance.GetObject<CharacterObject>("tor_gs_master_thug");
                 }
             }
             return MBObjectManager.Instance.GetObject<CharacterObject>("gangster_2");
