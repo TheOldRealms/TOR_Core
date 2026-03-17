@@ -41,8 +41,8 @@ namespace TOR_Core.AbilitySystem
         private bool _hasAppliedStartingPerkEffects;
         private static MapEvent _lastCatalystGrantedMapEvent;
         private AbilityModeState _currentState = AbilityModeState.Off;
-        private EquipmentIndex _mainHand;
-        private EquipmentIndex _offHand;
+        private EquipmentIndex _mainHand = EquipmentIndex.None;
+        private EquipmentIndex _offHand = EquipmentIndex.None;
         private AbilityComponent _abilityComponent;
         private GameKeyContext _keyContext = HotKeyManager.GetCategory("CombatHotKeyCategory");
         private static ActionIndexCache? _idleAnimation;
@@ -236,9 +236,16 @@ namespace TOR_Core.AbilitySystem
                 _mainHand = EquipmentIndex.None;
                 _offHand = EquipmentIndex.None;
             }
+            // only restore if cast actually changed wield state
             else
             {
-                _shouldWieldWeapon = true;
+                var currentMainHand = Agent.Main?.GetPrimaryWieldedItemIndex() ?? EquipmentIndex.None;
+                var currentOffHand = Agent.Main?.GetOffhandWieldedItemIndex() ?? EquipmentIndex.None;
+
+                bool needsMainHandRestore = _mainHand != EquipmentIndex.None && currentMainHand != _mainHand;
+                bool needsOffHandRestore = _offHand != EquipmentIndex.None && currentOffHand != _offHand;
+
+                _shouldWieldWeapon = needsMainHandRestore || needsOffHandRestore;
             }
 
             _currentState = AbilityModeState.Off;
@@ -387,13 +394,13 @@ namespace TOR_Core.AbilitySystem
                                 }
                                 else
                                 {
+                                    CacheWieldedItemsForRestore();
                                     if (!Agent.Main.TryCastCurrentAbility(out TextObject failureReason))
                                     {
                                         DisableAbilityMode(false, failureReason);
                                     }
                                     else
                                     {
-                                        CacheWieldedItemsForRestore();
                                         _lastActivationDeltaTime = dt;
                                         _elapsedTimeSinceLastActivation = 0;
                                         _disableCombatActionsAfterCast = true;
@@ -435,13 +442,13 @@ namespace TOR_Core.AbilitySystem
                             }
                             else
                             {
+                                CacheWieldedItemsForRestore();
                                 if (!Agent.Main.TryCastCurrentAbility(out failureReason))
                                 {
                                     DisableAbilityMode(false, failureReason);
                                 }
                                 else
                                 {
-                                    CacheWieldedItemsForRestore();
                                     _lastActivationDeltaTime = dt;
                                     _elapsedTimeSinceLastActivation = 0;
                                     _disableCombatActionsAfterCast = true;
