@@ -175,7 +175,7 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             if (!TORWandererCondition()) return false;
             if (Hero.OneToOneConversationHero.HeroState == Hero.CharacterStates.Prisoner) return false;
             if(Hero.OneToOneConversationHero.PartyBelongedTo != null) return false;
-            if(Hero.OneToOneConversationHero.Clan != Hero.MainHero.Clan) return false;
+            if(Hero.OneToOneConversationHero.Clan == Hero.MainHero.Clan) return false;
 
 
             // Set TOR-specific introduction text
@@ -195,8 +195,6 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
         /// </summary>
         private bool TORWandererRaceIncompatibleCondition()
         {
-            if (!TORWandererCondition()) return false;
-
             var hero = Hero.OneToOneConversationHero;
             var characterId = hero.Template?.StringId;
             if (string.IsNullOrEmpty(characterId)) return false;
