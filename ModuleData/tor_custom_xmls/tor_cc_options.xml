@@ -1090,7 +1090,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Intelligence</AttributeToIncrease>
 		<OptionText>{=tor_cc_option_2_eo_senat_member_label_str}Member of the Senate</OptionText>
-		<OptionFlavourText>{=tor_cc_option_2_eo_senat_member_text_str}Your competence as a Warrior brought you a seat in the Senat, you learned the ways of diplomacy and how to enforce your policies in the Politics through the manner of speech. </OptionFlavourText>
+		<OptionFlavourText>{=tor_cc_option_2_eo_senat_member_text_str}Your competence as a warrior brought you a seat into the Senate, where you learned the ways of diplomacy and how to enforce your policies through the eloquent arguments and manner of speech. </OptionFlavourText>
 	</CharacterCreationOption>
 
 	<CharacterCreationOption Id="option_2_eo_protector_wards" Culture="eonir" StageNumber="2" EquipmentSetId="tor_cc_eo_protector_wards_2">

@@ -540,22 +540,22 @@
 
   <!-- TITLES -->
   <string id="tor_enchantmentshop_title.empire" text="{=str_tor_enchantmentshop_title_empire}Make your choice…"/>
-  <string id="tor_enchantmentshop_title.vlandia" text="{=str_tor_enchantmentshop_title_vlandia}[TODO] Make your choice…"/>
-  <string id="tor_enchantmentshop_title.khuzait" text="{=str_tor_enchantmentshop_title_khuzait}[TODO] Make your choice…"/>
-  <string id="tor_enchantmentshop_title.mousillon" text="{=str_tor_enchantmentshop_title_mousillon}[TODO] Make your choice…"/>
-  <string id="tor_enchantmentshop_title.battania" text="{=str_tor_enchantmentshop_title_battania}[TODO] Make your choice…"/>
-  <string id="tor_enchantmentshop_title.eonir" text="{=str_tor_enchantmentshop_title_eonir}[TODO] Make your choice…"/>
+  <string id="tor_enchantmentshop_title.vlandia" text="{=str_tor_enchantmentshop_title_vlandia}Make your choice…"/>
+  <string id="tor_enchantmentshop_title.khuzait" text="{=str_tor_enchantmentshop_title_khuzait}Make your choice…"/>
+  <string id="tor_enchantmentshop_title.mousillon" text="{=str_tor_enchantmentshop_title_mousillon}Make your choice…"/>
+  <string id="tor_enchantmentshop_title.battania" text="{=str_tor_enchantmentshop_title_battania}Make your choice…"/>
+  <string id="tor_enchantmentshop_title.eonir" text="{=str_tor_enchantmentshop_title_eonir}Make your choice…"/>
   <string id="tor_enchantmentshop_title.sturgia" text="{=str_tor_enchantmentshop_title_sturgia}Make your choice…"/>
-  <string id="tor_enchantmentshop_title.aserai" text="{=str_tor_enchantmentshop_title_aserai}Make your choice…"/>
+  <string id="tor_enchantmentshop_title.aserai" text="{=str_tor_enchantmentshop_title_aserai}Pick 'un already, will ya?!"/>
   <string id="tor_enchantmentshop_title.blessings" text="{=str_tor_enchantmentshop_title_blessings}Make your choice…"/>
 
   <!-- DESCRIPTIONS -->
-  <string id="tor_enchantmentshop_description.empire" text="{=str_tor_enchantmentshop_description_empire}Select an enchantment scroll to study:"/>
-  <string id="tor_enchantmentshop_description.vlandia" text="{=str_tor_enchantmentshop_description_vlandia}[TODO] Select a blessed scroll to study:"/>
-  <string id="tor_enchantmentshop_description.khuzait" text="{=str_tor_enchantmentshop_description_khuzait}[TODO] Select a dark grimoire to study:"/>
-  <string id="tor_enchantmentshop_description.mousillon" text="{=str_tor_enchantmentshop_description_mousillon}[TODO] Select a forbidden text to study:"/>
-  <string id="tor_enchantmentshop_description.battania" text="{=str_tor_enchantmentshop_description_battania}[TODO] Select a nature-touched inscription to study:"/>
-  <string id="tor_enchantmentshop_description.eonir" text="{=str_tor_enchantmentshop_description_eonir}[TODO] Select an elven enchantment to study:"/>
+  <string id="tor_enchantmentshop_description.empire" text="{=str_tor_enchantmentshop_description_empire}Select an arcane scroll to study:"/>
+  <string id="tor_enchantmentshop_description.vlandia" text="{=str_tor_enchantmentshop_description_vlandia}Select a blessed tome  to study:"/>
+  <string id="tor_enchantmentshop_description.khuzait" text="{=str_tor_enchantmentshop_description_khuzait}Select a grimoire to study:"/>
+  <string id="tor_enchantmentshop_description.mousillon" text="{=str_tor_enchantmentshop_description_mousillon}Select a grimoire to study:"/>
+  <string id="tor_enchantmentshop_description.battania" text="{=str_tor_enchantmentshop_description_battania}Select an arcane scroll to study"/>
+  <string id="tor_enchantmentshop_description.eonir" text="{=str_tor_enchantmentshop_description_eonir}Select an arcane scroll to study"/>
   <string id="tor_enchantmentshop_description.sturgia" text="{=str_tor_enchantmentshop_description_sturgia}Select a rune carving to study:"/>
   <string id="tor_enchantmentshop_description.aserai" text="{=str_tor_enchantmentshop_description_aserai}Take one uv da weird ju-ju bits:"/>
   <string id="tor_enchantmentshop_description.blessings" text="{=str_tor_enchantmentshop_description_blessings}Select a blessed tome to study:"/>
@@ -729,7 +729,7 @@
   <string id="tor_enchanter_hub_info_p.aserai" text="{=str_tor_enchanter_hub_info_p_aserai}I'z lookin' fer… errrp… in-strukk-shuns…"/>
   <string id="tor_enchanter_hub_blueprints_p.aserai" text="{=str_tor_enchanter_hub_blueprints_p_aserai}'Ow to make fings proppa shiny?"/>
   <string id="tor_enchanter_hub_donate_items_p.aserai" text="{=str_tor_enchanter_hub_donate_items_p_aserai}I's got sum gud scrap fer Gork an' Mork."/>
-  <string id="tor_enchanter_hub_open_enchanter_p.aserai" text="{=str_tor_enchanter_hub_open_enchanter_p_aserai}(Look into the fire when the Shaman is busy dancing)"/>
+  <string id="tor_enchanter_hub_open_enchanter_p.aserai" text="{=str_tor_enchanter_hub_open_enchanter_p_aserai}(Look into da fire when da Shaman is busy dancin')"/>
   <string id="tor_enchanter_hub_return_p.aserai" text="{=str_tor_enchanter_hub_return_p_aserai}Nuffin'"/>
   <string id="tor_enchanter_blueprints.aserai" text="{=str_tor_enchanter_blueprints_aserai}Get yer 'ead in da smoke, take a breff."/>
   <string id="tor_enchanter_blueprints_decline.aserai" text="{=str_tor_enchanter_blueprints_decline_aserai}Dere be no Shaman wiv you, git lost."/>
@@ -3604,45 +3604,45 @@
   <string id="tor_careerchoice_description.PathOfGloryPassive4" text="{=str_tor_careerchoice_description_PathOfGloryPassive4}'Knight' troops can now be given an additional 'Templar or Secular seal'." />
   
   <!-- Mercenary Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.MercenaryRoot" text="{=str_tor_careerchoice_description_MercenaryRoot}Never retreat! Never surrender! Inspire nearby troops with a Rallying Cry! Making them 'Unbreakable' and 'Unstoppable' for 15s.  (60s cooldown.)" />
+  <string id="tor_careerchoice_description.MercenaryRoot" text="{=str_tor_careerchoice_description_MercenaryRoot}Never retreat! Never surrender! Inspire nearby troops with a rallying cry! Making them 'Unbreakable' and 'Unstoppable' for 15s. (60s cooldown.)" />
   
-  <string id="tor_careerchoice_description.SurvivalistKeystone" text="{=str_tor_careerchoice_description_SurvivalistKeystone}Rallying Cry also provides +15% 'Physical Resistance'." />
+  <string id="tor_careerchoice_description.SurvivalistKeystone" text="{=str_tor_careerchoice_description_SurvivalistKeystone}Let Them Have It! also provides +15% 'Physical Resistance'." />
   <string id="tor_careerchoice_description.SurvivalistPassive1" text="{=str_tor_careerchoice_description_SurvivalistPassive1}+3 extra ammo per ammunition pouch, or quiver you equip." />
   <string id="tor_careerchoice_description.SurvivalistPassive2" text="{=str_tor_careerchoice_description_SurvivalistPassive2}+5% personal ranged 'Physical' damage." />
   <string id="tor_careerchoice_description.SurvivalistPassive3" text="{=str_tor_careerchoice_description_SurvivalistPassive3}+20% party move speed on campaign map when in Forest, Mountain, or Swamp terrain." />
   <string id="tor_careerchoice_description.SurvivalistPassive4" text="{=str_tor_careerchoice_description_SurvivalistPassive4}Once per day, go out on a hunt." />
 
-  <string id="tor_careerchoice_description.DuelistKeystone" text="{=str_tor_careerchoice_description_DuelistKeystone}Rallying Cry also provides +15% swing speed." />
+  <string id="tor_careerchoice_description.DuelistKeystone" text="{=str_tor_careerchoice_description_DuelistKeystone}Let Them Have It! also provides +15% swing speed." />
   <string id="tor_careerchoice_description.DuelistPassive1" text="{=str_tor_careerchoice_description_DuelistPassive1}+10 personal Hitpoints." />
   <string id="tor_careerchoice_description.DuelistPassive2" text="{=str_tor_careerchoice_description_DuelistPassive2}+5% 'Physical Resistance' for melee troops." />
   <string id="tor_careerchoice_description.DuelistPassive3" text="{=str_tor_careerchoice_description_DuelistPassive3}+5% personal melee 'Physical' damage." />
   <string id="tor_careerchoice_description.DuelistPassive4" text="{=str_tor_careerchoice_description_DuelistPassive4}Personal healing rate increased by +1." />
 
-  <string id="tor_careerchoice_description.HeadhunterKeystone" text="{=str_tor_careerchoice_description_HeadhunterKeystone}Rallying Cry also provides +15% 'Physical' ranged damage." />
+  <string id="tor_careerchoice_description.HeadhunterKeystone" text="{=str_tor_careerchoice_description_HeadhunterKeystone}Let Them Have It! also provides +15% 'Physical' ranged damage." />
   <string id="tor_careerchoice_description.HeadhunterPassive1" text="{=str_tor_careerchoice_description_HeadhunterPassive1}+5 personal ammunition." />
   <string id="tor_careerchoice_description.HeadhunterPassive2" text="{=str_tor_careerchoice_description_HeadhunterPassive2}+5% personal ranged 'Physical' damage." />
   <string id="tor_careerchoice_description.HeadhunterPassive3" text="{=str_tor_careerchoice_description_HeadhunterPassive3}+5 Companion limit." />
   <string id="tor_careerchoice_description.HeadhunterPassive4" text="{=str_tor_careerchoice_description_HeadhunterPassive4}+10% personal ranged 'Physical Resistance'" />
 
-  <string id="tor_careerchoice_description.VeteranKeystone" text="{=str_tor_careerchoice_description_VeteranKeystone}Rallying Cry also provides +15% melee 'Physical' damage." />
+  <string id="tor_careerchoice_description.VeteranKeystone" text="{=str_tor_careerchoice_description_VeteranKeystone}Let Them Have It! also provides +15% melee 'Physical' damage." />
   <string id="tor_careerchoice_description.VeteranPassive1" text="{=str_tor_careerchoice_description_VeteranPassive1}+10% personal melee 'Physical' damage." />
   <string id="tor_careerchoice_description.VeteranPassive2" text="{=str_tor_careerchoice_description_VeteranPassive2}+10% personal melee 'Physical Resistance'." />
   <string id="tor_careerchoice_description.VeteranPassive3" text="{=str_tor_careerchoice_description_VeteranPassive3}+20 personal Hitpoints." />
   <string id="tor_careerchoice_description.VeteranPassive4" text="{=str_tor_careerchoice_description_VeteranPassive4}+8% personal 'Armour Penetration' of melee attacks." />
 
-  <string id="tor_careerchoice_description.PaymasterKeystone" text="{=str_tor_careerchoice_description_PaymasterKeystone}Rallying Cry's effects are doubled." />
+  <string id="tor_careerchoice_description.PaymasterKeystone" text="{=str_tor_careerchoice_description_PaymasterKeystone}The effects of Let Them Have It! are doubled." />
   <string id="tor_careerchoice_description.PaymasterPassive1" text="{=str_tor_careerchoice_description_PaymasterPassive1}Wounded troops heal faster." />
   <string id="tor_careerchoice_description.PaymasterPassive2" text="{=str_tor_careerchoice_description_PaymasterPassive2}+40% chance to recruit 2 troops instead of 1." />
   <string id="tor_careerchoice_description.PaymasterPassive3" text="{=str_tor_careerchoice_description_PaymasterPassive3}-10% Gold upkeep for tier 4+ troops." />
   <string id="tor_careerchoice_description.PaymasterPassive4" text="{=str_tor_careerchoice_description_PaymasterPassive4}Promote 'Basic' troops of your culture into Companions." />
 
-  <string id="tor_careerchoice_description.MercenaryLordKeystone" text="{=str_tor_careerchoice_description_MercenaryLordKeystone}Rallying Cry has its cooldown reduced by 15%" />
+  <string id="tor_careerchoice_description.MercenaryLordKeystone" text="{=str_tor_careerchoice_description_MercenaryLordKeystone}Let Them Have It! has its cooldown reduced by 15%" />
   <string id="tor_careerchoice_description.MercenaryLordPassive1" text="{=str_tor_careerchoice_description_MercenaryLordPassive1}+3 extra ammo per pouch of Grenades or Buckshot." />
   <string id="tor_careerchoice_description.MercenaryLordPassive2" text="{=str_tor_careerchoice_description_MercenaryLordPassive2}+10% 'Physical' damage for ranged troops." />
   <string id="tor_careerchoice_description.MercenaryLordPassive3" text="{=str_tor_careerchoice_description_MercenaryLordPassive3}Mercenary contracts 'Influence' cost, and payout scale with your Trade skill." />
   <string id="tor_careerchoice_description.MercenaryLordPassive4" text="{=str_tor_careerchoice_description_MercenaryLordPassive4}+100% 'Prestige' from battles. Gain another 100% if Leadership reaches 300." />
 
-  <string id="tor_careerchoice_description.CommanderKeystone" text="{=str_tor_careerchoice_description_CommanderKeystone}Rallying Cry's radius is doubled." />
+  <string id="tor_careerchoice_description.CommanderKeystone" text="{=str_tor_careerchoice_description_CommanderKeystone}The radius of Let Them Have It! is doubled." />
   <string id="tor_careerchoice_description.CommanderPassive1" text="{=str_tor_careerchoice_description_CommanderPassive1}+5 Companion limit." />
   <string id="tor_careerchoice_description.CommanderPassive2" text="{=str_tor_careerchoice_description_CommanderPassive2}+10% 'Physical' damage of 'Melee' troops." />
   <string id="tor_careerchoice_description.CommanderPassive3" text="{=str_tor_careerchoice_description_CommanderPassive3}Hits below 15 damage no longer stagger you." />

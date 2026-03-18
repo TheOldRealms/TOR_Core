@@ -658,6 +658,18 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_orc_warboss_helmet_002" RaceLock="orc">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_orc_warboss_helmet_003" RaceLock="orc">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_orc_warboss_helmet_004" RaceLock="orc">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_greenskin_mask_savage_001" RaceLock="orc">
     <ItemTraits>
       <ItemTrait>savage_orc_ward_save</ItemTrait>
@@ -3817,6 +3829,36 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_weapon_2h_axe_001">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_weapon_2h_axe_002">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_weapon_2h_axe_003">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_weapon_2h_axe_004">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_weapon_2h_axe_005">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_chaos_2h_weapon_warrior_greataxe_001">
     <ItemTraits />
     <DamageProportions>
@@ -3937,7 +3979,7 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_weapon_club_troll_001" RaceLock="troll">
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_weapon_club_troll_001">
     <ItemTraits />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -4067,7 +4109,7 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_greenskins_troll_2h_hammer_001" RaceLock="troll">
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskins_troll_2h_hammer_001">
     <ItemTraits />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />

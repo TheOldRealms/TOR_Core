@@ -1496,7 +1496,7 @@
     </Faction>
     <Faction id="empire_college_magic"
              default_party_template="PartyTemplate.college_magic_01"
-             name="{=str_tor_clan_college_magic_clan_1_name}The Imperial College of Magic"
+             name="{=str_tor_clan_college_magic_clan_1_name}Imperial Colleges of Magic"
              tier="3"
              is_minor_faction="true"
              is_outlaw="false"
@@ -1510,7 +1510,7 @@
              color2="FFe0be47"
              alternative_color="FFe9a74d"
              alternative_color2="FF714214"
-             text="{=str_tor_clan_pesant_knight_clan_1_desc}WIP">
+             text="{=str_tor_clan_pesant_knight_clan_1_desc}The Colleges of Magic in Altdorf were founded in 2304 I.C. by the great elven mage Teclis, following the last Great War against Chaos. Since then, it has been the premier educational establishment for wizards in the Empire. Each college and its corresponding Order is led by a patriarch or matriarch, and the Supreme Patriarch oversees all colleges. The position of Supreme Patriarch is currently held by Balthasar Gelt of the Gold Order, for he truly is supreme.">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_empire_rogue_lord_0" />
             <template id="NPCCharacter.tor_empire_rogue_lord_1" />
@@ -1534,7 +1534,7 @@
              color2="FFffe6a1"
              alternative_color="FFe9a74d"
              alternative_color2="FF714214"
-             text="{=str_tor_clan_pesant_knight_clan_1_desc}WIP">
+             text="{=str_tor_clan_pesant_knight_clan_1_desc}The Empire of Man is known for three things: Faith, Steel, and Gunpowder. As faith is paramount among this phrase, so is the cult of the Empire’s main deity, Sigmar. Originally founded in 73 I.C., it has since largely supplanted the Cult of Ulric as the main religious organisation in the Empire, even holding three votes on the Electoral Council. These three votes are held by the Grand Theogonist and two supporting Archlectors, which gives them much sway in determining the next emperor. The current Grand Theogonist is Volkmar von Hindenstern, more colloquially known by his moniker ‘the Grim’.">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_empire_rogue_lord_4" />     
             <template id="NPCCharacter.tor_empire_rogue_lord_5" />

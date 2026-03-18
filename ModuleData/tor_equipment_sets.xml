@@ -6876,24 +6876,32 @@
       <Equipment slot="Leg" id="Item.tor_greenskin_boots_orc_choppa_001" />
     </EquipmentSet>
     <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_sword_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_orc_boyz_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_boyz_002" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_orc_boyz_002" />
       <Equipment slot="Leg" id="Item.tor_greenskin_boots_orc_choppa_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_sword_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_orc_boyz_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_boyz_002" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_orc_boyz_002" />
       <Equipment slot="Leg" id="Item.tor_greenskin_boots_orc_choppa_001" />
     </EquipmentSet>
     <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_002" />
+      <Equipment slot="Item1" id="Item.northern_throwing_axe_1_t1" />
+      <Equipment slot="Item2" id="Item.northern_throwing_axe_1_t1" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_orc_boyz_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_boyz_003" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_orc_boyz_003" />
       <Equipment slot="Leg" id="Item.tor_greenskin_boots_orc_boyz_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_002" />
+      <Equipment slot="Item1" id="Item.northern_throwing_axe_1_t1" />
+      <Equipment slot="Item2" id="Item.northern_throwing_axe_1_t1" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_orc_boyz_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_boyz_003" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_orc_boyz_003" />
@@ -22544,7 +22552,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_dw_engineer_lord_template_001" culture="Culture.sturgia">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_005" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_2h_spanner_001" />
       <Equipment slot="Item1" id="Item.tor_dw_drakegun_canister" />
       <Equipment slot="Item2" id="Item.tor_dw_drakegun_canister" />
       <Equipment slot="Item3" id="Item.tor_dw_weapon_gun_drakegun" />
@@ -22555,7 +22563,7 @@
       <Equipment slot="Leg" id="Item.tor_dw_leg_boots_engineer_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_005" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_2h_spanner_001" />
       <Equipment slot="Item1" id="Item.tor_dw_drakegun_canister" />
       <Equipment slot="Item2" id="Item.tor_dw_drakegun_canister" />
       <Equipment slot="Item3" id="Item.tor_dw_weapon_gun_drakegun" />
@@ -22568,7 +22576,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_dw_engineer_lord_template_002" culture="Culture.sturgia">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_005" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_1h_spanner_001" />
       <Equipment slot="Item1" id="Item.tor_dw_drakegun_canister" />
       <Equipment slot="Item2" id="Item.tor_dw_drakegun_canister" />
       <Equipment slot="Item3" id="Item.tor_dw_weapon_gun_drakefire_pistol" />
@@ -22579,7 +22587,7 @@
       <Equipment slot="Leg" id="Item.tor_dw_leg_boots_engineer_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_005" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_1h_spanner_001" />
       <Equipment slot="Item1" id="Item.tor_dw_drakegun_canister" />
       <Equipment slot="Item2" id="Item.tor_dw_drakegun_canister" />
       <Equipment slot="Item3" id="Item.tor_dw_weapon_gun_drakefire_pistol" />

@@ -645,7 +645,6 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Chivalry" UpkeepCost="0" UpgradeCost="5" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_manatarms_militia">
     <Abilities />
@@ -700,7 +699,6 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Chivalry" UpkeepCost="0" UpgradeCost="5" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_mounted_yeoman">
     <Abilities />
@@ -737,6 +735,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="Chivalry" UpkeepCost="0" UpgradeCost="10" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_realm_knight">
     <Abilities />
@@ -760,7 +759,11 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_grail_knight">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Piercing</string>
+      <string>Unstoppable</string>
+      <string>MonsterAttack</string>
+    </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.35" />
     </Resistances>
@@ -942,7 +945,11 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_knight_of_the_black_grail">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Piercing</string>
+      <string>Unstoppable</string>
+      <string>MonsterAttack</string>
+    </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.35" />
     </Resistances>
@@ -1964,7 +1971,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Teef" UpkeepCost="0" UpgradeCost="2" />
+    <ResourceCost ResourceType="Teef" UpkeepCost="0" UpgradeCost="1" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_goblin_stikka">
     <Abilities />
@@ -1991,7 +1998,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Teef" UpkeepCost="0" UpgradeCost="4" />
+    <ResourceCost ResourceType="Teef" UpkeepCost="0" UpgradeCost="1" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_goblin_nasty_skulker">
     <Abilities />
@@ -2033,7 +2040,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Teef" UpkeepCost="0" UpgradeCost="5" />
+    <ResourceCost ResourceType="Teef" UpkeepCost="0" UpgradeCost="1" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_goblin_boss">
     <Abilities />
@@ -2047,7 +2054,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Teef" UpkeepCost="0" UpgradeCost="4" />
+    <ResourceCost ResourceType="Teef" UpkeepCost="0" UpgradeCost="1" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_goblin_beast_prodda">
     <Abilities />
