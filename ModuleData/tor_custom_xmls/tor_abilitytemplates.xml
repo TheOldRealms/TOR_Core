@@ -4273,7 +4273,7 @@
         <TriggeredEffect>apply_red_fury</TriggeredEffect>
     </AbilityTemplate>
     <AbilityTemplate StringID="LetThemHaveIt"
-                     Name="{=let_them_have_it_label_str}Rallying Cry"
+                     Name="{=let_them_have_it_label_str}Let Them Have It"
                      SpriteName="let_them_have_it_icon"
                      CoolDown="15"
                      WindsOfMagicCost="0"
@@ -5577,7 +5577,7 @@
     </AbilityTemplate>
 	
 	<AbilityTemplate StringID="OathAndSteel"
-                     Name="{=oath_and_steel_label_str}Oath and Steel"
+                     Name="{=oath_and_steel_label_str}Rune of Oath and Steel"
                      SpriteName="oath_and_steel_icon"
                      CoolDown="60"
                      WindsOfMagicCost="0"
@@ -5609,7 +5609,7 @@
                      TargetCapturingRadius="8"
                      SpellTier="2"
                      BelongsToLoreID="RuneMagic"
-                     TooltipDescription="{=oath_and_steel_description_str}The blessing bestowed by Grungni strengthens Dwarf mail and plate, as each weapon and suit of armor recalls the hammer strikes that shaped it. Grant 20% physical resistance to nearby Dwarfs. Empowered: Grant 20% extra physical damage to nearby Dwarfs.">
+                     TooltipDescription="{=oath_and_steel_description_str}The blessing bestowed by Grungni strengthens Dwarf mail and plate, as each weapon and suit of armor recalls the hammer strikes that shaped it. Grant 25% physical resistance to nearby Dwarfs. Empowered: Grant 20% extra physical damage to nearby Dwarfs.">
         <LightColorRGB x="255"
                        y="255"
                        z="255"
@@ -5624,7 +5624,7 @@
     </AbilityTemplate>
 	
 	<AbilityTemplate StringID="HearthAndHome"
-                     Name="{=hearth_and_home_label_str}Rune of Hearth and Hold"
+                     Name="{=hearth_and_home_label_str}Rune of Hearth and Home"
                      SpriteName="hearth_and_home_icon"
                      CoolDown="60"
                      WindsOfMagicCost="0"
@@ -5656,7 +5656,7 @@
                      TargetCapturingRadius="8"
                      SpellTier="2"
                      BelongsToLoreID="RuneMagic"
-                     TooltipDescription="{=hearth_and_home_description_str}Originally, a gift bestowed to the Dwarfs by Valaya, the Rune of Hearth and Home ignites a Dwarf's pride in his hold, clan, and ancestors. .">
+                     TooltipDescription="{=hearth_and_home_description_str}Originally, a gift bestowed to the Dwarfs by Valaya, the Rune of Hearth and Home ignites a Dwarf's pride in his hold, clan, and ancestors. Nearby allies receive bonuses to reload speed and movement speed. Empowered: Grant a bonus to attack speed.">
         <LightColorRGB x="255"
                        y="255"
                        z="255"
@@ -5702,7 +5702,7 @@
                      TargetCapturingRadius="8"
                      SpellTier="3"
                      BelongsToLoreID="RuneMagic"
-                     TooltipDescription="{=spellbreaking_description_str}The oldest Longbeards say this Rune was forged by the combined efforts of Grungni and Valaya. The Runesmith unleashes the rune to disrupt enemy spellcasters..">
+                     TooltipDescription="{=spellbreaking_description_str}The oldest Longbeards say this Rune was forged by the combined efforts of Grungni and Valaya. The Runesmith unleashes the rune to disrupt enemy spellcasters—cleanse spell effects affecting friendly units and drain Winds of Magic of enemy wizards. Empowered: Set all abilities of enemy spellcasters on cooldown.">
         <LightColorRGB x="255"
                        y="255"
                        z="255"
@@ -5717,7 +5717,7 @@
     </AbilityTemplate>
 
 	<AbilityTemplate StringID="WrathAndRuin"
-                     Name="{=wrath_and_ruin_label_str}Wrath and Ruin"
+                     Name="{=wrath_and_ruin_label_str}Rune of Wrath and Ruin"
                      SpriteName="wrath_and_ruin_iocn"
                      CoolDown="60"
                      WindsOfMagicCost="0"
@@ -5749,7 +5749,7 @@
                      TargetCapturingRadius="8"
                      SpellTier="4"
                      BelongsToLoreID="RuneMagic"
-                     TooltipDescription="{=wrath_and_ruin_description_str}The blessing of Grimnir channels the wrath of the war god, causing the earth to fracture and releasing fire and sulfur. Deal medium damage to surrounding foes.">
+                     TooltipDescription="{=wrath_and_ruin_description_str}The blessing of Grimnir channels the wrath of the war god, causing the earth to fracture and releasing fire and sulfur. Deal medium damage to surrounding foes. Empowered: Affected enemies suffer damage over time.">
         <LightColorRGB x="255"
                        y="255"
                        z="255"
