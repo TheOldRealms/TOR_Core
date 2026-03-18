@@ -779,6 +779,12 @@ public class OathGoldBehavior : CampaignBehaviorBase
             var items = new MBList<ItemObject>();
             items.Add(MBObjectManager.Instance.GetObject<ItemObject>("tor_neutral_weapon_ammo_musket_ball"));
             items.Add(MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_gun_beardling_handgun"));
+            if (Hero.MainHero.HasAttribute("DwarfEngineersI"))
+            {
+                //Add blasting charges
+                var blastingCharges = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_blasting_charges");
+                if (blastingCharges != null) items.Add(blastingCharges);
+            }
             if (Hero.MainHero.HasAttribute("DwarfEngineersII"))
             {
                 items.AppendList(MBObjectManager.Instance.GetObjectTypeList<ItemObject>().WhereQ(x =>
@@ -794,6 +800,10 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
                 var drakefirePistol = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_gun_drakefire_pistol");
                 if (drakefirePistol != null) items.Add(drakefirePistol);
+
+                //Add hand grenades
+                var handGrenades = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_grenade_hand_grenade");
+                if (handGrenades != null) items.Add(handGrenades);
             }
             if (Hero.MainHero.HasAttribute("DwarfEngineersIII"))
             {

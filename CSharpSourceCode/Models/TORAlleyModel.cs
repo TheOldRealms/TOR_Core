@@ -21,7 +21,6 @@ public class TORAlleyModel : DefaultAlleyModel
         get
         {
             var culture = Campaign.Current.MainParty?.CurrentSettlement?.Culture;
-
             if (culture != null)
             {
                 if (culture.StringId == TORConstants.Cultures.EONIR || culture.StringId == TORConstants.Cultures.ASRAI)
