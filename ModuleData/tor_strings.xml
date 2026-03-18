@@ -537,16 +537,30 @@
   <!-- Culture-specific variations: empire, vlandia (Bretonnia), khuzait (Sylvania), mousillon, battania (Asrai), eonir, sturgia (Dawi), aserai (Greenskin) -->
 
   <!-- General Enchantment Shop UI (Culture-independent) -->
+
+  <!-- TITLES -->
   <string id="tor_enchantmentshop_title.empire" text="{=str_tor_enchantmentshop_title_empire}Make your choice…"/>
+  <string id="tor_enchantmentshop_title.vlandia" text="{=str_tor_enchantmentshop_title_vlandia}[TODO] Make your choice…"/>
+  <string id="tor_enchantmentshop_title.khuzait" text="{=str_tor_enchantmentshop_title_khuzait}[TODO] Make your choice…"/>
+  <string id="tor_enchantmentshop_title.mousillon" text="{=str_tor_enchantmentshop_title_mousillon}[TODO] Make your choice…"/>
+  <string id="tor_enchantmentshop_title.battania" text="{=str_tor_enchantmentshop_title_battania}[TODO] Make your choice…"/>
+  <string id="tor_enchantmentshop_title.eonir" text="{=str_tor_enchantmentshop_title_eonir}[TODO] Make your choice…"/>
   <string id="tor_enchantmentshop_title.sturgia" text="{=str_tor_enchantmentshop_title_sturgia}Make your choice…"/>
   <string id="tor_enchantmentshop_title.aserai" text="{=str_tor_enchantmentshop_title_aserai}Make your choice…"/>
   <string id="tor_enchantmentshop_title.blessings" text="{=str_tor_enchantmentshop_title_blessings}Make your choice…"/>
 
+  <!-- DESCRIPTIONS -->
   <string id="tor_enchantmentshop_description.empire" text="{=str_tor_enchantmentshop_description_empire}Select an enchantment scroll to study:"/>
+  <string id="tor_enchantmentshop_description.vlandia" text="{=str_tor_enchantmentshop_description_vlandia}[TODO] Select a blessed scroll to study:"/>
+  <string id="tor_enchantmentshop_description.khuzait" text="{=str_tor_enchantmentshop_description_khuzait}[TODO] Select a dark grimoire to study:"/>
+  <string id="tor_enchantmentshop_description.mousillon" text="{=str_tor_enchantmentshop_description_mousillon}[TODO] Select a forbidden text to study:"/>
+  <string id="tor_enchantmentshop_description.battania" text="{=str_tor_enchantmentshop_description_battania}[TODO] Select a nature-touched inscription to study:"/>
+  <string id="tor_enchantmentshop_description.eonir" text="{=str_tor_enchantmentshop_description_eonir}[TODO] Select an elven enchantment to study:"/>
   <string id="tor_enchantmentshop_description.sturgia" text="{=str_tor_enchantmentshop_description_sturgia}Select a rune carving to study:"/>
   <string id="tor_enchantmentshop_description.aserai" text="{=str_tor_enchantmentshop_description_aserai}Take one uv da weird ju-ju bits:"/>
   <string id="tor_enchantmentshop_description.blessings" text="{=str_tor_enchantmentshop_description_blessings}Select a blessed tome to study:"/>
 
+  <!-- RESTRICTIONS -->
   <string id="tor_enchantmentshop_restriction.Armor" text="{=str_tor_enchantmentshop_restriction_Armor}Applies to armour"/>
   <string id="tor_enchantmentshop_restriction.Melee" text="{=str_tor_enchantmentshop_restriction_Melee}Applies to melee weapons"/>
   <string id="tor_enchantmentshop_restriction.Weapon" text="{=str_tor_enchantmentshop_restriction_Weapon}Applies to any weapon"/>
