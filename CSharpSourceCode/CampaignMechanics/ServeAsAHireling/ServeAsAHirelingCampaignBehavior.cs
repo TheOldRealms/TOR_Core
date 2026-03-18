@@ -642,6 +642,9 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             //I am not sure why this was needed? Putting it in makes it crash if you leave service while in a town for example.
             //This makes PlayerEncounter.EncounterSettlement null which is accessed via vanilla gamemenu init methods
             //crash does not occur, and finishing encounter is important to not end in a invalid state, where parties try to engange with player but can't
+            PlayerEncounter.Current?.RosterToReceiveLootItems?.Clear();
+            PendingLootedTroopManager.ClearPendingMembers();
+            PendingLootedTroopManager.ClearPendingPrisoners();
             PlayerEncounter.Finish();
             if (Settlement.CurrentSettlement != null)
             {
@@ -878,7 +881,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 }
 
                 // Clear alternative rosters (items handled separately)
-                PlayerEncounter.Current.RosterToReceiveLootItems.Clear();
+                PlayerEncounter.Current?.RosterToReceiveLootItems?.Clear();
 
                 // Use PendingLootedTroopManager to clear the actual rosters that DoLootParty uses
                 // The alternative rosters (PlayerEncounter.Current.RosterToReceive*) don't affect DoLootParty
@@ -946,6 +949,9 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 // Mark that we're in a post-battle transition to prevent AI tick crashes
                 // This is especially important after sieges when the lord immediately enters the settlement
                 _inPostBattleTransition = true;
+                PlayerEncounter.Current?.RosterToReceiveLootItems?.Clear();
+                PendingLootedTroopManager.ClearPendingMembers();
+                PendingLootedTroopManager.ClearPendingPrisoners();
 
                 _hirelingLordIsFightingWithoutPlayer = false;
 
