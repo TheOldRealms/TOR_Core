@@ -32,7 +32,7 @@ namespace TOR_Core.Extensions.UI
         private SceneLayer _scenelayer;
         private Camera _camera;
         private Scene _scene;
-        private const int _maxMainMenuSceneIndex = 5; //TODO: need to change if we have scenes with at least 2 digits
+        private const int _maxMainMenuSceneIndex = 6; //TODO: need to change if we have scenes with at least 2 digits
 
         public TORInitialScreen(InitialState initialState)
         {
