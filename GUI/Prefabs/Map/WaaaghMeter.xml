@@ -5,6 +5,7 @@
     <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
             SuggestedWidth="80" SuggestedHeight="455"
             HorizontalAlignment="Right" VerticalAlignment="Center"
+            PositionYOffset="200"
             MarginRight="-5"
             IsVisible="@IsVisible">
       <Children>
