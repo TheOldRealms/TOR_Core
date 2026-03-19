@@ -1398,7 +1398,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 case TORConstants.Cultures.BRETONNIA:
                 case TORConstants.Cultures.MOUSILLON:
                     keyValue = default_bretonnia;
-                    CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("human");
+                    CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("bretonnian");
                     break;
                 case TORConstants.Cultures.SYLVANIA:
                     keyValue = default_vc;
