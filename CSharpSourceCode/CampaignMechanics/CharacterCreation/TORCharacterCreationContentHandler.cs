@@ -11,6 +11,7 @@ using TaleWorlds.CampaignSystem.Extensions;
 using TaleWorlds.CampaignSystem.GameState;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TaleWorlds.DotNet;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
@@ -1424,6 +1425,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     CharacterObject.PlayerCharacter.IsFemale);
             }
 
+            CharacterObject.PlayerCharacter.Equipment.FillFrom(culture.DefaultBattleEquipmentRoster.DefaultEquipment);
+            CharacterObject.PlayerCharacter.FirstCivilianEquipment.FillFrom(culture.DefaultCivilianEquipmentRoster.DefaultEquipment);
+            var emptyEquipment = new Equipment();
+            CharacterObject.PlayerCharacter.FirstStealthEquipment.FillFrom(emptyEquipment, false);
         }
         
     }

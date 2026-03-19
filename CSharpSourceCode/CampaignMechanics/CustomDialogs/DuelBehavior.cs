@@ -83,6 +83,7 @@ public class DuelBehavior : CampaignBehaviorBase
         {
 
             if (Hero.OneToOneConversationHero?.IsLord != true) return false;
+            if (Hero.OneToOneConversationHero.IsPrisoner) return false;
             if (_isDuelInProgress) return false;
 
             var playerCulture = Hero.MainHero.Culture.StringId;

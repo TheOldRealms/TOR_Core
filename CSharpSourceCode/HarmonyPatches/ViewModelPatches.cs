@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
@@ -202,7 +203,7 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch("TaleWorlds.MountAndBlade.ViewModelCollection.Scoreboard.ScoreboardBaseVM", "OnMainHeroDeath")]
         public static bool OnMainHeroDeath_Prefix()
         {
-            if (TaleWorlds.MountAndBlade.Agent.Main == null && Hero.MainHero.HasCareer(TORCareers.Necromancer))
+            if (Game.Current.GameType is Campaign && TaleWorlds.MountAndBlade.Agent.Main == null && Hero.MainHero.HasCareer(TORCareers.Necromancer))
             {
                 if (Mission.Current.Agents.AnyQ(x => x.IsHero && x.IsActive() && x.GetHero() == Hero.MainHero))
                 {

@@ -42,6 +42,7 @@ namespace TOR_Core.HarmonyPatches
                 cameraFrame.origin.z -= 0.5f;
                 camera.Frame = cameraFrame;
             }
+            //Sly : an exception will need to be looked into for wolves as the camera for mounts assumes horse height
         }
     }
 }
