@@ -658,7 +658,7 @@
 		       value="50" />
 		<skill id="Throwing"
 		       value="0" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="150" />
 		<skill id="Engineering"
 		       value="0" />
@@ -703,7 +703,7 @@
 		       value="100" />
 		<skill id="Throwing"
 		       value="0" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="100" />
@@ -1074,7 +1074,7 @@
 		       value="200" />
 		<skill id="Throwing"
 		       value="0" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="200" />
@@ -1119,7 +1119,7 @@
 		       value="200" />
 		<skill id="Throwing"
 		       value="200" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="280" />
@@ -1164,7 +1164,7 @@
 		       value="0" />
 		<skill id="Throwing"
 		       value="0" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="200" />
@@ -1209,7 +1209,7 @@
 		       value="150" />
 		<skill id="Throwing"
 		       value="250" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="175" />
@@ -1254,7 +1254,7 @@
 		       value="300" />
 		<skill id="Throwing"
 		       value="300" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="250" />
@@ -1300,7 +1300,7 @@
 		       value="50" />
 		<skill id="Throwing"
 		       value="50" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="250" />
@@ -1345,7 +1345,7 @@
 		       value="50" />
 		<skill id="Throwing"
 		       value="50" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="250" />
@@ -1391,7 +1391,7 @@
 		       value="50" />
 		<skill id="Throwing"
 		       value="50" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="250" />
@@ -1436,7 +1436,7 @@
 		       value="50" />
 		<skill id="Throwing"
 		       value="50" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="250" />
@@ -1481,7 +1481,7 @@
 		       value="0" />
 		<skill id="Throwing"
 		       value="0" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="200" />
@@ -1526,7 +1526,7 @@
 		       value="100" />
 		<skill id="Throwing"
 		       value="100" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="200" />
@@ -1573,7 +1573,7 @@
 		       value="0" />
 		<skill id="Throwing"
 		       value="0" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="150" />
@@ -1618,7 +1618,7 @@
 		       value="0" />
 		<skill id="Throwing"
 		       value="0" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="125" />
@@ -1665,7 +1665,7 @@
 		       value="275" />
 		<skill id="Throwing"
 		       value="200" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="250" />
 		<skill id="Engineering"
 		       value="250" />
@@ -1710,7 +1710,7 @@
 		       value="0" />
 		<skill id="Throwing"
 		       value="200" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="250" />
@@ -1755,7 +1755,7 @@
 		       value="200" />
 		<skill id="Throwing"
 		       value="100" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="300" />
 		<skill id="Engineering"
 		       value="240" />
@@ -1800,7 +1800,7 @@
 		       value="315" />
 		<skill id="Throwing"
 		       value="250" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="250" />
 		<skill id="Engineering"
 		       value="310" />
@@ -1847,7 +1847,7 @@
 		       value="0" />
 		<skill id="Throwing"
 		       value="150" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="170" />
@@ -1892,7 +1892,7 @@
 		       value="0" />
 		<skill id="Throwing"
 		       value="160" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="180" />
@@ -1937,7 +1937,7 @@
 		       value="0" />
 		<skill id="Throwing"
 		       value="160" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="120" />
@@ -1982,7 +1982,7 @@
 		       value="0" />
 		<skill id="Throwing"
 		       value="150" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="170" />
@@ -2029,7 +2029,7 @@
 		       value="200" />
 		<skill id="Throwing"
 		       value="0" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="310" />
@@ -2074,7 +2074,7 @@
 		       value="50" />
 		<skill id="Throwing"
 		       value="0" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="275" />
@@ -2119,7 +2119,7 @@
 		       value="100" />
 		<skill id="Throwing"
 		       value="0" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="250" />
@@ -2164,7 +2164,7 @@
 		       value="0" />
 		<skill id="Throwing"
 		       value="0" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="250" />
@@ -2209,7 +2209,7 @@
 		       value="100" />
 		<skill id="Throwing"
 		       value="0" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="250" />
@@ -2254,7 +2254,7 @@
 		       value="100" />
 		<skill id="Throwing"
 		       value="0" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="220" />
@@ -2299,7 +2299,7 @@
 		       value="300" />
 		<skill id="Throwing"
 		       value="150" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="300" />
 		<skill id="Engineering"
 		       value="350" />
@@ -2344,7 +2344,7 @@
 		       value="0" />
 		<skill id="Throwing"
 		       value="0" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="135" />
@@ -2389,7 +2389,7 @@
 		       value="0" />
 		<skill id="Throwing"
 		       value="0" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="0" />
 		<skill id="Engineering"
 		       value="170" />
@@ -2434,7 +2434,7 @@
 		       value="0" />
 		<skill id="Throwing"
 		       value="0" />
-		<skill id="Smithing"
+		<skill id="Crafting"
 		       value="330" />
 		<skill id="Engineering"
 		       value="200" />
