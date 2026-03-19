@@ -149,8 +149,15 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             {
                 if (_currentTrainedSkill == null)
                 {
-                    _currentTrainedSkill = _activities.GetHirelingActivities(Hero.MainHero.GetCareer())[0];
-                    _currentActivityIndex = 0;
+                    var activities = _activities.GetHirelingActivities(Hero.MainHero.GetCareer());
+                    if (activities.Count > 0)
+                    {
+                        if (_currentActivityIndex < 0 || _currentActivityIndex >= activities.Count)
+                        {
+                            _currentActivityIndex = 0;
+                        }
+                        _currentTrainedSkill = activities[_currentActivityIndex];
+                    }
                 }
 
                 if (_currentTrainedSkill != null && Hero.MainHero.IsHealthFull())
@@ -192,6 +199,14 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             }
 
             return 1;
+        }
+
+        private bool IsHirelingSettlementEncounterSafe(Settlement settlement)
+        {
+            return settlement != null
+                && !_inPostBattleTransition
+                && settlement.SiegeEvent == null
+                && settlement.Party.MapEvent == null;
         }
 
         private void EnsureHirelingSettlementEncounter(Settlement settlement)
@@ -415,6 +430,11 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             {
                 var settlement = _hirelingEnlistingLord.PartyBelongedTo.CurrentSettlement;
 
+                if (settlement.SiegeEvent != null)
+                {
+                    return;
+                }
+
                 // fix stale encounter first
                 EnsureHirelingSettlementEncounter(settlement);
 
@@ -567,10 +587,17 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                         //the crash is from attempting to join a siege that the enlisting lord is in (siege leader or follower unknown) - is the issue the player not being part of the siege event? or maybe the besieger camp?
                         var playerParty = MobileParty.MainParty;
                         playerParty.MapEventSide = eventAlliedLeaderParty.MapEventSide;
-                        playerParty.BesiegerCamp = eventAlliedLeaderParty.BesiegerCamp;
-                        playerParty.CurrentSettlement = eventAlliedLeaderParty.CurrentSettlement;
 
-                        var forceOutOfSettlement = eventAlliedLeaderParty.SiegeEvent == null;
+                        if (mapEvent.IsSiegeAssault)
+                        {
+                            playerParty.BesiegerCamp = eventAlliedLeaderParty.BesiegerCamp;
+                            playerParty.CurrentSettlement = eventAlliedLeaderParty.CurrentSettlement;
+                        }
+                        else
+                        {
+                            playerParty.BesiegerCamp = null;
+                            playerParty.CurrentSettlement = null;
+                        }
 
                         if (mapEvent.IsSiegeAssault) //a siege event is SiegeOutside when the player is not present - is the PlayerEncounter.Init patch in EncounterPatches meant to solve this issue and it had a side effect of causing an issue when not enlisted?
                                                      //SiegeAssault doesn't know whether it's the attacker or defender, it's just that the map event is in a Siege state
@@ -636,8 +663,15 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
         public void LeaveLordPartyAction()
         {
+            _startBattle = false;
+            _siegeBattleMissionStarted = false;
+            _inPostBattleTransition = false;
+            _hirelingLordIsFightingWithoutPlayer = false;
+            _hirelingWaitMenuShown = false;
+            Game.Current.AfterTick -= InitializeSiegeBattle;
             _hirelingEnlisted = false;
             _hirelingEnlistingLord = null;
+            Hero.MainHero.RemoveAttribute("enlisted");
             _hirelingWaitMenuShown = false;
             //I am not sure why this was needed? Putting it in makes it crash if you leave service while in a town for example.
             //This makes PlayerEncounter.EncounterSettlement null which is accessed via vanilla gamemenu init methods
@@ -656,6 +690,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
             _durationInDays = 0;
             _manuallyFoughtBattles = 0;
+            _currentTrainedSkill = null;
+            _currentActivityIndex = 0;
         }
 
         private void InitializeSiegeBattle(float tick)
@@ -805,6 +841,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             dataStore.SyncData("_entryServiceTimeStamp", ref _entryServiceTimeStamp);
             dataStore.SyncData("_manuallyFoughtBattles", ref _manuallyFoughtBattles);
             dataStore.SyncData("_durationInDays", ref _durationInDays);
+            dataStore.SyncData("_currentActivityIndex", ref _currentActivityIndex);
         }
 
         private void party_wait_talk_to_other_members_on_init(MenuCallbackArgs args) { }
@@ -917,6 +954,17 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             if (MobileParty.MainParty.CurrentSettlement == settlement && PlayerEncounter.EncounterSettlement == settlement) return;
             if (_hirelingEnlistingLord != null && _hirelingEnlistingLord.PartyBelongedTo == mobileParty)
             {
+                if (!IsHirelingSettlementEncounterSafe(settlement))
+                {
+                    GameMenu.SwitchToMenu("hireling_menu");
+
+                    if (_pauseModeToggle)
+                    {
+                        Campaign.Current.TimeControlMode = CampaignTimeControlMode.Stop;
+                    }
+
+                    return;
+                }
                 // callback settlement
                 EnsureHirelingSettlementEncounter(settlement);
 
@@ -955,9 +1003,22 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
                 _hirelingLordIsFightingWithoutPlayer = false;
 
-                var waitingForNativeEncounterCleanup = mapEvent.IsPlayerMapEvent
-                    && PlayerEncounter.Current != null
-                    && PlayerEncounter.EncounterSettlement == null;
+                var endedPlayerEncounterForThisBattle =
+                    PlayerEncounter.Current != null &&
+                    PlayerEncounter.EncounterSettlement == null &&
+                    PlayerEncounter.Battle == mapEvent;
+
+                if (endedPlayerEncounterForThisBattle)
+                {
+                    PlayerEncounter.Finish(false);
+                    _hirelingWaitMenuShown = false;
+                    return;
+                }
+
+                var waitingForNativeEncounterCleanup =
+                    mapEvent.IsPlayerMapEvent &&
+                    ((PlayerEncounter.Current != null && PlayerEncounter.EncounterSettlement == null)
+                     || MapEvent.PlayerMapEvent != null);
 
                 if (waitingForNativeEncounterCleanup)
                 {
@@ -978,19 +1039,32 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             {
                 // Clear post-battle transition flag once we're stable (no active battle, menu shown)
                 var currentBattleParty = GetCurrentHirelingBattleParty();
-                if (_inPostBattleTransition && _hirelingWaitMenuShown && currentBattleParty?.MapEvent == null)
+                if (_inPostBattleTransition
+                    && currentBattleParty?.MapEvent == null
+                    && PlayerEncounter.Current == null
+                    && MapEvent.PlayerMapEvent == null)
                 {
+                    var playerParty = MobileParty.MainParty;
+                    playerParty.MapEventSide = null;
+                    playerParty.BesiegerCamp = null;
+                    playerParty.CurrentSettlement = null;
                     _inPostBattleTransition = false;
                 }
 
-                var menu = Campaign.Current.GameMenuManager.GetGameMenu("hireling_menu");
                 var timeModel = Campaign.Current.Models.CampaignTimeModel;
-                _durationInDays = timeModel.CampaignStartTime.ElapsedDaysUntilNow - _entryServiceTimeStamp;//could be in an hourly or daily tick instead
-                menu.RunOnTick(Campaign.Current.CurrentMenuContext, dt);
+                _durationInDays = timeModel.CampaignStartTime.ElapsedDaysUntilNow - _entryServiceTimeStamp;
 
-                var waitingForNativeEncounterCleanup = _inPostBattleTransition
-                    && PlayerEncounter.Current != null
-                    && PlayerEncounter.EncounterSettlement == null;
+                var currentMenuContext = Campaign.Current.CurrentMenuContext;
+                if (currentMenuContext?.GameMenu?.StringId == "hireling_menu")
+                {
+                    var hirelingMenu = Campaign.Current.GameMenuManager.GetGameMenu("hireling_menu");
+                    hirelingMenu.RunOnTick(currentMenuContext, dt);
+                }
+
+                var waitingForNativeEncounterCleanup =
+                    _inPostBattleTransition &&
+                    ((PlayerEncounter.Current != null && PlayerEncounter.EncounterSettlement == null)
+                     || MapEvent.PlayerMapEvent != null);
 
                 if (!_hirelingWaitMenuShown && !waitingForNativeEncounterCleanup)
                 {
@@ -1062,6 +1136,14 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 PlayerEncounter.Finish(false);
 
             _hirelingEnlisted = true;
+
+            if (Clan.PlayerClan.Influence != 0f)
+            {
+                ChangeClanInfluenceAction.Apply(Clan.PlayerClan, -Clan.PlayerClan.Influence);
+            }
+
+            _currentTrainedSkill = null;
+            _currentActivityIndex = 0;
 
             SetActivities();
             var timeModel = Campaign.Current.Models.CampaignTimeModel;

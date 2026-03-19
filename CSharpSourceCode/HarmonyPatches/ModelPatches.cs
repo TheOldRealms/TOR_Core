@@ -6,6 +6,7 @@ using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TOR_Core.Models;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.HarmonyPatches;
 
@@ -26,6 +27,18 @@ public static class ModelPatches
         }
 
         return true;
+    }
+
+    // removing influence changes for the hirelings
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(ChangeClanInfluenceAction), nameof(ChangeClanInfluenceAction.Apply))]
+    private static void Prefix_FreezeHirelingInfluence(Clan clan, ref float amount)
+    {
+        if (clan != Clan.PlayerClan || !Hero.MainHero.IsEnlisted())
+        {
+            return;
+        }
+        amount = -clan.Influence;
     }
 
     // removes auto recruitment hard cap

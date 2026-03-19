@@ -23,7 +23,7 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
         private const float CommonChance = 5f;
         private const float AbundantChance = 7f;
         private const int CoolDown = 168;
-        private int _lastTriggeredMorrsliebCycleYear = -1;
+        private int _lastTriggeredMorrsliebCycleIndex = -1;
 
         List<CustomEvent> _events = new List<CustomEvent>();
         Dictionary<string, double> _triggerTimes = new Dictionary<string, double>();
@@ -49,12 +49,13 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
         private void WeeklyTick()
         {
             int daysInCurrentWeek = Campaign.Current.Models.CampaignTimeModel.DaysInWeek;
-            int currentYear = CampaignTime.Now.GetYear;
+            int morrsliebCycleDurationInHours = GetCalendarNormalizedCooldownHours(CampaignTime.HoursInDay * CampaignTime.DaysInYear);
+            int currentMorrsliebCycleIndex = (int)(CampaignTime.Now.ToHours / morrsliebCycleDurationInHours);
 
-            if (CampaignTime.Now.GetDayOfYear <= daysInCurrentWeek && _lastTriggeredMorrsliebCycleYear != currentYear)
+            if (CampaignTime.Now.GetDayOfYear <= daysInCurrentWeek && _lastTriggeredMorrsliebCycleIndex != currentMorrsliebCycleIndex)
             {
                 InkStoryManager.OpenStory("MorrsliebWaxes");
-                _lastTriggeredMorrsliebCycleYear = currentYear;
+                _lastTriggeredMorrsliebCycleIndex = currentMorrsliebCycleIndex;
             }
         }
 
@@ -137,7 +138,7 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
         public override void SyncData(IDataStore dataStore)
         {
             dataStore.SyncData("_triggerTimes", ref _triggerTimes);
-            dataStore.SyncData("_lastTriggeredMorrsliebCycleYear", ref _lastTriggeredMorrsliebCycleYear);
+            dataStore.SyncData("_lastTriggeredMorrsliebCycleIndex", ref _lastTriggeredMorrsliebCycleIndex);
         }
 
         ~CustomEventsCampaignBehavior()

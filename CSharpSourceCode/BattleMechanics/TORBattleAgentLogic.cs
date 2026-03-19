@@ -1,8 +1,12 @@
 ﻿using SandBox.Missions.MissionLogics;
+using System.Linq;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.Library;
 using TOR_Core.AbilitySystem;
+using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics
@@ -28,9 +32,12 @@ namespace TOR_Core.BattleMechanics
 
         private float _elapsedSinceLastTick;
 
+        private bool _fixedHirelingSpawn;
+
         public override void OnMissionTick(float dt)
         {
             base.OnMissionTick(dt);
+            TryFixHirelingSpawn();
 
             if (Mission.Mode == MissionMode.Deployment || Mission.IsTeleportingAgents)
             {
@@ -157,6 +164,68 @@ namespace TOR_Core.BattleMechanics
             }
 
         }
+
+        private void TryFixHirelingSpawn()
+        {
+            if (_fixedHirelingSpawn)
+            {
+                return;
+            }
+
+            var hirelingBehavior = Campaign.Current?.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>();
+            if (hirelingBehavior?.IsEnlisted() != true)
+            {
+                _fixedHirelingSpawn = true;
+                return;
+            }
+
+            if (Mission.Mode == MissionMode.Deployment || Mission.IsTeleportingAgents)
+            {
+                return;
+            }
+
+            var enlistedParty = hirelingBehavior.EnlistingLord?.PartyBelongedTo?.Party;
+            if (enlistedParty == null)
+            {
+                return;
+            }
+
+            var mainAgent = Mission.MainAgent;
+            if (mainAgent == null || !mainAgent.IsActive())
+            {
+                return;
+            }
+
+            if (Mission.IsSiegeBattle)
+            {
+                return;
+            }
+
+            var enlistedPartyAgent = Mission.Agents.FirstOrDefault(agent =>
+                agent != mainAgent &&
+                agent.IsActive() &&
+                agent.IsHuman &&
+                agent.Origin?.BattleCombatant == enlistedParty);
+
+            if (enlistedPartyAgent == null)
+            {
+                return;
+            }
+
+            const float maxReasonableSpawnDistance = 12f;
+            var maxReasonableSpawnDistanceSquared = maxReasonableSpawnDistance * maxReasonableSpawnDistance;
+            var distanceToPartySquared = (enlistedPartyAgent.Position.AsVec2 - mainAgent.Position.AsVec2).LengthSquared;
+
+            if (distanceToPartySquared > maxReasonableSpawnDistanceSquared)
+            {
+                // joined battles can spawn the player behind
+                var targetPosition = Mission.GetRandomPositionAroundPoint(enlistedPartyAgent.Position, 0.5f, 2f, true);
+                mainAgent.TeleportToPosition(targetPosition);
+            }
+
+            _fixedHirelingSpawn = true;
+        }
+
         private static bool ShouldProcessAgent(Agent agent)
         {
             if (!agent.IsActive() || !agent.IsHuman)
