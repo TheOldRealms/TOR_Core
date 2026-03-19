@@ -2432,29 +2432,9 @@
   <CharacterExtendedInfo id="tor_he_seaelf_militia">
     <Abilities />
     <Attributes />
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_he_seaelf_archer">
-    <Abilities />
-    <Attributes>
-      <string>Piercing</string>
-    </Attributes>
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_he_seaelf_hawkeye">
-    <Abilities />
-    <Attributes>
-      <string>Piercing</string>
-    </Attributes>
-    <Resistances />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.25" />
+    </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -2463,7 +2443,9 @@
   <CharacterExtendedInfo id="tor_he_seaelf_spearman">
     <Abilities />
     <Attributes />
-    <Resistances />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.25" />
+    </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -2472,7 +2454,9 @@
   <CharacterExtendedInfo id="tor_he_seaelf_sentinel">
     <Abilities />
     <Attributes />
-    <Resistances />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.50" />
+    </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -7852,6 +7836,7 @@
     <Abilities />
     <Attributes>
       <string>Tough</string>
+      <string>CanPlaceArtillery</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_angazhar_factionleader">

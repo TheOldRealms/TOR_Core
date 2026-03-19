@@ -649,7 +649,7 @@
 		<skill id="OneHanded"
 		       value="100" />
 		<skill id="TwoHanded"
-		       value="100" />
+		       value="0" />
 		<skill id="Polearm"
 		       value="0" />
 		<skill id="Bow"
