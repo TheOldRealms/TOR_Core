@@ -4482,7 +4482,7 @@
       <EquipmentSet id="tor_vc_lunatic_female_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_parravon_factionleader" default_group="cavalry" name="{=str_tor_br_lord_parravon_factionleader}Duke Cassyon de Parravon" occupation="Lord" culture="Culture.vlandia" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_parravon_factionleader" default_group="cavalry" name="{=str_tor_br_lord_parravon_factionleader}Duke Cassyon de Parravon" occupation="Lord" culture="Culture.vlandia" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.4171" build="0.2463" key="0018A80800E406426878689A6A663846254B954647B16C6C62648798A27351340054860305A67A59000000000000000000000000000000000000000052A43142" />
     </face>
@@ -4500,7 +4500,7 @@
       <EquipmentSet id="tor_cassyon_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_parravon_first_2" default_group="cavalry" name="{=str_tor_br_lord_parravon_first_2}Ser Philippe Antoine" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_parravon_first_2" default_group="cavalry" name="{=str_tor_br_lord_parravon_first_2}Ser Philippe Antoine" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="27" weight="0.5" build="0.5" key="0010AC081700008F2969BA9B971F7295537D86629811023BDA738E5D8A844667007776030712B59100000000000000000000000000000000000000003EFC5000" />
     </face>
@@ -4518,7 +4518,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_parravon_first_3" default_group="cavalry" name="{=str_tor_br_lord_parravon_first_3}Ser Alderic Le Doré" occupation="Lord" culture="Culture.vlandia" voice="curt" age="19" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_parravon_first_3" default_group="cavalry" name="{=str_tor_br_lord_parravon_first_3}Ser Alderic Le Doré" occupation="Lord" culture="Culture.vlandia" voice="curt" age="19" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.2083" build="0.1713" key="000D600200000002A525B3518D28257612DABA97A783643BEBA45F298582812000933603095845400000000000000000000000000000000000000000553C6140" />
     </face>
@@ -4536,7 +4536,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_parravon_first_4" default_group="cavalry" name="{=str_tor_br_lord_parravon_first_4}Ser Gaultier Monstre-Fleau" occupation="Lord" culture="Culture.vlandia" voice="curt" age="26" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_parravon_first_4" default_group="cavalry" name="{=str_tor_br_lord_parravon_first_4}Ser Gaultier Monstre-Fleau" occupation="Lord" culture="Culture.vlandia" voice="curt" age="26" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="26" weight="0.7423" build="0.9522" key="001BD40D9EFC280C6968B8376207928E537D864BD85116166CB755258A84F66700DEB6030D44B195000000000000000000000000000000000000000063AC9000" />
     </face>
@@ -4554,7 +4554,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_parravon_first_5" default_group="cavalry" name="{=str_tor_br_lord_parravon_first_5}Ser Audric de Parravon" occupation="Lord" culture="Culture.vlandia" voice="curt" age="29" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_parravon_first_5" default_group="cavalry" name="{=str_tor_br_lord_parravon_first_5}Ser Audric de Parravon" occupation="Lord" culture="Culture.vlandia" voice="curt" age="29" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="35.14" weight="0.7793" build="0.1433" key="0013440D80583740B68483985767A84837827552A7AB6D8916BBB6C6966547BB0282C62408956732000000000000000000000000000000000000000045143100" />
     </face>
@@ -4572,7 +4572,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_parravon_first_6" default_group="cavalry" name="{=str_tor_br_lord_parravon_first_6}Ser Lukas de l’abbaye de Maisontaal" occupation="Lord" culture="Culture.vlandia" voice="curt" age="22" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_parravon_first_6" default_group="cavalry" name="{=str_tor_br_lord_parravon_first_6}Ser Lukas de l’abbaye de Maisontaal" occupation="Lord" culture="Culture.vlandia" voice="curt" age="22" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22.1" weight="0.841" build="0.3843" key="0013D406C070300C98529BB86AB8E77B9C8E60536996082288965789AD9BE4780086D6030866B58400000000000000000000000000000000000000004B149000" />
     </face>
@@ -4590,7 +4590,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_parravon_first_7" default_group="cavalry" name="{=str_tor_br_lord_parravon_first_7}Ser Pierre le Fer" occupation="Lord" culture="Culture.vlandia" voice="curt" age="26" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_parravon_first_7" default_group="cavalry" name="{=str_tor_br_lord_parravon_first_7}Ser Pierre le Fer" occupation="Lord" culture="Culture.vlandia" voice="curt" age="26" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="26.19" weight="0.7855" build="0.7886" key="001530098E8812C82C554A6C570ABBC9962949690866096B93B77EE68A467577017CC61307416333000000000000000000000000000000000000000040E430C0" />
     </face>
@@ -4608,7 +4608,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_parravon_first_8" default_group="infantry" name="{=str_tor_br_lord_parravon_first_8}Annfleur la Charitable" occupation="Special" culture="Culture.vlandia" voice="softspoken" age="22" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_br_lord_parravon_first_8" default_group="infantry" name="{=str_tor_br_lord_parravon_first_8}Annfleur la Charitable" occupation="Special" culture="Culture.vlandia" voice="softspoken" age="22" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.017" build="0.2762" key="0008A0081388200B94B2623B35488A8677769558995687799A669E6B986583677ED61603043696AB40487799B8954B8A000000000000000400000000347C1003" />
     </face>
@@ -4626,7 +4626,7 @@
       <EquipmentSet id="tor_damsel_template_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_montfort_factionleader" default_group="cavalry" name="{=str_tor_br_lord_montfort_factionleader}Duke Folcard de Montfort" occupation="Lord" culture="Culture.vlandia" voice="curt" age="31" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_montfort_factionleader" default_group="cavalry" name="{=str_tor_br_lord_montfort_factionleader}Duke Folcard de Montfort" occupation="Lord" culture="Culture.vlandia" voice="curt" age="31" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.7946" build="0.5927" key="0010700F0088020EAA5B4BCA68A232D65738A5A8C7575869664B876857B754940049C60304D7779B00000000000000000000000000000000000000004C846102" />
     </face>
@@ -4644,7 +4644,7 @@
       <EquipmentSet id="tor_folcard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_montfort_first_2" default_group="cavalry" name="{=str_tor_br_lord_montfort_first_2}Ser Aloïs de la Montagne" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_montfort_first_2" default_group="cavalry" name="{=str_tor_br_lord_montfort_first_2}Ser Aloïs de la Montagne" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="30.39" weight="0.7454" build="0.983" key="0018D00D918829425D77165CA39767C81D9A748812841E4489A735AB06BCD68901FFB6140F84C87600000000000000000000000000000000000000004DF49000" />
     </face>
@@ -4662,7 +4662,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_montfort_first_3" default_group="cavalry" name="{=str_tor_br_lord_montfort_first_3}Ser Elyan le Blanc" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_montfort_first_3" default_group="cavalry" name="{=str_tor_br_lord_montfort_first_3}Ser Elyan le Blanc" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="37.18" weight="0.233" build="0.4861" key="00007C0F00002345B17AA363B62798D96886861C58738E8716625BAA7A5745340297362409322323000000000000000000000000000000000000000057341000" />
     </face>
@@ -4680,7 +4680,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_montfort_first_4" default_group="cavalry" name="{=str_tor_br_lord_montfort_first_4}Ser Urbain Beaufort" occupation="Lord" culture="Culture.vlandia" voice="curt" age="34" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_montfort_first_4" default_group="cavalry" name="{=str_tor_br_lord_montfort_first_4}Ser Urbain Beaufort" occupation="Lord" culture="Culture.vlandia" voice="curt" age="34" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="37.18" weight="0.5346" build="0.5324" key="00103006C0B4118849B56B4BC854975A538AAC70169816C1716A27503EA6B8A5028886240802715500000000000000000000000000000000000000003B0C80C0" />
     </face>
@@ -4698,7 +4698,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_montfort_first_5" default_group="cavalry" name="{=str_tor_br_lord_montfort_first_5}Ser Cédric de la Montagne" occupation="Lord" culture="Culture.vlandia" voice="curt" age="28" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_montfort_first_5" default_group="cavalry" name="{=str_tor_br_lord_montfort_first_5}Ser Cédric de la Montagne" occupation="Lord" culture="Culture.vlandia" voice="curt" age="28" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="28.29" weight="0.6775" build="0.7485" key="001BBC0ACF8803895477165CA39D67C8139574881264704489A70DA906B5568901CBA6130C84C876000000000000000000000000000000000000000063A49000" />
     </face>
@@ -4716,7 +4716,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_montfort_first_6" default_group="cavalry" name="{=str_tor_br_lord_montfort_first_6}Ser Guy de l’herbe" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_montfort_first_6" default_group="cavalry" name="{=str_tor_br_lord_montfort_first_6}Ser Guy de l’herbe" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="30" weight="1" build="0.9" key="001B2C0400882149795ACA53877B75CC593BADA3CA86A188877515149EBA8A320189A6130806422200000000000000000000000000000000000000005D0400C0" />
     </face>
@@ -4734,7 +4734,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_montfort_first_7" default_group="cavalry" name="{=str_tor_br_lord_montfort_first_7}Ser Herve le Pur" occupation="Lord" culture="Culture.vlandia" voice="curt" age="36" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_montfort_first_7" default_group="cavalry" name="{=str_tor_br_lord_montfort_first_7}Ser Herve le Pur" occupation="Lord" culture="Culture.vlandia" voice="curt" age="36" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="36.02" weight="0.5335" build="0.7361" key="000D0C0140CC038C7E785EA9D52684B7C9F8897AB956A665739868677EC95B8502CB86240C68B2490000000000000000000000000000000000000000638C9080" />
     </face>
@@ -4752,7 +4752,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_bastonne_factionleader" default_group="cavalry" name="{=str_tor_br_lord_bastonne_factionleader}Duke Bohemond Beastslayer" occupation="Lord" culture="Culture.vlandia" voice="curt" age="35" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_bastonne_factionleader" default_group="cavalry" name="{=str_tor_br_lord_bastonne_factionleader}Duke Bohemond Beastslayer" occupation="Lord" culture="Culture.vlandia" voice="curt" age="35" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="28.29" weight="0.6343" build="0.6127" key="001B2C0400882149795ACA53877B75CC593BADA3CA86A188877515149EBA8A320189A6130806422200000000000000000000000000000000000000005D0400C0" />
     </face>
@@ -4770,7 +4770,7 @@
       <EquipmentSet id="tor_bohemond_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_bastonne_first_2" default_group="cavalry" name="{=str_tor_br_lord_bastonne_first_2}Jasperre le Beau" occupation="Lord" culture="Culture.vlandia" voice="curt" age="25" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_bastonne_first_2" default_group="cavalry" name="{=str_tor_br_lord_bastonne_first_2}Jasperre le Beau" occupation="Lord" culture="Culture.vlandia" voice="curt" age="25" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="35.19" weight="0.6806" build="0.8657" key="0018CC054014164F9B8706A953995854567B353C24656B0E69599906642A348602ADA6240A2434790000000000000000000000000000000000000000574C4100" />
     </face>
@@ -4788,7 +4788,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_bastonne_first_3" default_group="cavalry" name="{=str_tor_br_lord_bastonne_first_3}Luca Loup" occupation="Lord" culture="Culture.vlandia" voice="curt" age="19" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_bastonne_first_3" default_group="cavalry" name="{=str_tor_br_lord_bastonne_first_3}Luca Loup" occupation="Lord" culture="Culture.vlandia" voice="curt" age="19" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="19.08" weight="0.2485" build="0.3627" key="000A900400A0104849A8B98CE6D813AA887AAA655577802BDCB1772769A4567509A546920A48849500000000000000000000000000000000000000002D4C1002" />
     </face>
@@ -4806,7 +4806,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_bastonne_first_4" default_group="cavalry" name="{=str_tor_br_lord_bastonne_first_4}Crysteffor du Toit" occupation="Lord" culture="Culture.vlandia" voice="curt" age="18" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_bastonne_first_4" default_group="cavalry" name="{=str_tor_br_lord_bastonne_first_4}Crysteffor du Toit" occupation="Lord" culture="Culture.vlandia" voice="curt" age="18" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="19.08" weight="0.4059" build="0.554" key="000DCC0AC05820062B6BA5897787AA698B9D5685BBC3E35982755657A2DA485609C866920A37C6240000000000000000000000000000000000000000358410C2" />
     </face>
@@ -4824,7 +4824,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_bastonne_first_5" default_group="cavalry" name="{=str_tor_br_lord_bastonne_first_5}Gauvain le Faucon" occupation="Lord" culture="Culture.vlandia" voice="curt" age="18" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_bastonne_first_5" default_group="cavalry" name="{=str_tor_br_lord_bastonne_first_5}Gauvain le Faucon" occupation="Lord" culture="Culture.vlandia" voice="curt" age="18" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="18.2" weight="0.4401" build="0.5077" key="000A280AC0702005A59764AB987BA7656AD8B62676AAA39A56688A91A9B88C5407C87672096195560000000000000000000000000000000000000000478C9082" />
     </face>
@@ -4842,7 +4842,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_bastonne_first_6" default_group="cavalry" name="{=str_tor_br_lord_bastonne_first_6}Sir Edwin the Spider Slayer" occupation="Lord" culture="Culture.vlandia" voice="curt" age="56" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_bastonne_first_6" default_group="cavalry" name="{=str_tor_br_lord_bastonne_first_6}Sir Edwin the Spider Slayer" occupation="Lord" culture="Culture.vlandia" voice="curt" age="56" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="56.17" weight="0.1404" build="0.517" key="000A5C099400038474897A95CB967BD299C87A822CB5E6164E53258799D4A7D705C826570C28572700000000000000000000000000000000000000005FA49080" />
     </face>
@@ -4860,7 +4860,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_bastonne_first_7" default_group="cavalry" name="{=str_tor_br_lord_bastonne_first_7}Symón of Brusse" occupation="Lord" culture="Culture.vlandia" voice="curt" age="25" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_bastonne_first_7" default_group="cavalry" name="{=str_tor_br_lord_bastonne_first_7}Symón of Brusse" occupation="Lord" culture="Culture.vlandia" voice="curt" age="25" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="27.22" weight="0.4275" build="0.6763" key="000D4408C02C308178A4977899574892925E57ABED3B88999739354B4A765D6201BA66130B2566360000000000000000000000000000000000000000497C3140" />
     </face>
@@ -4878,7 +4878,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_bastonne_second_1" default_group="cavalry" name="{=str_tor_br_lord_bastonne_second_1}Calard of Garamont" occupation="Lord" culture="Culture.vlandia" voice="curt" age="65" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_bastonne_second_1" default_group="cavalry" name="{=str_tor_br_lord_bastonne_second_1}Calard of Garamont" occupation="Lord" culture="Culture.vlandia" voice="curt" age="65" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="70.35" weight="0.7392" build="0.7145" key="00108800140033C0786A18BDD78BCA49598986A23611093BBCB77727D986F66B07ABB6780A48B4960000000000000000000000000000000000000000594C9000" />
     </face>
@@ -4896,7 +4896,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_bastonne_second_2" default_group="cavalry" name="{=str_tor_br_lord_bastonne_second_2}Lady Anara of Garamont" occupation="Special" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_br_lord_bastonne_second_2" default_group="cavalry" name="{=str_tor_br_lord_bastonne_second_2}Lady Anara of Garamont" occupation="Special" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="25" weight="0.4939" build="0.2338" key="0023740080441005AC6AA1658C89BAA66938CBBBBDC77A9959A2B97689C73E6301A476130A847B5400000000000000000000000000000000000000003F4C1003" />
     </face>
@@ -4914,7 +4914,7 @@
       <EquipmentSet id="tor_damsel_template_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_bordeleaux_factionleader" default_group="cavalry" name="{=str_tor_br_lord_bordeleaux_factionleader}Duke Alberic de Bordeleaux" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_bordeleaux_factionleader" default_group="cavalry" name="{=str_tor_br_lord_bordeleaux_factionleader}Duke Alberic de Bordeleaux" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="34" weight="0.0556" build="0.2361" key="00022404D40021C56376648B6752888E9FB1A66B5875A643C4B6B73B8795AC2702C416240CA74A1421000000000000000000000000000018000000003B943002" />
     </face>
@@ -4932,7 +4932,7 @@
       <EquipmentSet id="tor_alberic_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_bordeleaux_first_2" default_group="cavalry" name="{=str_tor_br_lord_bordeleaux_first_2}Ser Guieffroy Ragnier" occupation="Lord" culture="Culture.vlandia" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_bordeleaux_first_2" default_group="cavalry" name="{=str_tor_br_lord_bordeleaux_first_2}Ser Guieffroy Ragnier" occupation="Lord" culture="Culture.vlandia" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="24" weight="1" build="0.1096" key="000564009C0020488DD6C4D7DFCF00003C6686629511320B88538FAC8BB8C5B500B2F6030B2B044300000000000000000000000000000000000000003F6C4040" />
     </face>
@@ -4950,7 +4950,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_bordeleaux_first_3" default_group="cavalry" name="{=str_tor_br_lord_bordeleaux_first_3}Ser Bonpre Lapart" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_bordeleaux_first_3" default_group="cavalry" name="{=str_tor_br_lord_bordeleaux_first_3}Ser Bonpre Lapart" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="30" weight="0.5188" build="1" key="0010300A578815CC1B54221B75D706FFC99AA9788FC0140D599EA3A366754985002F86030247B6170000000000000000000000000000000000000000125470C0" />
     </face>
@@ -4968,7 +4968,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_bordeleaux_first_4" default_group="cavalry" name="{=str_tor_br_lord_bordeleaux_first_4}Ser Gyeffroy l' Épéiste" occupation="Lord" culture="Culture.vlandia" voice="curt" age="29" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_bordeleaux_first_4" default_group="cavalry" name="{=str_tor_br_lord_bordeleaux_first_4}Ser Gyeffroy l' Épéiste" occupation="Lord" culture="Culture.vlandia" voice="curt" age="29" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.3582" build="0.5602" key="0008900980FC30899AE74B66529B754756B9FB2859C29B7BE33949A676C9238700B856030B19C898000000000000000000000000000000000000000039645000" />
     </face>
@@ -4986,7 +4986,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_bordeleaux_first_5" default_group="cavalry" name="{=str_tor_br_lord_bordeleaux_first_5}Ser Gundehar of Raisol" occupation="Lord" culture="Culture.vlandia" voice="curt" age="33" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_bordeleaux_first_5" default_group="cavalry" name="{=str_tor_br_lord_bordeleaux_first_5}Ser Gundehar of Raisol" occupation="Lord" culture="Culture.vlandia" voice="curt" age="33" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="33" weight="0.7485" build="0.9738" key="0013500E5DCC07C1C6F566969985454CD04F8C5656E1D87BEA757254FFAC86A600BFB6030B5488960000000000000000000000000000000000000000397C3080" />
     </face>
@@ -5004,7 +5004,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_bordeleaux_first_6" default_group="cavalry" name="{=str_tor_br_lord_bordeleaux_first_6}Ser Foguelin de Oiseau" occupation="Lord" culture="Culture.vlandia" voice="curt" age="39" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_bordeleaux_first_6" default_group="cavalry" name="{=str_tor_br_lord_bordeleaux_first_6}Ser Foguelin de Oiseau" occupation="Lord" culture="Culture.vlandia" voice="curt" age="39" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="39" weight="0.5805" build="0.1836" key="001E5C0800A0118D6B86888A75B770A22BACC34B56C34C8C125D4AB37F6884AE009396030913C99C0000000000000000000000000000000000000000493430C0" />
     </face>
@@ -5022,7 +5022,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_bordeleaux_first_7" default_group="cavalry" name="{=str_tor_br_lord_bordeleaux_first_7}Ser Piegpin Himilrude" occupation="Lord" culture="Culture.vlandia" voice="curt" age="22" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_bordeleaux_first_7" default_group="cavalry" name="{=str_tor_br_lord_bordeleaux_first_7}Ser Piegpin Himilrude" occupation="Lord" culture="Culture.vlandia" voice="curt" age="22" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.9566" build="0.3551" key="0010A00AC02C130E458376E494B6878896E85BDA7A208B8790A7000878B76C8B00C5E6030C86874A000000000000000000000000000000000000000017941040" />
     </face>
@@ -5040,7 +5040,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_bordeleaux_first_8" default_group="infantry" name="{=str_tor_br_lord_bordeleaux_first_8}Mathilde L'etincelle" occupation="Special" culture="Culture.vlandia" voice="softspoken" age="22" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_br_lord_bordeleaux_first_8" default_group="infantry" name="{=str_tor_br_lord_bordeleaux_first_8}Mathilde L'etincelle" occupation="Special" culture="Culture.vlandia" voice="softspoken" age="22" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.3532" build="0.7209" key="0002EC04D058100E54D2A886AA787C7E38CB3BB59768C6AE99EBA83D889AB8ABD6F7060309944866B506D6BB1DC98F280000000000000009000000003D340083" />
     </face>
@@ -5058,7 +5058,7 @@
       <EquipmentSet id="tor_damsel_template_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_carcassonne_factionleader" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_factionleader}Duke Huebald of Carcassonne" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_carcassonne_factionleader" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_factionleader}Duke Huebald of Carcassonne" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.1497" build="0.4645" key="0013F00F1714118B28CCAA5A653B1A76578BAC6265E25D00B5E820879AB4B307007726030778E88B000000000000000000000000000000000000000052DC8004" />
     </face>
@@ -5076,7 +5076,7 @@
       <EquipmentSet id="tor_huebald_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_carcassonne_first_2" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_first_2}Baron Abelard de Turín" occupation="Lord" culture="Culture.vlandia" voice="curt" age="25" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_carcassonne_first_2" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_first_2}Baron Abelard de Turín" occupation="Lord" culture="Culture.vlandia" voice="curt" age="25" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="25" weight="0.3148" build="0.625" key="0005AC0E5858234EB9069C5424159BDA77D986629511323BDCB11E67697166D800995603097789960000000000000000000000000000000000000000252C5000" />
     </face>
@@ -5094,7 +5094,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_carcassonne_first_3" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_first_3}Ser de Raker" occupation="Lord" culture="Culture.vlandia" voice="curt" age="31" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_carcassonne_first_3" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_first_3}Ser de Raker" occupation="Lord" culture="Culture.vlandia" voice="curt" age="31" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="31" weight="0.1265" build="0.8333" key="00000C0FC000100EE98565153256FF77C6675562A8874701788131279849E24600DC26030D7CFF1B00000000000000000000000000000000000000003FAC7000" />
     </face>
@@ -5112,7 +5112,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_carcassonne_first_4" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_first_4}Ser Lucien le Roc" occupation="Lord" culture="Culture.vlandia" voice="curt" age="26" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_carcassonne_first_4" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_first_4}Ser Lucien le Roc" occupation="Lord" culture="Culture.vlandia" voice="curt" age="26" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="26" weight="0.2485" build="0.7855" key="00058C0FD400018CF08537574642F08F7527760F851132109C6A1A9C6A6AB6C7008C46030868B739000000000000000000000000000000000000000001043100" />
     </face>
@@ -5130,7 +5130,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_carcassonne_first_5" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_first_5}Ser Gerard Sauvageon" occupation="Lord" culture="Culture.vlandia" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_carcassonne_first_5" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_first_5}Ser Gerard Sauvageon" occupation="Lord" culture="Culture.vlandia" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="24" weight="0.4383" build="0.7608" key="000D98028000318DF87A6D8BC06CFEC051E8848097785200758790E184AA095B005B760305AB6627000000000000000000000000000000000000000002AC9140" />
     </face>
@@ -5148,7 +5148,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_carcassonne_first_6" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_first_6}Ser Alain l’ivrogne" occupation="Lord" culture="Culture.vlandia" voice="curt" age="22" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_carcassonne_first_6" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_first_6}Ser Alain l’ivrogne" occupation="Lord" culture="Culture.vlandia" voice="curt" age="22" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.2886" build="0.8112" key="000D840F17E4100E967CA9D3AC7987568A78A48858B69869ACA7914DC643BB34008C46030846B96700000000000000000000000000000000000000000CFC2000" />
     </face>
@@ -5166,7 +5166,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_carcassonne_first_7" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_first_7}Ser Philbert le Cochon" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_carcassonne_first_7" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_first_7}Ser Philbert le Cochon" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="27" weight="0.9969" build="0.9429" key="00103408000010C0077CEAA6FF0FFFEFB7F6E1C4E86338FAEEE0EF8F70FE96CF005EF60305F1FFFE000000000000000000000000000000000000000000BC5040" />
     </face>
@@ -5184,7 +5184,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_carcassonne_second_1" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_second_1}Ser Amalric de Gaudaron" occupation="Lord" culture="Culture.vlandia" voice="curt" age="40" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_carcassonne_second_1" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_second_1}Ser Amalric de Gaudaron" occupation="Lord" culture="Culture.vlandia" voice="curt" age="40" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="40" weight="0.1265" build="0.9614" key="00000C0D0000120EE98565153256FF77C6675562A8874701788131279849E24600BE26030B728F1B00000000000000000000000000000000000000003F747000" />
     </face>
@@ -5202,7 +5202,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_carcassonne_second_2" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_second_2}Lady Giulia de Turín" occupation="Special" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_br_lord_carcassonne_second_2" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_second_2}Lady Giulia de Turín" occupation="Special" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="27" weight="0.1296" build="0.173" key="0010500E40A0100E969A618D88E9689AB998868B8747945774BC397C863D595801C326130C7D5C16000000000000000000000000000000000000000045A42003" />
     </face>
@@ -5220,7 +5220,7 @@
       <EquipmentSet id="tor_damsel_template_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_carcassonne_second_3" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_second_3}Lady Margherita de Turín" occupation="Special" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_br_lord_carcassonne_second_3" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_second_3}Lady Margherita de Turín" occupation="Special" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="27" weight="0.1296" build="0.173" key="0010500E40A0100B969A618D88E9689AB998868B8747945774BC397C863D595801C326130C7D5C16000000000000000000000000000000000000000045A42003" />
     </face>
@@ -5238,7 +5238,7 @@
       <EquipmentSet id="tor_damsel_template_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_brionne_factionleader" default_group="cavalry" name="{=str_tor_br_lord_brionne_factionleader}Duke Theodoric of Brionne" occupation="Lord" culture="Culture.vlandia" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_brionne_factionleader" default_group="cavalry" name="{=str_tor_br_lord_brionne_factionleader}Duke Theodoric of Brionne" occupation="Lord" culture="Culture.vlandia" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.2191" build="0.6265" key="0000A80FC000160E257664710448F782999686598E785A76555853988A84566600A936030A0F8E590000000000000000000000000000000000000000015C3000" />
     </face>
@@ -5256,7 +5256,7 @@
       <EquipmentSet id="tor_theodoric_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_brionne_first_2" default_group="cavalry" name="{=str_tor_br_lord_brionne_first_2}Gaston le Puissant" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_brionne_first_2" default_group="cavalry" name="{=str_tor_br_lord_brionne_first_2}Gaston le Puissant" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="31" weight="0.7701" build="0.8225" key="0000680FC0001001AAA35EB776B89771A6C77DA635974576A8C7E1A9C79A737412CCC6240C997A8AB5BAA544444A989900000000000000BB000000003F8C3100" />
     </face>
@@ -5274,7 +5274,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_brionne_first_3" default_group="cavalry" name="{=str_tor_br_lord_brionne_first_3}Phillipe l'homme gris" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_brionne_first_3" default_group="cavalry" name="{=str_tor_br_lord_brionne_first_3}Phillipe l'homme gris" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="31" weight="0.267" build="0.2731" key="000A580F00003004A6963655678837663CBB6A885C46B88D5A397AA796898BC50294462409B2966600000000000000000000000000000000000000003F2C80C2" />
     </face>
@@ -5292,7 +5292,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_brionne_first_4" default_group="cavalry" name="{=str_tor_br_lord_brionne_first_4}Claude la Santé" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_brionne_first_4" default_group="cavalry" name="{=str_tor_br_lord_brionne_first_4}Claude la Santé" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.5" build="0.5" key="00004409800006CC95577E86A7CB8355A9A7B767899B56A78558B7A683579A85007776030785535600000000000000000000000000000000000000003EFC6100" />
     </face>
@@ -5310,7 +5310,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_brionne_first_5" default_group="cavalry" name="{=str_tor_br_lord_brionne_first_5}Antoine le Bel" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_brionne_first_5" default_group="cavalry" name="{=str_tor_br_lord_brionne_first_5}Antoine le Bel" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="80" weight="0.2207" build="0.1929" key="0000D00005CC3002A97953B45A8B695789B8B49C85D32467598547C8857A2379689336890985443B454554453455555600000000000000440000000041344140" />
     </face>
@@ -5328,7 +5328,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_brionne_first_6" default_group="cavalry" name="{=str_tor_br_lord_brionne_first_6}Charles de Alarie" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_brionne_first_6" default_group="cavalry" name="{=str_tor_br_lord_brionne_first_6}Charles de Alarie" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="52" weight="0.162" build="0.7639" key="000A480C400013CE58B7738E66964925B698879B5687D4585BC6B793A6A9B5A9449B26460958468632233334444434330000000000000054000000003F3C9000" />
     </face>
@@ -5346,7 +5346,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_brionne_first_7" default_group="cavalry" name="{=str_tor_br_lord_brionne_first_7}Jacques le Chantelame" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_brionne_first_7" default_group="cavalry" name="{=str_tor_br_lord_brionne_first_7}Jacques le Chantelame" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="36" weight="0.6867" build="0.7207" key="0000C808C0000088757697A76364B88582C4BA677C58989A487759948957271A52ABA6240A392BE454455464545343430000000000000055000000003F4C30C0" />
     </face>
@@ -5364,7 +5364,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_aquitaine_factionleader" default_group="cavalry" name="{=str_tor_br_lord_aquitaine_factionleader}Duke Armand d’ Aquitaine" occupation="Lord" culture="Culture.vlandia" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_aquitaine_factionleader" default_group="cavalry" name="{=str_tor_br_lord_aquitaine_factionleader}Duke Armand d’ Aquitaine" occupation="Lord" culture="Culture.vlandia" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.4171" build="0.4327" key="0010A80D80B415C83826588869A85268CFDA96453BBBCB25683977737BC67A2500566603058B6988000000000000000000000000000000000000000032A48142" />
     </face>
@@ -5382,7 +5382,7 @@
       <EquipmentSet id="tor_armand_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_aquitaine_first_2" default_group="cavalry" name="{=str_tor_br_lord_aquitaine_first_2}Ser Marcûs le Bref" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_aquitaine_first_2" default_group="cavalry" name="{=str_tor_br_lord_aquitaine_first_2}Ser Marcûs le Bref" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="27" weight="0.5648" build="0.7006" key="000AAC0F00001B548D76648E677F2735537D866295113200D0017F578A84F667009B86030948B49500000000000000000000000000000000000000002F1C9000" />
     </face>
@@ -5400,7 +5400,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_aquitaine_first_3" default_group="cavalry" name="{=str_tor_br_lord_aquitaine_first_3}Ser Bodwyn le Deuxième" occupation="Lord" culture="Culture.vlandia" voice="curt" age="34" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_aquitaine_first_3" default_group="cavalry" name="{=str_tor_br_lord_aquitaine_first_3}Ser Bodwyn le Deuxième" occupation="Lord" culture="Culture.vlandia" voice="curt" age="34" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="34" weight="0.737" build="0.5844" key="001808028FA0030936A97C57596A2679B132733BB66098BE885873CADCA77A750089B6030859764200000000000000000000000000000000000000005D1C1000" />
     </face>
@@ -5418,7 +5418,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_aquitaine_first_4" default_group="cavalry" name="{=str_tor_br_lord_aquitaine_first_4}Ser Aarón le Cruel" occupation="Lord" culture="Culture.vlandia" voice="curt" age="31" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_aquitaine_first_4" default_group="cavalry" name="{=str_tor_br_lord_aquitaine_first_4}Ser Aarón le Cruel" occupation="Lord" culture="Culture.vlandia" voice="curt" age="31" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="31" weight="0.9645" build="1" key="0008A00A5E001CC0BF907F50FF0FF0FF71584F0FFFE00F07588B653D6F65A1E900DFE6030D983FFA000000000000000000000000000000000000000001BC3040" />
     </face>
@@ -5436,7 +5436,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_aquitaine_first_5" default_group="cavalry" name="{=str_tor_br_lord_aquitaine_first_5}Ser Gideon le Maladroit" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_aquitaine_first_5" default_group="cavalry" name="{=str_tor_br_lord_aquitaine_first_5}Ser Gideon le Maladroit" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="27" weight="0.8163" build="0.7006" key="0000940600FC245A569996A5C92A7A6C77954937D7900EF1781D2355B663B437009BC60309A882580000000000000000000000000000000000000000513C3140" />
     </face>
@@ -5454,7 +5454,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_aquitaine_first_6" default_group="cavalry" name="{=str_tor_br_lord_aquitaine_first_6}Ser Darius l’Etrange" occupation="Lord" culture="Culture.vlandia" voice="curt" age="40" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_aquitaine_first_6" default_group="cavalry" name="{=str_tor_br_lord_aquitaine_first_6}Ser Darius l’Etrange" occupation="Lord" culture="Culture.vlandia" voice="curt" age="40" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.4336" build="0" key="000A580E4014109266D17699D9D7A880687D607960607F84001300D49D67A3950090760309695CE70000000000000000000000000000000000000000452C4080" />
     </face>
@@ -5472,7 +5472,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_aquitaine_first_7" default_group="cavalry" name="{=str_tor_br_lord_aquitaine_first_7}Ser Gabriel le Pieux" occupation="Lord" culture="Culture.vlandia" voice="curt" age="64" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_aquitaine_first_7" default_group="cavalry" name="{=str_tor_br_lord_aquitaine_first_7}Ser Gabriel le Pieux" occupation="Lord" culture="Culture.vlandia" voice="curt" age="64" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.4296" build="0.6412" key="0002940B80B4161CB8849A5AD46455A52827632A25A5BDE8596A579996879B95009A66030918895F000000000000000000000000000000000000000059241040" />
     </face>
@@ -5490,7 +5490,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_aquitaine_first_8" default_group="cavalry" name="{=str_tor_br_lord_aquitaine_first_8}Ser Jacques le Marin" occupation="Lord" culture="Culture.vlandia" voice="curt" age="33" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_aquitaine_first_8" default_group="cavalry" name="{=str_tor_br_lord_aquitaine_first_8}Ser Jacques le Marin" occupation="Lord" culture="Culture.vlandia" voice="curt" age="33" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.4127" build="0.586" key="00102C09805816C28A328E96345636CB24388AA7AC448E3C37A55F7B635DA485008966030868BBB30000000000000000000000000000000000000000391C40C0" />
     </face>
@@ -5508,7 +5508,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_quenelles_factionleader" default_group="cavalry" name="{=str_tor_br_lord_quenelles_factionleader}Duke Tancred II de Quenelles" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_quenelles_factionleader" default_group="cavalry" name="{=str_tor_br_lord_quenelles_factionleader}Duke Tancred II de Quenelles" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="50" weight="0.3981" build="0.9792" key="000254001400118FB911506E2932A4A4537A766693A5323BA824110A8A845667048F66460844FF16000000000000000000000000000000000000000009044002" />
     </face>
@@ -5526,7 +5526,7 @@
       <EquipmentSet id="tor_tancred_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_quenelles_first_2" default_group="cavalry" name="{=str_tor_br_lord_quenelles_first_2}Comte Raynor" occupation="Lord" culture="Culture.vlandia" voice="curt" age="36" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_quenelles_first_2" default_group="cavalry" name="{=str_tor_br_lord_quenelles_first_2}Comte Raynor" occupation="Lord" culture="Culture.vlandia" voice="curt" age="36" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="45.26" weight="0.3258" build="0.8198" key="0026980F17E4038D4875C99C987785C668AE47689DB885867992A7AE63F7A2BB03AC56350A7587D400000000000000000000000000000000000000005F4C3040" />
     </face>
@@ -5544,7 +5544,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_quenelles_first_3" default_group="cavalry" name="{=str_tor_br_lord_quenelles_first_3}Ser Panteleon the Old" occupation="Lord" culture="Culture.vlandia" voice="curt" age="57" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_quenelles_first_3" default_group="cavalry" name="{=str_tor_br_lord_quenelles_first_3}Ser Panteleon the Old" occupation="Lord" culture="Culture.vlandia" voice="curt" age="57" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="57.2" weight="0.6869" build="0.3798" key="0023500000700340B275BBAA68789D87295B146BA38C666A6AD48A3B6B8534DA05B6A6570BC794DC0000000000000000000000000000000000000000596C5040" />
     </face>
@@ -5562,7 +5562,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_quenelles_first_4" default_group="cavalry" name="{=str_tor_br_lord_quenelles_first_4}Earl Anthelme of Austray" occupation="Lord" culture="Culture.vlandia" voice="curt" age="26" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_quenelles_first_4" default_group="cavalry" name="{=str_tor_br_lord_quenelles_first_4}Earl Anthelme of Austray" occupation="Lord" culture="Culture.vlandia" voice="curt" age="26" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="26" weight="0.5412" build="0.5497" key="00085401402C31815A546BDA867768882758BA8A749A467275537965A74B16BE0158861305A3A5B4000000000000000000000000000000000000000020BC8140" />
     </face>
@@ -5580,7 +5580,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_quenelles_first_5" default_group="cavalry" name="{=str_tor_br_lord_quenelles_first_5}Ser Hrodbert of Chien" occupation="Lord" culture="Culture.vlandia" voice="curt" age="46" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_quenelles_first_5" default_group="cavalry" name="{=str_tor_br_lord_quenelles_first_5}Ser Hrodbert of Chien" occupation="Lord" culture="Culture.vlandia" voice="curt" age="46" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="47" weight="0.6007" build="0.2481" key="002374008088339226AA9B87379A75B2846383977B95F7472544B8B4927BC23900A496030A66B4B60000000000000000000000000000000000000000355C4000" />
     </face>
@@ -5598,7 +5598,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_quenelles_first_6" default_group="cavalry" name="{=str_tor_br_lord_quenelles_first_6}Ser Taurin the Wanderer" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_quenelles_first_6" default_group="cavalry" name="{=str_tor_br_lord_quenelles_first_6}Ser Taurin the Wanderer" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="27" weight="0.2951" build="0.4168" key="000044054FFC221CAC79695595648659750D49AB7989D7573B856456A8BBA97301C646130CC9728B00000000000000000000000000000000000000001FA41080" />
     </face>
@@ -5616,7 +5616,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_quenelles_second_1" default_group="cavalry" name="{=str_tor_br_lord_quenelles_second_1}Ser Leon Beloved of Mathilde" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_quenelles_second_1" default_group="cavalry" name="{=str_tor_br_lord_quenelles_second_1}Ser Leon Beloved of Mathilde" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="27" weight="0.243" build="0.5793" key="001E740AC0B41C822868E627446B7586D754919745995CB72498B4933826C55600D946030D9F8266000000000000000000000000000000000000000035B410C0" />
     </face>
@@ -5634,7 +5634,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_quenelles_second_2" default_group="cavalry" name="{=str_tor_br_lord_quenelles_second_2}Lady Mathilde of the Fey" occupation="Special" culture="Culture.vlandia" voice="curt" age="25" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_br_lord_quenelles_second_2" default_group="cavalry" name="{=str_tor_br_lord_quenelles_second_2}Lady Mathilde of the Fey" occupation="Special" culture="Culture.vlandia" voice="curt" age="25" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="25" weight="0.2" build="0.1" key="001B900000B430157279D168465B5B774BC879C47BA98A488748E8A9857B5A9801A136130A77758A00000000000000000000000000000000000000001F4C30C3" />
     </face>
@@ -5652,7 +5652,7 @@
       <EquipmentSet id="tor_prophetess_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_couronne_factionleader" default_group="cavalry" name="{=str_tor_br_lord_couronne_factionleader}King Louen Leoncoeur" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="43" skill_template="SkillSet.tor_skills_louenleoncoeur" is_hero="true">
+  <NPCCharacter id="tor_br_lord_couronne_factionleader" default_group="cavalry" name="{=str_tor_br_lord_couronne_factionleader}King Louen Leoncoeur" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="43" skill_template="SkillSet.tor_skills_louenleoncoeur" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.4367" build="0.6389" key="0013980F000011CEBB71568E688668531AFDA875A170A80BDCB25F288A84F668017716030C6BB666A750000000000000000000000000000C0000000025944002" />
     </face>
@@ -5670,7 +5670,7 @@
       <EquipmentSet id="tor_louen_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_couronne_first_2" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_2}Philippe Baudet" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="37" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_couronne_first_2" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_2}Philippe Baudet" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="37" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="37" weight="0.4836" build="0.5076" key="000D0005407024429C77AA9554745846BA75A82682726CA385579494ABC8116FA264C6030F38ED858753BF9476777576000000000000000F0000000019FC3082" />
     </face>
@@ -5688,7 +5688,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_couronne_first_3" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_3}Jehan le Frelon" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="32" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_couronne_first_3" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_3}Jehan le Frelon" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="32" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="32" weight="0.2554" build="0.5175" key="0013180AC02C371457C5616F38A18498A76855C637C6E25C42B2646B6784877B563A86030D2C65B88486AA9A79546356000000000000000D000000002DC430C2" />
     </face>
@@ -5706,7 +5706,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_couronne_first_4" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_4}Gillet le Rasage" occupation="Lord" culture="Culture.vlandia" voice="curt" age="35" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_couronne_first_4" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_4}Gillet le Rasage" occupation="Lord" culture="Culture.vlandia" voice="curt" age="35" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="35" weight="0.4583" build="0.9813" key="000A38020EE42644A68519EA983995CAA515B699A48438C8BA99883757A594686898A6030F8BCCDBF74ACC7945D4AE68000000000000000F0000000029FC5002" />
     </face>
@@ -5724,7 +5724,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_couronne_first_5" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_5}Gerard the Majordome" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="42" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_couronne_first_5" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_5}Gerard the Majordome" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="42" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="42" weight="0.4066" build="0.7869" key="001068054070185C77BAA88957993D59CDA632753844597084773738B68DCA5CA77996030AE78A43C6747B878228AC86000000000000000A000000005D4C3102" />
     </face>
@@ -5742,7 +5742,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_couronne_first_6" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_6}Michel la Montagne" occupation="Lord" culture="Culture.vlandia" voice="ironic" age="35" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_couronne_first_6" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_6}Michel la Montagne" occupation="Lord" culture="Culture.vlandia" voice="ironic" age="35" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="35" weight="0.2948" build="1" key="0010600F1AA033823F863CB75668E54469899CD28850E502967A549589966BBCBB6446030F94996BF4C78896354A9E4B000000000000000F0000000017FC9002" />
     </face>
@@ -5760,7 +5760,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_couronne_first_7" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_7}Earl Adalbert du Marais" occupation="Lord" culture="Culture.vlandia" voice="curt" age="44" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_couronne_first_7" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_7}Earl Adalbert du Marais" occupation="Lord" culture="Culture.vlandia" voice="curt" age="44" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="44" weight="0.6899" build="0.8018" key="001E580C5700230C6543A9D798C68B18325D44867896348B942ACAD9C366644CBB7246030B444461CA5A5878E546B778000000000000000B000000002D6C8102" />
     </face>
@@ -5778,7 +5778,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_couronne_first_8" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_8}Landuin of Couronne" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="31" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_couronne_first_8" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_8}Landuin of Couronne" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="31" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="31" weight="0.49" build="0.812" key="0015600FC02C16C094C3D9B76660585BB829A4D6BC5194007BBCC479569A269CAE32860307A4B5E7C7B2A678AAABBD670000000000000007000000002CFC4102" />
     </face>
@@ -5796,7 +5796,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_couronne_first_9" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_9}Alexandre le Gris" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="38" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_couronne_first_9" default_group="cavalry" name="{=str_tor_br_lord_couronne_first_9}Alexandre le Gris" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="38" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="38" weight="0.4275" build="0.5201" key="000D140D804400C1985A4CAD6D9992ED6166DE3AA3C27C8A6535664AE688499C645696030DCD88DC8694853277B46A49000000000000000D0000000039AC1042" />
     </face>
@@ -5814,7 +5814,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_couronne_first_10" default_group="infantry" name="{=str_tor_br_lord_couronne_first_10}Ophelia LeRoi" occupation="Special" culture="Culture.vlandia" voice="softspoken" age="22" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_br_lord_couronne_first_10" default_group="infantry" name="{=str_tor_br_lord_couronne_first_10}Ophelia LeRoi" occupation="Special" culture="Culture.vlandia" voice="softspoken" age="22" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.3532" build="0.7209" key="0002EC0FD058100E54D2A886AA787C7E38CB3BB59768C6AE99EBA83D889AB8ABD6F7060309944866B506D6BB1DC98F280000000000000009000000003D340083" />
     </face>
@@ -5832,7 +5832,7 @@
       <EquipmentSet id="tor_damsel_template_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_couronne_second_1" default_group="cavalry" name="{=str_tor_br_lord_couronne_second_1}Baron Farabus of Couronne" occupation="Lord" culture="Culture.vlandia" voice="curt" age="50" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_couronne_second_1" default_group="cavalry" name="{=str_tor_br_lord_couronne_second_1}Baron Farabus of Couronne" occupation="Lord" culture="Culture.vlandia" voice="curt" age="50" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="50" weight="0.4699" build="0.3321" key="000A9400008837025767667CA8A8CBEE7698586894998CD66C5184A535658C6C44755603087999575788AA5A4A58E7850000000000000008000000004F142102" />
     </face>
@@ -5850,7 +5850,7 @@
       <EquipmentSet id="tor_baron_farabus_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_couronne_second_2" default_group="cavalry" name="{=str_tor_br_lord_couronne_second_2}Bertrand le Grande" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="32" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_couronne_second_2" default_group="cavalry" name="{=str_tor_br_lord_couronne_second_2}Bertrand le Grande" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="32" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="32" weight="0.2377" build="0.519" key="00059C0340FC2341C857CACCC83838E99B68B75EE589457D969625A7BB8447299857B6030D7D4BAD84D3B68C668847FA000000000000000D000000003BB43042" />
     </face>
@@ -5868,7 +5868,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_couronne_second_3" default_group="cavalry" name="{=str_tor_br_lord_couronne_second_3}Tristan de la Tour" occupation="Lord" culture="Culture.vlandia" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_couronne_second_3" default_group="cavalry" name="{=str_tor_br_lord_couronne_second_3}Tristan de la Tour" occupation="Lord" culture="Culture.vlandia" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="24" weight="0.2377" build="0.6471" key="0002480080B401CB72C76833448889BA33964698C999C3A9896699AE94BA7B963A59A6030A46A665A09674ADCBA5D8C7000000000000000A00000000395C10C2" />
     </face>
@@ -5886,7 +5886,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_couronne_third_1" default_group="cavalry" name="{=str_tor_br_lord_couronne_third_1}Roland the Marechal" occupation="Lord" culture="Culture.vlandia" voice="ironic" age="32" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_couronne_third_1" default_group="cavalry" name="{=str_tor_br_lord_couronne_third_1}Roland the Marechal" occupation="Lord" culture="Culture.vlandia" voice="ironic" age="32" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="32" weight="0.5954" build="0.7435" key="0010180F0000068C45988A9B67639477BBA6894AD4679DE77A7897C672A128378A64760308BB5973B9342BA89C47B39B00000000000000080000000029142082" />
     </face>
@@ -5904,7 +5904,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_couronne_third_2" default_group="cavalry" name="{=str_tor_br_lord_couronne_third_2}Philippe d'Artaud" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="25" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_couronne_third_2" default_group="cavalry" name="{=str_tor_br_lord_couronne_third_2}Philippe d'Artaud" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="25" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="25" weight="0.2279" build="0.485" key="0013980200B402CE5267C8A55C89CB87A76783D639B797D78894C97A74A79715BC4A860307D95779736774C84879385500000000000000070000000004EC70C2" />
     </face>
@@ -5922,7 +5922,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_anguille_factionleader" default_group="cavalry" name="{=str_tor_br_lord_anguille_factionleader}Duke Taubert de L'Anguille" occupation="Lord" culture="Culture.vlandia" voice="curt" age="43" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_anguille_factionleader" default_group="cavalry" name="{=str_tor_br_lord_anguille_factionleader}Duke Taubert de L'Anguille" occupation="Lord" culture="Culture.vlandia" voice="curt" age="43" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="35" weight="0.6292" build="0.6867" key="00105C0D1EB432858AB5C67944849C55AA678CC6E872B456985CA8D8473488A4F854762409C8A436A9B79745BA9C9A160000000000000029000000004D347042" />
     </face>
@@ -5940,7 +5940,7 @@
       <EquipmentSet id="tor_taubert_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_anguille_first_2" default_group="cavalry" name="{=str_tor_br_lord_anguille_first_2}Nedred de L’Anguille" occupation="Lord" culture="Culture.vlandia" voice="curt" age="32" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_anguille_first_2" default_group="cavalry" name="{=str_tor_br_lord_anguille_first_2}Nedred de L’Anguille" occupation="Lord" culture="Culture.vlandia" voice="curt" age="32" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.7676" build="0.914" key="0010000AC070208CBC384572A56474B77A5C448C47919F147C689A9882B8825B769486030ABCD8BDECA77CA79A867AB7000000000000000A000000000B5450C2" />
     </face>
@@ -5958,7 +5958,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_anguille_first_3" default_group="cavalry" name="{=str_tor_br_lord_anguille_first_3}Bayard Guillar" occupation="Lord" culture="Culture.vlandia" voice="ironic" age="45" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_anguille_first_3" default_group="cavalry" name="{=str_tor_br_lord_anguille_first_3}Bayard Guillar" occupation="Lord" culture="Culture.vlandia" voice="ironic" age="45" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="41" weight="0.9666" build="0.9873" key="000A4006C07031826B7359CBBF3C75CAA9932A7D99A39968A9E94F6E9769BA9D2888F6350A4778EDFE7DA63BAAC4D853000000000000003A0000000065547102" />
     </face>
@@ -5976,7 +5976,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_anguille_first_4" default_group="cavalry" name="{=str_tor_br_lord_anguille_first_4}Albert de l'eau" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_anguille_first_4" default_group="cavalry" name="{=str_tor_br_lord_anguille_first_4}Albert de l'eau" occupation="Lord" culture="Culture.vlandia" voice="curt" age="27" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="27" weight="0.5783" build="0.4593" key="000A500FD95806CBCD5566AAA8B10F284DC424B6C3826E7542A59062FA923D67196876030A795B9579A98A235AE72497000000000000000A00000000374C3042" />
     </face>
@@ -5994,7 +5994,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_anguille_second_1" default_group="cavalry" name="{=str_tor_br_lord_anguille_second_1}Godemar Fitzgodric" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="52" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_anguille_second_1" default_group="cavalry" name="{=str_tor_br_lord_anguille_second_1}Godemar Fitzgodric" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="52" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="52" weight="0.5636" build="0.3653" key="0000180AC088160FA57CAC4D79A88AEE3627CAABB551CC9734558378893B615CB8A8A6240A79DE8358A7755AB66B48A5000000000000002A00000000515C7042" />
     </face>
@@ -6012,7 +6012,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_anguille_second_2" default_group="cavalry" name="{=str_tor_br_lord_anguille_second_2}Harbor Master Ericht von Friesen" occupation="Lord" culture="Culture.vlandia" voice="ironic" age="44" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_anguille_second_2" default_group="cavalry" name="{=str_tor_br_lord_anguille_second_2}Harbor Master Ericht von Friesen" occupation="Lord" culture="Culture.vlandia" voice="ironic" age="44" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="44" weight="0.6528" build="0.8759" key="000D380140FC230495B9AAAF47C864B8A5F89FA5CB70B79BA87D0F4FD429CC6D7AB8A6350879A8ABDA98DA648B898BA5000000000000003800000000370C2082" />
     </face>
@@ -6030,7 +6030,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_anguille_second_3" default_group="cavalry" name="{=str_tor_br_lord_anguille_second_3}Nigel the Crusty" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="74" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_anguille_second_3" default_group="cavalry" name="{=str_tor_br_lord_anguille_second_3}Nigel the Crusty" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="74" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="74" weight="0.5636" build="0.4851" key="0010200C40FC2609A988844F5540477461E4834442C02801375CB5287197645F7C1BA6790C37D8E678867B536995A445000000000000007C000000003DA430C2" />
     </face>
@@ -6048,7 +6048,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_lyonesse_factionleader" default_group="cavalry" name="{=str_tor_br_lord_lyonesse_factionleader}Duke Adalhard of Lyonesse" occupation="Lord" culture="Culture.vlandia" voice="curt" age="43" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_lyonesse_factionleader" default_group="cavalry" name="{=str_tor_br_lord_lyonesse_factionleader}Duke Adalhard of Lyonesse" occupation="Lord" culture="Culture.vlandia" voice="curt" age="43" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="67" weight="0.2917" build="0.7829" key="0020440417441149B353BBDF8D44383853B9DC45B722746817B84D956D67579FCB7A66680EDCF8C7C4787603264D7099000000000000006E000000001DE47042" />
     </face>
@@ -6066,7 +6066,7 @@
       <EquipmentSet id="tor_adalhard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_lyonesse_first_2" default_group="cavalry" name="{=str_tor_br_lord_lyonesse_first_2}Aldrad" occupation="Lord" culture="Culture.vlandia" voice="ironic" age="17" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_lyonesse_first_2" default_group="cavalry" name="{=str_tor_br_lord_lyonesse_first_2}Aldrad" occupation="Lord" culture="Culture.vlandia" voice="ironic" age="17" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="18" weight="0.6497" build="0.9585" key="0005140400580005237782AD158083A5A6E46298A4B45A45A8579C844C7A696AEFBA16720B75C366EA6EFBA2A98CABDE000000000000007F0000000055FC3102" />
     </face>
@@ -6084,7 +6084,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_lyonesse_first_3" default_group="cavalry" name="{=str_tor_br_lord_lyonesse_first_3}Shurlay" occupation="Lord" culture="Culture.vlandia" voice="curt" age="25" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_lyonesse_first_3" default_group="cavalry" name="{=str_tor_br_lord_lyonesse_first_3}Shurlay" occupation="Lord" culture="Culture.vlandia" voice="curt" age="25" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="25" weight="0.2978" build="0.3657" key="000AA00C400016046A5681478D717616499947336679E96C679659B7C9A886AA017736030B5688DD5400000000000000000000000000000B0000000045843142" />
     </face>
@@ -6102,7 +6102,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_lyonesse_first_4" default_group="cavalry" name="{=str_tor_br_lord_lyonesse_first_4}Philippe Beaubrun" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="37" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_lyonesse_first_4" default_group="cavalry" name="{=str_tor_br_lord_lyonesse_first_4}Philippe Beaubrun" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="37" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="37" weight="0.5195" build="0.6757" key="0015780080B420811E78B6B77D317834C3B69BA66A6677226959B79AEABA5C8B5C8656030AB2A437A8854A767B616B98000000000000000A00000000595C3102" />
     </face>
@@ -6120,7 +6120,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_lyonesse_first_5" default_group="cavalry" name="{=str_tor_br_lord_lyonesse_first_5}Henry the Red" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="30" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_lyonesse_first_5" default_group="cavalry" name="{=str_tor_br_lord_lyonesse_first_5}Henry the Red" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="30" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="30" weight="0.4028" build="0.5879" key="000A440600B4340E69EB3CA47549B1E598D76168B8C47810A7571B4FAA82B86CA58836030BA777B9968EC497A7788779000000000000000B00000000437C9042" />
     </face>
@@ -6138,7 +6138,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_lyonesse_first_6" default_group="cavalry" name="{=str_tor_br_lord_lyonesse_first_6}Roland the Marshal" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="29" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_lyonesse_first_6" default_group="cavalry" name="{=str_tor_br_lord_lyonesse_first_6}Roland the Marshal" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="29" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.4861" build="0.8657" key="0005480F0088368B646763276A352076989867286C425708345995A62AA7978C6BC856030DEB9636D77572ADC69B7A99000000000000000D0000000023C44102" />
     </face>
@@ -6156,7 +6156,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_lyonesse_first_7" default_group="cavalry" name="{=str_tor_br_lord_lyonesse_first_7}Orderic" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="53" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_lyonesse_first_7" default_group="cavalry" name="{=str_tor_br_lord_lyonesse_first_7}Orderic" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="53" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="53" weight="1" build="0.338" key="000A940C402C300C35713A0E85BF0C8D52F9571596C126200EB8FD85909D949FFFFEF656086588F35F42F3FEE2C90E4F0000000000000058000000004B140082" />
     </face>
@@ -6174,7 +6174,7 @@
       <EquipmentSet id="tor_bretonnian_monk_lord_template_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_lyonesse_first_8" default_group="infantry" name="{=str_tor_br_lord_lyonesse_first_8}Bertha du Contremoulins" occupation="Special" culture="Culture.vlandia" voice="softspoken" age="22" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_br_lord_lyonesse_first_8" default_group="infantry" name="{=str_tor_br_lord_lyonesse_first_8}Bertha du Contremoulins" occupation="Special" culture="Culture.vlandia" voice="softspoken" age="22" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.4385" build="0.2762" key="0005940E5100200EB8978AB33A417C578D5C8344579A68556456AAA9A644A10894F9060306897C2847786475128770560000000000000006000000003ABC0003" />
     </face>
@@ -6192,7 +6192,7 @@
       <EquipmentSet id="tor_damsel_template_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_artois_factionleader" default_group="cavalry" name="{=str_tor_br_lord_artois_factionleader}Duke Chilfroy of Artois" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_artois_factionleader" default_group="cavalry" name="{=str_tor_br_lord_artois_factionleader}Duke Chilfroy of Artois" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="40" weight="0.2207" build="0.9537" key="000A4C054000100E5DC5EE0E29D8483659FF8085A0108100DFF9CF8CBB23F476EFCE06350F6AEB37E3EEFFC499E8F0BE000000000000003F000000003FFC9002" />
     </face>
@@ -6210,7 +6210,7 @@
       <EquipmentSet id="tor_chilfory_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_artois_first_2" default_group="cavalry" name="{=str_tor_br_lord_artois_first_2}Earl Tobias Larret" occupation="Lord" culture="Culture.vlandia" voice="ironic" age="46" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_artois_first_2" default_group="cavalry" name="{=str_tor_br_lord_artois_first_2}Earl Tobias Larret" occupation="Lord" culture="Culture.vlandia" voice="ironic" age="46" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="46" weight="0.7957" build="0.8102" key="0010B80B80B4318859D3366B666F02AAC5355BAA5A859BC6474A2D8B6EA97E69E678F603084360F9CC5A988B852993B70000000000000008000000002B1C10C2" />
     </face>
@@ -6228,7 +6228,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_artois_first_3" default_group="cavalry" name="{=str_tor_br_lord_artois_first_3}Fredemund Larret" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="22" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_artois_first_3" default_group="cavalry" name="{=str_tor_br_lord_artois_first_3}Fredemund Larret" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="22" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.5882" build="0.3432" key="0008C80C40B420014CD638AB666502A7C5F55BAAAA609B82474A8D8B6EA97E69493756030A4482AD59C88769458546C2000000000000000A000000003D4C30C2" />
     </face>
@@ -6246,7 +6246,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_artois_first_4" default_group="cavalry" name="{=str_tor_br_lord_artois_first_4}Baron Chlodegar" occupation="Lord" culture="Culture.vlandia" voice="curt" age="36" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_artois_first_4" default_group="cavalry" name="{=str_tor_br_lord_artois_first_4}Baron Chlodegar" occupation="Lord" culture="Culture.vlandia" voice="curt" age="36" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="36" weight="0.4133" build="0.8071" key="00087C0F1D881309BF0B36AFEF480844ADA32B8797116801089F817AFAB4795F694686030C98A58CC6744B9686814883000000000000000C00000000339C0102" />
     </face>
@@ -6282,7 +6282,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_artois_first_6" default_group="cavalry" name="{=str_tor_br_lord_artois_first_6}Lord Roul tueur de bête" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="41" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_artois_first_6" default_group="cavalry" name="{=str_tor_br_lord_artois_first_6}Lord Roul tueur de bête" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="41" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="41" weight="0.5514" build="0.6127" key="0010580F1E00134C747E74D48785743CBB85365AA781B78897B5757ADD438B6F889BB60309D989699859A54A6788697C00000000000000090000000063242042" />
     </face>
@@ -6300,7 +6300,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_artois_first_7" default_group="cavalry" name="{=str_tor_br_lord_artois_first_7}Lord Guiscard «le bûcheron»" occupation="Lord" culture="Culture.vlandia" voice="curt" age="29" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_artois_first_7" default_group="cavalry" name="{=str_tor_br_lord_artois_first_7}Lord Guiscard «le bûcheron»" occupation="Lord" culture="Culture.vlandia" voice="curt" age="29" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="" weight="" build="" key="" />
     </face>
@@ -6318,7 +6318,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_gisoreux_factionleader" default_group="cavalry" name="{=str_tor_br_lord_gisoreux_factionleader}Duke Hagen d'Gisoreux" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_gisoreux_factionleader" default_group="cavalry" name="{=str_tor_br_lord_gisoreux_factionleader}Duke Hagen d'Gisoreux" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="35" weight="0.4213" build="1" key="0010280E4EE4134DBED48BD7B8A675ED77C965AAA0708E834AF64E587C67796C858876240BA9866AF6BDCD9998858565000000000000002B0000000043743042" />
     </face>
@@ -6336,7 +6336,7 @@
       <EquipmentSet id="tor_hagen_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_gisoreux_first_2" default_group="cavalry" name="{=str_tor_br_lord_gisoreux_first_2}Marquis Frederic Desfleuve" occupation="Lord" culture="Culture.vlandia" voice="curt" age="20" skill_template="SkillSet.tor_skills_knight_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_br_lord_gisoreux_first_2" default_group="cavalry" name="{=str_tor_br_lord_gisoreux_first_2}Marquis Frederic Desfleuve" occupation="Lord" culture="Culture.vlandia" voice="curt" age="20" skill_template="SkillSet.tor_skills_knight_lord" is_female="true" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.4614" build="0.9614" key="000D680F00FC200CDF86B9FC7ACB68700AE8897A7CB570061A0C00837CBC60BD400136030EFFFCDFE7FEDF274D011057000000000000000E0000000019CC1003" />
     </face>
@@ -6354,7 +6354,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_grail_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_gisoreux_first_3" default_group="cavalry" name="{=str_tor_br_lord_gisoreux_first_3}Lord Steward Hincmar" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="37" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_gisoreux_first_3" default_group="cavalry" name="{=str_tor_br_lord_gisoreux_first_3}Lord Steward Hincmar" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="37" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="35" weight="0.2855" build="0.5108" key="000A6C0D0070319C7DD4B4DB797477464879A8255CA3451757433B684D926349C1CCA6240CA633C78459E845998479A4000000000000002C00000000218C4102" />
     </face>
@@ -6372,7 +6372,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_gisoreux_first_4" default_group="cavalry" name="{=str_tor_br_lord_gisoreux_first_4}Earl Orlando de Oisillon" occupation="Lord" culture="Culture.vlandia" voice="ironic" age="31" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_gisoreux_first_4" default_group="cavalry" name="{=str_tor_br_lord_gisoreux_first_4}Earl Orlando de Oisillon" occupation="Lord" culture="Culture.vlandia" voice="ironic" age="31" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.5602" build="0.2685" key="000D580F00583182689CA75C46D5BB8865C88A40F8C0D7B6AC6A26B8AA557C69896846030C9D57AA48348EE7844188B6000000000000000C000000004B948082" />
     </face>
@@ -6390,7 +6390,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_gisoreux_first_5" default_group="cavalry" name="{=str_tor_br_lord_gisoreux_first_5}Sir Luidolf the Redeemed" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="27" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_gisoreux_first_5" default_group="cavalry" name="{=str_tor_br_lord_gisoreux_first_5}Sir Luidolf the Redeemed" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="27" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.2176" build="0.4951" key="001B1C04C0E4020C9726D763B7A89B78BA3A39588B74D852375B8615C877C6C84A7AA60309B7785473A54AA5EBA8E568000000000000000900000000413C7082" />
     </face>
@@ -6408,7 +6408,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_gisoreux_first_6" default_group="cavalry" name="{=str_tor_br_lord_gisoreux_first_6}Sir Lothar the Stag" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="25" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_lord_gisoreux_first_6" default_group="cavalry" name="{=str_tor_br_lord_gisoreux_first_6}Sir Lothar the Stag" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="25" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.1709" build="0.7476" key="0010300AC0FC13434666B97696A236932B4698C6D8976733EA5D396C5B86986749A926030973F776B38698A9486CA4B4000000000000000900000000713430C2" />
     </face>
@@ -6426,7 +6426,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_gisoreux_first_7" default_group="infantry" name="{=str_tor_br_lord_gisoreux_first_7}Brigitte le vert" occupation="Special" culture="Culture.vlandia" voice="softspoken" age="23" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_br_lord_gisoreux_first_7" default_group="infantry" name="{=str_tor_br_lord_gisoreux_first_7}Brigitte le vert" occupation="Special" culture="Culture.vlandia" voice="softspoken" age="23" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="23" weight="0.4957" build="0.1312" key="001BB4041158300452B3A54B7C73B9CBDB6A6AB47496D8C978C6644887A4BB895CF366030257266727C8848785988F31000000000000000200000000364C20C3" />
     </face>
@@ -6444,7 +6444,7 @@
       <EquipmentSet id="tor_damsel_template_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_lord_mousillon_factionleader" default_group="cavalry" name="{=str_tor_m_lord_mousillon_factionleader}The Serpent of Mousillon" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_serpent" is_hero="true">
+  <NPCCharacter id="tor_m_lord_mousillon_factionleader" default_group="cavalry" name="{=str_tor_m_lord_mousillon_factionleader}The Serpent of Mousillon" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_serpent" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.2284" build="0.713" key="0002500F170012457C70638A76C1136A6DC98666F4C19600C4B640398A95A03600BB36030BA7A40500000000000000000000000000000000000000003B743080" />
     </face>
@@ -6462,7 +6462,7 @@
       <EquipmentSet id="tor_m_lord_serpent" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_lord_mousillon_first_1" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_1}Lord Rachard" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_m_lord_mousillon_first_1" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_1}Lord Rachard" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="62" weight="0.0293" build="0.1235" key="00005C0D000017436C601A8FF0F1888A75E486C8C0C1E60EC4B64A398F95A03700A206030AA7497300000000000000000000000000000000000000002B647000" />
     </face>
@@ -6480,7 +6480,7 @@
       <EquipmentSet id="tor_m_black_grail_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_lord_mousillon_first_2" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_2}Lady Nicolette D'oisment" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_necromancer_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_m_lord_mousillon_first_2" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_2}Lady Nicolette D'oisment" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_necromancer_lord" is_female="true" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="24" weight="0.0792" build="0.4215" key="0000500FD100200B786E4D87A956897834A9666D7C76E9969BA6A6166998728EBAF986030878875961985399B6298FEA000000000000000800000000630C1003" />
     </face>
@@ -6498,7 +6498,7 @@
       <EquipmentSet id="tor_hedge_witch" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_lord_mousillon_first_3" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_3}Ser Cain Bettencourt" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_m_lord_mousillon_first_3" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_3}Ser Cain Bettencourt" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="24" weight="0.1771" build="0.6465" key="0002A40F1AB435C4D957AA4996750A3848F55B12B5C08478C788B85AD6B7767900AA36030A8D491700000000000000000000000000000000000000003D443040" />
     </face>
@@ -6516,7 +6516,7 @@
       <EquipmentSet id="tor_m_knight_of_misfortune_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_lord_mousillon_first_4" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_4}Gleb Marks" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_necromancer_lord" is_hero="true">
+  <NPCCharacter id="tor_m_lord_mousillon_first_4" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_4}Gleb Marks" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_necromancer_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="63" weight="0" build="0" key="0000540F002C1480EE94456EB7900AC5C796C64EFF82FA768DB84B399DA98D6D00B006030BA54A95000000000000000000000000000000000000000059642000" />
     </face>
@@ -6534,7 +6534,7 @@
       <EquipmentSet id="tor_necromancer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_lord_mousillon_first_5" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_5}Ser Garreth of the Black Rose" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_m_lord_mousillon_first_5" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_5}Ser Garreth of the Black Rose" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="24" weight="0.5293" build="0.7903" key="0008F40B80A01004A9D43BDF31408322798E8DB7E5A08609C9D3C4789F976AA500AC86030A4DB452000000000000000000000000000000000000000027542080" />
     </face>
@@ -6552,7 +6552,7 @@
       <EquipmentSet id="tor_m_black_grail_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_lord_mousillon_first_6" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_6}Ser Agravain the Shadow" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_m_lord_mousillon_first_6" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_6}Ser Agravain the Shadow" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.4974" build="0.7497" key="0018800F142C028249654989C795A667799B78831683A57718BEAAC7C9B9D5D300BB76030B5B537600000000000000000000000000000000000000004B7C3080" />
     </face>
@@ -6570,7 +6570,7 @@
       <EquipmentSet id="tor_m_knight_of_misfortune_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_lord_mousillon_first_7" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_7}Ser Gaheris the Dreaded" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_m_lord_mousillon_first_7" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_7}Ser Gaheris the Dreaded" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.4974" build="0.7497" key="0018A00F0E2C2180AB96599D6E95A669799B78831683A50018BEAAC726B9D5B000BB76030B1A532600000000000000000000000000000000000000004B7C3080" />
     </face>
@@ -6588,7 +6588,7 @@
       <EquipmentSet id="tor_m_black_grail_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_lord_mousillon_first_8" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_8}Pitre Fonce" occupation="Special" culture="Culture.mousillon" voice="curt" age="50" skill_template="SkillSet.tor_skills_necromancer_lord" is_hero="true">
+  <NPCCharacter id="tor_m_lord_mousillon_first_8" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_8}Pitre Fonce" occupation="Special" culture="Culture.mousillon" voice="curt" age="50" skill_template="SkillSet.tor_skills_necromancer_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0" build="0.0525" key="0002F80FDE001004F480F27001A0E0004EFF7692A7D641002A790EA58EE8AF380051060305F08F6000000000000000000000000000000000000000001AA43000" />
     </face>
@@ -6642,7 +6642,7 @@
       <EquipmentSet id="tor_m_black_grail_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_lord_mousillon_second_2" default_group="cavalry" name="{=str_tor_m_lord_mousillon_second_2}Ser Eustache of the Rusting Blade" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_m_lord_mousillon_second_2" default_group="cavalry" name="{=str_tor_m_lord_mousillon_second_2}Ser Eustache of the Rusting Blade" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="24" weight="0.1358" build="0.4488" key="0000380E4FFC15C85A7827A49D427BC18253CC5868C5A2649B994087D39B8737A79C560308681A7472B79D43487E8CA700000000000000080000000039040002" />
     </face>
@@ -6660,7 +6660,7 @@
       <EquipmentSet id="tor_eustache_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_lord_mousillon_second_3" default_group="cavalry" name="{=str_tor_m_lord_mousillon_second_3}Ser Gefrelar of Mousillon" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_m_lord_mousillon_second_3" default_group="cavalry" name="{=str_tor_m_lord_mousillon_second_3}Ser Gefrelar of Mousillon" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="24" weight="0.174" build="0.5709" key="0002480AC070100D6CAA67C17A7BC59386755A13D752A54795666B68A3888996777546130F377988938B893B496EA695000000000000001F000000006BFC3042" />
     </face>
@@ -6678,7 +6678,7 @@
       <EquipmentSet id="tor_m_black_grail_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_lord_mousillon_second_4" default_group="cavalry" name="{=str_tor_m_lord_mousillon_second_4}Ser Bougars De Biaucaire" occupation="Lord" culture="Culture.mousillon" voice="curt" age="55" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_m_lord_mousillon_second_4" default_group="cavalry" name="{=str_tor_m_lord_mousillon_second_4}Ser Bougars De Biaucaire" occupation="Lord" culture="Culture.mousillon" voice="curt" age="55" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="55" weight="1" build="0.5709" key="0000B00C40A01C00D9B6C44996BB589F3554898C71A08E787BC9C06596CC8564FA6EE6030B636AAA5FA6F587BEFBAB59000000000000000B000000003B6C3082" />
     </face>
