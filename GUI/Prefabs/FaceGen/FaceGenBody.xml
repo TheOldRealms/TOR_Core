@@ -64,9 +64,24 @@
                   </ListPanel>
 
                   <!--Voice type selection-->
-                  
-									
-                  <Widget Id="VoiceTypeSelection" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="90" SuggestedHeight="60" PositionXOffset="5" MarginTop="60" />
+                  <NavigationScopeTargeter ScopeID="VoiceTypeSelectionScope" ScopeParent="..\VoiceTypeSelection" ScopeMovements="Horizontal" />
+                  <NumericUpDownWidget Id="VoiceTypeSelection" DataSource="{SoundPreset}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="90" SuggestedHeight="60" PositionXOffset="5" MarginTop="60" DownButton="NumericDown" IsFlipUpButtonHorizontal="true" MaxValue="@Max" MinValue="@Min" ShowOneAdded="true" TextWidget="TextContainer\NumericText" UpButton="NumericUp" Value="@Value">
+                    <Children>
+
+                      <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" PositionYOffset="-40" Brush="FaceGen.Property.Text" Text="@Name" ClipContents="false"/>
+
+                      <ButtonWidget Id="NumericDown" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="24" SuggestedHeight="24" HorizontalAlignment="Left" VerticalAlignment="Center" MarginBottom="13" Brush="Creation.NumericLeftArrow" GamepadNavigationIndex="0"  />
+
+                      <Widget Id="TextContainer" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="40" SuggestedHeight="34" HorizontalAlignment="Center" VerticalAlignment="Center" MarginBottom="15" Sprite="switcher_9">
+                        <Children>
+                          <TextWidget Id="NumericText" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" PositionYOffset="2" HorizontalAlignment="Center" Brush="FaceGen.Property.Text" ClipContents="false" />
+                        </Children>
+                      </Widget>
+
+                      <ButtonWidget Id="NumericUp" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="24" SuggestedHeight="24" HorizontalAlignment="Right" VerticalAlignment="Center" MarginBottom="13" Brush="Creation.NumericRightArrow" GamepadNavigationIndex="1" />
+
+                    </Children>
+                  </NumericUpDownWidget>
                   
                   <!--Voice test button-->
                   <ButtonWidget Id="VoiceTestButton" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="48" SuggestedHeight="48" HorizontalAlignment="Right" PositionXOffset="-30" PositionYOffset="-61" Brush="FaceGen.VoiceSample.Button" Command.Click="ExecuteHearCurrentVoiceSample" />
