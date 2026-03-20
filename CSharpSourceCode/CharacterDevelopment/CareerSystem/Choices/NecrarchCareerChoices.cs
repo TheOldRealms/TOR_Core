@@ -117,7 +117,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _necrarchRoot.Initialize(CareerID, "Summoned directly from the realm of the dead and cast by the Necrarch, this projectile spell deals 80 damage. The Blast of Agony grows in size for every point put into the Spellcraft skill, it can also be modified with several upgrades from the Career tree. It is free of any winds of magic cost to cast.", null, true,
+            _necrarchRoot.Initialize(CareerID, "Siphon the winds into a Blast of Agony! When used, Blast of Agony hurls a ball of condensed darkness, exploding on impact dealing 80 'Magic' damage. For every level of Spellcraft, increase Blast of Agony's radius by 0.01m. (Ability is charged by dealing 'Spell' damage.)", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -130,7 +130,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     },
                 });
 
-            _discipleOfAccursedKeystone.Initialize(CareerID, "Undead troops can charge career ability. Ability scales with Roguery", "DiscipleOfAccursed", false,
+            _discipleOfAccursedKeystone.Initialize(CareerID, "Blast of Agony also scales with Roguery and, 'Lesser Undead' troops charge Blast of Agony.", "DiscipleOfAccursed", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -143,7 +143,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _witchSightKeystone.Initialize(CareerID, "For every hit enemy gain 2.5% of your maximum Winds of magic", "WitchSight", false,
+            _witchSightKeystone.Initialize(CareerID, "+0.15% of personal max 'Winds of Magic' capacity restored, per foe hit with Blast of Agony.", "WitchSight", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -155,7 +155,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Replace
                     }
                 });
-            _darkVisionKeystone.Initialize(CareerID, "Summons a Wraith on impact. Spell damage charge is increased by 25%", "DarkVision", false,
+            _darkVisionKeystone.Initialize(CareerID, "Blast of Agony summons a Wraith on impact and its cooldown is reduced by -25%.", "DarkVision", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -167,7 +167,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Replace
                     }
                 });
-            _unhallowedSoulKeystone.Initialize(CareerID, "Increase impact damage of netherball by 25%. The Projectile is now target seeking", "UnhallowedSoul", false,
+            _unhallowedSoulKeystone.Initialize(CareerID, "Blast of Agony is now 'Target Seeking', and its damage is increased by 25%.", "UnhallowedSoul", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -211,12 +211,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     },
 
                 });
-            _hungerForKnowledgeKeystone.Initialize(CareerID, "The Career ability is constantly slowly charged.", "HungerForKnowledge", false,
+            _hungerForKnowledgeKeystone.Initialize(CareerID, "Blast of Agony passively charges throughout the battle.", "HungerForKnowledge", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
 
                 });
-            _wellspringOfDharKeystone.Initialize(CareerID, "Ability scales with Medicine. Ability starts charged. Companions can charge ability.", "WellspringOfDhar", false,
+            _wellspringOfDharKeystone.Initialize(CareerID, "Blast of Agony also scales with Medicine, starts charged, and can be charged by Companions.", "WellspringOfDhar", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -229,52 +229,52 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _everlingsSecretKeystone.Initialize(CareerID, "After using nether ball, a second use is available shortly after the first one.", "EverlingsSecret", false, ChoiceType.Passive);
+            _everlingsSecretKeystone.Initialize(CareerID, "After the initial cast, Blast of Agony can be cast again for a short time.", "EverlingsSecret", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>());
         }
 
         protected override void InitializePassives()
         {
 
 
-            _discipleOfAccursedPassive1.Initialize(CareerID, "Every 2 undead troops (excluding ghosts) gain 1 additional party slot.", "DiscipleOfAccursed", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.5f, PassiveEffectType.UnitPartyWeight, false, characterObject => characterObject.IsUndead() && !characterObject.IsGhost()));
-            _discipleOfAccursedPassive2.Initialize(CareerID, "10% cost reduction for spells.", "DiscipleOfAccursed", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-10, PassiveEffectType.WindsCostReduction, true));
-            _discipleOfAccursedPassive3.Initialize(CareerID, "Gain 7 Dark Energy daily.", "DiscipleOfAccursed", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(7, PassiveEffectType.CustomResourceGain));
-            _discipleOfAccursedPassive4.Initialize(CareerID, "For every magic trait on your battle equipment you increase your maximum winds by 2.", "DiscipleOfAccursed", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2));
+            _discipleOfAccursedPassive1.Initialize(CareerID, "-50% party weight of 'Lesser Undead' troops.", "DiscipleOfAccursed", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.5f, PassiveEffectType.UnitPartyWeight, false, characterObject => characterObject.IsUndead() && !characterObject.IsGhost()));
+            _discipleOfAccursedPassive2.Initialize(CareerID, "-10% personal 'Winds of Magic' cost for spells.", "DiscipleOfAccursed", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-10, PassiveEffectType.WindsCostReduction, true));
+            _discipleOfAccursedPassive3.Initialize(CareerID, "+7 'Dark Energy' daily.", "DiscipleOfAccursed", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(7, PassiveEffectType.CustomResourceGain));
+            _discipleOfAccursedPassive4.Initialize(CareerID, "+2 personal 'Winds of Magic' capacity per equipped 'Enchantment'.", "DiscipleOfAccursed", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2));
 
-            _witchSightPassive1.Initialize(CareerID, "The Spotting range of the party is increased by 20%.", "WitchSight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.PartySpottingRange, true));
-            _witchSightPassive2.Initialize(CareerID, "Increases Magic spell damage by 5%.", "WitchSight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 5), AttackTypeMask.Spell));
-            _witchSightPassive3.Initialize(CareerID, "Increases Magic resistance against spells by 25%.", "WitchSight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 25), AttackTypeMask.Spell));
-            _witchSightPassive4.Initialize(CareerID, "Increases max Winds of Magic by 20 if your armor weight undershoots 11 stones.", "WitchSight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.WindsOfMagic, false,
+            _witchSightPassive1.Initialize(CareerID, "+20% spotting range of party on campaign map.", "WitchSight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.PartySpottingRange, true));
+            _witchSightPassive2.Initialize(CareerID, "+5% personal 'Spell' damage.", "WitchSight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 5), AttackTypeMask.Spell));
+            _witchSightPassive3.Initialize(CareerID, "+25% personal 'Spell Resistance'.", "WitchSight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 25), AttackTypeMask.Spell));
+            _witchSightPassive4.Initialize(CareerID, "+20 personal 'Winds of Magic' if armour weight does not exceed 11.", "WitchSight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.WindsOfMagic, false,
                 (characterObject => Hero.MainHero.BattleEquipment.GetTotalWeightOfArmor(true) < 11f)));
 
-            _darkVisionPassive1.Initialize(CareerID, "Increases max Winds of Magic by 10.", "DarkVision", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
-            _darkVisionPassive2.Initialize(CareerID, "Reduce the Dark Energy upkeep for ghost troops by 35%.", "DarkVision", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-35, PassiveEffectType.CustomResourceUpkeepModifier, true,
+            _darkVisionPassive1.Initialize(CareerID, "+10 personal 'Winds of Magic' capacity.", "DarkVision", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
+            _darkVisionPassive2.Initialize(CareerID, "-35% 'Dark Energy' upkeep for 'Spectral' troops.", "DarkVision", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-35, PassiveEffectType.CustomResourceUpkeepModifier, true,
                 characterObject => characterObject.IsGhost()));
-            _darkVisionPassive3.Initialize(CareerID, "Spell damage increase roguery.", "DarkVision", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
-            _darkVisionPassive4.Initialize(CareerID, "For every known spell your winds capacity rises by 1.", "DarkVision", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.Special, false));
+            _darkVisionPassive3.Initialize(CareerID, "Dealing damage with spells now gives Roguery experience.", "DarkVision", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
+            _darkVisionPassive4.Initialize(CareerID, "+1 personal 'Winds of Magic' capacity per known spell.", "DarkVision", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.Special, false));
 
-            _unhallowedSoulPassive1.Initialize(CareerID, "Increase buff durations by 20%.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.20f, PassiveEffectType.BuffDuration, true));
-            _unhallowedSoulPassive2.Initialize(CareerID, "Defiling shrines yields more Dark Energy and has a chance to summon wraiths.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
-            _unhallowedSoulPassive3.Initialize(CareerID, "Increases Spell effectiveness by 15% if your armor weight undershoots 11 stones.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.SpellEffectiveness, true,
+            _unhallowedSoulPassive1.Initialize(CareerID, "+20% duration for 'Augment' spells.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.20f, PassiveEffectType.BuffDuration, true));
+            _unhallowedSoulPassive2.Initialize(CareerID, "Defiling a shrine yeilds increased 'Dark Energy', and can summon 'Spectral' troops.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+            _unhallowedSoulPassive3.Initialize(CareerID, "+15% personal 'Spell Power' if armour weight does not exceed 11.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.SpellEffectiveness, true,
                 (characterObject => Hero.MainHero.BattleEquipment.GetTotalWeightOfArmor(true) < 11f)));
-            _unhallowedSoulPassive4.Initialize(CareerID, "Increases lightning spell damage by 5%.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Lightning, 5), AttackTypeMask.Spell));
+            _unhallowedSoulPassive4.Initialize(CareerID, "+5% personal 'Lighting' spell damage.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Lightning, 5), AttackTypeMask.Spell));
 
-            _hungerForKnowledgePassive1.Initialize(CareerID, "Increase hex durations by 20%.", "HungerForKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.20f, PassiveEffectType.DebuffDuration, true));
-            _hungerForKnowledgePassive2.Initialize(CareerID, "Wraiths are immune to friendly fire spell damage.", "HungerForKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 100), AttackTypeMask.Spell,
+            _hungerForKnowledgePassive1.Initialize(CareerID, "+20% duration of 'Hex' spells.", "HungerForKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.20f, PassiveEffectType.DebuffDuration, true));
+            _hungerForKnowledgePassive2.Initialize(CareerID, "'Spectral' troops are immune to friendly 'Spell' damage.", "HungerForKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 100), AttackTypeMask.Spell,
                 (attacker, victim, mask) => mask == AttackTypeMask.Spell && attacker.BelongsToMainParty() && victim.BelongsToMainParty() && victim.Character.IsGhost()));
-            _hungerForKnowledgePassive3.Initialize(CareerID, "Reduce costs for enchantments by 20%.", "HungerForKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EnchantmentCostReduction, true));
-            _hungerForKnowledgePassive4.Initialize(CareerID, "Increases Magic melee and spell damage by 5%.", "HungerForKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 5), AttackTypeMask.Spell,
+            _hungerForKnowledgePassive3.Initialize(CareerID, "-20% cost for 'Enchantments'.", "HungerForKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EnchantmentCostReduction, true));
+            _hungerForKnowledgePassive4.Initialize(CareerID, "+5% personal 'Magic' damage for spells and melee.", "HungerForKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 5), AttackTypeMask.Spell,
                 (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Melee || mask == AttackTypeMask.Spell));
 
-            _wellspringOfDharPassive1.Initialize(CareerID, "Increases fire spell damage by 5%.", "WellspringOfDhar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 5), AttackTypeMask.Spell));
-            _wellspringOfDharPassive2.Initialize(CareerID, "Tier 4 Undead troops can get wounded with a 20% lower chance.", "WellspringOfDhar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.Special, true));
-            _wellspringOfDharPassive3.Initialize(CareerID, "Necromancy companions gain 15 more Winds of Magic.", "WellspringOfDhar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special, false)); //I'm not sure if this makes sufficient the distinction between necromancers (the companion carrying that name) and Necromancer (anyone who knows the lore) as the latter is what is checked.
-            _wellspringOfDharPassive4.Initialize(CareerID, "Gain 0.1 Winds regeneration for every spellcasting companion.", "WellspringOfDhar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.1f, PassiveEffectType.Special, false));
+            _wellspringOfDharPassive1.Initialize(CareerID, "+5% personal 'Fire' spell damage.", "WellspringOfDhar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 5), AttackTypeMask.Spell));
+            _wellspringOfDharPassive2.Initialize(CareerID, "+20% chance tier 4+ 'Lesser Undead' troops will be wounded instead of killed.", "WellspringOfDhar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.Special, true));
+            _wellspringOfDharPassive3.Initialize(CareerID, "+15 'Winds of Magic' capacity for Necromancer Companions.", "WellspringOfDhar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special, false)); //I'm not sure if this makes sufficient the distinction between necromancers (the companion carrying that name) and Necromancer (anyone who knows the lore) as the latter is what is checked.
+            _wellspringOfDharPassive4.Initialize(CareerID, "+0.1 personal 'Winds of Magic' recharge rate per Companion that uses spells.", "WellspringOfDhar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.1f, PassiveEffectType.Special, false));
 
-            _everlingsSecretPassive1.Initialize(CareerID, "Increases Windsregeneration by 1.", "EverlingsSecret", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.WindsRegeneration));
-            _everlingsSecretPassive2.Initialize(CareerID, "35% spell cooldown reduction.", "EverlingsSecret", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-35, PassiveEffectType.WindsCooldownReduction, true));
-            _everlingsSecretPassive3.Initialize(CareerID, "Once your Winds are full, your winds recharge rate is counted towards your Dark Energy.", "EverlingsSecret", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
-            _everlingsSecretPassive4.Initialize(CareerID, "Any non-physical damage count towards spell damage type.", "EverlingsSecret", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
+            _everlingsSecretPassive1.Initialize(CareerID, "+1 personal 'Winds of Magic' regeneration.", "EverlingsSecret", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.WindsRegeneration));
+            _everlingsSecretPassive2.Initialize(CareerID, "+35% personal spell cooldown reduction.", "EverlingsSecret", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-35, PassiveEffectType.WindsCooldownReduction, true));
+            _everlingsSecretPassive3.Initialize(CareerID, "When at max 'Winds of Magic', excess generated becomes 'Dark Energy'.", "EverlingsSecret", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
+            _everlingsSecretPassive4.Initialize(CareerID, "All forms of 'Spell' damage buffs now applies to every lore of magic.", "EverlingsSecret", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
         }
 
         public override void InitialCareerSetup()
