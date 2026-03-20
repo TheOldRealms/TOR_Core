@@ -271,7 +271,7 @@ namespace TOR_Core.CampaignMechanics
         {
             // Skip if no winner or if player is involved (player handled separately)
             if (mapEvent.DefeatedSide == BattleSideEnum.None) return;
-            if (mapEvent.IsPlayerMapEvent) return;
+            if (mapEvent.IsPlayerMapEvent && !Hero.MainHero.IsEnlisted()) return;
 
             // Process each winning party
             var winningParties = mapEvent.PartiesOnSide(mapEvent.WinningSide);
@@ -283,6 +283,7 @@ namespace TOR_Core.CampaignMechanics
                 if (partyBase.Party.MobileParty.LeaderHero.Culture?.StringId != TORConstants.Cultures.GREENSKIN) continue;
 
                 var mobileParty = partyBase.Party.MobileParty;
+                if (mobileParty == MobileParty.MainParty) continue;
 
                 // Calculate meat from battle using shared battle reward model
                 
