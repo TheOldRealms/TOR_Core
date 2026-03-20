@@ -29,13 +29,21 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             }
 
         }
+        public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow killingBlow)
+        {
+            _trackedAgents.Remove(affectedAgent);
+        }
 
+        public override void OnAgentDeleted(Agent affectedAgent)
+        {
+            _trackedAgents.Remove(affectedAgent);
+        }
         public override void OnMissionTick(float dt)
         {
             foreach (var entry in _trackedAgents.ToMBList())
             {
                 var agent = entry.Key;
-                if (!agent.IsActive()) continue;
+                if (!agent.IsActive() || agent.IsFadingOut()) continue;
 
                 var anim = agent.GetCurrentAction(1);
                 if (AnimationTriggerManager.HasTriggersForAction(anim.GetName()))
@@ -53,11 +61,22 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                         if (!tuple.HasTriggered && progress > trigger.AnimationPercent)
                         {
                             _trackedAgents[agent].FirstOrDefaultQ(x => x.ActionName == anim.GetName()).HasTriggered = true;
-                            var frame = entry.Key.AgentVisuals.GetGlobalFrame();
-                            var bone = entry.Key.AgentVisuals.GetSkeleton().GetBoneEntitialFrame(trigger.BoneIndex);
-                            var pos = frame.TransformToParent(bone.origin);
-                            TriggerEffect(trigger.TriggeredEffectId, pos, agent);
 
+                            Vec3 triggerPosition = agent.Position;
+                            var visuals = agent.AgentVisuals;
+                            if (visuals != null && visuals.IsValid())
+                            {
+                                var skeleton = visuals.GetSkeleton();
+                                if (skeleton != null)
+                                {
+                                    // still prefer the exact bone when visuals are usable
+                                    var frame = visuals.GetGlobalFrame();
+                                    var bone = skeleton.GetBoneEntitialFrame(trigger.BoneIndex);
+                                    triggerPosition = frame.TransformToParent(bone.origin);
+                                }
+                            }
+
+                            TriggerEffect(trigger.TriggeredEffectId, triggerPosition, agent);
                         }
                         else if (tuple.HasTriggered && progress < trigger.AnimationPercent)
                         {
