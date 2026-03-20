@@ -99,6 +99,16 @@ namespace TOR_Core.Extensions
 
             return agent.Character.IsTreeSpirit();
         }
+        
+        public static bool IsTroll(this Agent agent)
+        {
+            if (Campaign.Current != null && agent.IsHero)
+            {
+                return agent.GetHero().CharacterObject.IsTroll();
+            }
+
+            return agent.Character.IsTroll();
+        }
 
         public static bool IsSlayer(this Agent agent)
         {

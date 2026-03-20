@@ -157,6 +157,11 @@ namespace TOR_Core.Extensions
         {
             return characterObject.Race == FaceGen.GetRaceOrDefault("troll");
         }
+        
+        public static bool IsTroll(this BasicCharacterObject characterObject)
+        {
+            return characterObject.Race == FaceGen.GetRaceOrDefault("troll");
+        }
 
         public static bool IsMinotaur(this CharacterObject characterObject)
         {
