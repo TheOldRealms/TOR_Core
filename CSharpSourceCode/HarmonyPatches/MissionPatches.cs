@@ -50,7 +50,14 @@ namespace TOR_Core.HarmonyPatches
             }
             return true;
         }
-        
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(Mission), nameof(Mission.SetPlayerCanTakeControlOfAnotherAgentWhenDead))]
+        public static bool DisableDeadPlayerAgentTakeover()
+        {
+            return false;
+        }
+
         [HarmonyPrefix]
         [HarmonyPatch(typeof(HideoutCinematicController), "StartCinematic")]
         public static bool PostOnInitialFadeOutOver()

@@ -37,7 +37,11 @@ namespace TOR_Core.BattleMechanics
         public override void OnMissionTick(float dt)
         {
             base.OnMissionTick(dt);
-            TryFixHirelingSpawn();
+
+            if (!_fixedHirelingSpawn)
+            {
+                TryFixHirelingSpawn();
+            }
 
             if (Mission.Mode == MissionMode.Deployment || Mission.IsTeleportingAgents)
             {
