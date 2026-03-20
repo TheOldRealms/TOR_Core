@@ -109,6 +109,11 @@ public class TORHiringCompatibilityModel : GameModel
                cultureId == TORConstants.Cultures.SYLVANIA;
     }
 
+    private bool IsCastleBoundVillage(Settlement settlement)
+    {
+        // noble pool
+        return settlement.IsVillage && settlement.Village.Bound.IsCastle;
+    }
 
 /// <summary>
 /// Slightly more forgiving hiring allowed for troops
@@ -133,21 +138,33 @@ public class TORHiringCompatibilityModel : GameModel
         string sellerCulture = seller.Culture?.StringId;
         Settlement settlement = seller.CurrentSettlement;
 
-        var hasEliteUnits = false;
-
-        if (settlement.IsVillage)
-        {
-            Village village = settlement.Village;
-            var castle = Campaign.Current.Settlements.FirstOrDefault(x => x.IsCastle && x.BoundVillages.Contains(village));
-
-            if (castle != null)
-            {
-                hasEliteUnits = true;
-            }
-        }
+        bool hasEliteUnits = IsCastleBoundVillage(settlement);
 
         if (string.IsNullOrEmpty(playerCulture) || string.IsNullOrEmpty(sellerCulture))
             return false; // Can't determine, block hiring
+
+        bool isCrossCultureRecruitment = playerCulture != sellerCulture;
+
+        if (isCrossCultureRecruitment)
+        {
+            // no cross culture from castle villages, except bretonnia & mousillon and mousillon -> sylvania
+            if (hasEliteUnits)
+            {
+                bool isMousillonCastleException =
+                    playerCulture == TORConstants.Cultures.MOUSILLON &&
+                    (sellerCulture == TORConstants.Cultures.BRETONNIA ||
+                     sellerCulture == TORConstants.Cultures.SYLVANIA);
+
+                bool isBretonniaCastleException =
+                    playerCulture == TORConstants.Cultures.BRETONNIA &&
+                    sellerCulture == TORConstants.Cultures.MOUSILLON;
+
+                if (!isMousillonCastleException && !isBretonniaCastleException)
+                {
+                    return false;
+                }
+            }
+        }
 
         // Greenskins can only hire other greenskins
         if (playerCulture == TORConstants.Cultures.GREENSKIN)
