@@ -543,6 +543,7 @@
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghHelper.cs" />
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghMeterMapView.cs" />
+    <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\TORMapNotificationView.cs" />
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghMeterVM.cs" />
     <Compile Include="CampaignMechanics\TORCampaignMusicHandler.cs" />
     <Compile Include="Extensions\UI\PartyVMExtension.cs" />
