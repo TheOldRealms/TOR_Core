@@ -289,6 +289,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                     }
 
                     var cultureCandidates = cultureWeaponOrArmorItems
+                        .Where(i => !i.NotMerchandise)
                         .Where(i => !excludedItemIds.Contains(i.StringId))
                         .ToList();
 
