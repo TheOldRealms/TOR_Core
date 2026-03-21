@@ -103,15 +103,30 @@ namespace TOR_Core.HarmonyPatches
         {
             // Only block Finish during post-battle transitions when enlisted
             // This prevents crashes from AI party ticks while allowing normal siege/encounter flow
-            if (Hero.MainHero.IsEnlisted() && ServeAsAHirelingCampaignBehavior.InPostBattleTransition)
+            if (!Hero.MainHero.IsEnlisted() || !ServeAsAHirelingCampaignBehavior.InPostBattleTransition)
             {
-                if (PlayerEncounter.EncounterSettlement != null)
-                {
-                    return false;
-                }
+                return true;
             }
 
-            return true;
+            if (PlayerEncounter.EncounterSettlement == null)
+            {
+                return true;
+            }
+
+            var hirelingBehavior = Campaign.Current?.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>();
+            var enlistingLordParty = hirelingBehavior?.EnlistingLord?.PartyBelongedTo;
+
+            var hasActiveHirelingBattle =
+                MapEvent.PlayerMapEvent != null ||
+                Hero.MainHero.PartyBelongedTo?.MapEvent != null ||
+                enlistingLordParty?.MapEvent != null;
+
+            if (!hasActiveHirelingBattle)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         [HarmonyPostfix]

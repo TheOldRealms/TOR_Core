@@ -15,7 +15,7 @@
         <NavigationScopeTargeter ScopeID="NotificationScope" ScopeParent="..\Notifications" ScopeMovements="Vertical" ExtendDiscoveryAreaLeft="200" ForceGainNavigationOnClosestChild="true" DoNotAutoNavigateAfterSort="true" />
         <MapNotificationContainerWidget Id="Notifications" DataSource="{NotificationItems}" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="560" VerticalAlignment="Bottom" StackLayout.LayoutMethod="VerticalTopToBottom" DoNotAcceptEvents="true" MaxAmountOfNotificationsToShow="5" MoreTextWidgetContainer="..\MoreTextWidgetContainer" MoreTextWidget="..\MoreTextWidgetContainer\MoreTextWidget">
           <ItemTemplate>
-            <MapNotificationItem />
+            <TORGreenskinMapNotificationItem />
           </ItemTemplate>
         </MapNotificationContainerWidget>
       </Children>
