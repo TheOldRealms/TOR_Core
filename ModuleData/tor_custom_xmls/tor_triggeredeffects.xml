@@ -1644,7 +1644,7 @@
                              SoundEffectId="none"
                              SoundEffectLength="0"
                              DamageType="Invalid"
-                             DamageAmount="20"
+                             DamageAmount="0"
                              Radius="12"
                              HasShockWave="false"
                              TargetType="Enemy"
