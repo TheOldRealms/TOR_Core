@@ -355,18 +355,24 @@ namespace TOR_Core.CharacterDevelopment
 
 
             var explainedNumber = new ExplainedNumber(chargeValue);
+            explainedNumber.LimitMax(75);
+            explainedNumber.LimitMin(1);
 
             if (affectingAgent != Agent.Main)
             {
                 explainedNumber.AddFactor(-0.95f);
             }
-
-            // Reduce charge by 10% for each keystone selected (excluding root)
-            var keystoneCount = Hero.MainHero.GetAllCareerChoices().Count(x => x.Contains("Keystone") && !x.Contains("Root"));
-            if (keystoneCount > 0)
+            else
             {
-                explainedNumber.AddFactor(-0.10f * keystoneCount);
+                // Reduce charge by 10% for each keystone selected (excluding root)
+                var keystoneCount = Hero.MainHero.GetAllCareerChoices().Count(x => x.Contains("Keystone") && !x.Contains("Root"));
+                if (keystoneCount > 0)
+                {
+                    explainedNumber.AddFactor(-0.10f * keystoneCount);
+                }
             }
+
+
 
             if (collisionFlag == CareerHelper.ChargeCollisionFlag.HeadShot && Hero.MainHero.HasCareerChoice("HawkeyedPassive2"))
             {
