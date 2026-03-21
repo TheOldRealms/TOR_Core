@@ -90,9 +90,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             _swiftProcedureKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SwiftProcedureKeystone"));
             _swiftProcedurePassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SwiftProcedurePassive1"));
-            _swiftProcedurePassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SwitftProcedurePassive2"));
-            _swiftProcedurePassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SwitftProcedurePassive3"));
-            _swiftProcedurePassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SwitftProcedurePassive4"));
+            _swiftProcedurePassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SwiftProcedurePassive2"));
+            _swiftProcedurePassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SwiftProcedurePassive3"));
+            _swiftProcedurePassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SwiftProcedurePassive4"));
 
             _guiltyByAssociationKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("GuiltyByAssociationKeystone"));
             _guiltyByAssociationPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("GuiltyByAssociationPassive1"));
@@ -117,7 +117,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(AbilityTemplate),
                         MutationTargetOriginalId = "Accusation",
                         PropertyName = "ScaleVariable1",
-                        PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.GunPowder, DefaultSkills.Crossbow }, 0.003f,false,true),
+                        PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.GunPowder, DefaultSkills.Crossbow }, 0.001f,false,true),
                         MutationType = OperationType.Add
                     }
                 });
@@ -234,7 +234,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializePassives()
         {
-            _toolsOfJudgementPassive1.Initialize(CareerID, "+25 personal Hitpoints.", "ToolsOfJudgement", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
+            _toolsOfJudgementPassive1.Initialize(CareerID, "+25 personal Hitpoints.", "ToolsOfJudgement", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
             _toolsOfJudgementPassive2.Initialize(CareerID, "+5 extra ammo per ammunition pouch you equip.", "ToolsOfJudgement", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Ammo));
             _toolsOfJudgementPassive3.Initialize(CareerID, "+5% 'Physical' melee damage.", "ToolsOfJudgement", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 5), AttackTypeMask.Melee));
             _toolsOfJudgementPassive4.Initialize(CareerID, "Ranged headshot kills grant Roguery experience, twice for 'Accused' targets.", "ToolsOfJudgement", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true));
@@ -242,8 +242,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _huntTheWickedPassive1.Initialize(CareerID, "Personal healing rate increased by +1.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.HealthRegeneration));
             _huntTheWickedPassive2.Initialize(CareerID, "Gain 300% more 'Prestige' when fighting the forces of 'Chaos' or 'Undead'.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(300, PassiveEffectType.Special));
             _huntTheWickedPassive3.Initialize(CareerID, "Gain +5% melee 'Physical' damage per equipped ranged weapon.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special, true));
-            _huntTheWickedPassive4.Initialize(CareerID, "+10% ranged 'Physical' damage for all 'Ranged' troops.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee,
-                (attacker, victim, mask) => !attacker.BelongsToMainParty() && !(attacker.IsMainAgent || attacker.IsHero) && mask == AttackTypeMask.Ranged));
+            _huntTheWickedPassive4.Initialize(CareerID, "+10% ranged 'Physical' damage for all 'Ranged' troops.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Ranged,
+                (attacker, victim, mask) => attacker.BelongsToMainParty() && !(attacker.IsMainAgent || attacker.IsHero) && mask == AttackTypeMask.Ranged));
 
             _silverHammerPassive1.Initialize(CareerID, "Gain Faith skill per kill when facing the forces of 'Chaos' or 'Undead'.", "SilverHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special));
             _silverHammerPassive2.Initialize(CareerID, "+10% 'Holy' damage for all units when facing the forces of 'Chaos' or 'Undead'.", "SilverHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Holy, 10), AttackTypeMask.All,

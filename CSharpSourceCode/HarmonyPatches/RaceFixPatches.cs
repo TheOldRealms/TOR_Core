@@ -12,6 +12,7 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.GauntletUI.BodyGenerator;
 using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.MountAndBlade.View.Tableaus;
+using TaleWorlds.MountAndBlade.View.MissionViews;
 using FaceGen = TaleWorlds.Core.FaceGen;
 
 namespace TOR_Core.HarmonyPatches
@@ -39,6 +40,35 @@ namespace TOR_Core.HarmonyPatches
             var monster = FaceGen.GetMonster(monsterName);
             string isFemaleText = isFemale ? "_female_" : "";
             return MBGlobals.GetActionSet($"as_{monsterName}{isFemaleText}_warrior");
+        }
+
+        private static bool CanReuseMissionFaceCache(FaceGenerationParams firstFace, FaceGenerationParams secondFace)
+        {
+            if (firstFace.CurrentRace == secondFace.CurrentRace)
+            {
+                return true;
+            }
+
+            string[] raceNames = FaceGen.GetRaceNames();
+            string firstRaceName = raceNames[firstFace.CurrentRace];
+            string secondRaceName = raceNames[secondFace.CurrentRace];
+
+            // keep human bret similarities
+            return (firstRaceName == "human" && secondRaceName == "bretonnian") || (firstRaceName == "bretonnian" && secondRaceName == "human");
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(MissionFaceCacheView), "ComputeSimilarityOfFace")]
+        public static void BlockBadMissionFaceCacheReuse(
+            FaceGenerationParams f0,
+            FaceGenerationParams f1,
+            ref float __result)
+        {
+            // block other cross race spawns
+            if (!CanReuseMissionFaceCache(f0, f1))
+            {
+                __result = 1000000000000f;
+            }
         }
 
         [HarmonyTranspiler]

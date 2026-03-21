@@ -871,7 +871,7 @@
       <EquipmentSet id="tor_br_manatarms_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_villager" default_group="infantry" level="1" name="{=str_tor_m_villager}Mousillon Villager" occupation="Villager" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level1" race="bretonnian">
+  <NPCCharacter id="tor_m_villager" default_group="infantry" level="1" name="{=str_tor_m_villager}Mousillon Villager" occupation="Villager" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level1">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -883,7 +883,7 @@
       <EquipmentSet id="tor_br_villager_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_peasant_levy" default_group="infantry" level="6" name="{=str_tor_m_peasant_levy}Mousillon Peasant Levy" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="bretonnian">
+  <NPCCharacter id="tor_m_peasant_levy" default_group="infantry" level="6" name="{=str_tor_m_peasant_levy}Mousillon Peasant Levy" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -896,7 +896,7 @@
       <EquipmentSet id="tor_m_peasant_levy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_peasant_archer" default_group="ranged" level="11" name="{=str_tor_m_peasant_archer}Mousillon Peasant Archer" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level11" race="bretonnian">
+  <NPCCharacter id="tor_m_peasant_archer" default_group="ranged" level="11" name="{=str_tor_m_peasant_archer}Mousillon Peasant Archer" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level11">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -908,7 +908,7 @@
       <EquipmentSet id="tor_m_peasant_archer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_longbowman" default_group="ranged" level="16" name="{=str_tor_m_longbowman}Mousillon Longbowman" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level16" race="bretonnian">
+  <NPCCharacter id="tor_m_longbowman" default_group="ranged" level="16" name="{=str_tor_m_longbowman}Mousillon Longbowman" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level16">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -920,7 +920,7 @@
       <EquipmentSet id="tor_m_hunter_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_villein" default_group="ranged" level="21" name="{=str_tor_m_villein}Mousillon Villein" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21" race="bretonnian">
+  <NPCCharacter id="tor_m_villein" default_group="ranged" level="21" name="{=str_tor_m_villein}Mousillon Villein" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -930,7 +930,7 @@
       <EquipmentSet id="tor_m_villein_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_manatarms_militia" default_group="infantry" level="11" name="{=str_tor_m_manatarms_militia}Mousillon Man-at-Arms militiaman" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level11" race="bretonnian">
+  <NPCCharacter id="tor_m_manatarms_militia" default_group="infantry" level="11" name="{=str_tor_m_manatarms_militia}Mousillon Man-at-Arms militiaman" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level11">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -942,7 +942,7 @@
       <EquipmentSet id="tor_m_manatarms_militia_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_manatarms" default_group="infantry" level="16" name="{=str_tor_m_manatarms}Mousillon Man-at-Arms" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level16" race="bretonnian">
+  <NPCCharacter id="tor_m_manatarms" default_group="infantry" level="16" name="{=str_tor_m_manatarms}Mousillon Man-at-Arms" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level16">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -956,7 +956,7 @@
       <EquipmentSet id="tor_m_manatarms_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_manatarms_halberd" default_group="infantry" level="21" name="{=str_tor_m_manatarms_halberd}Mousillon Man-at-Arms Billman" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21" race="bretonnian">
+  <NPCCharacter id="tor_m_manatarms_halberd" default_group="infantry" level="21" name="{=str_tor_m_manatarms_halberd}Mousillon Man-at-Arms Billman" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -966,7 +966,7 @@
       <EquipmentSet id="tor_m_manatarms_billman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_yeoman" default_group="infantry" level="21" name="{=str_tor_m_yeoman}Mousillon Yeoman" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21" race="bretonnian">
+  <NPCCharacter id="tor_m_yeoman" default_group="infantry" level="21" name="{=str_tor_m_yeoman}Mousillon Yeoman" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -976,7 +976,7 @@
       <EquipmentSet id="tor_m_yeoman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_mounted_yeoman" default_group="cavalry" level="26" name="{=str_tor_m_mounted_yeoman}Mousillon Mounted Yeoman" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level26" race="bretonnian">
+  <NPCCharacter id="tor_m_mounted_yeoman" default_group="cavalry" level="26" name="{=str_tor_m_mounted_yeoman}Mousillon Mounted Yeoman" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level26">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -986,7 +986,7 @@
       <EquipmentSet id="tor_m_mounted_yeoman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_illfated_squire" default_group="infantry" level="11" name="{=str_tor_m_illfated_squire}Mousillon Ill-fated Squire" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true" race="bretonnian">
+  <NPCCharacter id="tor_m_illfated_squire" default_group="infantry" level="11" name="{=str_tor_m_illfated_squire}Mousillon Ill-fated Squire" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -998,7 +998,7 @@
       <EquipmentSet id="tor_m_ill_fated_foot_squire_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_outcast_errant" default_group="cavalry" level="21" name="{=str_tor_m_outcast_errant}Mousillon Outcast Errant" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21" race="bretonnian">
+  <NPCCharacter id="tor_m_outcast_errant" default_group="cavalry" level="21" name="{=str_tor_m_outcast_errant}Mousillon Outcast Errant" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -1010,7 +1010,7 @@
       <EquipmentSet id="tor_m_outcast_errant_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_knight_of_misfortune" default_group="cavalry" level="31" name="{=str_tor_m_knight_of_misfortune}Mousillon Knight of Misfortune" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level31" race="bretonnian">
+  <NPCCharacter id="tor_m_knight_of_misfortune" default_group="cavalry" level="31" name="{=str_tor_m_knight_of_misfortune}Mousillon Knight of Misfortune" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level31">
     <face>
       <face_key_template value="BodyProperty.bretonnianknight" />
     </face>
@@ -1022,7 +1022,7 @@
       <EquipmentSet id="tor_m_knight_of_misfortune_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_doomed_questing_knight" default_group="cavalry" level="41" name="{=str_tor_m_doomed_questing_knight}Mousillon Doomed Questing Knight" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level41" race="bretonnian">
+  <NPCCharacter id="tor_m_doomed_questing_knight" default_group="cavalry" level="41" name="{=str_tor_m_doomed_questing_knight}Mousillon Doomed Questing Knight" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level41">
     <face>
       <face_key_template value="BodyProperty.bretonnianknight" />
     </face>
@@ -1034,7 +1034,7 @@
       <EquipmentSet id="tor_m_doomed_questing_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_knight_of_the_black_grail" default_group="cavalry" level="46" name="{=str_tor_m_knight_of_the_black_grail}Mousillon Knight of the Black Grail" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level46" race="bretonnian">
+  <NPCCharacter id="tor_m_knight_of_the_black_grail" default_group="cavalry" level="46" name="{=str_tor_m_knight_of_the_black_grail}Mousillon Knight of the Black Grail" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level46">
     <face>
       <face_key_template value="BodyProperty.bretonnianknight" />
     </face>
@@ -1044,7 +1044,7 @@
       <EquipmentSet id="tor_m_black_grail_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_caravan_guard" default_group="cavalry" level="21" name="{=str_tor_m_caravan_guard}Mousillon Caravan Horseman" occupation="CaravanGuard" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21" race="bretonnian">
+  <NPCCharacter id="tor_m_caravan_guard" default_group="cavalry" level="21" name="{=str_tor_m_caravan_guard}Mousillon Caravan Horseman" occupation="CaravanGuard" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -1056,7 +1056,7 @@
       <EquipmentSet id="tor_m_mounted_yeoman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_caravan_ranged" default_group="ranged" level="21" name="{=str_tor_m_caravan_ranged}Mousillon Caravan Bowman" occupation="CaravanGuard" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21" race="bretonnian">
+  <NPCCharacter id="tor_m_caravan_ranged" default_group="ranged" level="21" name="{=str_tor_m_caravan_ranged}Mousillon Caravan Bowman" occupation="CaravanGuard" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -1068,7 +1068,7 @@
       <EquipmentSet id="tor_m_peasant_archer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_caravan_elite_ranged" default_group="ranged" level="26" name="{=str_tor_m_caravan_elite_ranged}Mousillon Caravan Longbowman" occupation="CaravanGuard" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level26" race="bretonnian">
+  <NPCCharacter id="tor_m_caravan_elite_ranged" default_group="ranged" level="26" name="{=str_tor_m_caravan_elite_ranged}Mousillon Caravan Longbowman" occupation="CaravanGuard" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level26">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -1078,7 +1078,7 @@
       <EquipmentSet id="tor_m_hunter_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_caravan_captain" default_group="infantry" level="26" name="{=str_tor_m_caravan_captain}Mousillon Caravan Master" occupation="CaravanGuard" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level26" race="bretonnian">
+  <NPCCharacter id="tor_m_caravan_captain" default_group="infantry" level="26" name="{=str_tor_m_caravan_captain}Mousillon Caravan Master" occupation="CaravanGuard" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level26">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
