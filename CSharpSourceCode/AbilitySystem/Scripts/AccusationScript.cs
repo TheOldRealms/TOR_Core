@@ -64,6 +64,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         public static MBList<Agent> GetAdditionalAccusationMarkTargets(Vec2 pos, int limit = 0)
         {
             var targets = Mission.Current.GetNearbyAgents(pos, 5, new MBList<Agent>()).TakeRandom(limit).ToMBList();
+            MBList<Agent> validTargets = new MBList<Agent>();
             if (limit > 0 && targets.Count < limit)
             {
                 List<Agent> list = targets.ToList();
@@ -73,21 +74,20 @@ namespace TOR_Core.AbilitySystem.Scripts
             for (var index = 0; index < targets.Count; index++)
             {
                 var target = targets[index];
-                if (target.Team.MBTeam.IsValid && target.Team.IsPlayerTeam)
+                if (target != null && target.State == AgentState.Active && !target.IsFadingOut() && target.Team.MBTeam.IsValid && !target.Team.IsPlayerTeam)
                 {
-                    targets.Remove(target);
-                    continue;
+                    validTargets.Add(target);
                 }
 
                 var tempAttributes = target.GetComponent<StatusEffectComponent>().GetTemporaryAttributes();
 
                 if (tempAttributes.Contains("AccusationMark"))
                 {
-                    targets.Remove(target);
+                    validTargets.Remove(target);
                 }
             }
 
-            return targets;
+            return validTargets;
         }
     }
 }

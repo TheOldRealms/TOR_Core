@@ -347,7 +347,12 @@ namespace TOR_Core.BattleMechanics.Firearms
 
         public void BurstFireShot(Agent shooterAgent, float accuracy, string ammoID)
         {
-            if (shooterAgent.AgentVisuals == null || shooterAgent.WieldedWeapon.IsEmpty || shooterAgent.WieldedWeapon.CurrentUsageItem == null)
+            if (shooterAgent == null || 
+                shooterAgent.State != AgentState.Active || 
+                shooterAgent.IsFadingOut() || 
+                shooterAgent.AgentVisuals == null || 
+                shooterAgent.WieldedWeapon.IsEmpty || 
+                shooterAgent.WieldedWeapon.CurrentUsageItem == null)
             {
                 return;
             }

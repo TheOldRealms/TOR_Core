@@ -130,6 +130,8 @@ public class MindControlScript : CareerAbilityScript
     private void SetupMindControl(Agent target)
     {
         var casterTeam = _caster.Team;
+        if (target == null || target.State != AgentState.Active || target.IsFadingOut()) return;
+
         target.SetTeam(casterTeam, false);
 
         if (Hero.MainHero.HasCareerChoice("SoulBindingKeystone"))
