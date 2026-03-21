@@ -58,13 +58,11 @@ namespace TOR_Core.BattleMechanics.Banners
                 {
                     var agent = _unprocessedAgents.Dequeue();
                     var banner = DetermineBanner(agent);
-                    if (agent == null)
-                    {
-                        TORCommon.Log("CustomBannerMissionLogic : Tried to assign shield pattern to null agent.", NLog.LogLevel.Error);
-                    }
+                    if (agent == null || agent.State != AgentState.Active || agent.IsFadingOut()) continue;
                     if (banner == null)
                     {
-                        TORCommon.Log("CustomBannerMissionLogic : Tried to assign null shield pattern to agent : " + agent.ToString() + ".", NLog.LogLevel.Error);
+                        TORCommon.Log("CustomBannerMissionLogic : Tried to assign null shield pattern to agent : " + agent.ToString() + ".", NLog.LogLevel.Warn);
+                        continue;
                     }
                     try
                     {
@@ -78,9 +76,9 @@ namespace TOR_Core.BattleMechanics.Banners
                         }
                         _indexOfCurrentAgent++;
                     }
-                    catch
+                    catch(Exception e)
                     {
-                        TORCommon.Log("CustomBannerMissionLogic : Tried to assign shield pattern to agent but failed.", NLog.LogLevel.Warn);
+                        TORCommon.Log("CustomBannerMissionLogic : Tried to assign shield pattern to agent but failed. Error: " + e.Message, NLog.LogLevel.Warn);
                     }
                 }
                 _hasUnprocessedAgents = false;
@@ -102,7 +100,7 @@ namespace TOR_Core.BattleMechanics.Banners
 
         private void SwitchTableauPatterns(Agent agent, Banner banner)
         {
-            if (agent.State != AgentState.Active) return;
+            if (agent.State != AgentState.Active || agent.IsFadingOut()) return;
             if (banner != null)
             {
                 for (int i = 0; i < 5; i++)
