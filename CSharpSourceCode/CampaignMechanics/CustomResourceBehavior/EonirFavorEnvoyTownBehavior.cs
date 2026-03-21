@@ -62,6 +62,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameStarted);
         CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
         CampaignEvents.GameMenuOpened.AddNonSerializedListener(this, OnGameMenuOpened);
+        CampaignEvents.BeforeMissionOpenedEvent.AddNonSerializedListener(this, OnBeforeMissionStart);
         CampaignEvents.OnPrisonerDonatedToSettlementEvent.AddNonSerializedListener(this, OnPrisonersSold);
     }
 
@@ -87,6 +88,11 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
     }
 
     private void OnGameMenuOpened(MenuCallbackArgs obj)
+    {
+        EnforceEnvoyLocation();
+    }
+
+    private void OnBeforeMissionStart()
     {
         EnforceEnvoyLocation();
     }
@@ -1015,7 +1021,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             var locationchar = _torLithanel.LocationComplex.GetLocationCharacterOfHero(envoy);
             var lordsHall = _torLithanel.LocationComplex.GetLocationWithId("lordshall");
             var currentloc = _torLithanel.LocationComplex.GetLocationOfCharacter(locationchar);
-            if (locationchar is null || lordsHall is null || currentloc is null) return;
+            if (locationchar is null || lordsHall is null || currentloc is null) continue;
             if (currentloc != lordsHall) _torLithanel.LocationComplex.ChangeLocation(locationchar, currentloc, lordsHall);
         }
     }

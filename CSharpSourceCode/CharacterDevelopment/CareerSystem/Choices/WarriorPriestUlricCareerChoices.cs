@@ -13,7 +13,7 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 {
-    public class /WarriorPriestUlricCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
+    public class WarriorPriestUlricCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
     {
         private CareerChoiceObject _warriorPriestUlricRoot;
         private CareerChoiceObject _crusherOfTheWeakKeystone;
