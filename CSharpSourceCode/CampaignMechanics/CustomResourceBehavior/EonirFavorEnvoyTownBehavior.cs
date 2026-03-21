@@ -104,6 +104,13 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         AddAsurEnvoyDialogLines(obj);
         AddEmpireEnvoyDialogLines(obj);
         AddSpellsingerEnvoyDialogLines(obj);
+
+        // Populate envoys when loading a save game
+        if (_torLithanel == null)
+        {
+            _torLithanel = Campaign.Current.Settlements.FirstOrDefault(x => x.IsTorLithanel());
+        }
+        PopulateEnvoys();
     }
 
     private void SetTextVariables()
@@ -1015,7 +1022,19 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
     private void EnforceEnvoyLocation()
     {
+        if (_torLithanel == null)
+        {
+            _torLithanel = Campaign.Current.Settlements.FirstOrDefault(x => x.IsTorLithanel());
+        }
+
+        if (envoys == null || envoys.Count == 0)
+        {
+            PopulateEnvoys();
+        }
+
         if (Settlement.CurrentSettlement == null || Settlement.CurrentSettlement != _torLithanel) return;
+        if (envoys == null || envoys.Count == 0) return;
+
         foreach (var envoy in envoys)
         {
             var locationchar = _torLithanel.LocationComplex.GetLocationCharacterOfHero(envoy);
@@ -1024,6 +1043,29 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             if (locationchar is null || lordsHall is null || currentloc is null) continue;
             if (currentloc != lordsHall) _torLithanel.LocationComplex.ChangeLocation(locationchar, currentloc, lordsHall);
         }
+    }
+
+    private void PopulateEnvoys()
+    {
+        if (envoys == null)
+        {
+            envoys = new List<Hero>();
+        }
+        else
+        {
+            envoys.Clear();
+        }
+
+        // Find existing envoys by their attributes
+        _druchiiEnvoy = Hero.AllAliveHeroes.FirstOrDefault(x => x.HasAttribute("DruchiiEnvoy"));
+        _asurEnvoy = Hero.AllAliveHeroes.FirstOrDefault(x => x.HasAttribute("AsurEnvoy"));
+        _empireEnvoy = Hero.AllAliveHeroes.FirstOrDefault(x => x.HasAttribute("EmpireEnvoy"));
+        _spellsingerEnvoy = Hero.AllAliveHeroes.FirstOrDefault(x => x.HasAttribute("SpellsingerEnvoy"));
+
+        if (_druchiiEnvoy != null) envoys.Add(_druchiiEnvoy);
+        if (_asurEnvoy != null) envoys.Add(_asurEnvoy);
+        if (_empireEnvoy != null) envoys.Add(_empireEnvoy);
+        if (_spellsingerEnvoy != null) envoys.Add(_spellsingerEnvoy);
     }
 
     private void CreateEnvoys()
