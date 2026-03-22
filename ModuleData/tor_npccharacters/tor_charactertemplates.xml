@@ -2513,8 +2513,8 @@
       <Trait id="Calculating" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_thunderer_template" />
-      <EquipmentSet id="tor_dw_thunderer_template" civilian="true" />
+      <EquipmentSet id="tor_cc_dw_engineers_1" />
+      <EquipmentSet id="tor_cc_dw_engineers_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dawi_miner_guild_npc_0" default_group="infantry" name="{=str_tor_dawi_miner_guild_npc_0}{FIRSTNAME} of the Miners Guild" occupation="Special" culture="Culture.sturgia" voice="ironic" age="30" race="dwarf" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">

@@ -1588,7 +1588,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="gs_enchant_brutality_gork" ItemTraitName="Brutality of Gork" IsCraftable="true" IconName="gork_icon">
+  <ItemTrait ItemTraitStringId="gs_enchant_brutality_gork" ItemTraitName="Brutality uv Gork" IsCraftable="true" IconName="gork_icon">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>8</IngredientAmount>
@@ -1596,7 +1596,7 @@
     <AdditionalDamageTuple DamageType="Physical" Percent="0.15" />
     <StatsTuple StatType="SwingSpeed" Value="-5" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="gs_enchant_tuffness_gork" ItemTraitName="Tuffness of Gork" IsCraftable="true" IconName="gork_icon">
+  <ItemTrait ItemTraitStringId="gs_enchant_tuffness_gork" ItemTraitName="Tuffness uv Gork" IsCraftable="true" IconName="gork_icon">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>15</IngredientAmount>
@@ -1604,7 +1604,7 @@
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.04" />
     <StatsTuple StatType="MovementSpeed" Value="-5" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="gs_enchant_clobberin_shield" ItemTraitName="Shield of Clobberin'" IsCraftable="true" IconName="gork_icon">
+  <ItemTrait ItemTraitStringId="gs_enchant_clobberin_shield" ItemTraitName="Blocka uv Clobberin'" IsCraftable="true" IconName="gork_icon">
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>WarpstoneDust</IngredientItem>
     <IngredientAmount>12</IngredientAmount>
@@ -1642,7 +1642,7 @@
     <ItemTraitDescription>"40 extra physical damage, weapon gains the Cleave trait"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.40" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="gs_enchant_cunning_mork" ItemTraitName="Cunning of Mork" IsCraftable="true" IconName="mork_icon">
+  <ItemTrait ItemTraitStringId="gs_enchant_cunning_mork" ItemTraitName="Cunning uv Mork" IsCraftable="true" IconName="mork_icon">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>10</IngredientAmount>
@@ -1650,7 +1650,7 @@
     <AdditionalDamageTuple DamageType="Physical" Percent="-0.10" />
     <StatsTuple StatType="SwingSpeed" Value="8" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="gs_enchant_call_great_green" ItemTraitName="Call of da Great Green" IsCraftable="true" IconName="mork_icon">
+  <ItemTrait ItemTraitStringId="gs_enchant_call_great_green" ItemTraitName="Call uv da Great Green" IsCraftable="true" IconName="mork_icon">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>WarpstoneDust</IngredientItem>
     <IngredientAmount>15</IngredientAmount>
@@ -1671,7 +1671,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="gs_enchant_gaze_spider_god" ItemTraitName="Gaze of da Spider-god" IsCraftable="true" ImbuedStatusEffectId="gaze_spider_god" ImbuedEffectChance="1.00" IconName="mork_icon">
+  <ItemTrait ItemTraitStringId="gs_enchant_gaze_spider_god" ItemTraitName="Gaze uv da Spider-god" IsCraftable="true" ImbuedStatusEffectId="gaze_spider_god" ImbuedEffectChance="1.00" IconName="mork_icon">
     <ValidItemType>Ranged</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>8</IngredientAmount>
@@ -1679,7 +1679,7 @@
     <StatsTuple StatType="MissileSpeed" Value="10" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="gs_enchant_shadow_bad_moon" ItemTraitName="Shadow of da Bad Moon" IsCraftable="true" IconName="mork_icon">
+  <ItemTrait ItemTraitStringId="gs_enchant_shadow_bad_moon" ItemTraitName="Shadow uv da Bad Moon" IsCraftable="true" IconName="mork_icon">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>9</IngredientAmount>
@@ -4576,7 +4576,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>Charge your weapon with knightly power</ItemTraitDescription>
-    <AdditionalDamageTuple DamageType="Physical" Percent="0.20" />
+    <AdditionalDamageTuple DamageType="Physical" Percent="0.10" />
     <WeaponParticlePreset ParticlePrefab="psys_flaming_weapon" IsUniqueSingleCopy="false" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="ca_knightlystrike_extra_armorpen" ItemTraitName="Knightly Strike Armor Pen" IsCraftable="false" IconName="winds_icon_45">
