@@ -710,9 +710,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
         private bool hireling_battle_menu_join_battle_on_condition(MenuCallbackArgs args)
         {
-            var maxHitPointsHero = Hero.MainHero.MaxHitPoints;
-            var hitPointsHero = Hero.MainHero.HitPoints;
-            return hitPointsHero > maxHitPointsHero * 0.2;
+            return !Hero.MainHero.IsWounded;
         }
 
         private bool hireling_battle_menu_desert_on_condition(MenuCallbackArgs args)

@@ -525,6 +525,7 @@ namespace TOR_Core.CharacterDevelopment
         {
 
             if (!affectingAgent.IsMainAgent) return 0;
+            if(chargeType is not ChargeType.DamageTaken or ChargeType.NumberOfKills) return 0;
 
             var malus = 0;
 
