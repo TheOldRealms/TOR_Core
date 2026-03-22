@@ -79,19 +79,6 @@ namespace TOR_Core.Models
                 }
             }
 
-            if (settlement.Culture.StringId == TORConstants.Cultures.GREENSKIN)
-            {
-                var random = MBRandom.RandomInt(0, 3);
-                if (random <= 1)
-                {
-                    return settlement.Culture.BasicTroop;
-                }
-                else
-                {
-                    return MBObjectManager.Instance.GetObject<CharacterObject>("tor_gs_goblin");
-                }
-            }
-
             return base.GetBasicVolunteer(sellerHero);
         }
 
