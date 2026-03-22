@@ -72,6 +72,12 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(EncyclopediaData), "GetEncyclopediaPageInstance")]
         public static bool AssemblyForPageInstance(ref EncyclopediaPageVM __result, EncyclopediaPage page, object o)
         {
+            // Guard against null objects to prevent crashes
+            if (o == null)
+            {
+                return true; // Let the original method handle null objects
+            }
+
             EncyclopediaPageArgs encyclopediaPageArgs = new EncyclopediaPageArgs(o);
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
