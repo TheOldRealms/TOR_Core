@@ -56,10 +56,59 @@
     <BodyPropertiesMin version="4" age="22.23" weight="0.6267" build="0.7855" key="0010780540003601BB5733977454756A4FD5AC625ADC5645A48DB7A65974F398009C96030977996700000000000000000000000000000000000000003F2C4085" />
     <BodyPropertiesMax version="4" age="22.23" weight="0.6267" build="0.7855" key="0010780540003601BB5733977454756A4FD5AC625ADC5645A48DB7A65974F398009C96030977996700000000000000000000000000000000000000003F2C4085" />
   </BodyProperty>
-  <BodyProperty id="male_wood_elf">
-    <BodyPropertiesMin version="4" age="25" weight="0.1744" build="0.9552" key="001B0000000000055F67ECA47808A9AD75F07CB600F97F071101F9808A30B56A7070161307F6FE0FE30342730304003B0000000000000017000000003AFC0002" />
-    <BodyPropertiesMax version="4" age="25" weight="0.0571" build="0.4259" key="0002640E400000017C6FFDC5D9711022849469F000F90E14864509918AE0F058007776030FF9AC0F4100060000000000000000000000000F000000003BFC0002" />
-  </BodyProperty>
+	<BodyProperty
+		id="male_wood_elf">
+		<BodyPropertiesMin
+			version="4"
+			age="22"
+			weight="0.162"
+			build="0.3657"
+			key="0000000000E41001C29003321122212210007421C3432212793579A4221421000073000307B768B9000000000000000000000000000000000000000000F84080" />
+		<BodyPropertiesMax
+			version="4"
+			age="22"
+			weight="0.2392"
+			build="0.8534"
+			key="003CB40E40001005EF8EFCBC985EBED9E9EE8EE8EEB6FEEDEDFFEEEE8DCA8F0D00FD40030FEFEEEF000000000000000000000000000000000000000067E89000" />
+		<beard_tags>
+			<beard_tag
+				name="Cleanshaven" />
+		</beard_tags>
+		<tattoo_tags>
+			<tattoo_tag
+				name="Cleanface" />
+			<tattoo_tag
+				name="Cleanface" />
+			<tattoo_tag
+				name="Cleanface" />
+			<tattoo_tag
+				name="Scar2" />
+			<tattoo_tag
+				name="Cleanface" />
+			<tattoo_tag
+				name="Scar4" />
+			<tattoo_tag
+				name="Scar5" />
+			<tattoo_tag
+				name="Scar7" />
+			<tattoo_tag
+				name="Scar10" />
+			<tattoo_tag
+				name="Scar11" />
+			<tattoo_tag
+				name="Cleanface" />
+			<tattoo_tag
+				name="Cleanface" />
+			<tattoo_tag
+				name="Cleanface" />
+			<tattoo_tag
+				name="Cleanface" />
+			<tattoo_tag
+				name="Scar15" />
+			<tattoo_tag
+				name="Scar15" />
+		</tattoo_tags>
+	</BodyProperty>
   <BodyProperty id="female_wood_elf">
     <BodyPropertiesMin version="4" age="22" weight="0.0185" build="0.3071" key="000D800000143007867AB7B0B9C8FB90A862266297ABAA43FF8F97FFBCCA9A96007776030775F80A10000000000000000000000000000007000000004EFC4043" />
     <BodyPropertiesMax version="4" age="22" weight="0.2886" build="0.6949" key="003F140CC014200A837873F477A8FCAAACBB97A95795A5B898FFA9AF88245944004596030492F00210000000000000000000000000000007000000005A7C2043" />
