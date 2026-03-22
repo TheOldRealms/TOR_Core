@@ -788,6 +788,12 @@ public class OathGoldBehavior : CampaignBehaviorBase
                 //Add blasting charges
                 var blastingCharges = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_blasting_charges");
                 if (blastingCharges != null) items.Add(blastingCharges);
+
+                //Add Tier1 spanners
+                var spanner1h = MBObjectManager.Instance.GetObject<ItemObject>("tor_dwarf_1h_spanner_001");
+                if (spanner1h != null) items.Add(spanner1h);
+                var spanner2h = MBObjectManager.Instance.GetObject<ItemObject>("tor_dwarf_2h_spanner_001");
+                if (spanner2h != null) items.Add(spanner2h);
             }
             if (Hero.MainHero.HasAttribute("DwarfEngineersII"))
             {
@@ -808,6 +814,12 @@ public class OathGoldBehavior : CampaignBehaviorBase
                 //Add hand grenades
                 var handGrenades = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_grenade_hand_grenade");
                 if (handGrenades != null) items.Add(handGrenades);
+
+                //Add Tier2 engineer hammers
+                var engineerHammer1h = MBObjectManager.Instance.GetObject<ItemObject>("dwarf_1h_engineer_hammer_001");
+                if (engineerHammer1h != null) items.Add(engineerHammer1h);
+                var engineerHammer2h = MBObjectManager.Instance.GetObject<ItemObject>("dwarf_2h_engineer_hammer_001");
+                if (engineerHammer2h != null) items.Add(engineerHammer2h);
             }
             if (Hero.MainHero.HasAttribute("DwarfEngineersIII"))
             {
