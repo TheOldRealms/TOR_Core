@@ -140,7 +140,7 @@ namespace TOR_Core.Missions
         [MissionMethod]
         public static Mission OpenGraveyardMission()
         {
-            var rec = SandBoxMissions.CreateSandBoxMissionInitializerRecord("TOR_graveyard_01_forceatmo", "", false, DecalAtlasGroup.All);
+            var rec = SandBoxMissions.CreateSandBoxMissionInitializerRecord("TOR_graveyard_01_atmo_w_night", "", false, DecalAtlasGroup.All);
             return MissionState.OpenNew("Battle", rec, delegate (Mission mission)
             {
                 IMissionTroopSupplier[] suppliers =
