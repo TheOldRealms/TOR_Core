@@ -167,6 +167,7 @@ namespace TOR_Core.Missions
                     new BattleMissionAgentInteractionLogic(),
                     new AgentMoraleInteractionLogic(),
                     new AssignPlayerRoleInTeamMissionController(true, false, false),
+                    new BannerBearerLogic(),
                 ];
                 Hero attackerHero = MapEvent.PlayerMapEvent.AttackerSide.LeaderParty.LeaderHero;
                 TextObject attackerGeneralName = attackerHero?.Name;
