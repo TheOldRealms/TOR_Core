@@ -42,6 +42,29 @@ namespace TOR_Core.HarmonyPatches
             return MBGlobals.GetActionSet($"as_{monsterName}{isFemaleText}_warrior");
         }
 
+        private static bool CanUseMissionFaceReuse(FaceGenerationParams face)
+        {
+            string raceName = FaceGen.GetRaceNames()[face.CurrentRace];
+
+            // add eonir and asrai here if you want to have a diverse look
+            return raceName == "human" || raceName == "bretonnian";
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(MissionFaceCacheView), "CheckForSimilarFacesFromCache")]
+        public static bool DisableMissionFaceReuseForCustomRaces(
+            FaceGenerationParams newFaceGen,
+            ref int __result)
+        {
+            if (!CanUseMissionFaceReuse(newFaceGen))
+            {
+                __result = -1;
+                return false;
+            }
+
+            return true;
+        }
+
         private static bool CanReuseMissionFaceCache(FaceGenerationParams firstFace, FaceGenerationParams secondFace)
         {
             if (firstFace.CurrentRace == secondFace.CurrentRace)
@@ -59,7 +82,7 @@ namespace TOR_Core.HarmonyPatches
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(MissionFaceCacheView), "ComputeSimilarityOfFace")]
-        public static void BlockBadMissionFaceCacheReuse(
+        public static void BlockCrossRaceMissionFaceReuse(
             FaceGenerationParams f0,
             FaceGenerationParams f1,
             ref float __result)
@@ -67,7 +90,7 @@ namespace TOR_Core.HarmonyPatches
             // block other cross race spawns
             if (!CanReuseMissionFaceCache(f0, f1))
             {
-                __result = 1000000000000f;
+                __result = 1000000000f;
             }
         }
 

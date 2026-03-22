@@ -264,6 +264,10 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             // Intercept encounter menu when enlisted to prevent crashes from bad PlayerEncounter state
             if (IsEnlisted() && menuId == "encounter" && !_startBattle)
             {
+                if (PlayerEncounter.Current?.IsJoinedBattle == true)
+                {
+                    return;
+                }
                 // After a battle ends, the game may try to open the encounter menu
                 // but the PlayerEncounter is in a bad state - redirect to hireling menu
                 GameMenu.SwitchToMenu("hireling_menu");
@@ -1006,7 +1010,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                     PlayerEncounter.EncounterSettlement == null &&
                     PlayerEncounter.Battle == mapEvent;
 
-                if (endedPlayerEncounterForThisBattle)
+                if (endedPlayerEncounterForThisBattle && PlayerEncounter.Current.IsJoinedBattle != true)
                 {
                     PlayerEncounter.Finish(false);
                     _hirelingWaitMenuShown = false;
