@@ -13936,7 +13936,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_greenskin_city_001" scene_name_1="TOR_greenskin_city_001" scene_name_2="TOR_greenskin_city_001" scene_name_3="TOR_greenskin_city_001" />
+      <Location id="center" scene_name="TOR_greenskin_city_002" scene_name_1="TOR_greenskin_city_002" scene_name_2="TOR_greenskin_city_002" scene_name_3="TOR_greenskin_city_002" />
       <Location id="arena" scene_name="TOR_POI_greenskin_arena_001_atmo_w_night" />
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_POI_greenskin_keep_001_atmo_w_night" scene_name_2="TOR_POI_greenskin_keep_001_atmo_w_night" scene_name_3="TOR_POI_greenskin_keep_001_atmo_w_night" />
@@ -14036,7 +14036,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_greenskin_city_001" scene_name_1="TOR_greenskin_city_001" scene_name_2="TOR_greenskin_city_001" scene_name_3="TOR_greenskin_city_001" />
+      <Location id="center" scene_name="TOR_greenskin_city_002" scene_name_1="TOR_greenskin_city_002" scene_name_2="TOR_greenskin_city_002" scene_name_3="TOR_greenskin_city_002" />
       <Location id="arena" scene_name="TOR_POI_greenskin_arena_001_atmo_w_night" />
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_POI_greenskin_keep_001_atmo_w_night" scene_name_2="TOR_POI_greenskin_keep_001_atmo_w_night" scene_name_3="TOR_POI_greenskin_keep_001_atmo_w_night" />
@@ -14274,7 +14274,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_greenskin_city_001" scene_name_1="TOR_greenskin_city_001" scene_name_2="TOR_greenskin_city_001" scene_name_3="TOR_greenskin_city_001" />
+      <Location id="center" scene_name="TOR_greenskin_city_002" scene_name_1="TOR_greenskin_city_002" scene_name_2="TOR_greenskin_city_002" scene_name_3="TOR_greenskin_city_002" />
       <Location id="arena" scene_name="TOR_POI_greenskin_arena_001_atmo_w_night" />
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_POI_greenskin_keep_001_atmo_w_night" scene_name_2="TOR_POI_greenskin_keep_001_atmo_w_night" scene_name_3="TOR_POI_greenskin_keep_001_atmo_w_night" />
@@ -14336,7 +14336,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_greenskin_city_001" scene_name_1="TOR_greenskin_city_001" scene_name_2="TOR_greenskin_city_001" scene_name_3="TOR_greenskin_city_001" />
+      <Location id="center" scene_name="TOR_greenskin_city_002" scene_name_1="TOR_greenskin_city_002" scene_name_2="TOR_greenskin_city_002" scene_name_3="TOR_greenskin_city_002" />
       <Location id="arena" scene_name="TOR_POI_greenskin_arena_001_atmo_w_night" />
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_POI_greenskin_keep_001_atmo_w_night" scene_name_2="TOR_POI_greenskin_keep_001_atmo_w_night" scene_name_3="TOR_POI_greenskin_keep_001_atmo_w_night" />
@@ -14624,7 +14624,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_greenskin_city_001" scene_name_1="TOR_greenskin_city_001" scene_name_2="TOR_greenskin_city_001" scene_name_3="TOR_greenskin_city_001" />
+      <Location id="center" scene_name="TOR_greenskin_city_002" scene_name_1="TOR_greenskin_city_002" scene_name_2="TOR_greenskin_city_002" scene_name_3="TOR_greenskin_city_002" />
       <Location id="arena" scene_name="TOR_POI_greenskin_arena_001_atmo_w_night" />
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_POI_greenskin_keep_001_atmo_w_night" scene_name_2="TOR_POI_greenskin_keep_001_atmo_w_night" scene_name_3="TOR_POI_greenskin_keep_001_atmo_w_night" />
