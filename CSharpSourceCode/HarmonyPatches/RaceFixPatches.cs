@@ -41,10 +41,9 @@ namespace TOR_Core.HarmonyPatches
             string isFemaleText = isFemale ? "_female_" : "";
             return MBGlobals.GetActionSet($"as_{monsterName}{isFemaleText}_warrior");
         }
-
-        private static bool CanUseMissionFaceReuse(FaceGenerationParams face)
+        private static bool IsSafeMissionFaceCacheRace(int race)
         {
-            string raceName = FaceGen.GetRaceNames()[face.CurrentRace];
+            string raceName = FaceGen.GetRaceNames()[race];
 
             // add eonir and asrai here if you want to have a diverse look
             return raceName == "human" || raceName == "bretonnian";
@@ -56,7 +55,7 @@ namespace TOR_Core.HarmonyPatches
             FaceGenerationParams newFaceGen,
             ref int __result)
         {
-            if (!CanUseMissionFaceReuse(newFaceGen))
+            if (!IsSafeMissionFaceCacheRace(newFaceGen.CurrentRace))
             {
                 __result = -1;
                 return false;
@@ -91,6 +90,18 @@ namespace TOR_Core.HarmonyPatches
             if (!CanReuseMissionFaceCache(f0, f1))
             {
                 __result = 1000000000f;
+            }
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(Agent), nameof(Agent.EquipItemsFromSpawnEquipment))]
+        public static void DisableNativeMissionFaceCacheForCustomRaces(
+            Agent __instance,
+            ref bool useFaceCache)
+        {
+            if (useFaceCache && !IsSafeMissionFaceCacheRace(__instance.Character.Race))
+            {
+                useFaceCache = false;
             }
         }
 
