@@ -60,6 +60,16 @@ namespace TOR_Core.Extensions
             return characterObject.GetAttributes().Contains(attributeName);
         }
 
+        public static bool CanClimbLadders(this BasicCharacterObject characterObject)
+        {
+            if (characterObject == null)
+            {
+                return true;
+            }
+
+            return !characterObject.HasAttribute("CannotClimbLadders");
+        }
+
         public static List<ResistanceTuple> GetDefenseProperties(this BasicCharacterObject characterObject)
         {
             var list = new List<ResistanceTuple>();
