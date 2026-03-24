@@ -518,6 +518,10 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_head_hood_fabric_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_head_mask_leather_001" RaceLock="human">
     <ItemTraits />
     <Description />
@@ -5632,6 +5636,12 @@
       <ItemTrait>use_ink_manual_runecraft</ItemTrait>
     </ItemTraits>
     <Description>Learn about the intricacies of runecraft</Description>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_book_gs_learn_enchant">
+    <ItemTraits>
+      <ItemTrait>use_ink_manual_greenskin</ItemTrait>
+    </ItemTraits>
+    <Description>Learn about da magic fings from da piktures on da rok</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_emp_enchant_ghur_wildform">
     <ItemTraits>
