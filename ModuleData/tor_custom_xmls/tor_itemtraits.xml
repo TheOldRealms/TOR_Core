@@ -4629,8 +4629,6 @@
     <ItemTraitDescription>Adds 20% extra holy damage</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Holy" Percent="0.20" />
   </ItemTrait>
-
-  <!-- Lethal Shot Career Ability Traits (Waywatcher) -->
   <ItemTrait ItemTraitStringId="ca_lethal_shot" ItemTraitName="Lethal Shot" IsCraftable="false" IconName="winds_icon_45">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
@@ -4645,7 +4643,6 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>Poisoned arrows that slow enemies on hit</ItemTraitDescription>
-    <WeaponParticlePreset ParticlePrefab="hagbane_trait" IsUniqueSingleCopy="false" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="ca_lethal_shot_loec" ItemTraitName="Trickery of Loec" IsCraftable="false" IconName="winds_icon_45">
     <ValidItemType>Invalid</ValidItemType>
@@ -4665,7 +4662,7 @@
     <ItemTraitDescription>Arrows split into multiple projectiles</ItemTraitDescription>
     <StatsTuple StatType="ScatterShot" Value="5" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="ca_lethal_shot_reload" ItemTraitName="Swift Nocking" IsCraftable="false" IconName="winds_icon_45">
+  <ItemTrait ItemTraitStringId="ca_lethal_shot_reload" ItemTraitName="Hail of Arrows" IsCraftable="false" IconName="winds_icon_45">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -4687,7 +4684,7 @@
     <AdditionalDamageTuple DamageType="Magical" Percent="0.15" />
     <WeaponParticlePreset ParticlePrefab="magic_trait" IsUniqueSingleCopy="false" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="ca_lethal_shot_speed" ItemTraitName="Swift Arrows" IsCraftable="false" IconName="winds_icon_45">
+  <ItemTrait ItemTraitStringId="ca_lethal_shot_speed" ItemTraitName="Swiftshiver Shards" IsCraftable="false" IconName="winds_icon_45">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -4702,14 +4699,14 @@
     <StatsTuple StatType="ArmorPenetration" Value="25" />
     <WeaponParticlePreset ParticlePrefab="psys_flaming_weapon" IsUniqueSingleCopy="false" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="ca_lethal_shot_starfire_shield" ItemTraitName="Starfire Shield Pierce" IsCraftable="false" IconName="winds_icon_45">
+  <ItemTrait ItemTraitStringId="ca_lethal_shot_starfire_shield" ItemTraitName="Starfire Shafts" IsCraftable="false" IconName="winds_icon_45">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>Arrows pierce shields</ItemTraitDescription>
     <StatsTuple StatType="ShieldPenetration" Value="1" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="ca_lethal_shot_moonfire" ItemTraitName="Moonfire Arrows" IsCraftable="false" ImbuedStatusEffectId="arrow_of_kurnous_debuff_res" ImbuedEffectChance="1.00" IconName="winds_icon_45">
+  <ItemTrait ItemTraitStringId="ca_lethal_shot_moonfire" ItemTraitName="ca_lethal_shot_moonfire" IsCraftable="false" IconName="winds_icon_45">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -4722,7 +4719,6 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-
   <ItemTrait ItemTraitStringId="shld_phys_res_20" ItemTraitName="Physical Resistance (Shield)" IsCraftable="true" IconName="traits_holy_icon">
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
