@@ -313,6 +313,7 @@ namespace TOR_Core
             mission.AddMissionBehavior(new AnimationTriggerMissionLogic());
             mission.AddMissionBehavior(new BattleShoutsMissionLogic());
             mission.AddMissionBehavior(new CinematicCameraMissionView());
+            mission.AddMissionBehavior(new TORMonsterSiegeLogic());
 
             if (Game.Current.GameType is Campaign)
             {

@@ -1368,7 +1368,7 @@ namespace TOR_Core.CharacterDevelopment
             _powerUvDaWaaagh.Initialize("Power uv da Waaagh!", TORCareers.OrcShaman, 3, (Hero hero, out string text) =>
             {
                 text = string.Empty;
-                return hero.HasAttribute("PlayerOrcShaman2") && hero.HasAttribute("PlayerOrcShamanTier3");
+                return hero.HasAttribute("PlayerOrcShamanTier2") && hero.HasAttribute("PlayerOrcShamanTier3");
             });
 
         }

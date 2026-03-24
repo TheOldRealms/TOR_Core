@@ -90,6 +90,11 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             var collegeloc = settlement.LocationComplex.GetLocationWithId("house_1");
             if (trainer != null && collegeloc != null)
             {
+                // Skip spellsinger envoy - they should stay in the lordshall, not the magic college
+                if (trainer.HasAttribute("SpellsingerEnvoy"))
+                {
+                    return;
+                }
 
                 if (forceSpawn)
                 {

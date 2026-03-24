@@ -11,48 +11,23 @@ public static class ChivalryHelper
 {
     public static ChivalryLevel GetChivalryLevelForResource(float level)
     {
-        var result = ChivalryLevel.Sincere;
-
         switch (level)
         {
-            case var _ when level < 250:
-                {
-                    result = ChivalryLevel.Unknightly;
-                    break;
-                }
-            case var _ when level < 500:
-                {
-                    result = ChivalryLevel.Uninspiring;
-                    break;
-                }
-            case var _ when level > 500 && level < 750:
-                {
-                    result = ChivalryLevel.Sincere;
-                    break;
-                }
-            case var _ when level > 750 && level < 1000:
-                {
-                    result = ChivalryLevel.Noteworthy;
-                    break;
-                }
-            case var _ when level > 1000 && level < 1500:
-                {
-                    result = ChivalryLevel.PureHearted;
-                    break;
-                }
-            case var _ when level > 1500 && level < 2000:
-                {
-                    result = ChivalryLevel.Honourable;
-                    break;
-                }
-            case var _ when level > 2000:
-                {
-                    result = ChivalryLevel.Chivalrous;
-                    break;
-                }
+            case var _ when level >= 2000:
+            return ChivalryLevel.Chivalrous;
+            case var _ when level >= 1500:
+            return ChivalryLevel.Honourable;
+            case var _ when level >= 1000:
+            return ChivalryLevel.PureHearted;
+            case var _ when level >= 750:
+            return ChivalryLevel.Noteworthy;
+            case var _ when level >= 500:
+            return ChivalryLevel.Sincere;
+            case var _ when level >= 250:
+            return ChivalryLevel.Uninspiring;
+            default:
+            return ChivalryLevel.Unknightly;
         }
-
-        return result;
     }
 
     public static TextObject GetChivalryRankText(ChivalryLevel chivalry)
@@ -131,7 +106,7 @@ public static class ChivalryHelper
                 list.Add(new TooltipProperty("Morale: ", "+10%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                 break;
             case ChivalryLevel.Honourable:
-                list.Add(new TooltipProperty("Morale", "+10%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+                list.Add(new TooltipProperty("Morale", "+20%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                 list.Add(new TooltipProperty("Knightly wages", "-10%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                 list.Add(new TooltipProperty("Gain extra  Chivalry everyday", "5", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                 break;
@@ -145,8 +120,9 @@ public static class ChivalryHelper
         list.Add(new TooltipProperty("", " ", 0, false, TooltipProperty.TooltipPropertyFlags.Cost)); //empty line
         if (chivalryLevel != ChivalryLevel.Chivalrous)
         {
-            list.Add(new TooltipProperty("Next Rank: ", (chivalryLevel + 1).ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
-            var result = GetResourceMinimumForChivalryRank(chivalryLevel + 1) - value;
+            var nextChivalryLevel = (ChivalryLevel)((int)chivalryLevel + 1);
+            list.Add(new TooltipProperty("Next Rank: ", GetChivalryRankText(nextChivalryLevel).ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
+            var result = GetResourceMinimumForChivalryRank(nextChivalryLevel) - value;
             list.Add(new TooltipProperty("Required Chivalry: ", result.ToString("0"), 0, false, TooltipProperty.TooltipPropertyFlags.None));
         }
 

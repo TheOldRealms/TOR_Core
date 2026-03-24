@@ -22,7 +22,8 @@ namespace TOR_Core.Items
             "vampire",
             "chaos_ud_cultist",
             "elf",
-            "necrarch"
+            "necrarch",
+            "bretonnian"
         };
 
         internal static ExtendedItemObjectProperties GetAdditionalProperties(string itemId)

@@ -267,7 +267,7 @@ namespace TOR_Core.BattleMechanics.Dismemberment
             }
 
             var victimSkeleton = victimVisuals.GetSkeleton();
-            if (victimSkeleton == null)
+            if (victimSkeleton == null || !victimSkeleton.IsValid)
             {
                 return;
             }

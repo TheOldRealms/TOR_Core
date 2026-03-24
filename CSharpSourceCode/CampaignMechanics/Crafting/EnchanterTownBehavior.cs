@@ -123,6 +123,9 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
     private void SpawnEnchanter(Settlement settlement, bool forceSpawn = false)
     {
         var trainer = GetEnchanterForTown(settlement);
+        if(settlement.IsTorLithanel())  //needs fixing with more care later. 3 behaviors all at once are here interfering.
+            return;
+        
         var currentLocation = settlement.LocationComplex.GetLocationWithId("house_1");
         if (trainer != null && currentLocation != null)
         {

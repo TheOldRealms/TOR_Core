@@ -4250,7 +4250,7 @@
 		</elite_caravan_party_templates>
 		<available_ship_hulls></available_ship_hulls>
 		<vassal_reward_items>
-			<item id="Item.sentinel_2hsword" />
+			<item id="Item.tor_bretonnia_weapon_thsword_001" />
 		</vassal_reward_items>
 		<banner_bearer_replacement_weapons>
 			<item id="Item.vlandia_sword_1_t2" />
@@ -5849,6 +5849,7 @@
 		<basic_mercenary_troops>
 			<template name="NPCCharacter.tor_eo_caravan_guard" />
 			<template name="NPCCharacter.tor_eo_caravan_ranged" />
+			<template name="NPCCharacter.tor_he_seaelf_militia" />
 		</basic_mercenary_troops>
 	</Culture>
 	<Culture id="looters"

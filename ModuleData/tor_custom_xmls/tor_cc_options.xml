@@ -515,7 +515,7 @@
 			<string>Steward</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Intelligence</AttributeToIncrease>
-		<OptionText>{=tor_cc_option39_label_str}Apprentice Craftsmen</OptionText>
+		<OptionText>{=tor_cc_option39_label_str}Apprentice Craftsman</OptionText>
 		<OptionFlavourText>{=tor_cc_option39_text_str}Your father was able to get you an apprenticeship with one of the local artisans. Over the course of five years your master taught you everything he could, leaving you with skills that would forever put you above the average peasant.</OptionFlavourText>
 	</CharacterCreationOption>
 
@@ -527,7 +527,7 @@
 			<string>Steward</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Endurance</AttributeToIncrease>
-		<OptionText>{=tor_cc_option40_label_str}Shepard</OptionText>
+		<OptionText>{=tor_cc_option40_label_str}Shepherd</OptionText>
 		<OptionFlavourText>{=tor_cc_option40_text_str}You became a shepherd, watching over the various livestock that your community relied upon for food and clothing. You and your fellows in essence served two roles, protecting the herds from wolves and other predators, while also watching at the outskirts of the village for signs of invaders.</OptionFlavourText>
 	</CharacterCreationOption>
 
@@ -607,7 +607,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Social</AttributeToIncrease>
 		<OptionText>{=tor_cc_option46_label_str}Mousillan Nobility</OptionText>
-		<OptionFlavourText>{=tor_cc_option46_text_str}You parents were of the ‘Nobility’ in Mousillon, if they can be called that. Nobles here are mostly made up of outlawed Bretonnian nobles, exiles and rouges from other nations, vampires, mummies and other varied monstrosities. While certainly at the top of Mousillan society, outside of the blighted land they are looked down upon the same as anyone else from here. </OptionFlavourText>
+		<OptionFlavourText>{=tor_cc_option46_text_str}You parents were of the ‘Nobility’ in Mousillon, if they can be called that. Nobles here are mostly made up of outlawed Bretonnian nobles, exiles and rogues from other nations, vampires, mummies and other varied monstrosities. While certainly at the top of Mousillan society, outside of the blighted land they are looked down upon the same as anyone else from here. </OptionFlavourText>
 	</CharacterCreationOption>
 
 	<CharacterCreationOption Id="option_1_mousillon_yeoman" Culture="mousillon" StageNumber="1" EquipmentSetId="tor_cc_mousillon_yeoman_1">

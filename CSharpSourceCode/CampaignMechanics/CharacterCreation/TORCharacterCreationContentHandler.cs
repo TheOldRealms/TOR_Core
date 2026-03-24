@@ -852,6 +852,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
                 case "option_3_dw_slayer":
                     hero.AddCareer(TORCareers.Slayer);
+                    hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_grimnir"), 30);
                     _storedSpawnPosition = new CampaignVec2(new Vec2(1787.716f, 1021.437f), true); // Slayer shrine
                     break;
 

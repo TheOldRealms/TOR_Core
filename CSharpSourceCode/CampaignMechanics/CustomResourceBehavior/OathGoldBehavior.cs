@@ -52,6 +52,10 @@ public class OathGoldBehavior : CampaignBehaviorBase
     private const int ArtilleryCrewGoldCost = 500;
     private const int RangerOathGoldCost = 20;
     private const int RangerGoldCost = 500;
+    private const int MinimumWarriorTier = 5;
+    private const int WarriorOathGoldPerTier = 7;
+    private const int InfluenceOathGoldCost = 100;
+    private const int InfluenceGainAmount = 125;
     private Dictionary<string, int> _guildValues;
     private double _lastTimeVistedTown;
     private int _expeditionMaximum;
@@ -784,6 +788,12 @@ public class OathGoldBehavior : CampaignBehaviorBase
                 //Add blasting charges
                 var blastingCharges = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_blasting_charges");
                 if (blastingCharges != null) items.Add(blastingCharges);
+
+                //Add Tier1 spanners
+                var spanner1h = MBObjectManager.Instance.GetObject<ItemObject>("tor_dwarf_1h_spanner_001");
+                if (spanner1h != null) items.Add(spanner1h);
+                var spanner2h = MBObjectManager.Instance.GetObject<ItemObject>("tor_dwarf_2h_spanner_001");
+                if (spanner2h != null) items.Add(spanner2h);
             }
             if (Hero.MainHero.HasAttribute("DwarfEngineersII"))
             {
@@ -804,6 +814,12 @@ public class OathGoldBehavior : CampaignBehaviorBase
                 //Add hand grenades
                 var handGrenades = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_grenade_hand_grenade");
                 if (handGrenades != null) items.Add(handGrenades);
+
+                //Add Tier2 engineer hammers
+                var engineerHammer1h = MBObjectManager.Instance.GetObject<ItemObject>("dwarf_1h_engineer_hammer_001");
+                if (engineerHammer1h != null) items.Add(engineerHammer1h);
+                var engineerHammer2h = MBObjectManager.Instance.GetObject<ItemObject>("dwarf_2h_engineer_hammer_001");
+                if (engineerHammer2h != null) items.Add(engineerHammer2h);
             }
             if (Hero.MainHero.HasAttribute("DwarfEngineersIII"))
             {
@@ -1339,12 +1355,12 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         bool CanTransferOathGoldForInfluence()
         {
-            return Hero.MainHero.GetCultureSpecificCustomResourceValue() >= 100;
+            return Hero.MainHero.GetCultureSpecificCustomResourceValue() >= InfluenceOathGoldCost;
         }
         void BuyInfluenceForOathGold()
         {
-            Hero.MainHero.AddInfluenceWithKingdom(250);
-            Hero.MainHero.AddCultureSpecificCustomResource(-100);
+            Hero.MainHero.AddInfluenceWithKingdom(InfluenceGainAmount);
+            Hero.MainHero.AddCultureSpecificCustomResource(-InfluenceOathGoldCost);
         }
 
         void ProvideTroops()
@@ -1360,7 +1376,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
             var gainedOathGold = 0;
             foreach (var element in leftmemberroster.GetTroopRoster())
             {
-                gainedOathGold += element.Character.Tier * element.Number * 15;
+                gainedOathGold += element.Character.Tier * element.Number * WarriorOathGoldPerTier;
             }
 
             Hero.MainHero.AddCultureSpecificCustomResource(gainedOathGold);
@@ -1371,7 +1387,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
             var roster = Hero.MainHero.PartyBelongedTo.MemberRoster;
 
             if (roster == null) return false;
-            return roster.GetTroopRoster().Any(elem => elem.Character.Culture.StringId == TORConstants.Cultures.DAWI && elem.Character.Tier > 4);
+            return roster.GetTroopRoster().Any(elem => elem.Character.Culture.StringId == TORConstants.Cultures.DAWI && elem.Character.Tier >= MinimumWarriorTier);
         }
 
         bool IsTransferableVeteranUnit(CharacterObject character, PartyScreenLogic.TroopType type, PartyScreenLogic.PartyRosterSide side, PartyBase leftownerparty)
@@ -1379,8 +1395,8 @@ public class OathGoldBehavior : CampaignBehaviorBase
             if (type != PartyScreenLogic.TroopType.Member) return false;
             if (character.IsHero) return false;
             if (Hero.MainHero.Culture.CaravanGuard == character) return false;
-            
-            return character.Culture.StringId == TORConstants.Cultures.DAWI && character.Tier >= 4;
+
+            return character.Culture.StringId == TORConstants.Cultures.DAWI && character.Tier >= MinimumWarriorTier;
         }
 
         bool IsWarrior()

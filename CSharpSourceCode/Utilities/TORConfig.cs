@@ -30,6 +30,7 @@ namespace TOR_Core.Utilities
         public static float MinWarDays => _config.MinWarDays;
         public static int AIGoldAdjustmentAmount => _config.AIGoldAdjustmentAmount;
         public static bool UseAlternativeVoiceManager => _config.UseAlternativeVoiceManager;
+        public static bool DisableMinstrelEvent => _config.DisableMinstrelEvent;
 
         public static void ReadConfig()
         {
@@ -93,6 +94,8 @@ namespace TOR_Core.Utilities
             public int AIGoldAdjustmentAmount;
             [XmlAttribute]
             public bool UseAlternativeVoiceManager;
+            [XmlAttribute]
+            public bool DisableMinstrelEvent;
         }
     }
 }

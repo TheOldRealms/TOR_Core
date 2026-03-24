@@ -170,7 +170,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                     MutationTargetType = typeof(AbilityTemplate),
                     MutationTargetOriginalId = "WisdomOfThungni",
                     PropertyName = "CoolDown",
-                    PropertyValue = (choice, originalValue, agent) => -(float)originalValue*0.35f,
+                    PropertyValue = (choice, originalValue, agent) => -((int)originalValue * 0.35f),
                     MutationType = OperationType.Add
                 }
             });

@@ -251,15 +251,12 @@ namespace TOR_Core.BattleMechanics.Firearms
             }
 
             // play sound of shot and create shot effects
+            // Hand-thrown grenades and blasting charges don't make firing sounds, only explosion on impact
             if (!shooterAgent.WieldedWeapon.AmmoWeapon.Item.StringId.Contains("grenade") && !shooterAgent.WieldedWeapon.AmmoWeapon.Item.StringId.Contains("blasting_charges"))
             {
                 // run particles of smoke
                 Mission.AddParticleSystemBurstByName("handgun_shoot_2", frame, false);
                 CreateMuzzleFireSound(position);
-            }
-            else
-            {
-                CreateMuzzleFireSound(position, MuzzleFireSoundType.Grenadelauncher);
             }
         }
 
@@ -347,7 +344,12 @@ namespace TOR_Core.BattleMechanics.Firearms
 
         public void BurstFireShot(Agent shooterAgent, float accuracy, string ammoID)
         {
-            if (shooterAgent.AgentVisuals == null || shooterAgent.WieldedWeapon.IsEmpty || shooterAgent.WieldedWeapon.CurrentUsageItem == null)
+            if (shooterAgent == null || 
+                shooterAgent.State != AgentState.Active || 
+                shooterAgent.IsFadingOut() || 
+                shooterAgent.AgentVisuals == null || 
+                shooterAgent.WieldedWeapon.IsEmpty || 
+                shooterAgent.WieldedWeapon.CurrentUsageItem == null)
             {
                 return;
             }
@@ -388,7 +390,7 @@ namespace TOR_Core.BattleMechanics.Firearms
 
             var pos = missileObj.Entity.GlobalPosition;
 
-            if (missileObj.Weapon.Item.StringId.Contains("grenade"))
+            if (missileObj.Weapon.Item.StringId.Contains("grenade") || missileObj.Weapon.Item.StringId.Contains("blasting_charges"))
             {
                 RunExplosionSoundEffects(pos, "mortar_explosion_1");
                 RunExplosionVisualEffects(pos, "cannonball_explosion_8");

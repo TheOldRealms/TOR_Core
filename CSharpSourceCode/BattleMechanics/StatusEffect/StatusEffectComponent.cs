@@ -41,6 +41,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         public void SynchronizeBaseValues(bool mountOnly = false)
         {
+            if (Agent == null) return;
             if (Agent.AgentDrivenProperties == null) return;
             if (!mountOnly)
             {
@@ -51,7 +52,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 _baseValues.AddOrReplace(DrivenProperty.BipedalRangedReloadSpeedMultiplier, this.Agent.AgentDrivenProperties.BipedalRangedReloadSpeedMultiplier);
             }
 
-            if (!this.Agent.HasMount) return;
+            if (!Agent.HasMount) return;
             _baseValues.AddOrReplace(DrivenProperty.MountManeuver, Agent.MountAgent.AgentDrivenProperties.MountManeuver);
             _baseValues.AddOrReplace(DrivenProperty.MountSpeed, this.Agent.MountAgent.AgentDrivenProperties.MountSpeed);
             _baseValues.AddOrReplace(DrivenProperty.MountDashAccelerationMultiplier, this.Agent.MountAgent.AgentDrivenProperties.MountDashAccelerationMultiplier);
@@ -128,7 +129,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
             CalculateEffectAggregate();
 
-            if (Agent.IsActive() && Agent != null && !Agent.IsFadingOut())
+            if (Agent != null && Agent.IsActive() && !Agent.IsFadingOut())
             {
                 if (_effectAggregate == null) return;
 

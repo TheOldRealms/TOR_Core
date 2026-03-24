@@ -193,15 +193,14 @@ namespace TOR_Core.Models
                         }
                     }
 
-                    if (Hero.MainHero.HasCareerChoice("HolyCrusaderPassive2") && hero.PartyBelongedTo.IsMainParty)
+                    if (Hero.MainHero.HasCareerChoice("HolyCrusaderPassive2") &&
+                        hero.PartyBelongedTo == MobileParty.MainParty &&
+                        hero.IsBretonnianKnight())
                     {
-                        if (hero.IsBretonnianKnight())
-                        {
-                            var choice = TORCareerChoices.GetChoice("HolyCrusaderPassive2");
-                            var heroes = MobileParty.MainParty.GetMemberHeroes().Where(knight => knight.IsBretonnianKnight());
-                            var extraHealth = heroes.Count() * choice.GetPassiveValue();
-                            number.Add(extraHealth, choice.BelongsToGroup.Name);
-                        }
+                        var choice = TORCareerChoices.GetChoice("HolyCrusaderPassive2");
+                        var knightCompanions = MobileParty.MainParty.GetMemberHeroes().Where(knight => knight.IsBretonnianKnight());
+                        var extraHealth = knightCompanions.Count() * choice.GetPassiveValue();
+                        number.Add(extraHealth, choice.BelongsToGroup.Name);
                     }
 
                     if (Hero.MainHero.HasCareerChoice("ForHearthAndHomePassive2"))

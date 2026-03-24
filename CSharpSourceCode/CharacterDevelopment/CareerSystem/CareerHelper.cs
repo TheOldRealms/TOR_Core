@@ -371,7 +371,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             List<(string PrayerID, int Rank)> prayers = new();
             var info = priestHero?.GetExtendedInfo();
             if (info == null) return prayers;
-            var godAttribute = info.AllAttributes.Where(x => x.Contains("Priest") && x.ToString() != "Priest").FirstOrDefault(); //Priest attributes have 3 categories : "Priest" (sigmar and ulric careers only), "Priest(God)" (all priest careers), or "PriestTrainer" (spell trainers, for equipment blessings I believe).
+            var godAttribute = info.AllAttributes.Where(x => x.StartsWith("Priest") && !x.Equals("Priest")).FirstOrDefault(); //Priest attributes have 3 categories : "Priest" (sigmar and ulric careers only), "Priest(God)" (all priest careers), or "PriestTrainer" (spell trainers, for equipment blessings I believe).
             if (godAttribute == null) return prayers;
 
             if (godAttribute == "PriestSigmar")

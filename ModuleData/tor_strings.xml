@@ -147,7 +147,7 @@
   <string id="tor_perk_divine_mission_1" text="{=str_tor_perk_divine_mission_1}You gain 1 focus point in Medicine."/>
   <string id="tor_perk_divine_mission_2" text="{=str_tor_perk_divine_mission_2}5% increased militia growth in settlements owned by your clan."/>
   <string id="tor_perk_imperturbable_label" text="{=str_tor_perk_imperturbable_label}Imperturbable"/>
-  <string id="tor_perk_imperturbable_1" text="{=str_tor_perk_imperturbable_1}Gain 500 Faith skill experience every day while waiting at a settlement."/>
+  <string id="tor_perk_imperturbable_1" text="{=str_tor_perk_imperturbable_1}Gain 500 Faith skill experience every day while waiting in a town."/>
   <string id="tor_perk_imperturbable_2" text="{=str_tor_perk_imperturbable_2}Religious units in your party gain 10% physical resistance."/>
   <string id="tor_perk_superstitious_label" text="{=str_tor_perk_superstitious_label}Superstitious"/>
   <string id="tor_perk_superstitious_1" text="{=str_tor_perk_superstitious_1}Cursed regions on the world map have 20% reduced damaging effect on your party."/>
@@ -4281,92 +4281,92 @@
   <!-- OrcBoss Career Choice Descriptions -->
   <string id="tor_careerchoice_description.OrcBossRoot" text="{=str_tor_careerchoice_description_OrcBossRoot}Take yer choppa, an' smash it proppa 'ard on any o' da gits, make 'em scream. Sum choppas are betta at uvva fings: Smalla choppas an' blockas are good fer timez when you'z in da scrap, an' iz time fer sum speedy 'taktikz'. Bigga choppas are best fer mobs o' gits. Makes 'em weaker da more ya hit 'em too. Longa choppas, now dese be useful fer ridas, an' uva pesky beasties. An' if you fink you can't chop any more, you jus' need ta wait, an' den chop sum more!" />
   
-  <string id="tor_careerchoice_description.TufferDanNailsKeystone" text="{=str_tor_careerchoice_description_TufferDanNailsKeystone}Armed to da Teef now applies bleeding." />
-  <string id="tor_careerchoice_description.TufferDanNailsPassive1" text="{=str_tor_careerchoice_description_TufferDanNailsPassive1}+10% personal 'Physical Resistance'." />
-  <string id="tor_careerchoice_description.TufferDanNailsPassive2" text="{=str_tor_careerchoice_description_TufferDanNailsPassive2}When traveling, triple your personal healing rate." />
-  <string id="tor_careerchoice_description.TufferDanNailsPassive3" text="{=str_tor_careerchoice_description_TufferDanNailsPassive3}+75 personal Hitpoints." />
-  <string id="tor_careerchoice_description.TufferDanNailsPassive4" text="{=str_tor_careerchoice_description_TufferDanNailsPassive4}Gain double the renown from battles." />
+  <string id="tor_careerchoice_description.TufferDanNailsKeystone" text="{=str_tor_careerchoice_description_TufferDanNailsKeystone}Armed to da Teef makes da gits bleed" />
+  <string id="tor_careerchoice_description.TufferDanNailsPassive1" text="{=str_tor_careerchoice_description_TufferDanNailsPassive1}‘Ardiness iz 10% betta" />
+  <string id="tor_careerchoice_description.TufferDanNailsPassive2" text="{=str_tor_careerchoice_description_TufferDanNailsPassive2}Triple ‘ealin when da mob iz travellin’" />
+  <string id="tor_careerchoice_description.TufferDanNailsPassive3" text="{=str_tor_careerchoice_description_TufferDanNailsPassive3}75 more tuffness" />
+  <string id="tor_careerchoice_description.TufferDanNailsPassive4" text="{=str_tor_careerchoice_description_TufferDanNailsPassive4}Double Renown afta’ winnin’ scraps" />
 
-  <string id="tor_careerchoice_description.YouAnWotArmourKeystone" text="{=str_tor_careerchoice_description_YouAnWotArmourKeystone}Armed to da Teef also scales with Two-Handed." />
-  <string id="tor_careerchoice_description.YouAnWotArmourPassive1" text="{=str_tor_careerchoice_description_YouAnWotArmourPassive1}+10% melee 'Physical' damage for all 'Orc' troops." />
-  <string id="tor_careerchoice_description.YouAnWotArmourPassive2" text="{=str_tor_careerchoice_description_YouAnWotArmourPassive2}+10% personal melee 'Physical' damage when equipped with a Polearm, 1H, and 2H weapon." />
-  <string id="tor_careerchoice_description.YouAnWotArmourPassive3" text="{=str_tor_careerchoice_description_YouAnWotArmourPassive3}+10% personal 'Armour Penetration' for melee attacks." />
-  <string id="tor_careerchoice_description.YouAnWotArmourPassive4" text="{=str_tor_careerchoice_description_YouAnWotArmourPassive4}Deal quadruple increased melee damage to shields." />
+  <string id="tor_careerchoice_description.YouAnWotArmourKeystone" text="{=str_tor_careerchoice_description_YouAnWotArmourKeystone}Armed to da Teef iz betta killy wiv Two Handed pointz" />
+  <string id="tor_careerchoice_description.YouAnWotArmourPassive1" text="{=str_tor_careerchoice_description_YouAnWotArmourPassive1}10% betta killin’ fer Boys an’ Boar Boys" />
+  <string id="tor_careerchoice_description.YouAnWotArmourPassive2" text="{=str_tor_careerchoice_description_YouAnWotArmourPassive2}10% betta killin’ when wearin’ small, bigga’, an’ longa’ choppas" />
+  <string id="tor_careerchoice_description.YouAnWotArmourPassive3" text="{=str_tor_careerchoice_description_YouAnWotArmourPassive3}Ignore 10% uv armoured bits wiv choppas" />
+  <string id="tor_careerchoice_description.YouAnWotArmourPassive4" text="{=str_tor_careerchoice_description_YouAnWotArmourPassive4}Bash down blockas forr timez fasta’" />
 
-  <string id="tor_careerchoice_description.GoodwivBlockasKeystone" text="{=str_tor_careerchoice_description_GoodwivBlockasKeystone}Armed to da Teef also scales with One-Handed." />
-  <string id="tor_careerchoice_description.GoodwivBlockasPassive1" text="{=str_tor_careerchoice_description_GoodwivBlockasPassive1}You are no longer staggered by hits below 30 damage." />
-  <string id="tor_careerchoice_description.GoodwivBlockasPassive2" text="{=str_tor_careerchoice_description_GoodwivBlockasPassive2}+10% personal 'Physical Resistance' when wielding a shield." />
-  <string id="tor_careerchoice_description.GoodwivBlockasPassive3" text="{=str_tor_careerchoice_description_GoodwivBlockasPassive3}+25 increased party size." />
-  <string id="tor_careerchoice_description.GoodwivBlockasPassive4" text="{=str_tor_careerchoice_description_GoodwivBlockasPassive4}+10% melee 'Physical' damage for 'Orc' infantry." />
+  <string id="tor_careerchoice_description.GoodwivBlockasKeystone" text="{=str_tor_careerchoice_description_GoodwivBlockasKeystone}Armed to da Teef iz betta killy wiv One Handed pointz" />
+  <string id="tor_careerchoice_description.GoodwivBlockasPassive1" text="{=str_tor_careerchoice_description_GoodwivBlockasPassive1}No more stumblin’ from puny hits" />
+  <string id="tor_careerchoice_description.GoodwivBlockasPassive2" text="{=str_tor_careerchoice_description_GoodwivBlockasPassive2}‘Ardiness iz 10% betta when wearin’ a blocka" />
+  <string id="tor_careerchoice_description.GoodwivBlockasPassive3" text="{=str_tor_careerchoice_description_GoodwivBlockasPassive3}25 more Boys fer da mob" />
+  <string id="tor_careerchoice_description.GoodwivBlockasPassive4" text="{=str_tor_careerchoice_description_GoodwivBlockasPassive4}‘Ardiness uv choppa Boys iz 10% betta" />
 
-  <string id="tor_careerchoice_description.MeanestanDaBaddestKeystone" text="{=str_tor_careerchoice_description_MeanestanDaBaddestKeystone}Armed to da Teef also scales with Polearm." />
-  <string id="tor_careerchoice_description.MeanestanDaBaddestPassive1" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive1}+10% personal melee 'Physical' damage." />
-  <string id="tor_careerchoice_description.MeanestanDaBaddestPassive2" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive2}+5 Companion limit." />
-  <string id="tor_careerchoice_description.MeanestanDaBaddestPassive3" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive3}Gain double the 'Teef' when exchanging gold at kwartamastas." />
-  <string id="tor_careerchoice_description.MeanestanDaBaddestPassive4" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive4}+5 'Teef' daily per Orc Boss companion." />
+  <string id="tor_careerchoice_description.MeanestanDaBaddestKeystone" text="{=str_tor_careerchoice_description_MeanestanDaBaddestKeystone}Armed to da Teef iz betta killy wiv Polearm pointz" />
+  <string id="tor_careerchoice_description.MeanestanDaBaddestPassive1" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive1}10% betta killin’" />
+  <string id="tor_careerchoice_description.MeanestanDaBaddestPassive2" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive2}5 more Bosses fer da mob" />
+  <string id="tor_careerchoice_description.MeanestanDaBaddestPassive3" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive3}50% more shinies when leavin’ loot in Kwartamasta piles" />
+  <string id="tor_careerchoice_description.MeanestanDaBaddestPassive4" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive4}Big Bosses in da mob pay 5 Teef e’ry day" />
 
-  <string id="tor_careerchoice_description.GetToDaChoppasKeystone" text="{=str_tor_careerchoice_description_GetToDaChoppasKeystone}Armed to da Teef grants nearby allies +20% 'Physical' damage." />
-  <string id="tor_careerchoice_description.GetToDaChoppasPassive1" text="{=str_tor_careerchoice_description_GetToDaChoppasPassive1}+10% personal 'Physical' damage with axes." />
-  <string id="tor_careerchoice_description.GetToDaChoppasPassive2" text="{=str_tor_careerchoice_description_GetToDaChoppasPassive2}+5 Companion Limit." />
-  <string id="tor_careerchoice_description.GetToDaChoppasPassive3" text="{=str_tor_careerchoice_description_GetToDaChoppasPassive3}+10% personal melee 'Physical' damage when equipped with a Polearm, 1H, and 2H weapon." />
-  <string id="tor_careerchoice_description.GetToDaChoppasPassive4" text="{=str_tor_careerchoice_description_GetToDaChoppasPassive4}+50% 'Teef' when dueling Warbosses." />
+  <string id="tor_careerchoice_description.GetToDaChoppasKeystone" text="{=str_tor_careerchoice_description_GetToDaChoppasKeystone}Armed to da Teef makes da Boys proppa killy fer sum time" />
+  <string id="tor_careerchoice_description.GetToDaChoppasPassive1" text="{=str_tor_careerchoice_description_GetToDaChoppasPassive1}10% betta killin’" />
+  <string id="tor_careerchoice_description.GetToDaChoppasPassive2" text="{=str_tor_careerchoice_description_GetToDaChoppasPassive2}5 more Bosses fer da mob" />
+  <string id="tor_careerchoice_description.GetToDaChoppasPassive3" text="{=str_tor_careerchoice_description_GetToDaChoppasPassive3}10% betta killin’ when wearin’ small, bigga’, an’ longa’ choppas" />
+  <string id="tor_careerchoice_description.GetToDaChoppasPassive4" text="{=str_tor_careerchoice_description_GetToDaChoppasPassive4}50% more Teef afta' duelin’ Warbosses" />
 
-  <string id="tor_careerchoice_description.LeafNuffinBehinKeystone" text="{=str_tor_careerchoice_description_LeafNuffinBehinKeystone}Armed to da Teef reduces enemy movement speed by -20%." />
-  <string id="tor_careerchoice_description.LeafNuffinBehinPassive1" text="{=str_tor_careerchoice_description_LeafNuffinBehinPassive1}-25% 'Teef' cost for upgrading troops." />
-  <string id="tor_careerchoice_description.LeafNuffinBehinPassive2" text="{=str_tor_careerchoice_description_LeafNuffinBehinPassive2}+20% personal 'Armour Penetration' for melee attacks." />
-  <string id="tor_careerchoice_description.LeafNuffinBehinPassive3" text="{=str_tor_careerchoice_description_LeafNuffinBehinPassive3}+50 increased party size." />
-  <string id="tor_careerchoice_description.LeafNuffinBehinPassive4" text="{=str_tor_careerchoice_description_LeafNuffinBehinPassive4}Reduce 'Morale' penalty when extorting 'Teef'." />
+  <string id="tor_careerchoice_description.LeafNuffinBehinKeystone" text="{=str_tor_careerchoice_description_LeafNuffinBehinKeystone}Armed to da Teef makes da gits run slowa'" />
+  <string id="tor_careerchoice_description.LeafNuffinBehinPassive1" text="{=str_tor_careerchoice_description_LeafNuffinBehinPassive1}Da Boys take one-forf less Teef to get betta" />
+  <string id="tor_careerchoice_description.LeafNuffinBehinPassive2" text="{=str_tor_careerchoice_description_LeafNuffinBehinPassive2}Ignore 20% uv armoured bits wiv choppas" />
+  <string id="tor_careerchoice_description.LeafNuffinBehinPassive3" text="{=str_tor_careerchoice_description_LeafNuffinBehinPassive3}50 more Boys fer da mob" />
+  <string id="tor_careerchoice_description.LeafNuffinBehinPassive4" text="{=str_tor_careerchoice_description_LeafNuffinBehinPassive4}Less Morale penalty uv Extort Teef" />
 
-  <string id="tor_careerchoice_description.BestofDaBestKeystone" text="{=str_tor_careerchoice_description_BestofDaBestKeystone}Armed to da Teef slames enemies to the ground." />
-  <string id="tor_careerchoice_description.BestofDaBestPassive1" text="{=str_tor_careerchoice_description_BestofDaBestPassive1}+10% personal melee 'Physical' damage." />
-  <string id="tor_careerchoice_description.BestofDaBestPassive2" text="{=str_tor_careerchoice_description_BestofDaBestPassive2}+10% personal weapon swing speed." />
-  <string id="tor_careerchoice_description.BestofDaBestPassive3" text="{=str_tor_careerchoice_description_BestofDaBestPassive3}+75 personal Hitpoints." />
-  <string id="tor_careerchoice_description.BestofDaBestPassive4" text="{=str_tor_careerchoice_description_BestofDaBestPassive4}+100 Hitpoints for Orc Boss companions." />
+  <string id="tor_careerchoice_description.BestofDaBestKeystone" text="{=str_tor_careerchoice_description_BestofDaBestKeystone}Armed to da Teef bashes gits to da ground" />
+  <string id="tor_careerchoice_description.BestofDaBestPassive1" text="{=str_tor_careerchoice_description_BestofDaBestPassive1}10% betta killin’" />
+  <string id="tor_careerchoice_description.BestofDaBestPassive2" text="{=str_tor_careerchoice_description_BestofDaBestPassive2}Choppa attacks are 10% fasta" />
+  <string id="tor_careerchoice_description.BestofDaBestPassive3" text="{=str_tor_careerchoice_description_BestofDaBestPassive3}75 more tuffness" />
+  <string id="tor_careerchoice_description.BestofDaBestPassive4" text="{=str_tor_careerchoice_description_BestofDaBestPassive4}100 more tuffness fer Big Bosses in da mob" />
 
   <!-- OrcShaman Career Choice Descriptions -->
   <string id="tor_careerchoice_description.OrcShamanRoot" text="{=str_tor_careerchoice_description_OrcShamanRoot}Da Shaman iz da centah uv da WAAAGH! You kunnect yerself to da boys ‘round, an’ dey will give you more ju-ju powa’ fer ZAPPIN’ an’ BLASTIN’. But if da boys start dyin’, den yer zappy energy gets blasted outta ya, an’ they take it wiv dem! Da betta ya get, de more you can kunnect to da WAAAGH!. An’ remember to stay close to da old ways. Wearin’ ‘ard bits an’ metal an’ stuff like dem ‘ard boyz iz gunna get ya less ju-ju powa’." />
   
-  <string id="tor_careerchoice_description.BonesAnFirepitzKeystone" text="{=str_tor_careerchoice_description_BonesAnFirepitzKeystone}Call uv da Green is charged at battle start." />
-  <string id="tor_careerchoice_description.BonesAnFirepitzPassive1" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive1}+10% personal melee 'Physical' damage." />
-  <string id="tor_careerchoice_description.BonesAnFirepitzPassive2" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive2}+10 personal max 'Winds of Magic' capacity." />
-  <string id="tor_careerchoice_description.BonesAnFirepitzPassive3" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive3}Gain more 'Enchantment' ingredients when looting." />
-  <string id="tor_careerchoice_description.BonesAnFirepitzPassive4" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive4}Looting shrines provides Spellcraft experience." />
+  <string id="tor_careerchoice_description.BonesAnFirepitzKeystone" text="{=str_tor_careerchoice_description_BonesAnFirepitzKeystone}Call uv da Great Green iz always ready fer da scrap" />
+  <string id="tor_careerchoice_description.BonesAnFirepitzPassive1" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive1}10% betta killin’" />
+  <string id="tor_careerchoice_description.BonesAnFirepitzPassive2" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive2}10 more mumbo-jumbo pointz" />
+  <string id="tor_careerchoice_description.BonesAnFirepitzPassive3" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive3}Betta findiness uv mumbo-jumbo fings afta' scraps" />
+  <string id="tor_careerchoice_description.BonesAnFirepitzPassive4" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive4}More mumbo-jumbo eks-perr-yens afta' lootin' Idols" />
 
-  <string id="tor_careerchoice_description.VisionsUvDaOrcayneKeystone" text="{=str_tor_careerchoice_description_VisionsUvDaOrcayneKeystone}Gaze uv Mork is free and is refreshed after casting Call uv da Green." />
-  <string id="tor_careerchoice_description.VisionsUvDaOrcaynePassive1" text="{=str_tor_careerchoice_description_VisionsUvDaOrcaynePassive1}+35% increased spotting range for party." />
-  <string id="tor_careerchoice_description.VisionsUvDaOrcaynePassive2" text="{=str_tor_careerchoice_description_VisionsUvDaOrcaynePassive2}If armour weight is less than 15, gain +10% personal 'Spell' damage." />
-  <string id="tor_careerchoice_description.VisionsUvDaOrcaynePassive3" text="{=str_tor_careerchoice_description_VisionsUvDaOrcaynePassive3}Looting shrines provides increased meat and shinies." />
-  <string id="tor_careerchoice_description.VisionsUvDaOrcaynePassive4" text="{=str_tor_careerchoice_description_VisionsUvDaOrcaynePassive4}+10% personal melee 'Physical' damage when wielding a staff." />
+  <string id="tor_careerchoice_description.VisionsUvDaOrcayneKeystone" text="{=str_tor_careerchoice_description_VisionsUvDaOrcayneKeystone}Gaze uv Mork iz free an’ ready fer castin’ afta’ da Call uv da Great Green" />
+  <string id="tor_careerchoice_description.VisionsUvDaOrcaynePassive1" text="{=str_tor_careerchoice_description_VisionsUvDaOrcaynePassive1}Da mob can see fartha" />
+  <string id="tor_careerchoice_description.VisionsUvDaOrcaynePassive2" text="{=str_tor_careerchoice_description_VisionsUvDaOrcaynePassive2}Mumbo-jumbo is 10% betta killy when wearin’ armour bits below 15" />
+  <string id="tor_careerchoice_description.VisionsUvDaOrcaynePassive3" text="{=str_tor_careerchoice_description_VisionsUvDaOrcaynePassive3}More meat an' shinies afta lootin’ Idolz" />
+  <string id="tor_careerchoice_description.VisionsUvDaOrcaynePassive4" text="{=str_tor_careerchoice_description_VisionsUvDaOrcaynePassive4}10% betta killin when carryin’ a staff" />
 
-  <string id="tor_careerchoice_description.GiftzFromDaGreatGreenKeystone" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenKeystone}Call uv da Green also scales with Spellcraft." />
-  <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive1" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenPassive1}Looting shrines provides Faith experience." />
-  <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive2" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenPassive2}+10% personal 'Spell' damage." />
-  <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive3" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenPassive3}+50 personal Hitpoints." />
-  <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive4" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenPassive4}+5% personal 'Physical Resistance'." />
+  <string id="tor_careerchoice_description.GiftzFromDaGreatGreenKeystone" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenKeystone}Call uv da Great Green iz betta wiv Spellcraft pointz" />
+  <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive1" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenPassive1}More Faith eks-perr-yens afta' lootin' Idols" />
+  <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive2" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenPassive2}10% betta mumbo-jumbo killin’" />
+  <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive3" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenPassive3}50 more tuffness" />
+  <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive4" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenPassive4}5% betta ‘ardiness" />
 
-  <string id="tor_careerchoice_description.BrutalCunninKeystone" text="{=str_tor_careerchoice_description_BrutalCunninKeystone}+10% 'Physical Resistance' for all Greenskins during Call uv da Green." />
-  <string id="tor_careerchoice_description.BrutalCunninPassive1" text="{=str_tor_careerchoice_description_BrutalCunninPassive1}+60 increased party size." />
-  <string id="tor_careerchoice_description.BrutalCunninPassive2" text="{=str_tor_careerchoice_description_BrutalCunninPassive2}+50 personal Hitpoints." />
-  <string id="tor_careerchoice_description.BrutalCunninPassive3" text="{=str_tor_careerchoice_description_BrutalCunninPassive3}+10% personal 'Physical' damage with axes." />
-  <string id="tor_careerchoice_description.BrutalCunninPassive4" text="{=str_tor_careerchoice_description_BrutalCunninPassive4}You are no longer staggered by hits below 25 damage." />
+  <string id="tor_careerchoice_description.BrutalCunninKeystone" text="{=str_tor_careerchoice_description_BrutalCunninKeystone}Call uv da Great Green gives da Boys 10% ‘ardiness fer sum time" />
+  <string id="tor_careerchoice_description.BrutalCunninPassive1" text="{=str_tor_careerchoice_description_BrutalCunninPassive1}60 more Boys fer da mob" />
+  <string id="tor_careerchoice_description.BrutalCunninPassive2" text="{=str_tor_careerchoice_description_BrutalCunninPassive2}50 more tuffness" />
+  <string id="tor_careerchoice_description.BrutalCunninPassive3" text="{=str_tor_careerchoice_description_BrutalCunninPassive3}10% betta killin’" />
+  <string id="tor_careerchoice_description.BrutalCunninPassive4" text="{=str_tor_careerchoice_description_BrutalCunninPassive4}No more stumblin’ from puny hits" />
 
-  <string id="tor_careerchoice_description.CunninBrutalityKeystone" text="{=str_tor_careerchoice_description_CunninBrutalityKeystone}+15% 'Physical' damage for all Greenskins during Call uv da Green." />
-  <string id="tor_careerchoice_description.CunninBrutalityPassive1" text="{=str_tor_careerchoice_description_CunninBrutalityPassive1}If armour weight is less than 15, gain +10% personal 'Spell' damage." />
-  <string id="tor_careerchoice_description.CunninBrutalityPassive2" text="{=str_tor_careerchoice_description_CunninBrutalityPassive2}+10 personal max 'Winds of Magic' capacity." />
-  <string id="tor_careerchoice_description.CunninBrutalityPassive3" text="{=str_tor_careerchoice_description_CunninBrutalityPassive3}+10% personal 'Ward Save'." />
-  <string id="tor_careerchoice_description.CunninBrutalityPassive4" text="{=str_tor_careerchoice_description_CunninBrutalityPassive4}+20% personal 'Armour Penetration' for melee attacks." />
+  <string id="tor_careerchoice_description.CunninBrutalityKeystone" text="{=str_tor_careerchoice_description_CunninBrutalityKeystone}Call uv da Great Green makes da Boys proppa killy fer sum time" />
+  <string id="tor_careerchoice_description.CunninBrutalityPassive1" text="{=str_tor_careerchoice_description_CunninBrutalityPassive1}Mumbo-jumbo is 10% betta killy when wearin’ armour bits below 15" />
+  <string id="tor_careerchoice_description.CunninBrutalityPassive2" text="{=str_tor_careerchoice_description_CunninBrutalityPassive2}10 more mumbo-jumbo pointz" />
+  <string id="tor_careerchoice_description.CunninBrutalityPassive3" text="{=str_tor_careerchoice_description_CunninBrutalityPassive3}10% betta Lukk" />
+  <string id="tor_careerchoice_description.CunninBrutalityPassive4" text="{=str_tor_careerchoice_description_CunninBrutalityPassive4}Ignore 20% uv armoured bits wiv choppas" />
 
-  <string id="tor_careerchoice_description.GorkAnMorkAreWatchinKeystone" text="{=str_tor_careerchoice_description_GorkAnMorkAreWatchinKeystone}Call uv da Green also scales with Faith." />
-  <string id="tor_careerchoice_description.GorkAnMorkAreWatchinPassive1" text="{=str_tor_careerchoice_description_GorkAnMorkAreWatchinPassive1}If armour weight is less than 15, gain +15% personal 'Spell Resistance'." />
-  <string id="tor_careerchoice_description.GorkAnMorkAreWatchinPassive2" text="{=str_tor_careerchoice_description_GorkAnMorkAreWatchinPassive2}+10 personal max 'Winds of Magic' capacity." />
-  <string id="tor_careerchoice_description.GorkAnMorkAreWatchinPassive3" text="{=str_tor_careerchoice_description_GorkAnMorkAreWatchinPassive3}+10% 'Ward Save' for all Greenskin troops." />
-  <string id="tor_careerchoice_description.GorkAnMorkAreWatchinPassive4" text="{=str_tor_careerchoice_description_GorkAnMorkAreWatchinPassive4}+70 Hitpoints for Shaman companions." />
+  <string id="tor_careerchoice_description.GorkAnMorkAreWatchinKeystone" text="{=str_tor_careerchoice_description_GorkAnMorkAreWatchinKeystone}Call uv da Great Green iz betta wiv Faith pointz" />
+  <string id="tor_careerchoice_description.GorkAnMorkAreWatchinPassive1" text="{=str_tor_careerchoice_description_GorkAnMorkAreWatchinPassive1}15% betta mumbo-jumbo ‘ardiness when wearin’ armour bits below 15" />
+  <string id="tor_careerchoice_description.GorkAnMorkAreWatchinPassive2" text="{=str_tor_careerchoice_description_GorkAnMorkAreWatchinPassive2}10 more mumbo-jumbo pointz" />
+  <string id="tor_careerchoice_description.GorkAnMorkAreWatchinPassive3" text="{=str_tor_careerchoice_description_GorkAnMorkAreWatchinPassive3}10% betta Lukk fer da Boys" />
+  <string id="tor_careerchoice_description.GorkAnMorkAreWatchinPassive4" text="{=str_tor_careerchoice_description_GorkAnMorkAreWatchinPassive4}70 more tuffness fer Shaman Bosses in da mob" />
 
-  <string id="tor_careerchoice_description.PowerUvDaWaaaghKeystone" text="{=str_tor_careerchoice_description_PowerUvDaWaaaghKeystone}Call uv da Green provides +50% personal 'Physical Resistance'." />
-  <string id="tor_careerchoice_description.PowerUvDaWaaaghPassive1" text="{=str_tor_careerchoice_description_PowerUvDaWaaaghPassive1}+10% personal 'Spell' damage." />
-  <string id="tor_careerchoice_description.PowerUvDaWaaaghPassive2" text="{=str_tor_careerchoice_description_PowerUvDaWaaaghPassive2}+30 'Winds of Magic' capacity for Shaman companions." />
-  <string id="tor_careerchoice_description.PowerUvDaWaaaghPassive3" text="{=str_tor_careerchoice_description_PowerUvDaWaaaghPassive3}If armour weight is less than 15, gain +10% personal 'Ward Save'." />
-  <string id="tor_careerchoice_description.PowerUvDaWaaaghPassive4" text="{=str_tor_careerchoice_description_PowerUvDaWaaaghPassive4}+60 increased party size." />
+  <string id="tor_careerchoice_description.PowerUvDaWaaaghKeystone" text="{=str_tor_careerchoice_description_PowerUvDaWaaaghKeystone}Call uv da Great Green makes ya 50% tuffer fer sum time" />
+  <string id="tor_careerchoice_description.PowerUvDaWaaaghPassive1" text="{=str_tor_careerchoice_description_PowerUvDaWaaaghPassive1}Mumbo-jumbo is 10% betta killy" />
+  <string id="tor_careerchoice_description.PowerUvDaWaaaghPassive2" text="{=str_tor_careerchoice_description_PowerUvDaWaaaghPassive2}30 more mumbo-jumbo pointz fer Shaman Bosses" />
+  <string id="tor_careerchoice_description.PowerUvDaWaaaghPassive3" text="{=str_tor_careerchoice_description_PowerUvDaWaaaghPassive3}10% betta Lukk when wearin’ armour bits below 15" />
+  <string id="tor_careerchoice_description.PowerUvDaWaaaghPassive4" text="{=str_tor_careerchoice_description_PowerUvDaWaaaghPassive4}60 more Boys fer da mob" />
 
   <string id="tor_career_rank1_name.Necromancer" text="{=str_tor_career_rank1_name_Necromancer}Apprentice" />
   <string id="tor_career_rank2_name.Necromancer" text="{=str_tor_career_rank2_name_Necromancer}Scholar" />
@@ -5074,11 +5074,11 @@
   <string id="tor_hirelingactivity3.Warden" text="{=str_tor_hirelingactivity3_Warden}Scout the perimeter together with your hawk" />
   <string id="tor_hirelingactivity4.Warden" text="{=str_tor_hirelingactivity4_Warden}Discuss army movements with other nobles" />
   
-  <string id="tor_hirelingactivity0.Runelord" text="{=str_tor_hirelingactivity0_Warden}Train with a grund-reugi" />
-  <string id="tor_hirelingactivity1.Runelord" text="{=str_tor_hirelingactivity1_Warden}Offer a prayer to Thungni" />
-  <string id="tor_hirelingactivity2.Runelord" text="{=str_tor_hirelingactivity2_Warden}Help with armour maintenance" />
-  <string id="tor_hirelingactivity3.Runelord" text="{=str_tor_hirelingactivity3_Warden}Train with an az" />
-  <string id="tor_hirelingactivity4.Runelord" text="{=str_tor_hirelingactivity4_Warden}Work on army materials inventory" />
+  <string id="tor_hirelingactivity0.Runelord" text="{=str_tor_hirelingactivity0_Runelord}Train with a grund-reugi" />
+  <string id="tor_hirelingactivity1.Runelord" text="{=str_tor_hirelingactivity1_Runelord}Offer a prayer to Thungni" />
+  <string id="tor_hirelingactivity2.Runelord" text="{=str_tor_hirelingactivity2_Runelord}Help with armour maintenance" />
+  <string id="tor_hirelingactivity3.Runelord" text="{=str_tor_hirelingactivity3_Runelord}Train with an az" />
+  <string id="tor_hirelingactivity4.Runelord" text="{=str_tor_hirelingactivity4_Runelord}Work on army materials inventory" />
   
   <string id="tor_hirelingactivity0.OrcShaman" text="{=str_tor_hirelingactivity0_OrcBoss}Smash fings wiv a clobba" />
   <string id="tor_hirelingactivity1.OrcShaman" text="{=str_tor_hirelingactivity1_OrcBoss}Dance an' kunnect to da Waaagh!!!" />
@@ -5446,7 +5446,7 @@
 	<string id="tor_custom_settlement_cursed_site_purify_wounded_result" text="{=str_tor_custom_settlement_cursed_site_purify_wounded_result}Staying in the cursed area while performing the ritual has taken a toll on your men. {PURIFICATION_WOUNDED_RESULT_NUMBER} of your party members have become wounded." />
 	<string id="tor_custom_settlement_cursed_site_ghosts_result" text="{=str_tor_custom_settlement_cursed_site_ghosts_result}You successfully bind {GHOST_RESULT_NUMBER} spirits to your command." />
 	<string id="tor_custom_settlement_shrine_offering_label" text="{=str_tor_custom_settlement_shrine_offering_label}Give items as an offering" />
-	<string id="tor_custom_settlement_shrine_greenskin_own" text="{=str_tor_custom_settlement_shrine_greenskin_own}You can't loot your own shrine, ya git!" />
+	<string id="tor_custom_settlement_shrine_greenskin_own" text="{=str_tor_custom_settlement_shrine_greenskin_own}You'z stoopid? This be one uv Gork's (or Mork's)." />
 	<string id="tor_custom_settlement_shrine_undead_no_pray" text="{=str_tor_custom_settlement_shrine_undead_no_pray}The undead do not commune with the gods." />
 	<string id="tor_custom_settlement_shrine_wrong_culture" text="{=str_tor_custom_settlement_shrine_wrong_culture}This shrine is not meant for your kind." />
 	<string id="tor_custom_settlement_shrine_vampire_no_donate" text="{=str_tor_custom_settlement_shrine_vampire_no_donate}The undead do not make offerings to the gods." />
@@ -5817,9 +5817,9 @@
 	<string id="tor_gs_quartermaster_owner_intro_text" text="{=str_tor_gs_quartermaster_owner_intro_text}Oi, Boss, youz got sum loot fer da pile?"/>
 	<string id="tor_gs_quartermaster_owner_anything_else_text" text="{=str_tor_gs_quartermaster_owner_anything_else_text}Iz dere more, Boss?"/>
 	<string id="tor_gs_quartermaster_make_teefbags_option_text" text="{=str_tor_gs_quartermaster_make_teefbags_option_text}Make Teefbags"/>
-	<string id="tor_dw_shop_show_goods_text" text="{=str_tor_dw_shop_show_goods_text}Sure let me show what I got"/>
-	<string id="tor_dw_engineer_buy_weapons_text" text="{=str_tor_dw_engineer_buy_weapons_text}I need better weapons master engineer"/>
-	<string id="tor_dw_quit_text" text="{=str_tor_dw_quit_text}Thats all"/>
+	<string id="tor_dw_shop_show_goods_text" text="{=str_tor_dw_shop_show_goods_text}Very well, take a look at our inventions."/>
+	<string id="tor_dw_engineer_buy_weapons_text" text="{=str_tor_dw_engineer_buy_weapons_text}I need better gear, Master Engineer."/>
+	<string id="tor_dw_quit_text" text="{=str_tor_dw_quit_text}That will be all."/>
 	<string id="tor_dw_engineer_recruit_crew_text" text="{=str_tor_dw_engineer_recruit_crew_text}I need some artillery crew."/>
 	<string id="tor_dw_engineer_recruit_crew_offer_text" text="{=str_tor_dw_engineer_recruit_crew_offer_text}Aye, a pair of our beardlings are eager to prove themselves. It'll cost ye {ENGINEER_GOLD_PRICE}{GOLD_ICON} and {ENGINEER_OATHGOLD_PRICE} Oathgold."/>
 	<string id="tor_dw_engineer_recruit_crew_accept_text" text="{=str_tor_dw_engineer_recruit_crew_accept_text}They'll serve the hold well."/>

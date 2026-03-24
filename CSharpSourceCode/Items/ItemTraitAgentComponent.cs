@@ -177,9 +177,9 @@ namespace TOR_Core.Items
 
             foreach (var entity in presetState.ChildEntities)
             {
-                entity.FadeOut(1, true);
+                Agent?.AgentVisuals?.RemoveChildEntity(entity, 0);
                 entity.RemoveAllParticleSystems();
-                Agent.AgentVisuals.RemoveChildEntity(entity, 0);
+                entity.FadeOut(1, true);
             }
         }
 

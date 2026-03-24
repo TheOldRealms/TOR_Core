@@ -768,7 +768,7 @@ namespace TOR_Core.Utilities
             string questId = arguments[0];
 
             // Only allow specific quests that support this completion method
-            var supportedQuests = new[] { "OrcBossQuest1", "OrcBossQuest2" };
+            var supportedQuests = new[] { "OrcBossQuest1", "OrcBossQuest2", "OrcShamanQuest1", "OrcShamanQuest2" };
             if (!supportedQuests.Contains(questId))
                 return $"Quest '{questId}' cannot be finalized this way. Supported quests: {string.Join(", ", supportedQuests)}\n";
 

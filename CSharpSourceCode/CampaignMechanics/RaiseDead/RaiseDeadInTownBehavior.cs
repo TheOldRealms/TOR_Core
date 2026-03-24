@@ -191,6 +191,21 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
 
         private bool graveyardaccesscondition(MenuCallbackArgs args)
         {
+            // Check if settlement's original culture allows graveyard access
+            string originalCulture = TORConstants.SettlementPrefixToFaction.GetFactionCulture(
+                TORConstants.SettlementPrefixToFaction.GetRightfulOwner(Settlement.CurrentSettlement.StringId));
+
+            bool isValidCulture = originalCulture == TORConstants.Cultures.SYLVANIA ||
+                                 originalCulture == TORConstants.Cultures.EMPIRE ||
+                                 originalCulture == TORConstants.Cultures.BRETONNIA ||
+                                 originalCulture == TORConstants.Cultures.MOUSILLON;
+
+            // Don't show the option at all if culture doesn't support graveyards
+            if (!isValidCulture)
+            {
+                return false;
+            }
+
             bool shouldBeDisabled;
             TextObject disabledText;
             bool canPlayerDo = Campaign.Current.Models.SettlementAccessModel.CanMainHeroAccessLocation(Settlement.CurrentSettlement, "center", out shouldBeDisabled, out disabledText);

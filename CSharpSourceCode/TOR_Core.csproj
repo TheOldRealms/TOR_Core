@@ -455,6 +455,7 @@
     <Compile Include="BattleMechanics\DamageSystem\TORDamageHelper.cs" />
     <Compile Include="BattleMechanics\Dismemberment\DismembermentMissionLogic.cs" />
     <Compile Include="BattleMechanics\Firearms\FirearmsMissionLogic.cs" />
+    <Compile Include="BattleMechanics\TORMonsterSiegeLogic.cs" />
     <Compile Include="BattleMechanics\Voice\AgentVoiceComponent.cs" />
     <Compile Include="BattleMechanics\Voice\BattleShoutsMissionLogic.cs" />
     <Compile Include="BattleMechanics\Morale\AddAgentComponentsMissionLogic.cs" />
@@ -890,7 +891,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Lib.Harmony">
-      <Version>2.4.1</Version>
+      <Version>2.4.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Win32.Registry">
       <Version>5.0.0</Version>

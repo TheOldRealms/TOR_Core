@@ -321,9 +321,9 @@
 			<PartyTemplateStack min_value="4" max_value="12" troop="NPCCharacter.tor_dw_ironbreaker" />
 			<PartyTemplateStack min_value="4" max_value="10" troop="NPCCharacter.tor_dw_oldguard" />
 			<PartyTemplateStack min_value="4" max_value="10" troop="NPCCharacter.tor_dw_sharpshooter" />
-			<PartyTemplateStack min_value="5" max_value="15" troop="NPCCharacter.tor_dw_irondrake" />
+			<PartyTemplateStack min_value="2" max_value="7" troop="NPCCharacter.tor_dw_irondrake" />
 			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_dw_veteran_quarreller" />
-			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_dw_irondrake_trollhammer" />
+			<PartyTemplateStack min_value="2" max_value="2" troop="NPCCharacter.tor_dw_irondrake_trollhammer" />
 		</stacks>
 	</MBPartyTemplate>
 	<MBPartyTemplate id="chaos_lordparty_template" >

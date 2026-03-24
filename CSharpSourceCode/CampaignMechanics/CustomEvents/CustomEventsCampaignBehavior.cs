@@ -82,10 +82,13 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             }
             _events.Add(new CustomEvent("Duel", CustomEventFrequency.Uncommon, 900, () => StandardMovingCheck() && !Hero.MainHero.HasAttribute("DefeatedVittorio"), () => InkStoryManager.OpenStory("Duel")));
             _events.Add(new CustomEvent("CampFireLearning", CustomEventFrequency.Abundant, 300, () => StandardMovingCheck() && CampaignTime.Now.IsNightTime, () => InkStoryManager.OpenStory("CampFireLearning")));
-            _events.Add(new CustomEvent("Minstrel", CustomEventFrequency.Common, 1000,
-                () => StandardMovingCheck() &&
-                !CampaignTime.Now.IsNightTime &&
-                TORCommon.FindNearestSettlement(MobileParty.MainParty, 100f, x => x.IsTown)?.Culture.StringId == TORConstants.Cultures.BRETONNIA, () => InkStoryManager.OpenStory("Minstrel")));
+            if (!TORConfig.DisableMinstrelEvent)
+            {
+                _events.Add(new CustomEvent("Minstrel", CustomEventFrequency.Common, 1000,
+                    () => StandardMovingCheck() &&
+                    !CampaignTime.Now.IsNightTime &&
+                    TORCommon.FindNearestSettlement(MobileParty.MainParty, 100f, x => x.IsTown)?.Culture.StringId == TORConstants.Cultures.BRETONNIA, () => InkStoryManager.OpenStory("Minstrel")));
+            }
         }
 
         private bool StandardMovingCheck()

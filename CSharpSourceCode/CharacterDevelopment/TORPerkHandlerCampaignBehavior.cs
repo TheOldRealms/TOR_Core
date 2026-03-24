@@ -40,7 +40,7 @@ namespace TOR_Core.CharacterDevelopment
                 }
                 if (perk == TORPerks.Faith.DivineMission)
                 {
-                    if (hero.HeroDeveloper.CanAddFocusToSkill(DefaultSkills.Medicine))
+                    if (hero.HeroDeveloper.GetFocus(DefaultSkills.Medicine) < Campaign.Current.Models.CharacterDevelopmentModel.MaxFocusPerSkill)
                     {
                         hero.HeroDeveloper.AddFocus(DefaultSkills.Medicine, 1, false);
                     }

@@ -75,6 +75,10 @@ namespace TOR_Core.HarmonyPatches
                 {
                     return true;
                 }
+                if (PlayerEncounter.Current?.IsJoinedBattle == true)
+                {
+                    return true;
+                }
                 // vanilla would normally finish an ended encounter here
                 // if rerouted straight to the hireling menu first, it will cause a ghost encounter
                 if (PlayerEncounter.Current != null

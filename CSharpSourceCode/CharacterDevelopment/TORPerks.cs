@@ -256,7 +256,7 @@ namespace TOR_Core.CharacterDevelopment
                 PartyRole.ClanLeader, 0.05f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
 
             _imperturbable.Initialize("{=str_tor_perk_imperturbable_label}Imperturbable", TORSkills.Faith, 100, _superstitious,
-                "{=str_tor_perk_imperturbable_1}Gain 500 Faith skill experience every day while waiting at a settlement.",
+                "{=str_tor_perk_imperturbable_1}Gain 500 Faith skill experience every day while waiting in a town.",
                 PartyRole.Personal, 500f, EffectIncrementType.Add,
                 "{=str_tor_perk_imperturbable_2}Religious units in your party gain 10% physical resistance.",
                 PartyRole.PartyLeader, 0.1f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None); //description should be updated to state town specifically
