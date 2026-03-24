@@ -79,7 +79,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
             return IsTargetWithinAbilityRange(target);
         }
 
-        private bool IsTargetWithinAbilityRange(Target target)
+        protected bool IsTargetWithinAbilityRange(Target target)
         {
             var targetPoint = target.GetPositionPrioritizeCalculated();
             if (targetPoint == Vec3.Invalid)

@@ -197,7 +197,6 @@ public static class EnchantmentHelper
 
                 eligableHeroes.Add(hero);
                 included = true;
-                break;
             }
 
             if (!included) continue;
@@ -225,7 +224,6 @@ public static class EnchantmentHelper
                 }
 
                 enabled = false;
-                break;
             }
 
             var crCost = 0;

@@ -99,7 +99,18 @@ namespace TOR_Core.HarmonyPatches
             Agent __instance,
             ref bool useFaceCache)
         {
-            if (useFaceCache && !IsSafeMissionFaceCacheRace(__instance.Character.Race))
+            if (!useFaceCache)
+            {
+                return;
+            }
+
+            var character = __instance.Character;
+            if (character == null)
+            {
+                return;
+            }
+
+            if (!IsSafeMissionFaceCacheRace(character.Race))
             {
                 useFaceCache = false;
             }

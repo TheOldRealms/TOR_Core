@@ -4629,6 +4629,96 @@
     <ItemTraitDescription>Adds 20% extra holy damage</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Holy" Percent="0.20" />
   </ItemTrait>
+  <ItemTrait ItemTraitStringId="ca_lethal_shot" ItemTraitName="Lethal Shot" IsCraftable="false" IconName="winds_icon_45">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>Your arrows are imbued with deadly precision</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Physical" Percent="0.50" />
+    <WeaponParticlePreset ParticlePrefab="hagbane_trait" IsUniqueSingleCopy="false" />
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.LethalShotHitScript" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="ca_lethal_shot_hagbane" ItemTraitName="Hagbane Tips" IsCraftable="false" ImbuedStatusEffectId="arrow_of_kurnous_debuff_mov" ImbuedEffectChance="1.00" IconName="winds_icon_45">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>Poisoned arrows that slow enemies on hit</ItemTraitDescription>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="ca_lethal_shot_loec" ItemTraitName="Trickery of Loec" IsCraftable="false" IconName="winds_icon_45">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>50% extra damage when striking at the backs of enemies or unaware targets</ItemTraitDescription>
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.StealthAttackScript">
+      <WeaponScriptArguments>
+        <WeaponScriptArgument>50</WeaponScriptArgument>
+      </WeaponScriptArguments>
+    </OnWeaponHitScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="ca_lethal_shot_scatter" ItemTraitName="Hail of Arrows" IsCraftable="false" IconName="winds_icon_45">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>Arrows split into multiple projectiles</ItemTraitDescription>
+    <StatsTuple StatType="ScatterShot" Value="5" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="ca_lethal_shot_reload" ItemTraitName="Hail of Arrows" IsCraftable="false" IconName="winds_icon_45">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>Increased reload speed</ItemTraitDescription>
+    <StatsTuple StatType="ReloadSpeed" Value="25" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="ca_lethal_shot_pierce" ItemTraitName="Piercing Shot" IsCraftable="false" IconName="winds_icon_45">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>Arrows pierce through targets</ItemTraitDescription>
+    <StatsTuple StatType="MultiPenetration" Value="1" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="ca_lethal_shot_swiftshiver" ItemTraitName="Swiftshiver Shards" IsCraftable="false" IconName="winds_icon_45">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>Adds 15% magical damage</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Magical" Percent="0.15" />
+    <WeaponParticlePreset ParticlePrefab="magic_trait" IsUniqueSingleCopy="false" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="ca_lethal_shot_speed" ItemTraitName="Swiftshiver Shards" IsCraftable="false" IconName="winds_icon_45">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>Increased missile speed</ItemTraitDescription>
+    <StatsTuple StatType="MissileSpeed" Value="20" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="ca_lethal_shot_starfire" ItemTraitName="Starfire Shafts" IsCraftable="false" IconName="winds_icon_45">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>Armor penetrating arrows</ItemTraitDescription>
+    <StatsTuple StatType="ArmorPenetration" Value="25" />
+    <WeaponParticlePreset ParticlePrefab="psys_flaming_weapon" IsUniqueSingleCopy="false" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="ca_lethal_shot_starfire_shield" ItemTraitName="Starfire Shafts" IsCraftable="false" IconName="winds_icon_45">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>Arrows pierce shields</ItemTraitDescription>
+    <StatsTuple StatType="ShieldPenetration" Value="1" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="ca_lethal_shot_moonfire" ItemTraitName="ca_lethal_shot_moonfire" IsCraftable="false" IconName="winds_icon_45">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>Magical arrows that explode on impact and reduce enemy magic resistance</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Magical" Percent="0.30" />
+    <WeaponParticlePreset ParticlePrefab="psys_flaming_weapon" IsUniqueSingleCopy="false" />
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
+      <WeaponScriptArguments>
+        <WeaponScriptArgument>moonfire_explosion</WeaponScriptArgument>
+      </WeaponScriptArguments>
+    </OnWeaponHitScript>
+  </ItemTrait>
   <ItemTrait ItemTraitStringId="shld_phys_res_20" ItemTraitName="Physical Resistance (Shield)" IsCraftable="true" IconName="traits_holy_icon">
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
