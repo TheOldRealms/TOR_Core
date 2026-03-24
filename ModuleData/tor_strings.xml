@@ -147,7 +147,7 @@
   <string id="tor_perk_divine_mission_1" text="{=str_tor_perk_divine_mission_1}You gain 1 focus point in Medicine."/>
   <string id="tor_perk_divine_mission_2" text="{=str_tor_perk_divine_mission_2}5% increased militia growth in settlements owned by your clan."/>
   <string id="tor_perk_imperturbable_label" text="{=str_tor_perk_imperturbable_label}Imperturbable"/>
-  <string id="tor_perk_imperturbable_1" text="{=str_tor_perk_imperturbable_1}Gain 500 Faith skill experience every day while waiting at a settlement."/>
+  <string id="tor_perk_imperturbable_1" text="{=str_tor_perk_imperturbable_1}Gain 500 Faith skill experience every day while waiting in a town."/>
   <string id="tor_perk_imperturbable_2" text="{=str_tor_perk_imperturbable_2}Religious units in your party gain 10% physical resistance."/>
   <string id="tor_perk_superstitious_label" text="{=str_tor_perk_superstitious_label}Superstitious"/>
   <string id="tor_perk_superstitious_1" text="{=str_tor_perk_superstitious_1}Cursed regions on the world map have 20% reduced damaging effect on your party."/>
