@@ -90,8 +90,16 @@ namespace TOR_Core.AbilitySystem
         public CrosshairType CrosshairType { get; set; } = CrosshairType.Self;
         [XmlAttribute]
         public float MinDistance { get; set; } = 1.0f;
+
+        private float _maxDistance = 25f;
         [XmlAttribute]
-        public float MaxDistance { get; set; } = 1.0f;
+        public float MaxDistance
+        {
+            get => MaxDistanceSpecified ? _maxDistance : IsShortDefaultMaxDistance() ? 1f : 25f;
+            set {_maxDistance = value; MaxDistanceSpecified = true;}
+        }
+        [XmlIgnore]
+        public bool MaxDistanceSpecified { get; set; }
         [XmlAttribute]
         public float TargetCapturingRadius { get; set; } = 0;
         [XmlAttribute]
@@ -138,7 +146,15 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-
+        private bool IsShortDefaultMaxDistance()
+        {
+            return AbilityEffectType == AbilityEffectType.Wind ||
+                   AbilityEffectType == AbilityEffectType.Summoning ||
+                   AbilityEffectType == AbilityEffectType.ArtilleryPlacement ||
+                   AbilityEffectType == AbilityEffectType.TimeWarpEffect ||
+                   AbilityEffectType == AbilityEffectType.CareerAbilityEffect ||
+                   AbilityEffectType == AbilityEffectType.TacticalReposition;
+        }
 
         public AbilityTemplate() { }
         public AbilityTemplate(string id) => StringID = id;
@@ -219,7 +235,8 @@ namespace TOR_Core.AbilitySystem
                 Offset = Offset,
                 CrosshairType = CrosshairType,
                 MinDistance = MinDistance,
-                MaxDistance = MaxDistance,
+                _maxDistance = _maxDistance,
+                MaxDistanceSpecified = MaxDistanceSpecified,
                 TargetCapturingRadius = TargetCapturingRadius,
                 SpellTier = SpellTier,
                 BelongsToLoreID = BelongsToLoreID,
