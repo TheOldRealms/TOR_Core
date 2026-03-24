@@ -5074,11 +5074,11 @@
   <string id="tor_hirelingactivity3.Warden" text="{=str_tor_hirelingactivity3_Warden}Scout the perimeter together with your hawk" />
   <string id="tor_hirelingactivity4.Warden" text="{=str_tor_hirelingactivity4_Warden}Discuss army movements with other nobles" />
   
-  <string id="tor_hirelingactivity0.Runelord" text="{=str_tor_hirelingactivity0_Warden}Train with a grund-reugi" />
-  <string id="tor_hirelingactivity1.Runelord" text="{=str_tor_hirelingactivity1_Warden}Offer a prayer to Thungni" />
-  <string id="tor_hirelingactivity2.Runelord" text="{=str_tor_hirelingactivity2_Warden}Help with armour maintenance" />
-  <string id="tor_hirelingactivity3.Runelord" text="{=str_tor_hirelingactivity3_Warden}Train with an az" />
-  <string id="tor_hirelingactivity4.Runelord" text="{=str_tor_hirelingactivity4_Warden}Work on army materials inventory" />
+  <string id="tor_hirelingactivity0.Runelord" text="{=str_tor_hirelingactivity0_Runelord}Train with a grund-reugi" />
+  <string id="tor_hirelingactivity1.Runelord" text="{=str_tor_hirelingactivity1_Runelord}Offer a prayer to Thungni" />
+  <string id="tor_hirelingactivity2.Runelord" text="{=str_tor_hirelingactivity2_Runelord}Help with armour maintenance" />
+  <string id="tor_hirelingactivity3.Runelord" text="{=str_tor_hirelingactivity3_Runelord}Train with an az" />
+  <string id="tor_hirelingactivity4.Runelord" text="{=str_tor_hirelingactivity4_Runelord}Work on army materials inventory" />
   
   <string id="tor_hirelingactivity0.OrcShaman" text="{=str_tor_hirelingactivity0_OrcBoss}Smash fings wiv a clobba" />
   <string id="tor_hirelingactivity1.OrcShaman" text="{=str_tor_hirelingactivity1_OrcBoss}Dance an' kunnect to da Waaagh!!!" />

@@ -310,42 +310,42 @@
       <Shrine id="isha_shrine_01" religion="cult_of_isha" background_crop_position="0.0" background_mesh="shrine_of_isha" wait_mesh="shrine_of_isha" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="gork_shrine_01" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Gork" owner="Faction.massif_choppas_clan_1" posX="1056.317" posY="954.124" culture="Culture.aserai" text="{=!}Gork is da best of da best will always be and is just super cool">
+  <Settlement id="gork_shrine_01" name="{=str_tor_settlements_shrine_gork1}Shrine of Gork" owner="Faction.massif_choppas_clan_1" posX="1056.317" posY="954.124" culture="Culture.aserai" text="{=!}Gork is da best of da best will always be and is just super cool">
     <Components>
       <Shrine id="gork_shrine_01" religion="cult_of_gork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="gork_shrine_02" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Gork" owner="Faction.neck_snappers_clan_1" posX="1279.005" posY="699.557" culture="Culture.aserai" text="{=!}Shrine of Gork is gorky">
+  <Settlement id="gork_shrine_02" name="{=str_tor_settlements_shrine_gork2}Shrine of Gork" owner="Faction.neck_snappers_clan_1" posX="1279.005" posY="699.557" culture="Culture.aserai" text="{=!}Shrine of Gork is gorky">
     <Components>
       <Shrine id="gork_shrine_02" religion="cult_of_gork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="gork_shrine_03" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Gork" owner="Faction.crooked_eye_clan_1" posX="1605.916" posY="935.799" culture="Culture.aserai" text="{=!}Shrine of Gork">
+  <Settlement id="gork_shrine_03" name="{=str_tor_settlements_shrine_gork3}Shrine of Gork" owner="Faction.crooked_eye_clan_1" posX="1605.916" posY="935.799" culture="Culture.aserai" text="{=!}Shrine of Gork">
     <Components>
       <Shrine id="gork_shrine_03" religion="cult_of_gork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="gork_shrine_04" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Gork" owner="Faction.black_sunz_clan_1" posX="1037.916" posY="1194.657" culture="Culture.aserai" text="{=!}Shrine of Gork">
+  <Settlement id="gork_shrine_04" name="{=str_tor_settlements_shrine_gork4}Shrine of Gork" owner="Faction.black_sunz_clan_1" posX="1037.916" posY="1194.657" culture="Culture.aserai" text="{=!}Shrine of Gork">
     <Components>
       <Shrine id="gork_shrine_04" religion="cult_of_gork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="mork_shrine_01" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Mork" owner="Faction.red_eye_clan_1" posX="1778.073" posY="1119.793" culture="Culture.aserai" text="{=!}Mork is da bestest">
+  <Settlement id="mork_shrine_01" name="{=str_tor_settlements_shrine_mork1}Shrine of Mork" owner="Faction.red_eye_clan_1" posX="1778.073" posY="1119.793" culture="Culture.aserai" text="{=!}Mork is da bestest">
     <Components>
       <Shrine id="mork_shrine_01" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="mork_shrine_02" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Mork" owner="Faction.crooked_eye_clan_1" posX="1619.786" posY="863.173" culture="Culture.aserai" text="{=!}Shrine of Mork">
+  <Settlement id="mork_shrine_02" name="{=str_tor_settlements_shrine_mork2}Shrine of Mork" owner="Faction.crooked_eye_clan_1" posX="1619.786" posY="863.173" culture="Culture.aserai" text="{=!}Shrine of Mork">
     <Components>
       <Shrine id="mork_shrine_02" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="mork_shrine_03" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Mork" owner="Faction.bad_axes_clan_1" posX="1104.753" posY="1182.195" culture="Culture.aserai" text="{=!}Shrine of Mork">
+  <Settlement id="mork_shrine_03" name="{=str_tor_settlements_shrine_mork3}Shrine of Mork" owner="Faction.bad_axes_clan_1" posX="1104.753" posY="1182.195" culture="Culture.aserai" text="{=!}Shrine of Mork">
     <Components>
       <Shrine id="mork_shrine_03" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="mork_shrine_04" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Mork" owner="Faction.deff_grindaz_clan_1" posX="1284.803" posY="877.619" culture="Culture.aserai" text="{=!}Shrine of Mork">
+  <Settlement id="mork_shrine_04" name="{=str_tor_settlements_shrine_mork4}Shrine of Mork" owner="Faction.deff_grindaz_clan_1" posX="1284.803" posY="877.619" culture="Culture.aserai" text="{=!}Shrine of Mork">
     <Components>
       <Shrine id="mork_shrine_04" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
@@ -1560,7 +1560,7 @@
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_SY2_1" name="{=Settlements.Settlement.name.castle_village_ST2_1}Murieste" posX="1551.422" posY="985.768" culture="Culture.khuzait" text="{=Settlements.Settlement.text.castle_village_SY2_1}The oddest thing about Murieste is that it’s people do not follow the religion of Sigmar. Nor any other state approved religion. In fact, the lowly villagers of Murieste worship the vampires around them as gods. Coverting their dark power and hoping to become one of their dark kin. The Vampires in the area tolerate this. Seeing the pathetic peasants as amusing cattle. Vampires do love to play with their food.">
+  <Settlement id="castle_village_SY2_1" name="{=Settlements.Settlement.name.castle_village_SY2_1}Murieste" posX="1551.422" posY="985.768" culture="Culture.khuzait" text="{=Settlements.Settlement.text.castle_village_SY2_1}The oddest thing about Murieste is that it’s people do not follow the religion of Sigmar. Nor any other state approved religion. In fact, the lowly villagers of Murieste worship the vampires around them as gods. Coverting their dark power and hoping to become one of their dark kin. The Vampires in the area tolerate this. Seeing the pathetic peasants as amusing cattle. Vampires do love to play with their food.">
     <Components>
       <Village id="castle_village_comp_SY2_1" village_type="VillageType.sheep_farm" hearth="250" bound="Settlement.castle_SY2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>

@@ -98,7 +98,7 @@
              settlement_banner_mesh="none"
              is_bandit="true"
              is_outlaw="true"
-             name="{=str_tor_clan_sea_raiders}Bretonnian Outlaws"
+             name="{=str_tor_clan_desert_bandits}Bretonnian Outlaws"
              tier="1" />
     <Faction id="greenskin_bandits"
              banner_key="11.127.148.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_orc_raiders"
@@ -112,7 +112,7 @@
              settlement_banner_mesh="none"
              is_bandit="true"
              is_outlaw="true"
-             name="{=str_tor_clan_sea_raiders}Orc Raiders"
+             name="{=str_tor_clan_greenskin_bandits}Orc Raiders"
              tier="1" />
     <!-- Averland faction -->
     <Faction id="averland_clan_1"
@@ -1510,7 +1510,7 @@
              color2="FFe0be47"
              alternative_color="FFe9a74d"
              alternative_color2="FF714214"
-             text="{=str_tor_clan_pesant_knight_clan_1_desc}The Colleges of Magic in Altdorf were founded in 2304 I.C. by the great elven mage Teclis, following the last Great War against Chaos. Since then, it has been the premier educational establishment for wizards in the Empire. Each college and its corresponding Order is led by a patriarch or matriarch, and the Supreme Patriarch oversees all colleges. The position of Supreme Patriarch is currently held by Balthasar Gelt of the Gold Order, for he truly is supreme.">
+             text="{=str_tor_clan_college_magic_clan_1_desc}The Colleges of Magic in Altdorf were founded in 2304 I.C. by the great elven mage Teclis, following the last Great War against Chaos. Since then, it has been the premier educational establishment for wizards in the Empire. Each college and its corresponding Order is led by a patriarch or matriarch, and the Supreme Patriarch oversees all colleges. The position of Supreme Patriarch is currently held by Balthasar Gelt of the Gold Order, for he truly is supreme.">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_empire_rogue_lord_0" />
             <template id="NPCCharacter.tor_empire_rogue_lord_1" />
@@ -1534,7 +1534,7 @@
              color2="FFffe6a1"
              alternative_color="FFe9a74d"
              alternative_color2="FF714214"
-             text="{=str_tor_clan_pesant_knight_clan_1_desc}The Empire of Man is known for three things: Faith, Steel, and Gunpowder. As faith is paramount among this phrase, so is the cult of the Empire’s main deity, Sigmar. Originally founded in 73 I.C., it has since largely supplanted the Cult of Ulric as the main religious organisation in the Empire, even holding three votes on the Electoral Council. These three votes are held by the Grand Theogonist and two supporting Archlectors, which gives them much sway in determining the next emperor. The current Grand Theogonist is Volkmar von Hindenstern, more colloquially known by his moniker ‘the Grim’.">
+             text="{=str_tor_clan_sigmar_clan_1_desc}The Empire of Man is known for three things: Faith, Steel, and Gunpowder. As faith is paramount among this phrase, so is the cult of the Empire’s main deity, Sigmar. Originally founded in 73 I.C., it has since largely supplanted the Cult of Ulric as the main religious organisation in the Empire, even holding three votes on the Electoral Council. These three votes are held by the Grand Theogonist and two supporting Archlectors, which gives them much sway in determining the next emperor. The current Grand Theogonist is Volkmar von Hindenstern, more colloquially known by his moniker ‘the Grim’.">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_empire_rogue_lord_4" />     
             <template id="NPCCharacter.tor_empire_rogue_lord_5" />

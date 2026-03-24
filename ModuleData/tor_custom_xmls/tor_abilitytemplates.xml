@@ -4790,7 +4790,7 @@
                      MaxDistance="25"
                      CrosshairType="Self"
                      SpellTier="2"
-                     TooltipDescription="{=impenetrable_description_str}The wizard infuses and invigorates his allies with pure magical energies.">
+                     TooltipDescription="{=impenetrable_description_str}Khazukan Kazakit-HA! For a brief period gain full damage immunity but move 25% slower. Impenetrable lasts longer with every level of Athletics.">
         <LightColorRGB x="255"
                        y="255"
                        z="255"
