@@ -76,7 +76,7 @@ namespace TOR_Core.AbilitySystem
                 }
             }
 
-            if (Agent.CanPlaceArtillery())
+            if (Agent.CanPlaceArtillery() && CanUseDeployableArtilleryAbilities())
             {
                 var hero = agent?.GetHero();
                 if (hero != null)
@@ -219,6 +219,11 @@ namespace TOR_Core.AbilitySystem
             {
                 SelectAbility(0);
             }
+        }
+
+        private bool CanUseDeployableArtilleryAbilities() // disabling artillery for sieges
+        {
+            return !Agent.Mission.IsSiegeBattle;
         }
 
         private void OnCastStart(Ability ability)
