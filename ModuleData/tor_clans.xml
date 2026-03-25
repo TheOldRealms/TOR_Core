@@ -198,7 +198,7 @@
              super_faction="Kingdom.blooddragons"
              is_noble="true"
              text="{=str_tor_clan_blooddragons_clan_1_desc}Blood Keep was once the home of a valiant order of Knights known as the Order of the Blood Dragon, or the Ordo Draconis. One fateful night, a Vampire known as Walach Harkon challenged every Knight to single combat, eventually turning all who he deemed worthy into Vampires. The death of the Ordo Draconis was followed by their rebirth in blood; ever since then these terrifying warriors have been known as the Blood Dragons. The Imperials suffered under their attacks and depravations for sixty years, before they amassed a force to raze the Keep. That was almost six centuries ago, for all that time the ruins of the keep lay undisturbed. Now, the keep rises again, built by the silent undead, and the men of the Empire will again know fear."
-             banner_key="11.116.142.1633.1633.814.959.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_blooddragons" />
+             banner_key="11.116.142.1633.1633.814.959.0.1.0.122.20.41.600.600.766.766.0.0.0:kingdom_blooddragons" />
 	<Faction id="necrarch_clan_1"
              name="{=str_tor_clan_necrarch_clan_1_name}The Tower of Shadows"
              tier="6"
@@ -544,7 +544,7 @@
              super_faction="Kingdom.wasteland"
              is_noble="true"
              text="{=str_tor_clan_wasteland_clan_4_desc}Heir to House van Haagen, Crispijn is widely known as a carouser, a risk-taker, a show-off, and a wastrel. This is only half the truth, for he shares his father’s knack for politics and force of personality, if not his prudence or discipline. Crispijn is also a bold and instinctive, if unproven, commander. Eager to prove himself beyond his father’s long shadow, the ‘Strutting Cock of Goudberg’ has recently taken to assuming personal command of troops within House van Haagen’s extensive private retinues."
-             banner_key="11.131.148.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_wasteland"/>
+             banner_key="11.131.148.1500.1500.764.764.1.1.0.122.20.41.600.600.768.768.0.0.0:kingdom_wasteland"/>
 	<!-- Couronne faction -->
     <Faction id="couronne_clan_1"
              name="{=str_tor_clan_couronne_clan_1_name}de Couronne"
