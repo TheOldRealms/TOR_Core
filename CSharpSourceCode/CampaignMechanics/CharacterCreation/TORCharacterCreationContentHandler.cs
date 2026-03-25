@@ -1201,6 +1201,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             if (stages.GetType() == typeof(CharacterCreationCultureStage))
             {
+                
                 OnCultureSelected();
             }
 

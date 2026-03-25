@@ -1,7 +1,8 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.MountAndBlade.ViewModelCollection.FaceGenerator;
 using TOR_Core.CampaignMechanics.CharacterCreation;
+using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
@@ -16,6 +17,18 @@ namespace TOR_Core.HarmonyPatches
             // Override the CanChangeRace property based on config
             // When AllowFreeRaceSelection is false, hide the race selector
             if (!TORConfig.AllowFreeRaceSelection)
+            {
+                __result = false;
+            }
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(FaceGenVM), "get_CanChangeGender")]
+        public static void OverrideCanChangeGender(ref bool __result)
+        {
+            // Orcs and Dwarfs cannot change gender
+            var playerCharacter = CharacterObject.PlayerCharacter;
+            if (playerCharacter.IsOrc() || playerCharacter.IsDwarf())
             {
                 __result = false;
             }
