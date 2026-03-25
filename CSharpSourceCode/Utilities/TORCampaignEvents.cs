@@ -30,7 +30,7 @@ namespace TOR_Core.Utilities
 
         public event EventHandler<BrawlWonEventArgs> BrawlWon;
 
-        public event EventHandler<ArenaFightWonEventArgs> ArenaFightWon;
+        public event EventHandler<TournamentWonEventArgs> TournamentWon;
 
         public event EventHandler<TeefTransferredEventArgs> TeefTransferred;
 
@@ -136,10 +136,10 @@ namespace TOR_Core.Utilities
             }
         }
 
-        public void OnArenaFightWon(Hero hero)
+        public void OnTournamentWon(Hero hero)
         {
-            var args = new ArenaFightWonEventArgs(hero);
-            var arenaFightWon = ArenaFightWon;
+            var args = new TournamentWonEventArgs(hero);
+            var arenaFightWon = TournamentWon;
             if (arenaFightWon != null)
             {
                 arenaFightWon(this, args);
@@ -264,7 +264,7 @@ namespace TOR_Core.Utilities
         public Hero Hero { get; set; } = hero;
     }
 
-    public class ArenaFightWonEventArgs(Hero hero) : EventArgs
+    public class TournamentWonEventArgs(Hero hero) : EventArgs
     {
         public Hero Hero { get; set; } = hero;
     }

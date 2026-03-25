@@ -163,8 +163,8 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         {
             if (winner.IsPlayerCharacter)
             {
-                // Trigger arena fight won event for quest tracking
-                TORCampaignEvents.Instance.OnArenaFightWon(Hero.MainHero);
+                // Trigger tournament won event for quest tracking
+                TORCampaignEvents.Instance.OnTournamentWon(Hero.MainHero);
 
                 if (winner.Culture.StringId == TORConstants.Cultures.BRETONNIA)
                 {

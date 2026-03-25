@@ -5307,8 +5307,8 @@
 	<string id="tor_orc_boss_quest1_task_polearm" text="{=str_tor_orc_boss_quest1_task_polearm}Polearm Skill" />
 	<string id="tor_orc_boss_quest1_log_battles" text="{=str_tor_orc_boss_quest1_log_battles}Win {REQUIRED} battles" />
 	<string id="tor_orc_boss_quest1_task_battles" text="{=str_tor_orc_boss_quest1_task_battles}Battles Won" />
-	<string id="tor_orc_boss_quest1_log_arena" text="{=str_tor_orc_boss_quest1_log_arena}Win {REQUIRED} arena fights" />
-	<string id="tor_orc_boss_quest1_task_arena" text="{=str_tor_orc_boss_quest1_task_arena}Arena Fights" />
+	<string id="tor_orc_boss_quest1_log_tournament" text="{=str_tor_orc_boss_quest1_log_tournament}Win {REQUIRED} tournaments" />
+	<string id="tor_orc_boss_quest1_task_tournament" text="{=str_tor_orc_boss_quest1_task_tournament}Tournaments" />
 	<string id="tor_orc_boss_quest1_log_teef" text="{=str_tor_orc_boss_quest1_log_teef}Convert {REQUIRED} worth of loot to Teef" />
 	<string id="tor_orc_boss_quest1_task_teef" text="{=str_tor_orc_boss_quest1_task_teef}Teef received" />
 	<string id="tor_orc_boss_quest1_log_brawls" text="{=str_tor_orc_boss_quest1_log_brawls}Win {REQUIRED} brawls" />
@@ -5324,8 +5324,8 @@
 	<string id="tor_orc_boss_quest2_task_polearm" text="{=str_tor_orc_boss_quest2_task_polearm}Polearm Skill" />
 	<string id="tor_orc_boss_quest2_log_battles" text="{=str_tor_orc_boss_quest2_log_battles}Win {REQUIRED} battles" />
 	<string id="tor_orc_boss_quest2_task_battles" text="{=str_tor_orc_boss_quest2_task_battles}Battles Won" />
-	<string id="tor_orc_boss_quest2_log_arena" text="{=str_tor_orc_boss_quest2_log_arena}Win {REQUIRED} arena fights" />
-	<string id="tor_orc_boss_quest2_task_arena" text="{=str_tor_orc_boss_quest2_task_arena}Arena Fights" />
+	<string id="tor_orc_boss_quest2_log_tournament" text="{=str_tor_orc_boss_quest2_log_arena}Win {REQUIRED} tournaments" />
+	<string id="tor_orc_boss_quest2_task_tournament" text="{=str_tor_orc_boss_quest2_task_arena}Tournaments" />
 	<string id="tor_orc_boss_quest2_log_brawls" text="{=str_tor_orc_boss_quest2_log_brawls}Win {REQUIRED} brawls" />
 	<string id="tor_orc_boss_quest2_task_brawls" text="{=str_tor_orc_boss_quest2_task_brawls}Brawls Won" />
 	<string id="tor_orc_boss_quest2_log_cities" text="{=str_tor_orc_boss_quest2_log_cities}Capture {REQUIRED} cities or castles" />
@@ -5367,19 +5367,19 @@
 
 	<!--Runesmith Quest-->
 	<string id="tor_runesmith_quest_title" text="{=str_tor_runesmith_quest_title}Runesmith Quest" />
-	<string id="tor_runesmith_quest_log_contracts" text="{=str_tor_runesmith_quest_log_contracts}Finish 15 Smithing contracts." />
+	<string id="tor_runesmith_quest_log_contracts" text="{=str_tor_runesmith_quest_log_contracts}Finish {REQUIRED} smithing contracts." />
 	<string id="tor_runesmith_quest_task_contracts" text="{=str_tor_runesmith_quest_task_contracts}Contracts" />
-	<string id="tor_runesmith_quest_log_runes" text="{=str_tor_runesmith_quest_log_runes}Learn 7 runes." />
+	<string id="tor_runesmith_quest_log_runes" text="{=str_tor_runesmith_quest_log_runes}Learn {REQUIRED} runes." />
 	<string id="tor_runesmith_quest_task_runes" text="{=str_tor_runesmith_quest_task_runes}Runes" />
 	<string id="tor_runesmith_quest_log_complete" text="{=str_tor_runesmith_quest_log_complete}Talk to the rune smith" />
 
 	<!--Runelord Quest-->
 	<string id="tor_runelord_quest_title" text="{=str_tor_runelord_quest_title}Runelord Quest" />
-	<string id="tor_runelord_quest_log_abilities" text="{=str_tor_runelord_quest_log_abilities}Learn 3 Rune abilities of the Anvil of Doom." />
+	<string id="tor_runelord_quest_log_abilities" text="{=str_tor_runelord_quest_log_abilities}Learn {REQUIRED} Rune abilities of the Anvil of Doom." />
 	<string id="tor_runelord_quest_task_abilities" text="{=str_tor_runelord_quest_task_abilities}Rune Magic" />
-	<string id="tor_runelord_quest_log_runes" text="{=str_tor_runelord_quest_log_runes}Learn 15 runes." />
+	<string id="tor_runelord_quest_log_runes" text="{=str_tor_runelord_quest_log_runes}Learn {REQUIRED} runes." />
 	<string id="tor_runelord_quest_task_runes" text="{=str_tor_runelord_quest_task_runes}Runes" />
-	<string id="tor_runelord_quest_log_contracts" text="{=str_tor_runelord_quest_log_contracts}Finish up 20 smithing contracts." />
+	<string id="tor_runelord_quest_log_contracts" text="{=str_tor_runelord_quest_log_contracts}Finish up {REQUIRED} smithing contracts." />
 	<string id="tor_runelord_quest_task_contracts" text="{=str_tor_runelord_quest_task_contracts}Contracts" />
 	<string id="tor_runelord_quest_log_reputation" text="{=str_tor_runelord_quest_log_reputation}Reach Respected with the Runesmith Guild." />
 	<string id="tor_runelord_quest_task_reputation" text="{=str_tor_runelord_quest_task_reputation}Reputation" />
@@ -5429,7 +5429,7 @@
 	<!--Cursed Site Menus-->
 	<string id="tor_custom_settlement_cursed_site_not_enough_free_slots" text="{=str_tor_custom_settlement_cursed_site_not_enough_free_slots}You have not enough space in your party."/>
 	<string id="tor_custom_settlement_cursed_site_not_necromancer" text="{=str_tor_custom_settlement_cursed_site_not_necromancer}You are not a practitioner of necromancy."/>
-	<string id="tor_custom_settlement_cursed_site_once_a_day" text="{=str_tor_custom_settlement_cursed_site_once_a_day}You can only perform this action once a day."/>
+	<string id="tor_custom_settlement_cursed_site_binding_cooldown" text="{=str_tor_custom_settlement_cursed_site_binding_cooldown}You can only perform this action once a day."/>
 	<string id="tor_custom_settlement_cursed_site_purify_fail" text="{=str_tor_custom_settlement_cursed_site_purify_fail}You need at least 10 healthy party members to perform the ritual."/>
 	<string id="tor_custom_settlement_cursed_site_ward" text="{=str_tor_custom_settlement_cursed_site_ward}Currently there are wards in place holding back the malevolent energies of the curse. The wards will hold for {CURSEDSITE_WARDHOURS} hours more"/>
 	<string id="tor_custom_settlement_cursed_site_no_undead" text="{=str_tor_custom_settlement_cursed_site_no_undead}There are no undead in your party."/>
@@ -5459,6 +5459,7 @@
 	<string id="tor_custom_settlement_shrine_blessing_already_active" text="{=str_tor_custom_settlement_shrine_blessing_already_active}You devoted your live to {CAREERGOD_NAME}. You can't pray here."/>
 	<string id="tor_custom_settlement_shrine_pray_text" text="{=str_tor_custom_settlement_shrine_pray_text}Pray to receive the blessing of {GOD_NAME}"/>
 	<string id="tor_shrine_defile_option" text="{=str_tor_shrine_defile_option}Defile the Shrine for Dark Energy. Followers of {GOD_NAME} will remember this."/>
+	<string id="tor_shrine_defiling_cooldown" text="{=str_tor_shrine_defiling_cooldown}You can only perform this action every {DEFILE_COOLDOWN_DAYS} days."/>
 	<string id="tor_shrine_loot_option" text="{=str_tor_shrine_loot_option}Loot the Shrine for resources. Followers of {GOD_NAME} will remember this."/>
 	<string id="tor_shrine_praying_progress" text="{=str_tor_shrine_praying_progress}Praying..."/>
 	<string id="tor_shrine_continue" text="{=str_tor_shrine_continue}Continue"/>

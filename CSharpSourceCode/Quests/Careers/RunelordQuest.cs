@@ -30,6 +30,10 @@ public class RunelordQuest : QuestBase
     [SaveableField(7)]
     private int _currentReputation = 0;
 
+    public const int RUNELORDQUEST2REQUIREDCRAFTINGORDERS = 20;
+    public const int RUNELORDQUEST2REQUIREDKNOWNRUNES = 22;
+    public const int RUNELORDQUEST2REQUIREDLEARNEDABILITIES = 3;
+
     public RunelordQuest(string questId, Hero questGiver, CampaignTime duration, int rewardGold) : base(questId, questGiver, duration, rewardGold)
     {
         InitializeQuest();
@@ -37,7 +41,7 @@ public class RunelordQuest : QuestBase
 
     private void InitializeQuest()
     {
-        var currentKnownRunes = Hero.MainHero.GetExtendedInfo().KnownEnchantmentBlueprints.Count;
+        var currentKnownRunes = Hero.MainHero.GetExtendedInfo().KnownEnchantmentBlueprints.Count;//Sly : the requirement of learning all of the "current" dwarf enchantments is set to the maximum and the player's already known runes are counted as normal so the player sees in the quest description, eg "7/22" instead of "0/15" when starting the quest.
 
         var dwarfBehavior = Campaign.Current.GetCampaignBehavior<OathGoldBehavior>();
 
@@ -58,12 +62,11 @@ public class RunelordQuest : QuestBase
         _currentAbilities = count;
 
         var reputation = dwarfBehavior.RuneSmithReputation;
-        _currentContracts = dwarfBehavior.CraftingOrdersCompleted - 15;     //already done crafted orders of the original quest
-        currentKnownRunes -= 7;             //Same as above
+        _currentContracts = dwarfBehavior.CraftingOrdersCompleted - RunesmithQuest.RUNESMITHQUEST1REQUIREDCRAFTINGORDERS;     //already done crafted orders of the original quest
 
-        _task1 = AddDiscreteLog(TORTextHelper.GetTextObject("tor_runelord_quest_log_abilities", "Learn 3 Rune abilities of the Anvil of Doom."), TORTextHelper.GetTextObject("tor_runelord_quest_task_abilities", "Rune Magic"), _currentAbilities, 3);
-        _task2 = AddDiscreteLog(TORTextHelper.GetTextObject("tor_runelord_quest_log_runes", "Learn 15 runes."), TORTextHelper.GetTextObject("tor_runelord_quest_task_runes", "Runes"), currentKnownRunes, 12);
-        _task3 = AddDiscreteLog(TORTextHelper.GetTextObject("tor_runelord_quest_log_contracts", "Finish up 20 smithing contracts."), TORTextHelper.GetTextObject("tor_runelord_quest_task_contracts", "Contracts"), _currentContracts, 20);
+        _task1 = AddDiscreteLog(TORTextHelper.GetTextObject("tor_runelord_quest_log_abilities", "Learn {REQUIRED} Rune abilities of the Anvil of Doom.").SetTextVariable("REQUIRED", RUNELORDQUEST2REQUIREDLEARNEDABILITIES), TORTextHelper.GetTextObject("tor_runelord_quest_task_abilities", "Rune Magic"), _currentAbilities, RUNELORDQUEST2REQUIREDLEARNEDABILITIES);
+        _task2 = AddDiscreteLog(TORTextHelper.GetTextObject("tor_runelord_quest_log_runes", "Learn {REQUIRED} runes.").SetTextVariable("REQUIRED", RUNELORDQUEST2REQUIREDKNOWNRUNES), TORTextHelper.GetTextObject("tor_runelord_quest_task_runes", "Runes"), currentKnownRunes, RUNELORDQUEST2REQUIREDKNOWNRUNES);
+        _task3 = AddDiscreteLog(TORTextHelper.GetTextObject("tor_runelord_quest_log_contracts", "Finish up {REQUIRED} smithing contracts.").SetTextVariable("REQUIRED", RUNELORDQUEST2REQUIREDCRAFTINGORDERS), TORTextHelper.GetTextObject("tor_runelord_quest_task_contracts", "Contracts"), _currentContracts, RUNELORDQUEST2REQUIREDCRAFTINGORDERS);
         _task4 = AddDiscreteLog(TORTextHelper.GetTextObject("tor_runelord_quest_log_reputation", "Reach Respected with the Runesmith Guild."), TORTextHelper.GetTextObject("tor_runelord_quest_task_reputation", "Reputation"), reputation, OathGoldBehavior.MAXIMUMVALUE);
 
 
