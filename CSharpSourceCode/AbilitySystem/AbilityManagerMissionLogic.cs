@@ -663,8 +663,9 @@ namespace TOR_Core.AbilitySystem
             {
                 if (agent.IsAbilityUser())
                 {
-                    agent.AddComponent(new AbilityComponent(agent));
-                    if (agent.IsAIControlled)
+                    var abilityComponent = new AbilityComponent(agent);
+                    agent.AddComponent(abilityComponent);
+                    if (agent.IsAIControlled && abilityComponent.KnownAbilitySystem.Count > 0)
                     {
                         agent.AddComponent(new WizardAIComponent(agent));
                     }
