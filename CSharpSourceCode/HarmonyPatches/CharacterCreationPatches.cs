@@ -87,10 +87,8 @@ namespace TOR_Core.HarmonyPatches
                 }
                 else
                 {
-                    var menuCharacters = __instance.CurrentMenu.Characters;
-                    var playerCharacter = menuCharacters.FirstOrDefault();
-                    playerCharacter?.SetEquipment(new MBEquipmentRoster());
-
+                    // No need to reset equipment here - it's already set correctly by OnCultureSelected
+                    // Resetting to empty roster causes races to lose their civilian equipment
                 }
             }
         }
