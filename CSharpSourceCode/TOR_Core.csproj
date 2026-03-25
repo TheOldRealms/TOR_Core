@@ -704,6 +704,7 @@
     <Compile Include="GameManagers\TORKeyInputManager.cs" />
     <Compile Include="GameManagers\TORShaderGameManager.cs" />
     <Compile Include="HarmonyPatches\AgentPatches.cs" />
+    <Compile Include="HarmonyPatches\ArenaPracticePatch.cs" />
     <Compile Include="HarmonyPatches\RetreatPatches.cs" />
     <Compile Include="HarmonyPatches\BaseGameDebugPatches.cs" />
     <Compile Include="HarmonyPatches\CharacterCreationPatches.cs" />
@@ -739,6 +740,7 @@
     <Compile Include="HarmonyPatches\RaceFixPatches.cs" />
     <Compile Include="HarmonyPatches\SettlementPatches.cs" />
     <Compile Include="HarmonyPatches\TableauRenderPatches.cs" />
+    <Compile Include="HarmonyPatches\TournamentPatches.cs" />
     <Compile Include="HarmonyPatches\VeterinarianPatch.cs" />
     <Compile Include="HarmonyPatches\ViewModelPatches.cs" />
     <Compile Include="HarmonyPatches\ViewModelRefreshPatch.cs" />

@@ -151,7 +151,8 @@ namespace TOR_Core.HarmonyPatches
             private static void Prefix(ScreenBase __instance, ref bool __state)
             {
                 __state =
-                    Volatile.Read(ref _cleanScreensDepth) > 0;
+                    Volatile.Read(ref _cleanScreensDepth) > 0 &&
+                    __instance.GetType().FullName == MAP_SCREEN_TYPE_NAME;
 
                 if (__state)
                 {
@@ -183,7 +184,8 @@ namespace TOR_Core.HarmonyPatches
             private static void Prefix(ScreenBase __instance, ref bool __state)
             {
                 __state =
-                    Volatile.Read(ref _cleanScreensDepth) > 0;
+                    Volatile.Read(ref _cleanScreensDepth) > 0 &&
+                    __instance.GetType().FullName == MAP_SCREEN_TYPE_NAME;
 
                 if (__state)
                 {
