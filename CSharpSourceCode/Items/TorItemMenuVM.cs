@@ -70,33 +70,28 @@ namespace TOR_Core.Items
                     }
 
                     var invalid = false;
-                    if (equipmentItem.IsSpecialAmmunitionItem() || equipmentItem.IsFlameThrowerItem())
-                    {
-                        if (equipmentItem.IsSpecialAmmunitionItem())
-                        {
-                            if (!movedItem.IsSpecialAmmunitionItem())
-                            {
-                                invalid = true;
-                            }
-                        }
 
-                        if (equipmentItem.IsFlameThrowerItem())
-                        {
-                            if (!movedItem.IsFlameThrowerItem())
-                            {
-                                invalid = true;
-                            }
-                        }
+                    // ===== Special Ammunition System =====
+                    // Drake gun: weapon + canisters + torpedos can ALL be equipped together
+                    // Blunderbuss: weapon + grenades + scatter can ALL be equipped together
+                    // ONLY restriction: Special ammo CANNOT mix with regular musket cartridges
+
+                    var movedIsSpecialAmmo = movedItem.IsDrakeGunCompatible() || movedItem.IsBlunderbussCompatible();
+                    var equippedIsSpecialAmmo = equipmentItem.IsDrakeGunCompatible() || equipmentItem.IsBlunderbussCompatible();
+
+                    // If one is special ammo and the other is NOT, they're incompatible
+                    if (movedIsSpecialAmmo != equippedIsSpecialAmmo)
+                    {
+                        invalid = true;
                     }
-
-                    if (movedItem.IsSpecialAmmunitionItem() || movedItem.IsFlameThrowerItem())
+                    // Both are special ammo - check cross-platform incompatibility
+                    else if (movedIsSpecialAmmo && equippedIsSpecialAmmo)
                     {
-                        if (movedItem.IsSpecialAmmunitionItem() && !equipmentItem.IsSpecialAmmunitionItem())
-                        {
-                            invalid = true;
-                        }
+                        // Drake gun items cannot mix with blunderbuss items
+                        var movedIsDrakeGun = movedItem.IsDrakeGunCompatible();
+                        var equippedIsDrakeGun = equipmentItem.IsDrakeGunCompatible();
 
-                        if (movedItem.IsFlameThrowerItem() && !equipmentItem.IsFlameThrowerItem())
+                        if (movedIsDrakeGun != equippedIsDrakeGun)
                         {
                             invalid = true;
                         }
