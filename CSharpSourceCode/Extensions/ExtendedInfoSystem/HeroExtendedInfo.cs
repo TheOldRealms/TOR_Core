@@ -292,7 +292,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             }
             foreach (var item in list)
             {
-                if (!HasKnownLore(item.BelongsToLoreID)) AddKnownLore(item.BelongsToLoreID);
+                if (!_knownLores.Contains(item.BelongsToLoreID)) AddKnownLore(item.BelongsToLoreID);
             }
         }
     }

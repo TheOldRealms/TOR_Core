@@ -90,6 +90,14 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
     private List<string> _careerEligableForFreebee = ["GrailDamsel", "ImperialMagister", "Spellsinger", "Greylord", "Necromancer", "Runelord", "OrcShaman"];
 
     public bool SpokeToEnchanter => _spokeToEnchanter;
+    private static bool SharesVcEnchanterBranch(string requestedCulture, string actualCulture)
+    {
+        if (requestedCulture == actualCulture)
+            return true;
+
+        return (requestedCulture == TORConstants.Cultures.SYLVANIA && actualCulture == TORConstants.Cultures.MOUSILLON)
+            || (requestedCulture == TORConstants.Cultures.MOUSILLON && actualCulture == TORConstants.Cultures.SYLVANIA);
+    }
 
     public override void RegisterEvents()
     {
@@ -304,7 +312,7 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
             bool cultureCheck(string culture)
             {
-                return Hero.MainHero.Culture.StringId == culture;
+                return SharesVcEnchanterBranch(culture, Hero.MainHero.Culture.StringId);
             }
 
             bool enchanterCareer()
@@ -346,26 +354,15 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
             campaignGameStarter.AddDialogLine("enchanter_blueprints" + cultures[i], "enchanter_blueprints" + cultures[i],
                 "enchanter_hub_reintro" + cultures[i], TORTextHelper.GetText("tor_enchanter_blueprints", cultures[i], "Let me show you what I have available.", true),
-                () => HasAnyViableEnchanterCharacter(cultures[i]), () => OpenEnchantmentShop(template.enchantmentSuffixes, cultures[i]), 200);
+                () => HasAnyViableEnchanterCharacter(), () => OpenEnchantmentShop(template.enchantmentSuffixes, cultures[i]), 200);
 
             campaignGameStarter.AddDialogLine("enchanter_blueprints_decline" + cultures[i], "enchanter_blueprints" + cultures[i],
                 "enchanter_hub_reintro" + cultures[i], TORTextHelper.GetText("tor_enchanter_blueprints_decline", cultures[i], "I'm afraid you have no one capable of learning these arts.", true), null, null, 200);
 
 
-            bool HasAnyViableEnchanterCharacter(string culture)
+            bool HasAnyViableEnchanterCharacter()
             {
-                var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
-
-                foreach (var hero in heroes.Where(hero => hero.Culture.StringId == culture))
-                {
-                    if (hero.HasAttribute("RuneCraft"))
-                        return true;
-
-                    var lores = LoreObject.GetAll();
-                    if (lores.Any(lore => hero.HasKnownLore(lore.ID))) return true;
-                }
-
-                return false;
+                return EnchantmentHelper.HasAnyLearnableEnchantmentRecipe(template.enchantmentSuffixes);
             }
 
             //donation
