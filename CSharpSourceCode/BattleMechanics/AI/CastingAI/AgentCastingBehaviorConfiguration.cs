@@ -262,10 +262,11 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI
 
         private static readonly HashSet<string> _reportedInvalidFormationTargets = new();
 
-        private static void ReportInvalidFormationTarget(Formation formation, NullReferenceException exception)
+        private static void ReportInvalidFormationTarget(string reason, Formation formation, Exception exception = null)
         {
             string message =
-                $"invalid formation target in IsValidFormationTarget formation={(formation != null ? formation.Index.ToString() : "null")} | ex={exception.GetType().Name}: {exception.Message}";
+                $"invalid formation target in IsValidFormationTarget | reason={reason} | formation={(formation != null ? formation.Index.ToString() : "null")}" +
+                (exception != null ? $" | ex={exception.GetType().Name}: {exception.Message}" : "");
 
             TORCommon.Log(message, NLog.LogLevel.Error);
 
@@ -279,6 +280,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI
         {
             if (formation == null)
             {
+                ReportInvalidFormationTarget("formation null", null);
                 return false;
             }
 
@@ -286,6 +288,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI
             {
                 if (formation.QuerySystem == null)
                 {
+                    ReportInvalidFormationTarget("query system null", formation);
                     return false;
                 }
 
@@ -294,11 +297,16 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI
                     return true;
                 }
 
-                return formation.GetMedianAgent(false, false, formation.CurrentPosition) != null;
+                if (formation.GetMedianAgent(false, false, formation.CurrentPosition) != null)
+                {
+                    return true;
+                }
+                ReportInvalidFormationTarget("empty formation/ median agent null", formation);
+                return false;
             }
             catch (NullReferenceException exception)
             {
-                ReportInvalidFormationTarget(formation, exception);
+                ReportInvalidFormationTarget("null ref during validation", formation, exception);
                 return false;
             }
         }
