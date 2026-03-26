@@ -4,7 +4,7 @@
   <!--Certain string ids are necessarily disjoint from the rest of tor's nomenclature because they are respecting a format used in native code to look up strings, eg. the crafting template deserialize looks for "GameTexts.FindText("str_crafting_template", base.StringId)" and therefore our tor_ prefix is only present in the variation.-->
   <!--Because localization ids are arbitrary, our ids in the text attribute continue to follow our pattern despite deviating from their corresponding string id.-->
   
-  
+    3 <string id="tor_cc_review_description" text="{=str_tor_cc_review_description}[TODO] You prepare to set off for a grand adventure in the Old World! Here is your character. Continue if you are ready, or go back to make changes." />     
   
   <!-- UI -->
   <string id="str_career_screen.title" text="{=str_tor_career_screen_title}Career"/>
