@@ -1798,7 +1798,7 @@
     </CommonAreas>
   </Settlement>
   <!--Wissenland 7 towns 6 castles 35 villages -->
-  <Settlement id="town_WI1" name="{=Settlements.Settlement.name.town_WI1}Nuln" owner="Faction.wissenland_clan_1" posX="1338.789" posY="948.639" culture="Culture.empire" gate_posX="1339.859" gate_posY="946.4326" text="{=Settlements.Settlement.text.town_WI1}Nuln is the greatest industrial city of the Empire, producing the vast majority of the gunpowder weapons and artillery pieces used by the military, as well as the arms and armaments of the Imperial armies. Nuln is a centre for trade, as the trade from Southern Wissenland and Solland, Averland, as well as trade that comes through Blackfire pass or the Grey and Black Mountains must first pass through Nuln before reaching the rest of the Empire.. Nuln has served as the capital of the Empire for long periods of time and has historically received the support needed to truly become a metropolis. It is also the religious capital in the south for the Sigmarite Church, overseeing Wissenland, Stirland and Averland. The Elector-Countess of all of Wissenland makes her court here, while the provincial capitol remains in Wissenberg, she much prefers the comfort of Nuln to the ‘Po-faced Boughers’ of the Assembly of Wissenland.">
+  <Settlement id="town_WI1" name="{=Settlements.Settlement.name.town_WI1}Nuln" owner="Faction.wissenland_clan_1" posX="1338.789" posY="948.639" culture="Culture.empire" gate_posX="1339.859" gate_posY="946.4326" text="{=Settlements.Settlement.text.town_WI1}Nuln is the greatest industrial city of the Empire, producing the vast majority of the gunpowder weapons and artillery pieces used by the military, as well as the arms and armaments of the Imperial armies. Nuln is a centre for trade, as the trade from Southern Wissenland and Solland, Averland, as well as trade that comes through Blackfire pass or the Grey and Black Mountains must first pass through Nuln before reaching the rest of the Empire. Nuln has served as the capital of the Empire for long periods of time and has historically received the support needed to truly become a metropolis. It is also the religious capital in the south for the Sigmarite Church, overseeing Wissenland, Stirland and Averland. The Elector-Countess of all of Wissenland makes her court here, while the provincial capitol remains in Wissenberg, she much prefers the comfort of Nuln to the ‘Po-faced Boughers’ of the Assembly of Wissenland.">
     <Components>
       <Town id="town_comp_WI1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="5100">
         <Buildings>
@@ -7585,7 +7585,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_GX2_2" name="{=Settlements.Settlement.name.castle_village_GX2_2}Betton" posX="1063.331" posY="1116.514" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_GX2_2}Betton sits at the foot of the southern Pale Sisters, while most people here lead typical Bretonnian lives tilling the soil, a number of peasants have successfully found valuable metals in the mountains nearby.. ">
+  <Settlement id="castle_village_GX2_2" name="{=Settlements.Settlement.name.castle_village_GX2_2}Betton" posX="1063.331" posY="1116.514" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_GX2_2}Betton sits at the foot of the southern Pale Sisters, while most people here lead typical Bretonnian lives tilling the soil, a number of peasants have successfully found valuable metals in the mountains nearby. ">
     <Components>
       <Village id="castle_village_comp_GX2_2" village_type="VillageType.iron_mine" hearth="200" bound="Settlement.castle_GX2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -8952,7 +8952,7 @@
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_BL2_1" name="{=Settlements.Settlement.name.castle_village_BL2_1}Belves" posX="958.895" posY="982.807" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BL2_1}In the middle of the rolling plains is the village of Belves. Belves has some of the most.. provincial peasants in Bordeleaux. Their lord rarely comes here, with the yeoman tax collector often being the only visitor to Belves for years at a time.">
+  <Settlement id="castle_village_BL2_1" name="{=Settlements.Settlement.name.castle_village_BL2_1}Belves" posX="958.895" posY="982.807" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_BL2_1}In the middle of the rolling plains is the village of Belves. Belves has some of the most... provincial peasants in Bordeleaux. Their lord rarely comes here, with the yeoman tax collector often being the only visitor to Belves for years at a time.">
     <Components>
       <Village id="castle_village_comp_BL2_1" village_type="VillageType.sheep_farm" hearth="200" bound="Settlement.castle_BL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -11189,7 +11189,7 @@
   </Settlement>
   <!-- Dwarfs-->
   <!-- Azgaraz-->
-  <Settlement id="town_AZ1" name="{=Settlements.Settlement.name.town_AZ1}Karak Azgaraz" owner="Faction.karak_azgaraz_clan_1" posX="1266.259" posY="972.636" culture="Culture.sturgia" gate_posX="1267.938" gate_posY="971.3691" text="{=Settlements.Settlement.text.town_AZ1}Known as the “Hold of Fearless Axes,” Karak Azgaraz is a poor Karak compared to many dwarf holds around. The hold was founded on top of silver and gold veins, but unfortunately the veins were not prosperous at all.. Constantly under threat from greenskins, King Thuringar Orc Hewer is always on the defence, and offense much to the chagrin of the longbeards.">
+  <Settlement id="town_AZ1" name="{=Settlements.Settlement.name.town_AZ1}Karak Azgaraz" owner="Faction.karak_azgaraz_clan_1" posX="1266.259" posY="972.636" culture="Culture.sturgia" gate_posX="1267.938" gate_posY="971.3691" text="{=Settlements.Settlement.text.town_AZ1}Known as the “Hold of Fearless Axes,” Karak Azgaraz is a poor Karak compared to many dwarf holds around. The hold was founded on top of silver and gold veins, but unfortunately the veins were not prosperous at all. Constantly under threat from greenskins, King Thuringar Orc Hewer is always on the defence, and offense much to the chagrin of the longbeards.">
     <Components>
       <Town id="town_comp_AZ1" is_castle="false" background_crop_position="0.0" background_mesh="karak" wait_mesh="karak" gate_rotation="0.908" prosperity="3200">
         <Buildings>
