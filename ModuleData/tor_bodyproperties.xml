@@ -96,6 +96,20 @@
 			weight="0.2392"
 			build="0.8534"
 			key="003CB40E40001007EF8EFCBC985EBED9E9EE8EE8EEB6FEEDEDFFEEEE8DCA8F0D007D400307EFEEEF000000000000000000000000000000000000000066F89000" />
+			<hair_tags>
+			<hair_tag
+				name="ElfHair01" />
+			<hair_tag
+				name="ElfHair02" />
+			<hair_tag
+				name="ElfHair03" />
+			<hair_tag
+				name="ElfHair05" />
+			<hair_tag
+				name="ElfHair_royal" />
+			<hair_tag
+				name="ElfHair_royal_straight" />
+		</hair_tags>
 		<beard_tags>
 			<beard_tag
 				name="Cleanshaven" />
