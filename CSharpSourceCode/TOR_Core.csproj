@@ -709,6 +709,7 @@
     <Compile Include="HarmonyPatches\BaseGameDebugPatches.cs" />
     <Compile Include="HarmonyPatches\CharacterCreationPatches.cs" />
     <Compile Include="HarmonyPatches\CharacterObjectPatches.cs" />
+    <Compile Include="HarmonyPatches\CaravanVisualPatch.cs" />
     <Compile Include="HarmonyPatches\ConversationPatches.cs" />
     <Compile Include="HarmonyPatches\CraftingPatches.cs" />
     <Compile Include="HarmonyPatches\CustomBattlePatches.cs" />
