@@ -176,9 +176,11 @@ namespace TOR_Core.BattleMechanics.Firearms
                 _continousFiringAgents.Remove(affectedIndex);
             }
         }
+        
 
         public override void OnAgentShootMissile(Agent shooterAgent, EquipmentIndex weaponIndex, Vec3 position, Vec3 velocity, Mat3 orientation, bool hasRigidBody, int forcedMissileIndex)
         {
+            
             var weaponData = shooterAgent.WieldedWeapon.CurrentUsageItem;
 
             // Check for any weapon with scatter trait
@@ -200,22 +202,23 @@ namespace TOR_Core.BattleMechanics.Firearms
             var offset = (shooterAgent.WieldedWeapon.CurrentUsageItem.WeaponLength + 30) / 100;
             frame.Advance(offset);
 
+            // Trollhammer Torpedo - Single rocket shot weapon
+            if (shooterAgent.WieldedWeapon.Item.StringId.Contains("_gun_trollhammer"))
+            {
+                // Torpedo mode: Single rocket shot with short release animation
+                // Use act_hw_release instead of act_hw_release_long for quick firing
+                shooterAgent.SetActionChannel(1, ActionIndexCache.Create("act_hw_release"));
+
+                CreateMuzzleFireSound(position, MuzzleFireSoundType.Grenadelauncher);
+
+                // Let the default missile spawn, the explosion is handled in OnMissileCollisionReaction
+                return;
+            }
+
+            // Drakegun - Continuous flamethrower weapon
             if (shooterAgent.WieldedWeapon.Item.StringId.Contains("_gun_drakegun"))
             {
                 var ammoId = shooterAgent.WieldedWeapon.AmmoWeapon.Item.StringId;
-
-                // Check ammo type to determine firing mode
-                if (ammoId.Contains("trollhammer_torpedo"))
-                {
-                    // Torpedo mode: Single rocket shot with short release animation
-                    // Use act_hw_release instead of act_hw_release_long for quick firing
-                    shooterAgent.SetActionChannel(1, ActionIndexCache.Create("act_hw_release"));
-
-                    CreateMuzzleFireSound(position, MuzzleFireSoundType.Grenadelauncher);
-
-                    // Let the default missile spawn, the explosion is handled in OnMissileCollisionReaction
-                    return;
-                }
 
                 RemoveLastProjectile(shooterAgent);
 

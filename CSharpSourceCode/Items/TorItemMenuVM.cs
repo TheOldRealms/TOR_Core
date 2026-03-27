@@ -72,12 +72,13 @@ namespace TOR_Core.Items
                     var invalid = false;
 
                     // ===== Special Ammunition System =====
-                    // Drake gun: weapon + canisters + torpedos can ALL be equipped together
-                    // Blunderbuss: weapon + grenades + scatter can ALL be equipped together
-                    // ONLY restriction: Special ammo CANNOT mix with regular musket cartridges
+                    // Drake gun: weapon + canisters ONLY
+                    // Trollhammer: weapon + torpedoes ONLY
+                    // Blunderbuss: weapon + grenades + scatter ONLY
+                    // ONLY restriction: Special ammo CANNOT mix with regular musket cartridges OR other weapon platforms
 
-                    var movedIsSpecialAmmo = movedItem.IsDrakeGunCompatible() || movedItem.IsBlunderbussCompatible();
-                    var equippedIsSpecialAmmo = equipmentItem.IsDrakeGunCompatible() || equipmentItem.IsBlunderbussCompatible();
+                    var movedIsSpecialAmmo = movedItem.IsDrakeGunCompatible() || movedItem.IsTrollhammerCompatible() || movedItem.IsBlunderbussCompatible();
+                    var equippedIsSpecialAmmo = equipmentItem.IsDrakeGunCompatible() || equipmentItem.IsTrollhammerCompatible() || equipmentItem.IsBlunderbussCompatible();
 
                     // If one is special ammo and the other is NOT, they're incompatible
                     if (movedIsSpecialAmmo != equippedIsSpecialAmmo)
@@ -87,11 +88,19 @@ namespace TOR_Core.Items
                     // Both are special ammo - check cross-platform incompatibility
                     else if (movedIsSpecialAmmo && equippedIsSpecialAmmo)
                     {
-                        // Drake gun items cannot mix with blunderbuss items
+                        // Each weapon platform has exclusive ammo - they cannot mix
                         var movedIsDrakeGun = movedItem.IsDrakeGunCompatible();
-                        var equippedIsDrakeGun = equipmentItem.IsDrakeGunCompatible();
+                        var movedIsTrollhammer = movedItem.IsTrollhammerCompatible();
+                        var movedIsBlunderbuss = movedItem.IsBlunderbussCompatible();
 
-                        if (movedIsDrakeGun != equippedIsDrakeGun)
+                        var equippedIsDrakeGun = equipmentItem.IsDrakeGunCompatible();
+                        var equippedIsTrollhammer = equipmentItem.IsTrollhammerCompatible();
+                        var equippedIsBlunderbuss = equipmentItem.IsBlunderbussCompatible();
+
+                        // If they belong to different weapon platforms, they're incompatible
+                        if (movedIsDrakeGun != equippedIsDrakeGun ||
+                            movedIsTrollhammer != equippedIsTrollhammer ||
+                            movedIsBlunderbuss != equippedIsBlunderbuss)
                         {
                             invalid = true;
                         }

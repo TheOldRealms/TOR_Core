@@ -298,6 +298,12 @@ namespace TOR_Core.Extensions
             return itemObject.StringId.Contains("weapon_gun_drakegun");
         }
 
+        public static bool IsTrollhammerWeapon(this ItemObject itemObject)
+        {
+            if (!IsAmmunitionItem(itemObject)) return false;
+            return itemObject.StringId.Contains("weapon_gun_trollhammer");
+        }
+
         public static bool IsBlunderbussWeapon(this ItemObject itemObject)
         {
             if (!IsAmmunitionItem(itemObject)) return false;
@@ -331,11 +337,19 @@ namespace TOR_Core.Extensions
 
         // ===== Compatibility Group Checks =====
         /// <summary>
-        /// Returns true if item is drake gun weapon OR compatible ammo (canister OR torpedo)
+        /// Returns true if item is drake gun weapon OR compatible ammo (canister only)
         /// </summary>
         public static bool IsDrakeGunCompatible(this ItemObject itemObject)
         {
-            return itemObject.IsDrakeGunWeapon() || itemObject.IsDrakeGunCanister() || itemObject.IsTrollhammerTorpedo();
+            return itemObject.IsDrakeGunWeapon() || itemObject.IsDrakeGunCanister();
+        }
+
+        /// <summary>
+        /// Returns true if item is trollhammer weapon OR compatible ammo (torpedoes only)
+        /// </summary>
+        public static bool IsTrollhammerCompatible(this ItemObject itemObject)
+        {
+            return itemObject.IsTrollhammerWeapon() || itemObject.IsTrollhammerTorpedo();
         }
 
         /// <summary>
