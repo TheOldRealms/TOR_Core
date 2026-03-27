@@ -293,7 +293,7 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
             continue;
         }
 
-        int goldReward = (int)(MBRandom.RandomInt(50 * (int)resultScore, 150 * (int)resultScore));//Sly : would casting to int prevent the method contained in the variable from being inlined into the future usage locations? I hope so.
+        int goldReward = (int)(MBRandom.RandomInt(50 * (int)resultScore, 150 * (int)resultScore));
         int renownReward = (int)resultScore / 3;
         int teefWin = (int)resultScore;
 

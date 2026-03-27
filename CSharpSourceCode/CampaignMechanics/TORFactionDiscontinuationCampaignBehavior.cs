@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using HarmonyLib;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
@@ -91,25 +92,20 @@ namespace TOR_Core.CampaignMechanics
         /// </summary>
         private IEnumerable<Kingdom> GetCandidateKingdomsForJoiningClan(Clan clan)
         {
-            var originalKingdomId = clan.StringId?.Split('_')[0]; // Extract faction from clan ID (e.g., "laurelorn" from "laurelorn_clan_1")
+            var clanCulture = clan.Culture;
 
             // Special faction pairings - these factions should merge with each other
             var specialPairings = new Dictionary<string, string>
             {
-                { TORConstants.Factions.LAURELORN, TORConstants.Factions.ATHEL_LOREN },
-                { TORConstants.Factions.ATHEL_LOREN, TORConstants.Factions.LAURELORN },
-                { TORConstants.Factions.MOUSILLON, TORConstants.Factions.SYLVANIA },
-                { TORConstants.Factions.SYLVANIA, TORConstants.Factions.MOUSILLON }
+                { TORConstants.Cultures.EONIR, TORConstants.Cultures.ASRAI },
+                { TORConstants.Cultures.ASRAI, TORConstants.Cultures.EONIR },
+                { TORConstants.Cultures.MOUSILLON, TORConstants.Cultures.SYLVANIA },
+                { TORConstants.Cultures.SYLVANIA, TORConstants.Cultures.MOUSILLON }
             };
             
-            if (specialPairings.TryGetValue(originalKingdomId, out string pairedFactionId))
+            if (specialPairings.TryGetValue(clanCulture.StringId, out string pairedCulture))
             {
-                var pairedKingdom = Kingdom.All.FirstOrDefault(k => !k.IsEliminated && k.StringId == pairedFactionId);
-                if (pairedKingdom != null)
-                {
-                    // Prioritize the paired faction - return only it
-                    return [pairedKingdom];
-                }
+                return Kingdom.All.WhereQ(x => !x.IsEliminated && (x.Culture == clan.Culture || x.Culture.StringId == pairedCulture));//permits fragmented cultures between kingdoms as well as a player kingdom for viable candidates
             }
             
             return Kingdom.All.WhereQ(x => !x.IsEliminated && x.Culture == clan.Culture);

@@ -285,7 +285,7 @@ public class BrawlMissionController : MissionLogic, IMissionAgentSpawnLogic
 
     public override void OnMissionResultReady(MissionResult missionResult)
     {
-        if (missionResult.PlayerDefeated)
+        if (missionResult.PlayerDefeated)//Sly : if the result is ready and the mission is cleared, shouldn't the player also be able to leave immediately when winning?
         {
             PlayerCanLeave = true;
         }
