@@ -98,6 +98,7 @@
     <module_sound name="shards_loop" sound_category="mission_foley" path="../../TOR_Armory/ModuleSounds/shards_loop.ogg" />
     <module_sound name="radiance_pillar" sound_category="mission_siege_loud" path="../../TOR_Armory/ModuleSounds/radiance_pillar.ogg" />
     <module_sound name="dwarf_hand_grenade_tick" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/dwarf_hand_grenade_tick.wav" />
+    <module_sound name="drakefire" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/iron_drake_fire.ogg" />
     <module_sound name="scribble1" is_2d="true" sound_category="ui" path="../../TOR_Armory/ModuleSounds/scribble1.ogg" />
     <module_sound name="scribble2" is_2d="true" sound_category="ui" path="../../TOR_Armory/ModuleSounds/scribble2.ogg" />
     <module_sound name="scribble3" is_2d="true" sound_category="ui" path="../../TOR_Armory/ModuleSounds/scribble3.ogg" />
