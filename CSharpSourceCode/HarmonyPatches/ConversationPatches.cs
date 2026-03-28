@@ -14,45 +14,6 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public static class ConversationPatches
     {
-        // NO LONGER NEEDED - Wanderer backstory texts now handled in TORCompanionDialogBehavior
-        // Using dialog priority override instead of Harmony patching
-        /*
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(LordConversationsCampaignBehavior), "conversation_wanderer_introduction_on_condition")]
-        public static bool WandererString(ref bool __result, ref Dictionary<CharacterObject, CharacterObject> ____previouslyMetWandererTemplates)
-        {
-            if (CharacterObject.OneToOneConversationCharacter != null && CharacterObject.OneToOneConversationCharacter.IsHero && CharacterObject.OneToOneConversationCharacter.Occupation == Occupation.Wanderer && CharacterObject.OneToOneConversationCharacter.HeroObject.HeroState != Hero.CharacterStates.Prisoner)
-            {
-                StringHelpers.SetCharacterProperties("CONVERSATION_CHARACTER", Hero.OneToOneConversationHero.CharacterObject, null);
-                string stringId = Hero.OneToOneConversationHero.Template.StringId;
-                CharacterObject characterObject;
-                ____previouslyMetWandererTemplates.TryGetValue(Hero.OneToOneConversationHero.Template, out characterObject);
-                if (characterObject == null || characterObject == Hero.OneToOneConversationHero.CharacterObject)
-                {
-                    if (characterObject == null)
-                    {
-                        ____previouslyMetWandererTemplates[Hero.OneToOneConversationHero.Template] = Hero.OneToOneConversationHero.CharacterObject;
-                    }
-                    MBTextManager.SetTextVariable("IMPERIALCAPITAL", new TextObject("Altdorf"));
-                    MBTextManager.SetTextVariable("WANDERER_BACKSTORY_A", TORTextHelper.GetTextObject("tor_backstory_a", stringId, "Backstory A", skipValidation: true), false);
-                    MBTextManager.SetTextVariable("WANDERER_BACKSTORY_B", TORTextHelper.GetTextObject("tor_backstory_b", stringId, "Backstory B", skipValidation: true), false);
-                    MBTextManager.SetTextVariable("WANDERER_BACKSTORY_C", TORTextHelper.GetTextObject("tor_backstory_c", stringId, "Backstory C", skipValidation: true), false);
-                    MBTextManager.SetTextVariable("BACKSTORY_RESPONSE_1", TORTextHelper.GetTextObject("tor_response_1", stringId, "Response 1", skipValidation: true), false);
-                    MBTextManager.SetTextVariable("BACKSTORY_RESPONSE_2", TORTextHelper.GetTextObject("tor_response_2", stringId, "Response 2", skipValidation: true), false);
-                    MBTextManager.SetTextVariable("WANDERER_BACKSTORY_D", TORTextHelper.GetTextObject("tor_backstory_d", stringId, "Backstory D", skipValidation: true), false);
-                    StringHelpers.SetCharacterProperties("MET_WANDERER", Hero.OneToOneConversationHero.CharacterObject, null);
-                    if (CampaignMission.Current.Location != null && CampaignMission.Current.Location.StringId != "tavern")
-                    {
-                        MBTextManager.SetTextVariable("WANDERER_PREBACKSTORY", GameTexts.FindText("spc_prebackstory_generic", null), false);
-                    }
-                    __result = true;
-                }
-            }
-            else __result = false;
-            return false;
-        }
-        */
-
         [HarmonyPostfix]
         [HarmonyPatch(typeof(SettlementMenuOverlayVM), "ExecuteOnSetAsActiveContextMenuItem")]
         public static void RemoveQuickTalk(SettlementMenuOverlayVM __instance)
