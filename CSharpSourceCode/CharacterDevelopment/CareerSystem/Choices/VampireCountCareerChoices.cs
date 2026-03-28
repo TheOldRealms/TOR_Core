@@ -246,7 +246,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializePassives()
         {
-            _newBloodPassive1.Initialize(CareerID, "+15 personal Hitpoints", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
+            _newBloodPassive1.Initialize(CareerID, "+15 personal Hitpoints.", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
             _newBloodPassive2.Initialize(CareerID, "+15 increased party size.", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.PartySize, false));
             _newBloodPassive3.Initialize(CareerID, "+10 personal 'Winds of Magic' capacity.", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
             _newBloodPassive4.Initialize(CareerID, "Sunlight no longer weakens you.", "NewBlood", false, ChoiceType.Passive, null); //TORPartySpeedCalculatingModel 46
@@ -254,7 +254,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _feralPassive1.Initialize(CareerID, "+10% personal 'Physical' melee damage.", "Feral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
             _feralPassive2.Initialize(CareerID, "Personal healing rate is increased by +2.", "Feral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.HealthRegeneration));
             _feralPassive3.Initialize(CareerID, "+1 party move speed on the campaign map.", "Feral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1f, PassiveEffectType.PartyMovementSpeed));
-            _feralPassive4.Initialize(CareerID, "+15 personal Hitpoints", "Feral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
+            _feralPassive4.Initialize(CareerID, "+15 personal Hitpoints.", "Feral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
 
             _arkaynePassive1.Initialize(CareerID, "Personal armour weight no longer impedes your 'Winds of Magic' recharge rate.", "Arkayne", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
             _arkaynePassive2.Initialize(CareerID, "+3% personal 'Magic' damage.", "Arkayne", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 3), AttackTypeMask.Spell));
@@ -262,7 +262,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _arkaynePassive4.Initialize(CareerID, "-5% personal 'Winds of Magic' cost for spells.", "Arkayne", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-5, PassiveEffectType.WindsCostReduction, true));
 
             _courtleyPassive1.Initialize(CareerID, "+20% relation gains with 'Notables'.", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //TorDiplomacy model 23
-            _courtleyPassive2.Initialize(CareerID, "+15 personal Hitpoints", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
+            _courtleyPassive2.Initialize(CareerID, "+15 personal Hitpoints.", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
             _courtleyPassive3.Initialize(CareerID, "+3% personal 'Magic' and 'Ranged' damage.", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 3), AttackTypeMask.Spell | AttackTypeMask.Ranged));
             _courtleyPassive4.Initialize(CareerID, "Slaying foes with a headstrike (melee) restores +2 personal 'Winds of Magic'.", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2)); //CareerPerkMissionBehavior 28
 

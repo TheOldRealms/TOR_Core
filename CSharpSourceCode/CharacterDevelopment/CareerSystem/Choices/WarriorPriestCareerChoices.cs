@@ -307,12 +307,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 (attacker, victim, mask) => mask == AttackTypeMask.Ranged && victim.BelongsToMainParty() && IsSigmariteTroop(victim.Character as CharacterObject)));
             _sigmarsProclaimerPassive4.Initialize(CareerID, "Praying at Shrines of Sigmar, restore +50 Hitpoints to all characters. (5 day cooldown)", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special));
 
-            _relentlessFanaticPassive1.Initialize(CareerID, "+15 personal Hitpoints", "RelentlessFanatic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
+            _relentlessFanaticPassive1.Initialize(CareerID, "+15 personal Hitpoints.", "RelentlessFanatic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
             _relentlessFanaticPassive2.Initialize(CareerID, "+5% personal 'Holy' melee damage.", "RelentlessFanatic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy, 5), AttackTypeMask.Melee));
             _relentlessFanaticPassive3.Initialize(CareerID, "+1 party move speed on campaign map.", "RelentlessFanatic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.PartyMovementSpeed));
             _relentlessFanaticPassive4.Initialize(CareerID, "Prayers no longer share a cooldown.", "RelentlessFanatic", false, ChoiceType.Passive, null);
 
-            _protectorOfTheWeakPassive1.Initialize(CareerID, "+15 personal Hitpoints", "ProtectorOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
+            _protectorOfTheWeakPassive1.Initialize(CareerID, "+15 personal Hitpoints.", "ProtectorOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
             _protectorOfTheWeakPassive2.Initialize(CareerID, "+5% personal 'Physical Resistance'.", "ProtectorOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 5), AttackTypeMask.Melee));
             _protectorOfTheWeakPassive3.Initialize(CareerID, "+10% personal 'Spell Resistance''.", "ProtectorOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
             _protectorOfTheWeakPassive4.Initialize(CareerID, "Hits below 15 damage no longer stagger you.", "ProtectorOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.ShruggedOff));

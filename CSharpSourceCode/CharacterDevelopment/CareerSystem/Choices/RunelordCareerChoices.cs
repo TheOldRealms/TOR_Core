@@ -130,7 +130,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 
             }, new CareerChoiceObject.PassiveEffect()); //special
 
-        _teachingsOfThungniKeystone.Initialize(CareerID, "Faith counts towards career ability. Units with runes can charge career ability.", "TeachingsOfThungni", false,
+        _teachingsOfThungniKeystone.Initialize(CareerID, "Wisdom of Thungi also scales with Faith. Kills made by troops with a 'Rune' reduce its cooldown.", "TeachingsOfThungni", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -162,7 +162,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             {
             });
 
-        _stoneAndSteelKeystone.Initialize(CareerID, "The Spellbreaker rune now drains 50% more Winds of Magic", "StoneAndSteel", false,
+        _stoneAndSteelKeystone.Initialize(CareerID, "The 'Rune' Spellbreaker drains +50% more 'Winds of Magic'.", "StoneAndSteel", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -193,11 +193,11 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _forgefireBurningPassive3.Initialize(CareerID, "-40% stamina cost for smithing. Stamina now regenerates while traveling.", "ForgefireBurning", false, ChoiceType.Passive, null, null);
         _forgefireBurningPassive4.Initialize(CareerID, "Gain Faith experience when smelting/smithing.", "ForgefireBurning", false, ChoiceType.Passive, null, null);
 
-        _teachingsOfThungniPassive1.Initialize(CareerID, "Reduce costs for enchantments by 25%", "TeachingsOfThungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.EnchantmentCostReduction, true));
-        _teachingsOfThungniPassive2.Initialize(CareerID, "Crafting Equipment runes also adds smithing and spellcraft skill.", "TeachingsOfThungni", false, ChoiceType.Passive, null, null);
-        _teachingsOfThungniPassive3.Initialize(CareerID, "10% Wardsave for Unit wearing runes.", "TeachingsOfThungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.Spell,
+        _teachingsOfThungniPassive1.Initialize(CareerID, "-25% cost for 'Enchantments'.", "TeachingsOfThungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.EnchantmentCostReduction, true));
+        _teachingsOfThungniPassive2.Initialize(CareerID, "Crafting an equipment 'Rune' provides Smithing/Spellcraft experience.", "TeachingsOfThungni", false, ChoiceType.Passive, null, null);
+        _teachingsOfThungniPassive3.Initialize(CareerID, "+10% 'Ward Save' for troops affected by a 'Rune'.", "TeachingsOfThungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.Spell,
             (attacker, victim, mask) => victim.BelongsToMainParty() && !victim.IsHero && victim.Character.HasUnitRune()));
-        _teachingsOfThungniPassive4.Initialize(CareerID, "Increase carrying capacity by 25%", "TeachingsOfThungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.InventoryCapacity, true));
+        _teachingsOfThungniPassive4.Initialize(CareerID, "+25% party carrying capacity.", "TeachingsOfThungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.InventoryCapacity, true));
 
         _chiselAndHammerPassive1.Initialize(CareerID, "+15% 'Physical' damage for troops affected by a 'Rune'.", "ChiselAndHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Holy, 15), AttackTypeMask.All,
             (attacker, victim, mask) => attacker.Character.HasUnitRune() && victim.Character.Race != 0));
@@ -216,11 +216,11 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             {
             }, null);
 
-        _stoneAndSteelPassive1.Initialize(CareerID, "Gain 10% magic resistance to spells.", "StoneAndSteel", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
-        _stoneAndSteelPassive2.Initialize(CareerID, "10% magic resistance for troops", "StoneAndSteel", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell,
+        _stoneAndSteelPassive1.Initialize(CareerID, "+10% personal 'Magic Resistance'.", "StoneAndSteel", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
+        _stoneAndSteelPassive2.Initialize(CareerID, "+10% 'Magic Resistance' for all troops.", "StoneAndSteel", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell,
             (attacker, victim, mask) => victim.BelongsToMainParty() && victim.Character.Culture.StringId == TORConstants.Cultures.DAWI));
-        _stoneAndSteelPassive3.Initialize(CareerID, "Increases Hitpoints by 25.", "StoneAndSteel", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
-        _stoneAndSteelPassive4.Initialize(CareerID, "reducing the cooldown to a rune to 0 gives you for 15 seconds 50% extra magical damage", "StoneAndSteel", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15));
+        _stoneAndSteelPassive3.Initialize(CareerID, "+25 personal Hitpoints.", "StoneAndSteel", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+        _stoneAndSteelPassive4.Initialize(CareerID, "When a 'Rune' ability is refreshed, gain +50% 'Magic' damage for 15s.", "StoneAndSteel", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15));
 
         _legacyOfGrungniPassive1.Initialize(CareerID, "Runesmith Guild provides more 'Oathgold' from delivered steel.", "LegacyOfGrungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true));
         _legacyOfGrungniPassive2.Initialize(CareerID, "Ironsmelters within Karaks provide +2 'Oathgold' daily.", "LegacyOfGrungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());

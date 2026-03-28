@@ -196,7 +196,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                             MutationType = OperationType.Add
                         }
                 });
-            _caelithsWisdomKeystone.Initialize(CareerID, "2 additional overtakes. Ability scales with Leadership. Melee damage can charge ability.", "CaelithsWisdom", false,
+            _caelithsWisdomKeystone.Initialize(CareerID, "Mind control also scales with Leadership, gains +2 targets, can be charged by melee damage.", "CaelithsWisdom", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                         new CareerChoiceObject.MutationObject()
@@ -209,7 +209,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         },
                 }, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
 
-            _soulBindingKeystone.Initialize(CareerID, "Controlled unit gets healed completely. Ability scales with medicine.", "SoulBinding", false,
+            _soulBindingKeystone.Initialize(CareerID, "Mind Control also scales with Medicine, and heals affected targets.", "SoulBinding", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                         new CareerChoiceObject.MutationObject()
@@ -235,12 +235,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         },
                 }, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
 
-            _unrestrictedMagicKeystone.Initialize(CareerID, "When the controlled dies he explodes. Unsucessful control hurt the enemy by 20 HP.", "UnrestrictedMagic", false,
+            _unrestrictedMagicKeystone.Initialize(CareerID, "Mind Controled troops explode on death. Failing to control a troop now hurts them.", "UnrestrictedMagic", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                 }, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
 
-            _forbiddenScrollsOfSapheryKeystone.Initialize(CareerID, "Companion damage can charge ability. Range is doubled. Scale with Charm", "ForbiddenScrollsOfSaphery", false,
+            _forbiddenScrollsOfSapheryKeystone.Initialize(CareerID, "Mind Control also scales with Charm, has its range doubled, and Companions help charge.", "ForbiddenScrollsOfSaphery", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                         new CareerChoiceObject.MutationObject()
@@ -261,7 +261,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         },
                 }, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
 
-            _byAllMeansKeystone.Initialize(CareerID, "Ability scales with roguery. Units are easier to overtake", "ByAllMeans", false,
+            _byAllMeansKeystone.Initialize(CareerID, "Mind Control also scales with Roguery, and gains +10% success chance.", "ByAllMeans", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                         new CareerChoiceObject.MutationObject()
@@ -274,7 +274,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         },
                 }, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
 
-            _secretOfFellfangKeystone.Initialize(CareerID, "Successful overtake grants 1 wind of magic.", "SecretOfFellfang", false,
+            _secretOfFellfangKeystone.Initialize(CareerID, "Mind Control recharges +1 'Winds of Magic' per succesful target.", "SecretOfFellfang", false,
                 ChoiceType.Passive);
         }
 

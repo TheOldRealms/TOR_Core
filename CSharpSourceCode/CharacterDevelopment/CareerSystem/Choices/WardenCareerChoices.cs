@@ -111,7 +111,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _wardenRoot.Initialize(CareerID, "The Warden orders his trusty hawk to scout an area. The hawk marks enemies caught in the area as prey. Its ferocious dives instill fear in the foe, which causes penalties to received melee damage. The radius of the ability increases with every point in the Scouting skill.  This ability refreshes automatically and gains additional effects with more Career perks unlocked.", null, true,
+            _wardenRoot.Initialize(CareerID, "The borders of Athel Loren must stand! Call upon your trusty bird companion Hawk Eye! Designate an area, reducing the 'Physical' melee damage of foes within. For every level of Scouting, gain 0.01% radius of Hawk Eye. (Ability has a 100s cooldown.)", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()

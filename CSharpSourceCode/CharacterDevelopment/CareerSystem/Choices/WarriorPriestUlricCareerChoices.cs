@@ -235,7 +235,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _frostsBitePassive4.Initialize(CareerID, "+20% duration for 'Hex' prayers.", "FrostsBite", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20f, PassiveEffectType.DebuffDuration, true));
 
             _runesOfTheWhiteWolfPassive1.Initialize(CareerID, "Wolf heads/pelts now provide +5% personal 'Ward Save'.", "RunesOfTheWhiteWolf", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special, true));
-            _runesOfTheWhiteWolfPassive2.Initialize(CareerID, "+15 personal Hitpoints", "RunesOfTheWhiteWolf", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
+            _runesOfTheWhiteWolfPassive2.Initialize(CareerID, "+15 personal Hitpoints.", "RunesOfTheWhiteWolf", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
             _runesOfTheWhiteWolfPassive3.Initialize(CareerID, "+20% duration for prayers.", "RunesOfTheWhiteWolf", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20f, PassiveEffectType.BuffDuration, true));
             _runesOfTheWhiteWolfPassive4.Initialize(CareerID, "+20% 'Ward Save' for 'Ulrician' troops.", "RunesOfTheWhiteWolf", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 20), AttackTypeMask.All,
                 (attacker, victim, mask) => victim.IsPlayerTroop && victim.Character.UnitBelongsToCult("ulric")));

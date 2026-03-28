@@ -107,7 +107,7 @@ public class SpellsingerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
 
     protected override void InitializeKeyStones()
     {
-        _spellSingerRoot.Initialize(CareerID, "Calls treespirits of the surouding forests. Every point in Spellcraft increases the chance by 0.05% additional treespirits join the combat.", null, true,
+        _spellSingerRoot.Initialize(CareerID, "The forests are restless! Chant an ancient litany, to bring forth the Wrath of the Wood, summoning Dryads to your aid! For every level of Spellcraft, gain 0.05% chance of an additional Dryad being summoned. (Ability is charged by dealing 'Spell' damage.)", null, true,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
