@@ -77,6 +77,13 @@ namespace TOR_Core.Extensions
             return result;
         }
 
+        public static bool IsBannerItem(this ItemObject item)
+        {
+            return item?.HasWeaponComponent == true &&
+                   item.PrimaryWeapon != null &&
+                   item.PrimaryWeapon.WeaponClass == WeaponClass.Banner;
+        }
+
         public static bool IsEnchantable(this ItemObject item)
         {
             return (item.HasArmorComponent || item.HasWeaponComponent) && !item.IsMagicalItem();
