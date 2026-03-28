@@ -2863,7 +2863,7 @@
   <string id="tor_hire_companion_p.tor_wanderer_dawi_2" text="{=str_tor_hire_companion_p_tor_wanderer_dawi_2}A master of inventions on my side would be a great boon." />
   <string id="tor_companion_leave_p.tor_wanderer_dawi_2" text="{=str_tor_companion_leave_p_tor_wanderer_dawi_2}Forgive me, I need to leave." />
   <string id="tor_hire_companion_payment.tor_wanderer_dawi_2" text="{=str_tor_hire_companion_payment_tor_wanderer_dawi_2}My services do not come cheap. If there is no objections, sign here for my contract and your non-disclosure agreement: {GOLD_AMOUNT}{GOLD_ICON}" />
-  <string id="tor_hire_accept_p.tor_wanderer_dawi_2" text="{=str_tor_hire_accept_p_tor_wanderer_dawi_2}SSo be it… Take this coffer of {GOLD_AMOUNT} then." />
+  <string id="tor_hire_accept_p.tor_wanderer_dawi_2" text="{=str_tor_hire_accept_p_tor_wanderer_dawi_2}So be it… Take this coffer of {GOLD_AMOUNT} then." />
   <string id="tor_hire_decline_p.tor_wanderer_dawi_2" text="{=str_tor_hire_decline_p_tor_wanderer_dawi_2}My apologies, master dwarf. I cannot afford that just yet." />
 
 <!-- ========================================== -->

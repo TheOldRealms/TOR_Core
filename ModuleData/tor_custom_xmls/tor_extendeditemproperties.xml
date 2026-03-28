@@ -4952,6 +4952,18 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_gun_grudge_raker_001">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_gun_dronazgrund">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dw_weapon_gun_drakefire_pistol">
     <ItemTraits />
     <DamageProportions>
@@ -4959,6 +4971,12 @@
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dw_weapon_gun_drakegun">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_weapon_gun_trollhammer">
     <ItemTraits />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -5044,6 +5062,12 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_orc_arrow_003">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_weapon_ammo_buckshot">
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -5686,7 +5710,7 @@
     <ItemTraits>
       <ItemTrait>use_ink_manual_greenskin</ItemTrait>
     </ItemTraits>
-    <Description>Dis rock fing shows ya 'ow to make speshul fings like dem glowy choppas.</Description>
+    <Description>Learn about da magic fings from da piktures on da rok</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_emp_enchant_ghur_wildform">
     <ItemTraits>
