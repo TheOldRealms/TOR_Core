@@ -7124,7 +7124,7 @@
       <Location id="center" scene_name="TOR_bretonnia_city_001" scene_name_1="TOR_bretonnia_city_001" scene_name_2="TOR_bretonnia_city_001" scene_name_3="TOR_bretonnia_city_001" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
       <Location id="house_2" scene_name="vlandia_house_d_interior_house" />
@@ -10335,7 +10335,7 @@
       <Location id="center" scene_name="TOR_bretonnia_city_001" scene_name_1="TOR_bretonnia_city_001" scene_name_2="TOR_bretonnia_city_001" scene_name_3="TOR_bretonnia_city_001" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
       <Location id="house_2" scene_name="vlandia_house_d_interior_house" />
