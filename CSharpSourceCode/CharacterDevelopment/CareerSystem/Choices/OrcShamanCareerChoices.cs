@@ -149,7 +149,7 @@ public class OrcShamanCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 
     protected override void InitializeKeyStones()
     {
-        _shamanRoot.Initialize(CareerID, "Da Shaman iz da centah uv da WAAAGH! You kunnect yerself to da boys 'round, an' dey will give you more ju-ju powa' fer ZAPPIN' an' BLASTIN'. But if da boys start dyin', den yer zappy energy gets blasted outta ya, an' they take it wiv dem! Da betta ya get, de more you can kunnect to da WAAAGH!. An' remember to stay close to da old ways. Wearin' 'ard bits an' metal an' stuff like dem 'ard boyz iz gunna get ya less ju-ju powa'. ", null, true,
+        _shamanRoot.Initialize(CareerID, "Da Shaman iz da centah uv da WAAAGH! You kunnect yerself to da boys 'round, an' dey will give you more ju-ju powa' fer ZAPPIN' an' BLASTIN'. But if da boys start dyin', den yer zappy energy gets blasted outta ya, an' they take it wiv dem! Da betta ya get, de more you can kunnect to da WAAAGH!. An' remember to stay close to da old ways. Wearin' 'ard bits an' metal an' stuff like dem 'ard boyz iz gunna get ya less ju-ju powa'.", null, true,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>());
 
         // Bones an' Firepitz Keystone: Ability is charged at battle start
@@ -157,7 +157,7 @@ public class OrcShamanCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             new List<CareerChoiceObject.MutationObject>());
 
         // Visions uv da Orc-ayne Keystone: Gaze uv Mork is free and ready after casting CA
-        _visionsUvDaOrcayneKeystone.Initialize(CareerID, "Gaze uv Mork iz free an' ready fer castin' afta' da Call uv da Great Green ", "VisionsUvDaOrcayne", false, ChoiceType.Keystone,
+        _visionsUvDaOrcayneKeystone.Initialize(CareerID, "Gaze uv Mork iz free an' ready fer castin' afta' da Call uv da Great Green", "VisionsUvDaOrcayne", false, ChoiceType.Keystone,
             new List<CareerChoiceObject.MutationObject>());
 
         // Giftz from Da Great Green Keystone: Call uf da Green scales with Spellcraft skill
@@ -175,7 +175,7 @@ public class OrcShamanCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             });
 
         // Brutal Cunnin' Keystone: 10% extra resistance buff
-        _brutalCunninKeystone.Initialize(CareerID, "Call uv da Great Green gives da Boys 10% 'ardiness fer sum time ", "BrutalCunnin", false, ChoiceType.Keystone,
+        _brutalCunninKeystone.Initialize(CareerID, "Call uv da Great Green gives da Boys 10% 'ardiness fer sum time", "BrutalCunnin", false, ChoiceType.Keystone,
             new List<CareerChoiceObject.MutationObject>());
 
         // Cunnin' Brutality Keystone: 15% damage bonus for Greenskins
@@ -204,7 +204,7 @@ public class OrcShamanCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
     protected override void InitializePassives()
     {
         // Bones an' Firepitz Passives
-        _bonesAnFirepitzPassive1.Initialize(CareerID, "10% betta killin' ", "BonesAnFirepitz", false, ChoiceType.Passive, null,
+        _bonesAnFirepitzPassive1.Initialize(CareerID, "10% betta killin'", "BonesAnFirepitz", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
         _bonesAnFirepitzPassive2.Initialize(CareerID, "10 more mumbo-jumbo pointz", "BonesAnFirepitz", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
@@ -216,12 +216,12 @@ public class OrcShamanCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         // Visions uv da Orc-ayne Passives
         _visionsUvDaOrcaynePassive1.Initialize(CareerID, "Da mob can see fartha", "VisionsUvDaOrcayne", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(35, PassiveEffectType.PartySpottingRange, true));
-        _visionsUvDaOrcaynePassive2.Initialize(CareerID, "Mumbo-jumbo is 10% betta killy when wearin' armour bits below 15 ", "VisionsUvDaOrcayne", false, ChoiceType.Passive, null,
+        _visionsUvDaOrcaynePassive2.Initialize(CareerID, "Mumbo-jumbo is 10% betta killy when wearin' armour bits below 15", "VisionsUvDaOrcayne", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell, (attacker, victim, mask) =>
                 attacker.IsMainAgent && mask == AttackTypeMask.Spell && IsWearingLightArmor(attacker)));
-        _visionsUvDaOrcaynePassive3.Initialize(CareerID, "More meat an' shinies afta lootin' Idolz ", "VisionsUvDaOrcayne", false, ChoiceType.Passive, null,
+        _visionsUvDaOrcaynePassive3.Initialize(CareerID, "More meat an' shinies afta lootin' Idolz", "VisionsUvDaOrcayne", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special, true)); // CUSTOM - needs implementation
-        _visionsUvDaOrcaynePassive4.Initialize(CareerID, "10% betta killin when carryin' a staff ", "VisionsUvDaOrcayne", false, ChoiceType.Passive, null,
+        _visionsUvDaOrcaynePassive4.Initialize(CareerID, "10% betta killin when carryin' a staff", "VisionsUvDaOrcayne", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.Melee, (attacker, victim, mask) =>
                 attacker.IsMainAgent
                 && mask == AttackTypeMask.Melee
@@ -231,11 +231,11 @@ public class OrcShamanCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         // Giftz from Da Great Green Passives
         _giftzFromDaGreatGreenPassive1.Initialize(CareerID, "More Faith eks-perr-yens afta' lootin' Idols", "GiftzFromDaGreatGreen", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.Special, true)); // CUSTOM - needs implementation
-        _giftzFromDaGreatGreenPassive2.Initialize(CareerID, "10% betta mumbo-jumbo killin' ", "GiftzFromDaGreatGreen", false, ChoiceType.Passive, null,
+        _giftzFromDaGreatGreenPassive2.Initialize(CareerID, "10% betta mumbo-jumbo killin'", "GiftzFromDaGreatGreen", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
         _giftzFromDaGreatGreenPassive3.Initialize(CareerID, "50 more tuffness", "GiftzFromDaGreatGreen", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
-        _giftzFromDaGreatGreenPassive4.Initialize(CareerID, "5% betta 'ardiness ", "GiftzFromDaGreatGreen", false, ChoiceType.Passive, null,
+        _giftzFromDaGreatGreenPassive4.Initialize(CareerID, "5% betta 'ardiness", "GiftzFromDaGreatGreen", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 5), AttackTypeMask.Melee | AttackTypeMask.Ranged));
 
         // Brutal Cunnin' Passives
@@ -243,15 +243,15 @@ public class OrcShamanCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             new CareerChoiceObject.PassiveEffect(60, PassiveEffectType.PartySize));
         _brutalCunninPassive2.Initialize(CareerID, "50 more tuffness", "BrutalCunnin", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
-        _brutalCunninPassive3.Initialize(CareerID, "10% betta killin' ", "BrutalCunnin", false, ChoiceType.Passive, null,
+        _brutalCunninPassive3.Initialize(CareerID, "10% betta killin'", "BrutalCunnin", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee, (attacker, victim, mask) =>
                 attacker.IsMainAgent && mask == AttackTypeMask.Melee && !attacker.WieldedWeapon.IsEmpty &&
                 (attacker.WieldedWeapon.CurrentUsageItem.WeaponClass == WeaponClass.OneHandedAxe || attacker.WieldedWeapon.CurrentUsageItem.WeaponClass == WeaponClass.TwoHandedAxe)));
-        _brutalCunninPassive4.Initialize(CareerID, "No more stumblin' from puny hits ", "BrutalCunnin", false, ChoiceType.Passive, null,
+        _brutalCunninPassive4.Initialize(CareerID, "No more stumblin' from puny hits", "BrutalCunnin", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.ShruggedOff));
 
         // Cunnin' Brutality Passives
-        _cunninBrutalityPassive1.Initialize(CareerID, "Mumbo-jumbo is 10% betta killy when wearin' armour bits below 15 ", "CunninBrutality", false, ChoiceType.Passive, null,
+        _cunninBrutalityPassive1.Initialize(CareerID, "Mumbo-jumbo is 10% betta killy when wearin' armour bits below 15", "CunninBrutality", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell, (attacker, victim, mask) =>
                 attacker.IsMainAgent && mask == AttackTypeMask.Spell && IsWearingLightArmor(attacker)));
         _cunninBrutalityPassive2.Initialize(CareerID, "10 more mumbo-jumbo pointz", "CunninBrutality", false, ChoiceType.Passive, null,
@@ -262,7 +262,7 @@ public class OrcShamanCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
 
         // Gork an' Mork are watchin' Passives
-        _gorkAnMorkAreWatchinPassive1.Initialize(CareerID, "15% betta mumbo-jumbo 'ardiness when wearin' armour bits below 15 ", "GorkAnMorkAreWatchin", false, ChoiceType.Passive, null,
+        _gorkAnMorkAreWatchinPassive1.Initialize(CareerID, "15% betta mumbo-jumbo 'ardiness when wearin' armour bits below 15", "GorkAnMorkAreWatchin", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 15), AttackTypeMask.Spell, (attacker, victim, mask) =>
                 victim.IsMainAgent && IsWearingLightArmor(victim)));
         _gorkAnMorkAreWatchinPassive2.Initialize(CareerID, "10 more mumbo-jumbo pointz", "GorkAnMorkAreWatchin", false, ChoiceType.Passive, null,
@@ -278,7 +278,7 @@ public class OrcShamanCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
         _powerUvDaWaaaghPassive2.Initialize(CareerID, "30 more mumbo-jumbo pointz fer Shaman Bosses", "PowerUvDaWaaagh", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special, true)); // CUSTOM - companion-specific buff
-        _powerUvDaWaaaghPassive3.Initialize(CareerID, "10% betta Lukk when wearin' armour bits below 15 ", "PowerUvDaWaaagh", false, ChoiceType.Passive, null,
+        _powerUvDaWaaaghPassive3.Initialize(CareerID, "10% betta Lukk when wearin' armour bits below 15", "PowerUvDaWaaagh", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.All, (attacker, victim, mask) =>
                 victim.IsMainAgent && IsWearingLightArmor(victim)));
         _powerUvDaWaaaghPassive4.Initialize(CareerID, "60 more Boys fer da mob", "PowerUvDaWaaagh", false, ChoiceType.Passive, null,
