@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.AgentOrigins;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Settlements;
@@ -25,6 +26,7 @@ namespace TOR_Core.CampaignMechanics.BountyMaster
             CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
             CampaignEvents.GameMenuOpened.AddNonSerializedListener(this, OnGameMenuOpened);
             CampaignEvents.BeforeMissionOpenedEvent.AddNonSerializedListener(this, OnBeforeMissionStart);
+            CampaignEvents.OnSettlementOwnerChangedEvent.AddNonSerializedListener(this, OnSettlementOwnerChanged);
         }
 
         private void OnNewGameCreated(CampaignGameStarter obj)
@@ -35,6 +37,32 @@ namespace TOR_Core.CampaignMechanics.BountyMaster
                 {
                     CreateBountyMaster(town.Settlement);
                 }
+            }
+        }
+
+        private void OnSettlementOwnerChanged(Settlement settlement, bool openToClaim, Hero newOwner, Hero oldOwner, Hero capturerHero, ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail detail)
+        {
+            if (!settlement.IsTown)
+            {
+                return;
+            }
+
+            var bountyMaster = GetBountyMasterForTown(settlement);
+            var newOwnerCultureId = newOwner.MapFaction.Culture.StringId;
+
+            if (newOwnerCultureId == "empire")
+            {
+                if (bountyMaster == null)
+                {
+                    CreateBountyMaster(settlement);
+                }
+
+                return;
+            }
+            if (bountyMaster != null)
+            {
+                DisableHeroAction.Apply(bountyMaster);
+                _settlementToBountyMasterMap.Remove(settlement.StringId);
             }
         }
 
