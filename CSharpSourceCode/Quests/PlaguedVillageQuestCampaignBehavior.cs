@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SandBox;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Conversation;
@@ -188,13 +189,17 @@ namespace TOR_Core.Quests
             {
                 OfferDialogFlow = DialogFlow.CreateDialogFlow("issue_classic_quest_start", 100).NpcLine(TORTextHelper.GetTextObject("tor_quest_plagued_village_offer_dialog", "Excellent. Do not underestimate the ruinous powers, unwavering vigilance is required on your quest!"), null, null).Condition(() => Hero.OneToOneConversationHero == QuestGiver).Consequence(OnQuestAccepted).CloseDialog();
                 DiscussDialogFlow = DialogFlow.CreateDialogFlow("quest_discuss", 100).NpcLine(TORTextHelper.GetTextObject("tor_quest_plagued_village_discuss_dialog", "It was good doing business with you."), null, null).Condition(() => Hero.OneToOneConversationHero == QuestGiver).CloseDialog();
-                Campaign.Current.ConversationManager.AddDialogFlow(DialogFlow.CreateDialogFlow("start", 199).NpcLine("{=nurgle_cultist_start}Wait, wait, wait... There is no need for violence!").Condition(() => Mission.Current != null && Mission.Current.SceneName == "TOR_nurgle_lair_001")
+                Campaign.Current.ConversationManager.AddDialogFlow(DialogFlow.CreateDialogFlow("start", 199).NpcLine("{=nurgle_cultist_start}Wait, wait, wait... There is no need for violence!").Condition(() => Mission.Current != null && Mission.Current.SceneName == "TOR_quest_nurgle_lair_001")
                     .NpcLine("{=nurgle_cultist_continue}Papa Nurgle takes care of his own... his Gift is yours if you accept it. (+20 maximum hit points permanently)")
                     .BeginPlayerOptions()
                     .PlayerOption("{=nurgle_gift_accept}I accept the Gift.")
-                    .NpcLine("{=nurgle_gift_accepted}Welcome to the fold brother.").Consequence(HandleAccept).CloseDialog()
+                    .NpcLine("{=nurgle_gift_accepted}Welcome to the fold brother.").
+                    Consequence(HandleAccept).
+                    CloseDialog()
+                    
                     .PlayerOption("{=nurgle_gift_deny}Your vile schemes end here. The cries of this suffering village calls out for justice. Die!")
-                    .NpcLine("{=nurgle_gift_denied}You will regret this.").Consequence(TurnHostile).CloseDialog()
+                    .Consequence(TurnHostile)
+                    .CloseDialog()
                     .EndPlayerOptions());
             }
 
@@ -220,7 +225,7 @@ namespace TOR_Core.Quests
 
             private void MissionTick(float dt)
             {
-                if (Mission.Current.SceneName == "TOR_nurgle_lair_001" && _madeDeal)
+                if (Mission.Current.SceneName == "TOR_quest_nurgle_lair_001" && _madeDeal)
                 {
                     var logic = Mission.Current.GetMissionBehavior<QuestFightMissionController>();
                     if (logic != null)
@@ -254,14 +259,7 @@ namespace TOR_Core.Quests
 
             private void TurnHostile()
             {
-                Mission.Current.SetMissionMode(MissionMode.Battle, false);
-                foreach (var agent in Mission.Current.Agents)
-                {
-                    if (agent.IsAIControlled && agent.IsHuman && agent.IsActive())
-                    {
-                        agent.SetWatchState(Agent.WatchState.Alarmed);
-                    }
-                }
+                TORMissionHelper.MakeEnemyAgentsHostile();
             }
 
             private void SettlementEntered(MobileParty party, Settlement settlement, Hero hero)
