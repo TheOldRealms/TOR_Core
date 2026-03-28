@@ -34,6 +34,11 @@ namespace TOR_Core.BattleMechanics.Firearms
         private const float _explosionRadius = 6;
         private const float __explosionDamageVariance = 0.25f;
 
+        // Trollhammer torpedo explosion - 30% smaller than cannonball
+        private const int _torpedoExplosionDamage = 125;
+        private const float _torpedoExplosionRadius = 4.2f; // 6 * 0.7 = 4.2
+        private const float _torpedoExplosionDamageVariance = 0.25f;
+
         public FirearmsMissionLogic()
         {
             for (int i = 0; i < _grenadeSoundNames.Length; i++)
@@ -428,8 +433,8 @@ namespace TOR_Core.BattleMechanics.Firearms
             if (missileObj.Weapon.Item.StringId.Contains("trollhammer_torpedo"))
             {
                 RunExplosionSoundEffects(pos, "mortar_explosion_1");
-                RunExplosionVisualEffects(pos, "cannonball_explosion_7");
-                ApplySplashDamage(attackerAgent, pos, _explosionRadius, _explosionDamage, __explosionDamageVariance);
+                RunExplosionVisualEffects(pos, "psys_fireball_explosion_1"); // Test with fireball explosion
+                ApplySplashDamage(attackerAgent, pos, _torpedoExplosionRadius, _torpedoExplosionDamage, _torpedoExplosionDamageVariance);
             }
 
             if (missileObj.Weapon.Item.StringId.Contains("cannonball"))

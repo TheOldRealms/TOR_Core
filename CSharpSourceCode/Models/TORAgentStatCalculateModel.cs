@@ -389,7 +389,15 @@ namespace TOR_Core.Models
                     {
                         if (character.IsIronbreakerUnit())
                         {
-                            agentDrivenProperties.WeaponInaccuracy += 0.095f;
+                            if (!character.StringId.Contains("trollhammer"))
+                            {
+                                agentDrivenProperties.WeaponInaccuracy += 0.095f;
+                            }
+                            else
+                            {
+                                agentDrivenProperties.WeaponInaccuracy += 0.02f;
+                            }
+            
 
 
                             var modificator = HeavyDwarfSpeedModificatior;
