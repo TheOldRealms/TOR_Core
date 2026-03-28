@@ -177,7 +177,7 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
 
         private void NecrachDialogLines(CampaignGameStarter starter)
         {
-            starter.AddPlayerLine("request_bloodkiss", "lord_talk_speak_diplomacy_2", "bloodkiss_necrach_root", TORTextHelper.GetText("tor_bloodkiss_necrach_request", "My lord. Zacharias. The Everliving. The disciple of Melkihor the Ancient. The most powerful of necrarchs. I wish to shed my mortal shell and serve you eternally. -"), IsEligibleForBloodKissNecrach, null);
+            starter.AddPlayerLine("request_bloodkiss", "lord_talk_speak_diplomacy_2", "bloodkiss_necrach_root", TORTextHelper.GetText("tor_bloodkiss_necrach_request", "My lord. Zacharias. The Everliving. The disciple of Melkihor the Ancient. The most powerful of necrarchs. I wish to shed my mortal shell and serve you eternally."), IsEligibleForBloodKissNecrach, null);
 
             starter.AddDialogLine("bloodkiss_request_answer", "bloodkiss_necrach_root", "bloodkiss_necrach_answer_line2", TORTextHelper.GetText("tor_bloodkiss_necrach_answer_line2", "You has served me and mine loyally, as my teacher did with me long ago. I will share the gift of immortality with you"), null, null);
             starter.AddDialogLine("bloodkiss_request_answer2", "bloodkiss_necrach_answer_line2", "bloodkiss_necrach_areyouready", TORTextHelper.GetText("tor_bloodkiss_necrach_answer_line3", "Are you sure you are ready to leave your entire mortal life behind and enter forever into the lap of eternal night?"), null, null);

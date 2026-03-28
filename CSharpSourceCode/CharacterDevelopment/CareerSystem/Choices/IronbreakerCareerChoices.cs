@@ -296,7 +296,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
     {
         _nestCleansingPassive1.Initialize(CareerID, "Increases Hitpoints by 10.", "NestCleansing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
         _nestCleansingPassive2.Initialize(CareerID, "Increases Fire resistance by 20%.", "NestCleansing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Fire, 20), AttackTypeMask.All));
-        _nestCleansingPassive3.Initialize(CareerID, "Get 2 additional charges for explosive charges.", "NestCleansing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
+        _nestCleansingPassive3.Initialize(CareerID, "Get 2 additional charges for explosive charges", "NestCleansing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
         _nestCleansingPassive4.Initialize(CareerID, "Ironbreaker troops have a 50% chance to gain 1 explosive charge.", "NestCleansing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
 
         _tunnelWatchPassive1.Initialize(CareerID, "Increases Hitpoints by 15.", "TunnelWatch", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
@@ -311,7 +311,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
         _ironPricePassive4.Initialize(CareerID, "Increases Hitpoints by 10.", "IronPrice", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
 
         _shieldwallPassive1.Initialize(CareerID, "Increases Hitpoints by 10.", "ShieldWall", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
-        _shieldwallPassive2.Initialize(CareerID, "Onehanded combat skill for dwarf units is increased by 20.", "ShieldWall", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, nameof(DefaultSkills.OneHanded), characterObject => characterObject.Culture.StringId == TORConstants.Cultures.DAWI));
+        _shieldwallPassive2.Initialize(CareerID, "Onehanded combat skill for dwarf units is increased by 20", "ShieldWall", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, nameof(DefaultSkills.OneHanded), characterObject => characterObject.Culture.StringId == TORConstants.Cultures.DAWI));
         _shieldwallPassive3.Initialize(CareerID, "10% physical resistance while wearing a shield.", "ShieldWall", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.All,
             (attacker, victim, mask) => mask == AttackTypeMask.Melee && victim.IsMainAgent && victim.WieldedOffhandWeapon.IsShield()));
         _shieldwallPassive4.Initialize(CareerID, "For every point in smithing gain 0.5% shield hitpoints.", "ShieldWall", false, ChoiceType.Passive, null);

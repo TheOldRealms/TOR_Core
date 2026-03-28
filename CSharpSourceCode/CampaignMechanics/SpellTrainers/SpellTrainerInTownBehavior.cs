@@ -223,8 +223,8 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
         {
             List<LoreObject> SpellweaverLores = LoreObject.GetAll().Where(x => x.ID == "HighMagic" || x.ID == "DarkMagic").ToList();
 
-            obj.AddDialogLine("trainer_spellsinger_start", "start", "choices_spellsinger",TORTextHelper.GetText("tor_spelltrainer_spellsinger_start","I welcome you child of Athel Loren."), isSpellsingerTrainer, null, 200, null);
-            obj.AddDialogLine("trainer_spellsinger_start", "hub_spellsinger", "choices_spellsinger", TORTextHelper.GetText("tor_spelltrainer_spellsinger_reintro","Is there more you seek? Speak your desires"), isSpellsingerTrainer, null, 200, null);
+            obj.AddDialogLine("trainer_spellsinger_start", "start", "choices_spellsinger",TORTextHelper.GetText("tor_spelltrainer_spellsinger_start","I welcome you, child of Athel Loren."), isSpellsingerTrainer, null, 200, null);
+            obj.AddDialogLine("trainer_spellsinger_start", "hub_spellsinger", "choices_spellsinger", TORTextHelper.GetText("tor_spelltrainer_spellsinger_reintro","Is there more you seek? Speak your desires."), isSpellsingerTrainer, null, 200, null);
 
             obj.AddPlayerLine("trainer_spellsinger_learnmagic", "choices_spellsinger", "trainer_spellsinger_learnmagic_answer", TORTextHelper.GetText("tor_spelltrainer_spellsinger_learnmagic","Greetings wise Spellsinger. I am seeking the capabilities of performing magic."), () => Hero.MainHero.HasCareer(TORCareers.Warden) && !Hero.MainHero.IsSpellCaster(), null, 200, null);
             obj.AddPlayerLine("trainer_spellsinger_learnmagic_second_lore", "choices_spellsinger", "trainer_spellsinger_learnmagic_answer_secondlore", TORTextHelper.GetText("tor_spelltrainer_spellsinger_learn_magic_warden_second_lore", "I want to enhance my magic capabilities."), () => Hero.MainHero.HasCareer(TORCareers.Warden) &&
@@ -252,19 +252,19 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
             obj.AddPlayerLine("trainer_spellsinger_learnlore", "choices_spellsinger", "choices_spellsinger", TORTextHelper.GetText("tor_spelltrainer_spellsinger_learnlore", "Teach me one of Ariel's many pathways."), () => MobileParty.MainParty.HasSpellCasterMember() && spellsingerCondition() && SpellsingerAdditonalLoreCondition(), AdditionalLoresPrompt, 200, null);
 
-            obj.AddDialogLine("trainer_spellsinger_weaver", "spellweaver_choice_dialog", "spellweaver_choice_player", TORTextHelper.GetText("tor_spelltrainer_spellsinger_weaver_choice", "A spellsinger, can pick either the pathway of the Darkweaver or the one of the Highweaver. Choose wisely"), isSpellsingerTrainer, null, 200, null);
+            obj.AddDialogLine("trainer_spellsinger_weaver", "spellweaver_choice_dialog", "spellweaver_choice_player", TORTextHelper.GetText("tor_spelltrainer_spellsinger_weaver_choice", "A spellsinger can pick either the pathway of the Darkweaver or the one of the Highweaver. Choose wisely."), isSpellsingerTrainer, null, 200, null);
             obj.AddPlayerLine("spellweaver_choice_player", "spellweaver_choice_player", "choices_spellsinger", TORTextHelper.GetText("tor_spelltrainer_spellweaver_choice", "Let me choose."), () => MobileParty.MainParty.HasSpellCasterMember() && spellsingerCondition(), spellweaverPrompt, 200, null);
 
-            obj.AddDialogLine("spellweaver_companion_choice_dialog", "spellweaver_companion_choice_dialog", "spellweaver_choice_lores_companion", TORTextHelper.GetText("tor_spelltrainer_spellsinger_companion_choice", "A Highweaver, or Darkweaver... tough choice"), isSpellsingerTrainer, null, 200, null);
+            obj.AddDialogLine("spellweaver_companion_choice_dialog", "spellweaver_companion_choice_dialog", "spellweaver_choice_lores_companion", TORTextHelper.GetText("tor_spelltrainer_spellsinger_companion_choice", "A Highweaver, or Darkweaver... a tough choice"), isSpellsingerTrainer, null, 200, null);
             obj.AddPlayerLine("spellweaver_choice_lores_companion", "spellweaver_choice_lores_companion", "choices_spellsinger", TORTextHelper.GetText("tor_spelltrainer_spellsinger_companion_choose", "Let me choose."), () => MobileParty.MainParty.HasSpellCasterMember() && spellsingerCondition(), spellweaverCompanionPrompt, 200, null);
 
 
 
-            obj.AddDialogLine("trainer_spellsinger_weaver", "spellweaver_choice_dialog", "close_window", TORTextHelper.GetText("tor_spelltrainer_spellsinger_goodbye", "May Ariel guide you on all your paths through her garden."), isSpellsingerTrainer, null, 200, null);
+            obj.AddDialogLine("trainer_spellsinger_weaver", "spellweaver_choice_dialog", "close_window", TORTextHelper.GetText("tor_spelltrainer_spellsinger_goodbye", "May She guide you on all your paths through her garden."), isSpellsingerTrainer, null, 200, null);
 
 
-            obj.AddPlayerLine("trainer_spellsinger_playergoodbye", "choices_spellsinger", "saygoodbye", TORTextHelper.GetText("tor_spelltrainer_spellsinger_player_goodbye", "Ariel with you."), null, null, 200, null);
-            obj.AddDialogLine("trainer_spellsinger_goodbye", "saygoodbye", "close_window", TORTextHelper.GetText("tor_spelltrainer_spellsinger_goodbye", "May Ariel guide you on all your paths through her garden."), isSpellsingerTrainer, null, 200, null);
+            obj.AddPlayerLine("trainer_spellsinger_playergoodbye", "choices_spellsinger", "saygoodbye", TORTextHelper.GetText("tor_spelltrainer_spellsinger_player_goodbye", "Ariel be with you."), null, null, 200, null);
+            obj.AddDialogLine("trainer_spellsinger_goodbye", "saygoodbye", "close_window", TORTextHelper.GetText("tor_spelltrainer_spellsinger_goodbye", "May She guide you on all your paths through her garden."), isSpellsingerTrainer, null, 200, null);
             obj.AddDialogLine("trainer_spellsinger_afterlearnspells", "openbook_spellsinger", "hub_spellsinger", TORTextHelper.GetText("tor_spelltrainer_spellsinger_close_book", "A new facet of Ariel's infinite knowledge."), null, openbookconsequence, 200, null);
 
 

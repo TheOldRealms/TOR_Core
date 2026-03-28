@@ -152,7 +152,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Replace
                     }
                 });
-            _enhancedHorseCombatKeystone.Initialize(CareerID, "Ability scales now  with the Polearm skill and starts recharged.", "EnhancedHorseCombat", false,
+            _enhancedHorseCombatKeystone.Initialize(CareerID, "Ability now scales with the Polearm skill and starts recharged.", "EnhancedHorseCombat", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
