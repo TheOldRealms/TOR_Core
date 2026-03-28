@@ -146,7 +146,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
 
     protected override void InitializeKeyStones()
     {
-        _ironbreakerRoot.Initialize(CareerID, "The Character will not receive any damage for a short amount of time and will shrug any damage off. The movement speed is reduced by 25% though. The duration expands with growing athletics skill.", null, true,
+        _ironbreakerRoot.Initialize(CareerID, "Khazukan Kazakit-ha! For a brief period become Impenetrable. Gain +100% personal 'Ward Save', but move 25% slower. For every level of Athletics, gain 0.004s of Impenetrable. (Ability is charged by recieving and blocking damage.)", null, true,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -297,7 +297,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
         _nestCleansingPassive1.Initialize(CareerID, "Increases Hitpoints by 10.", "NestCleansing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
         _nestCleansingPassive2.Initialize(CareerID, "Increases Fire resistance by 20%.", "NestCleansing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Fire, 20), AttackTypeMask.All));
         _nestCleansingPassive3.Initialize(CareerID, "Get 2 additional charges for explosive charges", "NestCleansing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
-        _nestCleansingPassive4.Initialize(CareerID, "Ironbreaker troops have a 50% chance to gain 1 explosive charge.", "NestCleansing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
+        _nestCleansingPassive4.Initialize(CareerID, "+50% chance of an 'Ironbreaker' troop to not consume an explosive charge when used.", "NestCleansing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
 
         _tunnelWatchPassive1.Initialize(CareerID, "Increases Hitpoints by 15.", "TunnelWatch", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
         _tunnelWatchPassive2.Initialize(CareerID, "Party movement speed is increased by 1.", "TunnelWatch", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.PartyMovementSpeed));
@@ -307,7 +307,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
 
         _ironPricePassive1.Initialize(CareerID, "Hits below 15 damage do not stagger the player.", "IronPrice", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.ShruggedOff));
         _ironPricePassive2.Initialize(CareerID, "Attacks deal bonus damage against shields.", "IronPrice", false, ChoiceType.Passive, null);
-        _ironPricePassive3.Initialize(CareerID, "All Ironbreaker recruitment and upgrade costs are reduced by 25%.", "IronPrice", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpgradeCostModifier, true, characterObject => characterObject.HasAttribute("Ironbreaker")));
+        _ironPricePassive3.Initialize(CareerID, "-25% upgrade/recruitment costs for 'Ironbreaker' troops.", "IronPrice", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpgradeCostModifier, true, characterObject => characterObject.HasAttribute("Ironbreaker")));
         _ironPricePassive4.Initialize(CareerID, "Increases Hitpoints by 10.", "IronPrice", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
 
         _shieldwallPassive1.Initialize(CareerID, "Increases Hitpoints by 10.", "ShieldWall", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
@@ -320,18 +320,18 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
             (attacker, victim, mask) => attacker.IsPlayerUnit && !attacker.IsHero && mask == AttackTypeMask.Ranged && attacker.Character.StringId.Contains("IronDrake")));
         _ironDrakesPassive2.Initialize(CareerID, "Iron drakes custom resource cost is reduced.", "IronDrakes", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpgradeCostModifier, true, characterObject => characterObject.StringId.Contains("Irondrake")));
         _ironDrakesPassive3.Initialize(CareerID, "12 Extra ammo for drakfire gun.", "IronDrakes", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
-        _ironDrakesPassive4.Initialize(CareerID, "Each Ironbeard in your party increases ammo for Ironbreaker units by 10%.", "IronDrakes", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
+        _ironDrakesPassive4.Initialize(CareerID, "+10% ammunition for 'Ironbreaker' troops per Ironbeard companion.", "IronDrakes", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
 
-        _gromrilArmorPassive1.Initialize(CareerID, "20% extra phyiscal resistance for ironbreaker troops.", "GromrilArmor", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Melee,
+        _gromrilArmorPassive1.Initialize(CareerID, "+20% 'Physical Resistance' for 'Ironbreaker' troops.", "GromrilArmor", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Melee,
             (attacker, victim, mask) => attacker.Team == victim.Team && attacker.Character.StringId.Contains("ironbreaker")));
 
         _gromrilArmorPassive2.Initialize(CareerID, "Increases Hitpoints by 15.", "GromrilArmor", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
         _gromrilArmorPassive3.Initialize(CareerID, "Extra 5% Wardsave if your armor weight exceeds 25.", "GromrilArmor", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 5), AttackTypeMask.All,
             (attacker, victim, attackmask) => victim.IsMainAgent && CareerChoicesHelper.ArmorWeightCheck(victim, 25, false)));
-        _gromrilArmorPassive4.Initialize(CareerID, "Iron breaker have 50% damage resistance against friendly fire.", "GromrilArmor", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 50), AttackTypeMask.All,
+        _gromrilArmorPassive4.Initialize(CareerID, "-50% damage from friendly fire for 'Ironbreaker' troops.", "GromrilArmor", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 50), AttackTypeMask.All,
             (attacker, victim, mask) => attacker.Team == victim.Team && attacker.Character.StringId.Contains("ironbreaker")));
 
-        _runeWeaponsPassive1.Initialize(CareerID, "Ironbreakers gain 10% extra damage", "RuneWeapons", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Holy, 10), AttackTypeMask.Melee,
+        _runeWeaponsPassive1.Initialize(CareerID, "+10% 'Physical' damage for 'Ironbreaker' troops.", "RuneWeapons", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Holy, 10), AttackTypeMask.Melee,
             (attacker, victim, mask) => attacker.BelongsToMainParty() && mask == AttackTypeMask.Melee && attacker.Character.StringId == "ironbreaker"));
         _runeWeaponsPassive2.Initialize(CareerID, "Increases Magic damage by 5%.", "RuneWeapons", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 5), AttackTypeMask.Melee));
         _runeWeaponsPassive3.Initialize(CareerID, "Extra 20% armor penetration of melee attacks.", "RuneWeapons", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));

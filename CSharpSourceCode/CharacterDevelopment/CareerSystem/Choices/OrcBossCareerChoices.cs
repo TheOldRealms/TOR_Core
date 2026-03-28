@@ -179,7 +179,7 @@ public class OrcBossCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             });
 
         // Tuffer dan Nails - Add bleeding DOT
-        _tufferDanNailsKeystone.Initialize(CareerID, "Armed to da Teef now applies bleeding.", "TufferDanNails", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+        _tufferDanNailsKeystone.Initialize(CareerID, "Armed to da Teef makes da gits bleed", "TufferDanNails", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
         {
             new CareerChoiceObject.MutationObject()
             {
@@ -198,7 +198,7 @@ public class OrcBossCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         });
 
         // You an wot armour - Damage scales with Two Handed skill
-        _youAnWotArmourKeystone.Initialize(CareerID, "Armed to da Teef also scales with Two-Handed.", "YouAnWotArmour", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+        _youAnWotArmourKeystone.Initialize(CareerID, "Armed to da Teef iz betta killy wiv Two Handed pointz", "YouAnWotArmour", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
         {
             new CareerChoiceObject.MutationObject()
             {
@@ -216,7 +216,7 @@ public class OrcBossCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         });
 
         // Good wiv blockas - Damage scales with One Handed skill
-        _goodwivBlockasKeystone.Initialize(CareerID, "Armed to da Teef also scales with One-Handed.", "GoodwivBlockas", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+        _goodwivBlockasKeystone.Initialize(CareerID, "Armed to da Teef iz betta killy wiv One Handed pointz", "GoodwivBlockas", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
         {
             new CareerChoiceObject.MutationObject()
             {
@@ -233,7 +233,7 @@ public class OrcBossCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         });
 
         // Meanest an da baddest - Damage scales with Polearm skill
-        _meanestanDaBaddestKeystone.Initialize(CareerID, "Armed to da Teef also scales with Polearm.", "MeanestanDaBaddest", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+        _meanestanDaBaddestKeystone.Initialize(CareerID, "Armed to da Teef iz betta killy wiv Polearm pointz", "MeanestanDaBaddest", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
         {
             new CareerChoiceObject.MutationObject()
             {
@@ -250,10 +250,10 @@ public class OrcBossCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         });
 
         // Get to da Choppas - Friendly buff (handled in script)
-        _getToDaChoppasKeystone.Initialize(CareerID, "Armed to da Teef grants nearby allies +20% 'Physical' damage.", "GetToDaChoppas", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>());
+        _getToDaChoppasKeystone.Initialize(CareerID, "Armed to da Teef makes da Boys proppa killy fer sum time", "GetToDaChoppas", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>());
 
         // Leave nuffing behind - Add slow debuff
-        _leafNuffinBehinKeystone.Initialize(CareerID, "Armed to da Teef reduces enemy movement speed by -20%.", "LeafNuffinBehin", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+        _leafNuffinBehinKeystone.Initialize(CareerID, "Armed to da Teef makes da gits run slowa'", "LeafNuffinBehin", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
         {
             new CareerChoiceObject.MutationObject()
             {
@@ -272,7 +272,7 @@ public class OrcBossCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         });
 
         // Best of da Best - Add knockdown via shockwave
-        _bestofDaBestKeystone.Initialize(CareerID, "Armed to da Teef slams enemies to the ground.", "BestofDaBest", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+        _bestofDaBestKeystone.Initialize(CareerID, "Armed to da Teef bashes gits to da ground", "BestofDaBest", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
         {
             new CareerChoiceObject.MutationObject()
             {
@@ -288,55 +288,55 @@ public class OrcBossCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
     protected override void InitializePassives()
     {
         // TufferDanNails
-        _tufferDanNailsPassive1.Initialize(CareerID, "+10% personal 'Physical Resistance'.", "TufferDanNails", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee | AttackTypeMask.Ranged));
-        _tufferDanNailsPassive2.Initialize(CareerID, "When traveling, triple your personal healing rate.", "TufferDanNails", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.HealthRegeneration));
-        _tufferDanNailsPassive3.Initialize(CareerID, "+75 personal Hitpoints.", "TufferDanNails", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(75, PassiveEffectType.Health));
-        _tufferDanNailsPassive4.Initialize(CareerID, "Gain double the renown from battles.", "TufferDanNails", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.BattleRenownGain, true)); //applied as a factor, ie. +100%
+        _tufferDanNailsPassive1.Initialize(CareerID, "'Ardiness iz 10% betta", "TufferDanNails", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee | AttackTypeMask.Ranged));
+        _tufferDanNailsPassive2.Initialize(CareerID, "Triple 'ealin when da mob iz travellin'", "TufferDanNails", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.HealthRegeneration));
+        _tufferDanNailsPassive3.Initialize(CareerID, "75 more tuffness", "TufferDanNails", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(75, PassiveEffectType.Health));
+        _tufferDanNailsPassive4.Initialize(CareerID, "Double Renown afta' winnin' scraps", "TufferDanNails", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.BattleRenownGain, true)); //applied as a factor, ie. +100%
 
         // YouAnWotArmour
-        _youAnWotArmourPassive1.Initialize(CareerID, "+10% melee 'Physical' damage for all 'Orc' troops.", "YouAnWotArmour", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee, (attacker, victim, mask) =>
+        _youAnWotArmourPassive1.Initialize(CareerID, "10% betta killin' fer Boys an' Boar Boys", "YouAnWotArmour", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee, (attacker, victim, mask) =>
             attacker.BelongsToMainParty() && !attacker.IsHero && (attacker.Character as CharacterObject).IsOrc() && (mask == AttackTypeMask.Melee)));
-        _youAnWotArmourPassive2.Initialize(CareerID, "+10% personal melee 'Physical' damage when equipped with a Polearm, 1H, and 2H weapon.", "YouAnWotArmour", false, ChoiceType.Passive, null,
+        _youAnWotArmourPassive2.Initialize(CareerID, "10% betta killin' when wearin' small, bigga', an' longa' choppas", "YouAnWotArmour", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee, (attacker, victim, mask) =>
                 attacker.IsMainAgent && mask == AttackTypeMask.Melee && HasAllThreeWeaponTypes(attacker)));
-        _youAnWotArmourPassive3.Initialize(CareerID, "+10% personal 'Armour Penetration' for melee attacks.", "YouAnWotArmour", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-10, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
-        _youAnWotArmourPassive4.Initialize(CareerID, "Deal quadruple increased melee damage to shields.", "YouAnWotArmour", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(400, PassiveEffectType.BonusDamageShield, true));
+        _youAnWotArmourPassive3.Initialize(CareerID, "Ignore 10% uv armoured bits wiv choppas", "YouAnWotArmour", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-10, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
+        _youAnWotArmourPassive4.Initialize(CareerID, "Bash down blockas forr timez fasta'", "YouAnWotArmour", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(400, PassiveEffectType.BonusDamageShield, true));
 
         // GoodwivBlockas
-        _goodwivBlockasPassive1.Initialize(CareerID, "You are no longer staggered by hits below 30 damage.", "GoodwivBlockas", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.ShruggedOff));
-        _goodwivBlockasPassive2.Initialize(CareerID, "+10% personal 'Physical Resistance' when wielding a shield.", "GoodwivBlockas", false, ChoiceType.Passive, null,
+        _goodwivBlockasPassive1.Initialize(CareerID, "No more stumblin' from puny hits", "GoodwivBlockas", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.ShruggedOff));
+        _goodwivBlockasPassive2.Initialize(CareerID, "'Ardiness iz 10% betta when wearin' a blocka", "GoodwivBlockas", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee | AttackTypeMask.Ranged, (attacker, victim, mask) => victim.IsMainAgent && victim.WieldedOffhandWeapon.IsShield()));
-        _goodwivBlockasPassive3.Initialize(CareerID, "+25 increased party size.", "GoodwivBlockas", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.PartySize));
-        _goodwivBlockasPassive4.Initialize(CareerID, "+10% melee 'Physical' damage for 'Orc' infantry.", "GoodwivBlockas", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage,
+        _goodwivBlockasPassive3.Initialize(CareerID, "25 more Boys fer da mob", "GoodwivBlockas", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.PartySize));
+        _goodwivBlockasPassive4.Initialize(CareerID, "'Ardiness uv choppa Boys iz 10% betta", "GoodwivBlockas", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage,
             new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee, (attacker, victim, mask) => attacker.BelongsToMainParty() && !attacker.IsHero && (attacker.Character as CharacterObject).IsOrc() && !attacker.HasMount && mask == AttackTypeMask.Melee));
 
         // Meanestan'daBaddest
-        _meanestanDaBaddestPassive1.Initialize(CareerID, "+10% personal melee 'Physical' damage.", "MeanestanDaBaddest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
-        _meanestanDaBaddestPassive2.Initialize(CareerID, "+5 Companion limit.", "MeanestanDaBaddest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
-        _meanestanDaBaddestPassive3.Initialize(CareerID, "Gain double the 'Teef' when exchanging gold at kwartamastas.", "MeanestanDaBaddest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special, true));
-        _meanestanDaBaddestPassive4.Initialize(CareerID, "+5 'Teef' daily per Orc Boss companion.", "MeanestanDaBaddest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special, true));
+        _meanestanDaBaddestPassive1.Initialize(CareerID, "10% betta killin'", "MeanestanDaBaddest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
+        _meanestanDaBaddestPassive2.Initialize(CareerID, "5 more Bosses fer da mob", "MeanestanDaBaddest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
+        _meanestanDaBaddestPassive3.Initialize(CareerID, "50% more shinies when leavin' loot in Kwartamasta piles", "MeanestanDaBaddest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special, true));
+        _meanestanDaBaddestPassive4.Initialize(CareerID, "Big Bosses in da mob pay 5 Teef e'ry day", "MeanestanDaBaddest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special, true));
 
         // GetToDaChoppas
-        _getToDaChoppasPassive1.Initialize(CareerID, "+10% personal 'Physical' damage with axes.", "GetToDaChoppas", false, ChoiceType.Passive, null,
+        _getToDaChoppasPassive1.Initialize(CareerID, "10% betta killin'", "GetToDaChoppas", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee, (attacker, victim, mask) =>
                 attacker.IsMainAgent && mask == AttackTypeMask.Melee && !attacker.WieldedWeapon.IsEmpty &&
                 (attacker.WieldedWeapon.CurrentUsageItem.WeaponClass == WeaponClass.OneHandedAxe || attacker.WieldedWeapon.CurrentUsageItem.WeaponClass == WeaponClass.TwoHandedAxe)));
-        _getToDaChoppasPassive2.Initialize(CareerID, "+5 Companion Limit.", "GetToDaChoppas", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
-        _getToDaChoppasPassive3.Initialize(CareerID, "+10% personal melee 'Physical' damage when equipped with a Polearm, 1H, and 2H weapon.", "GetToDaChoppas", false, ChoiceType.Passive, null,
+        _getToDaChoppasPassive2.Initialize(CareerID, "5 more Bosses fer da mob", "GetToDaChoppas", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
+        _getToDaChoppasPassive3.Initialize(CareerID, "10% betta killin' when wearin' small, bigga', an' longa' choppas", "GetToDaChoppas", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee, (attacker, victim, mask) =>
                 attacker.IsMainAgent && mask == AttackTypeMask.Melee && HasAllThreeWeaponTypes(attacker)));
-        _getToDaChoppasPassive4.Initialize(CareerID, "+50% 'Teef' when dueling Warbosses.", "GetToDaChoppas", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special, true));
+        _getToDaChoppasPassive4.Initialize(CareerID, "50% more Teef afta' duelin' Warbosses", "GetToDaChoppas", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special, true));
 
         // LeafNuffinBehin
-        _leafNuffinBehinPassive1.Initialize(CareerID, "-25% 'Teef' cost for upgrading troops.", "LeafNuffinBehin", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpgradeCostModifier, true));
-        _leafNuffinBehinPassive2.Initialize(CareerID, "+20% personal 'Armour Penetration' for melee attacks.", "LeafNuffinBehin", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
-        _leafNuffinBehinPassive3.Initialize(CareerID, "+50 increased party size.", "LeafNuffinBehin", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.PartySize));
-        _leafNuffinBehinPassive4.Initialize(CareerID, "Reduce 'Morale' penalty when extorting 'Teef'.", "LeafNuffinBehin", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special, true));
+        _leafNuffinBehinPassive1.Initialize(CareerID, "Da Boys take one-forf less Teef to get betta", "LeafNuffinBehin", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpgradeCostModifier, true));
+        _leafNuffinBehinPassive2.Initialize(CareerID, "Ignore 20% uv armoured bits wiv choppas", "LeafNuffinBehin", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
+        _leafNuffinBehinPassive3.Initialize(CareerID, "50 more Boys fer da mob", "LeafNuffinBehin", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.PartySize));
+        _leafNuffinBehinPassive4.Initialize(CareerID, "Less Morale penalty uv Extort Teef", "LeafNuffinBehin", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special, true));
 
         // BestofDaBest
-        _bestofDaBestPassive1.Initialize(CareerID, "+10% personal melee 'Physical' damage.", "BestofDaBest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
-        _bestofDaBestPassive2.Initialize(CareerID, "+10% personal weapon swing speed.", "BestofDaBest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10f, PassiveEffectType.SwingSpeed, true));
-        _bestofDaBestPassive3.Initialize(CareerID, "+75 personal Hitpoints.", "BestofDaBest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(75, PassiveEffectType.Health));
-        _bestofDaBestPassive4.Initialize(CareerID, "+100 Hitpoints for Orc Boss companions.", "BestofDaBest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special, true));
+        _bestofDaBestPassive1.Initialize(CareerID, "10% betta killin'", "BestofDaBest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
+        _bestofDaBestPassive2.Initialize(CareerID, "Choppa attacks are 10% fasta", "BestofDaBest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10f, PassiveEffectType.SwingSpeed, true));
+        _bestofDaBestPassive3.Initialize(CareerID, "75 more tuffness", "BestofDaBest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(75, PassiveEffectType.Health));
+        _bestofDaBestPassive4.Initialize(CareerID, "100 more tuffness fer Big Bosses in da mob", "BestofDaBest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special, true));
     }
 }
