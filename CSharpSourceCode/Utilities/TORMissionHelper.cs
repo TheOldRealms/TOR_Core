@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using SandBox;
-using SandBox.Missions.AgentBehaviors;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -146,11 +145,6 @@ namespace TOR_Core.Utilities
                 }
             }
 
-            // Note: We can't use MissionFightHandler.StartCustomFight because its internal
-            // ForceAgentForFight looks for native AlarmedBehaviorGroup, which TOR agents
-            // don't have (they use TORAlarmedBehaviorGroup). This causes a NullReferenceException.
-            // Instead, we manually set up the fight state.
-
             Mission.Current.SetMissionMode(MissionMode.Battle, false);
 
             // Set teams as enemies (critical for AI to know who to attack)
@@ -171,54 +165,24 @@ namespace TOR_Core.Utilities
         }
 
         /// <summary>
-        /// Forces an agent into fight mode by activating their alarmed behavior group.
-        /// Mirrors native MissionFightHandler.ForceAgentForFight behavior.
+        /// Forces an agent into fight mode by removing civilian behaviors and setting combat state.
         /// </summary>
         private static void ForceAgentForFight(Agent agent)
         {
-            // Set agent flags like native hideout does
             var agentFlags = agent.GetAgentFlags();
-            agent.SetAgentFlags((agentFlags | AgentFlag.CanAttack | AgentFlag.CanGetAlarmed) & ~AgentFlag.CanRetreat);
+            agent.SetAgentFlags((agentFlags | AgentFlag.CanAttack) & ~AgentFlag.CanRetreat);
 
-            var campaignComponent = agent.GetComponent<CampaignAgentComponent>();
-            var agentNavigator = campaignComponent?.AgentNavigator;
-
+            // Remove civilian behavior groups that interfere with combat by setting movement targets
+            var agentNavigator = agent.GetComponent<CampaignAgentComponent>()?.AgentNavigator;
             if (agentNavigator != null)
             {
-                // Remove civilian behavior groups to stop walking/wandering behaviors
-                // These interfere with combat navigation by setting movement targets
-                // AgentNavigator.TickBehaviorGroups ticks ALL groups regardless of IsActive
                 agentNavigator.RemoveBehaviorGroup<TORDailyBehaviorGroup>();
-                agentNavigator.RemoveBehaviorGroup<InterruptingBehaviorGroup>();
-
-                // Clear any existing navigation targets that civilian behaviors may have set
                 agentNavigator.ClearTarget();
-
-                // Use the TOR behavior group system - set scripted fight behavior
-                // This is how native MissionFightHandler.ForceAgentForFight works
-                var alarmedGroup = agentNavigator.GetBehaviorGroup<TORAlarmedBehaviorGroup>();
-                if (alarmedGroup != null)
-                {
-                    alarmedGroup.IsActive = true;
-                    alarmedGroup.DisableCalmDown = true;
-                    // TORFightBehavior is already added at spawn, just ensure it and set as scripted
-                    alarmedGroup.AddBehavior<TORFightBehavior>();
-                    alarmedGroup.SetScriptedBehavior<TORFightBehavior>();
-                }
-            }
-            else
-            {
-                // Fallback: agent has no navigator, add HumanAIComponent directly
-                if (agent.GetComponent<HumanAIComponent>() == null)
-                {
-                    agent.AddComponent(new HumanAIComponent(agent));
-                }
             }
 
             agent.SetWatchState(Agent.WatchState.Alarmed);
             agent.WieldInitialWeapons(Agent.WeaponWieldActionType.InstantAfterPickUp);
 
-            // Set target to main agent so AI knows who to attack
             if (Agent.Main != null && agent.Team != Agent.Main.Team)
             {
                 agent.SetTargetAgent(Agent.Main);
