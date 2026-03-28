@@ -48,6 +48,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
         private bool _hirelingWaitMenuShown;
 
+        private int _deadJoinedEncounterCleanupTicks;
+
         private float _entryServiceTimeStamp;
 
         private SkillObject _currentTrainedSkill;
@@ -221,6 +223,15 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 // old encounter junk
                 _inPostBattleTransition = false;
                 PlayerEncounter.Finish(false);
+            }
+
+            if (PlayerEncounter.Current != null
+                && PlayerEncounter.EncounterSettlement == settlement
+                && PlayerEncounter.LocationEncounter == null)
+            {
+                // same settlement, but location encounter got cleared by hireling flow
+                PlayerEncounter.EnterSettlement();
+                return;
             }
 
             EnterSettlementAction.ApplyForParty(MobileParty.MainParty, settlement);
@@ -1035,6 +1046,43 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             }
         }
 
+        private bool TryCleanupDeadJoinedHirelingEncounter()
+        {
+            var currentEncounter = PlayerEncounter.Current;
+            var enlistingLordParty = _hirelingEnlistingLord?.PartyBelongedTo;
+
+            var hasDeadJoinedHirelingEncounter =
+                _inPostBattleTransition &&
+                currentEncounter?.IsJoinedBattle == true &&
+                currentEncounter.EncounterState == PlayerEncounterState.End &&
+                PlayerEncounter.EncounterSettlement == null;
+
+            var hasAnyActiveBattle =
+                MapEvent.PlayerMapEvent != null ||
+                Hero.MainHero.PartyBelongedTo?.MapEvent != null ||
+                enlistingLordParty?.MapEvent != null;
+
+            if (!hasDeadJoinedHirelingEncounter || hasAnyActiveBattle)
+            {
+                _deadJoinedEncounterCleanupTicks = 0;
+                return false;
+            }
+
+            _deadJoinedEncounterCleanupTicks++;
+            if (_deadJoinedEncounterCleanupTicks < 2)
+            {
+                return false;
+            }
+
+            TORCommon.Log("hireling dead joined encounter cleanup. report this to developers", NLog.LogLevel.Warn);
+            InformationManager.DisplayMessage(new InformationMessage("hireling dead joined encounter cleanup. report this to developers"));
+
+            PlayerEncounter.Finish(false);
+            _hirelingWaitMenuShown = false;
+            _deadJoinedEncounterCleanupTicks = 0;
+
+            return true;
+        }
         private void OnTick(float dt)
         {
             if (_hirelingEnlisted && _hirelingEnlistingLord?.PartyBelongedTo != null)
