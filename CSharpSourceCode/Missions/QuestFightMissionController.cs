@@ -82,8 +82,8 @@ namespace TOR_Core.Missions
 
         private bool IsConversationMission()
         {
-            return Mission.SceneName != "TOR_cultist_lair_001" || Mission.SceneName != "TOR_nurgle_lair_001";
-
+            var sceneName = Mission.SceneName;
+            return sceneName == "TOR_cultist_lair_001" || sceneName == "TOR_quest_nurgle_lair_001";
         }
 
         private void StartBattle()

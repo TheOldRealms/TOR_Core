@@ -87,7 +87,7 @@ namespace TOR_Core.Missions
         }
 
         [MissionMethod]
-        public static Mission OpenDuelMission(Action<bool> onMissionEnd, Hero duelHero = null, string scene = "TOR_duel_001")
+        public static Mission OpenDuelMission(Action<bool> onMissionEnd, Hero duelHero = null, string scene = "TOR_duel_001", bool useRapier = true)
         {
             return MissionState.OpenNew("InkDuelFight", SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All), (Mission mission) => new MissionBehavior[]
             {
@@ -99,7 +99,7 @@ namespace TOR_Core.Missions
                 new LeaveMissionLogic(),
                 new AgentHumanAILogic(),
                 new MissionConversationLogic(),
-                new DuelFightMissionController(onMissionEnd, duelHero),
+                new DuelFightMissionController(onMissionEnd, duelHero, useRapier),
                 new TORMissionAgentHandler(),
                 new HeroSkillHandler(),
                 new MissionFightHandler(),

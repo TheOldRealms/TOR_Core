@@ -182,9 +182,39 @@ namespace TOR_Core.Missions
 
             if (character != null)
             {
-                var agent = SpawnEnemy(character, "npc_duel_enemy", true);
-                agent.Defensiveness = 3;
-                return agent;
+                // Get spawn point for duelist
+                MatrixFrame matrixFrame = MatrixFrame.Identity;
+                List<UsableMachine> duelSpawnPoints = GetAllUsablePointsWithTag("npc_duel_enemy");
+                if (duelSpawnPoints.Count > 0)
+                {
+                    var point = duelSpawnPoints.GetRandomElementInefficiently();
+                    if (point != null) GetSpawnFrameFromUsableMachine(point, out matrixFrame);
+
+                    if (matrixFrame != MatrixFrame.Identity)
+                    {
+                        matrixFrame.rotation.f.z = 0f;
+                        matrixFrame.rotation.f.Normalize();
+                        matrixFrame.rotation.u = Vec3.Up;
+                        matrixFrame.rotation.s = Vec3.CrossProduct(matrixFrame.rotation.f, matrixFrame.rotation.u);
+                        matrixFrame.rotation.OrthonormalizeAccordingToForwardAndKeepUpAsZAxis();
+
+                        using (new TWSharedMutexReadLock(Scene.PhysicsAndRayCastLock))
+                        {
+                            matrixFrame.origin.z = Mission.Scene.GetGroundHeightAtPosition(matrixFrame.origin, BodyFlags.CommonCollisionExcludeFlags);
+                        }
+
+                        // Spawn duelist with proper combat setup, no civilian AI
+                        var agentData = GetAgentBuildData(character, matrixFrame);
+                        var agent = Mission.SpawnAgent(agentData);
+
+                        // Set combat AI parameters
+                        agent.SetWatchState(Agent.WatchState.Alarmed);
+                        agent.Defensiveness = 1.0f; // Balanced defensive stance
+                        agent.WieldInitialWeapons();
+
+                        return agent;
+                    }
+                }
             }
             return null;
         }

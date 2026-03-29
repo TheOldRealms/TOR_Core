@@ -1,10 +1,12 @@
 using System.Collections.Generic;
+using SandBox;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics;
+using TOR_Core.BattleMechanics.AI.CivilianMissionAI;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -119,6 +121,71 @@ namespace TOR_Core.Utilities
                     if (agent == null) continue;
                     agent.ApplyStatusEffect(effectId, applierAgent, duration, append, isMutated, false, castId);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Transitions enemy agents from civilian/passive state to hostile combat state.
+        /// Used for quest scenarios where dialog triggers combat (like native hideout boss fights).
+        /// </summary>
+        public static void MakeEnemyAgentsHostile()
+        {
+            if (Mission.Current == null) return;
+
+            // Collect enemy agents
+            var enemyAgents = new List<Agent>();
+
+            foreach (var agent in Mission.Current.Agents)
+            {
+                if (!agent.IsActive() || !agent.IsHuman) continue;
+
+                if (agent.Team == Mission.Current.PlayerEnemyTeam)
+                {
+                    enemyAgents.Add(agent);
+                }
+            }
+
+            Mission.Current.SetMissionMode(MissionMode.Battle, false);
+
+            // Set teams as enemies (critical for AI to know who to attack)
+            Mission.Current.PlayerTeam.SetIsEnemyOf(Mission.Current.PlayerEnemyTeam, true);
+
+            // Force all enemy agents into fight mode
+            foreach (var agent in enemyAgents)
+            {
+                ForceAgentForFight(agent);
+            }
+
+            // Set formation charge orders (like native hideout does)
+            if (Mission.Current.PlayerEnemyTeam?.MasterOrderController != null)
+            {
+                Mission.Current.PlayerEnemyTeam.MasterOrderController.SelectAllFormations();
+                Mission.Current.PlayerEnemyTeam.MasterOrderController.SetOrder(OrderType.Charge);
+            }
+        }
+
+        /// <summary>
+        /// Forces an agent into fight mode by removing civilian behaviors and setting combat state.
+        /// </summary>
+        private static void ForceAgentForFight(Agent agent)
+        {
+            var agentFlags = agent.GetAgentFlags();
+            agent.SetAgentFlags((agentFlags | AgentFlag.CanAttack) & ~AgentFlag.CanRetreat);
+
+            // Remove civilian behavior groups that interfere with combat by setting movement targets
+            var agentNavigator = agent.GetComponent<CampaignAgentComponent>()?.AgentNavigator;
+            if (agentNavigator != null)
+            {
+                agentNavigator.RemoveBehaviorGroup<TORDailyBehaviorGroup>();
+                agentNavigator.ClearTarget();
+            }
+
+            agent.SetWatchState(Agent.WatchState.Alarmed);
+            agent.WieldInitialWeapons(Agent.WeaponWieldActionType.InstantAfterPickUp);
+
+            if (Agent.Main != null && agent.Team != Agent.Main.Team)
+            {
+                agent.SetTargetAgent(Agent.Main);
             }
         }
     }
