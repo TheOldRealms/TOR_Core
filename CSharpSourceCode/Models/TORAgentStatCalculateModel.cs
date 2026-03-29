@@ -346,11 +346,21 @@ namespace TOR_Core.Models
                 agentDrivenProperties.AiMovementDelayFactor = 0.5f;
                 return;
             }
-            var weaponId = agent.WieldedWeapon.Item?.StringId;
-            if (weaponId == "tor_dw_weapon_gun_drakegun" || weaponId == "tor_dw_weapon_gun_trollhammer")
+
+            if (agent.Character != null && !agent.WieldedWeapon.IsEmpty)
             {
-                agentDrivenProperties.ReloadSpeed *= 0.2f;
+                if (agent.WieldedWeapon.CurrentUsageItem.IsRangedWeapon)
+                {
+                    var weaponId = agent.WieldedWeapon.Item.StringId;
+                
+                    if (weaponId == "tor_dw_weapon_gun_drakegun" || weaponId == "tor_dw_weapon_gun_trollhammer")
+                    {
+                        agentDrivenProperties.ReloadSpeed *= 0.2f;
+                    }
+                }
             }
+            
+
             if (agent.IsHuman)
             {
                 AddSkillEffectsForAgent(agent, agentDrivenProperties);
