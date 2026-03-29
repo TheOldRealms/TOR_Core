@@ -37,6 +37,10 @@ namespace TOR_Core.Models
         private float vampireNightSpeedModificator = 1.2f;
         private CustomCrosshairMissionBehavior _crosshairBehavior;
 
+        private bool _checkedMissionType = false;
+        private bool _isDuelMission = false;
+        private bool _isJoustMission = false;
+
         public override void InitializeAgentStats(Agent agent, Equipment spawnEquipment, AgentDrivenProperties agentDrivenProperties, AgentBuildData agentBuildData)
         {
             base.InitializeAgentStats(agent, spawnEquipment, agentDrivenProperties, agentBuildData);
@@ -319,7 +323,14 @@ namespace TOR_Core.Models
 
         private void UpdateAgentDrivenProperties(Agent agent, AgentDrivenProperties agentDrivenProperties)
         {
-            if (Mission.Current != null && Mission.Current.GetMissionBehavior<JoustFightMissionController>() != null)
+            if (!_checkedMissionType && Mission.Current != null)
+            {
+                _isDuelMission = Mission.Current.IsDuelMission();
+                _isJoustMission = Mission.Current.IsJoustMission();
+                _checkedMissionType = true;
+            }
+
+            if (_isJoustMission)
             {
                 if (agent.IsMount)
                 {
@@ -334,8 +345,8 @@ namespace TOR_Core.Models
                     agentDrivenProperties.AiChargeHorsebackTargetDistFactor = 2f;
                 }
             }
-            //Specific settings for the tilean duelist
-            if (agent.Character != null && agent.Character.StringId == "tor_ti_vittorio")
+
+            if (_isDuelMission && agent.Character != null && agent.Character.StringId == "tor_ti_vittorio")
             {
                 agentDrivenProperties.TopSpeedReachDuration = 0.8f;
                 agentDrivenProperties.MaxSpeedMultiplier = 1.5f;
