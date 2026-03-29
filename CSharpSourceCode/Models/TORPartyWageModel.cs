@@ -372,5 +372,10 @@ namespace TOR_Core.Models
 
             return resultValue;
         }
+
+        public static void ClearCharacterWageCache()
+        {
+            _wageCache.Clear();
+        }
     }
 }

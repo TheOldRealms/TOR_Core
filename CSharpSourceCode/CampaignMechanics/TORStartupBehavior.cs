@@ -87,6 +87,8 @@ namespace TOR_Core.CampaignMechanics
             TOR_Core.Models.TORTradeItemPriceFactorModel.ApplyTradePenaltyReductionDescriptionOverride();
 
             TORPartySizeModel.RecalculateMainPartySize();//Forces the main party's size to be recalculated so it performs a full calculation using all of TOR's bonuses
+
+            TORPartyWageModel.ClearCharacterWageCache();//Initial wage calculations are performed during campaign loading before the extended info manager is initialized which is needed to detect troops with wage exceptions, eg. undead and tree spirits.
         }
     }
 }
