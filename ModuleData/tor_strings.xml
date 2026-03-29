@@ -4738,7 +4738,7 @@
  	 <!--Spend Grain ! -->
 	 <string id="tor_dw_brewers_deliverWheat_prompt_title.wheat" text="{=str_tor_dw_brewers_deliverwheat_prompt_title}Deliver sacks of grain" />
 	 <string id="tor_dw_brewers_deliverWheat_prompt_description.wheat" text="{=str_tor_dw_brewers_deliverwheat_prompt_description}The Brewers need grain to brew ale. Donate sacks of grain, and receive Oathgold in return." />	 
-	 <string id="tor_dw_brewers_deliverWheat_item_tittle.wheat" text="{=str_tor_dw_brewers_deliverwheat_item_tittle_wheat}Deliver grain" />
+	 <string id="tor_dw_brewers_deliverWheat_item_title.wheat" text="{=str_tor_dw_brewers_deliverwheat_item_tittle_wheat}Deliver grain" />
 	 <string id="tor_dw_brewers_deliverWheat_item_hint.wheat" text="{=str_tor_dw_brewers_deliverwheat_item_hint_wheat}Deliver {WHEAT_COUNT} grain, receive {OATH_GOLD_GAIN_WHEAT} Oathgold" />
    
 	 <!--Spend Steel ! -->
