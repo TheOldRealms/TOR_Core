@@ -820,11 +820,21 @@ public class OathGoldBehavior : CampaignBehaviorBase
                 if (engineerHammer1h != null) items.Add(engineerHammer1h);
                 var engineerHammer2h = MBObjectManager.Instance.GetObject<ItemObject>("dwarf_2h_engineer_hammer_001");
                 if (engineerHammer2h != null) items.Add(engineerHammer2h);
+
+                //Add Grudge Raker and buckshot
+                var grudgeRaker = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_gun_grudge_raker_001");
+                if (grudgeRaker != null) items.Add(grudgeRaker);
+                var buckshot = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_ammo_buckshot");
+                if (buckshot != null) items.Add(buckshot);
             }
             if (Hero.MainHero.HasAttribute("DwarfEngineersIII"))
             {
                 var drakegun = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_gun_drakegun");
                 if (drakegun != null) items.Add(drakegun);
+
+                //Add Dronazgrund
+                var dronazgrund = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_gun_dronazgrund");
+                if (dronazgrund != null) items.Add(dronazgrund);
             }
 
 

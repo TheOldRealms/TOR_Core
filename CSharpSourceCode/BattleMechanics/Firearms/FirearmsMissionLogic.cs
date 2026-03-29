@@ -241,7 +241,9 @@ namespace TOR_Core.BattleMechanics.Firearms
                 return;
             }
 
-            if (shooterAgent.WieldedWeapon.AmmoWeapon.Item.StringId.Contains("scatter"))
+            // Handle scatter shot and buckshot ammo
+            var ammoStringId = shooterAgent.WieldedWeapon.AmmoWeapon.Item.StringId;
+            if (ammoStringId.Contains("scatter") || ammoStringId.Contains("buckshot"))
             {
                 RemoveLastProjectile(shooterAgent);
                 float accuracy = 1 / (weaponData.Accuracy * 1.2f); //this is currently arbitrary

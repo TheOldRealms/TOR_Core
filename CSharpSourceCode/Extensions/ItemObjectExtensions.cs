@@ -367,6 +367,33 @@ namespace TOR_Core.Extensions
             return itemObject.IsBlunderbussWeapon() || itemObject.IsScatterShot() || itemObject.IsGrenadeAmmo();
         }
 
+        // ===== Dwarf Shotgun System (Grudge Raker / Dronazgrund) =====
+        /// <summary>
+        /// Returns true if item is a dwarf shotgun (Grudge Raker or Dronazgrund)
+        /// </summary>
+        public static bool IsDwarfShotgunWeapon(this ItemObject itemObject)
+        {
+            if (!IsAmmunitionItem(itemObject)) return false;
+            return itemObject.StringId.Contains("grudge_raker") || itemObject.StringId.Contains("dronazgrund");
+        }
+
+        /// <summary>
+        /// Returns true if item is dwarf buckshot ammo
+        /// </summary>
+        public static bool IsDwarfBuckshot(this ItemObject itemObject)
+        {
+            if (!IsAmmunitionItem(itemObject)) return false;
+            return itemObject.StringId.Contains("tor_dw_weapon_ammo_buckshot");
+        }
+
+        /// <summary>
+        /// Returns true if item is dwarf shotgun weapon OR dwarf buckshot ammo (buckshot ONLY - exclusive ammo)
+        /// </summary>
+        public static bool IsDwarfShotgunCompatible(this ItemObject itemObject)
+        {
+            return itemObject.IsDwarfShotgunWeapon() || itemObject.IsDwarfBuckshot();
+        }
+
         // ===== Legacy Method - Kept for backwards compatibility =====
         /// <summary>
         /// Legacy method - returns true for drake gun weapon or canister ammo (flamethrower mode)

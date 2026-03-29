@@ -75,10 +75,11 @@ namespace TOR_Core.Items
                     // Drake gun: weapon + canisters ONLY
                     // Trollhammer: weapon + torpedoes ONLY
                     // Blunderbuss: weapon + grenades + scatter ONLY
+                    // Dwarf Shotgun (Grudge Raker/Dronazgrund): weapon + dwarf buckshot ONLY
                     // ONLY restriction: Special ammo CANNOT mix with regular musket cartridges OR other weapon platforms
 
-                    var movedIsSpecialAmmo = movedItem.IsDrakeGunCompatible() || movedItem.IsTrollhammerCompatible() || movedItem.IsBlunderbussCompatible();
-                    var equippedIsSpecialAmmo = equipmentItem.IsDrakeGunCompatible() || equipmentItem.IsTrollhammerCompatible() || equipmentItem.IsBlunderbussCompatible();
+                    var movedIsSpecialAmmo = movedItem.IsDrakeGunCompatible() || movedItem.IsTrollhammerCompatible() || movedItem.IsBlunderbussCompatible() || movedItem.IsDwarfShotgunCompatible();
+                    var equippedIsSpecialAmmo = equipmentItem.IsDrakeGunCompatible() || equipmentItem.IsTrollhammerCompatible() || equipmentItem.IsBlunderbussCompatible() || equipmentItem.IsDwarfShotgunCompatible();
 
                     // If one is special ammo and the other is NOT, they're incompatible
                     if (movedIsSpecialAmmo != equippedIsSpecialAmmo)
@@ -92,15 +93,18 @@ namespace TOR_Core.Items
                         var movedIsDrakeGun = movedItem.IsDrakeGunCompatible();
                         var movedIsTrollhammer = movedItem.IsTrollhammerCompatible();
                         var movedIsBlunderbuss = movedItem.IsBlunderbussCompatible();
+                        var movedIsDwarfShotgun = movedItem.IsDwarfShotgunCompatible();
 
                         var equippedIsDrakeGun = equipmentItem.IsDrakeGunCompatible();
                         var equippedIsTrollhammer = equipmentItem.IsTrollhammerCompatible();
                         var equippedIsBlunderbuss = equipmentItem.IsBlunderbussCompatible();
+                        var equippedIsDwarfShotgun = equipmentItem.IsDwarfShotgunCompatible();
 
                         // If they belong to different weapon platforms, they're incompatible
                         if (movedIsDrakeGun != equippedIsDrakeGun ||
                             movedIsTrollhammer != equippedIsTrollhammer ||
-                            movedIsBlunderbuss != equippedIsBlunderbuss)
+                            movedIsBlunderbuss != equippedIsBlunderbuss ||
+                            movedIsDwarfShotgun != equippedIsDwarfShotgun)
                         {
                             invalid = true;
                         }
