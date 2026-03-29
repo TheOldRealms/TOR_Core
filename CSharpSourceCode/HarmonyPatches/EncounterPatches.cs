@@ -90,8 +90,15 @@ namespace TOR_Core.HarmonyPatches
                     PlayerEncounter.Finish(false);
                 }
 
-                var hasActiveBattle = Hero.MainHero.PartyBelongedTo?.MapEvent != null;
-                if (hasActiveBattle)
+                var hirelingBehavior = Campaign.Current?.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>();
+                var enlistingLordParty = hirelingBehavior?.EnlistingLord?.PartyBelongedTo;
+                var playerMapEvent = Hero.MainHero.PartyBelongedTo?.MapEvent;
+
+                var hasOngoingHirelingBattle =
+                    (playerMapEvent != null && !playerMapEvent.HasWinner) ||
+                    (enlistingLordParty?.MapEvent != null && !enlistingLordParty.MapEvent.HasWinner);
+
+                if (hasOngoingHirelingBattle)
                 {
                     menuId = "hireling_battle_menu";
                 }
