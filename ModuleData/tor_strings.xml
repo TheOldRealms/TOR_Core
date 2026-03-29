@@ -4755,6 +4755,10 @@
    
 
   <!--Forest Harmony ! -->
+  <string id="tor_custom_resource_we_clearedHerdstones" text="{=str_tor_custom_resource_we_clearedherdstones}Cleared Herdstones" /> 
+  <string id="tor_custom_resource_we_worldrootOwned" text="{=str_tor_custom_resource_we_worldrootowned}Worldroot Settlements" />                             
+  <string id="tor_custom_resource_we_worldrootHostile" text="{=str_tor_custom_resource_we_worldroothostile}{SETTLEMENT} (Worldroot Hostile)" />
+  
   <string id="tor_treesymbol_title.WEKithbandSymbol" text="{=str_tor_treesymbol_title_wekithbandsymbol}Kithband Symbol" />
   <string id="tor_treesymbol_title.WEWardancerSymbol" text="{=str_tor_treesymbol_title_wewardancersymbol}Wardancer Symbol" />
   <string id="tor_treesymbol_title.WETreekinSymbol" text="{=str_tor_treesymbol_title_wetreekinsymbol}Treekin Symbol" />

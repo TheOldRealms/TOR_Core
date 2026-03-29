@@ -258,6 +258,53 @@ public class TORCustomResourceModel : GameModel
                     if (harmonyFactor > 0) number.Add(harmonyFactor * settlementGain, GameTexts.FindText("tor_custom_resource_we_oakSettlementIncomeBonus"));
                 }
 
+                // Cleared herdstones bonus: +5 harmony per cleared Beastmen herdstone
+                var clearedHerdstones = Settlement.All
+                    .Where(s => s.SettlementComponent is HerdStoneComponent hsc && !hsc.IsActive)
+                    .Count();
+                if (clearedHerdstones > 0)
+                {
+                    var herdstoneBonus = clearedHerdstones * 5;
+                    number.Add(herdstoneBonus, GameTexts.FindText("tor_custom_resource_we_clearedHerdstones"));
+                    settlementGain += herdstoneBonus; // Include in symbol penalty calculation
+                }
+
+                // Worldroot-bound settlements: +2 if Asrai owned, -1 if hostile owned
+                var worldrootSettlementIds = new[]
+                {
+                    // Laurelorn
+                    "town_LL1", "village_LL1_1", "village_LL1_2", "village_LL1_3", "castle_LL2", "castle_village_LL2_1",
+                    // Arden
+                    "castle_AS1", "castle_village_AS1_1", "castle_AS2", "castle_village_AS2_1", "castle_village_AS3_1",
+                    // Maisontaal
+                    "village_PA1_1", "town_PA2", "village_PA2_3", "castle_SM2", "castle_village_SM2_1", "castle_village_SM2_2",
+                    // Gryphenwood
+                    "town_OM1", "village_OM1_1", "village_OM1_3", "village_OM1_4"
+                };
+
+                var worldrootGain = 0f;
+                var asraiFactions = Kingdom.All.Where(k => k.Culture.StringId == TORConstants.Cultures.ASRAI).ToList();
+                foreach (var settlementId in worldrootSettlementIds)
+                {
+                    var settlement = Settlement.Find(settlementId);
+                    if (settlement == null) continue;
+
+                    if (settlement.Owner?.Culture?.StringId == TORConstants.Cultures.ASRAI)
+                    {
+                        worldrootGain += 2;
+                    }
+                    else if (settlement.Owner?.MapFaction != null && asraiFactions.Any(af => af.IsAtWarWith(settlement.Owner.MapFaction)))
+                    {
+                        number.Add(-1, GameTexts.FindText("tor_custom_resource_we_worldrootHostile").SetTextVariable("SETTLEMENT", settlement.Name));
+                    }
+                }
+
+                if (worldrootGain > 0)
+                {
+                    number.Add(worldrootGain, GameTexts.FindText("tor_custom_resource_we_worldrootOwned"));
+                    settlementGain += worldrootGain; // Include in symbol penalty calculation
+                }
+
                 //apply symbol penalty to all gains
                 priorHarmonyGains += settlementGain;
                 if (priorHarmonyGains > 0)
