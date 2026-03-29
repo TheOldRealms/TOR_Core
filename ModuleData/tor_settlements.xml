@@ -4518,7 +4518,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_OM2_1" name="{=Settlements.Settlement.name.village_OM2_1}Mielau" posX="1737.174" posY="1054.055" culture="Culture.sturgia" text="{=Settlements.Settlement.text.village_OM2_1}At the junction of the river Aurith and the Upper Blut lies Mielau, an unassuming village of sheepherders. Its remote location allows them plenty of grazing space for their livestock and ensures they grow big and fat and produce high-quality wool.">
+  <Settlement id="village_OM2_1" name="{=Settlements.Settlement.name.village_OM2_1}Mielau" posX="1737.174" posY="1054.055" culture="Culture.empire" text="{=Settlements.Settlement.text.village_OM2_1}At the junction of the river Aurith and the Upper Blut lies Mielau, an unassuming village of sheepherders. Its remote location allows them plenty of grazing space for their livestock and ensures they grow big and fat and produce high-quality wool.">
     <Components>
       <Village id="village_comp_OM2_1" village_type="VillageType.sheep_farm" hearth="250" bound="Settlement.town_OM2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4531,7 +4531,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_OM2_2" name="{=Settlements.Settlement.name.village_OM2_2}Bissendorf" posX="1700.815" posY="1065.772" culture="Culture.sturgia" text="{=Settlements.Settlement.text.village_OM2_2}Where the Upper and Lower Blut combines into the Blut River, lies Bissendorf. Bissendorf uses its access to the Blut to timber the Blut Wood, which grows between the Upper and Lower Bluts">
+  <Settlement id="village_OM2_2" name="{=Settlements.Settlement.name.village_OM2_2}Bissendorf" posX="1700.815" posY="1065.772" culture="Culture.empire" text="{=Settlements.Settlement.text.village_OM2_2}Where the Upper and Lower Blut combines into the Blut River, lies Bissendorf. Bissendorf uses its access to the Blut to timber the Blut Wood, which grows between the Upper and Lower Bluts">
     <Components>
       <Village id="village_comp_OM2_2" village_type="VillageType.lumberjack" hearth="250" bound="Settlement.town_OM2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4544,7 +4544,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_OM2_3" name="{=Settlements.Settlement.name.village_OM2_3}Tauer" posX="1683.004" posY="1054.784" culture="Culture.sturgia" text="{=Settlements.Settlement.text.village_OM2_3}At the southern end of the Ostermark Marches lies Tauer. The foothills near Tauer are fertile but rugged, allowing the people here great harvests with some effort. Thanks to this, the people here are hardy and strong but remain poor.">
+  <Settlement id="village_OM2_3" name="{=Settlements.Settlement.name.village_OM2_3}Tauer" posX="1683.004" posY="1054.784" culture="Culture.empire" text="{=Settlements.Settlement.text.village_OM2_3}At the southern end of the Ostermark Marches lies Tauer. The foothills near Tauer are fertile but rugged, allowing the people here great harvests with some effort. Thanks to this, the people here are hardy and strong but remain poor.">
     <Components>
       <Village id="village_comp_OM2_3" village_type="VillageType.wheat_farm" hearth="250" bound="Settlement.town_OM2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
