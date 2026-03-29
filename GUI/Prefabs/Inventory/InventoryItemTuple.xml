@@ -209,7 +209,7 @@
                     <NavigationAutoScrollWidget TrackedWidget="..\UseItemButton" AutoScrollTopOffset="150" AutoScrollBottomOffset="150" />
                     <ButtonWidget Id="UseItemButton" IsVisible="@IsUsableItem" UpdateChildrenStates="true" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Inventory.Tuple.Extension.SpecialButton.Width" SuggestedHeight="!Inventory.Tuple.Extension.SpecialButton.Height" HorizontalAlignment="Right" VerticalAlignment="Center" MarginRight="60"  Brush="Inventory.Tuple.Extension.SpecialButton" Command.Click="ExecuteUseItem" GamepadNavigationIndex="2">
                       <Children>
-                        <ImageWidget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Inventory.Tuple.Extension.SlaughterButtonIcon.Width" SuggestedHeight="!Inventory.Tuple.Extension.SlaughterButtonIcon.Height" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Inventory.Tuple.Extension.EquipButtonIcon"/>
+                        <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Inventory.Tuple.Extension.EquipButtonIcon.Width" SuggestedHeight="!Inventory.Tuple.Extension.EquipButtonIcon.Height" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="gear_icon"/>
                         <HintWidget DoNotAcceptEvents="true" IsVisible="*IsPlayerItem" DataSource="{UseHint}" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent"/>
                       </Children>
                     </ButtonWidget>

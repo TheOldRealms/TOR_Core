@@ -13,6 +13,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 
 public class SlayerCareerButtonBehavior(CareerObject career) : CareerButtonBehaviorBase(career)
 {
+    public override string CareerButtonIcon => "CareerSystem\\slayer_icon";
+
     private const string SlayerUnitId = "tor_dw_slayer";
     private const string GrimnirReligionId = "cult_of_grimnir";
     private const int OathgoldGainPerTier = 4;
