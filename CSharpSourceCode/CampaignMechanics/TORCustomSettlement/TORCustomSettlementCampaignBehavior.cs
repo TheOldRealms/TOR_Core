@@ -574,13 +574,13 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                             switch (devotion)
                             {
                                 case DevotionLevel.Follower:
-                                    troopCount = MBRandom.RandomInt(2, 5); // 2-4 troops
+                                    troopCount = MBRandom.RandomInt(3, 7); // 3-6 troops
                                     break;
                                 case DevotionLevel.Devoted:
-                                    troopCount = MBRandom.RandomInt(5, 9); // 5-8 troops
+                                    troopCount = MBRandom.RandomInt(7, 11); // 7-10 troops
                                     break;
                                 case DevotionLevel.Fanatic:
-                                    troopCount = MBRandom.RandomInt(8, 13); // 8-12 troops
+                                    troopCount = MBRandom.RandomInt(11, 15); // 11-14 troops
                                     break;
                                 default:
                                     troopCount = 0; // No troops for Skeptic/Believer
@@ -641,13 +641,18 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         if (!party.IsLordParty || party.LeaderHero == null || party == MobileParty.MainParty) return;
         if (ShrineMenuLogic.CanPartyGoToShrine(party))
         {
-            var settlements = TORCommon.FindSettlementsAroundPosition(party.Position.ToVec2(), 20, x => x.SettlementComponent is ShrineComponent);
-            if (settlements.Count > 0)
+            var leaderReligion = party.LeaderHero.GetDominantReligion();
+            if (leaderReligion != null)
             {
-                var shrine = settlements.First().SettlementComponent as ShrineComponent;
-                if (party.LeaderHero.GetDominantReligion() == shrine.Religion)
+                var shrineSettlement = TORCommon.FindSettlementsAroundPosition(
+                    party.Position.ToVec2(),
+                    30,
+                    x => x.SettlementComponent is ShrineComponent shrineComponent && shrineComponent.Religion == leaderReligion)
+                    .OrderBy(x => x.Position.DistanceSquared(party.Position))
+                    .FirstOrDefault();
+                if (shrineSettlement != null)
                 {
-                    party.SetMoveGoToSettlement(settlements.First(), MobileParty.NavigationType.Default, false);
+                    party.SetMoveGoToSettlement(shrineSettlement, MobileParty.NavigationType.Default, false);
                     party.Ai.SetDoNotMakeNewDecisions(true);
                 }
             }
