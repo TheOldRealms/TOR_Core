@@ -1,9 +1,10 @@
-﻿using Helpers;
+﻿using System.Linq;
+using Helpers;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.UI;
 using TOR_Core.Utilities;
@@ -13,8 +14,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 public class SlayerCareerButtonBehavior(CareerObject career) : CareerButtonBehaviorBase(career)
 {
     private const string SlayerUnitId = "tor_dw_slayer";
-    private const int ExchangeCostPerTier = 15;
-    private const int GoldCostPerTier = 1000;
+    private const string GrimnirReligionId = "cult_of_grimnir";
+    private const int OathgoldGainPerTier = 4;
+    private const int GoldGainPerTier = 250;
+    private const int FaithXpPerTier = 50;
+    private const float DevotionPerTier = 0.5f;
 
     public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner, bool shiftClick)
     {
@@ -27,22 +31,30 @@ public class SlayerCareerButtonBehavior(CareerObject career) : CareerButtonBehav
 
             for (int i = 0; i < buyableTroops; i++)
             {
-
-
-                CustomResourceManager.AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(), -ExchangeCostPerTier * tier);
-                PartyScreenHelper.GetActivePartyState().PartyScreenLogic.CurrentData.PartyGoldChangeAmount += tier * GoldCostPerTier;
+                ApplyRewards(tier);
                 CareerButtonHelper.ExchangeUnitForNewUnit(characterObject, slayerUnit, true);
-
             }
         }
         else
         {
-            CustomResourceManager.AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(), -ExchangeCostPerTier * tier);
-            PartyScreenHelper.GetActivePartyState().PartyScreenLogic.CurrentData.PartyGoldChangeAmount += tier * GoldCostPerTier;
+            ApplyRewards(tier);
             CareerButtonHelper.ExchangeUnitForNewUnit(characterObject, slayerUnit, true);
         }
 
         PartyVMExtension.ViewModelInstance.RefreshValues();
+    }
+
+    private void ApplyRewards(int tier)
+    {
+        CustomResourceManager.AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(), OathgoldGainPerTier * tier);
+        PartyScreenHelper.GetActivePartyState().PartyScreenLogic.CurrentData.PartyGoldChangeAmount += tier * GoldGainPerTier;
+        Hero.MainHero.AddSkillXp(TORSkills.Faith, FaithXpPerTier * tier);
+
+        var religion = ReligionObject.All.FirstOrDefault(x => x.StringId == GrimnirReligionId);
+        if (religion != null)
+        {
+            Hero.MainHero.AddReligiousInfluence(religion, (int)(DevotionPerTier * tier));
+        }
     }
 
     public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner)
