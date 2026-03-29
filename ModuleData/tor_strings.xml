@@ -781,7 +781,7 @@
   <string id="tor_enchanter_hub_reintro.eonir" text="{=str_tor_enchanter_hub_reintro_eonir}Blessings of Isha upon you, what aid can I bestow?"/>
   <string id="tor_enchanter_hub_info_p.eonir" text="{=str_tor_enchanter_hub_info_p_eonir}Can you help me learn the basics of enchanting?"/>
   <string id="tor_enchanter_hub_blueprints_p.eonir" text="{=str_tor_enchanter_hub_blueprints_p_eonir}I come in search of new enchanting techniques."/>
-  <string id="tor_enchanter_hub_donate_items_p.eonir" text="{=str_tor_enchanter_hub_donate_items_p_eonir}I bring great grifts of arcane power for you and our kin."/>
+  <string id="tor_enchanter_hub_donate_items_p.eonir" text="{=str_tor_enchanter_hub_donate_items_p_eonir}I bring great gifts of arcane power for you and our kin."/>
   <string id="tor_enchanter_hub_open_enchanter_p.eonir" text="{=str_tor_enchanter_hub_open_enchanter_p_eonir}May I make use of your enchanting equipment?"/>
   <string id="tor_enchanter_hub_return_p.eonir" text="{=str_tor_enchanter_hub_return_p_eonir}I wish to discuss the matters of diplomacy."/>
   <string id="tor_enchanter_blueprints.eonir" text="{=str_tor_enchanter_blueprints_eonir}So be it, let us unravel these mysteries together."/>

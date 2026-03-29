@@ -2462,6 +2462,51 @@
 		       value="0" />
 	</SkillSet>
 	
+		<SkillSet id="tor_skills_gelt">
+		<skill id="Athletics"
+		       value="300" />
+		<skill id="Riding"
+		       value="300" />
+		<skill id="OneHanded"
+		       value="200" />
+		<skill id="TwoHanded"
+		       value="200" />
+		<skill id="Polearm"
+		       value="200" />
+		<skill id="Bow"
+		       value="300" />
+		<skill id="Crossbow"
+		       value="300" />
+		<skill id="Throwing"
+		       value="0" />
+		<skill id="Crafting"
+		       value="0" />
+		<skill id="Engineering"
+		       value="300" />
+		<skill id="Medicine"
+		       value="100" />
+		<skill id="Steward"
+		       value="300" />
+		<skill id="Tactics"
+		       value="150" />
+		<skill id="Scouting"
+		       value="200" />
+		<skill id="Charm"
+		       value="250" />
+		<skill id="Leadership"
+		       value="260" />
+		<skill id="Roguery"
+		       value="0" />
+		<skill id="Trade"
+		       value="150" />
+		<skill id="Gunpowder"
+		       value="320" />
+		<skill id="Faith"
+		       value="0" />
+		<skill id="Spellcraft"
+		       value="400" />
+	</SkillSet>
+	
 	<!--Custom Battle Generic Lords-->
 	<SkillSet id="tor_custombattle_generic">
 		<skill id="Athletics"
