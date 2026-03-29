@@ -86,6 +86,9 @@ namespace TOR_Core.Extensions
 
         public static bool IsEnchantable(this ItemObject item)
         {
+            if (item.StringId == "tor_dw_weapon_gun_drakegun" || item.StringId == "tor_dw_weapon_gun_trollhammer")
+                return false;
+
             return (item.HasArmorComponent || item.HasWeaponComponent) && !item.IsMagicalItem();
         }
 
