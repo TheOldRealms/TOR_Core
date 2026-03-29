@@ -1305,6 +1305,9 @@
   <string id="str_faction_formal_name_for_culture.eonir" text="{=str_tor_faction_formal_name_for_culture_eonir}Laurelorn Forest" />
   <string id="str_faction_formal_name_for_culture.chaos_culture" text="{=str_tor_faction_formal_name_for_culture_chaos_culture}Forces of Chaos" />
   <string id="str_faction_formal_name_for_culture.druchii" text="{=str_tor_faction_formal_name_for_culture_druchii}Druchii Slavers" />
+  <string id="str_faction_formal_name_for_culture.sturgia" text="{=str_tor_faction_formal_name_for_culture_sturgia}Karaz Ankor" />
+  <string id="str_faction_formal_name_for_culture.aserai" text="{=str_tor_faction_formal_name_for_culture_aserai}Greenskin Tribes" />
+
   
 
   <string id="str_faction_informal_name_for_culture.khuzait" text="{=str_tor_faction_informal_name_for_culture_khuzait}Sylvania" />
@@ -1315,6 +1318,8 @@
   <string id="str_faction_informal_name_for_culture.eonir" text="{=str_tor_faction_informal_name_for_culture_eonir}Laurelorn" />
   <string id="str_faction_informal_name_for_culture.chaos_culture" text="{=str_tor_faction_informal_name_for_culture_chaos_culture}Chaos" />
   <string id="str_faction_informal_name_for_culture.druchii" text="{=str_tor_faction_informal_name_for_culture_druchii}Druchii Slavers" />
+  <string id="str_faction_informal_name_for_culture.sturgia" text="{=str_tor_faction_informal_name_for_culture_sturgia}the Dawi" />
+    <string id="str_faction_informal_name_for_culture.aserai" text="{=str_tor_faction_informal_name_for_culture_aserai}the Greenskins" />
   
 
   <string id="str_adjective_for_culture.khuzait" text="{=str_tor_adjective_for_culture_khuzait}vampire" />
