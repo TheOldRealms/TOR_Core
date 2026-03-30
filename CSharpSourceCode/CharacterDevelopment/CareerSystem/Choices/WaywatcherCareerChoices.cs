@@ -222,8 +222,8 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Ranged,
                 (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Ranged && (victim.Character as CharacterObject).IsLargeTarget()));
 
-        _starfireEssencePassive1.Initialize(CareerID, "+10% personal melee 'Fire' damage.", "StarfireEssence", false, ChoiceType.Passive, null,
-            new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 10), AttackTypeMask.Melee));
+        _starfireEssencePassive1.Initialize(CareerID, "+10% personal ranged 'Fire' damage.", "StarfireEssence", false, ChoiceType.Passive, null,
+            new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 10), AttackTypeMask.Ranged));
         _starfireEssencePassive2.Initialize(CareerID, "+15% personal swing speed.", "StarfireEssence", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.SwingSpeed, true));
         _starfireEssencePassive3.Initialize(CareerID, "Troops equipped with 'Starfire Shafts', applies 'Fire Vulnerability' to enemies.", "StarfireEssence", false, ChoiceType.Passive);

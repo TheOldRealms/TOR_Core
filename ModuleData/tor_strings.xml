@@ -349,6 +349,7 @@
   <!-- Healing & Other Bonuses -->
   <string id="tor_healing_shallya_seal_text" text="{=str_tor_healing_shallya_seal_text}Shallya Seal"/>
   <string id="tor_undead_food_saving_text" text="{=str_tor_undead_food_saving_text}Saving from undead troops"/>
+  <string id="tor_healing_rune_text" text="{=str_tor_healing_rune_text}Runic Respite" />
 
 
   <!-- CC Options -->
@@ -4002,7 +4003,7 @@
   <string id="tor_careerchoice_description.HawkeyedPassive4" text="{=str_tor_careerchoice_description_HawkeyedPassive4}+20% personal ranged 'Physical' damage against mounted enemies and monsters." />
 
   <string id="tor_careerchoice_description.StarfireEssenceKeystone" text="{=str_tor_careerchoice_description_StarfireEssenceKeystone}Lethal Shot pierces shields and gains +25 'Armour Penetration'." />
-  <string id="tor_careerchoice_description.StarfireEssencePassive1" text="{=str_tor_careerchoice_description_StarfireEssencePassive1}+10% personal melee 'Fire' damage." />
+  <string id="tor_careerchoice_description.StarfireEssencePassive1" text="{=str_tor_careerchoice_description_starfireessencepassive1}+10% personal ranged 'Fire' damage." />
   <string id="tor_careerchoice_description.StarfireEssencePassive2" text="{=str_tor_careerchoice_description_StarfireEssencePassive2}+15% personal swing speed." />
   <string id="tor_careerchoice_description.StarfireEssencePassive3" text="{=str_tor_careerchoice_description_StarfireEssencePassive3}Troops equipped with 'Starfire Shafts', applies 'Fire Vulnerability' to enemies." />
   <string id="tor_careerchoice_description.StarfireEssencePassive4" text="{=str_tor_careerchoice_description_StarfireEssencePassive4}Your normal arrows now penetrate shields." />
@@ -4262,7 +4263,7 @@
   <string id="tor_careerchoice_description.ForHearthAndHomeKeystone" text="{=str_tor_careerchoice_description_ForHearthAndHomeKeystone}The 'Rune' Heart and Home also provides +25% 'Physical' ranged damage." />
   <string id="tor_careerchoice_description.ForHearthAndHomePassive1" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive1}+10% 'Ward Save' for troops affected by a 'Rune'." />
   <string id="tor_careerchoice_description.ForHearthAndHomePassive2" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive2}+3 Hitpoints for every equipment 'Rune' to the wearer." />
-  <string id="tor_careerchoice_description.ForHearthAndHomePassive3" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive3}+50% healing rate for troops affected by a 'Rune'." />
+  <string id="tor_careerchoice_description.ForHearthAndHomePassive3" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive3} For every troop affected by a 'Unit Rune', the party gains +0.05 healing." />
   <string id="tor_careerchoice_description.ForHearthAndHomePassive4" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive4}+10% duration of 'Rune' abilities. Points in Faith increases duration by 0.1%." />
 
   <string id="tor_careerchoice_description.StoneAndSteelKeystone" text="{=str_tor_careerchoice_description_StoneAndSteelKeystone}The 'Rune' Spellbreaker drains +50% more 'Winds of Magic'." />
