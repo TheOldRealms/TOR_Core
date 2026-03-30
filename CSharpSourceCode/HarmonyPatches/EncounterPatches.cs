@@ -147,7 +147,10 @@ namespace TOR_Core.HarmonyPatches
         public static void GetMemberRosterPostfix(TroopRoster __result)
         {
             if (__result != null && PendingLootedTroopManager.HasPendingModifications)
+            {
                 PendingLootedTroopManager.ApplyMemberModifications(__result);
+                PendingLootedTroopManager.ConsumeMemberModifications();
+            }
         }
 
         [HarmonyPostfix]
@@ -155,7 +158,10 @@ namespace TOR_Core.HarmonyPatches
         public static void GetPrisonerRosterPostfix(TroopRoster __result)
         {
             if (__result != null && PendingLootedTroopManager.HasPendingModifications)
+            {
                 PendingLootedTroopManager.ApplyPrisonerModifications(__result);
+                PendingLootedTroopManager.ConsumePrisonerModifications();
+            }
         }
     }
 }
