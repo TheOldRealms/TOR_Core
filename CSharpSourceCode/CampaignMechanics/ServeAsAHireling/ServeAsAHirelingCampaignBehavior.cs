@@ -1288,14 +1288,10 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                     {
                         if (mapEvent.IsRaid || mapEvent.IsForcingSupplies || mapEvent.IsForcingVolunteers)
                         {
-                            var lordRaidsParty = mapEvent.AttackerSide.Parties.FirstOrDefault(x => x.Party == _hirelingEnlistingLord.PartyBelongedTo.Party) != null;
-                            if (lordRaidsParty)
+                            var lordIsOnRaidSide = mapEvent.AttackerSide.Parties.Any(x => x.Party == _hirelingEnlistingLord.PartyBelongedTo.Party);
+                            if (lordIsOnRaidSide && !HasExternalRaidInterrupter(mapEvent))
                             {
-                                if (!mapEvent.DefenderSide.HasReadyTroops)
-                                {
-                                    //we return, there is no active defense.
-                                    return;
-                                }
+                                return;
                             }
                         }
 
