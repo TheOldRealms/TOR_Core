@@ -23071,19 +23071,25 @@
   <EquipmentRoster id="tor_gs_goblin_warboss_template_001" culture="Culture.aserai">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.aserai_2haxe_1_t3" />
-      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
-      <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_002" />
-      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
-      <Equipment slot="Leg" id="Item.tor_greenskin_leg_boots_goblin_001" />
+      <Equipment slot="Item1" id="Item.eastern_spear_1_t2_blunt" />
+      <Equipment slot="Item2" id="Item.bound_desert_round_shield" />
+      <Equipment slot="Head" id="Item.tor_greenskin_goblin_warboss_helmet_002" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_warboss_001" />
+      <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_warboss_001" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_warboss_001" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_boots_goblin_warboss_001" />
       <Equipment slot="Horse" id="Item.tor_greenskin_mount_wolf_001" />
       <Equipment slot="HorseHarness" id="Item.tor_greenskin_mountarmor_wolf_saddle_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.aserai_2haxe_1_t3" />
-      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
-      <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_002" />
-      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
-      <Equipment slot="Leg" id="Item.tor_greenskin_leg_boots_goblin_001" />
+      <Equipment slot="Item1" id="Item.eastern_spear_1_t2_blunt" />
+      <Equipment slot="Item2" id="Item.bound_desert_round_shield" />
+      <Equipment slot="Head" id="Item.tor_greenskin_goblin_warboss_helmet_002" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_warboss_001" />
+      <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_warboss_001" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_warboss_001" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_boots_goblin_warboss_001" />
       <Equipment slot="Horse" id="Item.tor_greenskin_mount_wolf_001" />
       <Equipment slot="HorseHarness" id="Item.tor_greenskin_mountarmor_wolf_saddle_001" />
     </EquipmentSet>
@@ -26146,14 +26152,20 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_cc_gs_path_of_boss_3" culture="Culture.aserai">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_001" />
+      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_003" />
+      <Equipment slot="Item1" id="Item.tor_greenskins_orc_shield_02_1" />
+      <Equipment slot="Head" id="Item.tor_greenskin_orc_boar_boyz_helmet_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_orc_boyz_001" />
+      <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_boyz_003" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_orc_boyz_002" />
       <Equipment slot="Leg" id="Item.tor_greenskin_boots_orc_boyz_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_001" />
+      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_003" />
+      <Equipment slot="Item1" id="Item.tor_greenskins_orc_shield_02_1" />
+      <Equipment slot="Head" id="Item.tor_greenskin_orc_boar_boyz_helmet_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_orc_boyz_001" />
+      <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_boyz_003" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_orc_boyz_002" />
       <Equipment slot="Leg" id="Item.tor_greenskin_boots_orc_boyz_001" />
     </EquipmentSet>
