@@ -461,6 +461,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             GreenskinDialogs(obj);
 
             obj.AddDialogLine("trainer_start", "start", "choices", TORTextHelper.GetText("tor_spelltrainer_start", "Do I know you? What do you need, be quick I am a busy."), spelltrainerstartcondition, null, 200, null);
+            obj.AddDialogLine("trainer_start_rejected", "start", "close_window", TORTextHelper.GetText("tor_spelltrainer_start_rejected", "I have nothing to teach you. Begone."), IsBlockedSpellTrainerConversation, null, 250, null);
             obj.AddPlayerLine("trainer_test", "choices", "magictest", "{TEST_QUESTION}", magictestcondition, null, 200, null);
             obj.AddDialogLine("trainer_testoutcome", "magictest", "testoutcome", "{TEST_PROMPT}", filltextfortestprompt, determinetestoutcome, 200,
                 null);
@@ -608,11 +609,122 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             return false;
         }
 
+        private bool IsVcTrainerCulture(string cultureId)
+        {
+            return cultureId == TORConstants.Cultures.SYLVANIA || cultureId == TORConstants.Cultures.MOUSILLON;
+        }
+
+        private bool HasMatchingSpellTrainerCompanion(Func<Hero, bool> predicate)
+        {
+            if (Hero.MainHero.PartyBelongedTo == null)
+            {
+                return false;
+            }
+
+            return Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x != Hero.MainHero && predicate(x));
+        }
+
+        private bool HasEmpireTrainerAccess()
+        {
+            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.EMPIRE)
+            {
+                return true;
+            }
+
+            return HasMatchingSpellTrainerCompanion(x => x.Culture.StringId == TORConstants.Cultures.EMPIRE && x.IsSpellCaster());
+        }
+
+        private bool HasVampireTrainerAccess()
+        {
+            if (IsVcTrainerCulture(Hero.MainHero.Culture.StringId))
+            {
+                return true;
+            }
+
+            return HasMatchingSpellTrainerCompanion(x => IsVcTrainerCulture(x.Culture.StringId) && x.IsSpellCaster());
+        }
+
+        private bool HasBretonnianTrainerAccess()
+        {
+            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.BRETONNIA)
+            {
+                return true;
+            }
+
+            return HasMatchingSpellTrainerCompanion(x => x.Culture.StringId == TORConstants.Cultures.BRETONNIA && x.IsSpellCaster());
+        }
+
+        private bool HasSpellsingerTrainerAccess()
+        {
+            if (Hero.MainHero.HasCareer(TORCareers.Spellsinger))
+            {
+                return true;
+            }
+
+            return HasMatchingSpellTrainerCompanion(x => x.HasCareer(TORCareers.Spellsinger));
+        }
+
+        private bool HasGreenskinTrainerAccess()
+        {
+            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
+            {
+                return true;
+            }
+
+            return HasMatchingSpellTrainerCompanion(x => x.Culture.StringId == TORConstants.Cultures.GREENSKIN && x.IsSpellCaster());
+        }
+
+        private bool CanAccessSpellTrainer(Hero trainer)
+        {
+            var settlementCulture = Settlement.CurrentSettlement?.Culture?.StringId;
+            var templateId = trainer.Template?.StringId;
+
+            if (settlementCulture == null || templateId == null)
+            {
+                return false;
+            }
+
+            if (templateId == _empireTrainerId)
+            {
+                return settlementCulture == TORConstants.Cultures.EMPIRE && HasEmpireTrainerAccess();
+            }
+
+            if (templateId == _vampireTrainerId)
+            {
+                return IsVcTrainerCulture(settlementCulture) && HasVampireTrainerAccess();
+            }
+
+            if (templateId == _prophetessTrainerId)
+            {
+                return settlementCulture == TORConstants.Cultures.BRETONNIA && HasBretonnianTrainerAccess();
+            }
+
+            if (templateId == _woodelfTrainerId)
+            {
+                return settlementCulture == TORConstants.Cultures.ASRAI && HasSpellsingerTrainerAccess();
+            }
+
+            if (templateId == _greenskinTrainerId)
+            {
+                return settlementCulture == TORConstants.Cultures.GREENSKIN && HasGreenskinTrainerAccess();
+            }
+
+            return false;
+        }
+        private bool IsBlockedSpellTrainerConversation()
+        {
+            var partner = CharacterObject.OneToOneConversationCharacter;
+            return partner?.HeroObject != null && partner.HeroObject.IsSpellTrainer() && !CanAccessSpellTrainer(partner.HeroObject);
+        }
         private bool spelltrainerstartcondition()
         {
             var partner = CharacterObject.OneToOneConversationCharacter;
-            if (partner != null && partner.HeroObject != null && partner.HeroObject.IsSpellTrainer()) return true;
-            return false;
+            if (partner?.HeroObject == null || !partner.HeroObject.IsSpellTrainer())
+            {
+                return false;
+            }
+
+            return CanAccessSpellTrainer(partner.HeroObject);
         }
 
         private bool magictestcondition()

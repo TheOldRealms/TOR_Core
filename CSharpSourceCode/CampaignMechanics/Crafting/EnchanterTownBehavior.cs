@@ -245,6 +245,108 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                 hero.StringId); //we collected the missing member, next time we just look in the serialized dictionary.
     }
 
+    private bool SettlementMatchesEnchanterCulture(string culture)
+    {
+        var settlementCulture = Settlement.CurrentSettlement?.Culture?.StringId;
+        if (settlementCulture == null)
+        {
+            return false;
+        }
+
+        return SharesVcEnchanterBranch(culture, settlementCulture);
+    }
+
+    private bool HasMatchingEnchanterCompanion(Func<Hero, bool> predicate)
+    {
+        if (Hero.MainHero.PartyBelongedTo == null)
+        {
+            return false;
+        }
+
+        return Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x != Hero.MainHero && predicate(x));
+    }
+
+    private bool HasEnchanterAccess(string culture)
+    {
+        if (!SettlementMatchesEnchanterCulture(culture))
+        {
+            return false;
+        }
+
+        switch (culture)
+        {
+            case TORConstants.Cultures.EMPIRE:
+                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.EMPIRE)
+                {
+                    return true;
+                }
+
+                return HasMatchingEnchanterCompanion(x => x.Culture.StringId == TORConstants.Cultures.EMPIRE && x.IsSpellCaster());
+
+            case TORConstants.Cultures.SYLVANIA:
+            case TORConstants.Cultures.MOUSILLON:
+                if (SharesVcEnchanterBranch(culture, Hero.MainHero.Culture.StringId))
+                {
+                    return true;
+                }
+
+                return HasMatchingEnchanterCompanion(x => SharesVcEnchanterBranch(culture, x.Culture.StringId) && x.IsSpellCaster());
+
+            case TORConstants.Cultures.BRETONNIA:
+                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.BRETONNIA)
+                {
+                    return true;
+                }
+
+                return HasMatchingEnchanterCompanion(x => x.Culture.StringId == TORConstants.Cultures.BRETONNIA && x.IsSpellCaster());
+
+            case TORConstants.Cultures.ASRAI:
+                if (Hero.MainHero.HasCareer(TORCareers.Spellsinger))
+                {
+                    return true;
+                }
+
+                return HasMatchingEnchanterCompanion(x => x.HasCareer(TORCareers.Spellsinger));
+
+            case TORConstants.Cultures.EONIR:
+                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.EONIR)
+                {
+                    return true;
+                }
+
+                return HasMatchingEnchanterCompanion(x => x.Culture.StringId == TORConstants.Cultures.EONIR && x.IsSpellCaster());
+
+            case TORConstants.Cultures.DAWI:
+                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI)
+                {
+                    return true;
+                }
+
+                return HasMatchingEnchanterCompanion(x => x.HasAttribute("Runesmith"));
+
+            case TORConstants.Cultures.GREENSKIN:
+                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
+                {
+                    return true;
+                }
+
+                return HasMatchingEnchanterCompanion(x => x.Culture.StringId == TORConstants.Cultures.GREENSKIN && x.IsSpellCaster());
+
+            default:
+                return false;
+        }
+    }
+
+    private bool IsDirectEnchanterBlocked(string culture)
+    {
+        var partner = CharacterObject.OneToOneConversationCharacter;
+        if (partner?.HeroObject == null || partner.HeroObject.IsSpellTrainer())
+        {
+            return false;
+        }
+
+        return partner.HeroObject.IsEnchanter() && partner.Culture.StringId == culture && !HasEnchanterAccess(culture);
+    }
 
     private void GenericEnchantmentDialogs(CampaignGameStarter campaignGameStarter)
     {
@@ -299,7 +401,7 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
             {
                 campaignGameStarter.AddDialogLine("enchanter_start_quit" + cultures[i], "start", "close_window",
                     TORTextHelper.GetText("tor_enchanter_dialog_start_quit", cultures[i], "You are not of my culture. Begone.", true),
-                    () => EnchanterCondition(cultures[i]) && !cultureCheck(cultures[i]), null, 200);
+                    () => IsDirectEnchanterBlocked(cultures[i]), null, 200);
 
                 campaignGameStarter.AddDialogLine("enchanter_start_2" + cultures[i], "start", "enchanter_hub_intro" + cultures[i],
                     TORTextHelper.GetText("tor_enchanter_dialog_start_2", cultures[i], "Ah, a fellow practitioner! You are most welcome here.", true),
@@ -312,7 +414,7 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
             bool cultureCheck(string culture)
             {
-                return SharesVcEnchanterBranch(culture, Hero.MainHero.Culture.StringId);
+                return HasEnchanterAccess(culture);
             }
 
             bool enchanterCareer()
@@ -632,9 +734,22 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
             bool EnchanterCondition(string culture)
             {
                 var partner = CharacterObject.OneToOneConversationCharacter;
-                if (partner.Culture.StringId != culture) return false;
+                if (partner?.HeroObject == null)
+                {
+                    return false;
+                }
 
-                return partner.HeroObject != null && partner.HeroObject.IsEnchanter();
+                if (partner.Culture.StringId != culture)
+                {
+                    return false;
+                }
+
+                if (!SettlementMatchesEnchanterCulture(culture))
+                {
+                    return false;
+                }
+
+                return partner.HeroObject.IsEnchanter();
             }
 
 
