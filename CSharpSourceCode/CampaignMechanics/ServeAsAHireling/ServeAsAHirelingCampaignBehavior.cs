@@ -258,11 +258,21 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             }
 
             var armyOwnerParty = lordParty.Army?.ArmyOwner?.PartyBelongedTo;
-            if (armyOwnerParty?.MapEvent != null
-                && armyOwnerParty.MapEvent.IsSiegeAssault
+            if (armyOwnerParty?.MapEvent == null || !armyOwnerParty.MapEvent.IsSiegeAssault)
+            {
+                return null;
+            }
+
+            var sameBesiegerCamp = lordParty.BesiegerCamp != null
+                && lordParty.BesiegerCamp == armyOwnerParty.BesiegerCamp;
+
+            var sameDefendingSettlement = lordParty.CurrentSettlement != null
+                && lordParty.CurrentSettlement == armyOwnerParty.CurrentSettlement
+                && lordParty.CurrentSettlement == armyOwnerParty.MapEvent.MapEventSettlement;
+
+            if ((sameBesiegerCamp || sameDefendingSettlement)
                 && armyOwnerParty.MapEvent.InvolvedParties.Any(x => x == lordParty.Party))
             {
-                // siege can sit on army owner
                 return armyOwnerParty;
             }
 
