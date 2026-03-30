@@ -4003,7 +4003,7 @@
   <string id="tor_careerchoice_description.HawkeyedPassive4" text="{=str_tor_careerchoice_description_HawkeyedPassive4}+20% personal ranged 'Physical' damage against mounted enemies and monsters." />
 
   <string id="tor_careerchoice_description.StarfireEssenceKeystone" text="{=str_tor_careerchoice_description_StarfireEssenceKeystone}Lethal Shot pierces shields and gains +25 'Armour Penetration'." />
-  <string id="tor_careerchoice_description.StarfireEssencePassive1" text="{=str_tor_careerchoice_description_starfireessencepassive1}+10% personal ranged 'Fire' damage." />
+  <string id="tor_careerchoice_description.StarfireEssencePassive1" text="{=str_tor_careerchoice_description_StarfireEssencePassive1}+10% personal ranged 'Fire' damage." />
   <string id="tor_careerchoice_description.StarfireEssencePassive2" text="{=str_tor_careerchoice_description_StarfireEssencePassive2}+15% personal swing speed." />
   <string id="tor_careerchoice_description.StarfireEssencePassive3" text="{=str_tor_careerchoice_description_StarfireEssencePassive3}Troops equipped with 'Starfire Shafts', applies 'Fire Vulnerability' to enemies." />
   <string id="tor_careerchoice_description.StarfireEssencePassive4" text="{=str_tor_careerchoice_description_StarfireEssencePassive4}Your normal arrows now penetrate shields." />
