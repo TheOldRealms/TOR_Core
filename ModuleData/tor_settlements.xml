@@ -145,7 +145,7 @@
       <Shrine id="grimnir_shrine_04" religion="cult_of_grimnir" background_crop_position="0.0" background_mesh="shrine_of_grimnir" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="grungni_shrine_01" name="{=str_tor_settlements_grimnir_shrine01}Shrine of Grugni" owner="Faction.karak_kaferkammaz_clan_1" posX="1204.403" posY="676.666" culture="Culture.sturgia" text="{=!}Shrine of Grugni">
+  <Settlement id="grungni_shrine_01" name="{=str_tor_settlements_grugni_shrine01}Shrine of Grugni" owner="Faction.karak_kaferkammaz_clan_1" posX="1204.403" posY="676.666" culture="Culture.sturgia" text="{=!}Shrine of Grugni">
     <Components>
       <Shrine id="grungni_shrine_01" religion="cult_of_grungni" background_crop_position="0.0" background_mesh="shrine_of_grimnir" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
