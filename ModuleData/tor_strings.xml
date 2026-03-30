@@ -5546,6 +5546,7 @@
 	<string id="tor_spelltrainer_scrolls" text="{=str_tor_spelltrainer_scrolls}Do you sell any scrolls?"/>
 	<string id="tor_spelltrainer_player_goodbye" text="{=str_tor_spelltrainer_player_goodbye}Farewell Magister."/>
 	<string id="tor_spelltrainer_goodbye" text="{=str_tor_spelltrainer_goodbye}Hmm, yes. Farewell."/>
+	<string id="tor_spelltrainer_start_rejected" text="{=str_tor_spelltrainer_start_rejected}I have nothing to teach you. Begone."/>
 
 	<!--Spell Trainer Magic Test-->
 	<string id="tor_spelltrainer_magictest_empire" text="{=str_tor_spelltrainer_magictest_empire}I have come seeking knowledge, I wish to learn the arcane arts. Can you help me?"/>
