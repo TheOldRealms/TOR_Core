@@ -6284,8 +6284,57 @@
 		</female_names>
 		<clan_names>
 			<name name="{=!}Crookedhoodz" />
-			<name name="{=!}Madmoonz" />
-			<name name="{=!}Red Venom" />
+			<name name="{=!}Gob’gobblers" />
+			<name name="{=!}Crooked Grin" />
+			<name name="{=!}Stunties Klubberz" />
+			<name name="{=!}Big Clubz" />
+			<name name="{=!}Gut Manglas" />
+			<name name="{=!}Shootin’ Fangz" />
+			<name name="{=!}Big Big 'Uns" />
+			<name name="{=!}Red Hag Tribe" />
+			<name name="{=!}Deep Finkas" />
+			<name name="{=!}Goldtoofs" />
+			<name name="{=!}Blisterfoots" />
+			<name name="{=!}Marrow Drinkas" />
+			<name name="{=!}Rusty Hookz" />
+			<name name="{=!}Nosepikkaz" />
+			<name name="{=!}Bone 'Eads" />
+			<name name="{=!}Big Toe Tribe" />
+			<name name="{=!}Warty Nose Tribe" />
+			<name name="{=!}Hot Knobz" />
+			<name name="{=!}Long Fang Boys" />
+			<name name="{=!}Big Finkaz" />
+			<name name="{=!}Coppaskinz" />
+			<name name="{=!}Boys of da Big Foot" />
+			<name name="{=!}Dirty Diggas" />
+			<name name="{=!}Black Blood Tribe" />
+			<name name="{=!}Eye Pokas" />
+			<name name="{=!}Knee Slappas" />
+			<name name="{=!}Frozen Crack Tribe" />
+			<name name="{=!}Bug Eyed Loonz" />
+			<name name="{=!}Rattlerz" />
+			<name name="{=!}Bug Eatas" />
+			<name name="{=!}Rotten Leg Tribe" />
+			<name name="{=!}Slugskinz" />
+			<name name="{=!}Tree Stabbas" />
+			<name name="{=!}Deff Rollaz" />
+			<name name="{=!}Black Swamp Tribe" />
+			<name name="{=!}Murky Eyez" />
+			<name name="{=!}Dedd Handz" />
+			<name name="{=!}Shiny Rokk Hut Boys" />
+			<name name="{=!}Loonz in da Woods" />
+			<name name="{=!}Hollow Bone Tribe" />
+			<name name="{=!}Big Stompas" />
+			<name name="{=!}Gig Ribz Tribe" />
+			<name name="{=!}Dedd Fing Killas" />
+			<name name="{=!}Wet 'Uns" />
+			<name name="{=!}Hot Rock Boys" />
+			<name name="{=!}Boys in da Fog" />
+			<name name="{=!}Dust Bustaz" />
+			<name name="{=!}Sandy Eyez" />
+			<name name="{=!}Shiny Takerz Tribe" />
+			<name name="{=!}Arrerskullz Tribe" />
+			<name name="{=!}Mad Twig Tribe" />
 		</clan_names>
 		<cultural_feats>
 			<feat id="vlandian_renown_mercenary_income" />

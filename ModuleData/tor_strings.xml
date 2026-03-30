@@ -2152,7 +2152,7 @@
   <string id="tor_hire_companion_skip_p.tor_wanderer_empire_0" text="{=str_tor_hire_companion_skip_p_tor_wanderer_empire_0}My name is {PLAYER.NAME}. Let us skip the pleasantries and get right to business." />
   <string id="tor_prebackstory.tor_wanderer_empire_0" text="{=str_tor_prebackstory_tor_wanderer_empire_0}You wish to know my story? Very well." />
   <string id="tor_backstory_a.tor_wanderer_empire_0" text="{=str_tor_backstory_a_tor_wanderer_empire_0}As a boy I discovered I was not like most children, it was not long before the colleges realised this as well." />
-  <string id="tor_backstory_b.tor_wanderer_empire_0" text="{=str_tor_backstory_b_tor_wanderer_empire_0}Once my affinity for Aqshy was known, I was ripped from my peasant life and become an initiate within the Colleges in Altdorf." />
+  <string id="tor_backstory_b.tor_wanderer_empire_0" text="{=str_tor_backstory_b_tor_wanderer_empire_0}Once my affinity for Aqshy was known, I was ripped from my peasant life and became an initiate within the Colleges in Altdorf." />
   <string id="tor_backstory_c.tor_wanderer_empire_0" text="{=str_tor_backstory_c_tor_wanderer_empire_0}That fire in Altdorf a few years back that started in a tavern? Definitely wasn't me!." />
   <string id="tor_response_1.tor_wanderer_empire_0" text="{=str_tor_response_1_tor_wanderer_empire_0}Most interesting." />
   <string id="tor_response_2.tor_wanderer_empire_0" text="{=str_tor_response_2_tor_wanderer_empire_0}Yes, yes, and then?" />
