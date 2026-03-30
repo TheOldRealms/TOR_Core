@@ -278,6 +278,11 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
             return null;
         }
+        private bool HasExternalRaidInterrupter(MapEvent mapEvent)
+        {
+            var defaultSettlementDefenders = mapEvent.MapEventSettlement.GetInvolvedPartiesForEventType(mapEvent.EventType);
+            return mapEvent.DefenderSide.Parties.Any(defenderParty => !defaultSettlementDefenders.Contains(defenderParty.Party));
+        }
 
         private void MenuOpened(MenuCallbackArgs obj)
         {
@@ -1201,7 +1206,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
                     if (mapEvent.IsRaid || mapEvent.IsForcingSupplies || mapEvent.IsForcingVolunteers)
                     {
-                        var lordRaidsParty = mapEvent.AttackerSide.Parties.FirstOrDefault(x => x.Party == _hirelingEnlistingLord.PartyBelongedTo.Party)!=null;
+                        var lordRaidsParty = mapEvent.AttackerSide.Parties.FirstOrDefault(x => x.Party == _hirelingEnlistingLord.PartyBelongedTo.Party) != null;
                         if (lordRaidsParty)
                         {
                             if (!mapEvent.DefenderSide.HasReadyTroops)
