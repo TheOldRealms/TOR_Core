@@ -93,14 +93,29 @@ namespace TOR_Core.HarmonyPatches
                 var hirelingBehavior = Campaign.Current?.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>();
                 var enlistingLordParty = hirelingBehavior?.EnlistingLord?.PartyBelongedTo;
                 var playerMapEvent = Hero.MainHero.PartyBelongedTo?.MapEvent;
+                var playerMapEventSide = Hero.MainHero.PartyBelongedTo?.MapEventSide?.MissionSide;
+                var enlistingLordMapEventSide = enlistingLordParty?.MapEventSide?.MissionSide;
 
-                var hasOngoingHirelingBattle =
-                    (playerMapEvent != null && !playerMapEvent.HasWinner) ||
-                    (enlistingLordParty?.MapEvent != null && !enlistingLordParty.MapEvent.HasWinner);
+                var hasJoinableHirelingBattle =
+                    ServeAsAHirelingCampaignBehavior.IsJoinableHirelingMapEvent(playerMapEvent, playerMapEventSide) ||
+                    ServeAsAHirelingCampaignBehavior.IsJoinableHirelingMapEvent(enlistingLordParty?.MapEvent, enlistingLordMapEventSide);
 
-                if (hasOngoingHirelingBattle)
+                var hasPendingNativeCleanup =
+                    ServeAsAHirelingCampaignBehavior.HasPendingNativeEncounterCleanup();
+
+                if (currentEncounter?.IsJoinedBattle == true
+                    && (hasJoinableHirelingBattle || hasPendingNativeCleanup))
+                {
+                    return true;
+                }
+
+                if (hasJoinableHirelingBattle)
                 {
                     menuId = "hireling_battle_menu";
+                }
+                else if (currentEncounter != null && hasPendingNativeCleanup)
+                {
+                    return true;
                 }
                 else
                 {
@@ -130,9 +145,9 @@ namespace TOR_Core.HarmonyPatches
             var enlistingLordParty = hirelingBehavior?.EnlistingLord?.PartyBelongedTo;
 
             var hasActiveHirelingBattle =
-                MapEvent.PlayerMapEvent != null ||
-                Hero.MainHero.PartyBelongedTo?.MapEvent != null ||
-                enlistingLordParty?.MapEvent != null;
+                ServeAsAHirelingCampaignBehavior.IsOngoingHirelingMapEvent(MapEvent.PlayerMapEvent) ||
+                ServeAsAHirelingCampaignBehavior.IsOngoingHirelingMapEvent(Hero.MainHero.PartyBelongedTo?.MapEvent) ||
+                ServeAsAHirelingCampaignBehavior.IsOngoingHirelingMapEvent(enlistingLordParty?.MapEvent);
 
             if (!hasActiveHirelingBattle)
             {
