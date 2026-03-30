@@ -258,7 +258,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _noRestAgainstEvilPassive4.Initialize(CareerID, "+5 Companion limit.", "NoRestAgainstEvil", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
 
             _swiftProcedurePassive1.Initialize(CareerID, "+8 extra ammo per ammunition pouch you equip.", "SwiftProcedure", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(8, PassiveEffectType.Ammo));
-            _swiftProcedurePassive2.Initialize(CareerID, "Personal accuracy movement penalty reduced by -10%.", "SwiftProcedure", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.RangedMovementPenalty, true));
+            _swiftProcedurePassive2.Initialize(CareerID, "Personal accuracy movement penalty reduced by -10%.", "SwiftProcedure", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-10, PassiveEffectType.RangedMovementPenalty, true));
             _swiftProcedurePassive3.Initialize(CareerID, "+1 party move speed on campaign map.", "SwiftProcedure", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1f, PassiveEffectType.PartyMovementSpeed));
             _swiftProcedurePassive4.Initialize(CareerID, "+10% personal weapon swing speed.", "SwiftProcedure", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10f, PassiveEffectType.SwingSpeed, true));
 

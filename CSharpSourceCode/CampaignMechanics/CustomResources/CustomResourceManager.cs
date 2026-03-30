@@ -495,8 +495,13 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 if (playerHero.HasCareerChoice("MercenaryLordPassive4"))
                 {
                     var leadershipSkill = playerHero.GetSkillValue(DefaultSkills.Leadership);
-                    var leadershipFactor = 1f + (leadershipSkill / 300f);
-                    renownChange *= leadershipFactor;
+                    var prestigeFactor = 2f;
+
+                    if (leadershipSkill >= 300)
+                    {
+                        prestigeFactor += 1f;
+                    }
+                    renownChange *= prestigeFactor;
                 }
 
                 var cultureSpecificResourceChange = (int)(1 + renownChange);

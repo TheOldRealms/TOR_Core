@@ -296,7 +296,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         protected override void InitializePassives()
         {
             _bookOfSigmarPassive1.Initialize(CareerID, "+10 personal Hitpoints.", "BookOfSigmar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
-            _bookOfSigmarPassive2.Initialize(CareerID, "+10 'Morale' for all troops.", "BookOfSigmar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.TroopMorale, true));
+            _bookOfSigmarPassive2.Initialize(CareerID, "+10 'Morale' for all troops.", "BookOfSigmar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.TroopMorale, false, null, true));
             _bookOfSigmarPassive3.Initialize(CareerID, "After battle, wounded Companions heal +20 Hitpoints.", "BookOfSigmar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special));
             _bookOfSigmarPassive4.Initialize(CareerID, "Wounded troops heal faster.", "BookOfSigmar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration));
 

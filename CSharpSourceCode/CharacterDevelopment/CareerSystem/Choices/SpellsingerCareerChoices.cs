@@ -205,13 +205,13 @@ public class SpellsingerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
         _pathShapingPassive1.Initialize(CareerID, "+1 party move speed on campaign map.", "PathShaping", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.PartyMovementSpeed));
         _pathShapingPassive2.Initialize(CareerID, "-10% gold wages for 'Elven' troops.", "PathShaping", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(-10, PassiveEffectType.TroopWages, true, characterObject => characterObject.IsElf()));
-        _pathShapingPassive3.Initialize(CareerID, "+20% spotting range of party on campaign map.", "PathShaping", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
+        _pathShapingPassive3.Initialize(CareerID, "+20% spotting range of party on campaign map.", "PathShaping", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.PartySpottingRange, true));
         _pathShapingPassive4.Initialize(CareerID, "+15% personal 'Ward Save' if armour weight does not exceed 15.", "PathShaping", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.All));
 
         _treeSingingPassive1.Initialize(CareerID, "+5 personal 'Winds of Magic' capacity.", "TreeSinging", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
         _treeSingingPassive2.Initialize(CareerID, "+15 'Harmony' daily.", "TreeSinging", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.CustomResourceGain));
         _treeSingingPassive3.Initialize(CareerID, "-10% 'Harmony' upkeep for Dryads.", "TreeSinging", false, ChoiceType.Passive, null,
-            new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.CustomResourceUpkeepModifier, true, characterObject => characterObject.Culture.StringId == TORConstants.Cultures.ASRAI && !characterObject.IsElf()));
+            new CareerChoiceObject.PassiveEffect(-10, PassiveEffectType.CustomResourceUpkeepModifier, true, characterObject => characterObject.StringId == "tor_we_dryad"));
         _treeSingingPassive4.Initialize(CareerID, "Increase party size by +3 per known spell.", "TreeSinging", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.Special, false));
 
         _vitalSurgePassive1.Initialize(CareerID, "+15 personal Hitpoints.", "VitalSurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));

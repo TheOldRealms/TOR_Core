@@ -199,7 +199,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             (attacker, victim, mask) => victim.BelongsToMainParty() && !victim.IsHero && victim.Character.HasUnitRune()));
         _teachingsOfThungniPassive4.Initialize(CareerID, "+25% party carrying capacity.", "TeachingsOfThungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.InventoryCapacity, true));
 
-        _chiselAndHammerPassive1.Initialize(CareerID, "+15% 'Physical' damage for troops affected by a 'Rune'.", "ChiselAndHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Holy, 15), AttackTypeMask.All,
+        _chiselAndHammerPassive1.Initialize(CareerID, "+15% 'Physical' damage for troops affected by a 'Rune'.", "ChiselAndHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.All,
             (attacker, victim, mask) => attacker.Character.HasUnitRune() && victim.Character.Race != 0));
         _chiselAndHammerPassive2.Initialize(CareerID, "Kills made with 'Rune' weapons provide Spellcraft experience.", "ChiselAndHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
         _chiselAndHammerPassive3.Initialize(CareerID, "+20% personal 'Rune' ability affect radius.", "ChiselAndHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20f, PassiveEffectType.SpellRadius, true));
@@ -209,8 +209,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _forHearthAndHomePassive1.Initialize(CareerID, "+10% 'Ward Save' for troops affected by a 'Rune'.", "ForHearthAndHome", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.Spell,
             (attacker, victim, mask) => !victim.BelongsToMainParty() && victim.IsHero && victim.GetHero().CharacterObject.IsRunesmith()));
         _forHearthAndHomePassive2.Initialize(CareerID, "+3 Hitpoints for every equipment 'Rune' to the wearer.", "ForHearthAndHome", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.Special));
-        _forHearthAndHomePassive3.Initialize(CareerID, "+50% healing rate for troops affected by a 'Rune'.", "ForHearthAndHome", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.TroopRegeneration, true,
-            characterObject => characterObject.HasUnitRune())); //specific troops getting bonuses requires patches or implementing a PartyHeal behavior
+        _forHearthAndHomePassive3.Initialize(CareerID, "+50% healing rate for troops affected by a 'Rune'.", "ForHearthAndHome", false, ChoiceType.Passive, null, null);
         _forHearthAndHomePassive4.Initialize(CareerID, "+10% duration of 'Rune' abilities. Points in Faith increases duration by 0.1%.", "ForHearthAndHome", false,
             ChoiceType.Passive, new List<CareerChoiceObject.MutationObject>()
             {
@@ -233,7 +232,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _anvilOfDoomPassive1.Initialize(CareerID, "+15% personal 'Magic' damage.", "AnvilOfDoom", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 15), AttackTypeMask.Spell));
         _anvilOfDoomPassive2.Initialize(CareerID, "+5 'Oathgold' daily when an 'Anvil of Doom' is present.", "AnvilOfDoom", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CustomResourceGain, false, x => x.HeroObject is { PartyBelongedTo: not null } && x.HeroObject.PartyBelongedTo.HasAnvilOfDoom()));
         _anvilOfDoomPassive3.Initialize(CareerID, "-2% cooldown to your runes per Runesmith companion.", "AnvilOfDoom", false, ChoiceType.Passive, null, null);
-        _anvilOfDoomPassive4.Initialize(CareerID, "+1 troop 'Rune' slot.", "AnvilOfDoom", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special)); //
+        _anvilOfDoomPassive4.Initialize(CareerID, "+1 troop 'Rune' slot.", "AnvilOfDoom", false, ChoiceType.Passive, null, null);
     }
 
 

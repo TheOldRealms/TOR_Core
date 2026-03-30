@@ -225,9 +225,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             _teachingsOfTheWinterFatherPassive1.Initialize(CareerID, "Wounded troops heal faster.", "TeachingsOfTheWinterFather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.TroopRegeneration));
             _teachingsOfTheWinterFatherPassive2.Initialize(CareerID, "Praying at a shrine of Ulric, fully restores personal Hitpoints. (5-day cooldown.)", "TeachingsOfTheWinterFather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
-            _teachingsOfTheWinterFatherPassive3.Initialize(CareerID, "Melee attacks deal increased damage to shields.", "TeachingsOfTheWinterFather", false, ChoiceType.Passive, null);
+            _teachingsOfTheWinterFatherPassive3.Initialize(CareerID, "Melee attacks deal increased damage to shields.", "TeachingsOfTheWinterFather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.BonusDamageShield, AttackTypeMask.Melee));
             _teachingsOfTheWinterFatherPassive4.Initialize(CareerID, "+20% ranged 'Physical Resistance' for 'Melee' troops.", "TeachingsOfTheWinterFather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Ranged,
-                (attacker, victim, mask) => victim.BelongsToMainParty() && !(victim.IsMainAgent || victim.IsHero) && mask == AttackTypeMask.Ranged));
+                (attacker, victim, mask) => victim.BelongsToMainParty() && !(victim.IsMainAgent || victim.IsHero) && !victim.Character.IsRanged && mask == AttackTypeMask.Ranged));
 
             _frostsBitePassive1.Initialize(CareerID, "+10% personal 'Frost' damage.", "FrostsBite", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Frost, 10), AttackTypeMask.Melee));
             _frostsBitePassive2.Initialize(CareerID, "+10% 'Frost' damage for 'Melee' troops.", "FrostsBite", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Frost, 10), AttackTypeMask.Melee));
