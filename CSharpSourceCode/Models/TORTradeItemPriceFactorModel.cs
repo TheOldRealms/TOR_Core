@@ -14,6 +14,7 @@ namespace TOR_Core.Models
         // nerfing sale prices of equipment by 50%, then increasing it back by .3% for every level
         private const float EQUIPMENT_SELL_PRICE_BASE_MULTIPLIER = 0.5f;
         private const float EQUIPMENT_TRADE_SKILL_BONUS_PER_LEVEL = 0.0073f; // same prices as vanilla at 300 trade
+        private const float PLAYER_SMITHED_SALE_PRICE_MULTIPLIER = 0.25f;
 
         private const string TRADE_PENALTY_REDUCTION_DESCRIPTION =
             "{=str_tor_trade_skill_description}Trade penalty Reduction +0.2% per level for trade goods and animals.\n" +
@@ -80,6 +81,13 @@ namespace TOR_Core.Models
                 EQUIPMENT_SELL_PRICE_BASE_MULTIPLIER * (1f + tradeSkillValue * EQUIPMENT_TRADE_SKILL_BONUS_PER_LEVEL);
 
             int adjustedPrice = (int)Math.Round(vanillaPrice * equipmentSellMultiplier, MidpointRounding.AwayFromZero);
+
+            if (clientParty == MobileParty.MainParty && IsPlayerSmithedSaleNerfItem(item))
+            {
+                adjustedPrice = (int)Math.Round(
+                    adjustedPrice * PLAYER_SMITHED_SALE_PRICE_MULTIPLIER,
+                    MidpointRounding.AwayFromZero);
+            }
             return Math.Max(adjustedPrice, 1);
         }
 
@@ -88,6 +96,12 @@ namespace TOR_Core.Models
             return !item.IsTradeGood
                 && !item.IsAnimal
                 && (item.HasWeaponComponent || item.HasArmorComponent || item.Type == ItemObject.ItemTypeEnum.HorseHarness);
+        }
+        private static bool IsPlayerSmithedSaleNerfItem(ItemObject item)
+        {
+            return item.IsCraftedByPlayer
+                && item.IsCraftedWeapon
+                && item.StringId.StartsWith("crafted_item_", StringComparison.Ordinal);
         }
 
         private static int GetTradeSkillValue(MobileParty clientParty)
