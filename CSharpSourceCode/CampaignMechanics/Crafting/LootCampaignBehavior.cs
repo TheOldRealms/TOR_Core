@@ -170,7 +170,7 @@ public class LootCampaignBehavior : CampaignBehaviorBase
                 continue;
 
             var traitList = new List<string>();
-            var item = character.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Cape).TakeRandom(1).FirstOrDefault();
+            var item = character.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Cape).Where(x => !x.IsBannerItem()).TakeRandom(1).FirstOrDefault();
             for (var j = 0; j < traitCount; j++)
                 if (item != null)
                 {

@@ -674,6 +674,18 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_goblin_warboss_helmet_001" RaceLock="goblin">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_goblin_warboss_helmet_002" RaceLock="goblin">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_goblin_warboss_helmet_003" RaceLock="goblin">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_greenskin_mask_savage_001" RaceLock="orc">
     <ItemTraits>
       <ItemTrait>savage_orc_ward_save</ItemTrait>
@@ -1357,6 +1369,10 @@
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_greenskin_shoulderpads_orc_warboss_001" RaceLock="orc">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_shoulderpads_goblin_warboss_001" RaceLock="goblin">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
@@ -2088,6 +2104,10 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_body_armour_goblin_warboss_001" RaceLock="goblin">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_greenskin_body_armour_troll_001" RaceLock="troll">
     <ItemTraits />
     <Description />
@@ -2445,6 +2465,10 @@
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_greenskin_bracers_orc_warboss_001" RaceLock="orc">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_bracers_goblin_warboss_001" RaceLock="goblin">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
@@ -3055,6 +3079,10 @@
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_greenskin_boots_orc_warboss_001" RaceLock="orc">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_boots_goblin_warboss_001" RaceLock="goblin">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
@@ -4952,6 +4980,18 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_gun_grudge_raker_001">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_gun_dronazgrund">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dw_weapon_gun_drakefire_pistol">
     <ItemTraits />
     <DamageProportions>
@@ -4959,6 +4999,12 @@
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dw_weapon_gun_drakegun">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_weapon_gun_trollhammer">
     <ItemTraits />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -5049,6 +5095,12 @@
     </DamageProportions>
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_weapon_ammo_buckshot">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_arrows_ofpotency">
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -5058,6 +5110,12 @@
   <ExtendedItemObjectProperties ItemStringId="tor_dw_drakegun_canister">
     <DamageProportions>
       <DamageProportionTuple DamageType="Fire" Percent="1.00" />
+    </DamageProportions>
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_iron_drake_trollhammer_torpedo">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -5328,6 +5386,27 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_shield_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskins_orc_shield_01">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskins_orc_shield_02_1">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskins_orc_shield_02_2">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskins_orc_shield_03_1">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskins_orc_shield_03_2">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskins_orc_shield_03_3">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskins_orc_shield_03_4">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_greenskins_black_orc_shield_001">
@@ -5659,7 +5738,7 @@
     <ItemTraits>
       <ItemTrait>use_ink_manual_greenskin</ItemTrait>
     </ItemTraits>
-    <Description>Dis rock fing shows ya 'ow to make speshul fings like dem glowy choppas.</Description>
+    <Description>Learn about da magic fings from da piktures on da rok</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_emp_enchant_ghur_wildform">
     <ItemTraits>

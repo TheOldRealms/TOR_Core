@@ -364,7 +364,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _nightRiderPassive2.Initialize(CareerID, "+20 to all melee skills of 'Lesser Undead', and 'Vampire' troops.", "NightRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, new List<string>() { nameof(DefaultSkills.TwoHanded), nameof(DefaultSkills.OneHanded) },
                     characterObject => !characterObject.IsHero && (characterObject.IsUndead() || characterObject.IsVampire())));
             _nightRiderPassive3.Initialize(CareerID, "+50% faster raiding speed during the night.", "NightRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special, true));
-            _nightRiderPassive4.Initialize(CareerID, "Personal damage against shields is increased.", "NightRider", false, ChoiceType.Passive, null);
+            _nightRiderPassive4.Initialize(CareerID, "Personal damage against shields is increased.", "NightRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.BonusDamageShield, AttackTypeMask.Melee)); // or however you like it, assuming the whole effect won't change after this point
 
             _bladeMasterPassive1.Initialize(CareerID, "+5% personal 'Physical' melee damage.", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 5), AttackTypeMask.Melee));
             _bladeMasterPassive2.Initialize(CareerID, "Personal healing rate increased by +3.", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.HealthRegeneration));

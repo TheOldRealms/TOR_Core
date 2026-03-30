@@ -48,6 +48,9 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
         private bool _hirelingWaitMenuShown;
 
+        private int _deadJoinedEncounterCleanupTicks;
+        private MapEvent _joinedHirelingCleanupBattle;
+
         private float _entryServiceTimeStamp;
 
         private SkillObject _currentTrainedSkill;
@@ -223,6 +226,15 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 PlayerEncounter.Finish(false);
             }
 
+            if (PlayerEncounter.Current != null
+                && PlayerEncounter.EncounterSettlement == settlement
+                && PlayerEncounter.LocationEncounter == null)
+            {
+                // same settlement, but location encounter got cleared by hireling flow
+                PlayerEncounter.EnterSettlement();
+                return;
+            }
+
             EnterSettlementAction.ApplyForParty(MobileParty.MainParty, settlement);
 
             if (PlayerEncounter.Current == null || PlayerEncounter.EncounterSettlement != settlement)
@@ -278,12 +290,24 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             if (_startBattle && menuId == "join_encounter" && !_debugSkipBattles)
             {
                 PlayerEncounter.JoinBattle(GetCurrentHirelingBattleParty().MapEventSide.MissionSide);
+                _joinedHirelingCleanupBattle = PlayerEncounter.Battle ?? GetCurrentHirelingBattleParty()?.MapEvent;
+                _deadJoinedEncounterCleanupTicks = 0;
                 GameMenu.SwitchToMenu("encounter");
                 return;
             }
 
             if (_startBattle && menuId == "encounter" && !_debugSkipBattles)
             {
+                if (_siegeBattleMissionStarted)
+                {
+                    var battleParty = GetCurrentHirelingBattleParty();
+
+                    PlayerEncounter.JoinBattle(battleParty.MapEventSide.MissionSide);
+                    _joinedHirelingCleanupBattle = PlayerEncounter.Battle ?? battleParty.MapEvent;
+                    _deadJoinedEncounterCleanupTicks = 0;
+                    _siegeBattleMissionStarted = false;
+                }
+
                 _startBattle = false;
 
                 if (Hero.MainHero.PartyBelongedTo.MapEvent != null)
@@ -607,7 +631,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                                                      //SiegeAssault doesn't know whether it's the attacker or defender, it's just that the map event is in a Siege state
                         {//Sly : why is this doing the same thing as the StartBattleAction call above, but behind further conditionals?
                          //Likely can be removed as I think it never gets past the conditionals inside and the map event won't be a siege assault unless it has already started a player-involved map event
-                            Game.Current.AfterTick += InitializeSiegeBattle;
+                            Game.Current.AfterTick -= InitializeSiegeBattle;
                             _siegeBattleMissionStarted = true;
                             _startBattle = true;
                         }
@@ -628,6 +652,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                {
                    _hirelingLordIsFightingWithoutPlayer = true;
                    _startBattle = false;
+                   _joinedHirelingCleanupBattle = null;
+                   _deadJoinedEncounterCleanupTicks = 0;
 
                    var playerParty = MobileParty.MainParty;
                    playerParty.MapEventSide = null;
@@ -672,6 +698,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             _inPostBattleTransition = false;
             _hirelingLordIsFightingWithoutPlayer = false;
             _hirelingWaitMenuShown = false;
+            _joinedHirelingCleanupBattle = null;
+            _deadJoinedEncounterCleanupTicks = 0;
             Game.Current.AfterTick -= InitializeSiegeBattle;
             _hirelingEnlisted = false;
             _hirelingEnlistingLord = null;
@@ -681,8 +709,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             //This makes PlayerEncounter.EncounterSettlement null which is accessed via vanilla gamemenu init methods
             //crash does not occur, and finishing encounter is important to not end in a invalid state, where parties try to engange with player but can't
             PlayerEncounter.Current?.RosterToReceiveLootItems?.Clear();
-            PendingLootedTroopManager.ClearPendingMembers();
-            PendingLootedTroopManager.ClearPendingPrisoners();
+            PendingLootedTroopManager.ResetAllPendingState();
             PlayerEncounter.Finish();
             if (Settlement.CurrentSettlement != null)
             {
@@ -1000,8 +1027,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 // This is especially important after sieges when the lord immediately enters the settlement
                 _inPostBattleTransition = true;
                 PlayerEncounter.Current?.RosterToReceiveLootItems?.Clear();
-                PendingLootedTroopManager.ClearPendingMembers();
-                PendingLootedTroopManager.ClearPendingPrisoners();
+                PendingLootedTroopManager.ResetAllPendingState();
 
                 _hirelingLordIsFightingWithoutPlayer = false;
 
@@ -1035,6 +1061,81 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             }
         }
 
+        private bool TryCleanupDeadJoinedHirelingEncounter()
+        {
+            var currentEncounter = PlayerEncounter.Current;
+            var enlistingLordParty = _hirelingEnlistingLord?.PartyBelongedTo;
+            var currentBattle = PlayerEncounter.Battle;
+
+            var isTrackedJoinedHirelingBattle =
+                _joinedHirelingCleanupBattle != null &&
+                currentBattle == _joinedHirelingCleanupBattle;
+
+            var hasDeadJoinedHirelingEncounter =
+                _inPostBattleTransition &&
+                !_startBattle &&
+                currentEncounter?.IsJoinedBattle == true &&
+                currentEncounter.EncounterState == PlayerEncounterState.End &&
+                PlayerEncounter.EncounterSettlement == null &&
+                isTrackedJoinedHirelingBattle;
+
+            var hasAnyActiveBattle =
+                MapEvent.PlayerMapEvent != null ||
+                Hero.MainHero.PartyBelongedTo?.MapEvent != null ||
+                enlistingLordParty?.MapEvent != null;
+
+            if (hasAnyActiveBattle)
+            {
+                _deadJoinedEncounterCleanupTicks = 0;
+                return false;
+            }
+
+            if (!hasDeadJoinedHirelingEncounter)
+            {
+                if (currentEncounter == null || currentBattle != _joinedHirelingCleanupBattle)
+                {
+                    _joinedHirelingCleanupBattle = null;
+                }
+
+                _deadJoinedEncounterCleanupTicks = 0;
+                return false;
+            }
+
+            _deadJoinedEncounterCleanupTicks++;
+
+            var isStrictVictoryCase =
+                currentBattle != null &&
+                currentBattle.HasWinner &&
+                currentBattle.PlayerSide == currentBattle.WinningSide;
+
+            if (_deadJoinedEncounterCleanupTicks >= 2 && isStrictVictoryCase)
+            {
+                TORCommon.Log("hireling dead joined encounter cleanup phase1. report this to developers", NLog.LogLevel.Warn);
+                InformationManager.DisplayMessage(new InformationMessage("hireling dead joined encounter cleanup phase1. report this to developers"));
+
+                PlayerEncounter.Finish(false);
+                _hirelingWaitMenuShown = false;
+                _joinedHirelingCleanupBattle = null;
+                _deadJoinedEncounterCleanupTicks = 0;
+
+                return true;
+            }
+
+            if (_deadJoinedEncounterCleanupTicks >= 10)
+            {
+                TORCommon.Log("hireling dead joined encounter cleanup phase2 fallback. report this to developers", NLog.LogLevel.Warn);
+                InformationManager.DisplayMessage(new InformationMessage("hireling dead joined encounter cleanup phase2 fallback. report this to developers"));
+
+                PlayerEncounter.Finish(false);
+                _hirelingWaitMenuShown = false;
+                _joinedHirelingCleanupBattle = null;
+                _deadJoinedEncounterCleanupTicks = 0;
+
+                return true;
+            }
+
+            return false;
+        }
         private void OnTick(float dt)
         {
             if (_hirelingEnlisted && _hirelingEnlistingLord?.PartyBelongedTo != null)
@@ -1061,6 +1162,11 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 {
                     var hirelingMenu = Campaign.Current.GameMenuManager.GetGameMenu("hireling_menu");
                     hirelingMenu.RunOnTick(currentMenuContext, dt);
+                }
+
+                if (TryCleanupDeadJoinedHirelingEncounter())
+                {
+                    return;
                 }
 
                 var waitingForNativeEncounterCleanup =

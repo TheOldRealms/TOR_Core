@@ -8,6 +8,7 @@ using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.HarmonyPatches;
 using TOR_Core.Items;
+using TOR_Core.Missions;
 
 namespace TOR_Core.Extensions
 {
@@ -39,6 +40,16 @@ namespace TOR_Core.Extensions
         public static bool IsArenaMission(this Mission mission)
         {
             return mission.GetMissionBehavior<ArenaPracticeFightMissionController>() != null || mission.CombatType == Mission.MissionCombatType.ArenaCombat || mission.Scene.GetName().ToLowerInvariant().Contains("arena");
+        }
+
+        public static bool IsDuelMission(this Mission mission)
+        {
+            return mission.GetMissionBehavior<DuelFightMissionController>() != null;
+        }
+
+        public static bool IsJoustMission(this Mission mission)
+        {
+            return mission.GetMissionBehavior<JoustFightMissionController>() != null;
         }
 
         public static int GetArtillerySlotsLeftForTeam(this Mission mission, Team team)

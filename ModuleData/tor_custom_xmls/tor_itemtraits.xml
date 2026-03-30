@@ -1311,7 +1311,7 @@
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>16</IngredientAmount>
-    <ItemTraitDescription>"Gain 8 Forest Harmony daily, 3% extra physical resistance"</ItemTraitDescription>
+    <ItemTraitDescription>"Gain 8 Custom Resource daily, 3% extra physical resistance"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.03" />
     <StatsTuple StatType="CustomResourceGain" Value="7" />
   </ItemTrait>
@@ -3563,7 +3563,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"Gain 8 Forest Harmony daily, 3% extra physical resistance"</ItemTraitDescription>
+    <ItemTraitDescription>"Gain 8 Custom Resource daily, 3% extra physical resistance"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>we_enchant_leylines_weave</InventoryScriptArgument>

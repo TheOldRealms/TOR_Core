@@ -75,21 +75,30 @@ namespace TOR_Core.HarmonyPatches
                 {
                     return true;
                 }
-                if (PlayerEncounter.Current?.IsJoinedBattle == true)
+                var currentEncounter = PlayerEncounter.Current;
+
+                if (currentEncounter?.IsJoinedBattle == true
+                    && currentEncounter.EncounterState != PlayerEncounterState.End)
                 {
                     return true;
                 }
-                // vanilla would normally finish an ended encounter here
-                // if rerouted straight to the hireling menu first, it will cause a ghost encounter
-                if (PlayerEncounter.Current != null
-                    && PlayerEncounter.Current.EncounterState == PlayerEncounterState.End
+
+                if (currentEncounter != null
+                    && currentEncounter.EncounterState == PlayerEncounterState.End
                     && PlayerEncounter.EncounterSettlement == null)
                 {
                     PlayerEncounter.Finish(false);
                 }
 
-                var hasActiveBattle = Hero.MainHero.PartyBelongedTo?.MapEvent != null;
-                if (hasActiveBattle)
+                var hirelingBehavior = Campaign.Current?.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>();
+                var enlistingLordParty = hirelingBehavior?.EnlistingLord?.PartyBelongedTo;
+                var playerMapEvent = Hero.MainHero.PartyBelongedTo?.MapEvent;
+
+                var hasOngoingHirelingBattle =
+                    (playerMapEvent != null && !playerMapEvent.HasWinner) ||
+                    (enlistingLordParty?.MapEvent != null && !enlistingLordParty.MapEvent.HasWinner);
+
+                if (hasOngoingHirelingBattle)
                 {
                     menuId = "hireling_battle_menu";
                 }
@@ -138,7 +147,10 @@ namespace TOR_Core.HarmonyPatches
         public static void GetMemberRosterPostfix(TroopRoster __result)
         {
             if (__result != null && PendingLootedTroopManager.HasPendingModifications)
+            {
                 PendingLootedTroopManager.ApplyMemberModifications(__result);
+                PendingLootedTroopManager.ConsumeMemberModifications();
+            }
         }
 
         [HarmonyPostfix]
@@ -146,7 +158,10 @@ namespace TOR_Core.HarmonyPatches
         public static void GetPrisonerRosterPostfix(TroopRoster __result)
         {
             if (__result != null && PendingLootedTroopManager.HasPendingModifications)
+            {
                 PendingLootedTroopManager.ApplyPrisonerModifications(__result);
+                PendingLootedTroopManager.ConsumePrisonerModifications();
+            }
         }
     }
 }

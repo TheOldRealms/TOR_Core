@@ -1150,10 +1150,17 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
 
             AddMenus(manager);
+
+            // Override the native/StoryMode review page description
+
         }
-        
+
         public void AfterInitializeContent(CharacterCreationManager manager)
         {
+            manager.CharacterCreationContent.ChangeReviewPageDescription(
+                TORTextHelper.GetTextObject("tor_cc_review_description",
+                    "You prepare to set off for a grand adventure in the Old World! Here is your character. Continue if you are ready, or go back to make changes.")
+            );
             //Intialize Specialization stage. No easy way to access stage field (if not current) therefore we use reflection
             try
             {
@@ -1201,6 +1208,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             if (stages.GetType() == typeof(CharacterCreationCultureStage))
             {
+                
                 OnCultureSelected();
             }
 

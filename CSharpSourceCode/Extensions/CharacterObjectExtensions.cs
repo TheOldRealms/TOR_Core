@@ -226,8 +226,7 @@ namespace TOR_Core.Extensions
             if (attributes == null) return false;
             var runes = RunelordCareerButtonBehavior.GetRuneIds;
 
-            return attributes.All(x => runes.Contains(x));
-
+            return attributes.Any(x => runes.Contains(x));
         }
 
         public static bool IsKnightUnit(this BasicCharacterObject characterObject)

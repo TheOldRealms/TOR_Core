@@ -22,6 +22,9 @@ public class RunesmithQuest : QuestBase
     [SaveableField(3)]
     private int _currentContracts = 0;
 
+    public const int RUNESMITHQUEST1REQUIREDCRAFTINGORDERS = 15;
+    public const int RUNESMITHQUEST1REQUIREDKNOWNRUNES = 7;
+
     public RunesmithQuest(string questId, Hero questGiver, CampaignTime duration, int rewardGold) : base(questId, questGiver, duration, rewardGold)
     {
         InitializeQuest();
@@ -40,8 +43,8 @@ public class RunesmithQuest : QuestBase
             _currentContracts = dwarfBehavior.CraftingOrdersCompleted;
         }
 
-        _task1 = AddDiscreteLog(TORTextHelper.GetTextObject("tor_runesmith_quest_log_contracts", "Finish {REQUIRED} Smithing contracts.").SetTextVariable("REQUIRED", 15), TORTextHelper.GetTextObject("tor_runesmith_quest_task_contracts", "Contracts"), _currentContracts, 15);
-        _task2 = AddDiscreteLog(TORTextHelper.GetTextObject("tor_runesmith_quest_log_runes", "Learn {REQUIRED} runes.").SetTextVariable("REQUIRED", 7), TORTextHelper.GetTextObject("tor_runesmith_quest_task_runes", "Runes"), currentKnownRunes, 7);
+        _task1 = AddDiscreteLog(TORTextHelper.GetTextObject("tor_runesmith_quest_log_contracts", "Finish {REQUIRED} smithing contracts.").SetTextVariable("REQUIRED", RUNESMITHQUEST1REQUIREDCRAFTINGORDERS), TORTextHelper.GetTextObject("tor_runesmith_quest_task_contracts", "Contracts"), _currentContracts, RUNESMITHQUEST1REQUIREDCRAFTINGORDERS);
+        _task2 = AddDiscreteLog(TORTextHelper.GetTextObject("tor_runesmith_quest_log_runes", "Learn {REQUIRED} runes.").SetTextVariable("REQUIRED", RUNESMITHQUEST1REQUIREDKNOWNRUNES), TORTextHelper.GetTextObject("tor_runesmith_quest_task_runes", "Runes"), currentKnownRunes, RUNESMITHQUEST1REQUIREDKNOWNRUNES);
 
     }
 

@@ -77,8 +77,18 @@ namespace TOR_Core.Extensions
             return result;
         }
 
+        public static bool IsBannerItem(this ItemObject item)
+        {
+            return item?.HasWeaponComponent == true &&
+                   item.PrimaryWeapon != null &&
+                   item.PrimaryWeapon.WeaponClass == WeaponClass.Banner;
+        }
+
         public static bool IsEnchantable(this ItemObject item)
         {
+            if (item.StringId == "tor_dw_weapon_gun_drakegun" || item.StringId == "tor_dw_weapon_gun_trollhammer")
+                return false;
+
             return (item.HasArmorComponent || item.HasWeaponComponent) && !item.IsMagicalItem();
         }
 
@@ -291,11 +301,110 @@ namespace TOR_Core.Extensions
             return itemObject.StringId.Contains("grenade") || itemObject.StringId.Contains("scatter");
         }
 
+        // ===== Weapon Platform Checks =====
+        public static bool IsDrakeGunWeapon(this ItemObject itemObject)
+        {
+            if (!IsAmmunitionItem(itemObject)) return false;
+            return itemObject.StringId.Contains("weapon_gun_drakegun");
+        }
+
+        public static bool IsTrollhammerWeapon(this ItemObject itemObject)
+        {
+            if (!IsAmmunitionItem(itemObject)) return false;
+            return itemObject.StringId.Contains("weapon_gun_trollhammer");
+        }
+
+        public static bool IsBlunderbussWeapon(this ItemObject itemObject)
+        {
+            if (!IsAmmunitionItem(itemObject)) return false;
+            return itemObject.StringId.Contains("blunderbuss");
+        }
+
+        // ===== Ammo Type Checks =====
+        public static bool IsDrakeGunCanister(this ItemObject itemObject)
+        {
+            if (!IsAmmunitionItem(itemObject)) return false;
+            return itemObject.StringId.Contains("canister") || itemObject.StringId.Contains("drakefire");
+        }
+
+        public static bool IsTrollhammerTorpedo(this ItemObject itemObject)
+        {
+            if (!IsAmmunitionItem(itemObject)) return false;
+            return itemObject.StringId.Contains("trollhammer_torpedo");
+        }
+
+        public static bool IsScatterShot(this ItemObject itemObject)
+        {
+            if (!IsAmmunitionItem(itemObject)) return false;
+            return itemObject.StringId.Contains("scatter");
+        }
+
+        public static bool IsGrenadeAmmo(this ItemObject itemObject)
+        {
+            if (!IsAmmunitionItem(itemObject)) return false;
+            return itemObject.StringId.Contains("grenade");
+        }
+
+        // ===== Compatibility Group Checks =====
+        /// <summary>
+        /// Returns true if item is drake gun weapon OR compatible ammo (canister only)
+        /// </summary>
+        public static bool IsDrakeGunCompatible(this ItemObject itemObject)
+        {
+            return itemObject.IsDrakeGunWeapon() || itemObject.IsDrakeGunCanister();
+        }
+
+        /// <summary>
+        /// Returns true if item is trollhammer weapon OR compatible ammo (torpedoes only)
+        /// </summary>
+        public static bool IsTrollhammerCompatible(this ItemObject itemObject)
+        {
+            return itemObject.IsTrollhammerWeapon() || itemObject.IsTrollhammerTorpedo();
+        }
+
+        /// <summary>
+        /// Returns true if item is blunderbuss weapon OR compatible ammo (scatter OR grenade)
+        /// </summary>
+        public static bool IsBlunderbussCompatible(this ItemObject itemObject)
+        {
+            return itemObject.IsBlunderbussWeapon() || itemObject.IsScatterShot() || itemObject.IsGrenadeAmmo();
+        }
+
+        // ===== Dwarf Shotgun System (Grudge Raker / Dronazgrund) =====
+        /// <summary>
+        /// Returns true if item is a dwarf shotgun (Grudge Raker or Dronazgrund)
+        /// </summary>
+        public static bool IsDwarfShotgunWeapon(this ItemObject itemObject)
+        {
+            if (!IsAmmunitionItem(itemObject)) return false;
+            return itemObject.StringId.Contains("grudge_raker") || itemObject.StringId.Contains("dronazgrund");
+        }
+
+        /// <summary>
+        /// Returns true if item is dwarf buckshot ammo
+        /// </summary>
+        public static bool IsDwarfBuckshot(this ItemObject itemObject)
+        {
+            if (!IsAmmunitionItem(itemObject)) return false;
+            return itemObject.StringId.Contains("tor_dw_weapon_ammo_buckshot");
+        }
+
+        /// <summary>
+        /// Returns true if item is dwarf shotgun weapon OR dwarf buckshot ammo (buckshot ONLY - exclusive ammo)
+        /// </summary>
+        public static bool IsDwarfShotgunCompatible(this ItemObject itemObject)
+        {
+            return itemObject.IsDwarfShotgunWeapon() || itemObject.IsDwarfBuckshot();
+        }
+
+        // ===== Legacy Method - Kept for backwards compatibility =====
+        /// <summary>
+        /// Legacy method - returns true for drake gun weapon or canister ammo (flamethrower mode)
+        /// </summary>
         public static bool IsFlameThrowerItem(this ItemObject itemObject)
         {
             if (!IsAmmunitionItem(itemObject)) return false;
-
-            return itemObject.StringId.Contains("canister") || itemObject.StringId.Contains("weapon_gun_drakegun") || itemObject.StringId.Contains("drakefire");
+            return itemObject.IsDrakeGunWeapon() || itemObject.IsDrakeGunCanister();
         }
 
         public static bool IsAmmunitionItem(this ItemObject itemObject)

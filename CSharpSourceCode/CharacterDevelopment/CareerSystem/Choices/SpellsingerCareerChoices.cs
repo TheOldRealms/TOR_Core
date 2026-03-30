@@ -107,7 +107,7 @@ public class SpellsingerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
 
     protected override void InitializeKeyStones()
     {
-        _spellSingerRoot.Initialize(CareerID, "Calls treespirits of the surouding forests. Every point in Spellcraft increases the chance by 0.05% additional treespirits join the combat.", null, true,
+        _spellSingerRoot.Initialize(CareerID, "The forests are restless! Chant an ancient litany, to bring forth the Wrath of the Wood, summoning Dryads to your aid! For every level of Spellcraft, gain 0.05% chance of an additional Dryad being summoned. (Ability is charged by dealing 'Spell' damage.)", null, true,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -120,7 +120,7 @@ public class SpellsingerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
                 }
             });
 
-        _pathShapingKeystone.Initialize(CareerID, "Upon casting, all forest spirits are moving faster for 10 seconds. Ability scales with Scouting", "PathShaping", false,
+        _pathShapingKeystone.Initialize(CareerID, "Wrath of the Wood also scales with Scouting, and buffs 'Forest Spirits' move speed by +10%.", "PathShaping", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -133,12 +133,12 @@ public class SpellsingerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
                 }
             }, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
 
-        _treeSingingKeystone.Initialize(CareerID, "Charge is increased by 50%. +2 base troops for summoning.", "TreeSinging", false,
+        _treeSingingKeystone.Initialize(CareerID, "Wrath of the Wood charges twice as fast, and summons +2 more Dryads.", "TreeSinging", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
             }, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
 
-        _vitalSurgeKeystone.Initialize(CareerID, "Every spawned unit heals 1 HP for all heroes. Ability scales with Medicine", "VitalSurge", false,
+        _vitalSurgeKeystone.Initialize(CareerID, "Wrath of the Wood also scales with Medicine. Companions heal per summoned Dryad.", "VitalSurge", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -151,7 +151,7 @@ public class SpellsingerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
                 }
             });
 
-        _heartOfTheTreeKeystone.Initialize(CareerID, "Treespirit attacks charge Career Ability. Ability scales with Leadership", "HeartOfTheTree", false,
+        _heartOfTheTreeKeystone.Initialize(CareerID, "Wrath of the Wood also scales with Leadership, and 'Tree Spirit' troops charge ability.", "HeartOfTheTree", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new()
@@ -164,7 +164,7 @@ public class SpellsingerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
                 }
             });
 
-        _arielsBlessingKeystone.Initialize(CareerID, "Ability starts charged. Ability scales with Faith", "ArielsBlessing", false,
+        _arielsBlessingKeystone.Initialize(CareerID, "Wrath of the Woods also scales with Faith, and can be cast immediately on battle start.", "ArielsBlessing", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -177,13 +177,13 @@ public class SpellsingerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
                 }
             });
 
-        _magicOfAthelLorenKeystone.Initialize(CareerID, "for 10 seconds after casting, dryad kills gain 0.5 Wind.", "MagicOfAthelLoren", false,
+        _magicOfAthelLorenKeystone.Initialize(CareerID, "Wrath of the Woods Lets kills made by Dryads to recharge 0.5 of your 'Winds of Magic' for 10s.", "MagicOfAthelLoren", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
             }, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
 
 
-        _furyOfTheForestKeystone.Initialize(CareerID, "Call 1 Treeman with ability (or 10 dryads in close quarter Missions)", "FuryOfTheForest", false,
+        _furyOfTheForestKeystone.Initialize(CareerID, "Wrath of the Woods summons +1 Treeman. 10 Dryads instead if used during a mission.", "FuryOfTheForest", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -202,52 +202,52 @@ public class SpellsingerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
     protected override void InitializePassives()
     {
 
-        _pathShapingPassive1.Initialize(CareerID, "Party movement speed is increased by 1.", "PathShaping", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.PartyMovementSpeed));
-        _pathShapingPassive2.Initialize(CareerID, "Upkeep for elven units is reduced by 10%.", "PathShaping", false, ChoiceType.Passive, null,
+        _pathShapingPassive1.Initialize(CareerID, "+1 party move speed on campaign map.", "PathShaping", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.PartyMovementSpeed));
+        _pathShapingPassive2.Initialize(CareerID, "-10% gold wages for 'Elven' troops.", "PathShaping", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(-10, PassiveEffectType.TroopWages, true, characterObject => characterObject.IsElf()));
-        _pathShapingPassive3.Initialize(CareerID, "The Spotting range of the party is increased by 20%.", "PathShaping", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
-        _pathShapingPassive4.Initialize(CareerID, "Gain 15% Ward save if wearing less than 15 stones of armor.", "PathShaping", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.All));
+        _pathShapingPassive3.Initialize(CareerID, "+20% spotting range of party on campaign map.", "PathShaping", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.PartySpottingRange, true));
+        _pathShapingPassive4.Initialize(CareerID, "+15% personal 'Ward Save' if armour weight does not exceed 15.", "PathShaping", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.All));
 
-        _treeSingingPassive1.Initialize(CareerID, "Increases maximum winds of magic capacities by 5.", "TreeSinging", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
-        _treeSingingPassive2.Initialize(CareerID, "Gain 15 Harmony daily.", "TreeSinging", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.CustomResourceGain));
-        _treeSingingPassive3.Initialize(CareerID, "Upkeep for dryads units is reduced by 10%.", "TreeSinging", false, ChoiceType.Passive, null,
-            new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.CustomResourceUpkeepModifier, true, characterObject => characterObject.Culture.StringId == TORConstants.Cultures.ASRAI && !characterObject.IsElf()));
-        _treeSingingPassive4.Initialize(CareerID, "For every known spell increase party size by 3.", "TreeSinging", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.Special, false));
+        _treeSingingPassive1.Initialize(CareerID, "+5 personal 'Winds of Magic' capacity.", "TreeSinging", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
+        _treeSingingPassive2.Initialize(CareerID, "+15 'Harmony' daily.", "TreeSinging", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.CustomResourceGain));
+        _treeSingingPassive3.Initialize(CareerID, "-10% 'Harmony' upkeep for Dryads.", "TreeSinging", false, ChoiceType.Passive, null,
+            new CareerChoiceObject.PassiveEffect(-10, PassiveEffectType.CustomResourceUpkeepModifier, true, characterObject => characterObject.StringId == "tor_we_dryad"));
+        _treeSingingPassive4.Initialize(CareerID, "Increase party size by +3 per known spell.", "TreeSinging", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.Special, false));
 
-        _vitalSurgePassive1.Initialize(CareerID, "Increases Hitpoints by 15.", "VitalSurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
-        _vitalSurgePassive2.Initialize(CareerID, "Increases troop regeneration by 1.", "VitalSurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.TroopRegeneration));
-        _vitalSurgePassive3.Initialize(CareerID, "Buffs and healing duration is increased by 20%.", "VitalSurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.BuffDuration, true));
-        _vitalSurgePassive4.Initialize(CareerID, "Player healing rate increased by 2.", "VitalSurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.HealthRegeneration));
+        _vitalSurgePassive1.Initialize(CareerID, "+15 personal Hitpoints.", "VitalSurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
+        _vitalSurgePassive2.Initialize(CareerID, "Wounded troops heal faster.", "VitalSurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.TroopRegeneration));
+        _vitalSurgePassive3.Initialize(CareerID, "+20% duration for 'Augment' and 'Healing' spells.", "VitalSurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.BuffDuration, true));
+        _vitalSurgePassive4.Initialize(CareerID, "Personal healing rate increased by +2.", "VitalSurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.HealthRegeneration));
 
-        _heartOfTheTreePassive1.Initialize(CareerID, "tree spirits deal 15% extra damage.", "HeartOfTheTree", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.All,
+        _heartOfTheTreePassive1.Initialize(CareerID, "+15% 'Physical' melee damage for 'Tree Spirit' troops.", "HeartOfTheTree", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.All,
             (attacker, victim, mask) => attacker.Character.Culture.StringId == TORConstants.Cultures.ASRAI && !(attacker.Character as CharacterObject).IsElf()));
-        _heartOfTheTreePassive2.Initialize(CareerID, "Dryads gain 15% Wardsave.", "HeartOfTheTree", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.All,
+        _heartOfTheTreePassive2.Initialize(CareerID, "+15% 'Ward Save' for Dryads.", "HeartOfTheTree", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.All,
            (attacker, victim, mask) => victim.BelongsToMainParty() && victim.Character.StringId == "tor_we_dryad"));
-        _heartOfTheTreePassive3.Initialize(CareerID, "Upkeep for tree spirit units is reduced by 15%.", "HeartOfTheTree", false, ChoiceType.Passive, null,
+        _heartOfTheTreePassive3.Initialize(CareerID, "-15% 'Harmony' upkeep for 'Tree Spirit' troops.", "HeartOfTheTree", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.CustomResourceUpkeepModifier, true, characterObject => characterObject.Culture.StringId == TORConstants.Cultures.ASRAI && !characterObject.IsElf()));
-        _heartOfTheTreePassive4.Initialize(CareerID, "For every tree spirit unit in the party, gain 0.5 maximum winds.", "HeartOfTheTree", false, ChoiceType.Passive,
+        _heartOfTheTreePassive4.Initialize(CareerID, "+0.5 personal 'Winds of Magic' capacity, per 'Tree Spirit' troop.", "HeartOfTheTree", false, ChoiceType.Passive,
             null, new CareerChoiceObject.PassiveEffect(0.5f, PassiveEffectType.Special, true));
 
-        _arielsBlessingPassive1.Initialize(CareerID, "10% extra magical melee damage.", "ArielsBlessing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Melee));
-        _arielsBlessingPassive2.Initialize(CareerID, "Increases maximum winds of magic capacities by 5.", "ArielsBlessing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
-        _arielsBlessingPassive3.Initialize(CareerID, "Isha's blessing also provides 15 Forest harmony daily.", "ArielsBlessing", false, ChoiceType.Passive,
+        _arielsBlessingPassive1.Initialize(CareerID, "+10% personal 'Magic' melee damage.", "ArielsBlessing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Melee));
+        _arielsBlessingPassive2.Initialize(CareerID, "+5 personal 'Winds of Magic' capacity.", "ArielsBlessing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
+        _arielsBlessingPassive3.Initialize(CareerID, "+15 'Forest Harmony' daily when under 'Isha's Blessing'.", "ArielsBlessing", false, ChoiceType.Passive,
             null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special));
-        _arielsBlessingPassive4.Initialize(CareerID, "Spell effect radius is increased by 15%.", "ArielsBlessing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15f, PassiveEffectType.SpellRadius, true));
+        _arielsBlessingPassive4.Initialize(CareerID, "+15% personal radius for spells.", "ArielsBlessing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15f, PassiveEffectType.SpellRadius, true));
 
-        _magicOfAthelLorenPassive1.Initialize(CareerID, "5% extra magical spell damage.", "MagicOfAthelLoren", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 5), AttackTypeMask.Spell));
-        _magicOfAthelLorenPassive2.Initialize(CareerID, "Increases maximum winds of magic capacities by 5.", "MagicOfAthelLoren", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
-        _magicOfAthelLorenPassive3.Initialize(CareerID, "tree spirits are not affected by friendly fire.", "MagicOfAthelLoren", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 100), AttackTypeMask.Spell,
+        _magicOfAthelLorenPassive1.Initialize(CareerID, "+5% personal 'Spell' damage.", "MagicOfAthelLoren", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 5), AttackTypeMask.Spell));
+        _magicOfAthelLorenPassive2.Initialize(CareerID, "+5 personal 'Winds of Magic' capacity.", "MagicOfAthelLoren", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
+        _magicOfAthelLorenPassive3.Initialize(CareerID, "'Tree Spirit' troops are not affected by friendly fire.", "MagicOfAthelLoren", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 100), AttackTypeMask.Spell,
             (attacker, victim, mask) => mask == AttackTypeMask.Spell && attacker.Character.Culture.StringId == TORConstants.Cultures.ASRAI && !(attacker.Character as CharacterObject).IsElf()));
-        _magicOfAthelLorenPassive4.Initialize(CareerID, "Increase hex durations by 20%.", "MagicOfAthelLoren", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20f, PassiveEffectType.DebuffDuration, true));
+        _magicOfAthelLorenPassive4.Initialize(CareerID, "+20% duration for 'Hex' spells.", "MagicOfAthelLoren", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20f, PassiveEffectType.DebuffDuration, true));
 
 
-        _furyOfTheForestPassive1.Initialize(CareerID, "A Dark weaver provides 10% extra magical damage to all heroes.", "FuryOfTheForest", false, ChoiceType.Passive,
+        _furyOfTheForestPassive1.Initialize(CareerID, "+10% 'Spell' damage for all Companions if one of them is a Darkweaver.", "FuryOfTheForest", false, ChoiceType.Passive,
             null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true));
-        _furyOfTheForestPassive2.Initialize(CareerID, "A High weaver provides 15% extra wardsave to all heroes.", "FuryOfTheForest", false, ChoiceType.Passive,
+        _furyOfTheForestPassive2.Initialize(CareerID, "+15% 'Ward Save' for all Companions if one of them is a Highweaver.", "FuryOfTheForest", false, ChoiceType.Passive,
             null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special, true));
-        _furyOfTheForestPassive3.Initialize(CareerID, "Treeman Upkeep is reduced by 20%.", "FuryOfTheForest", false, ChoiceType.Passive, null,
+        _furyOfTheForestPassive3.Initialize(CareerID, "-20% 'Harmony' upkeep for Treemen.", "FuryOfTheForest", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.CustomResourceUpkeepModifier, true, characterObject => characterObject.StringId.Contains("treeman")));
-        _furyOfTheForestPassive4.Initialize(CareerID, "20% Spell cooldown reduction.", "FuryOfTheForest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.WindsCooldownReduction, true));
+        _furyOfTheForestPassive4.Initialize(CareerID, "+25% personal spell cooldown reduction.", "FuryOfTheForest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.WindsCooldownReduction, true));
 
     }
 }

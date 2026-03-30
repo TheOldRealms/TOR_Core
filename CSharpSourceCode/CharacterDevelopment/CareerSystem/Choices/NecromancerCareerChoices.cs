@@ -192,7 +192,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _booksOfNagashKeystone.Initialize(CareerID, "+20% 'Magic' melee damage for Harbinger, kills it makes restores 1 of your 'Winds of Magic'.", "BooksOfNagash", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
-                }, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true));// For every kill as Harbinger the necromancer gains 1 Winds of Magic
+                }, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));// For every kill as Harbinger the necromancer gains 1 Winds of Magic
         }
 
         protected override void InitializePassives()

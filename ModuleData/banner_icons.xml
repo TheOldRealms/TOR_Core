@@ -1,0 +1,2011 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	type="string">
+	<BannerIconData>
+		<BannerIconGroup
+			id="1"
+			name="{=str_banner_editor_background}Background"
+			is_pattern="true">
+			<Background
+				id="1"
+				mesh_name="banner_background_test_1" />
+			<Background
+				id="2"
+				mesh_name="banner_background_test_2" />
+			<Background
+				id="3"
+				mesh_name="banner_background_test_3" />
+			<Background
+				id="4"
+				mesh_name="banner_background_test_4" />
+			<Background
+				id="5"
+				mesh_name="banner_background_test_5" />
+			<Background
+				id="6"
+				mesh_name="banner_background_test_6" />
+			<Background
+				id="7"
+				mesh_name="banner_background_test_7" />
+			<Background
+				id="8"
+				mesh_name="banner_background_test_8" />
+			<Background
+				id="9"
+				mesh_name="banner_background_test_9" />
+			<Background
+				id="10"
+				mesh_name="banner_background_test_10" />
+			<Background
+				id="11"
+				mesh_name="banner_background_test_11"
+				is_base_background="true" />
+			<Background
+				id="12"
+				mesh_name="banner_background_test_12" />
+			<Background
+				id="13"
+				mesh_name="banner_background_test_13" />
+			<Background
+				id="14"
+				mesh_name="banner_background_test_14" />
+			<Background
+				id="15"
+				mesh_name="banner_background_test_15" />
+			<Background
+				id="16"
+				mesh_name="banner_background_test_16" />
+			<Background
+				id="17"
+				mesh_name="banner_background_test_17" />
+			<Background
+				id="18"
+				mesh_name="banner_background_test_18" />
+			<Background
+				id="19"
+				mesh_name="banner_background_test_19" />
+			<Background
+				id="20"
+				mesh_name="banner_background_test_20" />
+			<Background
+				id="21"
+				mesh_name="banner_background_test_21" />
+			<Background
+				id="22"
+				mesh_name="banner_background_test_22" />
+			<Background
+				id="23"
+				mesh_name="banner_background_test_23" />
+			<Background
+				id="24"
+				mesh_name="banner_background_test_24" />
+			<Background
+				id="25"
+				mesh_name="banner_background_test_25" />
+			<Background
+				id="26"
+				mesh_name="banner_background_test_26" />
+			<Background
+				id="27"
+				mesh_name="banner_background_test_27" />
+			<Background
+				id="28"
+				mesh_name="banner_background_test_28" />
+			<Background
+				id="29"
+				mesh_name="banner_background_test_29" />
+			<Background
+				id="30"
+				mesh_name="banner_background_test_30" />
+			<Background
+				id="31"
+				mesh_name="banner_background_test_31" />
+			<Background
+				id="32"
+				mesh_name="banner_background_test_32" />
+			<Background
+				id="33"
+				mesh_name="banner_background_test_33" />
+			<Background
+				id="34"
+				mesh_name="banner_background_test_34" />
+			<Background
+				id="35"
+				mesh_name="banner_background_test_35" />
+			<Background
+				id="36"
+				mesh_name="banner_background_test_36" />
+		</BannerIconGroup>
+		<BannerIconGroup
+			id="2"
+			name="{=str_banner_editor_animal}Animal"
+			is_pattern="false">
+			<Icon
+				id="100"
+				material_name="custom_banner_icons_01"
+				texture_index="10" />
+			<Icon
+				id="101"
+				material_name="custom_banner_icons_01"
+				texture_index="9" />
+			<Icon
+				id="102"
+				material_name="custom_banner_icons_01"
+				texture_index="3" />
+			<Icon
+				id="103"
+				material_name="custom_banner_icons_01"
+				texture_index="11" />
+			<Icon
+				id="104"
+				material_name="custom_banner_icons_02"
+				texture_index="4" />
+			<Icon
+				id="105"
+				material_name="custom_banner_icons_04"
+				texture_index="13" />
+			<Icon
+				id="106"
+				material_name="custom_banner_icons_02"
+				texture_index="1" />
+			<Icon
+				id="107"
+				material_name="custom_banner_icons_03"
+				texture_index="6" />
+			<Icon
+				id="108"
+				material_name="custom_banner_icons_02"
+				texture_index="6" />
+			<Icon
+				id="109"
+				material_name="custom_banner_icons_03"
+				texture_index="12" />
+			<Icon
+				id="110"
+				material_name="custom_banner_icons_02"
+				texture_index="8" />
+			<Icon
+				id="111"
+				material_name="custom_banner_icons_02"
+				texture_index="5" />
+			<Icon
+				id="112"
+				material_name="custom_banner_icons_04"
+				texture_index="5" />
+			<Icon
+				id="113"
+				material_name="custom_banner_icons_02"
+				texture_index="15" />
+			<Icon
+				id="114"
+				material_name="custom_banner_icons_03"
+				texture_index="13" />
+			<Icon
+				id="115"
+				material_name="custom_banner_icons_02"
+				texture_index="2" />
+			<Icon
+				id="116"
+				material_name="custom_banner_icons_04"
+				texture_index="7" />
+			<Icon
+				id="117"
+				material_name="custom_banner_icons_04"
+				texture_index="0" />
+			<Icon
+				id="118"
+				material_name="custom_banner_icons_02"
+				texture_index="0" />
+			<Icon
+				id="119"
+				material_name="custom_banner_icons_04"
+				texture_index="6" />
+			<Icon
+				id="120"
+				material_name="custom_banner_icons_04"
+				texture_index="11" />
+			<Icon
+				id="121"
+				material_name="custom_banner_icons_04"
+				texture_index="3" />
+			<Icon
+				id="122"
+				material_name="custom_banner_icons_02"
+				texture_index="13" />
+			<Icon
+				id="123"
+				material_name="custom_banner_icons_04"
+				texture_index="8" />
+			<Icon
+				id="124"
+				material_name="custom_banner_icons_01"
+				texture_index="8" />
+			<Icon
+				id="125"
+				material_name="custom_banner_icons_01"
+				texture_index="1" />
+			<Icon
+				id="126"
+				material_name="custom_banner_icons_03"
+				texture_index="10" />
+			<Icon
+				id="127"
+				material_name="custom_banner_icons_02"
+				texture_index="11" />
+			<Icon
+				id="128"
+				material_name="custom_banner_icons_01"
+				texture_index="12" />
+			<Icon
+				id="129"
+				material_name="custom_banner_icons_03"
+				texture_index="3" />
+			<Icon
+				id="130"
+				material_name="custom_banner_icons_03"
+				texture_index="4" />
+			<Icon
+				id="131"
+				material_name="custom_banner_icons_02"
+				texture_index="12" />
+			<Icon
+				id="132"
+				material_name="custom_banner_icons_02"
+				texture_index="9" />
+			<Icon
+				id="133"
+				material_name="custom_banner_icons_02"
+				texture_index="7" />
+			<Icon
+				id="134"
+				material_name="custom_banner_icons_04"
+				texture_index="4" />
+			<Icon
+				id="135"
+				material_name="custom_banner_icons_03"
+				texture_index="11" />
+			<Icon
+				id="136"
+				material_name="custom_banner_icons_04"
+				texture_index="2" />
+			<Icon
+				id="137"
+				material_name="custom_banner_icons_01"
+				texture_index="6" />
+			<Icon
+				id="138"
+				material_name="custom_banner_icons_01"
+				texture_index="0" />
+			<Icon
+				id="139"
+				material_name="custom_banner_icons_04"
+				texture_index="1" />
+			<Icon
+				id="140"
+				material_name="custom_banner_icons_01"
+				texture_index="5" />
+			<Icon
+				id="141"
+				material_name="custom_banner_icons_01"
+				texture_index="4" />
+			<Icon
+				id="142"
+				material_name="custom_banner_icons_04"
+				texture_index="14" />
+			<Icon
+				id="143"
+				material_name="custom_banner_icons_02"
+				texture_index="14" />
+			<Icon
+				id="144"
+				material_name="custom_banner_icons_04"
+				texture_index="15" />
+			<Icon
+				id="145"
+				material_name="custom_banner_icons_03"
+				texture_index="2" />
+			<Icon
+				id="146"
+				material_name="custom_banner_icons_04"
+				texture_index="12" />
+			<Icon
+				id="147"
+				material_name="custom_banner_icons_03"
+				texture_index="7" />
+			<Icon
+				id="148"
+				material_name="custom_banner_icons_03"
+				texture_index="8" />
+			<Icon
+				id="149"
+				material_name="custom_banner_icons_01"
+				texture_index="2" />
+			<Icon
+				id="150"
+				material_name="custom_banner_icons_03"
+				texture_index="15" />
+			<Icon
+				id="151"
+				material_name="custom_banner_icons_03"
+				texture_index="1" />
+			<Icon
+				id="152"
+				material_name="custom_banner_icons_02"
+				texture_index="10" />
+			<Icon
+				id="153"
+				material_name="custom_banner_icons_03"
+				texture_index="5" />
+			<Icon
+				id="154"
+				material_name="custom_banner_icons_03"
+				texture_index="0" />
+			<Icon
+				id="155"
+				material_name="custom_banner_icons_01"
+				texture_index="14" />
+			<Icon
+				id="156"
+				material_name="custom_banner_icons_02"
+				texture_index="3" />
+			<Icon
+				id="157"
+				material_name="custom_banner_icons_01"
+				texture_index="7" />
+			<Icon
+				id="158"
+				material_name="custom_banner_icons_01"
+				texture_index="13" />
+			<Icon
+				id="159"
+				material_name="custom_banner_icons_03"
+				texture_index="14" />
+			<!--vlandia-->
+			<Icon
+				id="160"
+				material_name="custom_banner_icons_15"
+				texture_index="7"
+				is_reserved="true" />
+			<!--normal empire eagle-->
+			<Icon
+				id="161"
+				material_name="custom_banner_icons_15"
+				texture_index="10"
+				is_reserved="true" />
+			<!--southern empire-->
+			<Icon
+				id="162"
+				material_name="custom_banner_icons_15"
+				texture_index="11"
+				is_reserved="true" />
+			<!--north empire-->
+			<Icon
+				id="163"
+				material_name="custom_banner_icons_15"
+				texture_index="12"
+				is_reserved="true" />
+			<!--western empire-->
+			<Icon
+				id="164"
+				material_name="custom_banner_icons_15"
+				texture_index="13"
+				is_reserved="true" />
+		</BannerIconGroup>
+		<BannerIconGroup
+			id="3"
+			name="{=str_bannereditor_flora}Flora"
+			is_pattern="false">
+			<Icon
+				id="200"
+				material_name="custom_banner_icons_13"
+				texture_index="0" />
+			<Icon
+				id="201"
+				material_name="custom_banner_icons_05"
+				texture_index="14" />
+			<Icon
+				id="202"
+				material_name="custom_banner_icons_05"
+				texture_index="13" />
+			<Icon
+				id="203"
+				material_name="custom_banner_icons_05"
+				texture_index="6" />
+			<Icon
+				id="204"
+				material_name="custom_banner_icons_05"
+				texture_index="9" />
+			<Icon
+				id="205"
+				material_name="custom_banner_icons_05"
+				texture_index="0" />
+			<Icon
+				id="206"
+				material_name="custom_banner_icons_05"
+				texture_index="1" />
+			<Icon
+				id="207"
+				material_name="custom_banner_icons_05"
+				texture_index="3" />
+			<Icon
+				id="208"
+				material_name="custom_banner_icons_05"
+				texture_index="15" />
+			<Icon
+				id="209"
+				material_name="custom_banner_icons_05"
+				texture_index="5" />
+			<Icon
+				id="210"
+				material_name="custom_banner_icons_13"
+				texture_index="3" />
+			<Icon
+				id="211"
+				material_name="custom_banner_icons_13"
+				texture_index="8" />
+			<Icon
+				id="212"
+				material_name="custom_banner_icons_13"
+				texture_index="2" />
+			<Icon
+				id="213"
+				material_name="custom_banner_icons_13"
+				texture_index="1" />
+			<Icon
+				id="214"
+				material_name="custom_banner_icons_13"
+				texture_index="6" />
+			<Icon
+				id="215"
+				material_name="custom_banner_icons_13"
+				texture_index="7" />
+			<Icon
+				id="216"
+				material_name="custom_banner_icons_13"
+				texture_index="4" />
+			<Icon
+				id="217"
+				material_name="custom_banner_icons_13"
+				texture_index="5" />
+			<Icon
+				id="218"
+				material_name="custom_banner_icons_05"
+				texture_index="11" />
+			<Icon
+				id="219"
+				material_name="custom_banner_icons_05"
+				texture_index="2" />
+			<Icon
+				id="220"
+				material_name="custom_banner_icons_05"
+				texture_index="4" />
+			<Icon
+				id="221"
+				material_name="custom_banner_icons_05"
+				texture_index="10" />
+			<Icon
+				id="222"
+				material_name="custom_banner_icons_05"
+				texture_index="7" />
+			<Icon
+				id="223"
+				material_name="custom_banner_icons_05"
+				texture_index="8" />
+		</BannerIconGroup>
+		<BannerIconGroup
+			id="4"
+			name="{=str_banner_editor_handmade}Handmade"
+			is_pattern="false">
+			<Icon
+				id="300"
+				material_name="custom_banner_icons_13"
+				texture_index="13" />
+			<Icon
+				id="301"
+				material_name="custom_banner_icons_06"
+				texture_index="13" />
+			<Icon
+				id="302"
+				material_name="custom_banner_icons_06"
+				texture_index="11" />
+			<Icon
+				id="303"
+				material_name="custom_banner_icons_06"
+				texture_index="2" />
+			<Icon
+				id="304"
+				material_name="custom_banner_icons_06"
+				texture_index="3" />
+			<Icon
+				id="306"
+				material_name="custom_banner_icons_06"
+				texture_index="0" />
+			<Icon
+				id="305"
+				material_name="custom_banner_icons_06"
+				texture_index="15" />
+			<Icon
+				id="307"
+				material_name="custom_banner_icons_06"
+				texture_index="9" />
+			<Icon
+				id="308"
+				material_name="custom_banner_icons_06"
+				texture_index="1" />
+			<Icon
+				id="309"
+				material_name="custom_banner_icons_06"
+				texture_index="7" />
+			<Icon
+				id="310"
+				material_name="custom_banner_icons_06"
+				texture_index="14" />
+			<Icon
+				id="311"
+				material_name="custom_banner_icons_06"
+				texture_index="10" />
+			<Icon
+				id="312"
+				material_name="custom_banner_icons_06"
+				texture_index="5" />
+			<Icon
+				id="313"
+				material_name="custom_banner_icons_06"
+				texture_index="12" />
+			<Icon
+				id="314"
+				material_name="custom_banner_icons_06"
+				texture_index="4" />
+			<Icon
+				id="315"
+				material_name="custom_banner_icons_06"
+				texture_index="6" />
+			<Icon
+				id="316"
+				material_name="custom_banner_icons_07"
+				texture_index="0" />
+			<Icon
+				id="317"
+				material_name="custom_banner_icons_07"
+				texture_index="1" />
+			<Icon
+				id="318"
+				material_name="custom_banner_icons_07"
+				texture_index="2" />
+			<Icon
+				id="319"
+				material_name="custom_banner_icons_07"
+				texture_index="3" />
+			<Icon
+				id="320"
+				material_name="custom_banner_icons_07"
+				texture_index="4" />
+			<Icon
+				id="321"
+				material_name="custom_banner_icons_07"
+				texture_index="8" />
+			<Icon
+				id="322"
+				material_name="custom_banner_icons_12"
+				texture_index="8" />
+			<Icon
+				id="323"
+				material_name="custom_banner_icons_12"
+				texture_index="13" />
+			<Icon
+				id="324"
+				material_name="custom_banner_icons_14"
+				texture_index="1" />
+			<Icon
+				id="325"
+				material_name="custom_banner_icons_07"
+				texture_index="15" />
+			<Icon
+				id="326"
+				material_name="custom_banner_icons_07"
+				texture_index="13" />
+			<Icon
+				id="327"
+				material_name="custom_banner_icons_07"
+				texture_index="12" />
+			<Icon
+				id="328"
+				material_name="custom_banner_icons_07"
+				texture_index="14" />
+			<Icon
+				id="329"
+				material_name="custom_banner_icons_14"
+				texture_index="0" />
+			<Icon
+				id="330"
+				material_name="custom_banner_icons_13"
+				texture_index="9" />
+			<Icon
+				id="331"
+				material_name="custom_banner_icons_13"
+				texture_index="11" />
+			<Icon
+				id="332"
+				material_name="custom_banner_icons_13"
+				texture_index="15" />
+			<Icon
+				id="333"
+				material_name="custom_banner_icons_13"
+				texture_index="10" />
+			<Icon
+				id="334"
+				material_name="custom_banner_icons_07"
+				texture_index="9" />
+			<Icon
+				id="335"
+				material_name="custom_banner_icons_11"
+				texture_index="2" />
+			<Icon
+				id="336"
+				material_name="custom_banner_icons_07"
+				texture_index="6" />
+			<Icon
+				id="337"
+				material_name="custom_banner_icons_07"
+				texture_index="7" />
+			<Icon
+				id="338"
+				material_name="custom_banner_icons_13"
+				texture_index="12" />
+			<Icon
+				id="339"
+				material_name="custom_banner_icons_13"
+				texture_index="14" />
+			<Icon
+				id="340"
+				material_name="custom_banner_icons_07"
+				texture_index="5" />
+			<Icon
+				id="341"
+				material_name="custom_banner_icons_08"
+				texture_index="11" />
+			<Icon
+				id="342"
+				material_name="custom_banner_icons_10"
+				texture_index="13" />
+			<Icon
+				id="343"
+				material_name="custom_banner_icons_08"
+				texture_index="10" />
+			<Icon
+				id="344"
+				material_name="custom_banner_icons_12"
+				texture_index="14" />
+			<Icon
+				id="345"
+				material_name="custom_banner_icons_07"
+				texture_index="10" />
+			<Icon
+				id="346"
+				material_name="custom_banner_icons_07"
+				texture_index="11" />
+			<Icon
+				id="347"
+				material_name="custom_banner_icons_15"
+				texture_index="4" />
+		</BannerIconGroup>
+		<BannerIconGroup
+			id="5"
+			name="{=str_banner_editor_sign}Sign"
+			is_pattern="false">
+			<Icon
+				id="400"
+				material_name="custom_banner_icons_11"
+				texture_index="11" />
+			<Icon
+				id="401"
+				material_name="custom_banner_icons_11"
+				texture_index="15" />
+			<Icon
+				id="402"
+				material_name="custom_banner_icons_09"
+				texture_index="11" />
+			<Icon
+				id="403"
+				material_name="custom_banner_icons_09"
+				texture_index="10" />
+			<Icon
+				id="404"
+				material_name="custom_banner_icons_08"
+				texture_index="8" />
+			<Icon
+				id="405"
+				material_name="custom_banner_icons_08"
+				texture_index="0" />
+			<Icon
+				id="406"
+				material_name="custom_banner_icons_08"
+				texture_index="3" />
+			<Icon
+				id="407"
+				material_name="custom_banner_icons_08"
+				texture_index="5" />
+			<Icon
+				id="408"
+				material_name="custom_banner_icons_08"
+				texture_index="7" />
+			<Icon
+				id="409"
+				material_name="custom_banner_icons_09"
+				texture_index="0" />
+			<Icon
+				id="410"
+				material_name="custom_banner_icons_09"
+				texture_index="9" />
+			<Icon
+				id="411"
+				material_name="custom_banner_icons_11"
+				texture_index="3" />
+			<Icon
+				id="412"
+				material_name="custom_banner_icons_10"
+				texture_index="8" />
+			<Icon
+				id="413"
+				material_name="custom_banner_icons_08"
+				texture_index="6" />
+			<Icon
+				id="414"
+				material_name="custom_banner_icons_09"
+				texture_index="3" />
+			<Icon
+				id="415"
+				material_name="custom_banner_icons_08"
+				texture_index="15" />
+			<Icon
+				id="416"
+				material_name="custom_banner_icons_09"
+				texture_index="4" />
+			<Icon
+				id="417"
+				material_name="custom_banner_icons_08"
+				texture_index="13" />
+			<Icon
+				id="418"
+				material_name="custom_banner_icons_08"
+				texture_index="12" />
+			<Icon
+				id="419"
+				material_name="custom_banner_icons_10"
+				texture_index="11" />
+			<Icon
+				id="420"
+				material_name="custom_banner_icons_01"
+				texture_index="15" />
+			<Icon
+				id="421"
+				material_name="custom_banner_icons_11"
+				texture_index="4" />
+			<Icon
+				id="422"
+				material_name="custom_banner_icons_08"
+				texture_index="14" />
+			<Icon
+				id="423"
+				material_name="custom_banner_icons_12"
+				texture_index="12" />
+			<Icon
+				id="424"
+				material_name="custom_banner_icons_11"
+				texture_index="9" />
+			<Icon
+				id="425"
+				material_name="custom_banner_icons_11"
+				texture_index="0" />
+			<Icon
+				id="426"
+				material_name="custom_banner_icons_10"
+				texture_index="0" />
+			<Icon
+				id="427"
+				material_name="custom_banner_icons_10"
+				texture_index="12" />
+			<Icon
+				id="428"
+				material_name="custom_banner_icons_10"
+				texture_index="10" />
+			<Icon
+				id="429"
+				material_name="custom_banner_icons_10"
+				texture_index="3" />
+			<Icon
+				id="430"
+				material_name="custom_banner_icons_10"
+				texture_index="4" />
+			<Icon
+				id="431"
+				material_name="custom_banner_icons_09"
+				texture_index="1" />
+			<Icon
+				id="432"
+				material_name="custom_banner_icons_03"
+				texture_index="9" />
+			<Icon
+				id="433"
+				material_name="custom_banner_icons_04"
+				texture_index="10" />
+			<Icon
+				id="434"
+				material_name="custom_banner_icons_04"
+				texture_index="9" />
+			<Icon
+				id="435"
+				material_name="custom_banner_icons_09"
+				texture_index="13" />
+			<Icon
+				id="436"
+				material_name="custom_banner_icons_09"
+				texture_index="12" />
+			<Icon
+				id="437"
+				material_name="custom_banner_icons_08"
+				texture_index="9" />
+			<Icon
+				id="438"
+				material_name="custom_banner_icons_09"
+				texture_index="7" />
+			<Icon
+				id="439"
+				material_name="custom_banner_icons_11"
+				texture_index="14" />
+			<Icon
+				id="440"
+				material_name="custom_banner_icons_05"
+				texture_index="12" />
+			<Icon
+				id="441"
+				material_name="custom_banner_icons_08"
+				texture_index="2" />
+			<Icon
+				id="442"
+				material_name="custom_banner_icons_08"
+				texture_index="4" />
+			<Icon
+				id="443"
+				material_name="custom_banner_icons_12"
+				texture_index="15" />
+			<Icon
+				id="444"
+				material_name="custom_banner_icons_08"
+				texture_index="1" />
+			<Icon
+				id="445"
+				material_name="custom_banner_icons_06"
+				texture_index="8" />
+			<Icon
+				id="446"
+				material_name="custom_banner_icons_09"
+				texture_index="15" />
+			<Icon
+				id="448"
+				material_name="custom_banner_icons_09"
+				texture_index="2" />
+			<Icon
+				id="447"
+				material_name="custom_banner_icons_10"
+				texture_index="2" />
+			<Icon
+				id="449"
+				material_name="custom_banner_icons_11"
+				texture_index="1" />
+			<Icon
+				id="450"
+				material_name="custom_banner_icons_10"
+				texture_index="5" />
+			<Icon
+				id="451"
+				material_name="custom_banner_icons_09"
+				texture_index="5" />
+			<Icon
+				id="452"
+				material_name="custom_banner_icons_09"
+				texture_index="6" />
+			<Icon
+				id="453"
+				material_name="custom_banner_icons_10"
+				texture_index="6" />
+			<Icon
+				id="454"
+				material_name="custom_banner_icons_09"
+				texture_index="8" />
+			<Icon
+				id="455"
+				material_name="custom_banner_icons_10"
+				texture_index="7" />
+			<Icon
+				id="456"
+				material_name="custom_banner_icons_09"
+				texture_index="14" />
+			<Icon
+				id="457"
+				material_name="custom_banner_icons_12"
+				texture_index="10" />
+			<Icon
+				id="458"
+				material_name="custom_banner_icons_12"
+				texture_index="11" />
+			<Icon
+				id="459"
+				material_name="custom_banner_icons_12"
+				texture_index="3" />
+			<!--battania-->
+			<Icon
+				id="460"
+				material_name="custom_banner_icons_15"
+				texture_index="9"
+				is_reserved="true" />
+			<!--khuzait-->
+			<Icon
+				id="461"
+				material_name="custom_banner_icons_15"
+				texture_index="14"
+				is_reserved="true" />
+			<!--sturgia-->
+			<Icon
+				id="462"
+				material_name="custom_banner_icons_15"
+				texture_index="15"
+				is_reserved="true" />
+			<!--aserai-->
+			<Icon
+				id="463"
+				material_name="custom_banner_icons_15"
+				texture_index="8"
+				is_reserved="true" />
+		</BannerIconGroup>
+		<BannerIconGroup
+			id="6"
+			name="{=str_banner_editor_shape}Shape"
+			is_pattern="false">
+			<Icon
+				id="500"
+				material_name="custom_banner_icons_11"
+				texture_index="5" />
+			<Icon
+				id="501"
+				material_name="custom_banner_icons_11"
+				texture_index="6" />
+			<Icon
+				id="502"
+				material_name="custom_banner_icons_11"
+				texture_index="7" />
+			<Icon
+				id="503"
+				material_name="custom_banner_icons_14"
+				texture_index="4" />
+			<Icon
+				id="504"
+				material_name="custom_banner_icons_14"
+				texture_index="5" />
+			<Icon
+				id="505"
+				material_name="custom_banner_icons_14"
+				texture_index="6" />
+			<Icon
+				id="506"
+				material_name="custom_banner_icons_14"
+				texture_index="7" />
+			<Icon
+				id="507"
+				material_name="custom_banner_icons_14"
+				texture_index="9" />
+			<Icon
+				id="508"
+				material_name="custom_banner_icons_14"
+				texture_index="10" />
+			<Icon
+				id="509"
+				material_name="custom_banner_icons_14"
+				texture_index="11" />
+			<Icon
+				id="510"
+				material_name="custom_banner_icons_14"
+				texture_index="12" />
+			<Icon
+				id="511"
+				material_name="custom_banner_icons_14"
+				texture_index="13" />
+			<Icon
+				id="512"
+				material_name="custom_banner_icons_11"
+				texture_index="8" />
+			<Icon
+				id="513"
+				material_name="custom_banner_icons_10"
+				texture_index="9" />
+			<Icon
+				id="514"
+				material_name="custom_banner_icons_11"
+				texture_index="10" />
+			<Icon
+				id="515"
+				material_name="custom_banner_icons_14"
+				texture_index="2" />
+			<Icon
+				id="516"
+				material_name="custom_banner_icons_10"
+				texture_index="14" />
+			<Icon
+				id="517"
+				material_name="custom_banner_icons_14"
+				texture_index="8" />
+			<Icon
+				id="518"
+				material_name="custom_banner_icons_11"
+				texture_index="13" />
+			<Icon
+				id="519"
+				material_name="custom_banner_icons_10"
+				texture_index="15" />
+			<Icon
+				id="520"
+				material_name="custom_banner_icons_11"
+				texture_index="12" />
+			<Icon
+				id="521"
+				material_name="custom_banner_icons_14"
+				texture_index="3" />
+			<Icon
+				id="522"
+				material_name="custom_banner_icons_12"
+				texture_index="7" />
+			<Icon
+				id="523"
+				material_name="custom_banner_icons_12"
+				texture_index="0" />
+			<Icon
+				id="524"
+				material_name="custom_banner_icons_12"
+				texture_index="9" />
+			<Icon
+				id="525"
+				material_name="custom_banner_icons_12"
+				texture_index="2" />
+			<Icon
+				id="526"
+				material_name="custom_banner_icons_12"
+				texture_index="1" />
+			<Icon
+				id="527"
+				material_name="custom_banner_icons_12"
+				texture_index="5" />
+			<Icon
+				id="528"
+				material_name="custom_banner_icons_12"
+				texture_index="4" />
+			<Icon
+				id="529"
+				material_name="custom_banner_icons_12"
+				texture_index="6" />
+			<Icon
+				id="530"
+				material_name="custom_banner_icons_15"
+				texture_index="0" />
+			<Icon
+				id="531"
+				material_name="custom_banner_icons_15"
+				texture_index="3" />
+			<Icon
+				id="532"
+				material_name="custom_banner_icons_15"
+				texture_index="1" />
+			<Icon
+				id="533"
+				material_name="custom_banner_icons_15"
+				texture_index="2" />
+			<Icon
+				id="534"
+				material_name="custom_banner_icons_14"
+				texture_index="14" />
+			<Icon
+				id="535"
+				material_name="custom_banner_icons_14"
+				texture_index="15" />
+		</BannerIconGroup>
+		<BannerColors>
+			<!--Aserai background-->
+			<Color
+				id="0"
+				hex="0xffB57A1E" />
+			<!--Aserai color 2-->
+			<Color
+				id="1"
+				hex="0xff4E1A13" />
+			<!--battania background-->
+			<Color
+				id="2"
+				hex="0xff284E19" />
+			<!-- battania color 2-->
+			<Color
+				id="3"
+				hex="0xffB4F0F1" />
+			<!--northern empire background-->
+			<Color
+				id="4"
+				hex="0xff793191" />
+			<!--northern empire color 2-->
+			<Color
+				id="5"
+				hex="0xffFCDE90" />
+			<!--southern background-->
+			<Color
+				id="6"
+				hex="0xff382188" />
+			<!--southern empire color 2-->
+			<Color
+				id="7"
+				hex="0xffDEA940" />
+			<!--western background-->
+			<Color
+				id="8"
+				hex="0xff591645" />
+			<!--western empire color 2-->
+			<Color
+				id="9"
+				hex="0xffFFAD54" />
+			<!--khuzait background-->
+			<Color
+				id="10"
+				hex="0xff429081" />
+			<!--khuzait color 2-->
+			<Color
+				id="11"
+				hex="0xffEFC990" />
+			<!--sturgia background-->
+			<Color
+				id="12"
+				hex="0xff224277" />
+			<!--sturgia color 2-f-->
+			<Color
+				id="13"
+				hex="0xffCEDAE7" />
+			<!--vlandia background-->
+			<Color
+				id="14"
+				hex="0xff8D291A" />
+			<!--vlandia color 2-->
+			<Color
+				id="15"
+				hex="0xffF7BF46" />
+			<Color
+				id="16"
+				hex="0xff6bd5dc" />
+			<Color
+				id="17"
+				hex="0xffeed690" />
+			<Color
+				id="18"
+				hex="0xffaec382" />
+			<Color
+				id="19"
+				hex="0xffc3c3c3" />
+			<Color
+				id="20"
+				hex="0xffd5d7d4" />
+			<Color
+				id="21"
+				hex="0xffe7ecd6" />
+			<Color
+				id="22"
+				hex="0xffeaeeef" />
+			<Color
+				id="23"
+				hex="0xff7f6b60" />
+			<Color
+				id="24"
+				hex="0xff967e7e" />
+			<Color
+				id="25"
+				hex="0xffb6aba7" />
+			<Color
+				id="26"
+				hex="0xffe7d3ba" />
+			<Color
+				id="27"
+				hex="0xffeae1da" />
+			<Color
+				id="28"
+				hex="0xffd9dbce" />
+			<Color
+				id="29"
+				hex="0xffdfd6cd" />
+			<Color
+				id="30"
+				hex="0xffcac1ba" />
+			<Color
+				id="31"
+				hex="0xffece8dd" />
+			<Color
+				id="32"
+				hex="0xffe0dcd9" />
+			<Color
+				id="33"
+				hex="0xffefece5" />
+			<Color
+				id="34"
+				hex="0xffeae9e5" />
+			<Color
+				id="35"
+				hex="0xfff5f5f5" />
+			<Color
+				id="36"
+				hex="0xfff5b365" />
+			<Color
+				id="38"
+				hex="0xffe68c36" />
+			<Color
+				id="39"
+				hex="0xffdcac46" />
+			<Color
+				id="41"
+				hex="0xffeee7d4" />
+			<Color
+				id="42"
+				hex="0xffe9e2c5" />
+			<Color
+				id="43"
+				hex="0xffebdcbb" />
+			<Color
+				id="44"
+				hex="0xfff0e0a5" />
+			<Color
+				id="45"
+				hex="0xffe0c78e" />
+			<Color
+				id="46"
+				hex="0xffcda87c" />
+			<Color
+				id="47"
+				hex="0xfff9d575" />
+			<Color
+				id="48"
+				hex="0xffe44434" />
+			<Color
+				id="49"
+				hex="0xffe69077" />
+			<Color
+				id="50"
+				hex="0xffe79c7d" />
+			<Color
+				id="51"
+				hex="0xffc94b4e" />
+			<Color
+				id="52"
+				hex="0xffe6b0a6" />
+			<Color
+				id="53"
+				hex="0xffe4c8c7" />
+			<Color
+				id="54"
+				hex="0xfff2b0a2" />
+			<Color
+				id="55"
+				hex="0xffDA6C6D" />
+			<Color
+				id="56"
+				hex="0xffE2BCAF" />
+			<Color
+				id="57"
+				hex="0xffBD7E75" />
+			<Color
+				id="58"
+				hex="0xffD1C7C5" />
+			<Color
+				id="59"
+				hex="0xff975B43" />
+			<Color
+				id="60"
+				hex="0xffE6A57F" />
+			<Color
+				id="61"
+				hex="0xff7B5E4E" />
+			<Color
+				id="62"
+				hex="0xffAC9188" />
+			<Color
+				id="63"
+				hex="0xffD7967A" />
+			<Color
+				id="64"
+				hex="0xffE6C9BB" />
+			<Color
+				id="65"
+				hex="0xff934165" />
+			<Color
+				id="66"
+				hex="0xffD39EB0" />
+			<Color
+				id="67"
+				hex="0xff644974" />
+			<Color
+				id="68"
+				hex="0xff7F658A" />
+			<Color
+				id="69"
+				hex="0xffA793AE" />
+			<Color
+				id="70"
+				hex="0xffC5057C" />
+			<Color
+				id="71"
+				hex="0xff710083" />
+			<Color
+				id="72"
+				hex="0xff00667F" />
+			<Color
+				id="73"
+				hex="0xff00A0BA" />
+			<Color
+				id="74"
+				hex="0xff53B7C6" />
+			<Color
+				id="75"
+				hex="0xffA1B1EF" />
+			<Color
+				id="76"
+				hex="0xff7F8CC0" />
+			<Color
+				id="77"
+				hex="0xff5960A8" />
+			<Color
+				id="78"
+				hex="0xffC1589A" />
+			<Color
+				id="79"
+				hex="0xffA34FAF" />
+			<Color
+				id="80"
+				hex="0xffD08E54" />
+			<Color
+				id="81"
+				hex="0xff939BD9" />
+			<Color
+				id="82"
+				hex="0xffEA4F00" />
+			<Color
+				id="83"
+				hex="0xffD22D33" />
+			<Color
+				id="84"
+				hex="0xffFDE217" />
+			<Color
+				id="85"
+				hex="0xffFFA4DD" />
+			<Color
+				id="86"
+				hex="0xffCB83D5" />
+			<Color
+				id="87"
+				hex="0xff895D5E" />
+			<Color
+				id="88"
+				hex="0xff02FF19" />
+			<Color
+				id="89"
+				hex="0xff019678" />
+			<Color
+				id="90"
+				hex="0xff9EC400" />
+			<Color
+				id="91"
+				hex="0xffA34402" />
+			<Color
+				id="92"
+				hex="0xff714214" />
+			<Color
+				id="93"
+				hex="0xffFFC3C3" />
+			<Color
+				id="94"
+				hex="0xff855FA8" />
+			<Color
+				id="95"
+				hex="0xff7E6E4A" />
+			<Color
+				id="96"
+				hex="0xff3A3321" />
+			<Color
+				id="97"
+				hex="0xff3D2F22" />
+			<Color
+				id="98"
+				hex="0xff422C2E" />
+			<Color
+				id="99"
+				hex="0xff453E38" />
+			<Color
+				id="100"
+				hex="0xff332c4d" />
+			<Color
+				id="101"
+				hex="0xff515267" />
+			<Color
+				id="102"
+				hex="0xff6c72a2" />
+			<Color
+				id="103"
+				hex="0xff8b93ba" />
+			<Color
+				id="104"
+				hex="0xffa6d5db" />
+			<Color
+				id="105"
+				hex="0xffa4b1c2" />
+			<Color
+				id="106"
+				hex="0xffc5bcd1" />
+			<Color
+				id="107"
+				hex="0xffd8aec5" />
+			<Color
+				id="108"
+				hex="0xffcedada" />
+			<Color
+				id="109"
+				hex="0xffd2d6d5" />
+			<Color
+				id="110"
+				hex="0xffcacccb" />
+			<Color
+				id="111"
+				hex="0xffdfdedc" />
+			<Color
+				id="112"
+				hex="0xff5d5b44" />
+			<Color
+				id="113"
+				hex="0xff726b3d" />
+			<Color
+				id="114"
+				hex="0xffcdcc7c" />
+			<Color
+				id="115"
+				hex="0xff8fd1dd" />
+			<Color
+				id="116"
+				hex="0xff0B0C11" />
+			<!--Referenced for tournament colours-->
+			<Color
+				id="118"
+				hex="0xffE36664" />
+			<!--Referenced for tournament colours-->
+			<Color
+				id="119"
+				hex="0xff456DFF" />
+			<!--Referenced for tournament colours-->
+			<Color
+				id="120"
+				hex="0xff5FBD72" />
+			<!--Referenced for tournament colours-->
+			<Color
+				id="121"
+				hex="0xfff4d32e" />
+			<!--Multiplayer Aserai Background 1-->
+			<Color
+				id="122"
+				hex="0xffa97435" />
+			<!--Multiplayer Aserai Foreground 1-->
+			<Color
+				id="123"
+				hex="0xff41281b" />
+			<!--Multiplayer Aserai Background 2-->
+			<!--Multiplayer Aserai Foreground 2-->
+			<!--Multiplayer Battania Background 1-->
+			<Color
+				id="126"
+				hex="0xff34671e" />
+			<!--Multiplayer Battania Foreground 1-->
+			<Color
+				id="127"
+				hex="0xfff3f3f3" />
+			<!--Multiplayer Battania Background 2-->
+			<!--Multiplayer Battania Foreground 2-->
+			<!--Multiplayer Empire Background 1-->
+			<Color
+				id="130"
+				hex="0xff7739a7" />
+			<!--Multiplayer Empire Foreground 1-->
+			<Color
+				id="131"
+				hex="0xfff1c232" />
+			<!--Multiplayer Empire Background 2-->
+			<!--Multiplayer Empire Foreground 2-->
+			<!--Multiplayer Khuzait Background 1-->
+			<Color
+				id="134"
+				hex="0xff5aa4ad" />
+			<!--Multiplayer Khuzait Foreground 1-->
+			<Color
+				id="135"
+				hex="0xffffe9d4" />
+			<!--Multiplayer Khuzait Background 2-->
+			<!--Multiplayer Khuzait Foreground 2-->
+			<!--Multiplayer Sturgia Background 1-->
+			<Color
+				id="138"
+				hex="0xff3a6298" />
+			<!--Multiplayer Sturgia Foreground 1-->
+			<Color
+				id="139"
+				hex="0xffd9d9d9" />
+			<!--Multiplayer Sturgia Background 2-->
+			<!--Multiplayer Sturgia Foreground 2-->
+			<!--Multiplayer Vlandia Background 1-->
+			<Color
+				id="142"
+				hex="0xff830808" />
+			<!--Multiplayer Vlandia Foreground 1-->
+			<Color
+				id="143"
+				hex="0xfff4ca14" />
+			<!--Multiplayer Vlandia Background 2-->
+			<!--Multiplayer Vlandia Foreground 2-->
+			<Color
+				id="146"
+				hex="0xff2C4D86" />
+			<Color
+				id="147"
+				hex="0xff955066" />
+			<Color
+				id="148"
+				hex="0xff6c1512" />
+			<Color
+				id="149"
+				hex="0xff211f1f" />
+			<Color
+				id="150"
+				hex="0xffccc4bf" />
+			<Color
+				id="151"
+				hex="0xffef9b9b" />
+			<Color
+				id="152"
+				hex="0xffb5d0fd" />
+			<Color
+				id="153"
+				hex="0xffa8ceab" />
+			<Color
+				id="154"
+				hex="0xff8d5c44" />
+			<Color
+				id="155"
+				hex="0xffe9a74d" />
+			<Color
+				id="156"
+				hex="0xffb3a491" />
+			<!--Player Clan Primary-->
+			<Color
+				id="157"
+				hex="0xff5f4f44" />
+			<!--Player Clan Secondary-->
+			<!--Banner Editor Colors-->
+			<!--Following colours are changed:-->
+			<Color
+				id="158"
+				hex="0xff234116"
+				player_can_choose_for_background="true" />
+			<Color
+				id="159"
+				hex="0xff26406d"
+				player_can_choose_for_background="true" />
+			<Color
+				id="160"
+				hex="0xff7a4253"
+				player_can_choose_for_background="true" />
+			<Color
+				id="161"
+				hex="0xff5a1310"
+				player_can_choose_for_background="true" />
+			<Color
+				id="162"
+				hex="0xff2f2a2b"
+				player_can_choose_for_background="true" />
+			<Color
+				id="163"
+				hex="0xff744c38"
+				player_can_choose_for_background="true" />
+			<Color
+				id="164"
+				hex="0xff594012"
+				player_can_choose_for_background="true" />
+			<Color
+				id="165"
+				hex="0xffbf5a25"
+				player_can_choose_for_background="true" />
+			<Color
+				id="166"
+				hex="0xffffcf83"
+				player_can_choose_for_sigil="true" />
+			<Color
+				id="167"
+				hex="0xff85827f"
+				player_can_choose_for_sigil="true" />
+			<Color
+				id="168"
+				hex="0xffce9697"
+				player_can_choose_for_sigil="true" />
+			<Color
+				id="169"
+				hex="0xff95a9cc"
+				player_can_choose_for_sigil="true" />
+			<Color
+				id="170"
+				hex="0xff89a78b"
+				player_can_choose_for_sigil="true" />
+			<Color
+				id="171"
+				hex="0xffffb53e"
+				player_can_choose_for_sigil="true" />
+			<Color
+				id="172"
+				hex="0xffffffff"
+				player_can_choose_for_sigil="true" />
+			<Color
+				id="173"
+				hex="0xffc7beb7"
+				player_can_choose_for_sigil="true" />
+<!-- Patol's extra colours are BELOW. 
+I have picked many shades of blue since it is humanity favourite colour 
+and it is hard to tell how it will look like in the game (they are a bit altered from the simple hex)
+if you are bothered with number of colours just remove some -->
+<!-- White to gray section-->
+<Color id="256" hex="0xfff2f2f2" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="257" hex="0xffd9d9d9" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="258" hex="0xffbfbfbf" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="259" hex="0xffa6a6a6" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="260" hex="0xff8c8c8c" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="261" hex="0xff737373" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="262" hex="0xff595959" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="263" hex="0xff333333" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<!-- Yellow section -->
+<Color id="300" hex="0xffFFF9A6" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="301" hex="0xffFFF27C" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="302" hex="0xffFFE343" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="303" hex="0xffFFD700" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="304" hex="0xffE0C200" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="305" hex="0xffBFA800" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="306" hex="0xff8F7D00" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="307" hex="0xff5A4C00" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<!-- Orange section -->
+<Color id="308" hex="0xffFFE0B8" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="309" hex="0xffFFC48A" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="310" hex="0xffFFA652" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="311" hex="0xffFF8C00" player_can_choose_for_background="true" player_can_choose_for_sigil="true" /> 
+<Color id="312" hex="0xffE67A00" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="313" hex="0xffCC6900" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="314" hex="0xffA85300" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="315" hex="0xff733800" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<!-- Green section -->
+<Color id="316" hex="0xffD6F5D6" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="317" hex="0xffA8E6A3" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="318" hex="0xff76D66B" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="319" hex="0xff4CAF50" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="320" hex="0xff3E8E41" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="321" hex="0xff2F6F31" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="322" hex="0xff1F4E22" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="323" hex="0xff122E14" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<!-- idk how it is called in English -->
+<Color id="324" hex="0xffCCF8F5" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="325" hex="0xff99EFEA" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="326" hex="0xff66E6DF" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="327" hex="0xff1CC9C2" player_can_choose_for_background="true" player_can_choose_for_sigil="true" /> 
+<Color id="328" hex="0xff17A7A1" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="329" hex="0xff128582" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="330" hex="0xff0C5F5D" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="331" hex="0xff083C3A" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<!-- Red section -->
+<Color id="332" hex="0xffF8CCCC" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="333" hex="0xffF29A9A" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="334" hex="0xffE66666" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="335" hex="0xffCC0000" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="336" hex="0xffA30000" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="337" hex="0xff7A0000" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="338" hex="0xff520000" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="339" hex="0xff2A0000" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<!-- Brown section -->
+<Color id="340" hex="0xffEEDCC3" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="341" hex="0xffD9BA8A" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="342" hex="0xffC29A55" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="343" hex="0xffA0662F" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="344" hex="0xff804F26" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="345" hex="0xff60381C" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="346" hex="0xff422715" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="347" hex="0xff24160B" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<!-- Voilet section -->
+<Color id="348" hex="0xffE6D4F8" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="349" hex="0xffC4A2F0" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="350" hex="0xffA070E8" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="351" hex="0xff7A3CE0" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="352" hex="0xff622EB8" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="353" hex="0xff4A248F" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="354" hex="0xff321A66" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="355" hex="0xff1C103D" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<!-- Pink section -->
+<Color id="356" hex="0xffFFD6E8" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="357" hex="0xffFFADD3" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="358" hex="0xffFF85BE" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="359" hex="0xffFF4FA1" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="360" hex="0xffE0398A" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="361" hex="0xffB82C6D" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="362" hex="0xff8F2052" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="363" hex="0xff611636" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<!-- Light blue section -->
+<Color id="396" hex="0xffE6F2FF" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="397" hex="0xffCCE5FF" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="398" hex="0xffB3D9FF" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="399" hex="0xff99CCFF" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="400" hex="0xff80BFFF" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="401" hex="0xff66B3FF" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="402" hex="0xff4DA6FF" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="403" hex="0xff3399FF" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<!-- Blue section -->
+<Color id="404" hex="0xff2E89FF" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="405" hex="0xff2678E6" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="406" hex="0xff1F68CC" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="407" hex="0xff1959B3" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="408" hex="0xff134D99" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="409" hex="0xff0D407F" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="410" hex="0xff083366" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="411" hex="0xff04264D" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<!-- Dark blue section -->
+<Color id="412" hex="0xff031F3F" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="413" hex="0xff021933" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="414" hex="0xff011426" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="415" hex="0xff010F1A" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="416" hex="0xff000B10" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="417" hex="0xff00060B" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="418" hex="0xff000305" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<Color id="419" hex="0xff000102" player_can_choose_for_background="true" player_can_choose_for_sigil="true" />
+<!--END OF CUSTOM COLOURS, BELOW ARE THE DEFAULT FILES AGAIN-->
+			
+			<!--Minor Faction Banner Colors-->
+			<Color
+				id="174"
+				hex="0xFFB38841" />
+			<Color
+				id="175"
+				hex="0xFF848B65" />
+			<Color
+				id="176"
+				hex="0xFF5A7A4F" />
+			<Color
+				id="177"
+				hex="0xFF7CAFC7" />
+			<Color
+				id="178"
+				hex="0xFF7C2B1A" />
+			<Color
+				id="179"
+				hex="0xFFAC5F2E" />
+			<Color
+				id="180"
+				hex="0xFF72583B" />
+			<Color
+				id="181"
+				hex="0xFF61725E" />
+			<Color
+				id="182"
+				hex="0xFFA6825C" />
+			<Color
+				id="183"
+				hex="0xFFCCC3AB" />
+			<Color
+				id="184"
+				hex="0xFF8B7C73" />
+			<Color
+				id="185"
+				hex="0xFFD0884E" />
+			<Color
+				id="186"
+				hex="0xFF7B5869" />
+			<Color
+				id="187"
+				hex="0xFF66CCFF" />
+			<Color
+				id="188"
+				hex="0xFFAA415D" />
+			<!--Bandit Banner Colors-->
+			<!--Forest Bandits-->
+			<Color
+				id="189"
+				hex="0xFF687f5e" />
+			<!--Sea Raiders-->
+			<Color
+				id="190"
+				hex="0xFF4E75BC" />
+			<!--Desert Bandits-->
+			<Color
+				id="191"
+				hex="0xFFf1c178" />
+			<!--Steppe Bandits-->
+			<Color
+				id="192"
+				hex="0xFFd1c4a4" />
+			<!--Looters-->
+			<Color
+				id="193"
+				hex="0xFF5e5737" />
+			<!-- Multiplayer Empire Color 1-->
+			<Color
+				id="194"
+				hex="0xFF802463" />
+			<!-- Multiplayer Empire Color 2-->
+			<!-- Multiplayer Empire Cloth Color 1-->
+			<Color
+				id="196"
+				hex="0xFFDE9953" />
+			<!-- Multiplayer Empire Cloth Color 2-->
+			<Color
+				id="197"
+				hex="0xFF4E3A55" />
+			<!-- Multiplayer Aserai Color 1-->
+			<Color
+				id="198"
+				hex="0xFFCC8324" />
+			<!-- Multiplayer Aserai Color 2-->
+			<!-- Multiplayer Empire Cloth Color 1-->
+			<Color
+				id="200"
+				hex="0xFF4F2212" />
+			<!-- Multiplayer Empire Cloth Color 2-->
+			<Color
+				id="201"
+				hex="0xFF965228" />
+			<!-- Multiplayer Sturgia Color 1-->
+			<Color
+				id="202"
+				hex="0xFF2A5599" />
+			<!-- Multiplayer Sturgia Color 2-->
+			<!-- Multiplayer Sturgia Cloth Color 1-->
+			<Color
+				id="204"
+				hex="0xFF949CCC" />
+			<!-- Multiplayer Sturgia Cloth Color 2-->
+			<Color
+				id="205"
+				hex="0xFF1C2A50" />
+			<!-- Multiplayer Vlandia Color 1-->
+			<!-- Multiplayer Vlandia Color 2-->
+			<!-- Multiplayer Vlandia Cloth Color 1-->
+			<Color
+				id="208"
+				hex="0xFFA88220" />
+			<!-- Multiplayer Vlandia Cloth Color 2-->
+			<Color
+				id="209"
+				hex="0xFF4A100C" />
+			<!-- Multiplayer Battania Color 1-->
+			<Color
+				id="210"
+				hex="0xFF335F22" />
+			<!-- Multiplayer Battania Color 2-->
+			<!-- Multiplayer Battania Cloth Color 1-->
+			<Color
+				id="212"
+				hex="0xFFDFC36B" />
+			<!-- Multiplayer Battania Cloth Color 2-->
+			<Color
+				id="213"
+				hex="0xFF2D3F1D" />
+			<!-- Multiplayer Khuzait Color 1-->
+			<Color
+				id="214"
+				hex="0xFF418174" />
+			<!-- Multiplayer Khuzait Color 2-->
+			<!-- Multiplayer Khuzait Cloth Color 1-->
+			<Color
+				id="216"
+				hex="0xFFCCBB89" />
+			<!-- Multiplayer Khuzait Cloth Color 2-->
+			<Color
+				id="217"
+				hex="0xFF58888B" />
+			<!-- New color set-->
+			<Color
+				id="218"
+				hex="0xff202931" />
+			<Color
+				id="219"
+				hex="0xffb7623c" />
+			<!-- New color set for ninor fatcion-->
+			<Color
+				id="220"
+				hex="0xff4e1362" />
+			<Color
+				id="221"
+				hex="0xff25152a" />
+			<Color
+				id="222"
+				hex="0xff420e54" />
+			<Color
+				id="223"
+				hex="0xfff1580d" />
+			<Color
+				id="224"
+				hex="0xfff48955" />
+			<Color
+				id="225"
+				hex="0xffe1890b" />
+			<Color
+				id="226"
+				hex="0xffd47547" />
+			<Color
+				id="227"
+				hex="0xff9f7407" />
+			<Color
+				id="228"
+				hex="0xfff2ead6" />
+			<Color
+				id="229"
+				hex="0xffe1a50b" />
+			<Color
+				id="230"
+				hex="0xffdcbb65" />
+			<Color
+				id="231"
+				hex="0xff5f3f0e" />
+			<Color
+				id="232"
+				hex="0xffc13b29" />
+			<Color
+				id="233"
+				hex="0xff112038" />
+			<Color
+				id="234"
+				hex="0xff3995f8" />
+			<Color
+				id="235"
+				hex="0xffb7623c" />
+			<Color
+				id="236"
+				hex="0xff252a01" />
+			<Color
+				id="237"
+				hex="0xff315305" />
+			<Color
+				id="238"
+				hex="0xff72bfc0" />
+			<Color
+				id="239"
+				hex="0xffc2d3d3" />
+			<Color
+				id="240"
+				hex="0xff5c6868" />
+			<Color
+				id="241"
+				hex="0xff7a8383" />
+			<Color
+				id="242"
+				hex="0xffacb3b3" />
+			<Color
+				id="243"
+				hex="0xff234942" />
+			<Color
+				id="244"
+				hex="0xff213330" />
+			<Color
+				id="245"
+				hex="0xffeea332" />
+			<Color
+				id="246"
+				hex="0xfff0e1cb" />
+			<Color
+				id="247"
+				hex="0xff192026" />
+			<Color
+				id="248"
+				hex="0xffeebda7" />
+			<Color
+				id="249"
+				hex="0xffe5a386" />
+			<Color
+				id="250"
+				hex="0xffffffff" />
+		</BannerColors>
+	</BannerIconData>
+</base>

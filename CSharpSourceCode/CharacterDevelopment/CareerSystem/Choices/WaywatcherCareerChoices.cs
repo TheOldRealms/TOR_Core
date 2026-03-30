@@ -144,97 +144,97 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
     protected override void InitializeKeyStones()
     {
         _wayWatcherRoot.Initialize(CareerID,
-            "Lethal Shot empowers your bow with deadly precision. Activating adds +50% physical damage to your arrows for a limited number of shots. Each keystone adds +1 arrow but reduces charge rate by 10%. For charging ability deal 1200 damage points with bows. Each arrow charges a maximum of 150 points.",
+            "Soon, the Lumberfoots shall regret their trespass! Fire a Lethal Shot, with deadly precision! +50% 'Physical' damage to your next shot. Every 'Keystone' career perk unlocked increases arrows affected by Lethal Shot by +1, but decreases its recharge rate. (Ability is charged by dealing 'Physical' damage with bows.)",
             null, true, ChoiceType.Keystone, []);
 
         _protectorOfTheWoodsKeystone.Initialize(CareerID,
-            "Lethal Shot gains +1 bonus arrow. Reduces the amount of ranged damage needed to unlock ability. Ability starts charged.",
+            "Lethal Shot can be used on battle start, reduces required damage to use, and affects +1 shot.",
             "ProtectorOfTheWoods", false, ChoiceType.Keystone, []);
 
         _pathfinderKeystone.Initialize(CareerID,
-            "Lethal Shot arrows apply Hagbane poison, slowing enemies on hit. Melee attacks can charge ability.",
+            "Lethal Shot applies 'Hagbane' poison that slows enemies. Melee attacks also charge ability.",
             "Pathfinder", false, ChoiceType.Keystone, []);
 
         _forestStalkerKeystone.Initialize(CareerID,
-            "Lethal Shot arrows deal +50% bonus damage to unaware enemies (Loec's Blessing). Allied troops charge ability.",
+            "+50% 'Physical' damage to Lethal Shot when in stealth. Troop damage also charge ability.",
             "ForestStalker", false, ChoiceType.Keystone, []);
 
         _hailOfArrowsKeystone.Initialize(CareerID,
-            "Lethal Shot arrows split into 5 projectiles on release. Also grants +25% reload speed during the effect.",
+            "Lethal Shot splits into 5 arrows, and gives +25% reload speed.",
             "HailOfArrows", false, ChoiceType.Keystone, []);
 
         _hawkeyedKeystone.Initialize(CareerID,
-            "Lethal Shot arrows pierce through multiple enemies, gain +20% missile speed and +15% magic damage.",
+            "Lethal Shot pierces through enemies, gains +20% missile speed, and +15% 'Magic' damage.",
             "Hawkeyed", false, ChoiceType.Keystone, []);
 
         _starfireEssenceKeystone.Initialize(CareerID,
-            "Lethal Shot arrows gain +25 armor penetration and pierce shields.",
+            "Lethal Shot pierces shields and gains +25 'Armour Penetration'.",
             "StarfireEssence", false, ChoiceType.Keystone, []);
 
         _eyeOfTheHunterKeystone.Initialize(CareerID,
-            "Lethal Shot loses 2 arrows but remaining arrows are imbued with Moonfire explosion.",
+            "-2 arrows affected by Lethal Shot. Remaining arrows become imbued with 'Moonfire Explosion'.",
             "EyeOfTheHunter", false, ChoiceType.Keystone, []);
     }
 
     protected override void InitializePassives()
     {
-        _protectorOfTheWoodsPassive1.Initialize(CareerID, "Extra ranged damage (10%).", "ProtectorOfTheWoods", false, ChoiceType.Passive, null,
+        _protectorOfTheWoodsPassive1.Initialize(CareerID, "+10% personal ranged 'Physical' damage.", "ProtectorOfTheWoods", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10),
                 AttackTypeMask.Ranged));
-        _protectorOfTheWoodsPassive2.Initialize(CareerID, "3 extra Arrows per equipped Quiver", "ProtectorOfTheWoods", false, ChoiceType.Passive, null,
+        _protectorOfTheWoodsPassive2.Initialize(CareerID, "+3 arrows per quiver you have equipped.", "ProtectorOfTheWoods", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.Ammo));
-        _protectorOfTheWoodsPassive3.Initialize(CareerID, "All ranged troops wages are reduced by 20%", "ProtectorOfTheWoods", false,
+        _protectorOfTheWoodsPassive3.Initialize(CareerID, "-20% gold wages for 'Ranged' troops.", "ProtectorOfTheWoods", false,
             ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.TroopWages, true,
                 characterObject => !characterObject.IsHero && characterObject.IsRanged));
-        _protectorOfTheWoodsPassive4.Initialize(CareerID, "Reduce range Accuracy movement penalty by 15%.", "ProtectorOfTheWoods", false,
-            ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.RangedMovementPenalty, true));
+        _protectorOfTheWoodsPassive4.Initialize(CareerID, "-15% personal accuracy penalty when moving.", "ProtectorOfTheWoods", false,
+            ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.RangedMovementPenalty, true));
 
-        _pathfinderPassive1.Initialize(CareerID, "The Spotting range of the party is increased by 20%.", "Pathfinder",
+        _pathfinderPassive1.Initialize(CareerID, "+20% spotting range of party on campaign map.", "Pathfinder",
             false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.PartySpottingRange, true));
-        _pathfinderPassive2.Initialize(CareerID, "Party movement speed is increased by 1", "Pathfinder", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1f, PassiveEffectType.PartyMovementSpeed));
-        _pathfinderPassive3.Initialize(CareerID, "Party travels unhindered through snow", "Pathfinder", false, ChoiceType.Passive);
-        _pathfinderPassive4.Initialize(CareerID, "Once per day, go for a hunt.", "Pathfinder", false, ChoiceType.Passive);
+        _pathfinderPassive2.Initialize(CareerID, "+1 party move speed on campaign map.", "Pathfinder", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1f, PassiveEffectType.PartyMovementSpeed));
+        _pathfinderPassive3.Initialize(CareerID, "Party is no longer affected by snow movement penalties.", "Pathfinder", false, ChoiceType.Passive);
+        _pathfinderPassive4.Initialize(CareerID, "Once per day, go out on a hunt.", "Pathfinder", false, ChoiceType.Passive);
 
-        _forestStalkerPassive1.Initialize(CareerID, "Bows can perform stealth attacks.", "ForestStalker", false, ChoiceType.Passive);
-        _forestStalkerPassive2.Initialize(CareerID, "Gain 20% range resistance.", "ForestStalker", false, ChoiceType.Passive, null,
+        _forestStalkerPassive1.Initialize(CareerID, "Can now perform 'Stealth' attacks with bows.", "ForestStalker", false, ChoiceType.Passive);
+        _forestStalkerPassive2.Initialize(CareerID, "+20% personal 'Physical' ranged resistance.", "ForestStalker", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 20),
                 AttackTypeMask.Ranged));
         _forestStalkerPassive3.Initialize(CareerID, "{EFFECT_VALUE}% increased Stealth Bonus", "ForestStalker", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.StealthBonus, true));
-        _forestStalkerPassive4.Initialize(CareerID, "20% Equipment weight Reduction", "ForestStalker", false, ChoiceType.Passive, null,
+        _forestStalkerPassive4.Initialize(CareerID, "-20% weight of equipped gear.", "ForestStalker", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EquipmentWeightReduction, true));
 
-        _hailOfArrowsPassive1.Initialize(CareerID, "6 extra Arrows per equipped Quiver", "HailOfArrows", false, ChoiceType.Passive, null,
+        _hailOfArrowsPassive1.Initialize(CareerID, "+6 arrows per quiver you have equipped.", "HailOfArrows", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(6, PassiveEffectType.Ammo));
-        _hailOfArrowsPassive2.Initialize(CareerID, "Ranged troops gain 25XP daily ", "HailOfArrows", false, ChoiceType.Passive, null,
+        _hailOfArrowsPassive2.Initialize(CareerID, "+25 experience daily for 'Ranged' troops.", "HailOfArrows", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true));
-        _hailOfArrowsPassive3.Initialize(CareerID, "Ranged damage is shrugged off", "HailOfArrows", false, ChoiceType.Passive);
-        _hailOfArrowsPassive4.Initialize(CareerID, "Troops with Swiftshiver Shards gain 25% reload speed bonus.", "HailOfArrows", false,
+        _hailOfArrowsPassive3.Initialize(CareerID, "You are no longer staggered by ranged damage.", "HailOfArrows", false, ChoiceType.Passive);
+        _hailOfArrowsPassive4.Initialize(CareerID, "Troops affected by 'Swiftshiver Shards', gain +25% reload speed.", "HailOfArrows", false,
             ChoiceType.Passive);
 
-        _hawkeyedPassive1.Initialize(CareerID, "20% Equipment weight Reduction", "Hawkeyed", false, ChoiceType.Passive, null,
+        _hawkeyedPassive1.Initialize(CareerID, "-20% weight of equipped gear.", "Hawkeyed", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EquipmentWeightReduction, true));
-        _hawkeyedPassive2.Initialize(CareerID, "Headshots double the fill", "Hawkeyed", false, ChoiceType.Passive);
-        _hawkeyedPassive3.Initialize(CareerID, "Increased ranged accuracy by 20%", "Hawkeyed", false, ChoiceType.Passive, null,
+        _hawkeyedPassive2.Initialize(CareerID, "Headshots charge Lethal Shot twice as fast as regular shots.", "Hawkeyed", false, ChoiceType.Passive);
+        _hawkeyedPassive3.Initialize(CareerID, "+20% personal ranged accuracy.", "Hawkeyed", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.AccuracyPenalty, true));
-        _hawkeyedPassive4.Initialize(CareerID, "20% extra ranged damage against mounted enemies and monsters", "Hawkeyed", false, ChoiceType.Passive, null,
+        _hawkeyedPassive4.Initialize(CareerID, "+20% personal ranged 'Physical' damage against mounted enemies and monsters.", "Hawkeyed", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Ranged,
                 (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Ranged && (victim.Character as CharacterObject).IsLargeTarget()));
 
-        _starfireEssencePassive1.Initialize(CareerID, "10% extra fire damage", "StarfireEssence", false, ChoiceType.Passive, null,
-            new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 10), AttackTypeMask.Ranged));
-        _starfireEssencePassive2.Initialize(CareerID, "15% swing speed", "StarfireEssence", false, ChoiceType.Passive, null,
+        _starfireEssencePassive1.Initialize(CareerID, "+10% personal melee 'Fire' damage.", "StarfireEssence", false, ChoiceType.Passive, null,
+            new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 10), AttackTypeMask.Melee));
+        _starfireEssencePassive2.Initialize(CareerID, "+15% personal swing speed.", "StarfireEssence", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.SwingSpeed, true));
-        _starfireEssencePassive3.Initialize(CareerID, "Troops with Starfire Shafts also apply fire vulnerability to enemies.", "StarfireEssence", false, ChoiceType.Passive);
-        _starfireEssencePassive4.Initialize(CareerID, "Your arrows can penetrate shields", "StarfireEssence", false, ChoiceType.Passive);
+        _starfireEssencePassive3.Initialize(CareerID, "Troops equipped with 'Starfire Shafts', applies 'Fire Vulnerability' to enemies.", "StarfireEssence", false, ChoiceType.Passive);
+        _starfireEssencePassive4.Initialize(CareerID, "Your normal arrows now penetrate shields.", "StarfireEssence", false, ChoiceType.Passive);
 
-        _eyeOfTheHunterPassive1.Initialize(CareerID, "3 extra Arrows per equipped Quiver", "EyeOfTheHunter", false, ChoiceType.Passive, null,
+        _eyeOfTheHunterPassive1.Initialize(CareerID, "+3 arrows per quiver you have equipped.", "EyeOfTheHunter", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.Ammo));
-        _eyeOfTheHunterPassive2.Initialize(CareerID, "20% Equipment weight Reduction", "EyeOfTheHunter", false, ChoiceType.Passive, null,
+        _eyeOfTheHunterPassive2.Initialize(CareerID, "-20% weight of equipped gear.", "EyeOfTheHunter", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EquipmentWeightReduction, true));
-        _eyeOfTheHunterPassive3.Initialize(CareerID, "All elf archer troops gain 50 to their bow skill.", "EyeOfTheHunter", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, nameof(DefaultSkills.Bow),
+        _eyeOfTheHunterPassive3.Initialize(CareerID, "+50 Bow skill for 'Elven' ranged troops.", "EyeOfTheHunter", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, nameof(DefaultSkills.Bow),
             (characterObject) => characterObject.IsElf() && characterObject.IsRanged));
-        _eyeOfTheHunterPassive4.Initialize(CareerID, "Roguery skill reduces target armor by up to 60%", "EyeOfTheHunter", false, ChoiceType.Passive);
+        _eyeOfTheHunterPassive4.Initialize(CareerID, "Roguery skill allows your attacks to reduce an enemies armour up to 60%.", "EyeOfTheHunter", false, ChoiceType.Passive);
     }
 }

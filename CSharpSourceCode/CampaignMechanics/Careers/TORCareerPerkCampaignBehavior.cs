@@ -47,6 +47,11 @@ namespace TOR_Core.CampaignMechanics
         private void HourlyPartyEvent()
         {
             var mainParty = MobileParty.MainParty;
+
+            if (Hero.MainHero.HasCareerChoice("ForHearthAndHomePassive3"))
+            {
+                ApplyForHearthAndHomePassive3Hourly(mainParty);
+            }
             if (mainParty.CurrentSettlement != null) return;
             if (Hero.MainHero.HasCareerChoice("ForgefireBurningPassive3"))
             {
@@ -61,6 +66,89 @@ namespace TOR_Core.CampaignMechanics
                     var value = Math.Min(max, stamina + 4);
                     campaignBehavior.SetHeroCraftingStamina(hero, value);
                 }
+            }
+        }
+
+        private float _forHearthAndHomePassive3HealingCarry;
+        private int _forHearthAndHomePassive3NextHealingIndex;
+
+        private void ApplyForHearthAndHomePassive3Hourly(MobileParty mainParty)
+        {
+            var roster = mainParty.MemberRoster;
+            if (roster == null || roster.Count == 0)
+            {
+                _forHearthAndHomePassive3HealingCarry = 0f;
+                _forHearthAndHomePassive3NextHealingIndex = 0;
+                return;
+            }
+
+            var hasWoundedRuneTroops = false;
+            for (var index = 0; index < roster.Count; index++)
+            {
+                var character = roster.GetCharacterAtIndex(index);
+                if (character.IsRegular && character.HasUnitRune() && roster.GetElementWoundedNumber(index) > 0)
+                {
+                    hasWoundedRuneTroops = true;
+                    break;
+                }
+            }
+
+            if (!hasWoundedRuneTroops)
+            {
+                _forHearthAndHomePassive3HealingCarry = 0f;
+                _forHearthAndHomePassive3NextHealingIndex = 0;
+                return;
+            }
+
+            var baseDailyHealing = Campaign.Current.Models.PartyHealingModel.GetDailyHealingForRegulars(mainParty.Party, false).ResultNumber;
+            if (baseDailyHealing <= 0f)
+            {
+                _forHearthAndHomePassive3HealingCarry = 0f;
+                return;
+            }
+
+            var extraHealing = (baseDailyHealing * 0.5f / 24f) + _forHearthAndHomePassive3HealingCarry;
+            var troopsToHeal = MBMath.ClampInt((int)extraHealing, 0, int.MaxValue);
+
+            _forHearthAndHomePassive3HealingCarry = extraHealing - troopsToHeal;
+
+            if (troopsToHeal <= 0)
+            {
+                return;
+            }
+
+            if (_forHearthAndHomePassive3NextHealingIndex >= roster.Count)
+            {
+                _forHearthAndHomePassive3NextHealingIndex = 0;
+            }
+
+            var startIndex = _forHearthAndHomePassive3NextHealingIndex;
+            var lastHealedIndex = -1;
+
+            for (var offset = 0; offset < roster.Count && troopsToHeal > 0; offset++)
+            {
+                var index = (startIndex + offset) % roster.Count;
+                var character = roster.GetCharacterAtIndex(index);
+                if (!character.IsRegular || !character.HasUnitRune())
+                {
+                    continue;
+                }
+
+                var wounded = roster.GetElementWoundedNumber(index);
+                if (wounded <= 0)
+                {
+                    continue;
+                }
+
+                var healed = Math.Min(wounded, troopsToHeal);
+                roster.AddToCountsAtIndex(index, 0, -healed, 0, true);
+                troopsToHeal -= healed;
+                lastHealedIndex = index;
+            }
+
+            if (lastHealedIndex != -1)
+            {
+                _forHearthAndHomePassive3NextHealingIndex = (lastHealedIndex + 1) % roster.Count;
             }
         }
 
@@ -477,6 +565,8 @@ namespace TOR_Core.CampaignMechanics
 
         public override void SyncData(IDataStore dataStore)
         {
+            dataStore.SyncData("_forHearthAndHomePassive3HealingCarry", ref _forHearthAndHomePassive3HealingCarry);
+            dataStore.SyncData("_forHearthAndHomePassive3NextHealingIndex", ref _forHearthAndHomePassive3NextHealingIndex);
         }
     }
 }

@@ -216,7 +216,7 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
         _templarOrdersPassive3.Initialize(CareerID, "'Knight' troops that follow your patron deity gain +15% 'Physical' melee damage.", "TemplarOrders", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.All,
                 (attacker, victim, mask) => (attacker.Character.HasAttribute("Knightly")) && attacker.BelongsToMainParty() && mask == AttackTypeMask.Melee && Hero.MainHero.GetDominantReligion().ReligiousTroops.Contains((CharacterObject)attacker.Character)));
-        _templarOrdersPassive4.Initialize(CareerID, "+20% personal 'Physical' melee damage against the 'Undead'.", "TemplarOrders", false, ChoiceType.Passive, null,
+        _templarOrdersPassive4.Initialize(CareerID, "+20% personal 'Physical' melee damage against the forces of 'Undead'.", "TemplarOrders", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.All,
                 (attacker, victim, mask) => victim.IsUndead() && attacker.IsMainAgent && mask == AttackTypeMask.Melee));
 
@@ -227,9 +227,9 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.All,
                 (attacker, victim, mask) => victim.IsMainAgent && victim.WieldedOffhandWeapon.IsShield()));
 
-        _wrathAgainstChaosPassive1.Initialize(CareerID, "Your party deals +15% 'Holy' damage when facing the forces of 'Chaos'.", "WrathAgainstChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Holy, 15), AttackTypeMask.All,
+        _wrathAgainstChaosPassive1.Initialize(CareerID, "Your party deals increased 'Holy' damage when facing the forces of 'Chaos'.", "WrathAgainstChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Holy, 15), AttackTypeMask.All,
             (attacker, victim, mask) => victim.Character.Race != 0));
-        _wrathAgainstChaosPassive2.Initialize(CareerID, "+15% personal 'Spell Resistance'.", "WrathAgainstChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 15), AttackTypeMask.Spell));
+        _wrathAgainstChaosPassive2.Initialize(CareerID, "+15% personal 'Magic Resistance'.", "WrathAgainstChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 15), AttackTypeMask.Spell));
         _wrathAgainstChaosPassive3.Initialize(CareerID, "+10% personal weapon swing speed.", "WrathAgainstChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10f, PassiveEffectType.SwingSpeed, true));
         _wrathAgainstChaosPassive4.Initialize(CareerID, "+10% personal 'Armour Penetration' of melee attacks.", "WrathAgainstChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-10, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
 

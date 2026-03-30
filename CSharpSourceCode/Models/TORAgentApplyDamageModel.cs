@@ -189,7 +189,14 @@ namespace TOR_Core.Models
             {
                 if (attacker.GetHero() == Hero.MainHero)
                 {
-                    CareerHelper.ApplyBasicCareerPassives(attacker.GetHero(), ref result, PassiveEffectType.BonusDamageShield, true);
+                    var attackMask = AttackTypeMask.Melee;
+                    var weaponComponent = attackInformation.AttackerWeapon.CurrentUsageItem;
+
+                    if (weaponComponent != null && weaponComponent.IsRangedWeapon)
+                    {
+                        attackMask = AttackTypeMask.Ranged;
+                    }
+                    CareerHelper.ApplyBasicCareerPassives(attacker.GetHero(), ref result, PassiveEffectType.BonusDamageShield, attackMask, true);
                 }
 
 
@@ -360,7 +367,7 @@ namespace TOR_Core.Models
             
             if (collisionData.IsMissile && victimAgent.IsMainAgent && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
             {
-                if (Hero.MainHero.HasCareerChoice("PathfinderPassive4"))
+                if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive3"))
                 {
                     return true;
                 }

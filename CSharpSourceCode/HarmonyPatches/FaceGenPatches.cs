@@ -1,19 +1,50 @@
-﻿using HarmonyLib;
+using HarmonyLib;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.MountAndBlade.ViewModelCollection.FaceGenerator;
 using TOR_Core.CampaignMechanics.CharacterCreation;
+using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {
     [HarmonyPatch]
     public static class FaceGenPatches
     {
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(FaceGenVM), "get_CanChangeRace")]
+        public static void OverrideCanChangeRace(ref bool __result)
+        {
+            // Override the CanChangeRace property based on config
+            // When AllowFreeRaceSelection is false, hide the race selector
+            if (!TORConfig.AllowFreeRaceSelection)
+            {
+                __result = false;
+            }
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(FaceGenVM), "get_CanChangeGender")]
+        public static void OverrideCanChangeGender(ref bool __result)
+        {
+            // Orcs and Dwarfs cannot change gender
+            var playerCharacter = CharacterObject.PlayerCharacter;
+            if (playerCharacter.IsOrc() || playerCharacter.IsDwarf())
+            {
+                __result = false;
+            }
+        }
+
         [HarmonyPrefix]
         [HarmonyPatch(typeof(FaceGenVM), "UpdateRaceAndGenderBasedResources")]
         public static void PreserveRace(FaceGenVM __instance, ref int ____selectedRace)
         {
-            // IMPORTANT! Uncomment for release
-            //    ____selectedRace = CharacterObject.PlayerCharacter.Race;
-            //  if (__instance.RaceSelector != null) __instance.RaceSelector.SelectedIndex = CharacterObject.PlayerCharacter.Race;
+            if (!TORConfig.AllowFreeRaceSelection)
+            {
+                // Lock race to player's character race (release mode)
+                ____selectedRace = CharacterObject.PlayerCharacter.Race;
+                if (__instance.RaceSelector != null)
+                    __instance.RaceSelector.SelectedIndex = CharacterObject.PlayerCharacter.Race;
+            }
         }
 
         [HarmonyPostfix]

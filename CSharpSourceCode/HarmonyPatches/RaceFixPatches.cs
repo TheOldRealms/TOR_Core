@@ -193,7 +193,7 @@ namespace TOR_Core.HarmonyPatches
         public static bool ModifyHeadBoneScalingForCustomSkeletons(Skeleton skeleton, sbyte headLookDirectionBoneIndex, ref MatrixFrame frame)
         {
             var skeletonName = skeleton.GetName();
-            if (skeletonName == "orc_skeleton2")
+            if (skeletonName == "orc_skeleton2" || skeletonName == "goblin_skeleton")
             {
                 frame.rotation.OrthonormalizeAccordingToForwardAndKeepUpAsZAxis();
             }

@@ -4,7 +4,7 @@
   <!--Certain string ids are necessarily disjoint from the rest of tor's nomenclature because they are respecting a format used in native code to look up strings, eg. the crafting template deserialize looks for "GameTexts.FindText("str_crafting_template", base.StringId)" and therefore our tor_ prefix is only present in the variation.-->
   <!--Because localization ids are arbitrary, our ids in the text attribute continue to follow our pattern despite deviating from their corresponding string id.-->
   
-  
+    3 <string id="tor_cc_review_description" text="{=str_tor_cc_review_description}The Old World awaits you, with all of its glory and horrors. This is your character. Continue if you are ready, or go back and make changes." />     
   
   <!-- UI -->
   <string id="str_career_screen.title" text="{=str_tor_career_screen_title}Career"/>
@@ -781,7 +781,7 @@
   <string id="tor_enchanter_hub_reintro.eonir" text="{=str_tor_enchanter_hub_reintro_eonir}Blessings of Isha upon you, what aid can I bestow?"/>
   <string id="tor_enchanter_hub_info_p.eonir" text="{=str_tor_enchanter_hub_info_p_eonir}Can you help me learn the basics of enchanting?"/>
   <string id="tor_enchanter_hub_blueprints_p.eonir" text="{=str_tor_enchanter_hub_blueprints_p_eonir}I come in search of new enchanting techniques."/>
-  <string id="tor_enchanter_hub_donate_items_p.eonir" text="{=str_tor_enchanter_hub_donate_items_p_eonir}I bring great grifts of arcane power for you and our kin."/>
+  <string id="tor_enchanter_hub_donate_items_p.eonir" text="{=str_tor_enchanter_hub_donate_items_p_eonir}I bring great gifts of arcane power for you and our kin."/>
   <string id="tor_enchanter_hub_open_enchanter_p.eonir" text="{=str_tor_enchanter_hub_open_enchanter_p_eonir}May I make use of your enchanting equipment?"/>
   <string id="tor_enchanter_hub_return_p.eonir" text="{=str_tor_enchanter_hub_return_p_eonir}I wish to discuss the matters of diplomacy."/>
   <string id="tor_enchanter_blueprints.eonir" text="{=str_tor_enchanter_blueprints_eonir}So be it, let us unravel these mysteries together."/>
@@ -1305,6 +1305,9 @@
   <string id="str_faction_formal_name_for_culture.eonir" text="{=str_tor_faction_formal_name_for_culture_eonir}Laurelorn Forest" />
   <string id="str_faction_formal_name_for_culture.chaos_culture" text="{=str_tor_faction_formal_name_for_culture_chaos_culture}Forces of Chaos" />
   <string id="str_faction_formal_name_for_culture.druchii" text="{=str_tor_faction_formal_name_for_culture_druchii}Druchii Slavers" />
+  <string id="str_faction_formal_name_for_culture.sturgia" text="{=str_tor_faction_formal_name_for_culture_sturgia}Karaz Ankor" />
+  <string id="str_faction_formal_name_for_culture.aserai" text="{=str_tor_faction_formal_name_for_culture_aserai}Greenskin Tribes" />
+
   
 
   <string id="str_faction_informal_name_for_culture.khuzait" text="{=str_tor_faction_informal_name_for_culture_khuzait}Sylvania" />
@@ -1315,6 +1318,8 @@
   <string id="str_faction_informal_name_for_culture.eonir" text="{=str_tor_faction_informal_name_for_culture_eonir}Laurelorn" />
   <string id="str_faction_informal_name_for_culture.chaos_culture" text="{=str_tor_faction_informal_name_for_culture_chaos_culture}Chaos" />
   <string id="str_faction_informal_name_for_culture.druchii" text="{=str_tor_faction_informal_name_for_culture_druchii}Druchii Slavers" />
+  <string id="str_faction_informal_name_for_culture.sturgia" text="{=str_tor_faction_informal_name_for_culture_sturgia}the Dawi" />
+    <string id="str_faction_informal_name_for_culture.aserai" text="{=str_tor_faction_informal_name_for_culture_aserai}the Greenskins" />
   
 
   <string id="str_adjective_for_culture.khuzait" text="{=str_tor_adjective_for_culture_khuzait}vampire" />
@@ -2863,7 +2868,7 @@
   <string id="tor_hire_companion_p.tor_wanderer_dawi_2" text="{=str_tor_hire_companion_p_tor_wanderer_dawi_2}A master of inventions on my side would be a great boon." />
   <string id="tor_companion_leave_p.tor_wanderer_dawi_2" text="{=str_tor_companion_leave_p_tor_wanderer_dawi_2}Forgive me, I need to leave." />
   <string id="tor_hire_companion_payment.tor_wanderer_dawi_2" text="{=str_tor_hire_companion_payment_tor_wanderer_dawi_2}My services do not come cheap. If there is no objections, sign here for my contract and your non-disclosure agreement: {GOLD_AMOUNT}{GOLD_ICON}" />
-  <string id="tor_hire_accept_p.tor_wanderer_dawi_2" text="{=str_tor_hire_accept_p_tor_wanderer_dawi_2}SSo be it… Take this coffer of {GOLD_AMOUNT} then." />
+  <string id="tor_hire_accept_p.tor_wanderer_dawi_2" text="{=str_tor_hire_accept_p_tor_wanderer_dawi_2}So be it… Take this coffer of {GOLD_AMOUNT} then." />
   <string id="tor_hire_decline_p.tor_wanderer_dawi_2" text="{=str_tor_hire_decline_p_tor_wanderer_dawi_2}My apologies, master dwarf. I cannot afford that just yet." />
 
 <!-- ========================================== -->
@@ -4461,7 +4466,7 @@
   <string id="tor_career_description.GreyLord" text="{=str_tor_career_description_greylord}The Greylords were once powerful mages of Ulthuan, but they were exiled for their cruel experiments. Today, the Greylords continue their often-dangerous experiments in secret in Laurelorn, willingly teach their apprentices the forbidden magic. The Greylords are not to be trifled with, by their power alone has the forest of Laurelorn been saved many times, though some remain fearful their powers may also doom the Eonir." />
   <string id="tor_career_description.Spellsinger" text="{=str_tor_career_description_spellsinger}Spellsingers have a unique bond with Athel Loren, they are bound to the forest through magical ritual, giving then the same communal awareness that dryads or treekin enjoy, without sacrificing their individuality. While the lesser Spellsingers commune with the forest, the greater ones can reshape it for building of homes or destruction of enemies. In Athel Loren Spellsingers are artists and mages, and invariably are the ones that travel outside the forest to engage in rare diplomacy. While both men and women become Spellsingers, the women typically become stronger due to Ariel's bond with the forest of Athel Loren." />
   <string id="tor_career_description.KnightOldWorld" text="{=str_tor_career_description_knightoldworld}The Old World is a home to numerous Knightly Orders. Their members ordinarily follow one particular deity, like the ferocious White Wolves of Ulric or the accomplished Blazing Suns of Myrmidia. But it's not uncommon to encounter secular Orders like the Knights Panther. While rather varied in terms of equipment, faiths, or beliefs, such knights ultimately share similar goals: promotion of their Orders and annihilation of all things foul. Knights of the Old World are also famous for their elite training, finest gear, as well as influence that extends across the four corners of the realm." />
-  <string id="tor_career_description.Ironbreaker" text="{=str_tor_career_description_ironbreaker}Fighting in the narrow underground tunnels is a really tough and tedious experience. Equipped with the best gromril armor that the clan can provide and with an impenetrable shield wall formation, they are responsible for protecting the most vulnerable accesses of the karaks to the last breath. Serving as an Iron Breaker is considered a great honor, as only the strongest and bravest among the dwarves are admitted." />
+  <string id="tor_career_description.Ironbreaker" text="{=str_tor_career_description_ironbreaker}Fighting in the narrow underground tunnels is a tough and tedious experience. Equipped with the best gromril armor that the Clan can provide and in an impenetrable shieldwall formation, Ironbreakers are responsible for protecting the most vulnerable accesses of the karaks to the last breath. Serving as an Ironbreaker is considered a great honour, as only the strongest and bravest among the Dwarfs are admitted." />
   <string id="tor_career_description.Slayer" text="{=str_tor_career_description_slayer}Dwarves are a proud race. Failure is an affront to their honor and a scar that is almost indelible. Dwarves whose honor has been tarnished become Slayers; they will abandon their family, their possessions, and even their clan to pursue a path of redemption. And there is only one way to redeem their honor: death in the battlefield. In times of war, slayers will abandon their self-imposed exile to put their martial skills to the service of the dwarven cause; where they will meet their final destiny." />
   
   <string id="tor_career_description.Warden" text="{=str_tor_career_description_warden}All Elves comes to the defence of Athel Loren in times of need. Trained not only with bow, but also with spear, sword, mounted combat and in some cases magic, the Lords of the Glade herald in the might of the Wood Elves and the Spirits of Athel Loren. Leading the charge and conceiving battle plans like no other, these Lords and Ladies are great warriors on and off the field, out maneuvering and flanking with deadly strength." />
@@ -4738,7 +4743,7 @@
  	 <!--Spend Grain ! -->
 	 <string id="tor_dw_brewers_deliverWheat_prompt_title.wheat" text="{=str_tor_dw_brewers_deliverwheat_prompt_title}Deliver sacks of grain" />
 	 <string id="tor_dw_brewers_deliverWheat_prompt_description.wheat" text="{=str_tor_dw_brewers_deliverwheat_prompt_description}The Brewers need grain to brew ale. Donate sacks of grain, and receive Oathgold in return." />	 
-	 <string id="tor_dw_brewers_deliverWheat_item_tittle.wheat" text="{=str_tor_dw_brewers_deliverwheat_item_tittle_wheat}Deliver grain" />
+	 <string id="tor_dw_brewers_deliverWheat_item_title.wheat" text="{=str_tor_dw_brewers_deliverwheat_item_tittle_wheat}Deliver grain" />
 	 <string id="tor_dw_brewers_deliverWheat_item_hint.wheat" text="{=str_tor_dw_brewers_deliverwheat_item_hint_wheat}Deliver {WHEAT_COUNT} grain, receive {OATH_GOLD_GAIN_WHEAT} Oathgold" />
    
 	 <!--Spend Steel ! -->
@@ -4755,6 +4760,10 @@
    
 
   <!--Forest Harmony ! -->
+  <string id="tor_custom_resource_we_clearedHerdstones" text="{=str_tor_custom_resource_we_clearedherdstones}Cleared Herdstones" /> 
+  <string id="tor_custom_resource_we_worldrootOwned" text="{=str_tor_custom_resource_we_worldrootowned}Worldroot Settlements" />                             
+  <string id="tor_custom_resource_we_worldrootHostile" text="{=str_tor_custom_resource_we_worldroothostile}{SETTLEMENT} (Worldroot Hostile)" />
+  
   <string id="tor_treesymbol_title.WEKithbandSymbol" text="{=str_tor_treesymbol_title_wekithbandsymbol}Kithband Symbol" />
   <string id="tor_treesymbol_title.WEWardancerSymbol" text="{=str_tor_treesymbol_title_wewardancersymbol}Wardancer Symbol" />
   <string id="tor_treesymbol_title.WETreekinSymbol" text="{=str_tor_treesymbol_title_wetreekinsymbol}Treekin Symbol" />
@@ -5282,9 +5291,9 @@
 	<!-- Duel System - Blood Knight -->
 
 	<!-- Duel Menu -->
-	<string id="tor_duel_start_combat" text="{=str_tor_duel_start_combat}Begin the duel!" />
+	<string id="tor_duel_start_combat" text="{=str_tor_duel_start_combat}Kick in sum teef!" />
 	<string id="tor_duel_prep" text="{=str_tor_duel_prep}Prepare for combat!" />
-	<string id="tor_duel_prep.greenskin" text="{=str_tor_duel_prep_greenskin}WAAAGH! Time to show {DUEL_TARGET_NAME} who's da biggest! Get ready for a proper scrap!" />
+	<string id="tor_duel_prep.greenskin" text="{=str_tor_duel_prep_greenskin}WAAAGH!!! Time to teach dat stinky git {DUEL_TARGET_NAME} sum manners! Get ready fer a proppa scrap!" />
 	
 	<string id="tor_duel_victory" text="{=str_tor_duel_victory}You won the battle!" />
 	<string id="tor_duel_victory.greenskin" text="{=str_tor_duel_victory_greenskin}Yu clearly are da biggest boss. You gained {TEEF_GAIN_DUEL}{TEEF_ICON} teef. {TROOP_GAIN_DUEL}" />
@@ -5307,8 +5316,8 @@
 	<string id="tor_orc_boss_quest1_task_polearm" text="{=str_tor_orc_boss_quest1_task_polearm}Polearm Skill" />
 	<string id="tor_orc_boss_quest1_log_battles" text="{=str_tor_orc_boss_quest1_log_battles}Win {REQUIRED} battles" />
 	<string id="tor_orc_boss_quest1_task_battles" text="{=str_tor_orc_boss_quest1_task_battles}Battles Won" />
-	<string id="tor_orc_boss_quest1_log_arena" text="{=str_tor_orc_boss_quest1_log_arena}Win {REQUIRED} arena fights" />
-	<string id="tor_orc_boss_quest1_task_arena" text="{=str_tor_orc_boss_quest1_task_arena}Arena Fights" />
+	<string id="tor_orc_boss_quest1_log_tournament" text="{=str_tor_orc_boss_quest1_log_tournament}Win {REQUIRED} tournaments" />
+	<string id="tor_orc_boss_quest1_task_tournament" text="{=str_tor_orc_boss_quest1_task_tournament}Tournaments" />
 	<string id="tor_orc_boss_quest1_log_teef" text="{=str_tor_orc_boss_quest1_log_teef}Convert {REQUIRED} worth of loot to Teef" />
 	<string id="tor_orc_boss_quest1_task_teef" text="{=str_tor_orc_boss_quest1_task_teef}Teef received" />
 	<string id="tor_orc_boss_quest1_log_brawls" text="{=str_tor_orc_boss_quest1_log_brawls}Win {REQUIRED} brawls" />
@@ -5324,8 +5333,8 @@
 	<string id="tor_orc_boss_quest2_task_polearm" text="{=str_tor_orc_boss_quest2_task_polearm}Polearm Skill" />
 	<string id="tor_orc_boss_quest2_log_battles" text="{=str_tor_orc_boss_quest2_log_battles}Win {REQUIRED} battles" />
 	<string id="tor_orc_boss_quest2_task_battles" text="{=str_tor_orc_boss_quest2_task_battles}Battles Won" />
-	<string id="tor_orc_boss_quest2_log_arena" text="{=str_tor_orc_boss_quest2_log_arena}Win {REQUIRED} arena fights" />
-	<string id="tor_orc_boss_quest2_task_arena" text="{=str_tor_orc_boss_quest2_task_arena}Arena Fights" />
+	<string id="tor_orc_boss_quest2_log_tournament" text="{=str_tor_orc_boss_quest2_log_arena}Win {REQUIRED} tournaments" />
+	<string id="tor_orc_boss_quest2_task_tournament" text="{=str_tor_orc_boss_quest2_task_arena}Tournaments" />
 	<string id="tor_orc_boss_quest2_log_brawls" text="{=str_tor_orc_boss_quest2_log_brawls}Win {REQUIRED} brawls" />
 	<string id="tor_orc_boss_quest2_task_brawls" text="{=str_tor_orc_boss_quest2_task_brawls}Brawls Won" />
 	<string id="tor_orc_boss_quest2_log_cities" text="{=str_tor_orc_boss_quest2_log_cities}Capture {REQUIRED} cities or castles" />
@@ -5367,19 +5376,19 @@
 
 	<!--Runesmith Quest-->
 	<string id="tor_runesmith_quest_title" text="{=str_tor_runesmith_quest_title}Runesmith Quest" />
-	<string id="tor_runesmith_quest_log_contracts" text="{=str_tor_runesmith_quest_log_contracts}Finish 15 Smithing contracts." />
+	<string id="tor_runesmith_quest_log_contracts" text="{=str_tor_runesmith_quest_log_contracts}Finish {REQUIRED} smithing contracts." />
 	<string id="tor_runesmith_quest_task_contracts" text="{=str_tor_runesmith_quest_task_contracts}Contracts" />
-	<string id="tor_runesmith_quest_log_runes" text="{=str_tor_runesmith_quest_log_runes}Learn 7 runes." />
+	<string id="tor_runesmith_quest_log_runes" text="{=str_tor_runesmith_quest_log_runes}Learn {REQUIRED} runes." />
 	<string id="tor_runesmith_quest_task_runes" text="{=str_tor_runesmith_quest_task_runes}Runes" />
 	<string id="tor_runesmith_quest_log_complete" text="{=str_tor_runesmith_quest_log_complete}Talk to the rune smith" />
 
 	<!--Runelord Quest-->
 	<string id="tor_runelord_quest_title" text="{=str_tor_runelord_quest_title}Runelord Quest" />
-	<string id="tor_runelord_quest_log_abilities" text="{=str_tor_runelord_quest_log_abilities}Learn 3 Rune abilities of the Anvil of Doom." />
+	<string id="tor_runelord_quest_log_abilities" text="{=str_tor_runelord_quest_log_abilities}Learn {REQUIRED} Rune abilities of the Anvil of Doom." />
 	<string id="tor_runelord_quest_task_abilities" text="{=str_tor_runelord_quest_task_abilities}Rune Magic" />
-	<string id="tor_runelord_quest_log_runes" text="{=str_tor_runelord_quest_log_runes}Learn 15 runes." />
+	<string id="tor_runelord_quest_log_runes" text="{=str_tor_runelord_quest_log_runes}Learn {REQUIRED} runes." />
 	<string id="tor_runelord_quest_task_runes" text="{=str_tor_runelord_quest_task_runes}Runes" />
-	<string id="tor_runelord_quest_log_contracts" text="{=str_tor_runelord_quest_log_contracts}Finish up 20 smithing contracts." />
+	<string id="tor_runelord_quest_log_contracts" text="{=str_tor_runelord_quest_log_contracts}Finish up {REQUIRED} smithing contracts." />
 	<string id="tor_runelord_quest_task_contracts" text="{=str_tor_runelord_quest_task_contracts}Contracts" />
 	<string id="tor_runelord_quest_log_reputation" text="{=str_tor_runelord_quest_log_reputation}Reach Respected with the Runesmith Guild." />
 	<string id="tor_runelord_quest_task_reputation" text="{=str_tor_runelord_quest_task_reputation}Reputation" />
@@ -5429,7 +5438,7 @@
 	<!--Cursed Site Menus-->
 	<string id="tor_custom_settlement_cursed_site_not_enough_free_slots" text="{=str_tor_custom_settlement_cursed_site_not_enough_free_slots}You have not enough space in your party."/>
 	<string id="tor_custom_settlement_cursed_site_not_necromancer" text="{=str_tor_custom_settlement_cursed_site_not_necromancer}You are not a practitioner of necromancy."/>
-	<string id="tor_custom_settlement_cursed_site_once_a_day" text="{=str_tor_custom_settlement_cursed_site_once_a_day}You can only perform this action once a day."/>
+	<string id="tor_custom_settlement_cursed_site_binding_cooldown" text="{=str_tor_custom_settlement_cursed_site_binding_cooldown}You can only perform this action once a day."/>
 	<string id="tor_custom_settlement_cursed_site_purify_fail" text="{=str_tor_custom_settlement_cursed_site_purify_fail}You need at least 10 healthy party members to perform the ritual."/>
 	<string id="tor_custom_settlement_cursed_site_ward" text="{=str_tor_custom_settlement_cursed_site_ward}Currently there are wards in place holding back the malevolent energies of the curse. The wards will hold for {CURSEDSITE_WARDHOURS} hours more"/>
 	<string id="tor_custom_settlement_cursed_site_no_undead" text="{=str_tor_custom_settlement_cursed_site_no_undead}There are no undead in your party."/>
@@ -5459,6 +5468,7 @@
 	<string id="tor_custom_settlement_shrine_blessing_already_active" text="{=str_tor_custom_settlement_shrine_blessing_already_active}You devoted your live to {CAREERGOD_NAME}. You can't pray here."/>
 	<string id="tor_custom_settlement_shrine_pray_text" text="{=str_tor_custom_settlement_shrine_pray_text}Pray to receive the blessing of {GOD_NAME}"/>
 	<string id="tor_shrine_defile_option" text="{=str_tor_shrine_defile_option}Defile the Shrine for Dark Energy. Followers of {GOD_NAME} will remember this."/>
+	<string id="tor_shrine_defiling_cooldown" text="{=str_tor_shrine_defiling_cooldown}You can only perform this action every {DEFILE_COOLDOWN_DAYS} days."/>
 	<string id="tor_shrine_loot_option" text="{=str_tor_shrine_loot_option}Loot the Shrine for resources. Followers of {GOD_NAME} will remember this."/>
 	<string id="tor_shrine_praying_progress" text="{=str_tor_shrine_praying_progress}Praying..."/>
 	<string id="tor_shrine_continue" text="{=str_tor_shrine_continue}Continue"/>
@@ -5536,6 +5546,7 @@
 	<string id="tor_spelltrainer_scrolls" text="{=str_tor_spelltrainer_scrolls}Do you sell any scrolls?"/>
 	<string id="tor_spelltrainer_player_goodbye" text="{=str_tor_spelltrainer_player_goodbye}Farewell Magister."/>
 	<string id="tor_spelltrainer_goodbye" text="{=str_tor_spelltrainer_goodbye}Hmm, yes. Farewell."/>
+	<string id="tor_spelltrainer_start_rejected" text="{=str_tor_spelltrainer_start_rejected}I have nothing to teach you. Begone."/>
 
 	<!--Spell Trainer Magic Test-->
 	<string id="tor_spelltrainer_magictest_empire" text="{=str_tor_spelltrainer_magictest_empire}I have come seeking knowledge, I wish to learn the arcane arts. Can you help me?"/>

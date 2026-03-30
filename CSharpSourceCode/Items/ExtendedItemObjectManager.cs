@@ -16,6 +16,7 @@ namespace TOR_Core.Items
     {
         private static Dictionary<string, ExtendedItemObjectProperties> _itemToInfoMap = [];
         private static string XMLPath = TORPaths.TORCoreModuleExtendedDataPath + "tor_extendeditemproperties.xml";
+        private static HashSet<string> _runtimeDuplicatedItemIds = [];
         private static List<string> _humanCompatibleRaces = new()
         {
             "human",
@@ -59,9 +60,15 @@ namespace TOR_Core.Items
 
             return false;
         }
+        public static bool IsRuntimeDuplicatedItem(ItemObject item)
+        {
+            return item != null && _runtimeDuplicatedItemIds.Contains(item.StringId);
+        }
 
         public static void AddCraftedItem(string oldId, string newId, List<string> traits)
         {
+            _runtimeDuplicatedItemIds.Add(newId);
+
             if (_itemToInfoMap.ContainsKey(newId))
             {
                 _itemToInfoMap[newId].ItemTraits = traits ?? new List<string>();
@@ -105,15 +112,19 @@ namespace TOR_Core.Items
         public static void LoadXML()
         {
             _itemToInfoMap.Clear();
+            _runtimeDuplicatedItemIds.Clear();
+
             if (File.Exists(XMLPath))
             {
                 XmlSerializer ser = new XmlSerializer(typeof(List<ExtendedItemObjectProperties>));
-                List<ExtendedItemObjectProperties> list = ser.Deserialize(File.OpenRead(XMLPath)) as List<ExtendedItemObjectProperties>;
+                using var stream = File.OpenRead(XMLPath);
+
+                List<ExtendedItemObjectProperties> list = ser.Deserialize(stream) as List<ExtendedItemObjectProperties>;
                 if (list != null && list.Count > 0)
                 {
                     foreach (var item in list)
                     {
-                        _itemToInfoMap.Add(item.ItemStringId, item);
+                        _itemToInfoMap[item.ItemStringId] = item;
                     }
                 }
             }

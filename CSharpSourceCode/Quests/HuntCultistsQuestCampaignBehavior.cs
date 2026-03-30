@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SandBox;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Conversation;
@@ -114,7 +115,11 @@ namespace TOR_Core.Quests
 
             public override bool IssueStayAliveConditions()
             {
-                return IssueOwner != null && !IssueOwner.CurrentSettlement.MapFaction.IsAtWarWith(Clan.PlayerClan);
+                var issueOwner = IssueOwner;
+                var currentSettlement = issueOwner?.CurrentSettlement;
+                var mapFaction = currentSettlement?.MapFaction;
+
+                return mapFaction != null && !mapFaction.IsAtWarWith(Clan.PlayerClan);
             }
 
             protected override bool CanPlayerTakeQuestConditions(Hero issueGiver, out PreconditionFlags flag, out Hero relationHero, out SkillObject skill)
@@ -212,14 +217,7 @@ namespace TOR_Core.Quests
 
             private void TurnHostile()
             {
-                Mission.Current.SetMissionMode(MissionMode.Battle, false);
-                foreach (var agent in Mission.Current.Agents)
-                {
-                    if (agent.IsAIControlled && agent.IsHuman && agent.IsActive())
-                    {
-                        agent.SetWatchState(Agent.WatchState.Alarmed);
-                    }
-                }
+                TORMissionHelper.MakeEnemyAgentsHostile();
             }
 
             private void SettlementEntered(MobileParty party, Settlement settlement, Hero hero)

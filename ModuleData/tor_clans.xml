@@ -198,7 +198,7 @@
              super_faction="Kingdom.blooddragons"
              is_noble="true"
              text="{=str_tor_clan_blooddragons_clan_1_desc}Blood Keep was once the home of a valiant order of Knights known as the Order of the Blood Dragon, or the Ordo Draconis. One fateful night, a Vampire known as Walach Harkon challenged every Knight to single combat, eventually turning all who he deemed worthy into Vampires. The death of the Ordo Draconis was followed by their rebirth in blood; ever since then these terrifying warriors have been known as the Blood Dragons. The Imperials suffered under their attacks and depravations for sixty years, before they amassed a force to raze the Keep. That was almost six centuries ago, for all that time the ruins of the keep lay undisturbed. Now, the keep rises again, built by the silent undead, and the men of the Empire will again know fear."
-             banner_key="11.116.142.1633.1633.814.959.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_blooddragons" />
+             banner_key="11.116.142.1633.1633.814.959.0.1.0.122.20.41.600.600.766.766.0.0.0:kingdom_blooddragons" />
 	<Faction id="necrarch_clan_1"
              name="{=str_tor_clan_necrarch_clan_1_name}The Tower of Shadows"
              tier="6"
@@ -228,7 +228,7 @@
              culture="Culture.empire"
              super_faction="Kingdom.stirland"
              is_noble="true"
-             text="{=str_tor_clan_stirland_clan_1_desc}When first assuming power, Alberich Haupt-Anderssen focused all of his efforts in having a tight knit alliance between all of the other lords to ensure economic stability and the safety around Wurtzbach and in the west of Stirland.. This alliance is difficult to maintain even at the best of times due to Alberich’s young age and the general insecurity of his house. With an increasingly fraught eastern border with Sylvania, this alliance is growing more and more unsteady."
+             text="{=str_tor_clan_stirland_clan_1_desc}When first assuming power, Alberich Haupt-Anderssen focused all of his efforts in having a tight knit alliance between all of the other lords to ensure economic stability and the safety around Wurtzbach and in the west of Stirland. This alliance is difficult to maintain even at the best of times due to Alberich’s young age and the general insecurity of his house. With an increasingly fraught eastern border with Sylvania, this alliance is growing more and more unsteady."
              banner_key="11.2.131.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_stirland" />
     <Faction id="stirland_clan_2"
              name="{=str_tor_clan_stirland_clan_2_name}Men of Morr"
@@ -544,7 +544,7 @@
              super_faction="Kingdom.wasteland"
              is_noble="true"
              text="{=str_tor_clan_wasteland_clan_4_desc}Heir to House van Haagen, Crispijn is widely known as a carouser, a risk-taker, a show-off, and a wastrel. This is only half the truth, for he shares his father’s knack for politics and force of personality, if not his prudence or discipline. Crispijn is also a bold and instinctive, if unproven, commander. Eager to prove himself beyond his father’s long shadow, the ‘Strutting Cock of Goudberg’ has recently taken to assuming personal command of troops within House van Haagen’s extensive private retinues."
-             banner_key="11.131.148.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_wasteland"/>
+             banner_key="11.131.148.1500.1500.764.764.1.1.0.122.20.41.600.600.768.768.0.0.0:kingdom_wasteland"/>
 	<!-- Couronne faction -->
     <Faction id="couronne_clan_1"
              name="{=str_tor_clan_couronne_clan_1_name}de Couronne"
@@ -1231,7 +1231,7 @@
 			 default_party_template="PartyTemplate.greenskins_lordparty_template"
              super_faction="Kingdom.skull_smasherz"
              is_noble="true"
-             text="{=str_tor_clan_skull_smasherz_clan_1_desc}For a long time, the Skullsmasherz have been ruling the Grey Mountains and have been the downfall of many Brettonian and Empire lords. Their territory stretches from the Dukedom of Parravon to the northern part of Reikland, overseeing their territory from their dreaded fortress, the Garban’s Hold. "
+             text="{=str_tor_clan_skull_smasherz_clan_1_desc}For a long time, the Skullsmasherz have been ruling the Grey Mountains and have been the downfall of many Brettonian and Imperial lords. Their territory stretches from the Dukedom of Parravon to the northern part of Reikland, overseeing their territory from their dreaded fortress, the Garban’s Hold. "
              banner_key="11.35.140.1398.1615.785.765.1.0.90.505.35.142.714.714.764.764.0.0.0:kingdom_skullsmasherz" />
 			 
 		<Faction id="skull_smasherz_clan_2"
@@ -1715,6 +1715,7 @@
     <Faction id="chs_cult_1"
              default_party_template="PartyTemplate.broken_wheel"
              name="{=str_tor_clan_chs_cult_1_name}Cult of the Broken Wheel"
+			 initial_home_settlement="Settlement.castle_BK2"
              tier="3"
              is_minor_faction="true"
              is_outlaw="false"
@@ -1739,6 +1740,7 @@
     <Faction id="chs_cult_2"
              default_party_template="PartyTemplate.illumination"
              name="{=str_tor_clan_chs_cult_2_name}Cult of Illumination"
+			 initial_home_settlement="Settlement.castle_BK2"
              tier="3"
              is_minor_faction="true"
              is_outlaw="false"
@@ -1763,6 +1765,7 @@
     <Faction id="chs_cult_3"
              default_party_template="PartyTemplate.fraternity"
              name="{=str_tor_clan_chs_cult_3_name}Fraternity of the Second Flesh"
+			 initial_home_settlement="Settlement.castle_BK2"
              tier="3"
              is_minor_faction="true"
              is_outlaw="false"

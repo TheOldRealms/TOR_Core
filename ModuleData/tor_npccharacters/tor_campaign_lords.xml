@@ -6698,7 +6698,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_we_lord_athel_loren_factionleader" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_factionleader}Araloth the Bold" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_araloth" race="elf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.0386" build="0.8503" key="0010840F000000027E7BC59F475227BC4286557267F54B977441DA6B838BF7650F7706030CB89708D100009020030000000000000000000C000000001D840002" />
+      <BodyProperties version="4" age="22" weight="0.0386" build="0.8503" key="0010840F00001006CE7BC59F475227BCC280557267F54B737441DA6B8283071500ED16030EB897085100009020030000000000000000000C000000001DE43000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -6716,7 +6716,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_we_lord_athel_loren_first_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_first_2}Scarloc the Wanderer" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_elf_lord" race="elf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="25" weight="0.2732" build="0.4051" key="000D980080FC00035E7FFC9FEFB000B331F47327788A8F11C90108B2A107966C5E5B06130CF69C00646B9F989D544878000000000000001C000000004D9C3082" />
+      <BodyProperties version="4" age="25" weight="0.2732" build="0.4051" key="0034980080FC10035E7FFC9FEFB700B731F47327788A0F11C90108B5A107966400E646030EFAEC59646B9F981D544878000000000000001C000000004DE43080" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -6770,7 +6770,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_we_lord_athel_loren_third_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_third_1}Lord Sceolan of the Hooked Blade" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_elf_lord" race="elf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0" build="0.781" key="001B5004C014000548B288FB6769085B786BA91767C8545766D7967AF37D79D376B306030DCE84B9C093797C739E5C52000000000000000D0000000025AC3002" />
+      <BodyProperties version="4" age="22" weight="0.1682" build="0.8256" key="00205004CE14100548B288F8686E085B786BA91767C8545766D7967AF37D79D300EC36030ECE87BF4093797C739E5C52000000000000000D0000000025E43000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -6788,7 +6788,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_we_lord_athel_loren_third_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_third_2}Nemeru the Spear" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_elf_lord" race="elf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.5918" build="0.6597" key="003CF40FC0440002B3BBC73DB4BC8545A57287814BBBA89C925A5C668972A665877886030DD4AE5AA9D6365AA6492A9A000000000000000D0000000047BC5082" />
+      <BodyProperties version="4" age="22" weight="0.5918" build="0.6597" key="003CF40FC044100253BBC73DB4BC85459672878144316831925A5C668972402500EA96030ED4AE5A29D6365A26492A9A000000000000000D0000000047E41080" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -6806,7 +6806,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_we_lord_athel_loren_fourth_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_fourth_1}Lord Thalandor Doomstar" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_elf_lord" race="elf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0" build="0.2917" key="0010780000A000018A7FE8EB8972013B50787389C8F009A7541662A8C62B596A278BA6030AB87D1940A68CA679486A87000000000000000A00000000515C90C2" />
+      <BodyProperties version="4" age="22" weight="0" build="0.8843" key="00318403482C00078A7FA89F8FDF0DFB80F88FDAF8F5A9A7041662A8C02D3964007D060307B8FD6D40A68CA679486A87000000000000000A0000000014FC80C0" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -6842,7 +6842,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_we_lord_athel_loren_fifth_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_fifth_1}Lord Amadri Dawnspear" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_elf_lord" race="elf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="25" weight="0.2143" build="0.9768" key="0005D80280700004D38A7B87E3285549697A5A837BCBAE9929954C829C1668A9581856030BAAA783F37478BBC9867818000000000000000B000000001F6C3082" />
+      <BodyProperties version="4" age="25" weight="0.1464" build="0.659" key="0005680292700006B38A7C87E32855494CFE5A838ACFFE0029994C828976243400BA26030BEEF787737478BB49867818000000000000000B00000000277C3080" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -6860,7 +6860,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_we_lord_athel_loren_fifth_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_fifth_2}Lord Thuralin" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_elf_lord" race="elf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0" build="0.3743" key="0015480AC0880003CA8CDBEFA118A1709578A733D9AC6B51B15920F09BA7D767889706030EE98B44604A6D12C9975458000000000000000E0000000029CC9042" />
+      <BodyProperties version="4" age="22" weight="0" build="0.3743" key="0015480AC0881003EA8CDBEFA118A1798578A733D9ACFF01B15920F09BA7075000B606030BE98B44604A6D1249975458000000000000000E00000000296C9040" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -6896,7 +6896,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_we_lord_athel_loren_sixth_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_sixth_2}Valarion" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_elf_lord" race="elf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="23" weight="0.044" build="0.8765" key="000DBC0400A0000176A483B6632AAEB5CCBB8835A3B5C26849386A6BAC65AB4B58653603059B89ACD17D39324D56D2AA00000000000000050000000048B40042" />
+      <BodyProperties version="4" age="23" weight="0.044" build="0.8765" key="000DBC0417CC1001D9A483B663210EB5CCBB8835ADF0F2034803016BAC65572300CD16030C9CF96C517D39324D56D2AA000000000000000500000000498C4040" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -6968,7 +6968,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_we_lord_athel_loren_eighth_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_eighth_2}Wychewethyl the Wild" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_elf_lord" race="elf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.6484" build="0.5799" key="0013640780A000022F67BB4666C60174892A84984663A601028101318B198D77A453C603047B59089A7D48AA988865B9000000000000000400000000488C6082" />
+      <BodyProperties version="4" age="22" weight="0.0201" build="0.8071" key="001364078A1410024F67BB4666C60174592A84984663F601620301348B19050000DC06030D3AF9871A7D48AA188865B900000000000000040000000049A47080" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -7058,7 +7058,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_we_lord_athel_loren_eleventh_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_eleventh_1}Lord Daith" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_daith" race="elf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.3627" build="0.2608" key="00133802808800024F5F97BD98471B7868939876CAC44E1796887D726657B8BCC83A16030CA8F80645E7CBC574865A07000000000000000C000000005D9C5042" />
+      <BodyProperties version="4" age="22" weight="0.5" build="0.5" key="000A280011000007B976648E6774B837D09A86629511323BDCB177278DF4000001777613071EE0FA00000000000000000000000000000000000000003EFC5000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -7094,7 +7094,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_we_lord_athel_loren_twelfth_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_twelfth_1}Lord Findol" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_elf_lord" race="elf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0" build="0.5749" key="0015240C4E58000266885396977979B85B26577487A3463A886475B28A788B17DBE416030CA4364C904C94B469A87884000000000000000C0000000035A46082" />
+      <BodyProperties version="4" age="22" weight="0" build="0.5749" key="0015240C55FC000380885396977979B897AA577487A3F603886475B2B432571000D906030DCAF98C104C94B469A87884000000000000000C0000000035A47080" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -7184,7 +7184,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_eo_lord_laurelorn_first_2" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_first_2}Prince Aesryn of Laurelorn" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_elf_lord" race="elf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2843" build="0.4558" key="0000540280A00003447BC2B7A969037B576D6887B868C961AAD5BD79A03BA017A57906030ECD9A4D74AB998869B23232000000000000000E000000003DDC50C2" />
+      <BodyProperties version="4" age="22" weight="0.0096" build="0.2762" key="0000200280A01006957BC253A969037B576D6887DA3AF984F035BF79606B501300F406030FCD9A4E74AB998869B23232000000000000000E000000003DFC70C0" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -7202,7 +7202,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_eo_lord_laurelorn_first_3" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_first_3}Yadoh" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_elf_lord" race="elf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2843" build="0.4558" key="0000540280A00003447BC2B7A969037B576D6887B868C961AAD5BD79A03BA017A57906030ECD9A4D74AB998869B23232000000000000000E000000003DDC50C2" />
+      <BodyProperties version="4" age="22" weight="0.2843" build="0.6775" key="0000540D00A000038B7BC2B7A969037C576D6887B868F964AAD5BD79A03B501600FA46030FCDFA4D74AB998869B23232000000000000000E000000003DFC30C0" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -7220,7 +7220,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_eo_lord_laurelorn_second_1" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_second_1}Lord Galenstra of House Cloudwalker" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_elf_lord" race="elf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.7199" build="0.5963" key="001E6409802C30057982FB8878927AA0A7935692694DB5DA75783A9275E98AB28AAD760307242D669B8C998B9A97657500000000000000070000000048EC4003" />
+      <BodyProperties version="4" age="22" weight="0.2386" build="0.7566" key="0005080C468810059AB7B596CA24BAAB84868791C4047B9DA8A6ABA755A77A8800CB46030CD9D7A81B8C998B1A9765750000000000000007000000003D9C3080" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -7310,7 +7310,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_eo_lord_laurelorn_third_3" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_third_3}Prince Fylson of House Seaborn" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_elf_lord" race="elf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.4955" build="0.7022" key="00139C06002C00059A5A4BBC9C27B626E9B8AC7599D3AE7E794544C58D7483446B648603088C56AAB7267886B8D2AC1500000000000000080000000035047002" />
+      <BodyProperties version="4" age="22" weight="0.4955" build="0.7022" key="00139C06002C10059A5A4BBC9C27B626E9B8AC7599D3AE7E794544C58D74834400BB76030B8CB6AA3726788638D2AC15000000000000000800000000357C7000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -7346,7 +7346,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_eo_lord_laurelorn_fourth_1" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_fourth_1}Lord Lindialoc of House Elwyn" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_elf_lord" race="elf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.0448" build="0.3904" key="00152C00000000029D6E58D59C456D8C8667A97577D529771475B65B65C389F8B42846030FE9560C618695A671A2FA99000000000000000F000000005FF42082" />
+      <BodyProperties version="4" age="22" weight="0.1197" build="0.6423" key="002B700600141003B58894FACEE57AC68A42685D6269FA82A81077548D338C6800CA26030CFEEAAC026695AC67688A92000000000000000B00000000178C5040" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -7364,7 +7364,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_eo_lord_laurelorn_fourth_2" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_fourth_2}Athanoc the Guardian Mage" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_elfmage_lord" is_female="false" race="elf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.1197" build="0.5127" key="0010700600140003B58894FACEE57AC68A42685D62696A82A81077548D338C68898856030BFEEAAC826695AC67688A92000000000000000B00000000177C5042" />
+      <BodyProperties version="4" age="22" weight="0.0448" build="0.3627" key="00002C0400001007806E58359C457D8C8667A97577D528016475065B6502890800C516030CE9560D618695A671A2FA99000000000000000F000000005F844080" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />

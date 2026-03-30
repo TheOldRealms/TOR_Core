@@ -155,8 +155,19 @@ namespace TOR_Core.AbilitySystem
             if (_shouldWieldWeapon)
                 return;
 
+            _wieldOffHandStaff = false;
             _mainHand = Agent.Main.GetPrimaryWieldedItemIndex();
             _offHand = Agent.Main.GetOffhandWieldedItemIndex();
+        }
+
+        private static bool ShouldKeepOffhandStaffWielded(MissionWeapon offhandWeapon)
+        {
+            if (offhandWeapon.IsEmpty)
+            {
+                return false;
+            }
+
+            return offhandWeapon.Item.StringId.IndexOf("staff", StringComparison.OrdinalIgnoreCase) >= 0;
         }
 
         private void EnableTargetingMode()
@@ -188,20 +199,10 @@ namespace TOR_Core.AbilitySystem
 
         private void SwitchOffhandStanceForStaffs()
         {
-            if (!Agent.Main.WieldedOffhandWeapon.IsEmpty)
-            {
-                if (Agent.Main.WieldedOffhandWeapon.Item.IsMagicalStaff())
-                {
-                    _wieldOffHandStaff = true;
-                    _idleAnimation = ActionIndexCache.Create("act_ready_continue_throwing_axe_with_handshield");
-                    return;
-                }
-
-            }
-            _idleAnimation = ActionIndexCache.Create("act_spellcasting_idle");
-            _wieldOffHandStaff = false;
-            return;
-
+            _wieldOffHandStaff = ShouldKeepOffhandStaffWielded(Agent.Main.WieldedOffhandWeapon);
+            _idleAnimation = _wieldOffHandStaff
+                ? ActionIndexCache.Create("act_ready_continue_throwing_axe_with_handshield")
+                : ActionIndexCache.Create("act_spellcasting_idle");
         }
 
         private void EnableQuickSelectionMenuMode()
@@ -243,7 +244,7 @@ namespace TOR_Core.AbilitySystem
                 var currentOffHand = Agent.Main?.GetOffhandWieldedItemIndex() ?? EquipmentIndex.None;
 
                 bool needsMainHandRestore = _mainHand != EquipmentIndex.None && currentMainHand != _mainHand;
-                bool needsOffHandRestore = _offHand != EquipmentIndex.None && currentOffHand != _offHand;
+                bool needsOffHandRestore = !_wieldOffHandStaff && _offHand != EquipmentIndex.None && currentOffHand != _offHand;
 
                 _shouldWieldWeapon = needsMainHandRestore || needsOffHandRestore;
             }
@@ -525,7 +526,7 @@ namespace TOR_Core.AbilitySystem
 
                 if (Agent.Main.GetOffhandWieldedItemIndex() != EquipmentIndex.None)
                 {
-                    if (!Agent.Main.WieldedOffhandWeapon.Item.IsMagicalStaff())
+                    if (!ShouldKeepOffhandStaffWielded(Agent.Main.WieldedOffhandWeapon))
                     {
                         Agent.Main.TryToSheathWeaponInHand(Agent.HandIndex.OffHand, Agent.WeaponWieldActionType.WithAnimation);
                         return;
@@ -544,7 +545,7 @@ namespace TOR_Core.AbilitySystem
                 var currentOffhand = Agent.Main.GetOffhandWieldedItemIndex();
 
                 bool isMainHandRestored = _mainHand == EquipmentIndex.None || currentMainHand == _mainHand;
-                bool isOffhandRestored = _offHand == EquipmentIndex.None || currentOffhand == _offHand;
+                bool isOffhandRestored = _wieldOffHandStaff || _offHand == EquipmentIndex.None || currentOffhand == _offHand;
 
                 if (isMainHandRestored && isOffhandRestored)
                 {
@@ -558,7 +559,7 @@ namespace TOR_Core.AbilitySystem
                     return;
                 }
 
-                if (_offHand != EquipmentIndex.None && !isOffhandRestored)
+                if (!_wieldOffHandStaff && _offHand != EquipmentIndex.None && !isOffhandRestored)
                 {
                     Agent.Main.TryToWieldWeaponInSlot(_offHand, Agent.WeaponWieldActionType.WithAnimation, false);
                     return;
@@ -663,8 +664,9 @@ namespace TOR_Core.AbilitySystem
             {
                 if (agent.IsAbilityUser())
                 {
-                    agent.AddComponent(new AbilityComponent(agent));
-                    if (agent.IsAIControlled)
+                    var abilityComponent = new AbilityComponent(agent);
+                    agent.AddComponent(abilityComponent);
+                    if (agent.IsAIControlled && abilityComponent.KnownAbilitySystem.Count > 0)
                     {
                         agent.AddComponent(new WizardAIComponent(agent));
                     }

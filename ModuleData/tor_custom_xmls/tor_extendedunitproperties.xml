@@ -1214,7 +1214,7 @@
       <string>Unstoppable</string>
       <string>HasAnimationTriggeredEffects</string>
       <string>TreeSpirit</string>
-	  <string>CannotClimbLadders</string>
+      <string>CannotClimbLadders</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
@@ -1233,7 +1233,7 @@
       <string>Unstoppable</string>
       <string>HasAnimationTriggeredEffects</string>
       <string>TreeSpirit</string>
-	  <string>CannotClimbLadders</string>
+      <string>CannotClimbLadders</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
@@ -1363,7 +1363,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="OathGold" UpkeepCost="0" UpgradeCost="2" />
+    <ResourceCost ResourceType="OathGold" UpkeepCost="0" UpgradeCost="3" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_warrior">
     <Abilities />
@@ -1543,7 +1543,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="OathGold" UpkeepCost="0" UpgradeCost="16" />
+    <ResourceCost ResourceType="OathGold" UpkeepCost="0" UpgradeCost="20" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_ironbeard">
     <Abilities />
@@ -1559,7 +1559,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="OathGold" UpkeepCost="0" UpgradeCost="18" />
+    <ResourceCost ResourceType="OathGold" UpkeepCost="0" UpgradeCost="22" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_irondrake">
     <Abilities />
@@ -1577,7 +1577,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="OathGold" UpkeepCost="0" UpgradeCost="25" />
+    <ResourceCost ResourceType="OathGold" UpkeepCost="0" UpgradeCost="60" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_irondrake_trollhammer">
     <Abilities />
@@ -1596,7 +1596,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="OathGold" UpkeepCost="0" UpgradeCost="25" />
+    <ResourceCost ResourceType="OathGold" UpkeepCost="0" UpgradeCost="60" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_hammerer">
     <Abilities />
@@ -1612,7 +1612,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="OathGold" UpkeepCost="0" UpgradeCost="15" />
+    <ResourceCost ResourceType="OathGold" UpkeepCost="0" UpgradeCost="14" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_gatekeeper">
     <Abilities />
@@ -1628,7 +1628,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="OathGold" UpkeepCost="0" UpgradeCost="18" />
+    <ResourceCost ResourceType="OathGold" UpkeepCost="0" UpgradeCost="16" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_slayer">
     <Abilities />
@@ -2115,7 +2115,7 @@
       <string>Unstoppable</string>
       <string>TrollRegeneration</string>
       <string>HasAnimationTriggeredEffects</string>
-	  <string>CannotClimbLadders</string>
+      <string>CannotClimbLadders</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.50" />
@@ -3446,7 +3446,7 @@
       <string>Unbreakable</string>
       <string>Unstoppable</string>
       <string>MonsterAttack</string>
-	  <string>CannotClimbLadders</string>
+      <string>CannotClimbLadders</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers>

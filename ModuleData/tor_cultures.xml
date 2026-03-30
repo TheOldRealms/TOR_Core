@@ -5515,8 +5515,8 @@
 		beggar="NPCCharacter.beggar_eonir"
 		female_beggar="NPCCharacter.beggar_eonir"
 		female_dancer="NPCCharacter.dancer_eonir"
-		default_battle_equipment_roster="EquipmentRoster.emp_civ_template_default"
-		default_civilian_equipment_roster="EquipmentRoster.emp_civ_template_default"
+		default_battle_equipment_roster="EquipmentRoster.tor_eo_forestborn_template"
+		default_civilian_equipment_roster="EquipmentRoster.tor_eo_forestborn_template"
 		default_stealth_equipment_roster="EquipmentRoster.default_stealth_equipment_roster"
 		duel_preset_equipment_roster="EquipmentRoster.emp_duel_preset_template"
 		marriage_bride_equipment_roster="EquipmentRoster.marriage_female_emp_cutscene_template"
@@ -6086,8 +6086,8 @@
 		beggar="NPCCharacter.beggar_greenskins"
 		female_beggar="NPCCharacter.beggar_greenskins"
 		female_dancer="NPCCharacter.dancer_greenskins"
-		default_battle_equipment_roster="EquipmentRoster.emp_civ_template_default"
-		default_civilian_equipment_roster="EquipmentRoster.emp_civ_template_default"
+		default_battle_equipment_roster="EquipmentRoster.tor_gs_people_notable_villager"
+		default_civilian_equipment_roster="EquipmentRoster.tor_gs_people_notable_villager"
 		default_stealth_equipment_roster="EquipmentRoster.tor_gs_stealth_equipment_roster"
 		duel_preset_equipment_roster="EquipmentRoster.emp_duel_preset_template"
 		marriage_bride_equipment_roster="EquipmentRoster.marriage_female_emp_cutscene_template"
@@ -6345,13 +6345,13 @@
 			<template name="NPCCharacter.tor_greenskin_rogue_lord_2" />
 		</rebellion_hero_templates>
 		<tournament_team_templates_one_participant>
-			<template name="NPCCharacter.tor_m_tournament_template_one_participant_v1" />
+			<template name="NPCCharacter.tor_gs_tournament_template_one_participant_v1" />
 		</tournament_team_templates_one_participant>
 		<tournament_team_templates_two_participant>
-			<template name="NPCCharacter.tor_m_tournament_template_two_participant_v1" />
+			<template name="NPCCharacter.tor_gs_tournament_template_two_participant_v1" />
 		</tournament_team_templates_two_participant>
 		<tournament_team_templates_four_participant>
-			<template name="NPCCharacter.tor_m_tournament_template_four_participant_v1" />
+			<template name="NPCCharacter.tor_gs_tournament_template_four_participant_v1" />
 		</tournament_team_templates_four_participant>
 		<basic_mercenary_troops>	
 			<template name="NPCCharacter.tor_gs_goblin_beast_prodda" />
@@ -6421,8 +6421,8 @@
 		beggar="NPCCharacter.beggar_woodelf"
 		female_beggar="NPCCharacter.female_beggar_woodelf"
 		female_dancer="NPCCharacter.female_dancer_woodelf"
-		default_battle_equipment_roster="EquipmentRoster.emp_civ_template_default"
-		default_civilian_equipment_roster="EquipmentRoster.emp_civ_template_default"
+		default_battle_equipment_roster="EquipmentRoster.tor_we_servant_template"
+		default_civilian_equipment_roster="EquipmentRoster.tor_we_servant_template"
 		default_stealth_equipment_roster="EquipmentRoster.default_stealth_equipment_roster"
 		duel_preset_equipment_roster="EquipmentRoster.emp_duel_preset_template"
 		marriage_bride_equipment_roster="EquipmentRoster.marriage_female_emp_cutscene_template"
@@ -6811,8 +6811,8 @@
 		beggar="NPCCharacter.beggar_dawi"
 		female_beggar="NPCCharacter.beggar_dawi"
 		female_dancer="NPCCharacter.dancer_dawi"
-		default_battle_equipment_roster="EquipmentRoster.emp_civ_template_default"
-		default_civilian_equipment_roster="EquipmentRoster.emp_civ_template_default"
+		default_battle_equipment_roster="EquipmentRoster.tor_dw_commoner_template"
+		default_civilian_equipment_roster="EquipmentRoster.tor_dw_commoner_template"
 		default_stealth_equipment_roster="EquipmentRoster.tor_dw_stealth_equipment_roster"
 		duel_preset_equipment_roster="EquipmentRoster.emp_duel_preset_template"
 		marriage_bride_equipment_roster="EquipmentRoster.marriage_female_emp_cutscene_template"

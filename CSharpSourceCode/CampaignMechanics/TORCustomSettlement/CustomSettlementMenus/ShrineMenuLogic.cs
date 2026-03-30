@@ -19,7 +19,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
 
 public class ShrineMenuLogic : TORBaseSettlementMenuLogic
 {
-    private const int DefillingCooldownInDays = 5;
+    private const int DefilingCooldownInDays = 5;
     private const int DefilingDarkEnergyPerTick = 125;
     private const int PrayerTroopRewardCooldownInDays = 5;
     protected override void AddSettlementMenu(CampaignGameStarter campaignGameStarter)
@@ -121,10 +121,10 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             Hero.MainHero.HasCareer(TORCareers.BlackGrailKnight))
         {
             var lastDefileTime = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().LastDefileTime(Hero.MainHero);
-            if (lastDefileTime >= (int)CampaignTime.Now.ToDays - DefillingCooldownInDays)
+            if (lastDefileTime >= (int)CampaignTime.Now.ToDays - DefilingCooldownInDays)
             {
-                GameTexts.SetVariable("DEFILE_COOLDOWN_DAYS", DefillingCooldownInDays.ToString());
-                args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_once_a_day", "You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
+                GameTexts.SetVariable("DEFILE_COOLDOWN_DAYS", DefilingCooldownInDays.ToString());
+                args.Tooltip = TORTextHelper.GetTextObject("tor_shrine_defiling_cooldown", "You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
                 args.IsEnabled = false;
             }
 
@@ -138,10 +138,10 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             if (Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.IsVampire() || x.IsNecromancer()))
             {
                 var lastDefileTime = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().LastDefileTime(Hero.MainHero);
-                if (lastDefileTime >= (int)CampaignTime.Now.ToDays - DefillingCooldownInDays)
+                if (lastDefileTime >= (int)CampaignTime.Now.ToDays - DefilingCooldownInDays)
                 {
-                    GameTexts.SetVariable("DEFILE_COOLDOWN_DAYS", DefillingCooldownInDays.ToString());
-                    args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_once_a_day", "You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
+                    GameTexts.SetVariable("DEFILE_COOLDOWN_DAYS", DefilingCooldownInDays);
+                    args.Tooltip = TORTextHelper.GetTextObject("tor_shrine_defiling_cooldown", "You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
                     args.IsEnabled = false;
                 }
 
@@ -156,7 +156,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
     {
         var settlement = Settlement.CurrentSettlement;
         if (settlement.SettlementComponent is not ShrineComponent component) return false;
-
+        
         args.optionLeaveType = GameMenuOption.LeaveType.ForceToGiveTroops;
 
         if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
@@ -170,10 +170,10 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             }
 
             var lastDefileTime = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().LastDefileTime(Hero.MainHero);
-            if (lastDefileTime >= (int)CampaignTime.Now.ToDays - DefillingCooldownInDays)
+            if (lastDefileTime >= (int)CampaignTime.Now.ToDays - DefilingCooldownInDays)
             {
-                GameTexts.SetVariable("DEFILE_COOLDOWN_DAYS", DefillingCooldownInDays.ToString());
-                args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_once_a_day", "You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
+                GameTexts.SetVariable("DEFILE_COOLDOWN_DAYS", DefilingCooldownInDays.ToString());
+                args.Tooltip = TORTextHelper.GetTextObject("tor_shrine_defiling_cooldown", "You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
                 args.IsEnabled = false;
             }
 
@@ -190,6 +190,9 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         var text = component.IsActive ? TORTextHelper.GetTextObject("tor_customsettlement_intro", settlement.StringId, "A shrine.", skipValidation: true) : TORTextHelper.GetTextObject("tor_customsettlement_disabled", settlement.StringId, "This shrine is currently inactive.", skipValidation: true);
         if (component.Religion != null) MBTextManager.SetTextVariable("RELIGION_LINK", component.Religion.EncyclopediaLinkWithName);
         MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", text);
+        
+        var godName = TORTextHelper.GetTextObject("tor_religion_name_of_god", component.Religion.StringId, "the god", skipValidation: true);
+        GameTexts.SetVariable("GOD_NAME", godName);//attempting setting name on initialization so the variable is available for all the options
         args.MenuContext.SetBackgroundMeshName(component.BackgroundMeshName);
     }
 

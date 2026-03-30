@@ -223,8 +223,8 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
         {
             List<LoreObject> SpellweaverLores = LoreObject.GetAll().Where(x => x.ID == "HighMagic" || x.ID == "DarkMagic").ToList();
 
-            obj.AddDialogLine("trainer_spellsinger_start", "start", "choices_spellsinger",TORTextHelper.GetText("tor_spelltrainer_spellsinger_start","I welcome you child of Athel Loren."), isSpellsingerTrainer, null, 200, null);
-            obj.AddDialogLine("trainer_spellsinger_start", "hub_spellsinger", "choices_spellsinger", TORTextHelper.GetText("tor_spelltrainer_spellsinger_reintro","Is there more you seek? Speak your desires"), isSpellsingerTrainer, null, 200, null);
+            obj.AddDialogLine("trainer_spellsinger_start", "start", "choices_spellsinger",TORTextHelper.GetText("tor_spelltrainer_spellsinger_start","I welcome you, child of Athel Loren."), isSpellsingerTrainer, null, 200, null);
+            obj.AddDialogLine("trainer_spellsinger_start", "hub_spellsinger", "choices_spellsinger", TORTextHelper.GetText("tor_spelltrainer_spellsinger_reintro","Is there more you seek? Speak your desires."), isSpellsingerTrainer, null, 200, null);
 
             obj.AddPlayerLine("trainer_spellsinger_learnmagic", "choices_spellsinger", "trainer_spellsinger_learnmagic_answer", TORTextHelper.GetText("tor_spelltrainer_spellsinger_learnmagic","Greetings wise Spellsinger. I am seeking the capabilities of performing magic."), () => Hero.MainHero.HasCareer(TORCareers.Warden) && !Hero.MainHero.IsSpellCaster(), null, 200, null);
             obj.AddPlayerLine("trainer_spellsinger_learnmagic_second_lore", "choices_spellsinger", "trainer_spellsinger_learnmagic_answer_secondlore", TORTextHelper.GetText("tor_spelltrainer_spellsinger_learn_magic_warden_second_lore", "I want to enhance my magic capabilities."), () => Hero.MainHero.HasCareer(TORCareers.Warden) &&
@@ -252,19 +252,19 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
             obj.AddPlayerLine("trainer_spellsinger_learnlore", "choices_spellsinger", "choices_spellsinger", TORTextHelper.GetText("tor_spelltrainer_spellsinger_learnlore", "Teach me one of Ariel's many pathways."), () => MobileParty.MainParty.HasSpellCasterMember() && spellsingerCondition() && SpellsingerAdditonalLoreCondition(), AdditionalLoresPrompt, 200, null);
 
-            obj.AddDialogLine("trainer_spellsinger_weaver", "spellweaver_choice_dialog", "spellweaver_choice_player", TORTextHelper.GetText("tor_spelltrainer_spellsinger_weaver_choice", "A spellsinger, can pick either the pathway of the Darkweaver or the one of the Highweaver. Choose wisely"), isSpellsingerTrainer, null, 200, null);
+            obj.AddDialogLine("trainer_spellsinger_weaver", "spellweaver_choice_dialog", "spellweaver_choice_player", TORTextHelper.GetText("tor_spelltrainer_spellsinger_weaver_choice", "A spellsinger can pick either the pathway of the Darkweaver or the one of the Highweaver. Choose wisely."), isSpellsingerTrainer, null, 200, null);
             obj.AddPlayerLine("spellweaver_choice_player", "spellweaver_choice_player", "choices_spellsinger", TORTextHelper.GetText("tor_spelltrainer_spellweaver_choice", "Let me choose."), () => MobileParty.MainParty.HasSpellCasterMember() && spellsingerCondition(), spellweaverPrompt, 200, null);
 
-            obj.AddDialogLine("spellweaver_companion_choice_dialog", "spellweaver_companion_choice_dialog", "spellweaver_choice_lores_companion", TORTextHelper.GetText("tor_spelltrainer_spellsinger_companion_choice", "A Highweaver, or Darkweaver... tough choice"), isSpellsingerTrainer, null, 200, null);
+            obj.AddDialogLine("spellweaver_companion_choice_dialog", "spellweaver_companion_choice_dialog", "spellweaver_choice_lores_companion", TORTextHelper.GetText("tor_spelltrainer_spellsinger_companion_choice", "A Highweaver, or Darkweaver... a tough choice"), isSpellsingerTrainer, null, 200, null);
             obj.AddPlayerLine("spellweaver_choice_lores_companion", "spellweaver_choice_lores_companion", "choices_spellsinger", TORTextHelper.GetText("tor_spelltrainer_spellsinger_companion_choose", "Let me choose."), () => MobileParty.MainParty.HasSpellCasterMember() && spellsingerCondition(), spellweaverCompanionPrompt, 200, null);
 
 
 
-            obj.AddDialogLine("trainer_spellsinger_weaver", "spellweaver_choice_dialog", "close_window", TORTextHelper.GetText("tor_spelltrainer_spellsinger_goodbye", "May Ariel guide you on all your paths through her garden."), isSpellsingerTrainer, null, 200, null);
+            obj.AddDialogLine("trainer_spellsinger_weaver", "spellweaver_choice_dialog", "close_window", TORTextHelper.GetText("tor_spelltrainer_spellsinger_goodbye", "May She guide you on all your paths through her garden."), isSpellsingerTrainer, null, 200, null);
 
 
-            obj.AddPlayerLine("trainer_spellsinger_playergoodbye", "choices_spellsinger", "saygoodbye", TORTextHelper.GetText("tor_spelltrainer_spellsinger_player_goodbye", "Ariel with you."), null, null, 200, null);
-            obj.AddDialogLine("trainer_spellsinger_goodbye", "saygoodbye", "close_window", TORTextHelper.GetText("tor_spelltrainer_spellsinger_goodbye", "May Ariel guide you on all your paths through her garden."), isSpellsingerTrainer, null, 200, null);
+            obj.AddPlayerLine("trainer_spellsinger_playergoodbye", "choices_spellsinger", "saygoodbye", TORTextHelper.GetText("tor_spelltrainer_spellsinger_player_goodbye", "Ariel be with you."), null, null, 200, null);
+            obj.AddDialogLine("trainer_spellsinger_goodbye", "saygoodbye", "close_window", TORTextHelper.GetText("tor_spelltrainer_spellsinger_goodbye", "May She guide you on all your paths through her garden."), isSpellsingerTrainer, null, 200, null);
             obj.AddDialogLine("trainer_spellsinger_afterlearnspells", "openbook_spellsinger", "hub_spellsinger", TORTextHelper.GetText("tor_spelltrainer_spellsinger_close_book", "A new facet of Ariel's infinite knowledge."), null, openbookconsequence, 200, null);
 
 
@@ -461,6 +461,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             GreenskinDialogs(obj);
 
             obj.AddDialogLine("trainer_start", "start", "choices", TORTextHelper.GetText("tor_spelltrainer_start", "Do I know you? What do you need, be quick I am a busy."), spelltrainerstartcondition, null, 200, null);
+            obj.AddDialogLine("trainer_start_rejected", "start", "close_window", TORTextHelper.GetText("tor_spelltrainer_start_rejected", "I have nothing to teach you. Begone."), IsBlockedSpellTrainerConversation, null, 250, null);
             obj.AddPlayerLine("trainer_test", "choices", "magictest", "{TEST_QUESTION}", magictestcondition, null, 200, null);
             obj.AddDialogLine("trainer_testoutcome", "magictest", "testoutcome", "{TEST_PROMPT}", filltextfortestprompt, determinetestoutcome, 200,
                 null);
@@ -608,11 +609,122 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             return false;
         }
 
+        private bool IsVcTrainerCulture(string cultureId)
+        {
+            return cultureId == TORConstants.Cultures.SYLVANIA || cultureId == TORConstants.Cultures.MOUSILLON;
+        }
+
+        private bool HasMatchingSpellTrainerCompanion(Func<Hero, bool> predicate)
+        {
+            if (Hero.MainHero.PartyBelongedTo == null)
+            {
+                return false;
+            }
+
+            return Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x != Hero.MainHero && predicate(x));
+        }
+
+        private bool HasEmpireTrainerAccess()
+        {
+            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.EMPIRE)
+            {
+                return true;
+            }
+
+            return HasMatchingSpellTrainerCompanion(x => x.Culture.StringId == TORConstants.Cultures.EMPIRE && x.IsSpellCaster());
+        }
+
+        private bool HasVampireTrainerAccess()
+        {
+            if (IsVcTrainerCulture(Hero.MainHero.Culture.StringId))
+            {
+                return true;
+            }
+
+            return HasMatchingSpellTrainerCompanion(x => IsVcTrainerCulture(x.Culture.StringId) && x.IsSpellCaster());
+        }
+
+        private bool HasBretonnianTrainerAccess()
+        {
+            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.BRETONNIA)
+            {
+                return true;
+            }
+
+            return HasMatchingSpellTrainerCompanion(x => x.Culture.StringId == TORConstants.Cultures.BRETONNIA && x.IsSpellCaster());
+        }
+
+        private bool HasSpellsingerTrainerAccess()
+        {
+            if (Hero.MainHero.HasCareer(TORCareers.Spellsinger))
+            {
+                return true;
+            }
+
+            return HasMatchingSpellTrainerCompanion(x => x.HasCareer(TORCareers.Spellsinger));
+        }
+
+        private bool HasGreenskinTrainerAccess()
+        {
+            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
+            {
+                return true;
+            }
+
+            return HasMatchingSpellTrainerCompanion(x => x.Culture.StringId == TORConstants.Cultures.GREENSKIN && x.IsSpellCaster());
+        }
+
+        private bool CanAccessSpellTrainer(Hero trainer)
+        {
+            var settlementCulture = Settlement.CurrentSettlement?.Culture?.StringId;
+            var templateId = trainer.Template?.StringId;
+
+            if (settlementCulture == null || templateId == null)
+            {
+                return false;
+            }
+
+            if (templateId == _empireTrainerId)
+            {
+                return settlementCulture == TORConstants.Cultures.EMPIRE && HasEmpireTrainerAccess();
+            }
+
+            if (templateId == _vampireTrainerId)
+            {
+                return IsVcTrainerCulture(settlementCulture) && HasVampireTrainerAccess();
+            }
+
+            if (templateId == _prophetessTrainerId)
+            {
+                return settlementCulture == TORConstants.Cultures.BRETONNIA && HasBretonnianTrainerAccess();
+            }
+
+            if (templateId == _woodelfTrainerId)
+            {
+                return settlementCulture == TORConstants.Cultures.ASRAI && HasSpellsingerTrainerAccess();
+            }
+
+            if (templateId == _greenskinTrainerId)
+            {
+                return settlementCulture == TORConstants.Cultures.GREENSKIN && HasGreenskinTrainerAccess();
+            }
+
+            return false;
+        }
+        private bool IsBlockedSpellTrainerConversation()
+        {
+            var partner = CharacterObject.OneToOneConversationCharacter;
+            return partner?.HeroObject != null && partner.HeroObject.IsSpellTrainer() && !CanAccessSpellTrainer(partner.HeroObject);
+        }
         private bool spelltrainerstartcondition()
         {
             var partner = CharacterObject.OneToOneConversationCharacter;
-            if (partner != null && partner.HeroObject != null && partner.HeroObject.IsSpellTrainer()) return true;
-            return false;
+            if (partner?.HeroObject == null || !partner.HeroObject.IsSpellTrainer())
+            {
+                return false;
+            }
+
+            return CanAccessSpellTrainer(partner.HeroObject);
         }
 
         private bool magictestcondition()

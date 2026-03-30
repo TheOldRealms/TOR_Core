@@ -22,6 +22,7 @@ using TOR_Core.Audio;
 using TOR_Core.CampaignMechanics.CustomEvents;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.Extensions;
+using TOR_Core.Items;
 using TOR_Core.Missions;
 using TOR_Core.Quests;
 using TOR_Core.Utilities;
@@ -530,7 +531,8 @@ namespace TOR_Core.Ink
                 .Where(x => (x.HasWeaponComponent || x.HasArmorComponent)
                          && x.StringId.StartsWith("tor_")
                          && !x.NotMerchandise
-                         && !x.IsCraftedByPlayer);
+                         && !x.IsCraftedByPlayer
+                         && !ExtendedItemObjectManager.IsRuntimeDuplicatedItem(x));
             var foods = MBObjectManager.Instance.GetObjectTypeList<ItemObject>().Where(x => x.HasFoodComponent);
             var selectedItems = items.TakeRandom(20);
             var selectedFoods = foods.TakeRandom(5);

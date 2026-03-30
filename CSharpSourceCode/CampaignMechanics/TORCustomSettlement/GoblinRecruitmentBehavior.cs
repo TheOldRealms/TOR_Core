@@ -116,7 +116,7 @@ public class GoblinRecruitmentBehavior : CampaignBehaviorBase
         {
             _isMissionStarted = false;
             // Player won the goblin fight, add goblins to party
-            AddGoblinsToParty();
+            AddGoblinsToParty(out _);
         }
         else if (_isMissionStarted)
         {
@@ -403,14 +403,15 @@ public class GoblinRecruitmentBehavior : CampaignBehaviorBase
         }
     }
 
-    private void AddGoblinsToParty()
+    private void AddGoblinsToParty(out int goblinsToAdd)
     {
+        goblinsToAdd = 0;
         var goblinCharacter = MBObjectManager.Instance.GetObject<CharacterObject>(_goblinTroopId);
         if (goblinCharacter != null)
         {
             // Base range 3-8, with random multiplier (0.8 to 1.5)
             int baseGoblins = MBRandom.RandomInt(3, 8);
-            int goblinsToAdd = (int)(baseGoblins * MBRandom.RandomFloatRanged(0.8f, 1.5f));
+            goblinsToAdd = (int)(baseGoblins * MBRandom.RandomFloatRanged(0.8f, 1.5f));
             Hero.MainHero.PartyBelongedTo.MemberRoster.AddToCounts(goblinCharacter, goblinsToAdd);
         }
     }
@@ -443,11 +444,7 @@ public class GoblinRecruitmentBehavior : CampaignBehaviorBase
 
     private void SetFightVictory(MenuCallbackArgs args)
     {
-        AddGoblinsToParty();
-
-        // Base range 3-8, with random multiplier (0.8 to 1.5)
-        int baseGoblins = MBRandom.RandomInt(3, 8);
-        var goblinsRecruited = (int)(baseGoblins * MBRandom.RandomFloatRanged(0.8f, 1.5f));
+        AddGoblinsToParty(out int goblinsRecruited);
 
         // Base teef reward with random multiplier (0.7 to 1.2)
         int baseTeef = MBRandom.RandomInt(5, 15);

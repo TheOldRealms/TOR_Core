@@ -111,7 +111,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _wardenRoot.Initialize(CareerID, "The Warden orders his trusty hawk to scout an area. The hawk marks enemies caught in the area as prey. Its ferocious dives instill fear in the foe, which causes penalties to received melee damage. The radius of the ability increases with every point in the Scouting skill.  This ability refreshes automatically and gains additional effects with more Career perks unlocked.", null, true,
+            _wardenRoot.Initialize(CareerID, "The borders of Athel Loren must stand! Call upon your trusty bird companion Hawk Eye! Designate an area, reducing the 'Physical' melee damage of foes within. For every level of Scouting, gain 0.01% radius of Hawk Eye. (Ability has a 100s cooldown.)", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -124,7 +124,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _wardenOfCavarocKeystone.Initialize(CareerID, "Riding counts towards ability. Enemy movement speed is reduced for all units in the zone.", "WardenOfCavaroc", false,
+            _wardenOfCavarocKeystone.Initialize(CareerID, "Hawk Eye also scales with Riding, and reduces enemy movement speed.", "WardenOfCavaroc", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -145,7 +145,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     },
                 });
 
-            _wardenOfCythralKeystone.Initialize(CareerID, "Ability scales with two handed weapon skill. ability starts charged", "WardenOfCythral", false,
+            _wardenOfCythralKeystone.Initialize(CareerID, "Hawk Eye also scales with Two-Handed weapon skill, and can be used on battle start.", "WardenOfCythral", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -158,7 +158,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     },
                 });
 
-            _wardenOfWydriothKeystone.Initialize(CareerID, "Archery skill counts towards ability. Enemies in the zone suffer 25% more ranged damage", "WardenOfWydrioth", false,
+            _wardenOfWydriothKeystone.Initialize(CareerID, "Hawk Eye also scales with Archery, and applies a 25% ranged damage penalty to foes.", "WardenOfWydrioth", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -179,7 +179,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     },
                 });
 
-            _wardenOfTorgovannKeystone.Initialize(CareerID, "One Handed counts towards ability. Enemy attack speed is reduced for all units in the zone.", "WardenOfTorgovann", false,
+            _wardenOfTorgovannKeystone.Initialize(CareerID, "Hawk Eye also scales with One-Handed weapon skill, and reduces enemy attack speed.", "WardenOfTorgovann", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -200,7 +200,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     },
                 });
 
-            _wardenOfAtylwythKeystone.Initialize(CareerID, " Swing and movement speed increase for all friendly units in the zone.", "WardenOfAtylwyth", false,
+            _wardenOfAtylwythKeystone.Initialize(CareerID, "Hawk Eye buffs allies within radius with increased movement and swing speed.", "WardenOfAtylwyth", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                    new CareerChoiceObject.MutationObject()
@@ -214,7 +214,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 });
 
 
-            _wardenOfTalsynKeystone.Initialize(CareerID, " Leadership and Throwing counts towards ability. Cooldown reduction by 50%.", "WardenOfTalsyn", false,
+            _wardenOfTalsynKeystone.Initialize(CareerID, "Hawk Eye also scales with Leadership, and Throwing, its cooldown is 50% shorter.", "WardenOfTalsyn", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                    new CareerChoiceObject.MutationObject()
@@ -236,7 +236,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
                 });
 
-            _wardenOfArgwylonKeystone.Initialize(CareerID, "Magical Damage against affected enemies is increased. Small direct damage effects for every enemy in the zone.", "WardenOfArgwylon", false,
+            _wardenOfArgwylonKeystone.Initialize(CareerID, "Hawk Eye increases 'Magic' damage done to enemies, and causes 'Physical' damage to them.", "WardenOfArgwylon", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                    new CareerChoiceObject.MutationObject()
@@ -262,47 +262,47 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializePassives()
         {
-            _wardenOfCavarocPassive1.Initialize(CareerID, "Party speed increases by 1.", "WardenOfCavaroc", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.PartyMovementSpeed));
-            _wardenOfCavarocPassive2.Initialize(CareerID, "50% additional Hitpoints for the player's mount.", "WardenOfCavaroc", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseHealth, true));
-            _wardenOfCavarocPassive3.Initialize(CareerID, "10% extra damage while on horseback.", "WardenOfCavaroc", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee | AttackTypeMask.Ranged,
+            _wardenOfCavarocPassive1.Initialize(CareerID, "+1 party move speed on campaign map.", "WardenOfCavaroc", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.PartyMovementSpeed));
+            _wardenOfCavarocPassive2.Initialize(CareerID, "+50% personal mount Hitpoints.", "WardenOfCavaroc", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseHealth, true));
+            _wardenOfCavarocPassive3.Initialize(CareerID, "+10% personal melee 'Physical' damage while mounted.", "WardenOfCavaroc", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee | AttackTypeMask.Ranged,
                 (attacker, victim, mask) => attacker.IsMainAgent && attacker.HasMount));
-            _wardenOfCavarocPassive4.Initialize(CareerID, "Horse charge damage is increased by 50%.", "WardenOfCavaroc", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseChargeDamage, true));
+            _wardenOfCavarocPassive4.Initialize(CareerID, "+50% charge damage bonus for your mount.", "WardenOfCavaroc", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseChargeDamage, true));
 
-            _wardenOfCythralPassive1.Initialize(CareerID, "All Elves receive 20 bonus points in their Two-handed skill.", "WardenOfCythral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, new List<string>() { nameof(DefaultSkills.TwoHanded) }, characterObject => characterObject.IsElf()));
-            _wardenOfCythralPassive2.Initialize(CareerID, "Weapon swing speed increased by 10%.", "WardenOfCythral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10f, PassiveEffectType.SwingSpeed, true));
-            _wardenOfCythralPassive3.Initialize(CareerID, "Increases Hitpoints by 15.", "WardenOfCythral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
-            _wardenOfCythralPassive4.Initialize(CareerID, "10% extra melee and ranged damage against chaos and beastmen.", "WardenOfCythral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee | AttackTypeMask.Ranged,
+            _wardenOfCythralPassive1.Initialize(CareerID, "+20 Two-Handed skill for all 'Elven' troops.", "WardenOfCythral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, new List<string>() { nameof(DefaultSkills.TwoHanded) }, characterObject => characterObject.IsElf()));
+            _wardenOfCythralPassive2.Initialize(CareerID, "+10% personal weapon swing speed.", "WardenOfCythral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10f, PassiveEffectType.SwingSpeed, true));
+            _wardenOfCythralPassive3.Initialize(CareerID, "+15 personal Hitpoints.", "WardenOfCythral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
+            _wardenOfCythralPassive4.Initialize(CareerID, "+10% personal 'Physical' melee and ranged damage against the forces of 'Chaos'.", "WardenOfCythral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee | AttackTypeMask.Ranged,
                 (attacker, victim, mask) => (victim.Character.Culture.StringId == TORConstants.Cultures.BEASTMEN || victim.Character.Culture.StringId == TORConstants.Cultures.CHAOS) && attacker.IsMainAgent && (mask == AttackTypeMask.Melee || mask == AttackTypeMask.Ranged)));
 
-            _wardenOfWydriothPassive1.Initialize(CareerID, "3 extra Arrows per equipped Quiver", "WardenOfWydrioth", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.Ammo));
-            _wardenOfWydriothPassive2.Initialize(CareerID, "10% extra range damage.", "WardenOfWydrioth", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Ranged,
+            _wardenOfWydriothPassive1.Initialize(CareerID, "+3 arrows per quiver you have equipped.", "WardenOfWydrioth", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.Ammo));
+            _wardenOfWydriothPassive2.Initialize(CareerID, "+10% personal 'Physical' ranged damage.", "WardenOfWydrioth", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Ranged,
                 (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Ranged));
-            _wardenOfWydriothPassive3.Initialize(CareerID, "All Elves receive 20 bonus points in their  bow skill.", "WardenOfWydrioth", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, new List<string>() { nameof(DefaultSkills.Bow) }, characterObject => characterObject.IsElf()));
-            _wardenOfWydriothPassive4.Initialize(CareerID, "All elf troops gain 10% extra damage with bows.", "WardenOfWydrioth", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.All, (attacker, victim, mask) => mask == AttackTypeMask.Ranged && attacker.Character.IsElf()));
+            _wardenOfWydriothPassive3.Initialize(CareerID, "+20 Bow skill for all 'Elven' troops.", "WardenOfWydrioth", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, new List<string>() { nameof(DefaultSkills.Bow) }, characterObject => characterObject.IsElf()));
+            _wardenOfWydriothPassive4.Initialize(CareerID, "+10% 'Physical' ranged damage for all 'Elven' troops.", "WardenOfWydrioth", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.All, (attacker, victim, mask) => mask == AttackTypeMask.Ranged && attacker.Character.IsElf()));
 
-            _wardenOfTorgovannPassive1.Initialize(CareerID, "Wielding a shield increases wardsave by 10%.", "WardenOfTorgovann", false, ChoiceType.Passive, null,
+            _wardenOfTorgovannPassive1.Initialize(CareerID, "+10% personal 'Ward Save' when a shield is equipped.", "WardenOfTorgovann", false, ChoiceType.Passive, null,
                 new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.All,
                     (attacker, victim, mask) => victim.IsMainAgent && victim.WieldedOffhandWeapon.IsShield()));
-            _wardenOfTorgovannPassive2.Initialize(CareerID, "All Elves receive 20 bonus points in their  One-handed skill.", "WardenOfTorgovann", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, new List<string>() { nameof(DefaultSkills.OneHanded) }, characterObject => characterObject.IsElf()));
-            _wardenOfTorgovannPassive3.Initialize(CareerID, "Increases Hitpoints by 15.", "WardenOfTorgovann", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
-            _wardenOfTorgovannPassive4.Initialize(CareerID, "Hits below 15 damage do not stagger the player.", "WardenOfTorgovann", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.ShruggedOff));
+            _wardenOfTorgovannPassive2.Initialize(CareerID, "+20 One-Handed weapon skill for all 'Elven' troops.", "WardenOfTorgovann", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, new List<string>() { nameof(DefaultSkills.OneHanded) }, characterObject => characterObject.IsElf()));
+            _wardenOfTorgovannPassive3.Initialize(CareerID, "+15 personal Hitpoints.", "WardenOfTorgovann", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
+            _wardenOfTorgovannPassive4.Initialize(CareerID, "Hits below 15 damage no longer stagger you.", "WardenOfTorgovann", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.ShruggedOff));
 
-            _wardenOfAtylwythPassive1.Initialize(CareerID, "Increases Party size by 10.", "WardenOfAtylwyth", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.PartySize));
-            _wardenOfAtylwythPassive2.Initialize(CareerID, "Eternal guard troops gain 15% physical resistance.", "WardenOfAtylwyth", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.All,
+            _wardenOfAtylwythPassive1.Initialize(CareerID, "+10 increased party size.", "WardenOfAtylwyth", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.PartySize));
+            _wardenOfAtylwythPassive2.Initialize(CareerID, "+15% 'Physical Resistance' for Eternal Guard.", "WardenOfAtylwyth", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.All,
                 (attacker, victim, mask) => victim.BelongsToMainParty() && victim.Character.IsElf() && victim.Character.StringId.Contains("eternal")));
-            _wardenOfAtylwythPassive3.Initialize(CareerID, "For every Glade Captain in your party gain 5 party size.", "WardenOfAtylwyth", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special));
+            _wardenOfAtylwythPassive3.Initialize(CareerID, "+5 increased party size per Glade Captain Companion.", "WardenOfAtylwyth", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special));
 
-            _wardenOfAtylwythPassive4.Initialize(CareerID, "All Elves receive 20 bonus points in their polearm skill.", "WardenOfAtylwyth", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, new List<string>() { nameof(DefaultSkills.Polearm) }, characterObject => characterObject.IsElf()));
+            _wardenOfAtylwythPassive4.Initialize(CareerID, "+20 Polearm weapon skill for all 'Elven' troops.", "WardenOfAtylwyth", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, new List<string>() { nameof(DefaultSkills.Polearm) }, characterObject => characterObject.IsElf()));
 
-            _wardenOfTalsynPassive1.Initialize(CareerID, "Armor weight doesn't affect winds regeneration.", "WardenOfTalsyn", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special));
-            _wardenOfTalsynPassive2.Initialize(CareerID, "All elf troops gain 10% extra damage.", "WardenOfTalsyn", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.All, (attacker, victim, mask) => mask == AttackTypeMask.All && attacker.Character.IsElf()));
-            _wardenOfTalsynPassive3.Initialize(CareerID, "Companion limit of party is increased by 5.", "WardenOfTalsyn", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
-            _wardenOfTalsynPassive4.Initialize(CareerID, "Thrown spears can penetrate through multiple enemies.", "WardenOfTalsyn", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
-            _wardenOfArgwylonPassive1.Initialize(CareerID, "10% extra magical melee and spell damage when weight undershoots 25", "WardenOfArgwylon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Melee | AttackTypeMask.Spell,
+            _wardenOfTalsynPassive1.Initialize(CareerID, "Personal armour weight no longer impedes your 'Winds of Magic' recharge rate.", "WardenOfTalsyn", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special));
+            _wardenOfTalsynPassive2.Initialize(CareerID, "+10% 'Physical' damage for all 'Elven' troops.", "WardenOfTalsyn", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.All, (attacker, victim, mask) => mask == AttackTypeMask.All && attacker.Character.IsElf()));
+            _wardenOfTalsynPassive3.Initialize(CareerID, "+5 Companion limit.", "WardenOfTalsyn", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
+            _wardenOfTalsynPassive4.Initialize(CareerID, "Your thrown spears can hit multiple enemies.", "WardenOfTalsyn", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
+            _wardenOfArgwylonPassive1.Initialize(CareerID, "+10% personal 'Magic' melee, and spell damage when below 25 weight.", "WardenOfArgwylon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Melee | AttackTypeMask.Spell,
                 (attacker, victim, mask) => attacker.IsMainAgent && (mask == AttackTypeMask.Melee || mask == AttackTypeMask.Spell) && CareerChoicesHelper.ArmorWeightCheck(attacker, 25)));
-            _wardenOfArgwylonPassive2.Initialize(CareerID, "Increases maximum winds of magic capacities by 10.", "WardenOfArgwylon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
-            _wardenOfArgwylonPassive3.Initialize(CareerID, "Gain 10 Harmony daily.", "WardenOfArgwylon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.CustomResourceGain));
-            _wardenOfArgwylonPassive4.Initialize(CareerID, "15 extra winds for all Spellsingers.", "WardenOfArgwylon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special));
+            _wardenOfArgwylonPassive2.Initialize(CareerID, "+10 personal 'Winds of Magic' capacity.", "WardenOfArgwylon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
+            _wardenOfArgwylonPassive3.Initialize(CareerID, "+10 'Harmony' daily.", "WardenOfArgwylon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.CustomResourceGain));
+            _wardenOfArgwylonPassive4.Initialize(CareerID, "+15 'Winds of Magic' capacity for all Spellsinger Companions.", "WardenOfArgwylon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special));
         }
 
 

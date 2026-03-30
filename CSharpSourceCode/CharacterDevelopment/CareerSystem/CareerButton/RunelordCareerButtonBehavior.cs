@@ -4,6 +4,7 @@ using System.Text;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.CustomResources;
@@ -66,6 +67,23 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
 
 
     public static List<string> GetRuneIds => UnitRunes.SelectQ(x => x.EffectId).ToListQ();
+    private static int GetIntendedTroopRuneSlotLimit()
+    {
+        return Hero.MainHero.HasCareerChoice("AnvilOfDoomPassive4") ? 2 : 1;
+    }
+    private static int GetTroopRuneSlotLimit()
+    {
+        var intendedLimit = GetIntendedTroopRuneSlotLimit();
+        var usedSlots = GetUsedTroopRuneSlots();
+
+        return usedSlots > intendedLimit ? usedSlots : intendedLimit;
+    }
+    private static int GetUsedTroopRuneSlots()
+    {
+        var partyExtendedInfo = ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
+
+        return partyExtendedInfo.TroopAttributes.Count(x => x.Value != null && x.Value.Any(y => GetRuneIds.Contains(y)));
+    }
 
     private CharacterObject _currentCharacter = null;
     private CharacterObject _setCharacter;
@@ -244,6 +262,13 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
     private void SelectedRune(List<InquiryElement> inquirydata)
     {
         var rune = (UnitRune)inquirydata.FirstOrDefault().Identifier;
+        var currentRuneId = GetCurrentRuneId(_currentCharacter);
+
+        if (currentRuneId == null && GetUsedTroopRuneSlots() >= GetTroopRuneSlotLimit())
+        {
+            InformationManager.DisplayMessage(new InformationMessage(new TextObject("{=tor_unit_rune_slot_limit_text}No free troop rune slots.").ToString()));
+            return;
+        }
 
         var itemRoster = Hero.MainHero.PartyBelongedTo.ItemRoster;
 
@@ -274,7 +299,6 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
             itemRoster.AddToCounts(kvp.Key, -kvp.Value);
         }
 
-        var currentRuneId = GetCurrentRuneId(_currentCharacter);
         var partyExtendedInfo = ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
         if (currentRuneId != null)
         {
@@ -380,8 +404,9 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
 
     public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner)
     {
-        var hasRune = false;
         displayText = null;
+        var currentRuneId = GetCurrentRuneId(characterObject);
+        var hasRune = currentRuneId != null;
 
         if (characterObject.IsHero)
         {
@@ -389,20 +414,14 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
             return false;
         }
 
-        if (characterObject.HasUnitRune())
+        if (hasRune)
         {
-            var id = GetCurrentRuneId(characterObject);
-            if (id != null)
+            var rune = UnitRunes.FirstOrDefault(x => x.EffectId == currentRuneId);
+            if (rune != null)
             {
-                var rune = UnitRunes.FirstOrDefault(x => x.EffectId == id);
-
-                if (rune != null)
-                {
-                    GameTexts.SetVariable("RUNE_NAME", rune.RuneName.ToString());
-                    GameTexts.SetVariable("RUNE_DESC", rune.HintText.ToString());
-                    displayText = TORTextHelper.GetTextObject("tor_unit_rune_active_display", "{RUNE_NAME}{newline}{RUNE_DESC}");
-                    hasRune = true;
-                }
+                GameTexts.SetVariable("RUNE_NAME", rune.RuneName.ToString());
+                GameTexts.SetVariable("RUNE_DESC", rune.HintText.ToString());
+                displayText = TORTextHelper.GetTextObject("tor_unit_rune_active_display", "{RUNE_NAME}{newline}{RUNE_DESC}");
             }
 
         }
@@ -427,6 +446,11 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
         }
 
 
+        if (!hasRune && GetUsedTroopRuneSlots() >= GetTroopRuneSlotLimit())
+        {
+            displayText = TORTextHelper.GetTextObject("tor_unit_rune_add_rune_text", "add a Rune for Units");
+            return false;
+        }
 
         if (!hasRune)
         {

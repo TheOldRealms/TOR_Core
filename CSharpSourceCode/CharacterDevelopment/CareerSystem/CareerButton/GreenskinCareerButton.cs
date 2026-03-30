@@ -111,7 +111,7 @@ public abstract class GreenskinCareerButton(CareerObject career) : CareerButtonB
     {
         // Check if character is human based on culture
         if (character.IsHero) return false;
-        return character.Race == FaceGen.GetRaceOrDefault("dwarf") || character.Race == FaceGen.GetRaceOrDefault("human") ||
+        return character.Race == FaceGen.GetRaceOrDefault("dwarf") || character.IsHuman() ||
                character.Race == FaceGen.GetRaceOrDefault("elf") || character.Race == FaceGen.GetRaceOrDefault("ungor") ||
                character.Race == FaceGen.GetRaceOrDefault("chaos_ud_cultist");
     }

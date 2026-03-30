@@ -78,6 +78,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI
                 abilityTemplate.AssociatedTriggeredEffectTemplates.Count > 0 && abilityTemplate.AssociatedTriggeredEffectTemplates[0].TargetType == TargetType.Friendly)
                 return agent.Team.GetAllyTeams()
                     .SelectMany(team => team.GetFormations())
+                    .Where(IsValidFormationTarget)
                     .Select(form => new Target { Formation = form })
                     .ToList();
             if (abilityTemplate.AbilityEffectType == AbilityEffectType.Summoning ||
@@ -95,6 +96,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI
             {
                 enemyTargets = agent.Team.GetEnemyTeams()
                     .SelectMany(team => team.GetFormations())
+                    .Where(IsValidFormationTarget)
                     .Select(form => new Target { Formation = form })
                     .ToList();
             }
@@ -256,6 +258,57 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI
                     new Axis(0, 1, x => 1 - x, CommonAIDecisionFunctions.CavalryUnitRatio()),
                 };
             };
+        }
+
+        private static readonly HashSet<string> _reportedInvalidFormationTargets = new();
+
+        private static void ReportInvalidFormationTarget(string reason, Formation formation, Exception exception = null)
+        {
+            string message =
+                $"invalid formation target in IsValidFormationTarget | reason={reason} | formation={(formation != null ? formation.Index.ToString() : "null")}" +
+                (exception != null ? $" | ex={exception.GetType().Name}: {exception.Message}" : "");
+
+            TORCommon.Log(message, NLog.LogLevel.Error);
+
+            if (_reportedInvalidFormationTargets.Add(message))
+            {
+                TORCommon.Say(message);
+            }
+        }
+
+        private static bool IsValidFormationTarget(Formation formation)
+        {
+            if (formation == null)
+            {
+                ReportInvalidFormationTarget("formation null", null);
+                return false;
+            }
+
+            try
+            {
+                if (formation.QuerySystem == null)
+                {
+                    ReportInvalidFormationTarget("query system null", formation);
+                    return false;
+                }
+
+                if (formation.CountOfUnits > 0)
+                {
+                    return true;
+                }
+
+                if (formation.GetMedianAgent(false, false, formation.CurrentPosition) != null)
+                {
+                    return true;
+                }
+                ReportInvalidFormationTarget("empty formation/ median agent null", formation);
+                return false;
+            }
+            catch (NullReferenceException exception)
+            {
+                ReportInvalidFormationTarget("null ref during validation", formation, exception);
+                return false;
+            }
         }
     }
 }

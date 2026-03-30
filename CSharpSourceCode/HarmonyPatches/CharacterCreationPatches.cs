@@ -90,7 +90,6 @@ namespace TOR_Core.HarmonyPatches
                     var menuCharacters = __instance.CurrentMenu.Characters;
                     var playerCharacter = menuCharacters.FirstOrDefault();
                     playerCharacter?.SetEquipment(new MBEquipmentRoster());
-
                 }
             }
         }
