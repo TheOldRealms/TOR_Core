@@ -2182,7 +2182,7 @@
   <string id="tor_response_1.tor_wanderer_empire_1" text="{=str_tor_response_1_tor_wanderer_empire_1}This has my consent." />
   <string id="tor_response_2.tor_wanderer_empire_1" text="{=str_tor_response_2_tor_wanderer_empire_1}Have you finished?" />
   <string id="tor_backstory_d.tor_wanderer_empire_1" text="{=str_tor_backstory_d_tor_wanderer_empire_1}I'm a warrior priest of Sigmar and no corruption will escape my wrath." />
-  <string id="tor_hire_companion_p.tor_wanderer_empire_1" text="{=str_tor_hire_companion_p_tor_wanderer_empire_1}I would be glade to have a follower of Sigmar with us." />
+  <string id="tor_hire_companion_p.tor_wanderer_empire_1" text="{=str_tor_hire_companion_p_tor_wanderer_empire_1}I would be glad to have a follower of Sigmar with us." />
   <string id="tor_companion_leave_p.tor_wanderer_empire_1" text="{=str_tor_companion_leave_p_tor_wanderer_empire_1}Farewell for now." />
   <string id="tor_hire_companion_payment.tor_wanderer_empire_1" text="{=str_tor_hire_companion_payment_tor_wanderer_empire_1}I think a donation of {GOLD_AMOUNT}{GOLD_ICON} to the Cult would be sufficient. And I shall join you." />
   <string id="tor_hire_accept_p.tor_wanderer_empire_1" text="{=str_tor_hire_accept_p_tor_wanderer_empire_1}So be it… Take this {GOLD_AMOUNT} then." />
@@ -4244,7 +4244,7 @@
   <string id="tor_careerchoice_description.TheLastJourneyPassive1" text="{=str_tor_careerchoice_description_TheLastJourneyPassive1}+15 personal Hitpoints." />
   <string id="tor_careerchoice_description.TheLastJourneyPassive2" text="{=str_tor_careerchoice_description_TheLastJourneyPassive2}If armour weight is less than 9, gain +25% personal melee 'Physical Resistance'." />
   <string id="tor_careerchoice_description.TheLastJourneyPassive3" text="{=str_tor_careerchoice_description_TheLastJourneyPassive3}+15% melee 'Physical Resistance' for all 'Slayer' troops." />
-  <string id="tor_careerchoice_description.TheLastJourneyPassive4" text="{=str_tor_careerchoice_description_TheLastJourneyPassive4}+40% ranged 'Physical Resistance' for all 'Slayer' troops and companions." />
+  <string id="tor_careerchoice_description.TheLastJourneyPassive4" text="{=str_tor_careerchoice_description_TheLastJourneyPassive4}+40% ranged 'Physical Resistance' for all 'Slayer' troops." />
 
   <!-- Runelord Career Choice Descriptions -->
   <string id="tor_careerchoice_description.RunelordRoot" text="{=str_tor_careerchoice_description_RunelordRoot}The runes are cast! By the Wisdom of Thungni, reduce the cooldown of the next 'Rune' ability by 15s, and empower all 'Rune' abilities for 5s. For every level of Smithing, Wisdom of Thungni's cooldown is reduced by 0.1s. (60s cooldown.)" />
