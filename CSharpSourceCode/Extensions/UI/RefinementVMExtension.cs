@@ -63,6 +63,7 @@ namespace TOR_Core.Extensions.UI
                 MaxRefinementCount = 0;
                 CanRefineAll = false;
                 RefineAllText = TORTextHelper.GetText("tor_refine_all_text", "Refine All");
+                NotifyParentPropertiesChanged();
                 return;
             }
 
@@ -72,6 +73,13 @@ namespace TOR_Core.Extensions.UI
             RefineAllText = maxCount > 1
                 ? $"{TORTextHelper.GetText("tor_refine_all_text", "Refine All")} ({maxCount})"
                 : TORTextHelper.GetText("tor_refine_all_text", "Refine All");
+
+            NotifyParentPropertiesChanged();
+        }
+
+        private void NotifyParentPropertiesChanged()
+        {
+            CraftingVMExtension.CurrentInstance?.NotifyRefineAllPropertiesChanged();
         }
 
         private int CalculateMaxRefinements(RefinementActionItemVM action, Hero hero)
@@ -107,6 +115,14 @@ namespace TOR_Core.Extensions.UI
 
             // Return the minimum of both constraints
             return Math.Min(maxByStamina, maxByMaterials);
+        }
+
+        /// <summary>
+        /// Public method for CraftingVMExtension to call.
+        /// </summary>
+        public void ExecuteRefineAllFromParent()
+        {
+            ExecuteRefineAll();
         }
 
         private void ExecuteRefineAll()

@@ -1,5 +1,6 @@
 using System.Reflection;
 using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting;
+using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting.Refinement;
 using TaleWorlds.Library;
 
 namespace TOR_Core.Extensions.UI
@@ -36,5 +37,33 @@ namespace TOR_Core.Extensions.UI
         {
             _updateAllMethod?.Invoke(_vm, null);
         }
+
+        private RefinementVMExtension GetRefinementExtension()
+        {
+            var craftingVM = (CraftingVM)_vm;
+            var refinementVM = craftingVM.Refinement;
+            return refinementVM?.GetExtensionInstance() as RefinementVMExtension;
+        }
+
+        /// <summary>
+        /// Notifies UI that RefineAll properties have changed.
+        /// Called by RefinementVMExtension when state updates.
+        /// </summary>
+        public void NotifyRefineAllPropertiesChanged()
+        {
+            _vm.OnPropertyChanged(nameof(CanRefineAll));
+            _vm.OnPropertyChanged(nameof(RefineAllText));
+        }
+
+        private void ExecuteRefineAll()
+        {
+            GetRefinementExtension()?.ExecuteRefineAllFromParent();
+        }
+
+        [DataSourceProperty]
+        public bool CanRefineAll => GetRefinementExtension()?.CanRefineAll ?? false;
+
+        [DataSourceProperty]
+        public string RefineAllText => GetRefinementExtension()?.RefineAllText ?? "Refine All";
     }
 }

@@ -103,13 +103,6 @@
               </Children>
             </ScrollbarWidget>
 
-            <!-- TOR: Refine All Button -->
-            <ButtonWidget Id="RefineAllButton" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="200" SuggestedHeight="45" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="10" Brush="ButtonBrush1" Command.Click="ExecuteRefineAll" IsEnabled="@CanRefineAll" UpdateChildrenStates="true">
-              <Children>
-                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Crafting.Button.Text" Text="@RefineAllText" />
-              </Children>
-            </ButtonWidget>
-
           </Children>
         </Widget>
 
