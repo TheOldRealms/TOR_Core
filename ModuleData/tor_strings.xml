@@ -1951,6 +1951,7 @@
 
 
 <string id="tor_crafting.refine_all" text="{=str_tor_refine_all_text}Refine All" />
+<string id="tor_refine_all_hint" text="{=str_tor_refine_all_hint}Refine repeatedly until stamina or materials are exhausted" />
 
   <!--inventory-->
   <string id="str_inventory_weapon.22" text="{=str_tor_inventory_weapon_22}Pistol" />

@@ -1,7 +1,9 @@
 using System.Reflection;
 using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting;
 using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting.Refinement;
+using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.Extensions.UI
 {
@@ -12,6 +14,7 @@ namespace TOR_Core.Extensions.UI
         public static CraftingVMExtension CurrentInstance => _currentInstance;
 
         private static readonly MethodInfo _updateAllMethod;
+        private readonly BasicTooltipViewModel _refineAllHint;
 
         static CraftingVMExtension()
         {
@@ -21,6 +24,8 @@ namespace TOR_Core.Extensions.UI
         public CraftingVMExtension(ViewModel vm) : base(vm)
         {
             _currentInstance = this;
+            _refineAllHint = new BasicTooltipViewModel(() =>
+                TORTextHelper.GetText("tor_refine_all_hint", "Refine repeatedly until stamina or materials are exhausted").ToString());
         }
 
         public override void OnFinalize()
@@ -65,5 +70,8 @@ namespace TOR_Core.Extensions.UI
 
         [DataSourceProperty]
         public string RefineAllText => GetRefinementExtension()?.RefineAllText ?? "Refine All";
+
+        [DataSourceProperty]
+        public BasicTooltipViewModel RefineAllHint => _refineAllHint;
     }
 }

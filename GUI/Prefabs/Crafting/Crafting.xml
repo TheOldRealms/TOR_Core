@@ -561,11 +561,16 @@
             <TextWidget DataSource="{WeaponDesign}" Brush="Crafting.Order.WrongDamageType.Text" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="500" SuggestedHeight="50" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="65" Text="@MissingPropertyWarningText" />
 
             <!--TOR: Refine All Button (visible only in refinement mode, positioned above Refine button)-->
-            <ButtonWidget Id="RefineAllButton" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="200" SuggestedHeight="45" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginBottom="60" MarginRight="155" Brush="ButtonBrush1" Command.Click="ExecuteRefineAll" IsEnabled="@CanRefineAll" IsVisible="@IsInRefinementMode" UpdateChildrenStates="true">
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="254" SuggestedHeight="57" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginBottom="58" MarginRight="192" IsVisible="@IsInRefinementMode">
               <Children>
-                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Crafting.Button.Text" Text="@RefineAllText" />
+                <ButtonWidget Id="RefineAllButton" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="ButtonBrush1" Command.Click="ExecuteRefineAll" IsEnabled="@CanRefineAll" UpdateChildrenStates="true">
+                  <Children>
+                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Crafting.MainAction.Text" Text="@RefineAllText" FontSize="18" />
+                  </Children>
+                </ButtonWidget>
+                <HintWidget DataSource="{RefineAllHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
               </Children>
-            </ButtonWidget>
+            </Widget>
 
             <ListPanel Id="MainActionListPanel" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" VerticalAlignment="Bottom" StackLayout.LayoutMethod="HorizontalLeftToRight">
               <Children>
