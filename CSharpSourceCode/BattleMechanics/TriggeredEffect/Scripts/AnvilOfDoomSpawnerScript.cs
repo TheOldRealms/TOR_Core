@@ -40,6 +40,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             if (component != null)
             {
                 component.AnvilOfDoomPosition = position;
+                component.IsAnvilPlaced = true;
             }
         }
 
