@@ -689,9 +689,11 @@
     <Compile Include="Extensions\SkillExtensions.cs" />
     <Compile Include="Extensions\TeamExtensions.cs" />
     <Compile Include="Extensions\UI\BaseViewModelExtension.cs" />
+    <Compile Include="Extensions\UI\CraftingVMExtension.cs" />
     <Compile Include="Extensions\UI\HeroEncyclopediaVMExtension.cs" />
     <Compile Include="Extensions\UI\MissionConversationVMExtension.cs" />
     <Compile Include="Extensions\UI\PartyCharacterVMExtension.cs" />
+    <Compile Include="Extensions\UI\RefinementVMExtension.cs" />
     <Compile Include="Extensions\UI\UnitEncyclopediaVMExtension.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionAttribute.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionManager.cs" />

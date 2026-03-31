@@ -1946,6 +1946,13 @@
   <string id="str_weapon_usage.TorOrcOneHandedPolearm" text="{=str_tor_weapon_usage_TorOrcOneHandedPolearm}Orc Polearm" />
   <string id="str_weapon_usage.TorOrcTwoHandedPolearm" text="{=str_tor_weapon_usage_TorOrcTwoHandedPolearm}Orc Greatpolearm" />
 
+
+<!--crafting-->
+
+
+<string id="tor_crafting.refine_all" text="{=str_tor_refine_all_text}Refine All" />
+<string id="tor_refine_all_hint" text="{=str_tor_refine_all_hint}Refine repeatedly until stamina or materials are exhausted" />
+
   <!--inventory-->
   <string id="str_inventory_weapon.22" text="{=str_tor_inventory_weapon_22}Pistol" />
   <string id="str_inventory_weapon.23" text="{=str_tor_inventory_weapon_23}Handgun" />
