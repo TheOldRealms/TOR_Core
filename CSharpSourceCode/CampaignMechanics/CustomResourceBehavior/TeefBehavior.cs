@@ -217,13 +217,27 @@ public class TeefBehavior : CampaignBehaviorBase
                     difference.Add(item);
                 }
 
-                var pileValue = difference.Sum(item => item.EquipmentElement.ItemValue);
-                var pileCount = pileValue / 1000;
+                // Calculate pile value
+                long pileValue = 0;
+                foreach (var element in difference)
+                {
+                    var item = element.EquipmentElement.Item;
+                    if (item == null) continue;
+                    var unitValue = Math.Max(0, element.EquipmentElement.ItemValue);
+                    pileValue += (long)unitValue * element.Amount;
+                }
 
+                var pileCount = (int)(pileValue / 1000);
 
                 var pileItem = MBObjectManager.Instance.GetObject<ItemObject>("tor_gs_loot_pile");
 
                 Hero.MainHero.CurrentSettlement.Stash.AddToCounts(pileItem, pileCount);
+
+                // Fire event for quest progression (same as OnItemsDiscarded)
+                if (pileValue > 0)
+                {
+                    TORCampaignEvents.Instance.OnTeefTransferred(Hero.MainHero, (int)pileValue);
+                }
             }
         }
     }
@@ -337,10 +351,6 @@ public class TeefBehavior : CampaignBehaviorBase
             if (item == null)
                 continue;
 
-            if (item.Culture!= null && item.Culture.StringId == TORConstants.Cultures.GREENSKIN)
-            {
-                continue;
-            }
 
             var unitValue = Math.Max(0, element.EquipmentElement.ItemValue);
             totalItemValue += (long)unitValue * element.Amount;
