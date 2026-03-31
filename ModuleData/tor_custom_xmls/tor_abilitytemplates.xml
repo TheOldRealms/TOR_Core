@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AbilityTemplates>
-    <!-- Minor magic -->
     <AbilityTemplate StringID="Dart"
                      Name="{=dart_label_str}Magic Bolt"
                      SpriteName="dart_icon"
@@ -368,7 +367,6 @@
         </LightColorRGB>
         <TriggeredEffect>dust_storm_tick</TriggeredEffect>
     </AbilityTemplate>
-    <!-- Lore of Fire -->
     <AbilityTemplate StringID="Fireball"
                      Name="{=fireball_label_str}Fireball"
                      SpriteName="fireball_icon"
@@ -730,7 +728,6 @@
         </LightColorRGB>
         <TriggeredEffect>burning_head_tick</TriggeredEffect>
     </AbilityTemplate>
-    <!-- Lore of Heavens -->
     <AbilityTemplate StringID="LightningBolt"
                      Name="{=lightning_bolt_label_str}Lightning Bolt"
                      SpriteName="lightningbolt_icon"
@@ -1101,7 +1098,6 @@
         </LightColorRGB>
         <TriggeredEffect>curse_of_midnight</TriggeredEffect>
     </AbilityTemplate>
-    <!-- Lore of Light -->
     <AbilityTemplate StringID="ShemGaze"
                      Name="{=shem_gaze_label_str}Shem's Burning Gaze"
                      SpriteName="shemsburninggaze_icon"
@@ -1460,7 +1456,6 @@
         </LightColorRGB>
         <TriggeredEffect>apply_bironas_timewarp</TriggeredEffect>
     </AbilityTemplate>
-    <!-- Necromancy -->
     <AbilityTemplate StringID="NagashGaze"
                      Name="{=nagash_gaze_label_str}Gaze of Nagash"
                      SpriteName="gazeofnagash_icon"
@@ -1824,11 +1819,7 @@
         </LightColorRGB>
         <TriggeredEffect>curse_of_years_hex</TriggeredEffect>
     </AbilityTemplate>
-	
-	<!-- Death Magic -->
-	
-	
-	<AbilityTemplate StringID="TasteOfDeath"
+    <AbilityTemplate StringID="TasteOfDeath"
                      Name="{=tasteofdeath_label_str}Taste of Death"
                      SpriteName="taste_of_death_icon"
                      CoolDown="10"
@@ -1873,7 +1864,6 @@
         </LightColorRGB>
         <TriggeredEffect>taste_of_death</TriggeredEffect>
     </AbilityTemplate>
-
     <AbilityTemplate StringID="AshesAndDust"
                      Name="{=ashesanddust_label_str}Ashes and Dust"
                      SpriteName="ashes_and_dust_icon"
@@ -1917,8 +1907,7 @@
         </LightColorRGB>
         <TriggeredEffect>ashes_and_dust_explosion</TriggeredEffect>
     </AbilityTemplate>
-	
-	<AbilityTemplate StringID="PurpleSun"
+    <AbilityTemplate StringID="PurpleSun"
                      Name="{=purple_sun_label_str}Purple Sun of Xereus"
                      SpriteName="purplesun_icon"
                      CoolDown="70"
@@ -1967,8 +1956,7 @@
         </LightColorRGB>
         <TriggeredEffect>witheringwave_tick</TriggeredEffect>
     </AbilityTemplate>
-	
-	<AbilityTemplate StringID="FateOfBjuna"
+    <AbilityTemplate StringID="FateOfBjuna"
                      Name="{=fate_of_bjuna_label_str}Fate of Bjuna"
                      SpriteName="fate_of_bjuna_icon"
                      CoolDown="90"
@@ -2013,7 +2001,6 @@
         </LightColorRGB>
         <TriggeredEffect>fate_of_bjuna</TriggeredEffect>
     </AbilityTemplate>
-
     <AbilityTemplate StringID="Amaranth"
                      Name="{=amaranth_label_str}Amaranth"
                      SpriteName="amaranth_icon"
@@ -2059,14 +2046,13 @@
         </LightColorRGB>
         <TriggeredEffect>amaranth</TriggeredEffect>
     </AbilityTemplate>
-	
-	<AbilityTemplate StringID="SpiritLeech"
+    <AbilityTemplate StringID="SpiritLeech"
                      Name="{=spirit_leech_label_str}Spirit Leech"
                      SpriteName="spiritleech_icon"
                      CoolDown="35"
                      WindsOfMagicCost="26"
                      BaseMisCastChance="0.05"
-					 Duration="0"
+                     Duration="0"
                      Radius="7.5"
                      AbilityType="Spell"
                      AbilityEffectType="Hex"
@@ -2105,8 +2091,6 @@
         </LightColorRGB>
         <TriggeredEffect>spirit_leech</TriggeredEffect>
     </AbilityTemplate>
-	
-	
     <AbilityTemplate StringID="CaressOfLaniph"
                      Name="{=caress_of_laniph_label_str}Caress of Laniph"
                      SpriteName="caresslaniph_icon"
@@ -2152,8 +2136,6 @@
         </LightColorRGB>
         <TriggeredEffect>caress_of_laniph</TriggeredEffect>
     </AbilityTemplate>
-	
-    <!-- Dark Magic -->
     <AbilityTemplate StringID="Chillwind"
                      Name="{=chillwind_label_str}Chillwind"
                      SpriteName="chillwind_icon"
@@ -2524,8 +2506,6 @@
         </LightColorRGB>
         <TriggeredEffect>soulstealer</TriggeredEffect>
     </AbilityTemplate>
-    <!-- High Magic -->
-	
     <AbilityTemplate StringID="Apotheosis"
                      Name="{=apotheosis_label_str}Apotheosis"
                      SpriteName="apoteosis_icon"
@@ -2845,7 +2825,6 @@
         </LightColorRGB>
         <TriggeredEffect>aerial_shield</TriggeredEffect>
     </AbilityTemplate>
-    <!-- Lore of Life-->
     <AbilityTemplate StringID="DwellersBelow"
                      Name="{=dwellers_below_label_str}Dwelllers Below"
                      SpriteName="dwellersbelow_icon"
@@ -3161,7 +3140,7 @@
         </LightColorRGB>
         <TriggeredEffect>storm_of_renewal</TriggeredEffect>
     </AbilityTemplate>
-	<AbilityTemplate StringID="ShieldOfThorns"
+    <AbilityTemplate StringID="ShieldOfThorns"
                      Name="{=shieldofthorns_label_str}Shield of Thorns"
                      SpriteName="shield_of_thorns_icon"
                      CoolDown="70"
@@ -3206,7 +3185,6 @@
         </LightColorRGB>
         <TriggeredEffect>shield_of_thorns</TriggeredEffect>
     </AbilityTemplate>
-    <!-- Lore of Beasts-->
     <AbilityTemplate StringID="AmberSpear"
                      Name="{=amber_spear_label_str}Amber Spear"
                      SpriteName="amberspear_icon"
@@ -3521,7 +3499,6 @@
         </LightColorRGB>
         <TriggeredEffect>curse_of_anraheir</TriggeredEffect>
     </AbilityTemplate>
-    <!-- Lore of Metal-->
     <AbilityTemplate StringID="QuicksilverSwords"
                      Name="{=quicksilver_swords_label_str}Quicksilver Swords"
                      SpriteName="quicksilversword_icon"
@@ -3704,49 +3681,6 @@
         </LightColorRGB>
         <TriggeredEffect>plague_of_rust</TriggeredEffect>
     </AbilityTemplate>
-    <!-- <AbilityTemplate StringID="SearingDoom" 
-      Name="{=wind_blast_label_str}Wind Blast" 
-      SpriteName="wind_blast_icon" 
-      CoolDown="20" 
-      WindsOfMagicCost="8" 
-      BaseMisCastChance="0.05" 
-      Duration="4" 
-      Radius="1" 
-      AbilityType="Spell" 
-      AbilityEffectType="Blast" 
-      BaseMovementSpeed="0" 
-      TickInterval="-1" 
-      TriggerType="TickOnce" 
-      HasLight="false" 
-      LightIntensity="50" 
-      LightRadius="10" 
-      LightFlickeringMagnitude="0" 
-      LightFlickeringInterval="0" 
-      ShadowCastEnabled="false" 
-      ParticleEffectPrefab="wind_blast" 
-      ParticleEffectSizeModifier="1" 
-      SoundEffectToPlay="dust_storm" 
-      ShouldSoundLoopOverDuration="false"
-      CastType="WindUp" 
-      CastTime="0.5" 
-      AnimationActionName="act_release_heavy_thrown" 
-      Offset="5"
-      AbilityTargetType="WorldPosition"
-      CrosshairType="Wind"
-      MinDistance="1"
-      MaxDistance="2"
-      TargetCapturingRadius="2"
-      SpellTier="2"
-      BelongsToLoreID="LoreOfMetal"
-      TooltipDescription="{=wind_blast_description_str}A gust of wind knocks down victims and applies minor damage.">
-		<LightColorRGB x="255" y="170" z="0" w="-1">
-			<AsVec2>
-				<x>255</x>
-				<y>170</y>
-			</AsVec2>
-		</LightColorRGB>
-		<TriggeredEffect>windblast_burst</TriggeredEffect>
-	</AbilityTemplate> -->
     <AbilityTemplate StringID="GehennasGoldenGlobe"
                      Name="{=gehennas_golden_globe_label_str}Gehennas Golden Globe"
                      SpriteName="gehennasgoldenglobe_icon"
@@ -3884,7 +3818,6 @@
         </LightColorRGB>
         <TriggeredEffect>golden_hounds_tick</TriggeredEffect>
     </AbilityTemplate>
-    <!-- Artillery -->
     <AbilityTemplate StringID="MortarSpawner"
                      Name="{=mortar_spawner_label_str}Place Mortar"
                      SpriteName="placeartillery_icon"
@@ -4059,7 +3992,7 @@
     </AbilityTemplate>
     <AbilityTemplate StringID="AnvilOfDoomSpawner"
                      Name="{=anvil_of_doom_spawner_label_str}Place Anvil of Doom"
-                     SpriteName="placeartillery_icon"
+                     SpriteName="placeanvil_icon"
                      CoolDown="1"
                      WindsOfMagicCost="0"
                      BaseMisCastChance="0.0"
@@ -4100,7 +4033,6 @@
         </LightColorRGB>
         <TriggeredEffect>place_anvil_of_doom</TriggeredEffect>
     </AbilityTemplate>
-    <!-- Career Abilities -->
     <AbilityTemplate StringID="ShadowStep"
                      Name="{=shadowstep_label_str}Mist Form"
                      SpriteName="mistform_icon"
@@ -4570,9 +4502,7 @@
         </LightColorRGB>
         <TriggeredEffect>apply_arcaneconduit</TriggeredEffect>
     </AbilityTemplate>
-	
-	
-	<AbilityTemplate StringID="DoomSeeking"
+    <AbilityTemplate StringID="DoomSeeking"
                      Name="{=doom_seeking_label_str}Doom Seeking"
                      SpriteName="doom_seeking_icon"
                      CoolDown="60"
@@ -4617,9 +4547,7 @@
         </LightColorRGB>
         <TriggeredEffect>apply_doom_seeking</TriggeredEffect>
     </AbilityTemplate>
-	
-	
-	<AbilityTemplate StringID="WisdomOfThungni"
+    <AbilityTemplate StringID="WisdomOfThungni"
                      Name="{=doom_seeking_label_str}Wisdom of Thungni"
                      SpriteName="wisdom_of_thungni_icon"
                      CoolDown="60"
@@ -4663,9 +4591,7 @@
             </AsVec2>
         </LightColorRGB>
     </AbilityTemplate>
-	
-	
-	<AbilityTemplate StringID="KnightlyStrike"
+    <AbilityTemplate StringID="KnightlyStrike"
                      Name="{=knightly_strike_label_str}Knightly Strike"
                      SpriteName="knightly_strike_icon"
                      CoolDown="15"
@@ -4710,8 +4636,7 @@
         </LightColorRGB>
         <TriggeredEffect>apply_knightly_strike_trait</TriggeredEffect>
     </AbilityTemplate>
-	
-	<AbilityTemplate StringID="HawkEye"
+    <AbilityTemplate StringID="HawkEye"
                      Name="{=wind_of_death_label_str}Hawk Eye"
                      SpriteName="hawk_eye_icon"
                      CoolDown="100"
@@ -4757,8 +4682,7 @@
         </LightColorRGB>
         <TriggeredEffect>apply_hawk_eye</TriggeredEffect>
     </AbilityTemplate>
-	
-	<AbilityTemplate StringID="Impenetrable"
+    <AbilityTemplate StringID="Impenetrable"
                      Name="{=impenetrable_label_str}Impenetrable"
                      SpriteName="impenetrable_icon"
                      CoolDown="5"
@@ -4803,8 +4727,6 @@
         </LightColorRGB>
         <TriggeredEffect>apply_impenetrable</TriggeredEffect>
     </AbilityTemplate>
-	
-	
     <AbilityTemplate StringID="ArrowOfKurnous"
                      Name="{=arrow_of_kurnous_label_str}Arrow of Kurnous"
                      SpriteName="arrowofkurnous_icon"
@@ -4851,9 +4773,7 @@
                           Derivative="1"
                           DisableDistance="2" />
     </AbilityTemplate>
-
-	<!-- Lethal Shot - Reworked Waywatcher Career Ability -->
-	<AbilityTemplate StringID="LethalShot"
+    <AbilityTemplate StringID="LethalShot"
                      Name="{=lethal_shot_label_str}Lethal Shot"
                      SpriteName="arrowofkurnous_icon"
                      CoolDown="10"
@@ -4897,7 +4817,6 @@
             </AsVec2>
         </LightColorRGB>
     </AbilityTemplate>
-
     <AbilityTemplate StringID="WrathOfTheWood"
                      Name="{=wrath_of_the_wood_label_str}Wrath of the Wood"
                      SpriteName="wraith_of_the_forest_icon"
@@ -4985,7 +4904,6 @@
             </AsVec2>
         </LightColorRGB>
     </AbilityTemplate>
-    <!-- Shallya Prayers (NPC ONLY) -->
     <AbilityTemplate StringID="BlessingOfShallya"
                      Name="{=regrowth_label_str}Regrowth"
                      SpriteName="regrowth_icon"
@@ -5032,7 +4950,6 @@
         </LightColorRGB>
         <TriggeredEffect>regrowth_heal</TriggeredEffect>
     </AbilityTemplate>
-    <!-- Sigmarite Prayers -->
     <AbilityTemplate StringID="CometOfSigmar"
                      Name="{=comet_of_sigmar_label_str}Comet of Sigmar"
                      SpriteName="comet_of_sigmar_icon"
@@ -5108,7 +5025,7 @@
                      CrosshairType="TargetedAOE"
                      TargetCapturingRadius="5"
                      BelongsToLoreID="SigmaritePrayers"
-					 TooltipDescription="{=healing_hand_description_str}Allies in an 8 meter radius regain 5 HP every 2 seconds for 12 seconds.">
+                     TooltipDescription="{=healing_hand_description_str}Allies in an 8 meter radius regain 5 HP every 2 seconds for 12 seconds.">
         <LightColorRGB x="255"
                        y="255"
                        z="255"
@@ -5391,7 +5308,6 @@
         </LightColorRGB>
         <TriggeredEffect>snow_king_decree</TriggeredEffect>
     </AbilityTemplate>
-    <!-- Power of the Lady -->
     <AbilityTemplate StringID="AerialShield"
                      Name="{=aerial_shield_label_str}Aerial Shield"
                      SpriteName="aerial_shield_icon"
@@ -5575,8 +5491,7 @@
         </LightColorRGB>
         <TriggeredEffect>ladys_favour</TriggeredEffect>
     </AbilityTemplate>
-	
-	<AbilityTemplate StringID="OathAndSteel"
+    <AbilityTemplate StringID="OathAndSteel"
                      Name="{=oath_and_steel_label_str}Rune of Oath and Steel"
                      SpriteName="oath_and_steel_icon"
                      CoolDown="60"
@@ -5622,8 +5537,7 @@
         </LightColorRGB>
         <TriggeredEffect>oath_and_steel</TriggeredEffect>
     </AbilityTemplate>
-	
-	<AbilityTemplate StringID="HearthAndHome"
+    <AbilityTemplate StringID="HearthAndHome"
                      Name="{=hearth_and_home_label_str}Rune of Hearth and Home"
                      SpriteName="hearth_and_home_icon"
                      CoolDown="60"
@@ -5669,7 +5583,7 @@
         </LightColorRGB>
         <TriggeredEffect>hearth_and_home</TriggeredEffect>
     </AbilityTemplate>
-	<AbilityTemplate StringID="RuneOfSpellbreaking"
+    <AbilityTemplate StringID="RuneOfSpellbreaking"
                      Name="{=spellbreaking_label_str}Rune of Spellbreaking"
                      SpriteName="spellbreaking_icon"
                      CoolDown="60"
@@ -5715,8 +5629,7 @@
         </LightColorRGB>
         <TriggeredEffect>rune_of_spellbreaking</TriggeredEffect>
     </AbilityTemplate>
-
-	<AbilityTemplate StringID="WrathAndRuin"
+    <AbilityTemplate StringID="WrathAndRuin"
                      Name="{=wrath_and_ruin_label_str}Rune of Wrath and Ruin"
                      SpriteName="wrath_and_ruin_iocn"
                      CoolDown="60"
@@ -5762,8 +5675,6 @@
         </LightColorRGB>
         <TriggeredEffect>wrath_and_ruin</TriggeredEffect>
     </AbilityTemplate>
-
-    <!-- Orc Boss Career Ability -->
     <AbilityTemplate StringID="ArmedToDaTeef"
                      Name="{=armed_to_da_teef_label_str}Armed to da Teef"
                      SpriteName="armedtoteef_icon"
@@ -5806,8 +5717,6 @@
         </LightColorRGB>
         <TriggeredEffect>armed_to_da_teef</TriggeredEffect>
     </AbilityTemplate>
-
-    <!-- Orc Shaman Career Ability -->
     <AbilityTemplate StringID="CallOfDaGreen"
                      Name="{=call_of_da_green_label_str}Call uv da Green"
                      SpriteName="call_uf_green_icon"
@@ -5851,10 +5760,6 @@
         </LightColorRGB>
         <TriggeredEffect>call_of_da_green_buff</TriggeredEffect>
     </AbilityTemplate>
-
-    <!-- Big Waaagh Spells -->
-
-    <!-- Gaze uv Mork - Basic Missile (follows Lightning Bolt pattern) -->
     <AbilityTemplate StringID="GazeUvMork"
                      Name="{=gaze_uv_mork_label_str}Gaze uv Mork"
                      SpriteName="gazeofmork_icon"
@@ -5880,7 +5785,7 @@
                      ShouldSoundLoopOverDuration="true"
                      CastType="WindUp"
                      CastTime="0.5"
-					 MaxDistance="100"
+                     MaxDistance="100"
                      AnimationActionName="act_release_stone"
                      Offset="0.5"
                      CrosshairType="Missile"
@@ -5900,8 +5805,6 @@
         </LightColorRGB>
         <TriggeredEffect>gaze_uv_mork_hit</TriggeredEffect>
     </AbilityTemplate>
-
-    <!-- 'Ard as Nails - Basic Buff -->
     <AbilityTemplate StringID="ArdAsNails"
                      Name="{=ard_as_nails_label_str}'Ard as Nails"
                      SpriteName="ardasnails_icon"
@@ -5948,8 +5851,6 @@
         </LightColorRGB>
         <TriggeredEffect>ard_as_nails_buff</TriggeredEffect>
     </AbilityTemplate>
-
-    <!-- Brain Bursta - Adept AoE Damage (uses Fireball explosion pattern) -->
     <AbilityTemplate StringID="BrainBursta"
                      Name="{=brain_bursta_label_str}Brain Bursta"
                      SpriteName="brainbusta_icon"
@@ -5997,8 +5898,6 @@
         </LightColorRGB>
         <TriggeredEffect>brain_bursta_explosion</TriggeredEffect>
     </AbilityTemplate>
-
-    <!-- Da Hand uv Gork - Adept Teleport -->
     <AbilityTemplate StringID="DaHandUvGork"
                      Name="{=da_hand_uv_gork_label_str}Da Hand uv Gork"
                      SpriteName="handofgork_icon"
@@ -6046,8 +5945,6 @@
         </LightColorRGB>
         <TriggeredEffect>da_hand_uv_gork_teleport</TriggeredEffect>
     </AbilityTemplate>
-
-    <!-- 'Ere We Go! - Master Buff -->
     <AbilityTemplate StringID="EreWeGo"
                      Name="{=ere_we_go_label_str}'Ere We Go!"
                      SpriteName="erewego_icon"
@@ -6094,8 +5991,6 @@
         </LightColorRGB>
         <TriggeredEffect>ere_we_go_buff</TriggeredEffect>
     </AbilityTemplate>
-
-    <!-- Foot uv Gork - Master Explosion (uses Comet pattern) -->
     <AbilityTemplate StringID="FootUvGork"
                      Name="{=foot_uv_gork_label_str}Foot uv Gork"
                      SpriteName="footofgork_icon"
@@ -6143,5 +6038,4 @@
         </LightColorRGB>
         <TriggeredEffect>foot_uv_gork_stomp</TriggeredEffect>
     </AbilityTemplate>
-
 </AbilityTemplates>
