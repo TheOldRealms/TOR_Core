@@ -31,6 +31,7 @@ namespace TOR_Core.Utilities
         /// </summary>
         public static bool IsSpellBlow(Blow b)
         {
+            //Sly : this fails to correctly classify amber spear as a spell. May also incorrectly classify Green Eye.
             return b.StrikeType == StrikeType.Thrust && b.AttackType == AgentAttackType.Kick && b.DamageCalculated && b.BlowFlag.HasFlag(BlowFlags.NoSound) && b.VictimBodyPart == BoneBodyPartType.Chest;
         }
 
