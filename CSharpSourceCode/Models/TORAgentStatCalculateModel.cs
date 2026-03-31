@@ -31,8 +31,7 @@ namespace TOR_Core.Models
     {
         private const float OrcSpeedModificatior = 0.95f;
         private const float GoblinSpeedModificatior = 1.1f;
-        private const float DwarfSpeedModificatior = 0.9f;
-        private const float HeavyDwarfSpeedModificatior = 0.75f;
+        private const float DwarfSpeedModificatior = 0.8f;
         private float vampireDaySpeedModificator = 1.1f;
         private float vampireNightSpeedModificator = 1.2f;
         private CustomCrosshairMissionBehavior _crosshairBehavior;
@@ -423,17 +422,9 @@ namespace TOR_Core.Models
                             {
                                 agentDrivenProperties.WeaponInaccuracy += 0.02f;
                             }
-            
-
-
-                            var modificator = HeavyDwarfSpeedModificatior;
-                            agentDrivenProperties.TopSpeedReachDuration *= modificator;
-                            agentDrivenProperties.MaxSpeedMultiplier *= modificator;
                         }
-                        else
-                        {
-                            agentDrivenProperties.MaxSpeedMultiplier *= DwarfSpeedModificatior;
-                        }
+
+                        agentDrivenProperties.MaxSpeedMultiplier *= DwarfSpeedModificatior;
                     }
 
                     if (character.IsOrc())

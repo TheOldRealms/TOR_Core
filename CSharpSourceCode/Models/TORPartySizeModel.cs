@@ -75,6 +75,11 @@ namespace TOR_Core.Models
                 AddCareerPassivesForPartySize(Hero.MainHero, party, ref num);
             }
 
+            if (party.MapFaction != null && party.Culture?.StringId == TORConstants.Cultures.DAWI)
+            {
+                num.AddFactor(-0.25f, new TextObject("Dwarf cultural penalty"));
+            }
+
             if (party.MapFaction != null && party.Culture?.StringId == TORConstants.Cultures.ASRAI)
             {
                 num.AddFactor(-0.25f, new TextObject("Woodelf cultural penalty"));
