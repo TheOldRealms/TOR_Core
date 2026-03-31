@@ -2646,7 +2646,7 @@
 		id="impenetrable_invincible"
 		particle_id="black_knightly_charge_res"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="1"
+		base_effect_value="0.95"
 		applies_for_attack_type="All"
 		type="Resistance"
 		damage_type="Physical">

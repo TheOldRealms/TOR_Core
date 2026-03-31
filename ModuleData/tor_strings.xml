@@ -4157,7 +4157,7 @@
   <string id="tor_careerchoice_description.SecretOfFellfangPassive4" text="{=str_tor_careerchoice_description_SecretOfFellfangPassive4}+10% personal 'Fire' spell damage." />
 
   <!-- Ironbreaker Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.IronbreakerRoot" text="{=str_tor_careerchoice_description_IronbreakerRoot}Khazukan Kazakit-ha! For a brief period become Impenetrable. Gain +100% personal 'Ward Save', but move 25% slower. For every level of Athletics, gain 0.004s of Impenetrable. (Ability is charged by recieving and blocking damage.)" />
+  <string id="tor_careerchoice_description.IronbreakerRoot" text="{=str_tor_careerchoice_description_IronbreakerRoot}Khazukan Kazakit-ha! For a brief period become Impenetrable. Gain +95% personal 'Ward Save', but move 25% slower. For every level of Athletics, gain 0.004s of Impenetrable. (Ability is charged by receiving and blocking damage.)" />
   
   <string id="tor_careerchoice_description.NestCleansingKeystone" text="{=str_tor_careerchoice_description_NestCleansingKeystone}Impenetrable provides fire, explosive, and knockback resistance." />
   <string id="tor_careerchoice_description.NestCleansingPassive1" text="{=str_tor_careerchoice_description_NestCleansingPassive1}+10 personal Hitpoints." />

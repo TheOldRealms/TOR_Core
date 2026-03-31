@@ -146,7 +146,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
 
     protected override void InitializeKeyStones()
     {
-        _ironbreakerRoot.Initialize(CareerID, "Khazukan Kazakit-ha! For a brief period become Impenetrable. Gain +100% personal 'Ward Save', but move 25% slower. For every level of Athletics, gain 0.004s of Impenetrable. (Ability is charged by recieving and blocking damage.)", null, true,
+        _ironbreakerRoot.Initialize(CareerID, "Khazukan Kazakit-ha! For a brief period become Impenetrable. Gain +95% personal 'Ward Save', but move 25% slower. For every level of Athletics, gain 0.004s of Impenetrable. (Ability is charged by receiving and blocking damage.)", null, true,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
