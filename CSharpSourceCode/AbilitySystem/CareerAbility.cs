@@ -130,7 +130,20 @@ namespace TOR_Core.AbilitySystem
                 return true;
             }
 
+            // Check if summoning career abilities can be used (mission agent limit)
+            if (IsSummoningCareerAbility() && !TORSummonHelper.CanSummon())
+            {
+                disabledReason = TORTextHelper.GetTextObject("tor_ability_mission_agent_limit", "Too many agents on battlefield");
+                return true;
+            }
+
             return base.IsDisabled(casterAgent, out disabledReason);
+        }
+
+        private bool IsSummoningCareerAbility()
+        {
+            // Necromancer's Greater Harbinger and Spellsinger's Wrath of the Wood are primarily summoning abilities
+            return _career == TORCareers.Necromancer || _career == TORCareers.Spellsinger;
         }
 
         private static bool IsNotUsableMounted(string templateID)

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
+using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
@@ -10,6 +12,17 @@ namespace TOR_Core.Utilities
 {
     public static class TORSummonHelper
     {
+        /// <summary>
+        /// Maximum number of agents (including mounts) allowed in a mission before summoning is blocked.
+        /// Set to 990 with safety buffer below engine limit of 1024.
+        /// </summary>
+        public const int MaxMissionAgents = 990;
+
+        /// <summary>
+        /// Minimum number of agent slots that must be available before allowing summoning.
+        /// </summary>
+        public const int MinSlotsForSummoning = 5;
+
         private static ActionIndexCache? _actRaiseFromGround;
         private static ActionIndexCache ActRaiseFromGround
         {
@@ -45,7 +58,46 @@ namespace TOR_Core.Utilities
             return buildData;
         }
 
+        /// <summary>
+        /// Gets the current number of active agents in the mission.
+        /// </summary>
+        public static int GetCurrentAgentCount()
+        {
+            if (Mission.Current == null) return 0;
+            return Mission.Current.Agents.CountQ(a => a.IsActive());
+        }
 
+        /// <summary>
+        /// Gets the number of available slots for summoning new agents.
+        /// </summary>
+        public static int GetAvailableSummonSlots()
+        {
+            return Math.Max(0, MaxMissionAgents - GetCurrentAgentCount());
+        }
+
+        /// <summary>
+        /// Checks if summoning is currently possible (enough slots available).
+        /// </summary>
+        public static bool CanSummon()
+        {
+            return GetAvailableSummonSlots() >= MinSlotsForSummoning;
+        }
+
+        /// <summary>
+        /// Checks if a specific number of units can be summoned.
+        /// </summary>
+        public static bool CanSummonCount(int count)
+        {
+            return GetAvailableSummonSlots() >= count;
+        }
+
+        /// <summary>
+        /// Gets the number of units that can actually be summoned, limited by available slots.
+        /// </summary>
+        public static int GetClampedSummonCount(int desiredCount)
+        {
+            return Math.Min(desiredCount, GetAvailableSummonSlots());
+        }
 
         public static Agent SpawnAgent(AgentBuildData buildData, Vec3 position, bool withAnimation = false)
         {
