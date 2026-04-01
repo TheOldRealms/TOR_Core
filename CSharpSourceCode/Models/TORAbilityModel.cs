@@ -494,15 +494,7 @@ namespace TOR_Core.Models
             if (hero == null || !hero.IsSpellCaster()) return 0f;
             if (baseCharacter.Culture.StringId == TORConstants.Cultures.DAWI) return 0;
 
-            if (baseCharacter.Culture.StringId == TORConstants.Cultures.GREENSKIN)
-            {
-                if(hero != Hero.MainHero)
-                {
-                    return 0.2f; // very low recharge rate for greenskins. 
-                }
 
-                return 0;
-            }
             if (hero.PartyBelongedTo != MobileParty.MainParty) return 2f;//equiv to 267 spellcraft
 
             ExplainedNumber explainedNumber = new(1f, false, null);
@@ -599,6 +591,16 @@ namespace TOR_Core.Models
                         explainedNumber.Add(0.5f, ForestHarmonyHelper.TreeSymbolText("WEArielSymbol"));
                     }
                 }
+            }
+            
+            if (baseCharacter.Culture.StringId == TORConstants.Cultures.GREENSKIN)
+            {
+                if(hero != Hero.MainHero)
+                {
+                    explainedNumber.AddFactor(-0.5f);       //not sure if we need some sort of "post value" for this.
+                }
+
+                return 0;
             }
 
             return explainedNumber.ResultNumber;
