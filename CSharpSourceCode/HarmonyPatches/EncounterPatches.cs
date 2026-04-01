@@ -126,6 +126,30 @@ namespace TOR_Core.HarmonyPatches
         }
 
         [HarmonyPrefix]
+        [HarmonyPatch(typeof(GameMenu), "SwitchToMenu")]
+        public static bool SwitchToMenuPrefix(ref string menuId)
+        {
+            if (!Hero.MainHero.IsEnlisted()
+                || !ServeAsAHirelingCampaignBehavior.InPostBattleTransition)
+            {
+                return true;
+            }
+
+            if (menuId != "menu_settlement_taken"
+                && menuId != "menu_settlement_taken_player_leader"
+                && menuId != "menu_settlement_taken_player_army_member"
+                && menuId != "menu_settlement_taken_player_participant")
+            {
+                return true;
+            }
+
+            menuId = "hireling_menu";
+            ServeAsAHirelingCampaignBehavior.MarkHirelingWaitMenuShown();
+
+            return true;
+        }
+
+        [HarmonyPrefix]
         [HarmonyPatch(typeof(PlayerEncounter), "Finish")]
         public static bool PlayerEncounterFinishPrefix()
         {

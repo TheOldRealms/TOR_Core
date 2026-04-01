@@ -63,7 +63,10 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
         public float DurationInDays => _durationInDays;
 
         public int ManuallyFoughtBattles => _manuallyFoughtBattles;
-
+        internal static void MarkHirelingWaitMenuShown()
+        {
+            Campaign.Current.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>()._hirelingWaitMenuShown = true;
+        }
 
         public bool IsEnlisted()
         {
