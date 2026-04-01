@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using System.Linq;
 using System.Reflection;
+using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.Party;
@@ -104,17 +105,50 @@ namespace TOR_Core.HarmonyPatches
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(PartyVM), "TransferAllCharacters")]
-        private static void TransferAllCharactersPostFix(PartyVM __instance,
+        private static void TransferAllCharactersPrefix(PartyVM __instance,
             PartyScreenLogic.PartyRosterSide rosterSide,
-            PartyScreenLogic.TroopType type)
+            PartyScreenLogic.TroopType type,
+            out Dictionary<CharacterObject, int> __state)
         {
             var partyScreenLogic = __instance.PartyScreenLogic;
-            var roster = type == PartyScreenLogic.TroopType.Prisoner ? partyScreenLogic.PrisonerRosters[(int)rosterSide] : partyScreenLogic.MemberRosters[(int)rosterSide];
-            var isPrisoner = type == PartyScreenLogic.TroopType.Prisoner;
+            var roster = type == PartyScreenLogic.TroopType.Prisoner
+                ? partyScreenLogic.PrisonerRosters[(int)rosterSide]
+                : partyScreenLogic.MemberRosters[(int)rosterSide];
 
-            foreach (var elem in roster.GetTroopRoster())
+            __state = roster.GetTroopRoster()
+                .ToDictionary(element => element.Character, element => element.Number);
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(PartyVM), "TransferAllCharacters")]
+        private static void TransferAllCharactersPostfix(PartyVM __instance,
+            PartyScreenLogic.PartyRosterSide rosterSide,
+            PartyScreenLogic.TroopType type,
+            Dictionary<CharacterObject, int> __state)
+        {
+            if (__state == null || __state.Count == 0)
             {
-                CustomResourceManager.OnTroopTransferred(__instance, rosterSide, elem.Character, elem.Number, isPrisoner);
+                return;
+            }
+
+            var partyScreenLogic = __instance.PartyScreenLogic;
+            var roster = type == PartyScreenLogic.TroopType.Prisoner
+                ? partyScreenLogic.PrisonerRosters[(int)rosterSide]
+                : partyScreenLogic.MemberRosters[(int)rosterSide];
+            var isPrisoner = type == PartyScreenLogic.TroopType.Prisoner;
+            var remainingCounts = roster.GetTroopRoster()
+                .ToDictionary(element => element.Character, element => element.Number);
+
+            foreach (var entry in __state)
+            {
+                remainingCounts.TryGetValue(entry.Key, out var remainingCount);
+
+                var transferredAmount = entry.Value - remainingCount;
+                if (transferredAmount <= 0)
+                {
+                    continue;
+                }
+                CustomResourceManager.OnTroopTransferred(__instance, rosterSide, entry.Key, transferredAmount, isPrisoner);
             }
         }
 
