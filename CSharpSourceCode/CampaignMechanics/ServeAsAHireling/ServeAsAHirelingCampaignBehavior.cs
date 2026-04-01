@@ -377,7 +377,22 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
         {
             return Campaign.Current?.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>()?.HasPendingNativeHirelingEncounterCleanup() ?? false;
         }
+        private bool HasActiveNativeHirelingJoinedBattleEncounter()
+        {
+            var currentEncounter = PlayerEncounter.Current;
+            var currentBattle = PlayerEncounter.Battle;
 
+            return currentEncounter?.IsJoinedBattle == true
+                && currentBattle != null
+                && !currentBattle.HasWinner
+                && PlayerEncounter.EncounterSettlement == null
+                && currentEncounter.EncounterState != PlayerEncounterState.End;
+        }
+
+        internal static bool HasActiveNativeJoinedBattleEncounter()
+        {
+            return Campaign.Current?.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>()?.HasActiveNativeHirelingJoinedBattleEncounter() ?? false;
+        }
         private bool IsCurrentHirelingBattleJoinable(MobileParty battleParty)
         {
             return battleParty?.MapEventSide != null
@@ -391,13 +406,13 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             // Intercept encounter menu when enlisted to prevent crashes from bad PlayerEncounter state
             if (IsEnlisted() && menuId == "encounter" && !_startBattle)
             {
-                if (PlayerEncounter.Current?.IsJoinedBattle == true
-                    && (HasJoinableHirelingBattle() || HasPendingNativeHirelingEncounterCleanup()))
+                if (HasActiveNativeHirelingJoinedBattleEncounter()
+                    || HasPendingNativeHirelingEncounterCleanup())
                 {
                     return;
                 }
 
-                if (PlayerEncounter.Current != null && HasPendingNativeHirelingEncounterCleanup())
+                if (PlayerEncounter.Current?.IsJoinedBattle == true && HasJoinableHirelingBattle())
                 {
                     return;
                 }
@@ -1314,7 +1329,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 }
 
                 var waitingForNativeEncounterCleanup =
-                    HasPendingNativeHirelingEncounterCleanup();
+                    HasActiveNativeHirelingJoinedBattleEncounter()
+                    || HasPendingNativeHirelingEncounterCleanup();
 
                 if (!_hirelingWaitMenuShown && !waitingForNativeEncounterCleanup)
                 {
