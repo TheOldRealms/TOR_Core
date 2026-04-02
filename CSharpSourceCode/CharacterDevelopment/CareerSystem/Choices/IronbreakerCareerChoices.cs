@@ -318,7 +318,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
 
         _ironDrakesPassive1.Initialize(CareerID, "+20% Fire damage for 'Irondrake' troops.", "IronDrakes", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Fire, 20), AttackTypeMask.Ranged,
             (attacker, victim, mask) => attacker.IsPlayerUnit && !attacker.IsHero && mask == AttackTypeMask.Ranged && attacker.Character.StringId.Contains("IronDrake")));
-        _ironDrakesPassive2.Initialize(CareerID, "-25% 'Oathgold' cost for 'Irondrake' troops.", "IronDrakes", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpgradeCostModifier, true, characterObject => characterObject.StringId.Contains("Irondrake")));
+        _ironDrakesPassive2.Initialize(CareerID, "-25% 'Oathgold' cost for 'Irondrake' troops.", "IronDrakes", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpgradeCostModifier, true, characterObject => characterObject.HasAttribute("Ironbreaker")));
         _ironDrakesPassive3.Initialize(CareerID, "+12 ammunition for Drakefire canisters.", "IronDrakes", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
         _ironDrakesPassive4.Initialize(CareerID, "+10% ammunition for 'Ironbreaker' troops per Ironbeard companion.", "IronDrakes", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
 

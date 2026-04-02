@@ -553,7 +553,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
     #region Resource Spending Helpers
 
-    private void AddOathGoldSpendingOption(List<InquiryElement> options, int threshold, int currentAmount)
+    private void AddOathGoldSpendingOption(List<InquiryElement> options, int threshold, float currentAmount)
     {
         if (currentAmount < threshold) return;
 

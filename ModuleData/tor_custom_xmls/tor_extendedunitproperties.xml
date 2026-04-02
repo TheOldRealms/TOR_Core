@@ -1533,7 +1533,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_ironbreaker">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Ironbreaker</string>
+    </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
@@ -1549,7 +1551,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_ironbeard">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Ironbreaker</string>
+    </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
@@ -1566,6 +1570,7 @@
   <CharacterExtendedInfo id="tor_dw_irondrake">
     <Abilities />
     <Attributes>
+      <string>Ironbreaker</string>
       <string>DwarfGun</string>
     </Attributes>
     <Resistances>
@@ -1584,6 +1589,7 @@
   <CharacterExtendedInfo id="tor_dw_irondrake_trollhammer">
     <Abilities />
     <Attributes>
+      <string>Ironbreaker</string>
       <string>DwarfGun</string>
       <string>Piercing</string>
     </Attributes>
