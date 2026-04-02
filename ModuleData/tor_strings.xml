@@ -1214,6 +1214,14 @@
   <string id="str_faction_ruler.chaos_culture_f" text="{=str_tor_faction_ruler_chaos_culture_f}Chaos Lord" />
   <string id="str_faction_official.chaos_culture" text="{=str_tor_faction_official_chaos_culture}chaos lord" />
   <string id="str_faction_official.chaos_culture_f" text="{=str_tor_faction_official_chaos_culture_f}chaos lord" />
+  <string id="str_faction_ruler.sturgia" text="{=str_tor_faction_ruler_sturgia}King" />
+  <string id="str_faction_ruler.sturgia_f" text="{=str_tor_faction_ruler_sturgia_f}Queen" />
+  <string id="str_faction_official.sturgia" text="{=str_tor_faction_official_sturgia_f}a lord" />
+  <string id="str_faction_official.sturgia_f" text="{=str_tor_faction_official_sturgia_f}a lady" />
+    <string id="str_faction_ruler.aserai" text="{=str_tor_faction_ruler_aserai}Warlord" />
+  <string id="str_faction_ruler.aserai_f" text="{=str_tor_faction_ruler_aserai_f}Warlord" />
+  <string id="str_faction_official.aserai" text="{=str_tor_faction_official_aserai}a warboss" />
+  <string id="str_faction_official.aserai_f" text="{=str_tor_faction_official_aserai_f}a warboss" />
 
   <string id="str_faction_ruler_term_in_speech.empire" text="{=!}{RULER.NAME}" />
   <string id="str_faction_ruler_term_in_speech.khuzait" text="{=!}{RULER.NAME}" />
@@ -1222,6 +1230,8 @@
   <string id="str_faction_ruler_term_in_speech.battania" text="{=!}{RULER.NAME}" />
   <string id="str_faction_ruler_term_in_speech.eonir" text="{=!}{RULER.NAME}" />
   <string id="str_faction_ruler_term_in_speech.chaos_culture" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_ruler_term_in_speech.sturgia" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_ruler_term_in_speech.aserai" text="{=!}{RULER.NAME}" />
 
   <string id="str_faction_ruler_name_with_title.empire" text="{=!}{RULER.NAME}" />
   <string id="str_faction_noble_name_with_title.empire" text="{=!}{RULER.NAME}" />
@@ -1237,6 +1247,10 @@
   <string id="str_faction_noble_name_with_title.eonir" text="{=!}{RULER.NAME}" />
   <string id="str_faction_ruler_name_with_title.chaos_culture" text="{=!}{RULER.NAME}" />
   <string id="str_faction_noble_name_with_title.chaos_culture" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_ruler_name_with_title.sturgia" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_noble_name_with_title.sturgia" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_ruler_name_with_title.aserai" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_noble_name_with_title.aserai" text="{=!}{RULER.NAME}" />
 
   <string id="str_adjective_for_faction.averland" text="{=str_tor_adjective_for_faction_averland}imperial" />
   <string id="str_adjective_for_faction.stirland" text="{=str_tor_adjective_for_faction_stirland}imperial" />
