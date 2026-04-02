@@ -18,7 +18,7 @@ namespace TOR_Core.GameManagers
         {
             RegisterGameKey(new GameKey(QuickCastSelectionMenu, "QuickCastSelectionMenu", nameof(TORGameKeyContext), InputKey.Q, nameof(TORGameKeyContext)));
             RegisterGameKey(new GameKey(QuickCast, "QuickCast", nameof(TORGameKeyContext), InputKey.MiddleMouseButton, nameof(TORGameKeyContext)));
-            RegisterGameKey(new GameKey(CareerAbilityCast, "CareerAbilityCast", nameof(TORGameKeyContext), InputKey.LeftAlt, nameof(TORGameKeyContext)));
+            RegisterGameKey(new GameKey(CareerAbilityCast, "CareerAbilityCast", nameof(TORGameKeyContext), InputKey.Invalid, nameof(TORGameKeyContext)));
         }
     }
 
