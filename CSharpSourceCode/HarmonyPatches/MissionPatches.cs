@@ -91,8 +91,7 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch("ScriptingInterfaceOfIMBMission", "InitializeMission")]
         public static void SetSceneAtmosphere(ref MissionInitializerRecord rec)
         {
-            if (rec.SceneName == "TOR_graveyard_01_atmo_w_night" // limit this to scripted scenes only. village battles need normal campaign init for post battle return
-                || rec.SceneName == "TOR_chaos_portal_001_atmo_w_night") 
+            if (rec.SceneName.Contains("atmo_w_night") )
             {
                 rec.PlayingInCampaignMode = false;
                 rec.AtmosphereOnCampaign = default;
