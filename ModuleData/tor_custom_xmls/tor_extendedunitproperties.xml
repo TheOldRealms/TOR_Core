@@ -1201,9 +1201,11 @@
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.50" />
     </Resistances>
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="5.00" />
+    </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Magical" Percent="1.00" />
     </DamageProportions>
     <ResourceCost ResourceType="ForestHarmony" UpkeepCost="3" UpgradeCost="0" />
   </CharacterExtendedInfo>
@@ -3403,6 +3405,17 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beast_ungor_chief_raider">
+    <Abilities />
+    <Attributes>
+      <string>Expendable</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_beast_ungor_chief">
     <Abilities />
     <Attributes />
@@ -4641,7 +4654,6 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="OathGold" UpkeepCost="3" UpgradeCost="0" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wh_retinue">
     <Abilities />

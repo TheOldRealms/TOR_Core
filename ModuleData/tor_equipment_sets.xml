@@ -2834,7 +2834,7 @@
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_we_weapon_2h_axe_001" />
       <Equipment slot="Head" id="Item.tor_we_head_hood_ranger_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_ranger_002" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_ranger_001" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_ranger_001" />
@@ -2842,7 +2842,7 @@
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_we_weapon_2h_axe_001" />
       <Equipment slot="Head" id="Item.tor_we_head_hood_ranger_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_ranger_002" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_ranger_001" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_ranger_001" />
@@ -2852,7 +2852,7 @@
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_we_weapon_2h_axe_001" />
       <Equipment slot="Head" id="Item.tor_we_head_mask_eternalguard_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_ranger_002" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_ranger_001" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_ranger_001" />
@@ -2860,7 +2860,7 @@
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_we_weapon_2h_axe_001" />
       <Equipment slot="Head" id="Item.tor_we_head_mask_eternalguard_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_ranger_002" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_ranger_001" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_ranger_001" />
@@ -18430,87 +18430,159 @@
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
-      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_002" />
-      <Equipment slot="Cape" id="Item.battania_woodland_cloak" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.steppe_bow" />
-      <Equipment slot="Item1" id="Item.default_arrows" />
-      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_002" />
-      <Equipment slot="Cape" id="Item.battania_woodland_cloak" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.steppe_bow" />
-      <Equipment slot="Item1" id="Item.default_arrows" />
-      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_003" />
-      <Equipment slot="Cape" id="Item.battania_woodland_cloak" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.steppe_bow" />
-      <Equipment slot="Item1" id="Item.default_arrows" />
-      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_003" />
-      <Equipment slot="Cape" id="Item.battania_woodland_cloak" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.steppe_bow" />
-      <Equipment slot="Item1" id="Item.default_arrows" />
-      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_003" />
-      <Equipment slot="Cape" id="Item.battania_shoulder_strap" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.steppe_bow" />
-      <Equipment slot="Item1" id="Item.default_arrows" />
-      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_003" />
-      <Equipment slot="Cape" id="Item.battania_shoulder_strap" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.steppe_bow" />
-      <Equipment slot="Item1" id="Item.default_arrows" />
-      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_spear_ungor_004" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Cape" id="Item.battania_shoulder_strap" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.steppe_bow" />
-      <Equipment slot="Item1" id="Item.default_arrows" />
-      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_spear_ungor_004" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Cape" id="Item.battania_shoulder_strap" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.steppe_bow" />
-      <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_001" />
-      <Equipment slot="Cape" id="Item.a_khuzait_leather_shoulder_b_b" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_001" />
-      <Equipment slot="Cape" id="Item.a_khuzait_leather_shoulder_b_b" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
-      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_spear_ungor_002" />
-      <Equipment slot="Cape" id="Item.a_khuzait_leather_shoulder_b_b" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_002" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
-      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_spear_ungor_002" />
-      <Equipment slot="Cape" id="Item.a_khuzait_leather_shoulder_b_b" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_002" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.steppe_bow" />
+      <Equipment slot="Item1" id="Item.default_arrows" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_003" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.steppe_bow" />
+      <Equipment slot="Item1" id="Item.default_arrows" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_003" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.steppe_bow" />
+      <Equipment slot="Item1" id="Item.default_arrows" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.steppe_bow" />
+      <Equipment slot="Item1" id="Item.default_arrows" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.steppe_bow" />
+      <Equipment slot="Item1" id="Item.default_arrows" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.steppe_bow" />
+      <Equipment slot="Item1" id="Item.default_arrows" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_002" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.steppe_bow" />
+      <Equipment slot="Item1" id="Item.default_arrows" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_003" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.steppe_bow" />
+      <Equipment slot="Item1" id="Item.default_arrows" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_003" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_004" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Cape" id="Item.aserai_horseman_shoulder" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_004" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_beast_ungor_raider_chief_template" culture="Culture.steppe_bandits">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.lowland_longbow" />
+      <Equipment slot="Item1" id="Item.barbed_arrows" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_002" />
+      <Equipment slot="Cape" id="Item.battania_woodland_cloak" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.lowland_longbow" />
+      <Equipment slot="Item1" id="Item.barbed_arrows" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_002" />
+      <Equipment slot="Cape" id="Item.battania_woodland_cloak" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.lowland_longbow" />
+      <Equipment slot="Item1" id="Item.barbed_arrows" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_003" />
+      <Equipment slot="Cape" id="Item.battania_woodland_cloak" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.lowland_longbow" />
+      <Equipment slot="Item1" id="Item.barbed_arrows" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_003" />
+      <Equipment slot="Cape" id="Item.battania_woodland_cloak" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.lowland_longbow" />
+      <Equipment slot="Item1" id="Item.barbed_arrows" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_003" />
+      <Equipment slot="Cape" id="Item.battania_shoulder_strap" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.lowland_longbow" />
+      <Equipment slot="Item1" id="Item.barbed_arrows" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_003" />
+      <Equipment slot="Cape" id="Item.battania_shoulder_strap" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.lowland_longbow" />
+      <Equipment slot="Item1" id="Item.barbed_arrows" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_spear_ungor_004" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
+      <Equipment slot="Cape" id="Item.battania_shoulder_strap" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.lowland_longbow" />
+      <Equipment slot="Item1" id="Item.barbed_arrows" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_spear_ungor_004" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
+      <Equipment slot="Cape" id="Item.battania_shoulder_strap" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.lowland_longbow" />
+      <Equipment slot="Item1" id="Item.barbed_arrows" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_001" />
+      <Equipment slot="Cape" id="Item.a_khuzait_leather_shoulder_b_b" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.lowland_longbow" />
+      <Equipment slot="Item1" id="Item.barbed_arrows" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_001" />
+      <Equipment slot="Cape" id="Item.a_khuzait_leather_shoulder_b_b" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.lowland_longbow" />
+      <Equipment slot="Item1" id="Item.barbed_arrows" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_spear_ungor_002" />
+      <Equipment slot="Cape" id="Item.a_khuzait_leather_shoulder_b_b" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.lowland_longbow" />
+      <Equipment slot="Item1" id="Item.barbed_arrows" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_spear_ungor_002" />
+      <Equipment slot="Cape" id="Item.a_khuzait_leather_shoulder_b_b" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.lowland_longbow" />
+      <Equipment slot="Item1" id="Item.barbed_arrows" />
+      <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_004" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
+      <Equipment slot="Cape" id="Item.aserai_horseman_shoulder" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.lowland_longbow" />
+      <Equipment slot="Item1" id="Item.barbed_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_004" />
       <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
       <Equipment slot="Cape" id="Item.aserai_horseman_shoulder" />
@@ -23073,7 +23145,7 @@
       <Equipment slot="Item0" id="Item.aserai_2haxe_1_t3" />
       <Equipment slot="Item1" id="Item.eastern_spear_1_t2_blunt" />
       <Equipment slot="Item2" id="Item.bound_desert_round_shield" />
-      <Equipment slot="Head" id="Item.tor_greenskin_goblin_warboss_helmet_002" />
+      <Equipment slot="Head" id="Item.tor_greenskin_goblin_warboss_helmet_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_warboss_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_warboss_001" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_warboss_001" />
@@ -23085,12 +23157,66 @@
       <Equipment slot="Item0" id="Item.aserai_2haxe_1_t3" />
       <Equipment slot="Item1" id="Item.eastern_spear_1_t2_blunt" />
       <Equipment slot="Item2" id="Item.bound_desert_round_shield" />
-      <Equipment slot="Head" id="Item.tor_greenskin_goblin_warboss_helmet_002" />
+      <Equipment slot="Head" id="Item.tor_greenskin_goblin_warboss_helmet_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_warboss_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_warboss_001" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_warboss_001" />
       <Equipment slot="Leg" id="Item.tor_greenskin_boots_goblin_warboss_001" />
       <Equipment slot="Horse" id="Item.tor_greenskin_mount_wolf_001" />
+      <Equipment slot="HorseHarness" id="Item.tor_greenskin_mountarmor_wolf_saddle_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_gs_goblin_warboss_template_002" culture="Culture.aserai">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.steppe_war_bow" />
+      <Equipment slot="Item1" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Item3" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Head" id="Item.tor_greenskin_goblin_warboss_helmet_002" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_warboss_001" />
+      <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_warboss_001" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_warboss_001" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_boots_goblin_warboss_001" />
+      <Equipment slot="Horse" id="Item.tor_greenskin_mount_wolf_002" />
+      <Equipment slot="HorseHarness" id="Item.tor_greenskin_mountarmor_wolf_saddle_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.steppe_war_bow" />
+      <Equipment slot="Item1" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Item3" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Head" id="Item.tor_greenskin_goblin_warboss_helmet_002" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_warboss_001" />
+      <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_warboss_001" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_warboss_001" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_boots_goblin_warboss_001" />
+      <Equipment slot="Horse" id="Item.tor_greenskin_mount_wolf_002" />
+      <Equipment slot="HorseHarness" id="Item.tor_greenskin_mountarmor_wolf_saddle_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_gs_goblin_warboss_template_003" culture="Culture.aserai">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.leather_bound_kite_shield" />
+      <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Item2" id="Item.eastern_spear_1_t2_blunt" />
+      <Equipment slot="Head" id="Item.tor_greenskin_goblin_warboss_helmet_003" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_warboss_001" />
+      <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_warboss_001" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_warboss_001" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_boots_goblin_warboss_001" />
+      <Equipment slot="Horse" id="Item.tor_greenskin_mount_wolf_002" />
+      <Equipment slot="HorseHarness" id="Item.tor_greenskin_mountarmor_wolf_saddle_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.leather_bound_kite_shield" />
+      <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Item2" id="Item.eastern_spear_1_t2_blunt" />
+      <Equipment slot="Head" id="Item.tor_greenskin_goblin_warboss_helmet_003" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_warboss_001" />
+      <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_warboss_001" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_warboss_001" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_boots_goblin_warboss_001" />
+      <Equipment slot="Horse" id="Item.tor_greenskin_mount_wolf_002" />
       <Equipment slot="HorseHarness" id="Item.tor_greenskin_mountarmor_wolf_saddle_001" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -23171,20 +23297,6 @@
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_orc_black_1_001" />
       <Equipment slot="Leg" id="Item.tor_greenskin_boots_orc_boyz_001" />
     </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_mace_001" />
-      <Equipment slot="Head" id="Item.tor_greenskin_orc_arrer_boyz_hood_003" />
-      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_orc_shaman_003" />
-      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_orc_black_1_001" />
-      <Equipment slot="Leg" id="Item.tor_greenskin_boots_orc_black_1_001" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_mace_001" />
-      <Equipment slot="Head" id="Item.tor_greenskin_orc_arrer_boyz_hood_003" />
-      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_orc_shaman_003" />
-      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_orc_black_1_001" />
-      <Equipment slot="Leg" id="Item.tor_greenskin_boots_orc_black_1_001" />
-    </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_gs_people_notable_artisan_merchant" culture="Culture.aserai">
     <EquipmentSet>
@@ -23202,22 +23314,6 @@
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_big_un_002" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_orc_choppa_003" />
       <Equipment slot="Leg" id="Item.tor_greenskin_boots_orc_black_1_001" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_sword_004" />
-      <Equipment slot="Head" id="Item.tor_greenskin_orc_arrer_boyz_hood_001" />
-      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_orc_boyz_001" />
-      <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_big_un_003" />
-      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_shaman_003" />
-      <Equipment slot="Leg" id="Item.tor_greenskin_boots_orc_boar_boyz_001" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_sword_004" />
-      <Equipment slot="Head" id="Item.tor_greenskin_orc_arrer_boyz_hood_001" />
-      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_orc_boyz_001" />
-      <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_big_un_003" />
-      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_shaman_003" />
-      <Equipment slot="Leg" id="Item.tor_greenskin_boots_orc_boar_boyz_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_gs_people_notable_artisan_shopworker" culture="Culture.aserai">
@@ -25677,7 +25773,7 @@
   <EquipmentRoster id="tor_cc_we_gladerider_3" culture="Culture.battania">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.imperial_spear_t2" />
-      <Equipment slot="Item2" id="Item.highland_ranger_bow" />
+      <Equipment slot="Item2" id="Item.steppe_heavy_bow" />
       <Equipment slot="Item3" id="Item.barbed_arrows" />
       <Equipment slot="Body" id="Item.tor_we_body_armor_civil_001" />
       <Equipment slot="Gloves" id="Item.padded_vambrace" />
@@ -25687,7 +25783,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.imperial_spear_t2" />
-      <Equipment slot="Item2" id="Item.highland_ranger_bow" />
+      <Equipment slot="Item2" id="Item.steppe_heavy_bow" />
       <Equipment slot="Item3" id="Item.barbed_arrows" />
       <Equipment slot="Body" id="Item.tor_we_body_armor_civil_001" />
       <Equipment slot="Gloves" id="Item.padded_vambrace" />

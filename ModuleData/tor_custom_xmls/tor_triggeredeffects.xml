@@ -2439,7 +2439,7 @@
                              SoundEffectId="none"
                              SoundEffectLength="0"
                              DamageType="Physical"
-                             DamageAmount="90"
+                             DamageAmount="120"
                              Radius="3"
                              HasShockWave="true"
                              DoNotAlignParticleEffectPrefabOnImpact="true"

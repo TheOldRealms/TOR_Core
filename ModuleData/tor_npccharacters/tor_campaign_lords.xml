@@ -36,7 +36,7 @@
       <EquipmentSet id="tor_hisme_stoutheart_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_college_magic_1" default_group="cavalry" name="{=str_tor_emp_lord_college_magic_1}Supreme Patriarch Balthazar Gelt" occupation="Lord" culture="Culture.empire" voice="curt" age="25" skill_template="SkillSet.tor_skills_caster_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_college_magic_1" default_group="cavalry" name="{=str_tor_emp_lord_college_magic_1}Supreme Patriarch Balthazar Gelt" occupation="Lord" culture="Culture.empire" voice="curt" age="25" skill_template="SkillSet.tor_skills_gelt" is_hero="true">
     <face>
       <BodyProperties version="4" age="45" weight="0.1" build="0.3" key="0005C00AC544300034F0083EA595AF5989A8571076A85848828603DF8CC866A50086160308756D64000000000000000000000000000000000000000023047046" />
     </face>
@@ -11984,8 +11984,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_skull_smasherz_second_7" default_group="infantry" name="{=str_tor_greenskin_lord_skull_smasherz_second_7}Shaman Razzglit" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orcshaman_lord" is_female="false" race="orc" is_hero="true">
@@ -12074,8 +12074,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_black_pit_first_4" default_group="infantry" name="{=str_tor_greenskin_lord_black_pit_first_4}Chief Zonkzag Snottoof" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -12092,8 +12092,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_black_pit_first_5" default_group="infantry" name="{=str_tor_greenskin_lord_black_pit_first_5}Chief Grulsnag Cankersniffa" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -12146,8 +12146,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_black_pit_first_8" default_group="infantry" name="{=str_tor_greenskin_lord_black_pit_first_8}Shaman Grulwonk Dirtnose" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -12182,8 +12182,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_black_pit_first_10" default_group="infantry" name="{=str_tor_greenskin_lord_black_pit_first_10}Chief Ignok Danksplatta" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -12200,8 +12200,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_black_pit_first_11" default_group="infantry" name="{=str_tor_greenskin_lord_black_pit_first_11}Shaman Grulnat Poisongobba" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -12254,8 +12254,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_bloody_spearz_first_2" default_group="infantry" name="{=str_tor_greenskin_lord_bloody_spearz_first_2}Shaman Kakglat Deathgutz" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -12272,8 +12272,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_bloody_spearz_first_3" default_group="infantry" name="{=str_tor_greenskin_lord_bloody_spearz_first_3}Warboss Snufflak Wolfbita" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -12326,8 +12326,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_bloody_spearz_first_6" default_group="infantry" name="{=str_tor_greenskin_lord_bloody_spearz_first_6}Warboss Stizglops Gloomfinga" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -12362,8 +12362,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_bloody_spearz_first_8" default_group="infantry" name="{=str_tor_greenskin_lord_bloody_spearz_first_8}Warboss Glartsnik Siksack" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -12416,8 +12416,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_bloody_spearz_second_3" default_group="infantry" name="{=str_tor_greenskin_lord_bloody_spearz_second_3}Warboss Da Evil Heg" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -12452,8 +12452,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_bloody_spearz_second_5" default_group="infantry" name="{=str_tor_greenskin_lord_bloody_spearz_second_5}Warboss Skagzat Dirtgobbla" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -12488,8 +12488,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_bloody_spearz_second_7" default_group="infantry" name="{=str_tor_greenskin_lord_bloody_spearz_second_7}Warboss Gitnibz Cackletongue" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -12542,8 +12542,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_reavaz_first_2" default_group="infantry" name="{=str_tor_greenskin_lord_reavaz_first_2}Furst Mate Zonkgaz Badguzzla" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -12578,8 +12578,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_reavaz_first_4" default_group="infantry" name="{=str_tor_greenskin_lord_reavaz_first_4}Sailmasta Nitstik Snotnose" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -12650,8 +12650,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_reavaz_first_8" default_group="infantry" name="{=str_tor_greenskin_lord_reavaz_first_8}Boats-'Un Snuffglub Dampfinga" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -12722,8 +12722,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_reavaz_first_12" default_group="infantry" name="{=str_tor_greenskin_lord_reavaz_first_12}Bordin' Leada Gibgat Poisonarmz" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -12740,8 +12740,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_red_eye_factionleader" default_group="infantry" name="{=str_tor_greenskin_lord_red_eye_factionleader}Warlord O’nery Backslider" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -12776,8 +12776,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_red_eye_first_3" default_group="infantry" name="{=str_tor_greenskin_lord_red_eye_first_3}Warboss Slitgaz Snotguzzla" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -12794,8 +12794,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_red_eye_first_4" default_group="infantry" name="{=str_tor_greenskin_lord_red_eye_first_4}Warboss Iggrit Slugsmakka" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -12830,8 +12830,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_red_eye_first_6" default_group="infantry" name="{=str_tor_greenskin_lord_red_eye_first_6}Warboss Stizlik Drizzlesmakka" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -12866,8 +12866,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_red_eye_first_8" default_group="infantry" name="{=str_tor_greenskin_lord_red_eye_first_8}Warboss Shubgur Lurchsponge" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -12920,8 +12920,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_red_eye_first_11" default_group="infantry" name="{=str_tor_greenskin_lord_red_eye_first_11}Warboss Snuffnank Gunkbelly" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -12974,8 +12974,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_red_eye_second_2" default_group="infantry" name="{=str_tor_greenskin_lord_red_eye_second_2}Warboss Gorkil Da Ponce" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -12992,8 +12992,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_red_eye_second_3" default_group="infantry" name="{=str_tor_greenskin_lord_red_eye_second_3}Warboss Snagga Da Sneaky" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -13046,8 +13046,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_red_eye_second_6" default_group="infantry" name="{=str_tor_greenskin_lord_red_eye_second_6}Warboss Nobber Elfbiter" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -13064,8 +13064,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_red_eye_second_7" default_group="infantry" name="{=str_tor_greenskin_lord_red_eye_second_7}Warboss Daggit Barkbiter" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -13082,8 +13082,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_red_eye_second_8" default_group="infantry" name="{=str_tor_greenskin_lord_red_eye_second_8}Warboss Digga Erfglobba" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
@@ -13100,8 +13100,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" />
-      <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" />
+      <EquipmentSet id="tor_gs_goblin_warboss_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_lord_factionleader" default_group="cavalry" name="{=str_tor_chaos_lord_factionleader}Chaos Lord Mortkin" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="marauder" is_hero="true">
