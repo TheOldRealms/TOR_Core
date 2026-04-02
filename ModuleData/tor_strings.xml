@@ -1216,7 +1216,7 @@
   <string id="str_faction_official.chaos_culture_f" text="{=str_tor_faction_official_chaos_culture_f}chaos lord" />
   <string id="str_faction_ruler.sturgia" text="{=str_tor_faction_ruler_sturgia}King" />
   <string id="str_faction_ruler.sturgia_f" text="{=str_tor_faction_ruler_sturgia_f}Queen" />
-  <string id="str_faction_official.sturgia" text="{=str_tor_faction_official_sturgia_f}a lord" />
+  <string id="str_faction_official.sturgia" text="{=str_tor_faction_official_sturgia}a lord" />
   <string id="str_faction_official.sturgia_f" text="{=str_tor_faction_official_sturgia_f}a lady" />
     <string id="str_faction_ruler.aserai" text="{=str_tor_faction_ruler_aserai}Warlord" />
   <string id="str_faction_ruler.aserai_f" text="{=str_tor_faction_ruler_aserai_f}Warlord" />
