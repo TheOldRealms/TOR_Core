@@ -2488,6 +2488,9 @@
   <NPCCharacter id="tor_dawi_runelord_trainer_0" default_group="infantry" name="{=str_tor_dawi_runelord_trainer_0}{FIRSTNAME} of the Runesmiths Guild" occupation="Special" culture="Culture.sturgia" voice="ironic" age="30" race="dwarf" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.dwarf_high_tier" />
+	   <beard_tags>
+        <beard_tag name="RunelordBeard" />
+      </beard_tags>
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />
@@ -2504,6 +2507,9 @@
   <NPCCharacter id="tor_dawi_engineers_guild_npc_0" default_group="infantry" name="{=str_tor_dawi_engineers_guild_npc_0}{FIRSTNAME} of the Engineers Guild" occupation="Special" culture="Culture.sturgia" voice="ironic" age="30" race="dwarf" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.dwarf_high_tier" />
+	   <beard_tags>
+        <beard_tag name="RangerBeard" />
+      </beard_tags>
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />
@@ -2520,6 +2526,9 @@
   <NPCCharacter id="tor_dawi_miner_guild_npc_0" default_group="infantry" name="{=str_tor_dawi_miner_guild_npc_0}{FIRSTNAME} of the Miners Guild" occupation="Special" culture="Culture.sturgia" voice="ironic" age="30" race="dwarf" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <beard_tags>
+        <beard_tag name="ThaneBeard" />
+      </beard_tags>
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />
@@ -2536,6 +2545,9 @@
   <NPCCharacter id="tor_dawi_brewers_guild_npc_0" default_group="infantry" name="{=str_tor_dawi_brewers_guild_npc_0}{FIRSTNAME} of the Brewers Guild" occupation="Special" culture="Culture.sturgia" voice="ironic" age="30" race="dwarf" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <beard_tags>
+        <beard_tag name="RangerBeard" />
+      </beard_tags>
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />
@@ -2552,6 +2564,10 @@
   <NPCCharacter id="tor_dawi_warriors_guild_npc_0" default_group="infantry" name="{=str_tor_dawi_warriors_guild_npc_0}{FIRSTNAME} of the Warriors Guild" occupation="Special" culture="Culture.sturgia" voice="ironic" age="30" race="dwarf" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <beard_tags>
+        <beard_tag name="ThaneBeard" />
+		<beard_tag name="IronbreakerBeard" />
+      </beard_tags>
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />
