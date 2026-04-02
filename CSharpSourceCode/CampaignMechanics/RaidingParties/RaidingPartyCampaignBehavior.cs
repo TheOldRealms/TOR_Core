@@ -29,10 +29,16 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
 
         private void DailyTickSettlement(Settlement settlement) //Sly : weekly tick and it spawns a big burst? spawning every other day? lower party count?
         {
-            if (settlement.SettlementComponent is BaseRaiderSpawnerComponent)
+            if (settlement.SettlementComponent is BaseRaiderSpawnerComponent component)
             {
-                var component = settlement.SettlementComponent as BaseRaiderSpawnerComponent;
-                if (component.RaidingPartyCount < 5 && component.IsActive) component.SpawnNewParty(out _, null);
+                if (component.RaidingPartyCount >= 5 || !component.IsActive)
+                    return;
+
+                // Troll caves have reduced spawn chance
+                if (component is TrollCaveComponent && MBRandom.RandomFloat >= 0.10f)
+                    return;
+
+                component.SpawnNewParty(out _, null);
             }
         }
 
