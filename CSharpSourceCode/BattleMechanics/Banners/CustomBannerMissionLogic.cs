@@ -89,12 +89,17 @@ namespace TOR_Core.BattleMechanics.Banners
         {
             if (_agentsWithBanners.ContainsKey(affectedAgent.Index))
             {
-                if (affectedAgent.Equipment != null &&
-                    !affectedAgent.Equipment[_agentsWithBanners[affectedAgent.Index]].IsEmpty)
+                var fakeBannerSlot = _agentsWithBanners[affectedAgent.Index];
+
+                if (agentState != AgentState.Routed &&
+                    affectedAgent.Equipment != null &&
+                    !affectedAgent.Equipment[fakeBannerSlot].IsEmpty)
                 {
                     //Sly : is this here because of some sort of crash? or is the intention to have far less shields be on the ground from agents dying?
-                    affectedAgent.RemoveEquippedWeapon(_agentsWithBanners[affectedAgent.Index]);
+                    // keep old cleanup for killed/unconscious removals
+                    affectedAgent.RemoveEquippedWeapon(fakeBannerSlot);
                 }
+                _agentsWithBanners.Remove(affectedAgent.Index);
             }
         }
 
