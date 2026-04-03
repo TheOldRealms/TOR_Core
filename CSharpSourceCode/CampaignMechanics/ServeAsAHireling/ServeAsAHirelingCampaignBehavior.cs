@@ -1009,6 +1009,9 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             dataStore.SyncData("_manuallyFoughtBattles", ref _manuallyFoughtBattles);
             dataStore.SyncData("_durationInDays", ref _durationInDays);
             dataStore.SyncData("_currentActivityIndex", ref _currentActivityIndex);
+            dataStore.SyncData("_inPostBattleTransition", ref _inPostBattleTransition);
+            dataStore.SyncData("_joinedHirelingCleanupBattle", ref _joinedHirelingCleanupBattle);
+            dataStore.SyncData("_deadJoinedEncounterCleanupTicks", ref _deadJoinedEncounterCleanupTicks);
         }
 
         private void party_wait_talk_to_other_members_on_init(MenuCallbackArgs args) { }
@@ -1108,21 +1111,17 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             while (Campaign.Current.CurrentMenuContext != null)
                 GameMenu.ExitToLast();
 
-            var hasAnySettlementState =
-                PlayerEncounter.EncounterSettlement != null ||
-                MobileParty.MainParty.CurrentSettlement != null ||
-                Settlement.CurrentSettlement != null;
-
-            if (hasAnySettlementState)
+            if (enlistingLordLeftSettlement)
             {
-                if (PlayerEncounter.EncounterSettlement != null)
-                    PlayerEncounter.LeaveSettlement();
-                else if (MobileParty.MainParty.CurrentSettlement != null)
-                {
+                if (MobileParty.MainParty.CurrentSettlement != null)
                     LeaveSettlementAction.ApplyForParty(MobileParty.MainParty);
-                    PartyBase.MainParty.SetVisualAsDirty();
-                }
+
+                PartyBase.MainParty.SetVisualAsDirty();
+                _hirelingWaitMenuShown = false;
+                GameMenu.ActivateGameMenu("hireling_menu");
+                return;
             }
+
             if (PlayerEncounter.Current != null
                 && PlayerEncounter.EncounterSettlement == null
                 && PlayerEncounter.Current.EncounterState == PlayerEncounterState.End)
@@ -1130,12 +1129,24 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             if (PlayerEncounter.LocationEncounter != null)
                 PlayerEncounter.LocationEncounter = null;
 
+            PartyBase.MainParty.SetVisualAsDirty();
+            _hirelingWaitMenuShown = false;
             GameMenu.ActivateGameMenu("hireling_menu");
         }
 
         private void EnlistingLordPartyEntersSettlement(MobileParty mobileParty, Settlement settlement, Hero partyHero)
         {
-            if (!_hirelingEnlisted || !settlement.IsTown) return;
+            if (!_hirelingEnlisted || _hirelingEnlistingLord == null) return;
+            if (_hirelingEnlistingLord.PartyBelongedTo != mobileParty) return;
+
+            if (!settlement.IsTown)
+            {
+                _hirelingWaitMenuShown = false;
+                GameMenu.ActivateGameMenu("hireling_menu");
+                _hirelingWaitMenuShown = true;
+                return;
+            }
+
             if (MobileParty.MainParty.CurrentSettlement == settlement && PlayerEncounter.EncounterSettlement == settlement) return;
             if (_hirelingEnlistingLord != null && _hirelingEnlistingLord.PartyBelongedTo == mobileParty)
             {
@@ -1302,12 +1313,18 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             if (_hirelingEnlisted && _hirelingEnlistingLord?.PartyBelongedTo != null)
             {
                 // Clear post-battle transition flag once we're stable (no active battle, menu shown)
-                if (_inPostBattleTransition
+                var playerParty = MobileParty.MainParty;
+                var hasDetachedPersistedBattleState =
+                    PlayerEncounter.Current == null
+                    && !HasPendingNativeHirelingEncounterCleanup()
+                    && !HasJoinableHirelingBattle()
+                    && (playerParty.MapEventSide != null || playerParty.BesiegerCamp != null);
+
+                if ((_inPostBattleTransition || hasDetachedPersistedBattleState)
                     && !HasPendingNativeHirelingEncounterCleanup()
                     && !HasJoinableHirelingBattle()
                     && PlayerEncounter.Current == null)
                 {
-                    var playerParty = MobileParty.MainParty;
                     playerParty.MapEventSide = null;
                     playerParty.BesiegerCamp = null;
                     playerParty.CurrentSettlement = null;
@@ -1339,6 +1356,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                     SetActivities();
                     Campaign.Current.CurrentMenuContext.Refresh();
                 }
+                HidePlayerParty();
+                PartyBase.MainParty.MobileParty.Position = _hirelingEnlistingLord.PartyBelongedTo.Position;
 
                 var battleParty = GetCurrentHirelingBattleParty();
                 if (battleParty?.MapEvent != null)
