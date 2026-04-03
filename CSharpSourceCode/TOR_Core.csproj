@@ -522,7 +522,10 @@
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\AsraiTag.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\BloodDragonTag.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\CommonTags.cs" />
+    <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\DwarfTags.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\EonirTag.cs" />
+    <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\GreenskinTags.cs" />
+    <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\HumanTags.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\MousillonTag.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\VampireTags.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\CustomDialogCampaignBehavior.cs" />
