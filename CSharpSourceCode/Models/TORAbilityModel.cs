@@ -494,8 +494,12 @@ namespace TOR_Core.Models
             if (hero == null || !hero.IsSpellCaster()) return 0f;
             if (baseCharacter.Culture.StringId == TORConstants.Cultures.DAWI) return 0;
 
+            if (hero.PartyBelongedTo != MobileParty.MainParty)
+            {
+                if (hero.IsHumanPlayerCharacter) return 0.1f;//player taken prisoner
 
-            if (hero.PartyBelongedTo != MobileParty.MainParty) return 2f;//equiv to 267 spellcraft
+                return 2f;//equiv to 267 spellcraft
+            }
 
             ExplainedNumber explainedNumber = new(1f, false, null);
             SkillHelper.AddSkillBonusForCharacter(TORSkillEffects.WindsRechargeRate, baseCharacter, ref explainedNumber);

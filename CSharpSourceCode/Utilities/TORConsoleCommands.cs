@@ -2,6 +2,7 @@ using Helpers;
 using SandBox.View.Map;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
@@ -715,6 +716,24 @@ namespace TOR_Core.Utilities
             return result;
         }
 
+        [CommandLineFunctionality.CommandLineArgumentFunction("teleport_to_coordinates", "tor")]
+        public static string TeleportToCoordinates(List<string> arguments)
+        {
+            if (CampaignCheats.CheckHelp(arguments))
+            {
+                return "\nTeleports MainParty to a pair of coordinates on the campaign map with disregard for terrain. Arguments are interpreted as floats with a period as the decimal separator. Enter as form : x value | y value, eg. 1203.956 | 957.18).\n";
+            }
+
+            if (float.TryParse(arguments[0], NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out float x) && float.TryParse(arguments[2], NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out float y))
+            {
+                CampaignVec2 coordinates = new(new Vec2(x, y), true);
+
+                MobileParty.MainParty.SetPositionAfterMapChange(coordinates);
+                return "MainParty teleported to : " + x.ToString() + ", " + y.ToString() + ".";
+            }
+            
+            return "Possibly an incorrect separator has broken the parsing for the coordinate value.";
+        }
         /* Sly : Finish in a future commit. I want to be able to visualize distances from a position by drawing circles of specific radii.
         [CommandLineFunctionality.CommandLineArgumentFunction("add_circle_to_player_party", "tor")]
         public static string AddCircleToPlayerParty(List<string> arguments)

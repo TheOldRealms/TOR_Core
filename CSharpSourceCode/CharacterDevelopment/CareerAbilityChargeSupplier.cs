@@ -388,29 +388,9 @@ namespace TOR_Core.CharacterDevelopment
         {
             if (chargeType != ChargeType.DamageDone && chargeType != ChargeType.Healed) return 0;
             if (!affectingAgent.BelongsToMainParty()) return 0;
-            
-            if (affectingAgent.IsHero && mask == AttackTypeMask.Melee) return 0;
-            if (mask == AttackTypeMask.Ranged)
-            {
-                // Allow spell projectiles (AmberSpear, TheGreenEye) from the main agent to charge
-                if (affectingAgent.IsMainAgent)
-                {
-                    var missile = Mission.Current?.MissilesList.FirstOrDefault(m => m.ShooterAgent == affectingAgent);
-                    if (missile == null)
-                    {
-                        return 0;
-                    }
+            if (mask == AttackTypeMask.Ranged) return 0;
+            if (affectingAgent.IsHero && (affectingAgent.GetHero() != Hero.MainHero || mask == AttackTypeMask.Melee)) return 0;
 
-                    var itemId = missile.Weapon.Item?.StringId;
-                    if (itemId == "AmberSpear" || itemId == "TheGreenEye")
-                    {
-                        return chargeValue * 1.5f;
-                    }
-                }
-
-                return 0;
-            }
-            
             var isTreeSpirit = (affectingAgent.Character as CharacterObject).IsTreeSpirit();
             
             if (!affectingAgent.IsHero && !isTreeSpirit) return 0;

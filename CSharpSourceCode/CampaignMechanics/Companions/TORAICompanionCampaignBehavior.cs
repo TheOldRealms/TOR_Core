@@ -83,7 +83,6 @@ namespace TOR_Core.CampaignMechanics.Companions
                     MoveHeroToHomeTown(companion);
                 }
             }
-            int i = 0;
         }
 
         private void MoveHeroToHomeTown(Hero hero)
