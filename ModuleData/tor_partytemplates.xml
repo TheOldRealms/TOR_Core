@@ -662,6 +662,7 @@
 		<stacks>
 		  <PartyTemplateStack min_value="2" max_value="35" troop="NPCCharacter.tor_gs_bandit_raider" />
 		  <PartyTemplateStack min_value="1" max_value="10" troop="NPCCharacter.tor_gs_bandit_raider_boss" />
+		  <PartyTemplateStack min_value="1" max_value="20" troop="NPCCharacter.tor_gs_bandit_raider_arrer" />
 		</stacks>
 	</MBPartyTemplate>
 	<MBPartyTemplate id="troll_party_template" >

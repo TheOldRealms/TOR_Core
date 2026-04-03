@@ -5238,10 +5238,21 @@
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_gs_bandit_raider_boss" />
+      <upgrade_target id="NPCCharacter.tor_gs_bandit_raider_arrer" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_gs_bandit_raider_template" />
       <EquipmentSet id="tor_gs_bandit_raider_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_gs_bandit_raider_arrer" default_group="ranged" level="21" name="{=str_tor_gs_bandit_raider_arrer}Orc Raida Arrer" occupation="Bandit" culture="Culture.greenskin_bandit" skill_template="SkillSet.tor_skills_level21" race="orc">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_gs_bandit_raider_arrer_template" />
+      <EquipmentSet id="tor_gs_bandit_raider_arrer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_gs_bandit_raider_boss" default_group="infantry" level="26" name="{=str_tor_gs_bandit_raider_boss}Orc Raida Big 'Un" occupation="Bandit" culture="Culture.greenskin_bandit" skill_template="SkillSet.tor_skills_level26" race="orc">

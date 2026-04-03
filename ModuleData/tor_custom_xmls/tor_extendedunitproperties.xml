@@ -4958,6 +4958,17 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_gs_bandit_raider_arrer">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
+    </DamageAmplifiers>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_bandit_raider_boss">
     <Abilities />
     <Attributes />
