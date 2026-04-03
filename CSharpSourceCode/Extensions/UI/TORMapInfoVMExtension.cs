@@ -303,6 +303,7 @@ namespace TOR_Core.Extensions.UI
             _windsInfo.IntValue = _windsOfMagic;
 
             _maxArtillery = MobileParty.MainParty.GetMaxNumberOfArtillery();
+            _currentArtilleryItems = MobileParty.MainParty.GetArtilleryItems().Count;
             _artilleryInfo.HasWarning = false;
             _artilleryInfo.Value = _maxArtillery.ToString();
             _artilleryInfo.IntValue = _maxArtillery;
