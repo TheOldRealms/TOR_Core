@@ -57,7 +57,9 @@ namespace TOR_Core.BattleMechanics
 
             _elapsedSinceLastTick = 0f;
 
-            foreach (var agent in Mission.Agents)
+            Agent[] missionAgentsSnapshot = Mission.Agents.ToArray();
+
+            foreach (var agent in missionAgentsSnapshot)
             {
                 if (!ShouldProcessAgent(agent))
                 {
@@ -97,6 +99,7 @@ namespace TOR_Core.BattleMechanics
                 }
 
                 EvaluateLocalThreats(agent,
+                    missionAgentsSnapshot,
                     out bool hasCloseFootEnemy,
                     out bool hasIncomingMountedCharge,
                     out bool isIncomingMountedChargeTooCloseToSwapToLance);
@@ -274,6 +277,7 @@ namespace TOR_Core.BattleMechanics
         }
         private void EvaluateLocalThreats(
             Agent agent,
+            Agent[] missionAgentsSnapshot,
             out bool hasCloseFootEnemy,
             out bool hasIncomingMountedCharge,
             out bool isIncomingMountedChargeTooCloseToSwapToLance)
@@ -291,7 +295,7 @@ namespace TOR_Core.BattleMechanics
             float minCavalrySpeedSq = MIN_CAVALRY_SPEED_TO_ALLOW_LANCE * MIN_CAVALRY_SPEED_TO_ALLOW_LANCE;
             float approachDotThresholdSq = CAVALRY_APPROACH_DOT_THRESHOLD * CAVALRY_APPROACH_DOT_THRESHOLD;
 
-            foreach (var otherAgent in Mission.Agents)
+            foreach (var otherAgent in missionAgentsSnapshot)
             {
                 if (!otherAgent.IsActive() || !otherAgent.IsHuman)
                 {
