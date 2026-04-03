@@ -137,7 +137,10 @@ public class LootCampaignBehavior : CampaignBehaviorBase
     private void AddMagicalItemsFromBattle(MapEvent mapEvent)
     {
         if (Hero.MainHero.IsEnlisted())
+        {
+            _initialEnemyArmy.Clear();
             return;
+        }
 
         if (mapEvent.PlayerSide != mapEvent.WinningSide) return; //player dying and their troops retreating triggers a PlayerBattleEndEvent with no winner; no point in calculating this for losses
 
