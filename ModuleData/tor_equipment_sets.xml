@@ -5970,7 +5970,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_dw_gatekeeper_template" culture="Culture.sturgia">
     <EquipmentSet>
-      <Equipment slot="Item0" id="tor_dwarf_2h_hammer_007" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_2h_hammer_007" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_hammerer_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_longbeard_001" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulder_shoulderpads_longbeard_001" />
@@ -5978,7 +5978,7 @@
       <Equipment slot="Leg" id="Item.tor_dw_leg_boots_longbeard_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="tor_dwarf_2h_hammer_007" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_2h_hammer_007" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_hammerer_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_longbeard_001" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulder_shoulderpads_longbeard_001" />
@@ -18972,7 +18972,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_elspeth_von_draken_template" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Item0" id="tor_empire_staff_death_003" />
+      <Equipment slot="Item0" id="Item.tor_empire_staff_death_003" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_rapier_003" />
       <Equipment slot="Head" id="Item.tor_empire_head_hat_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_general_001" />
@@ -18983,7 +18983,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="tor_empire_staff_death_003" />
+      <Equipment slot="Item0" id="Item.tor_empire_staff_death_003" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_rapier_003" />
       <Equipment slot="Head" id="Item.tor_empire_head_hat_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_general_001" />
