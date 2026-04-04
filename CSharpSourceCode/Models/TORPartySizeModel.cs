@@ -249,6 +249,7 @@ namespace TOR_Core.Models
 
             int treemenCount = 0;
             int minotaurCount = 0;
+            int trollCount = 0;
             int dryadCount = 0;
             int elfCount = 0;
             int goblinCount = 0;
@@ -264,6 +265,10 @@ namespace TOR_Core.Models
                 else if (element.Character.IsMinotaur())
                 {
                     minotaurCount += element.Number;
+                }
+                else if (element.Character.IsTroll())
+                {
+                    trollCount += element.Number;
                 }
                 else if (element.Character.StringId == "tor_we_dryad")
                 {
@@ -281,7 +286,7 @@ namespace TOR_Core.Models
 
             // Treemen weight: 10 slots with WEDurthuSymbol, 25 slots otherwise
             bool hasDurthuSymbol = party.LeaderHero.HasAttribute("WEDurthuSymbol");
-            int treemenWeight = hasDurthuSymbol ? 10 : 25;
+            int treemenWeight = hasDurthuSymbol ? 10 : 24;
 
             if (treemenCount > 0)
             {
@@ -292,6 +297,12 @@ namespace TOR_Core.Models
             if (minotaurCount > 0)
             {
                 number.Add(-7 * minotaurCount, new TextObject("Minotaur weight"));
+            }
+
+            // Trolls take 8 slots each (7 extra beyond the 1 they already occupy)
+            if (trollCount > 0)
+            {
+                number.Add(-7 * trollCount, new TextObject("Troll weight"));
             }
 
             // WETreekinSymbol: Dryads cost 1 slot, Elves cost 2 slots
