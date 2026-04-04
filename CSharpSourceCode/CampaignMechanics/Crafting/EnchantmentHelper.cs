@@ -106,16 +106,14 @@ public static class EnchantmentHelper
 
     private static bool IsBlueprintCurrentlyApplicableToParty(string blueprintId)
     {
-        var underlyingTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == blueprintId);
-        if (underlyingTrait == null)
+        if (Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(hero => hero.HasKnownEnchantmentBlueprint(blueprintId)))
         {
-            return false;
+            return true;
         }
 
-        return Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(hero => hero.HasKnownEnchantmentBlueprint(blueprintId)) &&
-               Hero.MainHero.PartyBelongedTo.ItemRoster.Any(rosterElement =>
-                   rosterElement.EquipmentElement.Item.IsEnchantable() &&
-                   ItemTrait.IsValidFor(underlyingTrait, rosterElement.EquipmentElement.Item.ItemType));
+        return Hero.MainHero.PartyBelongedTo.ItemRoster.Any(rosterElement =>
+            TryGetBlueprintData(rosterElement.EquipmentElement.Item, out var inventoryBlueprintId, out _, out _, out _) &&
+            inventoryBlueprintId == blueprintId);
     }
 
     private static List<Hero> GetEligibleHeroesForBlueprint(string blueprintId, SkillObject requiredSkill, int requiredSkillValue, string restriction, bool requireRequiredSkill)
