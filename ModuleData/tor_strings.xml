@@ -4,7 +4,7 @@
   <!--Certain string ids are necessarily disjoint from the rest of tor's nomenclature because they are respecting a format used in native code to look up strings, eg. the crafting template deserialize looks for "GameTexts.FindText("str_crafting_template", base.StringId)" and therefore our tor_ prefix is only present in the variation.-->
   <!--Because localization ids are arbitrary, our ids in the text attribute continue to follow our pattern despite deviating from their corresponding string id.-->
   
-    3 <string id="tor_cc_review_description" text="{=str_tor_cc_review_description}The Old World awaits you, with all of its glory and horrors. This is your character. Continue if you are ready, or go back and make changes." />     
+  <string id="tor_cc_review_description" text="{=str_tor_cc_review_description}The Old World awaits you, with all of its glory and horrors. This is your character. Continue if you are ready, or go back and make changes." />     
   
   <!-- UI -->
   <string id="str_career_screen.title" text="{=str_tor_career_screen_title}Career"/>
@@ -2161,6 +2161,11 @@
   <string id="tor_customsettlement_disabled.mork_shrine_03" text="{=str_tor_customsettlement_disabled_mork_shrine_03}The shrine lies in ruins. There is nothing to do here." />
   <string id="tor_customsettlement_intro.mork_shrine_04" text="{=str_tor_customsettlement_intro_mork_shrine_04}You arrive at the shrine of the {RELIGION_LINK}. The crude altar to Mork, the cunningly brutal, fills the air with a sense of ruthlessness and ambition." />
   <string id="tor_customsettlement_disabled.mork_shrine_04" text="{=str_tor_customsettlement_disabled_mork_shrine_04}The shrine lies in ruins. There is nothing to do here." />
+
+
+	<!--Village Types-->
+	<string id="tor_villagetype_wolffarm" text="{=str_tor_villagetype_wolffarm}Wolf Farm" />
+
 
 
   <!--wanderer stories-->
@@ -5497,10 +5502,10 @@
 	<string id="tor_shrine_praying_progress" text="{=str_tor_shrine_praying_progress}Praying..."/>
 	<string id="tor_shrine_continue" text="{=str_tor_shrine_continue}Continue"/>
 	<string id="tor_shrine_defiling_progress" text="{=str_tor_shrine_defiling_progress}Defiling the shrine..."/>
-	<string id="tor_shrine_defile_result" text="{=str_tor_shrine_defile_result}You successfully gathered {DEFILE_AMOUNT} Dark Energy {DARKENERGYICON}. Followers of {GOD_NAME} will perceive this as a crime."/>
+	<string id="tor_shrine_defile_result" text="{=str_tor_shrine_defile_result}You successfully gathered {DEFILE_AMOUNT} Dark Energy {DARKENERGYICON}. Tales of your desecration reach the ears of {GOD_NAME}'s followers."/>
 	<string id="tor_shrine_defile_wraith_summon" text="{=str_tor_shrine_defile_wraith_summon}The dark energies have drawn {WRAITH_COUNT} wraith(s) to your service."/>
 	<string id="tor_shrine_looting_progress" text="{=str_tor_shrine_looting_progress}Looting the shrine..."/>
-	<string id="tor_shrine_loot_result" text="{=str_tor_shrine_loot_result}{LOOT_RESULT}. Followers of {GOD_NAME} will perceive this as a crime."/>
+	<string id="tor_shrine_loot_result" text="{=str_tor_shrine_loot_result}{LOOT_RESULT}. Tales of your butchering reach the ears of {GOD_NAME}'s followers."/>
 	<string id="tor_shrine_loot_result_detail" text="{=str_tor_shrine_loot_result_detail}You successfully looted {TOTAL_GOLD} gold, {TOTAL_FOOD} meat, and {TOTAL_TEEF} Teef"/>
 
 	<!--Oak of Ages Menus-->
