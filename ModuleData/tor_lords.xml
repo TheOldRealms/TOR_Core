@@ -2,7 +2,7 @@
 <NPCCharacters>
   <NPCCharacter id="tor_emp_lord" default_group="cavalry" name="{=str_tor_emp_lord}Empire Lord" occupation="Lord" culture="Culture.empire" voice="curt" age="50" skill_template="SkillSet.tor_custombattle_generic" is_hero="true">
     <face>
-      <BodyProperties version="4" age="32" weight="0.6" build="0.9" key="0008000B915810093F79091FB9D8C480775965867458061D4361142D93CDB688008D9603F86DBEBC000000000000000000000000000000000000000072FC60C2" />
+      <BodyProperties version="4" age="32" weight="0.6" build="0.9" key="000500000000000D797664884754DCBAA35E866295A0967774414A498C8336860F7776F20BA7B7A500000000000000000000000000000000000000003CFC2000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
