@@ -1008,7 +1008,7 @@
 		<stacks>
 			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_vc_empire_state_troop" />
 			<PartyTemplateStack min_value="6" max_value="6" troop="NPCCharacter.tor_vc_empire_archer" />
-			<PartyTemplateStack min_value="3" max_value="3" troop="NPCCharacter.tor_vc_empire_state_troop" />
+			<PartyTemplateStack min_value="3" max_value="3" troop="NPCCharacter.tor_vc_empire_veteran_state_troop" />
 			<PartyTemplateStack min_value="2" max_value="2" troop="NPCCharacter.tor_vc_empire_archer" />
 		</stacks>
 	</MBPartyTemplate>
@@ -1016,7 +1016,7 @@
 		<stacks>
 			<PartyTemplateStack min_value="10" max_value="10" troop="NPCCharacter.tor_vc_empire_state_troop" />
 			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_vc_empire_archer" />
-			<PartyTemplateStack min_value="6" max_value="6" troop="NPCCharacter.tor_vc_empire_state_troop" />
+			<PartyTemplateStack min_value="6" max_value="6" troop="NPCCharacter.tor_vc_empire_veteran_state_troop" />
 			<PartyTemplateStack min_value="4" max_value="4" troop="NPCCharacter.tor_vc_empire_archer" />
 		</stacks>
 	</MBPartyTemplate>
