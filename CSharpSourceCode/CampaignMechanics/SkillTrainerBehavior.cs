@@ -40,7 +40,7 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
         {"tor_nulnengineernpc_empire",("EngineerEmpire","Engineering", "hub","hubaftermission",[])},
         {"tor_spelltrainer_empire_0",("EmpireMagister","Spellcraft", "choices","start",["SpellCaster"])},
         {"tor_dawi_runelord_trainer_0",("DwarfRunelord","Spellcraft", "tor_dw_guildmaster_runesmith_hub","tor_dw_guildmaster_runesmith_start_reintro",["Runesmith"])},
-        {"tor_spelltrainer_vc_0",("Necromancer","Spellcraft", "priest_hubcult_of_sigmar","priest_hub_reintrocult_of_sigmar",[])},
+        {"tor_spelltrainer_vc_0",("Necromancer","Spellcraft", "choices","start",["SpellCaster"])},
     };
 
     private Dictionary<string, HeroTrainingData> _heroesInTraining = new();

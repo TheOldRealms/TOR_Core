@@ -18,6 +18,7 @@ namespace TOR_Core.HarmonyPatches
     // this stops processing them once the xp/gold cap is hit, allowing player to fast sell/donate their inventory
     // sell/buy/donate all logic is inside ui SPInventoryVM, so no model override here
     // patch vm entry points to stop once gold or donation xp limit is reached without changing the ui ordering or ctrl stack behaviors
+    [HarmonyPatch(typeof(SPInventoryVM))]
     internal static class FastTradeInventoryPatch
     {
         private static readonly MethodInfo RefreshInformationValuesMethod =
