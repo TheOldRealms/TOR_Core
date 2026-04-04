@@ -67,7 +67,7 @@ namespace TOR_Core.Items
                 {
                     foreach (var trait in statusEffectTraits)
                     {
-                        if (MBRandom.RandomFloatNormal > trait.ImbuedEffectChance)
+                        if (MBRandom.RandomFloat <= trait.ImbuedEffectChance)
                         {
                             affectedAgent.ApplyStatusEffect(trait.ImbuedStatusEffectId, affectorAgent, 5, false);
                         }

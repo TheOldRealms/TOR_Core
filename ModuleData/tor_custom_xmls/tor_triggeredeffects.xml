@@ -370,6 +370,20 @@
         <ImbuedStatusEffect>bironas_timewarp_ats</ImbuedStatusEffect>
         <ImbuedStatusEffect>bironas_timewarp_rls</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
+    <TriggeredEffectTemplate StringID="hysh_timewarp_enchant"
+                         BurstParticleEffectPrefab="none"
+                         SoundEffectId="none"
+                         SoundEffectLength="0"
+                         DamageType="Invalid"
+                         DamageAmount="0"
+                         Radius="0"
+                         HasShockWave="false"
+                         TargetType="Self"
+                         ImbuedStatusEffectDuration="3"
+                         DamageVariance="0"
+                         ScriptNameToTrigger="none">
+        <ImbuedStatusEffect>bironas_timewarp_mov</ImbuedStatusEffect>
+    </TriggeredEffectTemplate>
     <!-- LoreOfMetal -->
     <TriggeredEffectTemplate StringID="final_transmutation"
                              BurstParticleEffectPrefab="final_transmutation_ground"
@@ -2000,7 +2014,22 @@
                              TargetType="Friendly"
                              DamageVariance="0.0"
                              ImbuedStatusEffectDuration="20"
-                             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyQuickSilverWeaponItemTraitScript">
+                         ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyAzyrForesightScript">
+    </TriggeredEffectTemplate>
+
+    <TriggeredEffectTemplate StringID="shyish_deathsight_enchant"
+                         BurstParticleEffectPrefab="none"
+                         SoundEffectId="none"
+                         SoundEffectLength="0"
+                         DamageType="Invalid"
+                         DamageAmount="0"
+                         Radius="0"
+                         HasShockWave="false"
+                         TargetType="Enemy"
+                         DamageVariance="0.0"
+                         ImbuedStatusEffectDuration="10"
+                         ScriptNameToTrigger="none">
+		<ImbuedStatusEffect>shyish_deathsight</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
 	
 	<TriggeredEffectTemplate StringID="shyish_messengers_enchant"
@@ -2038,12 +2067,13 @@
                              SoundEffectLength="0"
                              DamageType="Holy"
                              DamageAmount="0"
-                             Radius="3"
                              HasShockWave="false"
-                             TargetType="Friendly"
                              DamageVariance="0.0"
                              ImbuedStatusEffectDuration="20"
                              ScriptNameToTrigger="">
+                         Radius="0"
+                         TargetType="Self"
+		 <ImbuedStatusEffect>sigmar_light</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
 	
 	<TriggeredEffectTemplate StringID="ulric_frenzy_enchant"

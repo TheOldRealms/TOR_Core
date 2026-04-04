@@ -582,7 +582,7 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                         Hero.MainHero.AddEnchantmentBlueprint("lesser_lumen_stone", true);
 
                     if (Hero.MainHero.HasKnownLore("LoreOfHeavens")) 
-                        Hero.MainHero.AddEnchantmentBlueprint("lesser_chamon_weapon", true);
+                        Hero.MainHero.AddEnchantmentBlueprint("lesser_azyr_weapon", true);
 
                     if (Hero.MainHero.HasKnownLore("LoreOfBeasts")) 
                         Hero.MainHero.AddEnchantmentBlueprint("lesser_ghost_amber", true);

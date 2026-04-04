@@ -366,6 +366,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             return list;
         }
 
+        public int GetActiveEffectCount(string effectId)
+        {
+            return _currentEffects.Keys.Count(effect => effect.Template.StringID == effectId);
+        }
+
         private void AddEffect(StatusEffect effect)
         {
             EffectData data;

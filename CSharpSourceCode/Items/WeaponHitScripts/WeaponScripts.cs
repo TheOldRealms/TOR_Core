@@ -25,11 +25,12 @@ public class WeaponBuffStackScript(string[] arguments) : BaseWeaponHitScript(arg
 
         var statusEffect = _arguments[0];
 
-        if (!int.TryParse(_arguments[2], out var maxStackCount))
+        if (!int.TryParse(_arguments[1], out var maxStackCount))
         {
             return;
         }
-        if (!int.TryParse(_arguments[3], out var duration))
+
+        if (!int.TryParse(_arguments[2], out var duration))
         {
             return;
         }
@@ -37,11 +38,8 @@ public class WeaponBuffStackScript(string[] arguments) : BaseWeaponHitScript(arg
         var component = receiverAgent.GetComponent<StatusEffectComponent>();
         if (component == null) return;
 
-        var attributes = component.GetTemporaryAttributes(true).ToListQ();
-
-        var count = attributes.CountQ();
-
-        if (count > maxStackCount)
+        var count = component.GetActiveEffectCount(statusEffect);
+        if (count >= maxStackCount)
         {
             return;
         }
@@ -133,7 +131,7 @@ public class BonusDOTDamageEffectScript(string[] arguments) : BaseWeaponHitScrip
         var damageOverTimeAggregate = component.GetDamageOverTimeAggregate();
         if (damageOverTimeAggregate > 0)
         {
-            attackedAgent.ApplyDamage(blow.InflictedDamage * (percent / 100), attackedAgent.Position, attackingAgent, true, false, false);
+            attackedAgent.ApplyDamage((int)(blow.InflictedDamage * (percent / 100f)), attackedAgent.Position, attackingAgent, true, false, false);
         }
 
     }
@@ -162,7 +160,7 @@ public class UndeadTriggeredEffectScript(string[] arguments) : WeaponTriggerEffe
 /// Adds an additional damage to undead
 /// </summary>
 /// <param name="arguments[0]"> Percent Bonus Damage of already inflicted damage</param>
-public class BonusDamageOnUndeadEffectScript() : BaseWeaponHitScript
+public class BonusDamageOnUndeadEffectScript(string[] arguments) : BaseWeaponHitScript(arguments)
 {
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData attackCollision)
     {
@@ -179,7 +177,7 @@ public class BonusDamageOnUndeadEffectScript() : BaseWeaponHitScript
             return;
         }
 
-        attackedAgent.ApplyDamage(blow.InflictedDamage * (percent / 100), attackedAgent.Position, attackingAgent, true, false, false);
+        attackedAgent.ApplyDamage((int)(blow.InflictedDamage * (percent / 100f)), attackedAgent.Position, attackingAgent, true, false, false);
     }
 }
 
@@ -204,7 +202,7 @@ public class BuffStackOnKill(string[] arguments) : WeaponBuffStackScript(argumen
 /// <inheritdoc/>
 /// </summary>
 /// <inheritdoc/>
-public class KnockOutCheckTriggerScript(string[] arguments) : BaseWeaponHitScript(arguments)
+public class KnockOutCheckTriggerScript(string[] arguments) : WeaponTriggerEffectScript(arguments)
 {
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData collisionData)
     {
@@ -222,6 +220,8 @@ public class KnockOutCheckTriggerScript(string[] arguments) : BaseWeaponHitScrip
 /// <inheritdoc/>
 public class AmmoRechargeOnHit(string[] arguments) : BaseWeaponHitScript(arguments)
 {
+    public AmmoRechargeOnHit() : this(System.Array.Empty<string>()) {}
+
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData collisionData)
     {
 
@@ -291,24 +291,33 @@ public class BeastSlayingScript(string[] arguments) : BaseWeaponHitScript(argume
 {
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData collisionData)
     {
-        if (attackedAgent.IsMount || attackedAgent.HasAttribute("Minotaur"))
+        if (!(attackedAgent.IsMount || attackedAgent.HasAttribute("Minotaur")))
         {
-            var percent = 0f;
-            if (int.TryParse(_arguments[0], out var percentValue))
-            {
-                percent = percentValue / 100f;
-            }
-            else
-            {
-                percent = 0.25f;
-            }
-
-
-            var newBlow = new Blow(attackingAgent.Index);
-
-            blow.InflictedDamage = (int)percent * blow.InflictedDamage;
-            attackedAgent.RegisterBlow(blow, collisionData);     //Works but the display can be broken 
+            return;
         }
+
+        if (blow.InflictedDamage <= 0)
+        {
+            return;
+        }
+
+        var percent = 0f;
+        if (int.TryParse(_arguments[0], out var percentValue))
+        {
+            percent = percentValue / 100f;
+        }
+        else
+        {
+            percent = 0.25f;
+        }
+
+        var bonusDamage = (int)(blow.InflictedDamage * percent);
+        if (bonusDamage <= 0)
+        {
+            return;
+        }
+
+        attackedAgent.ApplyDamage(bonusDamage, attackedAgent.Position, attackingAgent, true, false, false);
     }
 }
 
@@ -320,6 +329,12 @@ public class ExtraHeadshotDamageScript(string[] arguments) : BaseWeaponHitScript
         {
             return;
         }
+
+        if (blow.InflictedDamage <= 0)
+        {
+            return;
+        }
+
         var percent = 0f;
         if (int.TryParse(_arguments[0], out var percentValue))
         {
@@ -330,11 +345,13 @@ public class ExtraHeadshotDamageScript(string[] arguments) : BaseWeaponHitScript
             percent = 0.25f;
         }
 
+        var bonusDamage = (int)(blow.InflictedDamage * percent);
+        if (bonusDamage <= 0)
+        {
+            return;
+        }
 
-        var newBlow = new Blow(attackingAgent.Index);
-
-        blow.InflictedDamage = (int)percent * blow.InflictedDamage;
-        attackedAgent.RegisterBlow(blow, collisionData);     //Works but the display can be broken 
+        attackedAgent.ApplyDamage(bonusDamage, attackedAgent.Position, attackingAgent, true, false, false);
     }
 }
 
@@ -372,14 +389,14 @@ public class TriggerOnKillScript(string[] arguments) : WeaponTriggerEffectScript
 /// <inheritdoc />
 /// </summary>
 /// <inheritdoc />
-/// <param name="arguments[3]"> damage to wearer</param>
+/// <param name="arguments[5]"> damage to wearer</param>
 public class BloodLettingTriggerScript(string[] arguments) : WeaponTriggerEffectScript(arguments)
 {
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData collisionData)
     {
         base.OnHit(attackingAgent, attackedAgent, blow, missionWeapon, collisionData);
 
-        if (int.TryParse(_arguments[3], out var damageValue))
+        if (int.TryParse(_arguments[5], out var damageValue))
         {
             attackingAgent.ApplyDamage(damageValue, attackedAgent.Position);
         }
