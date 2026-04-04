@@ -201,21 +201,29 @@ namespace TOR_Core.BattleMechanics.Dismemberment
             var z = fixZ ? 1 : MBRandom.RandomFloatRanged(-deviation, deviation);
             return new Vec3(x, y, z);
         }
-        private void RestoreMissingPooledLimbPhysics(GameEntity pooledLimb)
+        private bool RestoreMissingPooledLimbPhysics(GameEntity pooledLimb)
         {
             if (pooledLimb.HasDynamicRigidBody())
             {
-                return;
+                return true;
             }
 
+            PhysicsShape bodyShape = pooledLimb.GetBodyShape();
+
             // crash on pooled limb reuse, triggered by native rigid body cleanup
-            // restore this slot before applying impulse again
+            // clear any stale physics first
             if (pooledLimb.HasPhysicsBody())
             {
                 pooledLimb.RemovePhysics();
             }
 
-            pooledLimb.AddPhysics(pooledLimb.Mass, pooledLimb.CenterOfMass, pooledLimb.GetBodyShape(), Vec3.Zero, Vec3.Zero, PhysicsMaterial.GetFromName("flesh"), false, -1);
+            if (bodyShape == null)
+            {
+                return false;
+            }
+
+            pooledLimb.AddPhysics(pooledLimb.Mass, pooledLimb.CenterOfMass, bodyShape, Vec3.Zero, Vec3.Zero, PhysicsMaterial.GetFromName("flesh"), false, -1);
+            return pooledLimb.HasDynamicRigidBody();
         }
 
         private void MoveCorpseParts(MatrixFrame frame)
@@ -233,19 +241,27 @@ namespace TOR_Core.BattleMechanics.Dismemberment
                 GameEntity pooledLimb = _pooledDismemberedLimbs[_index][i];
                 if (pooledLimb == null) continue; //that shouldn't be... but maybe?
 
-                if (!_fullyInstantiated)
-                {
-                    pooledLimb.SetAlpha(1);
-                }
-
-                pooledLimb.SetGlobalFrame(frame);
                 Vec3 impulseDirection = GetRandomDirection(3);
+                bool restoreSucceeded;
+
                 using (new TWSharedMutexWriteLock(Scene.PhysicsAndRayCastLock))
                 {
                     // full reuse path under one physics lock
-                    RestoreMissingPooledLimbPhysics(pooledLimb);
-                    pooledLimb.ApplyLocalImpulseToDynamicBody(Vec3.Up * -1, impulseDirection * 25);
+                    restoreSucceeded = RestoreMissingPooledLimbPhysics(pooledLimb);
+                    if (restoreSucceeded)
+                    {
+                        pooledLimb.SetGlobalFrame(frame);
+                        pooledLimb.ApplyLocalImpulseToDynamicBody(Vec3.Up * -1, impulseDirection * 25);
+                    }
                 }
+
+                if (!restoreSucceeded)
+                {
+                    pooledLimb.SetAlpha(0);
+                    continue;
+                }
+
+                pooledLimb.SetAlpha(1);
             }
 
             _index++;
