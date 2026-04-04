@@ -650,7 +650,8 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             }
 
             // Meat from killed troops (Greenskins only)
-            if (mapEvent.PartiesOnSide(mapEvent.WinningSide).Any(x => x.Party.Culture.StringId == TORConstants.Cultures.GREENSKIN))
+            if (mapEvent.PlayerSide == mapEvent.WinningSide &&
+                Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
             {
                 var rewardModel = (TORBattleRewardModel) Campaign.Current.Models.BattleRewardModel;
                 if (rewardModel != null)
