@@ -26,6 +26,62 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
     public static class CareerHelper
     {
+        // Mission-scoped cache for career choices organized by PassiveEffectType
+        private static Dictionary<PassiveEffectType, List<CareerChoiceObject>> _missionRelevantChoices = null;
+
+        /// <summary>
+        /// Initializes the mission-relevant choices cache on mission start.
+        /// Organizes choices by PassiveEffectType for fast O(1) lookup.
+        /// </summary>
+        public static void InitializeMissionChoicesCache()
+        {
+            _missionRelevantChoices = new Dictionary<PassiveEffectType, List<CareerChoiceObject>>();
+
+            if (Hero.MainHero == null) return;
+
+            var currentChoiceIDs = Hero.MainHero.GetAllCareerChoices();
+
+            foreach (var choiceID in currentChoiceIDs)
+            {
+                var choice = TORCareerChoices.GetChoice(choiceID);
+                if (choice?.Passive == null) continue;
+
+                var effectType = choice.Passive.PassiveEffectType;
+
+                if (!_missionRelevantChoices.ContainsKey(effectType))
+                {
+                    _missionRelevantChoices[effectType] = new List<CareerChoiceObject>();
+                }
+
+                _missionRelevantChoices[effectType].Add(choice);
+            }
+        }
+
+        /// <summary>
+        /// Clears the mission-relevant choices cache on mission end.
+        /// </summary>
+        public static void ClearMissionChoicesCache()
+        {
+            _missionRelevantChoices?.Clear();
+            _missionRelevantChoices = null;
+        }
+
+        /// <summary>
+        /// Gets mission-relevant career choices filtered by PassiveEffectType.
+        /// Returns an empty list if cache is not initialized or type has no choices.
+        /// </summary>
+        public static List<CareerChoiceObject> GetMissionRelevantChoices(PassiveEffectType type)
+        {
+            if (_missionRelevantChoices == null)
+            {
+                return new List<CareerChoiceObject>();
+            }
+
+            return _missionRelevantChoices.TryGetValue(type, out var choices)
+                ? choices
+                : new List<CareerChoiceObject>();
+        }
+
         public static float AddSkillEffectToValue(CareerChoiceObject careerChoice, Agent agent, List<SkillObject> relevantSkills, float scalingFactor, bool highestOnly = false, bool onlyWielded = false)
         {
             float skillValue = 0f;
@@ -233,19 +289,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public static void ApplySkillBonusForTroops(ref ExplainedNumber resultNumber, SkillObject skillObject, BasicCharacterObject troopCharacterObject)
         {
-            var choices = Hero.MainHero.GetAllCareerChoices();
+            if (troopCharacterObject == null) return;
 
-            if (troopCharacterObject == null)
+            // Use cached choices filtered by PassiveEffectType
+            var choices = GetMissionRelevantChoices(PassiveEffectType.TroopSkill);
+
+            foreach (var choice in choices)
             {
-                return;
-            }
-
-            foreach (var choiceID in choices)
-            {
-                var choice = TORCareerChoices.GetChoice(choiceID);
-
-                if (choice?.Passive == null || choice.Passive.PassiveEffectType != PassiveEffectType.TroopSkill) continue;
-
                 if (!choice.Passive.IsValidCharacterObject(troopCharacterObject as CharacterObject))
                 {
                     continue;
@@ -259,7 +309,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 }
 
                 var value = choice.Passive.EffectMagnitude;
-
 
                 resultNumber.Add(value, choice.BelongsToGroup.Name);
             }
@@ -304,24 +353,20 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 type != PassiveEffectType.Resistance &&
                 type != PassiveEffectType.TroopResistance) return;
 
-            var choices = Hero.MainHero.GetAllCareerChoices();
-            foreach (var choiceID in choices)
+            // Use cached choices filtered by PassiveEffectType
+            var choices = GetMissionRelevantChoices(type);
+
+            foreach (var choice in choices)
             {
-                var choice = TORCareerChoices.GetChoice(choiceID);
-                if (choice == null)
+                if (!choice.Passive.IsValidCombatInteraction(agent, victim, attackMask)) continue;
+
+                var passive = choice.Passive;
+                var mask = passive.AttackTypeMask;
+                if ((mask & attackMask) == 0) //if mask does NOT contains attackmask
                     continue;
 
-                if (choice.Passive != null && (choice.Passive.PassiveEffectType == type))
-                {
-                    if (!choice.Passive.IsValidCombatInteraction(agent, victim, attackMask)) continue;
-                    var passive = choice.Passive;
-                    var mask = passive.AttackTypeMask;
-                    if ((mask & attackMask) == 0) //if mask does NOT contains attackmask
-                        continue;
-
-                    var damageType = passive.DamageProportionTuple.DamageType;
-                    values[(int)damageType] += (passive.DamageProportionTuple.Percent / 100);
-                }
+                var damageType = passive.DamageProportionTuple.DamageType;
+                values[(int)damageType] += (passive.DamageProportionTuple.Percent / 100);
             }
         }
 

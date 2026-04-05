@@ -25,6 +25,7 @@ using TOR_Core.Extensions;
 using TOR_Core.GameManagers;
 using TOR_Core.AbilitySystem.SpellCasting;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Missions;
 using TOR_Core.Quests;
@@ -1113,6 +1114,22 @@ namespace TOR_Core.AbilitySystem
                                 session.CasterHero.AddSkillXp(DefaultSkills.Roguery, xpAmount);
                             }
                         }
+                    }
+                }
+                
+                // Grant career ability charge once per session (instead of every tick)
+                if (session.Caster != null)
+                {
+                    // Apply charge for damage dealt
+                    if (session.TotalDamageDealt > 0)
+                    {
+                        CareerHelper.ApplyCareerAbilityCharge(session.TotalDamageDealt, ChargeType.DamageDone, AttackTypeMask.Spell, session.Caster);
+                    }
+
+                    // Apply charge for healing done
+                    if (session.TotalHealingDone > 0)
+                    {
+                        CareerHelper.ApplyCareerAbilityCharge(session.TotalHealingDone, ChargeType.Healed, AttackTypeMask.Spell, session.Caster);
                     }
                 }
             }

@@ -1042,11 +1042,7 @@ namespace TOR_Core.Models
                         logic.BookSpellHealing(castId, agent, finalHealing);
                     }
 
-                    // Apply career ability charge
-                    if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(healer, agent))
-                    {
-                        CareerHelper.ApplyCareerAbilityCharge(finalHealing, ChargeType.Healed, AttackTypeMask.Spell, healer, agent);
-                    }
+                    // Career ability charge is now applied once per session in FinalizeSession, not per-agent
                 }
             }
         }

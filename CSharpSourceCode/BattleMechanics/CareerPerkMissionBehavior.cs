@@ -29,7 +29,24 @@ namespace TOR_Core.BattleMechanics
         {
             CareerMissionVariables = new float[5];
 
+            // Initialize mission-scoped career choices cache
+            CareerHelper.InitializeMissionChoicesCache();
+
             base.AfterStart();
+        }
+
+        public override void OnMissionResultReady(MissionResult missionResult)
+        {
+            // Clear mission-scoped career choices cache
+            CareerHelper.ClearMissionChoicesCache();
+            base.OnMissionResultReady(missionResult);
+        }
+
+        protected override void OnEndMission()
+        {
+            // Ensure cache is cleared on mission end
+            CareerHelper.ClearMissionChoicesCache();
+            base.OnEndMission();
         }
 
         public override void OnMissionTick(float dt)
