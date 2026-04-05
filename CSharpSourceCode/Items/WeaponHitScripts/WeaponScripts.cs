@@ -218,10 +218,8 @@ public class KnockOutCheckTriggerScript(string[] arguments) : WeaponTriggerEffec
 /// <inheritdoc/>
 /// </summary>
 /// <inheritdoc/>
-public class AmmoRechargeOnHit(string[] arguments) : BaseWeaponHitScript(arguments)
+public class AmmoRechargeOnHit : BaseWeaponHitScript
 {
-    public AmmoRechargeOnHit() : this(System.Array.Empty<string>()) {}
-
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData collisionData)
     {
 

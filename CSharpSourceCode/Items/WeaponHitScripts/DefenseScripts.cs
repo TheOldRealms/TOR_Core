@@ -53,6 +53,7 @@ public class UndeadConditionDefenseTriggerEffectScript(string[] arguments) : Def
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData attackCollision)
     {
         if (attackingAgent == null) return;
+        if(attackedAgent == null) return;
 
         if (attackingAgent.IsUndead() || attackingAgent.IsVampire())
         {
@@ -132,20 +133,6 @@ public class UndeadConditionDefenseStackBuffScript(string[] arguments) : Defense
     }
 }
 
-public class UndeadConditionShieldStackBuffScript(string[] arguments) : DefenseStackBuffScript(arguments)
-{
-    public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData collisionData)
-    {
-        if (attackingAgent == null) return;
-        if (attackedAgent == null) return;
-
-        if (attackingAgent.IsUndead() || attackingAgent.IsVampire())
-        {
-            base.OnHit(attackingAgent, attackedAgent, blow, missionWeapon, collisionData);
-        }
-    }
-}
-
 public class ShieldScript : BaseWeaponHitScript
 {
 }
@@ -208,7 +195,7 @@ public class ReviveScript() : BaseWeaponHitScript()
             return;
         }
 
-        _revivedAgentIndices.Add(attackedAgent.Index);
+        _revivedAgentIndices.Add(attackedAgent.Index);  //TODO move revived weapon indice to mission logic
         attackedAgent.Heal(attackedAgent.HealthLimit * 0.5f);
     }
 }
