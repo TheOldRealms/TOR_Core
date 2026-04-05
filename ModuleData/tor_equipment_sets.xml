@@ -18978,22 +18978,20 @@
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_empire_staff_death_003" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_rapier_003" />
-      <Equipment slot="Head" id="Item.tor_empire_head_hat_001" />
-      <Equipment slot="Body" id="Item.tor_empire_body_armor_general_001" />
-      <Equipment slot="Cape" id="Item.scarf" />
-      <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
-      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
+      <Equipment slot="Head" id="Item.head_wrapping" />
+      <Equipment slot="Body" id="Item.aserai_tunic_waistcoat" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_general_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_gold_wizard_001" />
       <Equipment slot="Horse" id="Item.tor_empire_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_empire_staff_death_003" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_rapier_003" />
-      <Equipment slot="Head" id="Item.tor_empire_head_hat_001" />
-      <Equipment slot="Body" id="Item.tor_empire_body_armor_general_001" />
-      <Equipment slot="Cape" id="Item.scarf" />
-      <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
-      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_free_company_001" />
+      <Equipment slot="Head" id="Item.head_wrapping" />
+      <Equipment slot="Body" id="Item.aserai_tunic_waistcoat" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_general_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_gold_wizard_001" />
       <Equipment slot="Horse" id="Item.tor_empire_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_001" />
     </EquipmentSet>

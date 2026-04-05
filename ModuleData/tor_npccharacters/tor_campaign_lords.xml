@@ -794,7 +794,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_emp_lord_wissenland_first_4" default_group="cavalry" name="{=str_tor_emp_lord_wissenland_first_4}Elspeth Von Draken" occupation="Lord" culture="Culture.empire" voice="ironic" age="40" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" is_hero="true">
     <face>
-      <BodyProperties version="4" age="40" weight="0.5" build="0.5" key="0000000FD1FC1015FF7014F76EF510670FE186EAFF78D000EF06F1198E05FFF7037776350701F00300000000000000000000000000000000000000003AF43003" />
+      <BodyProperties version="4" age="40" weight="0.5" build="0.6528" key="00004C0FD1FC0015C7E87D84B42748A4283AC85AAE758785AA6AE0BE51276D4800AA06030A7BA9D40000000000000000000000000000000000000000375430C0" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -7130,7 +7130,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_we_lord_athel_loren_thirteenth_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_thirteenth_1}Arahan" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_twilight" is_female="true" race="elf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="25" weight="0.0015" build="0.2855" key="000810001470300216A9869957B3B8982BC666CEAB58070F9BA6676A9E934173434426130722633340000140120230440000000000000017000000007EF41003" />
+      <BodyProperties version="4" age="25" weight="0.0015" build="0.2855" key="00087800122C3004A585968087A86BAE666C8A8276897BAA23CD2878595E892900861603084870390000000000000000000000000000000000000000550440C0" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -7148,7 +7148,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_we_lord_athel_loren_thirteenth_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_thirteenth_2}Naestra" occupation="Special" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_twilight" is_female="true" race="elf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="25" weight="0.0015" build="0.2855" key="0008740F14FC0004167986995571B8982BC666CEAB58070F96565C659E934173434426130822633340000140120230440000000000000018000000007F0C1003" />
+      <BodyProperties version="4" age="25" weight="0.0015" build="0.2855" key="0008780CD22C3004A585968087A86BAE666C8A8276897BAA23CD2878595E892900861603084870390000000000000000000000000000000000000000550440C0" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />

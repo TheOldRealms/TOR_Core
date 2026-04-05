@@ -785,7 +785,7 @@
              super_faction="Kingdom.athel_loren"
              is_noble="true"
              text="{=str_tor_clan_athel_loren_clan_1_desc}The Heart of the Athel Loren, Talsyn forms the largest, most prosperous and realm with the highest population of Asrai. Not only the King’s Glade, the residence of Ariel and Orion, but also the Oak of Ages can be found here. In this realm the tree spirits and the Asrai form the strongest bond. Since the realm includes the very heart of the wood elves, it is their most holy refugium."
-             banner_key="11.2.116.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_talsyn" />
+             banner_key="11.2.116.1500.1500.764.764.1.1.0.122.20.41.602.602.765.765.0.0.0:kingdom_talsyn" />
 	<Faction id="athel_loren_clan_2"
              name="{=str_tor_clan_athel_loren_clan_2_name}Anmyr"
              tier="6"
@@ -825,7 +825,7 @@
              super_faction="Kingdom.athel_loren"
              is_noble="true"
              text="{=str_tor_clan_athel_loren_clan_5_desc}The summerstrand, as some refer to Arranoc, forms a high realm of Athel Loren, where winter is ever absent, nights are short and sun is shining all year. The realm is famous for their feasts, and their hospitality - even for foreigners visiting in a peaceful manner. Overall the realm feels peaceful and friendly, yet especially some mean tree spirits could use the inattentiveness that is following from wine and joy for their advantage."
-             banner_key="11.2.116.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_arranoc" />
+             banner_key="11.2.116.1500.1500.764.764.1.1.0.122.20.41.602.602.768.768.0.0.0:kingdom_arranoc" />
 	<Faction id="athel_loren_clan_6"
              name="{=str_tor_clan_athel_loren_clan_6_name}Cavaroc"
              tier="6"

@@ -1810,7 +1810,7 @@
       <EquipmentSet id="tor_dw_ironbeard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_dw_irondrake" default_group="ranged" level="46" name="{=str_tor_dw_irondrake}Dawi Irondrake" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_irondrake" race="dwarf">
+  <NPCCharacter id="tor_dw_irondrake" default_group="horsearcher" level="46" name="{=str_tor_dw_irondrake}Dawi Irondrake" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_irondrake" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_high_tier" />
       <hair_tags>

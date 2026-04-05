@@ -701,7 +701,7 @@
     </Kingdom>
     <Kingdom id="athel_loren"
              owner="Hero.tor_we_lord_athel_loren_factionleader"
-             banner_key="11.2.116.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_talsyn"
+             banner_key="11.2.116.1500.1500.764.764.1.1.0.122.20.41.601.601.765.765.0.0.0:kingdom_talsyn"
              primary_banner_color="0xff284E19"
              secondary_banner_color="0xffB4F0F1"
              label_color="FF55831A"
