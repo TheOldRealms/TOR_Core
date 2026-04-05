@@ -224,6 +224,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORBanditDensityModel());
                 gameStarterObject.AddModel(new TORCharacterStatsModel());
                 gameStarterObject.AddModel(new TORClanFinanceModel());
+                gameStarterObject.AddModel(new TORMinorFactionsModel());
                 gameStarterObject.AddModel(new TORClanTierModel());
                 gameStarterObject.AddModel(new TORCombatXpModel());
                 gameStarterObject.AddModel(new TORDamageParticleModel());

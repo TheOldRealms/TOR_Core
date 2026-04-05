@@ -790,6 +790,7 @@
     <Compile Include="Missions\TrollCaveMissionController.cs" />
     <Compile Include="Missions\TORMissionAgentHandler.cs" />
     <Compile Include="Missions\TORMissionManager.cs" />
+    <Compile Include="Models\TORMinorFactionsModel.cs" />
     <Compile Include="Models\TORTradeItemPriceFactorModel.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleAgentStatCalculateModel.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleMoraleModel.cs" />
