@@ -550,7 +550,8 @@
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\TORMapNotificationView.cs" />
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghMeterVM.cs" />
     <Compile Include="CampaignMechanics\TORCampaignMusicHandler.cs" />
-    <Compile Include="CampaignMechanics\TORVillageTypes.cs" />
+    <Compile Include="CampaignMechanics\Villages\TORTownManagementVillageItemVM.cs" />
+    <Compile Include="CampaignMechanics\Villages\TORVillageTypes.cs" />
     <Compile Include="Extensions\UI\PartyVMExtension.cs" />
     <Compile Include="CampaignMechanics\CustomResources\TeefHelper.cs" />
     <Compile Include="CampaignMechanics\MasterEngineer\MasterEngineerTownBehavior.cs" />

@@ -14,6 +14,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
+using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
@@ -184,6 +185,25 @@ namespace TOR_Core.HarmonyPatches
                     return false;
                 default:
                     return false;
+            }
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(SettlementNameplateEventsVM), MethodType.Constructor, typeof(Settlement))]
+        public static void AddVillageIconForTorVillages(SettlementNameplateEventsVM __instance, Settlement settlement)
+        {
+            if (settlement.IsVillage)
+            {
+                if (__instance.EventsList.AnyQ(x => x.Type == 6))
+                {
+                    string stringId = settlement.Village.VillageType.PrimaryProduction.StringId;
+			        string text = stringId.Contains("boar") ? "hog" : (stringId.Contains("wolf") ? "fur" : stringId);
+                    if (stringId != text)
+                    {
+                        //__instance.EventsList.Clear();//this would be to remove the old symbol, it's probably possible to display multiple icons
+			            __instance.EventsList.Add(new SettlementNameplateEventItemVM(text));
+                    }
+                }
             }
         }
 
