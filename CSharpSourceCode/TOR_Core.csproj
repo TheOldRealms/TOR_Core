@@ -779,7 +779,6 @@
     <Compile Include="Items\WeaponHitScripts\DefenseScripts.cs" />
     <Compile Include="Items\WeaponHitScripts\IWeaponHitScript.cs" />
     <Compile Include="Items\WeaponHitScripts\KnightlyStrikeHitScript.cs" />
-    <Compile Include="Items\WeaponHitScripts\LethalShotHitScript.cs" />
     <Compile Include="Items\WeaponHitScripts\WeaponScripts.cs" />
     <Compile Include="Missions\ArcheryContestMissionController.cs" />
     <Compile Include="Missions\BrawlMissionController.cs" />
