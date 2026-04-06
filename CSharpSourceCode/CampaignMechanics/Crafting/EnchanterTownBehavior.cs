@@ -306,7 +306,14 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                     return true;
                 }
 
-                return HasMatchingEnchanterCompanion(x => x.HasCareer(TORCareers.Spellsinger));
+                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI &&
+                    Hero.MainHero.IsSpellCaster() &&
+                    Hero.MainHero.GetKnownLoreCount() > 0)
+                {
+                    return true;
+                }
+
+                return HasMatchingEnchanterCompanion(x => x.Culture.StringId == TORConstants.Cultures.ASRAI && x.IsSpellCaster());
 
             case TORConstants.Cultures.EONIR:
                 if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.EONIR)
