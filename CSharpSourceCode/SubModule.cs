@@ -276,6 +276,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORCampaignTimeModel());
                 gameStarterObject.AddModel(new TORSiegeEngineCalculationModel());
                 gameStarterObject.AddModel(new TORCompanionHiringCompatibilityModel());
+                gameStarterObject.AddModel(new TORReinforcementRestrictionModel());
 
                 CampaignOptions.IsLifeDeathCycleDisabled = true;
             }
