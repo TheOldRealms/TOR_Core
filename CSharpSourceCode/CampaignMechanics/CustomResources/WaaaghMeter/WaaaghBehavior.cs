@@ -21,7 +21,6 @@ public class WaaaghBehavior : CampaignBehaviorBase
 {
     private const float DailyWaaaghDecay = 5f; // Daily passive Waaagh decrease
     private const float MaxWaaagh = 1000f; // Maximum Waaagh value
-    private float _renownBefore;
     private float _initialCombatRatio;
     private WaaaghLevel _previousWaaaghLevel = WaaaghLevel.InternalFightin;
     private List<CharacterObject> _troops;
@@ -42,8 +41,6 @@ public class WaaaghBehavior : CampaignBehaviorBase
         // Only add WaaaghMeter for Greenskin players
         if (Hero.MainHero?.Culture?.StringId != TORConstants.Cultures.GREENSKIN) return;
 
-  
-
         var mapView = mapScreen.GetMapView<WaaaghMeterMapView>();
         if (mapView == null)
         {
@@ -53,8 +50,6 @@ public class WaaaghBehavior : CampaignBehaviorBase
 
     private void InitialCombatStrengthCalculation(IMission mission)
     {
-        _renownBefore = Clan.PlayerClan?.Renown ?? 0f;
-
         if (Campaign.Current != null)
         {
             _initialCombatRatio = 0;
@@ -106,12 +101,21 @@ public class WaaaghBehavior : CampaignBehaviorBase
             if (enemyStrength > 0f) ratio = playerStrength / enemyStrength;
         }
 
-        var renownAfter = Clan.PlayerClan?.Renown ?? 0f;
-        var renownDelta = Math.Max(0.0, renownAfter - _renownBefore);
+        // Get renown change directly from battle rewards (works for both manual and autoresolve)
+        mapEvent.GetBattleRewards(PartyBase.MainParty, out float renownChange, out _, out _, out _, out _);
+        var renownDelta = Math.Max(0.0, renownChange);
+        var isSimulation = false;
+
+        if (mapEvent.IsPlayerSimulation)
+            isSimulation = true;
 
         // Scale based on battle difficulty (small battles give less)
         double scale;
-        if (ratio > 2.0f) // Easy battle (player much stronger)
+        if (isSimulation)
+        {
+            scale = 0.2f; 
+        }
+        else if (ratio > 2.0f) // Easy battle (player much stronger)
         {
             scale = 0.20; // Only 20% Waaagh gain
         }
