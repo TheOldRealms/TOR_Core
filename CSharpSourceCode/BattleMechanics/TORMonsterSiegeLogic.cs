@@ -12,7 +12,7 @@ namespace TOR_Core.BattleMechanics
 {
     public class TORMonsterSiegeLogic : MissionLogic
     {
-        internal const float GateDamageMultiplier = 7f; // gate damage of the monstrous units
+        internal const float GateDamageMultiplier = 4f; // gate damage of the monstrous units
 
         // their target agents right after they destory the gate. meant to prevent them from getting stuck trying to climb staircases
         private const float LocalEnemySearchRadius = 15f;
@@ -20,6 +20,9 @@ namespace TOR_Core.BattleMechanics
 
         // they will be pushing straight(ish) after destorying the gate, it's width
         private const float BreachHalfWidth = 1.50f;
+
+        // temp
+        private const float PostBreachMinForwardOffset = 1.00f;
 
         // target strictly post breach for this amount of time
         private const float PostBreachFilterDuration = 2.1f;
@@ -31,7 +34,7 @@ namespace TOR_Core.BattleMechanics
 
         // overridden agents after the deployment
         private readonly List<Agent> _forcedGateAgents = new();
-        private readonly ClimbingMachineDetachment _monsterGateDetachment = new(new MBList<ClimbingMachine>());
+        private readonly MonsterGateDetachment _monsterGateDetachment = new();
 
         public override void AfterStart()
         {
@@ -44,12 +47,13 @@ namespace TOR_Core.BattleMechanics
             RefreshForcedGateTargets();
         }
 
-        public override void OnAfterDeploymentFinished()
+        public override void OnDeploymentFinished()
         {
             if (!IsRelevantSiege(Mission))
             {
                 return;
             }
+
             RegisterForcedGateAgents();
             PrepareForcedGateAgents();
             RefreshForcedGateTargets();
@@ -77,6 +81,7 @@ namespace TOR_Core.BattleMechanics
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {
             _forcedGateAgents.Remove(affectedAgent);
+            _monsterGateDetachment.RemoveAgent(affectedAgent);
 
             if (GetPreferredClosedGate() != null)
             {
@@ -122,7 +127,7 @@ namespace TOR_Core.BattleMechanics
 
             if (previousTimeRemaining > 0f && _breachWidthFilterTimeRemaining <= 0f)
             {
-                ReleaseForcedGateAgentsToNativeCombat();
+                RefreshForcedGateTargets();
             }
         }
 
@@ -176,13 +181,13 @@ namespace TOR_Core.BattleMechanics
             {
                 EnsureMonsterGateDetachment(agent.Formation);
 
+                // keep them out of native detachment reassignment
+                agent.SetDetachableFromFormation(false);
+
                 if (!agent.IsDetachedFromFormation || agent.Detachment != _monsterGateDetachment)
                 {
                     _monsterGateDetachment.AddAgentAtSlotIndex(agent, -1);
                 }
-
-                // prevent native siege ai from assigning them back to ladders
-                agent.SetDetachableFromFormation(false);
             }
 
             AssignCurrentGateTarget(agent);
@@ -305,10 +310,7 @@ namespace TOR_Core.BattleMechanics
             Agent closestEnemy = FindClosestReachableSameLevelEnemy(agent, mission);
             if (closestEnemy == null)
             {
-                // leaving to native combat if no target has found
-                agent.SetAutomaticTargetSelection(true);
-                agent.InvalidateTargetAgent();
-                agent.ForceAiBehaviorSelection();
+                ClearMonsterCombatTarget(agent);
                 return;
             }
             agent.SetAutomaticTargetSelection(false);
@@ -362,6 +364,29 @@ namespace TOR_Core.BattleMechanics
 
             return lateralOffset <= BreachHalfWidth;
         }
+
+        private bool IsPastLastGateFront(Agent targetAgent)
+        {
+            if (!_hasLastGateFrame || targetAgent == null)
+            {
+                return true;
+            }
+
+            if (_breachWidthFilterTimeRemaining <= 0f)
+            {
+                return true;
+            }
+
+            Vec2 toTarget = targetAgent.Position.AsVec2 - _lastGateFrame.origin.AsVec2;
+
+            Vec2 gateForward = _lastGateFrame.rotation.f.AsVec2;
+            gateForward.Normalize();
+
+            float forwardOffset =
+                (toTarget.X * gateForward.X) + (toTarget.Y * gateForward.Y);
+
+            return forwardOffset >= PostBreachMinForwardOffset;
+        }
         private static void StripCurrentUsage(Agent agent)
         {
             if (agent.IsInLadderQueue)
@@ -384,7 +409,12 @@ namespace TOR_Core.BattleMechanics
                 agent.DisableScriptedCombatMovement();
             }
         }
-
+        private static void ClearMonsterCombatTarget(Agent agent)
+        {
+            agent.SetAutomaticTargetSelection(false);
+            agent.InvalidateTargetAgent();
+            agent.ForceAiBehaviorSelection();
+        }
         private void RetargetWithoutScenePathQuery(Agent agent)
         {
             StripCurrentUsage(agent);
@@ -401,7 +431,8 @@ namespace TOR_Core.BattleMechanics
                 currentTarget.IsActive() &&
                 currentTarget.IsEnemyOf(agent) &&
                 MathF.Abs(currentTarget.Position.z - agent.Position.z) <= MaxSameLevelHeightDifference &&
-                IsInsideLastGateCorridor(currentTarget))
+                IsInsideLastGateCorridor(currentTarget) &&
+                IsPastLastGateFront(currentTarget))
             {
                 return;
             }
@@ -409,9 +440,7 @@ namespace TOR_Core.BattleMechanics
             Agent closestEnemy = FindClosestSameLevelEnemy(agent, mission);
             if (closestEnemy == null)
             {
-                agent.SetAutomaticTargetSelection(true);
-                agent.InvalidateTargetAgent();
-                agent.ForceAiBehaviorSelection();
+                ClearMonsterCombatTarget(agent);
                 return;
             }
 
@@ -464,6 +493,11 @@ namespace TOR_Core.BattleMechanics
                     continue;
                 }
 
+                if (!IsPastLastGateFront(otherAgent))
+                {
+                    continue;
+                }
+
                 float distanceSquared = (otherAgent.Position.AsVec2 - agent.Position.AsVec2).LengthSquared;
                 if (distanceSquared < bestDistanceSquared)
                 {
@@ -500,6 +534,11 @@ namespace TOR_Core.BattleMechanics
                 }
 
                 if (!IsInsideLastGateCorridor(otherAgent))
+                {
+                    continue;
+                }
+
+                if (!IsPastLastGateFront(otherAgent))
                 {
                     continue;
                 }
@@ -758,6 +797,192 @@ namespace TOR_Core.BattleMechanics
         private static void Postfix()
         {
             TORMonsterSiegeLogic.RefreshCurrentMissionGateTargets();
+        }
+    }
+
+    internal sealed class MonsterGateDetachment : IDetachment
+    {
+        private readonly MBList<Formation> _userFormations = new();
+        private readonly List<Agent> _agents = new();
+
+        public MBReadOnlyList<Formation> UserFormations => _userFormations;
+        public bool IsLoose => true;
+
+        public bool IsAgentUsingOrInterested(Agent agent)
+        {
+            return _agents.Contains(agent);
+        }
+
+        public float? GetWeightOfNextSlot(BattleSideEnum side)
+        {
+            return null;
+        }
+
+        public float GetDetachmentWeight(BattleSideEnum side)
+        {
+            return float.MinValue;
+        }
+
+        public float ComputeAndCacheDetachmentWeight(BattleSideEnum side)
+        {
+            return float.MinValue;
+        }
+
+        public float GetDetachmentWeightFromCache()
+        {
+            return float.MinValue;
+        }
+
+        public void GetSlotIndexWeightTuples(List<(int, float)> slotIndexWeightTuples)
+        {
+        }
+
+        public bool IsSlotAtIndexAvailableForAgent(int slotIndex, Agent agent)
+        {
+            return false;
+        }
+
+        public bool IsAgentEligible(Agent agent)
+        {
+            return agent.Detachment == this;
+        }
+
+        public void AddAgentAtSlotIndex(Agent agent, int slotIndex)
+        {
+            AddAgent(agent, slotIndex);
+            agent.Formation?.DetachUnit(agent, isLoose: true);
+            agent.Detachment = this;
+            agent.SetDetachmentWeight(1f);
+        }
+
+        public Agent GetMovingAgentAtSlotIndex(int slotIndex)
+        {
+            return slotIndex >= 0 && slotIndex < _agents.Count ? _agents[slotIndex] : null;
+        }
+
+        public void MarkSlotAtIndex(int slotIndex)
+        {
+        }
+
+        public bool IsDetachmentRecentlyEvaluated()
+        {
+            return true;
+        }
+
+        public void UnmarkDetachment()
+        {
+        }
+
+        public float? GetWeightOfAgentAtNextSlot(List<Agent> candidates, out Agent match)
+        {
+            match = null;
+            return null;
+        }
+
+        public float? GetWeightOfAgentAtNextSlot(List<(Agent, float)> agentTemplateScores, out Agent match)
+        {
+            match = null;
+            return null;
+        }
+
+        public float GetTemplateWeightOfAgent(Agent candidate)
+        {
+            return float.MaxValue;
+        }
+
+        public List<float> GetTemplateCostsOfAgent(Agent candidate, List<float> oldValue)
+        {
+            return oldValue;
+        }
+
+        public float GetExactCostOfAgentAtSlot(Agent candidate, int slotIndex)
+        {
+            return float.MaxValue;
+        }
+
+        public float GetWeightOfOccupiedSlot(Agent detachedAgent)
+        {
+            return float.MinValue;
+        }
+
+        public float? GetWeightOfAgentAtOccupiedSlot(Agent detachedAgent, List<Agent> candidates, out Agent match)
+        {
+            match = null;
+            return null;
+        }
+
+        public bool IsStandingPointAvailableForAgent(Agent agent)
+        {
+            return false;
+        }
+
+        public void AddAgent(Agent agent, int slotIndex = -1, Agent.AIScriptedFrameFlags customFlags = Agent.AIScriptedFrameFlags.None)
+        {
+            if (!_agents.Contains(agent))
+            {
+                _agents.Add(agent);
+            }
+        }
+
+        public void RemoveAgent(Agent detachedAgent)
+        {
+            _agents.Remove(detachedAgent);
+            detachedAgent.DisableScriptedMovement();
+            detachedAgent.DisableScriptedCombatMovement();
+        }
+
+        public int GetNumberOfUsableSlots()
+        {
+            return int.MaxValue;
+        }
+
+        public void FormationStartUsing(Formation formation)
+        {
+            if (!_userFormations.Contains(formation))
+            {
+                _userFormations.Add(formation);
+            }
+        }
+
+        public void FormationStopUsing(Formation formation)
+        {
+            _userFormations.Remove(formation);
+        }
+
+        public bool IsUsedByFormation(Formation formation)
+        {
+            return _userFormations.Contains(formation);
+        }
+
+        public WorldFrame? GetAgentFrame(Agent detachedAgent)
+        {
+            return null;
+        }
+
+        public void ResetEvaluation()
+        {
+        }
+
+        public bool IsEvaluated()
+        {
+            return true;
+        }
+
+        public void SetAsEvaluated()
+        {
+        }
+
+        public void OnFormationLeave(Formation formation)
+        {
+            for (int i = _agents.Count - 1; i >= 0; i--)
+            {
+                Agent agent = _agents[i];
+                if (agent.Formation == formation && !agent.IsPlayerControlled)
+                {
+                    RemoveAgent(agent);
+                    formation.AttachUnit(agent);
+                }
+            }
         }
     }
 }
