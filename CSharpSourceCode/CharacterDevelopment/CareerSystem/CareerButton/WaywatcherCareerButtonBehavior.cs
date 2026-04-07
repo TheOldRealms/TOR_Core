@@ -17,9 +17,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
 {
     private static CharacterObject _setCharacter;
-    private string _swiftshiverShardsIcon = "CareerSystem\\shiftshiver_shards";
-    private string _hagbaneTippsIcon = "CareerSystem\\hagbane_tips";
-    private string _starfireShaftsIcon = "CareerSystem\\starfire_shafts";
+    private string _swiftshiverShardsIcon = "shiftshiver_shards";
+    private string _hagbaneTippsIcon = "hagbane_tips";
+    private string _starfireShaftsIcon = "starfire_shafts";
 
     private static List<ArrowType> _allArrows;
 
