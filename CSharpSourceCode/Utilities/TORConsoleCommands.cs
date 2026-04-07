@@ -7,6 +7,7 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.GameState;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -733,6 +734,11 @@ namespace TOR_Core.Utilities
                 CampaignVec2 coordinates = new(new Vec2(x, y), true);
 
                 MobileParty.MainParty.SetPositionAfterMapChange(coordinates);
+
+                if (GameStateManager.Current.ActiveState is MapState mapState)
+                {
+                    mapState.Handler.ResetCamera(false, true);
+                }
                 return "MainParty teleported to : " + x.ToString() + ", " + y.ToString() + ".";
             }
             
