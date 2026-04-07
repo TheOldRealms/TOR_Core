@@ -52,6 +52,10 @@ public class OathGoldBehavior : CampaignBehaviorBase
     private const int ArtilleryCrewGoldCost = 500;
     private const int RangerOathGoldCost = 20;
     private const int RangerGoldCost = 500;
+    private const int MinimumWarriorTier = 5;
+    private const int WarriorOathGoldPerTier = 7;
+    private const int InfluenceOathGoldCost = 100;
+    private const int InfluenceGainAmount = 125;
     private Dictionary<string, int> _guildValues;
     private double _lastTimeVistedTown;
     private int _expeditionMaximum;
@@ -480,32 +484,12 @@ public class OathGoldBehavior : CampaignBehaviorBase
                 var item = element.EquipmentElement.Item;
                 if (item == null) continue;
 
-                if (item == DefaultItems.IronIngot4 && element.Amount >= MinimumSteelAmount)
-                {
-                    var itemTitle = GameTexts.FindText("tor_dw_rune_smith_deliver_steel_item_title", "lesserSteel");
-                    var hint = GameTexts.FindText("tor_dw_rune_smith_deliver_steel_item_hint", "lesserSteel");
-                    hint.SetTextVariable("STEEL_COUNT", MinimumSteelAmount);
-                    hint.SetTextVariable("OATH_GOLD_GAIN_STEEL", SteelGain);
-                    selectable.Add(new InquiryElement(item, itemTitle.ToString(), new ItemImageIdentifier(item), true, hint.ToString()));
-                    continue;
-                }
-                if (item == DefaultItems.IronIngot5 && element.Amount >= MinimumFineSteelAmount)
-                {
-                    var itemTitle = GameTexts.FindText("tor_dw_rune_smith_deliver_steel_item_title", "regularSteel");
-                    var hint = GameTexts.FindText("tor_dw_rune_smith_deliver_steel_item_hint", "regularSteel");
-                    hint.SetTextVariable("STEEL_COUNT", MinimumFineSteelAmount);
-                    hint.SetTextVariable("OATH_GOLD_GAIN_STEEL", FineSteelGain);
-                    selectable.Add(new InquiryElement(item, itemTitle.ToString(), new ItemImageIdentifier(item), true, hint.ToString()));
-                    continue;
-                }
-                if (item == DefaultItems.IronIngot6 && element.Amount >= MinimumGromrilAmount)
-                {
-                    var itemTitle = GameTexts.FindText("tor_dw_rune_smith_deliver_steel_item_title", "gromril");
-                    var hint = GameTexts.FindText("tor_dw_rune_smith_deliver_steel_item_hint", "gromril");
-                    hint.SetTextVariable("STEEL_COUNT", MinimumGromrilAmount);
-                    hint.SetTextVariable("OATH_GOLD_GAIN_STEEL", GromrilGain);
-                    selectable.Add(new InquiryElement(item, itemTitle.ToString(), new ItemImageIdentifier(item), true, hint.ToString()));
-                }
+                if (item == DefaultItems.IronIngot4)
+                    AddSteelDeliveryOption(selectable, item, element.Amount, MinimumSteelAmount, SteelGain, "lesserSteel");
+                else if (item == DefaultItems.IronIngot5)
+                    AddSteelDeliveryOption(selectable, item, element.Amount, MinimumFineSteelAmount, FineSteelGain, "regularSteel");
+                else if (item == DefaultItems.IronIngot6)
+                    AddSteelDeliveryOption(selectable, item, element.Amount, MinimumGromrilAmount, GromrilGain, "gromril");
             }
             var title = GameTexts.FindText("tor_dw_rune_smith_deliverSteel_prompt_title");
             var description = GameTexts.FindText("tor_dw_rune_smith_deliverSteel_prompt_description");
@@ -567,6 +551,44 @@ public class OathGoldBehavior : CampaignBehaviorBase
         };
     }
 
+    #region Resource Spending Helpers
+
+    private void AddOathGoldSpendingOption(List<InquiryElement> options, int threshold, float currentAmount)
+    {
+        if (currentAmount < threshold) return;
+
+        var option = new TextObject("{OATHGOLD_COST}{OATHGOLD_SYMBOL}");
+        option.SetTextVariable("OATHGOLD_COST", threshold);
+        var hint = TORTextHelper.GetTextObject("tor_dw_spend_oath_gold_hint_text", "Spend {OATHGOLD_COST} Oath Gold on this guild");
+        hint.SetTextVariable("OATHGOLD_COST", threshold);
+        options.Add(new InquiryElement(threshold, option.ToString(), null, true, hint.ToString()));
+    }
+
+    private void AddWheatDonationOption(List<InquiryElement> options, int threshold, int currentAmount, ItemObject grainItem)
+    {
+        if (currentAmount < threshold) return;
+
+        var gainedOathGold = threshold / WheatToOathGoldGain;
+        var itemTitle = GameTexts.FindText("tor_dw_brewers_deliverWheat_item_title", "wheat");
+        var hint = GameTexts.FindText("tor_dw_brewers_deliverWheat_item_hint", "wheat");
+        hint.SetTextVariable("WHEAT_COUNT", threshold);
+        hint.SetTextVariable("OATH_GOLD_GAIN_WHEAT", gainedOathGold);
+        options.Add(new InquiryElement(threshold.ToString(), itemTitle.ToString(), new ItemImageIdentifier(grainItem), true, hint.ToString()));
+    }
+
+    private void AddSteelDeliveryOption(List<InquiryElement> options, ItemObject steelItem, int currentAmount, int requiredAmount, int oathGoldGain, string variation)
+    {
+        if (currentAmount < requiredAmount) return;
+
+        var itemTitle = GameTexts.FindText("tor_dw_rune_smith_deliver_steel_item_title", variation);
+        var hint = GameTexts.FindText("tor_dw_rune_smith_deliver_steel_item_hint", variation);
+        hint.SetTextVariable("STEEL_COUNT", requiredAmount);
+        hint.SetTextVariable("OATH_GOLD_GAIN_STEEL", oathGoldGain);
+        options.Add(new InquiryElement(steelItem, itemTitle.ToString(), new ItemImageIdentifier(steelItem), true, hint.ToString()));
+    }
+
+    #endregion
+
     private void SpendOathGold(string guildmaster)
     {
         var selectableOptions = new List<InquiryElement>();
@@ -593,50 +615,10 @@ public class OathGoldBehavior : CampaignBehaviorBase
             return;
         }
 
-        var value = 0;
-
-        if (currentOathGold >= 20)
-        {
-            value = 20;
-            var option = new TextObject("{OATHGOLD_COST}{OATHGOLD_SYMBOL}");
-            option.SetTextVariable("OATHGOLD_COST", value);
-            var hint = TORTextHelper.GetTextObject("tor_dw_spend_oath_gold_hint_text", "Spend {OATHGOLD_COST} Oath Gold on this guild");
-            hint.SetTextVariable("OATHGOLD_COST", value);
-            selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, hint.ToString()));
-        }
-
-        if (currentOathGold >= 50)
-        {
-            value = 50;
-            var option = new TextObject("{OATHGOLD_COST}{OATHGOLD_SYMBOL}");
-            option.SetTextVariable("OATHGOLD_COST", value);
-            GameTexts.SetVariable("OATHGOLD_COST", value);
-            var hint = TORTextHelper.GetTextObject("tor_dw_spend_oath_gold_hint_text", "Spend {OATHGOLD_COST} Oath Gold on this guild");
-            hint.SetTextVariable("OATHGOLD_COST", value);
-            selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, hint.ToString()));
-        }
-
-        if (currentOathGold >= 100)
-        {
-            value = 100;
-            var option = new TextObject("{OATHGOLD_COST}{OATHGOLD_SYMBOL}");
-            option.SetTextVariable("OATHGOLD_COST", value);
-            GameTexts.SetVariable("OATHGOLD_COST", value);
-            var hint = TORTextHelper.GetTextObject("tor_dw_spend_oath_gold_hint_text", "Spend {OATHGOLD_COST} Oath Gold on this guild");
-            hint.SetTextVariable("OATHGOLD_COST", value);
-            selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, hint.ToString()));
-        }
-
-        if (currentOathGold >= 250)
-        {
-            value = 250;
-            var option = new TextObject("{OATHGOLD_COST}{OATHGOLD_SYMBOL}");
-            option.SetTextVariable("OATHGOLD_COST", value);
-            GameTexts.SetVariable("OATHGOLD_COST", value);
-            var hint = TORTextHelper.GetTextObject("tor_dw_spend_oath_gold_hint_text", "Spend {OATHGOLD_COST} Oath Gold on this guild");
-            hint.SetTextVariable("OATHGOLD_COST", value);
-            selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, hint.ToString()));
-        }
+        AddOathGoldSpendingOption(selectableOptions, 20, currentOathGold);
+        AddOathGoldSpendingOption(selectableOptions, 50, currentOathGold);
+        AddOathGoldSpendingOption(selectableOptions, 100, currentOathGold);
+        AddOathGoldSpendingOption(selectableOptions, 250, currentOathGold);
 
         _currentGuild = guildmaster;
 
@@ -784,6 +766,12 @@ public class OathGoldBehavior : CampaignBehaviorBase
                 //Add blasting charges
                 var blastingCharges = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_blasting_charges");
                 if (blastingCharges != null) items.Add(blastingCharges);
+
+                //Add Tier1 spanners
+                var spanner1h = MBObjectManager.Instance.GetObject<ItemObject>("tor_dwarf_1h_spanner_001");
+                if (spanner1h != null) items.Add(spanner1h);
+                var spanner2h = MBObjectManager.Instance.GetObject<ItemObject>("tor_dwarf_2h_spanner_001");
+                if (spanner2h != null) items.Add(spanner2h);
             }
             if (Hero.MainHero.HasAttribute("DwarfEngineersII"))
             {
@@ -804,11 +792,27 @@ public class OathGoldBehavior : CampaignBehaviorBase
                 //Add hand grenades
                 var handGrenades = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_grenade_hand_grenade");
                 if (handGrenades != null) items.Add(handGrenades);
+
+                //Add Tier2 engineer hammers
+                var engineerHammer1h = MBObjectManager.Instance.GetObject<ItemObject>("dwarf_1h_engineer_hammer_001");
+                if (engineerHammer1h != null) items.Add(engineerHammer1h);
+                var engineerHammer2h = MBObjectManager.Instance.GetObject<ItemObject>("dwarf_2h_engineer_hammer_001");
+                if (engineerHammer2h != null) items.Add(engineerHammer2h);
+
+                //Add Grudge Raker and buckshot
+                var grudgeRaker = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_gun_grudge_raker_001");
+                if (grudgeRaker != null) items.Add(grudgeRaker);
+                var buckshot = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_ammo_buckshot");
+                if (buckshot != null) items.Add(buckshot);
             }
             if (Hero.MainHero.HasAttribute("DwarfEngineersIII"))
             {
                 var drakegun = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_gun_drakegun");
                 if (drakegun != null) items.Add(drakegun);
+
+                //Add Dronazgrund
+                var dronazgrund = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_gun_dronazgrund");
+                if (dronazgrund != null) items.Add(dronazgrund);
             }
 
 
@@ -1192,42 +1196,11 @@ public class OathGoldBehavior : CampaignBehaviorBase
                 var item = element.EquipmentElement.Item;
                 if (item == null) continue;
 
-                var itemTitle = GameTexts.FindText("tor_dw_brewers_deliverWheat_item_title", "wheat");
-                var hint = GameTexts.FindText("tor_dw_brewers_deliverWheat_item_hint", "wheat");
-
-                if (item == DefaultItems.Grain && element.Amount >= 30)
+                if (item == DefaultItems.Grain)
                 {
-                    const int wheatAmount = 30;
-                    var gainedOathGold = wheatAmount / WheatToOathGoldGain;
-
-                    hint.SetTextVariable("WHEAT_COUNT", wheatAmount);
-                    hint.SetTextVariable("OATH_GOLD_GAIN_WHEAT", gainedOathGold);
-
-                    selectable.Add(new InquiryElement(wheatAmount.ToString(), itemTitle.ToString(), new ItemImageIdentifier(item), true, hint.ToString()));
-                    continue;
-                }
-
-                if (item == DefaultItems.Grain && element.Amount >= 50)
-                {
-                    const int wheatAmount = 50;
-                    var gainedOathGold = wheatAmount / WheatToOathGoldGain;
-
-                    hint.SetTextVariable("WHEAT_COUNT", wheatAmount);
-                    hint.SetTextVariable("OATH_GOLD_GAIN_WHEAT", gainedOathGold);
-
-                    selectable.Add(new InquiryElement(wheatAmount.ToString(), itemTitle.ToString(), new ItemImageIdentifier(item), true, hint.ToString()));
-                    continue;
-                }
-
-                if (item == DefaultItems.Grain && element.Amount >= 100)
-                {
-                    const int wheatAmount = 100;
-                    var gainedOathGold = wheatAmount / WheatToOathGoldGain;
-
-                    hint.SetTextVariable("WHEAT_COUNT", wheatAmount);
-                    hint.SetTextVariable("OATH_GOLD_GAIN_WHEAT", gainedOathGold);
-
-                    selectable.Add(new InquiryElement(wheatAmount.ToString(), itemTitle.ToString(), new ItemImageIdentifier(item), true, hint.ToString()));
+                    AddWheatDonationOption(selectable, 30, element.Amount, item);
+                    AddWheatDonationOption(selectable, 50, element.Amount, item);
+                    AddWheatDonationOption(selectable, 100, element.Amount, item);
                 }
             }
             var title = GameTexts.FindText("tor_dw_brewers_deliverWheat_prompt_title");
@@ -1339,12 +1312,12 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         bool CanTransferOathGoldForInfluence()
         {
-            return Hero.MainHero.GetCultureSpecificCustomResourceValue() >= 100;
+            return Hero.MainHero.GetCultureSpecificCustomResourceValue() >= InfluenceOathGoldCost;
         }
         void BuyInfluenceForOathGold()
         {
-            Hero.MainHero.AddInfluenceWithKingdom(250);
-            Hero.MainHero.AddCultureSpecificCustomResource(-100);
+            Hero.MainHero.AddInfluenceWithKingdom(InfluenceGainAmount);
+            Hero.MainHero.AddCultureSpecificCustomResource(-InfluenceOathGoldCost);
         }
 
         void ProvideTroops()
@@ -1360,7 +1333,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
             var gainedOathGold = 0;
             foreach (var element in leftmemberroster.GetTroopRoster())
             {
-                gainedOathGold += element.Character.Tier * element.Number * 15;
+                gainedOathGold += element.Character.Tier * element.Number * WarriorOathGoldPerTier;
             }
 
             Hero.MainHero.AddCultureSpecificCustomResource(gainedOathGold);
@@ -1371,7 +1344,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
             var roster = Hero.MainHero.PartyBelongedTo.MemberRoster;
 
             if (roster == null) return false;
-            return roster.GetTroopRoster().Any(elem => elem.Character.Culture.StringId == TORConstants.Cultures.DAWI && elem.Character.Tier > 4);
+            return roster.GetTroopRoster().Any(elem => elem.Character.Culture.StringId == TORConstants.Cultures.DAWI && elem.Character.Tier >= MinimumWarriorTier);
         }
 
         bool IsTransferableVeteranUnit(CharacterObject character, PartyScreenLogic.TroopType type, PartyScreenLogic.PartyRosterSide side, PartyBase leftownerparty)
@@ -1379,8 +1352,8 @@ public class OathGoldBehavior : CampaignBehaviorBase
             if (type != PartyScreenLogic.TroopType.Member) return false;
             if (character.IsHero) return false;
             if (Hero.MainHero.Culture.CaravanGuard == character) return false;
-            
-            return character.Culture.StringId == TORConstants.Cultures.DAWI && character.Tier >= 4;
+
+            return character.Culture.StringId == TORConstants.Cultures.DAWI && character.Tier >= MinimumWarriorTier;
         }
 
         bool IsWarrior()

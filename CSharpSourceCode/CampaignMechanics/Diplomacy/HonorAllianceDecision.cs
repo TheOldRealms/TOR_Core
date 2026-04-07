@@ -30,10 +30,11 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
         {
             AttackedAlly = attackedAlly;
             Attacker = attacker;
+            
         }
 
         // Immediate decision - no waiting
-        protected override int HoursToWait => 0;
+        protected override int HoursToWait => 24;
 
         public override bool IsAllowed()
         {

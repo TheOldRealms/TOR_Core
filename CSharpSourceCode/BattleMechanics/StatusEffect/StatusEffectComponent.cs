@@ -41,6 +41,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         public void SynchronizeBaseValues(bool mountOnly = false)
         {
+            if (Agent == null) return;
             if (Agent.AgentDrivenProperties == null) return;
             if (!mountOnly)
             {
@@ -51,7 +52,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 _baseValues.AddOrReplace(DrivenProperty.BipedalRangedReloadSpeedMultiplier, this.Agent.AgentDrivenProperties.BipedalRangedReloadSpeedMultiplier);
             }
 
-            if (!this.Agent.HasMount) return;
+            if (!Agent.HasMount) return;
             _baseValues.AddOrReplace(DrivenProperty.MountManeuver, Agent.MountAgent.AgentDrivenProperties.MountManeuver);
             _baseValues.AddOrReplace(DrivenProperty.MountSpeed, this.Agent.MountAgent.AgentDrivenProperties.MountSpeed);
             _baseValues.AddOrReplace(DrivenProperty.MountDashAccelerationMultiplier, this.Agent.MountAgent.AgentDrivenProperties.MountDashAccelerationMultiplier);
@@ -128,7 +129,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
             CalculateEffectAggregate();
 
-            if (Agent.IsActive() && Agent != null && !Agent.IsFadingOut())
+            if (Agent != null && Agent.IsActive() && !Agent.IsFadingOut())
             {
                 if (_effectAggregate == null) return;
 
@@ -147,10 +148,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
                     var applier = effect?.ApplierAgent;
 
-                    if (Campaign.Current != null && applier != null && (applier.IsMainAgent || applier.BelongsToMainParty()))
-                    {
-                        CareerHelper.ApplyCareerAbilityCharge(damageValue, ChargeType.DamageDone, AttackTypeMask.Spell, applier);
-                    }
+                    // Career ability charge is now applied once per session in FinalizeSession, not every tick
 
                     Agent.ApplyDamage(damageValue, Agent.Position, applier, false, false);
 
@@ -163,7 +161,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 }
                 else if (_effectAggregate.HealthOverTime > 0)
                 {
-
                     var healingValue = (int)_effectAggregate.HealthOverTime;
                     Agent.Heal(healingValue);
 
@@ -172,16 +169,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                         Agent.MountAgent.Heal(healingValue);
                     }
 
-                    var effect = _currentEffects.Keys.FirstOrDefault(x => x.Template.Type == StatusEffectTemplate.EffectType.HealthOverTime && x.ApplierAgent == Agent.Main) ??
-                                  _currentEffects.Keys.FirstOrDefault(x => x.Template.Type == StatusEffectTemplate.EffectType.HealthOverTime);
-
-                    var applier = effect?.ApplierAgent;
-
-                    if (Campaign.Current != null && applier != null && (applier.IsMainAgent || applier.BelongsToMainParty()))
-                    {
-                        CareerHelper.ApplyCareerAbilityCharge(healingValue, ChargeType.Healed, AttackTypeMask.Spell, applier);
-                    }
-
+                    // Career ability charge is now applied once per session in FinalizeSession, not every tick
                 }
 
                 if (_effectAggregate == null) return;
@@ -363,6 +351,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             }
 
             return list;
+        }
+
+        public int GetActiveEffectCount(string effectId)
+        {
+            return _currentEffects.Keys.Count(effect => effect.Template.StringID == effectId);
         }
 
         private void AddEffect(StatusEffect effect)

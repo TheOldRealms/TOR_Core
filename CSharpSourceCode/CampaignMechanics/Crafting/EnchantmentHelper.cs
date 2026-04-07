@@ -53,90 +53,145 @@ public static class EnchantmentHelper
         return newItem;
     }
 
+    private static List<ItemObject> GetBlueprintItems(List<string> prefixList)
+    {
+        return MBObjectManager.Instance.GetObjectTypeList<ItemObject>()
+            .Where(item =>
+                item.IsInventoryUsable() &&
+                item.GetTraits().Any(trait =>
+                    trait.OnInventoryUseScript != null &&
+                    trait.OnInventoryUseScript.InventoryScriptName.Contains("EnchantmentBlueprintScript")))
+            .WhereQ(item => item.GetTraits().Any(trait => prefixList.Any(prefix => trait.ItemTraitStringId.Contains(prefix))))
+            .ToList();
+    }
 
+    private static bool TryGetBlueprintData(ItemObject item, out string blueprintId, out SkillObject requiredSkill, out int requiredSkillValue, out string restriction)
+    {
+        blueprintId = null;
+        requiredSkill = null;
+        requiredSkillValue = 0;
+        restriction = null;
+
+        var trait = item.GetTraits().FirstOrDefault();
+        if (trait?.OnInventoryUseScript == null)
+        {
+            return false;
+        }
+
+        var arguments = trait.OnInventoryUseScript.InventoryScriptArguments;
+        if (arguments == null || arguments.Count < 3)
+        {
+            return false;
+        }
+
+        blueprintId = arguments[0];
+
+        var skills = Game.Current.DefaultSkills.GetDefaultSkills();
+        skills.AddRange(TORSkills.Instance.GetTorSkills());
+
+        requiredSkill = skills.FirstOrDefault(x => x.StringId == arguments[1]);
+        if (requiredSkill == null)
+        {
+            return false;
+        }
+
+        if (!int.TryParse(arguments[2], out requiredSkillValue))
+        {
+            return false;
+        }
+
+        restriction = arguments.Count > 3 ? arguments[3] : null;
+        return true;
+    }
+
+    private static bool IsBlueprintCurrentlyApplicableToParty(string blueprintId)
+    {
+        if (Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(hero => hero.HasKnownEnchantmentBlueprint(blueprintId)))
+        {
+            return true;
+        }
+
+        return Hero.MainHero.PartyBelongedTo.ItemRoster.Any(rosterElement =>
+            TryGetBlueprintData(rosterElement.EquipmentElement.Item, out var inventoryBlueprintId, out _, out _, out _) &&
+            inventoryBlueprintId == blueprintId);
+    }
+
+    private static List<Hero> GetEligibleHeroesForBlueprint(string blueprintId, SkillObject requiredSkill, int requiredSkillValue, string restriction, bool requireRequiredSkill)
+    {
+        var eligibleHeroes = new List<Hero>();
+
+        foreach (var hero in Hero.MainHero.PartyBelongedTo.GetMemberHeroes())
+        {
+            if (hero.HasKnownEnchantmentBlueprint(blueprintId))
+            {
+                continue;
+            }
+
+            if (restriction != null)
+            {
+                var info = hero.GetExtendedInfo();
+                var knowsRequiredLore = info != null && info.KnownLores.Any(lore => lore != null && lore.ID == restriction);
+
+                if (!knowsRequiredLore && !hero.HasAttribute(restriction))
+                {
+                    continue;
+                }
+            }
+
+            if (requireRequiredSkill && hero.GetSkillValue(requiredSkill) < requiredSkillValue)
+            {
+                continue;
+            }
+
+            eligibleHeroes.Add(hero);
+        }
+
+        return eligibleHeroes;
+    }
+
+    public static bool HasAnyLearnableEnchantmentRecipe(List<string> prefixList)
+    {
+        foreach (var item in GetBlueprintItems(prefixList))
+        {
+            if (!TryGetBlueprintData(item, out var blueprintId, out var requiredSkill, out var requiredSkillValue, out var restriction))
+            {
+                continue;
+            }
+
+            if (IsBlueprintCurrentlyApplicableToParty(blueprintId))
+            {
+                continue;
+            }
+
+            if (GetEligibleHeroesForBlueprint(blueprintId, requiredSkill, requiredSkillValue, restriction, false).Any())
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     public static void OpenEnchantmentRecipeShop(List<string> prefixList, string culture, bool blessings = false)
     {
-        var blueprints = MBObjectManager.Instance.GetObjectTypeList<ItemObject>().Where(item =>
-            item.IsInventoryUsable() &&
-            item.GetTraits().Any(trait => trait.OnInventoryUseScript.InventoryScriptName.Contains("EnchantmentBlueprintScript")))
-            .WhereQ(x => x.GetTraits().Any(x => prefixList.Any(prefix => x.ItemTraitStringId.Contains(prefix)))).ToList();
+        var blueprints = GetBlueprintItems(prefixList);
 
         var list = new List<ItemObject>();
         foreach (var item in blueprints)
         {
-            var blueprintTrait = item.GetTraits().FirstOrDefault();
-            if (blueprintTrait == null || blueprintTrait.OnInventoryUseScript == null)
+            if (!TryGetBlueprintData(item, out var blueprintId, out var requiredSkill, out var requiredSkillValue, out var restriction))
             {
                 continue;
             }
 
-            var blueprintArguments = blueprintTrait.OnInventoryUseScript.InventoryScriptArguments;
-            if (blueprintArguments == null || blueprintArguments.Count == 0)
+            if (IsBlueprintCurrentlyApplicableToParty(blueprintId))
             {
                 continue;
             }
 
-            var blueprintId = blueprintArguments[0];
-            var underlyingTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == blueprintId);
-
-            var isCurrentlyApplicableToParty =
-                underlyingTrait != null &&
-                Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(hero => hero.HasKnownEnchantmentBlueprint(blueprintId)) &&
-                Hero.MainHero.PartyBelongedTo.ItemRoster.Any(rosterElement =>
-                    rosterElement.EquipmentElement.Item.IsEnchantable() &&
-                    ItemTrait.IsValidFor(underlyingTrait, rosterElement.EquipmentElement.Item.ItemType));
-
-            if (isCurrentlyApplicableToParty)
+            if (GetEligibleHeroesForBlueprint(blueprintId, requiredSkill, requiredSkillValue, restriction, false).Any())
             {
-                continue;
-            }
-
-            foreach (var hero in Hero.MainHero.PartyBelongedTo.GetMemberHeroes())
-            {
-                foreach (var trait in item.GetTraits())
-                {
-                    var arguments = trait.OnInventoryUseScript.InventoryScriptArguments;
-
-                    var traitId = arguments[0];
-
-                    if (ItemTrait.All.All(x => x.ItemTraitStringId != traitId))
-                    {
-                        continue;
-                    }
-
-                    if (hero.HasKnownEnchantmentBlueprint(traitId))
-                    {
-                        continue;
-                    }
-
-                    var restriction = arguments.Count > 3 ? arguments[3] : null;
-                    if (restriction != null)
-                    {
-                        var lore = LoreObject.GetAll().FirstOrDefault(x => x.ID == restriction);
-
-                        if (lore != null)
-                        {
-                            if (!hero.HasKnownLore(restriction))
-                            {
-                                continue;
-                            }
-
-                        }
-                        else
-                        {
-                            if (!hero.HasAttribute(restriction))
-                            {
-                                continue;
-                            }
-                        }
-                    }
-
-                    if (!list.Contains(item))
-                    {
-                        list.Add(item);
-                    }
-                }
+                list.Add(item);
             }
         }
 
@@ -167,65 +222,59 @@ public static class EnchantmentHelper
 
             var included = false;
 
-            var skills = Game.Current.DefaultSkills.GetDefaultSkills();
-            skills.AddRange(TORSkills.Instance.GetTorSkills());
-            var skill = skills.FirstOrDefault(x => x.StringId == arguments[1]);
-            if (skill == null)
+            var hintText = new TextObject("{TRAIT_EFFECT}\n\n{REQUIREMENT_TEXT}\n\n{COMPLETE_COST}");
+
+            if (!TryGetBlueprintData(item, out var id, out var skill, out var skillValue, out var restriction))
             {
-                TORCommon.Log($"Failed to load skill '{arguments[1]}' for enchantment blueprint {item.StringId}. Skipping this item.", LogLevel.Error);
                 continue;
             }
-            var skillValue = 0;
-            var hintText = new TextObject("{TRAIT_EFFECT}\n\n{REQUIREMENT_TEXT}\n\n{COMPLETE_COST}");
-            var restriction = arguments.Count >= 4 ? arguments[3] : null;
 
-            var id = arguments[0];
-
-            var eligableHeroes = new List<Hero>();
-
-            foreach (var hero in Hero.MainHero.PartyBelongedTo.GetMemberHeroes())
+            var eligableHeroes = GetEligibleHeroesForBlueprint(id, skill, skillValue, restriction, false);
+            if (!eligableHeroes.Any())
             {
-                if (hero.HasKnownEnchantmentBlueprint(id))
-                {
-                    continue;
-                }
-
-                if (restriction != null && !(hero.HasKnownLore(restriction) || hero.HasAttribute(restriction)))
-                {
-                    continue;
-                }
-
-                eligableHeroes.Add(hero);
-                included = true;
-                break;
+                continue;
             }
 
-            if (!included) continue;
+            var learnableHeroes = eligableHeroes.Where(hero => hero.GetSkillValue(skill) >= skillValue).ToList();
+            var enabled = learnableHeroes.Any();
 
-            var enabled = true;
+            var requirementPrefix = "";
 
-            foreach (var hero in eligableHeroes.ToList())
+            if (!string.IsNullOrEmpty(restriction))
             {
-                if (int.TryParse(arguments[2], out  skillValue) )
+                var lore = LoreObject.GetAll().FirstOrDefault(x => x.ID == restriction);
+                if (lore != null)
                 {
-                    var value = hero.GetSkillValue(skill);
-                    if (value < skillValue)
+                    requirementPrefix = "This enchantment is bound to the Lore of " + lore.Name + ". ";
+                }
+                else
+                {
+                    requirementPrefix = "This enchantment requires " + restriction + ". ";
+                }
+            }
+
+            if (!enabled)
+            {
+                if (eligableHeroes.Count == 1)
+                {
+                    var hero = eligableHeroes[0];
+                    if (hero == Hero.MainHero)
                     {
-                        hintText.SetTextVariable("REQUIREMENT_TEXT", "{B}You can't learn this. Requires : {B}" + skill.Name + " " + skillValue);
-                        enabled = false;
-                        
+                        hintText.SetTextVariable("REQUIREMENT_TEXT", requirementPrefix + "You don't have enough " + skill.Name + ". Requires " + skillValue + ".");
                     }
                     else
                     {
-                        hintText.SetTextVariable("REQUIREMENT_TEXT", "");
-                        enabled = true;
-                        break;
+                        hintText.SetTextVariable("REQUIREMENT_TEXT", requirementPrefix + hero.Name + " doesn't have enough " + skill.Name + ". Requires " + skillValue + ".");
                     }
-
                 }
-
-                enabled = false;
-                break;
+                else
+                {
+                    hintText.SetTextVariable("REQUIREMENT_TEXT", requirementPrefix + "None of your eligible characters have enough " + skill.Name + ". Requires " + skillValue + ".");
+                }
+            }
+            else
+            {
+                hintText.SetTextVariable("REQUIREMENT_TEXT", "");
             }
 
             var crCost = 0;

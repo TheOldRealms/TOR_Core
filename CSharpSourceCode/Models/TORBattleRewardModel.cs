@@ -61,7 +61,32 @@ namespace TOR_Core.Models
 
             return result;
         }
+        public override ExplainedNumber CalculateInfluenceGain(PartyBase party, float influenceValueOfBattle, float contributionShare)
+        {
+            var result = base.CalculateInfluenceGain(party, influenceValueOfBattle, contributionShare);
 
+            if (ShouldReduceBanditBattleInfluence(party))
+            {
+                result.AddFactor(-2f / 3f, new TaleWorlds.Localization.TextObject("{=!}bandit battle"));
+            }
+
+            return result;
+        }
+
+        private static bool ShouldReduceBanditBattleInfluence(PartyBase party)
+        {
+            var mapEvent = party.MapEvent;
+
+            if (mapEvent.MapEventSettlement != null)
+            {
+                return false;
+            }
+
+            var opposingSide = mapEvent.GetMapEventSide(party.OpponentSide);
+            var opposingSideHasHeroParty = opposingSide.Parties.Any(x => x.Party.LeaderHero != null);
+
+            return !opposingSideHasHeroParty;
+        }
 
         public int GetTraitCountForTroops(CharacterObject character, int count, float playerEarnedLootPercentage)
         {

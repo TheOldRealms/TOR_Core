@@ -62,6 +62,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameStarted);
         CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
         CampaignEvents.GameMenuOpened.AddNonSerializedListener(this, OnGameMenuOpened);
+        CampaignEvents.BeforeMissionOpenedEvent.AddNonSerializedListener(this, OnBeforeMissionStart);
         CampaignEvents.OnPrisonerDonatedToSettlementEvent.AddNonSerializedListener(this, OnPrisonersSold);
     }
 
@@ -91,6 +92,11 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         EnforceEnvoyLocation();
     }
 
+    private void OnBeforeMissionStart()
+    {
+        EnforceEnvoyLocation();
+    }
+
     private void OnSessionLaunched(CampaignGameStarter obj)
     {
         SetTextVariables();
@@ -98,6 +104,13 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         AddAsurEnvoyDialogLines(obj);
         AddEmpireEnvoyDialogLines(obj);
         AddSpellsingerEnvoyDialogLines(obj);
+
+        // Populate envoys when loading a save game
+        if (_torLithanel == null)
+        {
+            _torLithanel = Campaign.Current.Settlements.FirstOrDefault(x => x.IsTorLithanel());
+        }
+        PopulateEnvoys();
     }
 
     private void SetTextVariables()
@@ -114,17 +127,17 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             () => EonirEnvoyDialogCondition() && Hero.MainHero.Culture.StringId != TORConstants.Cultures.EONIR, null, 200);
 
 
-        campaignGameStarter.AddDialogLine("envoy_hub_intro_spellsinger", "start", "spellsinger_envoy_main_hub", TORTextHelper.GetText("eonir_spellsinger_intro_text", "The forest told of me your coming, yet not why. What have you come to ask of me?"),
+        campaignGameStarter.AddDialogLine("envoy_hub_intro_spellsinger", "start", "spellsinger_envoy_main_hub", TORTextHelper.GetText("eonir_spellsinger_intro_text", "Blessings of Isha upon you, what aid can I bestow?"),
             () => IsSpellsingerEnvoy(), null, 200);
 
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_world_roots", "spellsinger_envoy_main_hub", "spellsinger_envoy_world_roots",
-            TORTextHelper.GetText("eonir_spellsinger_world_roots_ask_text", "I want to travel along the roots of the Asrai, can you be my guide?"), () => IsSpellsingerEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_spellsinger_world_roots_ask_text", "I wish to travel along the roots of the Asrai, can you be my guide?"), () => IsSpellsingerEnvoy(), null, 200);
 
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_troop_refill", "spellsinger_envoy_main_hub", "spellsinger_envoy_troop_refill",
             TORTextHelper.GetText("eonir_spellsinger_troop_refill_ask_text", "We need the Forestborn, are there any who can come to our aid?"), () => IsSpellsingerEnvoy(), null, 200);
 
 
-        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_spellsinger_magic", "spellsinger_envoy_main_hub", "back_to_main_hub_spellsinger",  TORTextHelper.GetText("tor_spellsinger_envoy_main_hub_spellsinger_magic","I wish to learn magic from you."), () => MobileParty.MainParty.HasSpellCasterMember() && Hero.MainHero.Culture.StringId == TORConstants.Cultures.EONIR && IsSpellsingerEnvoy(), openbookconsequence, 200, null);
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_spellsinger_magic", "spellsinger_envoy_main_hub", "back_to_main_hub_spellsinger",  TORTextHelper.GetText("tor_spellsinger_envoy_main_hub_spellsinger_magic","I wish to study magic our of kin."), () => MobileParty.MainParty.HasSpellCasterMember() && Hero.MainHero.Culture.StringId == TORConstants.Cultures.EONIR && IsSpellsingerEnvoy(), openbookconsequence, 200, null);
 
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_spellsinger_lores", "spellsinger_envoy_main_hub", "spellsinger_envoy_spellsinger_lores", TORTextHelper.GetText("spellsinger_envoy_main_hub_spellsinger_lores","Teach me about the lores of magic."), () => IsSpellsingerEnvoy() && CanGreylordLearnMoreLores(), null, 200, null);
 
@@ -132,33 +145,33 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_whyareyouhere", "spellsinger_envoy_main_hub", "spellsinger_envoy_whyareyouhere",
             TORTextHelper.GetText("eonir_envoy_why_are_you_here_text", "Why are you here?"), () => IsSpellsingerEnvoy(), null, 200);
 
-        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_close", "spellsinger_envoy_main_hub", "close_window", TORTextHelper.GetText("eonir_envoy_close_text", "That is all thank you."),
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_close", "spellsinger_envoy_main_hub", "close_window", TORTextHelper.GetText("eonir_envoy_close_text", "That will be all, thank you."),
             () => IsSpellsingerEnvoy(), null, 200);
 
         //travel info
 
         campaignGameStarter.AddDialogLine("spellsinger_envoy_world_roots", "spellsinger_envoy_world_roots", "spellsinger_envoy_world_roots_choice",
-            TORTextHelper.GetText("eonir_spellsinger_world_roots_price_text", "I can, but for a price. Help our people, they need more power and then I will allow you to travel the worldroot."), () => IsSpellsingerEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_spellsinger_world_roots_price_text", "I can, but there is a price. Help our people, and then I will allow you to travel the Worldroots."), () => IsSpellsingerEnvoy(), null, 200);
 
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_world_roots_choice_1", "spellsinger_envoy_world_roots_choice", "spellsinger_envoy_world_roots_results",
             TORTextHelper.GetText("eonir_spellsinger_world_roots_accept_text", "Of course, I am willing to help. Now as my guide, please tell me how I can travel along these ancient pathways?"), () => IsSpellsingerEnvoy(), null, 200);
 
         campaignGameStarter.AddDialogLine("spellsinger_envoy_world_roots_results", "spellsinger_envoy_world_roots_results", "back_to_main_hub_spellsinger",
-            TORTextHelper.GetText("eonir_spellsinger_world_roots_explain_text", "There is an entranceway to the Worldroots here in Laurelorn."), () => IsSpellsingerEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_spellsinger_world_roots_explain_text", "There is an entranceway to the Worldroots here in Laurelorn, first you must find it. Once there, a Spellsinger will help you travel across it but only to Maisontaal in the distant lands of Bretonnia.\n\nWe can go no further, as I am not willing to offend the Asrai. The roots are sacred, it is rare enough for non-Asrai to cross them."), () => IsSpellsingerEnvoy(), null, 200);
 
         //refill
 
         campaignGameStarter.AddDialogLine("spellsinger_envoy_troop_refill", "spellsinger_envoy_troop_refill", "spellsinger_envoy_troop_refill_choice",
-            TORTextHelper.GetText("eonir_spellsinger_troop_refill_offer_text", "There are many who live as nomads, far from our villages and deep within the woods. It will take time for any messages to reach them but it can be done. Is this what you desire?"), () => IsSpellsingerEnvoy() && EnoughTimePassedSinceLastEvent("troop_refill", 10), null, 200);
+            TORTextHelper.GetText("eonir_spellsinger_troop_refill_offer_text", "There are many who live as nomads, far from our villages and deep within the woods. It will take time for any messenger to reach them but it can be done. Is this what you desire?"), () => IsSpellsingerEnvoy() && EnoughTimePassedSinceLastEvent("troop_refill", 10), null, 200);
 
         campaignGameStarter.AddDialogLine("spellsinger_envoy_troop_refill", "spellsinger_envoy_troop_refill", "spellsinger_envoy_troop_refill_fail_choice",
-            TORTextHelper.GetText("eonir_spellsinger_troop_refill_cooldown_text", "We recently called for the forestborn aid. We should wait longer for another call"), () => (IsSpellsingerEnvoy() && !EnoughTimePassedSinceLastEvent("troop_refill", 10)), null, 200);
+            TORTextHelper.GetText("eonir_spellsinger_troop_refill_cooldown_text", "We recently called for the forestborn aid. We should wait longer for another call."), () => (IsSpellsingerEnvoy() && !EnoughTimePassedSinceLastEvent("troop_refill", 10)), null, 200);
 
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_troop_refill_fail_choice", "spellsinger_envoy_troop_refill_fail_choice", "back_to_main_hub_spellsinger",
             TORTextHelper.GetText("eonir_envoy_understood_text", "Understood."), () => IsSpellsingerEnvoy(), null, 200);
 
         campaignGameStarter.AddPlayerLine("empire_envoy_force_peace_choice_1", "spellsinger_envoy_troop_refill_choice", "spellsinger_envoy_troop_refill_result",
-            TORTextHelper.GetText("eonir_spellsinger_troop_refill_accept_text", "That would be kind. I am sure we will be able to pay that favor back one day. I will decide in favor of the forestborn"), () => IsSpellsingerEnvoy() && 200 <= Hero.MainHero.GetCultureSpecificCustomResourceValue(), null, 200);
+            TORTextHelper.GetText("eonir_spellsinger_troop_refill_accept_text", "That would be kind. I am sure we will be able to return the favour  one day. I will decide in favor of the Forestborn."), () => IsSpellsingerEnvoy() && 200 <= Hero.MainHero.GetCultureSpecificCustomResourceValue(), null, 200);
         campaignGameStarter.AddPlayerLine("empire_envoy_force_peace_choice_2", "spellsinger_envoy_troop_refill_choice", "back_to_main_hub_spellsinger",
             TORTextHelper.GetText("eonir_envoy_need_to_think_text", "I need to think about this."), () => IsSpellsingerEnvoy(), null, 200);
 
@@ -170,9 +183,9 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
 
         campaignGameStarter.AddDialogLine("spellsinger_envoy_spellsinger_lores", "spellsinger_envoy_spellsinger_lores", "spellsinger_envoy_spellsinger_lores_choice",
-            TORTextHelper.GetText("eonir_spellsinger_learn_lore_offer_text", "I can teach you, but as much as you are ready to do so, I need your word in the Council."), () => IsSpellsingerEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_spellsinger_learn_lore_offer_text", "I can teach you, but as much as you are ready to do so, I need your word on the Council."), () => IsSpellsingerEnvoy(), null, 200);
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_spellsinger_lores_choice_1", "spellsinger_envoy_spellsinger_lores_choice", "spellsinger_envoy_spellsinger_lores_result",
-            TORTextHelper.GetText("eonir_spellsinger_learn_lore_accept_text", "It should not be for your disadvantage"), () => IsSpellsingerEnvoy() && 500 <= Hero.MainHero.GetCultureSpecificCustomResourceValue() && CanGreylordLearnMoreLores(), LearnNewLoresPrompt, 200);
+            TORTextHelper.GetText("eonir_spellsinger_learn_lore_accept_text", "It should not be to your disadvantage."), () => IsSpellsingerEnvoy() && 500 <= Hero.MainHero.GetCultureSpecificCustomResourceValue() && CanGreylordLearnMoreLores(), LearnNewLoresPrompt, 200);
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_spellsinger_lores_choice_2", "spellsinger_envoy_spellsinger_lores_choice", "back_to_main_hub_spellsinger",
             TORTextHelper.GetText("eonir_envoy_need_to_think_text", "I need to think about this."), () => IsSpellsingerEnvoy(), null, 200);
 
@@ -269,7 +282,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         //why are you here
 
         campaignGameStarter.AddDialogLine("spellsinger_envoy_whyareyouhere", "spellsinger_envoy_whyareyouhere", "envoy_spellsinger_wayh_reaction",
-            TORTextHelper.GetText("eonir_spellsinger_why_here_intro_text", "I am representing a coven of Spellsingers dedicated to the defense of Laurelorn."), () => IsSpellsingerEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_spellsinger_why_here_intro_text", "I am representing a coven of Spellsingers dedicated to the defense of Laurelorn. While the Council is busy with politics, the Faniour, the forest born elves, are endagered by all the threads of the forest."), () => IsSpellsingerEnvoy(), null, 200);
         campaignGameStarter.AddPlayerLine("envoy_spellsinger_wayh_reaction_displeased", "envoy_spellsinger_wayh_reaction", "spellsinger_envoy_whyareyouhere_2",
             TORTextHelper.GetText("eonir_spellsinger_why_here_displeased_text", "The forest is beset by destructive beasts and men alike, what then, are you protecting?"), () => IsSpellsingerEnvoy(), null, 200);
         campaignGameStarter.AddPlayerLine("envoy_spellsinger_wayh_reaction_undecided", "envoy_spellsinger_wayh_reaction", "spellsinger_envoy_whyareyouhere_2",
@@ -278,10 +291,10 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             TORTextHelper.GetText("eonir_spellsinger_why_here_agreement_text", "The Faniour aswell as the Touriour follow the same people. Your matters, are my matters."), () => IsSpellsingerEnvoy(), null, 200);
 
         campaignGameStarter.AddDialogLine("spellsinger_envoy_whyareyouhere_2", "spellsinger_envoy_whyareyouhere_2", "spellsinger_envoy_whyareyouhere_3",
-            TORTextHelper.GetText("eonir_spellsinger_why_here_explain_text", "I am not a man of politics. I am here to stand our case."), () => IsSpellsingerEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_spellsinger_why_here_explain_text", "I am not a man of politics. I am here to stand our case. I know that seemingly the Council, sometimes forgets about us. Thats why I am here, and standing for the forest people. I know that nothing works here, without giving something in return."), () => IsSpellsingerEnvoy(), null, 200);
 
         campaignGameStarter.AddDialogLine("spellsinger_envoy_whyareyouhere_3", "spellsinger_envoy_whyareyouhere_3", "back_to_main_hub_spellsinger",
-            TORTextHelper.GetText("eonir_spellsinger_why_here_services_text", "Help us with your political power, and I will try to make it worth."), () => IsSpellsingerEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_spellsinger_why_here_services_text", "Help us with your political power, and I will try to make it worth. I can assist you with some magic, like using the world roots of the Asrai, or can make your influence provide you power over the council. Apart, I can see what i can do for teaching you some magic"), () => IsSpellsingerEnvoy(), null, 200);
 
 
         campaignGameStarter.AddDialogLine("back_to_main_hub_spellsinger", "back_to_main_hub_spellsinger", "spellsinger_envoy_main_hub",
@@ -338,7 +351,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         campaignGameStarter.AddPlayerLine("empire_envoy_main_hub_whyareyouhere", "empire_envoy_main_hub", "empire_envoy_whyareyouhere", TORTextHelper.GetText("eonir_envoy_why_are_you_here_text", "Why are you here?"),
             () => IsEmpireEnvoy(), null, 200);
 
-        campaignGameStarter.AddPlayerLine("empire_envoy_main_hub_close", "empire_envoy_main_hub", "close_window", TORTextHelper.GetText("eonir_envoy_close_text", "That is all thank you."),
+        campaignGameStarter.AddPlayerLine("empire_envoy_main_hub_close", "empire_envoy_main_hub", "close_window", TORTextHelper.GetText("eonir_envoy_close_text", "That will be all, thank you."),
             () => IsEmpireEnvoy(), null, 200);
 
 
@@ -354,7 +367,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             TORTextHelper.GetText("eonir_envoy_understood_text", "Understood."), () => IsEmpireEnvoy(), null, 200);
 
         campaignGameStarter.AddPlayerLine("empire_envoy_force_peace_choice_1", "empire_envoy_force_peace_choice", "empire_envoy_force_peace_choice_result",
-            TORTextHelper.GetText("eonir_envoy_lets_do_this_text", "Let us do this."), () => IsEmpireEnvoy() && AllEmpireFactionsAtWar().Count > 0 && _peaceCost <= Hero.MainHero.GetCultureSpecificCustomResourceValue(), null, 200);
+            TORTextHelper.GetText("eonir_envoy_lets_do_this_text", "Let us do this. (Exchange 50 {FAVOR_ICON} for 30 {PRESTIGE_ICON})"), () => IsEmpireEnvoy() && AllEmpireFactionsAtWar().Count > 0 && _peaceCost <= Hero.MainHero.GetCultureSpecificCustomResourceValue(), null, 200);
         campaignGameStarter.AddPlayerLine("empire_envoy_force_peace_choice_2", "empire_envoy_force_peace_choice", "back_to_main_hub_empire",
             TORTextHelper.GetText("eonir_envoy_need_to_think_text", "I need to think about this."), () => IsEmpireEnvoy(), null, 200);
 
@@ -464,20 +477,20 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         // why are you here?
 
         campaignGameStarter.AddDialogLine("empire_envoy_whyareyouhere", "empire_envoy_whyareyouhere", "envoy_empire_wayh_reaction",
-            TORTextHelper.GetText("eonir_empire_why_here_intro_text", "I represent the Empire interests here."), () => IsEmpireEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_empire_why_here_intro_text", "As an envoy of Graf Boris Todbringer I represent the interests of Middenland, and to a minor extent that of the Empire as a whole. We wish to maintain peaceful relations with Eonir, built on trust, trade and mutual respect so that we may all benefit."), () => IsEmpireEnvoy(), null, 200);
 
         campaignGameStarter.AddPlayerLine("envoy_empire_wayh_reaction_displeased", "envoy_empire_wayh_reaction", "empire_envoy_whyareyouhere_2",
-            TORTextHelper.GetText("eonir_empire_why_here_displeased_text", "You have not proven useful."), () => IsEmpireEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_empire_why_here_displeased_text", "You encroach upon our lands without heeding what is sacred, yet talk to us about respect? You do not belong here."), () => IsEmpireEnvoy(), null, 200);
         campaignGameStarter.AddPlayerLine("envoy_empire_wayh_reaction_undecided", "envoy_empire_wayh_reaction", "empire_envoy_whyareyouhere_2",
-            TORTextHelper.GetText("eonir_empire_why_here_undecided_text", "I am still deciding your worth."), () => IsEmpireEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_empire_why_here_undecided_text", "It benefits neither of us to make enemies when they aren't needed, trade and peace can only benefit both our peoples."), () => IsEmpireEnvoy(), null, 200);
         campaignGameStarter.AddPlayerLine("envoy_empire_wayh_reaction_agreement", "envoy_empire_wayh_reaction", "empire_envoy_whyareyouhere_2",
-            TORTextHelper.GetText("eonir_empire_why_here_agreement_text", "We have a productive relationship."), () => IsEmpireEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_empire_why_here_agreement_text", "The problems of the empire are shared with the Eonir. We need to fight together side on side, all of our common enemies."), () => IsEmpireEnvoy(), null, 200);
 
         campaignGameStarter.AddDialogLine("empire_envoy_whyareyouhere_2", "empire_envoy_whyareyouhere_2", "empire_envoy_whyareyouhere_3",
-            TORTextHelper.GetText("eonir_empire_why_here_explain_text", "I facilitate relations between the Empire and the Eonir."), () => IsEmpireEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_empire_why_here_explain_text", "We seek only to cooperate, to the mutual benefit of all involved. Conflict between our peoples serves to aid none but our enemies, surely you can agree with me on this."), () => IsEmpireEnvoy(), null, 200);
 
         campaignGameStarter.AddDialogLine("empire_envoy_whyareyouhere_3", "empire_envoy_whyareyouhere_3", "back_to_main_hub_empire",
-            TORTextHelper.GetText("eonir_empire_why_here_services_text", "I can help with trade and diplomacy."), () => IsEmpireEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_empire_why_here_services_text", "My word carries weight, as does that of our Graf. I can ensure a state of peace and profitable trade between our nations, we may even be able to provide mercenaries should your lands ever be threatened. ...Think on it, we both have much to gain."), () => IsEmpireEnvoy(), null, 200);
 
 
 
@@ -524,7 +537,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         campaignGameStarter.AddPlayerLine("druchii_envoy_main_hub_whyareyouhere", "druchii_envoy_main_hub", "druchii_envoy_whyareyouhere", TORTextHelper.GetText("eonir_envoy_why_are_you_here_text", "Why are you here?"),
             () => IsDruchiiEnvoy(), null, 200);
 
-        campaignGameStarter.AddPlayerLine("druchii_envoy_main_hub_close", "druchii_envoy_main_hub", "close_window", TORTextHelper.GetText("eonir_envoy_close_text", "That is all thank you."),
+        campaignGameStarter.AddPlayerLine("druchii_envoy_main_hub_close", "druchii_envoy_main_hub", "close_window", TORTextHelper.GetText("eonir_envoy_close_text", "That will be all, thank you."),
             () => IsDruchiiEnvoy(), null, 200);
 
 
@@ -684,20 +697,20 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
         // why are you here?
         campaignGameStarter.AddDialogLine("druchii_envoy_whyareyouhere", "druchii_envoy_whyareyouhere", "envoy_druchii_wayh_reaction",
-            TORTextHelper.GetText("eonir_druchii_why_here_intro_text", "I represent the interests of Naggaroth in these lands."), () => IsDruchiiEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_druchii_why_here_intro_text", "I speak as an envoy of the rightful ruler of the Asur, and the Black Council. We may not always be aligned in our views but we believe both the Druchii and Eonir have much in common, and much to gain from one another."), () => IsDruchiiEnvoy(), null, 200);
 
         campaignGameStarter.AddPlayerLine("envoy_druchii_wayh_reaction_displeased", "envoy_druchii_wayh_reaction", "druchii_envoy_whyareyouhere_2",
-            TORTextHelper.GetText("eonir_druchii_why_here_displeased_text", "You have disappointed me."), () => IsDruchiiEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_druchii_why_here_displeased_text", "You raid our coasts, enslave our people and yet have the audacity to stand before us, acting as if none of this has taken place!"), () => IsDruchiiEnvoy(), null, 200);
         campaignGameStarter.AddPlayerLine("envoy_druchii_wayh_reaction_undecided", "envoy_druchii_wayh_reaction", "druchii_envoy_whyareyouhere_2",
-            TORTextHelper.GetText("eonir_druchii_why_here_undecided_text", "I am still deciding what to make of you."), () => IsDruchiiEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_druchii_why_here_undecided_text", "I am skeptical, you come here with your own ambitions but to what end? How would hearing you speak now, benefit the Eonir?"), () => IsDruchiiEnvoy(), null, 200);
         campaignGameStarter.AddPlayerLine("envoy_druchii_wayh_reaction_agreement", "envoy_druchii_wayh_reaction", "druchii_envoy_whyareyouhere_2",
-            TORTextHelper.GetText("eonir_druchii_why_here_agreement_text", "We have an understanding."), () => IsDruchiiEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_druchii_why_here_agreement_text", "The Asur betrayed us and left us to die, I might not share your every sentiment Druchii, but I know you too suffer from our cousin's boundless arrogance."), () => IsDruchiiEnvoy(), null, 200);
 
         campaignGameStarter.AddDialogLine("druchii_envoy_whyareyouhere_2", "druchii_envoy_whyareyouhere_2", "druchii_envoy_whyareyouhere_3",
-            TORTextHelper.GetText("eonir_druchii_why_here_explain_text", "I am here to further Druchii interests."), () => IsDruchiiEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_druchii_why_here_explain_text", "We are not your enemy, the opposite is true. Few share our bond of suffering at the hands of the Asur, few can understand our mutual plight. There are many ways we can coexist and thrive, together. - Join us, we have been scorned by our kin for far too long and this is the best path for our futures combined."), () => IsDruchiiEnvoy(), null, 200);
 
         campaignGameStarter.AddDialogLine("druchii_envoy_whyareyouhere_3", "druchii_envoy_whyareyouhere_3", "back_to_main_hub_druchii",
-            TORTextHelper.GetText("eonir_druchii_why_here_services_text", "I can offer various services for the right price."), () => IsDruchiiEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_druchii_why_here_services_text", "Your seas will be safe from raids and protected from any foe, the darkest desires of your people will be free of judgement and all we seek is influence over your council. - We merely wish to lessen the gap between our peoples so that we may stand against the Asur together, a sure and just cause, do you not agree?"), () => IsDruchiiEnvoy(), null, 200);
 
         campaignGameStarter.AddDialogLine("back_to_main_hub_druchii", "back_to_main_hub_druchii", "druchii_envoy_main_hub",
             TORTextHelper.GetText("eonir_druchii_anything_else_text", "Is there anything else?"), () => IsDruchiiEnvoy(), null, 200);
@@ -752,7 +765,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         starter.AddPlayerLine("asur_envoy_main_hub_whyareyouhere", "asur_envoy_main_hub", "asur_envoy_whyareyouhere", TORTextHelper.GetText("eonir_envoy_why_are_you_here_text", "Why are you here?"), () => IsAsurianEnvoy(),
             null, 200);
 
-        starter.AddPlayerLine("asur_envoy_main_hub_close", "asur_envoy_main_hub", "close_window", TORTextHelper.GetText("eonir_envoy_close_text", "That is all thank you."), () => IsAsurianEnvoy(),
+        starter.AddPlayerLine("asur_envoy_main_hub_close", "asur_envoy_main_hub", "close_window", TORTextHelper.GetText("eonir_envoy_close_text", "That will be all, thank you."), () => IsAsurianEnvoy(),
             null, 200);
 
 
@@ -806,19 +819,19 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         //why are you here
 
         starter.AddDialogLine("asur_envoy_whyareyouhere", "asur_envoy_whyareyouhere", "envoy_asur_wayh_reaction",
-            TORTextHelper.GetText("eonir_asur_why_here_intro_text", "I represent the Phoenix King interests in these lands."), () => IsAsurianEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_asur_why_here_intro_text", "I am here as a representative of Ulthuan, and to stand as a reminder that the freedom and independence you enjoy is a most gracious gift given by the Pheonix King. A gift that can be rescinded at his discretion."), () => IsAsurianEnvoy(), null, 200);
         starter.AddPlayerLine("envoy_asur_wayh_reaction_displeased", "envoy_asur_wayh_reaction", "asur_envoy_whyareyouhere_2",
-            TORTextHelper.GetText("eonir_asur_why_here_displeased_text", "You have not impressed me."), () => IsAsurianEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_asur_why_here_displeased_text", "You abandoned us to die, then tried to take our lands by force. We have survived without Ulthuan until now and will continue to do so. Begone, 'kin'."), () => IsAsurianEnvoy(), null, 200);
         starter.AddPlayerLine("envoy_asur_wayh_reaction_undecided", "envoy_asur_wayh_reaction", "asur_envoy_whyareyouhere_2",
-            TORTextHelper.GetText("eonir_asur_why_here_undecided_text", "I am still evaluating your worth."), () => IsAsurianEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_asur_why_here_undecided_text", "Be mindful, our willingess to negotiate is not a sign that we have forgotten your transgressions, what do you come here to offer us?"), () => IsAsurianEnvoy(), null, 200);
         starter.AddPlayerLine("envoy_asur_wayh_reaction_agreement", "envoy_asur_wayh_reaction", "asur_envoy_whyareyouhere_2",
-            TORTextHelper.GetText("eonir_asur_why_here_agreement_text", "We have a good understanding."), () => IsAsurianEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_asur_why_here_agreement_text", "We are kin and have been apart for far too long, we seek the help of the Asur and appreciate any that can be offered."), () => IsAsurianEnvoy(), null, 200);
 
         starter.AddDialogLine("asur_envoy_whyareyouhere_2", "asur_envoy_whyareyouhere_2", "asur_envoy_whyareyouhere_3",
-            TORTextHelper.GetText("eonir_asur_why_here_explain_text", "I am here to protect High Elf interests."), () => IsAsurianEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_asur_why_here_explain_text", "We are willing to offer aid in many forms, as long as it increases our influence within the council."), () => IsAsurianEnvoy(), null, 200);
 
         starter.AddDialogLine("asur_envoy_whyareyouhere_3", "asur_envoy_whyareyouhere_3", "back_to_main_hub_asur",
-            TORTextHelper.GetText("eonir_asur_why_here_services_text", "I can offer various services to those who prove worthy."), () => IsAsurianEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_asur_why_here_services_text", "Ulthuan has connections across the Old World, should finances, a good word with an enemy or soldiers to defend your forest be needed, we can provide it. For the agreed price, of course."), () => IsAsurianEnvoy(), null, 200);
 
 
         starter.AddDialogLine("back_to_main_hub_asur", "back_to_main_hub_asur", "asur_envoy_main_hub",
@@ -1009,15 +1022,50 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
     private void EnforceEnvoyLocation()
     {
+        if (_torLithanel == null)
+        {
+            _torLithanel = Campaign.Current.Settlements.FirstOrDefault(x => x.IsTorLithanel());
+        }
+
+        if (envoys == null || envoys.Count == 0)
+        {
+            PopulateEnvoys();
+        }
+
         if (Settlement.CurrentSettlement == null || Settlement.CurrentSettlement != _torLithanel) return;
+        if (envoys == null || envoys.Count == 0) return;
+
         foreach (var envoy in envoys)
         {
             var locationchar = _torLithanel.LocationComplex.GetLocationCharacterOfHero(envoy);
             var lordsHall = _torLithanel.LocationComplex.GetLocationWithId("lordshall");
             var currentloc = _torLithanel.LocationComplex.GetLocationOfCharacter(locationchar);
-            if (locationchar is null || lordsHall is null || currentloc is null) return;
+            if (locationchar is null || lordsHall is null || currentloc is null) continue;
             if (currentloc != lordsHall) _torLithanel.LocationComplex.ChangeLocation(locationchar, currentloc, lordsHall);
         }
+    }
+
+    private void PopulateEnvoys()
+    {
+        if (envoys == null)
+        {
+            envoys = new List<Hero>();
+        }
+        else
+        {
+            envoys.Clear();
+        }
+
+        // Find existing envoys by their attributes
+        _druchiiEnvoy = Hero.AllAliveHeroes.FirstOrDefault(x => x.HasAttribute("DruchiiEnvoy"));
+        _asurEnvoy = Hero.AllAliveHeroes.FirstOrDefault(x => x.HasAttribute("AsurEnvoy"));
+        _empireEnvoy = Hero.AllAliveHeroes.FirstOrDefault(x => x.HasAttribute("EmpireEnvoy"));
+        _spellsingerEnvoy = Hero.AllAliveHeroes.FirstOrDefault(x => x.HasAttribute("SpellsingerEnvoy"));
+
+        if (_druchiiEnvoy != null) envoys.Add(_druchiiEnvoy);
+        if (_asurEnvoy != null) envoys.Add(_asurEnvoy);
+        if (_empireEnvoy != null) envoys.Add(_empireEnvoy);
+        if (_spellsingerEnvoy != null) envoys.Add(_spellsingerEnvoy);
     }
 
     private void CreateEnvoys()

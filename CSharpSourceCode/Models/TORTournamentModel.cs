@@ -14,6 +14,7 @@ using TaleWorlds.LinQuick;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.BattleMechanics.CustomArenaModes;
 using TOR_Core.CampaignMechanics.Assimilation;
+using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
@@ -60,7 +61,7 @@ namespace TOR_Core.Models
             MBList<ItemObject> mBList2 = new MBList<ItemObject>();
             foreach (ItemObject item in Game.Current.ObjectManager.GetObjectTypeList<ItemObject>())
             {
-                if (!item.NotMerchandise && item.Tier < ItemObject.ItemTiers.Tier5 && (item.IsCraftedWeapon || item.IsMountable || item.ArmorComponent != null) && !item.IsCraftedByPlayer)
+                if (!item.NotMerchandise && item.Tier < ItemObject.ItemTiers.Tier5 && (item.IsCraftedWeapon || item.IsMountable || item.ArmorComponent != null) && !item.IsCraftedByPlayer && item.IsTorItem())
                 {
                     if (item.Culture == town.Culture)
                     {
@@ -88,7 +89,7 @@ namespace TOR_Core.Models
             MBList<ItemObject> mBList = new MBList<ItemObject>();
             foreach (ItemObject item in Game.Current.ObjectManager.GetObjectTypeList<ItemObject>())
             {
-                if (!item.NotMerchandise && item.Culture == town.Culture && item.Tier > ItemObject.ItemTiers.Tier4 && (item.IsCraftedWeapon || item.IsMountable || item.ArmorComponent != null) && !item.IsCraftedByPlayer)
+                if (!item.NotMerchandise && item.Culture == town.Culture && item.Tier > ItemObject.ItemTiers.Tier4 && (item.IsCraftedWeapon || item.IsMountable || item.ArmorComponent != null) && !item.IsCraftedByPlayer && item.IsTorItem())
                 {
                     mBList.Add(item);
                 }
@@ -101,6 +102,115 @@ namespace TOR_Core.Models
             }
 
             return mBList;
+        }
+
+        public override Equipment GetParticipantArmor(CharacterObject participant)
+        {
+            // For practice arena fights (not tournaments), provide race-appropriate armor
+            if (CampaignMission.Current != null && CampaignMission.Current.Mode != MissionMode.Tournament && Settlement.CurrentSettlement != null)
+            {
+                string[] armorRosterIds = null;
+
+                // Check for Greenskin races (Orcs/Goblins)
+                if (participant.IsOrc())
+                {
+                    armorRosterIds = new string[]
+                    {
+                        "tor_gs_orc_template",
+                    };
+                }
+                else if (participant.IsGoblin())
+                {
+                    armorRosterIds = new string[]
+                    {
+                        "tor_gs_goblin_template"
+                    };
+                }
+                // Check for Dwarf race
+                else if (participant.IsDwarf())
+                {
+                    armorRosterIds = new string[]
+                    {
+                        "tor_dw_recruit_template"
+                    };
+                }
+
+                // If we have roster IDs for armor, return random armor equipment
+                if (armorRosterIds != null)
+                {
+                    Equipment armorEquipment = GetRandomEquipmentFromRoster(armorRosterIds);
+                    if (armorEquipment != null)
+                    {
+                        return armorEquipment;
+                    }
+                }
+            }
+
+            // Fall back to base implementation for tournaments and other races
+            return base.GetParticipantArmor(participant);
+        }
+
+        /// <summary>
+        /// Gets practice weapons for non-human races.
+        /// Called by ArenaPracticePatch to replace native weapon assignment.
+        /// </summary>
+        public Equipment GetParticipantWeapons(CharacterObject participant)
+        {
+            string[] weaponRosterIds = null;
+
+            // Check for Greenskin races (Orcs/Goblins)
+            if (participant.IsOrc())
+            {
+                weaponRosterIds = new string[]
+                {
+                    "tor_gs_tournament_template_one_participant_v1",
+                    "tor_gs_tournament_template_two_participant_v1",
+                    "tor_gs_tournament_template_four_participant_v1"
+                };
+            }
+            else if (participant.IsGoblin())
+            {
+                weaponRosterIds = new string[]
+                {
+                    "tor_gs_goblin_tournament_template_one_participant_v1",
+                    "tor_gs_goblin_tournament_template_two_participant_v1",
+                    "tor_gs_goblin_tournament_template_four_participant_v1"
+                };
+            }
+            // Check for Dwarf race
+            else if (participant.IsDwarf())
+            {
+                weaponRosterIds = new string[]
+                {
+                    "tor_dw_tournament_template_one_participant_v1",
+                    "tor_dw_tournament_template_two_participant_v1",
+                    "tor_dw_tournament_template_four_participant_v1"
+                };
+            }
+
+            // If we have roster IDs for weapons, return random weapon equipment
+            if (weaponRosterIds != null)
+            {
+                return GetRandomEquipmentFromRoster(weaponRosterIds);
+            }
+
+            return null;
+        }
+
+        private Equipment GetRandomEquipmentFromRoster(string[] rosterIds)
+        {
+            if (rosterIds == null || rosterIds.Length == 0)
+                return null;
+
+            string randomRosterId = rosterIds[MBRandom.RandomInt(rosterIds.Length)];
+            MBEquipmentRoster roster = Game.Current.ObjectManager.GetObject<MBEquipmentRoster>(randomRosterId);
+
+            if (roster != null && roster.AllEquipments.Count > 0)
+            {
+                return roster.AllEquipments[MBRandom.RandomInt(roster.AllEquipments.Count)].Clone();
+            }
+
+            return null;
         }
     }
 }

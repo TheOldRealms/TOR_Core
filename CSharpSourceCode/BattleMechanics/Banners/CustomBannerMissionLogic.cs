@@ -58,13 +58,11 @@ namespace TOR_Core.BattleMechanics.Banners
                 {
                     var agent = _unprocessedAgents.Dequeue();
                     var banner = DetermineBanner(agent);
-                    if (agent == null)
-                    {
-                        TORCommon.Log("CustomBannerMissionLogic : Tried to assign shield pattern to null agent.", NLog.LogLevel.Error);
-                    }
+                    if (agent == null || agent.State != AgentState.Active || agent.IsFadingOut()) continue;
                     if (banner == null)
                     {
-                        TORCommon.Log("CustomBannerMissionLogic : Tried to assign null shield pattern to agent : " + agent.ToString() + ".", NLog.LogLevel.Error);
+                        TORCommon.Log("CustomBannerMissionLogic : Tried to assign null shield pattern to agent : " + agent.ToString() + ".", NLog.LogLevel.Warn);
+                        continue;
                     }
                     try
                     {
@@ -78,9 +76,9 @@ namespace TOR_Core.BattleMechanics.Banners
                         }
                         _indexOfCurrentAgent++;
                     }
-                    catch
+                    catch(Exception e)
                     {
-                        TORCommon.Log("CustomBannerMissionLogic : Tried to assign shield pattern to agent but failed.", NLog.LogLevel.Warn);
+                        TORCommon.Log("CustomBannerMissionLogic : Tried to assign shield pattern to agent but failed. Error: " + e.Message, NLog.LogLevel.Warn);
                     }
                 }
                 _hasUnprocessedAgents = false;
@@ -91,18 +89,23 @@ namespace TOR_Core.BattleMechanics.Banners
         {
             if (_agentsWithBanners.ContainsKey(affectedAgent.Index))
             {
-                if (affectedAgent.Equipment != null &&
-                    !affectedAgent.Equipment[_agentsWithBanners[affectedAgent.Index]].IsEmpty)
+                var fakeBannerSlot = _agentsWithBanners[affectedAgent.Index];
+
+                if (agentState != AgentState.Routed &&
+                    affectedAgent.Equipment != null &&
+                    !affectedAgent.Equipment[fakeBannerSlot].IsEmpty)
                 {
                     //Sly : is this here because of some sort of crash? or is the intention to have far less shields be on the ground from agents dying?
-                    affectedAgent.RemoveEquippedWeapon(_agentsWithBanners[affectedAgent.Index]);
+                    // keep old cleanup for killed/unconscious removals
+                    affectedAgent.RemoveEquippedWeapon(fakeBannerSlot);
                 }
+                _agentsWithBanners.Remove(affectedAgent.Index);
             }
         }
 
         private void SwitchTableauPatterns(Agent agent, Banner banner)
         {
-            if (agent.State != AgentState.Active) return;
+            if (agent.State != AgentState.Active || agent.IsFadingOut()) return;
             if (banner != null)
             {
                 for (int i = 0; i < 5; i++)
@@ -135,7 +138,7 @@ namespace TOR_Core.BattleMechanics.Banners
             if (agent.IsHero) return false;
             if (agent.IsSummoned()) return false;
             if (agent.IsTreeSpirit()) return false;
-            if (((CharacterObject)agent.Character).IsTroll()) return false;
+            if (agent.IsTroll()) return false;
             if (Game.Current.GameType is Campaign && Campaign.Current != null)
             {
                 if (agent.Origin is PartyAgentOrigin origin)

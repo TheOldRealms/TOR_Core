@@ -29,9 +29,12 @@ namespace TOR_Core.Utilities
         /// <summary>
         /// Determines if a Blow originated from a spell based on its properties.
         /// </summary>
+        /// <remarks>
+        /// Amber Spear and Green Eye are the only weapons in the game with an undefined weapon class and so they are detected by that as well as their missile status.
+        /// </remarks>
         public static bool IsSpellBlow(Blow b)
         {
-            return b.StrikeType == StrikeType.Thrust && b.AttackType == AgentAttackType.Kick && b.DamageCalculated && b.BlowFlag.HasFlag(BlowFlags.NoSound) && b.VictimBodyPart == BoneBodyPartType.Chest;
+            return (b.StrikeType == StrikeType.Thrust && b.AttackType == AgentAttackType.Kick && b.DamageCalculated && b.BlowFlag.HasFlag(BlowFlags.NoSound) && b.VictimBodyPart == BoneBodyPartType.Chest) || (b.IsMissile && b.WeaponRecord.WeaponClass == WeaponClass.Undefined);
         }
 
         /// <summary>

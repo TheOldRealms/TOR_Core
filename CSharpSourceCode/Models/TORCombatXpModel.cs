@@ -88,8 +88,8 @@ namespace TOR_Core.Models
             var oldMultiplier = missionType switch
             {
                 CombatXpModel.MissionTypeEnum.NoXp => 1f,//avoid division by 0 error; results in no change to the multiplier, but in any case the xp granted would still be 0 because (baseXp * 0) was already performed and this adjusted multiplier would then be applied to 0.
-			    CombatXpModel.MissionTypeEnum.PracticeFight => 0.0625f,
-			    CombatXpModel.MissionTypeEnum.Tournament => 0.33f,
+			    CombatXpModel.MissionTypeEnum.PracticeFight => 0.125f,//native is 0.0625f, recalculated to give 50% xp after adjustment
+			    CombatXpModel.MissionTypeEnum.Tournament => 0.4f,//native is 0.33f, recalculated to give 5/6th xp after adjustment
 			    CombatXpModel.MissionTypeEnum.SimulationBattle => 0.9f,
 			    CombatXpModel.MissionTypeEnum.Battle => 1f,
                 _ => 1f,

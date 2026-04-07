@@ -358,13 +358,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _peerlessWarriorPassive1.Initialize(CareerID, "+25 personal Hitpoints.", "PeerlessWarrior", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
             _peerlessWarriorPassive2.Initialize(CareerID, "+10% personal 'Physical' melee damage.", "PeerlessWarrior", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
             _peerlessWarriorPassive3.Initialize(CareerID, "+20% experience gains by tier 4+ troops.", "PeerlessWarrior", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
-            _peerlessWarriorPassive4.Initialize(CareerID, "Gain 100 experience in a random melee weapon skill daily.", "PeerlessWarrior", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special, false));  // CareerChoicePerkCampaignBehavior 123
+            _peerlessWarriorPassive4.Initialize(CareerID, "+100 experience daily in a random melee weapon skill.", "PeerlessWarrior", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special, false));  // CareerChoicePerkCampaignBehavior 123
 
             _nightRiderPassive1.Initialize(CareerID, "+25 personal Hitpoints.", "NightRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
             _nightRiderPassive2.Initialize(CareerID, "+20 to all melee skills of 'Lesser Undead', and 'Vampire' troops.", "NightRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, new List<string>() { nameof(DefaultSkills.TwoHanded), nameof(DefaultSkills.OneHanded) },
                     characterObject => !characterObject.IsHero && (characterObject.IsUndead() || characterObject.IsVampire())));
             _nightRiderPassive3.Initialize(CareerID, "+50% faster raiding speed during the night.", "NightRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special, true));
-            _nightRiderPassive4.Initialize(CareerID, "Personal damage against shields is increased.", "NightRider", false, ChoiceType.Passive, null);
+            _nightRiderPassive4.Initialize(CareerID, "Personal damage against shields is increased.", "NightRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.BonusDamageShield, AttackTypeMask.Melee)); // or however you like it, assuming the whole effect won't change after this point
 
             _bladeMasterPassive1.Initialize(CareerID, "+5% personal 'Physical' melee damage.", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 5), AttackTypeMask.Melee));
             _bladeMasterPassive2.Initialize(CareerID, "Personal healing rate increased by +3.", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.HealthRegeneration));
@@ -380,14 +380,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _controlledHungerPassive1.Initialize(CareerID, "Sunlight no longer weakens you.", "ControlledHunger", false, ChoiceType.Passive, null); //TORPartySpeedCalculatingModel 46
             _controlledHungerPassive2.Initialize(CareerID, "+25 personal Hitpoints.", "ControlledHunger", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
             _controlledHungerPassive3.Initialize(CareerID, "+35% personal mount Hitpoints.", "ControlledHunger", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(35f, PassiveEffectType.HorseHealth, true));
-            _controlledHungerPassive4.Initialize(CareerID, "Every 200 personal damage restore 1 Hitpoint up to a max of 5 per hit.", "ControlledHunger", false, ChoiceType.Passive, null);
+            _controlledHungerPassive4.Initialize(CareerID, "For every 200 damage you deal, restore 1 Hitpoint up to a max of 5 per hit.", "ControlledHunger", false, ChoiceType.Passive, null);
 
             _avatarOfDeathPassive1.Initialize(CareerID, "+15% 'Physical Resistance'.", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Ranged | AttackTypeMask.Melee));
             _avatarOfDeathPassive2.Initialize(CareerID, "-20% 'Dark Energy' upkeep costs for 'Vampire' troops.", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.CustomResourceUpkeepModifier, true,
                 characterObject => !characterObject.IsHero && characterObject.IsVampire() && characterObject.IsKnightUnit()));
             _avatarOfDeathPassive3.Initialize(CareerID, "+20% personal 'Spell Resistance'.", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 20), AttackTypeMask.Spell));
-            _avatarOfDeathPassive4.Initialize(CareerID, "+15% 'Ward Save' for 'Vampire' troops.", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.Spell,
-                (attacker, victim, mask) => !victim.BelongsToMainParty() && victim.IsHero && victim.Character.IsVampire()));
+            _avatarOfDeathPassive4.Initialize(CareerID, "+15% 'Ward Save' for 'Vampire' troops.", "AvatarOfDeath", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.All,
+                (attacker, victim, mask) => victim.BelongsToMainParty() && !victim.IsHero && victim.Character.IsVampire()));
 
             _dreadKnightPassive1.Initialize(CareerID, "+35 personal Hitpoints.", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(35, PassiveEffectType.Health));
             _dreadKnightPassive2.Initialize(CareerID, "+50% charge damage bonus for your mount.", "DreadKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseChargeDamage, true));

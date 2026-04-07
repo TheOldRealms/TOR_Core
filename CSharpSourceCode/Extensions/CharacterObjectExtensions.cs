@@ -60,6 +60,16 @@ namespace TOR_Core.Extensions
             return characterObject.GetAttributes().Contains(attributeName);
         }
 
+        public static bool CanClimbLadders(this BasicCharacterObject characterObject)
+        {
+            if (characterObject == null)
+            {
+                return true;
+            }
+
+            return !characterObject.HasAttribute("CannotClimbLadders");
+        }
+
         public static List<ResistanceTuple> GetDefenseProperties(this BasicCharacterObject characterObject)
         {
             var list = new List<ResistanceTuple>();
@@ -157,6 +167,11 @@ namespace TOR_Core.Extensions
         {
             return characterObject.Race == FaceGen.GetRaceOrDefault("troll");
         }
+        
+        public static bool IsTroll(this BasicCharacterObject characterObject)
+        {
+            return characterObject.Race == FaceGen.GetRaceOrDefault("troll");
+        }
 
         public static bool IsMinotaur(this CharacterObject characterObject)
         {
@@ -170,23 +185,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsHuman(this CharacterObject characterObject)
         {
-            if (characterObject.Culture.IsBandit)
-            {
-                if (characterObject.IsBeastman() || characterObject.IsCultist() || characterObject.IsElf())
-                    return false;
-                else
-                {
-                    return true;
-                }
-            }
-
-            return characterObject.Culture.StringId == TORConstants.Cultures.EMPIRE ||
-                   characterObject.Culture.StringId == TORConstants.Cultures.BRETONNIA ||
-                   characterObject.Culture.StringId == TORConstants.Cultures.SYLVANIA &&
-                   !(characterObject.IsVampire() || characterObject.IsUndead()) ||
-                   characterObject.Culture.StringId == "mousillon" &&
-                   !(characterObject.IsVampire() || characterObject.IsUndead());
-
+            return characterObject.Race == FaceGen.GetRaceOrDefault("human") || characterObject.Race == FaceGen.GetRaceOrDefault("marauder") || characterObject.Race == FaceGen.GetRaceOrDefault("bretonnian");
         }
 
         public static bool IsElf(this CharacterObject characterObject)
@@ -227,8 +226,7 @@ namespace TOR_Core.Extensions
             if (attributes == null) return false;
             var runes = RunelordCareerButtonBehavior.GetRuneIds;
 
-            return attributes.All(x => runes.Contains(x));
-
+            return attributes.Any(x => runes.Contains(x));
         }
 
         public static bool IsKnightUnit(this BasicCharacterObject characterObject)

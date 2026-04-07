@@ -40,7 +40,7 @@ namespace TOR_Core.CharacterDevelopment
                 }
                 if (perk == TORPerks.Faith.DivineMission)
                 {
-                    if (hero.HeroDeveloper.CanAddFocusToSkill(DefaultSkills.Medicine))
+                    if (hero.HeroDeveloper.GetFocus(DefaultSkills.Medicine) < Campaign.Current.Models.CharacterDevelopmentModel.MaxFocusPerSkill)
                     {
                         hero.HeroDeveloper.AddFocus(DefaultSkills.Medicine, 1, false);
                     }
@@ -51,7 +51,7 @@ namespace TOR_Core.CharacterDevelopment
                 var info = hero.GetExtendedInfo();
                 if (info != null)
                 {
-                    if (hero.IsSpellCaster())
+                    if (hero.IsSpellCaster() || hero.HasAttribute("Runesmith"))
                     {
                         if (perk == TORPerks.Spellcraft.EntrySpells)
                         {

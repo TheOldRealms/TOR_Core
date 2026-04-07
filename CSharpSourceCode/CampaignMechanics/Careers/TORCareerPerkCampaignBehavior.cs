@@ -32,6 +32,7 @@ namespace TOR_Core.CampaignMechanics
     {
         public override void RegisterEvents()
         {
+            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, DailyCareerTickEvents);
             CampaignEvents.WeeklyTickEvent.AddNonSerializedListener(this, WeeklyCareerTickEvents);
             CampaignEvents.ItemsLooted.AddNonSerializedListener(this, RaidingPartyEvent);
@@ -44,9 +45,16 @@ namespace TOR_Core.CampaignMechanics
             CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, HourlyPartyEvent);
         }
 
+        private void OnSessionLaunched(CampaignGameStarter starter)
+        {
+            // Initialize career choices cache when save is loaded or new game starts
+            CareerHelper.RefreshCareerChoicesCache();
+        }
+
         private void HourlyPartyEvent()
         {
             var mainParty = MobileParty.MainParty;
+
             if (mainParty.CurrentSettlement != null) return;
             if (Hero.MainHero.HasCareerChoice("ForgefireBurningPassive3"))
             {

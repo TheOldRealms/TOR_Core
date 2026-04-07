@@ -101,6 +101,13 @@ namespace TOR_Core.AbilitySystem
                 }
             }
 
+            // Check if summoning abilities can be used (mission agent limit)
+            if (Template.AbilityEffectType == AbilityEffectType.Summoning && !TORSummonHelper.CanSummon())
+            {
+                disabledReason = TORTextHelper.GetTextObject("tor_ability_mission_agent_limit", "Too many agents on battlefield");
+                return true;
+            }
+
             if (IsOnCooldown())
             {
                 disabledReason = TORTextHelper.GetTextObject("tor_ability_on_cooldown", "On cooldown");

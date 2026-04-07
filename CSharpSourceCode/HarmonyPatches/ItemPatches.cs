@@ -20,6 +20,25 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatchCategory("LatePatches")]
     public static class ItemPatches
     {
+        private const float MERCHANDISE_STAFF_PRODUCTION_WEIGHT = 0.15f; // times less staff production for towns
+        private static float GetWorkshopProductionWeight(ItemObject item)
+        {
+            if (item == null)
+            {
+                return 1f;
+            }
+
+            if (!item.NotMerchandise
+                && item.StringId.Contains("staff")
+                && item.IsMeleeWeapon()
+                && item.IsMagicalItem())
+            {
+                return MERCHANDISE_STAFF_PRODUCTION_WEIGHT;
+            }
+
+            return 1f;
+        }
+
         [HarmonyPrefix]
         [HarmonyPatch(typeof(WeaponComponentData), "GetRelevantSkillFromWeaponClass")]
         public static bool AddGunpowderRelevantSkill(ref SkillObject __result, WeaponClass weaponClass)
@@ -43,18 +62,24 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(WorkshopsCampaignBehavior), "GetRandomItemAux")]
         public static bool OnlyProduceCultureMatchingItems(ref EquipmentElement __result, ItemCategory itemGroupBase, Town townComponent, Dictionary<ItemCategory, List<ItemObject>> ____itemsInCategory)
         {
-            var possibleItems = new List<ItemObject>();
             if (____itemsInCategory.TryGetValue(itemGroupBase, out var allItemsInGroup))
             {
-                foreach (ItemObject obj in allItemsInGroup)
+                var weightedItems = new List<(ItemObject Item, float Weight)>();
+
+                foreach (ItemObject item in allItemsInGroup)
                 {
-                    if (townComponent != null && obj.Culture == townComponent.Culture && obj.ItemCategory == itemGroupBase)
+                    if (townComponent != null && item.Culture == townComponent.Culture && item.ItemCategory == itemGroupBase)
                     {
-                        possibleItems.Add(obj);
+                        weightedItems.Add((item, GetWorkshopProductionWeight(item)));
                     }
                 }
-                if (possibleItems.Count < 1) return true;
-                ItemObject itemObject = possibleItems.GetRandomElementInefficiently();
+
+                if (weightedItems.Count < 1)
+                {
+                    return true;
+                }
+
+                ItemObject itemObject = MBRandom.ChooseWeighted(weightedItems);
 
                 ItemModifierGroup itemModifierGroup = null;
                 if (itemObject != null)

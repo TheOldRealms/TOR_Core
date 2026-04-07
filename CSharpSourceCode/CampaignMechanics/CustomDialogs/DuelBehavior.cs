@@ -83,6 +83,7 @@ public class DuelBehavior : CampaignBehaviorBase
         {
 
             if (Hero.OneToOneConversationHero?.IsLord != true) return false;
+            if (Hero.OneToOneConversationHero.IsPrisoner) return false;
             if (_isDuelInProgress) return false;
 
             var playerCulture = Hero.MainHero.Culture.StringId;
@@ -373,7 +374,7 @@ public class DuelBehavior : CampaignBehaviorBase
         _isDuelInProgress = false;
 
 
-        TorMissionManager.OpenDuelMission(EvaluateDuel, _currentDuelTarget, "TOR_greenskin_duel_001");
+        TorMissionManager.OpenDuelMission(EvaluateDuel, _currentDuelTarget, "TOR_greenskin_duel_001", false);
 
 
         // Return to the town or wherever the player was

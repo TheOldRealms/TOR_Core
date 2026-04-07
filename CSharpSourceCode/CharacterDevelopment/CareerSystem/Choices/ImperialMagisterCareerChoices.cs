@@ -319,7 +319,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         {
             _studyAndPractisePassive1.Initialize(CareerID, "+3 personal max 'Winds of Magic' capacity.", "StudyAndPractise", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.WindsOfMagic));
             _studyAndPractisePassive2.Initialize(CareerID,
-                "+10% personal 'Ward Save' if armor weight does not exceed 11.", "StudyAndPractise", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.All,
+                "+10% personal 'Ward Save' if armour weight does not exceed 11.", "StudyAndPractise", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.All,
                     (attacker, victim, attackmask) => victim == Agent.Main && CareerChoicesHelper.ArmorWeightCheck(victim, 11)));
             _studyAndPractisePassive3.Initialize(CareerID, "+5% personal 'Magic' spell damage.", "StudyAndPractise", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 5), AttackTypeMask.Spell));
             _studyAndPractisePassive4.Initialize(CareerID, "+10% personal 'Magic Resistance'.", "StudyAndPractise", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
@@ -343,7 +343,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _magicCombatTrainingPassive2.Initialize(CareerID, "+25% spell cooldown reduction.", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.WindsCooldownReduction, true));
             _magicCombatTrainingPassive3.Initialize(CareerID, "+15% spell power when wielding an off-hand staff.", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.SpellEffectiveness, true,
                 (CharacterObject character) => HasMagicStaff()));
-            _magicCombatTrainingPassive4.Initialize(CareerID, "+20% 'Ward Save' if armor weight does not exceed 11.", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 20), AttackTypeMask.All,
+            _magicCombatTrainingPassive4.Initialize(CareerID, "+20% 'Ward Save' if armour weight does not exceed 11.", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 20), AttackTypeMask.All,
                 (attacker, victim, attackmask) => victim.IsHero && victim.IsMainAgent && CareerChoicesHelper.ArmorWeightCheck(victim, 11)));
 
             _ancientScrollsPassive1.Initialize(CareerID, "+25% duration increase for 'Hex' spells.", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25f, PassiveEffectType.DebuffDuration, true));
@@ -353,8 +353,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
 
             _arcaneKnowledgePassive1.Initialize(CareerID, "+10% spell damage of Imperial Wizard Companions.", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
-            _arcaneKnowledgePassive2.Initialize(CareerID, "+10% personal spell effect radious.", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10f, PassiveEffectType.SpellRadius, true));
-            _arcaneKnowledgePassive3.Initialize(CareerID, "+10% spell power if armor weight does not exceed 11.", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.SpellEffectiveness, true,
+            _arcaneKnowledgePassive2.Initialize(CareerID, "+10% personal spell effect radius.", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10f, PassiveEffectType.SpellRadius, true));
+            _arcaneKnowledgePassive3.Initialize(CareerID, "+10% spell power if armour weight does not exceed 11.", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.SpellEffectiveness, true,
                 (characterObject => characterObject.IsHero && characterObject.HeroObject == Hero.MainHero && CareerChoicesHelper.ArmorWeightCheck(Agent.Main, 11))));
             _arcaneKnowledgePassive4.Initialize(CareerID, "+2 personal max 'Winds of Magic' per Imperial Wizard Companion.", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special));
         }

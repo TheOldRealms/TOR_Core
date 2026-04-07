@@ -21,6 +21,7 @@
         </face>
         <Equipments>
             <EquipmentSet id="tor_empire_tournament_template_two_participant_v1" />
+            <EquipmentSet id="tor_empire_tournament_template_two_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
             <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
         </Equipments>
@@ -31,6 +32,9 @@
             <face_key_template value="BodyProperty.fighter_empire" />
         </face>
         <Equipments>
+            <EquipmentSet id="tor_empire_tournament_template_four_participant_v1" />
+            <EquipmentSet id="tor_empire_tournament_template_four_participant_v1" />
+            <EquipmentSet id="tor_empire_tournament_template_four_participant_v1" />
             <EquipmentSet id="tor_empire_tournament_template_four_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
             <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
@@ -105,6 +109,44 @@
         </Equipments>
     </NPCCharacter>
 
+    <!--GREENSKIN SETS-->
+    <NPCCharacter id="tor_gs_tournament_template_one_participant_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.aserai" is_hero="false" occupation="Special" skill_template="SkillSet.tor_skills_level11">
+        <face>
+            <face_key_template value="BodyProperty.orc_mid" />
+        </face>
+        <Equipments>
+            <EquipmentSet id="tor_gs_tournament_template_one_participant_v1" />
+            <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+        </Equipments>
+    </NPCCharacter>
+
+    <NPCCharacter id="tor_gs_tournament_template_two_participant_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.aserai" is_hero="false" occupation="Special" skill_template="SkillSet.tor_skills_level11">
+        <face>
+            <face_key_template value="BodyProperty.orc_mid" />
+        </face>
+        <Equipments>
+            <EquipmentSet id="tor_gs_tournament_template_two_participant_v1" />
+            <EquipmentSet id="tor_gs_tournament_template_two_participant_v1" />
+            <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+        </Equipments>
+    </NPCCharacter>
+
+    <NPCCharacter id="tor_gs_tournament_template_four_participant_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.aserai" is_hero="false" occupation="Special" skill_template="SkillSet.tor_skills_level11">
+        <face>
+            <face_key_template value="BodyProperty.orc_mid" />
+        </face>
+        <Equipments>
+            <EquipmentSet id="tor_gs_tournament_template_four_participant_v1" />
+            <EquipmentSet id="tor_gs_tournament_template_four_participant_v1" />
+            <EquipmentSet id="tor_gs_tournament_template_four_participant_v1" />
+            <EquipmentSet id="tor_gs_tournament_template_four_participant_v1" />
+            <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+        </Equipments>
+    </NPCCharacter>
+
     <!--SYLVANIA SETS-->
     <NPCCharacter id="tournament_template_vampire_one_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.khuzait" is_hero="false" occupation="Special" skill_template="SkillSet.tor_skills_level11">
         <face>
@@ -123,6 +165,7 @@
         </face>
         <Equipments>
             <EquipmentSet id="tor_vc_tournament_template_two_participant_v1" />
+            <EquipmentSet id="tor_vc_tournament_template_two_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
             <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
         </Equipments>
@@ -133,6 +176,9 @@
             <face_key_template value="BodyProperty.fighter_empire" />
         </face>
         <Equipments>
+            <EquipmentSet id="tor_vc_tournament_template_four_participant_v1" />
+            <EquipmentSet id="tor_vc_tournament_template_four_participant_v1" />
+            <EquipmentSet id="tor_vc_tournament_template_four_participant_v1" />
             <EquipmentSet id="tor_vc_tournament_template_four_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
             <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
@@ -191,6 +237,7 @@
         </face>
         <Equipments>
             <EquipmentSet id="tor_eonir_tournament_template_two_participant_v1" />
+	        <EquipmentSet id="tor_eonir_tournament_template_two_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
             <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
         </Equipments>
@@ -202,6 +249,9 @@
         </face>
         <Equipments>
             <EquipmentSet id="tor_eonir_tournament_template_four_participant_v1" />
+			<EquipmentSet id="tor_eonir_tournament_template_four_participant_v1" />
+			<EquipmentSet id="tor_eonir_tournament_template_four_participant_v1" />
+			<EquipmentSet id="tor_eonir_tournament_template_four_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
             <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
         </Equipments>
@@ -225,6 +275,7 @@
         </face>
         <Equipments>
             <EquipmentSet id="tor_dw_tournament_template_two_participant_v1" />
+			<EquipmentSet id="tor_dw_tournament_template_two_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
             <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
         </Equipments>
@@ -236,6 +287,9 @@
         </face>
         <Equipments>
             <EquipmentSet id="tor_dw_tournament_template_four_participant_v1" />
+			<EquipmentSet id="tor_dw_tournament_template_four_participant_v1" />
+			<EquipmentSet id="tor_dw_tournament_template_four_participant_v1" />
+			<EquipmentSet id="tor_dw_tournament_template_four_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
             <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
         </Equipments>

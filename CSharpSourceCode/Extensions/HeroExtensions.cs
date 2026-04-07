@@ -487,6 +487,30 @@ namespace TOR_Core.Extensions
             return false;
         }
 
+        /// <summary>
+        /// Attempts to find a religion which corresponds with the first "Priest" attribute on the hero.
+        /// </summary>
+        /// <remarks>
+        /// Placeholder for wanderer religion assignment after traits were removed from their templates.
+        /// </remarks>
+        /// <returns>A ReligionObject that corresponds to the PriestXXX attribute, otherwise null.</returns>
+        public static ReligionObject GetReligionFromAttribute(this Hero hero)
+        {
+            if (hero?.GetExtendedInfo() is not HeroExtendedInfo info) return null;
+
+            var heroAttributes = info.AllAttributes;
+            foreach (var attribute in heroAttributes.WhereQ(x => !x.Equals("Priest") && x.StartsWith("Priest")))
+            {
+                var godName = attribute.ToString().Remove(0, 6);
+                godName = godName.ToLower();
+                var religion = ReligionObject.All.FirstOrDefault(x => x.StringId.Contains(godName));
+
+                if (religion != null) return religion;
+            }
+
+            return null;
+        }
+
         public static bool IsAICompanion(this Hero hero)
         {
             return hero.HasAttribute("AICompanion") && hero.Occupation == Occupation.Special;
@@ -576,6 +600,13 @@ namespace TOR_Core.Extensions
                     if (info.CareerChoices.Count < maxChoices)
                     {
                         info.CareerChoices.Add(choice.StringId);
+
+                        // Refresh cache when choices change
+                        if (hero == Hero.MainHero)
+                        {
+                            CareerHelper.RefreshCareerChoicesCache();
+                        }
+
                         return true;
                     }
                 }
@@ -599,6 +630,13 @@ namespace TOR_Core.Extensions
                 if (info.CareerChoices.Contains(choice.StringId))
                 {
                     info.CareerChoices.Remove(choice.StringId);
+
+                    // Refresh cache when choices change
+                    if (hero == Hero.MainHero)
+                    {
+                        CareerHelper.RefreshCareerChoicesCache();
+                    }
+
                     return true;
                 }
             }

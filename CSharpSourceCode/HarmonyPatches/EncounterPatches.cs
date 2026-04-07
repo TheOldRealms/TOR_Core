@@ -75,19 +75,47 @@ namespace TOR_Core.HarmonyPatches
                 {
                     return true;
                 }
-                // vanilla would normally finish an ended encounter here
-                // if rerouted straight to the hireling menu first, it will cause a ghost encounter
-                if (PlayerEncounter.Current != null
-                    && PlayerEncounter.Current.EncounterState == PlayerEncounterState.End
+                var currentEncounter = PlayerEncounter.Current;
+
+                if (currentEncounter?.IsJoinedBattle == true
+                    && currentEncounter.EncounterState != PlayerEncounterState.End)
+                {
+                    return true;
+                }
+
+                if (currentEncounter != null
+                    && currentEncounter.EncounterState == PlayerEncounterState.End
                     && PlayerEncounter.EncounterSettlement == null)
                 {
                     PlayerEncounter.Finish(false);
                 }
 
-                var hasActiveBattle = Hero.MainHero.PartyBelongedTo?.MapEvent != null;
-                if (hasActiveBattle)
+                var hirelingBehavior = Campaign.Current?.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>();
+                var enlistingLordParty = hirelingBehavior?.EnlistingLord?.PartyBelongedTo;
+                var playerMapEvent = Hero.MainHero.PartyBelongedTo?.MapEvent;
+                var playerMapEventSide = Hero.MainHero.PartyBelongedTo?.MapEventSide?.MissionSide;
+                var enlistingLordMapEventSide = enlistingLordParty?.MapEventSide?.MissionSide;
+
+                var hasJoinableHirelingBattle =
+                    ServeAsAHirelingCampaignBehavior.IsJoinableHirelingMapEvent(playerMapEvent, playerMapEventSide) ||
+                    ServeAsAHirelingCampaignBehavior.IsJoinableHirelingMapEvent(enlistingLordParty?.MapEvent, enlistingLordMapEventSide);
+
+                var hasPendingNativeCleanup =
+                    ServeAsAHirelingCampaignBehavior.HasPendingNativeEncounterCleanup();
+
+                if (currentEncounter?.IsJoinedBattle == true
+                    && (hasJoinableHirelingBattle || hasPendingNativeCleanup))
+                {
+                    return true;
+                }
+
+                if (hasJoinableHirelingBattle)
                 {
                     menuId = "hireling_battle_menu";
+                }
+                else if (currentEncounter != null && hasPendingNativeCleanup)
+                {
+                    return true;
                 }
                 else
                 {
@@ -98,20 +126,59 @@ namespace TOR_Core.HarmonyPatches
         }
 
         [HarmonyPrefix]
+        [HarmonyPatch(typeof(GameMenu), "SwitchToMenu")]
+        public static bool SwitchToMenuPrefix(ref string menuId)
+        {
+            if (!Hero.MainHero.IsEnlisted()
+                || !ServeAsAHirelingCampaignBehavior.InPostBattleTransition)
+            {
+                return true;
+            }
+
+            if (menuId != "menu_settlement_taken"
+                && menuId != "menu_settlement_taken_player_leader"
+                && menuId != "menu_settlement_taken_player_army_member"
+                && menuId != "menu_settlement_taken_player_participant")
+            {
+                return true;
+            }
+
+            menuId = "hireling_menu";
+            ServeAsAHirelingCampaignBehavior.MarkHirelingWaitMenuShown();
+
+            return true;
+        }
+
+        [HarmonyPrefix]
         [HarmonyPatch(typeof(PlayerEncounter), "Finish")]
         public static bool PlayerEncounterFinishPrefix()
         {
             // Only block Finish during post-battle transitions when enlisted
             // This prevents crashes from AI party ticks while allowing normal siege/encounter flow
-            if (Hero.MainHero.IsEnlisted() && ServeAsAHirelingCampaignBehavior.InPostBattleTransition)
+            if (!Hero.MainHero.IsEnlisted() || !ServeAsAHirelingCampaignBehavior.InPostBattleTransition)
             {
-                if (PlayerEncounter.EncounterSettlement != null)
-                {
-                    return false;
-                }
+                return true;
             }
 
-            return true;
+            if (PlayerEncounter.EncounterSettlement == null)
+            {
+                return true;
+            }
+
+            var hirelingBehavior = Campaign.Current?.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>();
+            var enlistingLordParty = hirelingBehavior?.EnlistingLord?.PartyBelongedTo;
+
+            var hasActiveHirelingBattle =
+                ServeAsAHirelingCampaignBehavior.IsOngoingHirelingMapEvent(MapEvent.PlayerMapEvent) ||
+                ServeAsAHirelingCampaignBehavior.IsOngoingHirelingMapEvent(Hero.MainHero.PartyBelongedTo?.MapEvent) ||
+                ServeAsAHirelingCampaignBehavior.IsOngoingHirelingMapEvent(enlistingLordParty?.MapEvent);
+
+            if (!hasActiveHirelingBattle)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         [HarmonyPostfix]
@@ -119,7 +186,10 @@ namespace TOR_Core.HarmonyPatches
         public static void GetMemberRosterPostfix(TroopRoster __result)
         {
             if (__result != null && PendingLootedTroopManager.HasPendingModifications)
+            {
                 PendingLootedTroopManager.ApplyMemberModifications(__result);
+                PendingLootedTroopManager.ConsumeMemberModifications();
+            }
         }
 
         [HarmonyPostfix]
@@ -127,7 +197,10 @@ namespace TOR_Core.HarmonyPatches
         public static void GetPrisonerRosterPostfix(TroopRoster __result)
         {
             if (__result != null && PendingLootedTroopManager.HasPendingModifications)
+            {
                 PendingLootedTroopManager.ApplyPrisonerModifications(__result);
+                PendingLootedTroopManager.ConsumePrisonerModifications();
+            }
         }
     }
 }

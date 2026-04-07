@@ -145,6 +145,10 @@ namespace TOR_Core.CampaignMechanics.Crafting
                                                                ItemTrait.IsValidFor(x, item.Item.Item.ItemType))
                              .OrderBy(y => y.ItemTraitName))
                 {
+                    if (Traits.Any(x => x.ItemTrait.ItemTraitStringId == trait.ItemTraitStringId))
+                    {
+                        continue;
+                    }
                     Traits.Add(new EnchantableTraitVM(trait, OnTraitSelected));
                 }
             }

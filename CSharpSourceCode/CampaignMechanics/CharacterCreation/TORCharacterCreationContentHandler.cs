@@ -11,6 +11,7 @@ using TaleWorlds.CampaignSystem.Extensions;
 using TaleWorlds.CampaignSystem.GameState;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TaleWorlds.DotNet;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
@@ -851,6 +852,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
                 case "option_3_dw_slayer":
                     hero.AddCareer(TORCareers.Slayer);
+                    hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_grimnir"), 30);
                     _storedSpawnPosition = new CampaignVec2(new Vec2(1787.716f, 1021.437f), true); // Slayer shrine
                     break;
 
@@ -1148,10 +1150,17 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
 
             AddMenus(manager);
+
+            // Override the native/StoryMode review page description
+
         }
-        
+
         public void AfterInitializeContent(CharacterCreationManager manager)
         {
+            manager.CharacterCreationContent.ChangeReviewPageDescription(
+                TORTextHelper.GetTextObject("tor_cc_review_description",
+                    "You prepare to set off for a grand adventure in the Old World! Here is your character. Continue if you are ready, or go back to make changes.")
+            );
             //Intialize Specialization stage. No easy way to access stage field (if not current) therefore we use reflection
             try
             {
@@ -1199,6 +1208,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             if (stages.GetType() == typeof(CharacterCreationCultureStage))
             {
+                
                 OnCultureSelected();
             }
 
@@ -1375,7 +1385,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             string default_bretonnia =
                 "<BodyProperties version='4' age='25.84' weight='0.5000' build='0.5000'  key='001CB80CC000300D7C7664876753888A7577866254C69643C4B647398C95A0370077760307A7497300000000000000000000000000000000000000003AF47001'/>";
             string default_vc =
-                "<BodyProperties version='4' age='25.84' weight='0.5000' build='0.5000'  key='0028C80FC000100DBA756445533377873CD1833B3101B44A21C3C5347CA32C260F7776F20BBC35E8000000000000000000000000000000000000000042F41000'/>";
+                "<BodyProperties version='4' age='25.84' weight='0.5000' build='0.5000'  key='0000C80FC000100DBA756447533077873CD1833B3101B44A21C3C5347CA32C260077760307BC35E8000000000000000000000000000000000000000042F41003'/>";
             string default_dwarf =
                 "<BodyProperties version='4' age='25' weight='0.4182' build='0.1898' key='0005000F00000280F77664884754DCBAFF9E566095F09F1F74414A49893F81FE0F77760307A7B7A536000000000000000000000000000007000000003CFC0000'/>";
             string default_orc =
@@ -1396,7 +1406,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("human");
                     break;
                 case TORConstants.Cultures.BRETONNIA:
-                case TORConstants.Cultures.MOUSILLON:
                     keyValue = default_bretonnia;
                     CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("bretonnian");
                     break;
@@ -1404,6 +1413,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     keyValue = default_vc;
                     CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("human");
                     break;
+                case TORConstants.Cultures.MOUSILLON:
+                     keyValue = default_bretonnia;
+                     CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("human");
+                    break;                                 
                 case TORConstants.Cultures.DAWI:
                     keyValue = default_dwarf;
                     CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("dwarf");
@@ -1424,6 +1437,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     CharacterObject.PlayerCharacter.IsFemale);
             }
 
+            CharacterObject.PlayerCharacter.Equipment.FillFrom(culture.DefaultBattleEquipmentRoster.DefaultEquipment);
+            CharacterObject.PlayerCharacter.FirstCivilianEquipment.FillFrom(culture.DefaultCivilianEquipmentRoster.DefaultEquipment);
+            var emptyEquipment = new Equipment();
+            CharacterObject.PlayerCharacter.FirstStealthEquipment.FillFrom(emptyEquipment, false);
         }
         
     }

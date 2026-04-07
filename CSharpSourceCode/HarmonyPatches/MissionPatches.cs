@@ -50,7 +50,14 @@ namespace TOR_Core.HarmonyPatches
             }
             return true;
         }
-        
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(Mission), nameof(Mission.SetPlayerCanTakeControlOfAnotherAgentWhenDead))]
+        public static bool DisableDeadPlayerAgentTakeover()
+        {
+            return false;
+        }
+
         [HarmonyPrefix]
         [HarmonyPatch(typeof(HideoutCinematicController), "StartCinematic")]
         public static bool PostOnInitialFadeOutOver()
@@ -84,7 +91,7 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch("ScriptingInterfaceOfIMBMission", "InitializeMission")]
         public static void SetSceneAtmosphere(ref MissionInitializerRecord rec)
         {
-            if (rec.SceneName.Contains("atmo_w_night"))
+            if (rec.SceneName.Contains("atmo_w_night") )
             {
                 rec.PlayingInCampaignMode = false;
                 rec.AtmosphereOnCampaign = default;

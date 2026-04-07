@@ -98,6 +98,33 @@ namespace TOR_Core.CampaignMechanics.PostBattleLoot
             TryClearAfterBothApplied();
         }
 
+        public static void ConsumeMemberModifications()
+        {
+            _memberAdditions.Clear();
+            _memberRemovals.Clear();
+            _clearAllMembers = false;
+            _membersApplied = false;
+        }
+
+        public static void ConsumePrisonerModifications()
+        {
+            _prisonerAdditions.Clear();
+            _prisonerRemovals.Clear();
+            _clearAllPrisoners = false;
+            _prisonersApplied = false;
+        }
+        public static void ResetAllPendingState()
+        {
+            _memberAdditions.Clear();
+            _memberRemovals.Clear();
+            _prisonerAdditions.Clear();
+            _prisonerRemovals.Clear();
+            _clearAllMembers = false;
+            _clearAllPrisoners = false;
+            _membersApplied = false;
+            _prisonersApplied = false;
+        }
+
         private static void TryClearAfterBothApplied()
         {
             if (_membersApplied && _prisonersApplied)

@@ -37,9 +37,13 @@ namespace TOR_Core.BattleMechanics
         public override void OnMissionTick(float dt)
         {
             base.OnMissionTick(dt);
-            TryFixHirelingSpawn();
 
-            if (Mission.Mode == MissionMode.Deployment || Mission.IsTeleportingAgents)
+            if (!_fixedHirelingSpawn)
+            {
+                TryFixHirelingSpawn();
+            }
+
+            if (Mission.Mode == MissionMode.Deployment || Mission.IsTeleportingAgents || Mission.IsSiegeBattle)
             {
                 _elapsedSinceLastTick = 0f;
                 return;
@@ -53,7 +57,9 @@ namespace TOR_Core.BattleMechanics
 
             _elapsedSinceLastTick = 0f;
 
-            foreach (var agent in Mission.Agents)
+            Agent[] missionAgentsSnapshot = Mission.Agents.ToArray();
+
+            foreach (var agent in missionAgentsSnapshot)
             {
                 if (!ShouldProcessAgent(agent))
                 {
@@ -93,6 +99,7 @@ namespace TOR_Core.BattleMechanics
                 }
 
                 EvaluateLocalThreats(agent,
+                    missionAgentsSnapshot,
                     out bool hasCloseFootEnemy,
                     out bool hasIncomingMountedCharge,
                     out bool isIncomingMountedChargeTooCloseToSwapToLance);
@@ -243,6 +250,16 @@ namespace TOR_Core.BattleMechanics
                 return false;
             }
 
+            if (agent.IsUsingGameObject)
+            {
+                return false;
+            }
+
+            if (agent.MovementLockedState != AgentMovementLockedState.None)
+            {
+                return false;
+            }
+
             // only dismounted
             if (agent.MountAgent != null)
             {
@@ -270,6 +287,7 @@ namespace TOR_Core.BattleMechanics
         }
         private void EvaluateLocalThreats(
             Agent agent,
+            Agent[] missionAgentsSnapshot,
             out bool hasCloseFootEnemy,
             out bool hasIncomingMountedCharge,
             out bool isIncomingMountedChargeTooCloseToSwapToLance)
@@ -287,7 +305,7 @@ namespace TOR_Core.BattleMechanics
             float minCavalrySpeedSq = MIN_CAVALRY_SPEED_TO_ALLOW_LANCE * MIN_CAVALRY_SPEED_TO_ALLOW_LANCE;
             float approachDotThresholdSq = CAVALRY_APPROACH_DOT_THRESHOLD * CAVALRY_APPROACH_DOT_THRESHOLD;
 
-            foreach (var otherAgent in Mission.Agents)
+            foreach (var otherAgent in missionAgentsSnapshot)
             {
                 if (!otherAgent.IsActive() || !otherAgent.IsHuman)
                 {
@@ -381,11 +399,10 @@ namespace TOR_Core.BattleMechanics
                 return;
             }
 
-            agent.Mission.AddTickActionMT(
-                Mission.MissionTickAction.TryToWieldWeaponInSlot,
-                agent,
-                (int)weaponSlot,
-                (int)Agent.WeaponWieldActionType.WithAnimation);
+            agent.TryToWieldWeaponInSlot(
+                weaponSlot,
+                Agent.WeaponWieldActionType.WithAnimation,
+                false);
         }
 
         private static EquipmentIndex? FindBestLanceWeaponSlot(Agent agent)

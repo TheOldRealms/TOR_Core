@@ -137,8 +137,8 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_eo_queens_guard_sword_template" />
-      <EquipmentSet id="tor_eo_queens_guard_sword_template" civilian="true" />
+      <EquipmentSet id="tor_we_eternal_warden_template" />
+      <EquipmentSet id="tor_we_eternal_warden_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 

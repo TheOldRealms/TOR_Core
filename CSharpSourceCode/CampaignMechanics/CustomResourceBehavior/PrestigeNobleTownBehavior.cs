@@ -55,7 +55,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
             void AddPrestigeNobleDialogLines(CampaignGameStarter cgs)
             {
                 //not empire culture
-                cgs.AddDialogLine("noble_foreign", "start", "close_window", TORTextHelper.GetText("tor_empire_prestigenoble_wrongculture", "You do not serve the Empire, stranger, begone. This implies the player's faction despite the conditional checking culture - will need clarification."),
+                cgs.AddDialogLine("noble_foreign", "start", "close_window", TORTextHelper.GetText("tor_empire_prestigenoble_wrongculture", "You do not serve the Empire, stranger, begone."),
                     () => EmpirePrestigeNobleStartCondition() && !IsEmpireCulture(), null, 200);
                 // not clan level 2+
                 cgs.AddDialogLine("noble_missRank", "start", "close_window", TORTextHelper.GetText("tor_empire_prestigenoble_lowclanlevel", "I do not do business with nobodies, stranger, and I do not know you. Now begone. (Low Clan Tier)."),

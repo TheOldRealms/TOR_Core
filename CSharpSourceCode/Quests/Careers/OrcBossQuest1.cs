@@ -14,11 +14,11 @@ namespace TOR_Core.Quests.Careers
     public class OrcBossQuest1 : QuestBase
     {
         // Quest requirements constants
-        private const int RequiredWeaponSkillLevels = 150;
+        private const int RequiredWeaponSkillLevels = 125;
         private const int RequiredBattlesWon = 50;
-        private const int RequiredArenaFights = 20;
+        private const int RequiredTournamentWins = 15;
         private const int RequiredTeefTransferred = 150000;
-        private const int RequiredBrawlsWon = 50;
+        private const int RequiredBrawlsWon = 25;
 
         [SaveableField(1)]
         private JournalLog _taskOneHandedSkill = null;
@@ -29,7 +29,7 @@ namespace TOR_Core.Quests.Careers
         [SaveableField(4)]
         private JournalLog _taskBattlesWon = null;
         [SaveableField(5)]
-        private JournalLog _taskArenaFights = null;
+        private JournalLog _taskTournamentWins = null;
         [SaveableField(6)]
         private JournalLog _taskTeefTransferred = null;
         [SaveableField(7)]
@@ -44,7 +44,7 @@ namespace TOR_Core.Quests.Careers
         [SaveableField(11)]
         private int _currentBattlesWon = 0;
         [SaveableField(12)]
-        private int _currentArenaFights = 0;
+        private int _currentTournamentWins = 0;
         [SaveableField(13)]
         private int _currentTeefTransferred = 0;
         [SaveableField(14)]
@@ -66,7 +66,7 @@ namespace TOR_Core.Quests.Careers
 
             // TODO: Get actual values from behaviors when they're implemented
             _currentBattlesWon = 0;
-            _currentArenaFights = 0;
+            _currentTournamentWins = 0;
             _currentTeefTransferred = 0;
             _currentBrawlsWon = 0;
 
@@ -99,12 +99,12 @@ namespace TOR_Core.Quests.Careers
                 _currentBattlesWon,
                 RequiredBattlesWon);
 
-            _taskArenaFights = AddDiscreteLog(
-                TORTextHelper.GetTextObject("tor_orc_boss_quest1_log_arena", "Win {REQUIRED} arena fights")
-                    .SetTextVariable("REQUIRED", RequiredArenaFights),
-                TORTextHelper.GetTextObject("tor_orc_boss_quest1_task_arena", "Arena Fights"),
-                _currentArenaFights,
-                RequiredArenaFights);
+            _taskTournamentWins = AddDiscreteLog(
+                TORTextHelper.GetTextObject("tor_orc_boss_quest1_log_tournament", "Win {REQUIRED} tournaments")
+                    .SetTextVariable("REQUIRED", RequiredTournamentWins),
+                TORTextHelper.GetTextObject("tor_orc_boss_quest1_task_tournament", "Tournaments"),
+                _currentTournamentWins,
+                RequiredTournamentWins);
 
             _taskTeefTransferred = AddDiscreteLog(
                 TORTextHelper.GetTextObject("tor_orc_boss_quest1_log_teef", "Transfer {REQUIRED} worth of loot to teef")
@@ -133,7 +133,7 @@ namespace TOR_Core.Quests.Careers
 
             // Custom TOR events
             TORCampaignEvents.Instance.BrawlWon += OnBrawlWon;
-            TORCampaignEvents.Instance.ArenaFightWon += OnArenaFightWon;
+            TORCampaignEvents.Instance.TournamentWon += OnTournamentWon;
             TORCampaignEvents.Instance.TeefTransferred += OnTeefTransferred;
         }
 
@@ -177,12 +177,12 @@ namespace TOR_Core.Quests.Careers
             UpdateQuest();
         }
 
-        private void OnArenaFightWon(object sender, ArenaFightWonEventArgs e)
+        private void OnTournamentWon(object sender, TournamentWonEventArgs e)
         {
             if (e.Hero != Hero.MainHero) return;
 
-            _currentArenaFights++;
-            _taskArenaFights.UpdateCurrentProgress(_currentArenaFights);
+            _currentTournamentWins++;
+            _taskTournamentWins.UpdateCurrentProgress(_currentTournamentWins);
             UpdateQuest();
         }
 
@@ -251,7 +251,7 @@ namespace TOR_Core.Quests.Careers
         ~OrcBossQuest1()
         {
             TORCampaignEvents.Instance.BrawlWon -= OnBrawlWon;
-            TORCampaignEvents.Instance.ArenaFightWon -= OnArenaFightWon;
+            TORCampaignEvents.Instance.TournamentWon -= OnTournamentWon;
             TORCampaignEvents.Instance.TeefTransferred -= OnTeefTransferred;
         }
     }

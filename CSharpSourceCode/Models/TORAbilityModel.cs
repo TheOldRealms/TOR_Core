@@ -494,16 +494,12 @@ namespace TOR_Core.Models
             if (hero == null || !hero.IsSpellCaster()) return 0f;
             if (baseCharacter.Culture.StringId == TORConstants.Cultures.DAWI) return 0;
 
-            if (baseCharacter.Culture.StringId == TORConstants.Cultures.GREENSKIN)
+            if (hero.PartyBelongedTo != MobileParty.MainParty)
             {
-                if(hero != Hero.MainHero)
-                {
-                    return 0.2f; // very low recharge rate for greenskins. 
-                }
+                if (hero.IsHumanPlayerCharacter) return 0.1f;//player taken prisoner
 
-                return 0;
+                return 2f;//equiv to 267 spellcraft
             }
-            if (hero.PartyBelongedTo != MobileParty.MainParty) return 2f;//equiv to 267 spellcraft
 
             ExplainedNumber explainedNumber = new(1f, false, null);
             SkillHelper.AddSkillBonusForCharacter(TORSkillEffects.WindsRechargeRate, baseCharacter, ref explainedNumber);
@@ -554,13 +550,15 @@ namespace TOR_Core.Models
             {
                 var effectiveWeight = new ExplainedNumber(baseCharacter.Equipment.GetTotalWeightOfArmor(true));
                 PerkHelper.AddPerkBonusForCharacter(DefaultPerks.Athletics.FormFittingArmor, baseCharacter, true, ref effectiveWeight);
+                //only waywatcher uses the PassiveEffectType EquipmentWeightReduction and the career doesn't have access to WoM as a non-caster so career perks are ignored
 
-                var weightmalus = effectiveWeight.ResultNumber / 25;
-                weightmalus = Mathf.Min(weightmalus, 0.85f);
+                //first 5 wt unpenalized, mage robes ish
+                //faster scaling penalties up to 20 wt, then negatives are possible
+                var weightmalus = (effectiveWeight.ResultNumber - 5) / 15;
+                weightmalus = Mathf.Max(weightmalus, 0f);
 
                 explainedNumber.AddFactor(-weightmalus);
             }
-            //Sly : seems weird that you take penalties everywhere from naked to 21.75 weight, then everything after doesn't matter. This could instead be penalties from 0-40, then no regen after? Or maybe the first ~10 is no penalty, then penalties up to 0 regen at say 30-40 weight. I'm tempted to continue past 0 and go into negative WoM regen for extremely heavy armours.
             //WoM regen an explained number and being able to add the armour penalty would go a long way to making the effect of armour in particular more accessible to players.
 
 
@@ -600,6 +598,16 @@ namespace TOR_Core.Models
                     }
                 }
             }
+            
+            if (baseCharacter.Culture.StringId == TORConstants.Cultures.GREENSKIN)
+            {
+                if(hero != Hero.MainHero)
+                {
+                    explainedNumber.AddFactor(-0.5f);       //not sure if we need some sort of "post value" for this.
+                }
+
+                return 0;
+            }
 
             return explainedNumber.ResultNumber;
         }
@@ -609,7 +617,10 @@ namespace TOR_Core.Models
             var hero = baseCharacter?.HeroObject;
             if (hero == null || !hero.IsSpellCaster()) return 0f;
             if (hero.Culture.StringId == TORConstants.Cultures.DAWI) return 0;
-            if (hero.PartyBelongedTo != MobileParty.MainParty) return 100f; //equiv to 333 spellcraft --  Sly : leaving this at 100 for the moment because the AI is dumb and wastes half of it anyways
+            if (hero.PartyBelongedTo != MobileParty.MainParty && !hero.IsHumanPlayerCharacter)//ai casters and player taken prisoner
+            {
+                return 100f;//equiv to 333 spellcraft --  Sly : leaving this at 100 for the moment because the AI is dumb and wastes half of it anyways
+            }
 
             ExplainedNumber explainedNumber = new(10f, false, null);
             SkillHelper.AddSkillBonusForCharacter(TORSkillEffects.MaxWinds, baseCharacter, ref explainedNumber);
@@ -1036,11 +1047,7 @@ namespace TOR_Core.Models
                         logic.BookSpellHealing(castId, agent, finalHealing);
                     }
 
-                    // Apply career ability charge
-                    if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(healer, agent))
-                    {
-                        CareerHelper.ApplyCareerAbilityCharge(finalHealing, ChargeType.Healed, AttackTypeMask.Spell, healer, agent);
-                    }
+                    // Career ability charge is now applied once per session in FinalizeSession, not per-agent
                 }
             }
         }

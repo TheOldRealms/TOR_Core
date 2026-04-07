@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting.Refinement;
+using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
@@ -202,7 +204,7 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch("TaleWorlds.MountAndBlade.ViewModelCollection.Scoreboard.ScoreboardBaseVM", "OnMainHeroDeath")]
         public static bool OnMainHeroDeath_Prefix()
         {
-            if (TaleWorlds.MountAndBlade.Agent.Main == null && Hero.MainHero.HasCareer(TORCareers.Necromancer))
+            if (Game.Current.GameType is Campaign && TaleWorlds.MountAndBlade.Agent.Main == null && Hero.MainHero.HasCareer(TORCareers.Necromancer))
             {
                 if (Mission.Current.Agents.AnyQ(x => x.IsHero && x.IsActive() && x.GetHero() == Hero.MainHero))
                 {
@@ -212,6 +214,18 @@ namespace TOR_Core.HarmonyPatches
 
             // For all other cases, let the original method run
             return true;
+        }
+    }
+
+    // Patch to update RefinementVMExtension when refinement action selection changes
+    [HarmonyPatch(typeof(RefinementVM), "OnSelectAction")]
+    public static class RefinementVMOnSelectActionPatch
+    {
+        [HarmonyPostfix]
+        public static void Postfix(RefinementVM __instance)
+        {
+            var extension = __instance.GetExtensionInstance() as RefinementVMExtension;
+            extension?.RefreshValues();
         }
     }
 }

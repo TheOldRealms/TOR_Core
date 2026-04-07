@@ -68,6 +68,12 @@ namespace TOR_Core.BattleMechanics.Dismemberment
 
         private void Clear()
         {
+            // just in case
+            if (_pooledDismemberedLimbs == null)
+            {
+                return;
+            }
+
             // just to make sure that all references are cleared
             foreach (var container in _pooledDismemberedLimbs)
             {
@@ -79,7 +85,6 @@ namespace TOR_Core.BattleMechanics.Dismemberment
             }
 
             _pooledDismemberedLimbs = null;
-
         }
 
         private GameEntity InstantiateObjectAtPoolIndex(string prefabName, string secondPrefabVariantName = "", int index = 0)
@@ -196,6 +201,31 @@ namespace TOR_Core.BattleMechanics.Dismemberment
             var z = fixZ ? 1 : MBRandom.RandomFloatRanged(-deviation, deviation);
             return new Vec3(x, y, z);
         }
+        private bool RestoreMissingPooledLimbPhysics(GameEntity pooledLimb)
+        {
+            if (pooledLimb.HasDynamicRigidBody())
+            {
+                return true;
+            }
+
+            PhysicsShape bodyShape = pooledLimb.GetBodyShape();
+
+            // crash on pooled limb reuse, triggered by native rigid body cleanup
+            // clear any stale physics first
+            if (pooledLimb.HasPhysicsBody())
+            {
+                pooledLimb.RemovePhysics();
+            }
+
+            if (bodyShape == null)
+            {
+                return false;
+            }
+
+            pooledLimb.AddPhysics(pooledLimb.Mass, pooledLimb.CenterOfMass, bodyShape, Vec3.Zero, Vec3.Zero, PhysicsMaterial.GetFromName("flesh"), false, -1);
+            return pooledLimb.HasDynamicRigidBody();
+        }
+
         private void MoveCorpseParts(MatrixFrame frame)
         {
             if (_pooledDismemberedLimbs == null) return;//Sly : dismemberment won't initialize the body part game entities for friendly missions (eg. talking to a companion when outside of a settlement)
@@ -208,23 +238,34 @@ namespace TOR_Core.BattleMechanics.Dismemberment
 
             for (var i = 0; i < _pooledDismemberedLimbs[_index].Length; i++)
             {
-                if (_pooledDismemberedLimbs[_index][i] == null) continue; //that shouldn't be... but maybe?
+                GameEntity pooledLimb = _pooledDismemberedLimbs[_index][i];
+                if (pooledLimb == null) continue; //that shouldn't be... but maybe?
 
-                if (!_fullyInstantiated)
-                {
-                    _pooledDismemberedLimbs[_index][i].SetAlpha(1);
-                }
-                _pooledDismemberedLimbs[_index][i].SetGlobalFrame(frame);
-                var dir = GetRandomDirection(3);
+                Vec3 impulseDirection = GetRandomDirection(3);
+                bool restoreSucceeded;
+
                 using (new TWSharedMutexWriteLock(Scene.PhysicsAndRayCastLock))
                 {
-                    _pooledDismemberedLimbs[_index][i].ApplyLocalImpulseToDynamicBody(Vec3.Up * -1, dir * 25);
+                    // full reuse path under one physics lock
+                    restoreSucceeded = RestoreMissingPooledLimbPhysics(pooledLimb);
+                    if (restoreSucceeded)
+                    {
+                        pooledLimb.SetGlobalFrame(frame);
+                        pooledLimb.ApplyLocalImpulseToDynamicBody(Vec3.Up * -1, impulseDirection * 25);
+                    }
                 }
+
+                if (!restoreSucceeded)
+                {
+                    pooledLimb.SetAlpha(0);
+                    continue;
+                }
+
+                pooledLimb.SetAlpha(1);
             }
 
             _index++;
         }
-
 
         private void EnableSlowMotion()
         {
@@ -260,7 +301,19 @@ namespace TOR_Core.BattleMechanics.Dismemberment
 
         private void DismemberHead(Agent victim, AttackCollisionData attackCollision)
         {
-            GameEntity head = CopyHead(victim);
+            var victimVisuals = victim.AgentVisuals;
+            if (victimVisuals == null || !victimVisuals.IsValid())
+            {
+                return;
+            }
+
+            var victimSkeleton = victimVisuals.GetSkeleton();
+            if (victimSkeleton == null || !victimSkeleton.IsValid)
+            {
+                return;
+            }
+
+            GameEntity head = CopyHead(victimSkeleton);
             MatrixFrame headFrame = new MatrixFrame(victim.LookFrame.rotation, victim.GetEyeGlobalPosition());
             head.SetGlobalFrame(headFrame);
 
@@ -270,7 +323,7 @@ namespace TOR_Core.BattleMechanics.Dismemberment
             {
                 MeshTag tag;
                 weight = headEquipment.Weight;
-                var headArmor = CopyHeadArmor(victim, headEquipment, out tag);
+                var headArmor = CopyHeadArmor(victim, victimSkeleton, headEquipment, out tag);
                 if (tag == MeshTag.SHA)
                 {
                     headArmor.SetGlobalFrame(headFrame);
@@ -284,16 +337,16 @@ namespace TOR_Core.BattleMechanics.Dismemberment
             AddPhysics(head, attackCollision, 1.5f + weight);
             if (!victim.IsUndead())
             {
-                CoverCutWithFlesh(victim, head);
-                CreateBloodBurst(victim);
+                CoverCutWithFlesh(victimSkeleton, head);
+                CreateBloodBurst(victim, victimVisuals.GetRealBoneIndex(HumanBone.Head));
             }
         }
 
-        private GameEntity CopyHead(Agent victim)
+        private GameEntity CopyHead(Skeleton victimSkeleton)
         {
             GameEntity head = GameEntity.CreateEmptyDynamic(Mission.Current.Scene, true);
             MatrixFrame headLocalFrame = new MatrixFrame(Mat3.CreateMat3WithForward(in Vec3.Zero), new Vec3(0, 0, -1.6f));
-            var meshes = victim.AgentVisuals.GetSkeleton().GetAllMeshes();
+            var meshes = victimSkeleton.GetAllMeshes();
             foreach (Mesh mesh in meshes)
             {
                 foreach (String name in headMeshes)
@@ -311,13 +364,13 @@ namespace TOR_Core.BattleMechanics.Dismemberment
             return head;
         }
 
-        private GameEntity CopyHeadArmor(Agent victim, EquipmentElement equipment, out MeshTag tag)
+        private GameEntity CopyHeadArmor(Agent victim, Skeleton victimSkeleton, EquipmentElement equipment, out MeshTag tag)
         {
             tag = MeshTag.NSHA;
             var headArmor = GameEntity.CreateEmptyDynamic(Mission.Current.Scene, true);
             MatrixFrame headMeshFrame = new MatrixFrame(Mat3.CreateMat3WithForward(in Vec3.Zero), new Vec3(0, 0, -1.6f));
             var multiMesh = equipment.GetMultiMesh(victim.IsFemale, false, true);
-            var meshes = victim.AgentVisuals.GetSkeleton().GetAllMeshes();
+            var meshes = victimSkeleton.GetAllMeshes();
             for (int i = 0; i < multiMesh.MeshCount; i++)
             {
                 var equipMesh = multiMesh.GetMeshAtIndex(i);
@@ -345,7 +398,7 @@ namespace TOR_Core.BattleMechanics.Dismemberment
             }
         }
 
-        private void CoverCutWithFlesh(Agent victim, GameEntity head)
+        private void CoverCutWithFlesh(Skeleton victimSkeleton, GameEntity head)
         {
             Mesh throatMesh = Mesh.GetFromResource("dismemberment_head_throat");
             MatrixFrame throatFrame = new MatrixFrame(Mat3.CreateMat3WithForward(in Vec3.Zero), new Vec3(0, 0, -1.6f));
@@ -355,12 +408,12 @@ namespace TOR_Core.BattleMechanics.Dismemberment
             head.AddChild(throatEntity);
 
             Mesh neckMesh = Mesh.GetFromResource("dismemberment_head_neck").CreateCopy();
-            victim.AgentVisuals.GetSkeleton().AddMesh(neckMesh);
+            victimSkeleton.AddMesh(neckMesh);
         }
 
-        private void CreateBloodBurst(Agent victim, HumanBone bone = HumanBone.Head)
+        private void CreateBloodBurst(Agent victim, sbyte boneIndex)
         {
-            victim.CreateBloodBurstAtLimb(victim.AgentVisuals.GetRealBoneIndex(bone), 0.5f + MBRandom.RandomFloat * 0.5f);
+            victim.CreateBloodBurstAtLimb(boneIndex, 0.5f + MBRandom.RandomFloat * 0.5f);
         }
 
         private void RunParticleEffect(Vec3 position, string particleEffectID)

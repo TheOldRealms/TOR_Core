@@ -29,7 +29,7 @@ namespace TOR_Core.AbilitySystem
 
         // Anvil of Doom position for Runelord proximity check
         public  Vec3 AnvilOfDoomPosition { get; set; } = Vec3.Invalid;
-        public bool IsAnvilPlaced => this.AnvilOfDoomPosition != Vec3.Invalid;
+        public bool IsAnvilPlaced { get; set; } = false;
         public const float AnvilProximityRadius = 15f;
 
 
@@ -76,7 +76,7 @@ namespace TOR_Core.AbilitySystem
                 }
             }
 
-            if (Agent.CanPlaceArtillery())
+            if (Agent.CanPlaceArtillery() && CanUseDeployableArtilleryAbilities())
             {
                 var hero = agent?.GetHero();
                 if (hero != null)
@@ -219,6 +219,16 @@ namespace TOR_Core.AbilitySystem
             {
                 SelectAbility(0);
             }
+        }
+
+        ~AbilityComponent()
+        {
+            IsAnvilPlaced = false;
+        }
+
+        private bool CanUseDeployableArtilleryAbilities() // disabling artillery for sieges
+        {
+            return !Agent.Mission.IsSiegeBattle;
         }
 
         private void OnCastStart(Ability ability)

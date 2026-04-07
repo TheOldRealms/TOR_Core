@@ -137,7 +137,10 @@ public class LootCampaignBehavior : CampaignBehaviorBase
     private void AddMagicalItemsFromBattle(MapEvent mapEvent)
     {
         if (Hero.MainHero.IsEnlisted())
+        {
+            _initialEnemyArmy.Clear();
             return;
+        }
 
         if (mapEvent.PlayerSide != mapEvent.WinningSide) return; //player dying and their troops retreating triggers a PlayerBattleEndEvent with no winner; no point in calculating this for losses
 
@@ -170,7 +173,7 @@ public class LootCampaignBehavior : CampaignBehaviorBase
                 continue;
 
             var traitList = new List<string>();
-            var item = character.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Cape).TakeRandom(1).FirstOrDefault();
+            var item = character.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Cape).Where(x => !x.IsBannerItem()).TakeRandom(1).FirstOrDefault();
             for (var j = 0; j < traitCount; j++)
                 if (item != null)
                 {

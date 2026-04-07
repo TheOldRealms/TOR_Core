@@ -515,7 +515,7 @@
 			<string>Steward</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Intelligence</AttributeToIncrease>
-		<OptionText>{=tor_cc_option39_label_str}Apprentice Craftsmen</OptionText>
+		<OptionText>{=tor_cc_option39_label_str}Apprentice Craftsman</OptionText>
 		<OptionFlavourText>{=tor_cc_option39_text_str}Your father was able to get you an apprenticeship with one of the local artisans. Over the course of five years your master taught you everything he could, leaving you with skills that would forever put you above the average peasant.</OptionFlavourText>
 	</CharacterCreationOption>
 
@@ -527,7 +527,7 @@
 			<string>Steward</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Endurance</AttributeToIncrease>
-		<OptionText>{=tor_cc_option40_label_str}Shepard</OptionText>
+		<OptionText>{=tor_cc_option40_label_str}Shepherd</OptionText>
 		<OptionFlavourText>{=tor_cc_option40_text_str}You became a shepherd, watching over the various livestock that your community relied upon for food and clothing. You and your fellows in essence served two roles, protecting the herds from wolves and other predators, while also watching at the outskirts of the village for signs of invaders.</OptionFlavourText>
 	</CharacterCreationOption>
 
@@ -607,7 +607,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Social</AttributeToIncrease>
 		<OptionText>{=tor_cc_option46_label_str}Mousillan Nobility</OptionText>
-		<OptionFlavourText>{=tor_cc_option46_text_str}You parents were of the ‘Nobility’ in Mousillon, if they can be called that. Nobles here are mostly made up of outlawed Bretonnian nobles, exiles and rouges from other nations, vampires, mummies and other varied monstrosities. While certainly at the top of Mousillan society, outside of the blighted land they are looked down upon the same as anyone else from here. </OptionFlavourText>
+		<OptionFlavourText>{=tor_cc_option46_text_str}You parents were of the ‘Nobility’ in Mousillon, if they can be called that. Nobles here are mostly made up of outlawed Bretonnian nobles, exiles and rogues from other nations, vampires, mummies and other varied monstrosities. While certainly at the top of Mousillan society, outside of the blighted land they are looked down upon the same as anyone else from here. </OptionFlavourText>
 	</CharacterCreationOption>
 
 	<CharacterCreationOption Id="option_1_mousillon_yeoman" Culture="mousillon" StageNumber="1" EquipmentSetId="tor_cc_mousillon_yeoman_1">
@@ -1256,7 +1256,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Social</AttributeToIncrease>
 		<OptionText>{=tor_cc_option_2_dw_elgi_label_str}Arrogance of Elgi</OptionText>
-		<PositiveEffectText>{=tor_cc_option_2_dw_umgi_effect_str}Double Oathgold gain from victories against elf factions. </PositiveEffectText>
+		<PositiveEffectText>{=tor_cc_option_2_dw_elgi_effect_str}Double Oathgold gain from victories against elf factions. </PositiveEffectText>
 		<OptionFlavourText>{=tor_option_2_dw_elgi_text_str}Conceited elves! Despite their humiliating defeat during the War of Vengeance, the arrogant elgi ambassadors still have the gall to stroll through our Karaks and curry favours with our Kings. From your beardling years, you recall this gaunt-looking elf giving you a smug smile and a look brimming with superiority. You have bitterly cultivated this memory, for honour is all, and every wrong must be put right!</OptionFlavourText>
 	</CharacterCreationOption>
 	
@@ -1269,7 +1269,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 		<OptionText>{=tor_cc_option_2_dw_urks_label_str}Malice of Urks and Grobi</OptionText>
-		<PositiveEffectText>{=tor_cc_option_2_dw_umgi_effect_str}Double Oathgold gain from victories against Greenskins. </PositiveEffectText>
+		<PositiveEffectText>{=tor_cc_option_2_dw_urks_effect_str}Double Oathgold gain from victories against Greenskins. </PositiveEffectText>
 		<OptionFlavourText>{=tor_option_2_dw_urks_text_str}Greenskins, the foulest, oldest enemy of the Dawi. Many of their kind are written into the Books of Grudges of numerous holds, and not a single entry more will be tolerated! From here on grudges will be struck from the books, for honour is all, and every wrong must be put right!</OptionFlavourText>
 	</CharacterCreationOption>
 	
@@ -1282,7 +1282,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 		<OptionText>{=tor_cc_option_2_dw_zanguzaz_label_str}Corruption of Zanguzaz</OptionText>
-		<PositiveEffectText>{=tor_cc_option_2_dw_umgi_effect_str}Double Oathgold gain from victories against undead factions. </PositiveEffectText>
+		<PositiveEffectText>{=tor_cc_option_2_dw_zanguzaz_effect_str}Double Oathgold gain from victories against undead factions. </PositiveEffectText>
 		<OptionFlavourText>{=tor_option_2_dw_zanguzaz_text_str}The undead and vampires have ever been a thorn in the Dawi side, despite there being very few records of undead dwarfs. The uzkular still remain a constant threat to certain Karaks and have made their foul homes in others. The bonewalkers belong in the ground, and their bloodsucking masters will be ground into dust or burnt to ashes. Honour is all, and every wrong must be put right!</OptionFlavourText>
 	</CharacterCreationOption>
 	
@@ -1294,7 +1294,7 @@
 			<string>Engineering</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
-		<PositiveEffectText>{=tor_cc_option_2_dw_umgi_effect_str}Double Oathgold gain from victories in mountain regions.</PositiveEffectText>
+		<PositiveEffectText>{=tor_cc_option_2_dw_thaggoraki_effect_str}Double Oathgold gain from victories in mountain regions.</PositiveEffectText>
 		<OptionText>{=tor_cc_option_2_dw_thaggoraki_label_str}Greed of Thaggoraki</OptionText>
 		<OptionFlavourText>{=tor_option_2_dw_thaggoraki_text_str}The scourge of the underway, the vile Skaven have no shred of honour and would rather murder us all in our sleep than march proudly into the battlefield. Many noble kings and impenetrable holds have fallen to the poisoned claw of the ratmen. The Karaz Ankor will not be safe until their vile kind has been eradicated. Honour is all, and every wrong must be put right!</OptionFlavourText>
 	</CharacterCreationOption>

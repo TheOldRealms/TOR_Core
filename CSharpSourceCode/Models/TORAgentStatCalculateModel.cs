@@ -31,11 +31,14 @@ namespace TOR_Core.Models
     {
         private const float OrcSpeedModificatior = 0.95f;
         private const float GoblinSpeedModificatior = 1.1f;
-        private const float DwarfSpeedModificatior = 0.9f;
-        private const float HeavyDwarfSpeedModificatior = 0.75f;
+        private const float DwarfSpeedModificatior = 0.8f;
         private float vampireDaySpeedModificator = 1.1f;
         private float vampireNightSpeedModificator = 1.2f;
         private CustomCrosshairMissionBehavior _crosshairBehavior;
+
+        private bool _checkedMissionType = false;
+        private bool _isDuelMission = false;
+        private bool _isJoustMission = false;
 
         public override void InitializeAgentStats(Agent agent, Equipment spawnEquipment, AgentDrivenProperties agentDrivenProperties, AgentBuildData agentBuildData)
         {
@@ -319,7 +322,14 @@ namespace TOR_Core.Models
 
         private void UpdateAgentDrivenProperties(Agent agent, AgentDrivenProperties agentDrivenProperties)
         {
-            if (Mission.Current != null && Mission.Current.GetMissionBehavior<JoustFightMissionController>() != null)
+            if (!_checkedMissionType && Mission.Current != null)
+            {
+                _isDuelMission = Mission.Current.IsDuelMission();
+                _isJoustMission = Mission.Current.IsJoustMission();
+                _checkedMissionType = true;
+            }
+
+            if (_isJoustMission)
             {
                 if (agent.IsMount)
                 {
@@ -334,8 +344,8 @@ namespace TOR_Core.Models
                     agentDrivenProperties.AiChargeHorsebackTargetDistFactor = 2f;
                 }
             }
-            //Specific settings for the tilean duelist
-            if (agent.Character != null && agent.Character.StringId == "tor_ti_vittorio")
+
+            if (_isDuelMission && agent.Character != null && agent.Character.StringId == "tor_ti_vittorio")
             {
                 agentDrivenProperties.TopSpeedReachDuration = 0.8f;
                 agentDrivenProperties.MaxSpeedMultiplier = 1.5f;
@@ -346,6 +356,21 @@ namespace TOR_Core.Models
                 agentDrivenProperties.AiMovementDelayFactor = 0.5f;
                 return;
             }
+
+            if (agent.Character != null && !agent.WieldedWeapon.IsEmpty)
+            {
+                if (agent.WieldedWeapon.CurrentUsageItem.IsRangedWeapon)
+                {
+                    var weaponId = agent.WieldedWeapon.Item.StringId;
+                
+                    if (weaponId == "tor_dw_weapon_gun_drakegun" || weaponId == "tor_dw_weapon_gun_trollhammer")
+                    {
+                        agentDrivenProperties.ReloadSpeed *= 0.2f;
+                    }
+                }
+            }
+            
+
             if (agent.IsHuman)
             {
                 AddSkillEffectsForAgent(agent, agentDrivenProperties);
@@ -389,17 +414,17 @@ namespace TOR_Core.Models
                     {
                         if (character.IsIronbreakerUnit())
                         {
-                            agentDrivenProperties.WeaponInaccuracy += 0.095f;
-
-
-                            var modificator = HeavyDwarfSpeedModificatior;
-                            agentDrivenProperties.TopSpeedReachDuration *= modificator;
-                            agentDrivenProperties.MaxSpeedMultiplier *= modificator;
+                            if (!character.StringId.Contains("trollhammer"))
+                            {
+                                agentDrivenProperties.WeaponInaccuracy += 0.095f;
+                            }
+                            else
+                            {
+                                agentDrivenProperties.WeaponInaccuracy += 0.02f;
+                            }
                         }
-                        else
-                        {
-                            agentDrivenProperties.MaxSpeedMultiplier *= DwarfSpeedModificatior;
-                        }
+
+                        agentDrivenProperties.MaxSpeedMultiplier *= DwarfSpeedModificatior;
                     }
 
                     if (character.IsOrc())
@@ -466,6 +491,7 @@ namespace TOR_Core.Models
                                 }
                             }
                         }
+                        
                     }
                 }
             }

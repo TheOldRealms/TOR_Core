@@ -35,7 +35,7 @@ namespace TOR_Core.CampaignMechanics.Religion
             CampaignEvents.OnCharacterCreationIsOverEvent.AddNonSerializedListener(this, PlayerCreationFinished);
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionStart);
             CampaignEvents.OnItemsDiscardedByPlayerEvent.AddNonSerializedListener(this, OnItemsDiscarded);
-            CampaignEvents.HourlyTickPartyEvent.AddNonSerializedListener(this, HourlyPartyTick);
+            CampaignEvents.HourlyTickSettlementEvent.AddNonSerializedListener(this, SettlementHourlyReligionTick);
             CampaignEvents.MapEventEnded.AddNonSerializedListener(this, MapEventEnded);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, PlayerBattleEnded);
             TORCampaignEvents.Instance.DevotionLevelChanged += OnDevotionLevelChanged;
@@ -118,13 +118,17 @@ namespace TOR_Core.CampaignMechanics.Religion
             }
         }
 
-        private void HourlyPartyTick(MobileParty party)
-        {//is there an hourly tick for settlements/towns? could this go through just towns and check their lord party contents to avoid checking every party on the map?
-            if (party == null) return;
-            if (party.IsLordParty && party.IsActive && !party.IsDisbanding && party.CurrentSettlement != null &&
-                party.CurrentSettlement.IsTown && party.LeaderHero != null && party.LeaderHero.GetPerkValue(TORPerks.Faith.Imperturbable))
+        private void SettlementHourlyReligionTick(Settlement settlement)
+        {
+            if (!settlement.IsTown) return;
+            if (settlement.NumberOfLordPartiesAt < 1) return;
+            
+            foreach (var mobileParty in settlement.Parties.WhereQ(x => x.IsLordParty && x.LeaderHero != null && x.IsActive && !x.IsDisbanding))
             {
-                party.LeaderHero.AddSkillXp(TORSkills.Faith, TORPerks.Faith.Imperturbable.PrimaryBonus / 24);
+                if (mobileParty.LeaderHero.GetPerkValue(TORPerks.Faith.Imperturbable))
+                {
+                    mobileParty.LeaderHero.AddSkillXp(TORSkills.Faith, TORPerks.Faith.Imperturbable.PrimaryBonus / 24);
+                }
             }
         }
 
@@ -220,39 +224,20 @@ namespace TOR_Core.CampaignMechanics.Religion
             ReligionObject religion = null;
 
             if (hero.IsWanderer)
-            {//the trait levels could be converted to attributes at a future point
-                var shallyaLevel = hero.GetTraitLevel(TORCharacterTraits.ShallyaDevoted);
-                if (shallyaLevel > 0)
+            {
+                var heroReligion = hero.GetReligionFromAttribute();
+                if (heroReligion != null)
                 {
-                    religion = ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_shallya");
-                    hero.AddReligiousInfluence(religion, 30, false);
+                    hero.AddReligiousInfluence(heroReligion, 30, false);
+                    return;
                 }
-                var sigmarLevel = hero.GetTraitLevel(TORCharacterTraits.SigmarDevoted);
-                if (sigmarLevel > 0)
+                else
                 {
-
-                    religion = ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar");
-                    hero.AddReligiousInfluence(religion, 30, false);
+                    if (hero.IsPriest())
+                    {
+                        TORCommon.Log("ReligionCampaignBehavior : null religion found for " + hero.Template.StringId, LogLevel.Warn);
+                    }
                 }
-                var ulricLevel = hero.GetTraitLevel(TORCharacterTraits.UlricDevoted);
-                if (ulricLevel > 0)
-                {
-                    religion = ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_ulric");
-                    hero.AddReligiousInfluence(religion, 30, false);
-                }
-                var ladyLevel = hero.GetTraitLevel(TORCharacterTraits.LadyDevoted);
-                if (ladyLevel > 0)
-                {
-                    religion = ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_lady");
-                    hero.AddReligiousInfluence(religion, 30, false);
-                }
-                var nagashLevel = hero.GetTraitLevel(TORCharacterTraits.NagashCorrupted);
-                if (nagashLevel > 0)
-                {
-                    religion = ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash");
-                    hero.AddReligiousInfluence(religion, 30, false);
-                }
-                return;
             }
 
             //Nobles : follow father, then clanleader, then culture

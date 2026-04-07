@@ -24,6 +24,12 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
 
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
+            // Check if summoning is possible before proceeding
+            if (!TORSummonHelper.CanSummon())
+            {
+                return;
+            }
+
             var data = TORSummonHelper.GetAgentBuildData(triggeredByAgent, SummonedUnitID);
             var bonus = 0;
 
@@ -44,7 +50,10 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             }
 
             var spawnPosition = position;
-            var totalSummoned = NumberToSummon + bonus;
+            var desiredCount = NumberToSummon + bonus;
+            // Clamp to available slots to prevent exceeding mission agent limit
+            var totalSummoned = TORSummonHelper.GetClampedSummonCount(desiredCount);
+
             for (int i = 1; i < totalSummoned + 1; i++)
             {
                 spawnPosition = Mission.Current.GetRandomPositionAroundPoint(spawnPosition, 0.1f, 0.6f);

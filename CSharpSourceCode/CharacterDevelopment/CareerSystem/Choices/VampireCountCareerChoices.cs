@@ -201,7 +201,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 }, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.Special)); // cool down is reset on beginning
 
-            _martialleKeystone.Initialize(CareerID, "+30% longer charge time for Mist Form, its buffs remain briefly after ability, and +20% swing speed.", "Martialle", false,
+            _martialleKeystone.Initialize(CareerID, "+30% charge time for Mist Form, but its buffs remain briefly after ability, +20% swing speed.", "Martialle", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -273,8 +273,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             _martiallePassive1.Initialize(CareerID, "+5% personal 'Physical' melee damage.", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 5), AttackTypeMask.Melee));
             _martiallePassive2.Initialize(CareerID, "+35 personal Hitpoints.", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(35, PassiveEffectType.Health));
-            _martiallePassive3.Initialize(CareerID, "+10% 'Physical' melee damage for all troops when facing forces of 'Humans'.", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.All, MartiallePassive3));
-            _martiallePassive4.Initialize(CareerID, "Personal damage against shields is increased.", "Martialle", false, ChoiceType.Passive, null); // TorAgentApplyDamageModel 83
+            _martiallePassive3.Initialize(CareerID, "+10% 'Physical' melee damage for all troops when facing forces of 'Humans'.", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee, MartiallePassive3));
+            _martiallePassive4.Initialize(CareerID, "Personal damage against shields is increased.", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.BonusDamageShield, AttackTypeMask.Melee));
 
             _masterOfDeadPassive1.Initialize(CareerID, "+5 'Dark Energy' daily.", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CustomResourceGain));
             _masterOfDeadPassive2.Initialize(CareerID, "+10% 'Ward Save' for 'Lesser Undead'.", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.All, MasterOfDeadPassive2));

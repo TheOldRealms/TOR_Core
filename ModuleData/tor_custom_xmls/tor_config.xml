@@ -22,4 +22,6 @@
     MinWarDays="40"
     AIGoldAdjustmentAmount="20000"
     UseAlternativeVoiceManager="false"
+    DisableMinstrelEvent="false"
+    AllowFreeRaceSelection="false"
 />

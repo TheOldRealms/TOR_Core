@@ -2646,7 +2646,7 @@
 		id="impenetrable_invincible"
 		particle_id="black_knightly_charge_res"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="1"
+		base_effect_value="0.95"
 		applies_for_attack_type="All"
 		type="Resistance"
 		damage_type="Physical">
@@ -2682,7 +2682,25 @@
 		damage_type="Physical">
 		<temporary_attribute>MonsterAttack</temporary_attribute>
 	</StatusEffectTemplate>
-	
+
+	<StatusEffectTemplate
+		id="doom_seeking_ats"
+		particle_id=""
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.2"
+		type="AttackSpeedManipulation"
+		damage_type="Physical">
+	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
+		id="doom_seeking_mvs"
+		particle_id=""
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.2"
+		type="MovementManipulation"
+		damage_type="Physical">
+	</StatusEffectTemplate>
+
 	<StatusEffectTemplate
 		id="impenetrable_attribute"
 		particle_id=""

@@ -455,6 +455,7 @@
     <Compile Include="BattleMechanics\DamageSystem\TORDamageHelper.cs" />
     <Compile Include="BattleMechanics\Dismemberment\DismembermentMissionLogic.cs" />
     <Compile Include="BattleMechanics\Firearms\FirearmsMissionLogic.cs" />
+    <Compile Include="BattleMechanics\TORMonsterSiegeLogic.cs" />
     <Compile Include="BattleMechanics\Voice\AgentVoiceComponent.cs" />
     <Compile Include="BattleMechanics\Voice\BattleShoutsMissionLogic.cs" />
     <Compile Include="BattleMechanics\Morale\AddAgentComponentsMissionLogic.cs" />
@@ -521,7 +522,10 @@
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\AsraiTag.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\BloodDragonTag.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\CommonTags.cs" />
+    <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\DwarfTags.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\EonirTag.cs" />
+    <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\GreenskinTags.cs" />
+    <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\HumanTags.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\MousillonTag.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\VampireTags.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\CustomDialogCampaignBehavior.cs" />
@@ -543,8 +547,11 @@
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghHelper.cs" />
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghMeterMapView.cs" />
+    <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\TORMapNotificationView.cs" />
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghMeterVM.cs" />
     <Compile Include="CampaignMechanics\TORCampaignMusicHandler.cs" />
+    <Compile Include="CampaignMechanics\Villages\TORTownManagementVillageItemVM.cs" />
+    <Compile Include="CampaignMechanics\Villages\TORVillageTypes.cs" />
     <Compile Include="Extensions\UI\PartyVMExtension.cs" />
     <Compile Include="CampaignMechanics\CustomResources\TeefHelper.cs" />
     <Compile Include="CampaignMechanics\MasterEngineer\MasterEngineerTownBehavior.cs" />
@@ -687,9 +694,11 @@
     <Compile Include="Extensions\SkillExtensions.cs" />
     <Compile Include="Extensions\TeamExtensions.cs" />
     <Compile Include="Extensions\UI\BaseViewModelExtension.cs" />
+    <Compile Include="Extensions\UI\CraftingVMExtension.cs" />
     <Compile Include="Extensions\UI\HeroEncyclopediaVMExtension.cs" />
     <Compile Include="Extensions\UI\MissionConversationVMExtension.cs" />
     <Compile Include="Extensions\UI\PartyCharacterVMExtension.cs" />
+    <Compile Include="Extensions\UI\RefinementVMExtension.cs" />
     <Compile Include="Extensions\UI\UnitEncyclopediaVMExtension.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionAttribute.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionManager.cs" />
@@ -702,10 +711,13 @@
     <Compile Include="GameManagers\TORKeyInputManager.cs" />
     <Compile Include="GameManagers\TORShaderGameManager.cs" />
     <Compile Include="HarmonyPatches\AgentPatches.cs" />
+    <Compile Include="HarmonyPatches\ArenaPracticePatch.cs" />
+    <Compile Include="HarmonyPatches\MapEventJoinRestrictionsPatch.cs" />
     <Compile Include="HarmonyPatches\RetreatPatches.cs" />
     <Compile Include="HarmonyPatches\BaseGameDebugPatches.cs" />
     <Compile Include="HarmonyPatches\CharacterCreationPatches.cs" />
     <Compile Include="HarmonyPatches\CharacterObjectPatches.cs" />
+    <Compile Include="HarmonyPatches\CaravanVisualPatch.cs" />
     <Compile Include="HarmonyPatches\ConversationPatches.cs" />
     <Compile Include="HarmonyPatches\CraftingPatches.cs" />
     <Compile Include="HarmonyPatches\CustomBattlePatches.cs" />
@@ -737,6 +749,7 @@
     <Compile Include="HarmonyPatches\RaceFixPatches.cs" />
     <Compile Include="HarmonyPatches\SettlementPatches.cs" />
     <Compile Include="HarmonyPatches\TableauRenderPatches.cs" />
+    <Compile Include="HarmonyPatches\TournamentPatches.cs" />
     <Compile Include="HarmonyPatches\VeterinarianPatch.cs" />
     <Compile Include="HarmonyPatches\ViewModelPatches.cs" />
     <Compile Include="HarmonyPatches\ViewModelRefreshPatch.cs" />
@@ -767,7 +780,6 @@
     <Compile Include="Items\WeaponHitScripts\DefenseScripts.cs" />
     <Compile Include="Items\WeaponHitScripts\IWeaponHitScript.cs" />
     <Compile Include="Items\WeaponHitScripts\KnightlyStrikeHitScript.cs" />
-    <Compile Include="Items\WeaponHitScripts\LethalShotHitScript.cs" />
     <Compile Include="Items\WeaponHitScripts\WeaponScripts.cs" />
     <Compile Include="Missions\ArcheryContestMissionController.cs" />
     <Compile Include="Missions\BrawlMissionController.cs" />
@@ -778,6 +790,8 @@
     <Compile Include="Missions\TrollCaveMissionController.cs" />
     <Compile Include="Missions\TORMissionAgentHandler.cs" />
     <Compile Include="Missions\TORMissionManager.cs" />
+    <Compile Include="Models\TORMinorFactionsModel.cs" />
+    <Compile Include="Models\TORReinforcementRestrictionModel.cs" />
     <Compile Include="Models\TORTradeItemPriceFactorModel.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleAgentStatCalculateModel.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleMoraleModel.cs" />
@@ -889,7 +903,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Lib.Harmony">
-      <Version>2.4.1</Version>
+      <Version>2.4.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Win32.Registry">
       <Version>5.0.0</Version>

@@ -1,0 +1,40 @@
+<Prefab>
+  <Window>
+    <MapNotificationItemWidget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="300" SuggestedHeight="102" HorizontalAlignment="Right" VerticalAlignment="Bottom" PositionXOffset="107" Command.OnRemove="ExecuteRemove" Command.OnInspection="ExecuteAction" NotificationExtensionWidget="NotificationExtensionWidget" NotificationTextContainerWidget="NotificationExtensionWidget\NotificationTextContainerWidget" NotificationRingImageWidget="NotificationRingWidgetParent\NotificationRingImageWidget" NotificationDescriptionText="NotificationExtensionWidget\NotificationTextContainerWidget\NotificationDescriptionText" NotificationRingWidget="NotificationRingWidgetParent" NotificationType="@NotificationIdentifier" RemoveNotificationButtonWidget="NotificationRingWidgetParent\NotificationRemoveButtonWidget" RemoveButtonVisualWidget="NotificationRingWidgetParent\NotificationRemoveButtonWidget\RemoveButtonVisual" Command.OnHintBegin="ExecuteHintBegin" Command.OnHintEnd="ExecuteHintEnd" IsInspectionForced="@ForceInspection" DefaultWidth="310" ExtendedWidth="500" DefaultWidthSprite="SPGeneral\MapNotification\notification_ring_extension" ExtendedWidthSprite="SPGeneral\MapNotification\notification_ring_extension_large" IsFocusItem="@IsFocused" Brush="Map.Notification.Sound">
+      <Children>
+
+        <Widget Id="NotificationExtensionWidget" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="226" SuggestedHeight="99" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="226" Sprite="SPGeneral\MapNotification\notification_ring_extension">
+          <Children>
+            <ListPanel Id="NotificationTextContainerWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop">
+              <Children>
+                <RichTextWidget Id="NotificationDescriptionText" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" MarginLeft="20" MarginRight="30" Brush="Map.Notification.Description.Text" Text="@DescriptionText" />
+              </Children>
+            </ListPanel>
+          </Children>
+        </Widget>
+
+        <ButtonWidget Id="NotificationRingWidgetParent" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="107" SuggestedHeight="102" HorizontalAlignment="Right" VerticalAlignment="Center" Command.HoverBegin="ExecuteSetFocused" Command.HoverEnd="ExecuteSetUnfocused">
+          <Children>
+
+            <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="75" SuggestedHeight="75" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="BlankWhiteSquare_9" PositionXOffset="3" Color="#000000FF" CircularClipEnabled="true" CircularClipRadius="45" />
+            <BrushWidget Id="NotificationRingImageWidget" DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="75" SuggestedHeight="75" HorizontalAlignment="Center" VerticalAlignment="Center" PositionXOffset="3" Brush="Map.Notification.Type.Circle.Image" />
+            <ImageWidget Id="NotificationRingWidget" DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="107" SuggestedHeight="102" HorizontalAlignment="Right" VerticalAlignment="Center" Brush="Map.Notification.Ring" />
+
+            <ButtonWidget Id="NotificationRemoveButtonWidget" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="30" SuggestedHeight="30" HorizontalAlignment="Right" VerticalAlignment="Top" MarginRight="15" Brush="Map.Notification.Remove.Button">
+              <Children>
+                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Map.Notification.Remove.Text" Text="X" />
+								<Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsVisible="@IsFocused">
+									<Children>
+										<InputKeyVisualWidget Id="RemoveButtonVisual" DataSource="{RemoveInputKey}" DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="40" SuggestedHeight="40" HorizontalAlignment="Center" VerticalAlignment="Top" PositionYOffset="-20" PositionXOffset="5" KeyID="@KeyID" IsVisible="@IsVisible"/>
+									</Children>
+								</Widget>
+              </Children>
+            </ButtonWidget>
+
+          </Children>
+        </ButtonWidget>
+
+      </Children>
+    </MapNotificationItemWidget>
+  </Window>
+</Prefab>

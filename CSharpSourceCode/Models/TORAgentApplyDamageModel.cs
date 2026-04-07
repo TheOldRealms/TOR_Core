@@ -189,7 +189,14 @@ namespace TOR_Core.Models
             {
                 if (attacker.GetHero() == Hero.MainHero)
                 {
-                    CareerHelper.ApplyBasicCareerPassives(attacker.GetHero(), ref result, PassiveEffectType.BonusDamageShield, true);
+                    var attackMask = AttackTypeMask.Melee;
+                    var weaponComponent = attackInformation.AttackerWeapon.CurrentUsageItem;
+
+                    if (weaponComponent != null && weaponComponent.IsRangedWeapon)
+                    {
+                        attackMask = AttackTypeMask.Ranged;
+                    }
+                    CareerHelper.ApplyBasicCareerPassives(attacker.GetHero(), ref result, PassiveEffectType.BonusDamageShield, attackMask, true);
                 }
 
 
@@ -360,7 +367,7 @@ namespace TOR_Core.Models
             
             if (collisionData.IsMissile && victimAgent.IsMainAgent && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
             {
-                if (Hero.MainHero.HasCareerChoice("PathfinderPassive4"))
+                if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive3"))
                 {
                     return true;
                 }
@@ -411,6 +418,8 @@ namespace TOR_Core.Models
             damageAmplifications = new float[(int)DamageType.All + 1];
             damageResistances = new float[(int)DamageType.All + 1];
             additionalDamagePercentages = new float[(int)DamageType.All + 1];
+            var statusEffectComp = agent.GetComponent<StatusEffectComponent>();
+
             if (propertyMask == PropertyMask.Attack || propertyMask == PropertyMask.All)
             {
                 //Hero item level attributes 
@@ -438,11 +447,14 @@ namespace TOR_Core.Models
 
                 }
 
-                var statusEffectAmplifiers = agent.GetComponent<StatusEffectComponent>().GetAmplifiers(attackTypeMask);
-
-                for (int i = 0; i < damageAmplifications.Length; i++)
+                if(statusEffectComp != null)
                 {
-                    damageAmplifications[i] += statusEffectAmplifiers[i];
+                    var statusEffectAmplifiers = statusEffectComp.GetAmplifiers(attackTypeMask);
+
+                    for (int i = 0; i < damageAmplifications.Length; i++)
+                    {
+                        damageAmplifications[i] += statusEffectAmplifiers[i];
+                    }
                 }
 
                 //Weapon properties
@@ -451,35 +463,35 @@ namespace TOR_Core.Models
                     if (agent.WieldedWeapon.Item != null)
                     {
                         var ammoItem = Mission.Current.MissilesList.FirstOrDefault(x => x.ShooterAgent == agent)?.Weapon.Item;
-                        var weapon = agent.WieldedWeapon.Item;
-                        List<ItemTrait> rangeItemTraits = new List<ItemTrait>();
 
                         if (ammoItem != null)
-                            rangeItemTraits.AddRange(ammoItem.GetTraits());
-                        rangeItemTraits.AddRange(weapon.GetTraits(agent));
-
-                        foreach (var itemTrait in rangeItemTraits)
                         {
-                            var property = itemTrait.AmplifierTuple;
-                            if (property != null)
-                                damageAmplifications[(int)property.AmplifiedDamageType] += property.DamageAmplifier;
+                            var weapon = agent.WieldedWeapon.Item;
+                            List<ItemTrait> rangeItemTraits = [.. ammoItem.GetTraits(), .. weapon.GetTraits(agent)];
 
-                            var additionalDamageProperty = itemTrait.AdditionalDamageTuple;
-                            if (additionalDamageProperty != null)
+                            foreach (var itemTrait in rangeItemTraits)
                             {
-                                additionalDamagePercentages[(int)additionalDamageProperty.DamageType] += additionalDamageProperty.Percent;
+                                var property = itemTrait.AmplifierTuple;
+                                if (property != null)
+                                    damageAmplifications[(int)property.AmplifiedDamageType] += property.DamageAmplifier;
+
+                                var additionalDamageProperty = itemTrait.AdditionalDamageTuple;
+                                if (additionalDamageProperty != null)
+                                {
+                                    additionalDamagePercentages[(int)additionalDamageProperty.DamageType] += additionalDamageProperty.Percent;
+                                }
                             }
-                        }
-                        //range damage Propotions
+                            //range damage Propotions
 
-                        var ammoTuple = ammoItem.GetTorSpecificData().DamageProportions;
+                            var ammoTuple = ammoItem.GetTorSpecificData().DamageProportions;
 
-                        var weaponProperty = ammoTuple;
-                        if (weaponProperty != null)
-                        {
-                            foreach (var tuple in weaponProperty)
+                            var weaponProperty = ammoTuple;
+                            if (weaponProperty != null)
                             {
-                                damageProportions[(int)tuple.DamageType] = tuple.Percent;
+                                foreach (var tuple in weaponProperty)
+                                {
+                                    damageProportions[(int)tuple.DamageType] = tuple.Percent;
+                                }
                             }
                         }
                     }
@@ -578,11 +590,14 @@ namespace TOR_Core.Models
                 }
 
                 //statuseffects
-                var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances(attackTypeMask);
-
-                for (int i = 0; i < damageResistances.Length; i++)
+                if (statusEffectComp != null)
                 {
-                    damageResistances[i] += statusEffectResistances[i];
+                    var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances(attackTypeMask);
+
+                    for (int i = 0; i < damageResistances.Length; i++)
+                    {
+                        damageResistances[i] += statusEffectResistances[i];
+                    }
                 }
 
                 if (agent.WieldedWeapon.Item != null)
@@ -606,9 +621,6 @@ namespace TOR_Core.Models
                         damageResistances[(int)defenseProperty.ResistedDamageType] += defenseProperty.ReductionPercent;
                     }
                 }
-
-
-
             }
         }
 
@@ -806,7 +818,7 @@ namespace TOR_Core.Models
                 }
             }
 
-            if (mask == PropertyMask.Defense && attackMask == AttackTypeMask.Melee || attackMask == AttackTypeMask.Ranged)
+            if (mask == PropertyMask.Defense && (attackMask == AttackTypeMask.Melee || attackMask == AttackTypeMask.Ranged))
             {
                 if (choices.Contains("RunesOfTheWhiteWolfPassive1"))
                 {
@@ -871,6 +883,7 @@ namespace TOR_Core.Models
             damageAmplifications = new float[(int)DamageType.All + 1];
             damageResistances = new float[(int)DamageType.All + 1];
             additionalDamagePercentages = new float[(int)DamageType.All + 1];
+            var statusEffectComp = agent.GetComponent<StatusEffectComponent>();
 
             if (propertyMask == PropertyMask.Attack || propertyMask == PropertyMask.All)
             {
@@ -887,8 +900,8 @@ namespace TOR_Core.Models
                     damageAmplifications[(int)property.AmplifiedDamageType] += property.DamageAmplifier;
                 }
                 //add temporary effects like buffs to attack bonuses on items
-                List<ItemTrait> dynamicTraits = agent.GetComponent<ItemTraitAgentComponent>()
-                    .GetDynamicTraits(agent.WieldedWeapon.Item);
+                List<ItemTrait> dynamicTraits = agent.GetComponent<ItemTraitAgentComponent>()?.GetDynamicTraits(agent.WieldedWeapon.Item);
+
                 foreach (var dynamicTrait in dynamicTraits)
                 {
                     var attackProperty = dynamicTrait.AmplifierTuple;
@@ -903,10 +916,14 @@ namespace TOR_Core.Models
                         additionalDamagePercentages[(int)additionalDamageProperty.DamageType] += additionalDamageProperty.Percent;
                     }
                 }
-                var statusEffectAmplifiers = agent.GetComponent<StatusEffectComponent>().GetAmplifiers(attackTypeMask);
-                for (int i = 0; i < damageAmplifications.Length; i++)
+
+                if(statusEffectComp != null)
                 {
-                    damageAmplifications[i] += statusEffectAmplifiers[i];
+                    var statusEffectAmplifiers = agent.GetComponent<StatusEffectComponent>().GetAmplifiers(attackTypeMask);
+                    for (int i = 0; i < damageAmplifications.Length; i++)
+                    {
+                        damageAmplifications[i] += statusEffectAmplifiers[i];
+                    }
                 }
             }
             if (propertyMask == PropertyMask.Defense || propertyMask == PropertyMask.All)
@@ -920,8 +937,7 @@ namespace TOR_Core.Models
                 }
 
                 //add temporary effects like buffs to defense bonuses
-                List<ItemTrait> dynamicTraits = agent.GetComponent<ItemTraitAgentComponent>()
-                    .GetDynamicTraits(agent.WieldedWeapon.Item);
+                List<ItemTrait> dynamicTraits = agent.GetComponent<ItemTraitAgentComponent>()?.GetDynamicTraits(agent.WieldedWeapon.Item);
 
                 foreach (var dynamicTrait in dynamicTraits)
                 {
@@ -933,11 +949,14 @@ namespace TOR_Core.Models
                 }
 
                 //status effects
-                var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances(attackTypeMask);
-
-                for (int i = 0; i < damageResistances.Length; i++)
+                if(statusEffectComp == null)
                 {
-                    damageResistances[i] += statusEffectResistances[i];
+                    var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances(attackTypeMask);
+
+                    for (int i = 0; i < damageResistances.Length; i++)
+                    {
+                        damageResistances[i] += statusEffectResistances[i];
+                    }
                 }
             }
         }

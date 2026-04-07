@@ -43,7 +43,7 @@ namespace TOR_Core.CampaignMechanics.Companions
                     {
                         HandleRemoveParty(party.MobileParty);
                     }
-                    
+                    //Sly : do we need to queue the party for manual destruction after removing a stray companion?
                 }
             }
         }

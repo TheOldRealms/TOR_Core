@@ -117,7 +117,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(TriggeredEffectTemplate),
                         MutationTargetOriginalId = "ulric_smash",
                         PropertyName = "DamageAmount",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.TwoHanded,DefaultSkills.OneHanded,DefaultSkills.Polearm }, 0.06f,true),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.TwoHanded,DefaultSkills.OneHanded,DefaultSkills.Polearm }, 0.001f,true),
                         MutationType = OperationType.Add
                     },
                 });
@@ -142,7 +142,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(TriggeredEffectTemplate),
                         MutationTargetOriginalId = "ulric_smash",
                         PropertyName = "DamageAmount",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Leadership }, 0.06f),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Leadership }, 0.001f),
                         MutationType = OperationType.Add
                     },
                 });
@@ -162,7 +162,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(TriggeredEffectTemplate),
                         MutationTargetOriginalId = "ulric_smash",
                         PropertyName = "DamageAmount",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.06f),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.001f),
                         MutationType = OperationType.Add
                     },
                 });
@@ -204,7 +204,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 {
                 }); // special
 
-            _flameOfUlricKeystone.Initialize(CareerID, "When Axe of Ulric is used, a random prayer become fully charged.", "FlameOfUlric", false,
+            _flameOfUlricKeystone.Initialize(CareerID, "When Axe of Ulric is used, a random prayer becomes fully charged.", "FlameOfUlric", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                 });
@@ -225,9 +225,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             _teachingsOfTheWinterFatherPassive1.Initialize(CareerID, "Wounded troops heal faster.", "TeachingsOfTheWinterFather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.TroopRegeneration));
             _teachingsOfTheWinterFatherPassive2.Initialize(CareerID, "Praying at a shrine of Ulric, fully restores personal Hitpoints. (5-day cooldown.)", "TeachingsOfTheWinterFather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
-            _teachingsOfTheWinterFatherPassive3.Initialize(CareerID, "Melee attacks deal increased damage to shields.", "TeachingsOfTheWinterFather", false, ChoiceType.Passive, null);
+            _teachingsOfTheWinterFatherPassive3.Initialize(CareerID, "Melee attacks deal increased damage to shields.", "TeachingsOfTheWinterFather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.BonusDamageShield, AttackTypeMask.Melee));
             _teachingsOfTheWinterFatherPassive4.Initialize(CareerID, "+20% ranged 'Physical Resistance' for 'Melee' troops.", "TeachingsOfTheWinterFather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Ranged,
-                (attacker, victim, mask) => victim.BelongsToMainParty() && !(victim.IsMainAgent || victim.IsHero) && mask == AttackTypeMask.Ranged));
+                (attacker, victim, mask) => victim.BelongsToMainParty() && !(victim.IsMainAgent || victim.IsHero) && !victim.Character.IsRanged && mask == AttackTypeMask.Ranged));
 
             _frostsBitePassive1.Initialize(CareerID, "+10% personal 'Frost' damage.", "FrostsBite", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Frost, 10), AttackTypeMask.Melee));
             _frostsBitePassive2.Initialize(CareerID, "+10% 'Frost' damage for 'Melee' troops.", "FrostsBite", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Frost, 10), AttackTypeMask.Melee));
@@ -246,7 +246,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _furyOfWarPassive4.Initialize(CareerID, "Hits below 25 damage no longer stagger you.", "FuryOfWar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.ShruggedOff));
 
             _flameOfUlricPassive1.Initialize(CareerID, "Radius of prayers is increased by +25%.", "FlameOfUlric", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25f, PassiveEffectType.SpellRadius, true));
-            _flameOfUlricPassive2.Initialize(CareerID, "+15% personal 'Armor Penetration' for melee attacks.", "FlameOfUlric", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
+            _flameOfUlricPassive2.Initialize(CareerID, "+15% personal 'Armour Penetration' for melee attacks.", "FlameOfUlric", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
             _flameOfUlricPassive3.Initialize(CareerID, "Victory against a stronger force provide +100% prestige.", "FlameOfUlric", false, ChoiceType.Passive);
             _flameOfUlricPassive4.Initialize(CareerID, "Kills done by you or 'Ulrician' troops cause 25% morale damage to enemies.", "FlameOfUlric", false, ChoiceType.Passive, null,
                 new CareerChoiceObject.PassiveEffect(PassiveEffectType.MoraleDamageToEnemyOnKill, new DamageProportionTuple(DamageType.All, 25), AttackTypeMask.All,

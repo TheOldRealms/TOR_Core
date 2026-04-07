@@ -72,18 +72,18 @@ public class TeefBehavior : CampaignBehaviorBase
 
     private void AddDialogues(CampaignGameStarter starter)
     {
-        starter.AddDialogLine("gw_quartermaster_regular", "start", "gw_quartermaster_hub", TORTextHelper.GetText("tor_gs_quartermaster_intro_text", "Hey yu. wanna spend for the big boss?"), () => IsQuarterMaster() && !PlayerOwnsTown(), null, 200);
-        starter.AddDialogLine("gw_quartermaster_regular_reintro", "gw_quartermaster_regular_reintro", "gw_quartermaster_hub", TORTextHelper.GetText("tor_gs_quartermaster_anything_else_text", "Anything else?"), null, null, 200);
+        starter.AddDialogLine("gw_quartermaster_regular", "start", "gw_quartermaster_hub", TORTextHelper.GetText("tor_gs_quartermaster_intro_text", "Yoo dere, youz got sumfing fer da Boss?"), () => IsQuarterMaster() && !PlayerOwnsTown(), null, 200);
+        starter.AddDialogLine("gw_quartermaster_regular_reintro", "gw_quartermaster_regular_reintro", "gw_quartermaster_hub", TORTextHelper.GetText("tor_gs_quartermaster_anything_else_text", "Wot, youz got more?"), null, null, 200);
         starter.AddPlayerLine("gw_quartermaster_hub_regular_shinies_p", "gw_quartermaster_hub", "gw_quartermaster_regular_reintro", TORTextHelper.GetText("tor_gs_quartermaster_shinies_option_text", "Shinies"), () => Hero.MainHero.Gold >= 5000, () => SpendGold(false));
         starter.AddPlayerLine("gw_quartermaster_hub_regular_loot_p", "gw_quartermaster_hub", "gw_quartermaster_regular_reintro", TORTextHelper.GetText("tor_gs_quartermaster_loot_option_text", "Loot"), null, OpenForSpending);
-        starter.AddPlayerLine("gw_quartermaster_hub_regular_leave_p", "gw_quartermaster_hub", "close_window", TORTextHelper.GetText("tor_gs_quartermaster_leave_option_text", "Leave"), null, null);
+        starter.AddPlayerLine("gw_quartermaster_hub_regular_leave_p", "gw_quartermaster_hub", "close_window", TORTextHelper.GetText("tor_gs_quartermaster_leave_option_text", "Iz outta 'ere!"), null, null);
 
-        starter.AddDialogLine("gw_quartermaster_playertown", "start", "gw_quartermaster_owner_hub", TORTextHelper.GetText("tor_gs_quartermaster_owner_intro_text", "Hey Big Boss. you wanna pile some loot?"), () => IsQuarterMaster() && PlayerOwnsTown(), null, 200);
-        starter.AddDialogLine("gw_quartermaster_playertown_reintro", "gw_quartermaster_playertown_reintro", "gw_quartermaster_owner_hub", TORTextHelper.GetText("tor_gs_quartermaster_owner_anything_else_text", "Anything else Big Boss?"), null, null, 200);
+        starter.AddDialogLine("gw_quartermaster_playertown", "start", "gw_quartermaster_owner_hub", TORTextHelper.GetText("tor_gs_quartermaster_owner_intro_text", "Oi, Boss, youz got sum loot fer da pile?"), () => IsQuarterMaster() && PlayerOwnsTown(), null, 200);
+        starter.AddDialogLine("gw_quartermaster_playertown_reintro", "gw_quartermaster_playertown_reintro", "gw_quartermaster_owner_hub", TORTextHelper.GetText("tor_gs_quartermaster_owner_anything_else_text", "Iz dere more, Boss?"), null, null, 200);
         starter.AddPlayerLine("gw_quartermaster_hub_playertown_shinies_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", TORTextHelper.GetText("tor_gs_quartermaster_shinies_option_text", "Shinies"), () => Hero.MainHero.Gold >= 5000, () => SpendGold(true));
         starter.AddPlayerLine("gw_quartermaster_hub_playertown_teef_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", TORTextHelper.GetText("tor_gs_quartermaster_make_teefbags_option_text", "Make Teefbags"), () => Hero.MainHero.GetCultureSpecificCustomResourceValue() >= 1000, MakeTeefBags);
         starter.AddPlayerLine("gw_quartermaster_hub_playertown_loot_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", TORTextHelper.GetText("tor_gs_quartermaster_loot_option_text", "Loot"), null, OpenForCreatingLootPiles);
-        starter.AddPlayerLine("gw_quartermaster_hub_playertown_leave_p", "gw_quartermaster_owner_hub", "close_window", TORTextHelper.GetText("tor_gs_quartermaster_leave_option_text", "Leave"), null, null);
+        starter.AddPlayerLine("gw_quartermaster_hub_playertown_leave_p", "gw_quartermaster_owner_hub", "close_window", TORTextHelper.GetText("tor_gs_quartermaster_leave_option_text", "Iz outta 'ere!"), null, null);
 
         bool IsQuarterMaster()
         {
@@ -217,13 +217,27 @@ public class TeefBehavior : CampaignBehaviorBase
                     difference.Add(item);
                 }
 
-                var pileValue = difference.Sum(item => item.EquipmentElement.ItemValue);
-                var pileCount = pileValue / 1000;
+                // Calculate pile value
+                long pileValue = 0;
+                foreach (var element in difference)
+                {
+                    var item = element.EquipmentElement.Item;
+                    if (item == null) continue;
+                    var unitValue = Math.Max(0, element.EquipmentElement.ItemValue);
+                    pileValue += (long)unitValue * element.Amount;
+                }
 
+                var pileCount = (int)(pileValue / 1000);
 
                 var pileItem = MBObjectManager.Instance.GetObject<ItemObject>("tor_gs_loot_pile");
 
                 Hero.MainHero.CurrentSettlement.Stash.AddToCounts(pileItem, pileCount);
+
+                // Fire event for quest progression (same as OnItemsDiscarded)
+                if (pileValue > 0)
+                {
+                    TORCampaignEvents.Instance.OnTeefTransferred(Hero.MainHero, (int)pileValue);
+                }
             }
         }
     }
@@ -337,10 +351,6 @@ public class TeefBehavior : CampaignBehaviorBase
             if (item == null)
                 continue;
 
-            if (item.Culture!= null && item.Culture.StringId == TORConstants.Cultures.GREENSKIN)
-            {
-                continue;
-            }
 
             var unitValue = Math.Max(0, element.EquipmentElement.ItemValue);
             totalItemValue += (long)unitValue * element.Amount;

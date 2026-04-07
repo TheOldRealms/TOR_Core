@@ -53,7 +53,7 @@
             //6. The Shootout (All ranged weapon skills)
         //Grouping 2: Talk about
             //1. Great Rulers (Steward, Leadership, Charm)
-            //2. Craftsman (Smithing and Engineering)
+            //2. Craftsman (Smithing and Engineering) - smithing's skill object is called Crafting
             //3. Negotiation (Charm, Trade, Roguery)
             //4. Traveling (Riding and Athletics)
             //5. Survival (Medicine, Scouting, Athletics)
@@ -301,7 +301,7 @@ As the stories flowed, the soldiers contemplated the qualities that made these r
 As the stories unfolded, the soldiers marveled at the intricate designs and the sheer ingenuity that drove these feats. Their discussions delved into the realms of smithing, engineering, and the marvels born from the minds of skilled craftsmen and craftsdwarfs, leaving them with a newfound appreciation for these vital trades. #STR_Craftsman3
     
     //Give Xp
-            ~ GiveSkillExperience("Smithing",1500)
+            ~ GiveSkillExperience("Crafting",1500)
             ~ GiveSkillExperience("Engineering",1500)
     -> END
 

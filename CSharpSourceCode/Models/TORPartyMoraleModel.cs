@@ -66,6 +66,10 @@ namespace TOR_Core.Models
                 {
                     value = 0.2f;
                 }
+                if (chivalryLevel == ChivalryLevel.Chivalrous)
+                {
+                    value = 0.2f;
+                }
 
                 result.AddFactor(value, ChivalryHelper.GetChivalryRankText(chivalryLevel));
             }

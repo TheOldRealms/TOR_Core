@@ -61,6 +61,7 @@ namespace TOR_Core.Models
 
                     if (characterObject.HasAttribute("Ironbreaker"))
                     {
+                        explainedNumber.AddFactor(3f);
                         if (Hero.MainHero.HasAttribute("RuneSmithIII"))
                         {
                             explainedNumber.AddFactor(-0.20f);

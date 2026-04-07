@@ -14,8 +14,10 @@ using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
+using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.Extensions;
@@ -184,6 +186,28 @@ namespace TOR_Core.HarmonyPatches
                     return false;
                 default:
                     return false;
+            }
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(SettlementNameplateEventsVM), MethodType.Constructor, typeof(Settlement))]
+        public static void AddVillageIconForTorVillages(SettlementNameplateEventsVM __instance, Settlement settlement)
+        {
+            if (settlement.IsVillage)
+            {
+                if (__instance.EventsList.AnyQ(x => x.Type == 6))
+                {
+			        string text = "";
+                    if (settlement.Village.VillageType == TORVillageTypes.GreenskinSwineFarm)
+                        text = "boarfarm_icon";
+                    else if (settlement.Village.VillageType == TORVillageTypes.GreenskinWolfFarm)
+                        text = "wolffarm_icon";
+                    if (!text.IsEmpty())
+                    {
+                        __instance.EventsList.Clear();//removes the old symbol, it's possible to display multiple icons
+                        __instance.EventsList.Add(new SettlementNameplateEventItemVM(text));
+                    }
+                }
             }
         }
 

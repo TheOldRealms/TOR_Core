@@ -144,5 +144,8 @@
 				<GameType value = "CampaignStoryMode"/>
 			</IncludedGameTypes>
 		</XmlNode>
+		<XmlNode>
+			<XmlName id="BannerIcons" path="banner_icons" />
+		</XmlNode>
 	</Xmls>
 </Module>

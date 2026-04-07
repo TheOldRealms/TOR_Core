@@ -2,7 +2,7 @@
 <NPCCharacters>
   <NPCCharacter id="tor_emp_lord" default_group="cavalry" name="{=str_tor_emp_lord}Empire Lord" occupation="Lord" culture="Culture.empire" voice="curt" age="50" skill_template="SkillSet.tor_custombattle_generic" is_hero="true">
     <face>
-      <BodyProperties version="4" age="32" weight="0.6" build="0.9" key="0008000B915810093F79091FB9D8C480775965867458061D4361142D93CDB688008D9603F86DBEBC000000000000000000000000000000000000000072FC60C2" />
+      <BodyProperties version="4" age="32" weight="0.6" build="0.9" key="000500000000000D797664884754DCBAA35E866295A0967774414A498C8336860F7776F20BA7B7A500000000000000000000000000000000000000003CFC2000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -200,7 +200,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_slayer_lord" default_group="infantry" name="{=str_tor_slayer_lord}Slayer Lord" occupation="Lord" culture="Culture.sturgia" voice="ironic" age="40" skill_template="SkillSet.tor_custombattle_generic" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="40" weight="0.6" build="0.5" key="000D5C0780FC0001736793597B969A3B37868255399CAC17A6C9A2FA8C7C5799D7803603073B5D8789394BC56E7A3B6200000000000000070000000036F40002" />
+      <BodyProperties version="4" age="40" weight="0.6" build="0.5" key="000B5C0782880187736793597B969A3B37868255399CAC17A6C9A2FA8C7C579900779603073B5D8709394BC56E7A3B6200000000000000070000000036FC0000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />

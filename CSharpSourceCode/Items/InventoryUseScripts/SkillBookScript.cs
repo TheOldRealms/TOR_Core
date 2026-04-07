@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.LinQuick;
 using TaleWorlds.SaveSystem;
+using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 using static Ink.Parsed.FlowBase;
 
@@ -79,9 +80,15 @@ namespace TOR_Core.Items.InventoryUseScripts
 
         public override void OnUse(MobileParty userParty, ItemObject item)
         {
-            if (InventoryUseScriptsCampaignBehavior.Instance._usages.WhereQ(x => x.heroId == userParty.LeaderHero.StringId && x.itemId == item.StringId && x.usages > 0).AnyQ())
+            // Count how many learnable traits this skill book has
+            int traitCount = item.GetTraits()?.Count ?? 1;
+            int maxUsages = traitCount > 1 ? traitCount : 1; // Allow multiple uses if more than 1 trait
+
+            var usageData = InventoryUseScriptsCampaignBehavior.Instance._usages.WhereQ(x => x.heroId == userParty.LeaderHero.StringId && x.itemId == item.StringId).FirstOrDefault();
+
+            if (usageData != null && usageData.usages >= maxUsages)
             {
-                TORCommon.Say(item.Name + " has already been used by " + userParty.LeaderHero.Name + ".");
+                TORCommon.Say(item.Name + " has already been used " + maxUsages + " time(s) by " + userParty.LeaderHero.Name + ".");
             }
             else if (InventoryUseScriptsCampaignBehavior.Instance.TryAddScriptToParty(userParty, this))
             {

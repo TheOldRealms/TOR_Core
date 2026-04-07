@@ -14,11 +14,12 @@ using TaleWorlds.ObjectSystem;
 
 namespace TOR_Core.Missions
 {
-    public class DuelFightMissionController(Action<bool> onMissionEnd, Hero duelHero = null) : MissionLogic
+    public class DuelFightMissionController(Action<bool> onMissionEnd, Hero duelHero = null, bool useRapier = true) : MissionLogic
     {
         private TORMissionAgentHandler _missionAgentSpawnLogic;
         private Agent _duelAgent;
         private bool _duelEnded;
+        private readonly bool _useRapier = useRapier;
 
         public override void OnBehaviorInitialize()
         {
@@ -32,7 +33,7 @@ namespace TOR_Core.Missions
             Mission.IsInventoryAccessible = false;
             Mission.IsQuestScreenAccessible = false;
             Mission.DoesMissionRequireCivilianEquipment = false;
-            _missionAgentSpawnLogic.SpawnPlayer(false, true, false, true, false, false); //Duel mode just sets a rapier
+            _missionAgentSpawnLogic.SpawnPlayer(false, true, false, true, false, _useRapier); //Duel mode with rapier for Tilean duels, own weapons for Orc duels
             _duelAgent = _missionAgentSpawnLogic.SpawnEnemyDuelist(duelHero);
             SpawnHorses();
             //SpawnSpectators();

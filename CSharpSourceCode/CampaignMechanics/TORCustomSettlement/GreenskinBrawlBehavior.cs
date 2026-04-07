@@ -293,7 +293,7 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
             continue;
         }
 
-        int goldReward = MBRandom.RandomInt(50 * (int)resultScore, 150 * (int)resultScore);
+        int goldReward = (int)(MBRandom.RandomInt(50 * (int)resultScore, 150 * (int)resultScore));
         int renownReward = (int)resultScore / 3;
         int teefWin = (int)resultScore;
 

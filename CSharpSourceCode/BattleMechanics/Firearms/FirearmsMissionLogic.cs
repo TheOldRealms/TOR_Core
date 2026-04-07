@@ -25,7 +25,7 @@ namespace TOR_Core.BattleMechanics.Firearms
         private bool _soundEventsValidated;
         private readonly Dictionary<int, ContinousFiringData> _continousFiringAgents = [];
         private readonly float _continousFiringInterval = 100f;
-        private readonly float _continousFiringBurstLength = 1.5f;
+        private readonly float _continousFiringBurstLength = 1.2f;
         private readonly Dictionary<int, SoundEvent> _activeSounds = [];
         private readonly List<int> _soundsToRemove = [];
         private readonly List<int> _firingAgentsToRemove = [];
@@ -33,6 +33,11 @@ namespace TOR_Core.BattleMechanics.Firearms
         private const int _explosionDamage = 125;
         private const float _explosionRadius = 6;
         private const float __explosionDamageVariance = 0.25f;
+
+        // Trollhammer torpedo explosion - 30% smaller than cannonball
+        private const int _torpedoExplosionDamage = 125;
+        private const float _torpedoExplosionRadius = 4.2f; // 6 * 0.7 = 4.2
+        private const float _torpedoExplosionDamageVariance = 0.25f;
 
         public FirearmsMissionLogic()
         {
@@ -176,9 +181,11 @@ namespace TOR_Core.BattleMechanics.Firearms
                 _continousFiringAgents.Remove(affectedIndex);
             }
         }
+        
 
         public override void OnAgentShootMissile(Agent shooterAgent, EquipmentIndex weaponIndex, Vec3 position, Vec3 velocity, Mat3 orientation, bool hasRigidBody, int forcedMissileIndex)
         {
+            
             var weaponData = shooterAgent.WieldedWeapon.CurrentUsageItem;
 
             // Check for any weapon with scatter trait
@@ -200,23 +207,43 @@ namespace TOR_Core.BattleMechanics.Firearms
             var offset = (shooterAgent.WieldedWeapon.CurrentUsageItem.WeaponLength + 30) / 100;
             frame.Advance(offset);
 
-            if (shooterAgent.WieldedWeapon.Item.StringId.Contains("_gun_drakegun"))
+            // Trollhammer Torpedo - Single rocket shot weapon
+            if (shooterAgent.WieldedWeapon.Item.StringId.Contains("_gun_trollhammer"))
             {
-                RemoveLastProjectile(shooterAgent);
-                _continousFiringAgents[shooterAgent.Index] = new ContinousFiringData
-                {
-                    OwnerAgent = shooterAgent,
-                    FireAmmoId = shooterAgent.WieldedWeapon.AmmoWeapon.Item.StringId,
-                    RemainingTime = _continousFiringBurstLength,
-                    LastFiredTime = MissionTime.Now.ToMilliseconds,
-                    IsParticleEnabled = true,
+                // Torpedo mode: Single rocket shot with short release animation
+                // Use act_hw_release instead of act_hw_release_long for quick firing
+                shooterAgent.SetActionChannel(1, ActionIndexCache.Create("act_hw_release"));
 
-                };
-                BurstFireShot(shooterAgent, 0.1f, shooterAgent.WieldedWeapon.AmmoWeapon.Item.StringId);
+                CreateMuzzleFireSound(position, MuzzleFireSoundType.Grenadelauncher);
+
+                // Let the default missile spawn, the explosion is handled in OnMissileCollisionReaction
                 return;
             }
 
-            if (shooterAgent.WieldedWeapon.AmmoWeapon.Item.StringId.Contains("scatter"))
+            // Drakegun - Continuous flamethrower weapon
+            if (shooterAgent.WieldedWeapon.Item.StringId.Contains("_gun_drakegun"))
+            {
+                var ammoId = shooterAgent.WieldedWeapon.AmmoWeapon.Item.StringId;
+
+                RemoveLastProjectile(shooterAgent);
+
+                // Canister mode: Continuous flamethrower
+                _continousFiringAgents[shooterAgent.Index] = new ContinousFiringData
+                {
+                    OwnerAgent = shooterAgent,
+                    FireAmmoId = ammoId,
+                    RemainingTime = _continousFiringBurstLength,
+                    LastFiredTime = MissionTime.Now.ToMilliseconds,
+                    IsParticleEnabled = true,
+                };
+                BurstFireShot(shooterAgent, 0.1f, ammoId);
+                CreateMuzzleFireSound(position, MuzzleFireSoundType.DrakeGun);
+                return;
+            }
+
+            // Handle scatter shot and buckshot ammo
+            var ammoStringId = shooterAgent.WieldedWeapon.AmmoWeapon.Item.StringId;
+            if (ammoStringId.Contains("scatter") || ammoStringId.Contains("buckshot"))
             {
                 RemoveLastProjectile(shooterAgent);
                 float accuracy = 1 / (weaponData.Accuracy * 1.2f); //this is currently arbitrary
@@ -245,21 +272,18 @@ namespace TOR_Core.BattleMechanics.Firearms
                     light.Frame = MatrixFrame.Identity;
                     light.SetVisibility(true);
                     missile.Entity.AddLight(light);
-                    CreateMuzzleFireSound(position);
+                    CreateMuzzleFireSound(position, MuzzleFireSoundType.DrakeGun);
                     return;
                 }
             }
 
             // play sound of shot and create shot effects
+            // Hand-thrown grenades and blasting charges don't make firing sounds, only explosion on impact
             if (!shooterAgent.WieldedWeapon.AmmoWeapon.Item.StringId.Contains("grenade") && !shooterAgent.WieldedWeapon.AmmoWeapon.Item.StringId.Contains("blasting_charges"))
             {
                 // run particles of smoke
                 Mission.AddParticleSystemBurstByName("handgun_shoot_2", frame, false);
                 CreateMuzzleFireSound(position);
-            }
-            else
-            {
-                CreateMuzzleFireSound(position, MuzzleFireSoundType.Grenadelauncher);
             }
         }
 
@@ -291,6 +315,15 @@ namespace TOR_Core.BattleMechanics.Firearms
                     }
 
                     break;
+                case MuzzleFireSoundType.DrakeGun:
+                    {
+                        var selectedName = "drakefire";
+                        var soundIndex = SoundEvent.GetEventIdFromString(selectedName);
+                        var soundEvent = SoundEvent.CreateEvent(soundIndex, Mission.Scene);
+                        _activeSounds.Add(soundEvent.GetSoundId(), soundEvent);
+                        soundEvent.PlayInPosition(position);
+                        break;
+                    }
                 case MuzzleFireSoundType.Pistol: //no sounds for pistol?
                     break;
             }
@@ -347,7 +380,12 @@ namespace TOR_Core.BattleMechanics.Firearms
 
         public void BurstFireShot(Agent shooterAgent, float accuracy, string ammoID)
         {
-            if (shooterAgent.AgentVisuals == null || shooterAgent.WieldedWeapon.IsEmpty || shooterAgent.WieldedWeapon.CurrentUsageItem == null)
+            if (shooterAgent == null || 
+                shooterAgent.State != AgentState.Active || 
+                shooterAgent.IsFadingOut() || 
+                shooterAgent.AgentVisuals == null || 
+                shooterAgent.WieldedWeapon.IsEmpty || 
+                shooterAgent.WieldedWeapon.CurrentUsageItem == null)
             {
                 return;
             }
@@ -388,10 +426,17 @@ namespace TOR_Core.BattleMechanics.Firearms
 
             var pos = missileObj.Entity.GlobalPosition;
 
-            if (missileObj.Weapon.Item.StringId.Contains("grenade"))
+            if (missileObj.Weapon.Item.StringId.Contains("grenade") || missileObj.Weapon.Item.StringId.Contains("blasting_charges"))
             {
                 RunExplosionSoundEffects(pos, "mortar_explosion_1");
                 RunExplosionVisualEffects(pos, "cannonball_explosion_8");
+            }
+
+            if (missileObj.Weapon.Item.StringId.Contains("trollhammer_torpedo"))
+            {
+                RunExplosionSoundEffects(pos, "mortar_explosion_1");
+                RunExplosionVisualEffects(pos, "psys_fireball_explosion_1"); // Test with fireball explosion
+                ApplySplashDamage(attackerAgent, pos, _torpedoExplosionRadius, _torpedoExplosionDamage, _torpedoExplosionDamageVariance);
             }
 
             if (missileObj.Weapon.Item.StringId.Contains("cannonball"))
@@ -461,7 +506,8 @@ namespace TOR_Core.BattleMechanics.Firearms
     {
         Musket,
         Pistol,
-        Grenadelauncher
+        Grenadelauncher,
+        DrakeGun,
     }
 
     public class ContinousFiringData

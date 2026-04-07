@@ -25,6 +25,7 @@ using TaleWorlds.ScreenSystem;
 using TaleWorlds.TwoDimension;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.UI;
 using TOR_Core.Models;
@@ -163,8 +164,8 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         {
             if (winner.IsPlayerCharacter)
             {
-                // Trigger arena fight won event for quest tracking
-                TORCampaignEvents.Instance.OnArenaFightWon(Hero.MainHero);
+                // Trigger tournament won event for quest tracking
+                TORCampaignEvents.Instance.OnTournamentWon(Hero.MainHero);
 
                 if (winner.Culture.StringId == TORConstants.Cultures.BRETONNIA)
                 {
@@ -495,8 +496,13 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 if (playerHero.HasCareerChoice("MercenaryLordPassive4"))
                 {
                     var leadershipSkill = playerHero.GetSkillValue(DefaultSkills.Leadership);
-                    var leadershipFactor = 1f + (leadershipSkill / 300f);
-                    renownChange *= leadershipFactor;
+                    var prestigeFactor = 2f;
+
+                    if (leadershipSkill >= 300)
+                    {
+                        prestigeFactor += 1f;
+                    }
+                    renownChange *= prestigeFactor;
                 }
 
                 var cultureSpecificResourceChange = (int)(1 + renownChange);
@@ -644,23 +650,32 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 }
             }
 
-            // Meat from killed troops (Greenskins only)
-            if (mapEvent.PartiesOnSide(mapEvent.WinningSide).Any(x => x.Party.Culture.StringId == TORConstants.Cultures.GREENSKIN))
+            // Meat from killed troops + prisoners left behind (Greenskins only)
+            if (mapEvent.PlayerSide == mapEvent.WinningSide &&
+                Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
             {
-                var rewardModel = (TORBattleRewardModel) Campaign.Current.Models.BattleRewardModel;
-                if (rewardModel != null)
+                var meatResource = GetResourceObject("Meat");
+                if (meatResource != null)
                 {
-                    var meatGained = rewardModel.CalculateMeatFromBattle(mapEvent);
-                    if (meatGained > 0)
+                    var rewardModel = (TORBattleRewardModel)Campaign.Current.Models.BattleRewardModel;
+                    if (rewardModel != null)
                     {
-                        var meatResource = GetResourceObject("Meat");
-                        if (meatResource != null)
+                        var meatGained = rewardModel.CalculateMeatFromBattle(mapEvent);
+                        if (meatGained > 0)
                         {
                             AddResourceChanges(meatResource, -meatGained);
                         }
                     }
-                }
 
+                    if (prisoners != null && prisoners.Count > 0)
+                    {
+                        var prisonerMeatGained = CalculateGreenskinPrisonerMeat(prisoners);
+                        if (prisonerMeatGained > 0)
+                        {
+                            AddResourceChanges(meatResource, -prisonerMeatGained);
+                        }
+                    }
+                }
             }
 
             // Teef from killed troops (Greenskins only)
@@ -752,6 +767,19 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             }
             return bonus;
         }
+        private static int CalculateGreenskinPrisonerMeat(TroopRoster prisonerRoster)
+        {
+            int totalMeat = 0;
+
+            foreach (var prisoner in prisonerRoster.GetTroopRoster())
+            {
+                if (!GreenskinCareerButton.IsChoppablePrisoner(prisoner.Character)) continue;
+
+                totalMeat += GreenskinCareerButton.GetChopMeatAmount(prisoner.Character) * prisoner.Number;
+            }
+
+            return totalMeat;
+        }
 
         private static void AddChivarlyForUnit(ref ExplainedNumber number, CharacterObject characterObject, int amount)
         {
@@ -815,6 +843,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         {
             int sign = fromSide == PartyScreenLogic.PartyRosterSide.Left ? 1 : -1;
             var explainedNumber = new ExplainedNumber();
+            bool isLootScreen = PartyScreenHelper.GetActivePartyState()?.PartyScreenMode == PartyScreenMode.Loot;
 
             if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
             {
@@ -833,6 +862,17 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.BRETONNIA && isPrisoner)
             {
                 AddChivarlyForUnit(ref explainedNumber, troop, transferAmount);
+            }
+
+            if (isLootScreen && isPrisoner && Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN &&
+                GreenskinCareerButton.IsChoppablePrisoner(troop))
+            {
+                var meatResource = GetResourceObject("Meat");
+                if (meatResource != null)
+                {
+                    var meatAmount = GreenskinCareerButton.GetChopMeatAmount(troop) * transferAmount;
+                    AddResourceChanges(meatResource, sign * meatAmount);
+                }
             }
 
             AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(), sign * (int)explainedNumber.ResultNumber);

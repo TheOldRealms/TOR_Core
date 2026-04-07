@@ -4,6 +4,7 @@ using System.Xml.Xsl;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.CampaignMechanics;
 using TOR_Core.CharacterDevelopment;
 
 namespace TOR_Core.HarmonyPatches
@@ -53,6 +54,7 @@ namespace TOR_Core.HarmonyPatches
             _ = new TORSkillEffects();
             _ = new TORCharacterTraits();
             _ = new TORPerks();
+            _ = new TORVillageTypes();
         }
     }
 }
