@@ -4512,13 +4512,140 @@
   <!-- Career Choice Group Names -->
 
   <!-- Career Unlock Conditions -->
-  <string id="tor_careerunlock_condition_1.Runelord" text="{=str_tor_careerunlock_condition_1_Runelord}Talk to the Runelord about the promotion" />
-  <string id="tor_careerunlock_condition_2.Runelord" text="{=str_tor_careerunlock_condition_2_Runelord}Talk to the Runelord to reach the final stage" />
-  <string id="tor_careerunlock_condition_1.OrcBoss" text="{=str_tor_careerunlock_condition_1_OrcBoss}Complete Da Path of Da Boss quest" />
-  <string id="tor_careerunlock_condition_2.OrcBoss" text="{=str_tor_careerunlock_condition_2_OrcBoss}Complete Da Path of Da Big Boss quest" />
-  <string id="tor_careerunlock_condition_1.OrcShaman" text="{=str_tor_careerunlock_condition_1_OrcShaman}Complete Da Path of Da Shaman quest"/>
-  <string id="tor_careerunlock_condition_2.OrcShaman" text="{=str_tor_careerunlock_condition_2_OrcShaman}Complete Da Path of Da Great Shaman quest"/>
+  
+    <!-- Warrior Priest -->
+  <string id="tor_careerunlock_level_1.WarriorPriest" text="{=str_tor_careerunlock_level_1_warriorpriest}" />
+  <string id="tor_careerunlock_level_2.WarriorPriest" text="{=str_tor_careerunlock_level_2_warriorpriest}Required clan renown: 2" />
+  <string id="tor_careerunlock_level_3.WarriorPriest" text="{=str_tor_careerunlock_level_3_warriorpriest}Required clan renown: 4" />
 
+  <!-- Witch Hunter -->
+  <string id="tor_careerunlock_level_1.WitchHunter" text="{=str_tor_careerunlock_level_1_witchhunter}" />
+  <string id="tor_careerunlock_level_2.WitchHunter" text="{=str_tor_careerunlock_level_2_witchhunter}Required clan renown: 2" />
+  <string id="tor_careerunlock_level_3.WitchHunter" text="{=str_tor_careerunlock_level_3_witchhunter}Required clan renown: 4" />
+
+  <!-- Necromancer -->
+  <string id="tor_careerunlock_level_1.Necromancer" text="{=str_tor_careerunlock_level_1_necromancer}" />
+  <string id="tor_careerunlock_level_2.Necromancer" text="{=str_tor_careerunlock_level_2_necromancer}Required clan renown: 2" />
+  <string id="tor_careerunlock_level_3.Necromancer" text="{=str_tor_careerunlock_level_3_necromancer}[TODO] Required clan renown: 4" />
+
+  <!-- Minor Vampire (Vampire Count) -->
+  <string id="tor_careerunlock_level_1.MinorVampire" text="{=str_tor_careerunlock_level_1_minorvampire}" />
+  <string id="tor_careerunlock_level_2.MinorVampire" text="{=str_tor_careerunlock_level_2_minorvampire}Required clan renown: 2" />
+  <string id="tor_careerunlock_level_3.MinorVampire" text="{=str_tor_careerunlock_level_3_minorvampire}Required clan renown: 4" />
+
+  <!-- Blood Knight -->
+  <string id="tor_careerunlock_level_1.BloodKnight" text="{=str_tor_careerunlock_level_1_bloodknight}" />
+  <string id="tor_careerunlock_level_2.BloodKnight" text="{=str_tor_careerunlock_level_2_bloodknight}Required clan renown: 2" />
+  <string id="tor_careerunlock_level_3.BloodKnight" text="{=str_tor_careerunlock_level_3_bloodknight}Required clan renown: 4" />
+
+  <!-- Mercenary -->
+  <string id="tor_careerunlock_level_1.Mercenary" text="{=str_tor_careerunlock_level_1_mercenary}" />
+  <string id="tor_careerunlock_level_2.Mercenary" text="{=str_tor_careerunlock_level_2_mercenary}Required clan renown: 2" />
+  <string id="tor_careerunlock_level_3.Mercenary" text="{=str_tor_careerunlock_level_3_mercenary}Required clan renown: 4" />
+
+  <!-- Grail Knight -->
+  <string id="tor_careerunlock_level_1.GrailKnight" text="{=str_tor_careerunlock_level_1_grailknight}" />
+  <string id="tor_careerunlock_level_2.GrailKnight" text="{=str_tor_careerunlock_level_2_grailknight}Required clan renown: 2" />
+  <string id="tor_careerunlock_level_3.GrailKnight" text="{=str_tor_careerunlock_level_3_grailknight}Required clan renown: 4" />
+
+  <!-- Grail Damsel -->
+  <string id="tor_careerunlock_level_1.GrailDamsel" text="{=str_tor_careerunlock_level_1_graildamsel}" />
+  <string id="tor_careerunlock_level_2.GrailDamsel" text="{=str_tor_careerunlock_level_2_graildamsel}Required clan renown: 2" />
+  <string id="tor_careerunlock_level_3.GrailDamsel" text="{=str_tor_careerunlock_level_3_graildamsel}Required clan renown: 4" />
+
+  <!-- Black Grail Knight -->
+  <string id="tor_careerunlock_level_1.BlackGrailKnight" text="{=str_tor_careerunlock_level_1_blackgrailknight}" />
+  <string id="tor_careerunlock_level_2.BlackGrailKnight" text="{=str_tor_careerunlock_level_2_blackgrailknight}Required clan renown: 2" />
+  <string id="tor_careerunlock_level_3.BlackGrailKnight" text="{=str_tor_careerunlock_level_3_blackgrailknight}Required clan renown: 4" />
+
+  <!-- Necrarch -->
+  <string id="tor_careerunlock_level_1.Necrarch" text="{=str_tor_careerunlock_level_1_necrarch}" />
+  <string id="tor_careerunlock_level_2.Necrarch" text="{=str_tor_careerunlock_level_2_necrarch}Required clan renown: 2" />
+  <string id="tor_careerunlock_level_3.Necrarch" text="{=str_tor_careerunlock_level_3_necrarch}[TODO] Required clan renown: 4" />
+
+  <!-- Warrior Priest of Ulric -->
+  <string id="tor_careerunlock_level_1.WarriorPriestUlric" text="{=str_tor_careerunlock_level_1_warriorpriestulric}" />
+  <string id="tor_careerunlock_level_2.WarriorPriestUlric" text="{=str_tor_careerunlock_level_2_warriorpriestulric}Required clan renown: 2" />
+  <string id="tor_careerunlock_level_3.WarriorPriestUlric" text="{=str_tor_careerunlock_level_3_warriorpriestulric}Required clan renown: 4" />
+
+  <!-- Imperial Magister -->
+  <string id="tor_careerunlock_level_1.ImperialMagister" text="{=str_tor_careerunlock_level_1_imperialmagister}" />
+  <string id="tor_careerunlock_level_2.ImperialMagister" text="{=str_tor_careerunlock_level_2_imperialmagister}Required clan renown: 2" />
+  <string id="tor_careerunlock_level_3.ImperialMagister" text="{=str_tor_careerunlock_level_3_imperialmagister}Required clan renown: 4" />
+
+  <!-- Waywatcher -->
+  <string id="tor_careerunlock_level_1.Waywatcher" text="{=str_tor_careerunlock_level_1_waywatcher}" />
+  <string id="tor_careerunlock_level_2.Waywatcher" text="{=str_tor_careerunlock_level_2_waywatcher}Required clan renown: 2" />
+  <string id="tor_careerunlock_level_3.Waywatcher" text="{=str_tor_careerunlock_level_3_waywatcher}Required clan renown: 4" />
+
+  <!-- Spellsinger -->
+  <string id="tor_careerunlock_level_1.Spellsinger" text="{=str_tor_careerunlock_level_1_spellsinger}" />
+  <string id="tor_careerunlock_level_2.Spellsinger" text="{=str_tor_careerunlock_level_2_spellsinger}Required clan renown: 2" />
+  <string id="tor_careerunlock_level_3.Spellsinger" text="{=str_tor_careerunlock_level_3_spellsinger}Required clan renown: 4" />
+
+  <!-- Grey Lord -->
+  <string id="tor_careerunlock_level_1.GreyLord" text="{=str_tor_careerunlock_level_1_greylord}" />
+  <string id="tor_careerunlock_level_2.GreyLord" text="{=str_tor_careerunlock_level_2_greylord}Required clan renown: 2" />
+  <string id="tor_careerunlock_level_3.GreyLord" text="{=str_tor_careerunlock_level_3_greylord}Required clan renown: 4" />
+
+  <!-- Knight of the Old World -->
+  <string id="tor_careerunlock_level_1.KnightOldWorld" text="{=str_tor_careerunlock_level_1_knightoldworld}" />
+  <string id="tor_careerunlock_level_2.KnightOldWorld" text="{=str_tor_careerunlock_level_2_knightoldworld}Required clan renown: 2" />
+  <string id="tor_careerunlock_level_3.KnightOldWorld" text="{=str_tor_careerunlock_level_3_knightoldworld}Required clan renown: 4" />
+
+  <!-- Ironbreaker -->
+  <string id="tor_careerunlock_level_1.Ironbreaker" text="{=str_tor_careerunlock_level_1_ironbreaker}" />
+  <string id="tor_careerunlock_level_2.Ironbreaker" text="{=str_tor_careerunlock_level_2_ironbreaker}Required clan renown: 2" />
+  <string id="tor_careerunlock_level_3.Ironbreaker" text="{=str_tor_careerunlock_level_3_ironbreaker}[TODO] Required clan renown: 4" />
+
+  <!-- Slayer -->
+  <string id="tor_careerunlock_level_1.Slayer" text="{=str_tor_careerunlock_level_1_slayer}" />
+  <string id="tor_careerunlock_level_2.Slayer" text="{=str_tor_careerunlock_level_2_slayer}Required clan renown: 2" />
+  <string id="tor_careerunlock_level_3.Slayer" text="{=str_tor_careerunlock_level_3_slayer}Required clan renown: 4" />
+
+  <!-- Warden -->
+  <string id="tor_careerunlock_level_1.Warden" text="{=str_tor_careerunlock_level_1_warden}" />
+  <string id="tor_careerunlock_level_2.Warden" text="{=str_tor_careerunlock_level_2_warden}Required clan renown: 2" />
+  <string id="tor_careerunlock_level_3.Warden" text="{=str_tor_careerunlock_level_3_warden}Required clan renown: 4" />
+
+  <!-- Runelord (Special unlock conditions) -->
+  <string id="tor_careerunlock_level_1.Runelord" text="{=str_tor_careerunlock_level_1_runelord}" />
+  <string id="tor_careerunlock_level_2.Runelord" text="{=str_tor_careerunlock_level_2_runelord}Talk to the Runelord about the promotion" />
+  <string id="tor_careerunlock_level_3.Runelord" text="{=str_tor_careerunlock_level_3_runelord}Talk to the Runelord to reach the final stage" />
+
+  <!-- Orc Boss (Special unlock conditions) -->
+  <string id="tor_careerunlock_level_1.OrcBoss" text="{=str_tor_careerunlock_level_1_orcboss}" />
+  <string id="tor_careerunlock_level_2.OrcBoss" text="{=str_tor_careerunlock_level_2_orcboss}Complete Da Path of Da Boss quest" />
+  <string id="tor_careerunlock_level_3.OrcBoss" text="{=str_tor_careerunlock_level_3_orcboss}Complete Da Path of Da Big Boss quest" />
+
+  <!-- Orc Shaman (Special unlock conditions) -->
+  <string id="tor_careerunlock_level_1.OrcShaman" text="{=str_tor_careerunlock_level_1_orcshaman}" />
+  <string id="tor_careerunlock_level_2.OrcShaman" text="{=str_tor_careerunlock_level_2_orcshaman}Complete Da Path of Da Shaman quest" />
+  <string id="tor_careerunlock_level_3.OrcShaman" text="{=str_tor_careerunlock_level_3_orcshaman}Complete Da Path of Da Great Shaman quest" />
+  
+  
+  <!-- Rewards -->
+<string id="tor_careerunlock_reward_2.MinorVampire" text="{=str_tor_careerunlock_reward_2_minorvampire}[TODO] Unlocks Dark Magic" />
+
+<!-- Grail Damsel -->
+<string id="tor_careerunlock_reward_2.GrailDamsel" text="{=str_tor_careerunlock_reward_2_graildamsel}Unlocks 2nd Lore" />
+<string id="tor_careerunlock_reward_3.GrailDamsel" text="{=str_tor_careerunlock_reward_3_graildamsel}Unlocks Lore of Heavens" />
+
+<!-- Imperial Magister -->
+<string id="tor_careerunlock_reward_2.ImperialMagister" text="{=str_tor_careerunlock_reward_2_imperialmagister}Unlocks Greater Powerstones" />
+<string id="tor_careerunlock_reward_3.ImperialMagister" text="{=str_tor_careerunlock_reward_3_imperialmagister}Unlocks Mighty Powerstones" />
+
+<!-- Waywatcher -->
+<string id="tor_careerunlock_reward_1.Waywatcher" text="{=str_tor_careerunlock_reward_1_waywatcher}Swiftshiver shards upgrade for troops" />
+<string id="tor_careerunlock_reward_2.Waywatcher" text="{=str_tor_careerunlock_reward_2_waywatcher}agbane Tipps upgrade for troops" />
+<string id="tor_careerunlock_reward_3.Waywatcher" text="{=str_tor_careerunlock_reward_3_waywatcher}Unlocks Starfire shafts" />
+
+<!-- Runelord -->
+<string id="tor_careerunlock_reward_1.Runelord" text="{=str_tor_careerunlock_reward_1_runelord}Unlocks Runecraft for Equipment" />
+  
+  
+  
+ 
 
   <string id="TORKnightPuritySealName.SecularSeal1" text="{=str_torknightpuritysealname_secularseal1}Lesser Secular Seal" />
   <string id="TORKnightPuritySealName.SecularSeal2" text="{=str_torknightpuritysealname_secularseal2}Secular Seal" />

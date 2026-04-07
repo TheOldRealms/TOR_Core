@@ -437,115 +437,115 @@ namespace TOR_Core.CharacterDevelopment
             //Warrior Priest of Sigmar
             _bookOfSigmar.Initialize("Book of Sigmar", TORCareers.WarriorPriest, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "WarriorPriest", string.Empty);
                 return true;
             });
             _sigmarProclaimer.Initialize("Sigmar's Proclaimer", TORCareers.WarriorPriest, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "WarriorPriest", string.Empty);
                 return true;
             });
             _relentlessFanatic.Initialize("Relentless Fanatic", TORCareers.WarriorPriest, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "WarriorPriest", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _protectorOfTheWeak.Initialize("Protector of the Weak", TORCareers.WarriorPriest, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "WarriorPriest", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _holyPurge.Initialize("Holy Purge", TORCareers.WarriorPriest, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "WarriorPriest", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _archLector.Initialize("Arch Lector", TORCareers.WarriorPriest, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "WarriorPriest", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
             _twinTailedComet.Initialize("Twin Tailed Comet", TORCareers.WarriorPriest, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "WarriorPriest", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
 
             //Witch Hunter
             _toolsOfJudgement.Initialize("Tools of Judgement", TORCareers.WitchHunter, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "WitchHunter", string.Empty);
                 return true;
             });
             _huntTheWicked.Initialize("Hunt the Wicked", TORCareers.WitchHunter, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "WitchHunter", string.Empty);
                 return true;
             });
             _silverHammer.Initialize("The Silver Hammer", TORCareers.WitchHunter, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "WitchHunter", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _noRestAgainstEvil.Initialize("No Rest Against Evil", TORCareers.WitchHunter, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "WitchHunter", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _endsJustifiesMeans.Initialize("Ends Justify Means", TORCareers.WitchHunter, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "WitchHunter", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
             _swiftProcedure.Initialize("Swift Procedure", TORCareers.WitchHunter, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "WitchHunter", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _guiltyByAssociation.Initialize("Guilty by Association", TORCareers.WitchHunter, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "WitchHunter", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
 
             //Necromancer
             _liberNecris.Initialize("Liber Necris", TORCareers.Necromancer, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "Necromancer", string.Empty);
                 return true;
             });
             _deArcanisKadon.Initialize("De Arcanis Kadon", TORCareers.Necromancer, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "Necromancer", string.Empty);
                 return true;
             });
             _codexMortifica.Initialize("Codex Mortifica", TORCareers.Necromancer, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "Necromancer", string.Empty);
                 return true;
             });
 
             _liberMortis.Initialize("Liber Mortis", TORCareers.Necromancer, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Necromancer", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
 
             _bookOfWsoran.Initialize("Book of W'soran", TORCareers.Necromancer, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Necromancer", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
 
             _grimoireNecris.Initialize("Grimore Necris", TORCareers.Necromancer, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Necromancer", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
 
             _booksOfNagash.Initialize("Books of Nagash", TORCareers.Necromancer, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "Necromancer", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
 
@@ -554,41 +554,41 @@ namespace TOR_Core.CharacterDevelopment
 
             _newBlood.Initialize("New Blood", TORCareers.MinorVampire, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "MinorVampire", string.Empty);
                 return true;
             });
             _feral.Initialize("The Feral", TORCareers.MinorVampire, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "MinorVampire", string.Empty);
                 return true;
             });
             _arkayne.Initialize("The Arkayne", TORCareers.MinorVampire, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "MinorVampire", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             }, (Hero hero, out string unlockText) =>
             {
-                unlockText = "Unlocks Dark Magic";
+                unlockText = TORTextHelper.GetText("tor_careerunlock_reward_2", "MinorVampire", "Unlocks Dark Magic");
                 return hero.Clan.Tier >= 2;
             });
             _courtley.Initialize("The Courtley", TORCareers.MinorVampire, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "MinorVampire", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _lordly.Initialize("The Lordly", TORCareers.MinorVampire, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "MinorVampire", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _martialle.Initialize("The Martialle", TORCareers.MinorVampire, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "MinorVampire", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
             _masterOfDead.Initialize("Master of the Dead", TORCareers.MinorVampire, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "MinorVampire", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
 
@@ -596,38 +596,38 @@ namespace TOR_Core.CharacterDevelopment
 
             _peerlessWarrior.Initialize("Peerless Warrior", TORCareers.BloodKnight, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "BloodKnight", string.Empty);
                 return true;
             });
             _nightRider.Initialize("Night Rider", TORCareers.BloodKnight, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "BloodKnight", string.Empty);
                 return true;
             });
 
             _bladeMaster.Initialize("Blade Master", TORCareers.BloodKnight, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "BloodKnight", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _doomRider.Initialize("Doom Rider", TORCareers.BloodKnight, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "BloodKnight", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _controlledHunger.Initialize("Controlled Hunger", TORCareers.BloodKnight, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "BloodKnight", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _avatarOfDeath.Initialize("Avatar of Death", TORCareers.BloodKnight, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "BloodKnight", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
             _dreadKnight.Initialize("Dread Knight", TORCareers.BloodKnight, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "BloodKnight", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
 
@@ -635,37 +635,37 @@ namespace TOR_Core.CharacterDevelopment
 
             _survivalist.Initialize("The Survivalist", TORCareers.Mercenary, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "Mercenary", string.Empty);
                 return true;
             });
             _duelist.Initialize("The Duelist", TORCareers.Mercenary, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "Mercenary", string.Empty);
                 return true;
             });
             _headhunter.Initialize("The Headhunter", TORCareers.Mercenary, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Mercenary", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _veteran.Initialize("The Knightly", TORCareers.Mercenary, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Mercenary", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _paymaster.Initialize("The Paymaster", TORCareers.Mercenary, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Mercenary", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _mercenaryLord.Initialize("The Mercenary Lord", TORCareers.Mercenary, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "Mercenary", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
             _commander.Initialize("The Commander", TORCareers.Mercenary, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "Mercenary", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
 
@@ -673,37 +673,37 @@ namespace TOR_Core.CharacterDevelopment
 
             _errantryWar.Initialize("Errantry War", TORCareers.GrailKnight, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "GrailKnight", string.Empty);
                 return true;
             });
             _enhancedHorseCombat.Initialize("Enhanced Horse Combat", TORCareers.GrailKnight, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "GrailKnight", string.Empty);
                 return true;
             });
             _questingVow.Initialize("Questing Vow", TORCareers.GrailKnight, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "GrailKnight", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _monsterSlayer.Initialize("Monster Slayer", TORCareers.GrailKnight, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "GrailKnight", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _masterHorseman.Initialize("Master Horseman", TORCareers.GrailKnight, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "GrailKnight", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _grailVow.Initialize("Grail Vow", TORCareers.GrailKnight, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "GrailKnight", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
             _holyCrusader.Initialize("Holy Crusader", TORCareers.GrailKnight, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "GrailKnight", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
 
@@ -711,39 +711,39 @@ namespace TOR_Core.CharacterDevelopment
 
             _curseOfMousillon.Initialize("Curse of Mousillon", TORCareers.BlackGrailKnight, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "BlackGrailKnight", string.Empty);
                 return true;
             });
 
             _swampRider.Initialize("Swamp Rider", TORCareers.BlackGrailKnight, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "BlackGrailKnight", string.Empty);
                 return true;
             });
 
             _unbreakableArmy.Initialize("Unbreakable Army", TORCareers.BlackGrailKnight, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "BlackGrailKnight", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _scourgeOfBretonnia.Initialize("Scourge of Bretonnia", TORCareers.BlackGrailKnight, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "BlackGrailKnight", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _robberKnight.Initialize("Robber Knight", TORCareers.BlackGrailKnight, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "BlackGrailKnight", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _lieOfLady.Initialize("The Lady's Lie", TORCareers.BlackGrailKnight, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "BlackGrailKnight", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
             _blackGrailVow.Initialize("The Vow of the Black Grail", TORCareers.BlackGrailKnight, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "BlackGrailKnight", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
 
@@ -751,49 +751,49 @@ namespace TOR_Core.CharacterDevelopment
 
             _inspirationOfTheLady.Initialize("Inspiration of the Lady", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "GrailDamsel", string.Empty);
                 return true;
             });
             _talesOfGiles.Initialize("Tales of Gilles", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "GrailDamsel", string.Empty);
                 return true;
             });
             _feyEnchantment.Initialize("Fey Enchantment", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "GrailDamsel", string.Empty);
                 return true;
             });
 
             _vividVisions.Initialize("Vivid Visions", TORCareers.GrailDamsel, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "GrailDamsel", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
 
             _justCause.Initialize("A Just Cause", TORCareers.GrailDamsel, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "GrailDamsel", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             }, (Hero hero, out string unlockText) =>
             {
-                unlockText = "Unlocks 2nd Lore";
+                unlockText = TORTextHelper.GetText("tor_careerunlock_reward_2", "GrailDamsel", "Unlocks 2nd Lore");
                 return hero.Clan.Tier >= 2;
             });
 
             _secretsOfTheGrail.Initialize("Secrets of the Grail", TORCareers.GrailDamsel, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "GrailDamsel", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             }, (Hero hero, out string unlockText) =>
             {
-                unlockText = "Unlocks Lore of Heavens";
+                unlockText = TORTextHelper.GetText("tor_careerunlock_reward_3", "GrailDamsel", "Unlocks Lore of Heavens");
                 return hero.Clan.Tier >= 4;
             });
 
             _envoyOfTheLady.Initialize("Envoy of the Lady", TORCareers.GrailDamsel, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "GrailDamsel", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
 
@@ -801,37 +801,37 @@ namespace TOR_Core.CharacterDevelopment
 
             _discipleOfAccursed.Initialize("Disciple of the Accursed", TORCareers.Necrarch, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "Necrarch", string.Empty);
                 return true;
             });
             _witchSight.Initialize("Witch Sight", TORCareers.Necrarch, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "Necrarch", string.Empty);
                 return true;
             });
             _darkVision.Initialize("Dark Visions", TORCareers.Necrarch, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "Necrarch", string.Empty);
                 return true;
             });
             _unhallowedSoul.Initialize("Unhallowed Soul", TORCareers.Necrarch, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Necrarch", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _hungerForKnowledge.Initialize("Hunger for Knowledge", TORCareers.Necrarch, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Necrarch", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _wellspringOfDhar.Initialize("Wellspring of Dhar", TORCareers.Necrarch, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Necrarch", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _everlingsSecret.Initialize("The Everlings Secret", TORCareers.Necrarch, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "Necrarch", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
 
@@ -839,83 +839,83 @@ namespace TOR_Core.CharacterDevelopment
 
             _crusherOfTheWeak.Initialize("Crusher of the Weak", TORCareers.WarriorPriestUlric, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "WarriorPriestUlric", string.Empty);
                 return true;
             });
             _wildPack.Initialize("Wild Pack", TORCareers.WarriorPriestUlric, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "WarriorPriestUlric", string.Empty);
                 return true;
             });
             _teachingsOfTheWinterFather.Initialize("Teachings of the Winterfather", TORCareers.WarriorPriestUlric, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "WarriorPriestUlric", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _frostsBite.Initialize("Frost's Bite", TORCareers.WarriorPriestUlric, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "WarriorPriestUlric", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _runesOfTheWhiteWolf.Initialize("Runes of the White Wolf", TORCareers.WarriorPriestUlric, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "WarriorPriestUlric", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _furyOfWar.Initialize("Fury of War", TORCareers.WarriorPriestUlric, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "WarriorPriestUlric", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
             _flameOfUlric.Initialize("Flame of Ulric", TORCareers.WarriorPriestUlric, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "WarriorPriestUlric", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
 
             //Imperial College Magister
             _studyAndPractise.Initialize("Study and Practise", TORCareers.ImperialMagister, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "ImperialMagister", string.Empty);
                 return true;
             });
             _teclisTeachings.Initialize("Teclis' Teachings", TORCareers.ImperialMagister, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "ImperialMagister", string.Empty);
                 return true;
             });
             _imperialEnchantment.Initialize("Imperial Enchantment", TORCareers.ImperialMagister, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "ImperialMagister", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             }, (Hero hero, out string unlockText) =>
             {
-                unlockText = "Unlocks Greater Powerstones";
+                unlockText = TORTextHelper.GetText("tor_careerunlock_reward_2", "ImperialMagister", "Unlocks Greater Powerstones");
                 return hero.Clan.Tier >= 2;
             });
             _collegeOrders.Initialize("College Orders", TORCareers.ImperialMagister, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "ImperialMagister", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
 
             _magicCombatTraining.Initialize("Magic Combat Training", TORCareers.ImperialMagister, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "ImperialMagister", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _ancientScrolls.Initialize("Ancient Scrolls", TORCareers.ImperialMagister, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "ImperialMagister", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             }, (Hero hero, out string unlockText) =>
             {
-                unlockText = "Unlocks Mighty Powerstones";
+                unlockText = TORTextHelper.GetText("tor_careerunlock_reward_3", "ImperialMagister", "Unlocks Mighty Powerstones");
                 return hero.Clan.Tier >= 2;
             });
             _arcaneKnowledge.Initialize("Arcane Knowledge", TORCareers.ImperialMagister, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "ImperialMagister", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
 
@@ -923,51 +923,51 @@ namespace TOR_Core.CharacterDevelopment
             //Waywatcher
             _protectorOfTheWoods.Initialize("Protector of the Woods", TORCareers.Waywatcher, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "Waywatcher", string.Empty);
                 return true;
             });
             _pathfinder.Initialize("Pathfinder", TORCareers.Waywatcher, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "Waywatcher", string.Empty);
                 return true;
             });
             _forestStalker.Initialize("Forest Stalker", TORCareers.Waywatcher, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "Waywatcher", string.Empty);
                 return true;
             }, (Hero hero, out string unlockText) =>
             {
-                unlockText = "Swiftshiver shards upgrade for troops";
+                unlockText = TORTextHelper.GetText("tor_careerunlock_reward_1", "Waywatcher", "Swiftshiver shards upgrade for troops");
                 return true;
             });
             _hailOfArrows.Initialize("Hail of Arrows", TORCareers.Waywatcher, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Waywatcher", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             }, (Hero hero, out string unlockText) =>
             {
-                unlockText = "Hagbane Tipps upgrade for troops";
+                unlockText = TORTextHelper.GetText("tor_careerunlock_reward_2", "Waywatcher", "Hagbane Tipps upgrade for troops");
                 return hero.Clan.Tier >= 2;
             });
 
             _hawkeyed.Initialize("Hawkeyed", TORCareers.Waywatcher, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Waywatcher", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _starfireEssence.Initialize("Starfire Essence", TORCareers.Waywatcher, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Waywatcher", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
 
             _eyeOfTheHunter.Initialize("Eye of the Hunter", TORCareers.Waywatcher, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "Waywatcher", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             }, (Hero hero, out string unlockText) =>
             {
-                unlockText = "Unlocks Starfire shafts";
+                unlockText = TORTextHelper.GetText("tor_careerunlock_reward_3", "Waywatcher", "Unlocks Starfire shafts");
                 return hero.Clan.Tier >= 4;
             });
 
@@ -975,157 +975,157 @@ namespace TOR_Core.CharacterDevelopment
             //Spellsinger
             _pathShaping.Initialize("Path Shaping", TORCareers.Spellsinger, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "Spellsinger", string.Empty);
                 return true;
             });
             _treeSinging.Initialize("Tree singing", TORCareers.Spellsinger, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "Spellsinger", string.Empty);
                 return true;
             });
             _vitalSurge.Initialize("Vital Surge", TORCareers.Spellsinger, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "Spellsinger", string.Empty);
                 return true;
             });
             _heartOfTheTree.Initialize("Heart of the Tree", TORCareers.Spellsinger, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Spellsinger", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
 
             _arielsBlessing.Initialize("Ariel's Blessing", TORCareers.Spellsinger, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Spellsinger", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
 
             _magicOfAthelLoren.Initialize("Fey Magic", TORCareers.Spellsinger, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "Spellsinger", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
 
             _furyOfTheForest.Initialize("Fury of the Forest", TORCareers.Spellsinger, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "Spellsinger", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
 
             //Grey lord
             _caelithsWisdom.Initialize("Caelith's Wisdom", TORCareers.GreyLord, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "GreyLord", string.Empty);
                 return true;
             });
             _soulBinding.Initialize("Soul Binding", TORCareers.GreyLord, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "GreyLord", string.Empty);
                 return true;
             });
             _legendsOfMalok.Initialize("Legends of Malok", TORCareers.GreyLord, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "GreyLord", string.Empty);
                 return true;
             });
             _unrestrictedMagic.Initialize("Unrestricted Magic", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "GreyLord", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
 
             _forbiddenScrollsOfSaphery.Initialize("Forbidden Scrolls of Saphery", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "GreyLord", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
 
             _byAllMeans.Initialize("By All Means", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "GreyLord", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
 
             _secretOfFellfang.Initialize("Secret of the Fellfang", TORCareers.GreyLord, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "GreyLord", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
 
             //Knight of the Old World
             _secularOrders.Initialize("Secular Orders", TORCareers.KnightOldWorld, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "KnightOldWorld", string.Empty);
                 return true;
             });
             _pathOfConquest.Initialize("Path of Conquest", TORCareers.KnightOldWorld, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "KnightOldWorld", string.Empty);
                 return true;
             });
             _squires.Initialize("Squires", TORCareers.KnightOldWorld, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "KnightOldWorld", string.Empty);
                 return true;
             });
             _templarOrders.Initialize("Templar Orders", TORCareers.KnightOldWorld, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "KnightOldWorld", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
 
             _pathOfVigilance.Initialize("Path of Vigilance", TORCareers.KnightOldWorld, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "KnightOldWorld", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
 
             _wrathAgainstChaos.Initialize("Wrath against Chaos", TORCareers.KnightOldWorld, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "KnightOldWorld", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
 
             _pathOfGlory.Initialize("Path of Glory", TORCareers.KnightOldWorld, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "KnightOldWorld", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
 
             //Ironbreaker
             _nestCleansing.Initialize("Nest Cleansing", TORCareers.Ironbreaker, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "Ironbreaker", string.Empty);
                 return true;
             });
             _tunnelWatch.Initialize("Tunnel Watch", TORCareers.Ironbreaker, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "Ironbreaker", string.Empty);
                 return true;
             });
             _ironPrice.Initialize("Iron Price", TORCareers.Ironbreaker, 2, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Ironbreaker", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _shieldWall.Initialize("Shield Wall", TORCareers.Ironbreaker, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Ironbreaker", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _ironDrakes.Initialize("Iron Drakes", TORCareers.Ironbreaker, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Ironbreaker", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _gromrilArmor.Initialize("Gromril Armor", TORCareers.Ironbreaker, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "Ironbreaker", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
             _runeWeapons.Initialize("Rune Weapons", TORCareers.Ironbreaker, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "Ironbreaker", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
 
@@ -1133,37 +1133,37 @@ namespace TOR_Core.CharacterDevelopment
 
             _axeOfGrimnir.Initialize("Axe of Grimnir", TORCareers.Slayer, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "Slayer", string.Empty);
                 return true;
             });
             _shameOfTheAncestors.Initialize("Shame of the Ancestors", TORCareers.Slayer, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "Slayer", string.Empty);
                 return true;
             });
             _deadlyDetermination.Initialize("Deadly Determination", TORCareers.Slayer, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "Slayer", string.Empty);
                 return true;
             });
             _urkSlayer.Initialize("Urk Slayer", TORCareers.Slayer, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Slayer", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _giantSlayer.Initialize("Giant Slayer", TORCareers.Slayer, 2, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Slayer", "Required clan renown: 2");
                 return true;
             });
             _baneOfChaos.Initialize("Bane of Chaos", TORCareers.Slayer, 2, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Slayer", "Required clan renown: 2");
                 return true;
             });
             _lastJourney.Initialize("The Last Journey", TORCareers.Slayer, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "Slayer", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
 
@@ -1172,48 +1172,48 @@ namespace TOR_Core.CharacterDevelopment
 
             _wardenOfCavaroc.Initialize("Warden of Cavaroc", TORCareers.Warden, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "Warden", string.Empty);
                 return true;
             });
             _wardenOfCythral.Initialize("Warden of Cythral and Anmyr", TORCareers.Warden, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "Warden", string.Empty);
                 return true;
             });
             _wardenOfWydrioth.Initialize("Warden of Wydrioth", TORCareers.Warden, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "Warden", string.Empty);
                 return true;
             });
             _wardenOfAtylwyth.Initialize("Warden of Atylwyth", TORCareers.Warden, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Warden", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
             _wardenOfTorgovann.Initialize("Warden of Torgovann", TORCareers.Warden, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Warden", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
             });
 
             _wardenOfTalsyn.Initialize("Warden of Talsyn", TORCareers.Warden, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "Warden", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
             _wardenOfArgwylon.Initialize("Warden of Argwylon", TORCareers.Warden, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "Warden", "Required clan renown: 4");
                 return hero.Clan.Tier >= 4;
             });
 
             _forgefireBurning.Initialize("Forgefire Burning", TORCareers.Runelord, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "Runelord", string.Empty);
                 return true;
             }, (Hero hero, out string text) =>
             {
-                text = "Unlocks Runecraft for Equipment";
+                text = TORTextHelper.GetText("tor_careerunlock_reward_1", "Runelord", "Unlocks Runecraft for Equipment");
                 return true;
             });
             _teachingsOfThungni.Initialize("Teachings of Thungni", TORCareers.Runelord, 2, (Hero hero, out string text) =>
@@ -1222,7 +1222,7 @@ namespace TOR_Core.CharacterDevelopment
                 text = "";
                 if (!hasUnlocked)
                 {
-                    text = "\n " + GameTexts.FindText("tor_careerunlock_condition_1", "Runelord").ToString();
+                    text = "\n " + TORTextHelper.GetText("tor_careerunlock_level_2", "Runelord", "Required: Runecraft unlocked");
                 }
 
                 return hasUnlocked;
@@ -1233,17 +1233,17 @@ namespace TOR_Core.CharacterDevelopment
             });
             _chiselAndHammer.Initialize("Chisel and Hammer", TORCareers.Runelord, 2, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Runelord", "Required: Runecraft unlocked");
                 return hero.HasAttribute("PlayerRunesmith");
             });
             _forHearthAndHome.Initialize("For Hearth and Home", TORCareers.Runelord, 2, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Runelord", "Required: Runecraft unlocked");
                 return hero.HasAttribute("PlayerRunesmith");
             });
             _stoneAndSteel.Initialize("Stone and Steel", TORCareers.Runelord, 3, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "Runelord", "Required: Master Runelord unlocked");
                 return hero.HasAttribute("PlayerRunesmith") && hero.HasAttribute("PlayerRunelord");
             });
 
@@ -1253,14 +1253,14 @@ namespace TOR_Core.CharacterDevelopment
                 text = "";
                 if (!hasUnlocked)
                 {
-                    text = GameTexts.FindText("tor_careerunlock_condition_2", "Runelord").ToString();
+                    text = TORTextHelper.GetText("tor_careerunlock_level_3", "Runelord", "Required: Master Runelord unlocked");
                 }
 
                 return hasUnlocked;
             });
             _anvilOfDoom.Initialize("Anvil of Doom", TORCareers.Runelord, 3, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "Runelord", "Required: Master Runelord unlocked");
                 return hero.HasAttribute("PlayerRunesmith") && hero.HasAttribute("PlayerRunelord");
             });
 
@@ -1268,13 +1268,13 @@ namespace TOR_Core.CharacterDevelopment
 
             _tufferDanNails.Initialize("Tuffer Dan Nails", TORCareers.OrcBoss, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "OrcBoss", string.Empty);
                 return true;
             });
 
             _youAnWotArmour.Initialize("You an' Wot Armour?", TORCareers.OrcBoss, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "OrcBoss", string.Empty);
                 return true;
             });
 
@@ -1284,20 +1284,20 @@ namespace TOR_Core.CharacterDevelopment
                 text = "";
                 if (!hasUnlocked)
                 {
-                    text = "\n " + GameTexts.FindText("tor_careerunlock_condition_1", "OrcBoss").ToString();
+                    text = "\n " + TORTextHelper.GetText("tor_careerunlock_level_2", "OrcBoss", "Required: Orc Boss unlocked");
                 }
                 return hasUnlocked;
             });
 
             _meanestanDaBaddest.Initialize("Meanest an' da Baddest", TORCareers.OrcBoss, 2, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "OrcBoss", "Required: Orc Boss unlocked");
                 return hero.HasAttribute("PlayerOrcBoss");
             });
 
             _getToDaChoppas.Initialize("Get To Da Choppas", TORCareers.OrcBoss, 2, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "OrcBoss", "Required: Orc Boss unlocked");
                 return hero.HasAttribute("PlayerOrcBoss");
             });
 
@@ -1307,33 +1307,33 @@ namespace TOR_Core.CharacterDevelopment
                 text = "";
                 if (!hasUnlocked)
                 {
-                    text = GameTexts.FindText("tor_careerunlock_condition_2", "OrcBoss").ToString();
+                    text = TORTextHelper.GetText("tor_careerunlock_level_3", "OrcBoss", "Required: Orc Big Boss unlocked");
                 }
                 return hasUnlocked;
             });
 
             _bestofDaBest.Initialize("Best of da Best!", TORCareers.OrcBoss, 3, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "OrcBoss", "Required: Orc Big Boss unlocked");
                 return hero.HasAttribute("PlayerOrcBoss") && hero.HasAttribute("PlayerOrcBigBoss");
             });
 
             // Orc Shaman
             _bonesAnFirepitz.Initialize("Bones an' Firepitz", TORCareers.OrcShaman, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "OrcShaman", string.Empty);
                 return true;
             });
 
             _visionsUvDaOrcayne.Initialize("Visions uv da Orc-ayne", TORCareers.OrcShaman, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "OrcShaman", string.Empty);
                 return true;
             });
 
             _giftzFromDaGreatGreen.Initialize("Giftz from Da Great Green", TORCareers.OrcShaman, 1, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_1", "OrcShaman", string.Empty);
                 return true;
             });
 
@@ -1343,14 +1343,14 @@ namespace TOR_Core.CharacterDevelopment
                 text = "";
                 if (!hasUnlocked)
                 {
-                    text = "\n " + GameTexts.FindText("tor_careerunlock_condition_1", "OrcShaman").ToString();
+                    text = "\n " + TORTextHelper.GetText("tor_careerunlock_level_2", "OrcShaman", "Required: Orc Shaman Tier 2 unlocked");
                 }
                 return hasUnlocked;
             });
 
             _cunninBrutality.Initialize("Cunnin' Brutality", TORCareers.OrcShaman, 2, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "OrcShaman", "Required: Orc Shaman Tier 2 unlocked");
                 return hero.HasAttribute("PlayerOrcShamanTier2");
             });
 
@@ -1360,14 +1360,14 @@ namespace TOR_Core.CharacterDevelopment
                 text = "";
                 if (!hasUnlocked)
                 {
-                    text = GameTexts.FindText("tor_careerunlock_condition_2", "OrcShaman").ToString();
+                    text = TORTextHelper.GetText("tor_careerunlock_level_3", "OrcShaman", "Required: Orc Shaman Tier 3 unlocked");
                 }
                 return hasUnlocked;
             });
 
             _powerUvDaWaaagh.Initialize("Power uv da Waaagh!", TORCareers.OrcShaman, 3, (Hero hero, out string text) =>
             {
-                text = string.Empty;
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "OrcShaman", "Required: Orc Shaman Tier 3 unlocked");
                 return hero.HasAttribute("PlayerOrcShamanTier2") && hero.HasAttribute("PlayerOrcShamanTier3");
             });
 
