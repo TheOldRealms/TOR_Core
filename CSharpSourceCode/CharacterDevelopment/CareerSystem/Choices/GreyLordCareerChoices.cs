@@ -313,7 +313,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 (attacker, victim, attackmask) => victim.IsMainAgent && CareerChoicesHelper.ArmorWeightCheck(victim, 11)));
             _byAllMeansPassive2.Initialize(CareerID, "+5% personal 'Lightning' spell damage.", "ByAllMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Lightning, 5), AttackTypeMask.Spell));
             _byAllMeansPassive3.Initialize(CareerID, "+5% personal 'Magic' spell damage.", "ByAllMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 5), AttackTypeMask.Spell));
-            _byAllMeansPassive4.Initialize(CareerID, "+100% of 'Vortex' and 'Area of Effect' spells if no 'Augment' spells are equipped.", "ByAllMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1.0f, PassiveEffectType.Special));
+            _byAllMeansPassive4.Initialize(CareerID, "+100% duration of 'Vortex' and 'Area of Effect' spells if no 'Augment' spells are equipped.", "ByAllMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1.0f, PassiveEffectType.Special));
 
             _secretOfFellfangPassive1.Initialize(CareerID, "+50% personal spell cooldown reduction if less than 11 spells are equipped.", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(11, PassiveEffectType.Special));
             _secretOfFellfangPassive2.Initialize(CareerID, "+10 personal 'Winds of Magic' capacity.", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));

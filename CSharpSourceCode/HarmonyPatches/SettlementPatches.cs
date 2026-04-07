@@ -197,7 +197,7 @@ namespace TOR_Core.HarmonyPatches
                 if (__instance.EventsList.AnyQ(x => x.Type == 6))
                 {
                     string stringId = settlement.Village.VillageType.PrimaryProduction.StringId;
-			        string text = stringId.Contains("boar") ? "hog" : (stringId.Contains("wolf") ? "fur" : stringId);
+			        string text = stringId.Contains("boar") ? "hog" : (stringId.Contains("wolf") ? "wolffarm_icon" : stringId);
                     if (stringId != text)
                     {
                         //__instance.EventsList.Clear();//this would be to remove the old symbol, it's probably possible to display multiple icons

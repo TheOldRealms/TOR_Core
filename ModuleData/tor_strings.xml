@@ -4169,7 +4169,7 @@
   <string id="tor_careerchoice_description.ByAllMeansPassive1" text="{=str_tor_careerchoice_description_ByAllMeansPassive1}+20% personal 'Ward Save' if armour weight does not exceed 11." />
   <string id="tor_careerchoice_description.ByAllMeansPassive2" text="{=str_tor_careerchoice_description_ByAllMeansPassive2}+5% personal 'Lightning' spell damage." />
   <string id="tor_careerchoice_description.ByAllMeansPassive3" text="{=str_tor_careerchoice_description_ByAllMeansPassive3}+5% personal 'Magic' spell damage." />
-  <string id="tor_careerchoice_description.ByAllMeansPassive4" text="{=str_tor_careerchoice_description_ByAllMeansPassive4}+100% of 'Vortex' and 'Area of Effect' spells if no 'Augment' spells are equipped." />
+  <string id="tor_careerchoice_description.ByAllMeansPassive4" text="{=str_tor_careerchoice_description_ByAllMeansPassive4}+100% duration of 'Vortex' and 'Area of Effect' spells if no 'Augment' spells are equipped." />
 
   <string id="tor_careerchoice_description.SecretOfFellfangKeystone" text="{=str_tor_careerchoice_description_SecretOfFellfangKeystone}Mind Control recharges +1 'Winds of Magic' per succesful target." />
   <string id="tor_careerchoice_description.SecretOfFellfangPassive1" text="{=str_tor_careerchoice_description_SecretOfFellfangPassive1}+50% personal spell cooldown reduction if less than 11 spells are equipped." />
