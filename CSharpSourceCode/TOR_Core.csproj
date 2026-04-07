@@ -712,6 +712,7 @@
     <Compile Include="GameManagers\TORShaderGameManager.cs" />
     <Compile Include="HarmonyPatches\AgentPatches.cs" />
     <Compile Include="HarmonyPatches\ArenaPracticePatch.cs" />
+    <Compile Include="HarmonyPatches\MapEventJoinRestrictionsPatch.cs" />
     <Compile Include="HarmonyPatches\RetreatPatches.cs" />
     <Compile Include="HarmonyPatches\BaseGameDebugPatches.cs" />
     <Compile Include="HarmonyPatches\CharacterCreationPatches.cs" />
@@ -779,7 +780,6 @@
     <Compile Include="Items\WeaponHitScripts\DefenseScripts.cs" />
     <Compile Include="Items\WeaponHitScripts\IWeaponHitScript.cs" />
     <Compile Include="Items\WeaponHitScripts\KnightlyStrikeHitScript.cs" />
-    <Compile Include="Items\WeaponHitScripts\LethalShotHitScript.cs" />
     <Compile Include="Items\WeaponHitScripts\WeaponScripts.cs" />
     <Compile Include="Missions\ArcheryContestMissionController.cs" />
     <Compile Include="Missions\BrawlMissionController.cs" />
@@ -790,6 +790,8 @@
     <Compile Include="Missions\TrollCaveMissionController.cs" />
     <Compile Include="Missions\TORMissionAgentHandler.cs" />
     <Compile Include="Missions\TORMissionManager.cs" />
+    <Compile Include="Models\TORMinorFactionsModel.cs" />
+    <Compile Include="Models\TORReinforcementRestrictionModel.cs" />
     <Compile Include="Models\TORTradeItemPriceFactorModel.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleAgentStatCalculateModel.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleMoraleModel.cs" />

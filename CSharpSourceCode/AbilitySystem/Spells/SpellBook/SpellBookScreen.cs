@@ -1,4 +1,5 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using System.Linq;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
@@ -8,6 +9,7 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade.View.Screens;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem.SpellBook
 {
@@ -37,7 +39,16 @@ namespace TOR_Core.AbilitySystem.SpellBook
         {
             base.OnActivate();
             var heroes = MobileParty.MainParty.GetSpellCasterMemberHeroes();
+
+            if (_state.IsTrainerMode && _state.TrainerCulture == TORConstants.Cultures.DAWI)
+            {
+                heroes = MobileParty.MainParty.GetMemberHeroes()
+                    .Where(x => x.IsSpellCaster() || x.HasAttribute("Runesmith"))
+                    .ToList();
+            }
+
             if (heroes.Count == 0) heroes.Add(Hero.MainHero);
+
             _vm = new SpellBookVM(CloseScreen, heroes, _state.IsTrainerMode, _state.TrainerCulture);
             _gauntletLayer = new GauntletLayer("GauntletLayer",1 , true);
             _gauntletLayer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);

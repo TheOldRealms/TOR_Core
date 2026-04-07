@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.Models;
@@ -13,44 +9,42 @@ namespace TOR_Core.Extensions
     {
         public static TORAbilityModel GetAbilityModel(this GameModels models)
         {
-            var result = models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TORAbilityModel));
-            return result == null ? null : (TORAbilityModel)result;
+            return models.GetGameModels().OfType<TORAbilityModel>().LastOrDefault();
         }
 
         public static TORFaithModel GetFaithModel(this GameModels models)
         {
-            var result = models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TORFaithModel));
-            return result == null ? null : (TORFaithModel)result;
+            return models.GetGameModels().OfType<TORFaithModel>().LastOrDefault();
         }
 
         public static TORCustomResourceModel GetCustomResourceModel(this GameModels models)
         {
-            var result = models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TORCustomResourceModel));
-            return result == null ? null : (TORCustomResourceModel)result;
+            return models.GetGameModels().OfType<TORCustomResourceModel>().LastOrDefault();
         }
 
         public static TOREnchantmentIngredientsModel GetEnchantmentIngredientModel(this GameModels models)
         {
-            var result = models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TOREnchantmentIngredientsModel));
-            return result == null ? null : (TOREnchantmentIngredientsModel)result;
+            return models.GetGameModels().OfType<TOREnchantmentIngredientsModel>().LastOrDefault();
         }
 
         public static TORCompanionTrainingModel GetCompanionTrainingModel(this GameModels models)
         {
-            var result = models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TORCompanionTrainingModel));
-            return result == null ? null : (TORCompanionTrainingModel)result;
+            return models.GetGameModels().OfType<TORCompanionTrainingModel>().LastOrDefault();
         }
 
         public static TORCompanionHiringCompatibilityModel GetCompanionHiringCompatibilityModel(this GameModels models)
         {
-            var result = models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TORCompanionHiringCompatibilityModel));
-            return result == null ? null : (TORCompanionHiringCompatibilityModel)result;
+            return models.GetGameModels().OfType<TORCompanionHiringCompatibilityModel>().LastOrDefault();
+        }
+
+        public static TORReinforcementRestrictionModel GetReinforcementRestrictionModel(this GameModels models)
+        {
+            return models.GetGameModels().OfType<TORReinforcementRestrictionModel>().LastOrDefault();
         }
 
         public static TORSiegeEngineCalculationModel GetSiegeEngineCalculationModel(this GameModels models)
         {
-            var result = models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TORSiegeEngineCalculationModel));
-            return (TORSiegeEngineCalculationModel)result;
+            return models.GetGameModels().OfType<TORSiegeEngineCalculationModel>().LastOrDefault();
         }
     }
 }

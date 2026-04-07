@@ -600,6 +600,13 @@ namespace TOR_Core.Extensions
                     if (info.CareerChoices.Count < maxChoices)
                     {
                         info.CareerChoices.Add(choice.StringId);
+
+                        // Refresh cache when choices change
+                        if (hero == Hero.MainHero)
+                        {
+                            CareerHelper.RefreshCareerChoicesCache();
+                        }
+
                         return true;
                     }
                 }
@@ -623,6 +630,13 @@ namespace TOR_Core.Extensions
                 if (info.CareerChoices.Contains(choice.StringId))
                 {
                     info.CareerChoices.Remove(choice.StringId);
+
+                    // Refresh cache when choices change
+                    if (hero == Hero.MainHero)
+                    {
+                        CareerHelper.RefreshCareerChoicesCache();
+                    }
+
                     return true;
                 }
             }

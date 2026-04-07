@@ -43,7 +43,7 @@ namespace TOR_Core.BattleMechanics
                 TryFixHirelingSpawn();
             }
 
-            if (Mission.Mode == MissionMode.Deployment || Mission.IsTeleportingAgents)
+            if (Mission.Mode == MissionMode.Deployment || Mission.IsTeleportingAgents || Mission.IsSiegeBattle)
             {
                 _elapsedSinceLastTick = 0f;
                 return;
@@ -250,6 +250,16 @@ namespace TOR_Core.BattleMechanics
                 return false;
             }
 
+            if (agent.IsUsingGameObject)
+            {
+                return false;
+            }
+
+            if (agent.MovementLockedState != AgentMovementLockedState.None)
+            {
+                return false;
+            }
+
             // only dismounted
             if (agent.MountAgent != null)
             {
@@ -389,11 +399,10 @@ namespace TOR_Core.BattleMechanics
                 return;
             }
 
-            agent.Mission.AddTickActionMT(
-                Mission.MissionTickAction.TryToWieldWeaponInSlot,
-                agent,
-                (int)weaponSlot,
-                (int)Agent.WeaponWieldActionType.WithAnimation);
+            agent.TryToWieldWeaponInSlot(
+                weaponSlot,
+                Agent.WeaponWieldActionType.WithAnimation,
+                false);
         }
 
         private static EquipmentIndex? FindBestLanceWeaponSlot(Agent agent)
