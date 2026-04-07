@@ -5943,12 +5943,12 @@
 	<string id="eonir_druchii_slaver_tide_cooldown_text" text="{=str_eonir_druchii_slaver_tide_cooldown_text}The slaver tide has recently been called. Wait some time."/>
 	<string id="eonir_druchii_slaver_tide_accept_text" text="{=str_eonir_druchii_slaver_tide_accept_text}Call the slaver tide."/>
 	<string id="eonir_druchii_could_see_text" text="{=str_eonir_druchii_could_see_text}I could see what can be done."/>
-	<string id="eonir_druchii_why_here_intro_text" text="{=str_eonir_druchii_why_here_intro_text}I represent the interests of Naggaroth in these lands."/>
-	<string id="eonir_druchii_why_here_displeased_text" text="{=str_eonir_druchii_why_here_displeased_text}You have disappointed me."/>
-	<string id="eonir_druchii_why_here_undecided_text" text="{=str_eonir_druchii_why_here_undecided_text}I am still deciding what to make of you."/>
-	<string id="eonir_druchii_why_here_agreement_text" text="{=str_eonir_druchii_why_here_agreement_text}We have an understanding."/>
-	<string id="eonir_druchii_why_here_explain_text" text="{=str_eonir_druchii_why_here_explain_text}I am here to further Druchii interests."/>
-	<string id="eonir_druchii_why_here_services_text" text="{=str_eonir_druchii_why_here_services_text}I can offer various services for the right price."/>
+	<string id="eonir_druchii_why_here_intro_text" text="{=str_eonir_druchii_why_here_intro_text}I speak as an envoy of the rightful ruler of the Asur, and the Black Council. We may not always be aligned in our views but we believe both the Druchii and Eonir have much in common, and much to gain from one another."/>
+	<string id="eonir_druchii_why_here_displeased_text" text="{=str_eonir_druchii_why_here_displeased_text}You raid our coasts, enslave our people and yet have the audacity to stand before us, acting as if none of this has taken place!"/>
+	<string id="eonir_druchii_why_here_undecided_text" text="{=str_eonir_druchii_why_here_undecided_text}I am skeptical, you come here with your own ambitions but to what end? How would hearing you speak now, benefit the Eonir?"/>
+	<string id="eonir_druchii_why_here_agreement_text" text="{=str_eonir_druchii_why_here_agreement_text}The Asur betrayed us and left us to die, I might not share your every sentiment Druchii, but I know you too suffer from our cousin's boundless arrogance."/>
+	<string id="eonir_druchii_why_here_explain_text" text="{=str_eonir_druchii_why_here_explain_text}We are not your enemy, the opposite is true. Few share our bond of suffering at the hands of the Asur, few can understand our mutual plight. There are many ways we can coexist and thrive, together. - Join us, we have been scorned by our kin for far too long and this is the best path for our futures combined."/>
+	<string id="eonir_druchii_why_here_services_text" text="{=str_eonir_druchii_why_here_services_text}Your seas will be safe from raids and protected from any foe, the darkest desires of your people will be free of judgement and all we seek is influence over your council. - We merely wish to lessen the gap between our peoples so that we may stand against the Asur together, a sure and just cause, do you not agree?"/>
 	<string id="eonir_druchii_anything_else_text" text="{=str_eonir_druchii_anything_else_text}Is there anything else?"/>
 
 	<!-- Eonir Asur Envoy Texts -->
@@ -5963,12 +5963,12 @@
 	<string id="eonir_asur_diplomacy_offer_text" text="{=str_eonir_asur_diplomacy_offer_text}Diplomatic arrangements can be made."/>
 	<string id="eonir_asur_diplomacy_cooldown_text" text="{=str_eonir_asur_diplomacy_cooldown_text}We have recently made diplomatic arrangements. Wait some time."/>
 	<string id="eonir_asur_diplomacy_accept_text" text="{=str_eonir_asur_diplomacy_accept_text}Make the arrangements."/>
-	<string id="eonir_asur_why_here_intro_text" text="{=str_eonir_asur_why_here_intro_text}I represent the Phoenix King interests in these lands."/>
-	<string id="eonir_asur_why_here_displeased_text" text="{=str_eonir_asur_why_here_displeased_text}You have not impressed me."/>
-	<string id="eonir_asur_why_here_undecided_text" text="{=str_eonir_asur_why_here_undecided_text}I am still evaluating your worth."/>
-	<string id="eonir_asur_why_here_agreement_text" text="{=str_eonir_asur_why_here_agreement_text}We have a good understanding."/>
-	<string id="eonir_asur_why_here_explain_text" text="{=str_eonir_asur_why_here_explain_text}I am here to protect High Elf interests."/>
-	<string id="eonir_asur_why_here_services_text" text="{=str_eonir_asur_why_here_services_text}I can offer various services to those who prove worthy."/>
+	<string id="eonir_asur_why_here_intro_text" text="{=str_eonir_asur_why_here_intro_text}I am here as a representative of Ulthuan, and to stand as a reminder that the freedom and independence you enjoy is a most gracious gift given by the Pheonix King. A gift that can be rescinded at his discretion."/>
+	<string id="eonir_asur_why_here_displeased_text" text="{=str_eonir_asur_why_here_displeased_text}You abandoned us to die, then tried to take our lands by force. We have survived without Ulthuan until now and will continue to do so. Begone, 'kin'."/>
+	<string id="eonir_asur_why_here_undecided_text" text="{=str_eonir_asur_why_here_undecided_text}Be mindful, our willingess to negotiate is not a sign that we have forgotten your transgressions, what do you come here to offer us?"/>
+	<string id="eonir_asur_why_here_agreement_text" text="{=str_eonir_asur_why_here_agreement_text}We are kin and have been apart for far too long, we seek the help of the Asur and appreciate any that can be offered."/>
+	<string id="eonir_asur_why_here_explain_text" text="{=str_eonir_asur_why_here_explain_text}We are willing to offer aid in many forms, as long as it increases our influence within the council."/>
+	<string id="eonir_asur_why_here_services_text" text="{=str_eonir_asur_why_here_services_text}Ulthuan has connections across the Old World, should finances, a good word with an enemy or soldiers to defend your forest be needed, we can provide it. For the agreed price, of course."/>
 
 	<!-- Eonir Empire Envoy Texts -->
 	<string id="eonir_empire_intro_text" text="{=str_eonir_empire_intro_text}Is there some way I can be of assistance?"/>
@@ -5983,12 +5983,12 @@
 	<string id="eonir_empire_favor_to_prestige_offer_text" text="{=str_eonir_empire_favor_to_prestige_offer_text}I can supply you with quality goods."/>
 	<string id="eonir_empire_exchange_favor_to_prestige" text="{=str_eonir_empire_exchange_favor_to_prestige}Let us do this. (Exchange 50 {FAVOR_ICON} for 30 {PRESTIGE_ICON})"/>
 	<string id="eonir_empire_glad_to_do_business_text" text="{=str_eonir_empire_glad_to_do_business_text}Glad to do business with you."/>
-	<string id="eonir_empire_why_here_intro_text" text="{=str_eonir_empire_why_here_intro_text}I represent the Empire interests here."/>
-	<string id="eonir_empire_why_here_displeased_text" text="{=str_eonir_empire_why_here_displeased_text}You have not proven useful."/>
-	<string id="eonir_empire_why_here_undecided_text" text="{=str_eonir_empire_why_here_undecided_text}I am still deciding your worth."/>
-	<string id="eonir_empire_why_here_agreement_text" text="{=str_eonir_empire_why_here_agreement_text}We have a productive relationship."/>
-	<string id="eonir_empire_why_here_explain_text" text="{=str_eonir_empire_why_here_explain_text}I facilitate relations between the Empire and the Eonir."/>
-	<string id="eonir_empire_why_here_services_text" text="{=str_eonir_empire_why_here_services_text}I can help with trade and diplomacy."/>
+	<string id="eonir_empire_why_here_intro_text" text="{=str_eonir_empire_why_here_intro_text}As an envoy of Graf Boris Todbringer I represent the interests of Middenland, and to a minor extent that of the Empire as a whole. We wish to maintain peaceful relations with Eonir, built on trust, trade and mutual respect so that we may all benefit."/>
+	<string id="eonir_empire_why_here_displeased_text" text="{=str_eonir_empire_why_here_displeased_text}You encroach upon our lands without heeding what is sacred, yet talk to us about respect? You do not belong here."/>
+	<string id="eonir_empire_why_here_undecided_text" text="{=str_eonir_empire_why_here_undecided_text}It benefits neither of us to make enemies when they aren't needed, trade and peace can only benefit both our peoples."/>
+	<string id="eonir_empire_why_here_agreement_text" text="{=str_eonir_empire_why_here_agreement_text}The problems of the empire are shared with the Eonir. We need to fight together side on side, all of our common enemies."/>
+	<string id="eonir_empire_why_here_explain_text" text="{=str_eonir_empire_why_here_explain_text}We seek only to cooperate, to the mutual benefit of all involved. Conflict between our peoples serves to aid none but our enemies, surely you can agree with me on this."/>
+	<string id="eonir_empire_why_here_services_text" text="{=str_eonir_empire_why_here_services_text}My word carries weight, as does that of our Graf. I can ensure a state of peace and profitable trade between our nations, we may even be able to provide mercenaries should your lands ever be threatened. ...Think on it, we both have much to gain."/>
 	<string id="eonir_empire_anything_else_text" text="{=str_eonir_empire_anything_else_text}Is there anything else I can help with?"/>
 
 	<!-- Eonir Spellsinger Envoy Texts -->
@@ -5999,18 +5999,18 @@
 	<string id="spellsinger_envoy_main_hub_spellsinger_lores" text="{=str_spellsinger_envoy_main_hub_spellsinger_lores}Teach me about the lores of magic."/>
 	<string id="eonir_spellsinger_world_roots_price_text" text="{=str_eonir_spellsinger_world_roots_price_text}I can, but there is a price. Help our people, and then I will allow you to travel the Worldroots."/>
 	<string id="eonir_spellsinger_world_roots_accept_text" text="{=str_eonir_spellsinger_world_roots_accept_text}Of course, I am willing to help. Now as my guide, please tell me how I can travel along these ancient pathways?"/>
-	<string id="eonir_spellsinger_world_roots_explain_text" text="{=str_eonir_spellsinger_world_roots_explain_text}There is an entranceway to the Worldroots here in Laurelorn."/>
+	<string id="eonir_spellsinger_world_roots_explain_text" text="{=str_eonir_spellsinger_world_roots_explain_text}There is an entranceway to the Worldroots here in Laurelorn, first you must find it. Once there, a Spellsinger will help you travel across it but only to Maisontaal in the distant lands of Bretonnia.&#xA;&#xA;We can go no further, as I am not willing to offend the Asrai. The roots are sacred, it is rare enough for non-Asrai to cross them."/>
 	<string id="eonir_spellsinger_troop_refill_offer_text" text="{=str_eonir_spellsinger_troop_refill_offer_text}There are many who live as nomads, far from our villages and deep within the woods. It will take time for any messenger to reach them but it can be done. Is this what you desire?"/>
 	<string id="eonir_spellsinger_troop_refill_cooldown_text" text="{=str_eonir_spellsinger_troop_refill_cooldown_text}We recently called for the forestborn aid. We should wait longer for another call."/>
 	<string id="eonir_spellsinger_troop_refill_accept_text" text="{=str_eonir_spellsinger_troop_refill_accept_text}That would be kind. I am sure we will be able to return the favour  one day. I will decide in favor of the Forestborn."/>
 	<string id="eonir_spellsinger_learn_lore_offer_text" text="{=str_eonir_spellsinger_learn_lore_offer_text}I can teach you, but as much as you are ready to do so, I need your word on the Council."/>
 	<string id="eonir_spellsinger_learn_lore_accept_text" text="{=str_eonir_spellsinger_learn_lore_accept_text}It should not be to your disadvantage."/>
-	<string id="eonir_spellsinger_why_here_intro_text" text="{=str_eonir_spellsinger_why_here_intro_text}I am representing a coven of Spellsingers dedicated to the defense of Laurelorn."/>
+	<string id="eonir_spellsinger_why_here_intro_text" text="{=str_eonir_spellsinger_why_here_intro_text}I am representing a coven of Spellsingers dedicated to the defense of Laurelorn. While the Council is busy with politics, the Faniour, the forest born elves, are endagered by all the threads of the forest."/>
 	<string id="eonir_spellsinger_why_here_displeased_text" text="{=str_eonir_spellsinger_why_here_displeased_text}The forest is beset by destructive beasts and men alike, what then, are you protecting?"/>
 	<string id="eonir_spellsinger_why_here_undecided_text" text="{=str_eonir_spellsinger_why_here_undecided_text}What matters can the Council solve for you? What can you give me in turn?"/>
 	<string id="eonir_spellsinger_why_here_agreement_text" text="{=str_eonir_spellsinger_why_here_agreement_text}The Faniour aswell as the Touriour follow the same people. Your matters, are my matters."/>
-	<string id="eonir_spellsinger_why_here_explain_text" text="{=str_eonir_spellsinger_why_here_explain_text}I am not a man of politics. I am here to stand our case."/>
-	<string id="eonir_spellsinger_why_here_services_text" text="{=str_eonir_spellsinger_why_here_services_text}Help us with your political power, and I will try to make it worth."/>
+	<string id="eonir_spellsinger_why_here_explain_text" text="{=str_eonir_spellsinger_why_here_explain_text}I am not a man of politics. I am here to stand our case. I know that seemingly the Council, sometimes forgets about us. Thats why I am here, and standing for the forest people. I know that nothing works here, without giving something in return."/>
+	<string id="eonir_spellsinger_why_here_services_text" text="{=str_eonir_spellsinger_why_here_services_text}Help us with your political power, and I will try to make it worth. I can assist you with some magic, like using the world roots of the Asrai, or can make your influence provide you power over the council. Apart, I can see what i can do for teaching you some magic"/>
 
 	<!-- Engineer Quest Texts -->
 	<string id="tor_engineer_quest_skill_check" text="{=str_tor_engineer_quest_skill_check}Hah! You do not seem like a person with any knowledge of our crafts. What could you possibly need from us?"/>
