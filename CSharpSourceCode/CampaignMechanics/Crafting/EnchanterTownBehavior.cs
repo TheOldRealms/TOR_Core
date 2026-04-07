@@ -580,25 +580,25 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                 if (Hero.MainHero.IsSpellCaster() && career == TORCareers.ImperialMagister)
                 {
                     if (Hero.MainHero.HasKnownLore("LoreOfDeath")) 
-                        Hero.MainHero.AddEnchantmentBlueprint("lesser_shyish_weapon", true);
+                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_shyish_whisper", true);
 
                     if (Hero.MainHero.HasKnownLore("LoreOfMetal")) 
-                        Hero.MainHero.AddEnchantmentBlueprint("lesser_chamon_weapon", true);
+                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_chamon_whisper", true);
 
                     if (Hero.MainHero.HasKnownLore("LoreOfLight"))
-                        Hero.MainHero.AddEnchantmentBlueprint("lesser_lumen_stone", true);
+                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_hysh_whisper", true);
 
                     if (Hero.MainHero.HasKnownLore("LoreOfHeavens")) 
-                        Hero.MainHero.AddEnchantmentBlueprint("lesser_azyr_weapon", true);
+                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_azyr_whisper", true);
 
                     if (Hero.MainHero.HasKnownLore("LoreOfBeasts")) 
-                        Hero.MainHero.AddEnchantmentBlueprint("lesser_ghost_amber", true);
+                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_ghur_whisper", true);
 
                     if (Hero.MainHero.HasKnownLore("LoreOfLife")) 
-                        Hero.MainHero.AddEnchantmentBlueprint("lesser_vitaellum_armor", true);
+                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_ghyran_whisper", true);
 
                     if (Hero.MainHero.HasKnownLore("LoreOfFire")) 
-                        Hero.MainHero.AddEnchantmentBlueprint("lesser_fire_ruby", true);
+                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_aqshy_whisper", true);
                 }
 
                 if (Hero.MainHero.IsSpellCaster() && Hero.MainHero.HasCareer(TORCareers.GrailDamsel))
