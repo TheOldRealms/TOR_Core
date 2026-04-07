@@ -623,7 +623,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_001" scene_name_1="TOR_empire_castle_generic_001" scene_name_2="TOR_empire_castle_generic_001" scene_name_3="TOR_empire_castle_generic_001" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -762,7 +762,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_03" scene_name_1="TOR_empire_castle_03" scene_name_2="TOR_empire_castle_03" scene_name_3="TOR_empire_castle_03" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_002" scene_name_1="TOR_empire_castle_generic_002" scene_name_2="TOR_empire_castle_generic_002" scene_name_3="TOR_empire_castle_generic_002" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -812,7 +812,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_002" scene_name_1="TOR_empire_castle_002" scene_name_2="TOR_empire_castle_002" scene_name_3="TOR_empire_castle_002" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_003" scene_name_1="TOR_empire_castle_generic_003" scene_name_2="TOR_empire_castle_generic_003" scene_name_3="TOR_empire_castle_generic_003" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -862,7 +862,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_001" scene_name_1="TOR_empire_castle_generic_001" scene_name_2="TOR_empire_castle_generic_001" scene_name_3="TOR_empire_castle_generic_001" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -1138,7 +1138,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_002" scene_name_1="TOR_empire_castle_002" scene_name_2="TOR_empire_castle_002" scene_name_3="TOR_empire_castle_002" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_003" scene_name_1="TOR_empire_castle_generic_003" scene_name_2="TOR_empire_castle_generic_003" scene_name_3="TOR_empire_castle_generic_003" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -1188,7 +1188,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_001" scene_name_1="TOR_empire_castle_generic_001" scene_name_2="TOR_empire_castle_generic_001" scene_name_3="TOR_empire_castle_generic_001" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -2095,7 +2095,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_002" scene_name_1="TOR_empire_castle_002" scene_name_2="TOR_empire_castle_002" scene_name_3="TOR_empire_castle_002" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_003" scene_name_1="TOR_empire_castle_generic_003" scene_name_2="TOR_empire_castle_generic_003" scene_name_3="TOR_empire_castle_generic_003" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -2119,7 +2119,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_03" scene_name_1="TOR_empire_castle_03" scene_name_2="TOR_empire_castle_03" scene_name_3="TOR_empire_castle_03" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_002" scene_name_1="TOR_empire_castle_generic_002" scene_name_2="TOR_empire_castle_generic_002" scene_name_3="TOR_empire_castle_generic_002" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -2167,7 +2167,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_001" scene_name_1="TOR_empire_castle_generic_001" scene_name_2="TOR_empire_castle_generic_001" scene_name_3="TOR_empire_castle_generic_001" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -2191,7 +2191,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_002" scene_name_1="TOR_empire_castle_002" scene_name_2="TOR_empire_castle_002" scene_name_3="TOR_empire_castle_002" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_003" scene_name_1="TOR_empire_castle_generic_003" scene_name_2="TOR_empire_castle_generic_003" scene_name_3="TOR_empire_castle_generic_003" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -2215,7 +2215,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_002" scene_name_1="TOR_empire_castle_002" scene_name_2="TOR_empire_castle_002" scene_name_3="TOR_empire_castle_002" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_003" scene_name_1="TOR_empire_castle_generic_003" scene_name_2="TOR_empire_castle_generic_003" scene_name_3="TOR_empire_castle_generic_003" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -2969,7 +2969,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_002" scene_name_1="TOR_empire_castle_002" scene_name_2="TOR_empire_castle_002" scene_name_3="TOR_empire_castle_002" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_003" scene_name_1="TOR_empire_castle_generic_003" scene_name_2="TOR_empire_castle_generic_003" scene_name_3="TOR_empire_castle_generic_003" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -3019,7 +3019,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_03" scene_name_1="TOR_empire_castle_03" scene_name_2="TOR_empire_castle_03" scene_name_3="TOR_empire_castle_03" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_002" scene_name_1="TOR_empire_castle_generic_002" scene_name_2="TOR_empire_castle_generic_002" scene_name_3="TOR_empire_castle_generic_002" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -3069,7 +3069,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_001" scene_name_1="TOR_empire_castle_generic_001" scene_name_2="TOR_empire_castle_generic_001" scene_name_3="TOR_empire_castle_generic_001" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -3570,7 +3570,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_002" scene_name_1="TOR_empire_castle_002" scene_name_2="TOR_empire_castle_002" scene_name_3="TOR_empire_castle_002" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_003" scene_name_1="TOR_empire_castle_generic_003" scene_name_2="TOR_empire_castle_generic_003" scene_name_3="TOR_empire_castle_generic_003" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -3620,7 +3620,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_001" scene_name_1="TOR_empire_castle_generic_001" scene_name_2="TOR_empire_castle_generic_001" scene_name_3="TOR_empire_castle_generic_001" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -3670,7 +3670,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_reiksguard" scene_name_1="TOR_empire_castle_reiksguard" scene_name_2="TOR_empire_castle_reiksguard" scene_name_3="TOR_empire_castle_reiksguard" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_001" scene_name_1="TOR_empire_castle_generic_001" scene_name_2="TOR_empire_castle_generic_001" scene_name_3="TOR_empire_castle_generic_001" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -3720,7 +3720,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_03" scene_name_1="TOR_empire_castle_03" scene_name_2="TOR_empire_castle_03" scene_name_3="TOR_empire_castle_03" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_002" scene_name_1="TOR_empire_castle_generic_002" scene_name_2="TOR_empire_castle_generic_002" scene_name_3="TOR_empire_castle_generic_002" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -4249,7 +4249,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_03" scene_name_1="TOR_empire_castle_03" scene_name_2="TOR_empire_castle_03" scene_name_3="TOR_empire_castle_03" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_002" scene_name_1="TOR_empire_castle_generic_002" scene_name_2="TOR_empire_castle_generic_002" scene_name_3="TOR_empire_castle_generic_002" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -4325,7 +4325,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_001" scene_name_1="TOR_empire_castle_generic_001" scene_name_2="TOR_empire_castle_generic_001" scene_name_3="TOR_empire_castle_generic_001" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -4362,7 +4362,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_03" scene_name_1="TOR_empire_castle_03" scene_name_2="TOR_empire_castle_03" scene_name_3="TOR_empire_castle_03" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_002" scene_name_1="TOR_empire_castle_generic_002" scene_name_2="TOR_empire_castle_generic_002" scene_name_3="TOR_empire_castle_generic_002" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -4751,7 +4751,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_03" scene_name_1="TOR_empire_castle_03" scene_name_2="TOR_empire_castle_03" scene_name_3="TOR_empire_castle_03" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_002" scene_name_1="TOR_empire_castle_generic_002" scene_name_2="TOR_empire_castle_generic_002" scene_name_3="TOR_empire_castle_generic_002" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -5064,7 +5064,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_001" scene_name_1="TOR_empire_castle_generic_001" scene_name_2="TOR_empire_castle_generic_001" scene_name_3="TOR_empire_castle_generic_001" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -5114,7 +5114,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_03" scene_name_1="TOR_empire_castle_03" scene_name_2="TOR_empire_castle_03" scene_name_3="TOR_empire_castle_03" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_002" scene_name_1="TOR_empire_castle_generic_002" scene_name_2="TOR_empire_castle_generic_002" scene_name_3="TOR_empire_castle_generic_002" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -5503,7 +5503,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_002" scene_name_1="TOR_empire_castle_002" scene_name_2="TOR_empire_castle_002" scene_name_3="TOR_empire_castle_002" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_003" scene_name_1="TOR_empire_castle_generic_003" scene_name_2="TOR_empire_castle_generic_003" scene_name_3="TOR_empire_castle_generic_003" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -5868,7 +5868,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_002" scene_name_1="TOR_empire_castle_002" scene_name_2="TOR_empire_castle_002" scene_name_3="TOR_empire_castle_002" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_003" scene_name_1="TOR_empire_castle_generic_003" scene_name_2="TOR_empire_castle_generic_003" scene_name_3="TOR_empire_castle_generic_003" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -5955,7 +5955,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_001" scene_name_1="TOR_empire_castle_generic_001" scene_name_2="TOR_empire_castle_generic_001" scene_name_3="TOR_empire_castle_generic_001" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -6018,7 +6018,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_03" scene_name_1="TOR_empire_castle_03" scene_name_2="TOR_empire_castle_03" scene_name_3="TOR_empire_castle_03" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_002" scene_name_1="TOR_empire_castle_generic_002" scene_name_2="TOR_empire_castle_generic_002" scene_name_3="TOR_empire_castle_generic_002" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -11230,7 +11230,7 @@
       <Village id="village_comp_AZ1_1" village_type="VillageType.silver_mine" hearth="250" bound="Settlement.town_AZ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_002" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_02" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -11406,7 +11406,7 @@
       <Village id="village_comp_NO1_2" village_type="VillageType.wheat_farm" hearth="250" bound="Settlement.town_NO1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_002" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_02" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -11569,7 +11569,7 @@
       <Village id="village_comp_ZI1_2" village_type="VillageType.wheat_farm" hearth="250" bound="Settlement.town_ZI1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_002" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_02" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -11606,7 +11606,7 @@
       <Village id="castle_village_comp_ZI1_1" village_type="VillageType.clay_mine" hearth="200" bound="Settlement.castle_ZI1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_002" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_02" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -11656,7 +11656,7 @@
       <Village id="castle_village_comp_ZI2_1" village_type="VillageType.iron_mine" hearth="200" bound="Settlement.castle_ZI2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_002" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_02" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -11719,7 +11719,7 @@
       <Village id="village_comp_KI1_2" village_type="VillageType.iron_mine" hearth="250" bound="Settlement.town_KI1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_002" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_02" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -11756,7 +11756,7 @@
       <Village id="castle_village_comp_KI1_1" village_type="VillageType.silver_mine" hearth="200" bound="Settlement.castle_KI1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_002" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_02" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -11793,7 +11793,7 @@
       <Village id="castle_village_comp_KI2_1" village_type="VillageType.iron_mine" hearth="200" bound="Settlement.castle_KI2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_002" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_02" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -12156,7 +12156,7 @@
       <Village id="village_comp_KG1_1" village_type="VillageType.wheat_farm" hearth="250" bound="Settlement.town_KG1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_002" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_02" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -12356,7 +12356,7 @@
       <Village id="castle_village_comp_AN1_1" village_type="VillageType.silver_mine" hearth="200" bound="Settlement.castle_AN1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_002" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_02" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -12681,7 +12681,7 @@
       <Village id="castle_village_comp_KK1_1" village_type="VillageType.silver_mine" hearth="200" bound="Settlement.castle_KK1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_002" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_02" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
