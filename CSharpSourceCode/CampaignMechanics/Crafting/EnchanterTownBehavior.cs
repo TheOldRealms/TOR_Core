@@ -603,7 +603,7 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
                 if (Hero.MainHero.IsSpellCaster() && Hero.MainHero.HasCareer(TORCareers.GrailDamsel))
                     if (Hero.MainHero.HasKnownLore("LoreOfLife"))
-                        Hero.MainHero.AddEnchantmentBlueprint("lesser_vitaellum_armor", true);
+                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_ghyran_whisper", true);
 
                 if (Hero.MainHero.HasCareer(TORCareers.Runelord)) Hero.MainHero.AddEnchantmentBlueprint("dw_rune_stone", true);
             }
