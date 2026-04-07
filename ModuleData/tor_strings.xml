@@ -1939,7 +1939,8 @@
   <string id="str_crafting_template.tor_trolltwohandedmace" text="{=str_tor_crafting_template_TORTrollTwoHandedMaces}TOR-Troll Two-Handed Maces" />
   <string id="str_crafting_template.tor_lance_template" text="{=str_tor_crafting_template_TOR-Lances}TOR-Lances" />
   <string id="str_crafting_template.tor_dwarven_axe_template" text="{=str_tor_crafting_template_TORDwarvenAxes}TOR-Dwarven Axes" />
-  <string id="str_crafting_template.tor_orc_axe_template" text="{=str_tor_crafting_template_TOROrcAxes}TOR-Orc Axes" />
+  <string id="str_crafting_template.tor_orc_staff_template" text="{=str_tor_crafting_template_TOROrcStaves}TOR-Orc Staves" />
+  <string id="str_crafting_template.tor_orctwohandedaxe" text="{=str_tor_crafting_template_TOROrcTwoHnadedAxes}TOR-Orc Two-Handed Axes" /> 
   <string id="str_weapon_usage.TorOneHandedSword" text="{=str_tor_weapon_usage_TorOneHandedSword}One Handed Sword" />
   <string id="str_weapon_usage.TorTwoHandedSword" text="{=str_tor_weapon_usage_TorTwoHandedSword}Two Handed Sword" />
   <string id="str_weapon_usage.TorRapier" text="{=str_tor_weapon_usage_TorRapier}Rapier" />
@@ -1961,6 +1962,8 @@
   <string id="str_weapon_usage.TorOrcOneHandedAxe" text="{=str_tor_weapon_usage_TorOrcOneHandedAxe}Orc Axe" />
   <string id="str_weapon_usage.TorOrcOneHandedPolearm" text="{=str_tor_weapon_usage_TorOrcOneHandedPolearm}Orc Polearm" />
   <string id="str_weapon_usage.TorOrcTwoHandedPolearm" text="{=str_tor_weapon_usage_TorOrcTwoHandedPolearm}Orc Greatpolearm" />
+  <string id="str_weapon_usage.TorOrcTwoHandedAxe" text="{=str_tor_weapon_usage_TorOrcTwoHandedAxe}Orc Two Handed Axe" />
+  <string id="str_weapon_usage.TorOrcStaves" text="{=str_tor_weapon_usage_TorOrcStaves}Orc Staff" /> 
 
 
 <!--crafting-->
