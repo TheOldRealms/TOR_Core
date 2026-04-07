@@ -100,7 +100,7 @@
       <Style Name="wolffarm_icon">
         <BrushLayer Name="Default" Sprite="wolffarm_icon" Color="#FFFFFFFF" />
       </Style>
-      <Style Name="wolffarm_icon">
+      <Style Name="boarfarm_icon">
         <BrushLayer Name="Default" Sprite="boarfarm_icon" Color="#FFFFFFFF" />
       </Style>
     </Styles>

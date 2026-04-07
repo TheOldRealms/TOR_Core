@@ -204,7 +204,7 @@ namespace TOR_Core.HarmonyPatches
                         text = "wolffarm_icon";
                     if (!text.IsEmpty())
                     {
-                        //__instance.EventsList.Clear();//removes the old symbol, it's possible to display multiple icons
+                        __instance.EventsList.Clear();//removes the old symbol, it's possible to display multiple icons
                         __instance.EventsList.Add(new SettlementNameplateEventItemVM(text));
                     }
                 }
