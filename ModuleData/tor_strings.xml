@@ -5860,7 +5860,7 @@
 	<string id="tor_dw_shop_show_goods_text" text="{=str_tor_dw_shop_show_goods_text}Very well, take a look at our inventions."/>
 	<string id="tor_dw_engineer_buy_weapons_text" text="{=str_tor_dw_engineer_buy_weapons_text}I need better gear, Master Engineer."/>
 	<string id="tor_dw_quit_text" text="{=str_tor_dw_quit_text}That will be all."/>
-	<string id="tor_dw_engineer_recruit_crew_text" text="{=str_tor_dw_engineer_recruit_crew_text}I need some artillery crew."/>
+	<string id="tor_dw_engineer_recruit_crew_text" text="{=str_tor_dw_engineer_recruit_crew_text}I require reliable crewmen to operate my artillery."/>
 	<string id="tor_dw_engineer_recruit_crew_offer_text" text="{=str_tor_dw_engineer_recruit_crew_offer_text}Aye, a pair of our beardlings are eager to prove themselves. It'll cost ye {ENGINEER_GOLD_PRICE}{GOLD_ICON} and {ENGINEER_OATHGOLD_PRICE} Oathgold."/>
 	<string id="tor_dw_engineer_recruit_crew_accept_text" text="{=str_tor_dw_engineer_recruit_crew_accept_text}They'll serve the hold well."/>
 	<string id="tor_dw_engineer_recruit_crew_no_funds_text" text="{=str_tor_dw_engineer_recruit_crew_no_funds_text}I don't have enough coin or Oathgold right now."/>
