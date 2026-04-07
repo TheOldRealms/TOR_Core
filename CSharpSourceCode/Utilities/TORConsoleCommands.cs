@@ -723,6 +723,10 @@ namespace TOR_Core.Utilities
             {
                 return "\nTeleports MainParty to a pair of coordinates on the campaign map with disregard for terrain. Arguments are interpreted as floats with a period as the decimal separator. Enter as form : x value | y value, eg. 1203.956 | 957.18).\n";
             }
+            if (arguments.Count() != 3)
+            {
+                return "\nIncorrect arguments. Check that there is a space before and after the vertical bar, and that there are only 2 numbers.\n";
+            }
 
             if (float.TryParse(arguments[0], NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out float x) && float.TryParse(arguments[2], NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out float y))
             {
