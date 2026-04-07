@@ -34,6 +34,7 @@ namespace TOR_Core.CampaignMechanics
 
         public TORVillageTypes()
         {
+            Instance = this;
             RegisterAll();
             InitializeAll();
             AddProductions();

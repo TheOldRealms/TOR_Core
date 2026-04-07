@@ -1,0 +1,109 @@
+<Brushes>
+  <Brush Name="Settlement.Event.Type.Image">
+    <Layers>
+      <BrushLayer Name="Default" />
+    </Layers>
+    <Styles>
+      <Style Name="Default">
+        <BrushLayer Name="Default" />
+      </Style>
+      <Style Name="Tournament">
+        <BrushLayer Name="Default" Sprite="General\Icons\icon_tournament_square" Color="#BD7A29FF" />
+      </Style>
+      <Style Name="AvailableIssue">
+        <BrushLayer Name="Default" Sprite="General\Icons\icon_issue_available" />
+      </Style>
+      <Style Name="ActiveQuest">
+        <BrushLayer Name="Default" Sprite="General\Icons\icon_issue_active" />
+      </Style>
+      <Style Name="ActiveStoryQuest">
+        <BrushLayer Name="Default" Sprite="General\Icons\icon_story_quest_active" />
+      </Style>
+      <Style Name="TrackedIssue">
+        <BrushLayer Name="Default" Sprite="General\Icons\issue_target_icon" />
+      </Style>
+      <Style Name="TrackedStoryQuest">
+        <BrushLayer Name="Default" Sprite="General\Icons\quest_target_icon" />
+      </Style>
+      <Style Name="cow">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\cow" Color="#FFFFFFFF" />
+      </Style>
+      <Style Name="camel">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\camel" Color="#B79046FF" />
+      </Style>
+      <Style Name="butter">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\butter" Color="#FFEAB1FF" />
+      </Style>
+      <Style Name="cheese">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\cheese" Color="#FFDC97FF" />
+      </Style>
+      <Style Name="sheep">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\sheep" Color="#DDC3A3FF" />
+      </Style>
+      <Style Name="wool">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\wool" Color="#FFFFFFFF" />
+      </Style>
+      <Style Name="hog">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\hog" Color="#7F5C49FF" />
+      </Style>
+      <Style Name="wheat">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\wheat" Color="#F5B64CFF" />
+      </Style>
+      <Style Name="grain">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\wheat" Color="#F5B64CFF" />
+      </Style>
+      <Style Name="hardwood">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\hardwood" Color="#C0A796FF" />
+      </Style>
+      <Style Name="clay">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\clay" Color="#B78D6BFF" />
+      </Style>
+      <Style Name="salt">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\salt" Color="#FFFFFFFF" />
+      </Style>
+      <Style Name="iron">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\iron" Color="#A19D94FF" />
+      </Style>
+      <Style Name="fish">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\fish" Color="#BECDD2FF" />
+      </Style>
+      <Style Name="grape">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\grape" Color="#C3CE3DFF" />
+      </Style>
+      <Style Name="flax">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\flax" Color="#B16743FF" />
+      </Style>
+      <Style Name="date_fruit">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\date_fruit" Color="#D3690CFF" />
+      </Style>
+      <Style Name="olives">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\olives" Color="#667227FF" />
+      </Style>
+      <Style Name="cotton">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\cotton" Color="#E8E0D8FF" />
+      </Style>
+      <Style Name="silver">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\silver" Color="#CFCCCCFF" />
+      </Style>
+      <Style Name="fur">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\fur" Color="#B29A7DFF" />
+      </Style>
+      <Style Name="horse">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\horse" Color="#8D5E48FF" />
+      </Style>
+      <Style Name="walrus_tusk">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\walrus_tusk" Color="#D7CDB2FF" />
+      </Style>
+      <Style Name="whale_oil">
+        <BrushLayer Name="Default" Sprite="General\Icons\Production\whale_oil" Color="#CC9C62FF" />
+      </Style>
+      <Style Name="wolffarm_icon">
+        <BrushLayer Name="Default" Sprite="wolffarm_icon" Color="#FFFFFFFF" />
+      </Style>
+      <Style Name="wolffarm_icon">
+        <BrushLayer Name="Default" Sprite="boarfarm_icon" Color="#FFFFFFFF" />
+      </Style>
+    </Styles>
+  </Brush>
+
+</Brushes>

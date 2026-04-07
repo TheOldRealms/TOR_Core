@@ -227,8 +227,8 @@ namespace TOR_Core.Extensions
             //Points and radii squared defining approximate boundary for Athel Loren
             var ALNorthHalf = new Vec2(1209.99f, 916.42f); //Athel Lorn north half : midpoint (1209.99, 916.42); r^2 = 1255.75
             var ALSouthHalf = new Vec2(1207.75f, 796.74f); //Athel Lorn south half : midpoint (1207.75, 796.74); r^2 = 1419.44
-            //Sly : parth of southern athel loren is missed by the 2nd circle which needs to be enlarged/shifted
-            if (position.DistanceSquared(ALNorthHalf) < 1255.75 || position.DistanceSquared(ALSouthHalf) < 1419.445)
+            //Sly : part of athel loren is missed by the circles which need additional ones
+            if (position.DistanceSquared(ALNorthHalf) < 4384.25 || position.DistanceSquared(ALSouthHalf) < 5482.29)
             {
                 return true;
             }
@@ -246,7 +246,7 @@ namespace TOR_Core.Extensions
             //Sly : this needs to be updated to include the peninsula to the NW of Tor Lithanel as it's needed to grant enchanting materials for fights near the forest.
             var LLAll = new Vec2(1259.60f, 1317.35f); //Laurelorn : midpoint (1259.60, 1317.35); r^2 = 672.65
 
-            if (position.DistanceSquared(LLAll) < 672.65)
+            if (position.DistanceSquared(LLAll) < 1877.1218)
             {
                 return true;
             }
