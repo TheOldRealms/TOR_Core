@@ -11702,7 +11702,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_KI1_1" name="{=Settlements.Settlement.name.village_KI1_1}Hochstadt" posX="1217.694" posY="686.7791" culture="Culture.sturgia" text="{=Settlements.Settlement.text.village_KI1_1}A village first built by the barbarian human tribes but long abandoned. Now it servers as a farming site for the Dawi, growing grain and oats for the production of durazbrog, the Dwarfen stonebread.">
+  <Settlement id="village_KI1_1" name="{=Settlements.Settlement.name.village_KI1_1}Hochstadt" posX="1216.663" posY="687.808" culture="Culture.sturgia" text="{=Settlements.Settlement.text.village_KI1_1}A village first built by the barbarian human tribes but long abandoned. Now it servers as a farming site for the Dawi, growing grain and oats for the production of durazbrog, the Dwarfen stonebread.">
     <Components>
       <Village id="village_comp_KI1_1" village_type="VillageType.wheat_farm" hearth="250" bound="Settlement.town_KI1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
