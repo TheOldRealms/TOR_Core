@@ -2004,7 +2004,12 @@
   <string id="tor_customsettlement_intro.chaos_portal_01" text="{=str_tor_customsettlement_intro_chaos_portal_01}You arrive at an active chaos portal. The vile thing pulses with arcane magic, chaos forces are invading in minor numbers from their realm." />
   <string id="tor_customsettlement_disabled.chaos_portal_01" text="{=str_tor_customsettlement_disabled_chaos_portal_01}The portal lies dormant. Come back at a later time." />
   <string id="tor_customsettlement_battle.chaos_portal_01" text="{=str_tor_customsettlement_battle_chaos_portal_01}Attempt to defeat the chaos forces present and close the portal." />
+  <string id="tor_settlement_arrival_town_player" text="{=str_tor_settlement_arrival_town_player}You have arrived at your fief of {SETTLEMENT_LINK}. {PROSPERITY_INFO} {MORALE_INFO} {ROR_INFO}"/>
   <string id="tor_settlement_arrival_town_other" text="{=str_tor_settlement_arrival_town_other}{SETTLEMENT_LINK} is governed by {LORD.LINK}, {FACTION_OFFICIAL} of the {FACTION_TERM}. {PROSPERITY_INFO} {MORALE_INFO} {ROR_INFO}"/>
+  <string id="tor_settlement_arrival_castle_player" text="{=str_tor_settlement_arrival_castle_player}You have arrived at {SETTLEMENT_LINK}. {KEEP_INFO} {ROR_INFO}"/>
+  <string id="tor_settlement_arrival_castle_other" text="{=str_tor_settlement_arrival_castle_other}The castle of {SETTLEMENT_LINK} is owned by {LORD.LINK}, {FACTION_OFFICIAL} of the {FACTION_TERM}. {KEEP_INFO} {ROR_INFO}"/>
+  <string id="tor_settlement_arrival_village_player" text="{=str_tor_settlement_arrival_village_player}You have arrived at {SETTLEMENT_LINK}. {KEEP_INFO} {ROR_INFO}"/>
+  <string id="tor_settlement_arrival_village_other" text="{=str_tor_settlement_arrival_village_other}The castle of {SETTLEMENT_LINK} is owned by {LORD.LINK}, {FACTION_OFFICIAL} of the {FACTION_TERM}. {KEEP_INFO} {ROR_INFO}"/> 
 
   <string id="tor_customsettlement_intro.herdstone_01" text="{=str_tor_customsettlement_intro_herdstone_01}You arrive at a beastmen herdstone. A raging signal fire is lit to gather warbands to the warherd gathering here." />
   <string id="tor_customsettlement_disabled.herdstone_01" text="{=str_tor_customsettlement_disabled_herdstone_01}The herdstone camp is empty, come back at a later time." />
@@ -6024,6 +6029,8 @@
 	<string id="tor_artisan_weaponsmith_option_text" text="{=str_tor_artisan_weaponsmith_option_text}Visit the weaponsmith"/>
 	<string id="tor_artisan_enchanter_option_text" text="{=str_tor_artisan_enchanter_option_text}Visit the enchanter"/>
 	<string id="tor_artisan_leave_option_text" text="{=str_tor_artisan_leave_option_text}Leave"/>
+	<string id="tor_artisan_district_title_text" text="{=str_tor_artisan_district_title_text}Artisan District"/>
+	<string id="tor_settlement_artisan_introduction" text="{=str_tor_settlement_artisan_introduction}You have arrived at {SETTLEMENT_NAME}'s Artisan District. It is a lively place where artisans and craftsmen of varying professions are busy in their workshops."/>
 
 	<!-- Hireling Texts -->
 	<string id="tor_hireling_quit_service_text" text="{=str_tor_hireling_quit_service_text}I would like to quit my service."/>
@@ -6174,6 +6181,7 @@
 	<!-- Settlement Graveyard Texts -->
 	<string id="tor_settlement_graveyard_raise_dead_action" text="{=str_tor_settlement_graveyard_raise_dead_action}Raise dead from the corpses in the ground (wait 8 hours)."/>
 	<string id="tor_settlement_graveyard_raise_dead_begin_text" text="{=str_tor_settlement_graveyard_raise_dead_begin_text}The common folk's graves are ripe for the taking! You spend time to raise corpses from the ground. Morr is going to be furious tonight!"/>
+	<string id="tor_settlement_graveyard_raise_dead_interrupt" text="{=str_tor_settlement_graveyard_raise_dead_interrupt}The local nightwatch is onto you. Face the consequences of your vile actions."/>	
 	<string id="tor_settlement_graveyard_raise_dead_interrupt_action" text="{=str_tor_settlement_graveyard_raise_dead_interrupt_action}Defend yourself"/>
 	<string id="tor_settlement_graveyard_closed" text="{=str_tor_settlement_graveyard_closed}The Graveyard's massive iron gates are closed shut."/>
 

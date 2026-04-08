@@ -909,5 +909,157 @@
 			<tattoo_tag
 				name="Scar15" />
 		</tattoo_tags>
+	</BodyProperty>
+	<BodyProperty
+		id="fighter_chaos_warrior">
+		<BodyPropertiesMin version="4" age="25" weight="0.1577" build="0.8954"  key="0000E800004400001E4008CF4230A04B7543223FEEF0031097452024303565C501AD26130A77596845CCBADB4CBCBABC0000000000000016000000000B5C0006"  />
+		<BodyPropertiesMax version="4" age="25" weight="0.2577" build="0.9954"  key="003FFC001E440000FEB00EFFFF33F04B75C66C3CFEEF0F1A974525253B396ED501AF46130AB75C6845CCBADB4CBCBABC000000000000001600000000155C8007"  />
+		<hair_tags>
+			<hair_tag
+				name="Bald" />
+		</hair_tags>
+		<beard_tags>
+			<beard_tag
+				name="Cleanshaven" />
+		</beard_tags>
+		<tattoo_tags>
+			<tattoo_tag
+				name="Scar1" />
+			<tattoo_tag
+				name="Scar2" />
+			<tattoo_tag
+				name="Scar10" />
+			<tattoo_tag
+				name="Scar4" />
+			<tattoo_tag
+				name="Scar5" />
+			<tattoo_tag
+				name="Scar7" />
+			<tattoo_tag
+				name="Scar8" />
+			<tattoo_tag
+				name="Scar9" />
+			<tattoo_tag
+				name="Scar11" />
+			<tattoo_tag
+				name="Scar12" />
+			<tattoo_tag
+				name="Scar13" />
+			<tattoo_tag
+				name="Scar14" />
+			<tattoo_tag
+				name="Scar16" />
+			<tattoo_tag
+				name="Scar17" />
+		</tattoo_tags>
+	</BodyProperty>
+	<BodyProperty
+		id="fighter_chaos_marauder">
+		<BodyPropertiesMin version="4" age="25" weight="0.159" build="0.4645"  key="000004000000000021100000010110100162111110100020111110013011010001A720130A14F00000000000000000000000000000000000000000003D580000"  />
+		<BodyPropertiesMax version="4" age="25" weight="0.6577" build="0.9244"  key="003F4004DE000A5CFEFEEFFEAAA7FFFFF8FFFFABFEA2FFFEFFFFFFEFFEFB9F9F01AEA0130AFFFFFF00000000000000000000000000000000000000007F588005"  />
+		<hair_tags>
+			<hair_tag
+				name="Ponytail" />
+			<hair_tag
+				name="LongAndBushy" />
+			<hair_tag
+				name="LongAndBushy" />
+			<hair_tag
+				name="TiedAcrossBack" />
+			<hair_tag
+				name="TiedAcrossBack" />
+			<hair_tag
+				name="SlickedLong" />
+			<hair_tag
+				name="SlickedLong" />
+			<hair_tag
+				name="PartedAndCombedBack" />
+			<hair_tag
+				name="PartedAndCombedBack" />
+			<hair_tag
+				name="Tousled" />
+			<hair_tag
+				name="Short" />
+			<hair_tag
+				name="HighPonytail" />
+			<hair_tag
+				name="Mohawk" />
+			<hair_tag
+				name="PageBoy" />
+			<hair_tag
+				name="PageBoy" />
+			<hair_tag
+				name="Bowl" />
+			<hair_tag
+				name="Bowl" />
+			<hair_tag
+				name="Viking Hair" />
+			<hair_tag
+				name="Monk Hair" />
+			<hair_tag
+				name="Monk Hair" />
+		</hair_tags>
+		<beard_tags>
+			<beard_tag
+				name="Cleanshaven" />
+			<beard_tag
+				name="DroopyMustache" />
+			<beard_tag
+				name="DroopyMustache" />
+			<beard_tag
+				name="WaxedBeardWithShavedCheeks" />
+			<beard_tag
+				name="BeardWithShavedCheeks" />
+			<beard_tag
+				name="HeavyShortBeard" />
+			<beard_tag
+				name="LongTiedBeard" />
+			<beard_tag
+				name="LongTiedBeard" />
+			<beard_tag
+				name="PointedShortBeard" />
+			<beard_tag
+				name="PointedShortBeard" />
+			<beard_tag
+				name="LongBeard" />
+			<beard_tag
+				name="LongBeard" />
+			<beard_tag
+				name="HeavyLongBeard" />
+			<beard_tag
+				name="HeavyLongBeard" />
+			<beard_tag
+				name="LongScragglyBeard" />
+			<beard_tag
+				name="LongScragglyBeard" />
+			<beard_tag
+				name="LongScragglyBeard" />
+			<beard_tag
+				name="LongTiedBeard" />
+		</beard_tags>
+		<tattoo_tags>
+			<tattoo_tag
+				name="Scar1" />
+			<tattoo_tag
+				name="Scar2" />
+			<tattoo_tag
+				name="Scar3" />
+			<tattoo_tag
+				name="Scar10" />
+			<tattoo_tag
+				name="Scar4" />
+			<tattoo_tag
+				name="Scar5" />
+			<tattoo_tag
+				name="Scar7" />
+			<tattoo_tag
+				name="Scar9" />
+			<tattoo_tag
+				name="Scar11" />
+			<tattoo_tag
+				name="Scar16" />
+			<tattoo_tag
+				name="Scar17" />
+		</tattoo_tags>
 	</BodyProperty>	
 </BodyProperties>
