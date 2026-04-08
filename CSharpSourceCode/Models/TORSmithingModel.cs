@@ -105,6 +105,7 @@ namespace TOR_Core.Models
                 {
                     newHiddenList.Add(template.StringId);
                     TORCommon.Log("TORSmithingModel : invalid crafting template : " + template.ToString() + ". Dual wield hidden from player despite accessible pieces.", NLog.LogLevel.Info);
+                    continue;
                 }
 
                 //default them to true
@@ -176,7 +177,7 @@ namespace TOR_Core.Models
                 ValidPlayerCraftingTemplates = validTemplates;
                 var templateList = "TORSmithingModel : Valid crafting templates are :";
                 ValidPlayerCraftingTemplates.ForEach(x => templateList = templateList.Add(" " + x.StringId + ",", false));
-                templateList.TrimEnd(',');
+                templateList = templateList.TrimEnd(',');
                 TORCommon.Log(templateList, NLog.LogLevel.Info);
             }
             else
@@ -188,7 +189,7 @@ namespace TOR_Core.Models
 
             var oldHiddenListText = "TORSmithingModel : Previous hidden crafting templates :";
             HiddenCraftingTemplateIds.ForEach(x => oldHiddenListText = oldHiddenListText.Add(" " + x + ",", false));
-            oldHiddenListText.TrimEnd(',');
+            oldHiddenListText = oldHiddenListText.TrimEnd(',');
             TORCommon.Log(oldHiddenListText, NLog.LogLevel.Info);
 
             if (newHiddenList.Any())
@@ -196,7 +197,7 @@ namespace TOR_Core.Models
                 HiddenCraftingTemplateIds = newHiddenList;
                 var hiddenTemplateListText = "TORSmithingModel : Hidden crafting templates are :";
                 newHiddenList.ForEach(x => hiddenTemplateListText = hiddenTemplateListText.Add(" " + x + ",", false));
-                hiddenTemplateListText.TrimEnd(',');
+                hiddenTemplateListText = hiddenTemplateListText.TrimEnd(',');
                 TORCommon.Log(hiddenTemplateListText, NLog.LogLevel.Info);
             }
             else

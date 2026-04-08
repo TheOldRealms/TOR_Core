@@ -83,7 +83,10 @@ namespace TOR_Core.HarmonyPatches
         public static CraftingTemplate ValidTemplate()
         {
             CraftingTemplate restrictedRandom = TORSmithingModel.ValidPlayerCraftingTemplates.GetRandomElement();
-            if (restrictedRandom == null) { throw new Exception("CraftingPatches.ValidTemplate selected a null template."); }
+            if (restrictedRandom == null)
+            { 
+                restrictedRandom = CraftingTemplate.All.GetRandomElementWithPredicate(x => !TORSmithingModel.HiddenCraftingTemplateIds.Contains(x.StringId));
+            }
             //TORCommon.Log("Valid Template chose : " + restrictedRandom.StringId, NLog.LogLevel.Info);
             return restrictedRandom;
         }
