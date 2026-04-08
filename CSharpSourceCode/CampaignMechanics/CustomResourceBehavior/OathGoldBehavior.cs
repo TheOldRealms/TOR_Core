@@ -760,6 +760,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
             var items = new MBList<ItemObject>();
             items.Add(MBObjectManager.Instance.GetObject<ItemObject>("tor_neutral_weapon_ammo_musket_ball"));
+            items.Add(MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_ammo_musket_ball"));
             items.Add(MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_gun_beardling_handgun"));
             if (Hero.MainHero.HasAttribute("DwarfEngineersI"))
             {
@@ -813,6 +814,10 @@ public class OathGoldBehavior : CampaignBehaviorBase
                 //Add Dronazgrund
                 var dronazgrund = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_gun_dronazgrund");
                 if (dronazgrund != null) items.Add(dronazgrund);
+
+                //Add Tier3 handgun
+                var handgun004 = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_gun_handgun_004");
+                if (handgun004 != null) items.Add(handgun004);
             }
 
 
