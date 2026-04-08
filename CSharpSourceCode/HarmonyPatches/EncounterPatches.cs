@@ -1,7 +1,13 @@
 ﻿using HarmonyLib;
 using Helpers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameComponents;
@@ -15,12 +21,37 @@ using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.PostBattleLoot;
 using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {
     [HarmonyPatch]
     public static class EncounterPatches
     {
+        private static bool ShouldBypassDeadHirelingEncounter()
+        {
+            if (!Hero.MainHero.IsEnlisted() || ServeAsAHirelingCampaignBehavior.IsStartingBattle)
+            {
+                return false;
+            }
+
+            if (PlayerEncounter.EncounterSettlement != null)
+            {
+                return false;
+            }
+
+            var currentEncounter = PlayerEncounter.Current;
+            if (currentEncounter == null)
+            {
+                return false;
+            }
+
+            var playerMapEvent = MapEvent.PlayerMapEvent;
+            return currentEncounter.EncounterState == PlayerEncounterState.End
+                || playerMapEvent?.State == MapEventState.WaitingRemoval
+                || PlayerEncounter.Battle?.HasWinner == true;
+        }
+
         [HarmonyPrefix]
         [HarmonyPatch(typeof(VillageHostileActionCampaignBehavior), "village_raid_game_menu_init")]
         public static bool VillageRaidGameMenuInitPrefix(MenuCallbackArgs args)
@@ -38,12 +69,16 @@ namespace TOR_Core.HarmonyPatches
                         MBTextManager.SetTextVariable("VILLAGE_NAME", settlement.Name, false);
                     }
                 }
-                else MBTextManager.SetTextVariable("VILLAGE_NAME", "unknown_settlement", false);
+                else
+                {
+                    MBTextManager.SetTextVariable("VILLAGE_NAME", "unknown_settlement", false);
+                }
+
                 return false;
             }
-            else return true;
-        }
 
+            return true;
+        }
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(VillageHostileActionCampaignBehavior), "wait_menu_start_raiding_on_condition")]
@@ -67,27 +102,49 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(GameMenu), "ActivateGameMenu")]
         public static bool ActivateGameMenuPrefix(ref string menuId)
         {
-            // When enlisted, intercept encounter menu activation
+
             if (menuId == "encounter" && Hero.MainHero.IsEnlisted())
             {
-                // Let encounter through if player clicked "Join Battle"
                 if (ServeAsAHirelingCampaignBehavior.IsStartingBattle)
                 {
                     return true;
                 }
-                var currentEncounter = PlayerEncounter.Current;
 
-                if (currentEncounter?.IsJoinedBattle == true
-                    && currentEncounter.EncounterState != PlayerEncounterState.End)
+                if (ShouldBypassDeadHirelingEncounter())
                 {
+                    if (ServeAsAHirelingCampaignBehavior.TryFinalizeTrackedHirelingVictory())
+                    {
+                        return false;
+                    }
+
+                    if (ServeAsAHirelingCampaignBehavior.CleanupTrackedDeadHirelingResultEncounter())
+                    {
+                        menuId = "hireling_menu";
+                        ServeAsAHirelingCampaignBehavior.MarkHirelingWaitMenuShown();
+                        return true;
+                    }
+
+                    menuId = "hireling_menu";
+                    ServeAsAHirelingCampaignBehavior.MarkHirelingWaitMenuShown();
                     return true;
                 }
 
-                if (currentEncounter != null
-                    && currentEncounter.EncounterState == PlayerEncounterState.End
-                    && PlayerEncounter.EncounterSettlement == null)
+                if (ServeAsAHirelingCampaignBehavior.TryFinalizeTrackedHirelingVictory())
                 {
-                    PlayerEncounter.Finish(false);
+                    return false;
+                }
+
+                if (ServeAsAHirelingCampaignBehavior.CleanupTrackedDeadHirelingResultEncounter())
+                {
+                    menuId = "hireling_menu";
+                    ServeAsAHirelingCampaignBehavior.MarkHirelingWaitMenuShown();
+                    return true;
+                }
+
+                var currentEncounter = PlayerEncounter.Current;
+                if (currentEncounter != null && PlayerEncounter.EncounterSettlement == null)
+                {
+                    return true;
                 }
 
                 var hirelingBehavior = Campaign.Current?.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>();
@@ -103,17 +160,11 @@ namespace TOR_Core.HarmonyPatches
                 var hasPendingNativeCleanup =
                     ServeAsAHirelingCampaignBehavior.HasPendingNativeEncounterCleanup();
 
-                if (currentEncounter?.IsJoinedBattle == true
-                    && (hasJoinableHirelingBattle || hasPendingNativeCleanup))
-                {
-                    return true;
-                }
-
                 if (hasJoinableHirelingBattle)
                 {
                     menuId = "hireling_battle_menu";
                 }
-                else if (currentEncounter != null && hasPendingNativeCleanup)
+                else if (hasPendingNativeCleanup)
                 {
                     return true;
                 }
@@ -122,6 +173,7 @@ namespace TOR_Core.HarmonyPatches
                     menuId = "hireling_menu";
                 }
             }
+
             return true;
         }
 
@@ -150,11 +202,35 @@ namespace TOR_Core.HarmonyPatches
         }
 
         [HarmonyPrefix]
+        [HarmonyPatch(typeof(EncounterGameMenuBehavior), "game_menu_encounter_on_init")]
+        public static bool EncounterGameMenuOnInitPrefix(MenuCallbackArgs args)
+        {
+            if (!ShouldBypassDeadHirelingEncounter())
+            {
+                return true;
+            }
+
+            if (ServeAsAHirelingCampaignBehavior.TryFinalizeTrackedHirelingVictory())
+            {
+                return false;
+            }
+
+            if (ServeAsAHirelingCampaignBehavior.CleanupTrackedDeadHirelingResultEncounter())
+            {
+                GameMenu.SwitchToMenu("hireling_menu");
+                ServeAsAHirelingCampaignBehavior.MarkHirelingWaitMenuShown();
+                return false;
+            }
+
+            GameMenu.SwitchToMenu("hireling_menu");
+            ServeAsAHirelingCampaignBehavior.MarkHirelingWaitMenuShown();
+            return false;
+        }
+
+        [HarmonyPrefix]
         [HarmonyPatch(typeof(PlayerEncounter), "Finish")]
         public static bool PlayerEncounterFinishPrefix()
         {
-            // Only block Finish during post-battle transitions when enlisted
-            // This prevents crashes from AI party ticks while allowing normal siege/encounter flow
             if (!Hero.MainHero.IsEnlisted() || !ServeAsAHirelingCampaignBehavior.InPostBattleTransition)
             {
                 return true;
@@ -181,11 +257,88 @@ namespace TOR_Core.HarmonyPatches
             return false;
         }
 
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(GainKingdomInfluenceAction), nameof(GainKingdomInfluenceAction.ApplyForBattle))]
+        public static bool GainKingdomInfluenceActionApplyForBattlePrefix(Hero hero, float value)
+        {
+            if (ServeAsAHirelingCampaignBehavior.ShouldSuppressHirelingBattleInfluence(hero, value))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(PlayerEncounter), "DoCaptureHeroes")]
+        public static bool DoCaptureHeroesPrefix(PlayerEncounter __instance)
+        {
+            if (!ServeAsAHirelingCampaignBehavior.TryFinalizeTrackedHirelingVictory())
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(ChangeClanInfluenceAction), nameof(ChangeClanInfluenceAction.Apply), new[] { typeof(Clan), typeof(float) })]
+        public static bool ChangeClanInfluenceActionApplyPrefix(Clan clan, float amount)
+        {
+            if (ServeAsAHirelingCampaignBehavior.ShouldSuppressHirelingInfluenceGain(clan, amount))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private static void ClearRoster(TroopRoster roster)
+        {
+            if (roster == null)
+            {
+                return;
+            }
+
+            var rosterElements = roster.GetTroopRoster().ToList();
+            foreach (var rosterElement in rosterElements)
+            {
+                if (rosterElement.Number > 0)
+                {
+                    roster.AddToCounts(rosterElement.Character, -rosterElement.Number);
+                }
+            }
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(PlayerEncounter), "DoApplyMapEventResults")]
+        public static void DoApplyMapEventResultsPostfix()
+        {
+            if (!Hero.MainHero.IsEnlisted())
+            {
+                return;
+            }
+
+            ServeAsAHirelingCampaignBehavior.ClearCurrentHirelingLoot();
+        }
+
         [HarmonyPostfix]
         [HarmonyPatch(typeof(MapEvent), "GetMemberRosterReceivingLootShare")]
-        public static void GetMemberRosterPostfix(TroopRoster __result)
+        public static void GetMemberRosterPostfix(MapEvent __instance, TroopRoster __result)
         {
-            if (__result != null && PendingLootedTroopManager.HasPendingModifications)
+            if (__result == null)
+            {
+                return;
+            }
+
+            if (ServeAsAHirelingCampaignBehavior.ShouldSuppressTrackedHirelingBattleLoot(__instance))
+            {
+                ClearRoster(__result);
+                PendingLootedTroopManager.ResetAllPendingState();
+                return;
+            }
+
+            if (PendingLootedTroopManager.HasPendingModifications)
             {
                 PendingLootedTroopManager.ApplyMemberModifications(__result);
                 PendingLootedTroopManager.ConsumeMemberModifications();
@@ -194,9 +347,21 @@ namespace TOR_Core.HarmonyPatches
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(MapEvent), "GetPrisonerRosterReceivingLootShare")]
-        public static void GetPrisonerRosterPostfix(TroopRoster __result)
+        public static void GetPrisonerRosterPostfix(MapEvent __instance, TroopRoster __result)
         {
-            if (__result != null && PendingLootedTroopManager.HasPendingModifications)
+            if (__result == null)
+            {
+                return;
+            }
+
+            if (ServeAsAHirelingCampaignBehavior.ShouldSuppressTrackedHirelingBattleLoot(__instance))
+            {
+                ClearRoster(__result);
+                PendingLootedTroopManager.ResetAllPendingState();
+                return;
+            }
+
+            if (PendingLootedTroopManager.HasPendingModifications)
             {
                 PendingLootedTroopManager.ApplyPrisonerModifications(__result);
                 PendingLootedTroopManager.ConsumePrisonerModifications();

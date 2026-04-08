@@ -72,6 +72,45 @@ namespace TOR_Core.Models
 
             return result;
         }
+        public override MBReadOnlyList<KeyValuePair<MapEventParty, float>> GetLootGoldChances(MBReadOnlyList<MapEventParty> winnerParties)
+        {
+            var baseResult = base.GetLootGoldChances(winnerParties);
+
+            if (!Hero.MainHero.IsEnlisted())
+            {
+                return baseResult;
+            }
+
+            var result = new MBReadOnlyList<KeyValuePair<MapEventParty, float>>();
+            float remainingWeight = 0f;
+
+            foreach (var kvp in baseResult)
+            {
+                if (kvp.Key?.Party == PartyBase.MainParty)
+                {
+                    continue;
+                }
+
+                remainingWeight += kvp.Value;
+            }
+
+            if (remainingWeight <= 0f)
+            {
+                return result;
+            }
+
+            foreach (var kvp in baseResult)
+            {
+                if (kvp.Key?.Party == PartyBase.MainParty)
+                {
+                    continue;
+                }
+
+                result.Add(new KeyValuePair<MapEventParty, float>(kvp.Key, kvp.Value / remainingWeight));
+            }
+
+            return result;
+        }
 
         private static bool ShouldReduceBanditBattleInfluence(PartyBase party)
         {
