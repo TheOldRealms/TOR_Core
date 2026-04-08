@@ -11657,7 +11657,7 @@
       <Village id="castle_village_comp_ZI2_1" village_type="VillageType.iron_mine" hearth="200" bound="Settlement.castle_ZI2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_003" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_04" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -11720,7 +11720,7 @@
       <Village id="village_comp_KI1_2" village_type="VillageType.iron_mine" hearth="250" bound="Settlement.town_KI1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_003" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_04" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -11757,7 +11757,7 @@
       <Village id="castle_village_comp_KI1_1" village_type="VillageType.silver_mine" hearth="200" bound="Settlement.castle_KI1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_003" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_04" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -12357,7 +12357,7 @@
       <Village id="castle_village_comp_AN1_1" village_type="VillageType.silver_mine" hearth="200" bound="Settlement.castle_AN1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_003" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_04" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -12370,7 +12370,7 @@
       <Village id="castle_village_comp_AN1_2" village_type="VillageType.lumberjack" hearth="200" bound="Settlement.castle_AN1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_04" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -12420,7 +12420,7 @@
       <Village id="village_comp_ZH1_1" village_type="VillageType.salt_mine" hearth="250" bound="Settlement.town_ZH1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_04" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
