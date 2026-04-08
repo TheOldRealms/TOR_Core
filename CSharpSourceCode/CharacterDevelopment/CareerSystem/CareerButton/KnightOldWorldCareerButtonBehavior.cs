@@ -269,7 +269,7 @@ public class KnightOldWorldCareerButtonBehavior : CareerButtonBehaviorBase
         }
 
         var playerReligion = Hero.MainHero.GetDominantReligion();
-        var isDevout = playerReligion != null && Hero.MainHero.GetDevotionLevelForReligion(playerReligion) >= DevotionLevel.Fanatic;
+        var isFanatic = playerReligion != null && Hero.MainHero.GetDevotionLevelForReligion(playerReligion) >= DevotionLevel.Fanatic;
 
         if (characterObject.IsKnightUnit() && characterObject.Tier >= 5 && !characterObject.IsRanged)
         {
@@ -277,7 +277,7 @@ public class KnightOldWorldCareerButtonBehavior : CareerButtonBehaviorBase
             {
                 var troopReligion = characterObject.GetReligionForReligiousEliteUnit();
 
-                if (isDevout)
+                if (isFanatic)
                 {
                     // Player is religious enough for templar seals - must match troop's religion
                     if (troopReligion.StringId != playerReligion.StringId)
@@ -301,7 +301,7 @@ public class KnightOldWorldCareerButtonBehavior : CareerButtonBehaviorBase
             }
 
             //secular knight case
-            if (isDevout)                 // Unit is a secular knight - devout players need perk to apply templar seals
+            if (isFanatic)                 // Unit is a secular knight - devout players need perk to apply templar seals
             {
                 if (Hero.MainHero.HasCareerChoice("SecularOrdersPassive4"))
                 {

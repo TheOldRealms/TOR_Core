@@ -46,5 +46,10 @@ namespace TOR_Core.Extensions
         {
             return models.GetGameModels().OfType<TORSiegeEngineCalculationModel>().LastOrDefault();
         }
+
+        public static TORSmithingModel GetSmithingModel(this GameModels models)
+        {
+            return models.GetGameModels().OfType<TORSmithingModel>().LastOrDefault();
+        }
     }
 }

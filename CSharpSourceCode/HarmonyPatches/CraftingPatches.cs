@@ -8,21 +8,28 @@ using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting.WeaponDesign;
 using TaleWorlds.Core;
 using TOR_Core.CampaignMechanics.Crafting;
+using TOR_Core.Extensions;
+using TOR_Core.Models;
 
 namespace TOR_Core.HarmonyPatches
 {
     [HarmonyPatch]
     public static class CraftingPatches
     {
-        public static List<string> HiddenCraftingTemplateIds => ["tor_large_monster_weapon_template", "tor_dual_wield_mainhand", "tor_trolltwohandedmace"];
-
         [HarmonyPrefix]
         [HarmonyPatch(typeof(WeaponClassSelectionPopupVM), MethodType.Constructor, typeof(ICraftingCampaignBehavior), typeof(List<CraftingTemplate>), typeof(Action<int>), typeof(Func<CraftingTemplate, int>))]
         public static void FilterCategories(ICraftingCampaignBehavior craftingBehavior, List<CraftingTemplate> templatesList, Action<int> onSelect, Func<CraftingTemplate, int> getUnlockedPiecesCount)
         {
             var backup = templatesList.ToList();
             templatesList.Clear();
-            templatesList.AddRange(backup.Where(x => !HiddenCraftingTemplateIds.Contains(x.StringId)));
+            if (TORSmithingModel.ValidPlayerCraftingTemplates.Count > 0)
+            {
+                templatesList.AddRange(TORSmithingModel.ValidPlayerCraftingTemplates);
+            }
+            else
+            {
+                templatesList.AddRange(backup.Where(x => !TORSmithingModel.HiddenCraftingTemplateIds.Contains(x.StringId)));
+            }
         }
 
         [HarmonyPrefix]
@@ -75,7 +82,7 @@ namespace TOR_Core.HarmonyPatches
         /// <returns>A valid crafting template in the context of TOR</returns>
         public static CraftingTemplate ValidTemplate()
         {
-            CraftingTemplate restrictedRandom = CraftingTemplate.All.GetRandomElementWithPredicate(x => !HiddenCraftingTemplateIds.Contains(x.StringId));
+            CraftingTemplate restrictedRandom = TORSmithingModel.ValidPlayerCraftingTemplates.GetRandomElement();
             if (restrictedRandom == null) { throw new Exception("CraftingPatches.ValidTemplate selected a null template."); }
             //TORCommon.Log("Valid Template chose : " + restrictedRandom.StringId, NLog.LogLevel.Info);
             return restrictedRandom;
