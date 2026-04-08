@@ -28,7 +28,7 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public static class EncounterPatches
     {
-        private static bool ShouldBypassDeadHirelingEncounter()
+        internal static bool ShouldBypassDeadHirelingEncounter()
         {
             if (!Hero.MainHero.IsEnlisted() || ServeAsAHirelingCampaignBehavior.IsStartingBattle)
             {
@@ -201,31 +201,6 @@ namespace TOR_Core.HarmonyPatches
             return true;
         }
 
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(EncounterGameMenuBehavior), "game_menu_encounter_on_init")]
-        public static bool EncounterGameMenuOnInitPrefix(MenuCallbackArgs args)
-        {
-            if (!ShouldBypassDeadHirelingEncounter())
-            {
-                return true;
-            }
-
-            if (ServeAsAHirelingCampaignBehavior.TryFinalizeTrackedHirelingVictory())
-            {
-                return false;
-            }
-
-            if (ServeAsAHirelingCampaignBehavior.CleanupTrackedDeadHirelingResultEncounter())
-            {
-                GameMenu.SwitchToMenu("hireling_menu");
-                ServeAsAHirelingCampaignBehavior.MarkHirelingWaitMenuShown();
-                return false;
-            }
-
-            GameMenu.SwitchToMenu("hireling_menu");
-            ServeAsAHirelingCampaignBehavior.MarkHirelingWaitMenuShown();
-            return false;
-        }
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(PlayerEncounter), "Finish")]
@@ -366,6 +341,37 @@ namespace TOR_Core.HarmonyPatches
                 PendingLootedTroopManager.ApplyPrisonerModifications(__result);
                 PendingLootedTroopManager.ConsumePrisonerModifications();
             }
+        }
+    }
+    
+    [HarmonyPatch]
+    [HarmonyPatchCategory("LatePatches")]
+    public static class EncounterGameMenuBehaviorPatches
+    {
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(EncounterGameMenuBehavior), "game_menu_encounter_on_init")]
+        public static bool EncounterGameMenuOnInitPrefix(MenuCallbackArgs args)
+        {
+            if (!EncounterPatches.ShouldBypassDeadHirelingEncounter())
+            {
+                return true;
+            }
+
+            if (ServeAsAHirelingCampaignBehavior.TryFinalizeTrackedHirelingVictory())
+            {
+                return false;
+            }
+
+            if (ServeAsAHirelingCampaignBehavior.CleanupTrackedDeadHirelingResultEncounter())
+            {
+                GameMenu.SwitchToMenu("hireling_menu");
+                ServeAsAHirelingCampaignBehavior.MarkHirelingWaitMenuShown();
+                return false;
+            }
+
+            GameMenu.SwitchToMenu("hireling_menu");
+            ServeAsAHirelingCampaignBehavior.MarkHirelingWaitMenuShown();
+            return false;
         }
     }
 }
