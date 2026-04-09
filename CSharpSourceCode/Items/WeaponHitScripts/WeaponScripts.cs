@@ -199,14 +199,46 @@ public class BuffStackOnKill(string[] arguments) : WeaponBuffStackScript(argumen
 }
 
 /// <summary>
-/// <inheritdoc/>
+/// <para>Triggers effect when eliminating an enemy, with probability based on knockout chance.</para>
+/// <para>Uses the game's AgentDecideKilledOrUnconsciousModel to determine trigger probability.</para>
 /// </summary>
+/// <remarks>
+/// <para>Weapon scripts run during OnHit, before the agent state (Killed/Unconscious) is determined.</para>
+/// <para>Hooking into OnAgentRemoved to check AgentState.Unconscious would require a new implementation.</para>
+/// <para>Instead, we query the same probability model the game uses, giving an equivalent result.</para>
+/// </remarks>
 /// <inheritdoc/>
 public class KnockOutCheckTriggerScript(string[] arguments) : WeaponTriggerEffectScript(arguments)
 {
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData collisionData)
     {
-        if (attackedAgent.Health <= 0 && attackedAgent.State == AgentState.Unconscious)
+        // Only trigger when eliminating an enemy
+        if (attackedAgent.Health > 0)
+            return;
+
+        // Get weapon flags for the knockout probability calculation
+        var weaponFlags = WeaponFlags.MeleeWeapon;
+        if (!missionWeapon.IsEmpty && missionWeapon.CurrentUsageItem != null)
+        {
+            weaponFlags = missionWeapon.CurrentUsageItem.WeaponFlags;
+        }
+
+        // Get the kill probability from the game's model (same model used by Mission.GetAgentState)
+        var model = MissionGameModels.Current?.AgentDecideKilledOrUnconsciousModel;
+        if (model == null)
+            return;
+
+        float killProbability = model.GetAgentStateProbability(
+            attackingAgent,
+            attackedAgent,
+            blow.DamageType,
+            weaponFlags,
+            out _);
+
+        // Roll against knockout probability (1 - killProbability)
+        // If random < killProbability, this would have been a knockout
+        float roll = MBRandom.RandomFloat;
+        if (roll < killProbability)
         {
             base.OnHit(attackingAgent, attackedAgent, blow, missionWeapon, collisionData);
         }

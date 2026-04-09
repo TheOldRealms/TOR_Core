@@ -969,7 +969,7 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>26</IngredientAmount>
-    <ItemTraitDescription>Heal 2 HP when knocking out enemies in battle</ItemTraitDescription>
+    <ItemTraitDescription>Chance to heal 2 HP when defeating enemies (based on knockout probability)</ItemTraitDescription>
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.KnockOutCheckTriggerScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>shallya_pacifism_enchant</WeaponScriptArgument>
@@ -3099,7 +3099,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>Heal 2 HP when knocking out enemies in battle</ItemTraitDescription>
+    <ItemTraitDescription>Chance to heal 2 HP when defeating enemies (based on knockout probability)</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_shallya_pacifism</InventoryScriptArgument>
