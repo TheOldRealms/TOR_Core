@@ -812,7 +812,7 @@
     <Compile Include="Models\TORClanTierModel.cs" />
     <Compile Include="Models\TORCombatSimulationModel.cs" />
     <Compile Include="Models\TORCombatXpModel.cs" />
-    <Compile Include="Models\TORCompanionHiringCompatibilityModel.cs" />
+    <Compile Include="Models\TORHiringCompatibilityModel.cs" />
     <Compile Include="Models\TORCompanionHiringPriceCalculationModel.cs" />
     <Compile Include="Models\TORCompanionTrainingModel.cs" />
     <Compile Include="Models\TORCustomResourceModel.cs" />

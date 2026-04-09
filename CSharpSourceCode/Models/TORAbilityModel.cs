@@ -498,6 +498,11 @@ namespace TOR_Core.Models
             {
                 if (hero.IsHumanPlayerCharacter) return 0.1f;//player taken prisoner
 
+                // AI Greenskin shamans get 50% of normal AI regen
+                if (baseCharacter.Culture.StringId == TORConstants.Cultures.GREENSKIN)
+                {
+                    return 1f;
+                }
                 return 2f;//equiv to 267 spellcraft
             }
 
@@ -603,10 +608,14 @@ namespace TOR_Core.Models
             {
                 if(hero != Hero.MainHero)
                 {
-                    explainedNumber.AddFactor(-0.5f);       //not sure if we need some sort of "post value" for this.
+                    // Player companion Greenskin shamans get 50% regen
+                    explainedNumber.AddFactor(-0.5f);
                 }
-
-                return 0;
+                else
+                {
+                    return 0; // Player main hero Greenskin uses Waaagh system instead 
+                } 
+                
             }
 
             return explainedNumber.ResultNumber;

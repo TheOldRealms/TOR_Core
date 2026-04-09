@@ -524,9 +524,8 @@
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>ghyran_tendrils_enchant</WeaponScriptArgument>
-        <WeaponScriptArgument>10</WeaponScriptArgument>
-        <WeaponScriptArgument>true</WeaponScriptArgument>
-        <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -970,7 +969,7 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>26</IngredientAmount>
-    <ItemTraitDescription>Heal 2 HP when knocking out enemies in battle</ItemTraitDescription>
+    <ItemTraitDescription>Chance to heal 2 HP when defeating enemies (based on knockout probability)</ItemTraitDescription>
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.KnockOutCheckTriggerScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>shallya_pacifism_enchant</WeaponScriptArgument>
@@ -1105,7 +1104,7 @@
     <IngredientAmount>15</IngredientAmount>
     <ItemTraitDescription>"10% bonus to magic damage, summon 3 Grave Guard for every enemy felled in melee"</ItemTraitDescription>
     <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
-    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.RandomPositionAroundAtKill">
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.TriggerOnKillScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>call_from_beyond</WeaponScriptArgument>
       </WeaponScriptArguments>
@@ -1141,8 +1140,8 @@
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>nightshroud</WeaponScriptArgument>
-        <WeaponScriptArgument>15</WeaponScriptArgument>
-        <WeaponScriptArgument>5</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -1178,8 +1177,6 @@
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>touch_jet</WeaponScriptArgument>
-        <WeaponScriptArgument>100</WeaponScriptArgument>
-        <WeaponScriptArgument>1</WeaponScriptArgument>
         <WeaponScriptArgument>false</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
       </WeaponScriptArguments>
@@ -1209,7 +1206,8 @@
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>chilling_hand</WeaponScriptArgument>
-        <WeaponScriptArgument>10</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -1271,9 +1269,8 @@
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>emissaries_mirai</WeaponScriptArgument>
-        <WeaponScriptArgument>15</WeaponScriptArgument>
-        <WeaponScriptArgument>5</WeaponScriptArgument>
-        <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -1312,7 +1309,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="we_enchant_leylines_weave" ItemTraitName="Leylines and the Weave" IsCraftable="true" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="asrai_enchant_leylines_weave" ItemTraitName="Leylines and the Weave" IsCraftable="true" IconName="harmony_icon_100">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>16</IngredientAmount>
@@ -1329,7 +1326,8 @@
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>thorns_nettles</WeaponScriptArgument>
-        <WeaponScriptArgument>100</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -1343,7 +1341,6 @@
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>tranquillity_cadai</WeaponScriptArgument>
-        <WeaponScriptArgument>30</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
         <WeaponScriptArgument>false</WeaponScriptArgument>
       </WeaponScriptArguments>
@@ -1438,7 +1435,8 @@
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>tree_lord_bargain</WeaponScriptArgument>
-        <WeaponScriptArgument>15</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -3101,7 +3099,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>Heal 2 HP when knocking out enemies in battle</ItemTraitDescription>
+    <ItemTraitDescription>Chance to heal 2 HP when defeating enemies (based on knockout probability)</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_shallya_pacifism</InventoryScriptArgument>
@@ -3569,14 +3567,14 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_we_enchant_leylines_weave" ItemTraitName="Leylines and the Weave" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_asrai_enchant_leylines_weave" ItemTraitName="Leylines and the Weave" IsCraftable="false" IconName="harmony_icon_100">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>"Gain 8 Custom Resource daily, 3% extra physical resistance"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
-        <InventoryScriptArgument>we_enchant_leylines_weave</InventoryScriptArgument>
+        <InventoryScriptArgument>asrai_enchant_leylines_weave</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
         <InventoryScriptArgument>100</InventoryScriptArgument>
       </InventoryScriptArguments>

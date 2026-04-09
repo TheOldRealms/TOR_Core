@@ -1990,12 +1990,12 @@
     </TriggeredEffectTemplate>
 	
 	<TriggeredEffectTemplate StringID="azyr_gale_enchant"
-                             BurstParticleEffectPrefab="none"
+                             BurstParticleEffectPrefab="wind_blast"
                              SoundEffectId="none"
                              SoundEffectLength="0"
                              DamageType="Lightning"
                              DamageAmount="10"
-                             Radius="2"
+                             Radius="3"
                              HasShockWave="true"
                              TargetType="Enemy"
                              DamageVariance="0.0"

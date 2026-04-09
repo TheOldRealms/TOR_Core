@@ -97,14 +97,25 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 && trackedBattle.HasWinner
                 && trackedBattle.PlayerSide == trackedBattle.WinningSide;
         }
-        internal static bool TryFinalizeTrackedHirelingVictory()
+        private bool HasTrackedCapturePhaseHirelingVictory()
         {
-            var behavior = Campaign.Current?.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>();
-            if (behavior == null || !behavior.HasTrackedWinningFieldHirelingBattle())
-            {
-                return false;
-            }
+            var currentEncounter = PlayerEncounter.Current;
+            var currentBattle = PlayerEncounter.Battle;
+            var trackedBattle = _joinedHirelingCleanupBattle;
 
+            return _hirelingEnlisted
+                && !_hirelingLordIsFightingWithoutPlayer
+                && trackedBattle != null
+                && !trackedBattle.IsSiegeAssault
+                && trackedBattle.HasWinner
+                && currentEncounter != null
+                && PlayerEncounter.EncounterSettlement == null
+                && currentEncounter.EncounterState == PlayerEncounterState.CaptureHeroes
+                && currentBattle == trackedBattle;
+        }
+
+        private static bool FinalizeTrackedHirelingVictory(ServeAsAHirelingCampaignBehavior behavior)
+        {
             ClearCurrentHirelingLoot();
 
             if (PlayerEncounter.Current != null && PlayerEncounter.EncounterSettlement == null)
@@ -132,6 +143,28 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             Campaign.Current.CurrentMenuContext?.Refresh();
 
             return true;
+        }
+
+        internal static bool TryFinalizeTrackedHirelingVictory()
+        {
+            var behavior = Campaign.Current?.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>();
+            if (behavior == null || !behavior.HasTrackedWinningFieldHirelingBattle())
+            {
+                return false;
+            }
+
+            return FinalizeTrackedHirelingVictory(behavior);
+        }
+
+        internal static bool TryFinalizeTrackedHirelingVictoryFromCaptureHeroes()
+        {
+            var behavior = Campaign.Current?.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>();
+            if (behavior == null || !behavior.HasTrackedCapturePhaseHirelingVictory())
+            {
+                return false;
+            }
+
+            return FinalizeTrackedHirelingVictory(behavior);
         }
 
         internal static bool ShouldSuppressHirelingInfluenceGain(Clan clan, float influenceChange)

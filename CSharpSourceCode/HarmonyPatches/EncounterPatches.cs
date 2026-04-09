@@ -248,12 +248,13 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(PlayerEncounter), "DoCaptureHeroes")]
         public static bool DoCaptureHeroesPrefix(PlayerEncounter __instance)
         {
-            if (!ServeAsAHirelingCampaignBehavior.TryFinalizeTrackedHirelingVictory())
+            if (ServeAsAHirelingCampaignBehavior.TryFinalizeTrackedHirelingVictory()
+                || ServeAsAHirelingCampaignBehavior.TryFinalizeTrackedHirelingVictoryFromCaptureHeroes())
             {
-                return true;
+                return false;
             }
 
-            return false;
+            return true;
         }
 
         [HarmonyPrefix]

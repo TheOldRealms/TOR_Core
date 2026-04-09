@@ -41,6 +41,26 @@ namespace TOR_Core.HarmonyPatches
             __result = new LocationCharacter(new AgentData(new SimpleAgentOrigin(townsman, -1, null, default)).Monster(randomTownsManActionSetAndMonster.Item2).Age(MBRandom.RandomInt(minValue, maxValue)), new LocationCharacter.AddBehaviorsDelegate(SandBoxManager.Instance.AgentBehaviorManager.AddOutdoorWandererBehaviors), "npc_common_limited", false, relation, randomTownsManActionSetAndMonster.Item1, true, false, null, false, false, true);
             return false;
         }
+        
+        // increase NPCs in towns
+        [HarmonyPatch(typeof(CommonTownsfolkCampaignBehavior), "GetSpawnRate")]
+        public static class CommonTownsfolkCampaignBehavior_GetSpawnRate_Patch
+        {
+            static void Postfix(ref float __result)
+            {
+                __result *= 2;
+            }
+        }
+
+        // increase NPCs in villages
+        [HarmonyPatch(typeof(CommonVillagersCampaignBehavior), "GetSpawnRate")]
+        public static class CommonVillagersCampaignBehavior_GetSpawnRate_Patch
+        {
+            static void Postfix(ref float __result)
+            {
+                __result *= 2;
+            }
+        }
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(CommonTownsfolkCampaignBehavior), "CreateMaleTeenager")]

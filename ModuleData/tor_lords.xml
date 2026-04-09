@@ -2,7 +2,7 @@
 <NPCCharacters>
   <NPCCharacter id="tor_emp_lord" default_group="cavalry" name="{=str_tor_emp_lord}Empire Lord" occupation="Lord" culture="Culture.empire" voice="curt" age="50" skill_template="SkillSet.tor_custombattle_generic" is_hero="true">
     <face>
-      <BodyProperties version="4" age="32" weight="0.6" build="0.9" key="000500000000000D797664884754DCBAA35E866295A0967774414A498C8336860F7776F20BA7B7A500000000000000000000000000000000000000003CFC2000" />
+      <BodyProperties version="4" age="32" weight="0.6" build="0.9" key="0008000B915810093F79091FB9D8C480775965867458061D4361142D93CDB688008D9603F86DBEBC000000000000000000000000000000000000000072FC60C2" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -198,6 +198,24 @@
       <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_dwarf_lord" default_group="infantry" name="{=str_tor_dwarf_lord}Dwarf Lord" occupation="Lord" culture="Culture.sturgia" voice="curt" age="30" skill_template="SkillSet.tor_custombattle_generic" race="dwarf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="40" weight="0.6" build="0.5" key="000B5C0782880187736793597B969A3B37868255399CAC17A6C9A2FA8C7C579900779603073B5D8709394BC56E7A3B6200000000000000070000000036FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_lord_template_001" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_slayer_lord" default_group="infantry" name="{=str_tor_slayer_lord}Slayer Lord" occupation="Lord" culture="Culture.sturgia" voice="ironic" age="40" skill_template="SkillSet.tor_custombattle_generic" race="dwarf" is_hero="true">
     <face>
       <BodyProperties version="4" age="40" weight="0.6" build="0.5" key="000B5C0782880187736793597B969A3B37868255399CAC17A6C9A2FA8C7C579900779603073B5D8709394BC56E7A3B6200000000000000070000000036FC0000" />
@@ -214,6 +232,24 @@
     <Equipments>
       <EquipmentSet id="tor_dw_slayer_lord_template" />
       <EquipmentSet id="tor_dw_slayer_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_warboss_lord" default_group="infantry" name="{=str_tor_warboss_lord}Warboss" occupation="Lord" culture="Culture.aserai" voice="ironic" age="30" skill_template="SkillSet.tor_custombattle_generic" race="orc" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.6188" build="1" key="0029240000A0000067C45B87933A5457A338572C391C6A5727B78A64D929644C00AF96030A7C421A45CCBADB4CBCBABC00000000000000160000000029542000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_shaman_lord" default_group="infantry" name="{=str_tor_shaman_lord}Shaman Lord" occupation="Lord" culture="Culture.aserai" voice="curt" age="40" skill_template="SkillSet.tor_custombattle_generic" race="orc" is_hero="true">

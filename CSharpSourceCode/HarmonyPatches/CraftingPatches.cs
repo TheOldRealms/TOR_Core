@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +10,7 @@ using TaleWorlds.Core;
 using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.Extensions;
 using TOR_Core.Models;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -70,18 +71,18 @@ namespace TOR_Core.HarmonyPatches
             {
                 //remove the CraftingTemplate.All and GetRandom calls
                 codes.RemoveRange(replaceIndex, 2);
-                //replace with the call to ValidTemplate
-                codes.Insert(replaceIndex, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(CraftingPatches), nameof(CraftingPatches.ValidTemplate))));
+                //load arg1 (Hero orderOwner) and call ValidTemplate(Hero) for culture-based filtering
+                codes.Insert(replaceIndex, new CodeInstruction(OpCodes.Ldarg_1));
+                codes.Insert(replaceIndex + 1, new CodeInstruction(OpCodes.Call,
+                    AccessTools.Method(typeof(CraftingPatches), nameof(CraftingPatches.ValidTemplate), new[] { typeof(Hero) })));
             }
             return codes.AsEnumerable();
         }
 
         /// <summary>
         /// Prevents the game from selecting a crafting order using an npc weapon template.
+        /// This parameterless overload is kept for compatibility.
         /// </summary>
-        /// <remarks>
-        /// CraftingCampaignBehavior (which has calls leading to this) is added to the game starter before the smithing model, but both of them are loaded before the NewGamePartialFollowUp which the behavior has an event registered with. It's therefore safe to validate through the crafting model when this is called through CreateTownOrder.
-        /// </remarks>
         /// <returns>A valid crafting template in the context of TOR</returns>
         public static CraftingTemplate ValidTemplate()
         {
@@ -89,9 +90,36 @@ namespace TOR_Core.HarmonyPatches
             {
                 Campaign.Current.Models.GetSmithingModel().ValidateHiddenCraftingTemplates();
             }
-            CraftingTemplate restrictedRandom = TORSmithingModel.ValidPlayerCraftingTemplates.GetRandomElement();
-            //TORCommon.Log("Valid Template chose : " + restrictedRandom.StringId, NLog.LogLevel.Info);
-            return restrictedRandom;
+            return TORSmithingModel.ValidPlayerCraftingTemplates.GetRandomElement();
+        }
+
+        /// <summary>
+        /// Selects a valid crafting template filtered by the order owner's settlement culture.
+        /// </summary>
+        /// <param name="orderOwner">The hero placing the crafting order</param>
+        /// <returns>A culture-appropriate crafting template</returns>
+        public static CraftingTemplate ValidTemplate(Hero orderOwner)
+        {
+            // Ensure validation has occurred
+            if (!TORSmithingModel.templatesValidated)
+            {
+                Campaign.Current.Models.GetSmithingModel().ValidateHiddenCraftingTemplates();
+            }
+
+            // Get culture from settlement (fallback to Empire)
+            string cultureId = orderOwner?.CurrentSettlement?.Town?.Culture?.StringId
+                               ?? TORConstants.Cultures.EMPIRE;
+
+            // Filter valid templates by culture
+            var smithingModel = Campaign.Current.Models.GetSmithingModel() as TORSmithingModel;
+            var cultureFiltered = TORSmithingModel.ValidPlayerCraftingTemplates
+                .Where(t => smithingModel?.IsCultureAppropriateOrder(t.StringId, cultureId) ?? true)
+                .ToList();
+
+            // Return culture-filtered if available, otherwise fall back to any valid template
+            return cultureFiltered.Count > 0
+                ? cultureFiltered.GetRandomElement()
+                : TORSmithingModel.ValidPlayerCraftingTemplates.GetRandomElement();
         }
     }
 }

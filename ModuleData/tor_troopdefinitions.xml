@@ -1620,7 +1620,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_longbeard" default_group="infantry" level="31" name="{=str_tor_dw_longbeard}Dawi Longbeard" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_longbeard" race="dwarf">
     <face>
-      <face_key_template value="BodyProperty.dwarf_mid_tier" />
+      <face_key_template value="BodyProperty.dwarf_old" />
       <hair_tags>
         <hair_tag name="DwarfHair" />
       </hair_tags>
@@ -1757,7 +1757,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_oldguard" default_group="infantry" level="26" name="{=str_tor_dw_oldguard}Dawi Old Guard" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_oldguard" is_basic_troop="true" race="dwarf">
     <face>
-      <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <face_key_template value="BodyProperty.dwarf_old" />
       <hair_tags>
         <hair_tag name="DwarfHair" />
       </hair_tags>
@@ -3405,7 +3405,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_norscan_tribesman" default_group="infantry" level="6" name="{=str_tor_chaos_norscan_tribesman}Norscan Tribesman" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
+      <face_key_template value="BodyProperty.fighter_chaos_marauder" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_chaos_norscan_raider" />
@@ -3419,7 +3419,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_norscan_raider" default_group="infantry" level="11" name="{=str_tor_chaos_norscan_raider}Norscan Raider" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level11" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
+      <face_key_template value="BodyProperty.fighter_chaos_marauder" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_chaos_norscan_marauder" />
@@ -3431,7 +3431,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_norscan_marauder" default_group="infantry" level="16" name="{=str_tor_chaos_norscan_marauder}Norscan Marauder" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level16" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
+      <face_key_template value="BodyProperty.fighter_chaos_marauder" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_chaos_norscan_champion" />
@@ -3443,7 +3443,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_norscan_champion" default_group="infantry" level="26" name="{=str_tor_chaos_norscan_champion}Norscan Marauder Champion" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level26" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
+      <face_key_template value="BodyProperty.fighter_chaos_marauder" />
     </face>
     <upgrade_targets />
     <Equipments>
@@ -3453,7 +3453,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_norscan_whaler" default_group="infantry" level="11" name="{=str_tor_chaos_norscan_whaler}Norscan Whaler" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level11" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
+      <face_key_template value="BodyProperty.fighter_chaos_marauder" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_chaos_norscan_reaver" />
@@ -3465,7 +3465,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_norscan_reaver" default_group="infantry" level="16" name="{=str_tor_chaos_norscan_reaver}Norscan Reaver" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level16" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
+      <face_key_template value="BodyProperty.fighter_chaos_marauder" />
     </face>
     <upgrade_targets />
     <Equipments>
@@ -3475,7 +3475,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_norscan_horseman" default_group="cavalry" level="11" name="{=str_tor_chaos_norscan_horseman}Norscan Horseman" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level11" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
+      <face_key_template value="BodyProperty.fighter_chaos_marauder" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_chaos_norscan_horsemaster" />
@@ -3487,7 +3487,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_norscan_horsemaster" default_group="cavalry" level="16" name="{=str_tor_chaos_norscan_horsemaster}Norscan Horsemaster" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level16" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
+      <face_key_template value="BodyProperty.fighter_chaos_marauder" />
     </face>
     <upgrade_targets />
     <Equipments>
@@ -3497,7 +3497,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_aspiring_warrior" default_group="infantry" level="26" name="{=str_tor_chaos_aspiring_warrior}Aspiring Warrior" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level26" is_basic_troop="true" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
+      <face_key_template value="BodyProperty.fighter_chaos_marauder" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_chaos_pit_fighter" />
@@ -3511,7 +3511,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_pit_fighter" default_group="infantry" level="31" name="{=str_tor_chaos_pit_fighter}Chaos Pit Fighter" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level31" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
+      <face_key_template value="BodyProperty.fighter_chaos_marauder" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_chaos_nurgle_warrior" />
@@ -3524,7 +3524,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_pugulist" default_group="infantry" level="31" name="{=str_tor_chaos_pugulist}Chaos Pugulist" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level31" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
+      <face_key_template value="BodyProperty.fighter_chaos_marauder" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_chaos_undivided_warrior" />
@@ -3536,7 +3536,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_undivided_warrior" default_group="infantry" level="36" name="{=str_tor_chaos_undivided_warrior}Chaos Warrior" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level36" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
+      <face_key_template value="BodyProperty.fighter_chaos_warrior" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_chaos_undivided_knight" />
@@ -3548,7 +3548,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_gladiator" default_group="infantry" level="31" name="{=str_tor_chaos_gladiator}Chaos Gladiator" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level31" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
+      <face_key_template value="BodyProperty.fighter_chaos_marauder" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_chaos_slaanesh_warrior" />
@@ -3561,7 +3561,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_slaanesh_warrior" default_group="infantry" level="36" name="{=str_tor_chaos_slaanesh_warrior}Chaos Warrior of Slaanesh" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level36" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
+      <face_key_template value="BodyProperty.fighter_chaos_warrior" />
     </face>
     <upgrade_targets />
     <Equipments>
@@ -3571,7 +3571,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_khorne_warrior" default_group="infantry" level="36" name="{=str_tor_chaos_khorne_warrior}Chaos Warrior of Khorne" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level36" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
+      <face_key_template value="BodyProperty.fighter_chaos_warrior" />
     </face>
     <upgrade_targets />
     <Equipments>
@@ -3581,7 +3581,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_nurgle_warrior" default_group="infantry" level="36" name="{=str_tor_chaos_nurgle_warrior}Chaos Warrior of Nurgle" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level36" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
+      <face_key_template value="BodyProperty.fighter_chaos_warrior" />
     </face>
     <upgrade_targets />
     <Equipments>
@@ -3591,7 +3591,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_tzeench_warrior" default_group="infantry" level="36" name="{=str_tor_chaos_tzeench_warrior}Chaos Warrior of Tzeentch" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level36" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
+      <face_key_template value="BodyProperty.fighter_chaos_warrior" />
     </face>
     <upgrade_targets />
     <Equipments>
@@ -3601,7 +3601,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_undivided_knight" default_group="cavalry" level="46" name="{=str_tor_chaos_undivided_knight}Chaos Knight" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level46" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
+      <face_key_template value="BodyProperty.fighter_chaos_warrior" />
     </face>
     <upgrade_targets />
     <Equipments>
@@ -4975,7 +4975,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_wh_retinue" default_group="ranged" level="16" name="{=str_tor_wh_retinue}Retinue Apprentice" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
     <face>
-      <face_key_template value="BodyProperty.fighter_vlandia" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_wh_retinue_hunter" />
@@ -4987,7 +4987,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_wh_retinue_hunter" default_group="ranged" level="36" name="{=str_tor_wh_retinue_hunter}Retinue Hunter" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level36">
     <face>
-      <face_key_template value="BodyProperty.fighter_vlandia" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_wh_retinue_headhunter" />
@@ -4999,7 +4999,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_wh_retinue_headhunter" default_group="ranged" level="46" name="{=str_tor_wh_retinue_headhunter}Retinue Headhunter" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level46">
     <face>
-      <face_key_template value="BodyProperty.fighter_vlandia" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <upgrade_targets />
     <Equipments>
@@ -5300,7 +5300,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_bandit" default_group="ranged" level="11" name="{=str_tor_br_bandit}Hood" occupation="Bandit" culture="Culture.desert_bandits" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_br_bandit_scout" />
@@ -5322,7 +5322,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_bandit_scout" default_group="ranged" level="16" name="{=str_tor_br_bandit_scout}Herrimault" occupation="Bandit" culture="Culture.desert_bandits" skill_template="SkillSet.tor_skills_level16">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_br_bandit_leader" />
@@ -5334,7 +5334,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_bandit_norscan_raider" default_group="infantry" level="11" name="{=str_tor_bandit_norscan_raider}Renegade Norscan Raider" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
+      <face_key_template value="BodyProperty.fighter_chaos_marauder" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_bandit_norscan_marauder" />
@@ -5347,7 +5347,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_bandit_norscan_whaler" default_group="infantry" level="16" name="{=str_tor_bandit_norscan_whaler}Renegade Norscan Whaler" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level16" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
+      <face_key_template value="BodyProperty.fighter_chaos_marauder" />
     </face>
     <upgrade_targets />
     <Equipments>
@@ -5357,7 +5357,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_bandit_norscan_marauder" default_group="infantry" level="16" name="{=str_tor_bandit_norscan_marauder}Renegade Norscan Marauder" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level16" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
+      <face_key_template value="BodyProperty.fighter_chaos_marauder" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_bandit_norscan_champion" />
@@ -5369,7 +5369,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_bandit_norscan_champion" default_group="infantry" level="26" name="{=str_tor_bandit_norscan_champion}Renegade Norscan Marauder Champion" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level26" race="marauder">
     <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
+      <face_key_template value="BodyProperty.fighter_chaos_marauder" />
     </face>
     <upgrade_targets />
     <Equipments>

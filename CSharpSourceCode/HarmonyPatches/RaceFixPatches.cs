@@ -25,6 +25,7 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatchCategory("LatePatches")]
     public class RaceFixPatches
     {
+        // thumbnail/portrait render path marker
         [ThreadStatic]
         private static int _characterThumbnailRenderDepth;
 
@@ -192,6 +193,7 @@ namespace TOR_Core.HarmonyPatches
             ____oldAgentVisuals.Refresh(false, newdata, false);
         }
 
+        // marks the character thumbnail render path
         [HarmonyPrefix]
         [HarmonyPatch(typeof(CharacterThumbnailCache), "OnCreateTexture")]
         public static void MarkCharacterThumbnailRenderStart()
@@ -199,6 +201,7 @@ namespace TOR_Core.HarmonyPatches
             _characterThumbnailRenderDepth++;
         }
 
+        // ensures thumbnail render depth is restored in case texture creation fails
         [HarmonyFinalizer]
         [HarmonyPatch(typeof(CharacterThumbnailCache), "OnCreateTexture")]
         public static Exception MarkCharacterThumbnailRenderEnd(Exception __exception)
@@ -219,11 +222,17 @@ namespace TOR_Core.HarmonyPatches
                 return true;
             }
 
-            if (skeletonName == "goblin_skeleton" && _characterThumbnailRenderDepth == 0)
+            if (skeletonName != "goblin_skeleton")
             {
-                frame.rotation.OrthonormalizeAccordingToForwardAndKeepUpAsZAxis();
+                return true;
+            }
+            // goblin thumbnail renders must skip native scaling to avoid portrait corruption
+            if (_characterThumbnailRenderDepth > 0)
+            {
+                return false;
             }
 
+            frame.rotation.OrthonormalizeAccordingToForwardAndKeepUpAsZAxis();
             return true;
         }
 

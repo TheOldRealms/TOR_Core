@@ -410,7 +410,7 @@ namespace TOR_Core.BattleMechanics
             EquipmentIndex? bestSlot = null;
             int bestWeaponLength = -1;
 
-            for (int i = (int)EquipmentIndex.WeaponItemBeginSlot; i < (int)EquipmentIndex.NumAllWeaponSlots; i++)
+            for (int i = (int)EquipmentIndex.WeaponItemBeginSlot; i < (int)EquipmentIndex.ExtraWeaponSlot; i++)
             {
                 var slot = (EquipmentIndex)i;
                 MissionWeapon missionWeapon = agent.Equipment[slot];
