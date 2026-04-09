@@ -524,9 +524,8 @@
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>ghyran_tendrils_enchant</WeaponScriptArgument>
-        <WeaponScriptArgument>10</WeaponScriptArgument>
-        <WeaponScriptArgument>true</WeaponScriptArgument>
-        <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -1105,7 +1104,7 @@
     <IngredientAmount>15</IngredientAmount>
     <ItemTraitDescription>"10% bonus to magic damage, summon 3 Grave Guard for every enemy felled in melee"</ItemTraitDescription>
     <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
-    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.RandomPositionAroundAtKill">
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.TriggerOnKillScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>call_from_beyond</WeaponScriptArgument>
       </WeaponScriptArguments>
@@ -1141,8 +1140,8 @@
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>nightshroud</WeaponScriptArgument>
-        <WeaponScriptArgument>15</WeaponScriptArgument>
-        <WeaponScriptArgument>5</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -1178,8 +1177,6 @@
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>touch_jet</WeaponScriptArgument>
-        <WeaponScriptArgument>100</WeaponScriptArgument>
-        <WeaponScriptArgument>1</WeaponScriptArgument>
         <WeaponScriptArgument>false</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
       </WeaponScriptArguments>
@@ -1209,7 +1206,8 @@
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>chilling_hand</WeaponScriptArgument>
-        <WeaponScriptArgument>10</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -1271,9 +1269,8 @@
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>emissaries_mirai</WeaponScriptArgument>
-        <WeaponScriptArgument>15</WeaponScriptArgument>
-        <WeaponScriptArgument>5</WeaponScriptArgument>
-        <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -1329,7 +1326,8 @@
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>thorns_nettles</WeaponScriptArgument>
-        <WeaponScriptArgument>100</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -1343,7 +1341,6 @@
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>tranquillity_cadai</WeaponScriptArgument>
-        <WeaponScriptArgument>30</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
         <WeaponScriptArgument>false</WeaponScriptArgument>
       </WeaponScriptArguments>
@@ -1438,7 +1435,8 @@
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>tree_lord_bargain</WeaponScriptArgument>
-        <WeaponScriptArgument>15</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
