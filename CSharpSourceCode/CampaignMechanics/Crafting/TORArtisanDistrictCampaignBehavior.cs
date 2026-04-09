@@ -59,6 +59,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
             TorEnchantingIngredients.LoadIngredients();
             AddTownMenu(starter);
 
+            //this is basically redundant, but left it for the moment. The game triggers calls to validation via CraftingPatches. This needs to be earlier in NewGamePartialFollowUp to predate the crafting order generation that the game performs in the crafting behavior.
             var smithingModel = Campaign.Current.Models.GetSmithingModel();
             if (smithingModel != null)
             {
