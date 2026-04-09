@@ -16,11 +16,126 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
+    /// <summary>
+    /// Categories for weapon templates used in culture-based order filtering.
+    /// </summary>
+    public enum TemplateWeaponCategory
+    {
+        Sword,       // 1H/2H swords, rapiers
+        Axe,         // 1H/2H axes (generic)
+        Mace,        // 1H/2H maces, hammers
+        Polearm,     // Polearms, spears, scythes, lances
+        DwarfWeapon, // Dwarf-specific weapons
+        OrcWeapon,   // Orc-specific templates
+    }
+
     public class TORSmithingModel : DefaultSmithingModel
     {
         public static bool templatesValidated = false;
-        public static List<string> HiddenCraftingTemplateIds = ["tor_large_monster_weapon_template", "tor_dual_wield_mainhand", "tor_trolltwohandedmace"];
+        public static List<string> HiddenCraftingTemplateIds = ["tor_large_monster_weapon_template", "tor_dual_wield_mainhand", "tor_trolltwohandedmace", "tor_staff_template"];
         public static List<CraftingTemplate> ValidPlayerCraftingTemplates = new List<CraftingTemplate>();
+
+        /// <summary>
+        /// Maps template IDs to their weapon category.
+        /// </summary>
+        private static readonly Dictionary<string, TemplateWeaponCategory> TemplateCategoryMap = new()
+        {
+            // Orc templates
+            { "tor_orc_twohandedsword_template", TemplateWeaponCategory.OrcWeapon },
+            { "tor_orc_axe_template", TemplateWeaponCategory.OrcWeapon },
+            { "tor_orc_sword_template", TemplateWeaponCategory.OrcWeapon },
+            { "tor_orc_mace_template", TemplateWeaponCategory.OrcWeapon },
+            { "tor_orc_polearm_template", TemplateWeaponCategory.OrcWeapon },
+            { "tor_orctwohandedaxe", TemplateWeaponCategory.OrcWeapon },
+            { "tor_orc_staff_template", TemplateWeaponCategory.OrcWeapon },
+
+            // Sword templates
+            { "tor_sword_template", TemplateWeaponCategory.Sword },
+            { "tor_twohandedswords_template", TemplateWeaponCategory.Sword },
+            { "tor_rapier_template", TemplateWeaponCategory.Sword },
+
+            // Axe templates
+            { "tor_axe_template", TemplateWeaponCategory.Axe },
+            { "tor_twohandedaxe", TemplateWeaponCategory.Axe },
+
+            // Dwarf-specific templates
+            { "tor_dwarven_axe_template", TemplateWeaponCategory.DwarfWeapon },
+
+            // Mace templates
+            { "tor_mace_template", TemplateWeaponCategory.Mace },
+            { "tor_twohandedmace", TemplateWeaponCategory.Mace },
+
+            // Polearm templates
+            { "tor_polearm_template", TemplateWeaponCategory.Polearm },
+            { "tor_scythe_template", TemplateWeaponCategory.Polearm },
+            { "tor_lance_template", TemplateWeaponCategory.Polearm },
+        };
+
+        /// <summary>
+        /// Maps cultures to their allowed weapon categories for NPC orders.
+        /// </summary>
+        private static readonly Dictionary<string, HashSet<TemplateWeaponCategory>> CultureAllowedCategories = new()
+        {
+            // Dwarfs - Axes, Maces, Dwarf weapons
+            { TORConstants.Cultures.DAWI, new HashSet<TemplateWeaponCategory>
+                { TemplateWeaponCategory.Axe, TemplateWeaponCategory.Mace, TemplateWeaponCategory.DwarfWeapon } },
+
+            // Wood Elves - Swords, Polearms
+            { TORConstants.Cultures.ASRAI, new HashSet<TemplateWeaponCategory>
+                { TemplateWeaponCategory.Sword, TemplateWeaponCategory.Polearm } },
+
+            // High Elves - Swords, Polearms
+            { TORConstants.Cultures.EONIR, new HashSet<TemplateWeaponCategory>
+                { TemplateWeaponCategory.Sword, TemplateWeaponCategory.Polearm } },
+
+            // Greenskins - Orc weapons + Axes + Maces
+            { TORConstants.Cultures.GREENSKIN, new HashSet<TemplateWeaponCategory>
+                { TemplateWeaponCategory.OrcWeapon, TemplateWeaponCategory.Axe, TemplateWeaponCategory.Mace } },
+
+            // Empire - All standard weapons (also used as default fallback)
+            { TORConstants.Cultures.EMPIRE, new HashSet<TemplateWeaponCategory>
+                { TemplateWeaponCategory.Sword, TemplateWeaponCategory.Axe, TemplateWeaponCategory.Mace, TemplateWeaponCategory.Polearm } },
+
+            // Bretonnia - All standard weapons
+            { TORConstants.Cultures.BRETONNIA, new HashSet<TemplateWeaponCategory>
+                { TemplateWeaponCategory.Sword, TemplateWeaponCategory.Axe, TemplateWeaponCategory.Mace, TemplateWeaponCategory.Polearm } },
+
+            // Sylvania (Vampires) - Empire gear
+            { TORConstants.Cultures.SYLVANIA, new HashSet<TemplateWeaponCategory>
+                { TemplateWeaponCategory.Sword, TemplateWeaponCategory.Axe, TemplateWeaponCategory.Mace, TemplateWeaponCategory.Polearm } },
+
+            // Mousillon - Empire + Bretonnia gear
+            { TORConstants.Cultures.MOUSILLON, new HashSet<TemplateWeaponCategory>
+                { TemplateWeaponCategory.Sword, TemplateWeaponCategory.Axe, TemplateWeaponCategory.Mace, TemplateWeaponCategory.Polearm } },
+        };
+
+        /// <summary>
+        /// Checks if a crafting template is appropriate for NPC orders in a given culture.
+        /// Override this to customize culture-based smithing order filtering.
+        /// </summary>
+        /// <param name="templateId">The crafting template string ID</param>
+        /// <param name="cultureId">The culture string ID</param>
+        /// <returns>True if the template is allowed for this culture's orders</returns>
+        public virtual bool IsCultureAppropriateOrder(string templateId, string cultureId)
+        {
+            // Only filter TOR templates - allow base game templates
+            if (!templateId.StartsWith("tor_"))
+            {
+                return true;
+            }
+
+            // Get allowed categories for culture (default to Empire)
+            var allowedCategories = CultureAllowedCategories.TryGetValue(cultureId, out var categories)
+                ? categories
+                : CultureAllowedCategories[TORConstants.Cultures.EMPIRE];
+
+            // Check if template's category is allowed
+            if (TemplateCategoryMap.TryGetValue(templateId, out var category))
+            {
+                return allowedCategories.Contains(category);
+            }
+            return false;
+        }
 
         public override int GetEnergyCostForRefining(ref Crafting.RefiningFormula refineFormula, Hero hero)
         {
