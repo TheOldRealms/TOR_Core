@@ -6725,8 +6725,8 @@
 			<name name="{=wood_elf_female_name_71}Tharirae" />
 			<name name="{=wood_elf_female_name_72}Thodriel" />
 			<name name="{=wood_elf_female_name_73}Virelaine" />
-			<name name="{=wood_elf_female_name_74}ylvyn" />
-			<name name="{=wood_elf_female_name_75}yealwine" />
+			<name name="{=wood_elf_female_name_74}Ylvyn" />
+			<name name="{=wood_elf_female_name_75}Yealwine" />
 		</female_names>
 		<clan_names>
 			<name name="{=wood_elf_clan_name_1}Haroith" />

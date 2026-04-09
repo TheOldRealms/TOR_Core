@@ -18,6 +18,7 @@ namespace TOR_Core.Models
 {
     public class TORSmithingModel : DefaultSmithingModel
     {
+        public static bool templatesValidated = false;
         public static List<string> HiddenCraftingTemplateIds = ["tor_large_monster_weapon_template", "tor_dual_wield_mainhand", "tor_trolltwohandedmace"];
         public static List<CraftingTemplate> ValidPlayerCraftingTemplates = new List<CraftingTemplate>();
 
@@ -179,6 +180,7 @@ namespace TOR_Core.Models
                 ValidPlayerCraftingTemplates.ForEach(x => templateList = templateList.Add(" " + x.StringId + ",", false));
                 templateList = templateList.TrimEnd(',');
                 TORCommon.Log(templateList, NLog.LogLevel.Info);
+                templatesValidated = true;
             }
             else
             {

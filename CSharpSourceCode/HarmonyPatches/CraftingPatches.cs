@@ -79,14 +79,17 @@ namespace TOR_Core.HarmonyPatches
         /// <summary>
         /// Prevents the game from selecting a crafting order using an npc weapon template.
         /// </summary>
+        /// <remarks>
+        /// CraftingCampaignBehavior (which has calls leading to this) is added to the game starter before the smithing model, but both of them are loaded before the NewGamePartialFollowUp which the behavior has an event registered with. It's therefore safe to validate through the crafting model when this is called through CreateTownOrder.
+        /// </remarks>
         /// <returns>A valid crafting template in the context of TOR</returns>
         public static CraftingTemplate ValidTemplate()
         {
-            CraftingTemplate restrictedRandom = TORSmithingModel.ValidPlayerCraftingTemplates.GetRandomElement();
-            if (restrictedRandom == null)
-            { 
-                restrictedRandom = CraftingTemplate.All.GetRandomElementWithPredicate(x => !TORSmithingModel.HiddenCraftingTemplateIds.Contains(x.StringId));
+            if (!TORSmithingModel.templatesValidated)
+            {
+                Campaign.Current.Models.GetSmithingModel().ValidateHiddenCraftingTemplates();
             }
+            CraftingTemplate restrictedRandom = TORSmithingModel.ValidPlayerCraftingTemplates.GetRandomElement();
             //TORCommon.Log("Valid Template chose : " + restrictedRandom.StringId, NLog.LogLevel.Info);
             return restrictedRandom;
         }
