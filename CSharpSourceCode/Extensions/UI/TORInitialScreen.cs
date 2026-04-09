@@ -83,7 +83,9 @@ namespace TOR_Core.Extensions.UI
             _scene.SetName("MainMenuScene");
             SceneInitializationData sceneInitializationData = new SceneInitializationData(true);
             var randomInt = MBRandom.RandomInt(1, _maxMainMenuSceneIndex + 1);
-            _scene.Read($"TOR_menuscene_0{randomInt}", ref sceneInitializationData);
+            var sceneName = $"TOR_menuscene_0{randomInt}";
+            TOR_Core.Utilities.TORCommon.Log($"main menu scene: {sceneName}", NLog.LogLevel.Info);
+            _scene.Read(sceneName, ref sceneInitializationData);
             _scene.DisableStaticShadows(true);
             _scene.SetShadow(true);
             _scene.SetClothSimulationState(true);
