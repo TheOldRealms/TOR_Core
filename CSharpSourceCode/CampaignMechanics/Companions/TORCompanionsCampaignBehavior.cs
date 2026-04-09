@@ -427,8 +427,20 @@ namespace TOR_Core.CampaignMechanics.Companions
 
         private void AdjustEquipment(Hero hero)
         {
+            SwapStealthEquipment(hero, hero.StealthEquipment);
             AddCompanionModifiers(hero.BattleEquipment);
             AddCompanionModifiers(hero.CivilianEquipment);
+            AddCompanionModifiers(hero.StealthEquipment);
+        }
+
+        private void SwapStealthEquipment(Hero hero, Equipment stealthEquipment)
+        {
+            var battleRoster = hero.BattleEquipment;
+            for (EquipmentIndex equipmentIndex = EquipmentIndex.WeaponItemBeginSlot; equipmentIndex < EquipmentIndex.ArmorItemEndSlot; equipmentIndex++)
+            {
+                var battleElement = battleRoster[equipmentIndex];
+                stealthEquipment[equipmentIndex] = new EquipmentElement(battleElement.Item);
+            }
         }
 
         private void AddCompanionModifiers(Equipment equipment)

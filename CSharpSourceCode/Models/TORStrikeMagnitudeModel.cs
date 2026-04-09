@@ -51,7 +51,7 @@ namespace TOR_Core.Models
 
                 if (attacker.IsHero && attackerAgent!=null) // never remove this check. operations for item traits can be very heavy
                 {
-                    
+                    //Sly : does attackInformation.MissionWeapon not contain the references to the ranged and ammo weapon that are necessary here and could skip missileList iteration?
                     if (weaponComponent.IsAmmo || weaponComponent.IsRangedWeapon)
                     {
                         var missile = Mission.Current.MissilesList.FirstOrDefault(x => x.ShooterAgent == attackerAgent && x.Weapon.CurrentUsageItem.GetItemUsageIndex() == weaponComponent.GetItemUsageIndex());
