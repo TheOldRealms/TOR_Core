@@ -4734,7 +4734,7 @@
   <string id="tor_extendedInfo.Unbreakable" text="{=str_tor_extendedinfo_unbreakable}Unbreakable - shall never flee due to low morale."/>
   <string id="tor_extendedInfo.Unstoppable" text="{=str_tor_extendedinfo_unstoppable}Unstoppable - does not stagger upon receiving damage."/>
   <string id="tor_extendedInfo.TrollRegeneration" text="{=str_tor_extendedinfo_troll_regeneration}Troll Regeneration - regenerates health over time."/>
-  
+  <string id="tor_extendedInfo.Piercing" text="{=str_tor_extendedinfo_piercing}Unit deals 40% Armor piercing damage."/>
 
   <string id="tor_damagetype.Invalid" text="{=str_tor_damagetype_invalid}Invalid"/>
   <string id="tor_damagetype.Physical" text="{=str_tor_damagetype_physical}Physical"/>
