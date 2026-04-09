@@ -820,6 +820,33 @@ public class OathGoldBehavior : CampaignBehaviorBase
                 if (spanner1h != null) items.Add(spanner1h);
                 var spanner2h = MBObjectManager.Instance.GetObject<ItemObject>("tor_dwarf_2h_spanner_001");
                 if (spanner2h != null) items.Add(spanner2h);
+
+                //Add Tier1 crossbows and handguns
+                var tier1Items = new List<string>
+                {
+                    "tor_dw_weapon_crossbow_001",
+                    "tor_dw_weapon_crossbow_002",
+                    "tor_dw_weapon_gun_handgun_001",
+                    "tor_dw_weapon_gun_handgun_002",
+                    "tor_dw_head_apprentice_002",
+                    "tor_dw_head_apprentice_001",
+                    "tor_dw_head_journeyman_001",
+                    "tor_dw_shoulder_shoulderpads_apprentice_001",
+                    "tor_dw_body_armour_apprentice_001",
+                    "tor_dw_body_armour_journeyman_001",
+                    "tor_dw_body_armour_engineer_001",
+                    "tor_dw_arm_gloves_apprentice_001",
+                    "tor_dw_arm_gloves_journeyman_001",
+                    "tor_dw_arm_gloves_engineer_001",
+                    "tor_dw_leg_boots_apprentice_001",
+                    "tor_dw_leg_boots_journeyman_001",
+                    "tor_dw_leg_boots_engineer_001"
+                };
+                foreach (var itemId in tier1Items)
+                {
+                    var item = MBObjectManager.Instance.GetObject<ItemObject>(itemId);
+                    if (item != null) items.Add(item);
+                }
             }
             if (Hero.MainHero.HasAttribute("DwarfEngineersII"))
             {
@@ -852,6 +879,21 @@ public class OathGoldBehavior : CampaignBehaviorBase
                 if (grudgeRaker != null) items.Add(grudgeRaker);
                 var buckshot = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_ammo_buckshot");
                 if (buckshot != null) items.Add(buckshot);
+
+                //Add Tier2 crossbows, handguns and armor
+                var tier2Items = new List<string>
+                {
+                    "tor_dw_weapon_crossbow_003",
+                    "tor_dw_weapon_crossbow_004",
+                    "tor_dw_weapon_gun_handgun_003",
+                    "tor_dw_head_engineer_002",
+                    "tor_dw_shoulder_shoulderpads_journeyman_001"
+                };
+                foreach (var itemId in tier2Items)
+                {
+                    var item = MBObjectManager.Instance.GetObject<ItemObject>(itemId);
+                    if (item != null) items.Add(item);
+                }
             }
             if (Hero.MainHero.HasAttribute("DwarfEngineersIII"))
             {
@@ -865,6 +907,20 @@ public class OathGoldBehavior : CampaignBehaviorBase
                 //Add Tier3 handgun
                 var handgun004 = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_gun_handgun_004");
                 if (handgun004 != null) items.Add(handgun004);
+
+                //Add Tier3 trollhammer and armor
+                var tier3Items = new List<string>
+                {
+                    "tor_dw_weapon_gun_trollhammer",
+                    "tor_dw_iron_drake_trollhammer_torpedo",
+                    "tor_dw_head_engineer_001",
+                    "tor_dw_shoulder_shoulderpads_engineer_001"
+                };
+                foreach (var itemId in tier3Items)
+                {
+                    var item = MBObjectManager.Instance.GetObject<ItemObject>(itemId);
+                    if (item != null) items.Add(item);
+                }
             }
 
 
