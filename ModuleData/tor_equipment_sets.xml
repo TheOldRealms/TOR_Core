@@ -5607,7 +5607,7 @@
   <EquipmentRoster id="tor_dw_militia_template" culture="Culture.sturgia">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_004" />
-      <Equipment slot="Item1" id="Item.northern_round_sparring_shield" />
+      <Equipment slot="Item1" id="Item.tor_dwarf_weapon_shield_001" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_militia_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_militia_001" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulderpads_militia_001" />
@@ -5616,7 +5616,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_004" />
-      <Equipment slot="Item1" id="Item.northern_round_sparring_shield" />
+      <Equipment slot="Item1" id="Item.tor_dwarf_weapon_shield_001" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_militia_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_militia_001" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulderpads_militia_001" />
@@ -5625,7 +5625,7 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_006" />
-      <Equipment slot="Item1" id="Item.curved_round_shield" />
+      <Equipment slot="Item1" id="Item.tor_dwarf_weapon_shield_002" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_militia_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_militia_001" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulderpads_militia_001" />
@@ -5634,7 +5634,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_006" />
-      <Equipment slot="Item1" id="Item.curved_round_shield" />
+      <Equipment slot="Item1" id="Item.tor_dwarf_weapon_shield_002" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_militia_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_militia_001" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulderpads_militia_001" />
@@ -5643,7 +5643,7 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_009" />
-      <Equipment slot="Item1" id="Item.northern_round_sparring_shield" />
+      <Equipment slot="Item1" id="Item.tor_dwarf_weapon_shield_006" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_miner_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_militia_001" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulderpads_miner_001" />
@@ -5652,7 +5652,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_009" />
-      <Equipment slot="Item1" id="Item.northern_round_sparring_shield" />
+      <Equipment slot="Item1" id="Item.tor_dwarf_weapon_shield_006" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_miner_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_militia_001" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulderpads_miner_001" />
@@ -6025,7 +6025,7 @@
   <EquipmentRoster id="tor_dw_pilgrim_template" culture="Culture.sturgia">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_006" />
-      <Equipment slot="Item1" id="Item.northern_round_sparring_shield" />
+      <Equipment slot="Item1" id="Item.tor_dwarf_weapon_shield_001" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_militia_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_warrior_001" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulderpads_miner_001" />
@@ -6034,7 +6034,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_006" />
-      <Equipment slot="Item1" id="Item.northern_round_sparring_shield" />
+      <Equipment slot="Item1" id="Item.tor_dwarf_weapon_shield_001" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_militia_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_warrior_001" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulderpads_miner_001" />
@@ -26057,7 +26057,7 @@
   <EquipmentRoster id="tor_cc_dw_shield_breaker_3" culture="Culture.sturgia">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_003" />
-      <Equipment slot="Item1" id="Item.curved_round_shield" />
+      <Equipment slot="Item1" id="Item.tor_dwarf_weapon_shield_001" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_warrior_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_militia_001" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulderpads_militia_001" />
@@ -26066,7 +26066,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_003" />
-      <Equipment slot="Item1" id="Item.curved_round_shield" />
+      <Equipment slot="Item1" id="Item.tor_dwarf_weapon_shield_001" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_warrior_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_militia_001" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulderpads_militia_001" />

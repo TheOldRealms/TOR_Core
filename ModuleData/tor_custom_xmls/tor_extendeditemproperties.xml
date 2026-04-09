@@ -5451,6 +5451,15 @@
   <ExtendedItemObjectProperties ItemStringId="tor_de_weapon_shield_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_shield_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_shield_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_shield_006">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_shield_005">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -6369,9 +6378,9 @@
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_learn_asrai_enchant_leylines_weave">
+  <ExtendedItemObjectProperties ItemStringId="tor_learn_we_enchant_leylines_weave">
     <ItemTraits>
-      <ItemTrait>learn_asrai_enchant_leylines_weave</ItemTrait>
+      <ItemTrait>learn_we_enchant_leylines_weave</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
