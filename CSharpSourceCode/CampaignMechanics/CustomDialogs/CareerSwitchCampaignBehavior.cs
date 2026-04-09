@@ -234,7 +234,7 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
 
         private bool CanBeVampire()
         {
-            if (Hero.MainHero.CharacterObject.IsElf())
+            if (!Hero.MainHero.CharacterObject.IsHuman())
             {
                 return false;
             }
@@ -245,7 +245,7 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
                 return false;
 
 
-            return !Hero.MainHero.IsVampire();
+            return true;
         }
 
         public override void SyncData(IDataStore dataStore) { }

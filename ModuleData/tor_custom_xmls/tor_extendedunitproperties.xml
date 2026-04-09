@@ -1201,11 +1201,13 @@
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.50" />
     </Resistances>
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="5.00" />
+    </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Magical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="ForestHarmony" UpkeepCost="3" UpgradeCost="0" />
+    <ResourceCost ResourceType="ForestHarmony" UpkeepCost="1" UpgradeCost="0" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_treeman">
     <Abilities />
@@ -1293,9 +1295,7 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.15" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1308,9 +1308,7 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.15" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1323,9 +1321,7 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.15" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1340,9 +1336,7 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.15" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1357,9 +1351,7 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.15" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1373,9 +1365,7 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.15" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1389,9 +1379,7 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.15" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1405,9 +1393,7 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.15" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1420,9 +1406,7 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.15" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1436,9 +1420,7 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.15" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1455,9 +1437,7 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.15" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1474,9 +1454,7 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.15" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1490,9 +1468,7 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.15" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1506,9 +1482,7 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.15" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1522,24 +1496,22 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.30" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_ironbreaker">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Ironbreaker</string>
+    </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.30" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1547,15 +1519,15 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_ironbeard">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Ironbreaker</string>
+    </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.30" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1564,6 +1536,7 @@
   <CharacterExtendedInfo id="tor_dw_irondrake">
     <Abilities />
     <Attributes>
+      <string>Ironbreaker</string>
       <string>DwarfGun</string>
     </Attributes>
     <Resistances>
@@ -1571,9 +1544,7 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.30" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1582,6 +1553,7 @@
   <CharacterExtendedInfo id="tor_dw_irondrake_trollhammer">
     <Abilities />
     <Attributes>
+      <string>Ironbreaker</string>
       <string>DwarfGun</string>
       <string>Piercing</string>
     </Attributes>
@@ -1590,9 +1562,7 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.30" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1606,9 +1576,7 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.30" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1622,9 +1590,7 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.30" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1673,9 +1639,7 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1688,9 +1652,7 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1704,9 +1666,7 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1719,9 +1679,7 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1738,9 +1696,7 @@
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -3403,6 +3359,17 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beast_ungor_chief_raider">
+    <Abilities />
+    <Attributes>
+      <string>Expendable</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_beast_ungor_chief">
     <Abilities />
     <Attributes />
@@ -4641,7 +4608,6 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="OathGold" UpkeepCost="3" UpgradeCost="0" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wh_retinue">
     <Abilities />
@@ -4930,6 +4896,17 @@
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_bandit_raider">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
+    </DamageAmplifiers>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_gs_bandit_raider_arrer">
     <Abilities />
     <Attributes />
     <Resistances />

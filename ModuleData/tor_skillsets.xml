@@ -3018,4 +3018,10 @@
 		<skill id="TwoHanded"
 			   value="300" />
 	</SkillSet>
+	<SkillSet id="tor_skills_minotaur">
+		<skill id="Athletics"
+		       value="300" />
+		<skill id="TwoHanded"
+		       value="270" />
+	</SkillSet>
 </SkillSets>

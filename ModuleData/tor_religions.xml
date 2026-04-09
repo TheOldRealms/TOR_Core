@@ -86,6 +86,7 @@
             <EliteUnit id="NPCCharacter.tor_empire_teutogen_guard" />
         </EliteUnits>
         <ReligiousArtifacts>
+		<ArtifactItem id="Item.tor_empire_head_helm_kotww_001" />
         </ReligiousArtifacts>
     </Religion>
     <Religion id="cult_of_shallya" Name="{=tor_religion_cult_name_cult_of_shallya_str}Cult of Shallya" Culture="Culture.empire" Pantheon="Human" DeityName="Shallya">
@@ -350,6 +351,9 @@
         </Followers>
         <ReligiousTroops>
         </ReligiousTroops>
+		<ReligiousArtifacts>
+            <ArtifactItem id="Item.tor_we_mount_unicorn_001" />
+        </ReligiousArtifacts>
     </Religion>
     <Religion id="cult_of_kurnous" Name="{=tor_religion_cult_name_cult_of_kurnous_str}Cult of Kurnous" Culture="Culture.battania" Pantheon="Elven" DeityName="Kurnous">
         <HostileReligions>

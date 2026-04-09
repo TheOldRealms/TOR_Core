@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
+using TaleWorlds.CampaignSystem.Extensions;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Core;
 using TOR_Core.CampaignMechanics.Religion;
@@ -60,6 +61,32 @@ namespace TOR_Core.Models
             return list;
         }
         */
+
+        
+        /// <remarks>
+        /// Copy of native code, but adjusted to exclude riding for dwarfs on npcs.
+        /// </remarks>
+        public override SkillObject GetNextSkillToAddFocus(Hero hero)
+        {
+            SkillObject skillObject = null;
+			float num = float.MinValue;
+			foreach (SkillObject skillObject2 in Skills.All)
+			{
+				if (hero.HeroDeveloper.CanAddFocusToSkill(skillObject2))
+				{
+                    if (hero.IsDwarf() && skillObject2 == DefaultSkills.Riding && hero.CharacterObject != CharacterObject.PlayerCharacter) continue; //Dwarfs won't auto-assign focus points into riding as they can't benefit from it normally. Player can manually assign points on themselves or companions to avoid this restriction if desired.
+
+					int focus = hero.HeroDeveloper.GetFocus(skillObject2);
+					float num2 = (float)hero.GetSkillValue(skillObject2) - Campaign.Current.Models.CharacterDevelopmentModel.CalculateLearningLimit(hero.CharacterAttributes, focus, skillObject2, false).ResultNumber;
+					if (num2 > num)
+					{
+						num = num2;
+						skillObject = skillObject2;
+					}
+				}
+			}
+			return skillObject;
+        }
 
         public override void GetTraitLevelForTraitXp(Hero hero, TraitObject trait, int xpValue, out int traitLevel, out int clampedTraitXp)
         {

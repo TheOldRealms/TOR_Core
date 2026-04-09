@@ -26,6 +26,69 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
     public static class CareerHelper
     {
+        // Session-scoped cache for career choices organized by PassiveEffectType
+        // Invalidated when choices change or save is loaded
+        private static Dictionary<PassiveEffectType, List<CareerChoiceObject>> _careerChoicesCache = null;
+
+        /// <summary>
+        /// Initializes/refreshes the career choices cache.
+        /// Called on: session start, career choice add/remove.
+        /// Organizes choices by PassiveEffectType for fast O(1) lookup.
+        /// </summary>
+        public static void RefreshCareerChoicesCache()
+        {
+            _careerChoicesCache = new Dictionary<PassiveEffectType, List<CareerChoiceObject>>();
+
+            if (Hero.MainHero == null) return;
+
+            var currentChoiceIDs = Hero.MainHero.GetAllCareerChoices();
+
+            foreach (var choiceID in currentChoiceIDs)
+            {
+                var choice = TORCareerChoices.GetChoice(choiceID);
+                if (choice?.Passive == null) continue;
+
+                var effectType = choice.Passive.PassiveEffectType;
+
+                if (!_careerChoicesCache.ContainsKey(effectType))
+                {
+                    _careerChoicesCache[effectType] = new List<CareerChoiceObject>();
+                }
+
+                _careerChoicesCache[effectType].Add(choice);
+            }
+        }
+
+        /// <summary>
+        /// Gets career choices filtered by PassiveEffectType using cached lookup.
+        /// Returns an empty list if cache is not initialized or type has no choices.
+        /// </summary>
+        public static List<CareerChoiceObject> GetCachedChoicesByType(PassiveEffectType type)
+        {
+            // Initialize cache if needed
+            if (_careerChoicesCache == null)
+            {
+                RefreshCareerChoicesCache();
+            }
+
+            return _careerChoicesCache!.TryGetValue(type, out var choices)
+                ? choices
+                : new List<CareerChoiceObject>();
+        }
+
+        /// <summary>
+        /// Legacy mission-scoped methods for backwards compatibility.
+        /// These now delegate to the session-scoped cache.
+        /// </summary>
+        [Obsolete("Use RefreshCareerChoicesCache instead")]
+        public static void InitializeMissionChoicesCache() => RefreshCareerChoicesCache();
+
+        [Obsolete("Cache is now session-scoped, no need to clear on mission end")]
+        public static void ClearMissionChoicesCache() { }
+
+        [Obsolete("Use GetCachedChoicesByType instead")]
+        public static List<CareerChoiceObject> GetMissionRelevantChoices(PassiveEffectType type) => GetCachedChoicesByType(type);
+
         public static float AddSkillEffectToValue(CareerChoiceObject careerChoice, Agent agent, List<SkillObject> relevantSkills, float scalingFactor, bool highestOnly = false, bool onlyWielded = false)
         {
             float skillValue = 0f;
@@ -74,42 +137,33 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public static bool ShruggedOffDamage(Hero hero, int damage)
         {
-            var choices = hero.GetAllCareerChoices();
-            return (from choiceID in choices
-                    select TORCareerChoices.GetChoice(choiceID)
-                into choice
-                    where choice != null
-                    where choice.Passive != null && choice.Passive.PassiveEffectType == PassiveEffectType.ShruggedOff
-                    select choice).AnyQ(choice => choice.GetPassiveValue() < damage);
+            // Use cached choices filtered by PassiveEffectType
+            var choices = GetCachedChoicesByType(PassiveEffectType.ShruggedOff);
+            return choices.AnyQ(choice => damage < choice.GetPassiveValue());
         }
 
         public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, AttackTypeMask mask, bool asFactor = false)
         {
-            var choices = hero.GetAllCareerChoices();
-            foreach (var choiceID in choices)
+            // Use cached choices filtered by PassiveEffectType
+            var choices = GetCachedChoicesByType(passiveEffectType);
+
+            foreach (var choice in choices)
             {
-                var choice = TORCareerChoices.GetChoice(choiceID);
-                if (choice == null)
+                var attackMask = choice.Passive.AttackTypeMask;
+                if ((mask & attackMask) == 0) //if mask does NOT contains attackmask
                     continue;
 
-                if (choice.Passive != null && choice.Passive.PassiveEffectType == passiveEffectType)
+                var value = choice.Passive.EffectMagnitude;
+                if (choice.Passive.InterpretAsPercentage)
                 {
-                    var attackMask = choice.Passive.AttackTypeMask;
-                    if ((mask & attackMask) == 0) //if mask does NOT contains attackmask
-                        continue;
-
-                    var value = choice.Passive.EffectMagnitude;
-                    if (choice.Passive.InterpretAsPercentage)
-                    {
-                        value /= 100;
-                    }
-                    if (asFactor)
-                    {
-                        number.AddFactor(value, new TextObject(choice.BelongsToGroup.Name.ToString()));
-                        return;
-                    }
-                    number.Add(value, new TextObject(choice.BelongsToGroup.Name.ToString()));
+                    value /= 100;
                 }
+                if (asFactor)
+                {
+                    number.AddFactor(value, new TextObject(choice.BelongsToGroup.Name.ToString()));
+                    return;
+                }
+                number.Add(value, new TextObject(choice.BelongsToGroup.Name.ToString()));
             }
         }
 
@@ -168,15 +222,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, bool asFactor = true, CharacterObject characterObject = null)
         {
-            var choices = hero.GetAllCareerChoices();
-            foreach (var choiceID in choices)
+            // Use cached choices filtered by PassiveEffectType
+            var choices = GetCachedChoicesByType(passiveEffectType);
+
+            if(choices.Count<=0) return;
+            characterObject ??= hero.CharacterObject;
+
+            foreach (var choice in choices)
             {
-                var choice = TORCareerChoices.GetChoice(choiceID);
-
-                if (choice?.Passive == null || choice.Passive.PassiveEffectType != passiveEffectType) continue;
-
-                characterObject ??= hero.CharacterObject;
-
                 var passive = choice.Passive;
 
                 if (!passive.IsValidCharacterObject(characterObject)) continue;
@@ -205,13 +258,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public static void ApplyCombatCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, Agent attacker, Agent victim, bool asFactor = true)
         {
-            var choices = hero.GetAllCareerChoices();
-            foreach (var choiceID in choices)
+            // Use cached choices filtered by PassiveEffectType
+            var choices = GetCachedChoicesByType(passiveEffectType);
+
+            foreach (var choice in choices)
             {
-                var choice = TORCareerChoices.GetChoice(choiceID);
-
-                if (choice?.Passive == null || choice.Passive.PassiveEffectType != passiveEffectType) continue;
-
                 var passive = choice.Passive;
 
                 if (!passive.IsValidCombatInteraction(attacker, victim, AttackTypeMask.All)) continue;
@@ -233,19 +284,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public static void ApplySkillBonusForTroops(ref ExplainedNumber resultNumber, SkillObject skillObject, BasicCharacterObject troopCharacterObject)
         {
-            var choices = Hero.MainHero.GetAllCareerChoices();
+            if (troopCharacterObject == null) return;
 
-            if (troopCharacterObject == null)
+            // Use cached choices filtered by PassiveEffectType
+            var choices = GetCachedChoicesByType(PassiveEffectType.TroopSkill);
+
+            foreach (var choice in choices)
             {
-                return;
-            }
-
-            foreach (var choiceID in choices)
-            {
-                var choice = TORCareerChoices.GetChoice(choiceID);
-
-                if (choice?.Passive == null || choice.Passive.PassiveEffectType != PassiveEffectType.TroopSkill) continue;
-
                 if (!choice.Passive.IsValidCharacterObject(troopCharacterObject as CharacterObject))
                 {
                     continue;
@@ -259,7 +304,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 }
 
                 var value = choice.Passive.EffectMagnitude;
-
 
                 resultNumber.Add(value, choice.BelongsToGroup.Name);
             }
@@ -304,24 +348,20 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 type != PassiveEffectType.Resistance &&
                 type != PassiveEffectType.TroopResistance) return;
 
-            var choices = Hero.MainHero.GetAllCareerChoices();
-            foreach (var choiceID in choices)
+            // Use cached choices filtered by PassiveEffectType
+            var choices = GetCachedChoicesByType(type);
+
+            foreach (var choice in choices)
             {
-                var choice = TORCareerChoices.GetChoice(choiceID);
-                if (choice == null)
+                if (!choice.Passive.IsValidCombatInteraction(agent, victim, attackMask)) continue;
+
+                var passive = choice.Passive;
+                var mask = passive.AttackTypeMask;
+                if ((mask & attackMask) == 0) //if mask does NOT contains attackmask
                     continue;
 
-                if (choice.Passive != null && (choice.Passive.PassiveEffectType == type))
-                {
-                    if (!choice.Passive.IsValidCombatInteraction(agent, victim, attackMask)) continue;
-                    var passive = choice.Passive;
-                    var mask = passive.AttackTypeMask;
-                    if ((mask & attackMask) == 0) //if mask does NOT contains attackmask
-                        continue;
-
-                    var damageType = passive.DamageProportionTuple.DamageType;
-                    values[(int)damageType] += (passive.DamageProportionTuple.Percent / 100);
-                }
+                var damageType = passive.DamageProportionTuple.DamageType;
+                values[(int)damageType] += (passive.DamageProportionTuple.Percent / 100);
             }
         }
 

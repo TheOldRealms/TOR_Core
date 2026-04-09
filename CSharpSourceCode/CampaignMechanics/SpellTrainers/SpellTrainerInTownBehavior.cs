@@ -605,7 +605,24 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
         private bool spellsingerCondition()
         {
-            if (Hero.MainHero.HasCareer(TORCareers.Spellsinger) || (Hero.MainHero.PartyBelongedTo != null && Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.Culture.StringId == TORConstants.Cultures.ASRAI && x.IsSpellCaster()))) return true;
+            if (Hero.MainHero.HasCareer(TORCareers.Spellsinger))
+            {
+                return true;
+            }
+
+            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI &&
+                Hero.MainHero.IsSpellCaster() &&
+                Hero.MainHero.GetKnownLoreCount() > 0)
+            {
+                return true;
+            }
+
+            if (Hero.MainHero.PartyBelongedTo != null &&
+                Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.Culture.StringId == TORConstants.Cultures.ASRAI && x.IsSpellCaster()))
+            {
+                return true;
+            }
+
             return false;
         }
 
@@ -661,7 +678,19 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 return true;
             }
 
-            return HasMatchingSpellTrainerCompanion(x => x.HasCareer(TORCareers.Spellsinger));
+            if (Hero.MainHero.HasCareer(TORCareers.Warden))
+            {
+                return true;
+            }
+
+            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI &&
+                Hero.MainHero.IsSpellCaster() &&
+                Hero.MainHero.GetKnownLoreCount() > 0)
+            {
+                return true;
+            }
+
+            return HasMatchingSpellTrainerCompanion(x => x.Culture.StringId == TORConstants.Cultures.ASRAI && x.IsSpellCaster());
         }
 
         private bool HasGreenskinTrainerAccess()

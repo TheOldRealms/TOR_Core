@@ -12,6 +12,7 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.GauntletUI.BodyGenerator;
 using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.MountAndBlade.View.Tableaus;
+using TaleWorlds.MountAndBlade.View.Tableaus.Thumbnails;
 using TaleWorlds.MountAndBlade.View.MissionViews;
 using FaceGen = TaleWorlds.Core.FaceGen;
 
@@ -24,8 +25,9 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatchCategory("LatePatches")]
     public class RaceFixPatches
     {
-        // This patch makes the created AgentVisuals use the correct action set and so the correct skeleton when it is refreshed
-        // Method to avoid having to insert a bunch of instructions and instead only insert 2 (LdArg0 and Call)
+        [ThreadStatic]
+        private static int _characterThumbnailRenderDepth;
+
         public static MBActionSet GetActionSet(BodyGeneratorView bodyGeneratorView)
         {
             var monsterName = FaceGen.GetRaceNames()[bodyGeneratorView.BodyGen.Race];
@@ -49,6 +51,8 @@ namespace TOR_Core.HarmonyPatches
             return raceName == "human" || raceName == "bretonnian";
         }
 
+        // This patch makes the created AgentVisuals use the correct action set and so the correct skeleton when it is refreshed
+        // Method to avoid having to insert a bunch of instructions and instead only insert 2 (LdArg0 and Call)
         [HarmonyPrefix]
         [HarmonyPatch(typeof(MissionFaceCacheView), "CheckForSimilarFacesFromCache")]
         public static bool DisableMissionFaceReuseForCustomRaces(
@@ -189,14 +193,37 @@ namespace TOR_Core.HarmonyPatches
         }
 
         [HarmonyPrefix]
+        [HarmonyPatch(typeof(CharacterThumbnailCache), "OnCreateTexture")]
+        public static void MarkCharacterThumbnailRenderStart()
+        {
+            _characterThumbnailRenderDepth++;
+        }
+
+        [HarmonyFinalizer]
+        [HarmonyPatch(typeof(CharacterThumbnailCache), "OnCreateTexture")]
+        public static Exception MarkCharacterThumbnailRenderEnd(Exception __exception)
+        {
+            _characterThumbnailRenderDepth--;
+            return __exception;
+        }
+
+        [HarmonyPrefix]
         [HarmonyPatch(typeof(MetaMesh), nameof(MetaMesh.UseHeadBoneFaceGenScaling))]
         public static bool ModifyHeadBoneScalingForCustomSkeletons(Skeleton skeleton, sbyte headLookDirectionBoneIndex, ref MatrixFrame frame)
         {
             var skeletonName = skeleton.GetName();
-            if (skeletonName == "orc_skeleton2" || skeletonName == "goblin_skeleton")
+
+            if (skeletonName == "orc_skeleton2")
+            {
+                frame.rotation.OrthonormalizeAccordingToForwardAndKeepUpAsZAxis();
+                return true;
+            }
+
+            if (skeletonName == "goblin_skeleton" && _characterThumbnailRenderDepth == 0)
             {
                 frame.rotation.OrthonormalizeAccordingToForwardAndKeepUpAsZAxis();
             }
+
             return true;
         }
 

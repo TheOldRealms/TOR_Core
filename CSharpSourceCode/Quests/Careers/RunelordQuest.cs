@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CraftingSystem;
 using TaleWorlds.CampaignSystem.Settlements;
@@ -131,8 +131,11 @@ public class RunelordQuest : QuestBase
     {
         if (AreAllTasksFinished())
         {
-            AddLog(TORTextHelper.GetTextObject("tor_runelord_quest_log_complete", "Talk to the rune smith"));
+            if (this.JournalEntries.Count < 5)
+            {
+                AddLog(TORTextHelper.GetTextObject("tor_runelord_quest_log_complete", "Talk to the rune smith"));
 
+            }
         }
     }
 
@@ -163,6 +166,7 @@ public class RunelordQuest : QuestBase
 
     protected override void HourlyTick()
     {
+        UpdateQuest();
     }
 
     public override TextObject Title => TORTextHelper.GetTextObject("tor_runelord_quest_title", "Runelord Quest");

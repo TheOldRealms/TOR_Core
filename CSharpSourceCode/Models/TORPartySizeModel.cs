@@ -75,6 +75,11 @@ namespace TOR_Core.Models
                 AddCareerPassivesForPartySize(Hero.MainHero, party, ref num);
             }
 
+            if (party.MapFaction != null && party.Culture?.StringId == TORConstants.Cultures.DAWI)
+            {
+                num.AddFactor(-0.25f, new TextObject("Dwarf cultural penalty"));
+            }
+
             if (party.MapFaction != null && party.Culture?.StringId == TORConstants.Cultures.ASRAI)
             {
                 num.AddFactor(-0.25f, new TextObject("Woodelf cultural penalty"));
@@ -244,8 +249,7 @@ namespace TOR_Core.Models
 
             int treemenCount = 0;
             int minotaurCount = 0;
-            int dryadCount = 0;
-            int elfCount = 0;
+            int trollCount = 0;
             int goblinCount = 0;
 
             foreach (var element in party.MemberRoster.GetTroopRoster())
@@ -260,13 +264,9 @@ namespace TOR_Core.Models
                 {
                     minotaurCount += element.Number;
                 }
-                else if (element.Character.StringId == "tor_we_dryad")
+                else if (element.Character.IsTroll())
                 {
-                    dryadCount += element.Number;
-                }
-                else if (element.Character.Culture?.StringId == TORConstants.Cultures.ASRAI && element.Character.IsElf())
-                {
-                    elfCount += element.Number;
+                    trollCount += element.Number;
                 }
                 else if (element.Character.IsGoblin())
                 {
@@ -276,7 +276,7 @@ namespace TOR_Core.Models
 
             // Treemen weight: 10 slots with WEDurthuSymbol, 25 slots otherwise
             bool hasDurthuSymbol = party.LeaderHero.HasAttribute("WEDurthuSymbol");
-            int treemenWeight = hasDurthuSymbol ? 10 : 25;
+            int treemenWeight = hasDurthuSymbol ? 10 : 24;
 
             if (treemenCount > 0)
             {
@@ -289,26 +289,13 @@ namespace TOR_Core.Models
                 number.Add(-7 * minotaurCount, new TextObject("Minotaur weight"));
             }
 
-            // WETreekinSymbol: Dryads cost 1 slot, Elves cost 2 slots
-            // Without it: Dryads cost 2 slots, Elves cost 1 slot
-            bool hasTreekinSymbol = party.LeaderHero.HasAttribute("WETreekinSymbol");
+            // Trolls take 8 slots each (7 extra beyond the 1 they already occupy)
+            if (trollCount > 0)
+            {
+                number.Add(-7 * trollCount, new TextObject("Troll weight"));
+            }
 
-            if (hasTreekinSymbol)
-            {
-                // Elves take 2 slots each (1 extra)
-                if (elfCount > 0)
-                {
-                    number.Add(-1 * elfCount, new TextObject("Elf weight (Tree Spirit focus)"));
-                }
-            }
-            else
-            {
-                // Dryads take 2 slots each (1 extra)
-                if (dryadCount > 0)
-                {
-                    number.Add(-1 * dryadCount, new TextObject("Dryad weight"));
-                }
-            }
+            // Dryads and Elves both cost 1 slot (no weight penalty)
 
             // Goblins count as 0.5 units (half a slot each)
             if (goblinCount > 0)

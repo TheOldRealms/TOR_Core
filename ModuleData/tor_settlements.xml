@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Settlements>
+<?xml version="1.0" encoding="utf-8"?>
+<Settlements>
   <!--Custom Settlements-->
   <Settlement id="oak_of_ages" name="{=str_tor_settlements_oak_of_ages}Oak of Ages" owner="Faction.athel_loren_clan_1" posX="1218.711" posY="798.5" culture="Culture.battania" text="{=!}Oak of Ages" gate_posX="1218.711" gate_posY="798.5">
     <Components>
@@ -145,7 +146,7 @@
       <Shrine id="grimnir_shrine_04" religion="cult_of_grimnir" background_crop_position="0.0" background_mesh="shrine_of_grimnir" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="grungni_shrine_01" name="{=str_tor_settlements_grimnir_shrine01}Shrine of Grugni" owner="Faction.karak_kaferkammaz_clan_1" posX="1204.403" posY="676.666" culture="Culture.sturgia" text="{=!}Shrine of Grugni">
+  <Settlement id="grungni_shrine_01" name="{=str_tor_settlements_grugni_shrine01}Shrine of Grugni" owner="Faction.karak_kaferkammaz_clan_1" posX="1204.403" posY="676.666" culture="Culture.sturgia" text="{=!}Shrine of Grugni">
     <Components>
       <Shrine id="grungni_shrine_01" religion="cult_of_grungni" background_crop_position="0.0" background_mesh="shrine_of_grimnir" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
@@ -312,42 +313,42 @@
   </Settlement>
   <Settlement id="gork_shrine_01" name="{=str_tor_settlements_shrine_gork1}Shrine of Gork" owner="Faction.massif_choppas_clan_1" posX="1056.317" posY="954.124" culture="Culture.aserai" text="{=!}Gork is da best of da best will always be and is just super cool">
     <Components>
-      <Shrine id="gork_shrine_01" religion="cult_of_gork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
+      <Shrine id="gork_shrine_01" religion="cult_of_gork" background_crop_position="0.0" background_mesh="shrine_of_gork" wait_mesh="shrine_of_gork" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="gork_shrine_02" name="{=str_tor_settlements_shrine_gork2}Shrine of Gork" owner="Faction.neck_snappers_clan_1" posX="1279.005" posY="699.557" culture="Culture.aserai" text="{=!}Shrine of Gork is gorky">
     <Components>
-      <Shrine id="gork_shrine_02" religion="cult_of_gork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
+      <Shrine id="gork_shrine_02" religion="cult_of_gork" background_crop_position="0.0" background_mesh="shrine_of_gork" wait_mesh="shrine_of_gork" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="gork_shrine_03" name="{=str_tor_settlements_shrine_gork3}Shrine of Gork" owner="Faction.crooked_eye_clan_1" posX="1605.916" posY="935.799" culture="Culture.aserai" text="{=!}Shrine of Gork">
     <Components>
-      <Shrine id="gork_shrine_03" religion="cult_of_gork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
+      <Shrine id="gork_shrine_03" religion="cult_of_gork" background_crop_position="0.0" background_mesh="shrine_of_gork" wait_mesh="shrine_of_gork" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="gork_shrine_04" name="{=str_tor_settlements_shrine_gork4}Shrine of Gork" owner="Faction.black_sunz_clan_1" posX="1037.916" posY="1194.657" culture="Culture.aserai" text="{=!}Shrine of Gork">
     <Components>
-      <Shrine id="gork_shrine_04" religion="cult_of_gork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
+      <Shrine id="gork_shrine_04" religion="cult_of_gork" background_crop_position="0.0" background_mesh="shrine_of_gork" wait_mesh="shrine_of_gork" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="mork_shrine_01" name="{=str_tor_settlements_shrine_mork1}Shrine of Mork" owner="Faction.red_eye_clan_1" posX="1778.073" posY="1119.793" culture="Culture.aserai" text="{=!}Mork is da bestest">
     <Components>
-      <Shrine id="mork_shrine_01" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
+      <Shrine id="mork_shrine_01" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_mork" wait_mesh="shrine_of_mork" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="mork_shrine_02" name="{=str_tor_settlements_shrine_mork2}Shrine of Mork" owner="Faction.crooked_eye_clan_1" posX="1619.786" posY="863.173" culture="Culture.aserai" text="{=!}Shrine of Mork">
     <Components>
-      <Shrine id="mork_shrine_02" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
+      <Shrine id="mork_shrine_02" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_mork" wait_mesh="shrine_of_mork" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="mork_shrine_03" name="{=str_tor_settlements_shrine_mork3}Shrine of Mork" owner="Faction.bad_axes_clan_1" posX="1104.753" posY="1182.195" culture="Culture.aserai" text="{=!}Shrine of Mork">
     <Components>
-      <Shrine id="mork_shrine_03" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
+      <Shrine id="mork_shrine_03" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_mork" wait_mesh="shrine_of_mork" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="mork_shrine_04" name="{=str_tor_settlements_shrine_mork4}Shrine of Mork" owner="Faction.deff_grindaz_clan_1" posX="1284.803" posY="877.619" culture="Culture.aserai" text="{=!}Shrine of Mork">
     <Components>
-      <Shrine id="mork_shrine_04" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
+      <Shrine id="mork_shrine_04" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_mork" wait_mesh="shrine_of_mork" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="haunted_site_01" name="{=str_tor_settlements_haunted_site1}Hunger Woods" owner="Faction.sylvania_clan_1" posX="1582.078" posY="1016.387" culture="Culture.khuzait" text="{=!}Called Verhungern by local Slyvanians, this dispersed land is a ghoul, and likely spirit, infested maze of briars and bogs. Only the insane or desperate would venture into its boughs." gate_posX="1582.078" gate_posY="1016.387">
@@ -564,7 +565,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="TOR_empire_city_generic_02" scene_name_1="TOR_empire_city_generic_02" scene_name_2="TOR_empire_city_generic_02" scene_name_3="TOR_empire_city_generic_02" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
@@ -623,7 +624,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_001" scene_name_1="TOR_empire_castle_generic_001" scene_name_2="TOR_empire_castle_generic_001" scene_name_3="TOR_empire_castle_generic_001" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -762,7 +763,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_03" scene_name_1="TOR_empire_castle_03" scene_name_2="TOR_empire_castle_03" scene_name_3="TOR_empire_castle_03" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_002" scene_name_1="TOR_empire_castle_generic_002" scene_name_2="TOR_empire_castle_generic_002" scene_name_3="TOR_empire_castle_generic_002" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -812,7 +813,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_002" scene_name_1="TOR_empire_castle_002" scene_name_2="TOR_empire_castle_002" scene_name_3="TOR_empire_castle_002" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_003" scene_name_1="TOR_empire_castle_generic_003" scene_name_2="TOR_empire_castle_generic_003" scene_name_3="TOR_empire_castle_generic_003" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -862,7 +863,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_001" scene_name_1="TOR_empire_castle_generic_001" scene_name_2="TOR_empire_castle_generic_001" scene_name_3="TOR_empire_castle_generic_001" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -990,7 +991,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_e" scene_name_1="vlandia_town_e" scene_name_2="vlandia_town_e" scene_name_3="vlandia_town_e" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
@@ -1030,7 +1031,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_ST4" name="{=Settlements.Settlement.name.town_ST4}Mittlenburg" owner="Faction.stirland_clan_1" posX="1554.683" posY="881.617" culture="Culture.empire" gate_posX="1554.314" gate_posY="882.6886" text="{=Settlements.Settlement.text.town_ST4}Mittlenburg sits at the foot of the black mountains, not far from the fallen Karak Varn and lake Black Water. The town is a modest one, the people here are very aware of their precarious position between Black Fire Pass and Sylvania, as such the town is decently fortified in preparation for these threats. The temples of Sigmar and Taal are well consecrated, and the Garden of Morr has a protective curtain wall around it. Many pilgrims on their way to take the trek up to the final temple of Skaranorak stop in Mittlenburg to purchase supplies.&#13;&#10;Special Scenes: no special scenes, besides maybe the temples, would be nice if one of the temples of Skaranorak was visible from a vantage point somewhere in the town.">
+  <Settlement id="town_ST4" name="{=Settlements.Settlement.name.town_ST4}Mittlenburg" owner="Faction.stirland_clan_1" posX="1554.683" posY="881.617" culture="Culture.empire" gate_posX="1554.314" gate_posY="882.6886" text="{=Settlements.Settlement.text.town_ST4}Mittlenburg sits at the foot of the black mountains, not far from the fallen Karak Varn and lake Black Water. The town is a modest one, the people here are very aware of their precarious position between Black Fire Pass and Sylvania, as such the town is decently fortified in preparation for these threats. The temples of Sigmar and Taal are well consecrated, and the Garden of Morr has a protective curtain wall around it. Many pilgrims on their way to take the trek up to the final temple of Skaranorak stop in Mittlenburg to purchase supplies.&#xD;&#xA;Special Scenes: no special scenes, besides maybe the temples, would be nice if one of the temples of Skaranorak was visible from a vantage point somewhere in the town.">
     <Components>
       <Town id="town_comp_ST4" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="2150">
         <Buildings>
@@ -1138,7 +1139,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_002" scene_name_1="TOR_empire_castle_002" scene_name_2="TOR_empire_castle_002" scene_name_3="TOR_empire_castle_002" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_003" scene_name_1="TOR_empire_castle_generic_003" scene_name_2="TOR_empire_castle_generic_003" scene_name_3="TOR_empire_castle_generic_003" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -1188,7 +1189,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_001" scene_name_1="TOR_empire_castle_generic_001" scene_name_2="TOR_empire_castle_generic_001" scene_name_3="TOR_empire_castle_generic_001" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -1856,7 +1857,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_e" scene_name_1="vlandia_town_e" scene_name_2="vlandia_town_e" scene_name_3="vlandia_town_e" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
@@ -1964,7 +1965,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_d" scene_name_1="vlandia_town_d" scene_name_2="vlandia_town_d" scene_name_3="vlandia_town_d" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
@@ -2036,7 +2037,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_g" scene_name_1="vlandia_town_g" scene_name_2="vlandia_town_g" scene_name_3="vlandia_town_g" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
@@ -2095,7 +2096,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_002" scene_name_1="TOR_empire_castle_002" scene_name_2="TOR_empire_castle_002" scene_name_3="TOR_empire_castle_002" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_003" scene_name_1="TOR_empire_castle_generic_003" scene_name_2="TOR_empire_castle_generic_003" scene_name_3="TOR_empire_castle_generic_003" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -2119,7 +2120,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_03" scene_name_1="TOR_empire_castle_03" scene_name_2="TOR_empire_castle_03" scene_name_3="TOR_empire_castle_03" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_002" scene_name_1="TOR_empire_castle_generic_002" scene_name_2="TOR_empire_castle_generic_002" scene_name_3="TOR_empire_castle_generic_002" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -2167,7 +2168,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_001" scene_name_1="TOR_empire_castle_generic_001" scene_name_2="TOR_empire_castle_generic_001" scene_name_3="TOR_empire_castle_generic_001" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -2191,7 +2192,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_002" scene_name_1="TOR_empire_castle_002" scene_name_2="TOR_empire_castle_002" scene_name_3="TOR_empire_castle_002" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_003" scene_name_1="TOR_empire_castle_generic_003" scene_name_2="TOR_empire_castle_generic_003" scene_name_3="TOR_empire_castle_generic_003" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -2215,7 +2216,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_002" scene_name_1="TOR_empire_castle_002" scene_name_2="TOR_empire_castle_002" scene_name_3="TOR_empire_castle_002" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_003" scene_name_1="TOR_empire_castle_generic_003" scene_name_2="TOR_empire_castle_generic_003" scene_name_3="TOR_empire_castle_generic_003" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -2760,7 +2761,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="TOR_empire_city_generic_02" scene_name_1="TOR_empire_city_generic_02" scene_name_2="TOR_empire_city_generic_02" scene_name_3="TOR_empire_city_generic_02" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
@@ -2897,7 +2898,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_h" scene_name_1="vlandia_town_h" scene_name_2="vlandia_town_h" scene_name_3="vlandia_town_h" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
@@ -2969,7 +2970,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_002" scene_name_1="TOR_empire_castle_002" scene_name_2="TOR_empire_castle_002" scene_name_3="TOR_empire_castle_002" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_003" scene_name_1="TOR_empire_castle_generic_003" scene_name_2="TOR_empire_castle_generic_003" scene_name_3="TOR_empire_castle_generic_003" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -3019,7 +3020,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_03" scene_name_1="TOR_empire_castle_03" scene_name_2="TOR_empire_castle_03" scene_name_3="TOR_empire_castle_03" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_002" scene_name_1="TOR_empire_castle_generic_002" scene_name_2="TOR_empire_castle_generic_002" scene_name_3="TOR_empire_castle_generic_002" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -3069,7 +3070,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_001" scene_name_1="TOR_empire_castle_generic_001" scene_name_2="TOR_empire_castle_generic_001" scene_name_3="TOR_empire_castle_generic_001" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -3173,7 +3174,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_g" scene_name_1="vlandia_town_g" scene_name_2="vlandia_town_g" scene_name_3="vlandia_town_g" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
@@ -3310,7 +3311,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_c" scene_name_1="vlandia_town_c" scene_name_2="vlandia_town_c" scene_name_3="vlandia_town_c" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
@@ -3511,7 +3512,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_e" scene_name_1="vlandia_town_e" scene_name_2="vlandia_town_e" scene_name_3="vlandia_town_e" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
@@ -3570,7 +3571,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_002" scene_name_1="TOR_empire_castle_002" scene_name_2="TOR_empire_castle_002" scene_name_3="TOR_empire_castle_002" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_003" scene_name_1="TOR_empire_castle_generic_003" scene_name_2="TOR_empire_castle_generic_003" scene_name_3="TOR_empire_castle_generic_003" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -3620,7 +3621,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_001" scene_name_1="TOR_empire_castle_generic_001" scene_name_2="TOR_empire_castle_generic_001" scene_name_3="TOR_empire_castle_generic_001" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -3670,7 +3671,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_reiksguard" scene_name_1="TOR_empire_castle_reiksguard" scene_name_2="TOR_empire_castle_reiksguard" scene_name_3="TOR_empire_castle_reiksguard" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_001" scene_name_1="TOR_empire_castle_generic_001" scene_name_2="TOR_empire_castle_generic_001" scene_name_3="TOR_empire_castle_generic_001" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -3720,7 +3721,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_03" scene_name_1="TOR_empire_castle_03" scene_name_2="TOR_empire_castle_03" scene_name_3="TOR_empire_castle_03" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_002" scene_name_1="TOR_empire_castle_generic_002" scene_name_2="TOR_empire_castle_generic_002" scene_name_3="TOR_empire_castle_generic_002" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -3937,7 +3938,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_c" scene_name_1="vlandia_town_c" scene_name_2="vlandia_town_c" scene_name_3="vlandia_town_c" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
@@ -4190,7 +4191,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_e" scene_name_1="vlandia_town_e" scene_name_2="vlandia_town_e" scene_name_3="vlandia_town_e" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
@@ -4249,7 +4250,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_03" scene_name_1="TOR_empire_castle_03" scene_name_2="TOR_empire_castle_03" scene_name_3="TOR_empire_castle_03" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_002" scene_name_1="TOR_empire_castle_generic_002" scene_name_2="TOR_empire_castle_generic_002" scene_name_3="TOR_empire_castle_generic_002" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -4325,7 +4326,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_001" scene_name_1="TOR_empire_castle_generic_001" scene_name_2="TOR_empire_castle_generic_001" scene_name_3="TOR_empire_castle_generic_001" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -4362,7 +4363,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_03" scene_name_1="TOR_empire_castle_03" scene_name_2="TOR_empire_castle_03" scene_name_3="TOR_empire_castle_03" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_002" scene_name_1="TOR_empire_castle_generic_002" scene_name_2="TOR_empire_castle_generic_002" scene_name_3="TOR_empire_castle_generic_002" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -4504,7 +4505,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="TOR_empire_city_generic_02" scene_name_1="TOR_empire_city_generic_02" scene_name_2="TOR_empire_city_generic_02" scene_name_3="TOR_empire_city_generic_02" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
@@ -4579,7 +4580,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_e" scene_name_1="vlandia_town_e" scene_name_2="vlandia_town_e" scene_name_3="vlandia_town_e" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
@@ -4751,7 +4752,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_03" scene_name_1="TOR_empire_castle_03" scene_name_2="TOR_empire_castle_03" scene_name_3="TOR_empire_castle_03" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_002" scene_name_1="TOR_empire_castle_generic_002" scene_name_2="TOR_empire_castle_generic_002" scene_name_3="TOR_empire_castle_generic_002" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -4805,7 +4806,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_g" scene_name_1="vlandia_town_g" scene_name_2="vlandia_town_g" scene_name_3="vlandia_town_g" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
@@ -4955,7 +4956,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_c" scene_name_1="vlandia_town_c" scene_name_2="vlandia_town_c" scene_name_3="vlandia_town_c" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
@@ -5064,7 +5065,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_001" scene_name_1="TOR_empire_castle_generic_001" scene_name_2="TOR_empire_castle_generic_001" scene_name_3="TOR_empire_castle_generic_001" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -5114,7 +5115,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_03" scene_name_1="TOR_empire_castle_03" scene_name_2="TOR_empire_castle_03" scene_name_3="TOR_empire_castle_03" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_002" scene_name_1="TOR_empire_castle_generic_002" scene_name_2="TOR_empire_castle_generic_002" scene_name_3="TOR_empire_castle_generic_002" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -5155,7 +5156,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_g" scene_name_1="vlandia_town_g" scene_name_2="vlandia_town_g" scene_name_3="vlandia_town_g" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
@@ -5292,7 +5293,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_c" scene_name_1="vlandia_town_c" scene_name_2="vlandia_town_c" scene_name_3="vlandia_town_c" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
@@ -5503,7 +5504,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_002" scene_name_1="TOR_empire_castle_002" scene_name_2="TOR_empire_castle_002" scene_name_3="TOR_empire_castle_002" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_003" scene_name_1="TOR_empire_castle_generic_003" scene_name_2="TOR_empire_castle_generic_003" scene_name_3="TOR_empire_castle_generic_003" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -5557,7 +5558,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_g" scene_name_1="vlandia_town_g" scene_name_2="vlandia_town_g" scene_name_3="vlandia_town_g" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
@@ -5733,7 +5734,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="vlandia_town_c" scene_name_1="vlandia_town_c" scene_name_2="vlandia_town_c" scene_name_3="vlandia_town_c" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
@@ -5868,7 +5869,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_002" scene_name_1="TOR_empire_castle_002" scene_name_2="TOR_empire_castle_002" scene_name_3="TOR_empire_castle_002" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_003" scene_name_1="TOR_empire_castle_generic_003" scene_name_2="TOR_empire_castle_generic_003" scene_name_3="TOR_empire_castle_generic_003" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -5955,7 +5956,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_siege_001" scene_name_1="empire_siege_001" scene_name_2="empire_siege_001" scene_name_3="empire_siege_001" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_001" scene_name_1="TOR_empire_castle_generic_001" scene_name_2="TOR_empire_castle_generic_001" scene_name_3="TOR_empire_castle_generic_001" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -6018,7 +6019,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="TOR_empire_castle_03" scene_name_1="TOR_empire_castle_03" scene_name_2="TOR_empire_castle_03" scene_name_3="TOR_empire_castle_03" />
+      <Location id="center" scene_name="TOR_empire_castle_generic_002" scene_name_1="TOR_empire_castle_generic_002" scene_name_2="TOR_empire_castle_generic_002" scene_name_3="TOR_empire_castle_generic_002" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -6224,7 +6225,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_LL2_3" name="{=Settlements.Settlement.name.castle_village_LL2_3}Leihafen" posX="1224.017" posY="1349.183" culture="Culture.eonir" text="{=Settlements.Settlement.text.castle_village_LL1_2}Farisar's Rock is a fishing village on the rugged coast of the Claw Sea. It is the first stop among the imperial caravans that cross the road north of Laurelorn Forest. The Eonir who live here obtain an endless supply of fish from the sea, leaving the forest intact and unaltered. There are a series of caves in the north coast that can only be entered at low tide. The Eonir leave offerings to Mathlann in the caves. Occasionally, Norscan raiders use the caves to hide their loot in bad weather.">
+  <Settlement id="village_LL2_3" name="{=Settlements.Settlement.name.castle_village_LL2_3}Leihafen" posX="1224.017" posY="1349.183" culture="Culture.eonir" text="{=Settlements.Settlement.text.castle_village_LL2_3}Leihafen squats at the mouth of the Schaukeln River, a wind-battered harbour officially counted among the provinces of Nordland, though the lords of that realm have never shown much appetite for enforcing that claim. Distant from any meaningful Imperial protection and pressed hard against the borders of the Laurelorn, the settlement would seem easy prey. Indeed - , it is caught between the raids of greenskins prowling the surrounding wilderness and the longships of Norscan reavers that plague the Sea of Claws. Yet Leihafen endures, and its survival owes more to pointed ears than to Imperial swords. {newline}{newline} For the Elves of the Laurelorn, the harbour is a matter of no small strategic importance. Without Leihafen, the only reliable sea route between Tor Lithanel and Se-Anthil would be lost — and with it, the Eonir's sole direct access to the Sea of Claws. This mutual dependency has bred an unusual arrangement: the elves offer protection, the harbour offers its docks, and neither party asks too many questions of the other. So comfortable has this compact become that a small number of Eonir have taken up residence within Leihafen itself : A sight that draws stares from Imperial merchants and nervous whispers in the taverns, though the locals have long since stopped remarking upon it. {newline}{newline} There is one further blessing the settlement lays claim to. The waters of the Schaukeln run uncommonly clear — almost unnaturally so — and among the common folk a persistent belief holds that the river carries some curative virtue. Pilgrims and the desperate speak of mutations fading, of old wounds closing, and that blades blessed with its waters strike harder against the Chaos-corrupted, burning through their warped flesh like a brand. Whether this is truth, superstition, or something stranger still, no scholar of the Colleges has yet seen fit to investigate. The settlement's fishermen, for their part, are not waiting for scholarly opinion. 'Vials of Heilwasser' — holy water, as they have taken to calling it — change hands at market for prices that would make an Altdorf apothecary blush.">
     <Components>
       <Village id="village_comp_LL2_3" village_type="VillageType.vineyard" hearth="600" bound="Settlement.town_LL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -6688,7 +6689,7 @@
       <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_02" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
@@ -6859,7 +6860,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_003" scene_name_1="TOR_bretonnia_castle_003" scene_name_2="TOR_bretonnia_castle_003" scene_name_3="TOR_bretonnia_castle_003" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
   </Settlement>
@@ -6937,7 +6938,7 @@
       <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
@@ -7009,7 +7010,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_002" scene_name_1="TOR_bretonnia_castle_002" scene_name_2="TOR_bretonnia_castle_002" scene_name_3="TOR_bretonnia_castle_002" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
   </Settlement>
@@ -7083,7 +7084,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_003" scene_name_1="TOR_bretonnia_castle_003" scene_name_2="TOR_bretonnia_castle_003" scene_name_3="TOR_bretonnia_castle_003" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
   </Settlement>
@@ -7124,7 +7125,7 @@
       <Location id="center" scene_name="TOR_bretonnia_city_001" scene_name_1="TOR_bretonnia_city_001" scene_name_2="TOR_bretonnia_city_001" scene_name_3="TOR_bretonnia_city_001" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
       <Location id="house_2" scene_name="vlandia_house_d_interior_house" />
@@ -7186,7 +7187,7 @@
       <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_02" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
       <Location id="house_2" scene_name="vlandia_house_d_interior_house" />
@@ -7331,7 +7332,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_001" scene_name_1="TOR_bretonnia_castle_001" scene_name_2="TOR_bretonnia_castle_001" scene_name_3="TOR_bretonnia_castle_001" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
     </Locations>
   </Settlement>
@@ -7409,7 +7410,7 @@
       <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
@@ -7531,7 +7532,7 @@
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_003" scene_name_1="TOR_bretonnia_castle_003" scene_name_2="TOR_bretonnia_castle_003" scene_name_3="TOR_bretonnia_castle_003">
       </Location>
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
   </Settlement>
@@ -7618,7 +7619,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_001" scene_name_1="TOR_bretonnia_castle_001" scene_name_2="TOR_bretonnia_castle_001" scene_name_3="TOR_bretonnia_castle_001" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
   </Settlement>
@@ -7659,7 +7660,7 @@
       <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
@@ -7818,7 +7819,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_005" scene_name_1="TOR_bretonnia_castle_005" scene_name_2="TOR_bretonnia_castle_005" scene_name_3="TOR_bretonnia_castle_005" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
   </Settlement>
@@ -7896,7 +7897,7 @@
       <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
@@ -8043,7 +8044,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_002" scene_name_1="TOR_bretonnia_castle_002" scene_name_2="TOR_bretonnia_castle_002" scene_name_3="TOR_bretonnia_castle_002" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night">
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02">
       </Location>
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
@@ -8145,7 +8146,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_005" scene_name_1="TOR_bretonnia_castle_005" scene_name_2="TOR_bretonnia_castle_005" scene_name_3="TOR_bretonnia_castle_005" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
   </Settlement>
@@ -8199,7 +8200,7 @@
       <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
@@ -8396,7 +8397,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_003" scene_name_1="TOR_bretonnia_castle_003" scene_name_2="TOR_bretonnia_castle_003" scene_name_3="TOR_bretonnia_castle_003" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
   </Settlement>
@@ -8450,7 +8451,7 @@
       <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
@@ -8647,7 +8648,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_003" scene_name_1="TOR_bretonnia_castle_003" scene_name_2="TOR_bretonnia_castle_003" scene_name_3="TOR_bretonnia_castle_003" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
   </Settlement>
@@ -8751,7 +8752,7 @@
       <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
@@ -8898,7 +8899,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_001" scene_name_1="TOR_bretonnia_castle_001" scene_name_2="TOR_bretonnia_castle_001" scene_name_3="TOR_bretonnia_castle_001" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
   </Settlement>
@@ -8998,7 +8999,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_002" scene_name_1="TOR_bretonnia_castle_002" scene_name_2="TOR_bretonnia_castle_002" scene_name_3="TOR_bretonnia_castle_002" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
   </Settlement>
@@ -9052,7 +9053,7 @@
       <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
@@ -9249,7 +9250,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_002" scene_name_1="TOR_bretonnia_castle_002" scene_name_2="TOR_bretonnia_castle_002" scene_name_3="TOR_bretonnia_castle_002" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
   </Settlement>
@@ -9353,7 +9354,7 @@
       <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
       <Location id="house_2" scene_name="vlandia_house_d_interior_house" />
@@ -9500,7 +9501,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_004" scene_name_1="TOR_bretonnia_castle_004" scene_name_2="TOR_bretonnia_castle_004" scene_name_3="TOR_bretonnia_castle_004" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
     </Locations>
   </Settlement>
@@ -9600,7 +9601,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_003" scene_name_1="TOR_bretonnia_castle_003" scene_name_2="TOR_bretonnia_castle_003" scene_name_3="TOR_bretonnia_castle_003" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
     </Locations>
   </Settlement>
@@ -9654,7 +9655,7 @@
       <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
@@ -9865,7 +9866,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_005" scene_name_1="TOR_bretonnia_castle_005" scene_name_2="TOR_bretonnia_castle_005" scene_name_3="TOR_bretonnia_castle_005" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
   </Settlement>
@@ -9995,7 +9996,7 @@
       <Location id="center" scene_name="TOR_bretonnia_city_001" scene_name_1="TOR_bretonnia_city_001" scene_name_2="TOR_bretonnia_city_001" scene_name_3="TOR_bretonnia_city_001" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
       <Location id="house_2" scene_name="vlandia_house_d_interior_house" />
@@ -10142,7 +10143,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_005" scene_name_1="TOR_bretonnia_castle_005" scene_name_2="TOR_bretonnia_castle_005" scene_name_3="TOR_bretonnia_castle_005" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
     </Locations>
   </Settlement>
@@ -10268,7 +10269,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_bretonnia_castle_003" scene_name_1="TOR_bretonnia_castle_003" scene_name_2="TOR_bretonnia_castle_003" scene_name_3="TOR_bretonnia_castle_003" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
     </Locations>
   </Settlement>
@@ -10335,7 +10336,7 @@
       <Location id="center" scene_name="TOR_bretonnia_city_001" scene_name_1="TOR_bretonnia_city_001" scene_name_2="TOR_bretonnia_city_001" scene_name_3="TOR_bretonnia_city_001" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
-      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02_atmo_w_night" scene_name_2="TOR_bretonnia_keep_02_atmo_w_night" scene_name_3="TOR_bretonnia_keep_02_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_02" scene_name_2="TOR_bretonnia_keep_02" scene_name_3="TOR_bretonnia_keep_02" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
       <Location id="house_2" scene_name="vlandia_house_d_interior_house" />
@@ -11215,7 +11216,7 @@
       <Location id="lordshall" scene_name_1="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_2="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_3="TOR_POI_dwarf_keep_001_atmo_w_night" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="house_2" scene_name="TOR_engineer_office_002" />
+      <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
     </Locations>
@@ -11230,7 +11231,7 @@
       <Village id="village_comp_AZ1_1" village_type="VillageType.silver_mine" hearth="250" bound="Settlement.town_AZ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_002" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_02" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -11293,7 +11294,7 @@
       <Village id="castle_village_comp_AZ1_2" village_type="VillageType.iron_mine" hearth="200" bound="Settlement.castle_AZ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_04" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -11330,7 +11331,7 @@
       <Village id="castle_village_comp_AZ2_1" village_type="VillageType.sheep_farm" hearth="200" bound="Settlement.castle_AZ2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_04" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -11378,7 +11379,7 @@
       <Location id="lordshall" scene_name_1="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_2="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_3="TOR_POI_dwarf_keep_001_atmo_w_night" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="house_2" scene_name="TOR_engineer_office_002" />
+      <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
     </Locations>
@@ -11406,7 +11407,7 @@
       <Village id="village_comp_NO1_2" village_type="VillageType.wheat_farm" hearth="250" bound="Settlement.town_NO1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_002" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_02" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -11419,7 +11420,7 @@
       <Village id="village_comp_NO1_3" village_type="VillageType.iron_mine" hearth="250" bound="Settlement.town_NO1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_04" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -11541,7 +11542,7 @@
       <Location id="lordshall" scene_name_1="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_2="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_3="TOR_POI_dwarf_keep_001_atmo_w_night" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="house_2" scene_name="TOR_engineer_office_002" />
+      <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
     </Locations>
@@ -11556,7 +11557,7 @@
       <Village id="village_comp_ZI1_1" village_type="VillageType.salt_mine" hearth="250" bound="Settlement.town_ZI1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_01" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -11569,7 +11570,7 @@
       <Village id="village_comp_ZI1_2" village_type="VillageType.wheat_farm" hearth="250" bound="Settlement.town_ZI1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_002" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_02" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -11606,7 +11607,7 @@
       <Village id="castle_village_comp_ZI1_1" village_type="VillageType.clay_mine" hearth="200" bound="Settlement.castle_ZI1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_002" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_02" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -11656,7 +11657,7 @@
       <Village id="castle_village_comp_ZI2_1" village_type="VillageType.iron_mine" hearth="200" bound="Settlement.castle_ZI2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_002" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_04" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -11691,7 +11692,7 @@
       <Location id="lordshall" scene_name_1="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_2="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_3="TOR_POI_dwarf_keep_001_atmo_w_night" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="house_2" scene_name="TOR_engineer_office_002" />
+      <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
     </Locations>
@@ -11701,9 +11702,9 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_KI1_1" name="{=Settlements.Settlement.name.village_KI1_1}Hochstadt" posX="1217.694" posY="686.7791" culture="Culture.sturgia" text="{=Settlements.Settlement.text.village_KI1_1}A village first built by the barbarian human tribes but long abandoned. Now it servers as a farming site for the Dawi, growing grain and oats for the production of durazbrog, the Dwarfen stonebread.">
+  <Settlement id="village_KI1_1" name="{=Settlements.Settlement.name.village_KI1_1}Hochstadt" posX="1216.663" posY="687.808" culture="Culture.sturgia" text="{=Settlements.Settlement.text.village_KI1_1}A village first built by the barbarian human tribes but long abandoned. Now it servers as a farming site for the Dawi, growing grain and oats for the production of durazbrog, the Dwarfen stonebread.">
     <Components>
-      <Village id="village_comp_KI1_1" village_type="VillageType.wheat_farm" hearth="250" bound="Settlement.town_KI1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_KI1_1" village_type="VillageType.dawi_wheat_farm" hearth="250" bound="Settlement.town_KI1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -11719,7 +11720,7 @@
       <Village id="village_comp_KI1_2" village_type="VillageType.iron_mine" hearth="250" bound="Settlement.town_KI1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_002" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_04" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -11756,7 +11757,7 @@
       <Village id="castle_village_comp_KI1_1" village_type="VillageType.silver_mine" hearth="200" bound="Settlement.castle_KI1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_002" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_04" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -11793,7 +11794,7 @@
       <Village id="castle_village_comp_KI2_1" village_type="VillageType.iron_mine" hearth="200" bound="Settlement.castle_KI2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_002" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_02" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -11841,7 +11842,7 @@
       <Location id="lordshall" scene_name_1="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_2="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_3="TOR_POI_dwarf_keep_001_atmo_w_night" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="house_2" scene_name="TOR_engineer_office_002" />
+      <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
     </Locations>
@@ -11869,7 +11870,7 @@
       <Village id="village_comp_EZ1_2" village_type="VillageType.sheep_farm" hearth="250" bound="Settlement.town_EZ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_01" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -11941,7 +11942,7 @@
       <Location id="lordshall" scene_name_1="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_2="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_3="TOR_POI_dwarf_keep_001_atmo_w_night" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="house_2" scene_name="TOR_engineer_office_002" />
+      <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
     </Locations>
@@ -12004,7 +12005,7 @@
       <Location id="lordshall" scene_name_1="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_2="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_3="TOR_POI_dwarf_keep_001_atmo_w_night" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="house_2" scene_name="TOR_engineer_office_002" />
+      <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
     </Locations>
@@ -12032,7 +12033,7 @@
       <Village id="village_comp_KH1_2" village_type="VillageType.iron_mine" hearth="250" bound="Settlement.town_KH1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_04" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -12141,7 +12142,7 @@
       <Location id="lordshall" scene_name_1="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_2="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_3="TOR_POI_dwarf_keep_001_atmo_w_night" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="house_2" scene_name="TOR_engineer_office_002" />
+      <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
     </Locations>
@@ -12153,10 +12154,10 @@
   </Settlement>
   <Settlement id="village_KG1_1" name="{=Settlements.Settlement.name.village_KG1_1}Valdahaz Grog" posX="1450.195" posY="776.842" culture="Culture.sturgia" text="{=Settlements.Settlement.text.village_KG1_1}A small Dwarf settlement in the valley of the mountains. It is the main trading hub between the Dawi of Karak Gantuk and the Wissenlanders.">
     <Components>
-      <Village id="village_comp_KG1_1" village_type="VillageType.wheat_farm" hearth="250" bound="Settlement.town_KG1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_KG1_1" village_type="VillageType.dawi_wheat_farm" hearth="250" bound="Settlement.town_KG1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_002" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_02" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -12243,7 +12244,7 @@
       <Village id="castle_village_comp_KG2_1" village_type="VillageType.iron_mine" hearth="200" bound="Settlement.castle_KG2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_empire_village_004" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -12291,7 +12292,7 @@
       <Location id="lordshall" scene_name_1="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_2="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_3="TOR_POI_dwarf_keep_001_atmo_w_night" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="house_2" scene_name="TOR_engineer_office_002" />
+      <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
     </Locations>
@@ -12356,7 +12357,7 @@
       <Village id="castle_village_comp_AN1_1" village_type="VillageType.silver_mine" hearth="200" bound="Settlement.castle_AN1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_002" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_04" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -12369,7 +12370,7 @@
       <Village id="castle_village_comp_AN1_2" village_type="VillageType.lumberjack" hearth="200" bound="Settlement.castle_AN1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_04" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -12404,7 +12405,7 @@
       <Location id="lordshall" scene_name_1="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_2="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_3="TOR_POI_dwarf_keep_001_atmo_w_night" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="house_2" scene_name="TOR_engineer_office_002" />
+      <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
     </Locations>
@@ -12419,7 +12420,7 @@
       <Village id="village_comp_ZH1_1" village_type="VillageType.salt_mine" hearth="250" bound="Settlement.town_ZH1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_04" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -12469,7 +12470,7 @@
       <Village id="castle_village_comp_ZH1_1" village_type="VillageType.iron_mine" hearth="200" bound="Settlement.castle_ZH1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_04" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -12554,7 +12555,7 @@
       <Location id="lordshall" scene_name_1="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_2="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_3="TOR_POI_dwarf_keep_001_atmo_w_night" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="house_2" scene_name="TOR_engineer_office_002" />
+      <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
     </Locations>
@@ -12569,7 +12570,7 @@
       <Village id="village_comp_KK1_1" village_type="VillageType.lumberjack" hearth="250" bound="Settlement.town_KK1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_04" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -12616,7 +12617,7 @@
       <Location id="lordshall" scene_name_1="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_2="TOR_POI_dwarf_keep_001_atmo_w_night" scene_name_3="TOR_POI_dwarf_keep_001_atmo_w_night" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="house_2" scene_name="TOR_engineer_office_002" />
+      <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
     </Locations>
@@ -12628,7 +12629,7 @@
   </Settlement>
   <Settlement id="village_KK2_1" name="{=Settlements.Settlement.name.village_KK2_1}Umgi Grog" posX="1873.485" posY="1084.822" culture="Culture.sturgia" text="{=Settlements.Settlement.text.village_KK2_1}Umgi Grog is a small human settlement at the foot of the Karak Raziak fortress. Although inhabited by Imperials, they fall under the jurisdiction of the Dwarf kingdom of Karak Kadrin.">
     <Components>
-      <Village id="village_comp_KK2_1" village_type="VillageType.wheat_farm" hearth="250" bound="Settlement.town_KK2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_KK2_1" village_type="VillageType.dawi_wheat_farm" hearth="250" bound="Settlement.town_KK2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_dwarf_village_01" />
@@ -12644,7 +12645,7 @@
       <Village id="village_comp_KK2_2" village_type="VillageType.swine_farm" hearth="250" bound="Settlement.town_KK2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_04" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -12681,7 +12682,7 @@
       <Village id="castle_village_comp_KK1_1" village_type="VillageType.silver_mine" hearth="200" bound="Settlement.castle_KK1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_dwarf_village_002" />
+      <Location id="village_center" scene_name="TOR_dwarf_village_02" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -12816,7 +12817,7 @@
   </Settlement>
   <Settlement id="village_MC1_2" name="{=Settlements.Settlement.name.village_MC1_2}Hursend" posX="1086.941" posY="971.327" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_MC1_2}Kalkaat is a small town located on the road between the Empire and Marienburg. The people here are MCstelanders through and through but do feel a certain loyalty to the empire and its gods. In particular the cult of Sigmar has a very long standing, as well as extremely orthodox, temple here. Due to exotic trade with their global partners, Marienburg has got foreign animals from the deserts of Araby. The Landsraad has decided to store and breed the animal in Kalkaat to bring the animals worth down for future trade.">
     <Components>
-      <Village id="village_comp_MC1_2" village_type="VillageType.swine_farm" hearth="250" bound="Settlement.town_MC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_MC1_2" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_MC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -12928,7 +12929,7 @@
   </Settlement>
   <Settlement id="castle_village_MC1_1" name="{=Settlements.Settlement.name.castle_village_MC1_1}Howling Gap" posX="1047.14" posY="924.841" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_MC1_1}An old Bretonnian village. Its ruins are used as shelter by the Greenskins in the area. A small wolf den is also located in the village, where Goblins raise the giant wolves to ride into battle.">
     <Components>
-      <Village id="castle_village_comp_MC1_1" village_type="VillageType.swine_farm" hearth="200" bound="Settlement.castle_MC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_MC1_1" village_type="VillageType.greenskin_swine_farm" hearth="200" bound="Settlement.castle_MC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13090,7 +13091,7 @@
   </Settlement>
   <Settlement id="village_BX2_1" name="{=Settlements.Settlement.name.village_BX2_1}Greytroll Lair" posX="1066.844" posY="1235.288" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_BX2_1}Greytroll Lair serves as a lair to a group of Trolls. Filled with silver and gold, the cave was soon captured by Gromodrak and the Trolls were forcefully ‘persuaded’ to join the Greenskin mob.">
     <Components>
-      <Village id="village_comp_BX2_1" village_type="VillageType.sheep_farm" hearth="250" bound="Settlement.town_BX2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BX2_1" village_type="VillageType.greenskin_wolf_farm" hearth="250" bound="Settlement.town_BX2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_005" />
@@ -13179,7 +13180,7 @@
   </Settlement>
   <Settlement id="castle_village_BX1_4" name="{=Settlements.Settlement.name.castle_village_BX1_4}Boney Pit" posX="1092.137" posY="1160.74" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_BX1_4}Every Geheimnisnacht hordes of skeletons march out of their barrows. The relentless undead make for a great punching bag to the local Orcs. Da Boyz sure love a good scrap.">
     <Components>
-      <Village id="castle_village_comp_BX1_4" village_type="VillageType.swine_farm" hearth="200" bound="Settlement.castle_BX1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BX1_4" village_type="VillageType.greenskin_swine_farm" hearth="200" bound="Settlement.castle_BX1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13279,7 +13280,7 @@
   </Settlement>
   <Settlement id="village_BZ1_1" name="{=Settlements.Settlement.name.village_BZ1_1}Krushrock" posX="1002.399" posY="1208.645" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_BZ1_1}A shrine to Mork that is famous for a huge round boulder in the center. Greenskins of the Black Sunz once used it to crush an entire Bretonnian regiment.">
     <Components>
-      <Village id="village_comp_BZ1_1" village_type="VillageType.cattle_farm" hearth="250" bound="Settlement.town_BZ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BZ1_1" village_type="VillageType.greenskin_wolf_farm" hearth="250" bound="Settlement.town_BZ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13292,7 +13293,7 @@
   </Settlement>
   <Settlement id="village_BZ1_2" name="{=Settlements.Settlement.name.village_BZ1_2}Fall of Charlemagne" posX="991.502" posY="1191.627" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_BZ1_2}Bretonnian crusade against the Greenskins did not proceed without defeats. A Grail Knight known as Robert Charlemagne commanded his troop of 47 knights and 359 peasants into the mountains, but lost his entire army in a cunning Greenskin ambush. Black Sunz Orcs rolled giant boulders down the valley path and crushed the entire Bretonnian force in mere seconds.">
     <Components>
-      <Village id="village_comp_BZ1_2" village_type="VillageType.sheep_farm" hearth="250" bound="Settlement.town_BZ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BZ1_2" village_type="VillageType.greenskin_wolf_farm" hearth="250" bound="Settlement.town_BZ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13341,7 +13342,7 @@
   </Settlement>
   <Settlement id="village_BZ2_1" name="{=Settlements.Settlement.name.village_BZ2_1}Snowy Topz" posX="1030.958" posY="1196.053" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_BZ2_1}White snow on limestone white hills - One could spot an intruder in an instant. The Orc camp hosts a number of Boyz riding their ever ferocious War Boarz.">
     <Components>
-      <Village id="village_comp_BZ2_1" village_type="VillageType.swine_farm" hearth="250" bound="Settlement.town_BZ2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BZ2_1" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_BZ2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -13441,7 +13442,7 @@
   </Settlement>
   <Settlement id="village_SM1_2" name="{=Settlements.Settlement.name.village_SM1_2}Zug" posX="1092.666" posY="1076.821" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_SM1_2}A orcish outpost weakly guarded but with a great high ground advantage. Wild boar herds roam the area.">
     <Components>
-      <Village id="village_comp_SM1_2" village_type="VillageType.swine_farm" hearth="250" bound="Settlement.town_SM1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_SM1_2" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_SM1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13563,7 +13564,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_SM3_2" name="{=Settlements.Settlement.name.village_SM3_2}Troll Hag Pass" posX="1222.547" posY="1015.3" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_SM3_2}">
+  <Settlement id="village_SM3_2" name="{=Settlements.Settlement.name.village_SM3_2}Troll Hag Pass" posX="1222.547" posY="1015.3" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_SM3_2}At the front door of the Empire, Troll Hag Pass is cursed by humans for miles around. Although the Hag is now long dead, Goblins and Orcs often raid the surrounding lands before retreating to their defensive and sinister place of residence. The most sensitive Greenskin shamans often dislike the place. Something about a foul odor, even for their...limited sensibilities.">
     <Components>
       <Village id="village_comp_SM3_2" village_type="VillageType.trapper" hearth="250" bound="Settlement.town_SM3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -13578,7 +13579,7 @@
   </Settlement>
   <Settlement id="village_SM3_3" name="{=Settlements.Settlement.name.village_SM3_3}Boardropz" posX="1236.894" posY="1017.806" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_SM3_3}A boar breeding camp. Also goblin workers make makeshift armors for the warbeasts.">
     <Components>
-      <Village id="village_comp_SM3_3" village_type="VillageType.swine_farm" hearth="250" bound="Settlement.town_SM3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_SM3_3" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_SM3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13665,7 +13666,7 @@
   </Settlement>
   <Settlement id="castle_village_SM2_1" name="{=Settlements.Settlement.name.castle_village_SM2_1}Bourgo" posX="1196.208" posY="978.109" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_SM2_1}A hill filled with sheep nothing much else goes on here.">
     <Components>
-      <Village id="castle_village_comp_SM2_1" village_type="VillageType.sheep_farm" hearth="200" bound="Settlement.castle_SM2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_SM2_1" village_type="VillageType.greenskin_wolf_farm" hearth="200" bound="Settlement.castle_SM2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13803,7 +13804,7 @@
   </Settlement>
   <Settlement id="village_DG2_2" name="{=Settlements.Settlement.name.village_DG2_2}Gitgirt" posX="1322.306" posY="888.2841" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_DG2_2}Like an ant colony Gitgirt is covered in small holes in the mountain side giving way to the hundreds of goblins residing in the mountains to attack from all sides. This enormous stronghold is tried to be taken out by the dwarves numerous times but by sieging the hold creating more holes in the process.">
     <Components>
-      <Village id="village_comp_DG2_2" village_type="VillageType.swine_farm" hearth="250" bound="Settlement.town_DG2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_DG2_2" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_DG2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13903,7 +13904,7 @@
   </Settlement>
   <Settlement id="castle_village_DG2_2" name="{=Settlements.Settlement.name.castle_village_DG2_2}Orc Cliff" posX="1310.509" posY="932.014" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_DG2_2}Once celebrated as the village that stood firm against the greenskins from the grey mountains only for the greenskins to come with double the number and turn it into a pulp.">
     <Components>
-      <Village id="castle_village_comp_DG2_2" village_type="VillageType.sheep_farm" hearth="200" bound="Settlement.castle_DG2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_DG2_2" village_type="VillageType.greenskin_wolf_farm" hearth="200" bound="Settlement.castle_DG2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -13966,7 +13967,7 @@
   </Settlement>
   <Settlement id="village_NS1_2" name="{=Settlements.Settlement.name.village_NS1_2}Winter Fang" posX="1270.19" posY="689.488" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_NS1_2}Along Winter's Teeth Pass is a rocky outcrop that is not too high, but has a shape that is a gentle climb on one side and a long drop on the other. It was named Winter Fang because of its sharp resemblance. It is often used by travelers or bandits to camp here because it is small and easy to defend.">
     <Components>
-      <Village id="village_comp_NS1_2" village_type="VillageType.swine_farm" hearth="250" bound="Settlement.town_NS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_NS1_2" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_NS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -14141,7 +14142,7 @@
   </Settlement>
   <Settlement id="village_CE2_2" name="{=Settlements.Settlement.name.village_CE2_2}Fennon Hugel" posX="1584.574" posY="940.462" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_CE2_2}The hills of Fennon Hugel give a good advantage to incoming enemies; the area is also rich in forest and animals.">
     <Components>
-      <Village id="village_comp_CE2_2" village_type="VillageType.swine_farm" hearth="250" bound="Settlement.town_CE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_CE2_2" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_CE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -14154,7 +14155,7 @@
   </Settlement>
   <Settlement id="village_CE2_3" name="{=Settlements.Settlement.name.village_CE2_3}Nasnas" posX="1607.492" posY="921.213" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_CE2_3}An old village said to be haunted by a spirit. Not many dare to enter it. The area is still rich with wood and animals; an orcish camp is set closeby the village.">
     <Components>
-      <Village id="village_comp_CE2_3" village_type="VillageType.swine_farm" hearth="250" bound="Settlement.town_CE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_CE2_3" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_CE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -14351,9 +14352,9 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_BS2_1" name="{=Settlements.Settlement.name.village_BS2_1}Proppa Top" posX="1699.23" posY="933.188" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_BS2_1}">
+  <Settlement id="village_BS2_1" name="{=Settlements.Settlement.name.village_BS2_1}Proppa Top" posX="1699.23" posY="933.188" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_BS2_1}-">
     <Components>
-      <Village id="village_comp_BS2_1" village_type="VillageType.sheep_farm" hearth="250" bound="Settlement.town_BS2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BS2_1" village_type="VillageType.greenskin_wolf_farm" hearth="250" bound="Settlement.town_BS2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -14414,9 +14415,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_BS1_2" name="{=Settlements.Settlement.name.castle_village_BS1_2}Slave Rock" posX="1822.757" posY="1019.479" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_BS3_1}">
+  <Settlement id="castle_village_BS1_2" name="{=Settlements.Settlement.name.castle_village_BS1_2}Slave Rock" posX="1822.757" posY="1019.479" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_BS3_1}This infamous place is a death sentence even for the hardiest prisoners. Greenskins have taken to working them to death for nothing of value except mining the rocks, and instead find value in feeding the corpses to their wolves. Fleeing prisoners are also a great way to keep the beasts in good shape.">
     <Components>
-      <Village id="castle_village_comp_BS1_2" village_type="VillageType.cattle_farm" hearth="200" bound="Settlement.castle_BS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BS1_2" village_type="VillageType.greenskin_wolf_farm" hearth="200" bound="Settlement.castle_BS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -14453,7 +14454,7 @@
   </Settlement>
   <Settlement id="castle_village_BS2_1" name="{=Settlements.Settlement.name.castle_village_BS2_1}Valley of Teef" posX="1739.254" posY="977.244" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_BS2_1}Gorssel is a large salt mining settlement owned by the BSsteland Import-Export Exchange in Marienburg. All of the people who live here are ‘Change employees. Salt mining is extremely dangerous, as such the men who work in the mines are very haggard, many have burns on their arms from working with the salt. Gorssel is one of the only salt mines in the old world to not rely on peasant or slave labour for its production. While the miners here may complain about their pays, they are receiving a relatively handsome one. ">
     <Components>
-      <Village id="castle_village_comp_BS2_1" village_type="VillageType.swine_farm" hearth="200" bound="Settlement.castle_BS2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BS2_1" village_type="VillageType.greenskin_swine_farm" hearth="200" bound="Settlement.castle_BS2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -14503,7 +14504,7 @@
   </Settlement>
   <Settlement id="castle_village_BS3_1" name="{=Settlements.Settlement.name.castle_village_BS3_1}Skrap Tower" posX="1710.505" posY="958.806" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_BS3_1}">
     <Components>
-      <Village id="castle_village_comp_BS3_1" village_type="VillageType.sheep_farm" hearth="200" bound="Settlement.castle_BS3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BS3_1" village_type="VillageType.greenskin_wolf_farm" hearth="200" bound="Settlement.castle_BS3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -14514,7 +14515,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_BS3_2" name="{=Settlements.Settlement.name.castle_village_BS3_2}Tusk Pit" posX="1710.863" posY="974.243" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_BS3_2}">
+  <Settlement id="castle_village_BS3_2" name="{=Settlements.Settlement.name.castle_village_BS3_2}Tusk Pit" posX="1710.863" posY="974.243" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_BS3_2}-">
     <Components>
       <Village id="castle_village_comp_BS3_2" village_type="VillageType.trapper" hearth="200" bound="Settlement.castle_BS3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -14592,7 +14593,7 @@
   </Settlement>
   <Settlement id="village_RE1_3" name="{=Settlements.Settlement.name.village_RE1_3}Ornery Camp" posX="1790.024" posY="1123.304" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_RE1_3}The dwarves constantly have small patrol groups crossing the World Edge Mountains. Watching and waiting for the opportune moment to occupy their ancestral home. Ornery  Backslider built this encampment as a response to those incursions. This encampment always has a garrison ready to repel any threat, human or beard-thing.">
     <Components>
-      <Village id="village_comp_RE1_3" village_type="VillageType.swine_farm" hearth="250" bound="Settlement.town_RE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_RE1_3" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_RE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -14654,7 +14655,7 @@
   </Settlement>
   <Settlement id="village_RE2_2" name="{=Settlements.Settlement.name.village_RE2_2}Thousand Woes Valley" posX="1788.745" posY="1102.886" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_RE2_2}Once upon a time, this place was part of the Thousand Woes Forest. But since the goblins deforested it, it has now become a valley where only grass grows, making it ideal for wild animals to graze and feed on.">
     <Components>
-      <Village id="village_comp_RE2_2" village_type="VillageType.cattle_farm" hearth="250" bound="Settlement.town_RE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_RE2_2" village_type="VillageType.greenskin_wolf_farm" hearth="250" bound="Settlement.town_RE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -14691,7 +14692,7 @@
   </Settlement>
   <Settlement id="castle_village_RE1_1" name="{=Settlements.Settlement.name.castle_village_RE1_1}Veldt Village" posX="1760.374" posY="1115.561" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_RE1_1}Veldt is an old village in Ostenmark whose original name has been lost. It was abandoned due to constant raids by Greenskins coming from the mountain. It serves as a reference point on the map and as a temporary resting place for hunting parties. But no one dares to spend the night here.">
     <Components>
-      <Village id="castle_village_comp_RE1_1" village_type="VillageType.cattle_farm" hearth="200" bound="Settlement.castle_RE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_RE1_1" village_type="VillageType.greenskin_wolf_farm" hearth="200" bound="Settlement.castle_RE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -14829,7 +14830,7 @@
   </Settlement>
   <Settlement id="village_IT2_1" name="{=Settlements.Settlement.name.village_IT2_1}Smelly Pit" posX="1009.211" posY="761.5131" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_IT2_1}A deep cavern filled with smelly mushrooms and rotting sheep.">
     <Components>
-      <Village id="village_comp_IT2_1" village_type="VillageType.cattle_farm" hearth="250" bound="Settlement.town_IT2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_IT2_1" village_type="VillageType.greenskin_wolf_farm" hearth="250" bound="Settlement.town_IT2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -14842,7 +14843,7 @@
   </Settlement>
   <Settlement id="village_IT2_2" name="{=Settlements.Settlement.name.village_IT2_2}Brawlin' Fieldz" posX="1016.221" posY="770.697" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_IT2_2}Orcs believe only in the meaning of brute force, so they frequently quarrel. In this place, fights have a special meaning, because in case of disputes over loot, they start to smack each other around here. This prevents other orcs in the fortress from claiming what the warband has plundered.">
     <Components>
-      <Village id="village_comp_IT2_2" village_type="VillageType.swine_farm" hearth="250" bound="Settlement.town_IT2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_IT2_2" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_IT2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -14991,7 +14992,7 @@
   </Settlement>
   <Settlement id="castle_village_IT2_2" name="{=Settlements.Settlement.name.castle_village_IT2_2}Giant Wolf Hillz" posX="953.828" posY="778.975" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_IT2_2}A rugged terrain of forests and hills where the howls of wolves can be heard every night. In times of scarcity, the most foolish goblins wander here in search of new mounts.">
     <Components>
-      <Village id="castle_village_comp_IT2_2" village_type="VillageType.swine_farm" hearth="200" bound="Settlement.castle_IT2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_IT2_2" village_type="VillageType.greenskin_swine_farm" hearth="200" bound="Settlement.castle_IT2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -15895,7 +15896,7 @@
       <Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_beastmen_41" name="{=Settlements.Settlement.name.hideout_beastmen_40}Ungor Camp" type="Hideout" posX="1188.279" posY="888.854" culture="Culture.steppe_bandits">
+  <Settlement id="hideout_beastmen_41" name="{=Settlements.Settlement.name.hideout_beastmen_41}Ungor Camp" type="Hideout" posX="1188.279" posY="888.854" culture="Culture.steppe_bandits">
     <Components>
       <Hideout id="hideout_beastmen_41" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16608,7 +16609,7 @@
       <Location id="hideout_center" scene_name="mountain_hideout_004_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_greenskin_79" name="{=Settlements.Settlement.name.hideout_greenskin_78}Orc Raiders" type="Hideout" posX="1178.955" posY="695.109" culture="Culture.greenskin_bandit">
+  <Settlement id="hideout_greenskin_79" name="{=Settlements.Settlement.name.hideout_greenskin_79}Orc Raiders" type="Hideout" posX="1178.955" posY="695.109" culture="Culture.greenskin_bandit">
     <Components>
       <Hideout id="hideout_greenskin_79" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16616,7 +16617,7 @@
       <Location id="hideout_center" scene_name="mountain_hideout_002_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_greenskin_80" name="{=Settlements.Settlement.name.hideout_greenskin_78}Orc Raiders" type="Hideout" posX="1235.851" posY="716.04" culture="Culture.greenskin_bandit">
+  <Settlement id="hideout_greenskin_80" name="{=Settlements.Settlement.name.hideout_greenskin_80}Orc Raiders" type="Hideout" posX="1235.851" posY="716.04" culture="Culture.greenskin_bandit">
     <Components>
       <Hideout id="hideout_greenskin_80" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16633,7 +16634,7 @@
     </Locations>
   </Settlement>
   <!-- bretonnia Bandit Hideouts -->
-  <Settlement id="hideout_bretonnia_1" name="{=Settlements.Settlement.name.hideout_mountain_1}Herrimault Hideout" type="Hideout" posX="1137.073" posY="846.367" culture="Culture.desert_bandits">
+  <Settlement id="hideout_bretonnia_1" name="{=Settlements.Settlement.name.hideout_bretonnia_1}Herrimault Hideout" type="Hideout" posX="1137.073" posY="846.367" culture="Culture.desert_bandits">
     <Components>
       <Hideout id="hideout_bretonnia_1" map_icon="bandit_hideout_d" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16641,7 +16642,7 @@
       <Location id="hideout_center" scene_name="bandit_forest_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_bretonnia_2" name="{=Settlements.Settlement.name.hideout_mountain_2}Herrimault Hideout" type="Hideout" posX="1051.764" posY="897.234" culture="Culture.desert_bandits">
+  <Settlement id="hideout_bretonnia_2" name="{=Settlements.Settlement.name.hideout_bretonnia_2}Herrimault Hideout" type="Hideout" posX="1051.764" posY="897.234" culture="Culture.desert_bandits">
     <Components>
       <Hideout id="hideout_bretonnia_2" map_icon="bandit_hideout_d" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16649,7 +16650,7 @@
       <Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_bretonnia_3" name="{=Settlements.Settlement.name.hideout_mountain_3}Herrimault Hideout" type="Hideout" posX="984.894" posY="871.678" culture="Culture.desert_bandits">
+  <Settlement id="hideout_bretonnia_3" name="{=Settlements.Settlement.name.hideout_bretonnia_3}Herrimault Hideout" type="Hideout" posX="984.894" posY="871.678" culture="Culture.desert_bandits">
     <Components>
       <Hideout id="hideout_bretonnia_3" map_icon="bandit_hideout_d" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16657,7 +16658,7 @@
       <Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_bretonnia_4" name="{=Settlements.Settlement.name.hideout_mountain_4}Herrimault Hideout" type="Hideout" posX="979.479" posY="1031.768" culture="Culture.desert_bandits">
+  <Settlement id="hideout_bretonnia_4" name="{=Settlements.Settlement.name.hideout_bretonnia_4}Herrimault Hideout" type="Hideout" posX="979.479" posY="1031.768" culture="Culture.desert_bandits">
     <Components>
       <Hideout id="hideout_bretonnia_4" map_icon="bandit_hideout_d" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16665,7 +16666,7 @@
       <Location id="hideout_center" scene_name="bandit_forest_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_bretonnia_5" name="{=Settlements.Settlement.name.hideout_mountain_5}Herrimault Hideout" type="Hideout" posX="1082.957" posY="1010.045" culture="Culture.desert_bandits">
+  <Settlement id="hideout_bretonnia_5" name="{=Settlements.Settlement.name.hideout_bretonnia_5}Herrimault Hideout" type="Hideout" posX="1082.957" posY="1010.045" culture="Culture.desert_bandits">
     <Components>
       <Hideout id="hideout_bretonnia_5" map_icon="bandit_hideout_d" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16673,7 +16674,7 @@
       <Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_bretonnia_6" name="{=Settlements.Settlement.name.hideout_mountain_6}Herrimault Hideout" type="Hideout" posX="898.845" posY="986.324" culture="Culture.desert_bandits">
+  <Settlement id="hideout_bretonnia_6" name="{=Settlements.Settlement.name.hideout_bretonnia_6}Herrimault Hideout" type="Hideout" posX="898.845" posY="986.324" culture="Culture.desert_bandits">
     <Components>
       <Hideout id="hideout_bretonnia_6" map_icon="bandit_hideout_d" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16681,7 +16682,7 @@
       <Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_bretonnia_7" name="{=Settlements.Settlement.name.hideout_mountain_7}Herrimault Hideout" type="Hideout" posX="964.139" posY="951.802" culture="Culture.desert_bandits">
+  <Settlement id="hideout_bretonnia_7" name="{=Settlements.Settlement.name.hideout_bretonnia_7}Herrimault Hideout" type="Hideout" posX="964.139" posY="951.802" culture="Culture.desert_bandits">
     <Components>
       <Hideout id="hideout_bretonnia_7" map_icon="bandit_hideout_d" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16689,7 +16690,7 @@
       <Location id="hideout_center" scene_name="bandit_forest_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_bretonnia_8" name="{=Settlements.Settlement.name.hideout_mountain_8}Herrimault Hideout" type="Hideout" posX="1031.107" posY="948.419" culture="Culture.desert_bandits">
+  <Settlement id="hideout_bretonnia_8" name="{=Settlements.Settlement.name.hideout_bretonnia_8}Herrimault Hideout" type="Hideout" posX="1031.107" posY="948.419" culture="Culture.desert_bandits">
     <Components>
       <Hideout id="hideout_bretonnia_8" map_icon="bandit_hideout_d" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16697,7 +16698,7 @@
       <Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_bretonnia_9" name="{=Settlements.Settlement.name.hideout_mountain_9}Herrimault Hideout" type="Hideout" posX="975.371" posY="793.942" culture="Culture.desert_bandits">
+  <Settlement id="hideout_bretonnia_9" name="{=Settlements.Settlement.name.hideout_bretonnia_9}Herrimault Hideout" type="Hideout" posX="975.371" posY="793.942" culture="Culture.desert_bandits">
     <Components>
       <Hideout id="hideout_bretonnia_9" map_icon="bandit_hideout_d" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16705,7 +16706,7 @@
       <Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_bretonnia_10" name="{=Settlements.Settlement.name.hideout_mountain_10}Herrimault Hideout" type="Hideout" posX="1088.838" posY="838.02" culture="Culture.desert_bandits">
+  <Settlement id="hideout_bretonnia_10" name="{=Settlements.Settlement.name.hideout_bretonnia_10}Herrimault Hideout" type="Hideout" posX="1088.838" posY="838.02" culture="Culture.desert_bandits">
     <Components>
       <Hideout id="hideout_bretonnia_10" map_icon="bandit_hideout_d" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16713,7 +16714,7 @@
       <Location id="hideout_center" scene_name="bandit_forest_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_bretonnia_12" name="{=Settlements.Settlement.name.hideout_mountain_12}Herrimault Hideout" type="Hideout" posX="1003.943" posY="1124.357" culture="Culture.desert_bandits">
+  <Settlement id="hideout_bretonnia_12" name="{=Settlements.Settlement.name.hideout_bretonnia_12}Herrimault Hideout" type="Hideout" posX="1003.943" posY="1124.357" culture="Culture.desert_bandits">
     <Components>
       <Hideout id="hideout_bretonnia_12" map_icon="bandit_hideout_d" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16721,7 +16722,7 @@
       <Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_bretonnia_13" name="{=Settlements.Settlement.name.hideout_mountain_13}Herrimault Hideout" type="Hideout" posX="834.469" posY="1186.498" culture="Culture.desert_bandits">
+  <Settlement id="hideout_bretonnia_13" name="{=Settlements.Settlement.name.hideout_bretonnia_13}Herrimault Hideout" type="Hideout" posX="834.469" posY="1186.498" culture="Culture.desert_bandits">
     <Components>
       <Hideout id="hideout_bretonnia_13" map_icon="bandit_hideout_d" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16729,7 +16730,7 @@
       <Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_bretonnia_14" name="{=Settlements.Settlement.name.hideout_mountain_14}Herrimault Hideout" type="Hideout" posX="830.554" posY="1149.817" culture="Culture.desert_bandits">
+  <Settlement id="hideout_bretonnia_14" name="{=Settlements.Settlement.name.hideout_bretonnia_14}Herrimault Hideout" type="Hideout" posX="830.554" posY="1149.817" culture="Culture.desert_bandits">
     <Components>
       <Hideout id="hideout_bretonnia_14" map_icon="bandit_hideout_d" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16737,7 +16738,7 @@
       <Location id="hideout_center" scene_name="bandit_forest_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_bretonnia_15" name="{=Settlements.Settlement.name.hideout_mountain_15}Herrimault Hideout" type="Hideout" posX="806.907" posY="1229.586" culture="Culture.desert_bandits">
+  <Settlement id="hideout_bretonnia_15" name="{=Settlements.Settlement.name.hideout_bretonnia_15}Herrimault Hideout" type="Hideout" posX="806.907" posY="1229.586" culture="Culture.desert_bandits">
     <Components>
       <Hideout id="hideout_bretonnia_15" map_icon="bandit_hideout_d" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16745,7 +16746,7 @@
       <Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_bretonnia_16" name="{=Settlements.Settlement.name.hideout_mountain_16}Herrimault Hideout" type="Hideout" posX="1072.141" posY="1251.821" culture="Culture.desert_bandits">
+  <Settlement id="hideout_bretonnia_16" name="{=Settlements.Settlement.name.hideout_bretonnia_16}Herrimault Hideout" type="Hideout" posX="1072.141" posY="1251.821" culture="Culture.desert_bandits">
     <Components>
       <Hideout id="hideout_bretonnia_16" map_icon="bandit_hideout_d" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16754,7 +16755,7 @@
     </Locations>
   </Settlement>
   <!-- Norscan Raider Hideouts -->
-  <Settlement id="hideout_norscan_1" name="{=Settlements.Settlement.name.hideout_mountain_1}Norscan Raider Hideout" type="Hideout" posX="849.228" posY="1290.684" culture="Culture.sea_raiders">
+  <Settlement id="hideout_norscan_1" name="{=Settlements.Settlement.name.hideout_norscan_1}Norscan Raider Hideout" type="Hideout" posX="849.228" posY="1290.684" culture="Culture.sea_raiders">
     <Components>
       <Hideout id="hideout_norscan_1" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16762,7 +16763,7 @@
       <Location id="hideout_center" scene_name="sea_bandit_a_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_norscan_2" name="{=Settlements.Settlement.name.hideout_mountain_1}Norscan Raider Hideout" type="Hideout" posX="753.763" posY="1259.915" culture="Culture.sea_raiders">
+  <Settlement id="hideout_norscan_2" name="{=Settlements.Settlement.name.hideout_norscan_2}Norscan Raider Hideout" type="Hideout" posX="753.763" posY="1259.915" culture="Culture.sea_raiders">
     <Components>
       <Hideout id="hideout_norscan_2" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16770,7 +16771,7 @@
       <Location id="hideout_center" scene_name="sea_bandit_b_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_norscan_3" name="{=Settlements.Settlement.name.hideout_mountain_1}Norscan Raider Hideout" type="Hideout" posX="777.29" posY="1293.509" culture="Culture.sea_raiders">
+  <Settlement id="hideout_norscan_3" name="{=Settlements.Settlement.name.hideout_norscan_3}Norscan Raider Hideout" type="Hideout" posX="777.29" posY="1293.509" culture="Culture.sea_raiders">
     <Components>
       <Hideout id="hideout_norscan_3" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16778,7 +16779,7 @@
       <Location id="hideout_center" scene_name="sea_bandit_c_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_norscan_4" name="{=Settlements.Settlement.name.hideout_mountain_1}Norscan Raider Hideout" type="Hideout" posX="929.032" posY="1352.208" culture="Culture.sea_raiders">
+  <Settlement id="hideout_norscan_4" name="{=Settlements.Settlement.name.hideout_norscan_4}Norscan Raider Hideout" type="Hideout" posX="929.032" posY="1352.208" culture="Culture.sea_raiders">
     <Components>
       <Hideout id="hideout_norscan_4" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16786,7 +16787,7 @@
       <Location id="hideout_center" scene_name="sea_bandit_d_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_norscan_5" name="{=Settlements.Settlement.name.hideout_mountain_1}Norscan Raider Hideout" type="Hideout" posX="988.418" posY="1291.576" culture="Culture.sea_raiders">
+  <Settlement id="hideout_norscan_5" name="{=Settlements.Settlement.name.hideout_norscan_5}Norscan Raider Hideout" type="Hideout" posX="988.418" posY="1291.576" culture="Culture.sea_raiders">
     <Components>
       <Hideout id="hideout_norscan_5" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16794,7 +16795,7 @@
       <Location id="hideout_center" scene_name="sea_bandit_a_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_norscan_6" name="{=Settlements.Settlement.name.hideout_mountain_1}Norscan Raider Hideout" type="Hideout" posX="1065.686" posY="1295.947" culture="Culture.sea_raiders">
+  <Settlement id="hideout_norscan_6" name="{=Settlements.Settlement.name.hideout_norscan_6}Norscan Raider Hideout" type="Hideout" posX="1065.686" posY="1295.947" culture="Culture.sea_raiders">
     <Components>
       <Hideout id="hideout_norscan_6" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16802,7 +16803,7 @@
       <Location id="hideout_center" scene_name="sea_bandit_b_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_norscan_7" name="{=Settlements.Settlement.name.hideout_mountain_1}Norscan Raider Hideout" type="Hideout" posX="1163.877" posY="1291.013" culture="Culture.sea_raiders">
+  <Settlement id="hideout_norscan_7" name="{=Settlements.Settlement.name.hideout_norscan_7}Norscan Raider Hideout" type="Hideout" posX="1163.877" posY="1291.013" culture="Culture.sea_raiders">
     <Components>
       <Hideout id="hideout_norscan_7" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16810,7 +16811,7 @@
       <Location id="hideout_center" scene_name="sea_bandit_c_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_norscan_8" name="{=Settlements.Settlement.name.hideout_mountain_1}Norscan Raider Hideout" type="Hideout" posX="1246.777" posY="1363.514" culture="Culture.sea_raiders">
+  <Settlement id="hideout_norscan_8" name="{=Settlements.Settlement.name.hideout_norscan_8}Norscan Raider Hideout" type="Hideout" posX="1246.777" posY="1363.514" culture="Culture.sea_raiders">
     <Components>
       <Hideout id="hideout_norscan_8" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16818,7 +16819,7 @@
       <Location id="hideout_center" scene_name="sea_bandit_d_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_norscan_9" name="{=Settlements.Settlement.name.hideout_mountain_1}Norscan Raider Hideout" type="Hideout" posX="1315.092" posY="1364.655" culture="Culture.sea_raiders">
+  <Settlement id="hideout_norscan_9" name="{=Settlements.Settlement.name.hideout_norscan_9}Norscan Raider Hideout" type="Hideout" posX="1315.092" posY="1364.655" culture="Culture.sea_raiders">
     <Components>
       <Hideout id="hideout_norscan_9" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16826,7 +16827,7 @@
       <Location id="hideout_center" scene_name="sea_bandit_a_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_norscan_10" name="{=Settlements.Settlement.name.hideout_mountain_1}Norscan Raider Hideout" type="Hideout" posX="1415.477" posY="1359.159" culture="Culture.sea_raiders">
+  <Settlement id="hideout_norscan_10" name="{=Settlements.Settlement.name.hideout_norscan_10}Norscan Raider Hideout" type="Hideout" posX="1415.477" posY="1359.159" culture="Culture.sea_raiders">
     <Components>
       <Hideout id="hideout_norscan_10" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16834,7 +16835,7 @@
       <Location id="hideout_center" scene_name="sea_bandit_b_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_norscan_11" name="{=Settlements.Settlement.name.hideout_mountain_1}Norscan Raider Hideout" type="Hideout" posX="1482.203" posY="1322.931" culture="Culture.sea_raiders">
+  <Settlement id="hideout_norscan_11" name="{=Settlements.Settlement.name.hideout_norscan_11}Norscan Raider Hideout" type="Hideout" posX="1482.203" posY="1322.931" culture="Culture.sea_raiders">
     <Components>
       <Hideout id="hideout_norscan_11" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16842,7 +16843,7 @@
       <Location id="hideout_center" scene_name="sea_bandit_c_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_norscan_12" name="{=Settlements.Settlement.name.hideout_mountain_1}Norscan Raider Hideout" type="Hideout" posX="1222.976" posY="1331.142" culture="Culture.sea_raiders">
+  <Settlement id="hideout_norscan_12" name="{=Settlements.Settlement.name.hideout_norscan_12}Norscan Raider Hideout" type="Hideout" posX="1222.976" posY="1331.142" culture="Culture.sea_raiders">
     <Components>
       <Hideout id="hideout_norscan_12" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16850,7 +16851,7 @@
       <Location id="hideout_center" scene_name="sea_bandit_d_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_norscan_13" name="{=Settlements.Settlement.name.hideout_mountain_1}Norscan Raider Hideout" type="Hideout" posX="1292.423" posY="1299.223" culture="Culture.sea_raiders">
+  <Settlement id="hideout_norscan_13" name="{=Settlements.Settlement.name.hideout_norscan_13}Norscan Raider Hideout" type="Hideout" posX="1292.423" posY="1299.223" culture="Culture.sea_raiders">
     <Components>
       <Hideout id="hideout_norscan_13" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16858,7 +16859,7 @@
       <Location id="hideout_center" scene_name="sea_bandit_a_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_norscan_14" name="{=Settlements.Settlement.name.hideout_mountain_1}Norscan Raider Hideout" type="Hideout" posX="745.99" posY="1161.654" culture="Culture.sea_raiders">
+  <Settlement id="hideout_norscan_14" name="{=Settlements.Settlement.name.hideout_norscan_14}Norscan Raider Hideout" type="Hideout" posX="745.99" posY="1161.654" culture="Culture.sea_raiders">
     <Components>
       <Hideout id="hideout_norscan_14" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16866,7 +16867,7 @@
       <Location id="hideout_center" scene_name="sea_bandit_b_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_norscan_15" name="{=Settlements.Settlement.name.hideout_mountain_1}Norscan Raider Hideout" type="Hideout" posX="907.221" posY="1258.565" culture="Culture.sea_raiders">
+  <Settlement id="hideout_norscan_15" name="{=Settlements.Settlement.name.hideout_norscan_15}Norscan Raider Hideout" type="Hideout" posX="907.221" posY="1258.565" culture="Culture.sea_raiders">
     <Components>
       <Hideout id="hideout_norscan_15" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16874,7 +16875,7 @@
       <Location id="hideout_center" scene_name="sea_bandit_c_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_norscan_16" name="{=Settlements.Settlement.name.hideout_mountain_1}Norscan Raider Hideout" type="Hideout" posX="1162.767" posY="1229.747" culture="Culture.sea_raiders">
+  <Settlement id="hideout_norscan_16" name="{=Settlements.Settlement.name.hideout_norscan_16}Norscan Raider Hideout" type="Hideout" posX="1162.767" posY="1229.747" culture="Culture.sea_raiders">
     <Components>
       <Hideout id="hideout_norscan_16" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16882,7 +16883,7 @@
       <Location id="hideout_center" scene_name="sea_bandit_d_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_norscan_17" name="{=Settlements.Settlement.name.hideout_mountain_1}Norscan Raider Hideout" type="Hideout" posX="1172.144" posY="1311.973" culture="Culture.sea_raiders">
+  <Settlement id="hideout_norscan_17" name="{=Settlements.Settlement.name.hideout_norscan_17}Norscan Raider Hideout" type="Hideout" posX="1172.144" posY="1311.973" culture="Culture.sea_raiders">
     <Components>
       <Hideout id="hideout_norscan_17" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16890,7 +16891,7 @@
       <Location id="hideout_center" scene_name="sea_bandit_a_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_norscan_18" name="{=Settlements.Settlement.name.hideout_mountain_1}Norscan Raider Hideout" type="Hideout" posX="1361.743" posY="1333.658" culture="Culture.sea_raiders">
+  <Settlement id="hideout_norscan_18" name="{=Settlements.Settlement.name.hideout_norscan_18}Norscan Raider Hideout" type="Hideout" posX="1361.743" posY="1333.658" culture="Culture.sea_raiders">
     <Components>
       <Hideout id="hideout_norscan_18" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>

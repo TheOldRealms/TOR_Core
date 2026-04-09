@@ -111,6 +111,14 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         private void InitialShiftToChampion()
         {
+            // Check if we can summon the champion
+            if (!TORSummonHelper.CanSummonCount(1))
+            {
+                _summoned = true;
+                _isDisabled = true;
+                return;
+            }
+
             var data = TORSummonHelper.GetAgentBuildData(CasterAgent, _summonedChampionId);
             _champion = TORSummonHelper.SpawnAgent(data, _targetPosition);
 

@@ -389,12 +389,11 @@ namespace TOR_Core.CharacterDevelopment
             if (chargeType != ChargeType.DamageDone && chargeType != ChargeType.Healed) return 0;
             if (!affectingAgent.BelongsToMainParty()) return 0;
             if (mask == AttackTypeMask.Ranged) return 0;
-            if (affectingAgent.IsHero && mask == AttackTypeMask.Melee) return 0;
+            if (affectedAgent == null) return 0;//Sly : temporary fix for troll regen charging the ability. To be determined if other cases exist that are valied.
+            if (affectingAgent.IsHero && (affectingAgent.GetHero() != Hero.MainHero || mask == AttackTypeMask.Melee)) return 0;
 
             var isTreeSpirit = (affectingAgent.Character as CharacterObject).IsTreeSpirit();
-
-
-
+            
             if (!affectingAgent.IsHero && !isTreeSpirit) return 0;
 
             if (mask == AttackTypeMask.Melee && isTreeSpirit)

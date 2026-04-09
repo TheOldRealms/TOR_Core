@@ -51,7 +51,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                     if (!_trackedAgents[agent].AnyQ(x => x.ActionName == anim.GetName()))
                     {
                         _trackedAgents[agent].Add(new AnimationTriggerTuple { ActionName = anim.GetName(), HasTriggered = false });
-                        return;
+                        continue; // we only want 1 aoe trigger at a time?
                     }
                     else
                     {

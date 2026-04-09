@@ -75,6 +75,14 @@ public class WrathOfTheWoodScript : CareerAbilityScript
 
         var spawnCounter = 0;
         var targetPosition = CasterAgent.Frame.Advance(-10).origin;
+
+        // Check if summoning is possible before proceeding
+        if (!TORSummonHelper.CanSummon())
+        {
+            spawned = true;
+            return;
+        }
+
         foreach (var treeSpirit in treeSpiritUnitIds)
         {
             var unitCount = treeSpirit.count;
@@ -89,6 +97,8 @@ public class WrathOfTheWoodScript : CareerAbilityScript
                 data = TORSummonHelper.GetAgentBuildData(CasterAgent, treeSpirit.id);
             }
 
+            // Clamp unit count to available slots
+            unitCount = TORSummonHelper.GetClampedSummonCount(unitCount);
 
             for (int i = 0; i < unitCount; i++)
             {

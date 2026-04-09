@@ -7,6 +7,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Items.WeaponHitScripts;
@@ -67,7 +68,7 @@ namespace TOR_Core.Items
                 {
                     foreach (var trait in statusEffectTraits)
                     {
-                        if (MBRandom.RandomFloatNormal > trait.ImbuedEffectChance)
+                        if (MBRandom.RandomFloat <= trait.ImbuedEffectChance)
                         {
                             affectedAgent.ApplyStatusEffect(trait.ImbuedStatusEffectId, affectorAgent, 5, false);
                         }
@@ -291,6 +292,22 @@ namespace TOR_Core.Items
                             }
                         }
                     }
+
+                    // Lethal Shot consumption - only for player with Waywatcher career - in future maybe more
+                    if (shooterAgent.IsMainAgent &&
+                        Campaign.Current != null &&
+                        Hero.MainHero.HasCareer(TORCareers.Waywatcher))
+                    {
+                        var weapon = shooterAgent.WieldedWeapon;
+                        if (!weapon.IsEmpty && weapon.Item != null)
+                        {
+                            var weaponTraits = weapon.Item.GetTraits(shooterAgent);
+                            if (weaponTraits != null && weaponTraits.Any(t => t.ItemTraitStringId.StartsWith("ca_lethal_shot")))
+                            {
+                                HandleLethalShotConsumption(shooterAgent);
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -315,6 +332,45 @@ namespace TOR_Core.Items
                 }
             }
             return false;
+        }
+
+        private void HandleLethalShotConsumption(Agent shooterAgent)
+        {
+            var statusEffectComponent = shooterAgent.GetComponent<StatusEffectComponent>();
+
+            if (statusEffectComponent == null) return;
+
+            var lethalShots = statusEffectComponent.GetTemporaryAttributes(true)
+                .Where(x => x == "LethalShot").ToList();
+
+            if (lethalShots.Count == 0) return;
+
+            // Remove one stack
+            statusEffectComponent.RemoveStatusEffect("lethal_shot");
+
+            // Check if any stacks remain
+            lethalShots = statusEffectComponent.GetTemporaryAttributes(true)
+                .Where(x => x == "LethalShot").ToList();
+
+            if (lethalShots.Count > 0) return;
+
+            // No stacks left - remove all Lethal Shot traits
+            var weaponComponent = shooterAgent.GetComponent<ItemTraitAgentComponent>();
+
+            if (weaponComponent != null)
+            {
+                weaponComponent.RemoveTraitFromWieldedWeapon("ca_lethal_shot");
+                weaponComponent.RemoveTraitFromWieldedWeapon("ca_lethal_shot_hagbane");
+                weaponComponent.RemoveTraitFromWieldedWeapon("ca_lethal_shot_loec");
+                weaponComponent.RemoveTraitFromWieldedWeapon("ca_lethal_shot_scatter");
+                weaponComponent.RemoveTraitFromWieldedWeapon("ca_lethal_shot_reload");
+                weaponComponent.RemoveTraitFromWieldedWeapon("ca_lethal_shot_pierce");
+                weaponComponent.RemoveTraitFromWieldedWeapon("ca_lethal_shot_swiftshiver");
+                weaponComponent.RemoveTraitFromWieldedWeapon("ca_lethal_shot_speed");
+                weaponComponent.RemoveTraitFromWieldedWeapon("ca_lethal_shot_starfire");
+                weaponComponent.RemoveTraitFromWieldedWeapon("ca_lethal_shot_starfire_shield");
+                weaponComponent.RemoveTraitFromWieldedWeapon("ca_lethal_shot_moonfire");
+            }
         }
     }
 }

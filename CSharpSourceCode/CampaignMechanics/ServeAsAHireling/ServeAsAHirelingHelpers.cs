@@ -117,6 +117,11 @@ public static class ServeAsAHirelingHelpers
             GameTexts.SetVariable("HIRELING_DECISION_TEXT", text);
         }
 
+        if (dialogPartner.Clan.IsUnderMercenaryService)
+        {
+            return false;
+        }
+
         if (dialogPartner.Culture.StringId == Hero.MainHero.Culture.StringId)
         {
             return true;

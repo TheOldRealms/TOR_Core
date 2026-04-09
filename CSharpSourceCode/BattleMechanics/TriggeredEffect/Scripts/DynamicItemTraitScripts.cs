@@ -315,7 +315,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
         {
             if (triggeredAgents.Count() > 0)
             {
-                var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "emp_enchant_azyr_azure_mirror_troop");
+                var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "emp_enchant_azyr_foresight_copy");
                 if (trait == null) return;
 
                 foreach (Agent agent in triggeredAgents)

@@ -40,7 +40,7 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
         {"tor_nulnengineernpc_empire",("EngineerEmpire","Engineering", "hub","hubaftermission",[])},
         {"tor_spelltrainer_empire_0",("EmpireMagister","Spellcraft", "choices","start",["SpellCaster"])},
         {"tor_dawi_runelord_trainer_0",("DwarfRunelord","Spellcraft", "tor_dw_guildmaster_runesmith_hub","tor_dw_guildmaster_runesmith_start_reintro",["Runesmith"])},
-        {"tor_spelltrainer_vc_0",("Necromancer","Spellcraft", "priest_hubcult_of_sigmar","priest_hub_reintrocult_of_sigmar",[])},
+        {"tor_spelltrainer_vc_0",("Necromancer","Spellcraft", "choices","start",["SpellCaster"])},
     };
 
     private Dictionary<string, HeroTrainingData> _heroesInTraining = new();
@@ -239,7 +239,7 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
 
 
             campaignStarter.AddDialogLine("tor_skill_train_hub_select_companion" + trainerDialogId + skillId, "priest_train_hub_select_companion" + trainerDialogId + skillId, "tor_skill_teacher_train_2" + trainerDialogId,
-                TORTextHelper.GetText("tor_skill_train_hub_select_companion", trainerDialogId, "Very well. Choose which companion you wish to send for training.", true), () => IsAnyCompanionEligableForTraining(skillId, restrictions), () => SelectCompanionForTraining(skillId), 200);
+                                TORTextHelper.GetText("tor_skill_train_hub_select_companion", trainerDialogId, "Very well. Choose which companion you wish to send for training.", true), () => IsAnyCompanionEligableForTraining(skillId, restrictions), () => SelectCompanionForTraining(skillId, restrictions), 200);
 
             campaignStarter.AddDialogLine("tor_skill_train_hub_select_companion_decline" + trainerDialogId + skillId, "priest_train_hub_select_companion" + trainerDialogId + skillId, "tor_skill_teacher_train_2" + trainerDialogId + skillId,
                 TORTextHelper.GetText("tor_skill_train_hub_select_companion_decline", trainerDialogId, "I'm afraid none of your companions are eligible for training at this time.", true), () => !IsAnyCompanionEligableForTraining(skillId, restrictions), null, 200);
@@ -280,25 +280,17 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
             {
                 return false;
             }
+
             var model = Campaign.Current.Models.GetCompanionTrainingModel();
             var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
 
             foreach (var hero in heroes.Where(hero => hero != Hero.MainHero))
             {
-                var allowed = true;
-                if (restrictions.Any())
+                if (!HeroMatchesTrainingRestrictions(hero, restrictions))
                 {
-                    allowed = false;
-                    foreach (var restriction in restrictions)
-                    {
-                        allowed = hero.HasKnownLore(restriction) || hero.HasAttribute(restriction);
-                    }
+                    continue;
                 }
 
-                if (!allowed)
-                {
-                    return false;
-                }
                 if (model.HeroIsEligibleForTraining(hero, skill))
                 {
                     return true;
@@ -308,8 +300,16 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
             return false;
         }
     }
+    private bool HeroMatchesTrainingRestrictions(Hero hero, List<string> restrictions)
+    {
+        if (!restrictions.Any())
+        {
+            return true;
+        }
 
-    private void SelectCompanionForTraining(string skillId)
+        return restrictions.Any(restriction => hero.HasKnownLore(restriction) || hero.HasAttribute(restriction));
+    }
+    private void SelectCompanionForTraining(string skillId, List<string> restrictions)
     {
 
         _currentTrainer = Hero.OneToOneConversationHero;
@@ -348,6 +348,11 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
                 continue;
             }
             var isEnabled = false;
+            if (!HeroMatchesTrainingRestrictions(hero, restrictions))
+            {
+                continue;
+            }
+
             if (!model.HeroIsEligibleForTraining(hero, skill))
             {
                 continue;

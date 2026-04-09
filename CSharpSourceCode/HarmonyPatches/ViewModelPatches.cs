@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting.Refinement;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
@@ -213,6 +214,18 @@ namespace TOR_Core.HarmonyPatches
 
             // For all other cases, let the original method run
             return true;
+        }
+    }
+
+    // Patch to update RefinementVMExtension when refinement action selection changes
+    [HarmonyPatch(typeof(RefinementVM), "OnSelectAction")]
+    public static class RefinementVMOnSelectActionPatch
+    {
+        [HarmonyPostfix]
+        public static void Postfix(RefinementVM __instance)
+        {
+            var extension = __instance.GetExtensionInstance() as RefinementVMExtension;
+            extension?.RefreshValues();
         }
     }
 }

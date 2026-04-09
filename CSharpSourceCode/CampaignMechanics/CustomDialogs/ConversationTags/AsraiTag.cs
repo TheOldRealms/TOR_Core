@@ -36,4 +36,15 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs.ConversationTags
             return character.IsElf() && Hero.MainHero.CharacterObject.IsElf();
         }
     }
+
+    public class PlayerIsAsraiTag : ConversationTag
+    {
+        public const string Id = "PlayerIsAsraiTag";
+        public override string StringId => nameof(PlayerIsAsraiTag);
+
+        public override bool IsApplicableTo(CharacterObject character)
+        {
+            return Hero.MainHero.CharacterObject.IsElf() && Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI;
+        }
+    }
 }

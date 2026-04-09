@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,21 +8,29 @@ using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting.WeaponDesign;
 using TaleWorlds.Core;
 using TOR_Core.CampaignMechanics.Crafting;
+using TOR_Core.Extensions;
+using TOR_Core.Models;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {
     [HarmonyPatch]
     public static class CraftingPatches
     {
-        public static List<string> HiddenCraftingTemplateIds => ["tor_large_monster_weapon_template", "tor_dual_wield_mainhand", "tor_trolltwohandedmace"];
-
         [HarmonyPrefix]
         [HarmonyPatch(typeof(WeaponClassSelectionPopupVM), MethodType.Constructor, typeof(ICraftingCampaignBehavior), typeof(List<CraftingTemplate>), typeof(Action<int>), typeof(Func<CraftingTemplate, int>))]
         public static void FilterCategories(ICraftingCampaignBehavior craftingBehavior, List<CraftingTemplate> templatesList, Action<int> onSelect, Func<CraftingTemplate, int> getUnlockedPiecesCount)
         {
             var backup = templatesList.ToList();
             templatesList.Clear();
-            templatesList.AddRange(backup.Where(x => !HiddenCraftingTemplateIds.Contains(x.StringId)));
+            if (TORSmithingModel.ValidPlayerCraftingTemplates.Count > 0)
+            {
+                templatesList.AddRange(TORSmithingModel.ValidPlayerCraftingTemplates);
+            }
+            else
+            {
+                templatesList.AddRange(backup.Where(x => !TORSmithingModel.HiddenCraftingTemplateIds.Contains(x.StringId)));
+            }
         }
 
         [HarmonyPrefix]
@@ -63,22 +71,55 @@ namespace TOR_Core.HarmonyPatches
             {
                 //remove the CraftingTemplate.All and GetRandom calls
                 codes.RemoveRange(replaceIndex, 2);
-                //replace with the call to ValidTemplate
-                codes.Insert(replaceIndex, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(CraftingPatches), nameof(CraftingPatches.ValidTemplate))));
+                //load arg1 (Hero orderOwner) and call ValidTemplate(Hero) for culture-based filtering
+                codes.Insert(replaceIndex, new CodeInstruction(OpCodes.Ldarg_1));
+                codes.Insert(replaceIndex + 1, new CodeInstruction(OpCodes.Call,
+                    AccessTools.Method(typeof(CraftingPatches), nameof(CraftingPatches.ValidTemplate), new[] { typeof(Hero) })));
             }
             return codes.AsEnumerable();
         }
 
         /// <summary>
         /// Prevents the game from selecting a crafting order using an npc weapon template.
+        /// This parameterless overload is kept for compatibility.
         /// </summary>
         /// <returns>A valid crafting template in the context of TOR</returns>
         public static CraftingTemplate ValidTemplate()
         {
-            CraftingTemplate restrictedRandom = CraftingTemplate.All.GetRandomElementWithPredicate(x => !HiddenCraftingTemplateIds.Contains(x.StringId));
-            if (restrictedRandom == null) { throw new Exception("CraftingPatches.ValidTemplate selected a null template."); }
-            //TORCommon.Log("Valid Template chose : " + restrictedRandom.StringId, NLog.LogLevel.Info);
-            return restrictedRandom;
+            if (!TORSmithingModel.templatesValidated)
+            {
+                Campaign.Current.Models.GetSmithingModel().ValidateHiddenCraftingTemplates();
+            }
+            return TORSmithingModel.ValidPlayerCraftingTemplates.GetRandomElement();
+        }
+
+        /// <summary>
+        /// Selects a valid crafting template filtered by the order owner's settlement culture.
+        /// </summary>
+        /// <param name="orderOwner">The hero placing the crafting order</param>
+        /// <returns>A culture-appropriate crafting template</returns>
+        public static CraftingTemplate ValidTemplate(Hero orderOwner)
+        {
+            // Ensure validation has occurred
+            if (!TORSmithingModel.templatesValidated)
+            {
+                Campaign.Current.Models.GetSmithingModel().ValidateHiddenCraftingTemplates();
+            }
+
+            // Get culture from settlement (fallback to Empire)
+            string cultureId = orderOwner?.CurrentSettlement?.Town?.Culture?.StringId
+                               ?? TORConstants.Cultures.EMPIRE;
+
+            // Filter valid templates by culture
+            var smithingModel = Campaign.Current.Models.GetSmithingModel() as TORSmithingModel;
+            var cultureFiltered = TORSmithingModel.ValidPlayerCraftingTemplates
+                .Where(t => smithingModel?.IsCultureAppropriateOrder(t.StringId, cultureId) ?? true)
+                .ToList();
+
+            // Return culture-filtered if available, otherwise fall back to any valid template
+            return cultureFiltered.Count > 0
+                ? cultureFiltered.GetRandomElement()
+                : TORSmithingModel.ValidPlayerCraftingTemplates.GetRandomElement();
         }
     }
 }

@@ -267,6 +267,27 @@ namespace TOR_Core.Models
                         explainedNumber.Add(bonus, TORTextHelper.GetTextObject("tor_healing_shallya_seal_text", "Shallya Seal"));
                     }
                 }
+
+                if (Hero.MainHero.HasCareerChoice("ForHearthAndHomePassive3"))
+                {
+                    var choice = TORCareerChoices.GetChoice("ForHearthAndHomePassive3");
+                    if (choice != null)
+                    {
+                        var bonus = 0f;
+                        foreach (var troop in party.MemberRoster.GetTroopRoster())
+                        {
+                            if (troop.Character.HasUnitRune())
+                            {
+                                bonus += choice.GetPassiveValue() * troop.Number;
+                            }
+                        }
+
+                        if (bonus > 0f)
+                        {
+                            explainedNumber.Add(bonus, TORTextHelper.GetTextObject("tor_healing_rune_text", "Runic Protection"));
+                        }
+                    }
+                }
             }
         }
 

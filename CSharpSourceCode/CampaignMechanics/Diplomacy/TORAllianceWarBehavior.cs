@@ -116,11 +116,10 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                 var decision = new HonorAllianceDecision(ally.RulingClan, defender, attacker);
 
                 // For AI kingdoms, resolve immediately
-                // For player kingdom, add as enforced decision requiring player choice
-                if (ally == Clan.PlayerClan?.Kingdom)
+                // For player kingdom (non-mercenary), add as enforced decision requiring player choice
+                // Mercenaries don't have voting rights, so AI resolves for them
+                if (ally == Clan.PlayerClan?.Kingdom && !Clan.PlayerClan.IsUnderMercenaryService)
                 {
-                    // Player gets to choose - add as enforced decision
-                    decision.IsEnforced = true;
                     ally.AddDecision(decision, true); // true = ignoreInfluenceCost
                 }
                 else
@@ -159,7 +158,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
         private void ResolveAIDecision(Kingdom kingdom, HonorAllianceDecision decision)
         {
             if (!decision.IsAllowed()) return;
-
+            
             // Calculate total support for joining war
             float joinSupport = 0f;
             float breakSupport = 0f;

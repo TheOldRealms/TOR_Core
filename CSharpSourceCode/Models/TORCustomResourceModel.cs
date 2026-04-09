@@ -326,7 +326,7 @@ public class TORCustomResourceModel : GameModel
                 var choice = TORCareerChoices.GetChoice("QuestingVowPassive4");
                 if (choice != null)
                 {
-                    var knightCompanions = party.GetMemberHeroes().Where(x => hero.IsBretonnianKnight()).Count();
+                    var knightCompanions = party.GetMemberHeroes().Count(x => x.IsBretonnianKnight());
                     number.Add(knightCompanions * choice.GetPassiveValue(), choice.BelongsToGroup.Name);
                 }
             }

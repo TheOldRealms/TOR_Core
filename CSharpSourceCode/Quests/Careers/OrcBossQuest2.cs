@@ -14,13 +14,13 @@ namespace TOR_Core.Quests.Careers
 {
     public class OrcBossQuest2 : QuestBase
     {
-        // Quest requirements constants (from task notes)
-        private const int RequiredWeaponSkillLevels = 225;  // or 250
-        private const int RequiredBattlesWon = 300;
-        private const int RequiredTournamentWins = 50;
-        private const int RequiredBrawlsWon = 100;
+        // Quest requirements constants
+        private const int RequiredWeaponSkillLevels = 200;
+        private const int RequiredBattlesWon = 250;
+        private const int RequiredTournamentWins = 35;
+        private const int RequiredBrawlsWon = 75;
         private const int RequiredCitiesCaptured = 5;
-        private const int RequiredLordDuels = 15;
+        private const int RequiredLordDuels = 12;
         private const int RequiredTeefTransferred = 500000;
 
         [SaveableField(1)]

@@ -148,10 +148,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
                     var applier = effect?.ApplierAgent;
 
-                    if (Campaign.Current != null && applier != null && (applier.IsMainAgent || applier.BelongsToMainParty()))
-                    {
-                        CareerHelper.ApplyCareerAbilityCharge(damageValue, ChargeType.DamageDone, AttackTypeMask.Spell, applier);
-                    }
+                    // Career ability charge is now applied once per session in FinalizeSession, not every tick
 
                     Agent.ApplyDamage(damageValue, Agent.Position, applier, false, false);
 
@@ -164,7 +161,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 }
                 else if (_effectAggregate.HealthOverTime > 0)
                 {
-
                     var healingValue = (int)_effectAggregate.HealthOverTime;
                     Agent.Heal(healingValue);
 
@@ -173,16 +169,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                         Agent.MountAgent.Heal(healingValue);
                     }
 
-                    var effect = _currentEffects.Keys.FirstOrDefault(x => x.Template.Type == StatusEffectTemplate.EffectType.HealthOverTime && x.ApplierAgent == Agent.Main) ??
-                                  _currentEffects.Keys.FirstOrDefault(x => x.Template.Type == StatusEffectTemplate.EffectType.HealthOverTime);
-
-                    var applier = effect?.ApplierAgent;
-
-                    if (Campaign.Current != null && applier != null && (applier.IsMainAgent || applier.BelongsToMainParty()))
-                    {
-                        CareerHelper.ApplyCareerAbilityCharge(healingValue, ChargeType.Healed, AttackTypeMask.Spell, applier);
-                    }
-
+                    // Career ability charge is now applied once per session in FinalizeSession, not every tick
                 }
 
                 if (_effectAggregate == null) return;
@@ -364,6 +351,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             }
 
             return list;
+        }
+
+        public int GetActiveEffectCount(string effectId)
+        {
+            return _currentEffects.Keys.Count(effect => effect.Template.StringID == effectId);
         }
 
         private void AddEffect(StatusEffect effect)

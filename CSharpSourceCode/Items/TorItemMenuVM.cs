@@ -51,12 +51,53 @@ namespace TOR_Core.Items
                     continue;
 
                 var movedItem = result.EffectedItemRosterElement.EquipmentElement.Item;
+                var targetEquipment = result.TransferCharacter.GetCharacterEquipment(
+                    EquipmentIndex.Weapon0,
+                    EquipmentIndex.NumAllWeaponSlots);
+
+                var movedIsShield = movedItem.IsShield();
+                var movedIsOffhandStaff =
+                    (movedItem.ItemFlags & ItemFlags.HeldInOffHand) != 0 &&
+                    movedItem.StringId.IndexOf("staff", StringComparison.OrdinalIgnoreCase) >= 0;
+
+                if (movedIsShield || movedIsOffhandStaff)
+                {
+                    bool hasOtherShield = false;
+                    bool hasOtherOffhandStaff = false;
+
+                    foreach (var equipmentItem in targetEquipment.Where(x => x != null && x != movedItem))
+                    {
+                        if (equipmentItem.IsShield())
+                        {
+                            hasOtherShield = true;
+                        }
+
+                        if ((equipmentItem.ItemFlags & ItemFlags.HeldInOffHand) != 0 &&
+                            equipmentItem.StringId.IndexOf("staff", StringComparison.OrdinalIgnoreCase) >= 0)
+                        {
+                            hasOtherOffhandStaff = true;
+                        }
+                    }
+
+                    if ((movedIsShield && hasOtherOffhandStaff) ||
+                        (movedIsOffhandStaff && hasOtherShield))
+                    {
+                        var command = TransferCommand.Transfer(
+                            1,
+                            InventoryLogic.InventorySide.BattleEquipment,
+                            InventoryLogic.InventorySide.PlayerInventory,
+                            result.EffectedItemRosterElement,
+                            result.EffectedEquipmentIndex,
+                            EquipmentIndex.None,
+                            result.TransferCharacter);
+
+                        inventoryLogic.AddTransferCommand(command);
+                        break;
+                    }
+                }
 
                 if (!movedItem.IsAmmunitionItem()) //skip  check if no ammunition item is involved.
                     continue;
-
-                var targetEquipment = result.TransferCharacter.GetCharacterEquipment(EquipmentIndex.Weapon0,
-                    EquipmentIndex.NumAllWeaponSlots);
 
                 foreach (var equipmentItem in targetEquipment.Where(x => x.ToString() != result.EffectedItemRosterElement.EquipmentElement.Item.ToString()))
                 {

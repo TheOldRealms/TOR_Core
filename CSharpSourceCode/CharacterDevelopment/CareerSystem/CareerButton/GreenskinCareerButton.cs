@@ -15,11 +15,11 @@ public abstract class GreenskinCareerButton(CareerObject career) : CareerButtonB
 {
     public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner, bool shiftClick)
     {
-        if (!isPrisoner || !IsEdibleCharacter(characterObject))
+        if (!isPrisoner || !IsChoppablePrisoner(characterObject))
             return;
 
         var meat = CustomResourceManager.GetResourceObject("Meat");
-        var amount = GetMeatAmountForCharacter(characterObject);
+        var amount = GetChopMeatAmount(characterObject);
 
         if (shiftClick)
         {
@@ -40,7 +40,7 @@ public abstract class GreenskinCareerButton(CareerObject career) : CareerButtonB
         PartyVMExtension.ViewModelInstance.GetExtensionInstance().RefreshValues(); //Refresh to display correct resource exchange
     }
 
-    private int GetMeatAmountForCharacter(CharacterObject characterObject)
+    public static int GetChopMeatAmount(CharacterObject characterObject)
     {
         var baseValue = characterObject.Level / 3 == 0 ? 1 : characterObject.Level / 3;
 
@@ -63,7 +63,7 @@ public abstract class GreenskinCareerButton(CareerObject career) : CareerButtonB
         if (!isPrisoner)
             return false;
 
-        if (!IsEdibleCharacter(characterObject))
+        if (!IsChoppablePrisoner(characterObject))
             return false;
 
         // Only show for Greenskin player characters
@@ -83,7 +83,7 @@ public abstract class GreenskinCareerButton(CareerObject career) : CareerButtonB
             return false;
         }
 
-        if (!IsEdibleCharacter(characterObject))
+        if (!IsChoppablePrisoner(characterObject))
         {
             displayText = TORTextHelper.GetTextObject("tor_greenskin_cant_chop_text", "This can't  be chopped");
             return false;
@@ -107,9 +107,8 @@ public abstract class GreenskinCareerButton(CareerObject career) : CareerButtonB
         CareerButtonHelper.RemoveUnit(prisoner, true, true);
     }
 
-    private bool IsEdibleCharacter(CharacterObject character)
+    public static bool IsChoppablePrisoner(CharacterObject character)
     {
-        // Check if character is human based on culture
         if (character.IsHero) return false;
         return character.Race == FaceGen.GetRaceOrDefault("dwarf") || character.IsHuman() ||
                character.Race == FaceGen.GetRaceOrDefault("elf") || character.Race == FaceGen.GetRaceOrDefault("ungor") ||

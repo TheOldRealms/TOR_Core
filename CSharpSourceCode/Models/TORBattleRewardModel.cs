@@ -61,7 +61,71 @@ namespace TOR_Core.Models
 
             return result;
         }
+        public override ExplainedNumber CalculateInfluenceGain(PartyBase party, float influenceValueOfBattle, float contributionShare)
+        {
+            var result = base.CalculateInfluenceGain(party, influenceValueOfBattle, contributionShare);
 
+            if (ShouldReduceBanditBattleInfluence(party))
+            {
+                result.AddFactor(-2f / 3f, new TaleWorlds.Localization.TextObject("{=!}bandit battle"));
+            }
+
+            return result;
+        }
+        public override MBReadOnlyList<KeyValuePair<MapEventParty, float>> GetLootGoldChances(MBReadOnlyList<MapEventParty> winnerParties)
+        {
+            var baseResult = base.GetLootGoldChances(winnerParties);
+
+            if (!Hero.MainHero.IsEnlisted())
+            {
+                return baseResult;
+            }
+
+            var result = new MBReadOnlyList<KeyValuePair<MapEventParty, float>>();
+            float remainingWeight = 0f;
+
+            foreach (var kvp in baseResult)
+            {
+                if (kvp.Key?.Party == PartyBase.MainParty)
+                {
+                    continue;
+                }
+
+                remainingWeight += kvp.Value;
+            }
+
+            if (remainingWeight <= 0f)
+            {
+                return result;
+            }
+
+            foreach (var kvp in baseResult)
+            {
+                if (kvp.Key?.Party == PartyBase.MainParty)
+                {
+                    continue;
+                }
+
+                result.Add(new KeyValuePair<MapEventParty, float>(kvp.Key, kvp.Value / remainingWeight));
+            }
+
+            return result;
+        }
+
+        private static bool ShouldReduceBanditBattleInfluence(PartyBase party)
+        {
+            var mapEvent = party.MapEvent;
+
+            if (mapEvent.MapEventSettlement != null)
+            {
+                return false;
+            }
+
+            var opposingSide = mapEvent.GetMapEventSide(party.OpponentSide);
+            var opposingSideHasHeroParty = opposingSide.Parties.Any(x => x.Party.LeaderHero != null);
+
+            return !opposingSideHasHeroParty;
+        }
 
         public int GetTraitCountForTroops(CharacterObject character, int count, float playerEarnedLootPercentage)
         {

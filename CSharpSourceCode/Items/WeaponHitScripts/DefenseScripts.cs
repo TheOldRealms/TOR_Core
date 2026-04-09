@@ -53,6 +53,7 @@ public class UndeadConditionDefenseTriggerEffectScript(string[] arguments) : Def
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData attackCollision)
     {
         if (attackingAgent == null) return;
+        if(attackedAgent == null) return;
 
         if (attackingAgent.IsUndead() || attackingAgent.IsVampire())
         {
@@ -132,6 +133,10 @@ public class UndeadConditionDefenseStackBuffScript(string[] arguments) : Defense
     }
 }
 
+public class ShieldScript : BaseWeaponHitScript
+{
+}
+
 public class TimeCoolDownReductionShieldScript() : BaseWeaponHitScript()
 {
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData attackCollisionData)
@@ -159,21 +164,39 @@ public class TimeCoolDownReductionShieldScript() : BaseWeaponHitScript()
 
 public class ReviveScript() : BaseWeaponHitScript()
 {
+    private static Mission _trackedMission;
+    private static readonly System.Collections.Generic.HashSet<int> _revivedAgentIndices = new();
+
+    private static void ResetReviveStateIfMissionChanged()
+    {
+        if (_trackedMission == Mission.Current)
+        {
+            return;
+        }
+
+        _trackedMission = Mission.Current;
+        _revivedAgentIndices.Clear();
+    }
+
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData attackCollisionData)
     {
         if (attackingAgent == null) return;
         if (attackedAgent == null) return;
 
-        if (attackedAgent.HasAttribute("RevivedOnce"))
+        ResetReviveStateIfMissionChanged();
+
+        if (_revivedAgentIndices.Contains(attackedAgent.Index))
         {
             return;
         }
 
-        if (blow.InflictedDamage > attackedAgent.Health)
+        if (attackedAgent.Health > 0f)
         {
-            attackedAgent.Heal(blow.InflictedDamage + attackedAgent.HealthLimit / 2);
-
+            return;
         }
+
+        _revivedAgentIndices.Add(attackedAgent.Index);  //TODO move revived weapon indice to mission logic
+        attackedAgent.Heal(attackedAgent.HealthLimit * 0.5f);
     }
 }
 

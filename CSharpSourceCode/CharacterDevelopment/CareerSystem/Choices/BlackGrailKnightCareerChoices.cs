@@ -117,6 +117,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 {
                     new CareerChoiceObject.MutationObject()
                     {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_knightly_charge",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "knightly_charge_speed" }).ToList(),
+                        MutationType = OperationType.Replace
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
                         MutationTargetType = typeof(StatusEffectTemplate),
                         MutationTargetOriginalId = "knightly_charge_lsc",
                         PropertyName = "BaseEffectValue",

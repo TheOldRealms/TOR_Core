@@ -68,6 +68,12 @@ namespace TOR_Core.BattleMechanics.Dismemberment
 
         private void Clear()
         {
+            // just in case
+            if (_pooledDismemberedLimbs == null)
+            {
+                return;
+            }
+
             // just to make sure that all references are cleared
             foreach (var container in _pooledDismemberedLimbs)
             {
@@ -79,7 +85,6 @@ namespace TOR_Core.BattleMechanics.Dismemberment
             }
 
             _pooledDismemberedLimbs = null;
-
         }
 
         private GameEntity InstantiateObjectAtPoolIndex(string prefabName, string secondPrefabVariantName = "", int index = 0)
@@ -196,6 +201,31 @@ namespace TOR_Core.BattleMechanics.Dismemberment
             var z = fixZ ? 1 : MBRandom.RandomFloatRanged(-deviation, deviation);
             return new Vec3(x, y, z);
         }
+        private bool RestoreMissingPooledLimbPhysics(GameEntity pooledLimb)
+        {
+            if (pooledLimb.HasDynamicRigidBody())
+            {
+                return true;
+            }
+
+            PhysicsShape bodyShape = pooledLimb.GetBodyShape();
+
+            // crash on pooled limb reuse, triggered by native rigid body cleanup
+            // clear any stale physics first
+            if (pooledLimb.HasPhysicsBody())
+            {
+                pooledLimb.RemovePhysics();
+            }
+
+            if (bodyShape == null)
+            {
+                return false;
+            }
+
+            pooledLimb.AddPhysics(pooledLimb.Mass, pooledLimb.CenterOfMass, bodyShape, Vec3.Zero, Vec3.Zero, PhysicsMaterial.GetFromName("flesh"), false, -1);
+            return pooledLimb.HasDynamicRigidBody();
+        }
+
         private void MoveCorpseParts(MatrixFrame frame)
         {
             if (_pooledDismemberedLimbs == null) return;//Sly : dismemberment won't initialize the body part game entities for friendly missions (eg. talking to a companion when outside of a settlement)
@@ -208,23 +238,34 @@ namespace TOR_Core.BattleMechanics.Dismemberment
 
             for (var i = 0; i < _pooledDismemberedLimbs[_index].Length; i++)
             {
-                if (_pooledDismemberedLimbs[_index][i] == null) continue; //that shouldn't be... but maybe?
+                GameEntity pooledLimb = _pooledDismemberedLimbs[_index][i];
+                if (pooledLimb == null) continue; //that shouldn't be... but maybe?
 
-                if (!_fullyInstantiated)
-                {
-                    _pooledDismemberedLimbs[_index][i].SetAlpha(1);
-                }
-                _pooledDismemberedLimbs[_index][i].SetGlobalFrame(frame);
-                var dir = GetRandomDirection(3);
+                Vec3 impulseDirection = GetRandomDirection(3);
+                bool restoreSucceeded;
+
                 using (new TWSharedMutexWriteLock(Scene.PhysicsAndRayCastLock))
                 {
-                    _pooledDismemberedLimbs[_index][i].ApplyLocalImpulseToDynamicBody(Vec3.Up * -1, dir * 25);
+                    // full reuse path under one physics lock
+                    restoreSucceeded = RestoreMissingPooledLimbPhysics(pooledLimb);
+                    if (restoreSucceeded)
+                    {
+                        pooledLimb.SetGlobalFrame(frame);
+                        pooledLimb.ApplyLocalImpulseToDynamicBody(Vec3.Up * -1, impulseDirection * 25);
+                    }
                 }
+
+                if (!restoreSucceeded)
+                {
+                    pooledLimb.SetAlpha(0);
+                    continue;
+                }
+
+                pooledLimb.SetAlpha(1);
             }
 
             _index++;
         }
-
 
         private void EnableSlowMotion()
         {
