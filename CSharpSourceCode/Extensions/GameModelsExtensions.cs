@@ -32,9 +32,9 @@ namespace TOR_Core.Extensions
             return models.GetGameModels().OfType<TORCompanionTrainingModel>().LastOrDefault();
         }
 
-        public static TORCompanionHiringCompatibilityModel GetCompanionHiringCompatibilityModel(this GameModels models)
+        public static TORHiringCompatibilityModel GetHiringCompatibilityModel(this GameModels models)
         {
-            return models.GetGameModels().OfType<TORCompanionHiringCompatibilityModel>().LastOrDefault();
+            return models.GetGameModels().OfType<TORHiringCompatibilityModel>().LastOrDefault();
         }
 
         public static TORReinforcementRestrictionModel GetReinforcementRestrictionModel(this GameModels models)
