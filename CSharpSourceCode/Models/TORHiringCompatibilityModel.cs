@@ -114,21 +114,35 @@ public class TORHiringCompatibilityModel : GameModel
         // noble pool
         return settlement.IsVillage && settlement.Village.Bound.IsCastle;
     }
+    private bool IsRoRVolunteer(Hero seller)
+    {
+        Settlement settlement = seller?.CurrentSettlement;
 
-/// <summary>
-/// Slightly more forgiving hiring allowed for troops
-/// Humans can hire humans, and eonir and dwarfs unless the latter two are nobles. 
-/// Dwarfs can hire dwarfs and humans unless humans are nobles
-/// Bretonnians can hire mousillon and bretonnians, other humans and dwarfs
-/// mousillon can hire bretonnians, empire and vampires
-/// greenskins can only hire other greenskins
-/// vampires can hire from vc, mousillon, empire and bretonnia unless the latter two have nobles.
-/// Asrai can hire from Eonir and other Asrai
-/// 
-/// </summary>
-/// <param name="player"></param>
-/// <param name="seller"></param>
-/// <returns></returns>
+        if (!(settlement?.IsRoRSettlement() ?? false))
+        {
+            return false;
+        }
+
+        return seller.Occupation == Occupation.Artisan ||
+               seller.Occupation == Occupation.Merchant ||
+               seller.Occupation == Occupation.Headman ||
+               seller.Occupation == Occupation.RuralNotable;
+    }
+
+    /// <summary>
+    /// Slightly more forgiving hiring allowed for troops
+    /// Humans can hire humans, and eonir and dwarfs unless the latter two are nobles. 
+    /// Dwarfs can hire dwarfs and humans unless humans are nobles
+    /// Bretonnians can hire mousillon and bretonnians, other humans and dwarfs
+    /// mousillon can hire bretonnians, empire and vampires
+    /// greenskins can only hire other greenskins
+    /// vampires can hire from vc, mousillon, empire and bretonnia unless the latter two have nobles.
+    /// Asrai can hire from Eonir and other Asrai
+    /// 
+    /// </summary>
+    /// <param name="player"></param>
+    /// <param name="seller"></param>
+    /// <returns></returns>
     public virtual bool CanPlayerHireTroopFromSeller(Hero player, Hero seller)
     {
         if (player == null || seller == null)
@@ -138,7 +152,7 @@ public class TORHiringCompatibilityModel : GameModel
         string sellerCulture = seller.Culture?.StringId;
         Settlement settlement = seller.CurrentSettlement;
 
-        bool hasEliteUnits = IsCastleBoundVillage(settlement);
+        bool hasEliteUnits = IsCastleBoundVillage(settlement) || IsRoRVolunteer(seller);
 
         if (string.IsNullOrEmpty(playerCulture) || string.IsNullOrEmpty(sellerCulture))
             return false; // Can't determine, block hiring
