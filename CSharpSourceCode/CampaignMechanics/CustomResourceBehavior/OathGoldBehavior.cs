@@ -437,6 +437,52 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         void OpenRuneLordShop()
         {
+            var excludedItems = new List<string>
+            {
+                // Weapons
+                "tor_dwarf_weapon_1h_axe_of_grimnir",
+                "tor_dwarf_weapon_greataxe_001",
+                "tor_dwarf_weapon_greataxe_ungrim_001",
+                "tor_dwarf_1h_spanner_001",
+                "dwarf_1h_engineer_hammer_001",
+                "tor_dwarf_weapon_hammer_of_angrund",
+                "tor_dwarf_2h_spanner_001",
+                "dwarf_2h_engineer_hammer_001",
+                // Armors - Head
+                "tor_dw_head_helm_ungrim_001",
+                "tor_dw_head_helm_ranger_001",
+                "tor_dw_head_helm_ranger_002",
+                "tor_dw_head_helm_ranger_003",
+                "tor_dw_head_helm_ranger_004",
+                "tor_dw_head_apprentice_002",
+                "tor_dw_head_apprentice_001",
+                "tor_dw_head_journeyman_001",
+                "tor_dw_head_engineer_001",
+                "tor_dw_head_engineer_002",
+                // Armors - Shoulder
+                "tor_dw_shoulder_cape_ranger_001",
+                "tor_dw_shoulder_cape_ranger_002",
+                "tor_dw_shoulder_shoulderpads_apprentice_001",
+                "tor_dw_shoulder_shoulderpads_journeyman_001",
+                "tor_dw_shoulder_shoulderpads_engineer_001",
+                "tor_dw_shoulder_shoulderpads_ungrim_001",
+                // Armors - Body
+                "tor_dw_body_armour_apprentice_001",
+                "tor_dw_body_armour_journeyman_001",
+                "tor_dw_body_armour_engineer_001",
+                "tor_dw_body_armour_ungrim_001",
+                "tor_dw_body_armour_ranger_001",
+                // Armors - Arms
+                "tor_dw_arm_gloves_apprentice_001",
+                "tor_dw_arm_gloves_journeyman_001",
+                "tor_dw_arm_gloves_engineer_001",
+                "tor_dw_arm_bracers_ranger_001",
+                // Armors - Legs
+                "tor_dw_leg_boots_apprentice_001",
+                "tor_dw_leg_boots_journeyman_001",
+                "tor_dw_leg_boots_engineer_001",
+                "tor_dw_leg_boots_ranger_001"
+            };
 
             ItemRoster roster = new ItemRoster();
 
@@ -459,7 +505,8 @@ public class OathGoldBehavior : CampaignBehaviorBase
             }
 
 
-            items.WhereQ(x => !x.IsCraftedByPlayer || x.HasAnyLootTraits()).ToMBList().ForEach(x => roster.Add(new ItemRosterElement(x, MBRandom.RandomInt(1, 2))));
+            items.WhereQ(x => (!x.IsCraftedByPlayer || x.HasAnyLootTraits()) && !excludedItems.Contains(x.StringId))
+                .ToMBList().ForEach(x => roster.Add(new ItemRosterElement(x, MBRandom.RandomInt(1, 2))));
 
             InventoryScreenHelper.OpenScreenAsTrade(roster, Settlement.CurrentSettlement.Town);
         }
