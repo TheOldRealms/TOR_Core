@@ -62,18 +62,18 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 {
                     case 1:
                         _choiceGroups1.Add(new CareerChoiceGroupObjectVM(group, RefreshValues));
-                        if (group.GetConditionText(Hero.MainHero) != _choiceGroup1Condition) _choiceGroup1Condition += group.GetConditionText(Hero.MainHero);
-                        if (group.GetUnlockText(Hero.MainHero) != _choiceGroup1Unlock) _choiceGroup1Unlock += group.GetUnlockText(Hero.MainHero);
+                        if (string.IsNullOrEmpty(_choiceGroup1Condition)) _choiceGroup1Condition = group.GetConditionText(Hero.MainHero);
+                        if (string.IsNullOrEmpty(_choiceGroup1Unlock)) _choiceGroup1Unlock = group.GetUnlockText(Hero.MainHero);
                         break;
                     case 2:
                         _choiceGroups2.Add(new CareerChoiceGroupObjectVM(group, RefreshValues));
-                        if (group.GetConditionText(Hero.MainHero) != _choiceGroup2Condition) _choiceGroup2Condition += group.GetConditionText(Hero.MainHero);
-                        if (group.GetUnlockText(Hero.MainHero) != _choiceGroup2Unlock) _choiceGroup2Unlock += group.GetUnlockText(Hero.MainHero);
+                        if (string.IsNullOrEmpty(_choiceGroup2Condition)) _choiceGroup2Condition = group.GetConditionText(Hero.MainHero);
+                        if (string.IsNullOrEmpty(_choiceGroup2Unlock)) _choiceGroup2Unlock = group.GetUnlockText(Hero.MainHero);
                         break;
                     case 3:
                         _choiceGroups3.Add(new CareerChoiceGroupObjectVM(group, RefreshValues));
-                        if (group.GetConditionText(Hero.MainHero) != _choiceGroup3Condition) _choiceGroup3Condition += group.GetConditionText(Hero.MainHero);
-                        if (group.GetUnlockText(Hero.MainHero) != _choiceGroup3Unlock) _choiceGroup3Unlock += group.GetUnlockText(Hero.MainHero);
+                        if (string.IsNullOrEmpty(_choiceGroup3Condition)) _choiceGroup3Condition = group.GetConditionText(Hero.MainHero);
+                        if (string.IsNullOrEmpty(_choiceGroup3Unlock)) _choiceGroup3Unlock = group.GetUnlockText(Hero.MainHero);
                         break;
                     default:
                         break;
