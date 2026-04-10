@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
@@ -16,29 +17,31 @@ public class TOREnchantmentCraftingModel : GameModel
 {
     public int MaximumAmountOfEnchantments(List<Hero> heroes)
     {
+        var value = 1;
         foreach (var hero in heroes)
         {
             // True Transmutation perk: 2 enchantments, 3 if dwarf
-            if (hero == Hero.MainHero && Hero.MainHero.GetPerkValue(TORPerks.Spellcraft.TrueTransmutation))
+            if (hero.GetPerkValue(TORPerks.Spellcraft.TrueTransmutation))
             {
-                bool isDwarf = Hero.MainHero.Culture?.StringId == TORConstants.Cultures.DAWI;
-                return isDwarf ? 3 : 2;
+                bool isDwarf = hero.Culture?.StringId == TORConstants.Cultures.DAWI;
+                value = isDwarf ? Math.Max(value, 3) : Math.Max(value, 2);
             }
 
             // Miracle perk: 2 blessings
-            if (hero == Hero.MainHero && Hero.MainHero.GetPerkValue(TORPerks.Faith.Miracle))
+            if (hero.GetPerkValue(TORPerks.Faith.Miracle))
             {
-                return 2;
+                bool isDwarf = hero.Culture?.StringId == TORConstants.Cultures.DAWI;
+                value = isDwarf ? Math.Max(value, 3) : Math.Max(value, 2);
             }
 
             // Dwarfs get 2 enchantments by default
             if (hero == Hero.MainHero && Hero.MainHero.Culture?.StringId == TORConstants.Cultures.DAWI)
             {
-                return 2;
+                return Math.Max(value, 2);
             }
         }
 
-        return 1;
+        return value;
     }
 
 
