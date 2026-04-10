@@ -94,6 +94,12 @@ namespace TOR_Core.Items
 
         public static bool CanCharacterUseItem(ItemObject item, CharacterObject character)
         {
+            // Dwarfs cannot use mounts
+            if (character.IsDwarf() && item.IsMountable)
+            {
+                return false;
+            }
+
             return CanCharacterUseItemBasedOnRace(item, character);
         }
 

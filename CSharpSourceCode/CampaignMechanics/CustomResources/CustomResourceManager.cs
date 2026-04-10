@@ -844,10 +844,6 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             int sign = fromSide == PartyScreenLogic.PartyRosterSide.Left ? 1 : -1;
             var explainedNumber = new ExplainedNumber();
             bool isLootScreen = PartyScreenHelper.GetActivePartyState()?.PartyScreenMode == PartyScreenMode.Loot;
-            if (!isLootScreen)
-            {
-                return;
-            }
 
             if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
             {
@@ -879,7 +875,17 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 }
             }
 
-            AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(), sign * (int)explainedNumber.ResultNumber);
+            var resourceDelta = sign * (int)explainedNumber.ResultNumber;
+
+            if (!isLootScreen)
+            {
+                resourceDelta = Math.Min(0, resourceDelta);
+            }
+
+            if (resourceDelta != 0)
+            {
+                AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(), resourceDelta);
+            }
 
             partyVm.GetExtensionInstance()?.RefreshValues();
         }

@@ -131,6 +131,11 @@ namespace TOR_Core.Extensions
             }
             return characterObject.Race == FaceGen.GetRaceOrDefault("vampire") || characterObject.Race == FaceGen.GetRaceOrDefault("necrarch");
         }
+        
+        public static bool IsDwarf(this BasicCharacterObject characterObject)
+        {
+            return characterObject.Race == FaceGen.GetRaceOrDefault("dwarf");
+        }
 
         public static bool IsDwarf(this CharacterObject characterObject)
         {
