@@ -3960,29 +3960,25 @@
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_warrior_priest_001">
     <ItemTraits />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.80" />
-      <DamageProportionTuple DamageType="Holy" Percent="0.20" />
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_warrior_priest_002">
     <ItemTraits />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.80" />
-      <DamageProportionTuple DamageType="Holy" Percent="0.20" />
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_warrior_priest_003">
     <ItemTraits />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.80" />
-      <DamageProportionTuple DamageType="Holy" Percent="0.20" />
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_warrior_priest_004">
     <ItemTraits />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.80" />
-      <DamageProportionTuple DamageType="Holy" Percent="0.20" />
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_flagellant_001">
@@ -4131,22 +4127,19 @@
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_thmace_warrior_priest_001">
     <ItemTraits />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.80" />
-      <DamageProportionTuple DamageType="Holy" Percent="0.20" />
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_thmace_warrior_priest_002">
     <ItemTraits />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.80" />
-      <DamageProportionTuple DamageType="Holy" Percent="0.20" />
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_thmace_warrior_priest_003">
     <ItemTraits />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.80" />
-      <DamageProportionTuple DamageType="Holy" Percent="0.20" />
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_klad_brakak">
@@ -4212,22 +4205,19 @@
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_polehammer_warrior_priest_001">
     <ItemTraits />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.80" />
-      <DamageProportionTuple DamageType="Holy" Percent="0.20" />
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_polehammer_warrior_priest_002">
     <ItemTraits />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.80" />
-      <DamageProportionTuple DamageType="Holy" Percent="0.20" />
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_polehammer_warrior_priest_003">
     <ItemTraits />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.80" />
-      <DamageProportionTuple DamageType="Holy" Percent="0.20" />
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_spear_001">
