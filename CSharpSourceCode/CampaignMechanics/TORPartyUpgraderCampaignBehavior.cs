@@ -78,6 +78,7 @@ namespace TOR_Core.CampaignMechanics
         {
             foreach (PartyBase party in mapEvent.InvolvedParties)
             {
+                if (party.MobileParty == null) continue;//god damn villager militia parties
                 if (party.MobileParty == MobileParty.MainParty) { continue; }
                 UpgradeReadyTroops(party);
             }
@@ -133,12 +134,15 @@ namespace TOR_Core.CampaignMechanics
             var memberRoster = party.MemberRoster;
             //descending order to check the highest tier targets first to count the number of missing troops among all potential upgrade paths from a troop
             IEnumerable<TroopRosterElement> upgradeableRoster = memberRoster.GetTroopRoster().Where(t => !t.Character.IsHero && t.Character.UpgradeTargets.Length != 0).OrderByDescending(x => x.Character.Level);
-
+            
             //exclude heroes from the count so the composition is only based on troops
             float troopCount = memberRoster.TotalRegulars;
-            var cultureTemplateStacks = party?.Culture?.DefaultPartyTemplate?.Stacks;
+            var defaultTemplate = (party.MobileParty?.ActualClan != null) ? party.MobileParty.ActualClan.DefaultPartyTemplate : party.Culture?.DefaultPartyTemplate;//bandit and mercenary clan parties use a template taken from their Clan object, and if a clan has no party template then it falls back to the cultural template. The culture fallback exists here because RaidingPartyComponents don't have a clan atm, they are only assigned to a hero.
+
+            var cultureTemplateStacks = defaultTemplate?.Stacks;
             Dictionary<CharacterObject, float> missingTroopsAtEachTier = []; //these could probably be stored as ints and rounded up at each step as the precision doesn't really matter; it will give slightly stronger parties.
-            //beastmen and other bandits won't have a cultural template like kingdom cultures
+            
+
             if (party?.Culture != null && _cultureTemplateData.TryGetValue(party.Culture.StringId, out var cultureData) && cultureData != null)
             {
                 float totalTroopsInTemplate = cultureData.Item1;

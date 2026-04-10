@@ -17,6 +17,7 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
 
         [SaveableField(2)] private Hero _owner;
         public override Hero PartyOwner => _owner;
+        //Sly : these can instead have a clan assigned to MobileParty.ActualClan which can hold the template definition and a hero owner would no longer be necessary
 
         [SaveableField(3)] private Settlement _home;
         public override Settlement HomeSettlement => _home;
