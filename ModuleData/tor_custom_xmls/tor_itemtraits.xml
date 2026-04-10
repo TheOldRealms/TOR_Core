@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ItemTraits>
   <ItemTrait ItemTraitStringId="runefang" ItemTraitName="Runefang" IsCraftable="false" IconName="traits_magic_icon">
     <ValidItemType>Weapon</ValidItemType>
@@ -1589,6 +1589,7 @@
     <IngredientAmount>16</IngredientAmount>
     <ItemTraitDescription>"40 extra physical damage, weapon gains the Cleave trait"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.40" />
+    <StatsTuple StatType="Cleave" Value="1" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="gs_enchant_cunning_mork" ItemTraitName="Cunning uv Mork" IsCraftable="true" IconName="mork_icon">
     <ValidItemType>Melee</ValidItemType>
@@ -4038,7 +4039,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_dw_rune_parrying" ItemTraitName="Rune of Parrying" IsCraftable="false" IconName="blessing_icon_45">
+  <ItemTrait ItemTraitStringId="learn_dw_rune_parrying" ItemTraitName="Rune of Parrying" IsCraftable="false" IconName="rune_parry">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -4052,7 +4053,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_dw_rune_protection" ItemTraitName="Rune of Protection" IsCraftable="false" IconName="blessing_icon_45">
+  <ItemTrait ItemTraitStringId="learn_dw_rune_protection" ItemTraitName="Rune of Protection" IsCraftable="false" IconName="rune_protection">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -4066,7 +4067,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_dw_rune_force" ItemTraitName="Rune of Force" IsCraftable="false" IconName="blessing_icon_45">
+  <ItemTrait ItemTraitStringId="learn_dw_rune_force" ItemTraitName="Rune of Force" IsCraftable="false" IconName="rune_force">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -4094,7 +4095,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_dw_rune_impact" ItemTraitName="Rune of Impact" IsCraftable="false" IconName="blessing_icon_45">
+  <ItemTrait ItemTraitStringId="learn_dw_rune_impact" ItemTraitName="Rune of Impact" IsCraftable="false" IconName="rune_impact">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -4108,7 +4109,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_dw_rune_fortitude" ItemTraitName="Rune of Fortitude" IsCraftable="false" IconName="blessing_icon_45">
+  <ItemTrait ItemTraitStringId="learn_dw_rune_fortitude" ItemTraitName="Rune of Fortitude" IsCraftable="false" IconName="rune_fortitude">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -4122,7 +4123,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_dw_rune_spell_eating" ItemTraitName="Rune of Spell Eating" IsCraftable="false" IconName="blessing_icon_45">
+  <ItemTrait ItemTraitStringId="learn_dw_rune_spell_eating" ItemTraitName="Rune of Spell Eating" IsCraftable="false" IconName="rune_spelleating">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -4136,7 +4137,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_dw_master_rune_preservation" ItemTraitName="Rune of Preservation" IsCraftable="false" IconName="blessing_icon_45">
+  <ItemTrait ItemTraitStringId="learn_dw_master_rune_preservation" ItemTraitName="Rune of Preservation" IsCraftable="false" IconName="rune_preservation">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -4164,7 +4165,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_dw_master_rune_skaldour" ItemTraitName="Master Rune of Skaldour" IsCraftable="false" IconName="blessing_icon_45">
+  <ItemTrait ItemTraitStringId="learn_dw_master_rune_skaldour" ItemTraitName="Master Rune of Skaldour" IsCraftable="false" IconName="rune_skaldour">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -4178,7 +4179,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_dw_master_rune_gromril" ItemTraitName="Master Rune of Gromril" IsCraftable="false" IconName="blessing_icon_45">
+  <ItemTrait ItemTraitStringId="learn_dw_master_rune_gromril" ItemTraitName="Master Rune of Gromril" IsCraftable="false" IconName="rune_gromril">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -4192,7 +4193,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_dw_master_rune_adamant" ItemTraitName="Master Rune of Adamant" IsCraftable="false" IconName="blessing_icon_45">
+  <ItemTrait ItemTraitStringId="learn_dw_master_rune_adamant" ItemTraitName="Master Rune of Adamant" IsCraftable="false" IconName="rune_adamant">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -4262,7 +4263,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_dw_rune_clear_sights" ItemTraitName="Rune of Clear Sights" IsCraftable="false" IconName="blessing_icon_45">
+  <ItemTrait ItemTraitStringId="learn_dw_rune_clear_sights" ItemTraitName="Rune of Clear Sights" IsCraftable="false" IconName="rune_clearsight">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -4276,7 +4277,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_dw_rune_head_wrecking" ItemTraitName="Rune of Head-Wrecking" IsCraftable="false" IconName="blessing_icon_45">
+  <ItemTrait ItemTraitStringId="learn_dw_rune_head_wrecking" ItemTraitName="Rune of Head-Wrecking" IsCraftable="false" IconName="rune_headwrecking">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -4290,7 +4291,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_dw_rune_unbinding" ItemTraitName="Rune of Unbinding" IsCraftable="false" IconName="blessing_icon_45">
+  <ItemTrait ItemTraitStringId="learn_dw_rune_unbinding" ItemTraitName="Rune of Unbinding" IsCraftable="false" IconName="rune_unbinding">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -4322,7 +4323,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>50% increased reload speed</ItemTraitDescription>
+    <ItemTraitDescription>50% reduced reload speed</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_reloading</InventoryScriptArgument>
@@ -4668,11 +4669,5 @@
         <WeaponScriptArgument>moonfire_explosion</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
-  </ItemTrait>
-  <ItemTrait ItemTraitStringId="shld_phys_res_20" ItemTraitName="Physical Resistance (Shield)" IsCraftable="true" IconName="traits_holy_icon">
-    <ValidItemType>Shield</ValidItemType>
-    <IngredientItem>BlessedWater</IngredientItem>
-    <IngredientAmount>1</IngredientAmount>
-    <ItemTraitDescription>This item provides its wearer 20% physical resistance.</ItemTraitDescription>
   </ItemTrait>
 </ItemTraits>
