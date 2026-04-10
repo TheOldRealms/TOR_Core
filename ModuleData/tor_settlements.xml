@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Settlements>
+﻿<?xml version="1.0" encoding="utf-8"?><Settlements>
   <!--Custom Settlements-->
   <Settlement id="oak_of_ages" name="{=str_tor_settlements_oak_of_ages}Oak of Ages" owner="Faction.athel_loren_clan_1" posX="1218.711" posY="798.5" culture="Culture.battania" text="{=!}Oak of Ages" gate_posX="1218.711" gate_posY="798.5">
     <Components>
@@ -1031,7 +1030,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_ST4" name="{=Settlements.Settlement.name.town_ST4}Mittlenburg" owner="Faction.stirland_clan_1" posX="1554.683" posY="881.617" culture="Culture.empire" gate_posX="1554.314" gate_posY="882.6886" text="{=Settlements.Settlement.text.town_ST4}Mittlenburg sits at the foot of the black mountains, not far from the fallen Karak Varn and lake Black Water. The town is a modest one, the people here are very aware of their precarious position between Black Fire Pass and Sylvania, as such the town is decently fortified in preparation for these threats. The temples of Sigmar and Taal are well consecrated, and the Garden of Morr has a protective curtain wall around it. Many pilgrims on their way to take the trek up to the final temple of Skaranorak stop in Mittlenburg to purchase supplies.&#xD;&#xA;Special Scenes: no special scenes, besides maybe the temples, would be nice if one of the temples of Skaranorak was visible from a vantage point somewhere in the town.">
+  <Settlement id="town_ST4" name="{=Settlements.Settlement.name.town_ST4}Mittlenburg" owner="Faction.stirland_clan_1" posX="1554.683" posY="881.617" culture="Culture.empire" gate_posX="1554.314" gate_posY="882.6886" text="{=Settlements.Settlement.text.town_ST4}Mittlenburg sits at the foot of the black mountains, not far from the fallen Karak Varn and lake Black Water. The town is a modest one, the people here are very aware of their precarious position between Black Fire Pass and Sylvania, as such the town is decently fortified in preparation for these threats. The temples of Sigmar and Taal are well consecrated, and the Garden of Morr has a protective curtain wall around it. Many pilgrims on their way to take the trek up to the final temple of Skaranorak stop in Mittlenburg to purchase supplies.&#13;&#10;Special Scenes: no special scenes, besides maybe the temples, would be nice if one of the temples of Skaranorak was visible from a vantage point somewhere in the town.">
     <Components>
       <Town id="town_comp_ST4" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="2150">
         <Buildings>
@@ -1999,7 +1998,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_empire_city_generic_01" scene_name_1="TOR_empire_city_generic_01" scene_name_2="TOR_empire_city_generic_01" scene_name_3="TOR_empire_city_generic_01" />
+      <Location id="center" scene_name="TOR_empire_city_averheim_02" scene_name_1="TOR_empire_city_averheim_02" scene_name_2="TOR_empire_city_averheim_02" scene_name_3="TOR_empire_city_averheim_02" />
       <Location id="arena" scene_name="TOR_empire_arena_averheim_01" />
       <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
@@ -2759,7 +2758,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_empire_city_generic_02" scene_name_1="TOR_empire_city_generic_02" scene_name_2="TOR_empire_city_generic_02" scene_name_3="TOR_empire_city_generic_02" />
+      <Location id="center" scene_name="TOR_empire_city_averheim_02" scene_name_1="TOR_empire_city_averheim_02" scene_name_2="TOR_empire_city_averheim_02" scene_name_3="TOR_empire_city_averheim_02" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
       <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
@@ -2896,7 +2895,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="vlandia_town_h" scene_name_1="vlandia_town_h" scene_name_2="vlandia_town_h" scene_name_3="vlandia_town_h" />
+      <Location id="center" scene_name="TOR_empire_city_averheim_02" scene_name_1="TOR_empire_city_averheim_02" scene_name_2="TOR_empire_city_averheim_02" scene_name_3="TOR_empire_city_averheim_02" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
       <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
@@ -3172,8 +3171,8 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="vlandia_town_g" scene_name_1="vlandia_town_g" scene_name_2="vlandia_town_g" scene_name_3="vlandia_town_g" />
-      <Location id="arena" scene_name="TOR_arena_empire_a" />
+      <Location id="center" scene_name="TOR_empire_city_generic_01" scene_name_1="TOR_empire_city_generic_01" scene_name_2="TOR_empire_city_generic_01" scene_name_3="TOR_empire_city_generic_01" />
+      <Location id="arena" scene_name="TOR_empire_arena_averheim_01" />
       <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
@@ -4503,7 +4502,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_empire_city_generic_02" scene_name_1="TOR_empire_city_generic_02" scene_name_2="TOR_empire_city_generic_02" scene_name_3="TOR_empire_city_generic_02" />
+      <Location id="center" scene_name="TOR_empire_city_averheim_02" scene_name_1="TOR_empire_city_averheim_02" scene_name_2="TOR_empire_city_averheim_02" scene_name_3="TOR_empire_city_averheim_02" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
       <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
@@ -4892,7 +4891,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_empire_city_generic_02" scene_name_1="TOR_empire_city_generic_02" scene_name_2="TOR_empire_city_generic_02" scene_name_3="TOR_empire_city_generic_02" />
+      <Location id="center" scene_name="TOR_empire_city_averheim_02" scene_name_1="TOR_empire_city_averheim_02" scene_name_2="TOR_empire_city_averheim_02" scene_name_3="TOR_empire_city_averheim_02" />
       <Location id="arena" scene_name="TOR_arena_empire_a" />
       <Location id="tavern" scene_name="TOR_empire_tavern_ninian_02" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
@@ -5340,7 +5339,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="vlandia_town_c" scene_name_1="vlandia_town_c" scene_name_2="vlandia_town_c" scene_name_3="vlandia_town_c">
+      <Location id="center" scene_name="TOR_empire_city_averheim_02" scene_name_1="TOR_empire_city_averheim_02" scene_name_2="TOR_empire_city_averheim_02" scene_name_3="TOR_empire_city_averheim_02">
       </Location>
       <Location id="arena" scene_name="TOR_arena_empire_a" />
       <Location id="tavern" scene_name="TOR_empire_tavern_ninian_01" />
