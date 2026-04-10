@@ -29,6 +29,7 @@ namespace TOR_Core.CampaignMechanics
 
         private const int UndeadCountVillages = 5;
         private const int UndeadCountTowns = 20;
+        private const int DryadCount = 3;
         private const int SkeletonVillageCooldownHours = 4;
         private const int SkeletonTownCooldownHours = 10;
         private const int MaxTrollsPerParty = 20;
@@ -167,19 +168,18 @@ namespace TOR_Core.CampaignMechanics
         /// </summary>
         private void AddDryadsToPartyOnEnteringSettlement(MobileParty party, Settlement settlement, Hero leaderHero)
         {
-            if (party == null || settlement == null || leaderHero == null || !leaderHero.IsSpellCaster() || leaderHero.Culture.StringId != TORConstants.Cultures.ASRAI || settlement.IsHideout || party.IsMainParty) return;
+            if (party == null || settlement == null || leaderHero == null || leaderHero.Culture.StringId != TORConstants.Cultures.ASRAI || (!leaderHero.IsClanLeader && !leaderHero.IsSpellCaster()) || settlement.IsHideout || party.IsMainParty) return;
             if (!settlement.StringId.Contains("AL")) return;
 
             if (party.MemberRoster.TotalManCount < party.Party.PartySizeLimit)
             {
                 // Check if any Athel Loren settlement is occupied by foreign forces
-                bool forestUnderThreat = Settlement.All.AnyQ(s =>
+                bool forestUnderThreat = Town.AllTowns.AnyQ(s =>
                     s.StringId.Contains("AL") &&
-                    !s.IsHideout &&
                     s.OwnerClan?.Culture?.StringId != TORConstants.Cultures.ASRAI);
 
                 // Treeman recruitment - 15% if forest under threat, 5% otherwise
-                if (_treeman != null && party.MemberRoster.GetTroopCount(_treeman) is int count && count < 3)
+                if (_treeman != null && party.MemberRoster.GetTroopCount(_treeman) is int count && count < 2)
                 {
                     float treemanChance = forestUnderThreat ? 0.15f : 0.05f;
                     if (MBRandom.RandomFloat < treemanChance)
@@ -190,11 +190,10 @@ namespace TOR_Core.CampaignMechanics
                 }
 
                 // Dryad recruitment - always if forest under threat, 25% chance otherwise
-                if (_dryad == null || party.MemberRoster.GetTroopCount(_dryad) >= 75) return;
+                if (_dryad == null || party.MemberRoster.GetTroopCount(_dryad) >= 40) return;
                 if (!forestUnderThreat && MBRandom.RandomFloat > 0.25f) return;
 
-                var number = settlement.IsVillage ? UndeadCountVillages : UndeadCountTowns;
-                party.MemberRoster.AddToCounts(_dryad, Math.Min(number, party.Party.PartySizeLimit - party.MemberRoster.TotalManCount));
+                party.MemberRoster.AddToCounts(_dryad, Math.Min(DryadCount, party.Party.PartySizeLimit - party.MemberRoster.TotalManCount));
             }
         }
 
