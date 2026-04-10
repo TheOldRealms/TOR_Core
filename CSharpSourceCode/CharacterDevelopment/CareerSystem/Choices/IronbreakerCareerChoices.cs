@@ -307,7 +307,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
 
         _ironPricePassive1.Initialize(CareerID, "Hits below 15 damage no longer stagger you.", "IronPrice", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.ShruggedOff));
         _ironPricePassive2.Initialize(CareerID, "Personal attacks against shields deal increased 'Physical' damage.", "IronPrice", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.BonusDamageShield, AttackTypeMask.Melee));
-        _ironPricePassive3.Initialize(CareerID, "-25% upgrade/recruitment costs for 'Ironbreaker' troops.", "IronPrice", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopUpgradeCost, true, characterObject => characterObject.HasAttribute("Ironbreaker")));
+        _ironPricePassive3.Initialize(CareerID, "-25% gold cost when upgrading 'Ironbreaker' troops.", "IronPrice", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopUpgradeCost, true, characterObject => characterObject.HasAttribute("Ironbreaker")));
         _ironPricePassive4.Initialize(CareerID, "+10 personal Hitpoints.", "IronPrice", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
 
         _shieldwallPassive1.Initialize(CareerID, "+10 personal Hitpoints.", "ShieldWall", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));

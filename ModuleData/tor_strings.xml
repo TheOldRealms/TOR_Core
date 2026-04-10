@@ -4213,7 +4213,7 @@
   <string id="tor_careerchoice_description.IronPriceKeystone" text="{=str_tor_careerchoice_description_IronPriceKeystone}Impenetrable also scales with Leadership and can be charged by dealing damage." />
   <string id="tor_careerchoice_description.IronPricePassive1" text="{=str_tor_careerchoice_description_IronPricePassive1}Hits below 15 damage no longer stagger you." />
   <string id="tor_careerchoice_description.IronPricePassive2" text="{=str_tor_careerchoice_description_IronPricePassive2}Personal attacks against shields deal increased 'Physical' damage." />
-  <string id="tor_careerchoice_description.IronPricePassive3" text="{=str_tor_careerchoice_description_IronPricePassive3}-25% upgrade/recruitment costs for 'Ironbreaker' troops." />
+  <string id="tor_careerchoice_description.IronPricePassive3" text="{=str_tor_careerchoice_description_IronPricePassive3}-25% gold cost when upgrading 'Ironbreaker' troops." />
   <string id="tor_careerchoice_description.IronPricePassive4" text="{=str_tor_careerchoice_description_IronPricePassive4}+10 personal Hitpoints." />
 
   <string id="tor_careerchoice_description.ShieldwallKeystone" text="{=str_tor_careerchoice_description_ShieldwallKeystone}Impenetrable also scales with One-Handed and applies to nearby Dawi." />
@@ -4304,7 +4304,7 @@
   <string id="tor_careerchoice_description.ChiselAndHammerPassive1" text="{=str_tor_careerchoice_description_ChiselAndHammerPassive1}+15% 'Physical' damage for troops affected by a 'Rune'." />
   <string id="tor_careerchoice_description.ChiselAndHammerPassive2" text="{=str_tor_careerchoice_description_ChiselAndHammerPassive2}Kills made with 'Rune' weapons provide Spellcraft experience." />
   <string id="tor_careerchoice_description.ChiselAndHammerPassive3" text="{=str_tor_careerchoice_description_ChiselAndHammerPassive3}+20% personal 'Rune' ability affect radius." />
-  <string id="tor_careerchoice_description.ChiselAndHammerPassive4" text="{=str_tor_careerchoice_description_ChiselAndHammerPassive4}'Oathgold' cost to upgrade 'Elite' troops is reduced." />
+  <string id="tor_careerchoice_description.ChiselAndHammerPassive4" text="{=str_tor_careerchoice_description_ChiselAndHammerPassive4}-25% 'Oathgold' cost to upgrade 'Elite' troops." />
 
   <string id="tor_careerchoice_description.ForHearthAndHomeKeystone" text="{=str_tor_careerchoice_description_ForHearthAndHomeKeystone}The 'Rune' Heart and Home also provides +25% 'Physical' ranged damage." />
   <string id="tor_careerchoice_description.ForHearthAndHomePassive1" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive1}+10% 'Ward Save' for troops affected by a 'Rune'." />

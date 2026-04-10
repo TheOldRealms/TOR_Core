@@ -25,11 +25,11 @@ namespace TOR_Core.AbilitySystem.Crosshairs
                 // check if zoom is pressed
                 if (_missionScreen.InputManager.IsGameKeyDown(24))
                 {
-                    _movie.Movie.RootWidget.MarginBottom = 330;
+                    _movie.Movie.RootWidget.MarginBottom = 200;
                 }
                 else
                 {
-                    _movie.Movie.RootWidget.MarginBottom = 175;
+                    _movie.Movie.RootWidget.MarginBottom = 100;
                 }
             }
         }

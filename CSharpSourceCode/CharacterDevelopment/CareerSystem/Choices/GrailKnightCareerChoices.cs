@@ -329,7 +329,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _enhancedHorseCombatPassive2.Initialize(CareerID, "+5% personal 'Physical' melee damage while mounted.", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 5), AttackTypeMask.Melee,
                 (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Melee && attacker.HasMount));
 
-            _enhancedHorseCombatPassive3.Initialize(CareerID, "-12% 'Chivalry' upgrade costs for all troops.", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-12, PassiveEffectType.TroopUpgradeCost, true));
+            _enhancedHorseCombatPassive3.Initialize(CareerID, "-12% 'Chivalry' upgrade costs for all troops.", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-12, PassiveEffectType.CustomResourceUpgradeCostModifier, true));
             _enhancedHorseCombatPassive4.Initialize(CareerID, "+30 Polearm skill for all 'Knight' troops.", "EnhancedHorseCombat", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, nameof(DefaultSkills.Polearm),
                 (characterObject) => characterObject.IsKnightUnit()));
 
