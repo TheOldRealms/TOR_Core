@@ -464,11 +464,11 @@ namespace TOR_Core.Models
             ExplainedNumber cost = new(template.WindsOfMagicCost);
             if (character != null && template != null)
             {
-                if (character.GetPerkValue(TORPerks.Spellcraft.OverCaster))
+                if (character.GetPerkValue(TORPerks.Spellcraft.OverCaster) && template.IsSpell && (template.DoesDamage || template.DoesHeal))
                 {
                     cost.AddFactor(TORPerks.Spellcraft.OverCaster.SecondaryBonus);
                 }
-                if (character.GetPerkValue(TORPerks.Spellcraft.EfficientSpellCaster))
+                if (character.GetPerkValue(TORPerks.Spellcraft.EfficientSpellCaster) && template.IsSpell && (template.DoesDamage || template.DoesHeal))
                 {
                     cost.AddFactor(TORPerks.Spellcraft.EfficientSpellCaster.SecondaryBonus);
                 }
