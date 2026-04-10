@@ -24,7 +24,7 @@ namespace TOR_Core.Models
 
             if (party.LeaderHero != null && party.LeaderHero == Hero.MainHero)
             {
-                CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.TroopUpgradeCost, true);
+                CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.TroopUpgradeCost, true, characterObject);
             }
 
             if (characterObject.Culture.StringId == TORConstants.Cultures.DAWI)
