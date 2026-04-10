@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Settlements>
   <!--Custom Settlements-->
   <Settlement id="oak_of_ages" name="{=str_tor_settlements_oak_of_ages}Oak of Ages" owner="Faction.athel_loren_clan_1" posX="1218.711" posY="798.5" culture="Culture.battania" text="{=!}Oak of Ages" gate_posX="1218.711" gate_posY="798.5">
@@ -3895,7 +3895,7 @@
       <Village id="village_comp_ML2_2" village_type="VillageType.swine_farm" hearth="250" bound="Settlement.town_ML2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_empire_village_005" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3908,7 +3908,7 @@
       <Village id="village_comp_ML2_3" village_type="VillageType.cattle_farm" hearth="250" bound="Settlement.town_ML2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_empire_village_005" />
+      <Location id="village_center" scene_name="TOR_empire_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3970,7 +3970,7 @@
       <Village id="village_comp_ML3_2" village_type="VillageType.fisherman" hearth="250" bound="Settlement.town_ML3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_empire_village_005" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3983,7 +3983,7 @@
       <Village id="village_comp_ML3_3" village_type="VillageType.lumberjack" hearth="250" bound="Settlement.town_ML3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_empire_village_005" />
+      <Location id="village_center" scene_name="TOR_empire_village_003" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -3996,7 +3996,7 @@
       <Village id="village_comp_ML3_4" village_type="VillageType.vineyard" hearth="250" bound="Settlement.town_ML3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_empire_village_005" />
+      <Location id="village_center" scene_name="TOR_empire_village_002" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4148,7 +4148,7 @@
       <Village id="village_comp_ML5_2" village_type="VillageType.cattle_farm" hearth="250" bound="Settlement.town_ML5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_empire_village_005" />
+      <Location id="village_center" scene_name="TOR_empire_village_004" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -4161,7 +4161,7 @@
       <Village id="village_comp_ML5_3" village_type="VillageType.lumberjack" hearth="250" bound="Settlement.town_ML5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_empire_village_005" />
+      <Location id="village_center" scene_name="TOR_empire_village_002" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -16233,7 +16233,7 @@
       <Location id="hideout_center" scene_name="mountain_hideout_002_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_greenskin_32" name="{=Settlements.Settlement.name.hideout_greenskin_32}Orc Raiders" type="Hideout" posX="1135.243" posY="1019.381" culture="Culture.greenskin_bandit">
+  <Settlement id="hideout_greenskin_32" name="{=Settlements.Settlement.name.hideout_greenskin_32}Orc Raiders" type="Hideout" posX="1135.336" posY="1019.383" culture="Culture.greenskin_bandit">
     <Components>
       <Hideout id="hideout_greenskin_32" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
