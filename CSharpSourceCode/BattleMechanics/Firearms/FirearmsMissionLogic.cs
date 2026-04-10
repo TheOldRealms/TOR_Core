@@ -483,13 +483,29 @@ namespace TOR_Core.BattleMechanics.Firearms
                 }
             }
         }
-
-
+        private static bool CanUseAffectorForScriptedExplosion(Agent affector)
+        {
+            return affector != null &&
+                   Mission.Current != null &&
+                   Mission.Current.FindAgentWithIndex(affector.Index) == affector &&
+                   affector.IsActive() &&
+                   !affector.IsFadingOut() &&
+                   affector.Team != null &&
+                   affector.Team != Team.Invalid &&
+                   affector.Origin != null &&
+                   affector.Character != null &&
+                   affector.Monster != null;
+        }
         private void ApplySplashDamage(Agent affector, Vec3 position, float explosionRadius, int explosionDamage, float damageVariance)
         {
             var nearbyAgents = Mission.Current.GetNearbyAgents(position.AsVec2, explosionRadius, new MBList<Agent>()).ToArray();
             for (int i = 0; i < nearbyAgents.Length; i++)
             {
+                if (!CanUseAffectorForScriptedExplosion(affector))
+                {
+                    break;
+                }
+
                 var agent = nearbyAgents[i];
                 var distance = agent.Position.Distance(position);
                 if (distance <= explosionRadius)

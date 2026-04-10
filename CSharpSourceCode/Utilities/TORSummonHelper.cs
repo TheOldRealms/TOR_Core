@@ -14,9 +14,9 @@ namespace TOR_Core.Utilities
     {
         /// <summary>
         /// Maximum number of agents (including mounts) allowed in a mission before summoning is blocked.
-        /// Set to 990 with safety buffer below engine limit of 1024.
+        /// Set to 1980 with safety buffer below engine limit of 2048.
         /// </summary>
-        public const int MaxMissionAgents = 990;
+        public const int MaxMissionAgents = 1980;
 
         /// <summary>
         /// Minimum number of agent slots that must be available before allowing summoning.
