@@ -55,6 +55,15 @@ namespace TOR_Core.Models
             base.UpdateAgentStats(agent, agentDrivenProperties);
             UpdateAgentDrivenProperties(agent, agentDrivenProperties);
         }
+        
+        public override bool CanAgentRideMount(Agent agent, Agent targetMount)
+        {
+            if (agent.Character.IsDwarf())
+            {
+                return false;
+            }
+            return agent.CheckSkillForMounting(targetMount);
+        }
 
         public override float GetWeaponInaccuracy(Agent agent, WeaponComponentData weapon, int weaponSkill)
         {
@@ -412,6 +421,8 @@ namespace TOR_Core.Models
 
                     if (character.IsDwarf())
                     {
+                        agent.SetAgentFlags(agent.GetAgentFlags() & ~AgentFlag.CanRide);
+
                         if (character.IsIronbreakerUnit())
                         {
                             if (!character.StringId.Contains("trollhammer"))
