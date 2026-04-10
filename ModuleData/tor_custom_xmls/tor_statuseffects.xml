@@ -720,7 +720,6 @@
     	base_effect_value="-3"
 		type="DamageOverTime"
 		damage_type="Fire">
-		<temporary_attribute>Piercing</temporary_attribute>
   	</StatusEffectTemplate>
 	
 	
@@ -1300,7 +1299,7 @@
 		particle_id=""
 		particle_intensity="Low"
 		do_not_attach_to_agent_skeleton="true"
-    	base_effect_value="-0.25"
+    	base_effect_value="-0.34"
 		type="Resistance"
 		damage_type="Fire"/>
 

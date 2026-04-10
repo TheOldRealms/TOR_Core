@@ -3234,6 +3234,16 @@
   <string id="tor_became_blood_knight_vampire_text" text="{=str_tor_became_blood_knight_vampire_text}{HERO_NAME} became a Blood Knight Vampire"/>
 
   <!-- Career Button Messages -->
+  
+  <string id="tor_waywatcher_arrow_name.Swiftshiver" text="{=str_tor_waywatcher_arrow_name_swiftshiver}Swiftshiver Shards" />                                                                                               
+  <string id="tor_waywatcher_arrow_name.Hagbane" text="{=str_tor_waywatcher_arrow_name_hagbane}Hagbane Tipps" />                                                                                                            
+  <string id="tor_waywatcher_arrow_name.Starfire" text="{=str_tor_waywatcher_arrow_name_starfire}Starfire Shafts" />  
+  
+  <string id="tor_waywatcher_arrow_desc.Swiftshiver" text="{=str_tor_waywatcher_arrow_desc_swiftshiver}adds 15% Magical damage" />
+  <string id="tor_waywatcher_arrow_desc.Hagbane" text="{=str_tor_waywatcher_arrow_desc_hagbane}adds a 25% chance for 40% movement speed slowdown" />
+  <string id="tor_waywatcher_arrow_desc.Starfire" text="{=str_tor_waywatcher_arrow_desc_starfire}Adds a 25% chance for fire damage over time and fire vulnerability" />
+  
+  
   <string id="tor_grail_knight_promote_companion_text" text="{=str_tor_grail_knight_promote_companion_text}Promotes your Grail Knight to a companion (Cost 100{RESOURCE_ICON})"/>
   <string id="tor_learned_spell_text" text="{=str_tor_learned_spell_text}Successfully learned spell: {SPELL_NAME}"/>
   <string id="tor_learnSpell" text="{=str_tor_learnSpell}Learn {GOLDCOST} {COINIMAGE}"/>

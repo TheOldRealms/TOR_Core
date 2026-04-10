@@ -42,8 +42,8 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
             new()
             {
                 Id = "shift",
-                Name = "Swiftshiver Shards",
-                Description = "adds 15% Magical damage",
+                Name = TORTextHelper.GetTextObject("tor_waywatcher_arrow_name","Swiftshiver", "Swiftshiver Shards").ToString(),
+                Description = TORTextHelper.GetTextObject("tor_waywatcher_arrow_desc","Swiftshiver", "adds 15% Magical damage").ToString(),
                 Effect = "apply_swift_shiver_trait",
                 Price = 20,
                 Symbol = _swiftshiverShardsIcon
@@ -51,8 +51,8 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
             new()
             {
                 Id = "hagbane",
-                Name = "Hagbane Tipps",
-                Description = "adds a 25% chance for 40% movement speed slowdown",
+                Name = TORTextHelper.GetTextObject("tor_waywatcher_arrow_name","Hagbane", "Hagbane Tipps").ToString(),
+                Description = TORTextHelper.GetTextObject("tor_waywatcher_arrow_desc","Hagbane", "adds a 25% chance for 40% movement speed slowdown").ToString(),
                 Effect = "apply_hagbane_trait",
                 Price = 30,
                 Symbol = _hagbaneTippsIcon
@@ -60,8 +60,8 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
             new()
             {
                 Id = "starfire",
-                Name = "Starfire Shafts",
-                Description = "Adds 25% armor penetration and pierces shields",
+                Name = TORTextHelper.GetTextObject("tor_waywatcher_arrow_name","Starfire", "Starfire Shafts").ToString(),
+                Description = TORTextHelper.GetTextObject("tor_waywatcher_arrow_desc","Starfire", "Adds a 25% chance for fire damage over time and fire vulnerability").ToString(),
                 Effect = "apply_starfire_trait",
                 Price = 50,
                 Symbol = _starfireShaftsIcon
