@@ -1239,7 +1239,7 @@
 		particle_id="aura_of_lady"
 		base_effect_value="0.8"
 		do_not_attach_to_agent_skeleton="true"
-		applies_for_attack_type="Spell"
+		applies_for_attack_type="All"
 		type="Resistance"
 		damage_type="Magical">
 	</StatusEffectTemplate>
@@ -1249,7 +1249,7 @@
 		particle_id=""
 		base_effect_value="0.8"
 		do_not_attach_to_agent_skeleton="true"
-		applies_for_attack_type="Spell"
+		applies_for_attack_type="All"
 		type="Resistance"
 		damage_type="Fire">
 	</StatusEffectTemplate>
@@ -1259,7 +1259,7 @@
 		particle_id=""
 		base_effect_value="0.8"
 		do_not_attach_to_agent_skeleton="true"
-		applies_for_attack_type="Spell"
+		applies_for_attack_type="All"
 		type="Resistance"
 		damage_type="Lightning">
 	</StatusEffectTemplate>

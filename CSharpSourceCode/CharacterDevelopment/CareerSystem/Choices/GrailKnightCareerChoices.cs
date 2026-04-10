@@ -342,7 +342,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             _monsterSlayerPassive1.Initialize(CareerID, "+5% personal 'Fire' melee damage.", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 5), AttackTypeMask.Melee));
             _monsterSlayerPassive2.Initialize(CareerID, "+20% personal 'Armour Penetration' for melee attacks.", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
-            _monsterSlayerPassive3.Initialize(CareerID, "+40% chance to recruit 2 troops instead of 1.", "MonsterSlayer", false, ChoiceType.Passive, null,
+            _monsterSlayerPassive3.Initialize(CareerID, "+20% personal 'Physical' melee damage against mounted enemies and monsters.", "MonsterSlayer", false, ChoiceType.Passive, null,
                 new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Melee,
                     (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Melee && (victim.Character as CharacterObject).IsLargeTarget()));
             _monsterSlayerPassive4.Initialize(CareerID, "Hits below 15 damage no longer stagger you.", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.ShruggedOff));

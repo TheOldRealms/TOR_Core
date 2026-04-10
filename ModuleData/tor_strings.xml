@@ -3904,7 +3904,7 @@
   <string id="tor_careerchoice_description.MonsterSlayerKeystone" text="{=str_tor_careerchoice_description_MonsterSlayerKeystone}Knightly Charge duration scales with Polearm/Riding, its damage also scales with Two-Handed." />
   <string id="tor_careerchoice_description.MonsterSlayerPassive1" text="{=str_tor_careerchoice_description_MonsterSlayerPassive1}+5% personal 'Fire' melee damage." />
   <string id="tor_careerchoice_description.MonsterSlayerPassive2" text="{=str_tor_careerchoice_description_MonsterSlayerPassive2}+20% personal 'Armour Penetration' for melee attacks." />
-  <string id="tor_careerchoice_description.MonsterSlayerPassive3" text="{=str_tor_careerchoice_description_MonsterSlayerPassive3}+40% chance to recruit 2 troops instead of 1." />
+  <string id="tor_careerchoice_description.MonsterSlayerPassive3" text="{=str_tor_careerchoice_description_MonsterSlayerPassive3}+20% personal 'Physical' melee damage against mounted enemies and monsters." />
   <string id="tor_careerchoice_description.MonsterSlayerPassive4" text="{=str_tor_careerchoice_description_MonsterSlayerPassive4}Hits below 15 damage no longer stagger you." />
 
   <string id="tor_careerchoice_description.MasterHorsemanKeystone" text="{=str_tor_careerchoice_description_MasterHorsemanKeystone}Knightly Charge's cooldown is 30s shorter, and any healing recieved also affects your horse." />

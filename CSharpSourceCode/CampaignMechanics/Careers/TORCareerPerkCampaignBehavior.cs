@@ -206,13 +206,6 @@ namespace TOR_Core.CampaignMechanics
                         AddExtraTroopsWithChanceIfPossible(characterObject, amount, party, choice.GetPassiveValue());
                 }
 
-                if (choices.Contains("MonsterSlayerPassive3"))
-                {
-                    var choice = TORCareerChoices.GetChoice("MonsterSlayerPassive3");
-                    if (choice != null)
-                        AddExtraTroopsWithChanceIfPossible(characterObject, amount, party, choice.GetPassiveValue());
-                }
-
                 if (choices.Contains("UnbreakableArmyPassive2"))
                 {
                     var choice = TORCareerChoices.GetChoice("UnbreakableArmyPassive2");

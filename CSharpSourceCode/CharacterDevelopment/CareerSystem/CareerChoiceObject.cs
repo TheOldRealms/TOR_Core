@@ -74,7 +74,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
             }
             
-            base.Initialize(new TextObject(StringId), text);
+            base.Initialize(new TextObject(StringId), text);//Sly : the string id doesn't contain the localization id, but does this text every appear anywhere?
             OwnerCareer = ownerCareer;
             if (!string.IsNullOrEmpty(belongsToGroup))
             {

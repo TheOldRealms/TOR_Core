@@ -1,3 +1,4 @@
+using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
@@ -85,6 +86,8 @@ public static class ServeAsAHirelingHelpers
             var malus = 3 - ((int)hero.GetChivalryLevel());     //from level 3 on you increase your wage
             wage.AddFactor((-0.1f * malus));
         }
+
+        wage.LimitMax(1000f);//Sly : to be seen how fast the player ramps up to this value for various cultures
 
         var multiplier = hero.PartyBelongedTo.GetMemberHeroes().Count - 1;
 
