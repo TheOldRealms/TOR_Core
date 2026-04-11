@@ -1379,13 +1379,15 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             // Set race and default body properties based on selected culture
             string default_elf =
-                "<BodyProperties version='4' age='25.84' weight='0.5000' build='0.5000'  key='000BAC088000100DB976648E6774B835537D86629511323BDCB177278A84F667017776140748B49500000000000000000000000000000000000000003EFC5000'/>";
+                "<BodyProperties version='4' age='25.84' weight='0.0015' build='0.4228'  key='000AAC0800001007B97634CE6774B835537D86629511323BDCB177278A84020300A606030A48B49500000000000000000000000000000000000000003F4C1000'/>";
             string default_empire =
                 "<BodyProperties version='4' age='25.84' weight='0.5000' build='0.5000'  key='000500000000000D797664884754DCBAA35E866295A0967774414A498C8336860F7776F20BA7B7A500000000000000000000000000000000000000003CFC2000'/>";
             string default_bretonnia =
-                "<BodyProperties version='4' age='25.84' weight='0.5000' build='0.5000'  key='001CB80CC000300D7C7664876753888A7577866254C69643C4B647398C95A0370077760307A7497300000000000000000000000000000000000000003AF47001'/>";
+                "<BodyProperties version='4' age='25.84' weight='0.5000' build='0.5000'  key='001BB80D0000308C7C7664876753888A7577866254C69643C4B647398C95A0370077760307A7497300000000000000000000000000000000000000003AF47000'/>";
+            string default_mousillon =
+                "<BodyProperties version='4' age='25.84' weight='0.2639' build='0.5000'  key='0010D40D000032856C766488675088887577866254C69612C4B647398C95A0370077460307A74973000000000000000000000000000000000000000002F43007'/>";
             string default_vc =
-                "<BodyProperties version='4' age='25.84' weight='0.5000' build='0.5000'  key='0000C80FC000100DBA756447533077873CD1833B3101B44A21C3C5347CA32C260077760307BC35E8000000000000000000000000000000000000000042F41003'/>";
+                "<BodyProperties version='4' age='25.84' weight='0.1991' build='0.5000'  key='0000540FC000100DBA756448533077853CD1833B3101B44A21C3C5347CA32C260077360307BC35E800000000000000000000000000000000000000003CF41007'/>";
             string default_dwarf =
                 "<BodyProperties version='4' age='25' weight='0.4182' build='0.1898' key='0005000F00000280F77664884754DCBAFF9E566095F09F1F74414A49893F81FE0F77760307A7B7A536000000000000000000000000000007000000003CFC0000'/>";
             string default_orc =
@@ -1414,7 +1416,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("human");
                     break;
                 case TORConstants.Cultures.MOUSILLON:
-                     keyValue = default_bretonnia;
+                     keyValue = default_mousillon;
                      CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("human");
                     break;                                 
                 case TORConstants.Cultures.DAWI:
