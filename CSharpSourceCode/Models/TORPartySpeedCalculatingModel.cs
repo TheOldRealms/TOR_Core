@@ -63,11 +63,14 @@ namespace TOR_Core.Models
             AddCareerPassivesForPartySpeed(mobileParty, ref result);
 
             var heroes = mobileParty.GetMemberHeroes();
-            foreach (var trait in heroes.SelectQ(hero => hero.CharacterObject.GetCharacterEquipment()).
-                            SelectMany(equipment => equipment.SelectQ(item => item.GetTraits()).
-                                SelectMany(traits => traits.WhereQ(trait => trait != null && trait.StatsTuple?.StatType == ItemTraitStatType.PartySpeed))))
+            var partySpeedTraits = heroes.SelectQ(hero => hero.CharacterObject.GetCharacterEquipment())
+                .SelectMany(equipment => equipment.SelectQ(item => item.GetTraits())
+                    .SelectMany(traits => traits.WhereQ(trait => trait != null && trait.StatsTuple?.StatType == ItemTraitStatType.PartySpeed)));
+
+            var maxPartySpeedTrait = partySpeedTraits.OrderByDescending(t => t.StatsTuple.Value).FirstOrDefault();
+            if (maxPartySpeedTrait != null)
             {
-                result.AddFactor(trait.StatsTuple.Value / 100f, GameTexts.FindText("tor_generic_enchantedEquipment"));
+                result.AddFactor(maxPartySpeedTrait.StatsTuple.Value / 100f, GameTexts.FindText("tor_generic_enchantedEquipment"));
             }
 
             if (leaderHero.HasCareer(TORCareers.KnightOldWorld))
