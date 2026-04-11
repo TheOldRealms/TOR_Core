@@ -2220,7 +2220,7 @@
       <EquipmentSet id="tor_gs_goblin_archer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_goblin_wolf_rida_boss" default_group="horsearcher" level="21" name="{=str_tor_gs_goblin_wolf_rida_boss}Goblin Wolf Rida Boss" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level21" race="goblin">
+  <NPCCharacter id="tor_gs_goblin_wolf_rida_boss" default_group="cavalry" level="21" name="{=str_tor_gs_goblin_wolf_rida_boss}Goblin Wolf Rida Boss" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level21" race="goblin">
     <face>
       <face_key_template value="BodyProperty.goblin" />
     </face>

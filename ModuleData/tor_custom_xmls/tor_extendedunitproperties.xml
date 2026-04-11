@@ -2201,9 +2201,7 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_eo_kithband_sentinel">
     <Abilities />
-    <Attributes>
-      <string>Piercing</string>
-    </Attributes>
+    <Attributes />
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -2212,9 +2210,7 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_eo_ranger">
     <Abilities />
-    <Attributes>
-      <string>Piercing</string>
-    </Attributes>
+    <Attributes />
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -4616,7 +4612,7 @@
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.15" />
     </Resistances>
     <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.15" />
+      <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.35" />
     </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="0.50" />
@@ -4632,13 +4628,13 @@
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.20" />
     </Resistances>
     <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.30" />
+      <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.50" />
     </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="0.50" />
       <DamageProportionTuple DamageType="Holy" Percent="0.50" />
     </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="7" />
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="5" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wh_retinue_headhunter">
     <Abilities />
@@ -4649,7 +4645,7 @@
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
     </Resistances>
     <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.50" />
+      <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.70" />
     </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="0.50" />

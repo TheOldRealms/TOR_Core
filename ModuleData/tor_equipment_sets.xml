@@ -1254,7 +1254,7 @@
       <Equipment slot="Item1" id="Item.tor_empire_weapon_gun_flintlock_pistol_007" />
       <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
       <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball" />
-      <Equipment slot="Head" id="Item.tor_empire_head_helm_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_sallet_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_pistolier_001" />
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_witch_hunter_001" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
@@ -1265,7 +1265,7 @@
       <Equipment slot="Item1" id="Item.tor_empire_weapon_gun_flintlock_pistol_007" />
       <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
       <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball" />
-      <Equipment slot="Head" id="Item.tor_empire_head_helm_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_sallet_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_pistolier_001" />
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_witch_hunter_001" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
@@ -1276,7 +1276,7 @@
       <Equipment slot="Item1" id="Item.tor_empire_weapon_gun_flintlock_pistol_007" />
       <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
       <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball" />
-      <Equipment slot="Head" id="Item.tor_empire_head_helm_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_sallet_002" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_pistolier_002" />
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_general_002" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
@@ -1287,7 +1287,7 @@
       <Equipment slot="Item1" id="Item.tor_empire_weapon_gun_flintlock_pistol_007" />
       <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
       <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball" />
-      <Equipment slot="Head" id="Item.tor_empire_head_helm_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_sallet_002" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_pistolier_002" />
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_general_002" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
@@ -1298,7 +1298,7 @@
       <Equipment slot="Item1" id="Item.tor_empire_weapon_gun_flintlock_pistol_007" />
       <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
       <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball" />
-      <Equipment slot="Head" id="Item.tor_empire_head_helm_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_sallet_002" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_free_company_001" />
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_halberdier_001" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
@@ -1309,7 +1309,7 @@
       <Equipment slot="Item1" id="Item.tor_empire_weapon_gun_flintlock_pistol_007" />
       <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
       <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball" />
-      <Equipment slot="Head" id="Item.tor_empire_head_helm_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_sallet_002" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_free_company_001" />
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_halberdier_001" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
@@ -6975,6 +6975,7 @@
   <EquipmentRoster id="tor_gs_goblin_template" culture="Culture.aserai">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_002" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
@@ -6982,6 +6983,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_002" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
@@ -7017,6 +7019,7 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.battania_mace_1_t2" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_001" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
@@ -7024,6 +7027,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.battania_mace_1_t2" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_001" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
@@ -7047,7 +7051,7 @@
   <EquipmentRoster id="tor_gs_goblin_stikka_template" culture="Culture.aserai">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
-      <Equipment slot="Item1" id="Item.old_horsemans_kite_shield" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_002" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_002" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
@@ -7055,7 +7059,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
-      <Equipment slot="Item1" id="Item.old_horsemans_kite_shield" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_002" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_002" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
@@ -7063,7 +7067,7 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.falchion_sword_t2" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_006" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_002" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
@@ -7071,7 +7075,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.falchion_sword_t2" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_006" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_002" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
@@ -7079,7 +7083,7 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.empire_mace_1_t2" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_007" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_002" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_001" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_001" />
@@ -7087,7 +7091,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.empire_mace_1_t2" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_007" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_002" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_001" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_001" />
@@ -7095,7 +7099,7 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.battania_mace_1_t2" />
-      <Equipment slot="Item1" id="Item.old_horsemans_kite_shield" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_001" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
@@ -7103,7 +7107,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.battania_mace_1_t2" />
-      <Equipment slot="Item1" id="Item.old_horsemans_kite_shield" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_001" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
@@ -7111,7 +7115,7 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.battania_mace_2" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_007" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_002" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_001" />
@@ -7119,7 +7123,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.battania_mace_2" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_007" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_002" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_001" />
@@ -7145,7 +7149,7 @@
   <EquipmentRoster id="tor_gs_goblin_boss_template" culture="Culture.aserai">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.battania_mace_1_t2" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_006" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_005" />
       <Equipment slot="Item2" id="Item.tor_vc_weapon_spear_skeleton_001" />
       <Equipment slot="Head" id="Item.tor_greenskin_goblin_mid_helmet_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_mid_001" />
@@ -7155,7 +7159,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.battania_mace_1_t2" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_006" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_005" />
       <Equipment slot="Item2" id="Item.tor_vc_weapon_spear_skeleton_001" />
       <Equipment slot="Head" id="Item.tor_greenskin_goblin_mid_helmet_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_mid_001" />
@@ -7542,7 +7546,7 @@
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.western_spear_2_t2" />
       <Equipment slot="Item1" id="Item.vlandia_mace_1_t2" />
-      <Equipment slot="Item2" id="Item.old_horsemans_kite_shield" />
+      <Equipment slot="Item2" id="Item.tor_greenskin_goblin_shield_002" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_001" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
@@ -7553,7 +7557,7 @@
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.western_spear_2_t2" />
       <Equipment slot="Item1" id="Item.vlandia_mace_1_t2" />
-      <Equipment slot="Item2" id="Item.old_horsemans_kite_shield" />
+      <Equipment slot="Item2" id="Item.tor_greenskin_goblin_shield_002" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_001" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
@@ -7564,7 +7568,7 @@
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.western_spear_2_t2" />
       <Equipment slot="Item1" id="Item.battania_mace_1_t2" />
-      <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_006" />
+      <Equipment slot="Item2" id="Item.tor_greenskin_goblin_shield_003" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_002" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_001" />
@@ -7575,7 +7579,7 @@
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.western_spear_2_t2" />
       <Equipment slot="Item1" id="Item.battania_mace_1_t2" />
-      <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_006" />
+      <Equipment slot="Item2" id="Item.tor_greenskin_goblin_shield_003" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_002" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_001" />
@@ -7632,10 +7636,9 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_gs_goblin_wolf_rida_boss_template" culture="Culture.aserai">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.steppe_bow" />
-      <Equipment slot="Item1" id="Item.blunt_arrows" />
-      <Equipment slot="Item2" id="Item.vlandia_mace_1_t2" />
-      <Equipment slot="Item3" id="Item.western_spear_2_t2" />
+      <Equipment slot="Item0" id="Item.vlandia_mace_1_t2" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_005" />
+      <Equipment slot="Item2" id="Item.western_spear_2_t2" />
       <Equipment slot="Head" id="Item.tor_greenskin_goblin_mid_helmet_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_mid_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_001" />
@@ -7645,10 +7648,9 @@
       <Equipment slot="HorseHarness" id="Item.tor_greenskin_mountarmor_wolf_saddle_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.steppe_bow" />
-      <Equipment slot="Item1" id="Item.blunt_arrows" />
-      <Equipment slot="Item2" id="Item.vlandia_mace_1_t2" />
-      <Equipment slot="Item3" id="Item.western_spear_2_t2" />
+      <Equipment slot="Item0" id="Item.vlandia_mace_1_t2" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_005" />
+      <Equipment slot="Item2" id="Item.western_spear_2_t2" />
       <Equipment slot="Head" id="Item.tor_greenskin_goblin_mid_helmet_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_mid_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_001" />
@@ -7761,21 +7763,21 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.falchion_sword_t2" />
-      <Equipment slot="Item1" id="Item.old_horsemans_kite_shield" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.falchion_sword_t2" />
-      <Equipment slot="Item1" id="Item.old_horsemans_kite_shield" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_gs_goblin_tournament_template_four_participant_v1" culture="Culture.aserai">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
-      <Equipment slot="Item1" id="Item.old_horsemans_kite_shield" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
-      <Equipment slot="Item1" id="Item.old_horsemans_kite_shield" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_empire_scout_template" culture="Culture.empire">
@@ -17263,25 +17265,25 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.empire_mace_1_t2" />
-      <Equipment slot="Item1" id="Item.old_horsemans_kite_shield" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_001" />
       <Equipment slot="Leg" id="Item.tor_greenskin_leg_boots_goblin_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.empire_mace_1_t2" />
-      <Equipment slot="Item1" id="Item.old_horsemans_kite_shield" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_001" />
       <Equipment slot="Leg" id="Item.tor_greenskin_leg_boots_goblin_001" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.peasant_hatchet_1_t1" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_skeleton_006" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_002" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_001" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.peasant_hatchet_1_t1" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_skeleton_006" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_002" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_001" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
     </EquipmentSet>
@@ -17299,13 +17301,13 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_skeleton_006" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_001" />
       <Equipment slot="Leg" id="Item.tor_greenskin_leg_boots_goblin_002" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_skeleton_006" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_001" />
       <Equipment slot="Leg" id="Item.tor_greenskin_leg_boots_goblin_002" />
     </EquipmentSet>
@@ -17321,14 +17323,14 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
-      <Equipment slot="Item1" id="Item.old_horsemans_kite_shield" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_002" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_001" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_001" />
       <Equipment slot="Leg" id="Item.tor_greenskin_leg_boots_goblin_002" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
-      <Equipment slot="Item1" id="Item.old_horsemans_kite_shield" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_002" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_001" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_001" />
       <Equipment slot="Leg" id="Item.tor_greenskin_leg_boots_goblin_002" />
@@ -17337,6 +17339,7 @@
   <EquipmentRoster id="tor_looter_leader_template" culture="Culture.looters">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.falchion_sword_t2" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_003" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_001" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_001" />
@@ -17344,6 +17347,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.falchion_sword_t2" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_003" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_001" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_001" />
@@ -17351,7 +17355,7 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.empire_mace_1_t2" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_skeleton_006" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_004" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_002" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_001" />
@@ -17359,7 +17363,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.empire_mace_1_t2" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_skeleton_006" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_004" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_002" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_001" />
@@ -17367,7 +17371,7 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.battania_mace_2_t2" />
-      <Equipment slot="Item1" id="Item.old_horsemans_kite_shield" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_002" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_001" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
@@ -17375,7 +17379,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.battania_mace_2_t2" />
-      <Equipment slot="Item1" id="Item.old_horsemans_kite_shield" />
+      <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_002" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_001" />
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
@@ -23210,7 +23214,7 @@
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.aserai_2haxe_1_t3" />
       <Equipment slot="Item1" id="Item.eastern_spear_1_t2_blunt" />
-      <Equipment slot="Item2" id="Item.bound_desert_round_shield" />
+      <Equipment slot="Item2" id="Item.tor_greenskin_goblin_shield_006" />
       <Equipment slot="Head" id="Item.tor_greenskin_goblin_warboss_helmet_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_warboss_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_warboss_001" />
@@ -23222,7 +23226,7 @@
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.aserai_2haxe_1_t3" />
       <Equipment slot="Item1" id="Item.eastern_spear_1_t2_blunt" />
-      <Equipment slot="Item2" id="Item.bound_desert_round_shield" />
+      <Equipment slot="Item2" id="Item.tor_greenskin_goblin_shield_006" />
       <Equipment slot="Head" id="Item.tor_greenskin_goblin_warboss_helmet_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_warboss_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_warboss_001" />
@@ -23236,7 +23240,7 @@
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.steppe_war_bow" />
       <Equipment slot="Item1" id="Item.bodkin_arrows_c" />
-      <Equipment slot="Item2" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Item2" id="Item.tor_greenskin_goblin_shield_006" />
       <Equipment slot="Item3" id="Item.cleaver_sword_t3" />
       <Equipment slot="Head" id="Item.tor_greenskin_goblin_warboss_helmet_002" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_warboss_001" />
@@ -23249,7 +23253,7 @@
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.steppe_war_bow" />
       <Equipment slot="Item1" id="Item.bodkin_arrows_c" />
-      <Equipment slot="Item2" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Item2" id="Item.tor_greenskin_goblin_shield_006" />
       <Equipment slot="Item3" id="Item.cleaver_sword_t3" />
       <Equipment slot="Head" id="Item.tor_greenskin_goblin_warboss_helmet_002" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_warboss_001" />
@@ -23262,7 +23266,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_gs_goblin_warboss_template_003" culture="Culture.aserai">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.leather_bound_kite_shield" />
+      <Equipment slot="Item0" id="Item.tor_greenskin_goblin_shield_006" />
       <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
       <Equipment slot="Item2" id="Item.eastern_spear_1_t2_blunt" />
       <Equipment slot="Head" id="Item.tor_greenskin_goblin_warboss_helmet_003" />
@@ -23274,7 +23278,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_greenskin_mountarmor_wolf_saddle_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.leather_bound_kite_shield" />
+      <Equipment slot="Item0" id="Item.tor_greenskin_goblin_shield_006" />
       <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
       <Equipment slot="Item2" id="Item.eastern_spear_1_t2_blunt" />
       <Equipment slot="Head" id="Item.tor_greenskin_goblin_warboss_helmet_003" />
