@@ -942,6 +942,8 @@
   <string id="tor_dw_guildmaster_gemcutter_launch_expedition_decline_p" text="{=str_tor_dw_guildmaster_gemcutter_launch_expedition_decline_p}Forgive me, I changed my mind."/>
 
   <string id="tor_dw_guildmaster_gemcutter_launch_expedition_end" text="{=str_tor_dw_guildmaster_gemcutter_launch_expedition_end}Very well, our finest explorers and miners will depart after gathering supplies."/>
+  
+   <string id="tor_dw_guildmaster_gemcutter_found_artefacts" text="{=str_tor_dw_guildmaster_gemcutter_found_artefacts}Aye, your expeditions have returned! They've brought back treasures from the deep." />  
 
 
   <string id="tor_dw_guildmaster_gemcutter_spend_troops" text="{=str_tor_dw_guildmaster_gemcutter_spend_troops}Aye, the Guild will appreciate any help in this regard."/>
