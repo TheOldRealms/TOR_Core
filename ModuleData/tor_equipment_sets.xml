@@ -7689,21 +7689,21 @@
   <EquipmentRoster id="tor_gs_tournament_template_one_participant_v1" culture="Culture.aserai">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_mace_001" />
-      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
+      <Equipment slot="Item1" id="Item.tor_greenskins_orc_shield_03_1" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_mace_001" />
-      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
+      <Equipment slot="Item1" id="Item.tor_greenskins_orc_shield_03_1" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_gs_tournament_template_two_participant_v1" culture="Culture.aserai">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_mace_001" />
-      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
+      <Equipment slot="Item1" id="Item.tor_greenskins_orc_shield_03_3" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_mace_001" />
-      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
+      <Equipment slot="Item1" id="Item.tor_greenskins_orc_shield_03_3" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_greataxe_black_orc_001" />
@@ -7715,11 +7715,11 @@
   <EquipmentRoster id="tor_gs_tournament_template_four_participant_v1" culture="Culture.aserai">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_mace_001" />
-      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
+      <Equipment slot="Item1" id="Item.tor_greenskins_orc_shield_03_1" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_mace_001" />
-      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
+      <Equipment slot="Item1" id="Item.tor_greenskins_orc_shield_03_1" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_greataxe_black_orc_001" />
@@ -7729,11 +7729,11 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_sword_003" />
-      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
+      <Equipment slot="Item1" id="Item.tor_greenskins_orc_shield_03_2" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_sword_003" />
-      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
+      <Equipment slot="Item1" id="Item.tor_greenskins_orc_shield_03_2" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_2h_sword_002" />
