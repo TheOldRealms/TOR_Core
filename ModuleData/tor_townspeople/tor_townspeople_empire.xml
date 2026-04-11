@@ -2,7 +2,7 @@
 <NPCCharacters>
   <NPCCharacter id="tor_prison_guard_empire" default_group="Infantry" level="21" culture="Culture.empire" occupation="PrisonGuard" name="{=XgjXfmM1}Prison Guard" skill_template="SkillSet.infantry_heavyinfantry_level21_template_skills">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <skills></skills>
     <upgrade_targets></upgrade_targets>
@@ -13,7 +13,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_townsman_villager" default_group="Infantry" name="{=muu5cofb}Townsman" occupation="Townsfolk" culture="Culture.empire" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
     <face>
-      <face_key_template value="BodyProperty.villager_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
       <hair_tags>
         <hair_tag name="Bald" />
         <hair_tag name="ShortAndThin" />
@@ -21,11 +21,41 @@
         <hair_tag name="Short" />
       </hair_tags>
       <beard_tags>
-        <beard_tag name="Cleanshaven" />
-        <beard_tag name="LightShortBeard" />
-        <beard_tag name="HeavyShortBeard" />
-        <beard_tag name="Cleanshaven" />
+			<beard_tag
+				name="Cleanshaven" />
+			<beard_tag
+				name="DroopyMustache" />
+			<beard_tag
+				name="DroopyMustache" />
+			<beard_tag
+				name="Cleanshaven" />
+			<beard_tag
+				name="BrightWizardBeard04" />
+			<beard_tag
+				name="HeavyShortBeard" />
+			<beard_tag
+				name="SoldierMustache" />
+			<beard_tag
+				name="MediumDutch" />
+			<beard_tag
+				name="Sideburns" />
+			<beard_tag
+				name="EmpireBeard02" />
+			<beard_tag
+				name="ThinMustache" />
+			<beard_tag
+				name="EmpireBeard04" />
+			<beard_tag
+				name="EmpireBeard05" />
+			<beard_tag
+				name="LongScragglyBeard" />
+			<beard_tag
+				name="EmpireBeard05" />
       </beard_tags>
+		<tattoo_tags>
+			<tattoo_tag
+				name="Cleanface" />
+		</tattoo_tags>
     </face>
     <skills></skills>
     <Equipments>
@@ -48,7 +78,7 @@
   <!--Merchant-->
   <NPCCharacter id="tor_merchant_empire" default_group="Infantry" occupation="GoodsTrader" culture="Culture.empire" name="{=thbcgVVO}Trader" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
     <face>
-      <face_key_template value="BodyProperty.villager_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <skills></skills>
     <Equipments>
@@ -76,7 +106,7 @@
   <!-- Empire Notables -->
   <NPCCharacter id="tor_notable_empire_0" name="{=str_tor_notable_empire_0}Cautious imperial merchant" is_template="true" voice="ironic" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Merchant">
     <face>
-      <face_key_template value="BodyProperty.villager_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="RomanHair" value="1" />
@@ -90,7 +120,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_0b" name="{=str_tor_notable_empire_0b}{FIRSTNAME} the Vintner" is_template="true" voice="ironic" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Merchant">
     <face>
-      <face_key_template value="BodyProperty.villager_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="RomanHair" value="1" />
@@ -105,7 +135,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_1" name="{=str_tor_notable_empire_1}Empire merchant 3, ruthless" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Merchant">
     <face>
-      <face_key_template value="BodyProperty.villager_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="RomanHair" value="1" />
@@ -119,7 +149,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_1b" name="{=str_tor_notable_empire_1b}Cold imperial merchant" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Merchant">
     <face>
-      <face_key_template value="BodyProperty.villager_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="RomanHair" value="1" />
@@ -134,7 +164,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_2" name="{=str_tor_notable_empire_2}{FIRSTNAME} the Saltpanner" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Merchant">
     <face>
-      <face_key_template value="BodyProperty.villager_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="RomanHair" value="1" />
@@ -148,7 +178,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_2b" name="{=str_tor_notable_empire_2b}Empire merchant 6, cautious" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Merchant">
     <face>
-      <face_key_template value="BodyProperty.villager_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="RomanHair" value="1" />
@@ -163,7 +193,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_3" name="{=str_tor_notable_empire_3}Empire merchant 7, selfmade" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Merchant">
     <face>
-      <face_key_template value="BodyProperty.villager_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="RomanHair" value="1" />
@@ -176,7 +206,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_3b" name="{=str_tor_notable_empire_3b}Empire merchant 8, jocular" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Merchant">
     <face>
-      <face_key_template value="BodyProperty.villager_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="RomanHair" value="1" />
@@ -220,7 +250,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_5" name="{=str_tor_notable_empire_5}Messianic imperial preacher" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Preacher">
     <face>
-      <face_key_template value="BodyProperty.villager_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="RomanHair" value="1" />
@@ -262,7 +292,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_8" name="{=str_tor_notable_empire_8}Imperial gruff labor leader" voice="curt" is_template="true" default_group="Infantry" is_female="false" culture="Culture.empire" occupation="Artisan">
     <face>
-      <face_key_template value="BodyProperty.villager_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="RomanHair" value="1" />
@@ -275,7 +305,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_9" name="{=str_tor_notable_empire_9}Imperial outgoing labor leader" voice="earnest" is_template="true" default_group="Infantry" is_female="false" culture="Culture.empire" occupation="Artisan">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="RomanHair" value="1" />
@@ -288,7 +318,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_gl1" name="{=str_tor_notable_empire_gl1}Protective imperial male gang leader" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="GangLeader">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="RomanHair" value="1" />
@@ -303,7 +333,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_10" name="{=str_tor_notable_empire_10}Ironic imperial gang leader" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="GangLeader">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="RomanHair" value="1" />
@@ -318,7 +348,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_11" name="{=str_tor_notable_empire_11}Intimidating male imperial gang leader" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="GangLeader">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="RomanHair" value="1" />
@@ -333,7 +363,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_gl4" name="{=str_tor_notable_empire_gl4}Bestial male imperial gang leader" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="GangLeader">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="RomanHair" value="1" />
@@ -377,7 +407,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_21" name="{=str_tor_notable_empire_21}Empire gruff rural notable" voice="curt" is_template="true" default_group="Infantry" culture="Culture.empire" occupation="RuralNotable">
     <face>
-      <face_key_template value="BodyProperty.villager_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="RomanHair" value="1" />
@@ -390,7 +420,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_22" name="{=str_tor_notable_empire_22}Empire rural notable agreeable" voice="softspoken" is_template="true" default_group="Infantry" culture="Culture.empire" occupation="RuralNotable">
     <face>
-      <face_key_template value="BodyProperty.townsman_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="RomanHair" value="1" />
@@ -403,7 +433,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_empire_headman_1" name="{=str_tor_empire_headman_1}empire rebellious headman" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Headman">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="RomanHair" value="1" />
@@ -417,7 +447,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_empire_headman_2" name="{=str_tor_empire_headman_2}empire conservative headman" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Headman">
     <face>
-      <face_key_template value="BodyProperty.villager_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="RomanHair" value="1" />
@@ -431,7 +461,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_empire_headman_3" name="{=str_tor_empire_headman_3}empire devious headman" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Headman">
     <face>
-      <face_key_template value="BodyProperty.villager_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="RomanHair" value="1" />
