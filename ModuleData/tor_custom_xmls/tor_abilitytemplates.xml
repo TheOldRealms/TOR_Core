@@ -4662,7 +4662,7 @@
         <TriggeredEffect>apply_knightly_strike_trait</TriggeredEffect>
     </AbilityTemplate>
     <AbilityTemplate StringID="HawkEye"
-                     Name="{=wind_of_death_label_str}Hawk Eye"
+                     Name="{=hawk_eye_label_str}Hawk Eye"
                      SpriteName="hawk_eye_icon"
                      CoolDown="100"
                      WindsOfMagicCost="0"
@@ -4695,7 +4695,7 @@
                      TargetCapturingRadius="3"
                      MaxRandomDeviation="1"
                      SpellTier="4"
-                     TooltipDescription="{=wind_of_death_description_str}Invoke the spirits of the dead to consume the souls of the living. Applies medium damage while moving along its path.">
+                     TooltipDescription="{=hawk_eye_description_str}The borders of Athel Loren must stand! Call upon your trusty bird companion Hawk Eye! Designate an area, reducing the 'Physical' melee damage of foes within. For every level of Scouting, gain 0.01% radius of Hawk Eye. (Ability has a 100s cooldown).">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -4783,7 +4783,7 @@
                      CrosshairType="SingleTarget"
                      AbilityTargetType="EnemiesInAOE"
                      SpellTier="3"
-                     TooltipDescription="{=fireball_description_str}Launch a devastating homing arrow.">
+                     TooltipDescription="{=arrow_of_kurnous_description_str}Launch a devastating homing arrow.">
         <LightColorRGB x="52"
                        y="235"
                        z="88"
