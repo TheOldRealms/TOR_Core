@@ -928,6 +928,16 @@
   <string id="tor_dw_guildmaster_expedition_hub_launch_expedition_p" text="{=str_tor_dw_guildmaster_expedition_hub_launch_expedition_p}Can I launch an expedition?"/>
   <string id="tor_dw_guildmaster_gemcutter_hub_quit_p" text="{=str_tor_dw_guildmaster_gemcutter_hub_quit_p}That will be all, Master Boki."/>
   
+  
+  <string id="tor_party_size_desc.FriendOfUndead" text="{=str_tor_party_size_desc_friendofundead}Friend of undead" />                                                        
+  <string id="tor_party_size_desc.CaravanOfDeath" text="{=str_tor_party_size_desc_caravanofdeath}Caravan of death" />                                                        
+  <string id="tor_party_size_desc.SettlementVampireCounts" text="{=str_tor_party_size_desc_settlementvampirecounts}Settlement of Vampire Counts" />                          
+  <string id="tor_party_size_desc.VampireLord" text="{=str_tor_party_size_desc_vampirelord}Vampire lord" />                                                                  
+  <string id="tor_party_size_desc.Greenskins" text="{=str_tor_party_size_desc_greenskins}Greenskins" />                                                                      
+  <string id="tor_party_size_desc.DwarfPenalty" text="{=str_tor_party_size_desc_dwarfpenalty}Dwarf cultural penalty" />                                                      
+  <string id="tor_party_size_desc.WoodelfPenalty" text="{=str_tor_party_size_desc_woodelfpenalty}Woodelf cultural penalty" />   
+  
+  
     <!--Expeditions-->
 	
   <string id="tor_dw_guildmaster_gemcutter_found_artefacts" text="{=str_tor_dw_guildmaster_expedition_found_artefacts}Some of the explorer teams return with treasuers or artifacts. Naturally, a portion would be shared with you."/>
