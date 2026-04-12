@@ -268,7 +268,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
         AddBrewerDialogue(campaignGameStarter);
         AddWarriorDialogue(campaignGameStarter);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_decline", "start", "close_window", TORTextHelper.GetText("tor_dw_guildmaster_reject_non_dwarf", "The guilds of the Dawi do not deal with outsiders. Begone, manling."),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_decline", "start", "close_window", TORTextHelper.GetText("tor_dw_guildmaster_reject_non_dwarf", "You dont belong here. begone"),
             () => IsGuildMaster() && Hero.MainHero.Culture.StringId != TORConstants.Cultures.DAWI, null, 200);
 
     }
@@ -402,7 +402,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
         campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord2", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord2", reintro, TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord2", "As Thungni is my witness, henceforth you shall be known as a Rhunriki; may you walk with pride amongst the forges of our Ancestors. Now, let us discuss the secrets of the Third Rune…"), null, null);
 
         //buy equipment
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_buy_equipment", "tor_dw_guildmaster_rune_smith_buy_equipment", reintro, TORTextHelper.GetText("tor_dw_shop_show_goods_text", "Sure let me show what I got"),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_buy_equipment", "tor_dw_guildmaster_rune_smith_buy_equipment", reintro, TORTextHelper.GetText("tor_dw_shop_show_goods_text", "Very well, take a look at our inventions."),
             null, OpenRuneLordShop, 200);
 
         // Deliver Steel
@@ -758,17 +758,17 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         AddOathGoldDialog(campaignGameStarter, _templateEngineer.guild, reintro);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_buy_weapons_shop_p", hub, "tor_dw_guildmaster_engineer_buy_weapons_shop", TORTextHelper.GetText("tor_dw_engineer_buy_weapons_text", "I need better weapons master engineer"),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_buy_weapons_shop_p", hub, "tor_dw_guildmaster_engineer_buy_weapons_shop", TORTextHelper.GetText("tor_dw_engineer_buy_weapons_text", "I need better gear, Master Engineer."),
             null, null, 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_recruit_crew_p", hub, "tor_dw_guildmaster_engineer_recruit_crew", TORTextHelper.GetText("tor_dw_engineer_recruit_crew_text", "I need some artillery crew."),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_recruit_crew_p", hub, "tor_dw_guildmaster_engineer_recruit_crew", TORTextHelper.GetText("tor_dw_engineer_recruit_crew_text", "I require reliable crewmen to operate my artillery."),
             () => Hero.MainHero.HasAttribute("DwarfEngineersI"), null, 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_quit_p", hub, "close_window", TORTextHelper.GetText("tor_dw_quit_text", "Thats all"),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_quit_p", hub, "close_window", TORTextHelper.GetText("tor_dw_quit_text", "That will be all."),
             null, null, 200);
 
         //buy equipment
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_engineer_buy_weapons_shop", "tor_dw_guildmaster_engineer_buy_weapons_shop", "tor_dw_guildmaster_engineer_start_reintro", TORTextHelper.GetText("tor_dw_shop_show_goods_text", "Sure let me show what I got"),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_engineer_buy_weapons_shop", "tor_dw_guildmaster_engineer_buy_weapons_shop", "tor_dw_guildmaster_engineer_start_reintro", TORTextHelper.GetText("tor_dw_shop_show_goods_text", "Very well, take a look at our inventions."),
             null, OpenEngineerShop, 200);
 
         //recruit artillery crew
@@ -1384,7 +1384,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
             TORTextHelper.GetText("tor_dw_guildmaster_warrior_influence_for_oath_p", "Can you help improve my standing within the Karaz Ankor?"), () => Hero.MainHero.Clan.Kingdom!=null && !Hero.MainHero.Clan.IsUnderMercenaryService, null, 200);
 
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_warrior_hub_quit_p", hub, "close_window", TORTextHelper.GetText("tor_dw_quit_text", "Thats all"),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_warrior_hub_quit_p", hub, "close_window", TORTextHelper.GetText("tor_dw_quit_text", "That will be all"),
             null, null, 200);
 
 
@@ -1409,7 +1409,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
         campaignGameStarter.AddDialogLine("tor_dw_guildmaster_warrior_influence_for_oath", "tor_dw_guildmaster_warrior_influence_for_oath", "tor_dw_guildmaster_warrior_influence_for_oath_p", TORTextHelper.GetText("tor_dw_guildmaster_warrior_influence_for_oath", "With a donation of Oathgold our warriors will spread the Influence of your Clan across the Karaz Ankor."),
             null, null, 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_warrior_influence_for_oath_accept_p", "tor_dw_guildmaster_warrior_influence_for_oath_p", "tor_dw_guildmaster_warrior_influence_for_oath", TORTextHelper.GetText("tor_dw_guildmaster_warrior_influence_for_oath_accept_p", "Here is my Oath Gold. Speak to the Thanes on my behalf."),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_warrior_influence_for_oath_accept_p", "tor_dw_guildmaster_warrior_influence_for_oath_p", "tor_dw_guildmaster_warrior_influence_for_oath", TORTextHelper.GetText("tor_dw_guildmaster_warrior_influence_for_oath_accept_p", "We have a deal, that is a worthy trade."),
             CanTransferOathGoldForInfluence, () => BuyInfluenceForOathGold(), 200);
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_warrior_influence_for_oath_decline_p", "tor_dw_guildmaster_warrior_influence_for_oath_p", reintro, TORTextHelper.GetText("tor_dw_guildmaster_warrior_influence_for_oath_decline_p", "Actually I changed my mind."),
