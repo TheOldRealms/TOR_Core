@@ -13,15 +13,18 @@ namespace TOR_Core.Utilities
     public static class TORSummonHelper
     {
         /// <summary>
-        /// Maximum number of agents (including mounts) allowed in a mission before summoning is blocked.
-        /// Set to 1980 with safety buffer below engine limit of 2048.
+        /// number of agent slots kept free below the engine mission cap before summoning is blocked
         /// </summary>
-        public const int MaxMissionAgents = 1980;
+        public const int AgentSafetyBuffer = 150;
 
         /// <summary>
         /// Minimum number of agent slots that must be available before allowing summoning.
         /// </summary>
         public const int MinSlotsForSummoning = 5;
+
+        public const float InitialSpawnAgentCapMultiplier = 1.60f; // active agents cant go beyond 1.60 times the initial spawned agent count
+
+        private static int _initialSpawnedTroopCount;
 
         private static ActionIndexCache? _actRaiseFromGround;
         private static ActionIndexCache ActRaiseFromGround
@@ -32,6 +35,31 @@ namespace TOR_Core.Utilities
                     _actRaiseFromGround = ActionIndexCache.Create("act_raisefromground");
                 return _actRaiseFromGround.Value;
             }
+        }
+        public static void ResetInitialSpawnedTroopCount()
+        {
+            _initialSpawnedTroopCount = 0;
+        }
+
+        public static void RegisterInitialTroopsSpawned(int troopCount)
+        {
+            _initialSpawnedTroopCount += troopCount;
+        }
+
+        public static int GetCurrentActiveAgentCount()
+        {
+            if (Mission.Current == null) return 0;
+            return Mission.Current.Agents.CountQ(a => a.IsActive());
+        }
+
+        public static int GetInitialSpawnBasedAgentLimit()
+        {
+            return (int)MathF.Floor(_initialSpawnedTroopCount * InitialSpawnAgentCapMultiplier);
+        }
+
+        public static int GetInitialSpawnBasedAvailableSummonSlots()
+        {
+            return Math.Max(0, GetInitialSpawnBasedAgentLimit() - GetCurrentActiveAgentCount());
         }
 
         public static AgentBuildData GetAgentBuildData(Agent caster, string summonedUnitID)
@@ -59,12 +87,17 @@ namespace TOR_Core.Utilities
         }
 
         /// <summary>
-        /// Gets the current number of active agents in the mission.
+        /// gets the current number of spawned agents in the mission that have not yet been deleted, includes summoned agents and mounts
         /// </summary>
         public static int GetCurrentAgentCount()
         {
             if (Mission.Current == null) return 0;
-            return Mission.Current.Agents.CountQ(a => a.IsActive());
+            return Mission.Current.AllAgents.Count;
+        }
+
+        public static int GetMissionAgentLimit()
+        {
+            return Math.Max(0, MissionAgentSpawnLogic.MaxNumberOfAgentsForMission - AgentSafetyBuffer);
         }
 
         /// <summary>
@@ -72,7 +105,15 @@ namespace TOR_Core.Utilities
         /// </summary>
         public static int GetAvailableSummonSlots()
         {
-            return Math.Max(0, MaxMissionAgents - GetCurrentAgentCount());
+            var hardAvailableSlots = Math.Max(0, GetMissionAgentLimit() - GetCurrentAgentCount());
+
+            if (_initialSpawnedTroopCount <= 0)
+            {
+                return hardAvailableSlots;
+            }
+
+            var softAvailableSlots = GetInitialSpawnBasedAvailableSummonSlots();
+            return Math.Min(hardAvailableSlots, softAvailableSlots);
         }
 
         /// <summary>
