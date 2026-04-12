@@ -3991,7 +3991,7 @@
   <string id="tor_careerchoice_description.SecretsOfTheGrailKeystone" text="{=str_tor_careerchoice_description_SecretsOfTheGrailKeystone}When using the Fey-Paths, gain a temporary second charge." />
   <string id="tor_careerchoice_description.SecretsOfTheGrailPassive1" text="{=str_tor_careerchoice_description_SecretsOfTheGrailPassive1}+15% 'Lightning' spell damage." />
   <string id="tor_careerchoice_description.SecretsOfTheGrailPassive2" text="{=str_tor_careerchoice_description_SecretsOfTheGrailPassive2}-20% personal 'Winds of Magic' cost for all spells." />
-  <string id="tor_careerchoice_description.SecretsOfTheGrailPassive3" text="{=str_tor_careerchoice_description_SecretsOfTheGrailPassive3}+30% change to restore 10 'Winds of Magic' when casting a 'Prayer'." />
+  <string id="tor_careerchoice_description.SecretsOfTheGrailPassive3" text="{=str_tor_careerchoice_description_SecretsOfTheGrailPassive3}+30% chance to restore 10 'Winds of Magic' when casting a 'Prayer'." />
   <string id="tor_careerchoice_description.SecretsOfTheGrailPassive4" text="{=str_tor_careerchoice_description_SecretsOfTheGrailPassive4}-30% personal cooldown for all prayers." />
 
   <string id="tor_careerchoice_description.EnvoyOfTheLadyKeystone" text="{=str_tor_careerchoice_description_EnvoyOfTheLadyKeystone}Fey-Paths also teleports nearby friendly troops." />
@@ -5934,15 +5934,15 @@
 
 	<!-- Powerstone Texts - Mighty -->
 	<string id="tor_powerstone_fire_amp_150_name" text="{=str_tor_powerstone_fire_amp_150_name}Mighty Fire Ruby"/>
-	<string id="tor_powerstone_fire_amp_150_desc" text="{=str_tor_powerstone_fire_amp_150_desc}+150% Fire amp., 15% Fire dmg."/>
+	<string id="tor_powerstone_fire_amp_150_desc" text="{=str_tor_powerstone_fire_amp_150_desc}+150% Fire amp, 15% Fire dmg."/>
 	<string id="tor_powerstone_light_mov_trait_name" text="{=str_tor_powerstone_light_mov_trait_name}Mighty Lumen Stone"/>
-	<string id="tor_powerstone_light_mov_trait_desc" text="{=str_tor_powerstone_light_mov_trait_desc}40% magical dmg., slows enemies on hit"/>
+	<string id="tor_powerstone_light_mov_trait_desc" text="{=str_tor_powerstone_light_mov_trait_desc}40% magical dmg, slows enemies on hit"/>
 	<string id="tor_powerstone_beast_res_50_name" text="{=str_tor_powerstone_beast_res_50_name}Mighty Ghost Amber"/>
 	<string id="tor_powerstone_beast_res_50_desc" text="{=str_tor_powerstone_beast_res_50_desc}+50% speed, +50% physical resistance"/>
 	<string id="tor_powerstone_life_reg_name" text="{=str_tor_powerstone_life_reg_name}Mighty Vitalleum"/>
 	<string id="tor_powerstone_life_reg_desc" text="{=str_tor_powerstone_life_reg_desc}Regenerate 1 HP every second"/>
 	<string id="tor_powerstone_heavens_dmg_elec_frost_name" text="{=str_tor_powerstone_heavens_dmg_elec_frost_name}Mighty True Saphires"/>
-	<string id="tor_powerstone_heavens_dmg_elec_frost_desc" text="{=str_tor_powerstone_heavens_dmg_elec_frost_desc}+20% electric, +20% frost dmg, 20% slowdown"/>
+	<string id="tor_powerstone_heavens_dmg_elec_frost_desc" text="{=str_tor_powerstone_heavens_dmg_elec_frost_desc}+20% lightning amd +20% frost dmg, 20% slowdown"/>
 	<string id="tor_powerstone_metal_magic_dmg_phys_name" text="{=str_tor_powerstone_metal_magic_dmg_phys_name}Mighty Goldstone"/>
 	<string id="tor_powerstone_metal_magic_dmg_phys_desc" text="{=str_tor_powerstone_metal_magic_dmg_phys_desc}40% Armor penetration, 20% magical, 20% fire"/>
 	<string id="tor_powerstone_death_magic_surv_100_name" text="{=str_tor_powerstone_death_magic_surv_100_name}Mighty Endstone"/>
