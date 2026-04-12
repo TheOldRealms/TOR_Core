@@ -975,8 +975,8 @@
   <string id="tor_dw_brewer_recruit_rangers_text" text="{=str_tor_dw_brewer_recruit_rangers_text}I need some rangers for scouting"/>
   <string id="tor_dw_brewer_recruit_rangers_offer_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_text}Aye, we have some skilled rangers eager to serve. It'll cost ye {RANGER_GOLD_PRICE}{GOLD_ICON} and {RANGER_OATHGOLD_PRICE} Oathgold."/>
   <string id="tor_dw_brewer_recruit_rangers_accept_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_text}They'll serve the holds well."/>
-  <string id="tor_dw_brewer_recruit_rangers_accept_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_text}I don't have enough coin or Oathgold right now"/>
-  <string id="tor_dw_brewer_recruit_rangers_accept_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_text}Maybe another time"/>
+  <string id="tor_dw_brewer_recruit_rangers_no_funds_text" text="{=str_tor_dw_brewer_recruit_rangers_no_funds_text}I don't have enough coin or Oathgold right now"/>
+  <string id="tor_dw_brewer_recruit_rangers_decline_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_text}Maybe another time"/>
 	
   <!--Warrior Guild -->
 	
