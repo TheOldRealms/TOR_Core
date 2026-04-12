@@ -30,26 +30,26 @@ namespace TOR_Core.Models
             {
                 if (party.LeaderHero != null && party.LeaderHero.IsHumanPlayerCharacter)
                 {
-                    num.Add(20, new TextObject("Friend of undead"));
+                    num.Add(20, TORTextHelper.GetTextObject("tor_party_size_desc.FriendOfUndead", "Friend of undead"));
                 }
                 else if (party.MobileParty.IsCaravan)
                 {
-                    num.Add(50, new TextObject("Caravan of death"));
+                    num.Add(50, TORTextHelper.GetTextObject("tor_party_size_desc.CaravanOfDeath", "Caravan of death"));
                 }
                 else if (party.IsSettlement)
                 {
                     if (party.Settlement.IsVillage)
                     {
-                        num.Add(50, new TextObject("Settlement of Vampire Counts"));
+                        num.Add(50, TORTextHelper.GetTextObject("tor_party_size_desc.SettlementVampireCounts", "Settlement of Vampire Counts"));
                     }
                     else
                     {
-                        num.Add(300, new TextObject("Settlement of Vampire Counts"));
+                        num.Add(300, TORTextHelper.GetTextObject("tor_party_size_desc.SettlementVampireCounts", "Settlement of Vampire Counts"));
                     }
                 }
                 else if (party.IsMobile)
                 {
-                    num.Add(100, new TextObject("Vampire lord"));
+                    num.Add(100, TORTextHelper.GetTextObject("tor_party_size_desc.VampireLord", "Vampire lord"));
                 }
             }
 
@@ -57,7 +57,7 @@ namespace TOR_Core.Models
                 party.IsMobile &&
                 party.LeaderHero != Hero.MainHero)
             {
-                num.AddFactor(0.35f, new TextObject("Greenskins"));
+                num.AddFactor(0.35f, TORTextHelper.GetTextObject("tor_party_size_desc.Greenskins", "Greenskins"));
             }
 
             //Sly : prevents the parties from taking Overmanned speed penalties, they'll now move as fast as parties of foot bandits.
@@ -77,12 +77,12 @@ namespace TOR_Core.Models
 
             if (party.MapFaction != null && party.Culture?.StringId == TORConstants.Cultures.DAWI)
             {
-                num.AddFactor(-0.25f, new TextObject("Dwarf cultural penalty"));
+                num.AddFactor(-0.25f, TORTextHelper.GetTextObject("tor_party_size_desc.DwarfPenalty", "Dwarf cultural penalty"));
             }
 
             if (party.MapFaction != null && party.Culture?.StringId == TORConstants.Cultures.ASRAI)
             {
-                num.AddFactor(-0.25f, new TextObject("Woodelf cultural penalty"));
+                num.AddFactor(-0.25f, TORTextHelper.GetTextObject("tor_party_size_desc.WoodelfPenalty", "Woodelf cultural penalty"));
 
                 if (party.LeaderHero == Hero.MainHero)
                 {
@@ -91,18 +91,18 @@ namespace TOR_Core.Models
                     var oakPartyBonus = 0f;
                     foreach (var attribute in list)
                     {
-                        oakPartyBonus += 0.1f;
+                        oakPartyBonus += 10f;
                     }
-                    if (oakPartyBonus > 0) num.AddFactor(oakPartyBonus, new TextObject("Oak of Ages outposts"));
+                    if (oakPartyBonus > 0) num.Add(oakPartyBonus, TORTextHelper.GetTextObject("tor_party_size_desc.OakOfAgesOutposts", "Oak of Ages outposts"));
 
                     if (Hero.MainHero.HasAttribute("WEKithbandSymbol"))
                     {
-                        num.AddFactor(0.5f, ForestHarmonyHelper.TreeSymbolText("WEKithbandSymbol"));
+                        num.AddFactor(0.25f, ForestHarmonyHelper.TreeSymbolText("WEKithbandSymbol"));
                     }
 
                     if (Hero.MainHero.HasAttribute("WEDurthuSymbol"))
                     {
-                        num.AddFactor(-0.40f, ForestHarmonyHelper.TreeSymbolText("WEDurthuSymbol"));
+                        num.AddFactor(-0.2f, ForestHarmonyHelper.TreeSymbolText("WEDurthuSymbol"));
                     }
                 }
             }
@@ -112,11 +112,11 @@ namespace TOR_Core.Models
             {
                 if (Hero.MainHero.HasAttribute("Waaagh2"))
                 {
-                    num.Add(60, new TextObject("'Ere We Go!"));
+                    num.Add(60, TORTextHelper.GetTextObject("tor_party_size_desc.EreWeGo", "'Ere We Go!"));
                 }
                 else if (Hero.MainHero.HasAttribute("Waaagh3"))
                 {
-                    num.Add(120, new TextObject("WAAAGH!!!!"));
+                    num.Add(120, TORTextHelper.GetTextObject("tor_party_size_desc.Waaagh", "WAAAGH!!!!"));
                 }
             }
 
@@ -280,19 +280,19 @@ namespace TOR_Core.Models
 
             if (treemenCount > 0)
             {
-                number.Add(-(treemenWeight) * treemenCount, new TextObject("Treemen weight"));
+                number.Add(-(treemenWeight) * treemenCount, TORTextHelper.GetTextObject("tor_party_size_desc.TreemenWeight", "Treemen weight"));
             }
 
             // Minotaurs take 8 slots each (7 extra beyond the 1 they already occupy)
             if (minotaurCount > 0)
             {
-                number.Add(-7 * minotaurCount, new TextObject("Minotaur weight"));
+                number.Add(-7 * minotaurCount, TORTextHelper.GetTextObject("tor_party_size_desc.MinotaurWeight", "Minotaur weight"));
             }
 
             // Trolls take 8 slots each (7 extra beyond the 1 they already occupy)
             if (trollCount > 0)
             {
-                number.Add(-7 * trollCount, new TextObject("Troll weight"));
+                number.Add(-7 * trollCount, TORTextHelper.GetTextObject("tor_party_size_desc.TrollWeight", "Troll weight"));
             }
 
             // Dryads and Elves both cost 1 slot (no weight penalty)
@@ -300,7 +300,7 @@ namespace TOR_Core.Models
             // Goblins count as 0.5 units (half a slot each)
             if (goblinCount > 0)
             {
-                number.Add(0.5f * goblinCount, new TextObject("Goblin weight"));
+                number.Add(0.5f * goblinCount, TORTextHelper.GetTextObject("tor_party_size_desc.GoblinWeight", "Goblin weight"));
             }
         }
 
