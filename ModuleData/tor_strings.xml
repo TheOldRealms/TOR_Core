@@ -326,11 +326,26 @@
   <!-- Game Mechanics Explanations -->
 
   <!-- Greenskin Mechanics -->
+  <string id="tor_greenskin_appetite" text="{=str_tor_greenskin_appetite}Greenskin appetite"/>
+  <string id="tor_waaagh_bar_tooltip" text="{=str_tor_waaagh_bar_tooltip}Waaagh: {CURRENT} / {MAX}"/>
   <string id="tor_greenskin_internal_fightin_text" text="{=str_tor_greenskin_internal_fightin_text}Internal Fightin'"/>
+  <string id="tor_waaagh_level_name_internal_fightin" text="{=str_tor_waaagh_level_name_internal_fightin}Internal Fightin'"/>
+  <string id="tor_waaagh_level_desc_internal_fightin" text="{=str_tor_waaagh_level_desc_internal_fightin}Da Boys uv da mob are demoralized. They 'ave no gits to focus on an' resort to fightin' each other."/>
+  <string id="tor_waaagh_level_effects_internal_fightin" text="{=str_tor_waaagh_level_effects_internal_fightin}Morale: -40{NEWLINE}Damage Dealt: -20%{NEWLINE}Food Consumed: -60%{NEWLINE}Daily Wounded: Big chance"/>
   <string id="tor_greenskin_internal_fightin_bonus_low_member_text" text="{=str_tor_greenskin_internal_fightin_bonus_low_member_text}Small Mob Pansies"/>
   <string id="tor_greenskin_petty_squabblin_text" text="{=str_tor_greenskin_petty_squabblin_text}Petty Squabblin'"/>
+  <string id="tor_waaagh_level_name_petty_squabblin" text="{=str_tor_waaagh_level_name_petty_squabblin}Petty Squabblin'"/>
+  <string id="tor_waaagh_level_desc_petty_squabblin" text="{=str_tor_waaagh_level_desc_petty_squabblin}Da mob found sum gits to bash but smaller scraps are still occurin' among da tribe. Da Boys will soon start gettin' restless again."/>
+  <string id="tor_waaagh_level_effects_petty_squabblin" text="{=str_tor_waaagh_level_effects_petty_squabblin}Morale: -20{NEWLINE}Damage Dealt: -10%{NEWLINE}Food Consumed: -30%{NEWLINE}Daily Wounded: Smaller chance"/>
   <string id="tor_greenskin_ere_we_go_text" text="{=str_tor_greenskin_ere_we_go_text}'Ere We Go!"/>
+  <string id="tor_waaagh_level_name_ere_we_go" text="{=str_tor_waaagh_level_name_ere_we_go}'Ere We Go!"/>
+  <string id="tor_waaagh_level_desc_ere_we_go" text="{=str_tor_waaagh_level_desc_ere_we_go}Da recent exploits uv your mob 'ave been 'eard in other tribes as well. Greenskins from other tribes start gatherin', an' your Boys are preparin' fer a proppa big scrap."/>
+  <string id="tor_waaagh_level_effects_ere_we_go" text="{=str_tor_waaagh_level_effects_ere_we_go}Damage Dealt: +10%{NEWLINE}Food Consumed: +25%{NEWLINE}Party Size: +60{NEWLINE}Daily Recruitment: Small chance (T1-3)"/>
   <string id="tor_greenskin_waaagh_text" text="{=str_tor_greenskin_waaagh_text}WAAAGH!!!!"/>
+  <string id="tor_waaagh_level_name_waaagh" text="{=str_tor_waaagh_level_name_waaagh}WAAAGH!!!!"/>
+  <string id="tor_waaagh_level_desc_waaagh" text="{=str_tor_waaagh_level_desc_waaagh}Now da Boys are proppa eager an' killy! Wez gonna show all dem humies an' stunties an' all da uva gits too! DIS IZ WAAAAGH!!!"/>
+  <string id="tor_waaagh_level_effects_waaagh" text="{=str_tor_waaagh_level_effects_waaagh}Damage Dealt: +20%{NEWLINE}Food Consumed: +100%{NEWLINE}Party Size: +120{NEWLINE}Daily Recruitment: Big chance (T1-3)"/>
+  <string id="tor_waaagh_level_name_unknown" text="{=str_tor_waaagh_level_name_unknown}Unknown"/>
   <string id="tor_greenskin_teef_extorsion_text" text="{=str_tor_greenskin_teef_extorsion_text}Teef Extorsion"/>
   <string id="tor_greenskin_teef_tribute_text" text="{=str_tor_greenskin_teef_tribute_text}Teef Tribute"/>
   <string id="tor_hideout_greenskin_no_sneak" text="{=str_tor_hideout_greenskin_no_sneak}You are too clumsy to sneak in undetected."/>
