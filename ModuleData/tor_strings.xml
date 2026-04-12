@@ -2310,7 +2310,7 @@
   <!-- Empire 7 - Huntsman -->
   <string id="tor_hire_companion_begone.tor_wanderer_empire_7" text="{=str_tor_hire_companion_begone_tor_wanderer_empire_7}Begone. I have no business with your kind." />
   <string id="tor_introduction.tor_wanderer_empire_7" text="{=str_tor_introduction_tor_wanderer_empire_7}What do you require of this master hunter?" />
-  <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_7" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_7}?}They call me {PLAYER.NAME}. Tell me about yourself." />
+  <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_7" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_7}They call me {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_empire_7" text="{=str_tor_hire_companion_skip_p_tor_wanderer_empire_7}My name is {PLAYER.NAME}. Let us skip the pleasantries and get right to business." />
   <string id="tor_prebackstory.tor_wanderer_empire_7" text="{=str_tor_prebackstory_tor_wanderer_empire_7}You don't need to know my story stranger, just my skills." />
   <string id="tor_backstory_a.tor_wanderer_empire_7" text="{=str_tor_backstory_a_tor_wanderer_empire_7}I'm a Court Huntsman, well. I was. Lets just say I missed my mark by the rump of a noble." />
