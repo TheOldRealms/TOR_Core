@@ -166,6 +166,7 @@ namespace TOR_Core.Quests.Careers
             TORCampaignEvents.Instance.TournamentWon += OnTournamentWon;
             TORCampaignEvents.Instance.TeefTransferred += OnTeefTransferred;
             TORCampaignEvents.Instance.LordDuelWon += OnLordDuelWon;
+            TORCampaignEvents.Instance.PracticeFightWon += OnPracticeFightWon;
         }
 
         private void OnSkillIncreased(Hero hero, SkillObject skill, int skillValueBefore, bool arg4)
@@ -223,7 +224,7 @@ namespace TOR_Core.Quests.Careers
         {
             if (e.Hero != Hero.MainHero) return;
 
-            _currentTournamentWins++;
+            _currentTournamentWins += 3;
             _taskTournamentWins.UpdateCurrentProgress(_currentTournamentWins);
             UpdateQuest();
         }
@@ -243,6 +244,15 @@ namespace TOR_Core.Quests.Careers
 
             _currentLordDuels++;
             _taskLordDuels.UpdateCurrentProgress(_currentLordDuels);
+            UpdateQuest();
+        }
+
+        private void OnPracticeFightWon(object sender, PracticeFightWonEventArgs e)
+        {
+            if (e.Hero != Hero.MainHero) return;
+
+            _currentTournamentWins += 1;
+            _taskTournamentWins.UpdateCurrentProgress(_currentTournamentWins);
             UpdateQuest();
         }
 
@@ -302,6 +312,7 @@ namespace TOR_Core.Quests.Careers
             TORCampaignEvents.Instance.TournamentWon -= OnTournamentWon;
             TORCampaignEvents.Instance.TeefTransferred -= OnTeefTransferred;
             TORCampaignEvents.Instance.LordDuelWon -= OnLordDuelWon;
+            TORCampaignEvents.Instance.PracticeFightWon -= OnPracticeFightWon;
         }
     }
 }

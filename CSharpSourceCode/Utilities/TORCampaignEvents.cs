@@ -40,6 +40,8 @@ namespace TOR_Core.Utilities
 
         public event EventHandler<ShrineLootedEventArgs> ShrineLooted;
 
+        public event EventHandler<PracticeFightWonEventArgs> PracticeFightWon;
+
         public TORCampaignEvents()
         {
             Instance = this;
@@ -185,6 +187,16 @@ namespace TOR_Core.Utilities
                 shrineLooted(this, args);
             }
         }
+
+        public void OnPracticeFightWon(Hero hero, int opponentsDefeated)
+        {
+            var args = new PracticeFightWonEventArgs(hero, opponentsDefeated);
+            var practiceFightWon = PracticeFightWon;
+            if (practiceFightWon != null)
+            {
+                practiceFightWon(this, args);
+            }
+        }
     }
 
     public class HeroExtendedInfoCreatedEventArgs(Hero hero) : EventArgs
@@ -293,5 +305,11 @@ namespace TOR_Core.Utilities
         public Hero Hero { get; set; } = hero;
         public ReligionObject Religion { get; set; } = religion;
         public Settlement Shrine { get; set; } = shrine;
+    }
+
+    public class PracticeFightWonEventArgs(Hero hero, int opponentsDefeated) : EventArgs
+    {
+        public Hero Hero { get; set; } = hero;
+        public int OpponentsDefeated { get; set; } = opponentsDefeated;
     }
 }

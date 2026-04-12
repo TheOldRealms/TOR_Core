@@ -3,8 +3,10 @@ using SandBox.Missions.MissionLogics.Arena;
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
 using TOR_Core.Models;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -65,6 +67,27 @@ namespace TOR_Core.HarmonyPatches
 
             // For human races, run the original method
             return true;
+        }
+
+        /// <summary>
+        /// Triggers a TOR event when the player wins the arena practice fight
+        /// (defeats all 30 opponents).
+        /// </summary>
+        [HarmonyPostfix]
+        [HarmonyPatch("CheckPracticeEndedForPlayer")]
+        public static void CheckPracticeEndedForPlayer_Postfix(bool __result, ArenaPracticeFightMissionController __instance)
+        {
+            // Only trigger if practice actually ended
+            if (!__result) return;
+
+            // Check if player won (RemainingOpponentCount == 0) rather than lost
+            if (__instance.RemainingOpponentCount != 0) return;
+
+            // Verify player is still alive and active
+            if (Mission.Current?.MainAgent == null || !Mission.Current.MainAgent.IsActive()) return;
+
+            // Trigger the TOR event for winning a practice fight
+            TORCampaignEvents.Instance?.OnPracticeFightWon(Hero.MainHero, __instance.OpponentCountBeatenByPlayer);
         }
     }
 }
