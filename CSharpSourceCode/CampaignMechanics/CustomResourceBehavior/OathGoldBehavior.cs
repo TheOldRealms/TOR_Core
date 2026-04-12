@@ -268,7 +268,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
         AddBrewerDialogue(campaignGameStarter);
         AddWarriorDialogue(campaignGameStarter);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_decline", "start", "close_window", GameTexts.FindText("tor_dw_guildmaster_reject_non_dwarf").ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_decline", "start", "close_window", TORTextHelper.GetText("tor_dw_guildmaster_reject_non_dwarf", "You dont belong here. begone"),
             () => IsGuildMaster() && Hero.MainHero.Culture.StringId != TORConstants.Cultures.DAWI, null, 200);
 
     }
@@ -301,25 +301,25 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_learn_rune_magic_p", hub, reintro,
-            GameTexts.FindText("tor_dw_guildmaster_rune_smith_hub_learn_rune_magic_p").ToString(),
+            TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_hub_learn_rune_magic_p", "I wish to learn more of Rune Magic and the Anvils of Doom."),
     () => Hero.MainHero.HasAttribute("PlayerRunesmith") || Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.HasAttribute("Runesmith")) && Hero.MainHero.PartyBelongedTo.HasAnvilOfDoom(), openbookconsequence, 200);
 
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_1_p", hub, "tor_dw_guildmaster_rune_smith_hub_rune_lord_career",
-            GameTexts.FindText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_1_p").ToString(),
+            TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_1_p", "Rhunrik, I wish to prove myself to the Burudin and raise my position within the guild."),
             () => !Hero.MainHero.HasAttribute("PlayerRunesmith") && Hero.MainHero.HasCareer(TORCareers.Runelord), () => FinalizeCareerQuest("runelord_quest_1", 3, "PlayerRunesmith"), 200);
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2_p", hub, "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord",
-            GameTexts.FindText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2_p").ToString(),
+            TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2_p", "Rhunrik, I wish to further raise my position within the guild."),
             () => Hero.MainHero.HasCareer(TORCareers.Runelord) && Hero.MainHero.HasAttribute("PlayerRunesmith") && !Hero.MainHero.HasAttribute("PlayerRunelord"), () => FinalizeCareerQuest("runelord_quest_2", 5, "PlayerRunelord"), 200);
 
         //HUB
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_buy_equipment_p", hub, "tor_dw_guildmaster_rune_smith_buy_equipment", GameTexts.FindText("tor_dw_guildmaster_rune_smith_hub_buy_equipment_p").ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_buy_equipment_p", hub, "tor_dw_guildmaster_rune_smith_buy_equipment", TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_hub_buy_equipment_p", "Can I order gear produced by your Guild?"),
             () => Hero.MainHero.HasAttribute("RuneSmithI"), null, 200);
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_deliver_steel_p", hub, "tor_dw_guildmaster_rune_smith_deliver_steel", GameTexts.FindText("tor_dw_guildmaster_rune_smith_hub_deliver_steel_p").ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_deliver_steel_p", hub, "tor_dw_guildmaster_rune_smith_deliver_steel", TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_hub_deliver_steel_p", "Will you take these valuable metals?"),
             null, null, 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_quit_p", hub, "close_window", GameTexts.FindText("tor_dw_guildmaster_rune_smith_hub_quit_p").ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_quit_p", hub, "close_window", TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_hub_quit_p", "That will be all."),
             null, null, 200);
 
         void openbookconsequence()
@@ -357,7 +357,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
         }
         //Runelord Career real talk
         campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_0", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career", reintro,
-            GameTexts.FindText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_0").ToString(),
+            TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_0", "Such respect is not easily given, prove yourself under Grungni's stern gaze and we'll see if you are worthy."),
             () => !Hero.MainHero.HasAttribute("PlayerRunesmith") && Hero.MainHero.HasCareer(TORCareers.Runelord), () =>
             {
                 var quest = TORQuestHelper.GetCurrentQuest<RunesmithQuest>("runelord_quest_1", true, IsRunelordInFront, out var existent);
@@ -370,20 +370,20 @@ public class OathGoldBehavior : CampaignBehaviorBase
             }, 200);
 
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2", GameTexts.FindText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career").ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2", TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career", "By Grungni's beard! It has been a long time indeed since I have seen someone with such potential."),
             () => Hero.MainHero.HasAttribute("PlayerRunesmith") && Hero.MainHero.HasCareer(TORCareers.Runelord), null);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_3", GameTexts.FindText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2").ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_3", TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2", "In the name of the Burudin, I hereby declare you part of the Rhunki. Take pride in your achievements, lad. Although I fear the celebrations will need to be postponed as desperate times call for desperate measures. And dark clouds are hanging above the Karaz Ankor."),
             null, null, 200);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_3", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_3", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_4", GameTexts.FindText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_3").ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_3", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_3", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_4", TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_3", "I am bound to the Grongaz, but you can travel and battle as you please. You have proven yourself worthy, and that is why I share with you my Anvil of Doom. But know this, there are binding oaths of secrecy cast upon it; one cannot simply abandon the Anvil. Protect it with your life."),
             null, null, 200);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_4", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_4", reintro, GameTexts.FindText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_4").ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_4", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_4", reintro, TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_4", "You may use it in battle as you see fit and unleash the ancient runes inscribed upon its surface, but be wary, its runes are powerful, and only the most skilled Rhunki can ever hope to awaken them. The most straightforward combination is the Rune of Hearth and Home. Never forget where you belong and where you came from."),
             null, UnlockRuneLordCareerTier2, 200);
 
         // Chapter 2
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord_0", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord", reintro, GameTexts.FindText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord_0").ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord_0", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord", reintro, TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord_0", "You get ahead of yourself, Rhunki. Not a long time ago we were still discussing the fundamentals, and now you think you derserve the title of a Runelord? Travel the Karaz Ankor, help our kin in need. Prove yourself worthy of this great honour."),
             () => !Hero.MainHero.HasAttribute("PlayerRunelord"), () =>
             {
                 var quest = TORQuestHelper.GetCurrentQuest<RunelordQuest>("runelord_quest_2", true, IsRunelordInFront, out var existent);
@@ -396,24 +396,24 @@ public class OathGoldBehavior : CampaignBehaviorBase
             }, 200);
 
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord2", GameTexts.FindText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord").ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord2", TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord", "Not since the times of Thorek or even Kragg has a Rhunki displayed such skill in the arts of the runes!"),
             () => Hero.MainHero.HasAttribute("PlayerRunelord"), null);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord2", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord2", reintro, GameTexts.FindText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord2").ToString(), null, null);
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord2", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord2", reintro, TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord2", "As Thungni is my witness, henceforth you shall be known as a Rhunriki; may you walk with pride amongst the forges of our Ancestors. Now, let us discuss the secrets of the Third Rune…"), null, null);
 
         //buy equipment
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_buy_equipment", "tor_dw_guildmaster_rune_smith_buy_equipment", reintro, TORTextHelper.GetText("tor_dw_shop_show_goods_text", "Sure let me show what I got"),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_buy_equipment", "tor_dw_guildmaster_rune_smith_buy_equipment", reintro, TORTextHelper.GetText("tor_dw_shop_show_goods_text", "Very well, take a look at our inventions."),
             null, OpenRuneLordShop, 200);
 
         // Deliver Steel
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_deliver_steel", "tor_dw_guildmaster_rune_smith_deliver_steel", "tor_dw_guildmaster_rune_smith_deliver_steel_p", GameTexts.FindText("tor_dw_guildmaster_rune_smith_deliver_steel").ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_deliver_steel", "tor_dw_guildmaster_rune_smith_deliver_steel", "tor_dw_guildmaster_rune_smith_deliver_steel_p", TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_deliver_steel", "Those are always welcome, what do you wish to donate?"),
             null, null, 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_deliver_steel_accept_p", "tor_dw_guildmaster_rune_smith_deliver_steel_p", reintro, GameTexts.FindText("tor_dw_guildmaster_rune_smith_deliver_steel_accept_p").ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_deliver_steel_accept_p", "tor_dw_guildmaster_rune_smith_deliver_steel_p", reintro, TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_deliver_steel_accept_p", "Have a look."),
             HasAnyMetal, () => DeliverSteel(), 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_deliver_steel_decline_p", "tor_dw_guildmaster_rune_smith_deliver_steel_p", reintro, GameTexts.FindText("tor_dw_guildmaster_rune_smith_deliver_steel_decline_p").ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_deliver_steel_decline_p", "tor_dw_guildmaster_rune_smith_deliver_steel_p", reintro, TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_deliver_steel_decline_p", "That will be all."),
             null, null, 200);
 
         bool IsRunelordInFront(Hero hero)
@@ -538,10 +538,10 @@ public class OathGoldBehavior : CampaignBehaviorBase
                 else if (item == DefaultItems.IronIngot6)
                     AddSteelDeliveryOption(selectable, item, element.Amount, MinimumGromrilAmount, GromrilGain, "gromril");
             }
-            var title = GameTexts.FindText("tor_dw_rune_smith_deliverSteel_prompt_title");
-            var description = GameTexts.FindText("tor_dw_rune_smith_deliverSteel_prompt_description");
+            var title = TORTextHelper.GetText("tor_dw_rune_smith_deliverSteel_prompt_title", "Deliver Metals");
+            var description = TORTextHelper.GetText("tor_dw_rune_smith_deliverSteel_prompt_description", "Select which metals you wish to deliver to the guild.");
 
-            var inquirydata = new MultiSelectionInquiryData(title.ToString(), description.ToString(), selectable, true, 1, 3, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
+            var inquirydata = new MultiSelectionInquiryData(title, description, selectable, true, 1, 3, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
                 AddOathGoldForSteel, null);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
         }
@@ -616,22 +616,22 @@ public class OathGoldBehavior : CampaignBehaviorBase
         if (currentAmount < threshold) return;
 
         var gainedOathGold = threshold / WheatToOathGoldGain;
-        var itemTitle = GameTexts.FindText("tor_dw_brewers_deliverWheat_item_title", "wheat");
-        var hint = GameTexts.FindText("tor_dw_brewers_deliverWheat_item_hint", "wheat");
+        var itemTitle = TORTextHelper.GetText("tor_dw_brewers_deliverWheat_item_title", "wheat", "Grain", true);
+        var hint = TORTextHelper.GetTextObject("tor_dw_brewers_deliverWheat_item_hint", "wheat", "Deliver {WHEAT_COUNT} grain for {OATH_GOLD_GAIN_WHEAT} Oath Gold.", true);
         hint.SetTextVariable("WHEAT_COUNT", threshold);
         hint.SetTextVariable("OATH_GOLD_GAIN_WHEAT", gainedOathGold);
-        options.Add(new InquiryElement(threshold.ToString(), itemTitle.ToString(), new ItemImageIdentifier(grainItem), true, hint.ToString()));
+        options.Add(new InquiryElement(threshold.ToString(), itemTitle, new ItemImageIdentifier(grainItem), true, hint.ToString()));
     }
 
     private void AddSteelDeliveryOption(List<InquiryElement> options, ItemObject steelItem, int currentAmount, int requiredAmount, int oathGoldGain, string variation)
     {
         if (currentAmount < requiredAmount) return;
 
-        var itemTitle = GameTexts.FindText("tor_dw_rune_smith_deliver_steel_item_title", variation);
-        var hint = GameTexts.FindText("tor_dw_rune_smith_deliver_steel_item_hint", variation);
+        var itemTitle = TORTextHelper.GetText("tor_dw_rune_smith_deliver_steel_item_title", variation, steelItem.Name.ToString(), true);
+        var hint = TORTextHelper.GetTextObject("tor_dw_rune_smith_deliver_steel_item_hint", variation, "Deliver {STEEL_COUNT} ingots for {OATH_GOLD_GAIN_STEEL} Oath Gold.", true);
         hint.SetTextVariable("STEEL_COUNT", requiredAmount);
         hint.SetTextVariable("OATH_GOLD_GAIN_STEEL", oathGoldGain);
-        options.Add(new InquiryElement(steelItem, itemTitle.ToString(), new ItemImageIdentifier(steelItem), true, hint.ToString()));
+        options.Add(new InquiryElement(steelItem, itemTitle, new ItemImageIdentifier(steelItem), true, hint.ToString()));
     }
 
     #endregion
@@ -704,52 +704,49 @@ public class OathGoldBehavior : CampaignBehaviorBase
     {
         hub = "tor_dw_guildmaster_" + guild + "_hub";
         reintro = "tor_dw_guildmaster_" + guild + "_start_reintro";
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_1_start", "start", hub, GameTexts.FindText("tor_dw_guildmaster_1_start", guild).ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_1_start", "start", hub, TORTextHelper.GetText("tor_dw_guildmaster_1_start", guild, "Greetings, fellow Dwarf.", true),
             () => IsGuildMaster() && onCondition() && Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI, null, 200);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_2_start", "start", hub, GameTexts.FindText("tor_dw_guildmaster_2_start", guild).ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_2_start", "start", hub, TORTextHelper.GetText("tor_dw_guildmaster_2_start", guild, "Ah, a visitor. What brings you here?", true),
             () => IsGuildMaster() && onCondition() && Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI, null, 200);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_3_start", "start", hub, GameTexts.FindText("tor_dw_guildmaster_3_start", guild).ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_3_start", "start", hub, TORTextHelper.GetText("tor_dw_guildmaster_3_start", guild, "The ancestors watch over us. How may I assist?", true),
             () => IsGuildMaster() && onCondition() && Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI, null, 200);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_4_start", "start", hub, GameTexts.FindText("tor_dw_guildmaster_4_start", guild).ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_4_start", "start", hub, TORTextHelper.GetText("tor_dw_guildmaster_4_start", guild, "Welcome to the guild.", true),
             () => IsGuildMaster() && onCondition() && Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI, null, 200);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_start_reintro", reintro, "tor_dw_guildmaster_" + guild + "_hub", GameTexts.FindText("tor_dw_guildmaster_reintro", guild).ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_start_reintro", reintro, "tor_dw_guildmaster_" + guild + "_hub", TORTextHelper.GetText("tor_dw_guildmaster_reintro", guild, "Is there anything else you need?", true),
             () => IsGuildMaster() && onCondition() && Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI, null, 200);
     }
 
     private void AddOathGoldDialog(CampaignGameStarter campaignGameStarter, string guild, string reintro)
     {
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_hub_oath_gold_" + guild, "tor_dw_guildmaster_" + guild + "_hub", "tor_dw_guildmaster_" + guild + "_oath_gold", GameTexts.FindText("tor_dw_guildmaster_hub_oath_gold", guild).ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_hub_oath_gold_" + guild, "tor_dw_guildmaster_" + guild + "_hub", "tor_dw_guildmaster_" + guild + "_oath_gold", TORTextHelper.GetText("tor_dw_guildmaster_hub_oath_gold", guild, "I wish to contribute Oath Gold to the guild.", true),
             () => _guildValues[guild] < MAXIMUMVALUE, null, 200);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_oath_gold", "tor_dw_guildmaster_" + guild + "_oath_gold", "tor_dw_guildmaster_" + guild + "_oath_gold_p", GameTexts.FindText("tor_dw_guildmaster_oath_gold", guild).ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_oath_gold", "tor_dw_guildmaster_" + guild + "_oath_gold", "tor_dw_guildmaster_" + guild + "_oath_gold_p", TORTextHelper.GetText("tor_dw_guildmaster_oath_gold", guild, "Your contribution will be remembered in the Book of Grudges.", true),
             null, null, 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_" + guild + "_oath_gold_accept_p", "tor_dw_guildmaster_" + guild + "_oath_gold_p", "tor_dw_guildmaster_" + guild + "_oath_gold_end", GameTexts.FindText("tor_dw_guildmaster_oath_gold_accept_p", guild).ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_" + guild + "_oath_gold_accept_p", "tor_dw_guildmaster_" + guild + "_oath_gold_p", "tor_dw_guildmaster_" + guild + "_oath_gold_end", TORTextHelper.GetText("tor_dw_guildmaster_oath_gold_accept_p", guild, "Here is my contribution.", true),
             null, () => SpendOathGold(guild), 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_" + guild + "_oath_gold_decline_p", "tor_dw_guildmaster_" + guild + "_oath_gold_p", reintro, GameTexts.FindText("tor_dw_guildmaster_oath_gold_decline_p", guild).ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_" + guild + "_oath_gold_decline_p", "tor_dw_guildmaster_" + guild + "_oath_gold_p", reintro, TORTextHelper.GetText("tor_dw_guildmaster_oath_gold_decline_p", guild, "Perhaps another time.", true),
             null, null, 200);
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_oath_gold_end", "tor_dw_guildmaster_" + guild + "_oath_gold_end", reintro, GameTexts.FindText("tor_dw_guildmaster_oath_gold_end", guild).ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_oath_gold_end", "tor_dw_guildmaster_" + guild + "_oath_gold_end", reintro, TORTextHelper.GetText("tor_dw_guildmaster_oath_gold_end", guild, "The guild thanks you. Your standing has improved.", true),
             null, null, 200);
     }
 
     private void AddUnlockInfoDialogues(CampaignGameStarter campaignGameStarter, string guild, string hub, string reintro)
     {
-
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_" + guild + "_info_p", hub, "tor_dw_guildmaster_" + guild + "_unlock_info", GameTexts.FindText("tor_dw_guildmaster_info_p", guild).ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_" + guild + "_info_p", hub, "tor_dw_guildmaster_" + guild + "_unlock_info", TORTextHelper.GetText("tor_dw_guildmaster_info_p", guild, "Tell me about the guild benefits.", true),
             null, null, 200);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_unlock_info", "tor_dw_guildmaster_" + guild + "_unlock_info", "tor_dw_guildmaster_2" + guild + "_unlock_info", GameTexts.FindText("tor_dw_guildmaster_unlock_info", guild).ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_unlock_info", "tor_dw_guildmaster_" + guild + "_unlock_info", "tor_dw_guildmaster_2" + guild + "_unlock_info", TORTextHelper.GetText("tor_dw_guildmaster_unlock_info", guild, "The guild offers various benefits as you gain standing.", true),
             null, null, 200);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_2" + guild + "_unlock_info", "tor_dw_guildmaster_2" + guild + "_unlock_info", reintro, GameTexts.FindText("tor_dw_guildmaster_unlock_info_2", guild).ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_2" + guild + "_unlock_info", "tor_dw_guildmaster_2" + guild + "_unlock_info", reintro, TORTextHelper.GetText("tor_dw_guildmaster_unlock_info_2", guild, "Contribute Oath Gold to increase your standing.", true),
             null, null, 200);
-
-
     }
 
     private void AddEngineerDialogue(CampaignGameStarter campaignGameStarter)
@@ -761,17 +758,17 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         AddOathGoldDialog(campaignGameStarter, _templateEngineer.guild, reintro);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_buy_weapons_shop_p", hub, "tor_dw_guildmaster_engineer_buy_weapons_shop", TORTextHelper.GetText("tor_dw_engineer_buy_weapons_text", "I need better weapons master engineer"),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_buy_weapons_shop_p", hub, "tor_dw_guildmaster_engineer_buy_weapons_shop", TORTextHelper.GetText("tor_dw_engineer_buy_weapons_text", "I need better gear, Master Engineer."),
             null, null, 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_recruit_crew_p", hub, "tor_dw_guildmaster_engineer_recruit_crew", TORTextHelper.GetText("tor_dw_engineer_recruit_crew_text", "I need some artillery crew."),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_recruit_crew_p", hub, "tor_dw_guildmaster_engineer_recruit_crew", TORTextHelper.GetText("tor_dw_engineer_recruit_crew_text", "I require reliable crewmen to operate my artillery."),
             () => Hero.MainHero.HasAttribute("DwarfEngineersI"), null, 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_quit_p", hub, "close_window", TORTextHelper.GetText("tor_dw_quit_text", "Thats all"),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_quit_p", hub, "close_window", TORTextHelper.GetText("tor_dw_quit_text", "That will be all."),
             null, null, 200);
 
         //buy equipment
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_engineer_buy_weapons_shop", "tor_dw_guildmaster_engineer_buy_weapons_shop", "tor_dw_guildmaster_engineer_start_reintro", TORTextHelper.GetText("tor_dw_shop_show_goods_text", "Sure let me show what I got"),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_engineer_buy_weapons_shop", "tor_dw_guildmaster_engineer_buy_weapons_shop", "tor_dw_guildmaster_engineer_start_reintro", TORTextHelper.GetText("tor_dw_shop_show_goods_text", "Very well, take a look at our inventions."),
             null, OpenEngineerShop, 200);
 
         //recruit artillery crew
@@ -966,57 +963,57 @@ public class OathGoldBehavior : CampaignBehaviorBase
         AddOathGoldDialog(campaignGameStarter, guild, reintro);
 
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_gemcutter_hub_spend_troops_p", hub, "tor_dw_guildmaster_gemcutter_spend_troops", GameTexts.FindText("tor_dw_guildmaster_gemcutter_hub_spend_troops_p").ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_gemcutter_hub_spend_troops_p", hub, "tor_dw_guildmaster_gemcutter_spend_troops", TORTextHelper.GetText("tor_dw_guildmaster_gemcutter_hub_spend_troops_p", "Can I provide you with troops to guard mining shafts?"),
             null, null, 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_expedition_hub_found_artefacts_p", hub, "tor_dw_guildmaster_gemcutter_found_artefacts", GameTexts.FindText("tor_dw_guildmaster_expedition_hub_found_artefacts_p").ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_expedition_hub_found_artefacts_p", hub, "tor_dw_guildmaster_gemcutter_found_artefacts", TORTextHelper.GetText("tor_dw_guildmaster_expedition_hub_found_artefacts_p", "You find something of interest for me?"),
             () => ActiveExpeditions(), null, 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_expedition_hub_launch_expedition_p", hub, "tor_dw_guildmaster_gemcutter_launch_expedition", GameTexts.FindText("tor_dw_guildmaster_expedition_hub_launch_expedition_p").ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_expedition_hub_launch_expedition_p", hub, "tor_dw_guildmaster_gemcutter_launch_expedition", TORTextHelper.GetText("tor_dw_guildmaster_expedition_hub_launch_expedition_p", "Can I launch an expedition?"),
             () => AbleToLaunchExpeditions(), null, 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_gemcutter_hub_quit_p", hub, "close_window", GameTexts.FindText("tor_dw_guildmaster_gemcutter_hub_quit_p").ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_gemcutter_hub_quit_p", hub, "close_window", TORTextHelper.GetText("tor_dw_guildmaster_gemcutter_hub_quit_p", "That will be all, Master Boki."),
             null, null, 200);
 
         // found expedition artefacts info
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_gemcutter_found_artefacts", "tor_dw_guildmaster_gemcutter_found_artefacts", reintro, GameTexts.FindText("tor_dw_guildmaster_gemcutter_found_artefacts").ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_gemcutter_found_artefacts", "tor_dw_guildmaster_gemcutter_found_artefacts", reintro, TORTextHelper.GetText("tor_dw_guildmaster_gemcutter_found_artefacts", "Some of the explorer teams return with treasuers or artifacts. Naturally, a portion would be shared with you."),
             HasUnresolvedExpeditions, AddExpeditionsReward, 200);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_gemcutter_found_artefacts_no_result", "tor_dw_guildmaster_gemcutter_found_artefacts", reintro, GameTexts.FindText("tor_dw_guildmaster_expedition_found_artefacts_no_expeditions").ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_gemcutter_found_artefacts_no_result", "tor_dw_guildmaster_gemcutter_found_artefacts", reintro, TORTextHelper.GetText("tor_dw_guildmaster_expedition_found_artefacts_no_expeditions", "The expeditions have not returned yet."),
             null, null, 200);
 
         //start expedition
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_expedition_launch_expedition_decline", "tor_dw_guildmaster_gemcutter_launch_expedition", reintro, GameTexts.FindText("tor_dw_guildmaster_expedition_launch_expedition_decline").ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_expedition_launch_expedition_decline", "tor_dw_guildmaster_gemcutter_launch_expedition", reintro, TORTextHelper.GetText("tor_dw_guildmaster_expedition_launch_expedition_decline", "We are spread too thin; all we can do is wait for our explorers to return."),
             () => !CanLaunchExpedition(), null, 200);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_expedition_launch_expedition", "tor_dw_guildmaster_gemcutter_launch_expedition", "tor_dw_guildmaster_gemcutter_launch_expedition_p", GameTexts.FindText("tor_dw_guildmaster_expedition_launch_expedition").ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_expedition_launch_expedition", "tor_dw_guildmaster_gemcutter_launch_expedition", "tor_dw_guildmaster_gemcutter_launch_expedition_p", TORTextHelper.GetText("tor_dw_guildmaster_expedition_launch_expedition", "Aye, with sufficient funding we can send teams to reclaim treasures from the deepest tunnels of the Underway."),
             null, null, 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_gemcutter_launch_expedition_accept_p", "tor_dw_guildmaster_gemcutter_launch_expedition_p", "tor_dw_guildmaster_gemcutter_launch_expedition_end", GameTexts.FindText("tor_dw_guildmaster_gemcutter_launch_expedition_accept_p").ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_gemcutter_launch_expedition_accept_p", "tor_dw_guildmaster_gemcutter_launch_expedition_p", "tor_dw_guildmaster_gemcutter_launch_expedition_end", TORTextHelper.GetText("tor_dw_guildmaster_gemcutter_launch_expedition_accept_p", "Let me fund an expeditions."),
             null, () => LaunchExpedition(), 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_gemcutter_launch_expedition_decline_p", "tor_dw_guildmaster_gemcutter_launch_expedition_p", reintro, GameTexts.FindText("tor_dw_guildmaster_gemcutter_launch_expedition_decline_p").ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_gemcutter_launch_expedition_decline_p", "tor_dw_guildmaster_gemcutter_launch_expedition_p", reintro, TORTextHelper.GetText("tor_dw_guildmaster_gemcutter_launch_expedition_decline_p", "Forgive me, I changed my mind."),
             null, null, 200);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_gemcutter_launch_expedition_end", "tor_dw_guildmaster_gemcutter_launch_expedition_end", reintro, GameTexts.FindText("tor_dw_guildmaster_gemcutter_launch_expedition_end").ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_gemcutter_launch_expedition_end", "tor_dw_guildmaster_gemcutter_launch_expedition_end", reintro, TORTextHelper.GetText("tor_dw_guildmaster_gemcutter_launch_expedition_end", "Very well, our finest explorers and miners will depart after gathering supplies."),
             null, null, 200);
 
 
 
         // spend troops
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_gemcutter_spend_troops", "tor_dw_guildmaster_gemcutter_spend_troops", "tor_dw_guildmaster_gemcutter_spend_troops_p", GameTexts.FindText("tor_dw_guildmaster_gemcutter_spend_troops").ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_gemcutter_spend_troops", "tor_dw_guildmaster_gemcutter_spend_troops", "tor_dw_guildmaster_gemcutter_spend_troops_p", TORTextHelper.GetText("tor_dw_guildmaster_gemcutter_spend_troops", "Aye, the Guild will appreciate any help in this regard."),
             null, null, 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_gemcutter_spend_troops_accept_p", "tor_dw_guildmaster_gemcutter_spend_troops_p", "tor_dw_guildmaster_gemcutter_spend_troops_end", GameTexts.FindText("tor_dw_guildmaster_gemcutter_spend_troops_accept_p").ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_gemcutter_spend_troops_accept_p", "tor_dw_guildmaster_gemcutter_spend_troops_p", "tor_dw_guildmaster_gemcutter_spend_troops_end", TORTextHelper.GetText("tor_dw_guildmaster_gemcutter_spend_troops_accept_p", "Let me station these men."),
             null, () => ProvideTroops(), 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_gemcutter_spend_troops_decline_p", "tor_dw_guildmaster_gemcutter_spend_troops_p", reintro, GameTexts.FindText("tor_dw_guildmaster_gemcutter_spend_troops_decline_p").ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_gemcutter_spend_troops_decline_p", "tor_dw_guildmaster_gemcutter_spend_troops_p", reintro, TORTextHelper.GetText("tor_dw_guildmaster_gemcutter_spend_troops_decline_p", "I changed my mind, forgive me."),
             null, null, 200);
 
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_gemcutter_spend_troops_end", "tor_dw_guildmaster_gemcutter_spend_troops_end", reintro, GameTexts.FindText("tor_dw_guildmaster_gemcutter_spend_troops_end").ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_gemcutter_spend_troops_end", "tor_dw_guildmaster_gemcutter_spend_troops_end", reintro, TORTextHelper.GetText("tor_dw_guildmaster_gemcutter_spend_troops_end", "This is greatly appreciated, Dawongr."),
             null, null, 200);
 
 
@@ -1242,27 +1239,27 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         AddOathGoldDialog(campaignGameStarter, guild, reintro);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_brewer_hub_spend_food_p", hub, "tor_dw_guildmaster_brewer_hub_spend_food", GameTexts.FindText("tor_dw_guildmaster_brewer_hub_spend_food_p").ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_brewer_hub_spend_food_p", hub, "tor_dw_guildmaster_brewer_hub_spend_food", TORTextHelper.GetText("tor_dw_guildmaster_brewer_hub_spend_food_p", "Can I deliver you some wheat to help brew ale?"),
             null, null, 200);
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_brewer_hub_recruit_rangers_p", hub, "tor_dw_guildmaster_brewer_recruit_rangers", TORTextHelper.GetText("tor_dw_brewer_recruit_rangers_text", "I need some rangers for scouting."),
             () => Hero.MainHero.HasAttribute("DwarfBrewersI"), null, 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_brewer_hub_quit_p", hub, "close_window", GameTexts.FindText("tor_dw_guildmaster_brewer_hub_quit_p").ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_brewer_hub_quit_p", hub, "close_window", TORTextHelper.GetText("tor_dw_guildmaster_brewer_hub_quit_p", "That will be all, Master Brewer."),
             null, null, 200);
 
 
         // spend food
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_brewer_hub_spend_food", "tor_dw_guildmaster_brewer_hub_spend_food", "tor_dw_guildmaster_brewer_hub_spend_food_p", GameTexts.FindText("tor_dw_guildmaster_brewer_hub_spend_food").ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_brewer_hub_spend_food", "tor_dw_guildmaster_brewer_hub_spend_food", "tor_dw_guildmaster_brewer_hub_spend_food_p", TORTextHelper.GetText("tor_dw_guildmaster_brewer_hub_spend_food", "It is how we brew our finest ale. An' we can always use more Gertun."),
             null, null, 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_brewer_hub_spend_food_accept_p", "tor_dw_guildmaster_brewer_hub_spend_food_p", "tor_dw_guildmaster_brewer_hub_spend_food_end", GameTexts.FindText("tor_dw_guildmaster_brewer_hub_spend_food_accept_p").ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_brewer_hub_spend_food_accept_p", "tor_dw_guildmaster_brewer_hub_spend_food_p", "tor_dw_guildmaster_brewer_hub_spend_food_end", TORTextHelper.GetText("tor_dw_guildmaster_brewer_hub_spend_food_accept_p", "Have these sacks of grain then."),
             null, () => SpendFood(), 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_brewer_hub_spend_food_decline_p", "tor_dw_guildmaster_brewer_hub_spend_food_p", reintro, GameTexts.FindText("tor_dw_guildmaster_brewer_hub_spend_food_decline_p").ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_brewer_hub_spend_food_decline_p", "tor_dw_guildmaster_brewer_hub_spend_food_p", reintro, TORTextHelper.GetText("tor_dw_guildmaster_brewer_hub_spend_food_decline_p", "Actually I changed my mind."),
             null, null, 200);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_brewer_hub_spend_food_end", "tor_dw_guildmaster_brewer_hub_spend_food_end", reintro, GameTexts.FindText("tor_dw_guildmaster_brewer_hub_spend_food_end").ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_brewer_hub_spend_food_end", "tor_dw_guildmaster_brewer_hub_spend_food_end", reintro, TORTextHelper.GetText("tor_dw_guildmaster_brewer_hub_spend_food_end", "Thank ye for yer contribution."),
             null, null, 200);
 
         //recruit rangers
@@ -1311,10 +1308,10 @@ public class OathGoldBehavior : CampaignBehaviorBase
                     AddWheatDonationOption(selectable, 100, element.Amount, item);
                 }
             }
-            var title = GameTexts.FindText("tor_dw_brewers_deliverWheat_prompt_title");
-            var description = GameTexts.FindText("tor_dw_brewers_deliverWheat_prompt_description");
+            var title = TORTextHelper.GetText("tor_dw_brewers_deliverWheat_prompt_title", "Deliver Grain");
+            var description = TORTextHelper.GetText("tor_dw_brewers_deliverWheat_prompt_description", "Select how much grain you wish to deliver to the guild.");
 
-            var inquirydata = new MultiSelectionInquiryData(title.ToString(), description.ToString(), selectable, true, 1, 1, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
+            var inquirydata = new MultiSelectionInquiryData(title, description, selectable, true, 1, 1, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
                 AddOathGoldForGrain, null);
 
             void AddOathGoldForGrain(List<InquiryElement> inquiryElements)
@@ -1347,7 +1344,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
         void RecruitRangerCrew()
         {
             var basicRanger = MBObjectManager.Instance.GetObject<CharacterObject>("tor_dw_ranger");
-            var veteranRanger = MBObjectManager.Instance.GetObject<CharacterObject>("tor_dw_ranger_veteran");
+            var veteranRanger = MBObjectManager.Instance.GetObject<CharacterObject>("tor_dw_ol_deadeye");
             if (basicRanger == null) return;
 
             GiveGoldAction.ApplyBetweenCharacters(Hero.MainHero, null, RangerGoldCost);
@@ -1380,42 +1377,42 @@ public class OathGoldBehavior : CampaignBehaviorBase
         AddUnlockInfoDialogues(campaignGameStarter, guild, hub, reintro);
         AddOathGoldDialog(campaignGameStarter, guild, reintro);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_warrior_hub_spend_troops_p", hub, "tor_dw_guildmaster_warrior_spend_troops", GameTexts.FindText("tor_dw_guildmaster_warrior_hub_spend_troops_p").ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_warrior_hub_spend_troops_p", hub, "tor_dw_guildmaster_warrior_spend_troops", TORTextHelper.GetText("tor_dw_guildmaster_warrior_hub_spend_troops_p", "Can I leave some Dawi to help defend our Holds?"),
             null, null, 200);
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_warrior_hub_influence_for_oath_p", hub, "tor_dw_guildmaster_warrior_influence_for_oath",
-            GameTexts.FindText("tor_dw_guildmaster_warrior_influence_for_oath_p").ToString(), () => Hero.MainHero.Clan.Kingdom!=null && !Hero.MainHero.Clan.IsUnderMercenaryService, null, 200);
+            TORTextHelper.GetText("tor_dw_guildmaster_warrior_influence_for_oath_p", "Can you help improve my standing within the Karaz Ankor?"), () => Hero.MainHero.Clan.Kingdom!=null && !Hero.MainHero.Clan.IsUnderMercenaryService, null, 200);
 
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_warrior_hub_quit_p", hub, "close_window", TORTextHelper.GetText("tor_dw_quit_text", "Thats all"),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_warrior_hub_quit_p", hub, "close_window", TORTextHelper.GetText("tor_dw_quit_text", "That will be all"),
             null, null, 200);
 
 
         // spend troops
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_warrior_spend_troops", "tor_dw_guildmaster_warrior_spend_troops", "tor_dw_guildmaster_warrior_spend_troops_p", GameTexts.FindText("tor_dw_guildmaster_warrior_spend_troops").ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_warrior_spend_troops", "tor_dw_guildmaster_warrior_spend_troops", "tor_dw_guildmaster_warrior_spend_troops_p", TORTextHelper.GetText("tor_dw_guildmaster_warrior_spend_troops", "Honoured warriors of sure grip and stern eye are always welcome."),
             null, null, 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_warrior_spend_troops_accept_p", "tor_dw_guildmaster_warrior_spend_troops_p", "tor_dw_guildmaster_warrior_spend_troops_end", GameTexts.FindText("tor_dw_guildmaster_warrior_spend_troops_accept_p").ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_warrior_spend_troops_accept_p", "tor_dw_guildmaster_warrior_spend_troops_p", "tor_dw_guildmaster_warrior_spend_troops_end", TORTextHelper.GetText("tor_dw_guildmaster_warrior_spend_troops_accept_p", "In that case I will leave these Dawi with you."),
             HasTransferableTroops, () => ProvideTroops(), 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_warrior_spend_troops_decline_p", "tor_dw_guildmaster_warrior_spend_troops_p", reintro, GameTexts.FindText("tor_dw_guildmaster_warrior_spend_troops_decline_p").ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_warrior_spend_troops_decline_p", "tor_dw_guildmaster_warrior_spend_troops_p", reintro, TORTextHelper.GetText("tor_dw_guildmaster_warrior_spend_troops_decline_p", "Forgive me, I changed my mind."),
             null, null, 200);
 
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_warrior_spend_troops_end", "tor_dw_guildmaster_warrior_spend_troops_end", reintro, GameTexts.FindText("tor_dw_guildmaster_warrior_spend_troops_end").ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_warrior_spend_troops_end", "tor_dw_guildmaster_warrior_spend_troops_end", reintro, TORTextHelper.GetText("tor_dw_guildmaster_warrior_spend_troops_end", "We appreciate any warrior you can spare."),
             null, null, 200);
 
 
         // influence
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_warrior_influence_for_oath", "tor_dw_guildmaster_warrior_influence_for_oath", "tor_dw_guildmaster_warrior_influence_for_oath_p", GameTexts.FindText("tor_dw_guildmaster_warrior_influence_for_oath").ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_warrior_influence_for_oath", "tor_dw_guildmaster_warrior_influence_for_oath", "tor_dw_guildmaster_warrior_influence_for_oath_p", TORTextHelper.GetText("tor_dw_guildmaster_warrior_influence_for_oath", "With a donation of Oathgold our warriors will spread the Influence of your Clan across the Karaz Ankor."),
             null, null, 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_warrior_influence_for_oath_accept_p", "tor_dw_guildmaster_warrior_influence_for_oath_p", "tor_dw_guildmaster_warrior_influence_for_oath", GameTexts.FindText("tor_dw_guildmaster_warrior_influence_for_oath_accept_p").ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_warrior_influence_for_oath_accept_p", "tor_dw_guildmaster_warrior_influence_for_oath_p", "tor_dw_guildmaster_warrior_influence_for_oath", TORTextHelper.GetText("tor_dw_guildmaster_warrior_influence_for_oath_accept_p", "We have a deal, that is a worthy trade."),
             CanTransferOathGoldForInfluence, () => BuyInfluenceForOathGold(), 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_warrior_influence_for_oath_decline_p", "tor_dw_guildmaster_warrior_influence_for_oath_p", reintro, GameTexts.FindText("tor_dw_guildmaster_warrior_influence_for_oath_decline_p").ToString(),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_warrior_influence_for_oath_decline_p", "tor_dw_guildmaster_warrior_influence_for_oath_p", reintro, TORTextHelper.GetText("tor_dw_guildmaster_warrior_influence_for_oath_decline_p", "Actually I changed my mind."),
             null, null, 200);
 
         bool CanTransferOathGoldForInfluence()

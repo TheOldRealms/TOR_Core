@@ -35,6 +35,7 @@ namespace TOR_Core.AbilitySystem
 {
     public class AbilityManagerMissionLogic : MissionLogic
     {
+        private MissionAgentSpawnLogic _missionAgentSpawnLogic;
         private bool _shouldSheathWeapon;
         private bool _shouldWieldWeapon;
         private bool _shouldPlayIdleCastStanceAnim;
@@ -105,6 +106,14 @@ namespace TOR_Core.AbilitySystem
             _quickCastMenuKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey((int)TorKeyMap.QuickCastSelectionMenu);
             _quickCast = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey((int)TorKeyMap.QuickCast);
             _specialMoveKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey((int)TorKeyMap.CareerAbilityCast);
+
+            TORSummonHelper.ResetInitialSpawnedTroopCount();
+
+            _missionAgentSpawnLogic = Mission.GetMissionBehavior<MissionAgentSpawnLogic>();
+            if (_missionAgentSpawnLogic != null)
+            {
+                _missionAgentSpawnLogic.OnInitialTroopsSpawned += OnInitialTroopsSpawned;
+            }
         }
 
         public override void OnPreMissionTick(float dt)
@@ -150,7 +159,23 @@ namespace TOR_Core.AbilitySystem
                 }
             }
         }
+        public override void OnClearScene()
+        {
+            if (_missionAgentSpawnLogic != null)
+            {
+                _missionAgentSpawnLogic.OnInitialTroopsSpawned -= OnInitialTroopsSpawned;
+                _missionAgentSpawnLogic = null;
+            }
 
+            TORSummonHelper.ResetInitialSpawnedTroopCount();
+
+            base.OnClearScene();
+        }
+
+        private void OnInitialTroopsSpawned(BattleSideEnum battleSide, int numberOfTroopsSpawned)
+        {
+            TORSummonHelper.RegisterInitialTroopsSpawned(numberOfTroopsSpawned);
+        }
         private void CacheWieldedItemsForRestore()
         {
             if (_shouldWieldWeapon)
@@ -652,6 +677,13 @@ namespace TOR_Core.AbilitySystem
         protected override void OnEndMission()
         {
             base.OnEndMission();
+            if (_missionAgentSpawnLogic != null)
+            {
+                _missionAgentSpawnLogic.OnInitialTroopsSpawned -= OnInitialTroopsSpawned;
+                _missionAgentSpawnLogic = null;
+            }
+
+            TORSummonHelper.ResetInitialSpawnedTroopCount();
             BindWeaponKeys();
             Mission.OnItemPickUp -= OnItemPickup;
 

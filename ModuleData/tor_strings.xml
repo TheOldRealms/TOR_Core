@@ -923,14 +923,25 @@
   <string id="tor_dw_guildmaster_oath_gold_end.warrior" text="{=str_tor_dw_guildmaster_oath_gold_end_warrior}The Guild appreciates any contribution."/>
   
   
-  <string id="tor_dw_guildmaster_gemcutter_hub_spend_troops_p" text="{=str_tor_dw_guildmaster_gemcutter_hub_spend_troops_p}Can I provide you  with troops to guard mining shafts?"/>
+  <string id="tor_dw_guildmaster_gemcutter_hub_spend_troops_p" text="{=str_tor_dw_guildmaster_gemcutter_hub_spend_troops_p}Can I provide you with troops to guard mining shafts?"/>
   <string id="tor_dw_guildmaster_expedition_hub_found_artefacts_p" text="{=str_tor_dw_guildmaster_expedition_hub_found_artefacts_p}You find something of interest for me?"/>
   <string id="tor_dw_guildmaster_expedition_hub_launch_expedition_p" text="{=str_tor_dw_guildmaster_expedition_hub_launch_expedition_p}Can I launch an expedition?"/>
   <string id="tor_dw_guildmaster_gemcutter_hub_quit_p" text="{=str_tor_dw_guildmaster_gemcutter_hub_quit_p}That will be all, Master Boki."/>
   
+  
+  <string id="tor_party_size_desc.FriendOfUndead" text="{=str_tor_party_size_desc_friendofundead}Friend of undead" />                                                        
+  <string id="tor_party_size_desc.CaravanOfDeath" text="{=str_tor_party_size_desc_caravanofdeath}Caravan of death" />                                                        
+  <string id="tor_party_size_desc.SettlementVampireCounts" text="{=str_tor_party_size_desc_settlementvampirecounts}Settlement of Vampire Counts" />                          
+  <string id="tor_party_size_desc.VampireLord" text="{=str_tor_party_size_desc_vampirelord}Vampire lord" />                                                                  
+  <string id="tor_party_size_desc.Greenskins" text="{=str_tor_party_size_desc_greenskins}Greenskins" />                                                                      
+  <string id="tor_party_size_desc.DwarfPenalty" text="{=str_tor_party_size_desc_dwarfpenalty}Dwarf cultural penalty" />                                                      
+  <string id="tor_party_size_desc.WoodelfPenalty" text="{=str_tor_party_size_desc_woodelfpenalty}Woodelf cultural penalty" />   
+  
+  
     <!--Expeditions-->
 	
-  <string id="tor_dw_guildmaster_expedition_found_artefacts" text="{=str_tor_dw_guildmaster_expedition_found_artefacts}Some of the explorer teams return with treasuers or artifacts. Naturally, a portion would be shared with you."/>
+  <string id="tor_dw_guildmaster_gemcutter_found_artefacts" text="{=str_tor_dw_guildmaster_expedition_found_artefacts}Some of the explorer teams return with treasuers or artifacts. Naturally, a portion would be shared with you."/>
+  
   <string id="tor_dw_guildmaster_expedition_found_artefacts_no_expeditions" text="{=str_tor_dw_guildmaster_expedition_found_artefacts_no_expeditions}The expeditions have not returned yet."/>
 
   <string id="tor_dw_guildmaster_expedition_launch_expedition_decline" text="{=str_tor_dw_guildmaster_expedition_launch_expedition_decline}We are spread too thin; all we can do is wait for our explorers to return."/>
@@ -942,7 +953,6 @@
   <string id="tor_dw_guildmaster_gemcutter_launch_expedition_decline_p" text="{=str_tor_dw_guildmaster_gemcutter_launch_expedition_decline_p}Forgive me, I changed my mind."/>
 
   <string id="tor_dw_guildmaster_gemcutter_launch_expedition_end" text="{=str_tor_dw_guildmaster_gemcutter_launch_expedition_end}Very well, our finest explorers and miners will depart after gathering supplies."/>
-
 
   <string id="tor_dw_guildmaster_gemcutter_spend_troops" text="{=str_tor_dw_guildmaster_gemcutter_spend_troops}Aye, the Guild will appreciate any help in this regard."/>
 
@@ -961,7 +971,12 @@
   <string id="tor_dw_guildmaster_brewer_hub_spend_food_accept_p" text="{=str_tor_dw_guildmaster_brewer_hub_spend_food_accept_p}Have these sacks of grain then."/>
   <string id="tor_dw_guildmaster_brewer_hub_spend_food_decline_p" text="{=str_tor_dw_guildmaster_brewer_hub_spend_food_decline_p}Actually I changed my mind."/>
   <string id="tor_dw_guildmaster_brewer_hub_spend_food_end" text="{=str_tor_dw_guildmaster_brewer_hub_spend_food_end}Thank ye for yer contribution."/>
-
+  
+  <string id="tor_dw_brewer_recruit_rangers_text" text="{=str_tor_dw_brewer_recruit_rangers_text}I need some rangers for scouting"/>
+  <string id="tor_dw_brewer_recruit_rangers_offer_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_text}Aye, we have some skilled rangers eager to serve. It'll cost ye {RANGER_GOLD_PRICE}{GOLD_ICON} and {RANGER_OATHGOLD_PRICE} Oathgold."/>
+  <string id="tor_dw_brewer_recruit_rangers_accept_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_text}They'll serve the holds well."/>
+  <string id="tor_dw_brewer_recruit_rangers_no_funds_text" text="{=str_tor_dw_brewer_recruit_rangers_no_funds_text}I don't have enough coin or Oathgold right now"/>
+  <string id="tor_dw_brewer_recruit_rangers_decline_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_text}Maybe another time"/>
 	
   <!--Warrior Guild -->
 	
@@ -5465,7 +5480,7 @@
 	<!-- Duel System - Blood Knight -->
 
 	<!-- Duel Menu -->
-	<string id="tor_duel_start_combat" text="{=str_tor_duel_start_combat}Kick in sum teef!" />
+	<string id="tor_duel_start_combat.greenskin" text="{=str_tor_duel_start_combat_greenskin}Kick in sum teef!" />
 	<string id="tor_duel_prep" text="{=str_tor_duel_prep}Prepare for combat!" />
 	<string id="tor_duel_prep.greenskin" text="{=str_tor_duel_prep_greenskin}WAAAGH!!! Time to teach dat stinky git {DUEL_TARGET_NAME} sum manners! Get ready fer a proppa scrap!" />
 	
@@ -6002,6 +6017,10 @@
 	<string id="tor_gs_quartermaster_owner_intro_text" text="{=str_tor_gs_quartermaster_owner_intro_text}Oi, Boss, youz got sum loot fer da pile?"/>
 	<string id="tor_gs_quartermaster_owner_anything_else_text" text="{=str_tor_gs_quartermaster_owner_anything_else_text}Iz dere more, Boss?"/>
 	<string id="tor_gs_quartermaster_make_teefbags_option_text" text="{=str_tor_gs_quartermaster_make_teefbags_option_text}Make Teefbags"/>
+  
+  
+  
+  
 	<string id="tor_dw_shop_show_goods_text" text="{=str_tor_dw_shop_show_goods_text}Very well, take a look at our inventions."/>
 	<string id="tor_dw_engineer_buy_weapons_text" text="{=str_tor_dw_engineer_buy_weapons_text}I need better gear, Master Engineer."/>
 	<string id="tor_dw_quit_text" text="{=str_tor_dw_quit_text}That will be all."/>
