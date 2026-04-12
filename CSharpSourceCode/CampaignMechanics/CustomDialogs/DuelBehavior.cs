@@ -281,7 +281,7 @@ public class DuelBehavior : CampaignBehaviorBase
 
         // Start the actual duel button
         campaignGameStarter.AddGameMenuOption("duel_preparation", "duel_start_combat",
-            TORTextHelper.GetText("tor_duel_start_combat", "Begin the duel!"),
+            TORTextHelper.GetText("tor_duel_start_combat","greenskin", "Kick in sum teef!"),
             args => MenuHelper.SetOptionProperties(args, true, false, TextObject.GetEmpty()), args =>
             {
                 ExecuteDuel();
