@@ -2200,6 +2200,11 @@
   <string id="tor_customsettlement_intro.mork_shrine_04" text="{=str_tor_customsettlement_intro_mork_shrine_04}You arrive at the shrine of the {RELIGION_LINK}. The crude altar to Mork, the cunningly brutal, fills the air with a sense of ruthlessness and ambition." />
   <string id="tor_customsettlement_disabled.mork_shrine_04" text="{=str_tor_customsettlement_disabled_mork_shrine_04}The shrine lies in ruins. There is nothing to do here." />
 
+  <string id="tor_customsettlement_intro.troll_cave_01" text="{=str_tor_customsettlement_intro_troll_cave_01}A dark cave emanates a terrible stench. Massive footprints and gnawed bones litter the entrance - clear signs of troll habitation." />
+  <string id="tor_customsettlement_intro.troll_cave_02" text="{=str_tor_customsettlement_intro_troll_cave_02}A dark cave emanates a terrible stench. Massive footprints and gnawed bones litter the entrance - clear signs of troll habitation." />
+  <string id="tor_customsettlement_intro.troll_cave_03" text="{=str_tor_customsettlement_intro_troll_cave_03}A dark cave emanates a terrible stench. Massive footprints and gnawed bones litter the entrance - clear signs of troll habitation." />
+  <string id="tor_customsettlement_intro.troll_cave_04" text="{=str_tor_customsettlement_intro_troll_cave_04}A dark cave emanates a terrible stench. Massive footprints and gnawed bones litter the entrance - clear signs of troll habitation." />
+  <string id="tor_trollcave_inactive" text="{=str_tor_trollcave_inactive}The cave is empty. No trolls dwell here currently." />
 
 	<!--Village Types-->
 	<string id="tor_villagetype_wolffarm" text="{=str_tor_villagetype_wolffarm}Wolf Farm" />
