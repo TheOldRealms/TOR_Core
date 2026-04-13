@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Inventory;
 using TaleWorlds.CampaignSystem.Party;
@@ -31,6 +32,45 @@ public class TeefBehavior : CampaignBehaviorBase
         CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameStarted);
         CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
         CampaignEvents.GameMenuOpened.AddNonSerializedListener(this, OnGameMenuOpened);
+        CampaignEvents.OnSettlementOwnerChangedEvent.AddNonSerializedListener(this, OnSettlementOwnerChanged);
+        CampaignEvents.WeeklyTickEvent.AddNonSerializedListener(this, ValidateKwartaMasters);
+    }
+
+    private void ValidateKwartaMasters()
+    {
+        foreach (var townOrCastle in Town.AllFiefs)
+        {
+            var settlement = townOrCastle.Settlement;
+            var isGreenskinOwned = townOrCastle.OwnerClan?.Culture?.StringId == TORConstants.Cultures.GREENSKIN;
+            var kwartamastas = GetAllKwartamastasForSettlement(settlement);
+
+            if (isGreenskinOwned)
+            {
+                if (kwartamastas.Count == 0)
+                {
+                    CreateKwartamasta(settlement);
+                }
+                else if (kwartamastas.Count > 1)
+                {
+                    for (int i = 1; i < kwartamastas.Count; i++)
+                    {
+                        DisableHeroAction.Apply(kwartamastas[i]);
+                    }
+                }
+            }
+            else
+            {
+                foreach (var kwartamasta in kwartamastas)
+                {
+                    DisableHeroAction.Apply(kwartamasta);
+                }
+            }
+        }
+    }
+
+    private List<Hero> GetAllKwartamastasForSettlement(Settlement settlement)
+    {
+        return settlement.HeroesWithoutParty.Where(h => h.Template?.StringId == QuartermasterId).ToList();
     }
 
     private void OnGameMenuOpened(MenuCallbackArgs menu)
@@ -41,32 +81,79 @@ public class TeefBehavior : CampaignBehaviorBase
     private void OnSessionLaunched(CampaignGameStarter campaignGameStarter)
     {
         AddDialogues(campaignGameStarter);
+        EnsureKwartamastasExist();
+    }
+
+    private void EnsureKwartamastasExist()
+    {
+        foreach (var townOrCastle in Town.AllFiefs)
+        {
+            if (townOrCastle.OwnerClan?.Culture?.StringId == TORConstants.Cultures.GREENSKIN)
+            {
+                if (GetKwartamastaForSettlement(townOrCastle.Settlement) == null)
+                {
+                    CreateKwartamasta(townOrCastle.Settlement);
+                }
+            }
+        }
     }
 
     private void OnNewGameStarted(CampaignGameStarter campaignGameStarter)
     {
         foreach (var townOrCastle in Town.AllFiefs)
         {
-            if (townOrCastle.Culture.StringId == TORConstants.Cultures.GREENSKIN)
+            if (townOrCastle.OwnerClan?.Culture?.StringId == TORConstants.Cultures.GREENSKIN)
             {
-                CreateQuarterMaster(townOrCastle.Settlement);
+                CreateKwartamasta(townOrCastle.Settlement);
             }
         }
+    }
 
+    private void OnSettlementOwnerChanged(Settlement settlement, bool openToClaim, Hero newOwner, Hero oldOwner, Hero capturerHero, ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail detail)
+    {
+        if (!settlement.IsTown && !settlement.IsCastle)
+            return;
 
-        void CreateQuarterMaster(Settlement settlement)
+        var newOwnerCultureId = newOwner?.MapFaction?.Culture?.StringId;
+        var existingKwartamasta = GetKwartamastaForSettlement(settlement);
+
+        if (newOwnerCultureId == TORConstants.Cultures.GREENSKIN)
         {
-            var template = MBObjectManager.Instance.GetObject<CharacterObject>(QuartermasterId);
-            if (template != null)
+            if (existingKwartamasta != null)
             {
-                var quarterMaster = HeroCreator.CreateSpecialHero(template, settlement, null, null, 50);
-                quarterMaster.SupporterOf = settlement.OwnerClan;
-                quarterMaster.CharacterObject.HiddenInEncyclopedia = true;
-                var nameObject = template.GetName();
-                nameObject.SetTextVariable("FIRSTNAME", quarterMaster.FirstName);
-                quarterMaster.SetName(nameObject, quarterMaster.Name);
-                HeroHelper.SpawnHeroForTheFirstTime(quarterMaster, settlement);
+                existingKwartamasta.SupporterOf = settlement.OwnerClan;
             }
+            else
+            {
+                CreateKwartamasta(settlement);
+            }
+        }
+        else
+        {
+            if (existingKwartamasta != null)
+            {
+                DisableHeroAction.Apply(existingKwartamasta);
+            }
+        }
+    }
+
+    private Hero GetKwartamastaForSettlement(Settlement settlement)
+    {
+        return settlement.HeroesWithoutParty.FirstOrDefault(h => h.Template?.StringId == QuartermasterId);
+    }
+
+    private void CreateKwartamasta(Settlement settlement)
+    {
+        var template = MBObjectManager.Instance.GetObject<CharacterObject>(QuartermasterId);
+        if (template != null)
+        {
+            var kwartamasta = HeroCreator.CreateSpecialHero(template, settlement, null, null, 50);
+            kwartamasta.SupporterOf = settlement.OwnerClan;
+            kwartamasta.CharacterObject.HiddenInEncyclopedia = true;
+            var nameObject = template.GetName();
+            nameObject.SetTextVariable("FIRSTNAME", kwartamasta.FirstName);
+            kwartamasta.SetName(nameObject, kwartamasta.Name);
+            HeroHelper.SpawnHeroForTheFirstTime(kwartamasta, settlement);
         }
     }
 
