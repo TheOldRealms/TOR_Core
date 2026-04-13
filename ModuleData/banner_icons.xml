@@ -1107,6 +1107,555 @@
 				material_name="custom_banner_icons_14"
 				texture_index="15" />
 		</BannerIconGroup>
+		<BannerIconGroup id="99" name="{=!}Empire_banners" is_pattern="false">
+			<Icon id="17000" material_name="empire_banners_1" texture_index="0" />
+			<Icon id="17001" material_name="empire_banners_1" texture_index="1" />
+			<Icon id="17002" material_name="empire_banners_1" texture_index="2" />
+			<Icon id="17003" material_name="empire_banners_1" texture_index="3" />
+			<Icon id="17004" material_name="empire_banners_1" texture_index="4" />
+			<Icon id="17005" material_name="empire_banners_1" texture_index="5" />
+			<Icon id="17006" material_name="empire_banners_1" texture_index="6" />
+			<Icon id="17007" material_name="empire_banners_1" texture_index="7" />
+			<Icon id="17008" material_name="empire_banners_1" texture_index="8" />
+			<Icon id="17009" material_name="empire_banners_1" texture_index="9" />
+			<Icon id="17010" material_name="empire_banners_1" texture_index="10" />
+			<Icon id="17011" material_name="empire_banners_1" texture_index="11" />
+			<Icon id="17012" material_name="empire_banners_1" texture_index="12" />
+			<Icon id="17013" material_name="empire_banners_1" texture_index="13" />
+			<Icon id="17014" material_name="empire_banners_1" texture_index="14" />
+			<Icon id="17015" material_name="empire_banners_1" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="100" name="{=!}Empire_banners" is_pattern="false">
+			<Icon id="17016" material_name="empire_banners_2" texture_index="0" />
+			<Icon id="17017" material_name="empire_banners_2" texture_index="1" />
+			<Icon id="17018" material_name="empire_banners_2" texture_index="2" />
+			<Icon id="17019" material_name="empire_banners_2" texture_index="3" />
+			<Icon id="17020" material_name="empire_banners_2" texture_index="4" />
+			<Icon id="17021" material_name="empire_banners_2" texture_index="5" />
+			<Icon id="17022" material_name="empire_banners_2" texture_index="6" />
+			<Icon id="17023" material_name="empire_banners_2" texture_index="7" />
+			<Icon id="17024" material_name="empire_banners_2" texture_index="8" />
+			<Icon id="17025" material_name="empire_banners_2" texture_index="9" />
+			<Icon id="17026" material_name="empire_banners_2" texture_index="10" />
+			<Icon id="17027" material_name="empire_banners_2" texture_index="11" />
+			<Icon id="17028" material_name="empire_banners_2" texture_index="12" />
+			<Icon id="17029" material_name="empire_banners_2" texture_index="13" />
+			<Icon id="17030" material_name="empire_banners_2" texture_index="14" />
+			<Icon id="17031" material_name="empire_banners_2" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="101" name="{=!}Empire_banners" is_pattern="false">
+			<Icon id="17032" material_name="empire_banners_3" texture_index="0" />
+			<Icon id="17033" material_name="empire_banners_3" texture_index="1" />
+			<Icon id="17034" material_name="empire_banners_3" texture_index="2" />
+			<Icon id="17035" material_name="empire_banners_3" texture_index="3" />
+			<Icon id="17036" material_name="empire_banners_3" texture_index="4" />
+			<Icon id="17037" material_name="empire_banners_3" texture_index="5" />
+			<Icon id="17038" material_name="empire_banners_3" texture_index="6" />
+			<Icon id="17039" material_name="empire_banners_3" texture_index="7" />
+			<Icon id="17040" material_name="empire_banners_3" texture_index="8" />
+			<Icon id="17041" material_name="empire_banners_3" texture_index="9" />
+			<Icon id="17042" material_name="empire_banners_3" texture_index="10" />
+			<Icon id="17043" material_name="empire_banners_3" texture_index="11" />
+			<Icon id="17044" material_name="empire_banners_3" texture_index="12" />
+			<Icon id="17045" material_name="empire_banners_3" texture_index="13" />
+			<Icon id="17046" material_name="empire_banners_3" texture_index="14" />
+			<Icon id="17047" material_name="empire_banners_3" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="102" name="{=!}Empire_banners" is_pattern="false">
+			<Icon id="17048" material_name="empire_banners_4" texture_index="0" />
+			<Icon id="17049" material_name="empire_banners_4" texture_index="1" />
+			<Icon id="17050" material_name="empire_banners_4" texture_index="2" />
+			<Icon id="17051" material_name="empire_banners_4" texture_index="3" />
+			<Icon id="17052" material_name="empire_banners_4" texture_index="4" />
+			<Icon id="17053" material_name="empire_banners_4" texture_index="5" />
+			<Icon id="17054" material_name="empire_banners_4" texture_index="6" />
+			<Icon id="17055" material_name="empire_banners_4" texture_index="7" />
+			<Icon id="17056" material_name="empire_banners_4" texture_index="8" />
+			<Icon id="17057" material_name="empire_banners_4" texture_index="9" />
+			<Icon id="17058" material_name="empire_banners_4" texture_index="10" />
+			<Icon id="17059" material_name="empire_banners_4" texture_index="11" />
+			<Icon id="17060" material_name="empire_banners_4" texture_index="12" />
+			<Icon id="17061" material_name="empire_banners_4" texture_index="13" />
+			<Icon id="17062" material_name="empire_banners_4" texture_index="14" />
+			<Icon id="17063" material_name="empire_banners_4" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="103" name="{=!}Empire_banners" is_pattern="false">
+			<Icon id="17064" material_name="empire_banners_5" texture_index="0" />
+			<Icon id="17065" material_name="empire_banners_5" texture_index="1" />
+			<Icon id="17066" material_name="empire_banners_5" texture_index="2" />
+			<Icon id="17067" material_name="empire_banners_5" texture_index="3" />
+			<Icon id="17068" material_name="empire_banners_5" texture_index="4" />
+			<Icon id="17069" material_name="empire_banners_5" texture_index="5" />
+			<Icon id="17070" material_name="empire_banners_5" texture_index="6" />
+			<Icon id="17071" material_name="empire_banners_5" texture_index="7" />
+			<Icon id="17072" material_name="empire_banners_5" texture_index="8" />
+			<Icon id="17073" material_name="empire_banners_5" texture_index="9" />
+			<Icon id="17074" material_name="empire_banners_5" texture_index="10" />
+			<Icon id="17075" material_name="empire_banners_5" texture_index="11" />
+			<Icon id="17076" material_name="empire_banners_5" texture_index="12" />
+			<Icon id="17077" material_name="empire_banners_5" texture_index="13" />
+			<Icon id="17078" material_name="empire_banners_5" texture_index="14" />
+			<Icon id="17079" material_name="empire_banners_5" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="104" name="{=!}Empire_banners" is_pattern="false">
+			<Icon id="17080" material_name="empire_banners_6" texture_index="0" />
+			<Icon id="17081" material_name="empire_banners_6" texture_index="1" />
+			<Icon id="17082" material_name="empire_banners_6" texture_index="2" />
+			<Icon id="17083" material_name="empire_banners_6" texture_index="3" />
+			<Icon id="17084" material_name="empire_banners_6" texture_index="4" />
+			<Icon id="17085" material_name="empire_banners_6" texture_index="5" />
+			<Icon id="17086" material_name="empire_banners_6" texture_index="6" />
+			<Icon id="17087" material_name="empire_banners_6" texture_index="7" />
+			<Icon id="17088" material_name="empire_banners_6" texture_index="8" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="106" name="{=!}Vampire_banners" is_pattern="false">
+			<Icon id="17111" material_name="vampire_banners_1" texture_index="0" />
+			<Icon id="17112" material_name="vampire_banners_1" texture_index="1" />
+			<Icon id="17113" material_name="vampire_banners_1" texture_index="2" />
+			<Icon id="17114" material_name="vampire_banners_1" texture_index="3" />
+			<Icon id="17115" material_name="vampire_banners_1" texture_index="4" />
+			<Icon id="17116" material_name="vampire_banners_1" texture_index="5" />
+			<Icon id="17117" material_name="vampire_banners_1" texture_index="6" />
+			<Icon id="17118" material_name="vampire_banners_1" texture_index="7" />
+			<Icon id="17119" material_name="vampire_banners_1" texture_index="8" />
+			<Icon id="17120" material_name="vampire_banners_1" texture_index="9" />
+			<Icon id="17121" material_name="vampire_banners_1" texture_index="10" />
+			<Icon id="17122" material_name="vampire_banners_1" texture_index="11" />
+			<Icon id="17123" material_name="vampire_banners_1" texture_index="12" />
+			<Icon id="17124" material_name="vampire_banners_1" texture_index="13" />
+			<Icon id="17125" material_name="vampire_banners_1" texture_index="14" />
+			<Icon id="17126" material_name="vampire_banners_1" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="107" name="{=!}Vampire_banners" is_pattern="false">
+			<Icon id="17127" material_name="vampire_banners_2" texture_index="0" />
+			<Icon id="17128" material_name="vampire_banners_2" texture_index="1" />
+			<Icon id="17129" material_name="vampire_banners_2" texture_index="2" />
+			<Icon id="17130" material_name="vampire_banners_2" texture_index="3" />
+			<Icon id="17131" material_name="vampire_banners_2" texture_index="4" />
+			<Icon id="17132" material_name="vampire_banners_2" texture_index="5" />
+			<Icon id="17133" material_name="vampire_banners_2" texture_index="6" />
+			<Icon id="17134" material_name="vampire_banners_2" texture_index="7" />
+			<Icon id="17135" material_name="vampire_banners_2" texture_index="8" />
+			<Icon id="17136" material_name="vampire_banners_2" texture_index="9" />
+			<Icon id="17137" material_name="vampire_banners_2" texture_index="10" />
+			<Icon id="17138" material_name="vampire_banners_2" texture_index="11" />
+			<Icon id="17139" material_name="vampire_banners_2" texture_index="12" />
+			<Icon id="17140" material_name="vampire_banners_2" texture_index="13" />
+			<Icon id="17141" material_name="vampire_banners_2" texture_index="14" />
+			<Icon id="17142" material_name="vampire_banners_2" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="108" name="{=!}Vampire_banners" is_pattern="false">
+			<Icon id="17143" material_name="vampire_banners_3" texture_index="0" />
+			<Icon id="17144" material_name="vampire_banners_3" texture_index="1" />
+			<Icon id="17145" material_name="vampire_banners_3" texture_index="2" />
+			<Icon id="17146" material_name="vampire_banners_3" texture_index="3" />
+			<Icon id="17147" material_name="vampire_banners_3" texture_index="4" />
+			<Icon id="17148" material_name="vampire_banners_3" texture_index="5" />
+			<Icon id="17149" material_name="vampire_banners_3" texture_index="6" />
+			<Icon id="17150" material_name="vampire_banners_3" texture_index="7" />
+			<Icon id="17151" material_name="vampire_banners_3" texture_index="8" />
+			<Icon id="17152" material_name="vampire_banners_3" texture_index="9" />
+			<Icon id="17153" material_name="vampire_banners_3" texture_index="10" />
+			<Icon id="17154" material_name="vampire_banners_3" texture_index="11" />
+			<Icon id="17155" material_name="vampire_banners_3" texture_index="12" />
+			<Icon id="17156" material_name="vampire_banners_3" texture_index="13" />
+			<Icon id="17157" material_name="vampire_banners_3" texture_index="14" />
+			<Icon id="17158" material_name="vampire_banners_3" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="109" name="{=!}Vampire_banners" is_pattern="false">
+			<Icon id="17159" material_name="vampire_banners_4" texture_index="0" />
+			<Icon id="17160" material_name="vampire_banners_4" texture_index="1" />
+			<Icon id="17161" material_name="vampire_banners_4" texture_index="2" />
+			<Icon id="17162" material_name="vampire_banners_4" texture_index="3" />
+			<Icon id="17163" material_name="vampire_banners_4" texture_index="4" />
+			<Icon id="17164" material_name="vampire_banners_4" texture_index="5" />
+			<Icon id="17165" material_name="vampire_banners_4" texture_index="6" />
+			<Icon id="17166" material_name="vampire_banners_4" texture_index="7" />
+			<Icon id="17167" material_name="vampire_banners_4" texture_index="8" />
+			<Icon id="17168" material_name="vampire_banners_4" texture_index="9" />
+			<Icon id="17169" material_name="vampire_banners_4" texture_index="10" />
+			<Icon id="17170" material_name="vampire_banners_4" texture_index="11" />
+			<Icon id="17171" material_name="vampire_banners_4" texture_index="12" />
+			<Icon id="17172" material_name="vampire_banners_4" texture_index="13" />
+			<Icon id="17173" material_name="vampire_banners_4" texture_index="14" />
+			<Icon id="17174" material_name="vampire_banners_4" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="110" name="{=!}Vampire_banners" is_pattern="false">
+			<Icon id="17175" material_name="vampire_banners_5" texture_index="0" />
+			<Icon id="17176" material_name="vampire_banners_5" texture_index="1" />
+			<Icon id="17177" material_name="vampire_banners_5" texture_index="2" />
+			<Icon id="17178" material_name="vampire_banners_5" texture_index="3" />
+			<Icon id="17179" material_name="vampire_banners_5" texture_index="4" />
+			<Icon id="17180" material_name="vampire_banners_5" texture_index="5" />
+			<Icon id="17181" material_name="vampire_banners_5" texture_index="6" />
+			<Icon id="17182" material_name="vampire_banners_5" texture_index="7" />
+			<Icon id="17183" material_name="vampire_banners_5" texture_index="8" />
+			<Icon id="17184" material_name="vampire_banners_5" texture_index="9" />
+			<Icon id="17185" material_name="vampire_banners_5" texture_index="10" />
+			<Icon id="17186" material_name="vampire_banners_5" texture_index="11" />
+			<Icon id="17187" material_name="vampire_banners_5" texture_index="12" />
+			<Icon id="17188" material_name="vampire_banners_5" texture_index="13" />
+			<Icon id="17189" material_name="vampire_banners_5" texture_index="14" />
+			<Icon id="17190" material_name="vampire_banners_5" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="111" name="{=!}Vampire_banners" is_pattern="false">
+			<Icon id="17191" material_name="vampire_banners_6" texture_index="0" />
+			<Icon id="17192" material_name="vampire_banners_6" texture_index="1" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="112" name="{=!}Bretonnian_banners" is_pattern="false">
+			<Icon id="17220" material_name="bretonnia_banners_1" texture_index="0" />
+			<Icon id="17221" material_name="bretonnia_banners_1" texture_index="1" />
+			<Icon id="17222" material_name="bretonnia_banners_1" texture_index="2" />
+			<Icon id="17223" material_name="bretonnia_banners_1" texture_index="3" />
+			<Icon id="17224" material_name="bretonnia_banners_1" texture_index="4" />
+			<Icon id="17225" material_name="bretonnia_banners_1" texture_index="5" />
+			<Icon id="17226" material_name="bretonnia_banners_1" texture_index="6" />
+			<Icon id="17227" material_name="bretonnia_banners_1" texture_index="7" />
+			<Icon id="17228" material_name="bretonnia_banners_1" texture_index="8" />
+			<Icon id="17229" material_name="bretonnia_banners_1" texture_index="9" />
+			<Icon id="17230" material_name="bretonnia_banners_1" texture_index="10" />
+			<Icon id="17231" material_name="bretonnia_banners_1" texture_index="11" />
+			<Icon id="17232" material_name="bretonnia_banners_1" texture_index="12" />
+			<Icon id="17233" material_name="bretonnia_banners_1" texture_index="13" />
+			<Icon id="17234" material_name="bretonnia_banners_1" texture_index="14" />
+			<Icon id="17235" material_name="bretonnia_banners_1" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="113" name="{=!}Bretonnian_banners" is_pattern="false">
+			<Icon id="17236" material_name="bretonnia_banners_2" texture_index="0" />
+			<Icon id="17237" material_name="bretonnia_banners_2" texture_index="1" />
+			<Icon id="17238" material_name="bretonnia_banners_2" texture_index="2" />
+			<Icon id="17239" material_name="bretonnia_banners_2" texture_index="3" />
+			<Icon id="17240" material_name="bretonnia_banners_2" texture_index="4" />
+			<Icon id="17241" material_name="bretonnia_banners_2" texture_index="5" />
+			<Icon id="17242" material_name="bretonnia_banners_2" texture_index="6" />
+			<Icon id="17243" material_name="bretonnia_banners_2" texture_index="7" />
+			<Icon id="17244" material_name="bretonnia_banners_2" texture_index="8" />
+			<Icon id="17245" material_name="bretonnia_banners_2" texture_index="9" />
+			<Icon id="17246" material_name="bretonnia_banners_2" texture_index="10" />
+			<Icon id="17247" material_name="bretonnia_banners_2" texture_index="11" />
+			<Icon id="17248" material_name="bretonnia_banners_2" texture_index="12" />
+			<Icon id="17249" material_name="bretonnia_banners_2" texture_index="13" />
+			<Icon id="17250" material_name="bretonnia_banners_2" texture_index="14" />
+			<Icon id="17251" material_name="bretonnia_banners_2" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="114" name="{=!}Bretonnian_banners" is_pattern="false">
+			<Icon id="17252" material_name="bretonnia_banners_3" texture_index="0" />
+			<Icon id="17253" material_name="bretonnia_banners_3" texture_index="1" />
+			<Icon id="17254" material_name="bretonnia_banners_3" texture_index="2" />
+			<Icon id="17255" material_name="bretonnia_banners_3" texture_index="3" />
+			<Icon id="17256" material_name="bretonnia_banners_3" texture_index="4" />
+			<Icon id="17257" material_name="bretonnia_banners_3" texture_index="5" />
+			<Icon id="17258" material_name="bretonnia_banners_3" texture_index="6" />
+			<Icon id="17259" material_name="bretonnia_banners_3" texture_index="7" />
+			<Icon id="17260" material_name="bretonnia_banners_3" texture_index="8" />
+			<Icon id="17261" material_name="bretonnia_banners_3" texture_index="9" />
+			<Icon id="17262" material_name="bretonnia_banners_3" texture_index="10" />
+			<Icon id="17263" material_name="bretonnia_banners_3" texture_index="11" />
+			<Icon id="17264" material_name="bretonnia_banners_3" texture_index="12" />
+			<Icon id="17265" material_name="bretonnia_banners_3" texture_index="13" />
+			<Icon id="17266" material_name="bretonnia_banners_3" texture_index="14" />
+			<Icon id="17267" material_name="bretonnia_banners_3" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="115" name="{=!}Bretonnian_banners" is_pattern="false">
+			<Icon id="17268" material_name="bretonnia_banners_4" texture_index="0" />
+			<Icon id="17269" material_name="bretonnia_banners_4" texture_index="1" />
+			<Icon id="17270" material_name="bretonnia_banners_4" texture_index="2" />
+			<Icon id="17271" material_name="bretonnia_banners_4" texture_index="3" />
+			<Icon id="17272" material_name="bretonnia_banners_4" texture_index="4" />
+			<Icon id="17273" material_name="bretonnia_banners_4" texture_index="5" />
+			<Icon id="17274" material_name="bretonnia_banners_4" texture_index="6" />
+			<Icon id="17275" material_name="bretonnia_banners_4" texture_index="7" />
+			<Icon id="17276" material_name="bretonnia_banners_4" texture_index="8" />
+			<Icon id="17277" material_name="bretonnia_banners_4" texture_index="9" />
+			<Icon id="17278" material_name="bretonnia_banners_4" texture_index="10" />
+			<Icon id="17279" material_name="bretonnia_banners_4" texture_index="11" />
+			<Icon id="17280" material_name="bretonnia_banners_4" texture_index="12" />
+			<Icon id="17281" material_name="bretonnia_banners_4" texture_index="13" />
+			<Icon id="17282" material_name="bretonnia_banners_4" texture_index="14" />
+			<Icon id="17283" material_name="bretonnia_banners_4" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="116" name="{=!}Bretonnian_banners" is_pattern="false">
+			<Icon id="17284" material_name="bretonnia_banners_5" texture_index="0" />
+			<Icon id="17285" material_name="bretonnia_banners_5" texture_index="1" />
+			<Icon id="17286" material_name="bretonnia_banners_5" texture_index="2" />
+			<Icon id="17287" material_name="bretonnia_banners_5" texture_index="3" />
+			<Icon id="17288" material_name="bretonnia_banners_5" texture_index="4" />
+			<Icon id="17289" material_name="bretonnia_banners_5" texture_index="5" />
+			<Icon id="17290" material_name="bretonnia_banners_5" texture_index="6" />
+			<Icon id="17291" material_name="bretonnia_banners_5" texture_index="7" />
+			<Icon id="17292" material_name="bretonnia_banners_5" texture_index="8" />
+			<Icon id="17293" material_name="bretonnia_banners_5" texture_index="9" />
+			<Icon id="17294" material_name="bretonnia_banners_5" texture_index="10" />
+			<Icon id="17295" material_name="bretonnia_banners_5" texture_index="11" />
+			<Icon id="17296" material_name="bretonnia_banners_5" texture_index="12" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="117" name="{=!}Mousillon_banners" is_pattern="false">
+			<Icon id="17300" material_name="mousillon_banners_1" texture_index="0" />
+			<Icon id="17301" material_name="mousillon_banners_1" texture_index="1" />
+			<Icon id="17302" material_name="mousillon_banners_1" texture_index="2" />
+			<Icon id="17303" material_name="mousillon_banners_1" texture_index="3" />
+			<Icon id="17304" material_name="mousillon_banners_1" texture_index="4" />
+			<Icon id="17305" material_name="mousillon_banners_1" texture_index="5" />
+			<Icon id="17306" material_name="mousillon_banners_1" texture_index="6" />
+			<Icon id="17307" material_name="mousillon_banners_1" texture_index="7" />
+			<Icon id="17308" material_name="mousillon_banners_1" texture_index="8" />
+			<Icon id="17309" material_name="mousillon_banners_1" texture_index="9" />
+			<Icon id="17310" material_name="mousillon_banners_1" texture_index="10" />
+			<Icon id="17311" material_name="mousillon_banners_1" texture_index="11" />
+			<Icon id="17312" material_name="mousillon_banners_1" texture_index="12" />
+			<Icon id="17313" material_name="mousillon_banners_1" texture_index="13" />
+			<Icon id="17314" material_name="mousillon_banners_1" texture_index="14" />
+			<Icon id="17315" material_name="mousillon_banners_1" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="118" name="{=!}Mousillon_banners" is_pattern="false">
+			<Icon id="17316" material_name="mousillon_banners_2" texture_index="0" />
+			<Icon id="17317" material_name="mousillon_banners_2" texture_index="1" />
+			<Icon id="17318" material_name="mousillon_banners_2" texture_index="2" />
+			<Icon id="17319" material_name="mousillon_banners_2" texture_index="3" />
+			<Icon id="17320" material_name="mousillon_banners_2" texture_index="4" />
+			<Icon id="17321" material_name="mousillon_banners_2" texture_index="5" />
+			<Icon id="17322" material_name="mousillon_banners_2" texture_index="6" />
+			<Icon id="17323" material_name="mousillon_banners_2" texture_index="7" />
+			<Icon id="17324" material_name="mousillon_banners_2" texture_index="8" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="119" name="{=!}Welf_banners" is_pattern="false">
+			<Icon id="17332" material_name="welf_banners_1" texture_index="0" />
+			<Icon id="17333" material_name="welf_banners_1" texture_index="1" />
+			<Icon id="17334" material_name="welf_banners_1" texture_index="2" />
+			<Icon id="17335" material_name="welf_banners_1" texture_index="3" />
+			<Icon id="17336" material_name="welf_banners_1" texture_index="4" />
+			<Icon id="17337" material_name="welf_banners_1" texture_index="5" />
+			<Icon id="17338" material_name="welf_banners_1" texture_index="6" />
+			<Icon id="17339" material_name="welf_banners_1" texture_index="7" />
+			<Icon id="17340" material_name="welf_banners_1" texture_index="8" />
+			<Icon id="17341" material_name="welf_banners_1" texture_index="9" />
+			<Icon id="17342" material_name="welf_banners_1" texture_index="10" />
+			<Icon id="17343" material_name="welf_banners_1" texture_index="11" />
+			<Icon id="17344" material_name="welf_banners_1" texture_index="12" />
+			<Icon id="17345" material_name="welf_banners_1" texture_index="13" />
+			<Icon id="17346" material_name="welf_banners_1" texture_index="14" />
+			<Icon id="17347" material_name="welf_banners_1" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="120" name="{=!}Welf_banners" is_pattern="false">
+			<Icon id="17348" material_name="welf_banners_2" texture_index="0" />
+			<Icon id="17349" material_name="welf_banners_2" texture_index="1" />
+			<Icon id="17350" material_name="welf_banners_2" texture_index="2" />
+			<Icon id="17351" material_name="welf_banners_2" texture_index="3" />
+			<Icon id="17352" material_name="welf_banners_2" texture_index="4" />
+			<Icon id="17353" material_name="welf_banners_2" texture_index="5" />
+			<Icon id="17354" material_name="welf_banners_2" texture_index="6" />
+			<Icon id="17355" material_name="welf_banners_2" texture_index="7" />
+			<Icon id="17356" material_name="welf_banners_2" texture_index="8" />
+			<Icon id="17357" material_name="welf_banners_2" texture_index="9" />
+			<Icon id="17358" material_name="welf_banners_2" texture_index="10" />
+			<Icon id="17359" material_name="welf_banners_2" texture_index="11" />
+			<Icon id="17360" material_name="welf_banners_2" texture_index="12" />
+			<Icon id="17361" material_name="welf_banners_2" texture_index="13" />
+			<Icon id="17362" material_name="welf_banners_2" texture_index="14" />
+			<Icon id="17363" material_name="welf_banners_2" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="121" name="{=!}Welf_banners" is_pattern="false">
+			<Icon id="17364" material_name="welf_banners_3" texture_index="0" />
+			<Icon id="17365" material_name="welf_banners_3" texture_index="1" />
+			<Icon id="17366" material_name="welf_banners_3" texture_index="2" />
+			<Icon id="17367" material_name="welf_banners_3" texture_index="3" />
+			<Icon id="17368" material_name="welf_banners_3" texture_index="4" />
+			<Icon id="17369" material_name="welf_banners_3" texture_index="5" />
+			<Icon id="17370" material_name="welf_banners_3" texture_index="6" />
+			<Icon id="17371" material_name="welf_banners_3" texture_index="7" />
+			<Icon id="17372" material_name="welf_banners_3" texture_index="8" />
+			<Icon id="17373" material_name="welf_banners_3" texture_index="9" />
+			<Icon id="17374" material_name="welf_banners_3" texture_index="10" />
+			<Icon id="17375" material_name="welf_banners_3" texture_index="11" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="125" name="{=!}Eonir_banners" is_pattern="false">
+			<Icon id="17427" material_name="eonir_banners_1" texture_index="0" />
+			<Icon id="17428" material_name="eonir_banners_1" texture_index="1" />
+			<Icon id="17429" material_name="eonir_banners_1" texture_index="2" />
+			<Icon id="17430" material_name="eonir_banners_1" texture_index="3" />
+			<Icon id="17431" material_name="eonir_banners_1" texture_index="4" />
+			<Icon id="17432" material_name="eonir_banners_1" texture_index="5" />
+			<Icon id="17433" material_name="eonir_banners_1" texture_index="6" />
+			<Icon id="17434" material_name="eonir_banners_1" texture_index="7" />
+			<Icon id="17435" material_name="eonir_banners_1" texture_index="8" />
+			<Icon id="17436" material_name="eonir_banners_1" texture_index="9" />
+			<Icon id="17437" material_name="eonir_banners_1" texture_index="10" />
+			<Icon id="17438" material_name="eonir_banners_1" texture_index="11" />
+			<Icon id="17439" material_name="eonir_banners_1" texture_index="12" />
+			<Icon id="17440" material_name="eonir_banners_1" texture_index="13" />
+			<Icon id="17441" material_name="eonir_banners_1" texture_index="14" />
+			<Icon id="17442" material_name="eonir_banners_1" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="126" name="{=!}Eonir_banners" is_pattern="false">
+			<Icon id="17443" material_name="eonir_banners_2" texture_index="0" />
+			<Icon id="17444" material_name="eonir_banners_2" texture_index="1" />
+			<Icon id="17445" material_name="eonir_banners_2" texture_index="2" />
+			<Icon id="17446" material_name="eonir_banners_2" texture_index="3" />
+			<Icon id="17447" material_name="eonir_banners_2" texture_index="4" />
+			<Icon id="17448" material_name="eonir_banners_2" texture_index="5" />
+			<Icon id="17449" material_name="eonir_banners_2" texture_index="6" />
+			<Icon id="17450" material_name="eonir_banners_2" texture_index="7" />
+			<Icon id="17451" material_name="eonir_banners_2" texture_index="8" />
+			<Icon id="17452" material_name="eonir_banners_2" texture_index="9" />
+			<Icon id="17453" material_name="eonir_banners_2" texture_index="10" />
+			<Icon id="17454" material_name="eonir_banners_2" texture_index="11" />
+			<Icon id="17455" material_name="eonir_banners_2" texture_index="12" />
+			<Icon id="17456" material_name="eonir_banners_2" texture_index="13" />
+			<Icon id="17457" material_name="eonir_banners_2" texture_index="14" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="127" name="{=!}Greenskin_banners" is_pattern="false">
+			<Icon id="17459" material_name="greenskin_banners_1" texture_index="0" />
+			<Icon id="17460" material_name="greenskin_banners_1" texture_index="1" />
+			<Icon id="17461" material_name="greenskin_banners_1" texture_index="2" />
+			<Icon id="17462" material_name="greenskin_banners_1" texture_index="3" />
+			<Icon id="17463" material_name="greenskin_banners_1" texture_index="4" />
+			<Icon id="17464" material_name="greenskin_banners_1" texture_index="5" />
+			<Icon id="17465" material_name="greenskin_banners_1" texture_index="6" />
+			<Icon id="17466" material_name="greenskin_banners_1" texture_index="7" />
+			<Icon id="17467" material_name="greenskin_banners_1" texture_index="8" />
+			<Icon id="17468" material_name="greenskin_banners_1" texture_index="9" />
+			<Icon id="17469" material_name="greenskin_banners_1" texture_index="10" />
+			<Icon id="17470" material_name="greenskin_banners_1" texture_index="11" />
+			<Icon id="17471" material_name="greenskin_banners_1" texture_index="12" />
+			<Icon id="17472" material_name="greenskin_banners_1" texture_index="13" />
+			<Icon id="17473" material_name="greenskin_banners_1" texture_index="14" />
+			<Icon id="17474" material_name="greenskin_banners_1" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="128" name="{=!}Greenskin_banners" is_pattern="false">
+			<Icon id="17475" material_name="greenskin_banners_2" texture_index="0" />
+			<Icon id="17476" material_name="greenskin_banners_2" texture_index="1" />
+			<Icon id="17477" material_name="greenskin_banners_2" texture_index="2" />
+			<Icon id="17478" material_name="greenskin_banners_2" texture_index="3" />
+			<Icon id="17479" material_name="greenskin_banners_2" texture_index="4" />
+			<Icon id="17480" material_name="greenskin_banners_2" texture_index="5" />
+			<Icon id="17481" material_name="greenskin_banners_2" texture_index="6" />
+			<Icon id="17482" material_name="greenskin_banners_2" texture_index="7" />
+			<Icon id="17483" material_name="greenskin_banners_2" texture_index="8" />
+			<Icon id="17484" material_name="greenskin_banners_2" texture_index="9" />
+			<Icon id="17485" material_name="greenskin_banners_2" texture_index="10" />
+			<Icon id="17486" material_name="greenskin_banners_2" texture_index="11" />
+			<Icon id="17487" material_name="greenskin_banners_2" texture_index="12" />
+			<Icon id="17488" material_name="greenskin_banners_2" texture_index="13" />
+			<Icon id="17489" material_name="greenskin_banners_2" texture_index="14" />
+			<Icon id="17490" material_name="greenskin_banners_2" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="129" name="{=!}Greenskin_banners" is_pattern="false">
+			<Icon id="17491" material_name="greenskin_banners_3" texture_index="0" />
+			<Icon id="17492" material_name="greenskin_banners_3" texture_index="1" />
+			<Icon id="17493" material_name="greenskin_banners_3" texture_index="2" />
+			<Icon id="17494" material_name="greenskin_banners_3" texture_index="3" />
+			<Icon id="17495" material_name="greenskin_banners_3" texture_index="4" />
+			<Icon id="17496" material_name="greenskin_banners_3" texture_index="5" />
+			<Icon id="17497" material_name="greenskin_banners_3" texture_index="6" />
+			<Icon id="17498" material_name="greenskin_banners_3" texture_index="7" />
+			<Icon id="17499" material_name="greenskin_banners_3" texture_index="8" />
+			<Icon id="17500" material_name="greenskin_banners_3" texture_index="9" />
+			<Icon id="17501" material_name="greenskin_banners_3" texture_index="10" />
+			<Icon id="17502" material_name="greenskin_banners_3" texture_index="11" />
+			<Icon id="17503" material_name="greenskin_banners_3" texture_index="12" />
+			<Icon id="17504" material_name="greenskin_banners_3" texture_index="13" />
+			<Icon id="17505" material_name="greenskin_banners_3" texture_index="14" />
+			<Icon id="17506" material_name="greenskin_banners_3" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="130" name="{=!}Greenskin_banners" is_pattern="false">
+			<Icon id="17507" material_name="greenskin_banners_4" texture_index="0" />
+			<Icon id="17508" material_name="greenskin_banners_4" texture_index="1" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="133" name="{=!}Dwarf_banners" is_pattern="false">
+			<Icon id="17555" material_name="dwarf_banners_1" texture_index="0" />
+			<Icon id="17556" material_name="dwarf_banners_1" texture_index="1" />
+			<Icon id="17557" material_name="dwarf_banners_1" texture_index="2" />
+			<Icon id="17558" material_name="dwarf_banners_1" texture_index="3" />
+			<Icon id="17559" material_name="dwarf_banners_1" texture_index="4" />
+			<Icon id="17560" material_name="dwarf_banners_1" texture_index="5" />
+			<Icon id="17561" material_name="dwarf_banners_1" texture_index="6" />
+			<Icon id="17562" material_name="dwarf_banners_1" texture_index="7" />
+			<Icon id="17563" material_name="dwarf_banners_1" texture_index="8" />
+			<Icon id="17564" material_name="dwarf_banners_1" texture_index="9" />
+			<Icon id="17565" material_name="dwarf_banners_1" texture_index="10" />
+			<Icon id="17566" material_name="dwarf_banners_1" texture_index="11" />
+			<Icon id="17567" material_name="dwarf_banners_1" texture_index="12" />
+			<Icon id="17568" material_name="dwarf_banners_1" texture_index="13" />
+			<Icon id="17569" material_name="dwarf_banners_1" texture_index="14" />
+			<Icon id="17570" material_name="dwarf_banners_1" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="134" name="{=!}Dwarf_banners" is_pattern="false">
+			<Icon id="17571" material_name="dwarf_banners_2" texture_index="0" />
+			<Icon id="17572" material_name="dwarf_banners_2" texture_index="1" />
+			<Icon id="17573" material_name="dwarf_banners_2" texture_index="2" />
+			<Icon id="17574" material_name="dwarf_banners_2" texture_index="3" />
+			<Icon id="17575" material_name="dwarf_banners_2" texture_index="4" />
+			<Icon id="17576" material_name="dwarf_banners_2" texture_index="5" />
+			<Icon id="17577" material_name="dwarf_banners_2" texture_index="6" />
+			<Icon id="17578" material_name="dwarf_banners_2" texture_index="7" />
+			<Icon id="17579" material_name="dwarf_banners_2" texture_index="8" />
+			<Icon id="17580" material_name="dwarf_banners_2" texture_index="9" />
+			<Icon id="17581" material_name="dwarf_banners_2" texture_index="10" />
+			<Icon id="17582" material_name="dwarf_banners_2" texture_index="11" />
+			<Icon id="17583" material_name="dwarf_banners_2" texture_index="12" />
+			<Icon id="17584" material_name="dwarf_banners_2" texture_index="13" />
+			<Icon id="17585" material_name="dwarf_banners_2" texture_index="14" />
+			<Icon id="17586" material_name="dwarf_banners_2" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="135" name="{=!}Dwarf_banners" is_pattern="false">
+			<Icon id="17587" material_name="dwarf_banners_3" texture_index="0" />
+			<Icon id="17588" material_name="dwarf_banners_3" texture_index="1" />
+			<Icon id="17589" material_name="dwarf_banners_3" texture_index="2" />
+			<Icon id="17590" material_name="dwarf_banners_3" texture_index="3" />
+			<Icon id="17591" material_name="dwarf_banners_3" texture_index="4" />
+			<Icon id="17592" material_name="dwarf_banners_3" texture_index="5" />
+			<Icon id="17593" material_name="dwarf_banners_3" texture_index="6" />
+			<Icon id="17594" material_name="dwarf_banners_3" texture_index="7" />
+			<Icon id="17595" material_name="dwarf_banners_3" texture_index="8" />
+			<Icon id="17596" material_name="dwarf_banners_3" texture_index="9" />
+			<Icon id="17597" material_name="dwarf_banners_3" texture_index="10" />
+			<Icon id="17598" material_name="dwarf_banners_3" texture_index="11" />
+			<Icon id="17599" material_name="dwarf_banners_3" texture_index="12" />
+			<Icon id="17600" material_name="dwarf_banners_3" texture_index="13" />
+			<Icon id="17601" material_name="dwarf_banners_3" texture_index="14" />
+			<Icon id="17602" material_name="dwarf_banners_3" texture_index="15" />
+		</BannerIconGroup>
+		
+		<BannerIconGroup id="136" name="{=!}Dwarf_banners" is_pattern="false">
+			<Icon id="17603" material_name="dwarf_banners_4" texture_index="0" />
+			<Icon id="17604" material_name="dwarf_banners_4" texture_index="1" />
+			<Icon id="17605" material_name="dwarf_banners_4" texture_index="2" />
+			<Icon id="17606" material_name="dwarf_banners_4" texture_index="3" />
+			<Icon id="17607" material_name="dwarf_banners_4" texture_index="4" />
+			<Icon id="17608" material_name="dwarf_banners_4" texture_index="5" />
+			<Icon id="17609" material_name="dwarf_banners_4" texture_index="6" />
+		</BannerIconGroup>
+		
 		<BannerColors>
 			<!--Aserai background-->
 			<Color
