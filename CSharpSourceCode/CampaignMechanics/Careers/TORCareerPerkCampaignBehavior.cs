@@ -66,7 +66,7 @@ namespace TOR_Core.CampaignMechanics
                     var stamina = campaignBehavior.GetHeroCraftingStamina(hero);
                     var max = campaignBehavior.GetMaxHeroCraftingStamina(hero);
                     if (stamina >= max)
-                        return;
+                        continue;
                     var value = Math.Min(max, stamina + 4);
                     campaignBehavior.SetHeroCraftingStamina(hero, value);
                 }
