@@ -412,8 +412,10 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 if (playerCulture.StringId == TORConstants.Cultures.DAWI)
                 {
                     var hasgrudge = false;
-                    foreach (var party in defeatedSide.Parties) //the attribute could be checked first, then loop (or call external method to do it) rather than checking each party for every attribute
+                    foreach (var party in defeatedSide.Parties)
                     {
+                        if (hasgrudge) break;
+
                         if (playerHero.HasAttribute("HumanGrudge"))
                         {
                             var humanCultures = new[] { TORConstants.Cultures.EMPIRE, TORConstants.Cultures.BRETONNIA };
@@ -423,16 +425,13 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                                 if (party.Troops.Any(elem => elem.Troop.Race == 0))
                                 {
                                     hasgrudge = true;
-                                    break;
                                 }
-
                             }
                             else
                             {
                                 if (humanCultures.Contains(party.Party.Culture.StringId))
                                 {
                                     hasgrudge = true;
-                                    break;
                                 }
                             }
                         }
@@ -443,7 +442,6 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                             if (greenskinCultures.Contains(party.Party.Culture.StringId))
                             {
                                 hasgrudge = true;
-                                break;
                             }
                         }
 
@@ -453,7 +451,6 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                             if (undeadCultures.Contains(party.Party.Culture.StringId))
                             {
                                 hasgrudge = true;
-                                break;
                             }
                         }
 
@@ -463,33 +460,33 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                             if (elfCultures.Contains(party.Party.Culture.StringId))
                             {
                                 hasgrudge = true;
-                                break;
                             }
                         }
 
-                        if (playerHero.HasAttribute("SkavenGrudge"))     //Temporary ;)
+                        if (playerHero.HasAttribute("SkavenGrudge"))
                         {
                             hasgrudge = TORCommon.FindSettlementsAroundPosition(mapEvent.Position.ToVec2(), 30, (x) => (x.Culture.StringId == TORConstants.Cultures.GREENSKIN && x.IsTown || x.IsVillage) ||
                                 x.Culture.StringId == TORConstants.Cultures.DAWI && x.IsDwarfKarak()).AnyQ();
                         }
+                    }
 
-                        if (hasgrudge)
-                        {
-                            renownChange *= 2;
-                        }
+                    // Apply multipliers once after checking all parties
+                    if (hasgrudge)
+                    {
+                        renownChange *= 2;
+                    }
 
-                        if (playerHero.HasAttribute("DwarfWarriorIII"))
-                        {
-                            renownChange *= 3f;
-                        }
-                        else if (playerHero.HasAttribute("DwarfWarriorII"))
-                        {
-                            renownChange *= 2;
-                        }
-                        else if (playerHero.HasAttribute("DwarfWarriorI"))
-                        {
-                            renownChange *= 1.5f;
-                        }
+                    if (playerHero.HasAttribute("DwarfWarriorIII"))
+                    {
+                        renownChange *= 3f;
+                    }
+                    else if (playerHero.HasAttribute("DwarfWarriorII"))
+                    {
+                        renownChange *= 2;
+                    }
+                    else if (playerHero.HasAttribute("DwarfWarriorI"))
+                    {
+                        renownChange *= 1.5f;
                     }
                 }
 
