@@ -204,8 +204,8 @@ public class OrcShamanCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
     protected override void InitializePassives()
     {
         // Bones an' Firepitz Passives
-        _bonesAnFirepitzPassive1.Initialize(CareerID, "Get 15 mumbo-jumbo pointz afta' winnin' scraps", "BonesAnFirepitz", false, ChoiceType.Passive, null,
-            new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special, true));
+        _bonesAnFirepitzPassive1.Initialize(CareerID, "Get 15 mumbo-jumbo pointz afta' winnin' brawls", "BonesAnFirepitz", false, ChoiceType.Passive, null,
+            new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special, false));
         _bonesAnFirepitzPassive2.Initialize(CareerID, "10 more mumbo-jumbo pointz", "BonesAnFirepitz", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
         _bonesAnFirepitzPassive3.Initialize(CareerID, "Betta findiness uv mumbo-jumbo fings afta' scraps", "BonesAnFirepitz", false, ChoiceType.Passive, null,
@@ -236,7 +236,7 @@ public class OrcShamanCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _giftzFromDaGreatGreenPassive3.Initialize(CareerID, "50 more tuffness", "GiftzFromDaGreatGreen", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
         _giftzFromDaGreatGreenPassive4.Initialize(CareerID, "Get 15 mumbo-jumbo pointz afta' winnin' scraps", "GiftzFromDaGreatGreen", false, ChoiceType.Passive, null,
-            new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special, true));
+            new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special, false));
 
         // Brutal Cunnin' Passives
         _brutalCunninPassive1.Initialize(CareerID, "60 more Boys fer da mob", "BrutalCunnin", false, ChoiceType.Passive, null,
