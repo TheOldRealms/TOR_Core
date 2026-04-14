@@ -990,7 +990,7 @@
   <string id="tor_dw_brewer_recruit_rangers_text" text="{=str_tor_dw_brewer_recruit_rangers_text}I need some rangers for scouting"/>
   <string id="tor_dw_brewer_recruit_rangers_offer_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_text}Aye, we have some skilled rangers eager to serve. It'll cost ye {RANGER_GOLD_PRICE}{GOLD_ICON} and {RANGER_OATHGOLD_PRICE} Oathgold."/>
   <string id="tor_dw_brewer_recruit_rangers_accept_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_text}They'll serve the holds well."/>
-  <string id="tor_dw_brewer_recruit_rangers_no_funds_text" text="{=str_tor_dw_brewer_recruit_rangers_no_funds_text}I don't have enough coin or Oathgold right now"/>
+  <string id="tor_dw_brewer_recruit_rangers_no_funds_text" text="{=str_tor_dw_brewer_recruit_rangers_no_funds_text}I don't have enough coin or Oathgold right now"/>tor_career_choice_description.BonesAnFirepitzPassive1
   <string id="tor_dw_brewer_recruit_rangers_decline_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_text}Maybe another time"/>
 	
   <!--Warrior Guild -->
@@ -4414,7 +4414,7 @@
   <string id="tor_careerchoice_description.OrcShamanRoot" text="{=str_tor_careerchoice_description_OrcShamanRoot}Da Shaman iz da centah uv da WAAAGH! You kunnect yerself to da boys ‘round, an’ dey will give you more ju-ju powa’ fer ZAPPIN’ an’ BLASTIN’. But if da boys start dyin’, den yer zappy energy gets blasted outta ya, an’ they take it wiv dem! Da betta ya get, de more you can kunnect to da WAAAGH!. An’ remember to stay close to da old ways. Wearin’ ‘ard bits an’ metal an’ stuff like dem ‘ard boyz iz gunna get ya less ju-ju powa’." />
   
   <string id="tor_careerchoice_description.BonesAnFirepitzKeystone" text="{=str_tor_careerchoice_description_BonesAnFirepitzKeystone}Call uv da Great Green iz always ready fer da scrap" />
-  <string id="tor_careerchoice_description.BonesAnFirepitzPassive1" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive1}10% betta killin’" />
+  <string id="tor_career_choice_description.BonesAnFirepitzPassive1" text="{=str_tor_career_choice_description_BonesAnFirepitzPassive1}Get 15 mumbo-jumbo pointz afta' winnin' scraps" /> 
   <string id="tor_careerchoice_description.BonesAnFirepitzPassive2" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive2}10 more mumbo-jumbo pointz" />
   <string id="tor_careerchoice_description.BonesAnFirepitzPassive3" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive3}Betta findiness uv mumbo-jumbo fings afta' scraps" />
   <string id="tor_careerchoice_description.BonesAnFirepitzPassive4" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive4}More mumbo-jumbo eks-perr-yens afta' lootin' Idols" />
@@ -4429,7 +4429,7 @@
   <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive1" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenPassive1}More Faith eks-perr-yens afta' lootin' Idols" />
   <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive2" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenPassive2}10% betta mumbo-jumbo killin’" />
   <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive3" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenPassive3}50 more tuffness" />
-  <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive4" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenPassive4}5% betta ‘ardiness" />
+  <string id="tor_career_choice_description.GiftzFromDaGreatGreenPassive4" text="{=str_tor_career_choice_description_GiftzFromDaGreatGreenPassive4}Get 15 mumbo-jumbo pointz afta' winnin' scraps" />  
 
   <string id="tor_careerchoice_description.BrutalCunninKeystone" text="{=str_tor_careerchoice_description_BrutalCunninKeystone}Call uv da Great Green gives da Boys 10% ‘ardiness fer sum time" />
   <string id="tor_careerchoice_description.BrutalCunninPassive1" text="{=str_tor_careerchoice_description_BrutalCunninPassive1}60 more Boys fer da mob" />

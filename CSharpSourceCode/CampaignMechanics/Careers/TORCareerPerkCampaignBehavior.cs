@@ -167,6 +167,18 @@ namespace TOR_Core.CampaignMechanics
 
                 Hero.MainHero.AddWindsOfMagic(postBattleBonus);
             }
+
+            if (Hero.MainHero.HasCareerChoice("BonesAnFirepitzPassive1"))
+            {
+                var choice = TORCareerChoices.GetChoice("BonesAnFirepitzPassive1");
+                Hero.MainHero.AddWindsOfMagic(choice.GetPassiveValue());
+            }
+
+            if (Hero.MainHero.HasCareerChoice("GiftzFromDaGreatGreenPassive4"))
+            {
+                var choice = TORCareerChoices.GetChoice("GiftzFromDaGreatGreenPassive4");
+                Hero.MainHero.AddWindsOfMagic(choice.GetPassiveValue());
+            }
         }
 
         private void CheckWarriorPriestPerks(MapEvent mapEvent)
