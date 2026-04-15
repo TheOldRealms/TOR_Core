@@ -191,6 +191,24 @@ namespace TOR_Core.BattleMechanics
 
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {
+            // Runelord: Teachings of Thungni - runed units reduce career ability cooldown on kill
+            if (Hero.MainHero.HasCareer(TORCareers.Runelord))
+            {
+                if (affectorAgent != null && !affectorAgent.IsHero && affectorAgent.BelongsToMainParty() &&
+                    Hero.MainHero.HasCareerChoice("TeachingsOfThungniKeystone"))
+                {
+                    if (affectorAgent.Character.HasUnitRune() && Agent.Main != null && Agent.Main.IsActive())
+                    {
+                        var careerAbility = Agent.Main.GetCareerAbility();
+                        if (careerAbility != null)
+                        {
+                            var cooldown = careerAbility.GetCoolDownLeft();
+                            careerAbility.SetCoolDown(cooldown - 1);
+                        }
+                    }
+                }
+            }
+
             if (Hero.MainHero.HasCareer(TORCareers.GreyLord))
             {
                 if (affectedAgent.HasAttribute("FellfangMark"))

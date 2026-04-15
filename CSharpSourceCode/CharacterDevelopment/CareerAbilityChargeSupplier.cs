@@ -577,24 +577,5 @@ namespace TOR_Core.CharacterDevelopment
                 _ => chargeValue
             };
         }
-
-        public static float RunelordChargeSupplier(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue,
-            AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
-        {
-            if (chargeType != ChargeType.NumberOfKills) return 0;
-
-            if (!affectingAgent.IsHero && affectingAgent.BelongsToMainParty() && Hero.MainHero.HasCareerChoice("TeachingsOfThungniKeystone"))
-            {
-                if (affectingAgent.Character.HasUnitRune())
-                {
-                    var cooldown = Agent.Main.GetCareerAbility().GetCoolDownLeft();
-                    
-                    Agent.Main.GetCareerAbility().SetCoolDown(cooldown-1);
-                }
-            }
-
-            return 0;
-
-        }
     }
 }
