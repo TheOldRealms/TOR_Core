@@ -762,6 +762,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, 25);
                     hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
                     hero.AddCareer(TORCareers.GrailDamsel);
+                    hero.AddKnownLore("LoreOfBeasts");
+                    hero.AddAbility("AmberSpear");
                     _storedSpawnPosition = PickSpawn(
                         new Vec2(1009.691f, 800.1613f),
                         new Vec2(1039.543f, 1066.16f),

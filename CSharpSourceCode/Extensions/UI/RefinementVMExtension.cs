@@ -16,8 +16,8 @@ namespace TOR_Core.Extensions.UI
     public class RefinementVMExtension : BaseViewModelExtension
     {
         private readonly ICraftingCampaignBehavior _craftingBehavior;
-        private readonly Func<CraftingAvailableHeroItemVM> _getCurrentCraftingHeroVM;
-        private readonly Action _onRefinementSelectionChange;
+        private Func<CraftingAvailableHeroItemVM> _getCurrentCraftingHeroVM;
+        private Action _onRefinementSelectionChange;
         private int _maxRefinementCount;
         private bool _canRefineAll;
         private string _refineAllText;
@@ -25,8 +25,17 @@ namespace TOR_Core.Extensions.UI
         public RefinementVMExtension(ViewModel vm) : base(vm)
         {
             _craftingBehavior = Campaign.Current.GetCampaignBehavior<ICraftingCampaignBehavior>();
+            // Note: EnsureLazyFieldsInitialized() will retry if _getCurrentCraftingHeroVM is null
+            // (which it will be here, since RefinementVM's constructor body hasn't run yet)
+            RefreshValues();
+        }
 
-            var refinementVM = (RefinementVM)vm;
+        private void EnsureLazyFieldsInitialized()
+        {
+            if (_getCurrentCraftingHeroVM != null)
+                return;
+
+            var refinementVM = (RefinementVM)_vm;
 
             // Get the _getCurrentHero func from the RefinementVM via reflection
             var heroField = typeof(RefinementVM).GetField("_getCurrentHero", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
@@ -41,11 +50,13 @@ namespace TOR_Core.Extensions.UI
             {
                 _onRefinementSelectionChange = callbackField.GetValue(refinementVM) as Action;
             }
-
-            RefreshValues();
         }
 
-        private Hero GetCurrentHero() => _getCurrentCraftingHeroVM?.Invoke()?.Hero ?? Hero.MainHero;
+        private Hero GetCurrentHero()
+        {
+            EnsureLazyFieldsInitialized();
+            return _getCurrentCraftingHeroVM?.Invoke()?.Hero ?? Hero.MainHero;
+        }
 
         public override void RefreshValues()
         {
@@ -127,6 +138,8 @@ namespace TOR_Core.Extensions.UI
 
         private void ExecuteRefineAll()
         {
+            EnsureLazyFieldsInitialized();
+
             var refinementVM = (RefinementVM)_vm;
             var currentAction = refinementVM.CurrentSelectedAction;
             var hero = GetCurrentHero();

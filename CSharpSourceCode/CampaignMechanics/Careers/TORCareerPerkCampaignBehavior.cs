@@ -43,6 +43,7 @@ namespace TOR_Core.CampaignMechanics
             CampaignEvents.OnNewItemCraftedEvent.AddNonSerializedListener(this, OnSmithedItem);
             CampaignEvents.OnItemsRefinedEvent.AddNonSerializedListener(this, RefinedItemEvent);
             CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, HourlyPartyEvent);
+            TORCampaignEvents.Instance.BrawlWon += OnBrawlWon;
         }
 
         private void OnSessionLaunched(CampaignGameStarter starter)
@@ -65,7 +66,7 @@ namespace TOR_Core.CampaignMechanics
                     var stamina = campaignBehavior.GetHeroCraftingStamina(hero);
                     var max = campaignBehavior.GetMaxHeroCraftingStamina(hero);
                     if (stamina >= max)
-                        return;
+                        continue;
                     var value = Math.Min(max, stamina + 4);
                     campaignBehavior.SetHeroCraftingStamina(hero, value);
                 }
@@ -153,6 +154,15 @@ namespace TOR_Core.CampaignMechanics
         }
 
 
+        private void OnBrawlWon(object sender, BrawlWonEventArgs e)
+        {
+            if (e.Hero == Hero.MainHero && Hero.MainHero.HasCareerChoice("BonesAnFirepitzPassive1"))
+            {
+                var choice = TORCareerChoices.GetChoice("BonesAnFirepitzPassive1");
+                Hero.MainHero.AddWindsOfMagic(choice.GetPassiveValue());
+            }
+        }
+
         private void PostBattleEvents(MapEvent mapEvent)
         {
             CheckWarriorPriestPerks(mapEvent);
@@ -166,6 +176,12 @@ namespace TOR_Core.CampaignMechanics
                 var postBattleBonus = maximum * choice.GetPassiveValue();
 
                 Hero.MainHero.AddWindsOfMagic(postBattleBonus);
+            }
+
+            if (Hero.MainHero.HasCareerChoice("GiftzFromDaGreatGreenPassive4"))
+            {
+                var choice = TORCareerChoices.GetChoice("GiftzFromDaGreatGreenPassive4");
+                Hero.MainHero.AddWindsOfMagic(choice.GetPassiveValue());
             }
         }
 
@@ -474,6 +490,7 @@ namespace TOR_Core.CampaignMechanics
         ~TORCareerPerkCampaignBehavior()
         {
             TORCampaignEvents.Instance.ItemDuplicated -= OnItemDuplicated;
+            TORCampaignEvents.Instance.BrawlWon -= OnBrawlWon;
         }
 
         public override void SyncData(IDataStore dataStore)
