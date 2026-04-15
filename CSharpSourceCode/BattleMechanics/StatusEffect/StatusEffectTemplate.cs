@@ -50,7 +50,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             Invalid
         };
 
-        public bool IsBuffEffect => Type != EffectType.Invalid && Type != EffectType.DamageOverTime;
+        public bool IsBuffEffect => Type != EffectType.Invalid && Type != EffectType.DamageOverTime;//Sly : insufficiently precise name and therefore use - this includes Hex spells and must therefore be checked subsequently for the triggeredEffects targetType
 
         public override int GetHashCode()
         {

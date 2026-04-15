@@ -127,7 +127,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
 
                 foreach (var effect in _template.AssociatedStatusEffects)
                 {
-                    if (triggererAgent.Character is CharacterObject triggererCharacter && triggererCharacter.GetPerkValue(TORPerks.Spellcraft.ArcaneLink) && effect.IsBuffEffect)
+                    if (triggererAgent.Character is CharacterObject triggererCharacter && triggererCharacter.GetPerkValue(TORPerks.Spellcraft.ArcaneLink) && effect.IsBuffEffect && (_template.TargetType == TargetType.Friendly || _template.TargetType == TargetType.FriendlyHero))
                     {
                         if (!targets.Contains(triggererAgent)) targets.Add(triggererAgent);
                     }
