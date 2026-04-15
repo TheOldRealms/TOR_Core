@@ -314,7 +314,7 @@ public class OrcBossCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _meanestanDaBaddestPassive1.Initialize(CareerID, "10% betta killin’", "MeanestanDaBaddest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
         _meanestanDaBaddestPassive2.Initialize(CareerID, "5 more Bosses fer da mob", "MeanestanDaBaddest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
         _meanestanDaBaddestPassive3.Initialize(CareerID, "50% more shinies when leavin’ loot in Kwartamasta piles", "MeanestanDaBaddest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special, true));
-        _meanestanDaBaddestPassive4.Initialize(CareerID, "Big Bosses in da mob pay 5 Teef e’ry day", "MeanestanDaBaddest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special, true));
+        _meanestanDaBaddestPassive4.Initialize(CareerID, "Big Bosses in da mob pay 5 Teef e’ry day", "MeanestanDaBaddest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special, false));
 
         // GetToDaChoppas
         _getToDaChoppasPassive1.Initialize(CareerID, "10% betta killin’", "GetToDaChoppas", false, ChoiceType.Passive, null,
