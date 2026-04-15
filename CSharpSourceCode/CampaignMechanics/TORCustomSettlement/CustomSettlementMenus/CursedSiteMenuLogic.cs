@@ -1,0 +1,417 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Encounters;
+using TaleWorlds.CampaignSystem.GameMenus;
+using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.Core;
+using TaleWorlds.Localization;
+using TaleWorlds.ObjectSystem;
+using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.CharacterDevelopment;
+using TOR_Core.Extensions;
+using TOR_Core.Utilities;
+
+namespace TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
+
+public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlementMenuLogic(starter)
+{
+    public static int MinimumDaysBetweenRaisingGhosts = 3;
+
+    protected override void AddSettlementMenu(CampaignGameStarter campaignGameStarter)
+    {
+        AddCursedSiteMenus(campaignGameStarter);
+    }
+
+    private const int _empoweringUndeadCost = 100;
+    private int _empoweredUndead = 0;
+    private Dictionary<string, int> _leveledUpUndead = [];
+
+    private void AddCursedSiteMenus(CampaignGameStarter starter)
+    {
+        MBTextManager.SetTextVariable("DARKENERGYICON", CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText());
+        starter.AddGameMenu("cursedsite_menu", "{LOCATION_DESCRIPTION}", CursedSiteMenuInit);
+        starter.AddGameMenuOption("cursedsite_menu", "purify", "{PURIFY_TEXT}", PurifyCondition, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu_purifying"));
+        starter.AddGameMenuOption("cursedsite_menu", "ghosts", TORTextHelper.GetText("tor_custom_settlement_menu_cursed_site_ghost", "Tap into the congealed essence of Dark Magic and bind some wraiths to your will."), GhostsCondition, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu_ghosts"));
+        starter.AddGameMenuOption("cursedsite_menu", "ghosts", TORTextHelper.GetText("tor_custom_settlement_menu_cursed_site_empower", "Empower your undead minions using Dark Energy (100{DARKENERGYICON})."), EmpoweringUndeadCondition, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu_empower_minions"));
+        starter.AddGameMenuOption("cursedsite_menu", "leave", TORTextHelper.GetText("tor_custom_settlement_menu_leave", "Leave..."), delegate (MenuCallbackArgs args)
+        {
+            args.optionLeaveType = GameMenuOption.LeaveType.Leave;
+            return true;
+        }, (MenuCallbackArgs args) => PlayerEncounter.Finish(true), true);
+        starter.AddWaitGameMenu("cursedsite_menu_purifying", TORTextHelper.GetText("tor_custom_settlement_cursed_site_purify_progress", "Performing purification ritual..."),
+            delegate (MenuCallbackArgs args)
+            {
+                _startWaitTime = CampaignTime.Now;
+                numberOfTroopsFromInteraction = 0;
+                PlayerEncounter.Current.IsPlayerWaiting = true;
+                args.MenuContext.GameMenu.StartWait();
+            }, null, PurificationConsequence,
+            PurifyingTick,
+            GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameMenu.MenuOverlayType.None, 4f, GameMenu.MenuFlags.None, null);
+        starter.AddWaitGameMenu("cursedsite_menu_ghosts", TORTextHelper.GetText("tor_custom_settlement_cursed_site_ghosts_progress", "Performing binding ritual..."),
+            delegate (MenuCallbackArgs args)
+            {
+                _startWaitTime = CampaignTime.Now;
+                numberOfTroopsFromInteraction = 0;
+                PlayerEncounter.Current.IsPlayerWaiting = true;
+                args.MenuContext.GameMenu.StartWait();
+            }, null, GhostConsequence,
+            BindingTick,
+            GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameMenu.MenuOverlayType.None, 4f, GameMenu.MenuFlags.None, null);
+        starter.AddWaitGameMenu("cursedsite_menu_empower_minions", TORTextHelper.GetText("tor_custom_settlement_cursed_site_empower_progress", "Empowering your minions..."),
+            delegate (MenuCallbackArgs args)
+            {
+                _startWaitTime = CampaignTime.Now;
+                PlayerEncounter.Current.IsPlayerWaiting = true;
+                args.MenuContext.GameMenu.StartWait();
+            }, null, EmporingConsequence,
+            EmpowerUndeadMinionsTick,
+            GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameMenu.MenuOverlayType.None, 4f, GameMenu.MenuFlags.None, null);
+        starter.AddGameMenu("purification_result", "{PURIFICATION_RESULT} {NEWLINE} {WOUNDED_RESULT}", PurificationResultInit);
+        starter.AddGameMenu("ghost_result", "{GHOST_RESULT}", GhostResultInit);
+        starter.AddGameMenu("empowering_result", "{EMPOWERING_RESULT} \n{EMPOWERING_LIST}", EmpoweringResultInit);
+        starter.AddGameMenuOption("purification_result", "return_to_root", TORTextHelper.GetText("tor_custom_settlement_menu_continue", "Continue"), delegate (MenuCallbackArgs args)
+        {
+            args.optionLeaveType = GameMenuOption.LeaveType.Continue;
+            return true;
+        }, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu"), true);
+        starter.AddGameMenuOption("ghost_result", "return_to_root", TORTextHelper.GetText("tor_custom_settlement_menu_continue", "Continue"), delegate (MenuCallbackArgs args)
+        {
+            args.optionLeaveType = GameMenuOption.LeaveType.Continue;
+            return true;
+        }, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu"), true);
+
+        starter.AddGameMenuOption("empowering_result", "return_to_root", TORTextHelper.GetText("tor_custom_settlement_menu_continue", "Continue"), delegate (MenuCallbackArgs args)
+        {
+            args.optionLeaveType = GameMenuOption.LeaveType.Continue;
+            return true;
+        }, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu"), true);
+    }
+
+    private void CursedSiteMenuInit(MenuCallbackArgs args)
+    {
+        var settlement = Settlement.CurrentSettlement;
+        var component = settlement.SettlementComponent as CursedSiteComponent;
+        var text = TORTextHelper.GetTextObject("tor_customsettlement_intro", settlement.StringId, "A cursed site.", skipValidation: true);
+        if (component.IsActive)
+        {
+            MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", text);
+        }
+        else
+        {
+            MBTextManager.SetTextVariable("CURSEDSITE_WARDHOURS", component.WardHours);
+            var wardText = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_ward", "Currently there are wards in place holding back the malevolent energies of the curse. The wards will hold for {CURSEDSITE_WARDHOURS} hours more");
+            MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", new TextObject(text.ToString() + "{NEWLINE}" + " " + "{NEWLINE}" + wardText));
+        }
+        args.MenuContext.SetBackgroundMeshName(component.BackgroundMeshName);
+    }
+
+    private bool PurifyCondition(MenuCallbackArgs args)
+    {
+        var settlement = Settlement.CurrentSettlement;
+        var religion = Hero.MainHero.GetDominantReligion();
+
+        // Vampires, Necromancers, and Black Grail Knights cannot ward cursed sites
+        if (Hero.MainHero.IsVampire() ||
+            Hero.MainHero.IsNecromancer() ||
+            Hero.MainHero.HasCareer(TORCareers.BlackGrailKnight))
+        {
+            return false;
+        }
+
+        // All non-vampires/non-necromancers can ward cursed sites if the site religion is hostile to their religion
+        if (settlement.SettlementComponent is CursedSiteComponent component && religion != null && component.Religion.HostileReligions.Contains(religion))
+        {
+            var godName = TORTextHelper.GetTextObject("tor_religion_name_of_god", religion.StringId, "your god", skipValidation: true);
+            MBTextManager.SetTextVariable("GOD_NAME", godName);
+            args.optionLeaveType = GameMenuOption.LeaveType.ShowMercy;
+            MBTextManager.SetTextVariable("PURIFY_TEXT", TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_purify_text", "Perform a ritual of warding in the name of {GOD_NAME}."));
+            if (MobileParty.MainParty.MemberRoster.TotalHealthyCount < 10)
+            {
+                args.IsEnabled = false;
+                args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_purify_fail", "You need at least 10 healthy party members to perform the ritual.");
+            }
+            return component.IsActive;
+        }
+        return false;
+    }
+
+    private bool GhostsCondition(MenuCallbackArgs args)
+    {
+        var settlement = Settlement.CurrentSettlement;
+        var component = settlement.SettlementComponent as CursedSiteComponent;
+        args.optionLeaveType = GameMenuOption.LeaveType.ForceToGiveTroops;
+
+        // Only Mousillon and Sylvania cultures can raise dead at cursed sites
+        if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.MOUSILLON &&
+            Hero.MainHero.Culture.StringId != TORConstants.Cultures.SYLVANIA)
+        {
+            return false;
+        }
+
+        //all vampire types are tagged as necromancers; leaving the condition in for the moment even if the 2nd one is redundant
+        if (!(Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.IsNecromancer()) || Hero.MainHero.IsVampire()))
+        {
+            args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_not_necromancer", "You are not a practitioner of necromancy.");
+            args.IsEnabled = false;
+        }
+        else
+        {
+            var freeSlots = MobileParty.MainParty.Party.PartySizeLimit - MobileParty.MainParty.MemberRoster.TotalManCount;
+
+            if (freeSlots <= 0)
+            {
+                args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_not_enough_free_slots", "You do not have enough space in your party.");
+                args.IsEnabled = false;
+            }
+
+            var lastGhostRecruitmentTime = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().LastGhostRecruitmentTime(Hero.MainHero);
+            if (lastGhostRecruitmentTime >= (int)CampaignTime.Now.ToDays)
+            {
+                args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_binding_cooldown", "You can only perform this action once a day.");
+                args.IsEnabled = false;
+            }
+        }
+
+
+        return component.IsActive;
+    }
+
+    private bool EmpoweringUndeadCondition(MenuCallbackArgs args)
+    {
+        var settlement = Settlement.CurrentSettlement;
+        var component = settlement.SettlementComponent as CursedSiteComponent;
+
+        if (!(Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.IsNecromancer()) || Hero.MainHero.IsVampire()))
+        {
+            args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_not_necromancer", "You are not a practitioner of necromancy.");
+            args.IsEnabled = false;
+        }
+        else
+        {
+            if (!Hero.MainHero.PartyBelongedTo.MemberRoster.ToFlattenedRoster().Any(x => x.Troop.IsUndead()))
+            {
+                args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_no_undead", "There are no undead in your party.");
+                args.IsEnabled = false;
+            }
+            if (Hero.MainHero.GetCustomResourceValue("DarkEnergy") < _empoweringUndeadCost)
+            {
+                args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_not_enough_dark_energy", "You do not have enough Dark Energy ({DARKENERGYICON}).");
+                args.IsEnabled = false;
+            }
+        }
+
+        return component.IsActive;
+    }
+
+    private void PurificationConsequence(MenuCallbackArgs args)
+    {
+        PlayerEncounter.Current.IsPlayerWaiting = false;
+        args.MenuContext.GameMenu.EndWait();
+        args.MenuContext.GameMenu.SetProgressOfWaitingInMenu(0f);
+        GameMenu.SwitchToMenu("purification_result");
+    }
+
+    private void GhostConsequence(MenuCallbackArgs args)
+    {
+        PlayerEncounter.Current.IsPlayerWaiting = false;
+        args.MenuContext.GameMenu.EndWait();
+        args.MenuContext.GameMenu.SetProgressOfWaitingInMenu(0f);
+        GameMenu.SwitchToMenu("ghost_result");
+    }
+
+    private void EmporingConsequence(MenuCallbackArgs args)
+    {
+        PlayerEncounter.Current.IsPlayerWaiting = false;
+        args.MenuContext.GameMenu.EndWait();
+        args.MenuContext.GameMenu.SetProgressOfWaitingInMenu(0f);
+        GameMenu.SwitchToMenu("empowering_result");
+    }
+
+    private void PurifyingTick(MenuCallbackArgs args, CampaignTime dt)
+    {
+        float progress = args.MenuContext.GameMenu.Progress;
+        int diff = (int)_startWaitTime.ElapsedHoursUntilNow;
+        if (diff > 0)
+        {
+            args.MenuContext.GameMenu.SetProgressOfWaitingInMenu(diff * 0.25f);
+            if (args.MenuContext.GameMenu.Progress != progress)
+            {
+                if (MobileParty.MainParty.MemberRoster.TotalHealthyCount > MobileParty.MainParty.MemberRoster.TotalManCount * 0.25f)
+                {
+                    MobileParty.MainParty.MemberRoster.WoundNumberOfNonHeroTroopsRandomly((int)Math.Ceiling(MobileParty.MainParty.MemberRoster.TotalHealthyCount * 0.05f));
+                }
+                numberOfTroopsFromInteraction += (int)Math.Ceiling(MobileParty.MainParty.MemberRoster.TotalHealthyCount * 0.05f);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Wraith binding tick using the spellcraft for the highest level necromancer.
+    /// </summary>
+    /// <remarks>
+    /// Either the player or a companion knowing necromancy allows the binding ritual to be performed. The spellcraft level from only the most skilled necromancer is used.
+    /// The check for IsVampire was removed because all 3 vampire noble subtypes already return true for the IsNecromancer condition.
+    /// </remarks>
+    private void BindingTick(MenuCallbackArgs args, CampaignTime dt)
+    {
+        float progress = args.MenuContext.GameMenu.Progress;
+        int diff = (int)_startWaitTime.ElapsedHoursUntilNow;
+        if (diff > 0)
+        {
+            args.MenuContext.GameMenu.SetProgressOfWaitingInMenu(diff * 0.1f);
+            if (args.MenuContext.GameMenu.Progress != progress)
+            {
+                foreach (var hero in MobileParty.MainParty.GetMemberHeroes())
+                {
+                    var nagash = ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash");
+                    if (nagash != null)
+                    {
+                        hero.AddReligiousInfluence(nagash, 1, false);
+                    }
+                }
+
+                var freeSlots = MobileParty.MainParty.Party.PartySizeLimit - MobileParty.MainParty.MemberRoster.TotalManCount;
+                if (freeSlots < 1) return;
+
+                var troop = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_spirit_host");
+                if (troop == null) return;
+
+                float raisePower = 0;
+                var mainPartyHeroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Where(x => x.IsNecromancer());
+                foreach (var hero in mainPartyHeroes)
+                {
+                    if (hero == Hero.MainHero && hero.HasCareer(TORCareers.BloodKnight)) continue;
+                    if (hero.GetSkillValue(TORSkills.Spellcraft) > raisePower) raisePower = hero.GetSkillValue(TORSkills.Spellcraft);
+                }
+
+                //a bloodknight has a chance! A 1 in 200 chance...
+                var chance = (raisePower + 1) / 200;
+
+                if (MBRandom.RandomFloat < chance)
+                {
+                    var count = 1;
+                    MobileParty.MainParty.MemberRoster.AddToCounts(troop, count);
+                    CampaignEventDispatcher.Instance.OnTroopRecruited(Hero.MainHero, Settlement.CurrentSettlement, null, troop, count);
+                    numberOfTroopsFromInteraction += count;
+                }
+            }
+        }
+    }
+
+    private void EmpowerUndeadMinionsTick(MenuCallbackArgs args, CampaignTime dt)
+    {
+        var xp = 250;
+        float progress = args.MenuContext.GameMenu.Progress;
+        int diff = (int)_startWaitTime.ElapsedHoursUntilNow;
+        if (diff > 0)
+        {
+            args.MenuContext.GameMenu.SetProgressOfWaitingInMenu(diff * 0.25f);
+            if (args.MenuContext.GameMenu.Progress != progress)
+            {
+                var party = Hero.MainHero.PartyBelongedTo;
+                for (int i = 0; i < Hero.MainHero.PartyBelongedTo.MemberRoster.Count; i++)
+                {
+                    var troopCharacter = party.MemberRoster.GetCharacterAtIndex(i);
+                    if (!troopCharacter.IsUndead()) continue;
+                    if (troopCharacter.IsHero) continue;
+                    var a = Hero.MainHero.PartyBelongedTo.Party.MemberRoster.GetElementCopyAtIndex(i).Xp;
+
+                    var model = Campaign.Current.Models.PartyTroopUpgradeModel;
+
+                    if (model.IsTroopUpgradeable(Hero.MainHero.PartyBelongedTo.Party, troopCharacter))
+                    {
+                        var xpa = Campaign.Current.Models.PartyTroopUpgradeModel.GetXpCostForUpgrade(Hero.MainHero.PartyBelongedTo.Party, troopCharacter, troopCharacter.UpgradeTargets[0]);
+                        a %= xpa;
+                        if (a + xp >= xpa && a != 0)
+                        {
+                            _empoweredUndead++;
+                            if (_leveledUpUndead.ContainsKey(troopCharacter.Name.ToString()))
+                            {
+                                _leveledUpUndead[troopCharacter.Name.ToString()]++;
+                            }
+                            else
+                            {
+                                _leveledUpUndead.Add(troopCharacter.Name.ToString(), 1);
+                            }
+
+                        }
+                        Hero.MainHero.PartyBelongedTo.MemberRoster.AddXpToTroop(troopCharacter, 250);
+                    }
+                }
+            }
+        }
+    }
+
+    private void PurificationResultInit(MenuCallbackArgs args)
+    {
+        var settlement = Settlement.CurrentSettlement;
+        var component = settlement.SettlementComponent as CursedSiteComponent;
+        int duration = TORConstants.DEFAULT_WARDING_DURATION; //TODO modify this based on faith perks/skills?
+        MBTextManager.SetTextVariable("PURIFICATION_DURATION", duration);
+        MBTextManager.SetTextVariable("PURIFICATION_RESULT", TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_purify_success", "Your party succeeds in placing seals and wards around the area dampening the effects of the curse. You estimate the wards will hold for {PURIFICATION_DURATION} hours."));
+        if (numberOfTroopsFromInteraction > 0)
+        {
+            MBTextManager.SetTextVariable("PURIFICATION_WOUNDED_RESULT_NUMBER", numberOfTroopsFromInteraction);
+            MBTextManager.SetTextVariable("WOUNDED_RESULT", TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_purify_wounded_result", "Staying in the cursed area while performing the ritual has taken a toll on your men. {PURIFICATION_WOUNDED_RESULT_NUMBER} of your party members have become wounded."));
+        }
+        Hero.MainHero.AddReligiousInfluence(Hero.MainHero.GetDominantReligion(), TORConstants.DEFAULT_WARDING_DEVOTION_INCREASE);
+        Hero.MainHero.AddSkillXp(TORSkills.Faith, 300);
+        component.IsActive = false;
+        component.WardHours = duration;
+    }
+
+    private void GhostResultInit(MenuCallbackArgs args)
+    {
+        if (numberOfTroopsFromInteraction > 0)
+        {
+            MBTextManager.SetTextVariable("GHOST_RESULT_NUMBER", numberOfTroopsFromInteraction);
+            MBTextManager.SetTextVariable("GHOST_RESULT", TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_ghosts_result", "You successfully bind {GHOST_RESULT_NUMBER} spirits to your command."));
+
+            Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().SetLastGhostRecruitmentTime(Hero.MainHero, (int)CampaignTime.Now.ToDays);
+
+
+        }
+    }
+
+    private void EmpoweringResultInit(MenuCallbackArgs args)
+    {
+        if (_empoweredUndead > 0)
+        {
+            MBTextManager.SetTextVariable("UNDEAD_UPGRADES", _empoweredUndead);
+            MBTextManager.SetTextVariable("EMPOWERING_RESULT", "{UNDEAD_UPGRADES} of your minions grew stronger.");
+            var result = "";
+            foreach (var item in _leveledUpUndead)
+            {
+                result += item.Key + " - " + item.Value + "\n";
+            }
+            MBTextManager.SetTextVariable("EMPOWERING_LIST", result);
+            _empoweredUndead = 0;
+            _leveledUpUndead.Clear();
+        }
+        Hero.MainHero.AddCustomResource("DarkEnergy", -100);
+    }
+
+    public static bool CanPartyRecruitGhosts(MobileParty party)
+    {
+        return party.IsLordParty &&
+                !party.IsEngaging &&
+                party.IsActive &&
+                party.Army == null &&
+                !party.IsDisbanding &&
+                !party.IsCurrentlyUsedByAQuest &&
+                party.CurrentSettlement == null &&
+                party.MapEvent == null &&
+                !party.Ai.IsDisabled &&
+                party.LeaderHero != null &&
+                (party.LeaderHero.IsNecromancer() ||
+                party.LeaderHero.IsVampire()) &&
+                party.PartySizeRatio < 0.8f;
+    }
+
+
+}

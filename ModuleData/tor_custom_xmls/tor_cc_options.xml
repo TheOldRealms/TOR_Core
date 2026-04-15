@@ -1,0 +1,1563 @@
+<?xml version="1.0"?>
+<ArrayOfCharacterCreationOption xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<!--This is a single character creation option. ID has no naming convention, but has to be unique. 
+	SkillsToIncrease possible values:
+			OneHanded
+			TwoHanded
+			Polearm
+			Bow
+			Crossbow
+			Throwing
+			Riding
+			Athletics
+			Scouting
+			Tactics
+			Crafting
+			Roguery
+			Charm
+			Leadership
+			Trade
+			Steward
+			Medicine
+			Engineering
+			Faith
+			Gunpowder
+			Spellcraft
+	AttributeToIncrease possible values:
+			Vigor
+			Control
+			Endurance
+			Cunning
+			Social
+			Intelligence
+			Discipline
+	-->
+	<!-- Empire stage 1 -->
+	<CharacterCreationOption Id="option_1_empire_nobility" Culture="empire" StageNumber="1" EquipmentSetId="tor_cc_imperial_nobility_1">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Leadership</string>
+			<string>Polearm</string>
+			<string>Riding</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<OptionText>{=tor_cc_option1_label_str}Imperial Nobility</OptionText>
+		<OptionFlavourText>{=tor_cc_option1_text_str}Your parents loyally served Graf Haupt-Anderrson, while not major nobility they nonetheless held sway within the courts of the Elector Count and thus ensured your childhood was one of comfort. </OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_empire_sergeant" Culture="empire" StageNumber="1" EquipmentSetId="tor_cc_imperial_sergeant_1">
+		<SkillsToIncrease>
+			<string>TwoHanded</string>
+			<string>Gunpowder</string>
+			<string>Athletics</string>
+			<string>Tactics</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<OptionText>{=tor_cc_option2_label_str}Imperial Sergeant</OptionText>
+		<OptionFlavourText>{=tor_cc_option2_text_str}Your father had not only served with distinction but survived long enough to receive the title of Sergeant, a veteran that has spilled the blood of beastmen and bandits alike.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_empire_thieves" Culture="empire" StageNumber="1" EquipmentSetId="tor_cc_thieves_1">
+		<SkillsToIncrease>
+			<string>Throwing</string>
+			<string>OneHanded</string>
+			<string>Roguery</string>
+			<string>Athletics</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Cunning</AttributeToIncrease>
+		<OptionText>{=tor_cc_option3_label_str}Thieves</OptionText>
+		<OptionFlavourText>{=tor_cc_option3_text_str}Not all within the Empire are blessed by Ranald, your family was poor and scratched a living with quick wit and quicker hands. Stealing coins from loose pockets and stuffing them in their own. </OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_empire_commoners" Culture="empire" StageNumber="1" EquipmentSetId="tor_cc_commoners_1">
+		<SkillsToIncrease>
+			<string>Engineering</string>
+			<string>Crossbow</string>
+			<string>Scouting</string>
+			<string>Crafting</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option4_label_str}Commoners</OptionText>
+		<OptionFlavourText>{=tor_cc_option4_text_str}All the people of the empire play a role. You were born into a humble family, with humble jobs, and it seemed like that was going to continue that way forever.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_empire_merchants" Culture="empire" StageNumber="1" EquipmentSetId="tor_cc_merchants_1">
+		<SkillsToIncrease>
+			<string>Trade</string>
+			<string>Charm</string>
+			<string>Steward</string>
+			<string>Medicine</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+		<OptionText>{=tor_cc_option5_label_str}Merchants</OptionText>
+		<OptionFlavourText>{=tor_cc_option5_text_str}Wine is the blood of Wurtbad and your family made its profits driving this trade up the River Stir and across the Empire. Your early life was one of constant travel. </OptionFlavourText>
+	</CharacterCreationOption>
+
+	<!-- Empire stage 2 -->
+	<CharacterCreationOption Id="option_2_empire_militia" Culture="empire" StageNumber="2" EquipmentSetId="tor_cc_enlisted_militia_2">
+		<SkillsToIncrease>
+			<string>Athletics</string>
+			<string>TwoHanded</string>
+			<string>Polearm</string>
+			<string>Crossbow</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option6_label_str}Enlisted in the Militia</OptionText>
+		<OptionFlavourText>{=tor_cc_option6_text_str}Beastmen and bandits are rife within the Empire and your home was in need of strong men, training alongside the militia you soon gained a strong arm and a taste for combat.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_empire_merchant_assistant" Culture="empire" StageNumber="2" EquipmentSetId="tor_cc_merchants_assistant_2">
+		<SkillsToIncrease>
+			<string>Trade</string>
+			<string>Polearm</string>
+			<string>Tactics</string>
+			<string>Steward</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+		<OptionText>{=tor_cc_option7_label_str}Merchants assistant</OptionText>
+		<OptionFlavourText>{=tor_cc_option7_text_str}Noticing your aptitude for numbers, a merchant passing through your home took you under his wing, offering to teach you his trade in return for daily assistance in his tasks.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_empire_blacksmith_apprentice" Culture="empire" StageNumber="2" EquipmentSetId="tor_cc_blacksmith_apprentice_2">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Trade</string>
+			<string>Tactics</string>
+			<string>Crafting</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option8_label_str}Blacksmith apprentice</OptionText>
+		<OptionFlavourText>{=tor_cc_option8_text_str}Conflict was never ending for the Empire and neither was the work of its Blacksmiths, you chose to turn your strength into a trade as you bent metals to your will under the tutelage of the local smith. Your first sword may have been wonky but it was still sharp!</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_empire_cultist" Culture="empire" StageNumber="2" EquipmentSetId="tor_cc_imperial_cultist_2">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Medicine</string>
+			<string>Faith</string>
+			<string>Steward</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Discipline</AttributeToIncrease>
+		<OptionText>{=tor_cc_option9_label_str}Imperial Cultist</OptionText>
+		<OptionFlavourText>{=tor_cc_option9_text_str}You spent most of your time in the temple district, praying to the various gods of the Imperial Pantheon. Some of the priests there took note of you and began to teach you of their scriptures. </OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_empire_engineering_student" Culture="empire" StageNumber="2" EquipmentSetId="tor_cc_engineering_student_2">
+		<SkillsToIncrease>
+			<string>Charm</string>
+			<string>Steward</string>
+			<string>Gunpowder</string>
+			<string>Engineering</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Discipline</AttributeToIncrease>
+		<OptionText>{=tor_cc_option10_label_str}Engineering Student</OptionText>
+		<OptionFlavourText>{=tor_cc_option10_text_str}Stories of the Colleges of Nuln had always been your favourite, it seemed Ranald blessed you when a Master Engineer looking for an apprentice decided you would be the perfect candidate. </OptionFlavourText>
+	</CharacterCreationOption>
+
+	<!-- Empire stage 3 -->
+	<CharacterCreationOption Id="option_3_empire_free_company" Culture="empire" StageNumber="3" EquipmentSetId="tor_cc_free_company_militiaman_3">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Gunpowder</string>
+			<string>TwoHanded</string>
+			<string>Bow</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<OptionText>{=tor_cc_option11_label_str}Free Company Militiaman</OptionText>
+		<PositiveEffectText>{=tor_cc_option11_effect_str}Mercenary Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option11_text_str}Fighting and drinking, what more could one need in life? With sword in hand you marched with your rag-tag Free Company from battle to battle, earning your fair share of scars. You would serve any lord, for the right price.</OptionFlavourText>
+	</CharacterCreationOption>
+	
+	<CharacterCreationOption Id="option_3_empire_magister_apprentice" Culture="empire" StageNumber="3" EquipmentSetId="tor_cc_magister_apprentice_3">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Leadership</string>
+			<string>Spellcraft</string>
+			<string>Tactics</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Discipline</AttributeToIncrease>
+		<OptionText>{=tor_cc_option12_label_str}Magister Apprentice</OptionText>
+		<PositiveEffectText>{=tor_cc_option12_effect_str}Imperial Magister Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option12_text_str}Your aptitude for the Winds of Magic earned you a place within the Colleges of Altdorf, with time you learned to harness the basics of your power and learn the nature of your aligned wind.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_3_empire_priest_acolyte" Culture="empire" StageNumber="3" EquipmentSetId="tor_cc_priest_acolyte_3">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Medicine</string>
+			<string>Faith</string>
+			<string>Faith</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Discipline</AttributeToIncrease>
+		<OptionText>{=tor_cc_option13_label_str}Priest Acolyte</OptionText>
+		<PositiveEffectText>{=tor_cc_option13_effect_str}Warrior Priest Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option13_text_str}Dedicating your life to the cult of your patron god, you seek the path of righteousness in line with your faith. To be an Acolyte is to temper yourself against evil, the unnatural and the monstrous. (Gains access to Prayers, but cannot learn Spells.)</OptionFlavourText>
+	</CharacterCreationOption> 
+
+	<CharacterCreationOption Id="option_3_empire_witch_hunter" Culture="empire" StageNumber="3" EquipmentSetId="tor_cc_trainee_templar_3">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Roguery</string>
+			<string>Gunpowder</string>
+			<string>Crossbow</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Cunning</AttributeToIncrease>
+		<OptionText>{=tor_cc_option14_label_str}Witch Hunter Initiate</OptionText>
+		<PositiveEffectText>{=tor_cc_option14_effect_str}Witch Hunter Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option14_text_str}Heresy was the bane of the good people of the Empire, a rot that needed to be removed. Learning the arts of the Witch Hunters you readied yourself to face all manner of unholy beasts and magicians, with faith and silver. </OptionFlavourText>
+	</CharacterCreationOption> 
+
+	<CharacterCreationOption Id="option_3_empire_knight" Culture="empire" StageNumber="3" EquipmentSetId="tor_cc_empire_knight_3">
+		<SkillsToIncrease>
+			<string>Riding</string>
+			<string>Steward</string>			
+			<string>Polearm</string>
+			<string>Leadership</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option15_label_str}Intiate Knight</OptionText>
+		<PositiveEffectText>{=tor_cc_option15_effect_str}Knight of the Old World Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option15_text_str}Most nobles of the Empire are not recruited to any standing armies, instead they aim to join one of the Empire's brotherhoods of Knightly Orders. To do so a noble must first forsake any responsibilities and rights of inheritance and then pass a severe rite of initiation. The Knightly Orders of the Empire treat their internal hierarchy quite seriously, with every novice trained in combat and the Order's code. </OptionFlavourText>
+	</CharacterCreationOption> 
+
+	<!-- VC stage 1 -->
+	<CharacterCreationOption Id="option_1_vc_exiled_nobility" Culture="khuzait" StageNumber="1" EquipmentSetId="tor_cc_exiled_nobility_1">
+		<SkillsToIncrease>
+			<string>Leadership</string>
+			<string>Steward</string>
+			<string>OneHanded</string>
+			<string>Riding</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<OptionText>{=tor_cc_option16_label_str}Exiled Nobility</OptionText>
+		<OptionFlavourText>{=tor_cc_option16_text_str}Ambition is the downfall of many and your family fell out of grace with their Elector, banished to Sylvania with a meagre fortune your family was forced to live amongst the peasant folk. </OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_vc_strigany_caravanners" Culture="khuzait" StageNumber="1" EquipmentSetId="tor_cc_strigany_caravanners_1">
+		<SkillsToIncrease>
+			<string>Trade</string>
+			<string>Scouting</string>
+			<string>Crafting</string>
+			<string>Charm</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+		<OptionText>{=tor_cc_option17_label_str}Strigany Caravanners</OptionText>
+		<OptionFlavourText>{=tor_cc_option17_text_str}You were born into a family of Strigany. Tolerated by some and accepted by none, your childhood was spent traveling from city to city along with the clan caravan.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_vc_graverobbers" Culture="khuzait" StageNumber="1" EquipmentSetId="tor_cc_graverobbers_1">
+		<SkillsToIncrease>
+			<string>Throwing</string>
+			<string>Athletics</string>
+			<string>Roguery</string>
+			<string>OneHanded</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Control</AttributeToIncrease>
+		<OptionText>{=tor_cc_option18_label_str}Graverobbers</OptionText>
+		<OptionFlavourText>{=tor_cc_option18_text_str}There are those within Sylvania who pay well for bodies, this was the trade your family chose. Stealing loved ones in the dead of night and taking them to the castles or keeps of nobility, never questioning why.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_vc_fisherfolk" Culture="khuzait" StageNumber="1" EquipmentSetId="tor_cc_fisherfolk_1">
+		<SkillsToIncrease>
+			<string>Scouting</string>
+			<string>Medicine</string>
+			<string>Athletics</string>
+			<string>Trade</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option19_label_str}Fisherfolk</OptionText>
+		<OptionFlavourText>{=tor_cc_option19_text_str}For generations your family have fished the rivers and fetid pools of the swamp to keep themselves fed, it was far from a spectacular life but it was honest work and your family was content. Even after the disappearance of your brother...</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_vc_orphan" Culture="khuzait" StageNumber="1" EquipmentSetId="tor_cc_orphan_1">
+		<SkillsToIncrease>
+			<string>Athletics</string>
+			<string>Throwing</string>
+			<string>Tactics</string>
+			<string>Roguery</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Cunning</AttributeToIncrease>
+		<OptionText>{=tor_cc_option20_label_str}Orphan</OptionText>
+		<OptionFlavourText>{=tor_cc_option20_text_str}You never knew of your family though many looked at you with fear and whispered in hushed tones, you could do little else but struggle to survive through scrounging and from scraps of others. Often having to hide from the creatures that lurk in the night.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<!-- VC stage 2 -->
+	<CharacterCreationOption Id="option_2_vc_noble_attendant" Culture="khuzait" StageNumber="2" EquipmentSetId="tor_cc_noble_attendant_2">
+		<SkillsToIncrease>
+			<string>Tactics</string>
+			<string>Charm</string>
+			<string>Riding</string>
+			<string>Steward</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+		<OptionText>{=tor_cc_option21_label_str}Noble Attendant </OptionText>
+		<OptionFlavourText>{=tor_cc_option21_text_str}Serving in the courts of a Von Carstein gave you insight into the lives of the everliving, the intricacies and politics of the nobility taught you many things. Your diligence kept you alive and comfortable. </OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_vc_necromancer_apprentice" Culture="khuzait" StageNumber="2" EquipmentSetId="tor_cc_necromancers_apprentice_2">
+		<SkillsToIncrease>
+			<string>Medicine</string>
+			<string>Spellcraft</string>
+			<string>Spellcraft</string>
+			<string>Roguery</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+		<OptionText>{=tor_cc_option22_label_str}Necromancer's apprentice </OptionText>
+		<OptionFlavourText>{=tor_cc_option22_text_str}Little could be said for your master's sanity, his days were dedicated to dissecting scrolls and performing dark rituals. Obsessed with becoming powerful yet unable to, he sought to use your abilities to bolster his own.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_vc_peat_farmer" Culture="khuzait" StageNumber="2" EquipmentSetId="tor_cc_peat_farmer_2">
+		<SkillsToIncrease>
+			<string>Crafting</string>
+			<string>Trade</string>
+			<string>Polearm</string>
+			<string>Athletics</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option23_label_str}Peat Farmer</OptionText>
+		<OptionFlavourText>{=tor_cc_option23_text_str}Digging up the fetid scum ridden soil of swamps is not easy living. It does let you and your village scrap a meager harvest out of what suitable farmland there is.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_vc_levied_militia" Culture="khuzait" StageNumber="2" EquipmentSetId="tor_cc_stableboy_2">
+		<SkillsToIncrease>
+			<string>Tactics</string>
+			<string>TwoHanded</string>
+			<string>Polearm</string>
+			<string>Bow</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<OptionText>{=tor_cc_option24_label_str}Levied Militia</OptionText>
+		<OptionFlavourText>{=tor_cc_option24_text_str}Levied into the armies of your master, you spent your adolescence on the battlefield. Fighting alongside undead horrors and necrotic abominations. You came out of it alive, somehow, and can live to tell the tale.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_vc_strigany_rake" Culture="khuzait" StageNumber="2" EquipmentSetId="tor_cc_strigany_rake_2">
+		<SkillsToIncrease>
+			<string>Scouting</string>
+			<string>Roguery</string>
+			<string>Charm</string>
+			<string>Trade</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+		<OptionText>{=tor_cc_option25_label_str}Strigany Rake</OptionText>
+		<OptionFlavourText>{=tor_cc_option25_text_str}Watching for easy marks and young maidens along the outskirts of the camps, you spent your time plying your trade by using your seductive and debonair attitude. </OptionFlavourText>
+	</CharacterCreationOption>
+
+	<!-- VC stage 3 -->
+	<CharacterCreationOption Id="option_3_vc_vampire" Culture="khuzait" StageNumber="3" EquipmentSetId="tor_cc_vampiric_nobility_3">
+		<SkillsToIncrease>
+            <string>Athletics</string>
+			<string>Athletics</string>
+		    <string>Athletics</string>
+			<string>OneHanded</string>
+			<string>Leadership</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<OptionText>{=tor_cc_option26_label_str}Vampiric Nobility</OptionText>
+		<PositiveEffectText>{=tor_cc_option26_effect_str}Vampire Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option26_text_str}At some point your lord recognised your qualities, lifting you out of poverty and revealing his true nature. After receiving the blood kiss you are reborn, immortal and more powerful.  -   Gains the the ability to learn spells and raise dead post-battle or in graveyards. Prompt to pick your bloodline will occur at game start.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_3_vc_necromancer" Culture="khuzait" StageNumber="3" EquipmentSetId="tor_cc_novice_necromancer_3">
+		<SkillsToIncrease>
+			<string>Medicine</string>
+			<string>Athletics</string>
+			<string>Spellcraft</string>
+			<string>Roguery</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Discipline</AttributeToIncrease>
+		<OptionText>{=tor_cc_option27_label_str}Novice Necromancer</OptionText>
+		<PositiveEffectText>{=tor_cc_option27_effect_str}Necromancer Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option27_text_str}An unexpected opportunity presented itself and you were able steal an ancient tome of lore, and this beset you on the path of Necromancy  -   Gains access to summon skeleton spell and the ability to raise dead post-battle or in graveyards.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_3_vc_night_watchman" Culture="khuzait" StageNumber="3" EquipmentSetId="tor_cc_night_watchman_3">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Polearm</string>
+		    <string>Bow</string>
+			<string>Tactics</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Control</AttributeToIncrease>
+		<OptionText>{=tor_cc_option28_label_str}Night Watchman</OptionText>
+		<PositiveEffectText>{=tor_cc_option28_effect_str}Mercenary Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option28_text_str}Mortals are often called upon to serve their undead masters. These professional soldiers are known to march into battle alongside the undead hordes of their masters. A more dour and superstitious folk you will never meet but they rarely break in the heat of battle. </OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_3_vc_strigany_donmu" Culture="khuzait" StageNumber="3" EquipmentSetId="tor_cc_strigany_donmu_3">
+		<SkillsToIncrease>
+			<string>Trade</string>
+			<string>Throwing</string>
+			<string>Charm</string>
+			<string>Scouting</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+		<OptionText>{=tor_cc_option29_label_str}Strigany Donmu</OptionText>
+		<PositiveEffectText>{=tor_cc_option29_effect_str}Mercenary Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option29_text_str}While not as influential as the matriarchs of their clan, the Donmu are important members of Strigany society. They maintain familial cohesion and are the face of the clan when dealing with outsiders. While not professional warriors, their long years of leading the caravans through the old world make them nothing to scoff at.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_3_vc_vagabond" Culture="khuzait" StageNumber="3" EquipmentSetId="tor_cc_vagabond_3">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Bow</string>
+			<string>Athletics</string>
+			<string>Trade</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Cunning</AttributeToIncrease>
+		<OptionText>{=tor_cc_option30_label_str}Vagabond</OptionText>
+		<PositiveEffectText>{=tor_cc_option30_effect_str}Mercenary Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option30_text_str}The roads of Sylvania are dark and dangerous, you prey on its few travellers and hoard what little riches you can take with your blade. Yet you are not the only monster lurking within the dark swamps and forests, at times there is nothing left of the travellers to thieve from.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<!-- Bretonnia stage 1 -->
+	<CharacterCreationOption Id="option_1_bretonnia_nobility" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_bretonnian_nobility_1">
+		<SkillsToIncrease>
+			<string>Steward</string>
+			<string>Polearm</string>
+			<string>Leadership</string>
+			<string>Riding</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<OptionText>{=tor_cc_option31_label_str}Bretonnian Nobility</OptionText>
+		<OptionFlavourText>{=tor_cc_option31_text_str}Your family can trace its various roots and relations nearly as far back as the time of Gilles. You were born into the nobility of Bretonnia; and everyone knows it by the way you dress, the way you talk and the way you order the peasants about.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_bretonnia_peasants" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_peasants_1">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Athletics</string>
+			<string>Bow</string>
+			<string>Crafting</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option32_label_str}Bretonnian Peasants</OptionText>
+		<OptionFlavourText>{=tor_cc_option32_text_str}For untold generations, your family has worked the land of your feudal lord. Your father gave up long ago at trying to understand your lord’s words and simply look to the Yeoman who always accompanies him for orders, which normally involves great physical labour.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_bretonnia_sailors" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_sailors_1">
+		<SkillsToIncrease>
+			<string>Polearm</string>
+			<string>Charm</string>
+			<string>Scouting</string>
+			<string>Bow</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<OptionText>{=tor_cc_option33_label_str}Bretonnian Sailors</OptionText>
+		<OptionFlavourText>{=tor_cc_option33_text_str}Your father was a sailor on a Bretonnian Buccaneer. When he returned to your fishing village, he spent as much time as he could with your mother, you and your siblings. He taught you as many skills as he could, such as knot tying, the use of a spyglass and how to navigate by the night sky.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_bretonnia_outlaws" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_outlaws_1">
+		<SkillsToIncrease>
+			<string>Bow</string>
+			<string>Roguery</string>
+			<string>Scouting</string>
+			<string>Athletics</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Cunning</AttributeToIncrease>
+		<OptionText>{=tor_cc_option34_label_str}Outlaws</OptionText>
+		<OptionFlavourText>{=tor_cc_option34_text_str}Somehow, your family broke one of the oath bonds to your lord and has since been branded as outlaws. Constantly on the run and living at the fringe of society, your family makes due with what they can poach from the forests.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_bretonnia_wine_merchants" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_bretonnian_merchants_1">
+		<SkillsToIncrease>
+			<string>Medicine</string>
+			<string>Trade</string>
+			<string>Steward</string>
+			<string>Charm</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+		<OptionText>{=tor_cc_option35_label_str}Wine Merchants</OptionText>
+		<OptionFlavourText>{=tor_cc_option35_text_str}Your family was a part of the very small number of wealthy peasants that exist in Bretonnia. They gained their wealth over the generations through the sale of the many Bretonnian vintages into the Empire, Estalia and Tilea. Recently, your lord granted an exemption to the Sumptuary laws, enabling you to wear boots that reach to your knees.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<!-- Bretonnia stage 2 -->
+	<CharacterCreationOption Id="option_2_bretonnia_courtier" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_courtier_2">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Polearm</string>
+			<string>Riding</string>
+			<string>Leadership</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+		<OptionText>{=tor_cc_option36_label_str}Bretonnian Courtier</OptionText>
+		<OptionFlavourText>{=tor_cc_option36_text_str}For years, you were groomed to be the best Bretonnian noble you could be. This included lessons in manners, horsemanship and chivalry.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_bretonnia_man_at_arms" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_men_at_arms_2">
+		<SkillsToIncrease>
+			<string>TwoHanded</string>
+			<string>Polearm</string>
+			<string>Athletics</string>
+			<string>Tactics</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<OptionText>{=tor_cc_option37_label_str}Man-at-Arms</OptionText>
+		<OptionFlavourText>{=tor_cc_option37_text_str}When you came of age, you entered the service of your lord. You were trained to hold the line and survive on the battlefield the best you can. You are still alive now, so you must have been pretty good at it.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_bretonnia_highwayman" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_highwayman_2">
+		<SkillsToIncrease>
+			<string>Bow</string>
+			<string>Roguery</string>
+			<string>Charm</string>
+			<string>Scouting</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Cunning</AttributeToIncrease>
+		<OptionText>{=tor_cc_option38_label_str}Wanted Criminal</OptionText>
+		<OptionFlavourText>{=tor_cc_option38_text_str}In your youthful rashness, you broke one of the many laws setting the boundaries of Bretonnian society. Without any other options, you were forced into the fringe of society, forever on the run from the authorities. You lived for a time only by your poaching and stealing, while eventually finding forgiveness for your crimes.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_bretonnia_apprentice_craftsmen" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_apprentice_craftsmen_2">
+		<SkillsToIncrease>
+			<string>Trade</string>
+			<string>Crafting</string>
+			<string>Trade</string>
+			<string>Steward</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+		<OptionText>{=tor_cc_option39_label_str}Apprentice Craftsman</OptionText>
+		<OptionFlavourText>{=tor_cc_option39_text_str}Your father was able to get you an apprenticeship with one of the local artisans. Over the course of five years your master taught you everything he could, leaving you with skills that would forever put you above the average peasant.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_bretonnia_shepherd" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_shephard_2">
+		<SkillsToIncrease>
+			<string>Polearm</string>
+			<string>Throwing</string>
+			<string>Crafting</string>
+			<string>Steward</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option40_label_str}Shepherd</OptionText>
+		<OptionFlavourText>{=tor_cc_option40_text_str}You became a shepherd, watching over the various livestock that your community relied upon for food and clothing. You and your fellows in essence served two roles, protecting the herds from wolves and other predators, while also watching at the outskirts of the village for signs of invaders.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<!--  Bretonnia stage 3 -->
+	<CharacterCreationOption Id="option_3_bretonnia_knight_errant" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_knight_errant_3">
+		<SkillsToIncrease>
+			<string>Polearm</string>
+			<string>Riding</string>
+			<string>Riding</string>
+			<string>Tactics</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option41_label_str}Knight Errant</OptionText>
+		<PositiveEffectText>{=tor_cc_option41_effect_str}Knight of Bretonnia Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option41_text_str}You have chosen to set out on the path of a knight of Bretonnia. The trail of dutiful chivalry is a hard one - many foes and battles await you. But, if you are worthy, at the end of your quest you will receive the greatest blessing known to men; a sip from the Grail of the Lady.</OptionFlavourText>
+	</CharacterCreationOption>
+	
+	<CharacterCreationOption Id="option_3_bretonnia_damsel" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_damsel_3">
+		<SkillsToIncrease>
+			<string>Spellcraft</string>
+			<string>Spellcraft</string>
+			<string>Faith</string>
+			<string>Charm</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Discipline</AttributeToIncrease>
+		<OptionText>{=tor_cc_option42_label_str}Damsel of the Lady</OptionText>
+		<PositiveEffectText>{=tor_cc_option42_effect_str}Damsel of the Lady Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option42_text_str}Earlier in your life, the Fay Enchantress visited your family and took you away. She saw within you a great potential and you joined her other students. After years of training she has deemed you ready to ride out, to serve the will of the Lady.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_3_bretonnia_yeoman_warden" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_yeoman_warden_3">
+		<SkillsToIncrease>
+			<string>Tactics</string>
+			<string>Leadership</string>
+			<string>OneHanded</string>
+			<string>Bow</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Control</AttributeToIncrease>
+		<OptionText>{=tor_cc_option43_label_str}Yeoman Warden</OptionText>
+		<PositiveEffectText>{=tor_cc_option43_effect_str}Mercenary Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option43_text_str}You proved your worth to your lord and he rewarded you with the title of Yeoman. As such, you were at times placed in command of other peasants or expected to act as an outrider while on campaign.</OptionFlavourText>
+	</CharacterCreationOption> 
+
+	<CharacterCreationOption Id="option_3_bretonnia_freeman" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_freemen_3">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Throwing</string>
+			<string>Crafting</string>
+			<string>Trade</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+		<OptionText>{=tor_cc_option44_label_str}Freeman</OptionText>
+		<PositiveEffectText>{=tor_cc_option44_effect_str}Mercenary Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option44_text_str}With licence of movement and a sense to improve yourself, you found yourself free of a direct lord and able to make something of yourself. With some skill in craft or luck in trade, you may yet make yourself a peasant worthy of sumptuary exemptions.</OptionFlavourText>
+	</CharacterCreationOption> 
+
+	<CharacterCreationOption Id="option_3_bretonnia_wall_warden" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_wall_warden_3">
+		<SkillsToIncrease>
+			<string>Engineering</string>
+			<string>Crossbow</string>
+			<string>Crossbow</string>
+			<string>Athletics</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+		<OptionText>{=tor_cc_option45_label_str}Wall Warden</OptionText>
+		<PositiveEffectText>{=tor_cc_option45_effect_str}Mercenary Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option45_text_str}You were the apprentice of a Wall Warden for some time. You helped him evaluate damage and maintain the castle of your lord. When your master was killed during an assault on the castle walls, you became the Wall Warden. After a small mistake however, your lord has released you from your bond to find someone with more expertise.</OptionFlavourText>
+	</CharacterCreationOption> 
+	
+	<!-- Mousillon stage 1 -->
+	<CharacterCreationOption Id="option_1_mousillon_nobility" Culture="mousillon" StageNumber="1" EquipmentSetId="tor_cc_mousillon_nobility_1">
+		<SkillsToIncrease>
+			<string>Steward</string>
+			<string>Leadership</string>
+			<string>Riding</string>
+			<string>Polearm</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+		<OptionText>{=tor_cc_option46_label_str}Mousillan Nobility</OptionText>
+		<OptionFlavourText>{=tor_cc_option46_text_str}You parents were of the ‘Nobility’ in Mousillon, if they can be called that. Nobles here are mostly made up of outlawed Bretonnian nobles, exiles and rogues from other nations, vampires, mummies and other varied monstrosities. While certainly at the top of Mousillan society, outside of the blighted land they are looked down upon the same as anyone else from here. </OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_mousillon_yeoman" Culture="mousillon" StageNumber="1" EquipmentSetId="tor_cc_mousillon_yeoman_1">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Athletics</string>
+			<string>Bow</string>
+			<string>Roguery</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Control</AttributeToIncrease>
+		<OptionText>{=tor_cc_option47_label_str}Mousillan Yeoman</OptionText>
+		<OptionFlavourText>{=tor_cc_option47_text_str}Your father was a Yeoman for one of the lords in the cursed dukedom. His position was one of the few that ensured your family dry lodgings and decent food, most of the time. When he was not on campaign he would do his best to teach you some fighting skills.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_mousillon_bog_smuggler" Culture="mousillon" StageNumber="1" EquipmentSetId="tor_cc_bog_smuggler_1">
+		<SkillsToIncrease>
+			<string>Trade</string>
+			<string>Roguery</string>
+			<string>Charm</string>
+			<string>TwoHanded</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+		<OptionText>{=tor_cc_option48_label_str}Bog Smuggler</OptionText>
+		<OptionFlavourText>{=tor_cc_option48_text_str}Trade in and out of Mousillon is nearly impossible due to the Cordon Sanitaire. Despite this, your family became skilled at smuggling goods past the gates and their guards. While not wealthy by most standards, for Mousillon you certainly were born with a silver spoon.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_mousillon_peat_farmer" Culture="mousillon" StageNumber="1" EquipmentSetId="tor_cc_peat_farmer_1">
+		<SkillsToIncrease>
+			<string>Steward</string>
+			<string>Throwing</string>
+			<string>Engineering</string>
+			<string>OneHanded</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option49_label_str}Peat Farmer and his Frogwife</OptionText>
+		<OptionFlavourText>{=tor_cc_option49_text_str}Somehow, your family broke one of the oath bonds to your lord and has since been branded as outlaws. Constantly on the run and living at the fringe of society, your family makes due with what they can poach from the forests.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_mousillon_outlaws" Culture="mousillon" StageNumber="1" EquipmentSetId="tor_cc_outlaws_1">
+		<SkillsToIncrease>
+			<string>Roguery</string>
+			<string>Throwing</string>
+			<string>Bow</string>
+			<string>Scouting</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Cunning</AttributeToIncrease>
+		<OptionText>{=tor_cc_option50_label_str}Outlaws</OptionText>
+		<OptionFlavourText>{=tor_cc_option50_text_str}One of the most common professions of Mousillon, your family was a rough bunch, who used their strength and wits to take advantage of the many weak and foolish people you found yourself living amongst. </OptionFlavourText>
+	</CharacterCreationOption>
+
+	<!-- Mousillon stage 2 -->
+	<CharacterCreationOption Id="option_2_mousillon_courtier" Culture="mousillon" StageNumber="2" EquipmentSetId="tor_cc_mousillon_courtier_2">
+		<SkillsToIncrease>
+			<string>Riding</string>
+			<string>Steward</string>
+			<string>Charm</string>
+			<string>Leadership</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+		<OptionText>{=tor_cc_option51_label_str}Mousillan Courtier</OptionText>
+		<OptionFlavourText>{=tor_cc_option51_text_str}For years, you were groomed to be the best Mousillan noble you could be. This included lessons in manners, horsemanship and chivalry.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_mousillon_student_witchcraft" Culture="mousillon" StageNumber="2" EquipmentSetId="tor_cc_student_of_witchcraft_2">
+		<SkillsToIncrease>
+			<string>Spellcraft</string>
+			<string>Medicine</string>
+			<string>Roguery</string>
+			<string>Crafting</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Discipline</AttributeToIncrease>
+		<OptionText>{=tor_cc_option52_label_str}Student of Witchcraft</OptionText>
+		<OptionFlavourText>{=tor_cc_option52_text_str}Witchcraft and Magic is rife in Mousillon. You became a student of one of these practitioners and worked on brews and potions until you were trusted to learn more arcane knowledge.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_mousillon_man_at_arms" Culture="mousillon" StageNumber="2" EquipmentSetId="tor_cc_man_at_arms_2">
+		<SkillsToIncrease>
+			<string>Polearm</string>
+			<string>Throwing</string>
+			<string>Crafting</string>
+			<string>Steward</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option53_label_str}Mousillan Man-at-Arms</OptionText>
+		<OptionFlavourText>{=tor_cc_option53_text_str}When you came of age, you entered the service of your lord. You were trained to hold the line and survive on the battlefield the best you can. You are still alive now, so you must have been pretty good at it. </OptionFlavourText>
+	</CharacterCreationOption>
+
+
+	<CharacterCreationOption Id="option_2_mousillon_swampaire" Culture="mousillon" StageNumber="2" EquipmentSetId="tor_cc_swampaire_2">
+		<SkillsToIncrease>
+			<string>Polearm</string>
+			<string>Throwing</string>
+			<string>Scouting</string>
+			<string>Athletics</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option54_label_str}Swampaire</OptionText>
+		<OptionFlavourText>{=tor_cc_option54_text_str}You spent your time hunting frogs and snails in the swamps and bogs to support your family. It is a tricky task that requires some skill and quickness to your fingers but snails and frogs are one of the few resources that your land is rich in.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_mousillon_brigand" Culture="mousillon" StageNumber="2" EquipmentSetId="tor_cc_brigand_2">
+		<SkillsToIncrease>
+			<string>Bow</string>
+			<string>Tactics</string>
+			<string>Roguery</string>
+			<string>OneHanded</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Cunning</AttributeToIncrease>
+		<OptionText>{=tor_cc_option55_label_str}Brigand </OptionText>
+		<OptionFlavourText>{=tor_cc_option55_text_str}Waiting along the high roads and near ferries, you made a living ambushing passersby and demanding their possessions. It is not an easy life, but you’d rather lead your own life than those of your victims</OptionFlavourText>
+	</CharacterCreationOption>
+
+
+	<!--  Mousillon stage 3 -->
+	<CharacterCreationOption Id="option_3_mousillon_knight_errant" Culture="mousillon" StageNumber="3" EquipmentSetId="tor_cc_knight_errant_3">
+		<SkillsToIncrease>
+			<string>Polearm</string>
+			<string>Riding</string>
+			<string>Riding</string>
+			<string>Tactics</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<OptionText>{=tor_cc_option56_label_str}Mousillan Errant Knight</OptionText>
+		<PositiveEffectText>{=tor_cc_option56_effect_str}Knight of Mousillon Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option56_text_str} Nothing says that a man of Mousillon cannot walk the path of a Bretonnian Knight. Where that path leads is as always reliant on the will and purity of the individual who walks it.</OptionFlavourText>
+	</CharacterCreationOption>
+	
+	<CharacterCreationOption Id="option_3_mousillon_vampire" Culture="mousillon" StageNumber="3" EquipmentSetId="tor_cc_vampire_of_mousillon_3">
+		<SkillsToIncrease>
+			<string>Athletics</string>
+			<string>Athletics</string>
+			<string>Athletics</string>
+			<string>OneHanded</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<OptionText>{=tor_cc_option57_label_str}Vampire of Mousillon</OptionText>
+		<PositiveEffectText>{=tor_cc_option57_effect_str}Vampire Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option57_text_str}The swamps prevent the land of chivalry from exerting their control over the cursed dukedom, as a result many nerdowells find a kind of sanctuary in Mousillon, even the lords of the night.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_3_mousillon_necromancer" Culture="mousillon" StageNumber="3" EquipmentSetId="tor_cc_necromancer_3">
+		<SkillsToIncrease>
+			<string>Polearm</string>
+			<string>Medicine</string>
+			<string>Spellcraft</string>
+			<string>Spellcraft</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+		<OptionText>{=tor_cc_option58_label_str}Necromancer</OptionText>
+		<PositiveEffectText>{=tor_cc_option58_effect_str}Necromancer Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option58_text_str}Witches and Warlocks, Hedgefolk and Daemonologists, Wisewomen and Strigany; In a nearly lawless and accursed land such as Mousillon, what's one more who defies the will of Morr?</OptionFlavourText>
+	</CharacterCreationOption> 
+
+	<CharacterCreationOption Id="option_3_mousillon_cordon_runner" Culture="mousillon" StageNumber="3" EquipmentSetId="tor_cc_cordon_runner_3">
+		<SkillsToIncrease>
+			<string>Athletics</string>
+			<string>Roguery</string>
+			<string>Charm</string>
+			<string>Trade</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+		<OptionText>{=tor_cc_option59_label_str}Cordon Runner</OptionText>
+		<PositiveEffectText>{=tor_cc_option59_effect_str}Mercenary Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option59_text_str}Things arrive in Mousillon that would be confiscated in any other port of the Oldworld. Wyrdstone, strange drugs, slaves, stolen goods, pirated ships and much much more and far darker. Someone has to take these items to their arranged buyers, who are almost always located outside of Mousillon. That means, you need someone who can get these items past the Cordon Sanitaire</OptionFlavourText>
+	</CharacterCreationOption> 
+
+	<CharacterCreationOption Id="option_3_mousillon_bog_pirate" Culture="mousillon" StageNumber="3" EquipmentSetId="tor_cc_bog_pirate_3">
+		<SkillsToIncrease>
+			<string>Engineering</string>
+			<string>Crossbow</string>
+			<string>Crossbow</string>
+			<string>Athletics</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+		<OptionText>{=tor_cc_option60_label_str}Bog Pirate</OptionText>
+		<PositiveEffectText>{=tor_cc_option60_effect_str}Mercenary Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option60_text_str}The Foggy river heads and boggy bays of Mousillon make great hideouts for those of a less than legitimate profession. Bretonnian vessels are some of the best in the world, and are often laden with fabulous and valuable goods. That these vessels often have to ply the waters of the coast of Mousillon creates many opportunities for those willing to ‘seize’ them.</OptionFlavourText>
+	</CharacterCreationOption> 
+	
+		<!-- Asrai stage 1 -->
+	<CharacterCreationOption Id="option_1_we_daith" Culture="battania" StageNumber="1" EquipmentSetId="tor_cc_daith_apprentise_1">
+		<SkillsToIncrease>
+			<string>Trade</string>
+			<string>Crafting</string>
+			<string>Bow</string>
+			<string>OneHanded</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_1_daith_label_str}Student of Daith</OptionText>
+		<OptionFlavourText>{=tor_cc_option_1_daith_text_str}You were taken under the wing of Daith, the master smith of the Asrai. Under his tutelage, you learned the secrets of forging enchanted weapons and armor. Your skills in crafting are matched only by your prowess in battle, making you a formidable warrior and a skilled artisan. </OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_we_forest" Culture="battania" StageNumber="1" EquipmentSetId="tor_cc_forest_survivor_1">
+		<SkillsToIncrease>
+			<string>Spellcraft</string>
+			<string>Scouting</string>
+			<string>Medicine</string>
+			<string>Riding</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Discipline</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_1_we_forest_label_str}Survivor of the Forest</OptionText>
+		<OptionFlavourText>{=tor_cc_option_1_we_forest_text_str}You were raised by the forest. It took decades, until you got in touch with other Asrai. While you only slowly adapted to the Asrai society, you learned to speak to the forest itself.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_we_mountain" Culture="battania" StageNumber="1" EquipmentSetId="tor_cc_mountain_veteran_1">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Bow</string>
+			<string>Tactics</string>
+			<string>TwoHanded</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_1_we_mountain_label_str}Veteran of Mountain Conflicts</OptionText>
+		<OptionFlavourText>{=tor_cc_option_1_we_mountain_text_str}You have faced the hardy Dwarfs in numerous skirmishes in the Grey Mountains surrounding Athel Loren. Your experiences in these rugged battles have honed your skills and resilience, making you a more endurant warrior of the forest than most.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_we_noble" Culture="battania" StageNumber="1" EquipmentSetId="tor_cc_we_noble_1">
+		<SkillsToIncrease>
+			<string>Charm</string>
+			<string>Polearm</string>
+			<string>Bow</string>
+			<string>OneHanded</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_1_we_noble_label_str}Minor Noble of Athel Loren</OptionText>
+		<OptionFlavourText>{=tor_cc_option_1_we_noble_text_str}Born into a minor noble family of Athel Loren's halls, you were raised with the finest education and training under the Green Way. Your noble lineage afforded you the best tutors in both combat and diplomacy.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_we_guardian_anmyr" Culture="battania" StageNumber="1" EquipmentSetId="tor_cc_we_guardian_anmyr_1">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>TwoHanded</string>
+			<string>Bow</string>
+			<string>Leadership</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Cunning</AttributeToIncrease>
+		<OptionText>{=tor_option_1_we_guardian_anmyr_label_str}Guardian of Anmyr</OptionText>
+		<OptionFlavourText>{=tor_option_1_we_guardian_anmyr_text_str} Anmyr, the Witherhold, is a blighted and festering realm, tainted by Morghur’s foul blood. As a result, Beastmen raiding parties flock to Anmyr like a moth to a flame. You are one of the Asrai that always responded to Anmyr’s call to arms with zeal and a strong sense of duty. Witherhold will not fall to vile beasts! </OptionFlavourText>
+	</CharacterCreationOption>
+
+	<!-- Asrai stage 2 -->
+	<CharacterCreationOption Id="option_2_we_kurnous" Culture="battania" StageNumber="2" EquipmentSetId="tor_cc_kurnous_2">
+		<SkillsToIncrease>
+			<string>Bow</string>
+			<string>Bow</string>
+			<string>Scouting</string>
+			<string>Riding</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Control</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_2_we_kurnous_label_str}Kurnous, the Hunter</OptionText>
+		<PositiveEffectText>{=tor_cc_option_2_we_kurnous_effect_str}Unlocks Kithband Symbol</PositiveEffectText>
+		<OptionFlavourText>{=tor_option_2_we_kurnous_text_str}The god of the hunt and wild realms in the Elven Pantheon. All Elves revere him but Kurnous is dearest to the Wood Elves, who consider the god of the hunt the father of their race and believe their way of life is the most aligned with the ways of Kurnous.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_we_isha" Culture="battania" StageNumber="2" EquipmentSetId="tor_cc_isha_2">
+		<SkillsToIncrease>
+			<string>Spellcraft</string>
+			<string>Faith</string>
+			<string>Faith</string>
+			<string>Charm</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Discipline</AttributeToIncrease>
+		<PositiveEffectText>{=tor_cc_option_2_we_isha_effect_str}Unlocks Treekin Symbol</PositiveEffectText>
+		<OptionText>{=tor_cc_option_2_we_isha_label_str}Isha, the Mother</OptionText>
+		<OptionFlavourText>{=tor_cc_option_2_we_isha_text_str}The Elven goddess of nature, fertility, bountiful harvest, and the protector of the all things natural. Wood Elves firmly believe the Asrai Mage-Queen Ariel is a living avatar of Isha, bringing her will into the realm of mortals.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_we_loec" Culture="battania" StageNumber="2" EquipmentSetId="tor_cc_loec_2">
+		<SkillsToIncrease>
+			<string>Polearm</string>
+			<string>Athletics</string>
+			<string>Athletics</string>
+			<string>Faith</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<PositiveEffectText>{=tor_cc_option_2_we_loec_effect_str}Unlocks Wardancer Symbol</PositiveEffectText>
+		<OptionText>{=tor_cc_option_2_we_loec_label_str}Loec, the Shadow Dancer</OptionText>
+		<OptionFlavourText>{=tor_cc_option_2_we_loec_text_str}The god of trickery, laughter, and music, as well as a patron to Asrai Wardancers. Loec is a mysterious deity, as his servants guard the secrets of his rituals. The Trickster-God’s followers are famous for performing intricate dances that retell the history of Athel Loren. Loec also holds a darker side as the god of shadows, stealth, and vengeance. </OptionFlavourText>
+	</CharacterCreationOption>
+
+
+	<CharacterCreationOption Id="option_2_we_vaul" Culture="battania" StageNumber="2" EquipmentSetId="tor_cc_vaul_2">
+		<SkillsToIncrease>
+			<string>Crafting</string>
+			<string>Crafting</string>
+			<string>Trade</string>
+			<string>Athletics</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_2_we_vaul_label_str}Vaul, the Maker</OptionText>
+		<PositiveEffectText>{=tor_cc_option_2_we_vaul_effect_str}Unlocks Kithband Symbol</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option_2_we_vaul_text_str}The Elven god of smiths, artisans, and craftsmen. Vaul was injured by Khaine during the ancient wars of the gods, which left him crippled and blind. But that doesn’t stop the tenacious Smith-God, for still he labours day and night to the benefit of his kin. Some of the mightiest artifacts ever wielded came from Vaul’s forge, including the dreaded Widowmaker – the Sword of Khaine.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_we_khaine" Culture="battania" StageNumber="2" EquipmentSetId="tor_cc_khaine_2">
+		<SkillsToIncrease>
+			<string>TwoHanded</string>
+			<string>Polearm</string>
+			<string>Leadership</string>
+			<string>Roguery</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Cunning</AttributeToIncrease>
+		<PositiveEffectText>{=tor_cc_option_2_we_anath_raema_effect_str}Unlocks Kithband Symbol</PositiveEffectText>
+		<OptionText>{=tor_cc_option_2_we_anath_raema_label_str}Anath Raema, the Goddess of the Savage Hunt</OptionText>
+		<OptionFlavourText>{=tor_cc_option_2_we_anath_raema_text_str}Anath Raema, sister to Khaine, is the dark mirror to Kurnous, a savage predator who's only interest is in spilling the blood of lesser creatures. Though she is publicly spurned in Loren some realms seek her patronage, and more Asrai than most would suspect dedicate at least a few of their kills to the Savage Huntress - All Anath Raema seeks from her followers is the death of prey, from dragons to rats, all of it pleases her.</OptionFlavourText>
+	</CharacterCreationOption>
+
+
+	<!--  Asrai stage 3 -->
+	<CharacterCreationOption Id="option_3_we_wardancer" Culture="battania" StageNumber="3" EquipmentSetId="tor_cc_we_wardancer_3">
+		<SkillsToIncrease>
+			<string>Polearm</string>
+			<string>OneHanded</string>
+			<string>Athletics</string>
+			<string>Faith</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_3_we_wardancer_label_str}Path of the Wardancer</OptionText>
+		<PositiveEffectText>{=tor_cc_option_3_we_wardancer_effect_str}Glade Lord Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option_3_we_wardancer_text_str}You are a warrior, dancing on the path of Loec. As a Wardancer, your agility and grace in combat are unparalleled. You move with fluid precision, turning battle into a deadly dance.</OptionFlavourText>
+	</CharacterCreationOption>
+	
+	<CharacterCreationOption Id="option_3_we_waywatcher" Culture="battania" StageNumber="3" EquipmentSetId="tor_cc_we_waywatcher_3">
+		<SkillsToIncrease>
+			<string>Bow</string>
+			<string>Scouting</string>
+			<string>Roguery</string>
+			<string>Tactics</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Control</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_3_we_waywatcher_label_str}Path of the Waywatcher</OptionText>
+		<PositiveEffectText>{=tor_cc_option_3_we_waywatcher_effect_str}Waywatcher Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option_3_we_waywatcher_text_str}You are a seasoned scout, protecting and watching out for the security of the forest. You become one with your bow with unmatched prowess.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_3_we_spellsinger" Culture="battania" StageNumber="3" EquipmentSetId="tor_cc_we_spellsinger_3">
+		<SkillsToIncrease>
+			<string>Spellcraft</string>
+			<string>Riding</string>
+			<string>Medicine</string>
+			<string>Leadership</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Discipline</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_3_we_spellsinger_label_str}Path of the Spellsinger</OptionText>
+		<PositiveEffectText>{=tor_cc_option_3_we_spellsinger_effect_str}Spellsinger Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option_3_we_spellsinger_text_str}You are a spellsinger, who will study the high or dark magic. You will understand the nature of this magical wood and will protect it like the mage queen herself.</OptionFlavourText>
+	</CharacterCreationOption> 
+
+	<CharacterCreationOption Id="option_3_we_gladerider" Culture="battania" StageNumber="3" EquipmentSetId="tor_cc_we_gladerider_3">
+		<SkillsToIncrease>
+			<string>Bow</string>
+			<string>Polearm</string>
+			<string>Riding</string>
+			<string>Riding</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_3_we_gladerider_label_str}Path of the Glade Rider</OptionText>
+		<PositiveEffectText>{=tor_cc_option_3_we_gladerider_effect_str}Glade Lord Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option_3_we_gladerider_text_str}Asrai live with their mounts in harmony like no other. You decided in your early years to become one with your horse.</OptionFlavourText>
+	</CharacterCreationOption> 
+
+	<CharacterCreationOption Id="option_3_we_warden" Culture="battania" StageNumber="3" EquipmentSetId="tor_cc_we_warden_3">
+		<SkillsToIncrease>
+			<string>Polearm</string>
+			<string>TwoHanded</string>
+			<string>Scouting</string>
+			<string>OneHanded</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_3_we_warden_label_str}Path of the Warden</OptionText>
+		<PositiveEffectText>{=tor_cc_option_3_we_warden_effect_str}Glade Lord Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option_3_we_warden_3_text_str}Athel Loren needs protection, even from within. As a Warden, you swear to protect the woods from any threat.</OptionFlavourText>
+	</CharacterCreationOption> 
+	
+	<!-- Eonir stage 1 -->
+	<CharacterCreationOption Id="option_1_eo_toriour" Culture="eonir" StageNumber="1" EquipmentSetId="tor_cc_eo_toriour_1">
+		<SkillsToIncrease>
+			<string>Steward</string>
+			<string>Crafting</string>
+			<string>Bow</string>
+			<string>OneHanded</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_1_eo_toriour_label_str}Descendant of Toriour</OptionText>
+		<OptionFlavourText>{=tor_cc_option_1_eo_toriour_text_str}As a city-born, you lived most of the time in Tor Lithanel, where you learned the traditions and craftsmen-ship preserved long before the separation of your kin.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_eo_faniour" Culture="eonir" StageNumber="1" EquipmentSetId="tor_cc_eo_faniour_1">
+		<SkillsToIncrease>
+			<string>Riding</string>
+			<string>Polearm</string>
+			<string>Bow</string>
+			<string>OneHanded</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_1_eo_faniour_label_str}Descendant of Faniour</OptionText>
+		<OptionFlavourText>{=tor_cc_option_1_eo_faniour_text_str}Your family survived the war of the beards, and escaped to the forest of Laurelorn as the last bastion of the surviving Asur in the old World. As Forestborn you spend most of your young ages in the wards of the Laurelorn forest.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_eo_harioth" Culture="eonir" StageNumber="1" EquipmentSetId="tor_cc_eo_harioth_1">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Bow</string>
+			<string>Athletics</string>
+			<string>TwoHanded</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_1_eo_harioth_label_str}Descendant of Harioth</OptionText>
+		<OptionFlavourText>{=tor_cc_option_1_eo_harioth_text_str}Your Family entered the Laurelorn forest in the last millennia, long after the separation of the Eonir. You as a second generation barely survived the rite for your acceptance. You spend most of your young ages close the border of the Eonir territory, in caves and improvised shelters..</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_eo_diplomat" Culture="eonir" StageNumber="1" EquipmentSetId="tor_cc_eo_diplomat_1">
+		<SkillsToIncrease>
+			<string>Charm</string>
+			<string>Leadership</string>
+			<string>Steward</string>
+			<string>Tactics</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_1_eo_diplomat_label_str}Descendant of Asur Diplomats</OptionText>
+		<OptionFlavourText>{=tor_cc_option_1_eo_diplomat_text_str}You originate from a family that till to this day has a high renown in Ulthuan as well as among the Eonir. Diplomats from the far Asur continent as well as todays council, often listen carefully when they hear your name.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_eo_druchii_foundling" Culture="eonir" StageNumber="1" EquipmentSetId="tor_cc_eo_druchii_foundling_1">
+		<SkillsToIncrease>
+			<string>Roguery</string>
+			<string>OneHanded</string>
+			<string>Medicine</string>
+			<string>Crossbow</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Cunning</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_1_eo_druchii_foundling_label_str}Druchii Foundling</OptionText>
+		<OptionFlavourText>{=tor_option_1_eo_druchii_foundling_text_str} coast patrols of the Asur attacked a Slavership of the Druchii, while the whole crew died, they found a surviving druchii child. Not knowing what they should do with you, you were brought to the Eonir as an orphan. - As part of this trade, nobody knows where you are from, yet you are well aware what happened.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<!-- Eonir stage 2 -->
+	<CharacterCreationOption Id="option_2_eo_council_guard" Culture="eonir" StageNumber="2" EquipmentSetId="tor_cc_eo_council_guard_2">
+		<SkillsToIncrease>
+			<string>Polearm</string>
+			<string>Athletics</string>
+			<string>OneHanded</string>
+			<string>Leadership</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_2_eo_council_guard_label_str}Council Guard</OptionText>
+		<OptionFlavourText>{=tor_option_2_eo_council_guard_text_str}You were involved in matters of security of the Council. Over the years you made a name for yourself as a Captain.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_eo_trader_empire" Culture="eonir" StageNumber="2" EquipmentSetId="tor_cc_eo_trader_empire_2">
+		<SkillsToIncrease>
+			<string>Trade</string>
+			<string>Charm</string>
+			<string>Crafting</string>
+			<string>Steward</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_2_eo_trader_empire_label_str}Trader in imperial Towns</OptionText>
+		<OptionFlavourText>{=tor_cc_option_2_eo_trader_empire_text_str}As a traveling trader, you know probably more humans than your own kin. You nevertheless learned how to make a name for yourself and for this you are respected by both men and elves. </OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_eo_witch_king_envoy" Culture="eonir" StageNumber="2" EquipmentSetId="tor_cc_eo_witch_king_envoy_2">
+		<SkillsToIncrease>
+			<string>Roguery</string>
+			<string>Roguery</string>
+			<string>Charm</string>
+			<string>Crossbow</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Cunning</AttributeToIncrease>
+		<OptionText>{=tor_option_2_eo_witch_king_envoy_str}Envoy to the Witch-King</OptionText>
+		<OptionFlavourText>{=tor_cc_option_2_eo_witch_king_envoy_text_str}The Court often send you on Missions in the far Naggaroth or their roaming Black Arks. Your regular visits gave you some insights into the daily businesses of the druchi </OptionFlavourText>
+	</CharacterCreationOption>
+
+
+	<CharacterCreationOption Id="option_2_eo_senate_member" Culture="eonir" StageNumber="2" EquipmentSetId="tor_cc_eo_senat_member_2">
+		<SkillsToIncrease>
+			<string>Steward</string>
+			<string>Tactics</string>
+			<string>Leadership</string>
+			<string>Charm</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_2_eo_senat_member_label_str}Member of the Senate</OptionText>
+		<OptionFlavourText>{=tor_cc_option_2_eo_senat_member_text_str}Your competence as a warrior brought you a seat into the Senate, where you learned the ways of diplomacy and how to enforce your policies through the eloquent arguments and manner of speech. </OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_eo_protector_wards" Culture="eonir" StageNumber="2" EquipmentSetId="tor_cc_eo_protector_wards_2">
+		<SkillsToIncrease>
+			<string>Bow</string>
+			<string>Polearm</string>
+			<string>Riding</string>
+			<string>Scouting</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Control</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_2_eo_protector_wards_label_str}Protector of the Wards</OptionText>
+		<OptionFlavourText>{=tor_cc_option_2_eo_protector_wards_text_str}You spend most of your time in the Woods, defending the Wards against the everlasting threats of the Eonir.</OptionFlavourText>
+	</CharacterCreationOption>
+
+
+	<!--  eonir stage 3 -->
+	<CharacterCreationOption Id="option_3_eo_envoy" Culture="eonir" StageNumber="3" EquipmentSetId="tor_cc_eo_envoy_3">
+		<SkillsToIncrease>
+			<string>Charm</string>
+			<string>Tactics</string>
+			<string>Medicine</string>
+			<string>Steward</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+		<PositiveEffectText>{=tor_cc_option_3_eo_envoy_effect_str}Mercenary Career</PositiveEffectText>
+		<OptionText>{=tor_cc_option_3_eo_envoy_label_str}Eonir Envoy</OptionText>
+		<OptionFlavourText>{=tor_cc_option_3_eo_envoy_text_str}As Envoy you are serving the Eonir outside the woods, handling trade and relations with foreign kingdoms and elector states.</OptionFlavourText>
+	</CharacterCreationOption>
+	
+	<CharacterCreationOption Id="option_3_eo_ghost_strider" Culture="eonir" StageNumber="3" EquipmentSetId="tor_cc_eo_ghost_strider_3">
+		<SkillsToIncrease>
+			<string>Bow</string>
+			<string>Scouting</string>
+			<string>Roguery</string>
+			<string>Tactics</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Control</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_3_eo_ghost_strider_label_str}Ghost Strider</OptionText>
+		<PositiveEffectText>{=tor_cc_option_3_eo_ghost_strider_effect_str}Waywatcher Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option_3_eo_ghost_strider_text_str}The silent hunters of the forest are feared by anybody who is a foe of the woods. You decided to go the path of such a deadly warrior. You decided to become a Ghost Strider.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_3_eo_kithband_warrior" Culture="eonir" StageNumber="3" EquipmentSetId="tor_cc_eo_kithband_warrior_3">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>TwoHanded</string>
+			<string>Bow</string>
+			<string>Polearm</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_3_eo_kithband_warrior_label_str}Kithband Warrior</OptionText>
+		<PositiveEffectText>{=tor_cc_option_3_eo_kithband_warrior_effect_str}Mercenary Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option_3_eo_kithband_warrior_text_str}You fight alongside your kin, for the protection for the forest, no matter what it costs. While Kithband warriors lack a certain elegance, compared to other elves, the inventiveness and their practicality make them excellent warriors of the forest.</OptionFlavourText>
+	</CharacterCreationOption> 
+
+	<CharacterCreationOption Id="option_3_eo_greylord_apprentice" Culture="eonir" StageNumber="3" EquipmentSetId="tor_cc_eo_greylord_apprentice_3">
+		<SkillsToIncrease>
+			<string>Spellcraft</string>
+			<string>Spellcraft</string>
+			<string>Spellcraft</string>
+			<string>Spellcraft</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Discipline</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_3_eo_greylord_apprentice_label_str}Greylord Apprentice</OptionText>
+		<PositiveEffectText>{=tor_cc_option_3_eo_greylord_apprentice_effect_str}Greylord Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option_3_eo_greylord_apprentice_text_str}You decided to join the teachings of one of the Exiled Magic lords of Ulthuan, while they know everything of the this world, and beyond, the magicians follow a high interest in the control of dragons, no matter the cost. </OptionFlavourText>
+	</CharacterCreationOption> 
+
+	<CharacterCreationOption Id="option_3_eo_eonir_expatriate" Culture="eonir" StageNumber="3" EquipmentSetId="tor_cc_eo_eonir_expatriate_3">
+		<SkillsToIncrease>
+			<string>Trade</string>
+			<string>Bow</string>
+			<string>Charm</string>
+			<string>OneHanded</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<PositiveEffectText>{=tor_cc_option_3_eo_eonir_expatriate_effect_str}Mercenary Career</PositiveEffectText>
+		<OptionText>{=tor_cc_option_3_eo_eonir_expatriate_label_str}Eonir Expatriate</OptionText>
+		<OptionFlavourText>{=tor_cc_option_3_eo_eonir_expatriate_text_str}You think the cause of the Eonir is lost. Instead, you call the provinces of the humans your home. As a mercenary or trader, you are making a living for yourself.</OptionFlavourText>
+	</CharacterCreationOption> 
+	
+	<!-- Dwarves stage 1 -->
+	<CharacterCreationOption Id="option_1_dw_miners" Culture="sturgia" StageNumber="1" EquipmentSetId="tor_cc_dw_miners_1">
+		<SkillsToIncrease>
+			<string>TwoHanded</string>
+			<string>Crafting</string>
+			<string>Athletics</string>
+			<string>Scouting</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_1_dw_miners_label_str}Meticulous Miners and Gem Cutters</OptionText>
+		<OptionFlavourText>{=tor_cc_option_1_dw_miners_text_str}Many dwarfs spend their early lives in the mines, and your clan is no different, although many pursue a different career afterwards. Your clan has always had a close connection with the earth, whether it’s digging up gems or cutting them.</OptionFlavourText>
+	</CharacterCreationOption>
+	
+	<CharacterCreationOption Id="option_1_dw_brewers" Culture="sturgia" StageNumber="1" EquipmentSetId="tor_cc_dw_brewers_1">
+		<SkillsToIncrease>
+			<string>Medicine</string>
+			<string>Steward</string>
+			<string>Athletics</string>
+			<string>Trade</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_1_dw_brewers_label_str}Remarkable Brewers and Farmers</OptionText>
+		<OptionFlavourText>{=tor_cc_option_1_dw_brewers_text_str}Your clan is responsible for keeping your kin fed and inebriated. While not as skilled as Josef Bugman your clan’s brewers are treated with an air of reverence. While the farmers get no such treatment, they know the hold depends on them almost as much as the brewers. There are many goat herders and stonebread bakers that carry your clan’s name.</OptionFlavourText>
+	</CharacterCreationOption>
+	
+	<CharacterCreationOption Id="option_1_dw_engineers" Culture="sturgia" StageNumber="1" EquipmentSetId="tor_cc_dw_engineers_1">
+		<SkillsToIncrease>
+			<string>Engineering</string>
+			<string>Crafting</string>
+			<string>Athletics</string>
+			<string>OneHanded</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_1_dw_engineers_label_str}Brilliant Engineers and Builders</OptionText>
+		<OptionFlavourText>{=tor_cc_option_1_dw_engineers_text_str}Steam flows through your clan’s blood as much as alcohol. Many engineers from guilds throughout Karaz Ankor bear your clan’s name. The more innovative holds find the Engineers Guild to be crucial, constructing and maintaining engines of destruction to be unleashed upon their foe, while other holds employ them to strengthen the hold’s walls or hew works of art into the mountains.</OptionFlavourText>
+	</CharacterCreationOption>
+	
+	<CharacterCreationOption Id="option_1_dw_smelters" Culture="sturgia" StageNumber="1" EquipmentSetId="tor_cc_dw_smelters_1">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Crafting</string>
+			<string>Athletics</string>
+			<string>Trade</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_1_dw_smelters_label_str}Skilled Ore Smelters and Smiths</OptionText>
+		<OptionFlavourText>{=tor_cc_option_1_dw_smelters_text_str}Masters of steel, your clan toils many hours in the forges surrounded by coal and iron as they smith weapons and armour. Some of the sharpest axes and toughest armours are the works of your clan kinsmen.</OptionFlavourText>
+	</CharacterCreationOption>
+	
+	<CharacterCreationOption Id="option_1_dw_warriors" Culture="sturgia" StageNumber="1" EquipmentSetId="tor_cc_dw_warriors_1">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Gunpowder</string>
+			<string>Athletics</string>
+			<string>Crossbow</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_1_dw_warriors_label_str}Deadly Warriors and Sharpshooters</OptionText>
+		<OptionFlavourText>{=tor_cc_option_1_dw_warriors_text_str}When the clans are called to war, yours is the first to answer – many of your clan kin make up the rank and file of the dwarfen army: rows of steel shields backed by eagle-eyed quarrelers and gunners. War and vengeance is in your blood.</OptionFlavourText>
+	</CharacterCreationOption>
+	
+	<!-- Dwarves stage 2 -->
+	<CharacterCreationOption Id="option_2_dw_umgi" Culture="sturgia" StageNumber="2" EquipmentSetId="tor_cc_dw_umgi_2">
+		<SkillsToIncrease>
+			<string>Medicine</string>
+			<string>Engineering</string>
+			<string>Trade</string>
+			<string>Crossbow</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_2_dw_umgi_label_str}Ignorance of Umgi</OptionText>
+		<PositiveEffectText>{=tor_cc_option_2_dw_umgi_effect_str}Double Oathgold gain from victories against human factions. </PositiveEffectText>
+		<OptionFlavourText>{=tor_option_2_umgi_text_str}Damnable humans, they want our steel, our fire, our alcohol. No more! For too long have the Dawi suffered the ignorant umgi and have gotten naught in return. Honour is all, and every wrong must be put right!</OptionFlavourText>
+	</CharacterCreationOption>
+	
+	<CharacterCreationOption Id="option_2_dw_elgi" Culture="sturgia" StageNumber="2" EquipmentSetId="tor_cc_dw_elgi_2">
+		<SkillsToIncrease>
+			<string>Charm</string>
+			<string>Steward</string>
+			<string>Roguery</string>
+			<string>Tactics</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_2_dw_elgi_label_str}Arrogance of Elgi</OptionText>
+		<PositiveEffectText>{=tor_cc_option_2_dw_elgi_effect_str}Double Oathgold gain from victories against elf factions. </PositiveEffectText>
+		<OptionFlavourText>{=tor_option_2_dw_elgi_text_str}Conceited elves! Despite their humiliating defeat during the War of Vengeance, the arrogant elgi ambassadors still have the gall to stroll through our Karaks and curry favours with our Kings. From your beardling years, you recall this gaunt-looking elf giving you a smug smile and a look brimming with superiority. You have bitterly cultivated this memory, for honour is all, and every wrong must be put right!</OptionFlavourText>
+	</CharacterCreationOption>
+	
+	<CharacterCreationOption Id="option_2_dw_urks" Culture="sturgia" StageNumber="2" EquipmentSetId="tor_cc_dw_urks_2">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Athletics</string>
+			<string>TwoHanded</string>
+			<string>Scouting</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_2_dw_urks_label_str}Malice of Urks and Grobi</OptionText>
+		<PositiveEffectText>{=tor_cc_option_2_dw_urks_effect_str}Double Oathgold gain from victories against Greenskins. </PositiveEffectText>
+		<OptionFlavourText>{=tor_option_2_dw_urks_text_str}Greenskins, the foulest, oldest enemy of the Dawi. Many of their kind are written into the Books of Grudges of numerous holds, and not a single entry more will be tolerated! From here on grudges will be struck from the books, for honour is all, and every wrong must be put right!</OptionFlavourText>
+	</CharacterCreationOption>
+	
+	<CharacterCreationOption Id="option_2_dw_zanguzaz" Culture="sturgia" StageNumber="2" EquipmentSetId="tor_cc_dw_zanguzaz_2">
+		<SkillsToIncrease>
+			<string>TwoHanded</string>
+			<string>Roguery</string>
+			<string>Charm</string>
+			<string>Leadership</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_2_dw_zanguzaz_label_str}Corruption of Zanguzaz</OptionText>
+		<PositiveEffectText>{=tor_cc_option_2_dw_zanguzaz_effect_str}Double Oathgold gain from victories against undead factions. </PositiveEffectText>
+		<OptionFlavourText>{=tor_option_2_dw_zanguzaz_text_str}The undead and vampires have ever been a thorn in the Dawi side, despite there being very few records of undead dwarfs. The uzkular still remain a constant threat to certain Karaks and have made their foul homes in others. The bonewalkers belong in the ground, and their bloodsucking masters will be ground into dust or burnt to ashes. Honour is all, and every wrong must be put right!</OptionFlavourText>
+	</CharacterCreationOption>
+	
+	<CharacterCreationOption Id="option_2_dw_thaggoraki" Culture="sturgia" StageNumber="2" EquipmentSetId="tor_cc_dw_thaggoraki_2">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Gunpowder</string>
+			<string>Roguery</string>
+			<string>Engineering</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<PositiveEffectText>{=tor_cc_option_2_dw_thaggoraki_effect_str}Double Oathgold gain from victories in mountain regions.</PositiveEffectText>
+		<OptionText>{=tor_cc_option_2_dw_thaggoraki_label_str}Greed of Thaggoraki</OptionText>
+		<OptionFlavourText>{=tor_option_2_dw_thaggoraki_text_str}The scourge of the underway, the vile Skaven have no shred of honour and would rather murder us all in our sleep than march proudly into the battlefield. Many noble kings and impenetrable holds have fallen to the poisoned claw of the ratmen. The Karaz Ankor will not be safe until their vile kind has been eradicated. Honour is all, and every wrong must be put right!</OptionFlavourText>
+	</CharacterCreationOption>
+	
+	<!-- Dwarves stage 3 -->
+	<CharacterCreationOption Id="option_3_dw_shield_breaker" Culture="sturgia" StageNumber="3" EquipmentSetId="tor_cc_dw_shield_breaker_3">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Gunpowder</string>
+			<string>Leadership</string>
+			<string>Athletics</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<PositiveEffectText>{=tor_cc_option_3_dw_ironbreaker_effect_str}Ironbreaker Career</PositiveEffectText>
+		<OptionText>{=tor_cc_option_3_dw_shield_breaker_label_str}Initiate Ironbreaker</OptionText>
+		<OptionFlavourText>{=tor_cc_option_3_ironbreaker_text_str}You were part of a Shield Breaker unit and kept the local mining venture protected. One day, you witnessed a regiment of Ironbreakers heading deeper into the tunnels. Astounded by their unwavering determination, you decided to protect not just your clan, but also safeguard the entire Karaz Ankor against the evil from the deep.</OptionFlavourText>
+	</CharacterCreationOption>
+	
+	<CharacterCreationOption Id="option_3_dw_rune_smith" Culture="sturgia" StageNumber="3" EquipmentSetId="tor_cc_dw_rune_smith_3">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Crafting</string>
+			<string>Spellcraft</string>
+			<string>Faith</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_3_dw_rune_smith_label_str}Student of Runecraft</OptionText>
+		<PositiveEffectText>{=tor_cc_option_3_dw_rune_smith_effect_str}Runesmith Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option_3_dw_rune_smith_text_str}From a young age, the runes have called out to you. A prominent Runelord has taken you under his wing and taught you all he wished to share, laying the foundation upon which to build your own runesmithing skills.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_3_dw_slayer" Culture="sturgia" StageNumber="3" EquipmentSetId="tor_cc_dw_slayer_3">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>TwoHanded</string>
+			<string>Athletics</string>
+			<string>Athletics</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_3_dw_slayer_label_str}Slayer Pilgrim</OptionText>
+		<PositiveEffectText>{=tor_cc_option_3_dw_slayer_effect_str}Slayer Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option_3_dw_slayer_text_str}Whatever caused you to take the Slayer Oath is something that is only known to you. You shaved your head aside from the iconic Slayer crest and dyed your hair a fiery red. With sullen eyes, you took up your axe and set out into the world, looking for a worthy death that would finally extinguish your shame and restore honour of your clan.</OptionFlavourText>
+	</CharacterCreationOption> 
+
+	<CharacterCreationOption Id="option_3_dw_engineer" Culture="sturgia" StageNumber="3" EquipmentSetId="tor_cc_dw_engineer_3">
+		<SkillsToIncrease>
+			<string>Engineering</string>
+			<string>Gunpowder</string>
+			<string>OneHanded</string>
+			<string>Engineering</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_3_dw_engineer_label_str}Apprentice Engineer</OptionText>
+		<PositiveEffectText>{=tor_cc_option_3_dw_engineer_effect_str}Mercenary Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option_3_dw_engineer_text_str}Where other budding inventors barely got to grips with the basic principles of engineering, you had already figured out the works of a gyrocopter rotor-blade steam engine. Thanks to your keen mind, you excelled within the Engineers Guild, giving you the freedom to pursue your own creative ideas.</OptionFlavourText>
+	</CharacterCreationOption> 
+
+	<CharacterCreationOption Id="option_3_dw_ranger" Culture="sturgia" StageNumber="3" EquipmentSetId="tor_cc_dw_ranger_3">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Crossbow</string>
+			<string>Throwing</string>
+			<string>Scouting</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<PositiveEffectText>{=tor_cc_option_3_dw_ranger_effect_str}Mercenary Career</PositiveEffectText>
+		<OptionText>{=tor_cc_option_3_dw_ranger_label_str}Novice Ranger</OptionText>
+		<OptionFlavourText>{=tor_cc_option_3_dw_ranger_text_str}Unlike most of your kin, you displayed an affinity with the outside world and spent much of your time climbing trees and shooting wild game on the mountain sides. It was no surprise you would join the Rangers; your keen eyes and ears have prevented many an ambush.</OptionFlavourText>
+	</CharacterCreationOption> 
+
+	<!-- Orcs stage 1 -->
+	<CharacterCreationOption Id="option_1_gs_rocky_terrain" Culture="aserai" StageNumber="1" EquipmentSetId="tor_cc_gs_rocky_terrain_1">
+		<SkillsToIncrease>
+			<string>Athletics</string>
+			<string>Athletics</string>
+			<string>OneHanded</string>
+			<string>TwoHanded</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_1_gs_rocky_terrain_label_str}Rocky Terrain</OptionText>
+		<OptionFlavourText>{=tor_cc_option_1_gs_rocky_terrain_text_str}The rocky terrain of the Black Mountains is where your spores fell. The cold stone around you seems to have overdeveloped your muscles, making them bigger and stronger. ‘Iz gunna be ded ‘ard!’ you thought while still inside your fungal pod, feeling your limbs contracting with a crack.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_gs_forest_terrain" Culture="aserai" StageNumber="1" EquipmentSetId="tor_cc_gs_forest_terrain_1">
+		<SkillsToIncrease>
+			<string>Riding</string>
+			<string>Bow</string>
+			<string>Roguery</string>
+			<string>Scouting</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Cunning</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_1_gs_forest_terrain_label_str}Forest Terrain</OptionText>
+		<OptionFlavourText>{=tor_cc_option_1_gs_forest_terrain_text_str}The intricate forest covering the Imperial mainland served well in hiding your fungal pod. What you did not know – the silent woods transmitted to you an enhanced ability to move silently among the trees (for an Orc), making you a fearsome hunter of both animals and humans. After a raid on an Imperial caravan, your fellow Orcs addressed you as ‘da sneaky ‘un’.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_gs_volcanic_terrain" Culture="aserai" StageNumber="1" EquipmentSetId="tor_cc_gs_volcanic_terrain_1">
+		<SkillsToIncrease>
+			<string>Leadership</string>
+			<string>Tactics</string>
+			<string>TwoHanded</string>
+			<string>OneHanded</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_1_gs_volcanic_terrain_label_str}Volcanic Terrain</OptionText>
+		<OptionFlavourText>{=tor_cc_option_1_gs_volcanic_terrain_text_str}Your spores were planted in the blackened soil of the Dark Lands, the dominion of Chaos Dwarfs. Inside your fungal pod, a perfect war machine was growing. When your maturation process came to an end, you broke your mushroom-womb and let out a bellowing war cry: WAAAAAAAAAAAGH!!!</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_gs_arid_terrain" Culture="aserai" StageNumber="1" EquipmentSetId="tor_gs_arid_terrain_1">
+		<SkillsToIncrease>
+			<string>Faith</string>
+			<string>Athletics</string>
+			<string>TwoHanded</string>
+			<string>Polearm</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Discipline</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_1_gs_arid_terrain_label_str}Arid Terrain</OptionText>
+		<OptionFlavourText>{=tor_cc_option_1_gs_arid_terrain_text_str}The heat of the Badlands, amplified by the subterranean hot pools, really had some effects on your breeding, shrinking your brain to the point it resembled more a Squig’s brain than an Orc’s. What you lost in intelligence, though, you gained in physical strength – an instinct-driven being ready to roam the lands with bone-clad Savage Orcs, superstitious fanatics of Gork and Mork.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_1_gs_snowy_terrain" Culture="aserai" StageNumber="1" EquipmentSetId="tor_cc_gs_snowy_terrain_1">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Polearm</string>
+			<string>Athletics</string>
+			<string>Athletics</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_1_gs_snowy_terrain_label_str}Snowy Terrain</OptionText>
+		<OptionFlavourText>{=tor_cc_option_1_gs_snowy_terrain_text_str}Deep in the frozen heart of the World’s Edge Mountains, your fungus grew covered by the everlasting snow. The icy climate made your skin ‘real tuff’, your flesh hard as steel. It was not long after your breakout from the pod that you found a camp of other Greenskins, ready to storm a Dwarf citadel. You joined them, fought together in the tunnels underground, and baptised yourself in the blood of the unfortunate stunties.</OptionFlavourText>
+	</CharacterCreationOption>
+	
+	<!-- Greenskin stage 2 -->
+	<CharacterCreationOption Id="option_2_gs_dung_pillar" Culture="aserai" StageNumber="2" EquipmentSetId="tor_cc_gs_dung_pillar_2">
+		<SkillsToIncrease>
+			<string>Athletics</string>
+			<string>Athletics</string>
+			<string>TwoHanded</string>
+			<string>Faith</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_2_gs_dung_pillar_label_str}Building Up the Largest Pillar of Dung</OptionText>
+		<OptionFlavourText>{=tor_cc_option_2_gs_dung_pillar_text_str}Orcs are remarkably creative when it comes to erecting idols to their gods, using whatever materials they can find: scrap, corpses, and, of course, dung. Great heaps of excrement shaped into crude effigies of Orc heads are built by Greenskins eager to earn their gods’ favour. Your pillar was by far the largest in the tribe, which only helped prove your endurance. Gork and Mork were surely impressed with such a tall idol erected in their name.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_gs_arm_wrestling" Culture="aserai" StageNumber="2" EquipmentSetId="tor_cc_gs_arm_wrestling_2">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>OneHanded</string>
+			<string>Athletics</string>
+			<string>Charm</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_2_gs_arm_wrestling_label_str}Arm-Wrestling a Troll</OptionText>
+		<OptionFlavourText>{=tor_cc_option_2_gs_arm_wrestling_text_str}Orcs love displays of strength, and few things are more entertaining than a good scrap, a head-butting contest, or maybe arm wrestling. It is a fine way to pass the time between raids, and your tribe was home to a particularly tough Troll. If an Orc loses, he usually ends up missing an arm, or worse, but you managed to arm-wrestle the dim brute, and as the only non-Boss in the tribe! Many Boys were thoroughly impressed with this show of physical prowess.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_gs_eating_snotlings" Culture="aserai" StageNumber="2" EquipmentSetId="tor_cc_gs_eating_snotlings_2">
+		<SkillsToIncrease>
+			<string>Medicine</string>
+			<string>Medicine</string>
+			<string>Tactics</string>
+			<string>Roguery</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_2_gs_eating_snotlings_label_str}Eating an Entire Gang of Snotlings in One Sitting</OptionText>
+		<OptionFlavourText>{=tor_cc_option_2_gs_eating_snotlings_text_str}It is no small feat to devour an entire gang of Snotlings in one go. There are, of course, tales of Orcs trying to swallow them whole, only to be killed from the inside when the squirming little gits claw their way out. For that reason, it certainly is wise to chew your Snotlings properly, spit out the bits, and inspect them to make sure they stop moving before you swallow. During such meals you learned a great deal about anatomy, and planning such a gigantic meal required ‘sum proppa taktikz'.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_gs_teef_collection" Culture="aserai" StageNumber="2" EquipmentSetId="tor_cc_gs_teef_collection_2">
+		<SkillsToIncrease>
+			<string>Roguery</string>
+			<string>Roguery</string>
+			<string>Steward</string>
+			<string>Leadership</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Cunning</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_2_gs_teef_collection_label_str}Owning the Prettiest Collection of Teef</OptionText>
+		<OptionFlavourText>{=tor_cc_option_2_gs_teef_collection_text_str}Teef are the currency of all Greenskins. A few Teef can buy meat or weapons, and since Orcs’ tusks steadily grow back, one could call it a self-sustaining economy. The bigger and meaner Orcs usually bully weaker individuals into handing over their Teef, while the more cunning types scour the battlefield for dead bodies, prying their Teef out before the bodies go cold. You managed to amass the shiniest collection of Teef ever seen, mostly by extorting Teef from weaker Boys and Goblins, but that is irrelevant. Alas, it was later stolen by some smelly git. The culprit was never found, but it is only natural to suspect a Goblin, so these long-nosed gits definitely ‘got wot’s comin' to 'em’.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_2_gs_goblin_throwing" Culture="aserai" StageNumber="2" EquipmentSetId="tor_cc_gs_goblin_throwing_2">
+		<SkillsToIncrease>
+			<string>Throwing</string>
+			<string>Throwing</string>
+			<string>OneHanded</string>
+			<string>Scouting</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_2_gs_goblin_throwing_label_str}Holding the Camp Record for Goblin Throwing</OptionText>
+		<OptionFlavourText>{=tor_cc_option_2_gs_goblin_throwing_text_str}To alleviate boredom, Orcs will either start some scrap or try and find someone to bully. Naturally, this involves unpopular or weaker individuals. Luck would have it, Goblins belong to both of these groups, and they are definitely plentiful. Orcs often resort to throwing goblins as ‘scouts.’ The goal is to see who can hurl the terrified little runt the furthest and the highest. You managed to set the camp record for one such contest. What is most surprising: Goblins often volunteered, said they would rather see the world, and not risk ending up as a Troll snack. A couple Goblins even came back with news of the surrounding area, weirdly excited to have another go.</OptionFlavourText>
+	</CharacterCreationOption>
+	
+	<!-- Greenskin stage 3 -->
+	<CharacterCreationOption Id="option_3_gs_path_of_boss" Culture="aserai" StageNumber="3" EquipmentSetId="tor_cc_gs_path_of_boss_3">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Polearm</string>
+			<string>TwoHanded</string>
+			<string>Leadership</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_3_gs_path_of_boss_label_str}Bosses</OptionText>
+		<PositiveEffectText>{=tor_cc_option_3_gs_path_of_boss_effect_str}Orc Boss Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option_3_gs_path_of_boss_text_str}To become an Orc Boss, one must first prove himself in battle, both on the field and within the war camp. Only through bullying, brawling, and beating other Orcs into submission can an Orc earn the attention of the Warboss. When the Warboss sees promise, he’ll raise the contender to the rank of Boss. Bigger, meaner, and louder than their lesser kin, these brutes take every chance to assert their dominance.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_3_gs_path_of_shaman" Culture="aserai" StageNumber="3" EquipmentSetId="tor_cc_gs_path_of_shaman_3">
+		<SkillsToIncrease>
+			<string>Spellcraft</string>
+			<string>Faith</string>
+			<string>Medicine</string>
+			<string>OneHanded</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Discipline</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_3_gs_path_of_shaman_label_str}Shamans</OptionText>
+		<PositiveEffectText>{=tor_cc_option_3_gs_path_of_shaman_effect_str}Shaman Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option_3_gs_path_of_shaman_text_str}The Shaman is both a spiritual leader and a conduit of raw Waaagh! energy. By inhaling weird fumes and performing odd dances, Greenskin Shamans can enter trances through which they commune with the Greenskin gods. In battle, they channel the power of ‘Da Great Green’, causing heads to burst or unleashing crackling blasts of emerald energy from their eyes. Most Boys consider Shamans and their strange ways complete lunacy, but only the bravest (or perhaps the dimmest) would dare mock these rituals. Orcs are highly superstitious and believe Gork and Mork are always watching – It would be best to not oppose their agents.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_3_gs_path_of_bully" Culture="aserai" StageNumber="3" EquipmentSetId="tor_cc_gs_path_of_bully_3">
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Roguery</string>
+			<string>Engineering</string>
+			<string>Throwing</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Cunning</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_3_gs_path_of_bully_label_str}Bullies</OptionText>
+		<PositiveEffectText>{=tor_cc_option_3_gs_path_of_bully_effect_str}Orc Boss Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option_3_gs_path_of_bully_text_str}The Bully’s job is to keep Goblins in line, mostly by kicking them about until they ‘use dere noggin’. Under a Bully’s ‘encouragement,’ Goblins design and construct ramshackle war machines and siege engines that accompany Greenskin invasions. As naturally lazy creatures, Goblins need every incentive at hand to not abandon their posts and simply lie around all day. Turns out you were exceptionally talented at cracking the whip as well as Goblin skulls.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_3_gs_path_of_boar_boys" Culture="aserai" StageNumber="3" EquipmentSetId="tor_cc_path_of_boar_boys_3">
+		<SkillsToIncrease>
+			<string>Polearm</string>
+			<string>OneHanded</string>
+			<string>Riding</string>
+			<string>Riding</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_3_gs_path_of_boar_boys_label_str}Boar Boys</OptionText>
+		<PositiveEffectText>{=tor_cc_option_3_gs_path_of_boar_boys_effect_str}Orc Boss Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option_3_gs_path_of_boar_boys_text_str}Boar Boyz revel in the chaos of battle, charging headlong into enemy ranks atop their snarling, tusked mounts. The thick skull and brutal tusks of a war boar can tear through armour and flesh with ease, leaving only ruin in their wake. Few sights are more terrifying than a stampede of Boar Boys thundering across the battlefield, howling for blood.</OptionFlavourText>
+	</CharacterCreationOption>
+
+	<CharacterCreationOption Id="option_3_gs_path_of_savage_boys" Culture="aserai" StageNumber="3" EquipmentSetId="tor_cc_path_of_savage_boys_3">
+		<SkillsToIncrease>
+			<string>TwoHanded</string>
+			<string>Polearm</string>
+			<string>Faith</string>
+			<string>Faith</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_3_gs_path_of_savage_boys_label_str}Savage Boys</OptionText>
+		<PositiveEffectText>{=tor_cc_option_3_gs_path_of_savage_boys_effect_str}Orc Boss Career</PositiveEffectText>
+		<OptionFlavourText>{=tor_cc_option_3_gs_path_of_savage_boys_text_str}Savage Orc Boyz believe themselves to follow the true path of the Orc, shunning armour and metal in favour of warpaint, bone, and wooden weapons. They go into battle half-naked and howling, covered in swirling patterns of paint that they believe offer Gork and Mork’s protection. The wild ferocity of these rural Boys makes them both feared and unpredictable allies, even by Orcish standards.</OptionFlavourText>
+	</CharacterCreationOption> 
+	
+
+
+
+</ArrayOfCharacterCreationOption>
+
+
+
+

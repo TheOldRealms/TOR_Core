@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rhubarbResult>
+  <metadata>
+    <soundFile>E:\voicelines\elves\lord_lines\we_kin_friendly_1.ogg</soundFile>
+    <duration>1.49</duration>
+  </metadata>
+  <mouthCues>
+    <mouthCue start="0.00" end="0.08">X</mouthCue>
+    <mouthCue start="0.08" end="0.33">B</mouthCue>
+    <mouthCue start="0.33" end="0.40">E</mouthCue>
+    <mouthCue start="0.40" end="0.54">F</mouthCue>
+    <mouthCue start="0.54" end="0.61">C</mouthCue>
+    <mouthCue start="0.61" end="0.75">B</mouthCue>
+    <mouthCue start="0.75" end="0.84">A</mouthCue>
+    <mouthCue start="0.84" end="0.96">F</mouthCue>
+    <mouthCue start="0.96" end="1.45">C</mouthCue>
+    <mouthCue start="1.45" end="1.49">X</mouthCue>
+  </mouthCues>
+</rhubarbResult>

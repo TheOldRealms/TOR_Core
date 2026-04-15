@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="utf-8"?>
+<NPCCharacters>
+  <!-- URBAN CHARACTERS OF asrai -->
+  <NPCCharacter id="blacksmith_woodelf" default_group="Infantry" is_hero="false" occupation="Blacksmith" culture="Culture.battania" race ="elf" name="{=str_blacksmith_woodelf}asrai Blacksmith" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_artisan_smith" />
+      <EquipmentSet id="tor_we_people_notable_artisan_smith" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="weaponsmith_woodelf" default_group="Infantry" is_hero="false" occupation="Weaponsmith" culture="Culture.battania" race ="elf" name="{=str_weaponsmith_woodelf}asrai Weaponsmith" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_artisan_smith" />
+      <EquipmentSet id="tor_we_people_notable_artisan_smith" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+
+  <NPCCharacter id="armorer_woodelf" default_group="Infantry" is_hero="false" occupation="Armorer" culture="Culture.battania" race ="elf" name="{=str_armorer_woodelf}asrai Armorer" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_artisan_smith" />
+      <EquipmentSet id="tor_we_people_notable_artisan_smith" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="townsman_woodelf" default_group="Infantry" is_hero="false" occupation="Townsfolk" culture="Culture.battania" race ="elf" name="{=str_townsman_woodelf}Halls dweller" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_townsman" />
+      <EquipmentSet id="tor_we_people_notable_townsman" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="townswoman_woodelf" default_group="Infantry" is_hero="false" is_female="true" occupation="Townsfolk" culture="Culture.battania" race ="elf" name="{=str_townswoman_woodelf}Halls dweller" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.female_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_townswoman" />
+      <EquipmentSet id="tor_we_people_notable_townswoman" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  
+  <NPCCharacter id="beggar_woodelf" default_group="Infantry" is_hero="false" occupation="Townsfolk" culture="Culture.battania" race ="elf" name="{=str_beggar_woodelf}Asrai Beggar" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_townsman" />
+      <EquipmentSet id="tor_we_people_notable_townsman" civilian="true" />
+    </Equipments>
+  </NPCCharacter>  
+
+  <NPCCharacter id="female_beggar_woodelf" default_group="Infantry" is_hero="false" is_female="true" occupation="Townsfolk" culture="Culture.battania" race ="elf" name="{=str_female_beggar_woodelf}Asrai Beggar" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.female_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_townswoman" />
+      <EquipmentSet id="tor_we_people_notable_townswoman" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  
+  <NPCCharacter id="barber_woodelf" default_group="Infantry" is_hero="false" occupation="Townsfolk" culture="Culture.battania" race ="elf" name="{=str_barber_woodelf}Asrai Hairdresser" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_townsman" />
+      <EquipmentSet id="tor_we_people_notable_townsman" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="taverngamehost_woodelf" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.battania" race ="elf" occupation="TavernGameHost" name="{=str_taverngamehost_woodelf}Asrai Game Host" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_townsman" />
+      <EquipmentSet id="tor_we_people_notable_townsman" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="tournament_master_woodelf" name="{=str_tournament_master_woodelf}Tournament Master" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.battania" occupation="ArenaMaster">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_eternal_warden_template" />
+      <EquipmentSet id="tor_we_eternal_warden_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="female_dancer_woodelf" default_group="Infantry" is_hero="false" is_female="true" occupation="Musician" culture="Culture.eonir" race ="elf" name="{=str_female_dancer_woodelf}Asrai Dancer" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.female_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_townswoman" />
+      <EquipmentSet id="tor_we_people_notable_townswoman" civilian="true" />
+    </Equipments>
+  </NPCCharacter>  
+
+  <NPCCharacter id="village_woman_woodelf" default_group="Infantry" is_hero="false" is_female="true" occupation="Villager" culture="Culture.battania" race ="elf" name="{=str_village_woman_woodelf}Asrai Villager" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.female_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_townswoman" />
+      <EquipmentSet id="tor_we_people_notable_townswoman" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="shop_worker_woodelf" default_group="Infantry" is_hero="false" is_female="false" occupation="ShopWorker" culture="Culture.battania" race ="elf" name="{=str_shop_worker_woodelf}Asrai Shopworker" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_artisan_shopworker" />
+      <EquipmentSet id="tor_we_people_notable_artisan_shopworker" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="tavernkeeper_woodelf" name="{=str_tavernkeeper_woodelf}asrai Tavernkeeper" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.battania" occupation="Tavernkeeper">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" />
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="musician_woodelf" default_group="Infantry" is_hero="false" is_female="false" occupation="Musician" culture="Culture.battania" race ="elf" name="{=str_musician_woodelf}Asrai Musician" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_artisan_shopworker" />
+      <EquipmentSet id="tor_we_people_notable_artisan_shopworker" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+
+  <NPCCharacter id="merchant_woodelf" name="{=str_merchant_woodelf}asrai merchant" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.battania" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" />
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="horseMerchant_woodelf" name="{=str_horseMerchant_woodelf}asrai Horse merchant" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.battania" occupation="HorseTrader">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" />
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="merchant_notary_woodelf" name="{=str_merchant_notary_woodelf}Asrai Merchant notary" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.battania" occupation="Townsfolk">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_notary" />
+      <EquipmentSet id="tor_we_people_notable_notary" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="artisan_notary_woodelf" name="{=str_artisan_notary_woodelf}asrai Artisan notary" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.battania" occupation="Townsfolk">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_notary" />
+      <EquipmentSet id="tor_we_people_notable_notary" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="rural_notable_notary_woodelf" name="{=str_rural_notable_notary_woodelf}asrai Rural Notary" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.battania" occupation="RuralNotable">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_notary" />
+      <EquipmentSet id="tor_we_people_notable_notary" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="ransom_broker_woodelf" name="{=str_ransom_broker_woodelf}asrai Ransombroker" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.battania" occupation="RansomBroker">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_rogue_leader" />
+      <EquipmentSet id="tor_we_people_notable_rogue_leader" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="gangleader_bodyguard_woodelf" name="{=str_gangleader_bodyguard_woodelf}Asrai Rogue" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.battania" occupation="Gangster">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_rogue" />
+      <EquipmentSet id="tor_we_people_notable_rogue" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="spc_notable_asrai_merch1" name="{=str_spc_notable_asrai_merch1}Ironic asrai merchant" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.battania" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" />
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="spc_notable_asrai_merch2" name="{=str_spc_notable_asrai_merch2}Curt asrai merchant" voice="curt" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.battania" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Commander" value="2" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="Generosity" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" />
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="spc_notable_asrai_merch3" name="{=str_spc_notable_asrai_merch3}Daring asrai merchant" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.battania" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Commander" value="3" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" />
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="spc_notable_asrai_merch4" name="{=str_spc_notable_asrai_merch4}Softspoken asrai merchant" voice="softspoken" is_template="true" default_group="Infantry" race ="elf" is_hero="false" culture="Culture.battania" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Commander" value="1" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" />
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="spc_notable_asrai_merch5" name="{=str_spc_notable_asrai_merch5}{FIRSTNAME} the Manciple" voice="softspoken" is_template="true" default_group="Infantry" race ="elf" is_hero="false" culture="Culture.battania" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Commander" value="2" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" />
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="spc_notable_asrai_1" name="{=str_spc_notable_asrai_1}{FIRSTNAME} the Warehouser" voice="ironic" is_template="true" is_female="true" default_group="Infantry" race ="elf" is_hero="false" culture="Culture.battania" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.female_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" />
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="spc_notable_asrai_1b" name="{=str_spc_notable_asrai_1b}{FIRSTNAME} the Heiress" voice="ironic" is_template="true" is_female="true" default_group="Infantry" race ="elf" is_hero="false" culture="Culture.battania" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.female_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Commander" value="2" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" />
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="spc_notable_asrai_2" name="{=str_spc_notable_asrai_2}Puritan male preacher" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.battania" occupation="Preacher">
+    <face>
+      <face_key_template value="BodyProperty.villager_vlandia" />
+    </face>
+    <Traits>
+      <Trait id="Generosity" value="-1" />
+      <Trait id="Honor" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_villager" />
+      <EquipmentSet id="tor_we_people_notable_villager" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="spc_notable_asrai_3" name="{=str_spc_notable_asrai_3}Rebellious female preacher" voice="earnest" is_template="true" default_group="Infantry" is_female="true" race ="elf" culture="Culture.battania" occupation="Preacher">
+    <face>
+      <face_key_template value="BodyProperty.female_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Generosity" value="1" />
+      <Trait id="Honor" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_villager_female" />
+      <EquipmentSet id="tor_we_people_notable_villager_female" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="spc_asrai_gangleader_1" name="{=str_spc_asrai_gangleader_1}Standard male gang leader" voice="curt" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.battania" occupation="GangLeader">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="1" />
+      <Trait id="Mercy" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_rogue_leader" />
+      <EquipmentSet id="tor_we_people_notable_rogue_leader" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="spc_asrai_gangleader_2" name="{=str_spc_asrai_gangleader_2}Female gang leader" voice="ironic" is_template="true" default_group="Infantry" is_female="true" race ="elf" culture="Culture.battania" occupation="GangLeader">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="1" />
+      <Trait id="Mercy" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_rogue_leader" />
+      <EquipmentSet id="tor_we_people_notable_rogue_leader" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="spc_asrai_gangleader_3" name="{=str_spc_asrai_gangleader_3}Male gang leader" voice="ironic" is_template="true" default_group="Infantry" is_female="true" race ="elf" culture="Culture.battania" occupation="GangLeader">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="1" />
+      <Trait id="Calculating" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Honor" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_rogue_leader" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_rogue_leader" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="spc_notable_asrai_artisan_1" name="{=str_spc_notable_asrai_artisan_1}Asrai Artisan 1" voice="earnest" is_template="true" default_group="Infantry" culture="Culture.battania" race ="elf" occupation="Artisan">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_notary" />
+      <EquipmentSet id="tor_we_people_notable_notary" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="spc_notable_asrai_artisan_2" name="{=str_spc_notable_asrai_artisan_2}asrai artisan 2" voice="curt" is_template="true" default_group="Infantry" culture="Culture.battania" race ="elf" occupation="Artisan">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_artisan_shopworker" />
+      <EquipmentSet id="tor_we_people_notable_artisan_shopworker" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="spc_notable_asrai_rural_1" name="{=str_spc_notable_asrai_rural_1}asrain yeoman" voice="curt" is_template="true" default_group="Infantry" culture="Culture.battania" race ="elf" occupation="RuralNotable">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_villager" />
+      <EquipmentSet id="tor_we_people_notable_villager" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="spc_notable_asrai_rural_2" name="{=str_spc_notable_asrai_rural_2}Asrai yeoman" voice="softspoken" is_template="true" default_group="Infantry" culture="Culture.battania" race ="elf" occupation="RuralNotable">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Calculating" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_eternal_guard_template" />
+      <EquipmentSet id="tor_we_eternal_guard_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="spc_asrai_headman_1" name="{=str_asrai_headman_1}Asrai rebellious headman" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.battania" race ="elf" occupation="Headman">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="FrankishHair" value="1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Calculating" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_villager" />
+      <EquipmentSet id="tor_we_people_notable_villager" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="spc_asrai_headman_2" name="{=str_asrai_headman_2}asrain conservative headman" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.battania"  race ="elf" occupation="Headman">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="FrankishHair" value="1" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_villager" />
+      <EquipmentSet id="tor_we_people_notable_villager" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="spc_asrai_headman_3" name="{=str_asrai_headman_3}asrain devious headman" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.battania" race ="elf" occupation="Headman">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="FrankishHair" value="1" />
+      <Trait id="Calculating" value="1" />
+      <Trait id="Honor" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_villager" />
+      <EquipmentSet id="tor_we_people_notable_villager" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="prison_guard_asrai" name="{=str_prison_guard_asrai}Prison Guard" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.battania" occupation="PrisonGuard">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_eternal_guard_template" />
+      <EquipmentSet id="tor_we_eternal_guard_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+</NPCCharacters>

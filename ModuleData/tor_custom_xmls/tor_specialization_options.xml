@@ -1,0 +1,410 @@
+<?xml version="1.0"?>
+<ArrayOfSpecializationOption xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<!--
+	Specialization options for Stage 4 of character creation
+	Simplified structure matching cc_options.xml format
+
+	ProfessionRequirement values:
+		- option_3_empire_magister_apprentice (Spellcasters)
+		- option_3_vc_vampire / option_3_mousillon_vampire (Vampires)
+		- option_3_empire_priest_acolyte (Priests)
+		- option_3_empire_knight (Knights)
+	-->
+
+	<!-- =============================================== -->
+	<!-- SPELLCASTERS - 8 Winds of Magic                -->
+	<!-- =============================================== -->
+
+	<SpecializationOption Id="lore_of_life" ProfessionRequirement="option_3_empire_magister_apprentice" EquipmentSetId="tor_cc_magister_apprentice_life_4" IconSprite="ghyran">
+		<Name>{=tor_lore_life_name}Ghyran, the Green Wind</Name>
+		<Description>{=tor_lore_life_desc}Verdant life along the stream
+										Water flowing through Jade deep
+										Bulwark of life, its keeper too
+										Growing strong at summer’s bloom
+										
+										Magisters of the Jade College are instinctively drawn to nature and living beings, be it man, animal, or plant. This unique connection also somewhat binds them to the passage of the seasons—weaker and enervated in winter but brimming with vitality during summer. Jade Wizards are unparalleled healers and overseers of all things natural: rivers, fields, forests, and even the soil itself.</Description>
+		<PositiveEffect>{=tor_lore_life_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_lore_life_negative}</NegativeEffect>
+		<SkillsToIncrease>
+			<string></string>
+			<string></string>
+		</SkillsToIncrease>
+		<AttributeToIncrease></AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="lore_of_fire" ProfessionRequirement="option_3_empire_magister_apprentice" EquipmentSetId="tor_cc_magister_apprentice_fire_4" IconSprite="aqshy">
+		<Name>{=tor_lore_fire_name}Aqshy, the Red Wind</Name>
+		<Description>{=tor_lore_fire_desc}Ever-bright cinders and heat
+										Consume and destroy like wildfire
+										Subdue the blazing Bright magic
+										But take heed, for it is fickle
+										
+										Within the fiery spires of the Bright College, Bright Wizards, also called Pyromancers, study the red Wind of Aqshy – the most destructive and belligerent of all the 8 Winds. It is no wonder that Magisters of Aqshy are some of the most powerful war wizards the Empire can field. A timely conjured tornado of violent flame and ash could be all that is needed to triumph over the enemies of man.</Description>
+		<PositiveEffect>{=tor_lore_fire_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_lore_fire_negative}</NegativeEffect>
+		<SkillsToIncrease>
+			<string></string>
+			<string></string>
+		</SkillsToIncrease>
+		<AttributeToIncrease></AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="lore_of_death" ProfessionRequirement="option_3_empire_magister_apprentice" EquipmentSetId="tor_cc_magister_apprentice_death_4" IconSprite="shyish">
+		<Name>{=tor_lore_death_name}Shyish, the Purple Wind</Name>
+		<Description>{=tor_lore_death_desc}Pallid faces and death’s door
+										Ashes, dust and time’s flow
+										Chills the soul to the core
+										The Amethyst grip reaches all
+										
+										Time waits for no one; all succumb to its workings eventually. Amethyst Wizards know this all too well – They are a morbid folk of secretive nature that wield terrible powers. Draining a foe’s soul or causing the skin and muscles to decay are only some of the Spiriters’ abilities. For that and the frequent confusion with Necromancers, the Magisters of Shyish are likely the least trusted of all Imperial Colleges.</Description>
+		<PositiveEffect>{=tor_lore_death_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_lore_death_negative}</NegativeEffect>
+		<SkillsToIncrease>
+			<string></string>
+			<string></string>
+		</SkillsToIncrease>
+		<AttributeToIncrease></AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="lore_of_light" ProfessionRequirement="option_3_empire_magister_apprentice" EquipmentSetId="tor_cc_magister_apprentice_light_4" IconSprite="hysh">
+		<Name>{=tor_lore_light_name}Hysh, the White Wind</Name>
+		<Description>{=tor_lore_light_desc}Accept the Wind of Hysh, friend
+										Let it enlighten the mind and soul
+										Let it scour the darkness
+										And be illuminated
+										
+										The wizards of the Light Order are sometimes known as Hierophants or Exorcists. For it is the brilliant, cleansing glimmer of Hysh that purges all things foul, be it Daemons or the Undead. One of the many burdens of White Wizards is to heal, protect, and banish the darkness from this world.</Description>
+		<PositiveEffect>{=tor_lore_light_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_lore_light_negative}</NegativeEffect>
+		<SkillsToIncrease>
+			<string></string>
+			<string></string>
+		</SkillsToIncrease>
+		<AttributeToIncrease></AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="lore_of_heavens" ProfessionRequirement="option_3_empire_magister_apprentice" EquipmentSetId="tor_cc_magister_apprentice_heavens_4" IconSprite="azyr">
+		<Name>{=tor_lore_heavens_name}Azyr, the Blue Wind</Name>
+		<Description>{=tor_lore_heavens_desc}Air and spheres moving high above
+											Thunderstrike and gust of wind
+											Coiling with Celestial magic
+											Of stars, moons and fate itself
+											
+											The Astromancers of the Celestial College are experts in divination, manipulating meteorological phenomena and invoking potent curses. They are exceptional researchers  invaluable to any captain who braves the seas of the Old World. One could certainly say the ability to call down bolts of lightning, offer support to one’s allies and hex the foe makes Heavens the most versatile Lore of Magic.</Description>
+		<PositiveEffect>{=tor_lore_heavens_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_lore_heavens_negative}</NegativeEffect>
+		<SkillsToIncrease>
+			<string></string>
+			<string></string>
+		</SkillsToIncrease>
+		<AttributeToIncrease></AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="lore_of_beasts" ProfessionRequirement="option_3_empire_magister_apprentice" EquipmentSetId="tor_cc_magister_apprentice_beasts_4" IconSprite="ghur">
+		<Name>{=tor_lore_beasts_name}Ghur, the Amber Wind</Name>
+		<Description>{=tor_lore_beasts_desc}Solitary, wild, untamed
+											Savage Amber of the pack
+											Amongst the beasts and groves unclaimed
+											A fierce glimmer of eyes jet black
+											
+											Amber magic is the feral spirit of the Aethyr, the Realms of Chaos—the source of Winds of Magic. Beast Wizards, sometimes called Shamans, are often as ferocious as the Wind of Ghur itself. Tattered robes, unkempt looks, and trinkets of bones and feathers. They are usually loners that excel at commanding wild beasts or cursing the foe. It is also said these Shamans can shape-shift into various animalistic forms.</Description>
+		<PositiveEffect>{=tor_lore_beasts_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_lore_beasts_negative}</NegativeEffect>
+		<SkillsToIncrease>
+			<string></string>
+			<string></string>
+		</SkillsToIncrease>
+		<AttributeToIncrease></AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="lore_of_metal" ProfessionRequirement="option_3_empire_magister_apprentice" EquipmentSetId="tor_cc_magister_apprentice_metal_4" IconSprite="chamon">
+		<Name>{=tor_lore_metal_name}Chamon, the Yellow Wind</Name>
+		<Description>{=tor_lore_metal_desc}The Soaring Eagle from the North
+										Seeding the world with metals and ore
+										The inscrutable enigma of matter to unlock
+										On the golden doors of knowledge forevermore knock
+										
+										Gold Wizards, or Alchemists, are masters of the Lore of Metal and deal with practical aspects of magic such as metallurgy, chemistry, alchemy, or even herbalism. Indeed, to be a Metal Wizard is to pursue logic and rationality above all. This focus on earthly matters is what elevated the Golden Order as the richest of all Imperial Colleges. However, more envious or suspicious minds often accuse Alchemists of turning lead into gold.</Description>
+		<PositiveEffect>{=tor_lore_metal_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_lore_metal_negative}</NegativeEffect>
+		<SkillsToIncrease>
+			<string></string>
+			<string></string>
+		</SkillsToIncrease>
+		<AttributeToIncrease></AttributeToIncrease>
+	</SpecializationOption>
+	<!-- =============================================== -->
+	<!-- VAMPIRES - 3 Bloodlines                        -->
+	<!-- =============================================== -->
+
+	<SpecializationOption Id="bloodline_von_carstein" ProfessionRequirement="option_3_vc_vampire" EquipmentSetId="tor_cc_bloodline_von_carstein_4" RaceId="vampire" IconSprite="voncarstein_icon">
+		<Name>{=tor_vampire_von_carstein_name}Von Carstein</Name>
+		<Description>{=tor_vampire_von_carstein_desc}Ambition marks the blooded path
+													Arrogance like no other hath
+													As you are, so were we
+													As we are, so shall ye
+													
+													The Von Carstein bloodline is steeped in arrogance and boundless ambition, its history marked by wars waged against the realms of men. From their seat in Sylvania, the prideful Von Carsteins weave a vast web of spies and agents across the Old World, ever watchful for the perfect moment to strike. Only a vampire of exceptional cunning can unite them, and even then, treachery is but a dagger’s edge away.</Description>
+		<PositiveEffect>{=tor_vampire_von_carstein_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_vampire_von_carstein_negative}</NegativeEffect>
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Spellcraft</string>
+			<string>Leadership</string>
+			<string>Steward</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="bloodline_blood_dragon" ProfessionRequirement="option_3_vc_vampire" EquipmentSetId="tor_cc_bloodline_blood_dragon_4" RaceId="vampire" IconSprite="blooddragon_icon">
+		<Name>{=tor_vampire_blood_dragon_name}Blood Dragon</Name>
+		<Description>{=tor_vampire_blood_dragon_desc}The Blood Keep’s banner flies in the wind
+													Their heavy charge has the foe pinned
+													They move around from town to town
+													The Knights of Blood run the enemy down
+													
+													The Blood Dragon bloodline is founded upon uncompromising martial prowess and a ruthless code of honour in battle. Yet their honour is far removed from the chivalry of Bretonnia or the knightly orders of the Empire. The knights of the Ordo Draconis scour the Old World in pursuit of worthy opponents, raiding and pillaging in search of exceptional foes.</Description>
+		<PositiveEffect>{=tor_vampire_blood_dragon_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_vampire_blood_dragon_negative}Cannot use magic or acquire spells</NegativeEffect>
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>TwoHanded</string>
+			<string>Polearm</string>
+			<string>Riding</string>
+			<string>-Spellcraft</string>
+			<string>-Spellcraft</string>
+			<string>-Spellcraft</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="bloodline_necrarch" ProfessionRequirement="option_3_vc_vampire" EquipmentSetId="tor_cc_bloodline_necrarch_4" RaceId="necrarch" IconSprite="necrarch_icon">
+		<Name>{=tor_vampire_necrarch_name}Necrarch</Name>
+		<Description>{=tor_vampire_necrarch_desc}With crooked hand and slipping mind
+												It goes abroad; it seeks to find
+												The air is cold, the blood runs deep
+												Another tome is theirs to keep
+												
+												The Necrarch bloodline is defined by its relentless pursuit of knowledge and arcane mastery. Necrarch libraries contain grimoires of forbidden lore that predate the fall of ancient empires. Yet with their brilliance comes madness. The Necrarchs are hopelessly deranged, consumed by jealousy and paranoia, and trust neither kin nor servant.</Description>
+		<PositiveEffect>{=tor_vampire_necrarch_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_vampire_necrarch_negative}Physically feeble and repulsive</NegativeEffect>
+		<SkillsToIncrease>
+			<string>-OneHanded</string>
+			<string>-TwoHanded</string>
+			<string>-Polearm</string>
+			<string>-Athletics</string>
+			<string>-Athletics</string>
+			<string>-Athletics</string>
+			<string>-Charm</string>
+			<string>-Charm</string>
+			<string>Spellcraft</string>
+			<string>Spellcraft</string>
+			<string>Spellcraft</string>
+			<string>Medicine</string>
+			<string>Medicine</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Discipline</AttributeToIncrease>
+		<AttributeToIncrease>-Vigor</AttributeToIncrease>
+	</SpecializationOption>
+
+	<!-- Mousillon vampires use same bloodline options -->
+	<SpecializationOption Id="bloodline_von_carstein_mous" ProfessionRequirement="option_3_mousillon_vampire" EquipmentSetId="tor_cc_bloodline_von_carstein_4" RaceId="vampire" IconSprite="voncarstein_icon">
+		<Name>{=tor_vampire_von_carstein_name}Von Carstein</Name>
+		<Description>{=tor_vampire_von_carstein_desc}Ambition marks the blooded path
+													Arrogance like no other hath
+													As you are, so were we
+													As we are, so shall ye
+													
+													The Von Carstein bloodline is steeped in arrogance and boundless ambition, its history marked by wars waged against the realms of men. The prideful Von Carsteins weave a vast web of spies and agents across the Old World, ever watchful for the perfect moment to strike. Only a vampire of exceptional cunning can unite them, and even then, treachery is but a dagger’s edge away.</Description>
+		<PositiveEffect>{=tor_vampire_von_carstein_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_vampire_von_carstein_negative}</NegativeEffect>
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Spellcraft</string>
+			<string>Leadership</string>
+			<string>Steward</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="bloodline_blood_dragon_mous" ProfessionRequirement="option_3_mousillon_vampire" EquipmentSetId="tor_cc_bloodline_blood_dragon_4" RaceId="vampire" IconSprite="blooddragon_icon">
+		<Name>{=tor_vampire_blood_dragon_name}Blood Dragon</Name>
+		<Description>{=tor_vampire_blood_dragon_desc}The Blood Keep’s banner flies in the wind
+													Their heavy charge has the foe pinned
+													They move around from town to town
+													The Knights of Blood run the enemy down
+													
+													The Blood Dragon bloodline is founded upon uncompromising martial prowess and a ruthless code of honour in battle. Yet their honour is far removed from the chivalry of Bretonnia or the knightly orders of the Empire. The knights of the Ordo Draconis scour the Old World in pursuit of worthy opponents, raiding and pillaging in search of exceptional foes.</Description>
+		<PositiveEffect>{=tor_vampire_blood_dragon_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_vampire_blood_dragon_negative}Cannot use magic or acquire spells</NegativeEffect>
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>TwoHanded</string>
+			<string>Polearm</string>
+			<string>Riding</string>
+			<string>-Spellcraft</string>
+			<string>-Spellcraft</string>
+			<string>-Spellcraft</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="bloodline_necrarch_mous" ProfessionRequirement="option_3_mousillon_vampire" EquipmentSetId="tor_cc_bloodline_necrarch_4" RaceId="necrarch" IconSprite="necrarch_icon">
+		<Name>{=tor_vampire_necrarch_name}Necrarch</Name>
+		<Description>{=tor_vampire_necrarch_desc}With crooked hand and slipping mind
+												It goes abroad; it seeks to find
+												The air is cold, the blood runs deep
+												Another tome is theirs to keep
+												
+												The Necrarch bloodline is defined by its relentless pursuit of knowledge and arcane mastery. Necrarch libraries contain grimoires of forbidden lore that predate the fall of ancient empires. Yet with their brilliance comes madness. The Necrarchs are hopelessly deranged, consumed by jealousy and paranoia, and trust neither kin nor servant.</Description>
+		<PositiveEffect>{=tor_vampire_necrarch_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_vampire_necrarch_negative}Physically feeble and repulsive</NegativeEffect>
+		<SkillsToIncrease>
+			<string>-OneHanded</string>
+			<string>-TwoHanded</string>
+			<string>-Polearm</string>
+			<string>-Athletics</string>
+			<string>-Athletics</string>
+			<string>-Athletics</string>
+			<string>-Charm</string>
+			<string>-Charm</string>
+			<string>Spellcraft</string>
+			<string>Spellcraft</string>
+			<string>Spellcraft</string>
+			<string>Medicine</string>
+			<string>Medicine</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Discipline</AttributeToIncrease>
+		<AttributeToIncrease>-Vigor</AttributeToIncrease>
+	</SpecializationOption>
+
+	<!-- =============================================== -->
+	<!-- PRIESTS - 2 Gods                               -->
+	<!-- =============================================== -->
+
+	<SpecializationOption Id="priest_sigmar" ProfessionRequirement="option_3_empire_priest_acolyte" EquipmentSetId="tor_cc_priest_sigmar_4" IconSprite="sigmar_comet_icon">
+		<Name>{=tor_priest_sigmar_name}Warrior Priest of Sigmar</Name>
+		<Description>{=tor_priest_sigmar_desc}And Sigmar did rescue the high king of the dwarfs
+											And Sigmar did unite the tribes of elder days
+											And Sigmar did ride down the Black Fire Pass
+											And Sigmar did smite the greenskin menace
+											
+											The Warrior Priests of Sigmar are his divine will made manifest. Pious and unyielding, they speak sermons of fire and zeal. In battle they become instruments of holy destruction; a Warrior Priest can stir courage in even the lowest scum. The Priests’ voices carry the Emperor’s word; blows that would fell giants are turned aside, for the favour of Sigmar shields them.</Description>
+		<PositiveEffect>{=tor_priest_sigmar_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_priest_sigmar_negative}</NegativeEffect>
+		<SkillsToIncrease>
+			<string></string>
+			<string></string>
+		</SkillsToIncrease>
+		<AttributeToIncrease></AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="priest_ulric" ProfessionRequirement="option_3_empire_priest_acolyte" EquipmentSetId="tor_cc_priest_ulric_4" IconSprite="ulric_flame_icon">
+		<Name>{=tor_priest_ulric_name}Warrior Priest of Ulric</Name>
+		<Description>{=tor_priest_ulric_desc}Ulric give me the fangs of the wolf
+											Ulric give me the claws of the wolf
+											Ulric give me the coat of the wolf
+											And I will show your enemies the mercy of the wolf
+											
+											Ulric was the foremost deity of mankind long before Sigmar walked the world. He is the patron of war, fury, and the winter’s breath. A deity of the Old Faith, where many gods have faded into obscurity, Ulric is still worshipped throughout the Empire, most fervently in Middenheim. Priests of Ulric can drive their allies into a frenzy, casting aside fear and caution in pursuit of the kill.</Description>
+		<PositiveEffect>{=tor_priest_ulric_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_priest_ulric_negative}</NegativeEffect>
+		<SkillsToIncrease>
+			<string></string>
+			<string></string>
+		</SkillsToIncrease>
+		<AttributeToIncrease></AttributeToIncrease>
+		<AttributeToIncrease></AttributeToIncrease>
+		<AttributeToIncrease></AttributeToIncrease>
+	</SpecializationOption>
+
+	<!-- =============================================== -->
+	<!-- KNIGHTS - 5 Orders                             -->
+	<!-- =============================================== -->
+
+	<SpecializationOption Id="knight_blazing_sun" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_blazing_sun_4" IconSprite="blazingsun_icon">
+		<Name>{=tor_knight_blazing_sun_name}The Order of the Blazing Sun</Name>
+		<Description>{=tor_knight_blazing_sun_desc}With backs to the wall, death had arrived
+												A god’s intervention, the sixty survived
+												The light shone through, their sins undone
+												Praise Myrmidia and praise the sun
+												
+												This knightly order of the Empire has dedicated itself wholly to the worship of Myrmidia, the southern goddess of war and tactics. Through their deeds, they are largely responsible for the growing reverence of Myrmidia within the Empire. The Knights of Myrmidia often accompany pilgrims who pay good coin to be escorted safely to the southern realms.</Description>
+		<PositiveEffect>{=tor_knight_blazing_sun_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_knight_blazing_sun_negative}</NegativeEffect>
+		<SkillsToIncrease>
+			<string></string>
+			<string></string>
+		</SkillsToIncrease>
+		<AttributeToIncrease></AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="knight_panthers" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_panthers_4" IconSprite="panther_icon">
+		<Name>{=tor_knight_panthers_name}The Knights Panther</Name>
+		<Description>{=tor_knight_panthers_desc}From Araby’s jungles to Empire’s fields
+												The Panther Knights shall never yield
+												Come mutant, heretic, corrupted witch
+												Slay them all, not a brow shall twitch
+												
+												This knightly order rose to prominence during the Crusades against Araby, pursuing the Sultan’s followers deep into the jungles. There they were forced to battle not only the foe but also savage beasts, most notably the great spotted jungle cats. To the Arabians’ astonishment, the knights survived these trials, slaying the beasts and draping their pelts as a mark of strength. Since that time, any initiate of the Order must hunt down one of these mighty cats and return with its hide.</Description>
+		<PositiveEffect>{=tor_knight_panthers_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_knight_panthers_negative}</NegativeEffect>
+		<SkillsToIncrease>
+			<string></string>
+			<string></string>
+		</SkillsToIncrease>
+		<AttributeToIncrease></AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="knight_white_wolf" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_white_wolf_4" IconSprite="whitewolf_icon">
+		<Name>{=tor_knight_white_wolf_name}Knights of the White Wolf</Name>
+		<Description>{=tor_knight_white_wolf_desc}For Ulric they ride, for Ulric they die
+												They ride under winter’s frozen sky
+												For Ulric they fight, for Ulric they kill
+												For Ulric they brave the blizzard’s chill
+												
+												One of the most infamous knightly orders of the Empire, the Order of the White Wolf is sworn to the Ar-Ulric, High Priest of the Cult of Ulric, and to Ulric himself. The Knights’ distinctive appearance and brutal fighting style set them apart from all other orders. Clad in heavy armour and draped in the white pelts of mighty wolves, their hair and beards uncut, wild as a northern winter storm.</Description>
+		<PositiveEffect>{=tor_knight_white_wolf_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_knight_white_wolf_negative}</NegativeEffect>
+		<SkillsToIncrease>
+			<string></string>
+			<string></string>
+		</SkillsToIncrease>
+		<AttributeToIncrease></AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="knight_griphon" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_griphon_4" IconSprite="griffon_icon">
+		<Name>{=tor_knight_griphon_name}The Order of the Knights Griffon</Name>
+		<Description>{=tor_knight_griphon_desc}Sigmar’s chosen, the holy order
+											Guard the weak, protect the border
+											Ride from the temple, ignite the flame
+											Judgement awaits In Sigmar’s name
+											
+											This knightly order traces its origins to the reign of Magnus the Pious, in the years following the Great War Against Chaos. They are charged with safeguarding temples, shrines, and sacred relics dedicated to Sigmar. Once headquartered in Nuln, the order relocated when the Emperors chose Altdorf as their seat of power, a shift that sparked a quiet rivalry between the Knights Griffon and the Reiksguard.</Description>
+		<PositiveEffect>{=tor_knight_griphon_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_knight_griphon_negative}</NegativeEffect>
+		<SkillsToIncrease>
+			<string></string>
+			<string></string>
+		</SkillsToIncrease>
+		<AttributeToIncrease></AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="knight_reiksguard" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_reiksguard_4" IconSprite="reiksguard_icon">
+		<Name>{=tor_knight_reiksguard_name}The Grand Order of the Reiksguard</Name>
+		<Description>{=tor_knight_reiksguard_desc}Reikland’s finest, each a mighty knight
+												We come charging in, wearing red and white
+												The emperor's shield, his sword and his soul
+												To guard Sigmar’s crown, our eternal goal
+												
+												The Reiksguard is a knightly order founded during the reign of Wilhelm the Wise, first of the von Holswig-Schliestein Emperors. Since that age, they have sworn eternal service to his bloodline, acting as the Emperor’s elite guardians and the iron fist of the Imperial throne. To fight amongst the Reiksguard is to bear the honour of Imperial lineage.</Description>
+		<PositiveEffect>{=tor_knight_reiksguard_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_knight_reiksguard_negative}</NegativeEffect>
+		<SkillsToIncrease>
+			<string></string>
+			<string></string>
+		</SkillsToIncrease>
+		<AttributeToIncrease></AttributeToIncrease>
+	</SpecializationOption>
+
+</ArrayOfSpecializationOption>

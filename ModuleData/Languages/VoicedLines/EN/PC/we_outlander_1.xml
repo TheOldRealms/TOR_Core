@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rhubarbResult>
+  <metadata>
+    <soundFile>E:\voicelines\elves\lord_lines\we_outlander_1.ogg</soundFile>
+    <duration>4.70</duration>
+  </metadata>
+  <mouthCues>
+    <mouthCue start="0.00" end="0.10">X</mouthCue>
+    <mouthCue start="0.10" end="0.16">C</mouthCue>
+    <mouthCue start="0.16" end="0.22">H</mouthCue>
+    <mouthCue start="0.22" end="0.36">B</mouthCue>
+    <mouthCue start="0.36" end="0.50">C</mouthCue>
+    <mouthCue start="0.50" end="0.71">E</mouthCue>
+    <mouthCue start="0.71" end="0.96">B</mouthCue>
+    <mouthCue start="0.96" end="1.28">F</mouthCue>
+    <mouthCue start="1.28" end="1.35">C</mouthCue>
+    <mouthCue start="1.35" end="1.56">B</mouthCue>
+    <mouthCue start="1.56" end="1.69">A</mouthCue>
+    <mouthCue start="1.69" end="1.74">B</mouthCue>
+    <mouthCue start="1.74" end="1.78">C</mouthCue>
+    <mouthCue start="1.78" end="1.85">B</mouthCue>
+    <mouthCue start="1.85" end="1.92">C</mouthCue>
+    <mouthCue start="1.92" end="2.06">B</mouthCue>
+    <mouthCue start="2.06" end="2.27">D</mouthCue>
+    <mouthCue start="2.27" end="2.34">B</mouthCue>
+    <mouthCue start="2.34" end="2.59">A</mouthCue>
+    <mouthCue start="2.59" end="2.73">C</mouthCue>
+    <mouthCue start="2.73" end="2.80">B</mouthCue>
+    <mouthCue start="2.80" end="2.94">C</mouthCue>
+    <mouthCue start="2.94" end="3.08">F</mouthCue>
+    <mouthCue start="3.08" end="3.50">B</mouthCue>
+    <mouthCue start="3.50" end="3.78">F</mouthCue>
+    <mouthCue start="3.78" end="4.03">X</mouthCue>
+    <mouthCue start="4.03" end="4.13">B</mouthCue>
+    <mouthCue start="4.13" end="4.22">A</mouthCue>
+    <mouthCue start="4.22" end="4.61">B</mouthCue>
+    <mouthCue start="4.61" end="4.70">X</mouthCue>
+  </mouthCues>
+</rhubarbResult>

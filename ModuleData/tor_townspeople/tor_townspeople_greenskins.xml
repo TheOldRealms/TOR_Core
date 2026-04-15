@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="utf-8"?>
+<NPCCharacters>
+  <!-- URBAN CHARACTERS OF greenskins -->
+  <NPCCharacter id="blacksmith_greenskins" default_group="Infantry" is_hero="false" occupation="Blacksmith" culture="Culture.aserai" race ="orc" name="{=str_blacksmith_greenskins}Orc Blacksmith" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_artisan_smith" />
+      <EquipmentSet id="tor_gs_people_notable_artisan_smith" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="weaponsmith_greenskins" default_group="Infantry" is_hero="false" occupation="Weaponsmith" culture="Culture.aserai" race ="orc" name="{=str_weaponsmith_greenskins}Orc Weaponsmith" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_artisan_smith" />
+      <EquipmentSet id="tor_gs_people_notable_artisan_smith" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+
+  <NPCCharacter id="armorer_greenskins" default_group="Infantry" is_hero="false" occupation="Armorer" culture="Culture.aserai" race ="orc" name="{=str_armorer_greenskins}Orc Armorer" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_artisan_smith" />
+      <EquipmentSet id="tor_gs_people_notable_artisan_smith" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="townsman_greenskins" default_group="Infantry" is_hero="false" occupation="Townsfolk" culture="Culture.aserai" race ="orc" name="{=str_townsman_greenskins}Orc" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_townsman" />
+      <EquipmentSet id="tor_gs_people_notable_townsman" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="townswoman_greenskins" default_group="Infantry" is_hero="false" occupation="Townsfolk" culture="Culture.aserai" race ="orc" name="{=str_townswoman_greenskins}Orc" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_townsman" />
+      <EquipmentSet id="tor_gs_people_notable_townsman" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+
+  <NPCCharacter id="villager_greenskins" default_group="Infantry" is_hero="false" occupation="Villager" culture="Culture.aserai" race ="orc" name="{=str_villager_greenskins}Orc" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_villager" />
+      <EquipmentSet id="tor_gs_people_notable_villager" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="village_woman_greenskins" default_group="Infantry" is_hero="false" occupation="Villager" culture="Culture.aserai" race ="orc" name="{=str_village_woman_greenskins}Orc" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_villager" />
+      <EquipmentSet id="tor_gs_people_notable_villager" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="barber_greenskins" default_group="Infantry" is_hero="false" is_female="false" occupation="Townsfolk" culture="Culture.aserai" race ="orc" name="{=str_barber_greenskins}Orc Hairdresser" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_villager" />
+      <EquipmentSet id="tor_gs_people_notable_villager" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="shop_worker_greenskins" default_group="Infantry" is_hero="false" is_female="false" occupation="ShopWorker" culture="Culture.aserai" race ="orc" name="{=str_shop_worker_greenskins}Orc Shopworker" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_artisan_shopworker" />
+      <EquipmentSet id="tor_gs_people_notable_artisan_shopworker" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="tavernkeeper_greenskins" name="{=str_tavernkeeper_greenskins}Orc Tavernkeeper" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="orc" culture="Culture.aserai" occupation="Tavernkeeper" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_artisan_shopworker" />
+      <EquipmentSet id="tor_gs_people_notable_artisan_shopworker" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  
+  <NPCCharacter id="taverngamehost_greenskins" name="{=str_taverngamehost_greenskins}Gamehost" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="orc" culture="Culture.aserai" occupation="TavernGameHost" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_artisan_shopworker" />
+      <EquipmentSet id="tor_gs_people_notable_artisan_shopworker" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="musician_greenskins" default_group="Infantry" is_hero="false" is_female="false" occupation="Musician" culture="Culture.aserai" race ="orc" name="{=str_musician_greenskins}Orc Musician" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_artisan_shopworker" />
+      <EquipmentSet id="tor_gs_people_notable_artisan_shopworker" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+
+  <NPCCharacter id="wench_greenskins" default_group="Infantry" is_hero="false" occupation="Musician" culture="Culture.aserai" race ="orc" name="{=str_wench_greenskins}Orc Dan" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_artisan_shopworker" />
+      <EquipmentSet id="tor_gs_people_notable_artisan_shopworker" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="dancer_greenskins" default_group="Infantry" is_hero="false" occupation="Musician" culture="Culture.aserai" race ="orc" name="{=str_dancer_greenskins}Orc Dan" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_artisan_shopworker" />
+      <EquipmentSet id="tor_gs_people_notable_artisan_shopworker" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="beggar_greenskins" default_group="Infantry" is_hero="false" occupation="Musician" culture="Culture.aserai" race ="orc" name="{=str_beggar_greenskins}Orc Beggar" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_villager" />
+      <EquipmentSet id="tor_gs_people_notable_villager" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="merchant_greenskins" name="{=str_merchant_greenskins}Orc merchant" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="orc" culture="Culture.aserai" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_artisan_merchant" />
+      <EquipmentSet id="tor_gs_people_notable_artisan_merchant" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="horseMerchant_greenskins" name="{=str_horseMerchant_greenskins}Orc Horse merchant" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="orc" culture="Culture.aserai" occupation="HorseTrader">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_artisan_merchant" />
+      <EquipmentSet id="tor_gs_people_notable_artisan_merchant" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="merchant_notary_greenskins" name="{=str_merchant_notary_greenskins}Orc Merchant notary" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="orc" culture="Culture.aserai" occupation="Townsfolk">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_artisan_merchant" />
+      <EquipmentSet id="tor_gs_people_notable_artisan_merchant" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="artisan_notary_greenskins" name="{=str_artisan_notary_greenskins}Orc Artisan notary" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="orc" culture="Culture.aserai" occupation="Townsfolk">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_notary" />
+      <EquipmentSet id="tor_gs_people_notable_notary" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="rural_notable_notary_greenskins" name="{=str_rural_notable_notary_greenskins}Orc Rural Notary" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="orc" culture="Culture.aserai" occupation="RuralNotable">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_notary" />
+      <EquipmentSet id="tor_gs_people_notable_notary" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="ransom_broker_greenskins" name="{=str_ransom_broker_greenskins}Orc Ransombroker" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="orc" culture="Culture.aserai" occupation="RansomBroker">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_rogue" />
+      <EquipmentSet id="tor_gs_people_notable_rogue" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="prison_guard_greenskins" name="{=str_prison_guard_greenskins}Prison Guard" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="orc" culture="Culture.aserai" occupation="PrisonGuard">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_orc_bully_template" />
+      <EquipmentSet id="tor_gs_orc_bully_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="tournament_master_greenskins" name="{=str_tournament_master_greenskins}Tournament Master" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="orc" culture="Culture.aserai" occupation="ArenaMaster">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_orc_bully_template" />
+      <EquipmentSet id="tor_gs_orc_bully_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="gangleader_bodyguard_greenskins" name="{=str_gangleader_bodyguard_greenskins}Orc Gang Leader" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="orc" culture="Culture.aserai" occupation="Gangster">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_rogue" />
+      <EquipmentSet id="tor_gs_people_notable_rogue" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="tor_notable_greenskins_merch1" name="{=str_tor_notable_greenskins_merch1}Ironic Orc merchant" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="orc" culture="Culture.aserai" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_artisan_merchant" />
+      <EquipmentSet id="tor_gs_people_notable_artisan_merchant" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_greenskins_merch2" name="{=str_tor_notable_greenskins_merch2}curt Orc merchant" voice="curt" is_template="true" default_group="Infantry" is_hero="false" race ="orc" culture="Culture.aserai" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Commander" value="2" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="Generosity" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_artisan_merchant" />
+      <EquipmentSet id="tor_gs_people_notable_artisan_merchant" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_greenskins_merch3" name="{=str_tor_notable_greenskins_merch3}Daring Orc merchant" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" race ="orc" culture="Culture.aserai" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Commander" value="3" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_artisan_merchant" />
+      <EquipmentSet id="tor_gs_people_notable_artisan_merchant" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_greenskins_merch4" name="{=str_tor_notable_greenskins_merch4}Softspoken Orc merchant" voice="softspoken" is_template="true" default_group="Infantry" race ="orc" is_hero="false" culture="Culture.aserai" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Commander" value="1" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_artisan_merchant" />
+      <EquipmentSet id="tor_gs_people_notable_artisan_merchant" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_greenskins_merch5" name="{=str_tor_notable_greenskins_merch5}{FIRSTNAME} the Manciple" voice="softspoken" is_template="true" default_group="Infantry" race ="orc" is_hero="false" culture="Culture.aserai" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Commander" value="2" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_artisan_merchant" />
+      <EquipmentSet id="tor_gs_people_notable_artisan_merchant" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_greenskins_1" name="{=str_tor_notable_greenskins_1}{FIRSTNAME} the Warehouser" voice="ironic" is_template="true" default_group="Infantry" race ="orc" is_hero="false" culture="Culture.aserai" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_notary" />
+      <EquipmentSet id="tor_gs_people_notable_notary" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_greenskins_1b" name="{=str_tor_notable_greenskins_b}{FIRSTNAME} the Heiress" voice="ironic" is_template="true" default_group="Infantry" race ="orc" is_hero="false" culture="Culture.aserai" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Commander" value="2" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_notary" />
+      <EquipmentSet id="tor_gs_people_notable_notary" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_greenskins_2" name="{=str_tor_notable_greenskins_2}Puritan male preacher" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" race ="orc" culture="Culture.aserai" occupation="Preacher">
+    <face>
+      <face_key_template value="BodyProperty.villager_vlandia" />
+    </face>
+    <Traits>
+      <Trait id="Generosity" value="-1" />
+      <Trait id="Honor" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_notary" />
+      <EquipmentSet id="tor_gs_people_notable_notary" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_greenskins_3" name="{=str_tor_notable_greenskins_3}Rebellious female preacher" voice="earnest" is_template="true" default_group="Infantry"  race ="orc" culture="Culture.aserai" occupation="Preacher">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Generosity" value="1" />
+      <Trait id="Honor" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_notary" />
+      <EquipmentSet id="tor_gs_people_notable_notary" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_greenskins_gangleader_1" name="{=str_tor_greenskins_gangleader_1}Standard male gang leader" voice="curt" is_template="true" default_group="Infantry" is_hero="false" race ="orc" culture="Culture.aserai" occupation="GangLeader">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="1" />
+      <Trait id="Mercy" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_rogue_leader" />
+      <EquipmentSet id="tor_gs_people_notable_rogue_leader" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_greenskins_gangleader_2" name="{=str_tor_greenskins_gangleader_2}Female gang leader" voice="ironic" is_template="true" default_group="Infantry"  race ="orc" culture="Culture.aserai" occupation="GangLeader">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="1" />
+      <Trait id="Mercy" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_rogue_leader" />
+      <EquipmentSet id="tor_gs_people_notable_rogue_leader" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_greenskins_gangleader_3" name="{=str_tor_greenskins_gangleader_3}Male gang leader" voice="ironic" is_template="true" default_group="Infantry"  race ="orc" culture="Culture.aserai" occupation="GangLeader">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="1" />
+      <Trait id="Calculating" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Honor" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_rogue_leader" civilian="true" />
+      <EquipmentSet id="tor_gs_people_notable_rogue_leader" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_greenskins_artisan_1" name="{=str_tor_notable_greenskins_artisan_1}Orc artisan 1" voice="earnest" is_template="true" default_group="Infantry" culture="Culture.aserai" race ="orc" occupation="Artisan">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_artisan_shopworker" />
+      <EquipmentSet id="tor_gs_people_notable_artisan_shopworker" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_greenskins_artisan_2" name="{=str_tor_notable_greenskins_artisan_2}Orc artisan 2" voice="curt" is_template="true" default_group="Infantry" culture="Culture.aserai" race ="orc" occupation="Artisan">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_artisan_shopworker" />
+      <EquipmentSet id="tor_gs_people_notable_artisan_shopworker" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_greenskins_rural_1" name="{=str_tor_notable_greenskins_rural_1}Orc yeoman" voice="curt" is_template="true" default_group="Infantry" culture="Culture.aserai" race ="orc" occupation="RuralNotable">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_townsman" />
+      <EquipmentSet id="tor_gs_people_notable_townsman" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_greenskins_rural_2" name="{=str_tor_notable_greenskins_rural_2}Orc yeoman" voice="softspoken" is_template="true" default_group="Infantry" culture="Culture.aserai" race ="orc" occupation="RuralNotable">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Calculating" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_townsman" />
+      <EquipmentSet id="tor_gs_people_notable_townsman" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_greenskins_headman_1" name="{=str_greenskins_headman_1}Orc rebellious headman" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.aserai" race ="orc" occupation="Headman">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="1" />
+      <Trait id="Calculating" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_townsman" />
+      <EquipmentSet id="tor_gs_people_notable_townsman" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_greenskins_headman_2" name="{=str_greenskins_headman_2}Orc conservative headman" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.aserai"  race ="orc" occupation="Headman">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_townsman" />
+      <EquipmentSet id="tor_gs_people_notable_townsman" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_greenskins_headman_3" name="{=str_greenskins_headman_3}Orc devious headman" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.aserai" race ="orc" occupation="Headman">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Calculating" value="1" />
+      <Trait id="Honor" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_townsman" />
+      <EquipmentSet id="tor_gs_people_notable_townsman" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+</NPCCharacters>

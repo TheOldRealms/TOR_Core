@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData id="English">
+  <VoiceFile xml_path="VoicedLines/tor_voiced_lines_en.xml" />
+</LanguageData>

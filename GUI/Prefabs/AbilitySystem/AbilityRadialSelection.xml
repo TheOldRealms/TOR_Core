@@ -1,0 +1,73 @@
+﻿<Prefab>
+  <Parameters>
+  </Parameters>
+  <Constants>
+    <Constant Name="Selected.Additive" Value="30" />
+
+    <Constant Name="RadialItem.Height" Value="50" />
+    <Constant Name="RadialItem.Width" Value="50" />
+
+    <Constant Name="RadialItem.Selected.Height" Additive="!Selected.Additive" Value="!RadialItem.Height" />
+    <Constant Name="RadialItem.Selected.Width" Additive="!Selected.Additive" Value="!RadialItem.Width" />
+  </Constants>
+  <VisualDefinitions>
+    <VisualDefinition Name="RadialItem" TransitionDuration="0.15">
+      <VisualState SuggestedHeight="!RadialItem.Selected.Height" SuggestedWidth="!RadialItem.Selected.Width" State="Selected" />
+      <VisualState SuggestedHeight="!RadialItem.Height" SuggestedWidth="!RadialItem.Width" State="Default" />
+      <VisualState SuggestedHeight="!RadialItem.Height" SuggestedWidth="!RadialItem.Width" State="Pressed" />
+      <VisualState SuggestedHeight="!RadialItem.Height" SuggestedWidth="!RadialItem.Width" State="Hovered" />
+      <VisualState SuggestedHeight="!RadialItem.Height" SuggestedWidth="!RadialItem.Width" State="Disabled" />
+    </VisualDefinition>
+  </VisualDefinitions>
+  <Window>
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+      <Children>
+
+        <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="@IsVisible">
+          <Children>
+
+            <CircleActionSelectorWidget DataSource="{Abilities}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" 
+            SuggestedWidth="450" SuggestedHeight="450" HorizontalAlignment="Center" VerticalAlignment="Center" 
+            DirectionWidget="..\..\DirectionWidget" ActivateOnlyWithController="false" 
+            DirectionWidgetDistanceMultiplier="0.7" DistanceFromCenterModifier="250"
+            Sprite="General\RadialMenu\radial_menu_bg" Color="#00000099">
+              <ItemTemplate>
+                <AbilityRadialSelectionItemWidget VisualDefinition="RadialItem" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" 
+                SuggestedWidth="!RadialItem.Width" SuggestedHeight="!RadialItem.Height" Sprite="@SpriteName" HorizontalAlignment="Center" VerticalAlignment="Center" Command.OnSelected="OnSelected" />
+              </ItemTemplate>
+            </CircleActionSelectorWidget>
+
+            <Widget DataSource="{CurrentAbility}" SuggestedWidth="250" SuggestedHeight="250" HorizontalAlignment="Center" VerticalAlignment="Center" >
+              <Children>
+
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="120" SuggestedHeight="120" Sprite="@SpriteName" HorizontalAlignment="Center" VerticalAlignment="Top" PositionYOffset="20">
+                  <Children>
+                    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare_9" Color="#000000FF" AlphaFactor="0.8" IsVisible="@IsDisabled"/>
+                    <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" Text="@CoolDownLeft" Brush.FontSize="30" IsVisible="@IsOnCoolDown"/>
+                    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsEnabled="false" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginRight="2" IsVisible="@IsSpell" PositionYOffset="4" >
+                      <Children>
+                        <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="33" HorizontalAlignment="Center" VerticalAlignment="Center" Text="@WindsCost" Brush.FontSize="15"/>
+                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" VerticalAlignment="Center" Sprite="winds_icon_45" MarginLeft="2" />
+                      </Children>
+                    </ListPanel>
+                  </Children>
+                </Widget>
+
+                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="32" HorizontalAlignment="Center" VerticalAlignment="Center" MarginTop="80" Text="@Name" Brush.FontSize="24"/>
+                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="32" HorizontalAlignment="Center" VerticalAlignment="Center" MarginTop="125" Text="@AbilityType" Brush.FontSize="20"/>
+                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="32" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="@DisabledText" Brush.FontSize="24" Brush.FontColor="#eb3434ff" />
+
+              </Children>
+            </Widget>
+
+          </Children>
+        </Widget>
+
+        <Widget Id="DirectionWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="13" SuggestedHeight="13" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="BlankWhiteCircle" AlphaFactor="0.5"/>
+        
+        <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="32" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="@ErrorMessageText" IsVisible="@ErrorMessageVisible" Brush.FontSize="24" Brush.FontColor="#eb3434ff"  PositionYOffset="-100" />
+
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

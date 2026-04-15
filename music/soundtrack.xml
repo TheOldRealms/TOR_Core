@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PsaiProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SerializedByProtocolVersion>1.0</SerializedByProtocolVersion>
+  <Properties>
+    <ModuleIdPrefix></ModuleIdPrefix>
+    <WarningThresholdPreBeatMillis>1500</WarningThresholdPreBeatMillis>
+    <DefaultCalculatePostAndPrebeatLengthBasedOnBeats>false</DefaultCalculatePostAndPrebeatLengthBasedOnBeats>
+    <DefaultSegmentSuitabilites>3</DefaultSegmentSuitabilites>
+    <ForceFullRebuild>true</ForceFullRebuild>
+    <VolumeBoost>0</VolumeBoost>
+    <ExportSoundQualityInPercent>90</ExportSoundQualityInPercent>
+    <DefaultPrebeats>1</DefaultPrebeats>
+    <DefaultPostbeats>4</DefaultPostbeats>
+    <DefaultBpm>100</DefaultBpm>
+    <DefaultPrebeatLengthInSamples>1000</DefaultPrebeatLengthInSamples>
+    <DefaultPostbeatLengthInSamples>3000</DefaultPostbeatLengthInSamples>
+  </Properties>
+  <Themes>
+    <!-- Theme IDs start from 500 and going up sequentially-->
+	  <Theme>
+      <Name>TOR Main Theme</Name>
+      <Id>500</Id>
+      <ThemeTypeInt>7</ThemeTypeInt>
+      <Serialization_ManuallyBlockedThemeIds />
+      <IntensityAfterRest>0.5</IntensityAfterRest>
+      <MusicPhaseSecondsAfterRest>60</MusicPhaseSecondsAfterRest>
+      <MusicPhaseSecondsGeneral>0</MusicPhaseSecondsGeneral>
+      <RestSecondsMin>30</RestSecondsMin>
+      <RestSecondsMax>60</RestSecondsMax>
+      <FadeoutMs>20</FadeoutMs>
+      <Priority>1</Priority>
+      <WeightingSwitchGroups>0.5</WeightingSwitchGroups>
+      <WeightingIntensityVsVariance>0.5</WeightingIntensityVsVariance>
+      <WeightingLowPlaycountVsRandom>0</WeightingLowPlaycountVsRandom>
+      <Groups>
+        <Group>
+          <Name>default group</Name>
+          <Segments>
+            <Segment>
+              <Name>old_world_main_theme</Name>
+              <!-- Segment IDs start from 600 and going up sequentially-->
+              <Id>600</Id>
+              <IsAutomaticBridgeSegment>false</IsAutomaticBridgeSegment>
+              <Intensity>0.5</Intensity>
+              <IsUsableAtStart>true</IsUsableAtStart>
+              <IsUsableInMiddle>true</IsUsableInMiddle>
+              <IsUsableAtEnd>true</IsUsableAtEnd>
+              <AudioData>
+                <_prebeatLengthInSamplesEnteredManually>44305</_prebeatLengthInSamplesEnteredManually>
+                <_postbeatLengthInSamplesEnteredManually>44305</_postbeatLengthInSamplesEnteredManually>
+                <Path>old_world_main_theme.ogg</Path>
+                <Bpm>100</Bpm>
+                <PreBeats>1</PreBeats>
+                <PostBeats>4</PostBeats>
+                <CalculatePostAndPrebeatLengthBasedOnBeats>false</CalculatePostAndPrebeatLengthBasedOnBeats>
+                <PreBeatLengthInSamples>44305</PreBeatLengthInSamples>
+                <PostBeatLengthInSamples>44305</PostBeatLengthInSamples>
+                <TotalLengthInSamples>18120745</TotalLengthInSamples>
+                <SampleRate>44100</SampleRate>
+              </AudioData>
+              <CalculatePostAndPrebeatLengthBasedOnBeats>false</CalculatePostAndPrebeatLengthBasedOnBeats>
+              <PreBeatLengthInSamples>44305</PreBeatLengthInSamples>
+              <PostBeatLengthInSamples>44305</PostBeatLengthInSamples>
+              <PreBeats>1</PreBeats>
+              <PostBeats>4</PostBeats>
+              <Bpm>100</Bpm>
+              <SampleRate>44100</SampleRate>
+              <BitsPerSample>16</BitsPerSample>
+              <ThemeId>500</ThemeId>
+              <Serialization_ManuallyBlockedSegmentIds />
+              <Serialization_ManuallyLinkedSegmentIds />
+              <DefaultCompatibiltyAsFollower>allowed_implicitly</DefaultCompatibiltyAsFollower>
+            </Segment>
+          </Segments>
+          <Description />
+          <Serialization_Id>10</Serialization_Id>
+          <Serialization_ManuallyBlockedGroupIds />
+          <Serialization_ManuallyLinkedGroupIds />
+          <Serialization_ManualBridgeSegmentIds />
+        </Group>
+      </Groups>
+    </Theme>
+
+    <Theme>
+      <Name>Our Banner</Name>
+      <Id>501</Id>
+      <ThemeTypeInt>7</ThemeTypeInt>
+      <Serialization_ManuallyBlockedThemeIds />
+      <IntensityAfterRest>0.5</IntensityAfterRest>
+      <MusicPhaseSecondsAfterRest>60</MusicPhaseSecondsAfterRest>
+      <MusicPhaseSecondsGeneral>0</MusicPhaseSecondsGeneral>
+      <RestSecondsMin>30</RestSecondsMin>
+      <RestSecondsMax>60</RestSecondsMax>
+      <FadeoutMs>20</FadeoutMs>
+      <Priority>1</Priority>
+      <WeightingSwitchGroups>0.5</WeightingSwitchGroups>
+      <WeightingIntensityVsVariance>0.5</WeightingIntensityVsVariance>
+      <WeightingLowPlaycountVsRandom>0</WeightingLowPlaycountVsRandom>
+      <Groups>
+        <Group>
+          <Name>default group</Name>
+          <Segments>
+            <Segment>
+              <Name>our_banner</Name>
+              <Id>601</Id>
+              <IsAutomaticBridgeSegment>false</IsAutomaticBridgeSegment>
+              <Intensity>0.5</Intensity>
+              <IsUsableAtStart>true</IsUsableAtStart>
+              <IsUsableInMiddle>true</IsUsableInMiddle>
+              <IsUsableAtEnd>true</IsUsableAtEnd>
+              <AudioData>
+                <_prebeatLengthInSamplesEnteredManually>44305</_prebeatLengthInSamplesEnteredManually>
+                <_postbeatLengthInSamplesEnteredManually>44305</_postbeatLengthInSamplesEnteredManually>
+                <Path>our_banner.ogg</Path>
+                <Bpm>100</Bpm>
+                <PreBeats>1</PreBeats>
+                <PostBeats>4</PostBeats>
+                <CalculatePostAndPrebeatLengthBasedOnBeats>false</CalculatePostAndPrebeatLengthBasedOnBeats>
+                <PreBeatLengthInSamples>44305</PreBeatLengthInSamples>
+                <PostBeatLengthInSamples>44305</PostBeatLengthInSamples>
+                <TotalLengthInSamples>14532040</TotalLengthInSamples>
+                <SampleRate>44100</SampleRate>
+              </AudioData>
+              <CalculatePostAndPrebeatLengthBasedOnBeats>false</CalculatePostAndPrebeatLengthBasedOnBeats>
+              <PreBeatLengthInSamples>44305</PreBeatLengthInSamples>
+              <PostBeatLengthInSamples>44305</PostBeatLengthInSamples>
+              <PreBeats>1</PreBeats>
+              <PostBeats>4</PostBeats>
+              <Bpm>100</Bpm>
+              <SampleRate>44100</SampleRate>
+              <BitsPerSample>16</BitsPerSample>
+              <ThemeId>501</ThemeId>
+              <Serialization_ManuallyBlockedSegmentIds />
+              <Serialization_ManuallyLinkedSegmentIds />
+              <DefaultCompatibiltyAsFollower>allowed_implicitly</DefaultCompatibiltyAsFollower>
+            </Segment>
+          </Segments>
+          <Description />
+          <Serialization_Id>10</Serialization_Id>
+          <Serialization_ManuallyBlockedGroupIds />
+          <Serialization_ManuallyLinkedGroupIds />
+          <Serialization_ManualBridgeSegmentIds />
+        </Group>
+      </Groups>
+    </Theme>
+
+    <Theme>
+      <Name>Oak of Ages</Name>
+      <Id>502</Id>
+      <ThemeTypeInt>7</ThemeTypeInt>
+      <Serialization_ManuallyBlockedThemeIds />
+      <IntensityAfterRest>0.5</IntensityAfterRest>
+      <MusicPhaseSecondsAfterRest>60</MusicPhaseSecondsAfterRest>
+      <MusicPhaseSecondsGeneral>0</MusicPhaseSecondsGeneral>
+      <RestSecondsMin>30</RestSecondsMin>
+      <RestSecondsMax>60</RestSecondsMax>
+      <FadeoutMs>20</FadeoutMs>
+      <Priority>1</Priority>
+      <WeightingSwitchGroups>0.5</WeightingSwitchGroups>
+      <WeightingIntensityVsVariance>0.5</WeightingIntensityVsVariance>
+      <WeightingLowPlaycountVsRandom>0</WeightingLowPlaycountVsRandom>
+      <Groups>
+        <Group>
+          <Name>default group</Name>
+          <Segments>
+            <Segment>
+              <Name>elves_ambient_theme</Name>
+              <Id>602</Id>
+              <IsAutomaticBridgeSegment>false</IsAutomaticBridgeSegment>
+              <Intensity>0.5</Intensity>
+              <IsUsableAtStart>true</IsUsableAtStart>
+              <IsUsableInMiddle>true</IsUsableInMiddle>
+              <IsUsableAtEnd>true</IsUsableAtEnd>
+              <AudioData>
+                <_prebeatLengthInSamplesEnteredManually>44305</_prebeatLengthInSamplesEnteredManually>
+                <_postbeatLengthInSamplesEnteredManually>44305</_postbeatLengthInSamplesEnteredManually>
+                <Path>elves_ambient_theme.ogg</Path>
+                <Bpm>100</Bpm>
+                <PreBeats>1</PreBeats>
+                <PostBeats>4</PostBeats>
+                <CalculatePostAndPrebeatLengthBasedOnBeats>false</CalculatePostAndPrebeatLengthBasedOnBeats>
+                <PreBeatLengthInSamples>44305</PreBeatLengthInSamples>
+                <PostBeatLengthInSamples>44305</PostBeatLengthInSamples>
+                <TotalLengthInSamples>16127020</TotalLengthInSamples>
+                <SampleRate>44100</SampleRate>
+              </AudioData>
+              <CalculatePostAndPrebeatLengthBasedOnBeats>false</CalculatePostAndPrebeatLengthBasedOnBeats>
+              <PreBeatLengthInSamples>44305</PreBeatLengthInSamples>
+              <PostBeatLengthInSamples>44305</PostBeatLengthInSamples>
+              <PreBeats>1</PreBeats>
+              <PostBeats>4</PostBeats>
+              <Bpm>100</Bpm>
+              <SampleRate>44100</SampleRate>
+              <BitsPerSample>16</BitsPerSample>
+              <ThemeId>502</ThemeId>
+              <Serialization_ManuallyBlockedSegmentIds />
+              <Serialization_ManuallyLinkedSegmentIds />
+              <DefaultCompatibiltyAsFollower>allowed_implicitly</DefaultCompatibiltyAsFollower>
+            </Segment>
+          </Segments>
+          <Description />
+          <Serialization_Id>10</Serialization_Id>
+          <Serialization_ManuallyBlockedGroupIds />
+          <Serialization_ManuallyLinkedGroupIds />
+          <Serialization_ManualBridgeSegmentIds />
+        </Group>
+      </Groups>
+    </Theme>
+
+    <Theme>
+      <Name>Verhungern</Name>
+      <Id>503</Id>
+      <ThemeTypeInt>7</ThemeTypeInt>
+      <Serialization_ManuallyBlockedThemeIds />
+      <IntensityAfterRest>0.5</IntensityAfterRest>
+      <MusicPhaseSecondsAfterRest>60</MusicPhaseSecondsAfterRest>
+      <MusicPhaseSecondsGeneral>0</MusicPhaseSecondsGeneral>
+      <RestSecondsMin>30</RestSecondsMin>
+      <RestSecondsMax>60</RestSecondsMax>
+      <FadeoutMs>20</FadeoutMs>
+      <Priority>1</Priority>
+      <WeightingSwitchGroups>0.5</WeightingSwitchGroups>
+      <WeightingIntensityVsVariance>0.5</WeightingIntensityVsVariance>
+      <WeightingLowPlaycountVsRandom>0</WeightingLowPlaycountVsRandom>
+      <Groups>
+        <Group>
+          <Name>default group</Name>
+          <Segments>
+            <Segment>
+              <Name>vampire_ambient_theme</Name>
+              <Id>603</Id>
+              <IsAutomaticBridgeSegment>false</IsAutomaticBridgeSegment>
+              <Intensity>0.5</Intensity>
+              <IsUsableAtStart>true</IsUsableAtStart>
+              <IsUsableInMiddle>true</IsUsableInMiddle>
+              <IsUsableAtEnd>true</IsUsableAtEnd>
+              <AudioData>
+                <_prebeatLengthInSamplesEnteredManually>44305</_prebeatLengthInSamplesEnteredManually>
+                <_postbeatLengthInSamplesEnteredManually>44305</_postbeatLengthInSamplesEnteredManually>
+                <Path>vampire_ambient_theme.ogg</Path>
+                <Bpm>100</Bpm>
+                <PreBeats>1</PreBeats>
+                <PostBeats>4</PostBeats>
+                <CalculatePostAndPrebeatLengthBasedOnBeats>false</CalculatePostAndPrebeatLengthBasedOnBeats>
+                <PreBeatLengthInSamples>44305</PreBeatLengthInSamples>
+                <PostBeatLengthInSamples>44305</PostBeatLengthInSamples>
+                <TotalLengthInSamples>14664955</TotalLengthInSamples>
+                <SampleRate>44100</SampleRate>
+              </AudioData>
+              <CalculatePostAndPrebeatLengthBasedOnBeats>false</CalculatePostAndPrebeatLengthBasedOnBeats>
+              <PreBeatLengthInSamples>44305</PreBeatLengthInSamples>
+              <PostBeatLengthInSamples>44305</PostBeatLengthInSamples>
+              <PreBeats>1</PreBeats>
+              <PostBeats>4</PostBeats>
+              <Bpm>100</Bpm>
+              <SampleRate>44100</SampleRate>
+              <BitsPerSample>16</BitsPerSample>
+              <ThemeId>503</ThemeId>
+              <Serialization_ManuallyBlockedSegmentIds />
+              <Serialization_ManuallyLinkedSegmentIds />
+              <DefaultCompatibiltyAsFollower>allowed_implicitly</DefaultCompatibiltyAsFollower>
+            </Segment>
+          </Segments>
+          <Description />
+          <Serialization_Id>10</Serialization_Id>
+          <Serialization_ManuallyBlockedGroupIds />
+          <Serialization_ManuallyLinkedGroupIds />
+          <Serialization_ManualBridgeSegmentIds />
+        </Group>
+      </Groups>
+    </Theme>
+
+    <Theme>
+      <Name>The Chanson of Duke Cassyon</Name>
+      <Id>504</Id>
+      <ThemeTypeInt>7</ThemeTypeInt>
+      <Serialization_ManuallyBlockedThemeIds />
+      <IntensityAfterRest>0.5</IntensityAfterRest>
+      <MusicPhaseSecondsAfterRest>60</MusicPhaseSecondsAfterRest>
+      <MusicPhaseSecondsGeneral>0</MusicPhaseSecondsGeneral>
+      <RestSecondsMin>30</RestSecondsMin>
+      <RestSecondsMax>60</RestSecondsMax>
+      <FadeoutMs>20</FadeoutMs>
+      <Priority>1</Priority>
+      <WeightingSwitchGroups>0.5</WeightingSwitchGroups>
+      <WeightingIntensityVsVariance>0.5</WeightingIntensityVsVariance>
+      <WeightingLowPlaycountVsRandom>0</WeightingLowPlaycountVsRandom>
+      <Groups>
+        <Group>
+          <Name>bretonnia_ambient_theme</Name>
+          <Segments>
+            <Segment>
+              <Name>our banner</Name>
+              <Id>604</Id>
+              <IsAutomaticBridgeSegment>false</IsAutomaticBridgeSegment>
+              <Intensity>0.5</Intensity>
+              <IsUsableAtStart>true</IsUsableAtStart>
+              <IsUsableInMiddle>true</IsUsableInMiddle>
+              <IsUsableAtEnd>true</IsUsableAtEnd>
+              <AudioData>
+                <_prebeatLengthInSamplesEnteredManually>44305</_prebeatLengthInSamplesEnteredManually>
+                <_postbeatLengthInSamplesEnteredManually>44305</_postbeatLengthInSamplesEnteredManually>
+                <Path>bretonnia_ambient_theme.ogg</Path>
+                <Bpm>100</Bpm>
+                <PreBeats>1</PreBeats>
+                <PostBeats>4</PostBeats>
+                <CalculatePostAndPrebeatLengthBasedOnBeats>false</CalculatePostAndPrebeatLengthBasedOnBeats>
+                <PreBeatLengthInSamples>44305</PreBeatLengthInSamples>
+                <PostBeatLengthInSamples>44305</PostBeatLengthInSamples>
+                <TotalLengthInSamples>12449705</TotalLengthInSamples>
+                <SampleRate>44100</SampleRate>
+              </AudioData>
+              <CalculatePostAndPrebeatLengthBasedOnBeats>false</CalculatePostAndPrebeatLengthBasedOnBeats>
+              <PreBeatLengthInSamples>44305</PreBeatLengthInSamples>
+              <PostBeatLengthInSamples>44305</PostBeatLengthInSamples>
+              <PreBeats>1</PreBeats>
+              <PostBeats>4</PostBeats>
+              <Bpm>100</Bpm>
+              <SampleRate>44100</SampleRate>
+              <BitsPerSample>16</BitsPerSample>
+              <ThemeId>504</ThemeId>
+              <Serialization_ManuallyBlockedSegmentIds />
+              <Serialization_ManuallyLinkedSegmentIds />
+              <DefaultCompatibiltyAsFollower>allowed_implicitly</DefaultCompatibiltyAsFollower>
+            </Segment>
+          </Segments>
+          <Description />
+          <Serialization_Id>10</Serialization_Id>
+          <Serialization_ManuallyBlockedGroupIds />
+          <Serialization_ManuallyLinkedGroupIds />
+          <Serialization_ManualBridgeSegmentIds />
+        </Group>
+      </Groups>
+    </Theme>
+
+    <Theme>
+      <Name>Journey through the Reik</Name>
+      <Id>505</Id>
+      <ThemeTypeInt>7</ThemeTypeInt>
+      <Serialization_ManuallyBlockedThemeIds />
+      <IntensityAfterRest>0.5</IntensityAfterRest>
+      <MusicPhaseSecondsAfterRest>60</MusicPhaseSecondsAfterRest>
+      <MusicPhaseSecondsGeneral>0</MusicPhaseSecondsGeneral>
+      <RestSecondsMin>30</RestSecondsMin>
+      <RestSecondsMax>60</RestSecondsMax>
+      <FadeoutMs>20</FadeoutMs>
+      <Priority>1</Priority>
+      <WeightingSwitchGroups>0.5</WeightingSwitchGroups>
+      <WeightingIntensityVsVariance>0.5</WeightingIntensityVsVariance>
+      <WeightingLowPlaycountVsRandom>0</WeightingLowPlaycountVsRandom>
+      <Groups>
+        <Group>
+          <Name>empire_ambient_theme</Name>
+          <Segments>
+            <Segment>
+              <Name>our banner</Name>
+              <Id>605</Id>
+              <IsAutomaticBridgeSegment>false</IsAutomaticBridgeSegment>
+              <Intensity>0.5</Intensity>
+              <IsUsableAtStart>true</IsUsableAtStart>
+              <IsUsableInMiddle>true</IsUsableInMiddle>
+              <IsUsableAtEnd>true</IsUsableAtEnd>
+              <AudioData>
+                <_prebeatLengthInSamplesEnteredManually>44305</_prebeatLengthInSamplesEnteredManually>
+                <_postbeatLengthInSamplesEnteredManually>44305</_postbeatLengthInSamplesEnteredManually>
+                <Path>empire_ambient_theme.ogg</Path>
+                <Bpm>100</Bpm>
+                <PreBeats>1</PreBeats>
+                <PostBeats>4</PostBeats>
+                <CalculatePostAndPrebeatLengthBasedOnBeats>false</CalculatePostAndPrebeatLengthBasedOnBeats>
+                <PreBeatLengthInSamples>44305</PreBeatLengthInSamples>
+                <PostBeatLengthInSamples>44305</PostBeatLengthInSamples>
+                <TotalLengthInSamples>14532040</TotalLengthInSamples>
+                <SampleRate>44100</SampleRate>
+              </AudioData>
+              <CalculatePostAndPrebeatLengthBasedOnBeats>false</CalculatePostAndPrebeatLengthBasedOnBeats>
+              <PreBeatLengthInSamples>44305</PreBeatLengthInSamples>
+              <PostBeatLengthInSamples>44305</PostBeatLengthInSamples>
+              <PreBeats>1</PreBeats>
+              <PostBeats>4</PostBeats>
+              <Bpm>100</Bpm>
+              <SampleRate>44100</SampleRate>
+              <BitsPerSample>16</BitsPerSample>
+              <ThemeId>505</ThemeId>
+              <Serialization_ManuallyBlockedSegmentIds />
+              <Serialization_ManuallyLinkedSegmentIds />
+              <DefaultCompatibiltyAsFollower>allowed_implicitly</DefaultCompatibiltyAsFollower>
+            </Segment>
+          </Segments>
+          <Description />
+          <Serialization_Id>10</Serialization_Id>
+          <Serialization_ManuallyBlockedGroupIds />
+          <Serialization_ManuallyLinkedGroupIds />
+          <Serialization_ManualBridgeSegmentIds />
+        </Group>
+      </Groups>
+    </Theme>
+  </Themes>
+</PsaiProject>

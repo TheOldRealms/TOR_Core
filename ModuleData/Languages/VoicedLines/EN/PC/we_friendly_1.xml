@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rhubarbResult>
+  <metadata>
+    <soundFile>E:\voicelines\elves\lord_lines\we_friendly_1.ogg</soundFile>
+    <duration>3.58</duration>
+  </metadata>
+  <mouthCues>
+    <mouthCue start="0.00" end="0.06">X</mouthCue>
+    <mouthCue start="0.06" end="0.88">B</mouthCue>
+    <mouthCue start="0.88" end="1.40">X</mouthCue>
+    <mouthCue start="1.40" end="1.44">B</mouthCue>
+    <mouthCue start="1.44" end="1.52">A</mouthCue>
+    <mouthCue start="1.52" end="1.79">B</mouthCue>
+    <mouthCue start="1.79" end="1.93">F</mouthCue>
+    <mouthCue start="1.93" end="2.01">A</mouthCue>
+    <mouthCue start="2.01" end="2.17">B</mouthCue>
+    <mouthCue start="2.17" end="2.24">E</mouthCue>
+    <mouthCue start="2.24" end="2.45">B</mouthCue>
+    <mouthCue start="2.45" end="2.59">C</mouthCue>
+    <mouthCue start="2.59" end="2.80">B</mouthCue>
+    <mouthCue start="2.80" end="2.87">C</mouthCue>
+    <mouthCue start="2.87" end="3.15">B</mouthCue>
+    <mouthCue start="3.15" end="3.36">C</mouthCue>
+    <mouthCue start="3.36" end="3.50">B</mouthCue>
+    <mouthCue start="3.50" end="3.58">X</mouthCue>
+  </mouthCues>
+</rhubarbResult>

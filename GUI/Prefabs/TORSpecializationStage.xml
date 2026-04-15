@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Prefab>
+  <Window>
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+      <Children>
+
+          <!-- Standard Background -->
+
+
+          <!-- Character Display on Left (using CharacterTableauWidget like SpellBook) -->
+          <CharacterTableauWidget DataSource="{CurrentCharacter}"
+                                  WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                                  SuggestedWidth="550" SuggestedHeight="1000"
+                                  HorizontalAlignment="Left" VerticalAlignment="Center"
+                                  MarginLeft="100"
+                                  PositionXOffset="300"
+                                  BannerCodeText="@BannerCodeText"
+                                  BodyProperties="@BodyProperties"
+                                  CharStringId="@CharStringId"
+                                  EquipmentCode="@EquipmentCode"
+                                  IsFemale="@IsFemale"
+                                  MountCreationKey="@MountCreationKey"
+                                  Race="@Race"
+                                  StanceIndex="@StanceIndex"
+                                  ArmorColor1="@ArmorColor1"
+                                  ArmorColor2="@ArmorColor2"
+                                  IsEnabled="false"
+                                  DoNotUseCustomScale="true" />
+
+          <!-- Gained Properties Display (Full Native Style) -->
+          <Widget DataSource="{GainedPropertiesController}"
+                  WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"
+                  HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Children>
+              <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="20" DoNotUseCustomScaleAndChildren="true" StackLayout.LayoutMethod="VerticalBottomToTop">
+                <Children>
+                  <ListPanel Id="GainedProperties" DataSource="{GainGroups}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                    <ItemTemplate>
+                      <!--Gain Group (Attribute + Skills)-->
+                      <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" MarginTop="5" MarginBottom="3" DoNotUseCustomScaleAndChildren="true">
+                        <Children>
+                          <SiblingIndexVisibilityWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="290" SuggestedHeight="2" Sprite="GradientDivider_9" Color="#CDA970FF" IndexToBeVisible="0" WatchType="BiggerThan" WidgetToWatch="..\." MarginBottom="5" />
+
+                          <!--Attribute Name and Value-->
+                          <Widget DataSource="{AttributeVM}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" DoNotPassEventsToChildren="true">
+                            <Children>
+                              <!-- Normal state (no change) - visible when NOT increased AND NOT decreased -->
+                              <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsHidden="@HasIncreasedInCurrentStage" StackLayout.LayoutMethod="HorizontalLeftToRight">
+                                <Children>
+                                  <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsHidden="@HasDecreasedInCurrentStage" StackLayout.LayoutMethod="HorizontalLeftToRight">
+                                    <Children>
+                                      <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontSize="24" Text="@NameText" ClipContents="false" MarginRight="8" />
+                                      <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontSize="24" Brush.TextHorizontalAlignment="Center" Brush.TextVerticalAlignment="Center" Brush.FontColor="#AAAAAAFF" Text="@CurrentValueText" ClipContents="false" />
+                                    </Children>
+                                  </ListPanel>
+                                </Children>
+                              </ListPanel>
+                              <!-- Increased state (green) - visible when increased -->
+                              <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsVisible="@HasIncreasedInCurrentStage" DoNotPassEventsToChildren="true" StackLayout.LayoutMethod="HorizontalLeftToRight">
+                                <Children>
+                                  <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontColor="#E3E172FF" Brush.FontSize="24" Text="@NameText" ClipContents="false" MarginRight="5" />
+                                  <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontSize="24" Brush.TextHorizontalAlignment="Center" Brush.TextVerticalAlignment="Center" Brush.FontColor="#E3E172FF" Text="@CurrentValueText" ClipContents="false" MarginRight="5" />
+                                  <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="9" SuggestedHeight="13" VerticalAlignment="Center" Sprite="General\CharacterCreation\increasing_icon" Color="#ACAC48FF" />
+                                </Children>
+                              </ListPanel>
+                              <!-- Decreased state (red) - visible when decreased -->
+                              <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsVisible="@HasDecreasedInCurrentStage" DoNotPassEventsToChildren="true" StackLayout.LayoutMethod="HorizontalLeftToRight">
+                                <Children>
+                                  <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontColor="#FF5555FF" Brush.FontSize="24" Text="@NameText" ClipContents="false" MarginRight="5" />
+                                  <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontSize="24" Brush.TextHorizontalAlignment="Center" Brush.TextVerticalAlignment="Center" Brush.FontColor="#FF5555FF" Text="@CurrentValueText" ClipContents="false" MarginRight="5" />
+                                  <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="9" SuggestedHeight="13" VerticalAlignment="Center" Sprite="decrease" Color="#FF5555FF" />
+                                </Children>
+                              </ListPanel>
+                            </Children>
+                          </Widget>
+
+                          <!--Skills (arranged horizontally)-->
+                          <ListPanel DataSource="{Skills}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginTop="5" StackLayout.LayoutMethod="HorizontalLeftToRight">
+                            <ItemTemplate>
+                              <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="13" MarginRight="13" StackLayout.LayoutMethod="VerticalBottomToTop" DoNotUseCustomScaleAndChildren="true">
+                                <Children>
+                                  <SkillIconVisualWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="61" SuggestedHeight="61" SkillId="@SkillId" UseSmallVariation="true" />
+
+                                  <!-- Focus bars (scaled to match native visually - taller) -->
+                                  <ListPanel WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="63" SuggestedHeight="32" MarginTop="5">
+                                    <Children>
+                                      <ListPanel DataSource="{FocusPointGainList}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="63" SuggestedHeight="32" Sprite="General\CharacterCreation\focus_amount_frame" Color="#6E5324FF" ForcePixelPerfectPlacement="true">
+                                        <ItemTemplate>
+                                          <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="6" SuggestedHeight="20" MarginLeft="5" MarginRight="1" VerticalAlignment="Center" DoNotUseCustomScaleAndChildren="true">
+                                            <Children>
+                                              <!-- Light green for newly gained (current stage) -->
+                                              <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare" Color="#99DC30FF" IsVisible="@IsNew" />
+                                              <!-- Dark green for previously gained -->
+                                              <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare" Color="#2D6B22FF" IsVisible="@IsOld" />
+                                              <!-- Red for removed (current stage) -->
+                                              <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare" Color="#FF5555FF" IsVisible="@IsRemoved" />
+                                            </Children>
+                                          </Widget>
+                                        </ItemTemplate>
+                                      </ListPanel>
+                                      <!-- Green up arrow for increased focus -->
+                                      <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="9" SuggestedHeight="13" Sprite="General\CharacterCreation\increasing_icon" Color="#99DC30FF" MarginLeft="5" IsVisible="@HasIncreasedInCurrentStage" VerticalAlignment="Center" />
+                                      <!-- Red down arrow for decreased focus -->
+                                      <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="9" SuggestedHeight="13" Sprite="decrease" Color="#FF5555FF" MarginLeft="5" IsVisible="@HasDecreasedInCurrentStage" VerticalAlignment="Center" />
+                                    </Children>
+                                  </ListPanel>
+                                </Children>
+                              </ListPanel>
+                            </ItemTemplate>
+                          </ListPanel>
+
+                        </Children>
+                      </ListPanel>
+                    </ItemTemplate>
+                  </ListPanel>
+                </Children>
+              </ListPanel>
+            </Children>
+          </Widget>
+
+          <!-- Main content panel - POSITIONED ON RIGHT to show character on left -->
+
+        <!-- Main content panel - Character Creation Style -->
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                SuggestedWidth="694" SuggestedHeight="1080"
+                HorizontalAlignment="Right" VerticalAlignment="Top"
+                Sprite="General\CharacterCreation\character_creation_panel"
+                DoNotUseCustomScaleAndChildren="true">
+          <Children>
+
+            <!-- Title -->
+            <TextWidget Text="@TitleText"
+                        WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                        SuggestedWidth="670" SuggestedHeight="55"
+                        HorizontalAlignment="Right"
+                        Brush="Stage.Title.Text" />
+
+            <!-- Description (in stone header area, below title - matches banner editor) -->
+            <TextWidget Text="@DescriptionText"
+                        WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                        SuggestedWidth="650" SuggestedHeight="90"
+                        MarginTop="100"
+                        HorizontalAlignment="Right"
+                        Brush="Stage.Description.Text" />
+
+            <!-- Inner Panel Container (like native character creation) -->
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                    SuggestedWidth="573" SuggestedHeight="750"
+                    MarginTop="70" MarginLeft="50"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+              <Children>
+
+            <!-- Options List - Scrollable section for choices only (shows ~4-5 items) -->
+            <ScrollablePanel WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                             SuggestedHeight="320"
+                             AutoHideScrollBars="true"
+                             MarginTop="20" MarginLeft="20" MarginRight="45"
+                             HorizontalAlignment="Right" VerticalAlignment="Top"
+                             ClipRect="OptionsClipRect"
+                             InnerPanel="OptionsClipRect\OptionsList"
+                             VerticalScrollbar="..\OptionsScrollbar">
+              <Children>
+
+                <Widget Id="OptionsClipRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                        ClipContents="true">
+                  <Children>
+
+                    <ListPanel Id="OptionsList" DataSource="{Options}"
+                               WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+                               HorizontalAlignment="Center" VerticalAlignment="Top"
+                               StackLayout.LayoutMethod="VerticalBottomToTop">
+                      <ItemTemplate>
+                        <ButtonWidget DoNotPassEventsToChildren="true"
+                                      Command.Click="ExecuteSelect"
+                                      WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+                                      MarginBottom="10"
+                                      Brush="FaceGen.Generic.Button"
+                                      IsSelected="@IsSelected"
+                                      MinHeight="10"
+                                      UpdateChildrenStates="true">
+                          <Children>
+                            <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+                                       MarginLeft="15" MarginRight="15" MarginTop="12" MarginBottom="12"
+                                       StackLayout.LayoutMethod="HorizontalLeftToRight">
+                              <Children>
+
+                                <!-- Icon -->
+                                <ImageWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                                             SuggestedWidth="64" SuggestedHeight="64"
+                                             MarginRight="20"
+                                             VerticalAlignment="Center"
+                                             Sprite="@IconSprite" />
+
+                                <!-- Option name -->
+                                <TextWidget DoNotAcceptEvents="true"
+                                            Text="@Name"
+                                            WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+                                            VerticalAlignment="Center"
+                                            Brush="Generic.Button.Text" />
+
+                              </Children>
+                            </ListPanel>
+                          </Children>
+                        </ButtonWidget>
+                      </ItemTemplate>
+                    </ListPanel>
+
+                  </Children>
+                </Widget>
+
+                <!-- Scroll Gradient for options -->
+                <Widget DoNotAcceptEvents="true"
+                        WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                        SuggestedHeight="57"
+                        HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                        Sprite="General\CharacterCreation\character_creation_scroll_gradient" />
+
+              </Children>
+            </ScrollablePanel>
+
+            <!-- Scrollbar for options only -->
+            <ScrollbarWidget Id="OptionsScrollbar"
+                             WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                             SuggestedWidth="8" SuggestedHeight="320"
+                             HorizontalAlignment="Right" VerticalAlignment="Top"
+                             MarginTop="20" MarginRight="20"
+                             AlignmentAxis="Vertical"
+                             Handle="OptionsScrollbarHandle"
+                             MaxValue="100" MinValue="0">
+              <Children>
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                        SuggestedWidth="4"
+                        HorizontalAlignment="Center"
+                        Sprite="BlankWhiteSquare_9"
+                        AlphaFactor="0.2"
+                        Color="#5a4033FF" />
+                <ImageWidget Id="OptionsScrollbarHandle"
+                             WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                             SuggestedWidth="8" SuggestedHeight="10"
+                             HorizontalAlignment="Center"
+                             Brush="FaceGen.Scrollbar.Handle" />
+              </Children>
+            </ScrollbarWidget>
+
+            <!-- Detail Panel (fixed below options) -->
+            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+                    MarginLeft="25" MarginRight="25" MarginTop="360"
+                    HorizontalAlignment="Right" VerticalAlignment="Top"
+                    IsVisible="@HasSelection">
+              <Children>
+                <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+                           StackLayout.LayoutMethod="VerticalBottomToTop">
+                  <Children>
+
+                    <!-- Description -->
+                    <TextWidget Text="@SelectedDescription"
+                                WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+                                MarginBottom="10"
+                                Brush="Stage.Selection.Description.Text" />
+
+                    <!-- Positive Effect -->
+                    <RichTextWidget Text="@SelectedPositiveEffect"
+                                    WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+                                    MarginBottom="10"
+                                    Brush="Stage.PositiveEffect.Text"
+                                    IsVisible="@HasPositiveEffect" />
+
+                    <!-- Negative Effect -->
+                    <RichTextWidget Text="@SelectedNegativeEffect"
+                                    WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+                                    MarginBottom="10"
+                                    Brush="Stage.NegativeEffect.Text"
+                                    IsVisible="@HasNegativeEffect" />
+
+                  </Children>
+                </ListPanel>
+              </Children>
+            </Widget>
+
+              </Children>
+            </Widget>
+
+            <!-- Previous and Next Buttons -->
+            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"
+                       HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                       MarginBottom="50" MarginRight="40">
+              <Children>
+
+                <!-- Back Button -->
+                <ButtonWidget DoNotPassEventsToChildren="true"
+                              Command.Click="OnPreviousStage"
+                              WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                              SuggestedWidth="125" SuggestedHeight="64"
+                              HorizontalAlignment="Right" VerticalAlignment="Center"
+                              MarginRight="20"
+                              Brush="Standard.BackButton"
+                              UpdateChildrenStates="true" />
+
+                <!-- Continue Button -->
+                <ButtonWidget DoNotPassEventsToChildren="true"
+                              Command.Click="OnNextStage"
+                              IsEnabled="@CanAdvance"
+                              WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                              SuggestedWidth="400" SuggestedHeight="64"
+                              HorizontalAlignment="Right" VerticalAlignment="Center"
+                              MarginLeft="20"
+                              Brush="Popup.Done.Button.NineGrid"
+                              UpdateChildrenStates="true">
+                  <Children>
+                    <TextWidget DoNotAcceptEvents="true"
+                                Text="@AffirmativeText"
+                                WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent"
+                                HorizontalAlignment="Center" VerticalAlignment="Center"
+                                Brush="Popup.Button.Text" />
+                  </Children>
+                </ButtonWidget>
+
+              </Children>
+            </ListPanel>
+
+          </Children>
+        </Widget>
+
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

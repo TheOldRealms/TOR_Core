@@ -1,0 +1,47 @@
+<rhubarbResult>
+  <metadata>
+    <soundFile />
+    <duration>6.88</duration>
+  </metadata>
+  <mouthCues>
+    <mouthCue start="0.00" end="0.18">X</mouthCue>
+    <mouthCue start="0.18" end="0.25">C</mouthCue>
+    <mouthCue start="0.25" end="0.33">A</mouthCue>
+    <mouthCue start="0.33" end="0.38">C</mouthCue>
+    <mouthCue start="0.38" end="0.42">D</mouthCue>
+    <mouthCue start="0.42" end="0.77">B</mouthCue>
+    <mouthCue start="0.77" end="0.84">G</mouthCue>
+    <mouthCue start="0.84" end="1.12">F</mouthCue>
+    <mouthCue start="1.12" end="1.40">B</mouthCue>
+    <mouthCue start="1.40" end="1.75">F</mouthCue>
+    <mouthCue start="1.75" end="1.82">B</mouthCue>
+    <mouthCue start="1.82" end="1.96">C</mouthCue>
+    <mouthCue start="1.96" end="2.10">E</mouthCue>
+    <mouthCue start="2.10" end="2.24">C</mouthCue>
+    <mouthCue start="2.24" end="2.45">F</mouthCue>
+    <mouthCue start="2.45" end="2.59">B</mouthCue>
+    <mouthCue start="2.59" end="2.80">C</mouthCue>
+    <mouthCue start="2.80" end="3.57">B</mouthCue>
+    <mouthCue start="3.57" end="3.64">E</mouthCue>
+    <mouthCue start="3.64" end="3.71">F</mouthCue>
+    <mouthCue start="3.71" end="3.85">D</mouthCue>
+    <mouthCue start="3.85" end="3.92">C</mouthCue>
+    <mouthCue start="3.92" end="4.20">B</mouthCue>
+    <mouthCue start="4.20" end="4.27">C</mouthCue>
+    <mouthCue start="4.27" end="4.34">D</mouthCue>
+    <mouthCue start="4.34" end="4.61">A</mouthCue>
+    <mouthCue start="4.61" end="4.74">B</mouthCue>
+    <mouthCue start="4.74" end="5.09">C</mouthCue>
+    <mouthCue start="5.09" end="5.37">B</mouthCue>
+    <mouthCue start="5.37" end="5.51">C</mouthCue>
+    <mouthCue start="5.51" end="5.65">G</mouthCue>
+    <mouthCue start="5.65" end="5.72">B</mouthCue>
+    <mouthCue start="5.72" end="6.00">C</mouthCue>
+    <mouthCue start="6.00" end="6.07">B</mouthCue>
+    <mouthCue start="6.07" end="6.14">F</mouthCue>
+    <mouthCue start="6.14" end="6.21">B</mouthCue>
+    <mouthCue start="6.21" end="6.42">C</mouthCue>
+    <mouthCue start="6.42" end="6.77">B</mouthCue>
+    <mouthCue start="6.77" end="6.88">X</mouthCue>
+  </mouthCues>
+</rhubarbResult>

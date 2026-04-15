@@ -1,0 +1,24 @@
+<Prefab>
+  <Constants>
+
+  </Constants>
+  <Window>
+    <ListPanel Id="MapNotificationWidget" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="300" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginBottom="550" DoNotAcceptEvents="true" StackLayout.LayoutMethod="VerticalBottomToTop">
+      <Children>
+
+        <BrushWidget Id="MoreTextWidgetContainer" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="60" SuggestedHeight="50" MarginRight="15" HorizontalAlignment="Right" VerticalAlignment="Center" Brush="Map.Notification.More.Panel" IsVisible="false">
+          <Children>
+            <TextWidget Id="MoreTextWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Map.Notification.More.Text"/>
+          </Children>
+        </BrushWidget>
+
+        <NavigationScopeTargeter ScopeID="NotificationScope" ScopeParent="..\Notifications" ScopeMovements="Vertical" ExtendDiscoveryAreaLeft="200" ForceGainNavigationOnClosestChild="true" DoNotAutoNavigateAfterSort="true" />
+        <MapNotificationContainerWidget Id="Notifications" DataSource="{NotificationItems}" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="560" VerticalAlignment="Bottom" StackLayout.LayoutMethod="VerticalTopToBottom" DoNotAcceptEvents="true" MaxAmountOfNotificationsToShow="5" MoreTextWidgetContainer="..\MoreTextWidgetContainer" MoreTextWidget="..\MoreTextWidgetContainer\MoreTextWidget">
+          <ItemTemplate>
+            <TORGreenskinMapNotificationItem />
+          </ItemTemplate>
+        </MapNotificationContainerWidget>
+      </Children>
+    </ListPanel>
+  </Window>
+</Prefab>

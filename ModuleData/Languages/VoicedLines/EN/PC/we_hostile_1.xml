@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rhubarbResult>
+  <metadata>
+    <soundFile>E:\voicelines\elves\lord_lines\we_hostile_1.ogg</soundFile>
+    <duration>4.37</duration>
+  </metadata>
+  <mouthCues>
+    <mouthCue start="0.00" end="0.06">X</mouthCue>
+    <mouthCue start="0.06" end="0.14">A</mouthCue>
+    <mouthCue start="0.14" end="0.24">B</mouthCue>
+    <mouthCue start="0.24" end="0.59">C</mouthCue>
+    <mouthCue start="0.59" end="0.66">H</mouthCue>
+    <mouthCue start="0.66" end="0.77">A</mouthCue>
+    <mouthCue start="0.77" end="0.85">B</mouthCue>
+    <mouthCue start="0.85" end="0.99">F</mouthCue>
+    <mouthCue start="0.99" end="1.06">B</mouthCue>
+    <mouthCue start="1.06" end="1.14">A</mouthCue>
+    <mouthCue start="1.14" end="1.45">F</mouthCue>
+    <mouthCue start="1.45" end="1.87">B</mouthCue>
+    <mouthCue start="1.87" end="1.94">E</mouthCue>
+    <mouthCue start="1.94" end="2.06">A</mouthCue>
+    <mouthCue start="2.06" end="2.17">E</mouthCue>
+    <mouthCue start="2.17" end="2.31">C</mouthCue>
+    <mouthCue start="2.31" end="2.38">B</mouthCue>
+    <mouthCue start="2.38" end="2.59">C</mouthCue>
+    <mouthCue start="2.59" end="2.66">B</mouthCue>
+    <mouthCue start="2.66" end="2.87">C</mouthCue>
+    <mouthCue start="2.87" end="3.15">D</mouthCue>
+    <mouthCue start="3.15" end="3.29">B</mouthCue>
+    <mouthCue start="3.29" end="3.36">C</mouthCue>
+    <mouthCue start="3.36" end="3.44">A</mouthCue>
+    <mouthCue start="3.44" end="3.60">F</mouthCue>
+    <mouthCue start="3.60" end="3.69">A</mouthCue>
+    <mouthCue start="3.69" end="4.31">B</mouthCue>
+    <mouthCue start="4.31" end="4.37">X</mouthCue>
+  </mouthCues>
+</rhubarbResult>

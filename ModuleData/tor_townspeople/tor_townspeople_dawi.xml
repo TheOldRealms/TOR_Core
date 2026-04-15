@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="utf-8"?>
+<NPCCharacters>
+  <!-- URBAN CHARACTERS OF dwarves -->
+  <NPCCharacter id="taverngamehost_dawi" default_group="Infantry" is_hero="false" name="{=str_taverngamehost_dawi}Game Host" occupation="TavernGameHost" culture="Culture.sturgia" race ="dwarf" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier"/>
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1"/>
+      <Trait id="Calculating" value="1"/>
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true"/>
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="blacksmith_dawi" default_group="Infantry" is_hero="false" occupation="Blacksmith" culture="Culture.sturgia" race ="dwarf" name="{=str_blacksmith_dawi}Dawi Blacksmith" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier"/>
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1"/>
+      <Trait id="Calculating" value="1"/>
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true"/>
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="weaponsmith_dawi" default_group="Infantry" is_hero="false" occupation="Weaponsmith" culture="Culture.sturgia" race ="dwarf" name="{=str_weaponsmith_dawi}Dawi Weaponsmith" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+
+  <NPCCharacter id="armorer_dawi" default_group="Infantry" is_hero="false" occupation="Armorer" culture="Culture.sturgia" race ="dwarf" name="{=str_armorer_dawi}Dawi Armorer" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="townsman_dawi" default_group="Infantry" is_hero="false" occupation="Townsfolk" culture="Culture.sturgia" race ="dwarf" name="{=str_townsman_dawi}Dwarf" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="townswoman_dawi" default_group="Infantry" is_hero="false" is_female="false" occupation="Townsfolk" culture="Culture.sturgia" race ="dwarf" name="{=str_townswoman_dawi}Dwarf" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+
+  <NPCCharacter id="villager_dawi" default_group="Infantry" is_hero="false" occupation="Villager" culture="Culture.sturgia" race ="dwarf" name="{=str_villager_dawi}Dwarf" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="village_woman_dawi" default_group="Infantry" is_hero="false" is_female="false" occupation="Villager" culture="Culture.sturgia" race ="dwarf" name="{=str_village_woman_dawi}Dwarf" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="barber_dawi" default_group="Infantry" is_hero="false" is_female="false" occupation="Townsfolk" culture="Culture.sturgia" race ="dwarf" name="{=str_barber_dawi}Dawi Hairdresser" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="shop_worker_dawi" default_group="Infantry" is_hero="false" is_female="false" occupation="ShopWorker" culture="Culture.sturgia" race ="dwarf" name="{=str_shop_worker_dawi}Dawi Shopworker" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="tavernkeeper_dawi" name="{=str_tavernkeeper_dawi}Dawi Tavernkeeper" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="dwarf" culture="Culture.sturgia" occupation="Tavernkeeper">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="musician_dawi" default_group="Infantry" is_hero="false" is_female="false" occupation="Musician" culture="Culture.sturgia" race ="dwarf" name="{=str_musician_dawi}Dawi Musician" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+
+  <NPCCharacter id="wench_dawi" default_group="Infantry" is_hero="false" is_female="false" occupation="Musician" culture="Culture.sturgia" race ="dwarf" name="{=str_wench_dawi}Dawi Dan" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="dancer_dawi" default_group="Infantry" is_hero="false" is_female="false" occupation="Musician" culture="Culture.sturgia" race ="dwarf" name="{=str_dancer_dawi}Dawi Dan" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="beggar_dawi" default_group="Infantry" is_hero="false" occupation="Musician" culture="Culture.sturgia" race ="dwarf" name="{=str_beggar_dawi}Dawi Beggar" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="merchant_dawi" name="{=str_merchant_dawi}Dawi merchant" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="dwarf" culture="Culture.sturgia" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="horseMerchant_dawi" name="{=str_horseMerchant_dawi}Dawi Horse merchant" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="dwarf" culture="Culture.sturgia" occupation="HorseTrader">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="merchant_notary_dawi" name="{=str_merchant_notary_dawi}Dawi Merchant notary" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="dwarf" culture="Culture.sturgia" occupation="Townsfolk">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="artisan_notary_dawi" name="{=str_artisan_notary_dawi}Dawi Artisan notary" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="dwarf" culture="Culture.sturgia" occupation="Townsfolk">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="rural_notable_notary_dawi" name="{=str_rural_notable_notary_dawi}Dawi Rural Notary" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="dwarf" culture="Culture.sturgia" occupation="RuralNotable">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="ransom_broker_dawi" name="{=str_ransom_broker_dawi}Dawi Ransombroker" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="dwarf" culture="Culture.sturgia" occupation="RansomBroker">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="prison_guard_dawi" name="{=str_prison_guard_dawi}Prison Guard" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="dwarf" culture="Culture.sturgia" occupation="PrisonGuard">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="tournament_master_dawi" name="{=str_tournament_master_dawi}Tournament Master" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="dwarf" culture="Culture.sturgia" occupation="ArenaMaster">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="gangleader_bodyguard_dawi" name="{=str_gangleader_bodyguard_dawi}Dawi Gang Leader" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="dwarf" culture="Culture.sturgia" occupation="Gangster">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+
+  <NPCCharacter id="tor_notable_dawi_merch1" name="{=str_tor_notable_dawi_merch1}Ironic Dawi merchant" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="dwarf" culture="Culture.sturgia" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_dawi_merch2" name="{=str_tor_notable_dawi_merch2}curt Dawi merchant" voice="curt" is_template="true" default_group="Infantry" is_hero="false" race ="dwarf" culture="Culture.sturgia" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Commander" value="2" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="Generosity" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_dawi_merch3" name="{=str_tor_notable_dawi_merch3}Daring Dawi merchant" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" race ="dwarf" culture="Culture.sturgia" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Commander" value="3" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_dawi_merch4" name="{=str_tor_notable_dawi_merch4}Softspoken Dawi merchant" voice="softspoken" is_template="true" default_group="Infantry" race ="dwarf" is_hero="false" culture="Culture.sturgia" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Commander" value="1" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_dawi_merch5" name="{=str_tor_notable_dawi_merch5}{FIRSTNAME} the Manciple" voice="softspoken" is_template="true" default_group="Infantry" race ="dwarf" is_hero="false" culture="Culture.sturgia" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Commander" value="2" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_dawi_1" name="{=str_tor_notable_dawi_1}{FIRSTNAME} the Warehouser" voice="ironic" is_template="true" is_female="false" default_group="Infantry" race ="dwarf" is_hero="false" culture="Culture.sturgia" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_dawi_1b" name="{=str_tor_notable_dawi_b}{FIRSTNAME} the Heiress" voice="ironic" is_template="true" is_female="false" default_group="Infantry" race ="dwarf" is_hero="false" culture="Culture.sturgia" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Commander" value="2" />
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_dawi_2" name="{=str_tor_notable_dawi_2}Puritan male preacher" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" race ="dwarf" culture="Culture.sturgia" occupation="Preacher">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Generosity" value="-1" />
+      <Trait id="Honor" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_dawi_3" name="{=str_tor_notable_dawi_3}Rebellious female preacher" voice="earnest" is_template="true" default_group="Infantry" is_female="false" race ="dwarf" culture="Culture.sturgia" occupation="Preacher">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Generosity" value="1" />
+      <Trait id="Honor" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_dawi_gangleader_1" name="{=str_tor_dawi_gangleader_1}Standard male gang leader" voice="curt" is_template="true" default_group="Infantry" is_hero="false" race ="dwarf" culture="Culture.sturgia" occupation="GangLeader">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="1" />
+      <Trait id="Mercy" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_dawi_gangleader_2" name="{=str_tor_dawi_gangleader_2}Female gang leader" voice="ironic" is_template="true" default_group="Infantry" is_female="false" race ="dwarf" culture="Culture.sturgia" occupation="GangLeader">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="1" />
+      <Trait id="Mercy" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_dawi_gangleader_3" name="{=str_tor_dawi_gangleader_3}Male gang leader" voice="ironic" is_template="true" default_group="Infantry" is_female="false" race ="dwarf" culture="Culture.sturgia" occupation="GangLeader">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="1" />
+      <Trait id="Calculating" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Honor" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_dawi_artisan_1" name="{=str_tor_notable_dawi_artisan_1}Dawi artisan 1" voice="earnest" is_template="true" default_group="Infantry" culture="Culture.sturgia" race ="dwarf" occupation="Artisan">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_dawi_artisan_2" name="{=str_tor_notable_dawi_artisan_2}Dawi artisan 2" voice="curt" is_template="true" default_group="Infantry" culture="Culture.sturgia" race ="dwarf" occupation="Artisan">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_dawi_rural_1" name="{=str_tor_notable_dawi_rural_1}Dawi yeoman" voice="curt" is_template="true" default_group="Infantry" culture="Culture.sturgia" race ="dwarf" occupation="RuralNotable">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_notable_dawi_rural_2" name="{=str_tor_notable_dawi_rural_2}Dawi yeoman" voice="softspoken" is_template="true" default_group="Infantry" culture="Culture.sturgia" race ="dwarf" occupation="RuralNotable">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Calculating" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_dawi_headman_1" name="{=str_dawi_headman_1}Dawi rebellious headman" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.sturgia" race ="dwarf" occupation="Headman">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="1" />
+      <Trait id="Calculating" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_dawi_headman_2" name="{=str_dawi_headman_2}Dawi conservative headman" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.sturgia"  race ="dwarf" occupation="Headman">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_dawi_headman_3" name="{=str_dawi_headman_3}Dawi devious headman" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.sturgia" race ="dwarf" occupation="Headman">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_low_tier" />
+    </face>
+    <Traits>
+      <Trait id="Calculating" value="1" />
+      <Trait id="Honor" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_commoner_template"/>
+      <EquipmentSet id="tor_dw_commoner_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+</NPCCharacters>

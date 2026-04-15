@@ -1,0 +1,334 @@
+<Brushes>
+    <Brush Name="TorCulture.Banner.Layer.4">
+        <Layers>
+            <BrushLayer Name="Default" />
+        </Layers>
+        <Styles>
+            <Style Name="battania">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\battania_4" />
+            </Style>
+            <Style Name="empire">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\empire_4" />
+            </Style>
+            <Style Name="sturgia">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\sturgia_4" />
+            </Style>
+            <Style Name="aserai">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\aserai_4" />
+            </Style>
+            <Style Name="khuzait">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\khuzait_4" />
+            </Style>
+            <Style Name="vlandia">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\vlandia_4" />
+            </Style>
+            <Style Name="mousillon">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\mousillon_4" />
+            </Style>
+            <Style Name="eonir">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\eonir_4" />
+            </Style>
+        </Styles>
+    </Brush>
+
+    <Brush Name="TorCulture.Banner.Layer.3">
+        <Layers>
+            <BrushLayer Name="Default" />
+        </Layers>
+        <Styles>
+            <Style Name="battania">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\battania_3" />
+            </Style>
+            <Style Name="empire">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\empire_3" />
+            </Style>
+            <Style Name="sturgia">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\sturgia_3" />
+            </Style>
+            <Style Name="aserai">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\aserai_3" />
+            </Style>
+            <Style Name="khuzait">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\khuzait_3" />
+            </Style>
+            <Style Name="vlandia">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\vlandia_3" />
+            </Style>
+            <Style Name="mousillon">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\mousillon_3" />
+            </Style>
+            <Style Name="eonir">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\eonir_3" />
+            </Style>
+        </Styles>
+    </Brush>
+
+    <Brush Name="TorCulture.Banner.Layer.2">
+        <Layers>
+            <BrushLayer Name="Default" />
+        </Layers>
+        <Styles>
+            <Style Name="battania">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\battania_2" />
+            </Style>
+            <Style Name="empire">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\empire_2" />
+            </Style>
+            <Style Name="sturgia">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\sturgia_2" />
+            </Style>
+            <Style Name="aserai">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\aserai_2" />
+            </Style>
+            <Style Name="khuzait">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\khuzait_2" />
+            </Style>
+            <Style Name="vlandia">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\vlandia_2" />
+            </Style>
+            <Style Name="mousillon">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\mousillon_2" />
+            </Style>
+            <Style Name="eonir">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\eonir_2" />
+            </Style>
+        </Styles>
+    </Brush>
+
+    <Brush Name="TorCulture.Banner.Layer.1">
+        <Layers>
+            <BrushLayer Name="Default" />
+        </Layers>
+        <Styles>
+            <Style Name="battania">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\battania_1" />
+            </Style>
+            <Style Name="empire">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\empire_1" />
+            </Style>
+            <Style Name="sturgia">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\sturgia_1" />
+            </Style>
+            <Style Name="aserai">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\aserai_1" />
+            </Style>
+            <Style Name="khuzait">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\khuzait_1" />
+            </Style>
+            <Style Name="vlandia">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\vlandia_1" />
+            </Style>
+            <Style Name="mousillon">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\mousillon_1" />
+            </Style>
+            <Style Name="eonir">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\eonir_1" />
+            </Style>
+        </Styles>
+    </Brush>
+
+    <Brush Name="TorInitialMenuButtonBrush" FontColor="#F4E1C4FF" Font="CasablancaAntique" TransitionDuration="0.2">
+        <Layers>
+            <BrushLayer Name="Default" Color="#FFFFFFFF" />
+        </Layers>
+        <Styles>
+            <Style Name="Default" FontColor="#F4E1C4FF" TextGlowColor="#FFFFFF11" TextGlowRadius="0.1" FontSize="32">
+                <BrushLayer Name="Default" FontColor="#F4E1C4FF" />
+            </Style>
+            <Style Name="Hovered" FontColor="#F3C697FF" TextGlowColor="#F3C69711">
+                <BrushLayer Name="Default" FontColor="#F3C697FF" />
+            </Style>
+            <Style Name="Pressed" FontColor="#B57F5CFF" TextGlowColor="#B57F5C11">
+                <BrushLayer Name="Default" />
+            </Style>
+            <Style Name="Disabled" TextGlowColor="#00000000" TextAlphaFactor="0.35">
+                <BrushLayer Name="Default" />
+            </Style>
+        </Styles>
+        <SoundProperties>
+            <StateSounds>
+            </StateSounds>
+            <EventSounds>
+                <EventSound EventName="Click" Audio="default" />
+            </EventSounds>
+        </SoundProperties>
+    </Brush>
+    <Brush Name="TorInkStoryButtonBrush">
+        <Layers>
+            <BrushLayer Name="Default" Sprite="BlankWhiteSquare_9" Color="#40382fff" ColorFactor="1" AlphaFactor="0"/>
+        </Layers>
+        <Styles>
+            <Style Name="Default">
+                <BrushLayer Name="Default" ColorFactor="1" AlphaFactor="0"/>
+            </Style>
+            <Style Name="Hovered">
+                <BrushLayer Name="Default" ColorFactor="3" AlphaFactor="1"/>
+            </Style>
+            <Style Name="Pressed">
+                <BrushLayer Name="Default" ColorFactor="0.5" AlphaFactor="0"/>
+            </Style>
+            <Style Name="Selected">
+                <BrushLayer Name="Default" ColorFactor="0.9" AlphaFactor="0"/>
+            </Style>
+        </Styles>
+        <SoundProperties>
+            <StateSounds />
+            <EventSounds />
+        </SoundProperties>
+    </Brush>
+    <Brush Name="TorRoRSettlementBrush" Font="CasablancaAntique" TextHorizontalAlignment="Center">
+        <Styles>
+            <Style Name="Default" FontColor="#FFFFFFFF" TextBlur="1" TextOutlineAmount="1" TextGlowRadius="0" FontSize="20" />
+        </Styles>
+    </Brush>
+    <Brush Name="TorCareerScreenBrush" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Left">
+        <Styles>
+            <Style Name="Default" FontColor="#FFFFFFFF" TextBlur="0" TextOutlineAmount="0" TextGlowRadius="0" FontSize="20" />
+        </Styles>
+    </Brush>
+    <Brush Name="TorCareerChoiceBrush" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Left">
+        <Styles>
+            <Style Name="Default" FontColor="#FFFFFFFF" TextBlur="0" TextOutlineAmount="0" TextGlowRadius="0" FontSize="20" />
+        </Styles>
+    </Brush>
+    <Brush Name="TorInkStoryBrush" Font="CasablancaAntique" TextHorizontalAlignment="Left">
+        <Styles>
+            <Style Name="Default" FontColor="#00000000" TextBlur="0" TextOutlineAmount="0" TextGlowRadius="0" FontSize="20" />
+        </Styles>
+    </Brush>
+    <Brush Name="TorEnchantingFontBrush" Font="CasablancaAntique" TextHorizontalAlignment="Left">
+        <Styles>
+            <Style Name="Default" FontColor="#FFFFFFFF" TextBlur="0" TextOutlineAmount="0" TextGlowRadius="0" FontSize="20" />
+        </Styles>
+    </Brush>
+    <Brush Name="TorInventoryMagicItemBrush" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Center">
+        <Styles>
+            <Style Name="Default" FontColor="#0095A4FF" TextBlur="0" TextOutlineAmount="0" TextGlowRadius="0" FontSize="16" />
+        </Styles>
+    </Brush>
+    <Brush Name="TorSpellBookBrush" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Center">
+        <Styles>
+            <Style Name="Default" FontColor="#000000FF" TextBlur="0" TextOutlineAmount="0" TextGlowRadius="0" FontSize="16" />
+        </Styles>
+    </Brush>
+    <Brush Name="TorSpellBookDisabledBrush" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Center">
+        <Styles>
+            <Style Name="Default" FontColor="#000000FF" TextBlur="0" TextOutlineColor="#FFFFFFFF" TextOutlineAmount="1" TextGlowRadius="0" FontSize="16" />
+        </Styles>
+    </Brush>
+    <Brush Name="TorEnchantingIngredientRed" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Center">
+        <Styles>
+            <Style Name="Default" FontColor="#FF0000FF" TextBlur="0" TextOutlineColor="#FFFFFFFF" TextOutlineAmount="0" TextGlowRadius="0" FontSize="20" />
+        </Styles>
+    </Brush>
+    <Brush Name="TorEnchantingIngredientNormal" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Center">
+        <Styles>
+            <Style Name="Default" FontColor="#000000FF" TextBlur="0" TextOutlineColor="#FFFFFFFF" TextOutlineAmount="1" TextGlowRadius="0" FontSize="20" />
+        </Styles>
+    </Brush>
+
+    <Brush Name="TorSpellBookLearnButton">
+        <Layers>
+            <BrushLayer Name="Default" Sprite="BlankWhiteSquare_9" Color="#32a852ff" ColorFactor="1" AlphaFactor="1"/>
+        </Layers>
+        <Styles>
+            <Style Name="Default">
+                <BrushLayer Name="Default" ColorFactor="1" />
+            </Style>
+            <Style Name="Hovered">
+                <BrushLayer Name="Default" ColorFactor="0.9" />
+            </Style>
+            <Style Name="Pressed">
+                <BrushLayer Name="Default" ColorFactor="0.5" />
+            </Style>
+            <Style Name="Selected">
+                <BrushLayer Name="Default" ColorFactor="0.9" />
+            </Style>
+        </Styles>
+        <SoundProperties>
+            <StateSounds />
+            <EventSounds>
+                <EventSound EventName="Click" Audio="checkbox" />
+            </EventSounds>
+        </SoundProperties>
+    </Brush>
+    <Brush Name="TorSpecialMoveBrush">
+        <Layers>
+            <BrushLayer Name="EmptyFill" Sprite="BlankWhiteSquare_9" ColorFactor="1" Color="#404040FF" />
+            <BrushLayer Name="DefaultFill" Sprite="BlankWhiteSquare_9" ColorFactor="1" Color="#FF2222FF" />
+            <BrushLayer Name="ChangeFill" Sprite="BlankWhiteSquare_9" ColorFactor="1" Color="#FFAAAAFF" />
+        </Layers>
+        <Styles>
+            <Style Name="Default" />
+        </Styles>
+    </Brush>
+    <Brush Name="TorInventoryMagicItemTupleBrush">
+        <Layers>
+            <BrushLayer Name="Default" Sprite="Inventory\tuple_right" ExtendTop="2" ExtendBottom="2" Color="#FF39FFEB"/>
+        </Layers>
+        <Styles>
+            <Style Name="Default">
+                <BrushLayer Name="Default" Sprite="Inventory\tuple_right" ExtendTop="2" ExtendBottom="2" />
+            </Style>
+            <Style Name="Hovered">
+                <BrushLayer Name="Default" Sprite="Inventory\tuple_right" ExtendTop="2" ExtendBottom="2" ColorFactor="1.2"/>
+            </Style>
+            <Style Name="Pressed">
+                <BrushLayer Name="Default" Sprite="Inventory\tuple_right_pressed" ExtendTop="2" ExtendBottom="2" ExtendLeft="2" ExtendRight="2" />
+            </Style>
+            <Style Name="Selected">
+                <BrushLayer Name="Default" Sprite="Inventory\tuple_right" ExtendTop="2" ExtendBottom="2" SaturationFactor="15" ValueFactor="5" />
+            </Style>
+        </Styles>
+    </Brush>
+    <Brush Name="TorEnchantingItemBrush">
+        <Layers>
+            <BrushLayer Name="Default" Sprite="BlankWhiteSquare_9" Color="#624726FF"/>
+        </Layers>
+        <Styles>
+            <Style Name="Default">
+                <BrushLayer Name="Default" AlphaFactor="0.4" />
+            </Style>
+            <Style Name="Hovered">
+                <BrushLayer Name="Default" AlphaFactor="0.8" />
+            </Style>
+            <Style Name="Pressed">
+                <BrushLayer Name="Default" AlphaFactor="0.4" ColorFactor="0.65" />
+            </Style>
+            <Style Name="Selected">
+                <BrushLayer Name="Default" AlphaFactor="0.8" ColorFactor="1.4" />
+            </Style>
+            <Style Name="Disabled">
+                <BrushLayer Name="Default" AlphaFactor="0.55" />
+            </Style>
+        </Styles>
+        <SoundProperties>
+            <StateSounds>
+                <StateSound StateName="Hovered" Audio="mini_popup" />
+            </StateSounds>
+            <EventSounds>
+                <EventSound EventName="Click" Audio="checkbox" />
+            </EventSounds>
+        </SoundProperties>
+    </Brush>
+    <Brush Name="TorMapBar.Right.Icons">
+    <Layers>
+      <BrushLayer Name="gold" Sprite="General\Icons\Coin@2x" />
+      <BrushLayer Name="influence" Sprite="General\Icons\Influence@2x" />
+      <BrushLayer Name="hit_points" Sprite="General\Icons\Health@2x" />
+      <BrushLayer Name="hit_points_sick" Sprite="General\Icons\Health_Sick@2x" />
+      <BrushLayer Name="troops" Sprite="General\Icons\Party@2x" />
+      <BrushLayer Name="food" Sprite="General\Icons\Food@2x" />
+      <BrushLayer Name="morale" Sprite="General\Icons\Morale@2x" />
+      <BrushLayer Name="speed" Sprite="General\Icons\Speed@2x" />
+      <BrushLayer Name="speed_at_sea" Sprite="Map\ship_speed" ExtendTop="-3" ExtendBottom="-3" />
+      <BrushLayer Name="view_distance" Sprite="MapBar\monocular_icon" ExtendLeft="-3" ExtendRight="-3" ExtendTop="-3" ExtendBottom="-3" />
+      <BrushLayer Name="troop_wage" Sprite="General\Icons\PartyCost@2x" />
+      <BrushLayer Name="ship_health" Sprite="Map\ship_hp" ExtendTop="-3" ExtendBottom="-3" />
+      <BrushLayer Name="winds" Sprite="winds_icon_45" ExtendTop="-3" ExtendBottom="-3" />
+      <BrushLayer Name="artillery" Sprite="cannon_icon" ExtendTop="-3" ExtendBottom="-3" />
+      <BrushLayer Name="resources" Sprite="special" ExtendTop="-3" ExtendBottom="-3" />
+      <BrushLayer Name="blessing" Sprite="blessing_icon_45" ExtendTop="-3" ExtendBottom="-3" />
+    </Layers>
+  </Brush>
+</Brushes>

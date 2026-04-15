@@ -1,0 +1,314 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Runtime.ExceptionServices;
+using System.Security;
+using TaleWorlds.MountAndBlade;
+using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior;
+using TOR_Core.BattleMechanics.AI.CommonAIFunctions;
+using TOR_Core.Extensions;
+using TOR_Core.Utilities;
+
+namespace TOR_Core.BattleMechanics.AI.CastingAI
+{
+    public static class AgentCastingBehaviorConfiguration
+    {
+        public static readonly Dictionary<AbilityEffectType, Func<Agent, int, AbilityTemplate, AbstractAgentCastingBehavior>> BehaviorByType =
+            new Dictionary<AbilityEffectType, Func<Agent, int, AbilityTemplate, AbstractAgentCastingBehavior>>
+            {
+                {AbilityEffectType.Blast, (agent, abilityIndex, abilityTemplate) => new AoETargetedCastingBehavior(agent, abilityTemplate, abilityIndex)},
+                {AbilityEffectType.Bombardment, (agent, abilityIndex, abilityTemplate) => new AoETargetedCastingBehavior(agent, abilityTemplate, abilityIndex)},
+                {AbilityEffectType.Vortex, (agent, abilityIndex, abilityTemplate) => new AoETargetedCastingBehavior(agent, abilityTemplate, abilityIndex)},
+
+                {
+                    AbilityEffectType.Heal, (agent, abilityIndex, abilityTemplate) =>
+                    {
+                        if (abilityTemplate.AbilityTargetType == AbilityTargetType.AlliesInAOE)
+                            return new SelectMultiTargetCastingBehavior(agent, abilityTemplate, abilityIndex);
+                        if (abilityTemplate.AbilityTargetType == AbilityTargetType.Self ||
+                            abilityTemplate.AbilityTargetType == AbilityTargetType.SingleAlly)
+                            return new SelectSingleTargetCastingBehavior(agent, abilityTemplate, abilityIndex);
+                        return new SelectMultiTargetCastingBehavior(agent, abilityTemplate, abilityIndex);
+                    }
+                },
+                {
+                    AbilityEffectType.Hex, (agent, abilityIndex, abilityTemplate) =>
+                    {
+                        if (abilityTemplate.AbilityTargetType == AbilityTargetType.EnemiesInAOE)
+                            return new SelectMultiTargetCastingBehavior(agent, abilityTemplate, abilityIndex);
+                        if (abilityTemplate.AbilityTargetType == AbilityTargetType.SingleEnemy)
+                            return new SelectSingleTargetCastingBehavior(agent, abilityTemplate, abilityIndex);
+                        return new AoETargetedCastingBehavior(agent, abilityTemplate, abilityIndex);
+                    }
+                },
+                {
+                    AbilityEffectType.Augment, (agent, abilityIndex, abilityTemplate) =>
+                    {
+                        if (abilityTemplate.AbilityTargetType == AbilityTargetType.AlliesInAOE)
+                            return new SelectMultiTargetCastingBehavior(agent, abilityTemplate, abilityIndex);
+                        if (abilityTemplate.AbilityTargetType == AbilityTargetType.Self ||
+                            abilityTemplate.AbilityTargetType == AbilityTargetType.SingleAlly)
+                            return new SelectSingleTargetCastingBehavior(agent, abilityTemplate, abilityIndex);
+                        return new SelectMultiTargetCastingBehavior(agent, abilityTemplate, abilityIndex);
+                    }
+                },
+
+                {AbilityEffectType.TacticalReposition, (agent, abilityIndex, abilityTemplate) => new TacticalTeleportCastingBehavior(agent, abilityTemplate, abilityIndex)},
+
+                {AbilityEffectType.Missile, (agent, abilityIndex, abilityTemplate) => new MissileCastingBehavior(agent, abilityTemplate, abilityIndex)},
+                {AbilityEffectType.SeekerMissile, (agent, abilityIndex, abilityTemplate) => new MissileCastingBehavior(agent, abilityTemplate, abilityIndex)},
+
+                {AbilityEffectType.Summoning, (agent, abilityIndex, abilityTemplate) => new SummoningCastingBehavior(agent, abilityTemplate, abilityIndex)},
+
+                {AbilityEffectType.Wind, (agent, abilityIndex, abilityTemplate) => new AoEDirectionalCastingBehavior(agent, abilityTemplate, abilityIndex)},
+
+                //  {AbilityEffectType.AgentMoving, (agent, abilityIndex, abilityTemplate) => new MovementCastingBehavior(agent, abilityTemplate, abilityIndex)},
+                {AbilityEffectType.ArtilleryPlacement, (agent, abilityIndex, abilityTemplate) => new ArtilleryPlacementCastingBehavior(agent, abilityTemplate, abilityIndex)},
+            };
+
+        [SecurityCritical]
+        [HandleProcessCorruptedStateExceptions]
+        public static List<Target> FindTargets(Agent agent, AbilityTemplate abilityTemplate)
+        {
+            if (abilityTemplate.AbilityTargetType == AbilityTargetType.AlliesInAOE ||
+                abilityTemplate.AbilityEffectType == AbilityEffectType.Heal ||
+                abilityTemplate.AbilityTargetType == AbilityTargetType.SingleAlly ||
+                abilityTemplate.AssociatedTriggeredEffectTemplates.Count > 0 && abilityTemplate.AssociatedTriggeredEffectTemplates[0].TargetType == TargetType.Friendly)
+                return agent.Team.GetAllyTeams()
+                    .SelectMany(team => team.GetFormations())
+                    .Where(IsValidFormationTarget)
+                    .Select(form => new Target { Formation = form })
+                    .ToList();
+            if (abilityTemplate.AbilityEffectType == AbilityEffectType.Summoning ||
+                abilityTemplate.AbilityTargetType == AbilityTargetType.Self)
+                return new List<Target>()
+                {
+                    new Target
+                    {
+                        Formation = agent.Formation,
+                        Agent = agent
+                    }
+                };
+            List<Target> enemyTargets;
+            try
+            {
+                enemyTargets = agent.Team.GetEnemyTeams()
+                    .SelectMany(team => team.GetFormations())
+                    .Where(IsValidFormationTarget)
+                    .Select(form => new Target { Formation = form })
+                    .ToList();
+            }
+            catch (AccessViolationException e)
+            {
+                TORCommon.Log(
+                    "AgentCastingBehaviorConfig : access violation exception when creating the list of enemy formations.\n" + e,
+                    NLog.LogLevel.Fatal);
+
+                enemyTargets = new List<Target>();
+            }
+
+            return enemyTargets;
+        }
+
+        public static readonly Dictionary<Type, Func<AbstractAgentCastingBehavior, List<Axis>>> UtilityByType =
+            new Dictionary<Type, Func<AbstractAgentCastingBehavior, List<Axis>>>
+            {
+                {typeof(PreserveWindsAgentCastingBehavior), CreatePreserveWindsAxis()},
+
+                {typeof(MissileCastingBehavior), CreateAoETargetedOffensiveSpellAxis()},
+                {typeof(AoETargetedCastingBehavior), CreateAoETargetedOffensiveSpellAxis()},
+                {typeof(AoEAdjacentCastingBehavior), CreateAoEAdjacentSpellAxis()},
+                {typeof(AoEDirectionalCastingBehavior), CreateAoEDirectionalSpellAxis()},
+
+                {typeof(SelectMultiTargetCastingBehavior), CreateBuffSpellAxis()},
+                {typeof(SelectSingleTargetCastingBehavior), CreateBuffSpellAxis()},
+
+                {typeof(TacticalTeleportCastingBehavior), CreateTacticalTeleportAxis()},
+
+                {typeof(SummoningCastingBehavior), CreateSummoningAxis()},
+                {typeof(ArtilleryPlacementCastingBehavior), CreateArtilleryPlacementAxis()},
+            };
+
+        public static List<AbstractAgentCastingBehavior> PrepareCastingBehaviors(Agent agent)
+        {
+            var castingBehaviors = new List<AbstractAgentCastingBehavior>();
+            var index = 0;
+            foreach (var knownAbilityTemplate in agent.GetComponent<AbilityComponent>().GetKnownAbilityTemplates())
+            {
+                castingBehaviors
+                    .Add(BehaviorByType.GetValueOrDefault(knownAbilityTemplate.AbilityEffectType, BehaviorByType[AbilityEffectType.Missile])
+                        .Invoke(agent, index, knownAbilityTemplate));
+                index++;
+            }
+
+            castingBehaviors.Add(new PreserveWindsAgentCastingBehavior(agent, new AbilityTemplate { AbilityTargetType = AbilityTargetType.Self }, index));
+            return castingBehaviors;
+        }
+
+        private static Func<AbstractAgentCastingBehavior, List<Axis>> CreateSummoningAxis()
+        {
+            return behavior =>
+            {
+                var axes = new List<Axis>();
+
+                axes.Add(new Axis(0, 1f, x => 1 - x, CommonAIDecisionFunctions.BalanceOfPower(behavior.Agent)));
+
+                return axes;
+            };
+        }
+
+        private static Func<AbstractAgentCastingBehavior, List<Axis>> CreateArtilleryPlacementAxis()
+        {
+            return behavior =>
+            {
+                var axes = new List<Axis>();
+
+                axes.Add(new Axis(0, 100f, x => 1 - x, CommonAIDecisionFunctions.DistanceToTarget(() => behavior.Agent.Team.QuerySystem.MedianPosition.GetGroundVec3MT())));
+                axes.Add(new Axis(0, 70f, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles(behavior.Agent.Team)));
+                axes.Add(new Axis(0, 1, x => x, CommonAIDecisionFunctions.AssessPositionForArtillery()));
+
+                return axes;
+            };
+        }
+
+        private static Func<AbstractAgentCastingBehavior, List<Axis>> CreateAoEAdjacentSpellAxis()
+        {
+            return behavior =>
+            {
+                var axes = new List<Axis>
+                {
+                    new Axis(0, 1, x => x, (target) => 0.45f)
+                };
+
+                if (behavior.AbilityTemplate.AbilityTargetType != AbilityTargetType.Self)
+                {
+                    axes.Add(new Axis(0, 100, x => 1 - x, CommonAIDecisionFunctions.DistanceToTarget(() => behavior.Agent.Position)));
+                    axes.Add(new Axis(0, 5, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToHostiles()));
+                    axes.Add(new Axis(0, 3, x => 1 - x + 0.1f, CommonAIDecisionFunctions.TargetSpeed()));
+                    axes.Add(new Axis(0, 0.5f, x => x + 0.01f, CommonAIDecisionFunctions.FormationUnderFire()));
+                }
+
+                return axes;
+            };
+        }
+
+        private static Func<AbstractAgentCastingBehavior, List<Axis>> CreatePreserveWindsAxis()
+        {
+            return behavior =>
+            {
+                return new List<Axis>
+                {
+                    new Axis(0, 1, x => (float)Math.Min(0.4, 1 - x), CommonAIDecisionFunctions.WindsOfMagicRemainingRatio(behavior.Agent))
+                };
+            };
+        }
+
+        private static Func<AbstractAgentCastingBehavior, List<Axis>> CreateTacticalTeleportAxis()
+        {
+            return behavior =>
+            {
+                // TacticalTeleportCastingBehavior handles utility calculation internally
+                // This axis just passes through the utility value calculated by the behavior
+                return new List<Axis>
+                {
+                    new Axis(0, 1, x => x, (target) => target.UtilityValue)
+                };
+            };
+        }
+
+        public static Func<AbstractAgentCastingBehavior, List<Axis>> CreateAoETargetedOffensiveSpellAxis()
+        {
+            return behavior =>
+            {
+                return new List<Axis>
+                {
+                    new Axis(0, 120, x => 1 - x, CommonAIDecisionFunctions.DistanceToTarget(() => behavior.Agent.Position)),
+                    new Axis(0, CommonAIDecisionFunctions.CalculateEnemyTotalPower(behavior.Agent.Team) / 4, x => x, CommonAIDecisionFunctions.FormationPower()),
+                    new Axis(0.0f, 1, x => x + 0.3f, CommonAIDecisionFunctions.RangedUnitRatio()),
+                };
+            };
+        }
+
+        public static Func<AbstractAgentCastingBehavior, List<Axis>> CreateBuffSpellAxis()
+        {
+            return behavior =>
+            {
+                return new List<Axis>
+                {
+                    new Axis(0, 50, x => ScoringFunctions.Logistic(0.4f, 1, 20).Invoke(1 - x), CommonAIDecisionFunctions.DistanceToTarget(() => behavior.Agent.Position)),
+                    new Axis(0, 20, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToHostiles()),
+                    new Axis(0, CommonAIDecisionFunctions.CalculateTeamTotalPower(behavior.Agent.Team), x => x, CommonAIDecisionFunctions.FormationPower()),
+                    new Axis(1, 2.5f, x => 1 - x, CommonAIDecisionFunctions.Dispersedness()),
+                };
+            };
+        }
+
+        public static Func<AbstractAgentCastingBehavior, List<Axis>> CreateAoEDirectionalSpellAxis()
+        {
+            return behavior =>
+            {
+                return new List<Axis>
+                {
+                    new Axis(0, 50, x => ScoringFunctions.Logistic(0.4f, 1, 20).Invoke(1 - x), CommonAIDecisionFunctions.DistanceToTarget(() => behavior.Agent.Position)),
+                    new Axis(0, 15, x => 1 - x, CommonAIDecisionFunctions.TargetDistanceToHostiles()),
+                    new Axis(0, CommonAIDecisionFunctions.CalculateEnemyTotalPower(behavior.Agent.Team), x => x, CommonAIDecisionFunctions.FormationPower()),
+                    new Axis(1, 2.5f, x => 1 - x, CommonAIDecisionFunctions.Dispersedness()),
+                    new Axis(0, 1, x => 1 - x, CommonAIDecisionFunctions.CavalryUnitRatio()),
+                };
+            };
+        }
+
+        private static readonly HashSet<string> _reportedInvalidFormationTargets = new();
+
+        private static void ReportInvalidFormationTarget(string reason, Formation formation, Exception exception = null)
+        {
+            string message =
+                $"invalid formation target in IsValidFormationTarget | reason={reason} | formation={(formation != null ? formation.Index.ToString() : "null")}" +
+                (exception != null ? $" | ex={exception.GetType().Name}: {exception.Message}" : "");
+
+            TORCommon.Log(message, NLog.LogLevel.Error);
+
+            if (_reportedInvalidFormationTargets.Add(message))
+            {
+                TORCommon.Say(message);
+            }
+        }
+
+        private static bool IsValidFormationTarget(Formation formation)
+        {
+            if (formation == null)
+            {
+                ReportInvalidFormationTarget("formation null", null);
+                return false;
+            }
+
+            try
+            {
+                if (formation.QuerySystem == null)
+                {
+                    ReportInvalidFormationTarget("query system null", formation);
+                    return false;
+                }
+
+                if (formation.CountOfUnits > 0)
+                {
+                    return true;
+                }
+
+                if (formation.GetMedianAgent(false, false, formation.CurrentPosition) != null)
+                {
+                    return true;
+                }
+                ReportInvalidFormationTarget("empty formation/ median agent null", formation);
+                return false;
+            }
+            catch (NullReferenceException exception)
+            {
+                ReportInvalidFormationTarget("null ref during validation", formation, exception);
+                return false;
+            }
+        }
+    }
+}

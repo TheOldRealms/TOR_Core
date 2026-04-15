@@ -1,0 +1,86 @@
+﻿using System.Linq;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.Core;
+using TaleWorlds.Engine;
+using TaleWorlds.Engine.GauntletUI;
+using TaleWorlds.InputSystem;
+using TaleWorlds.Library;
+using TaleWorlds.MountAndBlade.View.Screens;
+using TaleWorlds.ScreenSystem;
+using TOR_Core.Extensions;
+using TOR_Core.Utilities;
+
+namespace TOR_Core.AbilitySystem.SpellBook
+{
+    [GameStateScreen(typeof(SpellBookState))]
+    public class SpellBookScreen : ScreenBase, IGameStateListener
+    {
+        private GauntletLayer _gauntletLayer;
+        private SpellBookVM _vm;
+        private SpellBookState _state;
+
+        public SpellBookScreen(SpellBookState state)
+        {
+            _state = state;
+            _state.RegisterListener(this);
+        }
+        protected override void OnFrameTick(float dt)
+        {
+            base.OnFrameTick(dt);
+            LoadingWindow.DisableGlobalLoadingWindow();
+            if (this._gauntletLayer.Input.IsHotKeyReleased("Exit"))
+            {
+                this.CloseScreen();
+            }
+        }
+
+        void IGameStateListener.OnActivate()
+        {
+            base.OnActivate();
+            var heroes = MobileParty.MainParty.GetSpellCasterMemberHeroes();
+
+            if (_state.IsTrainerMode && _state.TrainerCulture == TORConstants.Cultures.DAWI)
+            {
+                heroes = MobileParty.MainParty.GetMemberHeroes()
+                    .Where(x => x.IsSpellCaster() || x.HasAttribute("Runesmith"))
+                    .ToList();
+            }
+
+            if (heroes.Count == 0) heroes.Add(Hero.MainHero);
+
+            _vm = new SpellBookVM(CloseScreen, heroes, _state.IsTrainerMode, _state.TrainerCulture);
+            _gauntletLayer = new GauntletLayer("GauntletLayer",1 , true);
+            _gauntletLayer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);
+            _gauntletLayer.Input.RegisterHotKeyCategory(HotKeyManager.GetCategory("GenericCampaignPanelsGameKeyCategory"));
+            _gauntletLayer.LoadMovie("SpellBook", _vm);
+            _gauntletLayer.IsFocusLayer = true;
+            base.AddLayer(_gauntletLayer);
+            ScreenManager.TrySetFocus(_gauntletLayer);
+        }
+
+        void IGameStateListener.OnDeactivate()
+        {
+            base.OnDeactivate();
+            base.RemoveLayer(_gauntletLayer);
+            _gauntletLayer.IsFocusLayer = false;
+            ScreenManager.TryLoseFocus(_gauntletLayer);
+        }
+
+        void IGameStateListener.OnFinalize()
+        {
+            _gauntletLayer = null;
+            _vm = null;
+        }
+
+        void IGameStateListener.OnInitialize()
+        {
+            base.OnInitialize();
+        }
+
+        private void CloseScreen()
+        {
+            Game.Current.GameStateManager.PopState(0);
+        }
+    }
+}

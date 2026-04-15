@@ -108,7 +108,7 @@
       <EquipmentSet id="tor_balthazar_gelt_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_bret_lord" default_group="cavalry" name="{=str_tor_bret_lord}Bretonnian Lord" occupation="Lord" culture="Culture.vlandia" voice="curt" age="50" skill_template="SkillSet.tor_custombattle_generic" is_hero="true">
+  <NPCCharacter id="tor_bret_lord" default_group="cavalry" name="{=str_tor_bret_lord}Bretonnian Lord" occupation="Lord" culture="Culture.vlandia" voice="curt" age="50" skill_template="SkillSet.tor_custombattle_generic" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="32" weight="0.6" build="0.9" key="0008000B915810093F79091FB9D8C480775965867458061D4361142D93CDB688008D9603F86DBEBC000000000000000000000000000000000000000072FC60C2" />
     </face>
@@ -126,7 +126,7 @@
       <EquipmentSet id="tor_br_grail_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_prophetess_lw" default_group="cavalry" name="{=str_tor_prophetess_lw}Prophetess(Life)" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_custombattle_generic" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_prophetess_lw" default_group="cavalry" name="{=str_tor_prophetess_lw}Prophetess(Life)" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_custombattle_generic" is_female="true" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="35" weight="0.2" build="0.1" key="001B900000B430157279D168465B5B774BC879C47BA98A488748E8A9857B5A9801A136130A77758A00000000000000000000000000000000000000001F4C30C3" />
     </face>
@@ -144,7 +144,7 @@
       <EquipmentSet id="tor_prophetess_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_prophetess_bw" default_group="cavalry" name="{=str_tor_prophetess_bw}Prophetess(Beast)" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_custombattle_generic" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_prophetess_bw" default_group="cavalry" name="{=str_tor_prophetess_bw}Prophetess(Beast)" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_custombattle_generic" is_female="true" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="35" weight="0.2" build="0.1" key="001B900000B430157279D168465B5B774BC879C47BA98A488748E8A9857B5A9801A136130A77758A00000000000000000000000000000000000000001F4C30C3" />
     </face>
@@ -198,9 +198,27 @@
       <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_dwarf_lord" default_group="infantry" name="{=str_tor_dwarf_lord}Dwarf Lord" occupation="Lord" culture="Culture.sturgia" voice="curt" age="30" skill_template="SkillSet.tor_custombattle_generic" race="dwarf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="40" weight="0.6" build="0.5" key="000B5C0782880187736793597B969A3B37868255399CAC17A6C9A2FA8C7C579900779603073B5D8709394BC56E7A3B6200000000000000070000000036FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_dw_lord_template_001" />
+      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_slayer_lord" default_group="infantry" name="{=str_tor_slayer_lord}Slayer Lord" occupation="Lord" culture="Culture.sturgia" voice="ironic" age="40" skill_template="SkillSet.tor_custombattle_generic" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="40" weight="0.4954" build="0.8441"  key="00050004C28800C1F77664884754DCBAFF9E566095F09F1F74414A49893F81FE3F77760305A7B7A5D700000000200060000000000000000500000000129C0002"  />
+      <BodyProperties version="4" age="40" weight="0.6" build="0.5" key="000B5C0782880187736793597B969A3B37868255399CAC17A6C9A2FA8C7C579900779603073B5D8709394BC56E7A3B6200000000000000070000000036FC0000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -214,6 +232,42 @@
     <Equipments>
       <EquipmentSet id="tor_dw_slayer_lord_template" />
       <EquipmentSet id="tor_dw_slayer_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_warboss_lord" default_group="infantry" name="{=str_tor_warboss_lord}Warboss" occupation="Lord" culture="Culture.aserai" voice="ironic" age="30" skill_template="SkillSet.tor_custombattle_generic" race="orc" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.6188" build="1" key="0029240000A0000067C45B87933A5457A338572C391C6A5727B78A64D929644C00AF96030A7C421A45CCBADB4CBCBABC00000000000000160000000029542000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_shaman_lord" default_group="infantry" name="{=str_tor_shaman_lord}Shaman Lord" occupation="Lord" culture="Culture.aserai" voice="curt" age="40" skill_template="SkillSet.tor_custombattle_generic" race="orc" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="40" weight="0.3071" build="0.1744" key="00001008C0CC00005C12429361532471D9656C584FA9A47724B588AAD7B53C5D588926130A5787783572331445343533000000000000001A000000002F440000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_orc_great_shaman_template_001" />
+      <EquipmentSet id="tor_gs_orc_great_shaman_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord" default_group="cavalry" name="{=str_tor_vc_lord}Vampire Lord" occupation="Lord" culture="Culture.khuzait" voice="curt" age="50" skill_template="SkillSet.tor_custombattle_generic" race="vampire" is_hero="true">

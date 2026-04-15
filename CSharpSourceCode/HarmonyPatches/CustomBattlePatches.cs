@@ -1,9 +1,6 @@
 ﻿using HarmonyLib;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade.CustomBattle;
 using TaleWorlds.MountAndBlade.CustomBattle.CustomBattle;
@@ -36,7 +33,10 @@ namespace TOR_Core.HarmonyPatches
                 list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_hm_lord"));
                 list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_dw_lord"));
                 list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_bret_lord"));
+                list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_dwarf_lord"));
                 list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_slayer_lord"));
+                list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_shaman_lord"));
+                list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_warboss_lord"));
             }
             catch (Exception e)
             {

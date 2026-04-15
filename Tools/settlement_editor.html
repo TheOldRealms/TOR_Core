@@ -1,0 +1,3448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOR Settlement Editor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .controls {
+            padding: 30px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .file-input-wrapper {
+            margin-bottom: 20px;
+        }
+
+        .file-input-wrapper label {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #667eea;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-weight: 600;
+        }
+
+        .file-input-wrapper label:hover {
+            background: #5568d3;
+        }
+
+        .file-input-wrapper input[type="file"] {
+            display: none;
+        }
+
+        .file-name {
+            display: inline-block;
+            margin-left: 15px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .file-name .loaded {
+            color: #28a745;
+            font-weight: 600;
+        }
+
+        .filters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        .filter-group input,
+        .filter-group select {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.95em;
+            transition: border-color 0.3s;
+        }
+
+        .filter-group input:focus,
+        .filter-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background: #e9ecef;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .map-and-list {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        .settlement-list {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            max-height: 700px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .settlement-list h3 {
+            margin-bottom: 15px;
+            color: #555;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+            flex-shrink: 0;
+        }
+
+        #settlementListItems {
+            flex: 1;
+            overflow-y: auto;
+            min-height: 0;
+        }
+
+        .settlement-item {
+            padding: 8px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: 0.9em;
+            border-left: 3px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .settlement-item:hover {
+            background: #f8f9fa;
+            border-left-color: #667eea;
+        }
+
+        .settlement-item.selected {
+            background: #667eea;
+            color: white;
+            border-left-color: #764ba2;
+        }
+
+        .settlement-checkbox {
+            flex-shrink: 0;
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+        }
+
+        .settlement-item-name {
+            font-weight: 600;
+            margin-bottom: 2px;
+            flex: 1;
+        }
+
+        .settlement-item-details {
+            font-size: 0.85em;
+            opacity: 0.8;
+        }
+
+        .map-container {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .map-container h3 {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        #settlementMap {
+            width: 100%;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: crosshair;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 15px 25px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            min-width: 150px;
+        }
+
+        .stat-box .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-box .label {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            padding: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        th {
+            padding: 15px 10px;
+            text-align: left;
+            font-weight: 600;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+        }
+
+        th:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        th.sortable::after {
+            content: ' ⇅';
+            opacity: 0.5;
+        }
+
+        th.sorted-asc::after {
+            content: ' ↑';
+            opacity: 1;
+        }
+
+        th.sorted-desc::after {
+            content: ' ↓';
+            opacity: 1;
+        }
+
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        tbody tr {
+            transition: background 0.2s;
+        }
+
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #fafbfc;
+        }
+
+        tbody tr:nth-child(even):hover {
+            background: #f1f3f5;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 60px;
+            color: #999;
+            font-size: 1.2em;
+        }
+
+        .btn-clear {
+            padding: 10px 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+            margin-top: 15px;
+        }
+
+        .btn-clear:hover {
+            background: #c0392b;
+        }
+
+        .position-display {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        .faction-tag {
+            display: inline-block;
+            padding: 3px 8px;
+            background: #667eea;
+            color: white;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .type-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .type-Town {
+            background: #3498db;
+            color: white;
+        }
+
+        .type-Village {
+            background: #27ae60;
+            color: white;
+        }
+
+        .type-Hideout {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .type-Shrine {
+            background: #9b59b6;
+            color: white;
+        }
+
+        .type-HerdStone {
+            background: #8b4513;
+            color: white;
+        }
+
+        .type-OakOfAges {
+            background: #2ecc71;
+            color: white;
+        }
+
+        .type-WorldRoots {
+            background: #16a085;
+            color: white;
+        }
+
+        .type-ChaosPortal {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .type-SlaverCamp {
+            background: #34495e;
+            color: white;
+        }
+
+        .village-production {
+            font-size: 0.85em;
+            color: #666;
+            font-style: italic;
+        }
+
+        .tech-col {
+            background: rgba(0,0,0,0.05);
+        }
+
+        .tech-col.hidden {
+            display: none;
+        }
+
+        td.tech-col {
+            background: rgba(0,0,0,0.02);
+        }
+
+        .export-btn {
+            padding: 10px 20px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+            margin-left: 10px;
+        }
+
+        .export-btn:hover {
+            background: #229954;
+        }
+
+        /* Column resizing styles */
+        th {
+            position: relative;
+        }
+
+        .column-resizer {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 5px;
+            height: 100%;
+            cursor: col-resize;
+            background: transparent;
+            z-index: 100;
+        }
+
+        .column-resizer:hover,
+        .column-resizer.resizing {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        table {
+            table-layout: fixed;
+        }
+
+        td, th {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        td:hover {
+            overflow: visible;
+            white-space: normal;
+            word-wrap: break-word;
+        }
+
+        /* Scene editor modal styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.4em;
+        }
+
+        .modal-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .scene-group {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .scene-group h4 {
+            margin: 0 0 12px 0;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        .scene-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .scene-row label {
+            min-width: 100px;
+            font-weight: 500;
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        .scene-row select,
+        .scene-row input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        .scene-row select:focus,
+        .scene-row input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .scene-levels {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .scene-level-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .scene-level-group label {
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        .btn-scenes {
+            padding: 4px 10px;
+            background: #9b59b6;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: background 0.3s;
+        }
+
+        .btn-scenes:hover {
+            background: #8e44ad;
+        }
+
+        .btn-view-scenes {
+            padding: 4px 8px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: background 0.3s;
+            margin-left: 4px;
+        }
+
+        .btn-view-scenes:hover {
+            background: #2980b9;
+        }
+
+        .scene-view-popup {
+            position: fixed;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            padding: 15px;
+            z-index: 2000;
+            max-width: 400px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .scene-view-popup h3 {
+            margin: 0 0 10px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #3498db;
+            font-size: 1em;
+            color: #2c3e50;
+        }
+
+        .scene-view-popup .close-btn {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.2em;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .scene-view-popup .close-btn:hover {
+            color: #333;
+        }
+
+        .scene-view-item {
+            margin-bottom: 8px;
+            padding: 6px 8px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 3px solid #3498db;
+        }
+
+        .scene-view-item .label {
+            font-weight: bold;
+            color: #555;
+            font-size: 0.85em;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .scene-view-item .value {
+            color: #2c3e50;
+            font-family: monospace;
+            font-size: 0.9em;
+            word-break: break-all;
+        }
+
+        .scene-view-item .value.empty {
+            color: #999;
+            font-style: italic;
+        }
+
+        .scene-view-levels {
+            margin-left: 10px;
+            font-size: 0.9em;
+        }
+
+        .scene-view-levels .level {
+            margin: 2px 0;
+        }
+
+        .modal-footer {
+            padding: 15px 25px;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .btn-save-scenes {
+            padding: 10px 25px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-save-scenes:hover {
+            background: #229954;
+        }
+
+        .btn-cancel {
+            padding: 10px 25px;
+            background: #95a5a6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-cancel:hover {
+            background: #7f8c8d;
+        }
+
+        .no-scenes-msg {
+            color: #999;
+            font-style: italic;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Spawn Point Marker Styles */
+        .spawn-point-controls {
+            margin-top: 15px;
+            padding: 15px;
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-radius: 8px;
+            border: 2px solid #ff9800;
+        }
+
+        .spawn-point-controls h4 {
+            margin: 0 0 10px 0;
+            color: #e65100;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .spawn-point-inputs {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .spawn-point-inputs .coord-group {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .spawn-point-inputs label {
+            font-weight: 600;
+            color: #e65100;
+            font-size: 0.9em;
+        }
+
+        .spawn-point-inputs input[type="number"] {
+            width: 100px;
+            padding: 6px 10px;
+            border: 2px solid #ff9800;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .spawn-point-inputs input[type="number"]:focus {
+            outline: none;
+            border-color: #e65100;
+            box-shadow: 0 0 5px rgba(255, 152, 0, 0.3);
+        }
+
+        .spawn-point-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-spawn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-spawn-place {
+            background: #ff9800;
+            color: white;
+        }
+
+        .btn-spawn-place:hover {
+            background: #f57c00;
+        }
+
+        .btn-spawn-place.active {
+            background: #e65100;
+            box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+        }
+
+        .btn-spawn-copy {
+            background: #4caf50;
+            color: white;
+        }
+
+        .btn-spawn-copy:hover {
+            background: #388e3c;
+        }
+
+        .btn-spawn-clear {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-spawn-clear:hover {
+            background: #d32f2f;
+        }
+
+        .spawn-point-info {
+            margin-top: 8px;
+            font-size: 0.8em;
+            color: #795548;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>The Old Realms - Settlement Editor</h1>
+            <p>Browse, filter, edit, and analyze Bannerlord settlements</p>
+        </header>
+
+        <div class="controls">
+            <div class="file-input-wrapper">
+                <label for="xmlFiles">Load XML Files (settlements, clans, kingdoms, cultures)</label>
+                <input type="file" id="xmlFiles" accept=".xml" multiple>
+                <span class="file-name" id="fileName">No files selected</span>
+            </div>
+
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="filterName">Settlement Name</label>
+                    <input type="text" id="filterName" placeholder="Search by name...">
+                </div>
+
+                <div class="filter-group">
+                    <label for="filterId">Settlement ID</label>
+                    <input type="text" id="filterId" placeholder="Search by ID...">
+                </div>
+
+                <div class="filter-group">
+                    <label for="filterOwner">Owner/Faction</label>
+                    <input type="text" id="filterOwner" placeholder="Search by owner...">
+                </div>
+
+                <div class="filter-group">
+                    <label for="filterCulture">Culture</label>
+                    <select id="filterCulture">
+                        <option value="">All Cultures</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filterComponentType">Component Type</label>
+                    <select id="filterComponentType">
+                        <option value="">All Types</option>
+                        <optgroup label="Base Game">
+                            <option value="Town">Town</option>
+                            <option value="Castle">Castle</option>
+                            <option value="Village">Village</option>
+                            <option value="Hideout">Hideout</option>
+                        </optgroup>
+                        <optgroup label="TOR Specific">
+                            <option value="Shrine">Shrine</option>
+                            <option value="HerdStone">HerdStone</option>
+                            <option value="OakOfAges">Oak of Ages</option>
+                            <option value="WorldRoots">World Roots</option>
+                            <option value="ChaosPortal">Chaos Portal</option>
+                            <option value="SlaverCamp">Slaver Camp</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filterVillageType">Village Production</label>
+                    <select id="filterVillageType">
+                        <option value="">All Productions</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filterProsperityMin">Min Prosperity</label>
+                    <input type="number" id="filterProsperityMin" placeholder="Min...">
+                </div>
+
+                <div class="filter-group">
+                    <label for="filterProsperityMax">Max Prosperity</label>
+                    <input type="number" id="filterProsperityMax" placeholder="Max...">
+                </div>
+
+                <div class="filter-group">
+                    <label for="filterPosX">Position X (±50)</label>
+                    <input type="number" id="filterPosX" placeholder="X coordinate..." step="0.1">
+                </div>
+
+                <div class="filter-group">
+                    <label for="filterPosY">Position Y (±50)</label>
+                    <input type="number" id="filterPosY" placeholder="Y coordinate..." step="0.1">
+                </div>
+            </div>
+
+            <div style="margin-top: 15px;">
+                <button class="btn-clear" onclick="clearFilters()">Clear All Filters</button>
+                <button class="export-btn" onclick="saveModifiedXML()" style="background: #e67e22;">Save Changes to XML</button>
+                <label style="margin-left: 20px; cursor: pointer;">
+                    <input type="checkbox" id="showTechnicalInfo" checked onchange="toggleTechnicalColumns()">
+                    Show Technical Details
+                </label>
+                <label style="margin-left: 20px; cursor: pointer;" id="factionColorLabel" style="display:none;">
+                    <input type="checkbox" id="colorByFactionToggle" onchange="toggleFactionColors()">
+                    Color by Faction
+                </label>
+                <label style="margin-left: 20px; cursor: pointer;">
+                    <input type="checkbox" id="colorByVillageToggle" onchange="toggleVillageColors()">
+                    Color Villages by Production
+                </label>
+            </div>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-box">
+                <div class="number" id="totalCount">0</div>
+                <div class="label">Total Settlements</div>
+            </div>
+            <div class="stat-box">
+                <div class="number" id="filteredCount">0</div>
+                <div class="label">Filtered Results</div>
+            </div>
+            <div class="stat-box">
+                <div class="number" id="townCount">0</div>
+                <div class="label">Towns</div>
+            </div>
+            <div class="stat-box">
+                <div class="number" id="castleCount">0</div>
+                <div class="label">Castles</div>
+            </div>
+            <div class="stat-box">
+                <div class="number" id="villageCount">0</div>
+                <div class="label">Villages</div>
+            </div>
+        </div>
+
+        <div class="map-and-list">
+            <div class="settlement-list">
+                <h3>Filtered Settlements (<span id="listCount">0</span>)</h3>
+                <div id="settlementListItems"></div>
+                <button onclick="deselectAllSettlements()" style="margin-top: 10px; width: 100%; padding: 8px; background: #95a5a6; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9em; font-weight: 600; flex-shrink: 0;">
+                    Deselect All
+                </button>
+            </div>
+
+            <div class="map-container">
+                <h3>Settlement Map View</h3>
+                <canvas id="settlementMap" width="800" height="600"></canvas>
+                <div style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center;">
+                    <p style="color: #666; font-size: 0.9em; margin: 0;">
+                        <strong>Legend:</strong>
+                        <span style="color: #667eea;">●</span> Towns |
+                        <span style="color: #667eea;">■</span> Castles |
+                        <span style="color: #667eea;">▲</span> Villages |
+                        <span style="color: #ccc;">Grey</span> = Not filtered
+                    </p>
+                    <button onclick="resetMapView()" style="padding: 5px 15px; background: #667eea; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9em;">
+                        Reset View
+                    </button>
+                </div>
+                <p style="margin-top: 5px; color: #666; font-size: 0.85em; font-style: italic;">
+                    Scroll to zoom | Shift+Drag to pan | Hover for details
+                </p>
+
+                <!-- Point Marker Controls -->
+                <div class="spawn-point-controls">
+                    <h4>
+                        <span style="color: #ff9800; font-size: 1.2em;">⊕</span>
+                        Point Marker
+                    </h4>
+                    <div class="spawn-point-inputs">
+                        <div class="coord-group">
+                            <label for="spawnPointX">X:</label>
+                            <input type="number" id="spawnPointX" step="0.001" placeholder="e.g. 1218.711"
+                                   onchange="updateSpawnPointFromInput()">
+                        </div>
+                        <div class="coord-group">
+                            <label for="spawnPointY">Y:</label>
+                            <input type="number" id="spawnPointY" step="0.001" placeholder="e.g. 798.5"
+                                   onchange="updateSpawnPointFromInput()">
+                        </div>
+                        <div class="spawn-point-buttons">
+                            <button id="btnPlaceSpawn" class="btn-spawn btn-spawn-place" onclick="togglePlaceSpawnMode()">
+                                Click to Place
+                            </button>
+                            <button class="btn-spawn btn-spawn-copy" onclick="copySpawnPointCoords()">
+                                Copy Coords
+                            </button>
+                            <button class="btn-spawn btn-spawn-clear" onclick="clearSpawnPoint()">
+                                Clear
+                            </button>
+                        </div>
+                    </div>
+                    <p class="spawn-point-info">
+                        Click "Click to Place" then click on the map to set a spawn point. You can also drag the marker to reposition it.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table id="settlementTable">
+                <thead>
+                    <tr>
+                        <th class="sortable tech-col" onclick="sortTable('id')">ID</th>
+                        <th class="sortable tech-col" onclick="sortTable('translationId')">Name Trans ID</th>
+                        <th class="sortable tech-col" onclick="sortTable('textTranslationId')">Desc Trans ID</th>
+                        <th class="sortable" onclick="sortTable('name')">Name</th>
+                        <th class="sortable" onclick="sortTable('text')">Description</th>
+                        <th class="sortable" onclick="sortTable('owner')">Owner</th>
+                        <th class="sortable" onclick="sortTable('culture')">Culture</th>
+                        <th class="sortable" onclick="sortTable('componentType')">Component Type</th>
+                        <th class="sortable" onclick="sortTable('villageType')">Village Production</th>
+                        <th class="sortable" onclick="sortTable('boundTo')">Bound To</th>
+                        <th class="sortable" onclick="sortTable('prosperity')">Prosperity</th>
+                        <th>Scenes</th>
+                        <th class="sortable tech-col" onclick="sortTable('posX')">Position X</th>
+                        <th class="sortable tech-col" onclick="sortTable('posY')">Position Y</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td colspan="12" class="no-data">Load an XML file to view settlements</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Scene Editor Modal -->
+    <div id="sceneModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="sceneModalTitle">Edit Scenes</h2>
+                <button class="modal-close" onclick="closeSceneModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="sceneModalBody">
+                <!-- Dynamic content generated by JS -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeSceneModal()">Cancel</button>
+                <button class="btn-save-scenes" onclick="saveSceneChanges()">Set Scenes</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let settlements = [];
+        let filteredSettlements = [];
+        let currentSort = { column: null, ascending: true };
+        let canvas, ctx;
+        let mapBounds = { minX: Infinity, maxX: -Infinity, minY: Infinity, maxY: -Infinity };
+        let hoveredSettlement = null;
+        let selectedSettlements = new Set();
+        let lastSelectedId = null;
+        let settlementsXMLContent = null;
+        let modifiedSettlements = new Set(); // Track which settlements have been modified
+        let allFactions = new Set();
+        let allVillageTypes = new Set();
+        let allCultures = new Set();
+
+        // Scene data collections
+        let allScenes = {
+            center: new Set(),
+            arena: new Set(),
+            tavern: new Set(),
+            lordshall: new Set(),
+            prison: new Set(),
+            house: new Set(),
+            village_center: new Set(),
+            hideout: new Set()
+        };
+
+        // Culture display name mappings - will be populated from XML
+        let cultureDisplayNames = new Map();
+
+        // Helper function to get display name for culture
+        function getCultureDisplayName(culture) {
+            // Return the name from XML if available, otherwise return the culture ID as-is
+            return cultureDisplayNames.get(culture) || culture;
+        }
+
+        // Helper function to get display name for faction/clan
+        function getClanDisplayName(clanId) {
+            return clanNames.get(clanId) || clanId.replace('Faction.', '');
+        }
+
+        // Zoom and pan state
+        let zoomLevel = 1.0;
+        let panOffsetX = 0;
+        let panOffsetY = 0;
+        let isPanning = false;
+        let lastPanX = 0;
+        let lastPanY = 0;
+
+        // Faction colors and coloring modes
+        let kingdomColors = new Map();
+        let clanToKingdomMap = new Map();
+        let factionColors = new Map();
+        let clanNames = new Map(); // Map of clan ID to display name
+        let colorByFaction = false;
+        let colorByVillageType = false;
+
+        // Spawn point marker state
+        let spawnPoint = null; // { x: worldX, y: worldY }
+        let isPlacingSpawnPoint = false; // Mode for clicking to place spawn point
+        let isDraggingSpawnPoint = false; // Dragging the spawn point marker
+        let spawnPointHovered = false; // Is mouse hovering over spawn point
+
+        // File input handler
+        document.getElementById('xmlFiles').addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            if (files.length > 0) {
+                const fileNameEl = document.getElementById('fileName');
+
+                // Track which file types were selected
+                const fileTypes = {
+                    settlement: null,
+                    clan: null,
+                    kingdom: null,
+                    culture: null
+                };
+
+                files.forEach(f => {
+                    if (f.name.includes('settlement')) fileTypes.settlement = f.name;
+                    else if (f.name.includes('clan')) fileTypes.clan = f.name;
+                    else if (f.name.includes('kingdom')) fileTypes.kingdom = f.name;
+                    else if (f.name.includes('culture')) fileTypes.culture = f.name;
+                });
+
+                // Display all file types - loaded ones will be marked green later, unloaded stay grey
+                const fileDisplays = [
+                    `<span data-type="settlement">${fileTypes.settlement || 'settlement.xml'}</span>`,
+                    `<span data-type="clan">${fileTypes.clan || 'clan.xml'}</span>`,
+                    `<span data-type="kingdom">${fileTypes.kingdom || 'kingdom.xml'}</span>`,
+                    `<span data-type="culture">${fileTypes.culture || 'culture.xml'}</span>`
+                ];
+                fileNameEl.innerHTML = fileDisplays.join(', ');
+
+                let settlementsXML = null;
+                let clansXML = null;
+                let kingdomsXML = null;
+                let culturesXML = null;
+                let filesLoaded = 0;
+
+                files.forEach(file => {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        const content = event.target.result;
+
+                        if (file.name.includes('settlement')) {
+                            settlementsXML = content;
+                        } else if (file.name.includes('kingdom')) {
+                            kingdomsXML = content;
+                        } else if (file.name.includes('clan')) {
+                            clansXML = content;
+                        } else if (file.name.includes('culture')) {
+                            culturesXML = content;
+                        }
+
+                        filesLoaded++;
+
+                        if (filesLoaded === files.length) {
+                            // Parse cultures first
+                            if (culturesXML) {
+                                parseCulturesXML(culturesXML);
+                            }
+                            // Parse kingdoms
+                            if (kingdomsXML) {
+                                parseKingdomsXML(kingdomsXML);
+                            }
+                            // Then parse clans (will inherit kingdom colors)
+                            if (clansXML) {
+                                parseClanXML(clansXML);
+                            }
+                            // Finally parse settlements
+                            if (settlementsXML) {
+                                parseSettlementXML(settlementsXML);
+                            }
+                        }
+                    };
+                    reader.readAsText(file);
+                });
+            }
+        });
+
+        // Parse Kingdom XML to get kingdom colors
+        function parseKingdomsXML(xmlString) {
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+
+            const parserError = xmlDoc.querySelector('parsererror');
+            if (parserError) {
+                console.error('Error parsing kingdoms XML:', parserError.textContent);
+                return;
+            }
+
+            kingdomColors.clear();
+            const kingdomNodes = xmlDoc.querySelectorAll('Kingdom');
+
+            kingdomNodes.forEach(node => {
+                const id = node.getAttribute('id');
+                const color = node.getAttribute('color');
+                const color2 = node.getAttribute('color2');
+
+                if (id && color) {
+                    // Convert hex color from FF format (FFRRGGBB) to # format (#RRGGBB)
+                    const hexColor = color.startsWith('FF') ? '#' + color.substring(2) : color;
+                    const hexColor2 = color2 && color2.startsWith('FF') ? '#' + color2.substring(2) : hexColor;
+
+                    const colorObj = {
+                        primary: hexColor,
+                        secondary: hexColor2
+                    };
+
+                    // Store with both formats
+                    kingdomColors.set('Kingdom.' + id, colorObj);
+                    kingdomColors.set(id, colorObj);
+                }
+            });
+
+            console.log('Loaded ' + (kingdomColors.size / 2) + ' kingdom colors');
+
+            // Mark kingdom file as loaded (green)
+            const kingdomFileSpan = document.querySelector('#fileName span[data-type="kingdom"]');
+            if (kingdomFileSpan) kingdomFileSpan.classList.add('loaded');
+        }
+
+        // Parse Culture XML to get culture display names
+        function parseCulturesXML(xmlString) {
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+
+            const parserError = xmlDoc.querySelector('parsererror');
+            if (parserError) {
+                console.error('Error parsing cultures XML:', parserError.textContent);
+                return;
+            }
+
+            cultureDisplayNames.clear();
+            const cultureNodes = xmlDoc.querySelectorAll('Culture');
+
+            cultureNodes.forEach(node => {
+                const id = node.getAttribute('id');
+                const name = node.getAttribute('name');
+
+                if (id && name) {
+                    // Extract display name from translation string {=id}Display Name
+                    const nameMatch = name.match(/^\{=([^\}]+)\}(.+)$/);
+                    const displayName = nameMatch ? nameMatch[2] : name;
+                    const fullId = id.startsWith('Culture.') ? id : 'Culture.' + id;
+                    cultureDisplayNames.set(fullId, displayName);
+                    console.log(`Loaded culture: ${fullId} -> ${displayName}`);
+                }
+            });
+
+            console.log('Loaded ' + cultureDisplayNames.size + ' culture names');
+
+            // Mark culture file as loaded (green)
+            const cultureFileSpan = document.querySelector('#fileName span[data-type="culture"]');
+            if (cultureFileSpan) cultureFileSpan.classList.add('loaded');
+        }
+
+        // Parse Clan XML
+        function parseClanXML(xmlString) {
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+
+            const parserError = xmlDoc.querySelector('parsererror');
+            if (parserError) {
+                console.error('Error parsing clan XML:', parserError.textContent);
+                return;
+            }
+
+            factionColors.clear();
+            clanToKingdomMap.clear();
+            clanNames.clear();
+            const factionNodes = xmlDoc.querySelectorAll('Faction');
+            let skippedCount = 0;
+            let inheritedCount = 0;
+            const skippedFactions = [];
+
+            factionNodes.forEach(node => {
+                const id = node.getAttribute('id');
+                const name = node.getAttribute('name');
+                const color = node.getAttribute('color');
+                const color2 = node.getAttribute('color2');
+                const superFaction = node.getAttribute('super_faction');
+
+                if (id) {
+                    // Store clan name if available (add Faction. prefix to match settlement owner format)
+                    if (name) {
+                        // Extract display name from translation string {=id}Display Name
+                        const nameMatch = name.match(/^\{=([^\}]+)\}(.+)$/);
+                        const displayName = nameMatch ? nameMatch[2] : name;
+                        const fullId = id.startsWith('Faction.') ? id : 'Faction.' + id;
+                        clanNames.set(fullId, displayName);
+                    }
+
+                    // Store clan-to-kingdom mapping
+                    if (superFaction) {
+                        clanToKingdomMap.set(id, superFaction);
+                    }
+
+                    let colorObj = null;
+
+                    if (color) {
+                        // Clan has its own color
+                        const hexColor = color.startsWith('FF') ? '#' + color.substring(2) : color;
+                        const hexColor2 = color2 && color2.startsWith('FF') ? '#' + color2.substring(2) : hexColor;
+
+                        colorObj = {
+                            primary: hexColor,
+                            secondary: hexColor2
+                        };
+                    } else if (superFaction) {
+                        // No clan color, try to inherit from kingdom
+                        const kingdomColor = kingdomColors.get(superFaction);
+                        if (kingdomColor) {
+                            colorObj = kingdomColor;
+                            inheritedCount++;
+                        } else {
+                            skippedCount++;
+                            if (skippedCount <= 10) {
+                                skippedFactions.push(id);
+                            }
+                        }
+                    } else {
+                        skippedCount++;
+                        if (skippedCount <= 10) {
+                            skippedFactions.push(id);
+                        }
+                    }
+
+                    if (colorObj) {
+                        // Store with both formats (with and without "Faction." prefix)
+                        factionColors.set('Faction.' + id, colorObj);
+                        factionColors.set(id, colorObj);
+                    }
+                }
+            });
+
+            console.log('Loaded ' + (factionColors.size / 2) + ' faction colors (stored with both prefixes)');
+            console.log('Inherited ' + inheritedCount + ' colors from kingdoms');
+            console.log('Skipped ' + skippedCount + ' factions without colors');
+            if (skippedFactions.length > 0) {
+                console.log('Sample skipped factions:', skippedFactions);
+            }
+
+            // Show faction color toggle if we have colors
+            if (factionColors.size > 0) {
+                document.getElementById('factionColorLabel').style.display = 'inline';
+            }
+
+            // Mark clan file as loaded (green)
+            const clanFileSpan = document.querySelector('#fileName span[data-type="clan"]');
+            if (clanFileSpan) clanFileSpan.classList.add('loaded');
+        }
+
+        // Parse Settlement XML
+        function parseSettlementXML(xmlString) {
+            // Store the original XML content for later export
+            settlementsXMLContent = xmlString;
+
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+
+            // Check for parsing errors
+            const parserError = xmlDoc.querySelector('parsererror');
+            if (parserError) {
+                alert('Error parsing XML file: ' + parserError.textContent);
+                return;
+            }
+
+            settlements = [];
+            const settlementNodes = xmlDoc.querySelectorAll('Settlement');
+
+            settlementNodes.forEach(node => {
+                const rawName = node.getAttribute('name') || '';
+                let displayName = rawName;
+                let translationId = '';
+
+                // Extract translation ID if present (format: {=translation_id}Name)
+                const translationMatch = rawName.match(/^\{=([^\}]+)\}(.+)$/);
+                if (translationMatch) {
+                    translationId = translationMatch[1];
+                    displayName = translationMatch[2];
+                }
+
+                // Extract description translation ID from text attribute
+                const rawText = node.getAttribute('text') || '';
+                let displayText = rawText;
+                let textTranslationId = '';
+
+                const textTranslationMatch = rawText.match(/^\{=([^\}]+)\}(.*)$/);
+                if (textTranslationMatch) {
+                    textTranslationId = textTranslationMatch[1];
+                    displayText = textTranslationMatch[2];
+                    // {=!} means empty/no translation
+                    if (textTranslationId === '!') {
+                        textTranslationId = '';
+                    }
+                }
+
+                const settlement = {
+                    id: node.getAttribute('id') || '',
+                    name: displayName,
+                    translationId: translationId,
+                    rawName: rawName,
+                    text: displayText,
+                    textTranslationId: textTranslationId,
+                    rawText: rawText,
+                    owner: node.getAttribute('owner') || '',
+                    culture: node.getAttribute('culture') || '',
+                    posX: parseFloat(node.getAttribute('posX')) || 0,
+                    posY: parseFloat(node.getAttribute('posY')) || 0,
+                    gate_posX: parseFloat(node.getAttribute('gate_posX')) || 0,
+                    gate_posY: parseFloat(node.getAttribute('gate_posY')) || 0,
+                    gate_rotation: parseFloat(node.getAttribute('gate_rotation')) || 0,
+                    prosperity: 0,
+                    componentType: '',
+                    villageType: '',
+                    isCastle: false,
+                    religion: '',
+                    // Scene locations
+                    locations: {}
+                };
+
+                // Parse Components to determine type
+                const components = node.querySelector('Components');
+                if (components) {
+                    // Check for Town component
+                    const town = components.querySelector('Town');
+                    if (town) {
+                        settlement.isCastle = town.getAttribute('is_castle') === 'true';
+                        // Treat castles as separate component type
+                        settlement.componentType = settlement.isCastle ? 'Castle' : 'Town';
+                        settlement.prosperity = parseFloat(town.getAttribute('prosperity')) || 0;
+                    }
+
+                    // Check for Village component
+                    const village = components.querySelector('Village');
+                    if (village) {
+                        settlement.componentType = 'Village';
+                        settlement.villageType = (village.getAttribute('village_type') || '').replace('VillageType.', '');
+                        settlement.prosperity = parseFloat(village.getAttribute('hearth')) || 0;
+                        settlement.boundTo = (village.getAttribute('bound') || '').replace('Settlement.', '');
+                    }
+
+                    // Check for Hideout component
+                    const hideout = components.querySelector('Hideout');
+                    if (hideout) {
+                        settlement.componentType = 'Hideout';
+                        // Hideout scene will be extracted from locations.hideout_center after Locations are parsed
+                    }
+
+                    // Check for TOR-specific components
+                    const shrine = components.querySelector('Shrine');
+                    if (shrine) {
+                        settlement.componentType = 'Shrine';
+                        settlement.religion = (shrine.getAttribute('religion') || '').replace('cult_of_', '');
+                    }
+
+                    const herdstone = components.querySelector('HerdStone');
+                    if (herdstone) {
+                        settlement.componentType = 'HerdStone';
+                    }
+
+                    const oakOfAges = components.querySelector('OakOfAges');
+                    if (oakOfAges) {
+                        settlement.componentType = 'OakOfAges';
+                    }
+
+                    const worldRoots = components.querySelector('WorldRoots');
+                    if (worldRoots) {
+                        settlement.componentType = 'WorldRoots';
+                    }
+
+                    const chaosPortal = components.querySelector('ChaosPortal');
+                    if (chaosPortal) {
+                        settlement.componentType = 'ChaosPortal';
+                    }
+
+                    const slaverCamp = components.querySelector('SlaverCamp');
+                    if (slaverCamp) {
+                        settlement.componentType = 'SlaverCamp';
+                    }
+                }
+
+                // Parse Locations for scene data
+                const locationsNode = node.querySelector('Locations');
+                if (locationsNode) {
+                    const locationNodes = locationsNode.querySelectorAll('Location');
+                    locationNodes.forEach(loc => {
+                        const locId = loc.getAttribute('id');
+                        if (locId) {
+                            const locationData = {
+                                scene_name: loc.getAttribute('scene_name') || '',
+                                scene_name_1: loc.getAttribute('scene_name_1') || '',
+                                scene_name_2: loc.getAttribute('scene_name_2') || '',
+                                scene_name_3: loc.getAttribute('scene_name_3') || ''
+                            };
+                            settlement.locations[locId] = locationData;
+
+                            // Collect scene names for dropdowns
+                            if (locationData.scene_name) {
+                                if (locId === 'village_center') {
+                                    allScenes.village_center.add(locationData.scene_name);
+                                } else if (locId === 'center') {
+                                    allScenes.center.add(locationData.scene_name);
+                                } else if (locId === 'arena') {
+                                    allScenes.arena.add(locationData.scene_name);
+                                } else if (locId === 'tavern') {
+                                    allScenes.tavern.add(locationData.scene_name);
+                                } else if (locId === 'prison') {
+                                    allScenes.prison.add(locationData.scene_name);
+                                } else if (locId.startsWith('house_')) {
+                                    allScenes.house.add(locationData.scene_name);
+                                } else if (locId === 'hideout_center') {
+                                    allScenes.hideout.add(locationData.scene_name);
+                                }
+                            }
+                            // Collect lordshall scenes from scene_name_1/2/3
+                            if (locId === 'lordshall') {
+                                if (locationData.scene_name_1) allScenes.lordshall.add(locationData.scene_name_1);
+                                if (locationData.scene_name_2) allScenes.lordshall.add(locationData.scene_name_2);
+                                if (locationData.scene_name_3) allScenes.lordshall.add(locationData.scene_name_3);
+                            }
+                        }
+                    });
+                }
+
+                // For hideouts, extract the scene from hideout_center location
+                if (settlement.componentType === 'Hideout' && settlement.locations.hideout_center) {
+                    settlement.hideoutScene = settlement.locations.hideout_center.scene_name || '';
+                }
+
+                settlements.push(settlement);
+            });
+
+            // Second pass: Make villages inherit owner from their bound settlement
+            const settlementMap = new Map(settlements.map(s => [s.id, s]));
+            settlements.forEach(settlement => {
+                if (settlement.componentType === 'Village' && settlement.boundTo) {
+                    const parentSettlement = settlementMap.get(settlement.boundTo);
+                    if (parentSettlement && parentSettlement.owner) {
+                        settlement.owner = parentSettlement.owner;
+                    }
+                }
+
+                // Collect all unique factions, village types, and cultures
+                if (settlement.owner) {
+                    allFactions.add(settlement.owner);
+                }
+                if (settlement.villageType) {
+                    allVillageTypes.add(settlement.villageType);
+                }
+                if (settlement.culture) {
+                    allCultures.add(settlement.culture);
+                }
+            });
+
+            // Debug: Log first few settlement owners
+            console.log('Sample settlement owners:', settlements.slice(0, 5).map(s => s.owner));
+            console.log('Collected', allFactions.size, 'unique factions');
+            console.log('Collected', allVillageTypes.size, 'unique village types');
+
+            // Calculate map bounds
+            settlements.forEach(s => {
+                if (s.posX < mapBounds.minX) mapBounds.minX = s.posX;
+                if (s.posX > mapBounds.maxX) mapBounds.maxX = s.posX;
+                if (s.posY < mapBounds.minY) mapBounds.minY = s.posY;
+                if (s.posY > mapBounds.maxY) mapBounds.maxY = s.posY;
+            });
+
+            // Initialize canvas
+            canvas = document.getElementById('settlementMap');
+            ctx = canvas.getContext('2d');
+
+            // Add event listeners for map interaction
+            canvas.addEventListener('mousemove', handleMapHover);
+            canvas.addEventListener('click', handleMapClick);
+            canvas.addEventListener('mouseleave', function() {
+                hoveredSettlement = null;
+                isPanning = false;
+                renderMap();
+            });
+
+            // Zoom with mouse wheel
+            canvas.addEventListener('wheel', handleMapWheel, { passive: false });
+
+            // Pan with middle mouse button or Shift+drag
+            canvas.addEventListener('mousedown', handleMapMouseDown);
+            canvas.addEventListener('mouseup', handleMapMouseUp);
+            canvas.addEventListener('mousemove', handleMapPan);
+
+            // Spawn point dragging
+            canvas.addEventListener('mousedown', handleSpawnPointMouseDown);
+            canvas.addEventListener('mouseup', handleSpawnPointMouseUp);
+            document.addEventListener('mouseup', handleSpawnPointMouseUp); // Also listen on document for drags outside canvas
+
+            populateCultureDropdown();
+            applyFilters();
+            updateStats();
+
+            // Mark settlement file as loaded (green) to indicate successful parsing
+            const settlementFileSpan = document.querySelector('#fileName span[data-type="settlement"]');
+            if (settlementFileSpan) {
+                settlementFileSpan.classList.add('loaded');
+            }
+        }
+
+        // Populate dropdowns
+        function populateCultureDropdown() {
+            const cultures = [...new Set(settlements.map(s => s.culture))].sort();
+            const select = document.getElementById('filterCulture');
+            select.innerHTML = '<option value="">All Cultures</option>';
+            // Sort cultures by display name
+            const sortedCultures = cultures.sort((a, b) => {
+                const nameA = getCultureDisplayName(a);
+                const nameB = getCultureDisplayName(b);
+                return nameA.localeCompare(nameB);
+            });
+            sortedCultures.forEach(culture => {
+                if (culture) {
+                    const option = document.createElement('option');
+                    option.value = culture;
+                    option.textContent = getCultureDisplayName(culture);
+                    select.appendChild(option);
+                }
+            });
+
+            // Populate village types
+            const villageTypes = [...new Set(settlements.map(s => s.villageType).filter(v => v))].sort();
+            const villageSelect = document.getElementById('filterVillageType');
+            villageSelect.innerHTML = '<option value="">All Productions</option>';
+            villageTypes.forEach(vType => {
+                const option = document.createElement('option');
+                option.value = vType;
+                option.textContent = vType.replace(/_/g, ' ');
+                villageSelect.appendChild(option);
+            });
+        }
+
+        // Apply filters
+        function applyFilters() {
+            const filterName = document.getElementById('filterName').value.toLowerCase();
+            const filterId = document.getElementById('filterId').value.toLowerCase();
+            const filterOwner = document.getElementById('filterOwner').value.toLowerCase();
+            const filterCulture = document.getElementById('filterCulture').value;
+            const filterComponentType = document.getElementById('filterComponentType').value;
+            const filterVillageType = document.getElementById('filterVillageType').value;
+            const filterProsperityMin = parseFloat(document.getElementById('filterProsperityMin').value) || -Infinity;
+            const filterProsperityMax = parseFloat(document.getElementById('filterProsperityMax').value) || Infinity;
+            const filterPosX = parseFloat(document.getElementById('filterPosX').value);
+            const filterPosY = parseFloat(document.getElementById('filterPosY').value);
+
+            filteredSettlements = settlements.filter(s => {
+                if (filterName && !s.name.toLowerCase().includes(filterName)) return false;
+                if (filterId && !s.id.toLowerCase().includes(filterId)) return false;
+                if (filterOwner) {
+                    const ownerLower = s.owner.toLowerCase();
+                    const clanName = getClanDisplayName(s.owner).toLowerCase();
+                    if (!ownerLower.includes(filterOwner) && !clanName.includes(filterOwner)) return false;
+                }
+                if (filterCulture && s.culture !== filterCulture) return false;
+                if (filterComponentType && s.componentType !== filterComponentType) return false;
+                if (filterVillageType && s.villageType !== filterVillageType) return false;
+                if (s.prosperity < filterProsperityMin || s.prosperity > filterProsperityMax) return false;
+
+                // Position filters with ±50 range
+                if (!isNaN(filterPosX)) {
+                    if (Math.abs(s.posX - filterPosX) > 50) return false;
+                }
+                if (!isNaN(filterPosY)) {
+                    if (Math.abs(s.posY - filterPosY) > 50) return false;
+                }
+
+                return true;
+            });
+
+            renderTable();
+            updateStats();
+            renderSettlementList();
+            renderMap();
+        }
+
+        // Render table
+        function renderTable() {
+            const tbody = document.getElementById('tableBody');
+
+            if (filteredSettlements.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="12" class="no-data">No settlements match the current filters</td></tr>';
+                return;
+            }
+
+            // Sort filtered settlements: selected ones first, then the rest
+            const sortedSettlements = [...filteredSettlements].sort((a, b) => {
+                const aSelected = selectedSettlements.has(a.id);
+                const bSelected = selectedSettlements.has(b.id);
+                if (aSelected && !bSelected) return -1;
+                if (!aSelected && bSelected) return 1;
+                return 0;
+            });
+
+            tbody.innerHTML = sortedSettlements.map(s => {
+                let componentDisplay = s.componentType;
+                if (s.componentType === 'Shrine' && s.religion) {
+                    componentDisplay += ` (${s.religion})`;
+                }
+
+                // Get bound settlement name
+                let boundDisplay = '-';
+                if (s.boundTo) {
+                    const boundSettlement = settlements.find(settlement => settlement.id === s.boundTo);
+                    if (boundSettlement) {
+                        boundDisplay = boundSettlement.name;
+                    } else {
+                        boundDisplay = s.boundTo;
+                    }
+                }
+
+                // Create owner dropdown with clan names and IDs
+                const ownerOptions = Array.from(allFactions).sort((a, b) => {
+                    const nameA = getClanDisplayName(a);
+                    const nameB = getClanDisplayName(b);
+                    return nameA.localeCompare(nameB);
+                }).map(faction => {
+                    const displayName = getClanDisplayName(faction);
+                    const shortId = faction.replace('Faction.', '');
+                    return `<option value="${faction}" ${s.owner === faction ? 'selected' : ''}>${displayName} (${shortId})</option>`;
+                }).join('');
+
+                // Create village production dropdown
+                const villageTypeOptions = Array.from(allVillageTypes).sort().map(type =>
+                    `<option value="${type}" ${s.villageType === type ? 'selected' : ''}>${type.replace(/_/g, ' ')}</option>`
+                ).join('');
+
+                // Create culture dropdown with readable names
+                const cultureOptions = Array.from(allCultures).sort((a, b) => {
+                    const nameA = getCultureDisplayName(a);
+                    const nameB = getCultureDisplayName(b);
+                    return nameA.localeCompare(nameB);
+                }).map(culture =>
+                    `<option value="${culture}" ${s.culture === culture ? 'selected' : ''}>${getCultureDisplayName(culture)}</option>`
+                ).join('');
+
+                const isSelected = selectedSettlements.has(s.id);
+                return `
+                <tr style="${isSelected ? 'background-color: #e8eeff; font-weight: 600;' : ''}" data-settlement-id="${s.id}">
+                    <td class="tech-col"><code style="font-size: 0.85em;">${s.id}</code></td>
+                    <td contenteditable="true" onblur="updateTranslationId('${s.id}', this.textContent)"
+                        style="cursor: text; background: #fffacd; max-width: 80px; font-size: 0.75em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${s.translationId || '-'}</td>
+                    <td contenteditable="true" onblur="updateDescriptionTranslationId('${s.id}', this.textContent)"
+                        style="cursor: text; background: #fffacd; max-width: 80px; font-size: 0.75em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${s.textTranslationId || '-'}</td>
+                    <td contenteditable="true" onblur="updateName('${s.id}', this.textContent)"
+                        style="cursor: text; background: #fffacd; min-width: 200px;"><strong>${s.name}</strong></td>
+                    <td contenteditable="true" onblur="updateDescription('${s.id}', this.textContent)"
+                        style="cursor: text; background: #fffacd; min-width: 200px;">${s.text || '-'}</td>
+                    <td><select onchange="updateOwner('${s.id}', this.value)"
+                        style="width: 100%; background: ${s.componentType === 'Village' ? '#e0e0e0' : '#fffacd'}; border: 1px solid #ddd; padding: 2px;"
+                        ${s.componentType === 'Village' ? 'disabled' : ''}>
+                        ${ownerOptions}
+                    </select></td>
+                    <td><select onchange="updateCulture('${s.id}', this.value)" style="min-width: 120px; background: #fffacd; border: 1px solid #ddd; padding: 2px;">
+                        ${cultureOptions}
+                    </select></td>
+                    <td><span class="type-badge type-${s.componentType}">${componentDisplay}</span></td>
+                    <td class="village-production">${s.componentType === 'Village' ?
+                        `<select onchange="updateVillageProduction('${s.id}', this.value)" style="width: 100%; background: #fffacd; border: 1px solid #ddd; padding: 2px;">
+                            <option value="">-</option>
+                            ${villageTypeOptions}
+                        </select>` : '-'}</td>
+                    <td style="font-size: 0.9em; color: #666;">${boundDisplay}</td>
+                    <td contenteditable="true" onblur="updateProsperity('${s.id}', this.textContent)"
+                        style="cursor: text; background: #fffacd;">${s.prosperity || '-'}</td>
+                    <td><button class="btn-view-scenes" onclick="viewScenes(event, '${s.id}')">View</button><button class="btn-scenes" onclick="openSceneModal('${s.id}')">Edit</button></td>
+                    <td class="tech-col position-display">${s.posX.toFixed(3)}</td>
+                    <td class="tech-col position-display">${s.posY.toFixed(3)}</td>
+                </tr>
+                `;
+            }).join('');
+        }
+
+        // Update statistics
+        function updateStats() {
+            document.getElementById('totalCount').textContent = settlements.length;
+            document.getElementById('filteredCount').textContent = filteredSettlements.length;
+            document.getElementById('listCount').textContent = filteredSettlements.length;
+
+            const towns = filteredSettlements.filter(s => s.componentType === 'Town').length;
+            const castles = filteredSettlements.filter(s => s.componentType === 'Castle').length;
+            const villages = filteredSettlements.filter(s => s.componentType === 'Village').length;
+
+            document.getElementById('townCount').textContent = towns;
+            document.getElementById('castleCount').textContent = castles;
+            document.getElementById('villageCount').textContent = villages;
+        }
+
+        // Render settlement list
+        function renderSettlementList() {
+            const listContainer = document.getElementById('settlementListItems');
+
+            if (filteredSettlements.length === 0) {
+                listContainer.innerHTML = '<p style="text-align: center; color: #999; padding: 20px;">No settlements to display</p>';
+                return;
+            }
+
+            listContainer.innerHTML = filteredSettlements.map(s => {
+                const isSelected = selectedSettlements.has(s.id);
+                return `
+                    <div class="settlement-item ${isSelected ? 'selected' : ''}" data-settlement-id="${s.id}">
+                        <input type="checkbox" class="settlement-checkbox" ${isSelected ? 'checked' : ''}
+                               onclick="event.stopPropagation();" onchange="toggleSettlementSelection('${s.id}')">
+                        <div style="flex: 1;">
+                            <div class="settlement-item-name">${s.name}</div>
+                            <div class="settlement-item-details">
+                                <span class="type-badge type-${s.componentType}" style="margin-right: 5px; padding: 2px 5px;">${s.componentType}</span>
+                                ${s.id}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Add click handlers to settlement items
+            listContainer.querySelectorAll('.settlement-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    // Don't toggle if clicking checkbox
+                    if (e.target.classList.contains('settlement-checkbox')) return;
+
+                    const settlementId = this.getAttribute('data-settlement-id');
+                    toggleSettlementSelection(settlementId);
+                });
+
+                item.addEventListener('mouseenter', function() {
+                    const settlementId = this.getAttribute('data-settlement-id');
+                    const settlement = settlements.find(s => s.id === settlementId);
+                    if (settlement) {
+                        hoveredSettlement = settlement;
+                        renderMap();
+                    }
+                });
+
+                item.addEventListener('mouseleave', function() {
+                    hoveredSettlement = null;
+                    renderMap();
+                });
+            });
+        }
+
+        // Toggle settlement selection
+        function toggleSettlementSelection(settlementId) {
+            if (selectedSettlements.has(settlementId)) {
+                selectedSettlements.delete(settlementId);
+                if (lastSelectedId === settlementId) {
+                    lastSelectedId = null;
+                }
+            } else {
+                selectedSettlements.add(settlementId);
+                lastSelectedId = settlementId;
+            }
+            renderSettlementList();
+            renderMap();
+            renderTable();
+
+            // Scroll to the last selected settlement in the LEFT list
+            if (lastSelectedId) {
+                const listContainer = document.getElementById('settlementListItems');
+                const selectedItem = listContainer.querySelector(`[data-settlement-id="${lastSelectedId}"]`);
+                if (selectedItem) {
+                    selectedItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        }
+
+        // Deselect all settlements
+        function deselectAllSettlements() {
+            selectedSettlements.clear();
+            lastSelectedId = null;
+            renderSettlementList();
+            renderMap();
+            renderTable();
+        }
+
+        // Sort table
+        function sortTable(column) {
+            if (currentSort.column === column) {
+                currentSort.ascending = !currentSort.ascending;
+            } else {
+                currentSort.column = column;
+                currentSort.ascending = true;
+            }
+
+            filteredSettlements.sort((a, b) => {
+                let valA = a[column];
+                let valB = b[column];
+
+                // Handle string comparison
+                if (typeof valA === 'string') {
+                    valA = valA.toLowerCase();
+                    valB = valB.toLowerCase();
+                }
+
+                if (valA < valB) return currentSort.ascending ? -1 : 1;
+                if (valA > valB) return currentSort.ascending ? 1 : -1;
+                return 0;
+            });
+
+            // Update sort indicators
+            document.querySelectorAll('th').forEach(th => {
+                th.classList.remove('sorted-asc', 'sorted-desc');
+            });
+
+            const th = event.target;
+            th.classList.add(currentSort.ascending ? 'sorted-asc' : 'sorted-desc');
+
+            renderTable();
+        }
+
+        // Clear all filters
+        function clearFilters() {
+            document.getElementById('filterName').value = '';
+            document.getElementById('filterId').value = '';
+            document.getElementById('filterOwner').value = '';
+            document.getElementById('filterCulture').value = '';
+            document.getElementById('filterComponentType').value = '';
+            document.getElementById('filterVillageType').value = '';
+            document.getElementById('filterProsperityMin').value = '';
+            document.getElementById('filterProsperityMax').value = '';
+            document.getElementById('filterPosX').value = '';
+            document.getElementById('filterPosY').value = '';
+            applyFilters();
+        }
+
+        // Update owner
+        function updateOwner(settlementId, newValue) {
+            const settlement = settlements.find(s => s.id === settlementId);
+            if (settlement) {
+                settlement.owner = newValue;
+                modifiedSettlements.add(settlementId);
+                console.log(`Updated ${settlementId} owner to: ${settlement.owner}`);
+                renderMap(); // Update map colors if faction coloring is enabled
+            }
+        }
+
+        // Update village production type
+        function updateVillageProduction(settlementId, newValue) {
+            const settlement = settlements.find(s => s.id === settlementId);
+            if (settlement && settlement.componentType === 'Village') {
+                settlement.villageType = newValue || null;
+                modifiedSettlements.add(settlementId);
+                console.log(`Updated ${settlementId} village type to: ${settlement.villageType}`);
+                renderMap(); // Update map colors if village production coloring is enabled
+            }
+        }
+
+        // Update prosperity
+        function updateProsperity(settlementId, newValue) {
+            const settlement = settlements.find(s => s.id === settlementId);
+            if (settlement) {
+                const prosperity = parseFloat(newValue);
+                settlement.prosperity = isNaN(prosperity) ? null : prosperity;
+                modifiedSettlements.add(settlementId);
+                console.log(`Updated ${settlementId} prosperity to: ${settlement.prosperity}`);
+            }
+        }
+
+        // Update description (text attribute)
+        function updateDescription(settlementId, newValue) {
+            const settlement = settlements.find(s => s.id === settlementId);
+            if (settlement) {
+                settlement.text = newValue.trim() || '';
+                modifiedSettlements.add(settlementId);
+                console.log(`Updated ${settlementId} description to: ${settlement.text}`);
+            }
+        }
+
+        // Update translation ID
+        function updateTranslationId(settlementId, newValue) {
+            const settlement = settlements.find(s => s.id === settlementId);
+            if (settlement) {
+                settlement.translationId = newValue.trim() || '';
+                modifiedSettlements.add(settlementId);
+                console.log(`Updated ${settlementId} translation ID to: ${settlement.translationId}`);
+            }
+        }
+
+        // Update name
+        function updateName(settlementId, newValue) {
+            const settlement = settlements.find(s => s.id === settlementId);
+            if (settlement) {
+                settlement.name = newValue.trim() || '';
+                modifiedSettlements.add(settlementId);
+                console.log(`Updated ${settlementId} name to: ${settlement.name}`);
+            }
+        }
+
+        // Update description translation ID
+        function updateDescriptionTranslationId(settlementId, newValue) {
+            const settlement = settlements.find(s => s.id === settlementId);
+            if (settlement) {
+                settlement.textTranslationId = newValue.trim() || '';
+                modifiedSettlements.add(settlementId);
+                console.log(`Updated ${settlementId} description translation ID to: ${settlement.textTranslationId}`);
+            }
+        }
+
+        // Update culture
+        function updateCulture(settlementId, newValue) {
+            const settlement = settlements.find(s => s.id === settlementId);
+            if (settlement) {
+                settlement.culture = newValue;
+                modifiedSettlements.add(settlementId);
+                console.log(`Updated ${settlementId} culture to: ${settlement.culture}`);
+            }
+        }
+
+        // Save modified XML
+        function saveModifiedXML() {
+            if (!settlementsXMLContent) {
+                alert('No settlement XML loaded. Please load the tor_settlements.xml file first.');
+                return;
+            }
+
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(settlementsXMLContent, 'text/xml');
+
+            // Update only modified settlements in the XML
+            const updatedCount = modifiedSettlements.size;
+
+            if (updatedCount === 0) {
+                alert('No changes to save. Please modify some settlements first.');
+                return;
+            }
+
+            modifiedSettlements.forEach(settlementId => {
+                const settlement = settlements.find(s => s.id === settlementId);
+                const settlementNode = xmlDoc.querySelector(`Settlement[id="${settlementId}"]`);
+                if (settlementNode && settlement) {
+                    // Update name (combine translation ID and name in format: {=translation_id}Name)
+                    if (settlement.translationId && settlement.name) {
+                        const fullName = `{=${settlement.translationId}}${settlement.name}`;
+                        settlementNode.setAttribute('name', fullName);
+                    } else if (settlement.name) {
+                        settlementNode.setAttribute('name', settlement.name);
+                    }
+
+                    // Update description (text attribute with translation ID)
+                    if (settlement.textTranslationId && settlement.text) {
+                        const fullText = `{=${settlement.textTranslationId}}${settlement.text}`;
+                        settlementNode.setAttribute('text', fullText);
+                    } else if (settlement.text) {
+                        // If no translation ID, use {=!} prefix
+                        const fullText = `{=!}${settlement.text}`;
+                        settlementNode.setAttribute('text', fullText);
+                    }
+
+                    // Update culture
+                    if (settlement.culture) {
+                        settlementNode.setAttribute('culture', settlement.culture);
+                    }
+
+                    // Update owner (only for non-villages, villages don't have owner attribute)
+                    if (settlement.componentType !== 'Village' && settlement.owner) {
+                        settlementNode.setAttribute('owner', settlement.owner);
+                    }
+
+                    // Find Components element
+                    const componentsNode = settlementNode.querySelector('Components');
+                    if (componentsNode) {
+                        // Update prosperity for Towns and Castles (both use <Town> component)
+                        if (settlement.componentType === 'Town' || settlement.componentType === 'Castle') {
+                            const townComponent = componentsNode.querySelector('Town');
+                            if (townComponent) {
+                                // Set is_castle attribute based on componentType
+                                const isCastle = settlement.componentType === 'Castle';
+                                townComponent.setAttribute('is_castle', isCastle ? 'true' : 'false');
+
+                                // Update in-memory flag to stay consistent
+                                settlement.isCastle = isCastle;
+
+                                if (settlement.prosperity !== null && settlement.prosperity !== undefined) {
+                                    townComponent.setAttribute('prosperity', settlement.prosperity);
+                                }
+                                console.log(`Updated ${settlement.componentType} ${settlement.id}: is_castle=${isCastle}, prosperity=${settlement.prosperity}`);
+                            }
+                        }
+
+                        // Update village production type and hearth (prosperity) for Villages
+                        if (settlement.componentType === 'Village') {
+                            const villageComponent = componentsNode.querySelector('Village');
+                            if (villageComponent) {
+                                if (settlement.villageType) {
+                                    // Add VillageType. prefix
+                                    const fullVillageType = 'VillageType.' + settlement.villageType;
+                                    villageComponent.setAttribute('village_type', fullVillageType);
+                                    console.log(`Updated Village ${settlement.id}: village_type=${fullVillageType}`);
+                                }
+                                if (settlement.prosperity !== null && settlement.prosperity !== undefined) {
+                                    villageComponent.setAttribute('hearth', settlement.prosperity);
+                                    console.log(`Updated Village ${settlement.id}: hearth=${settlement.prosperity}`);
+                                }
+                            }
+                        }
+
+                        // Note: Hideout scenes are stored in Locations/Location[@id='hideout_center'],
+                        // not on the Hideout component, so they're handled by the Locations update below
+                    }
+
+                    // Update Locations (scenes)
+                    if (settlement.locations && Object.keys(settlement.locations).length > 0) {
+                        let locationsNode = settlementNode.querySelector('Locations');
+
+                        // If no Locations node exists, we can't add scenes without knowing the complex_template
+                        // So we only update existing Location elements
+                        if (locationsNode) {
+                            // Update each location
+                            Object.entries(settlement.locations).forEach(([locId, locData]) => {
+                                let locationNode = locationsNode.querySelector(`Location[id="${locId}"]`);
+
+                                if (locationNode) {
+                                    // Update existing location
+                                    if (locData.scene_name) {
+                                        locationNode.setAttribute('scene_name', locData.scene_name);
+                                    }
+                                    if (locData.scene_name_1) {
+                                        locationNode.setAttribute('scene_name_1', locData.scene_name_1);
+                                    }
+                                    if (locData.scene_name_2) {
+                                        locationNode.setAttribute('scene_name_2', locData.scene_name_2);
+                                    }
+                                    if (locData.scene_name_3) {
+                                        locationNode.setAttribute('scene_name_3', locData.scene_name_3);
+                                    }
+                                    console.log(`Updated location ${locId} for ${settlement.id}`);
+                                }
+                            });
+                        }
+                    }
+                } else {
+                    console.warn(`Settlement node not found for ID: ${settlement.id}`);
+                }
+            });
+
+            console.log(`Updated ${updatedCount} settlements in XML`);
+
+            // Serialize back to string
+            const serializer = new XMLSerializer();
+            let xmlString = serializer.serializeToString(xmlDoc);
+
+            // Fix formatting to match original:
+            // 1. Change encoding from UTF-8 to utf-8
+            xmlString = xmlString.replace('encoding="UTF-8"', 'encoding="utf-8"');
+            // 2. DON'T change the self-closing tags - XMLSerializer outputs "/>" but original has " />"
+            // So we need to add a space before />
+            xmlString = xmlString.replace(/\/>/g, ' />');
+            // 3. Add BOM (Byte Order Mark) at the beginning
+            xmlString = '\ufeff' + xmlString;
+
+            // Download with original filename
+            const blob = new Blob([xmlString], { type: 'application/xml' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'tor_settlements.xml';
+            a.click();
+            window.URL.revokeObjectURL(url);
+
+            const moduleDataPath = 'C:\\Program Files (x86)\\Steam\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\TOR_Core\\ModuleData\\tor_settlements.xml';
+
+            // Create a nice alert with instructions
+            const message = `✅ Changes saved! ${updatedCount} settlements updated.\n\n` +
+                `📁 File downloaded to your Downloads folder as: tor_settlements.xml\n\n` +
+                `📋 To apply changes:\n` +
+                `1. Go to your Downloads folder\n` +
+                `2. Copy tor_settlements.xml\n` +
+                `3. Paste it to:\n${moduleDataPath}\n` +
+                `4. Confirm overwrite\n\n` +
+                `The path has been copied to your clipboard!`;
+
+            // Copy path to clipboard
+            navigator.clipboard.writeText(moduleDataPath).then(() => {
+                alert(message);
+            }).catch(() => {
+                alert(`✅ Changes saved! ${updatedCount} settlements updated.\n\nFile saved to Downloads as tor_settlements.xml\nMove it to ModuleData folder to apply changes.`);
+            });
+
+            console.log('Modified XML saved with', updatedCount, 'settlements updated');
+        }
+
+        // Toggle technical columns
+        function toggleTechnicalColumns() {
+            const showTech = document.getElementById('showTechnicalInfo').checked;
+            const techCols = document.querySelectorAll('.tech-col');
+
+            techCols.forEach(col => {
+                if (showTech) {
+                    col.classList.remove('hidden');
+                } else {
+                    col.classList.add('hidden');
+                }
+            });
+        }
+
+        // Add event listeners to all filter inputs
+        document.querySelectorAll('.filter-group input, .filter-group select').forEach(input => {
+            input.addEventListener('input', applyFilters);
+        });
+
+        // Map rendering functions
+        function worldToCanvas(worldX, worldY) {
+            const padding = 40;
+            const canvasWidth = canvas.width - padding * 2;
+            const canvasHeight = canvas.height - padding * 2;
+
+            const worldWidth = mapBounds.maxX - mapBounds.minX;
+            const worldHeight = mapBounds.maxY - mapBounds.minY;
+
+            // Calculate scale to fit canvas while maintaining aspect ratio
+            const scaleX = canvasWidth / worldWidth;
+            const scaleY = canvasHeight / worldHeight;
+            const baseScale = Math.min(scaleX, scaleY);
+            const scale = baseScale * zoomLevel;
+
+            // Center the map
+            const scaledWidth = worldWidth * baseScale;
+            const scaledHeight = worldHeight * baseScale;
+            const centerOffsetX = (canvasWidth - scaledWidth) / 2 + padding;
+            const centerOffsetY = (canvasHeight - scaledHeight) / 2 + padding;
+
+            // Apply zoom around center
+            const canvasCenterX = canvas.width / 2;
+            const canvasCenterY = canvas.height / 2;
+
+            let x = ((worldX - mapBounds.minX) * scale) + centerOffsetX;
+            let y = canvas.height - (((worldY - mapBounds.minY) * scale) + centerOffsetY);
+
+            // Apply zoom offset (zoom around center)
+            x = (x - canvasCenterX) + canvasCenterX + panOffsetX;
+            y = (y - canvasCenterY) + canvasCenterY + panOffsetY;
+
+            return { x, y };
+        }
+
+        function canvasToWorld(canvasX, canvasY) {
+            const padding = 40;
+            const canvasWidth = canvas.width - padding * 2;
+            const canvasHeight = canvas.height - padding * 2;
+
+            const worldWidth = mapBounds.maxX - mapBounds.minX;
+            const worldHeight = mapBounds.maxY - mapBounds.minY;
+
+            const scaleX = canvasWidth / worldWidth;
+            const scaleY = canvasHeight / worldHeight;
+            const baseScale = Math.min(scaleX, scaleY);
+            const scale = baseScale * zoomLevel;
+
+            const scaledWidth = worldWidth * baseScale;
+            const scaledHeight = worldHeight * baseScale;
+            const centerOffsetX = (canvasWidth - scaledWidth) / 2 + padding;
+            const centerOffsetY = (canvasHeight - scaledHeight) / 2 + padding;
+
+            const canvasCenterX = canvas.width / 2;
+            const canvasCenterY = canvas.height / 2;
+
+            // Reverse the pan offset first
+            let x = canvasX - panOffsetX;
+            let y = canvasY - panOffsetY;
+
+            // Reverse the zoom around center (x and y are already relative to canvas)
+            // In worldToCanvas: x = (x - canvasCenterX) + canvasCenterX + panOffsetX
+            // So after removing pan: x = (originalX - canvasCenterX) + canvasCenterX = originalX
+            // The zoom offset formula simplifies, so we just need to reverse the scale
+
+            // Reverse: x = ((worldX - mapBounds.minX) * scale) + centerOffsetX
+            const worldX = ((x - centerOffsetX) / scale) + mapBounds.minX;
+
+            // Reverse: y = canvas.height - (((worldY - mapBounds.minY) * scale) + centerOffsetY)
+            const worldY = ((canvas.height - y - centerOffsetY) / scale) + mapBounds.minY;
+
+            return { x: worldX, y: worldY };
+        }
+
+        function getSettlementColor(settlement) {
+            // Faction color mode
+            if (colorByFaction) {
+                if (factionColors.has(settlement.owner)) {
+                    const color = factionColors.get(settlement.owner).primary;
+                    return color;
+                } else {
+                    // Fallback to a default color if faction not found
+                    return '#95a5a6';
+                }
+            }
+
+            // Village production color mode
+            if (colorByVillageType) {
+                // Only color villages by production, everything else is grey
+                if (settlement.componentType === 'Village' && settlement.villageType) {
+                    const villageColors = {
+                        'europe_horse_ranch': '#8B4513',
+                        'wheat_farm': '#F4A460',
+                        'vineyard': '#8B008B',
+                        'fisherman': '#4682B4',
+                        'clay_mine': '#CD853F',
+                        'iron_mine': '#696969',
+                        'salt_mine': '#FFFFFF',
+                        'silver_mine': '#C0C0C0',
+                        'lumberjack': '#228B22',
+                        'cattle_ranch': '#D2691E',
+                        'sheep_farm': '#F5F5DC',
+                        'date_farm': '#DAA520',
+                        'olives_farm': '#808000',
+                        'silk_plant': '#FF69B4'
+                    };
+                    return villageColors[settlement.villageType] || '#27ae60';
+                }
+                // Everything else (towns, castles, shrines, special settlements) is grey
+                return '#95a5a6';
+            }
+
+            // Default component type colors
+            const colors = {
+                'Town': '#3498db',
+                'Village': '#27ae60',
+                'Hideout': '#95a5a6',
+                'Shrine': '#9b59b6',
+                'HerdStone': '#8b4513',
+                'OakOfAges': '#2ecc71',
+                'WorldRoots': '#16a085',
+                'ChaosPortal': '#e74c3c',
+                'SlaverCamp': '#34495e'
+            };
+            return colors[settlement.componentType] || '#95a5a6';
+        }
+
+        // Toggle faction colors
+        function toggleFactionColors() {
+            colorByFaction = document.getElementById('colorByFactionToggle').checked;
+            console.log('=== FACTION COLOR DEBUG ===');
+            console.log('Faction coloring enabled:', colorByFaction);
+            console.log('Available faction colors:', factionColors.size);
+
+            if (colorByFaction && factionColors.size === 0) {
+                alert('No faction colors loaded. Please load tor_clans.xml file.');
+                document.getElementById('colorByFactionToggle').checked = false;
+                colorByFaction = false;
+                return;
+            }
+
+            if (colorByFaction) {
+                // Test a few settlements
+                const testSettlements = settlements.slice(0, 3);
+                testSettlements.forEach(s => {
+                    const hasColor = factionColors.has(s.owner);
+                    console.log(`Settlement: ${s.name}, Owner: "${s.owner}", Has Color: ${hasColor}`);
+
+                    // Try to find similar keys
+                    const similarKeys = Array.from(factionColors.keys()).filter(k =>
+                        k.includes('athel_loren') || k.includes(s.owner.replace('Faction.', ''))
+                    );
+                    console.log(`  Similar keys in factionColors:`, similarKeys);
+
+                    if (hasColor) {
+                        console.log(`  Color: ${factionColors.get(s.owner).primary}`);
+                    }
+                });
+
+                // Disable village color mode if faction mode is enabled
+                colorByVillageType = false;
+                document.getElementById('colorByVillageToggle').checked = false;
+            }
+            renderMap();
+        }
+
+        // Toggle village production colors
+        function toggleVillageColors() {
+            colorByVillageType = document.getElementById('colorByVillageToggle').checked;
+            if (colorByVillageType) {
+                // Disable faction color mode if village mode is enabled
+                colorByFaction = false;
+                document.getElementById('colorByFactionToggle').checked = false;
+            }
+            renderMap();
+        }
+
+        function renderMap() {
+            if (!ctx || settlements.length === 0) return;
+
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Create a set of filtered settlement IDs for quick lookup
+            const filteredIds = new Set(filteredSettlements.map(s => s.id));
+
+            // Create a map for quick settlement lookup by ID
+            const settlementMap = new Map(settlements.map(s => [s.id, s]));
+
+            // Draw village-to-town connections first (so they appear behind the markers)
+            settlements.forEach(settlement => {
+                if (settlement.componentType === 'Village' && settlement.boundTo) {
+                    const parentSettlement = settlementMap.get(settlement.boundTo);
+                    if (parentSettlement) {
+                        const villagePos = worldToCanvas(settlement.posX, settlement.posY);
+                        const parentPos = worldToCanvas(parentSettlement.posX, parentSettlement.posY);
+
+                        const isVillageFiltered = filteredIds.has(settlement.id);
+                        const isParentFiltered = filteredIds.has(parentSettlement.id);
+                        const isEitherSelected = (selectedSettlements.has(settlement.id) || selectedSettlements.has(parentSettlement.id));
+                        const isEitherHovered = (hoveredSettlement &&
+                            (hoveredSettlement.id === settlement.id || hoveredSettlement.id === parentSettlement.id));
+
+                        ctx.beginPath();
+                        ctx.moveTo(villagePos.x, villagePos.y);
+                        ctx.lineTo(parentPos.x, parentPos.y);
+
+                        // Determine line style based on filter status
+                        if (isVillageFiltered || isParentFiltered) {
+                            ctx.strokeStyle = isEitherSelected ? '#FFD700' : (isEitherHovered ? '#667eea' : 'rgba(102, 126, 234, 0.3)');
+                            ctx.lineWidth = isEitherSelected ? 2 : (isEitherHovered ? 1.5 : 1);
+                        } else {
+                            ctx.strokeStyle = 'rgba(200, 200, 200, 0.3)';
+                            ctx.lineWidth = 0.5;
+                        }
+
+                        ctx.setLineDash(isEitherSelected || isEitherHovered ? [] : [5, 3]);
+                        ctx.stroke();
+                        ctx.setLineDash([]);
+                    }
+                }
+            });
+
+            // Draw all settlements
+            settlements.forEach(settlement => {
+                const pos = worldToCanvas(settlement.posX, settlement.posY);
+                const isFiltered = filteredIds.has(settlement.id);
+                const isHovered = hoveredSettlement && hoveredSettlement.id === settlement.id;
+                const isSelected = selectedSettlements.has(settlement.id);
+
+                // Determine size based on type
+                let size = 3;
+                if (settlement.componentType === 'Town' || settlement.componentType === 'Castle') size = 6;
+                else if (settlement.componentType === 'Shrine') size = 5;
+                else if (settlement.componentType === 'Village') size = 3;
+
+                if (isHovered || isSelected) size += 2;
+
+                // Set colors
+                if (isFiltered) {
+                    ctx.fillStyle = getSettlementColor(settlement);
+                    ctx.strokeStyle = isSelected ? '#FFD700' : '#333';
+                    ctx.lineWidth = isSelected ? 3 : (isHovered ? 2 : 1);
+                } else {
+                    ctx.fillStyle = '#e0e0e0';
+                    ctx.strokeStyle = '#ccc';
+                    ctx.lineWidth = 1;
+                }
+
+                // Draw shape based on type
+                ctx.beginPath();
+
+                if (settlement.componentType === 'Castle') {
+                    // Castles = Squares
+                    const halfSize = size;
+                    ctx.rect(pos.x - halfSize, pos.y - halfSize, halfSize * 2, halfSize * 2);
+                } else if (settlement.componentType === 'Village') {
+                    // Villages = Triangles (pointing up)
+                    const height = size * 1.5;
+                    ctx.moveTo(pos.x, pos.y - height);
+                    ctx.lineTo(pos.x - size, pos.y + height / 2);
+                    ctx.lineTo(pos.x + size, pos.y + height / 2);
+                    ctx.closePath();
+                } else {
+                    // Towns and other types = Circles
+                    ctx.arc(pos.x, pos.y, size, 0, Math.PI * 2);
+                }
+
+                ctx.fill();
+                ctx.stroke();
+
+                // Draw settlement name for hovered, selected or important settlements
+                if (isHovered || isSelected) {
+                    ctx.font = 'bold 12px Arial';
+                    ctx.fillStyle = '#333';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(settlement.name, pos.x, pos.y - size - 8);
+                }
+            });
+
+            // Draw tooltip for hovered settlement
+            if (hoveredSettlement) {
+                const pos = worldToCanvas(hoveredSettlement.posX, hoveredSettlement.posY);
+                const tooltipX = pos.x + 15;
+                const tooltipY = pos.y - 15;
+
+                ctx.font = '12px Arial';
+                const lines = [
+                    hoveredSettlement.name,
+                    `ID: ${hoveredSettlement.id}`,
+                    `Type: ${hoveredSettlement.componentType}`,
+                    `Owner: ${hoveredSettlement.owner.replace('Faction.', '')}`
+                ];
+
+                // Add village production info
+                if (hoveredSettlement.componentType === 'Village' && hoveredSettlement.villageType) {
+                    const productionType = hoveredSettlement.villageType.replace(/_/g, ' ');
+                    lines.push(`Production: ${productionType}`);
+                }
+
+                // Add bound-to info for villages
+                if (hoveredSettlement.componentType === 'Village' && hoveredSettlement.boundTo) {
+                    const boundSettlement = settlementMap.get(hoveredSettlement.boundTo);
+                    if (boundSettlement) {
+                        lines.push(`Bound to: ${boundSettlement.name}`);
+                    }
+                }
+
+                // Add shrine religion info
+                if (hoveredSettlement.componentType === 'Shrine' && hoveredSettlement.religion) {
+                    lines.push(`Religion: ${hoveredSettlement.religion.charAt(0).toUpperCase() + hoveredSettlement.religion.slice(1)}`);
+                }
+
+                lines.push(`Pos: (${hoveredSettlement.posX.toFixed(1)}, ${hoveredSettlement.posY.toFixed(1)})`);
+
+                const maxWidth = Math.max(...lines.map(l => ctx.measureText(l).width));
+                const padding = 8;
+                const lineHeight = 16;
+                const tooltipWidth = maxWidth + padding * 2;
+                const tooltipHeight = lines.length * lineHeight + padding * 2;
+
+                // Draw tooltip background
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.85)';
+                ctx.fillRect(tooltipX, tooltipY - tooltipHeight, tooltipWidth, tooltipHeight);
+
+                // Draw tooltip border
+                ctx.strokeStyle = '#667eea';
+                ctx.lineWidth = 2;
+                ctx.strokeRect(tooltipX, tooltipY - tooltipHeight, tooltipWidth, tooltipHeight);
+
+                // Draw tooltip text
+                ctx.fillStyle = 'white';
+                ctx.textAlign = 'left';
+                lines.forEach((line, i) => {
+                    ctx.fillText(line, tooltipX + padding, tooltipY - tooltipHeight + padding + (i + 1) * lineHeight - 4);
+                });
+            }
+
+            // Draw spawn point marker
+            if (spawnPoint) {
+                const spawnPos = worldToCanvas(spawnPoint.x, spawnPoint.y);
+                const size = spawnPointHovered || isDraggingSpawnPoint ? 14 : 10;
+
+                // Draw outer glow
+                ctx.beginPath();
+                ctx.arc(spawnPos.x, spawnPos.y, size + 4, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 152, 0, 0.3)';
+                ctx.fill();
+
+                // Draw crosshair circle
+                ctx.beginPath();
+                ctx.arc(spawnPos.x, spawnPos.y, size, 0, Math.PI * 2);
+                ctx.fillStyle = '#ff9800';
+                ctx.fill();
+                ctx.strokeStyle = '#e65100';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // Draw crosshair lines
+                ctx.beginPath();
+                ctx.strokeStyle = 'white';
+                ctx.lineWidth = 2;
+                // Horizontal line
+                ctx.moveTo(spawnPos.x - size + 3, spawnPos.y);
+                ctx.lineTo(spawnPos.x + size - 3, spawnPos.y);
+                // Vertical line
+                ctx.moveTo(spawnPos.x, spawnPos.y - size + 3);
+                ctx.lineTo(spawnPos.x, spawnPos.y + size - 3);
+                ctx.stroke();
+
+                // Draw inner dot
+                ctx.beginPath();
+                ctx.arc(spawnPos.x, spawnPos.y, 3, 0, Math.PI * 2);
+                ctx.fillStyle = 'white';
+                ctx.fill();
+
+                // Draw coordinates label
+                ctx.font = 'bold 11px Arial';
+                ctx.fillStyle = '#e65100';
+                ctx.textAlign = 'center';
+                ctx.fillText(`(${spawnPoint.x.toFixed(3)}, ${spawnPoint.y.toFixed(3)})`, spawnPos.x, spawnPos.y + size + 16);
+            }
+        }
+
+        function handleMapHover(event) {
+            const rect = canvas.getBoundingClientRect();
+
+            // Account for canvas CSS scaling - the canvas has internal dimensions (800x600)
+            // but may be displayed at a different size due to CSS (width: 100%)
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+
+            // Get mouse position relative to canvas and scale it to internal canvas coordinates
+            const canvasX = (event.clientX - rect.left) * scaleX;
+            const canvasY = (event.clientY - rect.top) * scaleY;
+
+            // Check if hovering over spawn point marker
+            const wasSpawnPointHovered = spawnPointHovered;
+            spawnPointHovered = isPointNearSpawnPoint(canvasX, canvasY);
+
+            // Handle spawn point dragging
+            if (isDraggingSpawnPoint) {
+                const worldPos = canvasToWorld(canvasX, canvasY);
+                setSpawnPoint(worldPos.x, worldPos.y);
+                return;
+            }
+
+            // Update cursor for spawn point hover
+            if (spawnPointHovered && !isPlacingSpawnPoint) {
+                canvas.style.cursor = 'move';
+            } else if (isPlacingSpawnPoint) {
+                canvas.style.cursor = 'crosshair';
+            } else {
+                canvas.style.cursor = 'default';
+            }
+
+            // Find closest settlement within threshold
+            let closestSettlement = null;
+            let closestDistance = 20; // pixel threshold - increased for easier hovering
+
+            settlements.forEach(settlement => {
+                const pos = worldToCanvas(settlement.posX, settlement.posY);
+                const distance = Math.sqrt(
+                    Math.pow(canvasX - pos.x, 2) + Math.pow(canvasY - pos.y, 2)
+                );
+
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestSettlement = settlement;
+                }
+            });
+
+            if (closestSettlement !== hoveredSettlement || wasSpawnPointHovered !== spawnPointHovered) {
+                hoveredSettlement = closestSettlement;
+                renderMap();
+            }
+        }
+
+        function handleMapClick(event) {
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            const canvasX = (event.clientX - rect.left) * scaleX;
+            const canvasY = (event.clientY - rect.top) * scaleY;
+
+            // Handle spawn point placement mode
+            if (isPlacingSpawnPoint) {
+                const worldPos = canvasToWorld(canvasX, canvasY);
+                setSpawnPoint(worldPos.x, worldPos.y);
+                // Exit placement mode after placing
+                togglePlaceSpawnMode();
+                return;
+            }
+
+            // Normal settlement selection
+            if (!isPanning && hoveredSettlement) {
+                // Toggle selection of the clicked settlement
+                toggleSettlementSelection(hoveredSettlement.id);
+            }
+        }
+
+        function handleSpawnPointMouseDown(event) {
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            const canvasX = (event.clientX - rect.left) * scaleX;
+            const canvasY = (event.clientY - rect.top) * scaleY;
+
+            if (isPointNearSpawnPoint(canvasX, canvasY) && !isPlacingSpawnPoint) {
+                isDraggingSpawnPoint = true;
+                canvas.style.cursor = 'grabbing';
+                event.preventDefault();
+            }
+        }
+
+        function handleSpawnPointMouseUp(event) {
+            if (isDraggingSpawnPoint) {
+                isDraggingSpawnPoint = false;
+                canvas.style.cursor = spawnPointHovered ? 'move' : 'default';
+            }
+        }
+
+        function handleMapWheel(event) {
+            event.preventDefault();
+
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = (event.clientX - rect.left) * (canvas.width / rect.width);
+            const mouseY = (event.clientY - rect.top) * (canvas.height / rect.height);
+
+            const zoomDelta = event.deltaY > 0 ? 0.9 : 1.1;
+            const newZoom = Math.max(0.5, Math.min(10, zoomLevel * zoomDelta));
+
+            // Adjust pan to zoom towards mouse position
+            const canvasCenterX = canvas.width / 2;
+            const canvasCenterY = canvas.height / 2;
+
+            const zoomRatio = newZoom / zoomLevel;
+
+            panOffsetX = (panOffsetX + mouseX - canvasCenterX) * zoomRatio - (mouseX - canvasCenterX);
+            panOffsetY = (panOffsetY + mouseY - canvasCenterY) * zoomRatio - (mouseY - canvasCenterY);
+
+            zoomLevel = newZoom;
+            renderMap();
+        }
+
+        function handleMapMouseDown(event) {
+            if (event.button === 1 || event.shiftKey) { // Middle mouse button or Shift+click
+                event.preventDefault();
+                isPanning = true;
+                lastPanX = event.clientX;
+                lastPanY = event.clientY;
+                canvas.style.cursor = 'grabbing';
+            }
+        }
+
+        function handleMapMouseUp(event) {
+            if (isPanning) {
+                isPanning = false;
+                canvas.style.cursor = 'crosshair';
+            }
+        }
+
+        function handleMapPan(event) {
+            if (isPanning) {
+                const rect = canvas.getBoundingClientRect();
+                const scaleX = canvas.width / rect.width;
+                const scaleY = canvas.height / rect.height;
+
+                const deltaX = (event.clientX - lastPanX) * scaleX;
+                const deltaY = (event.clientY - lastPanY) * scaleY;
+
+                panOffsetX += deltaX;
+                panOffsetY += deltaY;
+
+                lastPanX = event.clientX;
+                lastPanY = event.clientY;
+
+                renderMap();
+            }
+        }
+
+        // Reset zoom function (can be called from button)
+        function resetMapView() {
+            zoomLevel = 1.0;
+            panOffsetX = 0;
+            panOffsetY = 0;
+            renderMap();
+        }
+
+        // ========================================
+        // Spawn Point Marker Functions
+        // ========================================
+
+        function togglePlaceSpawnMode() {
+            isPlacingSpawnPoint = !isPlacingSpawnPoint;
+            const btn = document.getElementById('btnPlaceSpawn');
+            if (isPlacingSpawnPoint) {
+                btn.classList.add('active');
+                btn.textContent = 'Click on Map...';
+                canvas.style.cursor = 'crosshair';
+            } else {
+                btn.classList.remove('active');
+                btn.textContent = 'Click to Place';
+                canvas.style.cursor = 'default';
+            }
+        }
+
+        function setSpawnPoint(worldX, worldY) {
+            spawnPoint = { x: worldX, y: worldY };
+            document.getElementById('spawnPointX').value = worldX.toFixed(3);
+            document.getElementById('spawnPointY').value = worldY.toFixed(3);
+            renderMap();
+        }
+
+        function updateSpawnPointFromInput() {
+            const x = parseFloat(document.getElementById('spawnPointX').value);
+            const y = parseFloat(document.getElementById('spawnPointY').value);
+            if (!isNaN(x) && !isNaN(y)) {
+                spawnPoint = { x: x, y: y };
+                renderMap();
+            }
+        }
+
+        function clearSpawnPoint() {
+            spawnPoint = null;
+            document.getElementById('spawnPointX').value = '';
+            document.getElementById('spawnPointY').value = '';
+            isPlacingSpawnPoint = false;
+            const btn = document.getElementById('btnPlaceSpawn');
+            btn.classList.remove('active');
+            btn.textContent = 'Click to Place';
+            renderMap();
+        }
+
+        function copySpawnPointCoords() {
+            if (!spawnPoint) {
+                alert('No spawn point set. Please place a spawn point first.');
+                return;
+            }
+            const coordsText = `posX="${spawnPoint.x.toFixed(3)}" posY="${spawnPoint.y.toFixed(3)}"`;
+            navigator.clipboard.writeText(coordsText).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = 'Copied!';
+                btn.style.background = '#2e7d32';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                }, 1500);
+            }).catch(() => {
+                alert(`Spawn Point Coordinates:\n${coordsText}`);
+            });
+        }
+
+        function isPointNearSpawnPoint(canvasX, canvasY) {
+            if (!spawnPoint) return false;
+            const spawnPos = worldToCanvas(spawnPoint.x, spawnPoint.y);
+            const distance = Math.sqrt(
+                Math.pow(canvasX - spawnPos.x, 2) + Math.pow(canvasY - spawnPos.y, 2)
+            );
+            return distance < 20;
+        }
+
+        // Scene Modal functionality
+        let currentSceneSettlementId = null;
+
+        function openSceneModal(settlementId) {
+            const settlement = settlements.find(s => s.id === settlementId);
+            if (!settlement) return;
+
+            currentSceneSettlementId = settlementId;
+            document.getElementById('sceneModalTitle').textContent = `Edit Scenes - ${settlement.name}`;
+
+            const modalBody = document.getElementById('sceneModalBody');
+            let html = '';
+
+            // Generate different scene options based on settlement type
+            if (settlement.componentType === 'Town') {
+                html = generateTownSceneEditor(settlement);
+            } else if (settlement.componentType === 'Castle') {
+                html = generateCastleSceneEditor(settlement);
+            } else if (settlement.componentType === 'Village') {
+                html = generateVillageSceneEditor(settlement);
+            } else if (settlement.componentType === 'Hideout') {
+                html = generateHideoutSceneEditor(settlement);
+            } else {
+                // For special settlements (Shrine, etc.) - show basic info
+                html = `<p class="no-scenes-msg">This settlement type (${settlement.componentType}) uses predefined scenes that cannot be edited here.</p>`;
+            }
+
+            modalBody.innerHTML = html;
+            document.getElementById('sceneModal').classList.add('active');
+        }
+
+        function closeSceneModal() {
+            document.getElementById('sceneModal').classList.remove('active');
+            currentSceneSettlementId = null;
+        }
+
+        // View Scenes popup - displays applied scenes without editing
+        let activeScenePopup = null;
+
+        function viewScenes(event, settlementId) {
+            event.stopPropagation();
+
+            // Close any existing popup
+            closeScenePopup();
+
+            const settlement = settlements.find(s => s.id === settlementId);
+            if (!settlement) return;
+
+            const locs = settlement.locations || {};
+            let html = '';
+
+            // Generate scene display based on settlement type
+            if (settlement.componentType === 'Town') {
+                html = generateTownSceneView(locs);
+            } else if (settlement.componentType === 'Castle') {
+                html = generateCastleSceneView(locs);
+            } else if (settlement.componentType === 'Village') {
+                html = generateVillageSceneView(locs);
+            } else if (settlement.componentType === 'Hideout') {
+                html = generateHideoutSceneView(settlement);
+            } else {
+                html = '<div class="scene-view-item"><span class="value empty">No editable scenes for this settlement type</span></div>';
+            }
+
+            // Create popup element
+            const popup = document.createElement('div');
+            popup.className = 'scene-view-popup';
+            popup.innerHTML = `
+                <button class="close-btn" onclick="closeScenePopup()">&times;</button>
+                <h3>${settlement.name} - Scenes</h3>
+                ${html}
+            `;
+
+            // Position popup near the button
+            const rect = event.target.getBoundingClientRect();
+            popup.style.left = Math.min(rect.left, window.innerWidth - 420) + 'px';
+            popup.style.top = (rect.bottom + 5) + 'px';
+
+            // Ensure popup doesn't go off screen
+            document.body.appendChild(popup);
+
+            const popupRect = popup.getBoundingClientRect();
+            if (popupRect.bottom > window.innerHeight) {
+                popup.style.top = (rect.top - popupRect.height - 5) + 'px';
+            }
+            if (popupRect.right > window.innerWidth) {
+                popup.style.left = (window.innerWidth - popupRect.width - 10) + 'px';
+            }
+
+            activeScenePopup = popup;
+
+            // Close popup when clicking outside
+            setTimeout(() => {
+                document.addEventListener('click', handleScenePopupClickOutside);
+            }, 0);
+        }
+
+        function closeScenePopup() {
+            if (activeScenePopup) {
+                activeScenePopup.remove();
+                activeScenePopup = null;
+                document.removeEventListener('click', handleScenePopupClickOutside);
+            }
+        }
+
+        function handleScenePopupClickOutside(event) {
+            if (activeScenePopup && !activeScenePopup.contains(event.target)) {
+                closeScenePopup();
+            }
+        }
+
+        function formatSceneValue(value) {
+            if (!value) return '<span class="value empty">(not set)</span>';
+            return `<span class="value">${value}</span>`;
+        }
+
+        function generateTownSceneView(locs) {
+            return `
+                <div class="scene-view-item">
+                    <span class="label">Town Center</span>
+                    ${formatSceneValue(locs.center?.scene_name)}
+                </div>
+                <div class="scene-view-item">
+                    <span class="label">Arena</span>
+                    ${formatSceneValue(locs.arena?.scene_name)}
+                </div>
+                <div class="scene-view-item">
+                    <span class="label">Tavern</span>
+                    ${formatSceneValue(locs.tavern?.scene_name)}
+                </div>
+                <div class="scene-view-item">
+                    <span class="label">Lord's Hall / Keep</span>
+                    <div class="scene-view-levels">
+                        <div class="level">L1: ${locs.lordshall?.scene_name_1 || '<span class="value empty">(not set)</span>'}</div>
+                        <div class="level">L2: ${locs.lordshall?.scene_name_2 || '<span class="value empty">(not set)</span>'}</div>
+                        <div class="level">L3: ${locs.lordshall?.scene_name_3 || '<span class="value empty">(not set)</span>'}</div>
+                    </div>
+                </div>
+                <div class="scene-view-item">
+                    <span class="label">Prison / Dungeon</span>
+                    ${formatSceneValue(locs.prison?.scene_name)}
+                </div>
+                <div class="scene-view-item">
+                    <span class="label">Houses</span>
+                    <div class="scene-view-levels">
+                        <div class="level">1: ${locs.house_1?.scene_name || '<span class="value empty">(not set)</span>'}</div>
+                        <div class="level">2: ${locs.house_2?.scene_name || '<span class="value empty">(not set)</span>'}</div>
+                        <div class="level">3: ${locs.house_3?.scene_name || '<span class="value empty">(not set)</span>'}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function generateCastleSceneView(locs) {
+            return `
+                <div class="scene-view-item">
+                    <span class="label">Castle Center</span>
+                    ${formatSceneValue(locs.center?.scene_name)}
+                </div>
+                <div class="scene-view-item">
+                    <span class="label">Lord's Hall / Keep</span>
+                    <div class="scene-view-levels">
+                        <div class="level">L1: ${locs.lordshall?.scene_name_1 || '<span class="value empty">(not set)</span>'}</div>
+                        <div class="level">L2: ${locs.lordshall?.scene_name_2 || '<span class="value empty">(not set)</span>'}</div>
+                        <div class="level">L3: ${locs.lordshall?.scene_name_3 || '<span class="value empty">(not set)</span>'}</div>
+                    </div>
+                </div>
+                <div class="scene-view-item">
+                    <span class="label">Prison / Dungeon</span>
+                    ${formatSceneValue(locs.prison?.scene_name)}
+                </div>
+            `;
+        }
+
+        function generateVillageSceneView(locs) {
+            return `
+                <div class="scene-view-item">
+                    <span class="label">Village Center</span>
+                    ${formatSceneValue(locs.village_center?.scene_name)}
+                </div>
+            `;
+        }
+
+        function generateSceneDropdown(id, currentValue, sceneSet, allowCustom = true) {
+            const scenes = Array.from(sceneSet).sort();
+            let options = `<option value="">-- Select Scene --</option>`;
+
+            // Check if current value is in the set
+            let currentInList = scenes.includes(currentValue);
+
+            scenes.forEach(scene => {
+                options += `<option value="${scene}" ${currentValue === scene ? 'selected' : ''}>${scene}</option>`;
+            });
+
+            // If current value is not in list and not empty, add it
+            if (currentValue && !currentInList) {
+                options += `<option value="${currentValue}" selected>${currentValue} (custom)</option>`;
+            }
+
+            if (allowCustom) {
+                return `
+                    <select id="${id}" onchange="handleSceneDropdownChange('${id}')">
+                        ${options}
+                        <option value="__custom__">Enter custom...</option>
+                    </select>
+                    <input type="text" id="${id}_custom" style="display: none; margin-top: 5px;"
+                           placeholder="Enter custom scene name" value="${currentValue || ''}"
+                           onchange="handleCustomSceneInput('${id}')">
+                `;
+            }
+            return `<select id="${id}">${options}</select>`;
+        }
+
+        function handleSceneDropdownChange(id) {
+            const select = document.getElementById(id);
+            const customInput = document.getElementById(id + '_custom');
+            if (select.value === '__custom__') {
+                customInput.style.display = 'block';
+                customInput.focus();
+            } else {
+                customInput.style.display = 'none';
+            }
+        }
+
+        function handleCustomSceneInput(id) {
+            const customInput = document.getElementById(id + '_custom');
+            const select = document.getElementById(id);
+
+            // Add the custom value to the dropdown and select it
+            const customValue = customInput.value.trim();
+            if (customValue) {
+                // Check if option already exists
+                let found = false;
+                for (let i = 0; i < select.options.length; i++) {
+                    if (select.options[i].value === customValue) {
+                        select.selectedIndex = i;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    // Add new option before the "custom" option
+                    const newOption = new Option(customValue + ' (custom)', customValue, true, true);
+                    select.insertBefore(newOption, select.options[select.options.length - 1]);
+                }
+                customInput.style.display = 'none';
+            }
+        }
+
+        function generateTownSceneEditor(settlement) {
+            const locs = settlement.locations || {};
+
+            return `
+                <div class="scene-group">
+                    <h4>Town Center (Main Scene)</h4>
+                    <div class="scene-row">
+                        <label>Scene:</label>
+                        ${generateSceneDropdown('scene_center', locs.center?.scene_name || '', allScenes.center)}
+                    </div>
+                </div>
+
+                <div class="scene-group">
+                    <h4>Arena</h4>
+                    <div class="scene-row">
+                        <label>Scene:</label>
+                        ${generateSceneDropdown('scene_arena', locs.arena?.scene_name || '', allScenes.arena)}
+                    </div>
+                </div>
+
+                <div class="scene-group">
+                    <h4>Tavern</h4>
+                    <div class="scene-row">
+                        <label>Scene:</label>
+                        ${generateSceneDropdown('scene_tavern', locs.tavern?.scene_name || '', allScenes.tavern)}
+                    </div>
+                </div>
+
+                <div class="scene-group">
+                    <h4>Lord's Hall / Keep (by fortification level)</h4>
+                    <div class="scene-levels">
+                        <div class="scene-level-group">
+                            <label>Level 1:</label>
+                            ${generateSceneDropdown('scene_lordshall_1', locs.lordshall?.scene_name_1 || '', allScenes.lordshall)}
+                        </div>
+                        <div class="scene-level-group">
+                            <label>Level 2:</label>
+                            ${generateSceneDropdown('scene_lordshall_2', locs.lordshall?.scene_name_2 || '', allScenes.lordshall)}
+                        </div>
+                        <div class="scene-level-group">
+                            <label>Level 3:</label>
+                            ${generateSceneDropdown('scene_lordshall_3', locs.lordshall?.scene_name_3 || '', allScenes.lordshall)}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scene-group">
+                    <h4>Prison / Dungeon</h4>
+                    <div class="scene-row">
+                        <label>Scene:</label>
+                        ${generateSceneDropdown('scene_prison', locs.prison?.scene_name || '', allScenes.prison)}
+                    </div>
+                </div>
+
+                <div class="scene-group">
+                    <h4>Houses</h4>
+                    <div class="scene-row">
+                        <label>House 1:</label>
+                        ${generateSceneDropdown('scene_house_1', locs.house_1?.scene_name || '', allScenes.house)}
+                    </div>
+                    <div class="scene-row">
+                        <label>House 2:</label>
+                        ${generateSceneDropdown('scene_house_2', locs.house_2?.scene_name || '', allScenes.house)}
+                    </div>
+                    <div class="scene-row">
+                        <label>House 3:</label>
+                        ${generateSceneDropdown('scene_house_3', locs.house_3?.scene_name || '', allScenes.house)}
+                    </div>
+                </div>
+            `;
+        }
+
+        function generateCastleSceneEditor(settlement) {
+            const locs = settlement.locations || {};
+
+            return `
+                <div class="scene-group">
+                    <h4>Castle Center (Main Scene)</h4>
+                    <div class="scene-row">
+                        <label>Scene:</label>
+                        ${generateSceneDropdown('scene_center', locs.center?.scene_name || '', allScenes.center)}
+                    </div>
+                </div>
+
+                <div class="scene-group">
+                    <h4>Lord's Hall / Keep (by fortification level)</h4>
+                    <div class="scene-levels">
+                        <div class="scene-level-group">
+                            <label>Level 1:</label>
+                            ${generateSceneDropdown('scene_lordshall_1', locs.lordshall?.scene_name_1 || '', allScenes.lordshall)}
+                        </div>
+                        <div class="scene-level-group">
+                            <label>Level 2:</label>
+                            ${generateSceneDropdown('scene_lordshall_2', locs.lordshall?.scene_name_2 || '', allScenes.lordshall)}
+                        </div>
+                        <div class="scene-level-group">
+                            <label>Level 3:</label>
+                            ${generateSceneDropdown('scene_lordshall_3', locs.lordshall?.scene_name_3 || '', allScenes.lordshall)}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scene-group">
+                    <h4>Prison / Dungeon</h4>
+                    <div class="scene-row">
+                        <label>Scene:</label>
+                        ${generateSceneDropdown('scene_prison', locs.prison?.scene_name || '', allScenes.prison)}
+                    </div>
+                </div>
+            `;
+        }
+
+        function generateVillageSceneEditor(settlement) {
+            const locs = settlement.locations || {};
+
+            return `
+                <div class="scene-group">
+                    <h4>Village Center</h4>
+                    <div class="scene-row">
+                        <label>Scene:</label>
+                        ${generateSceneDropdown('scene_village_center', locs.village_center?.scene_name || '', allScenes.village_center)}
+                    </div>
+                </div>
+            `;
+        }
+
+        function generateHideoutSceneEditor(settlement) {
+            return `
+                <div class="scene-group">
+                    <h4>Hideout Scene</h4>
+                    <div class="scene-row">
+                        <label>Scene:</label>
+                        ${generateSceneDropdown('scene_hideout', settlement.hideoutScene || '', allScenes.hideout)}
+                    </div>
+                    <p style="margin-top: 10px; font-size: 0.85em; color: #666; font-style: italic;">
+                        Note: Hideout scenes are stored in the hideout_center Location.
+                    </p>
+                </div>
+            `;
+        }
+
+        function generateHideoutSceneView(settlement) {
+            return `
+                <div class="scene-view-item">
+                    <span class="label">Hideout Scene</span>
+                    ${formatSceneValue(settlement.hideoutScene)}
+                </div>
+            `;
+        }
+
+        function getSceneValue(id) {
+            const select = document.getElementById(id);
+            const customInput = document.getElementById(id + '_custom');
+
+            if (!select) return '';
+
+            if (select.value === '__custom__' && customInput) {
+                return customInput.value.trim();
+            }
+            return select.value;
+        }
+
+        function saveSceneChanges() {
+            if (!currentSceneSettlementId) return;
+
+            const settlement = settlements.find(s => s.id === currentSceneSettlementId);
+            if (!settlement) return;
+
+            // Initialize locations if needed
+            if (!settlement.locations) {
+                settlement.locations = {};
+            }
+
+            if (settlement.componentType === 'Town') {
+                // Save town scenes
+                settlement.locations.center = {
+                    scene_name: getSceneValue('scene_center'),
+                    scene_name_1: getSceneValue('scene_center'),
+                    scene_name_2: getSceneValue('scene_center'),
+                    scene_name_3: getSceneValue('scene_center')
+                };
+                settlement.locations.arena = { scene_name: getSceneValue('scene_arena') };
+                settlement.locations.tavern = { scene_name: getSceneValue('scene_tavern') };
+                settlement.locations.lordshall = {
+                    scene_name_1: getSceneValue('scene_lordshall_1'),
+                    scene_name_2: getSceneValue('scene_lordshall_2'),
+                    scene_name_3: getSceneValue('scene_lordshall_3')
+                };
+                settlement.locations.prison = { scene_name: getSceneValue('scene_prison') };
+                settlement.locations.house_1 = { scene_name: getSceneValue('scene_house_1') };
+                settlement.locations.house_2 = { scene_name: getSceneValue('scene_house_2') };
+                settlement.locations.house_3 = { scene_name: getSceneValue('scene_house_3') };
+            } else if (settlement.componentType === 'Castle') {
+                // Save castle scenes
+                settlement.locations.center = {
+                    scene_name: getSceneValue('scene_center'),
+                    scene_name_1: getSceneValue('scene_center'),
+                    scene_name_2: getSceneValue('scene_center'),
+                    scene_name_3: getSceneValue('scene_center')
+                };
+                settlement.locations.lordshall = {
+                    scene_name_1: getSceneValue('scene_lordshall_1'),
+                    scene_name_2: getSceneValue('scene_lordshall_2'),
+                    scene_name_3: getSceneValue('scene_lordshall_3')
+                };
+                settlement.locations.prison = { scene_name: getSceneValue('scene_prison') };
+            } else if (settlement.componentType === 'Village') {
+                // Save village scenes
+                settlement.locations.village_center = { scene_name: getSceneValue('scene_village_center') };
+            } else if (settlement.componentType === 'Hideout') {
+                // Save hideout scene (stored in locations.hideout_center)
+                const hideoutScene = getSceneValue('scene_hideout');
+                settlement.hideoutScene = hideoutScene;
+                settlement.locations.hideout_center = { scene_name: hideoutScene };
+            }
+
+            modifiedSettlements.add(currentSceneSettlementId);
+            console.log(`Updated scenes for ${settlement.name}:`, settlement.componentType === 'Hideout' ? settlement.hideoutScene : settlement.locations);
+
+            closeSceneModal();
+
+            // Show confirmation
+            alert(`Scenes updated for ${settlement.name}!\n\nRemember to click "Save Changes to XML" to export your changes.`);
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('sceneModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeSceneModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('sceneModal').classList.contains('active')) {
+                closeSceneModal();
+            }
+        });
+
+        // Column resizing functionality
+        let isResizing = false;
+        let currentResizer = null;
+        let currentTh = null;
+        let startX = 0;
+        let startWidth = 0;
+
+        function initColumnResizers() {
+            const table = document.getElementById('settlementTable');
+            const headerCells = table.querySelectorAll('thead th');
+
+            headerCells.forEach((th, index) => {
+                // Remove existing resizer if any
+                const existingResizer = th.querySelector('.column-resizer');
+                if (existingResizer) {
+                    existingResizer.remove();
+                }
+
+                // Create resizer element
+                const resizer = document.createElement('div');
+                resizer.className = 'column-resizer';
+                th.appendChild(resizer);
+
+                // Set initial width if not set
+                if (!th.style.width) {
+                    th.style.width = th.offsetWidth + 'px';
+                }
+
+                // Mouse down - start resizing
+                resizer.addEventListener('mousedown', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    isResizing = true;
+                    currentResizer = resizer;
+                    currentTh = th;
+                    startX = e.pageX;
+                    startWidth = th.offsetWidth;
+                    resizer.classList.add('resizing');
+                    document.body.style.cursor = 'col-resize';
+                    document.body.style.userSelect = 'none';
+                });
+            });
+        }
+
+        // Global mouse move for resizing
+        document.addEventListener('mousemove', function(e) {
+            if (!isResizing || !currentTh) return;
+
+            const diff = e.pageX - startX;
+            const newWidth = Math.max(50, startWidth + diff); // Minimum 50px width
+            currentTh.style.width = newWidth + 'px';
+        });
+
+        // Global mouse up - stop resizing
+        document.addEventListener('mouseup', function(e) {
+            if (isResizing) {
+                isResizing = false;
+                if (currentResizer) {
+                    currentResizer.classList.remove('resizing');
+                }
+                currentResizer = null;
+                currentTh = null;
+                document.body.style.cursor = '';
+                document.body.style.userSelect = '';
+            }
+        });
+
+        // Initialize resizers when table is rendered
+        const originalRenderTable = renderTable;
+        renderTable = function() {
+            originalRenderTable();
+            // Re-initialize resizers after table render
+            setTimeout(initColumnResizers, 0);
+        };
+
+        // Initialize on page load if table exists
+        document.addEventListener('DOMContentLoaded', function() {
+            initColumnResizers();
+        });
+    </script>
+</body>
+</html>
