@@ -485,8 +485,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             obj.AddDialogLine("trainer_vampire_learn_magic2", "specializelore_question", "accept_dark_energy_price",
                 TORTextHelper.GetText("tor_spelltrainer_vampire_dark_energy_request", "Even if you have the everliving-gift, the access to forbidden knowledge is restricted by my master. Provide us a gift and I am not speaking of gold, " +
                 "I need you to pay with the essence of Life. Then my masters can give you access... ({DARK_ENERGY_COST}{DARKENERGYICON})"), SetDarkEnergyCostVariable,null, 200, null);
-            obj.AddPlayerLine("agree_dark_energy_price", "accept_dark_energy_price", "specializelore",
-                TORTextHelper.GetText("tor_spelltrainer_vampire_agree_price", "Take my gift. Now give me what I demand! (Pay {DARK_ENERGY_COST}{DARKENERGYICON})"), HasEnoughDarkEnergy, chooseloreconsequence, 200, null);
+            obj.AddPlayerLine("agree_dark_energy_price", "accept_dark_energy_price", "specializelore", "{PAY_DARK_ENERGY_FOR_LORE}", HasEnoughDarkEnergy, chooseloreconsequence, 200, null);
             obj.AddPlayerLine("decline_dark_energy_price", "accept_dark_energy_price", "trainer_vampire_learn_magic3",
                 TORTextHelper.GetText("tor_spelltrainer_vampire_decline_price", "I can't provide you this gift"), null, null, 200);
 
@@ -505,11 +504,18 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
         private bool SetDarkEnergyCostVariable()
         {
             MBTextManager.SetTextVariable("DARK_ENERGY_COST", DarkEnergyLoreCost);
+            MBTextManager.SetTextVariable("DARKENERGYICON",CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText());
             return true;
         }
 
         private bool HasEnoughDarkEnergy()
         {
+            var text = TORTextHelper.GetText("tor_spelltrainer_vampire_agree_price",
+                "Take my gift. Now give me what I demand! (Pay {DARK_ENERGY_COST}{DARKENERGYICON})");
+            
+            MBTextManager.SetTextVariable("DARK_ENERGY_COST",DarkEnergyLoreCost);
+            MBTextManager.SetTextVariable("DARKENERGYICON",CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText());
+            MBTextManager.SetTextVariable("PAY_DARK_ENERGY_FOR_LORE",text);
             return Hero.MainHero.GetCustomResourceValue("DarkEnergy") >= DarkEnergyLoreCost;
         }
 
