@@ -786,7 +786,10 @@ namespace TOR_Core.Models
 
             if (hero.HasCareer(TORCareers.Necrarch))
             {
-                if (loreObject.ID == "LoreOfLife" || loreObject.ID == "LoreOfLight" || loreObject.ID == "HighMagic") return false;
+                // Necrarch can only learn these specific lores
+                var allowedLores = new[] { "Necromancy", "LoreOfDeath", "LoreOfHeavens", "LoreOfMetal", "LoreOfFire", "LoreOfBeasts" };
+                if (!allowedLores.Contains(loreObject.ID)) return false;
+
                 if (hero.HasUnlockedCareerChoiceTier(3))
                     if (!hero.HasKnownLore("DarkMagic") && loreObject.ID != "DarkMagic")
                         return false;
