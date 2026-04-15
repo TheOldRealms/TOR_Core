@@ -226,7 +226,7 @@ public class SpellsingerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
         _heartOfTheTreePassive3.Initialize(CareerID, "-15% 'Harmony' upkeep for 'Tree Spirit' troops.", "HeartOfTheTree", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.CustomResourceUpkeepModifier, true, characterObject => characterObject.Culture.StringId == TORConstants.Cultures.ASRAI && !characterObject.IsElf()));
         _heartOfTheTreePassive4.Initialize(CareerID, "+0.5 personal 'Winds of Magic' capacity, per 'Tree Spirit' troop.", "HeartOfTheTree", false, ChoiceType.Passive,
-            null, new CareerChoiceObject.PassiveEffect(0.5f, PassiveEffectType.Special, true));
+            null, new CareerChoiceObject.PassiveEffect(0.5f, PassiveEffectType.Special, false));
 
         _arielsBlessingPassive1.Initialize(CareerID, "+10% personal 'Magic' melee damage.", "ArielsBlessing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Melee));
         _arielsBlessingPassive2.Initialize(CareerID, "+5 personal 'Winds of Magic' capacity.", "ArielsBlessing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
