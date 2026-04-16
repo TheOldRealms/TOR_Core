@@ -259,7 +259,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     50, 50,
                     "LoreOfLife", PowerSize.Mighty),
 
-                new PowerStone("heavens_dmg_elec_frost", TORTextHelper.GetTextObject("tor_powerstone_heavens_dmg_elec_frost_name", "Mighty True Saphires"), TORTextHelper.GetTextObject("tor_powerstone_heavens_dmg_elec_frost_desc", "+20% electric, +20% frost dmg, 20% slowdown"),
+                new PowerStone("heavens_dmg_elec_frost", TORTextHelper.GetTextObject("tor_powerstone_heavens_dmg_elec_frost_name", "Mighty True Saphires"), TORTextHelper.GetTextObject("tor_powerstone_heavens_dmg_elec_frost_desc", "+20% lightning, +20% frost dmg, 20% slowdown"),
                     "powerstone_heavens_dmg2", 50, 50,
                     "LoreOfHeavens", PowerSize.Mighty),
 

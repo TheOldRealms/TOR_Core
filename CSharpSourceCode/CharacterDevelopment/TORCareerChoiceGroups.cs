@@ -1233,17 +1233,17 @@ namespace TOR_Core.CharacterDevelopment
             });
             _chiselAndHammer.Initialize("Chisel and Hammer", TORCareers.Runelord, 2, (Hero hero, out string text) =>
             {
-                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Runelord", "Required: Runecraft unlocked");
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Runelord", "Ask the Runesmiths Guild to unlock");
                 return hero.HasAttribute("PlayerRunesmith");
             });
             _forHearthAndHome.Initialize("For Hearth and Home", TORCareers.Runelord, 2, (Hero hero, out string text) =>
             {
-                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Runelord", "Required: Runecraft unlocked");
+                text = TORTextHelper.GetText("tor_careerunlock_level_2", "Runelord", "Ask the Runesmiths Guild to unlock");
                 return hero.HasAttribute("PlayerRunesmith");
             });
             _stoneAndSteel.Initialize("Stone and Steel", TORCareers.Runelord, 3, (Hero hero, out string text) =>
             {
-                text = TORTextHelper.GetText("tor_careerunlock_level_3", "Runelord", "Required: Master Runelord unlocked");
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "Runelord", "Ask the Runesmiths Guild to unlock");
                 return hero.HasAttribute("PlayerRunesmith") && hero.HasAttribute("PlayerRunelord");
             });
 
@@ -1253,14 +1253,14 @@ namespace TOR_Core.CharacterDevelopment
                 text = "";
                 if (!hasUnlocked)
                 {
-                    text = TORTextHelper.GetText("tor_careerunlock_level_3", "Runelord", "Required: Master Runelord unlocked");
+                    text = TORTextHelper.GetText("tor_careerunlock_level_3", "Runelord", "Ask the Runesmiths Guild to unlock");
                 }
 
                 return hasUnlocked;
             });
             _anvilOfDoom.Initialize("Anvil of Doom", TORCareers.Runelord, 3, (Hero hero, out string text) =>
             {
-                text = TORTextHelper.GetText("tor_careerunlock_level_3", "Runelord", "Required: Master Runelord unlocked");
+                text = TORTextHelper.GetText("tor_careerunlock_level_3", "Runelord", "Ask the Runesmiths Guild to unlock");
                 return hero.HasAttribute("PlayerRunesmith") && hero.HasAttribute("PlayerRunelord");
             });
 

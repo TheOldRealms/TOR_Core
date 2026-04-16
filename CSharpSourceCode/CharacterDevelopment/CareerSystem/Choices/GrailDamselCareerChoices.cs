@@ -205,7 +205,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             _secretsOfTheGrailPassive1.Initialize(CareerID, "+15% 'Lightning' spell damage.", "SecretsOfTheGrail", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Lightning, 15), AttackTypeMask.Spell));
             _secretsOfTheGrailPassive2.Initialize(CareerID, "-20% personal 'Winds of Magic' cost for all spells.", "SecretsOfTheGrail", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.WindsCostReduction, true));
-            _secretsOfTheGrailPassive3.Initialize(CareerID, "+30% change to restore 10 'Winds of Magic' when casting a 'Prayer'.", "SecretsOfTheGrail", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special, true)); //AbilityMissionLogic, OnCastComplete
+            _secretsOfTheGrailPassive3.Initialize(CareerID, "+30% chance to restore 10 'Winds of Magic' when casting a 'Prayer'.", "SecretsOfTheGrail", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special, true)); //AbilityMissionLogic, OnCastComplete
             _secretsOfTheGrailPassive4.Initialize(CareerID, "-30% personal cooldown for all prayers.", "SecretsOfTheGrail", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-30, PassiveEffectType.PrayerCoolDownReduction, true));
 
             _envoyOfTheLadyPassive1.Initialize(CareerID, "+15% personal 'Spell' damage.", "EnvoyOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 15), AttackTypeMask.Spell));
