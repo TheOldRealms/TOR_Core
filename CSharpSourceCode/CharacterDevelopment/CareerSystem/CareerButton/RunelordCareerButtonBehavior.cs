@@ -18,14 +18,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 
 public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
 {
-    private string _fireIcon = "CareerSystem\\aqshy";
-    private string _lightIcon = "CareerSystem\\hysh";
-    private string _heavensIcon = "CareerSystem\\azyr";
-    private string _lifeIcon = "CareerSystem\\ghyran";
-    private string _beastIcon = "CareerSystem\\ghur";
-    private string _grungniRune = "CareerSystem\\chamon";
-    private string _deathIcon = "CareerSystem\\chamon";
-
     private string _runeEmptyIcon = "CareerSystem\\rune_empty";
     private string _runeBattleIcon = "CareerSystem\\rune_battle";
     private string _runeGuardingIcon = "CareerSystem\\rune_guarding";
@@ -103,7 +95,6 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
     public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner, bool shiftClick)
     {
         _currentCharacter = characterObject;
-        MBTextManager.SetTextVariable("DEATH_ICON", string.Format("<img src=\"{0}\"/>", _grungniRune));
 
         var tier = 0;
         for (var i = 1; i < 4; i++)

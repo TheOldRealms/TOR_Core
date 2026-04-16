@@ -27,6 +27,20 @@ public class KnightOldWorldCareerButtonBehavior : CareerButtonBehaviorBase
     private readonly string _myrmidiaSealIcon = "blazingsun_icon";
     private CharacterObject _setCharacter;
 
+    public override string CareerButtonIcon
+    {
+        get
+        {
+            var currentSeals = GetCurrentActiveSeals(_setCharacter);
+            if (currentSeals == null || !currentSeals.Any())
+            {
+                return _secularSealIcon;
+            }
+
+            return currentSeals.First().SealIcon;
+        }
+    }
+
     public KnightOldWorldCareerButtonBehavior(CareerObject career) : base(career)
     {
         MBTextManager.SetTextVariable("SECULAR_SEAL_ICON", string.Format("<img src=\"{0}\"/>", _secularSealIcon));
@@ -215,6 +229,7 @@ public class KnightOldWorldCareerButtonBehavior : CareerButtonBehaviorBase
 
     public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner = false)
     {
+        _setCharacter = characterObject;
         displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_accept", "default", "Add a Purity Seal to this knight.");
 
         var currentSeals = GetCurrentActiveSeals(characterObject);

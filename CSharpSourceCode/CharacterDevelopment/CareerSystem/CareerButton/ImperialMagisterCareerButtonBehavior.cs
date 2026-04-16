@@ -26,13 +26,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 {
     public class ImperialMagisterCareerButtonBehavior : CareerButtonBehaviorBase
     {
-        private string _fireIcon = "CareerSystem\\aqshy";
-        private string _lightIcon = "CareerSystem\\hysh";
-        private string _heavensIcon = "CareerSystem\\azyr";
-        private string _lifeIcon = "CareerSystem\\ghyran";
-        private string _beastIcon = "CareerSystem\\ghur";
-        private string _metalIcon = "CareerSystem\\chamon";
-        private string _deathIcon = "CareerSystem\\chamon";
+        private string _fireIcon = "aqshy";
+        private string _lightIcon = "hysh";
+        private string _heavensIcon = "azyr";
+        private string _lifeIcon = "ghyran";
+        private string _beastIcon = "ghur";
+        private string _metalIcon = "chamon";
+        private string _deathIcon = "chamon";
 
 
         public List<PowerStone> AvailablePowerStones { get; } = new List<PowerStone>();
