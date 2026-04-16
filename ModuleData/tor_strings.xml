@@ -4660,8 +4660,8 @@
 
   <!-- Runelord (Special unlock conditions) -->
   <string id="tor_careerunlock_level_1.Runelord" text="{=str_tor_careerunlock_level_1_runelord}" />
-  <string id="tor_careerunlock_level_2.Runelord" text="{=str_tor_careerunlock_level_2_runelord}Talk to the Runelord about the promotion" />
-  <string id="tor_careerunlock_level_3.Runelord" text="{=str_tor_careerunlock_level_3_runelord}Talk to the Runelord to reach the final stage" />
+  <string id="tor_careerunlock_level_2.Runelord" text="{=str_tor_careerunlock_level_2_runelord}Ask the Runesmiths Guild to unlock" />
+  <string id="tor_careerunlock_level_3.Runelord" text="{=str_tor_careerunlock_level_3_runelord}Ask the Runesmiths Guild to unlock" />
 
   <!-- Orc Boss (Special unlock conditions) -->
   <string id="tor_careerunlock_level_1.OrcBoss" text="{=str_tor_careerunlock_level_1_orcboss}" />
