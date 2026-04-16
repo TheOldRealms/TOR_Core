@@ -4363,7 +4363,7 @@
   <string id="tor_careerchoice_description.AnvilOfDoomPassive1" text="{=str_tor_careerchoice_description_AnvilOfDoomPassive1}+15% personal 'Magic' damage." />
   <string id="tor_careerchoice_description.AnvilOfDoomPassive2" text="{=str_tor_careerchoice_description_AnvilOfDoomPassive2}+5 'Oathgold' daily when an 'Anvil of Doom' is present." />
   <string id="tor_careerchoice_description.AnvilOfDoomPassive3" text="{=str_tor_careerchoice_description_AnvilOfDoomPassive3}-2% cooldown to your runes per Runesmith companion." />
-  <string id="tor_careerchoice_description.AnvilOfDoomPassive4" text="{=str_tor_careerchoice_description_AnvilOfDoomPassive4}+1 troop 'Rune' slot." />
+  <string id="tor_careerchoice_description.AnvilOfDoomPassive4" text="{=str_tor_careerchoice_description_AnvilOfDoomPassive4}You can now place 2 Unit Runes per unit." />
 
   <!-- OrcBoss Career Choice Descriptions -->
   <string id="tor_careerchoice_description.OrcBossRoot" text="{=str_tor_careerchoice_description_OrcBossRoot}Take yer choppa, an' smash it proppa 'ard on any o' da gits, make 'em scream. Sum choppas are betta at uvva fings: Smalla choppas an' blockas are good fer timez when you'z in da scrap, an' iz time fer sum speedy 'taktikz'. Bigga choppas are best fer mobs o' gits. Makes 'em weaker da more ya hit 'em too. Longa choppas, now dese be useful fer ridas, an' uva pesky beasties. An' if you fink you can't chop any more, you jus' need ta wait, an' den chop sum more!" />

@@ -232,7 +232,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _anvilOfDoomPassive1.Initialize(CareerID, "+15% personal 'Magic' damage.", "AnvilOfDoom", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 15), AttackTypeMask.Spell));
         _anvilOfDoomPassive2.Initialize(CareerID, "+5 'Oathgold' daily when an 'Anvil of Doom' is present.", "AnvilOfDoom", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CustomResourceGain, false, x => x.HeroObject is { PartyBelongedTo: not null } && x.HeroObject.PartyBelongedTo.HasAnvilOfDoom()));
         _anvilOfDoomPassive3.Initialize(CareerID, "-2% cooldown to your runes per Runesmith companion.", "AnvilOfDoom", false, ChoiceType.Passive, null, null);
-        _anvilOfDoomPassive4.Initialize(CareerID, "+1 troop 'Rune' slot.", "AnvilOfDoom", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.Special));
+        _anvilOfDoomPassive4.Initialize(CareerID, "You can now place 2 Unit Runes per unit.", "AnvilOfDoom", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.Special));
     }
 
 

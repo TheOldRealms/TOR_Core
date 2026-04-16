@@ -80,24 +80,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
         public PowerStone GetPowerstone(CharacterObject characterObject)
         {
-            if (characterObject == null) return null;
-            var partyExtendedInfo =
-                ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
-
-            if (partyExtendedInfo.TroopAttributes.TryGetValue(characterObject.StringId, out var attributes))
-            {
-                if (attributes.Count > 0)
-                {
-                    var stones = attributes.Select(attribute => AvailablePowerStones.Find(x => x.Id == attribute))
-                        .Where(powerstone => powerstone != null).ToList();
-
-                    var first = stones[0];
-
-                    return first;
-                }
-            }
-
-            return null;
+            List<PowerStone> stones = CareerButtonHelper.GetCurrentActiveItems(characterObject, AvailablePowerStones, s => s.Id);
+            return stones?.FirstOrDefault();
         }
 
         public ImperialMagisterCareerButtonBehavior(CareerObject career) : base(career)
@@ -380,8 +364,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
             if (currenstone != null)
             {
-
-                list.Add(new InquiryElement("remove", $"Remove {currenstone.StoneName}", null));
+                list.Add(CareerButtonHelper.CreateRemoveOption(currenstone.StoneName.ToString(), "tor_powerstone_remove_hint", "Remove powerstone and recover some prestige."));
             }
 
             var isSearchable = list.Count > 9;
@@ -430,41 +413,23 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
         private void OnSelectedOption(List<InquiryElement> powerStone)
         {
-            var stone = powerStone[0].Identifier as PowerStone;
-
-            var partyExtendedInfo =
-                ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
-
-
             var currentStone = GetPowerstone(_setCharacter);
+            var currentStones = currentStone != null ? new List<PowerStone> { currentStone } : null;
 
-            if (currentStone != null)
-            {
-                partyExtendedInfo.RemoveTroopAttribute(_setCharacter.StringId, currentStone.Id);
-            }
-
-
-            if (powerStone[0].Identifier == "remove")
-            {
-                if (currentStone != null)
+            CareerButtonHelper.ProcessSelection(
+                _setCharacter,
+                powerStone,
+                currentStones,
+                stone => stone.Id,
+                onBeforeAdd: stone => Hero.MainHero.AddCustomResource("Prestige", -stone.Price),
+                stones =>
                 {
-                    Hero.MainHero.AddCustomResource("Prestige", currentStone.ScrapPrestigeGain);
+                    foreach (var s in stones)
+                    {
+                        Hero.MainHero.AddCustomResource("Prestige", s.ScrapPrestigeGain);
+                    }
                 }
-            }
-            else
-            {
-
-                partyExtendedInfo.AddTroopAttribute(_setCharacter, stone.Id);
-                Hero.MainHero.AddCustomResource("Prestige", -stone.Price);
-            }
-
-
-            ExtendedInfoManager.Instance.ValidatePartyInfos(MobileParty.MainParty);
-
-            if (PartyVMExtension.ViewModelInstance != null)
-            {
-                PartyVMExtension.ViewModelInstance.RefreshValues();
-            }
+            );
         }
 
 
