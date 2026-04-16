@@ -2212,6 +2212,9 @@
 
 
   <!--wanderer stories-->
+  
+  <string id="tor_wanderer_leave" text="{=str_tor_wanderer_leave}Safe travels, stranger." />
+
   <!-- ========================================== -->
 <!-- EMPIRE COMPANIONS -->
 <!-- ========================================== -->
@@ -3584,9 +3587,9 @@
   
   <string id="tor_careerchoice_description.SwiftProcedureKeystone" text="{=str_tor_careerchoice_description_SwiftProcedureKeystone}Accusation also scales with Athletics and applies a swing/move speed decrease." />
   <string id="tor_careerchoice_description.SwiftProcedurePassive1" text="{=str_tor_careerchoice_description_SwiftProcedurePassive1}+8 extra ammo per ammunition pouch you equip." />
-  <string id="tor_careerchoice_description.SwitftProcedurePassive2" text="{=str_tor_careerchoice_description_SwitftProcedurePassive2}Personal accuracy movement penalty reduced by -10%." />
-  <string id="tor_careerchoice_description.SwitftProcedurePassive3" text="{=str_tor_careerchoice_description_SwitftProcedurePassive3}+1 party move speed on campaign map." />
-  <string id="tor_careerchoice_description.SwitftProcedurePassive4" text="{=str_tor_careerchoice_description_SwitftProcedurePassive4}+10% personal weapon swing speed." />
+  <string id="tor_careerchoice_description.SwiftProcedurePassive2" text="{=str_tor_careerchoice_description_SwiftProcedurePassive2}Personal accuracy movement penalty reduced by -10%." />
+  <string id="tor_careerchoice_description.SwiftProcedurePassive3" text="{=str_tor_careerchoice_description_SwiftProcedurePassive3}+1 party move speed on campaign map." />
+  <string id="tor_careerchoice_description.SwiftProcedurePassive4" text="{=str_tor_careerchoice_description_SwiftProcedurePassive4}+10% personal weapon swing speed." />
   
   <string id="tor_careerchoice_description.EndsJustifiesMeansKeystone" text="{=str_tor_careerchoice_description_EndsJustifiesMeansKeystone}Accusation also scales with Rougery, overkilling an 'Accused' enemy spreads the Mark." />
   <string id="tor_careerchoice_description.EndsJustifiesMeansPassive1" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive1}+10% personal ranged 'Physical' damage." />
@@ -6268,4 +6271,11 @@
 	<string id="tor_alliance_limit" text="{=str_tor_alliance_limit}Alliance limit reached"/>
 	<string id="tor_trade_chaos" text="{=str_tor_trade_chaos}The forces of Chaos do not engage in trade."/>
 	<string id="tor_trade_greenskin" text="{=str_tor_trade_greenskin}Greenskins do not understand the concept of trade."/>
+  
+  
+  
+  <string id="tor_stats_troll_bonus_text" text="{=str_tor_stats_troll_bonus_text}Troll bonus" />
+  
+  
+  
 </strings>
