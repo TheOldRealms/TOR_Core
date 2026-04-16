@@ -378,9 +378,8 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>5</IngredientAmount>
-    <ItemTraitDescription>"10% extra physical damage, 20 bonus skillpoints to Riding"</ItemTraitDescription>
+    <ItemTraitDescription>"10% extra physical damage"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.10" />
-    <StatsTuple StatType="Skill" SkillId="Riding" Value="20" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_hysh_sanctuary" ItemTraitName="Sanctuary of Hysh" IsCraftable="true" ImbuedEffectChance="0.05" IconName="hysh">
     <ValidItemType>Armor</ValidItemType>
@@ -634,7 +633,7 @@
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.03" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_chamon_crucible" ItemTraitName="Crucible of Chamon" IsCraftable="true" IconName="chamon">
-    <ValidItemType>Weapon</ValidItemType>
+    <ValidItemType>Melee</ValidItemType>
     <IngredientItem>WarpstoneDust</IngredientItem>
     <IngredientAmount>30</IngredientAmount>
     <ItemTraitDescription>"20 extra magic damage, weapon gains the Cleave trait"</ItemTraitDescription>

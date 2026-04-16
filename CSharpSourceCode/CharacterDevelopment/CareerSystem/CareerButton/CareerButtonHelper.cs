@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using System;
+using HarmonyLib;
 using Helpers;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,12 @@ using TaleWorlds.CampaignSystem.ViewModelCollection.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Extensions.UI;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 
@@ -129,5 +133,214 @@ public static class CareerButtonHelper
         }
 
         PartyVMExtension.ViewModelInstance.RefreshValues();
+    }
+    
+    
+    public const string REMOVE_IDENTIFIER = "remove";
+
+    /// <summary>
+    /// Gets the party extended info for the main hero's party.
+    /// </summary>
+    public static MobilePartyExtendedInfo GetPartyExtendedInfo()
+    {
+        if (Hero.MainHero?.PartyBelongedTo == null) return null;
+        return ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
+    }
+
+    /// <summary>
+    /// Gets all attribute IDs currently applied to a character.
+    /// </summary>
+    public static List<string> GetTroopAttributeIds(CharacterObject character)
+    {
+        if (character == null) return new List<string>();
+
+        var partyInfo = GetPartyExtendedInfo();
+        if (partyInfo == null) return new List<string>();
+
+        if (partyInfo.TroopAttributes.TryGetValue(character.StringId, out var attributes))
+        {
+            return attributes.ToList();
+        }
+        return new List<string>();
+    }
+
+    /// <summary>
+    /// Gets current active items for a character by matching attribute IDs against a list of available items.
+    /// </summary>
+    public static List<T> GetCurrentActiveItems<T>(CharacterObject character, IEnumerable<T> allItems, Func<T, string> idSelector) where T : class
+    {
+        if (character == null) return null;
+
+        var attributeIds = GetTroopAttributeIds(character);
+        if (!attributeIds.Any()) return null;
+
+        var activeItems = new List<T>();
+        foreach (var item in allItems)
+        {
+            if (attributeIds.Contains(idSelector(item)))
+            {
+                activeItems.Add(item);
+            }
+        }
+
+        return activeItems.Any() ? activeItems : null;
+    }
+
+    /// <summary>
+    /// Removes specified attributes from a character.
+    /// </summary>
+    public static void RemoveTroopAttributes(CharacterObject character, IEnumerable<string> attributeIds)
+    {
+        if (character == null) return;
+
+        var partyInfo = GetPartyExtendedInfo();
+        if (partyInfo == null) return;
+
+        foreach (var id in attributeIds)
+        {
+            partyInfo.RemoveTroopAttribute(character.StringId, id);
+        }
+    }
+
+    /// <summary>
+    /// Removes all attributes from a character that match the provided items.
+    /// </summary>
+    public static void RemoveAllCurrentItems<T>(CharacterObject character, List<T> currentItems, Func<T, string> idSelector) where T : class
+    {
+        if (currentItems == null || !currentItems.Any()) return;
+
+        var idsToRemove = currentItems.Select(idSelector);
+        RemoveTroopAttributes(character, idsToRemove);
+    }
+
+    /// <summary>
+    /// Adds an attribute to a character.
+    /// </summary>
+    public static void AddTroopAttribute(CharacterObject character, string attributeId)
+    {
+        if (character == null || string.IsNullOrEmpty(attributeId)) return;
+
+        var partyInfo = GetPartyExtendedInfo();
+        partyInfo?.AddTroopAttribute(character, attributeId);
+    }
+
+    /// <summary>
+    /// Validates party infos and refreshes the party UI.
+    /// </summary>
+    public static void RefreshPartyAttributesUI()
+    {
+        ExtendedInfoManager.Instance.ValidatePartyInfos(MobileParty.MainParty);
+
+        if (PartyVMExtension.ViewModelInstance != null)
+        {
+            PartyVMExtension.ViewModelInstance.RefreshValues();
+        }
+    }
+
+    /// <summary>
+    /// Checks if the "remove" option was selected in the inquiry.
+    /// </summary>
+    public static bool IsRemoveSelected(List<InquiryElement> elements)
+    {
+        return elements.Any(e => e.Identifier as string == REMOVE_IDENTIFIER);
+    }
+
+    /// <summary>
+    /// Creates a "Remove" inquiry element for the selection list.
+    /// </summary>
+    public static InquiryElement CreateRemoveOption(string currentItemNames, string hintTextId = "tor_career_button_remove_hint", string hintTextDefault = "Remove all applied effects without compensation.")
+    {
+        var removeHint = TORTextHelper.GetText(hintTextId, hintTextDefault);
+        var removeText = TORTextHelper.GetText("tor_career_button_remove_option", "Remove") + $" ({currentItemNames})";
+        return new InquiryElement(REMOVE_IDENTIFIER, removeText, null, true, removeHint);
+    }
+
+    /// <summary>
+    /// Builds a display text showing all current items and their descriptions.
+    /// </summary>
+    public static TextObject BuildCurrentItemsDisplayText<T>(List<T> currentItems, Func<T, string> nameSelector, Func<T, string> descriptionSelector = null) where T : class
+    {
+        if (currentItems == null || !currentItems.Any()) return null;
+
+        var displayText = TextObject.GetEmpty();
+        foreach (var item in currentItems)
+        {
+            var text = displayText.ToString();
+            if (descriptionSelector != null)
+            {
+                text += nameSelector(item) + ": " + descriptionSelector(item);
+            }
+            else
+            {
+                text += nameSelector(item);
+            }
+            text += "\n";
+            displayText = new TextObject(text);
+        }
+
+        return displayText;
+    }
+
+    /// <summary>
+    /// Extracts items from inquiry elements, filtering out the "remove" option.
+    /// </summary>
+    public static List<T> GetSelectedItems<T>(List<InquiryElement> elements) where T : class
+    {
+        var selectedItems = new List<T>();
+        foreach (var elem in elements)
+        {
+            if (elem.Identifier as string == REMOVE_IDENTIFIER) continue;
+
+            var item = elem.Identifier as T;
+            if (item != null)
+            {
+                selectedItems.Add(item);
+            }
+        }
+        return selectedItems;
+    }
+
+    /// <summary>
+    /// Processes a selection: removes current items and adds new ones.
+    /// Returns true if items were added, false if only removed.
+    /// </summary>
+    public static bool ProcessSelection<T>(
+        CharacterObject character,
+        List<InquiryElement> elements,
+        List<T> currentItems,
+        Func<T, string> idSelector,
+        Action<T> onBeforeAdd = null,
+        Action<List<T>> onRemove = null) where T : class
+    {
+        // Check if remove was selected
+        if (IsRemoveSelected(elements))
+        {
+            if (currentItems != null && currentItems.Any())
+            {
+                onRemove?.Invoke(currentItems);
+                RemoveAllCurrentItems(character, currentItems, idSelector);
+            }
+            RefreshPartyAttributesUI();
+            return false;
+        }
+
+        // Get selected items
+        var selectedItems = GetSelectedItems<T>(elements);
+
+        // Remove current items first
+        if (currentItems != null && currentItems.Any())
+        {
+            RemoveAllCurrentItems(character, currentItems, idSelector);
+        }
+
+        // Add new items
+        foreach (var item in selectedItems)
+        {
+            onBeforeAdd?.Invoke(item);
+            AddTroopAttribute(character, idSelector(item));
+        }
+
+        RefreshPartyAttributesUI();
+        return true;
     }
 }

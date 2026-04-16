@@ -26,13 +26,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 {
     public class ImperialMagisterCareerButtonBehavior : CareerButtonBehaviorBase
     {
-        private string _fireIcon = "CareerSystem\\aqshy";
-        private string _lightIcon = "CareerSystem\\hysh";
-        private string _heavensIcon = "CareerSystem\\azyr";
-        private string _lifeIcon = "CareerSystem\\ghyran";
-        private string _beastIcon = "CareerSystem\\ghur";
-        private string _metalIcon = "CareerSystem\\chamon";
-        private string _deathIcon = "CareerSystem\\chamon";
+        private string _fireIcon = "aqshy";
+        private string _lightIcon = "hysh";
+        private string _heavensIcon = "azyr";
+        private string _lifeIcon = "ghyran";
+        private string _beastIcon = "ghur";
+        private string _metalIcon = "chamon";
+        private string _deathIcon = "chamon";
 
 
         public List<PowerStone> AvailablePowerStones { get; } = new List<PowerStone>();
@@ -80,24 +80,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
         public PowerStone GetPowerstone(CharacterObject characterObject)
         {
-            if (characterObject == null) return null;
-            var partyExtendedInfo =
-                ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
-
-            if (partyExtendedInfo.TroopAttributes.TryGetValue(characterObject.StringId, out var attributes))
-            {
-                if (attributes.Count > 0)
-                {
-                    var stones = attributes.Select(attribute => AvailablePowerStones.Find(x => x.Id == attribute))
-                        .Where(powerstone => powerstone != null).ToList();
-
-                    var first = stones[0];
-
-                    return first;
-                }
-            }
-
-            return null;
+            List<PowerStone> stones = CareerButtonHelper.GetCurrentActiveItems(characterObject, AvailablePowerStones, s => s.Id);
+            return stones?.FirstOrDefault();
         }
 
         public ImperialMagisterCareerButtonBehavior(CareerObject career) : base(career)
@@ -275,7 +259,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     50, 50,
                     "LoreOfLife", PowerSize.Mighty),
 
-                new PowerStone("heavens_dmg_elec_frost", TORTextHelper.GetTextObject("tor_powerstone_heavens_dmg_elec_frost_name", "Mighty True Saphires"), TORTextHelper.GetTextObject("tor_powerstone_heavens_dmg_elec_frost_desc", "+20% electric, +20% frost dmg, 20% slowdown"),
+                new PowerStone("heavens_dmg_elec_frost", TORTextHelper.GetTextObject("tor_powerstone_heavens_dmg_elec_frost_name", "Mighty True Saphires"), TORTextHelper.GetTextObject("tor_powerstone_heavens_dmg_elec_frost_desc", "+20% lightning, +20% frost dmg, 20% slowdown"),
                     "powerstone_heavens_dmg2", 50, 50,
                     "LoreOfHeavens", PowerSize.Mighty),
 
@@ -380,8 +364,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
             if (currenstone != null)
             {
-
-                list.Add(new InquiryElement("remove", $"Remove {currenstone.StoneName}", null));
+                list.Add(CareerButtonHelper.CreateRemoveOption(currenstone.StoneName.ToString(), "tor_powerstone_remove_hint", "Remove powerstone and recover some prestige."));
             }
 
             var isSearchable = list.Count > 9;
@@ -430,41 +413,23 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
         private void OnSelectedOption(List<InquiryElement> powerStone)
         {
-            var stone = powerStone[0].Identifier as PowerStone;
-
-            var partyExtendedInfo =
-                ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
-
-
             var currentStone = GetPowerstone(_setCharacter);
+            var currentStones = currentStone != null ? new List<PowerStone> { currentStone } : null;
 
-            if (currentStone != null)
-            {
-                partyExtendedInfo.RemoveTroopAttribute(_setCharacter.StringId, currentStone.Id);
-            }
-
-
-            if (powerStone[0].Identifier == "remove")
-            {
-                if (currentStone != null)
+            CareerButtonHelper.ProcessSelection(
+                _setCharacter,
+                powerStone,
+                currentStones,
+                stone => stone.Id,
+                onBeforeAdd: stone => Hero.MainHero.AddCustomResource("Prestige", -stone.Price),
+                stones =>
                 {
-                    Hero.MainHero.AddCustomResource("Prestige", currentStone.ScrapPrestigeGain);
+                    foreach (var s in stones)
+                    {
+                        Hero.MainHero.AddCustomResource("Prestige", s.ScrapPrestigeGain);
+                    }
                 }
-            }
-            else
-            {
-
-                partyExtendedInfo.AddTroopAttribute(_setCharacter, stone.Id);
-                Hero.MainHero.AddCustomResource("Prestige", -stone.Price);
-            }
-
-
-            ExtendedInfoManager.Instance.ValidatePartyInfos(MobileParty.MainParty);
-
-            if (PartyVMExtension.ViewModelInstance != null)
-            {
-                PartyVMExtension.ViewModelInstance.RefreshValues();
-            }
+            );
         }
 
 

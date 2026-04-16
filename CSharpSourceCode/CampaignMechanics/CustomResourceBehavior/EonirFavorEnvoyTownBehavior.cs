@@ -47,6 +47,8 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
     private int _empireFavorConvertedFromPrestige = 0;
     private int _peaceCost = 750;
+    private int _baseLoreCost = 500;
+    private int _advancedLoreCost = 1000;
 
     private Hero _druchiiEnvoy;
     private Hero _asurEnvoy;
@@ -54,6 +56,17 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
     private Hero _spellsingerEnvoy;
     private List<Hero> envoys;
     private Settlement _torLithanel;
+    
+    List<string> _baseLores = new List<string>()
+    {
+        "LoreOfFire",
+        "LoreOfMetal",
+        "LoreOfLife",
+        "LoreOfBeasts",
+        "LoreOfLight",
+        "LoreOfHeavens",
+        "LoreOfDeath"
+    };
 
     [SaveableField(0)] private Dictionary<string, double> _latestEnvoyActionsPerformed = [];
 
@@ -119,6 +132,8 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         //PRESTIGE_ICON is already set in PrestigeNobleTownBehavior - at a later point these should probably be regrouped into a single location for defining the global variables. It's also set in MasterEngineer behavior as well iirc - possibly elsewhere I haven't seen.
 
         GameTexts.SetVariable("PEACE_COST", _peaceCost);
+        GameTexts.SetVariable("BASE_LORE_COST", _baseLoreCost);
+        GameTexts.SetVariable("ADVANCED_LORE_COST", _advancedLoreCost);
     }
 
     private void AddSpellsingerEnvoyDialogLines(CampaignGameStarter campaignGameStarter)
@@ -139,7 +154,11 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_spellsinger_magic", "spellsinger_envoy_main_hub", "back_to_main_hub_spellsinger",  TORTextHelper.GetText("tor_spellsinger_envoy_main_hub_spellsinger_magic","I wish to study magic our of kin."), () => MobileParty.MainParty.HasSpellCasterMember() && Hero.MainHero.Culture.StringId == TORConstants.Cultures.EONIR && IsSpellsingerEnvoy(), openbookconsequence, 200, null);
 
-        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_spellsinger_lores", "spellsinger_envoy_main_hub", "spellsinger_envoy_spellsinger_lores", TORTextHelper.GetText("spellsinger_envoy_main_hub_spellsinger_lores","Teach me about the lores of magic."), () => IsSpellsingerEnvoy() && CanGreylordLearnMoreLores(), null, 200, null);
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_spellsinger_lores", "spellsinger_envoy_main_hub", "spellsinger_envoy_spellsinger_lores", TORTextHelper.GetText("spellsinger_envoy_main_hub_spellsinger_lores","Teach me about the lores of magic."), () => IsSpellsingerEnvoy() && CanGreylordLearnBaseLores(), null, 200, null);
+
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_spellsinger_highmagic", "spellsinger_envoy_main_hub", "spellsinger_envoy_spellsinger_highmagic", TORTextHelper.GetText("spellsinger_envoy_main_hub_spellsinger_highmagic","I wish to learn High Magic."), () => IsSpellsingerEnvoy() && CanGreylordLearnHighMagic(), null, 200, null);
+
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_spellsinger_darkmagic", "spellsinger_envoy_main_hub", "spellsinger_envoy_spellsinger_darkmagic", TORTextHelper.GetText("spellsinger_envoy_main_hub_spellsinger_darkmagic","I wish to learn Dark Magic."), () => IsSpellsingerEnvoy() && CanGreylordLearnDarkMagic(), null, 200, null);
 
 
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_whyareyouhere", "spellsinger_envoy_main_hub", "spellsinger_envoy_whyareyouhere",
@@ -179,82 +198,165 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             TORTextHelper.GetText("eonir_envoy_will_see_what_can_do_text", "I will see what I can do."), () => IsSpellsingerEnvoy(), RefillVillages, 200);
 
 
-        //learn new lores
-
+        //learn new lores - base lores (500 favor)
 
         campaignGameStarter.AddDialogLine("spellsinger_envoy_spellsinger_lores", "spellsinger_envoy_spellsinger_lores", "spellsinger_envoy_spellsinger_lores_choice",
-            TORTextHelper.GetText("eonir_spellsinger_learn_lore_offer_text", "I can teach you, but as much as you are ready to do so, I need your word on the Council."), () => IsSpellsingerEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_spellsinger_learn_lore_offer_text", "I can teach you, but as much as you are ready to do so, I need your word on the Council. ({BASE_LORE_COST}{FAVOR_ICON})"), () => IsSpellsingerEnvoy(), null, 200);
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_spellsinger_lores_choice_1", "spellsinger_envoy_spellsinger_lores_choice", "spellsinger_envoy_spellsinger_lores_result",
-            TORTextHelper.GetText("eonir_spellsinger_learn_lore_accept_text", "It should not be to your disadvantage."), () => IsSpellsingerEnvoy() && 500 <= Hero.MainHero.GetCultureSpecificCustomResourceValue() && CanGreylordLearnMoreLores(), LearnNewLoresPrompt, 200);
+            TORTextHelper.GetText("eonir_spellsinger_learn_lore_accept_text", "It should not be to your disadvantage. ({BASE_LORE_COST}{FAVOR_ICON})"), HasEnoughFavorForBaseLore, LearnBaseLoresPrompt, 200);
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_spellsinger_lores_choice_2", "spellsinger_envoy_spellsinger_lores_choice", "back_to_main_hub_spellsinger",
             TORTextHelper.GetText("eonir_envoy_need_to_think_text", "I need to think about this."), () => IsSpellsingerEnvoy(), null, 200);
 
         campaignGameStarter.AddDialogLine("spellsinger_envoy_spellsinger_lores_result", "spellsinger_envoy_spellsinger_lores_result", "back_to_main_hub_spellsinger",
             TORTextHelper.GetText("eonir_envoy_will_see_what_can_do_text", "I will see what I can do."), () => IsSpellsingerEnvoy(), null, 200);
 
-        bool CanGreylordLearnMoreLores()
+        //learn High Magic (1000 favor) - unlocked after learning all base lores
+
+        campaignGameStarter.AddDialogLine("spellsinger_envoy_spellsinger_highmagic", "spellsinger_envoy_spellsinger_highmagic", "spellsinger_envoy_spellsinger_highmagic_choice",
+            TORTextHelper.GetText("eonir_spellsinger_learn_highmagic_offer_text", "High Magic is the pinnacle of elven sorcery. It requires great dedication and sacrifice to the Council. ({ADVANCED_LORE_COST}{FAVOR_ICON})"), () => IsSpellsingerEnvoy(), null, 200);
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_spellsinger_highmagic_choice_1", "spellsinger_envoy_spellsinger_highmagic_choice", "spellsinger_envoy_spellsinger_highmagic_result",
+            TORTextHelper.GetText("eonir_spellsinger_learn_highmagic_accept_text", "I am ready to learn. ({ADVANCED_LORE_COST}{FAVOR_ICON})"), HasEnoughFavorForHighMagic, LearnHighMagic, 200);
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_spellsinger_highmagic_choice_2", "spellsinger_envoy_spellsinger_highmagic_choice", "back_to_main_hub_spellsinger",
+            TORTextHelper.GetText("eonir_envoy_need_to_think_text", "I need to think about this."), () => IsSpellsingerEnvoy(), null, 200);
+
+        campaignGameStarter.AddDialogLine("spellsinger_envoy_spellsinger_highmagic_result", "spellsinger_envoy_spellsinger_highmagic_result", "back_to_main_hub_spellsinger",
+            TORTextHelper.GetText("eonir_spellsinger_learn_highmagic_result_text", "The knowledge of High Magic is now yours."), () => IsSpellsingerEnvoy(), null, 200);
+
+        //learn Dark Magic (1000 favor) - unlocked after learning High Magic
+
+        campaignGameStarter.AddDialogLine("spellsinger_envoy_spellsinger_darkmagic", "spellsinger_envoy_spellsinger_darkmagic", "spellsinger_envoy_spellsinger_darkmagic_choice",
+            TORTextHelper.GetText("eonir_spellsinger_learn_darkmagic_offer_text", "Dark Magic is forbidden knowledge, dangerous and corrupting. Are you certain you wish to tread this path? ({ADVANCED_LORE_COST}{FAVOR_ICON})"), () => IsSpellsingerEnvoy(), null, 200);
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_spellsinger_darkmagic_choice_1", "spellsinger_envoy_spellsinger_darkmagic_choice", "spellsinger_envoy_spellsinger_darkmagic_result",
+            TORTextHelper.GetText("eonir_spellsinger_learn_darkmagic_accept_text", "I accept the risks. ({ADVANCED_LORE_COST}{FAVOR_ICON})"), HasEnoughFavorForDarkMagic, LearnDarkMagic, 200);
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_spellsinger_darkmagic_choice_2", "spellsinger_envoy_spellsinger_darkmagic_choice", "back_to_main_hub_spellsinger",
+            TORTextHelper.GetText("eonir_envoy_need_to_think_text", "I need to think about this."), () => IsSpellsingerEnvoy(), null, 200);
+
+        campaignGameStarter.AddDialogLine("spellsinger_envoy_spellsinger_darkmagic_result", "spellsinger_envoy_spellsinger_darkmagic_result", "back_to_main_hub_spellsinger",
+            TORTextHelper.GetText("eonir_spellsinger_learn_darkmagic_result_text", "The forbidden knowledge is now yours. Use it wisely."), () => IsSpellsingerEnvoy(), null, 200);
+
+        bool HasEnoughFavorForBaseLore()
+        {
+            return IsSpellsingerEnvoy() && _baseLoreCost <= Hero.MainHero.GetCultureSpecificCustomResourceValue() && CanGreylordLearnBaseLores();
+        }
+
+        bool HasEnoughFavorForHighMagic()
+        {
+            return IsSpellsingerEnvoy() && _advancedLoreCost <= Hero.MainHero.GetCultureSpecificCustomResourceValue() && CanGreylordLearnHighMagic();
+        }
+
+        bool HasEnoughFavorForDarkMagic()
+        {
+            return IsSpellsingerEnvoy() && _advancedLoreCost <= Hero.MainHero.GetCultureSpecificCustomResourceValue() && CanGreylordLearnDarkMagic();
+        }
+        
+
+
+        bool CanGreylordLearnBaseLores()
         {
             if (!Hero.MainHero.HasCareer(TORCareers.GreyLord))
             {
                 return false;
             }
 
+            // Base lores available at Tier 1
+            if (!Hero.MainHero.HasAttribute("CareerTier1"))
+            {
+                return false;
+            }
+
+            // Check if there are still base lores to learn
+            foreach (var loreId in _baseLores)
+            {
+                if (!Hero.MainHero.HasKnownLore(loreId))
+                    return true;
+            }
+
+            return false;
+        }
+
+        bool CanGreylordLearnHighMagic()
+        {
+            if (!Hero.MainHero.HasCareer(TORCareers.GreyLord))
+            {
+                return false;
+            }
+
+            // High Magic requires Tier 2
             if (!Hero.MainHero.HasAttribute("CareerTier2"))
             {
                 return false;
             }
 
-            var lores = LoreObject.GetAll();
-
-            var list = new List<string>()
+            // Must have learned all base lores first
+            foreach (var loreId in _baseLores)
             {
-                "LoreOfFire",
-                "LoreOfMetal",
-                "LoreOfLife",
-                "LoreOfBeasts",
-                "LoreOfLight",
-                "LoreOfHeavens",
-                "LoreOfDeath",
-                "HighMagic"
-            };
-            var count = 0;
-            foreach (var lore in lores)
-            {
-                if (list.Contains(lore.ID))
-                {
-                    if (Hero.MainHero.HasKnownLore(lore.ID))
-                        count++;
-                }
+                if (!Hero.MainHero.HasKnownLore(loreId))
+                    return false;
             }
 
-
-            return count <= 4;
+            // Must not already know High Magic
+            return !Hero.MainHero.HasKnownLore("HighMagic");
         }
 
-        void LearnNewLoresPrompt()
+        bool CanGreylordLearnDarkMagic()
+        {
+            if (!Hero.MainHero.HasCareer(TORCareers.GreyLord))
+            {
+                return false;
+            }
+
+            // Dark Magic requires Tier 2
+            if (!Hero.MainHero.HasAttribute("CareerTier2"))
+            {
+                return false;
+            }
+
+            // Must have learned High Magic first
+            if (!Hero.MainHero.HasKnownLore("HighMagic"))
+            {
+                return false;
+            }
+
+            // Must not already know Dark Magic
+            return !Hero.MainHero.HasKnownLore("DarkMagic");
+        }
+
+        void LearnBaseLoresPrompt()
         {
             List<InquiryElement> list = [];
 
             var lores = LoreObject.GetAll();
 
-            lores = lores.WhereQ(X => !X.DisabledForCultures.Contains(TORConstants.Cultures.EONIR) && X.ID != "DarkMagic" && !Hero.MainHero.HasKnownLore(X.ID)).ToList();
+            // Filter to only base lores that the hero doesn't already know
+            lores = lores.WhereQ(x => _baseLores.Contains(x.ID) && !Hero.MainHero.HasKnownLore(x.ID)).ToList();
 
             foreach (var lore in lores)
             {
                 list.Add(new InquiryElement(lore, lore.Name, null, true, TORTextHelper.GetText("eonir_spellsinger_learn_lore_hint_text", "Learn new lore")));
             }
 
-            var inquirydata = new MultiSelectionInquiryData(TORTextHelper.GetText("eonir_spellsinger_learn_lore_title_text", "Learn New Lore"), TORTextHelper.GetText("eonir_spellsinger_learn_lore_description_text", "Select a new lore to learn ( maximum 3)"), list, true, 1, 1, TORTextHelper.GetText("eonir_inquiry_confirm_text", "Confirm"), TORTextHelper.GetText("eonir_inquiry_cancel_text", "Cancel"), SelectLore, null, "", true);
+            var inquirydata = new MultiSelectionInquiryData(TORTextHelper.GetText("eonir_spellsinger_learn_lore_title_text", "Learn New Lore"), TORTextHelper.GetText("eonir_spellsinger_learn_lore_description_text", "Select a new lore to learn."), list, true, 1, 1, TORTextHelper.GetText("eonir_inquiry_confirm_text", "Confirm"), TORTextHelper.GetText("eonir_inquiry_cancel_text", "Cancel"), SelectBaseLore, null, "", true);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
 
-            void SelectLore(List<InquiryElement> inquiryElements)
+            void SelectBaseLore(List<InquiryElement> inquiryElements)
             {
                 var newlore = (LoreObject)inquiryElements[0].Identifier;
 
                 Hero.MainHero.AddKnownLore(newlore.ID);
-                Hero.MainHero.AddCultureSpecificCustomResource(-500);
+                Hero.MainHero.AddCultureSpecificCustomResource(-_baseLoreCost);
             }
+        }
 
+        void LearnHighMagic()
+        {
+            Hero.MainHero.AddKnownLore("HighMagic");
+            Hero.MainHero.AddCultureSpecificCustomResource(-_advancedLoreCost);
+        }
+
+        void LearnDarkMagic()
+        {
+            Hero.MainHero.AddKnownLore("DarkMagic");
+            Hero.MainHero.AddCultureSpecificCustomResource(-_advancedLoreCost);
         }
         void RefillVillages()
         {

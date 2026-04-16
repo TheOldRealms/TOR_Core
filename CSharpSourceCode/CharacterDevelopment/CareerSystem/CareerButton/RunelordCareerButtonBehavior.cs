@@ -18,14 +18,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 
 public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
 {
-    private string _fireIcon = "CareerSystem\\aqshy";
-    private string _lightIcon = "CareerSystem\\hysh";
-    private string _heavensIcon = "CareerSystem\\azyr";
-    private string _lifeIcon = "CareerSystem\\ghyran";
-    private string _beastIcon = "CareerSystem\\ghur";
-    private string _grungniRune = "CareerSystem\\chamon";
-    private string _deathIcon = "CareerSystem\\chamon";
-
     private string _runeEmptyIcon = "CareerSystem\\rune_empty";
     private string _runeBattleIcon = "CareerSystem\\rune_battle";
     private string _runeGuardingIcon = "CareerSystem\\rune_guarding";
@@ -67,22 +59,10 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
 
 
     public static List<string> GetRuneIds => UnitRunes.SelectQ(x => x.EffectId).ToListQ();
-    private static int GetIntendedTroopRuneSlotLimit()
+
+    private static int GetMaxRunesPerUnit()
     {
         return Hero.MainHero.HasCareerChoice("AnvilOfDoomPassive4") ? 2 : 1;
-    }
-    private static int GetTroopRuneSlotLimit()
-    {
-        var intendedLimit = GetIntendedTroopRuneSlotLimit();
-        var usedSlots = GetUsedTroopRuneSlots();
-
-        return usedSlots > intendedLimit ? usedSlots : intendedLimit;
-    }
-    private static int GetUsedTroopRuneSlots()
-    {
-        var partyExtendedInfo = ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
-
-        return partyExtendedInfo.TroopAttributes.Count(x => x.Value != null && x.Value.Any(y => GetRuneIds.Contains(y)));
     }
 
     private CharacterObject _currentCharacter = null;
@@ -92,14 +72,15 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
     {
         get
         {
-            var currentRuneId = GetCurrentRuneId(_setCharacter);
+            var currentRunes = GetCurrentActiveRunes(_setCharacter);
 
-            if (currentRuneId == null)
+            if (currentRunes == null || !currentRunes.Any())
             {
                 return "CareerSystem\\rune_empty";
             }
 
-            return currentRuneId switch
+            var firstRuneId = currentRunes.First().EffectId;
+            return firstRuneId switch
             {
                 "unit_rune_guarding" => "CareerSystem\\rune_guarding",
                 "unit_rune_sanctuary" => "CareerSystem\\rune_sanctuary",
@@ -114,7 +95,6 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
     public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner, bool shiftClick)
     {
         _currentCharacter = characterObject;
-        MBTextManager.SetTextVariable("DEATH_ICON", string.Format("<img src=\"{0}\"/>", _grungniRune));
 
         var tier = 0;
         for (var i = 1; i < 4; i++)
@@ -153,20 +133,23 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
 
         var list = new List<InquiryElement>();
 
-        var currentRuneId = GetCurrentRuneId(_currentCharacter);
-        var warningText = new TextObject("");
-        if (currentRuneId != null)
-        {
-            warningText = TORTextHelper.GetTextObject("tor_unit_rune_warning_text", "WARNING : Current {CURRENT_RUNE} will removed without compensation.");
-        }
+        var currentRunes = GetCurrentActiveRunes(_currentCharacter);
+        var currentRuneIds = currentRunes?.Select(r => r.EffectId).ToList() ?? new List<string>();
+        var hasRunes = currentRunes != null && currentRunes.Any();
 
+        var warningText = new TextObject("");
+        if (hasRunes)
+        {
+            var runeNames = string.Join(", ", currentRunes.Select(r => r.RuneName.ToString()));
+            warningText = TORTextHelper.GetTextObject("tor_unit_rune_warning_text", "WARNING : Current {CURRENT_RUNE} will be removed without compensation.");
+            warningText.SetTextVariable("CURRENT_RUNE", runeNames);
+        }
 
         foreach (var unitRune in available)
         {
-
-            if (currentRuneId == unitRune.EffectId)
+            // Skip runes already applied to this unit
+            if (currentRuneIds.Contains(unitRune.EffectId))
             {
-                warningText.SetTextVariable("CURRENT_RUNE", UnitRunes.First(x => x.EffectId == currentRuneId).RuneName.ToString());
                 continue;
             }
 
@@ -185,17 +168,28 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
                 foreach (var entry in failed)
                 {
                     var trait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == entry.Id);
-                    entries.Append(trait.ItemTraitName + "{newline}");
+                    entries.Append("{newline}"+trait.ItemTraitName);
                 }
+                
+                GameTexts.SetVariable("UNKNOWN_RUNES_LIST", entries.ToString());
 
-                hint = TORTextHelper.GetTextObject("tor_unit_rune_unknown_runes_text", "You do not know the required runes: " + entries.ToString());
+                hint = TORTextHelper.GetTextObject("tor_unit_rune_unknown_runes_text", "You do not know the required runes: {REQUIRED_RUNES_LIST}");
+                
+                
                 list.Add(new InquiryElement(unitRune, new TextObject(displayText).ToString(), null, false, hint.ToString()));
                 continue;
             }
 
+            // Build required runes display
+            var itemTraits = ItemTrait.All.WhereQ(x => blueprintList.Contains(x.ItemTraitStringId)).ToList();
+            var requiredRunesEntries = new StringBuilder();
+            foreach (var trait in itemTraits)
+            {
+                requiredRunesEntries.Append(trait.ItemTraitName + "{newline}");
+            }
+
             // Build cost display - aggregate costs by ingredient type
             var costEntries = new StringBuilder();
-            var itemTraits = ItemTrait.All.WhereQ(x => blueprintList.Contains(x.ItemTraitStringId));
             var itemRoster = Hero.MainHero.PartyBelongedTo.Party.ItemRoster;
 
             // Aggregate total cost per ingredient
@@ -230,7 +224,7 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
 
             if (!hasIngredients)
             {
-                hint = TORTextHelper.GetTextObject("tor_unit_rune_cost_insufficient", "{RUNE_DESCRIPTION}{newline}{newline}Required ingredients:{newline}{RUNE_COST_LIST}{newline}You do not have enough ingredients!");
+                hint = TORTextHelper.GetTextObject("tor_unit_rune_cost_insufficient", "{RUNE_DESCRIPTION}{newline}Required ingredients:{newline}{RUNE_COST_LIST}{newline}You do not have enough ingredients!");
             }
             else
             {
@@ -239,37 +233,47 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
 
             list.Add(new InquiryElement(unitRune, new TextObject(displayText).ToString(), null, hasIngredients, hint.ToString()));
         }
+
+        // Add remove option if unit has runes
+        if (hasRunes)
+        {
+            var runeNames = string.Join(", ", currentRunes.Select(r => r.RuneName.ToString()));
+            list.Add(CareerButtonHelper.CreateRemoveOption(runeNames, "tor_unit_rune_remove_hint", "Remove all runes from this unit without compensation."));
+        }
+
+        var count = GetMaxRunesPerUnit();
+
         var title = TORTextHelper.GetTextObject("tor_unit_rune_title", "Unit runes");
         var text = TORTextHelper.GetTextObject("tor_unit_rune_description", "Choose a rune to add to the equipment of your units. {RUNE_WARNING_TEXT}");
         text.SetTextVariable("RUNE_WARNING_TEXT", warningText);
         var inquirydata = new MultiSelectionInquiryData(title.ToString(),
-            text.ToString(), list, true, 1, 1, TORTextHelper.GetText("tor_inquiry_confirm_text", "Confirm"),
-            TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"), SelectedRune, null);
+            text.ToString(), list, true, 1, count, TORTextHelper.GetText("tor_inquiry_confirm_text", "Confirm"),
+            TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"), SelectedRunes, null);
 
         MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
     }
 
 
-    private string GetCurrentRuneId(CharacterObject character)
+    private List<UnitRune> GetCurrentActiveRunes(CharacterObject character)
     {
-        if (character == null) return null;
-        var partyExtendedInfo =
-            ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
-        var attributes = partyExtendedInfo.TroopAttributes.FirstOrDefault(x => x.Key == character.StringId).Value;
-        return attributes?.FirstOrDefault(x => UnitRunes.Any(y => y.EffectId == x));
+        return CareerButtonHelper.GetCurrentActiveItems(character, UnitRunes, r => r.EffectId);
     }
 
-    private void SelectedRune(List<InquiryElement> inquirydata)
+    private void SelectedRunes(List<InquiryElement> inquiryElements)
     {
-        var rune = (UnitRune)inquirydata.FirstOrDefault().Identifier;
-        var currentRuneId = GetCurrentRuneId(_currentCharacter);
+        var currentRunes = GetCurrentActiveRunes(_currentCharacter);
 
-        if (currentRuneId == null && GetUsedTroopRuneSlots() >= GetTroopRuneSlotLimit())
-        {
-            InformationManager.DisplayMessage(new InformationMessage(new TextObject("{=tor_unit_rune_slot_limit_text}No free troop rune slots.").ToString()));
-            return;
-        }
+        CareerButtonHelper.ProcessSelection(
+            _currentCharacter,
+            inquiryElements,
+            currentRunes,
+            rune => rune.EffectId,
+            rune => DeductRuneCost(rune)
+        );
+    }
 
+    private void DeductRuneCost(UnitRune rune)
+    {
         var itemRoster = Hero.MainHero.PartyBelongedTo.ItemRoster;
 
         // Aggregate total cost per ingredient type
@@ -297,21 +301,6 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
         foreach (var kvp in ingredientCosts)
         {
             itemRoster.AddToCounts(kvp.Key, -kvp.Value);
-        }
-
-        var partyExtendedInfo = ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
-        if (currentRuneId != null)
-        {
-            partyExtendedInfo.RemoveTroopAttribute(_currentCharacter.StringId, currentRuneId);
-        }
-
-        partyExtendedInfo.AddTroopAttribute(_currentCharacter, rune.EffectId);
-
-        ExtendedInfoManager.Instance.ValidatePartyInfos(MobileParty.MainParty);
-
-        if (PartyVMExtension.ViewModelInstance != null)
-        {
-            PartyVMExtension.ViewModelInstance.RefreshValues();
         }
     }
 
@@ -405,8 +394,8 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
     public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner)
     {
         displayText = null;
-        var currentRuneId = GetCurrentRuneId(characterObject);
-        var hasRune = currentRuneId != null;
+        var currentRunes = GetCurrentActiveRunes(characterObject);
+        var hasRunes = currentRunes != null && currentRunes.Any();
 
         if (characterObject.IsHero)
         {
@@ -414,16 +403,13 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
             return false;
         }
 
-        if (hasRune)
+        if (hasRunes)
         {
-            var rune = UnitRunes.FirstOrDefault(x => x.EffectId == currentRuneId);
-            if (rune != null)
-            {
-                GameTexts.SetVariable("RUNE_NAME", rune.RuneName.ToString());
-                GameTexts.SetVariable("RUNE_DESC", rune.HintText.ToString());
-                displayText = TORTextHelper.GetTextObject("tor_unit_rune_active_display", "{RUNE_NAME}{newline}{RUNE_DESC}");
-            }
-
+            displayText = CareerButtonHelper.BuildCurrentItemsDisplayText(
+                currentRunes,
+                r => r.RuneName.ToString(),
+                r => r.HintText.ToString()
+            );
         }
 
         var extendedInfo = Hero.MainHero.GetExtendedInfo();
@@ -434,10 +420,9 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
             return false;
         }
 
-
-        if (Hero.MainHero.CurrentSettlement == null || Hero.MainHero.CurrentSettlement != null && !Hero.MainHero.CurrentSettlement.IsDwarfKarak())
+        if (Hero.MainHero.CurrentSettlement == null || (Hero.MainHero.CurrentSettlement != null && !Hero.MainHero.CurrentSettlement.IsDwarfKarak()))
         {
-            if (!hasRune)
+            if (!hasRunes)
             {
                 displayText = TORTextHelper.GetTextObject("tor_unit_rune_only_in_karak_text", "Only possible inside a dwarf Karak. Visit a Dwarf Karak");
             }
@@ -445,14 +430,7 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
             return false;
         }
 
-
-        if (!hasRune && GetUsedTroopRuneSlots() >= GetTroopRuneSlotLimit())
-        {
-            displayText = TORTextHelper.GetTextObject("tor_unit_rune_add_rune_text", "add a Rune for Units");
-            return false;
-        }
-
-        if (!hasRune)
+        if (!hasRunes)
         {
             displayText = TORTextHelper.GetTextObject("tor_unit_rune_add_rune_text", "add a Rune for Units");
         }

@@ -27,6 +27,20 @@ public class KnightOldWorldCareerButtonBehavior : CareerButtonBehaviorBase
     private readonly string _myrmidiaSealIcon = "blazingsun_icon";
     private CharacterObject _setCharacter;
 
+    public override string CareerButtonIcon
+    {
+        get
+        {
+            var currentSeals = GetCurrentActiveSeals(_setCharacter);
+            if (currentSeals == null || !currentSeals.Any())
+            {
+                return _secularSealIcon;
+            }
+
+            return currentSeals.First().SealIcon;
+        }
+    }
+
     public KnightOldWorldCareerButtonBehavior(CareerObject career) : base(career)
     {
         MBTextManager.SetTextVariable("SECULAR_SEAL_ICON", string.Format("<img src=\"{0}\"/>", _secularSealIcon));
@@ -93,6 +107,14 @@ public class KnightOldWorldCareerButtonBehavior : CareerButtonBehaviorBase
             inquiryElements.Add(inquiryElement);
         }
 
+        // Add remove option if seals are already applied
+        var currentSeals = GetCurrentActiveSeals(characterObject);
+        if (currentSeals != null && currentSeals.Any())
+        {
+            var sealNames = string.Join(", ", currentSeals.Select(s => s.Name.ToString()));
+            inquiryElements.Add(CareerButtonHelper.CreateRemoveOption(sealNames, "tor_purity_seal_remove_hint", "Remove all purity seals from this unit."));
+        }
+
         var count = 1;
 
         if (Hero.MainHero.HasCareerChoice("PathOfGloryPassive4"))
@@ -112,62 +134,19 @@ public class KnightOldWorldCareerButtonBehavior : CareerButtonBehaviorBase
 
     private void OnSelectedOption(List<InquiryElement> elements)
     {
-        var seals = new List<KnightPuritySeal>();
-        foreach (var elem in elements)
-        {
-            var seal = elem.Identifier as KnightPuritySeal;
-            seals.Add(seal);
-        }
-
-        var partyExtendedInfo = ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
         var currentSeals = GetCurrentActiveSeals(_setCharacter);
-        if (currentSeals != null && !currentSeals.IsEmpty())
-        {
-            foreach (var elem in currentSeals)
-            {
-                partyExtendedInfo.RemoveTroopAttribute(_setCharacter.StringId, elem.SealId);
-            }
 
-        }
-
-        foreach (var seal in seals)
-        {
-            partyExtendedInfo.AddTroopAttribute(_setCharacter, seal.SealId);
-        }
-
-        if (PartyVMExtension.ViewModelInstance != null) PartyVMExtension.ViewModelInstance.RefreshValues();
-
+        CareerButtonHelper.ProcessSelection(
+            _setCharacter,
+            elements,
+            currentSeals,
+            seal => seal.SealId
+        );
     }
 
     private List<KnightPuritySeal> GetCurrentActiveSeals(CharacterObject setCharacter)
     {
-        if (setCharacter == null) return null;
-        var partyExtendedInfo = ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
-
-        if (partyExtendedInfo.TroopAttributes.TryGetValue(setCharacter.StringId, out var attributes))
-            if (attributes.Count > 0)
-            {
-                var availableSeals = GetSecularSeals();
-
-                availableSeals.AddRange(GetTemplarPuritySeals());
-
-                var seals = new List<KnightPuritySeal>();
-
-                foreach (var seal in availableSeals)
-                {
-                    foreach (var attribute in attributes)
-                    {
-                        if (seal.SealId == attribute)
-                        {
-                            seals.Add(seal);
-                        }
-                    }
-                }
-
-                return seals;
-            }
-
-        return null;
+        return CareerButtonHelper.GetCurrentActiveItems(setCharacter, GetAllPuritySeals(), s => s.SealId);
     }
 
     public List<KnightPuritySeal> GetAllPuritySeals()
@@ -250,6 +229,7 @@ public class KnightOldWorldCareerButtonBehavior : CareerButtonBehaviorBase
 
     public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner = false)
     {
+        _setCharacter = characterObject;
         displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_accept", "default", "Add a Purity Seal to this knight.");
 
         var currentSeals = GetCurrentActiveSeals(characterObject);

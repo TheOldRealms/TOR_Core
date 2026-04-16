@@ -2212,6 +2212,9 @@
 
 
   <!--wanderer stories-->
+  
+  <string id="tor_wanderer_leave" text="{=str_tor_wanderer_leave}Safe travels, stranger." />
+
   <!-- ========================================== -->
 <!-- EMPIRE COMPANIONS -->
 <!-- ========================================== -->
@@ -3584,9 +3587,9 @@
   
   <string id="tor_careerchoice_description.SwiftProcedureKeystone" text="{=str_tor_careerchoice_description_SwiftProcedureKeystone}Accusation also scales with Athletics and applies a swing/move speed decrease." />
   <string id="tor_careerchoice_description.SwiftProcedurePassive1" text="{=str_tor_careerchoice_description_SwiftProcedurePassive1}+8 extra ammo per ammunition pouch you equip." />
-  <string id="tor_careerchoice_description.SwitftProcedurePassive2" text="{=str_tor_careerchoice_description_SwitftProcedurePassive2}Personal accuracy movement penalty reduced by -10%." />
-  <string id="tor_careerchoice_description.SwitftProcedurePassive3" text="{=str_tor_careerchoice_description_SwitftProcedurePassive3}+1 party move speed on campaign map." />
-  <string id="tor_careerchoice_description.SwitftProcedurePassive4" text="{=str_tor_careerchoice_description_SwitftProcedurePassive4}+10% personal weapon swing speed." />
+  <string id="tor_careerchoice_description.SwiftProcedurePassive2" text="{=str_tor_careerchoice_description_SwiftProcedurePassive2}Personal accuracy movement penalty reduced by -10%." />
+  <string id="tor_careerchoice_description.SwiftProcedurePassive3" text="{=str_tor_careerchoice_description_SwiftProcedurePassive3}+1 party move speed on campaign map." />
+  <string id="tor_careerchoice_description.SwiftProcedurePassive4" text="{=str_tor_careerchoice_description_SwiftProcedurePassive4}+10% personal weapon swing speed." />
   
   <string id="tor_careerchoice_description.EndsJustifiesMeansKeystone" text="{=str_tor_careerchoice_description_EndsJustifiesMeansKeystone}Accusation also scales with Rougery, overkilling an 'Accused' enemy spreads the Mark." />
   <string id="tor_careerchoice_description.EndsJustifiesMeansPassive1" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive1}+10% personal ranged 'Physical' damage." />
@@ -4363,7 +4366,7 @@
   <string id="tor_careerchoice_description.AnvilOfDoomPassive1" text="{=str_tor_careerchoice_description_AnvilOfDoomPassive1}+15% personal 'Magic' damage." />
   <string id="tor_careerchoice_description.AnvilOfDoomPassive2" text="{=str_tor_careerchoice_description_AnvilOfDoomPassive2}+5 'Oathgold' daily when an 'Anvil of Doom' is present." />
   <string id="tor_careerchoice_description.AnvilOfDoomPassive3" text="{=str_tor_careerchoice_description_AnvilOfDoomPassive3}-2% cooldown to your runes per Runesmith companion." />
-  <string id="tor_careerchoice_description.AnvilOfDoomPassive4" text="{=str_tor_careerchoice_description_AnvilOfDoomPassive4}+1 troop 'Rune' slot." />
+  <string id="tor_careerchoice_description.AnvilOfDoomPassive4" text="{=str_tor_careerchoice_description_AnvilOfDoomPassive4}You can now place 2 Unit Runes per unit." />
 
   <!-- OrcBoss Career Choice Descriptions -->
   <string id="tor_careerchoice_description.OrcBossRoot" text="{=str_tor_careerchoice_description_OrcBossRoot}Take yer choppa, an' smash it proppa 'ard on any o' da gits, make 'em scream. Sum choppas are betta at uvva fings: Smalla choppas an' blockas are good fer timez when you'z in da scrap, an' iz time fer sum speedy 'taktikz'. Bigga choppas are best fer mobs o' gits. Makes 'em weaker da more ya hit 'em too. Longa choppas, now dese be useful fer ridas, an' uva pesky beasties. An' if you fink you can't chop any more, you jus' need ta wait, an' den chop sum more!" />
@@ -4660,8 +4663,8 @@
 
   <!-- Runelord (Special unlock conditions) -->
   <string id="tor_careerunlock_level_1.Runelord" text="{=str_tor_careerunlock_level_1_runelord}" />
-  <string id="tor_careerunlock_level_2.Runelord" text="{=str_tor_careerunlock_level_2_runelord}Talk to the Runelord about the promotion" />
-  <string id="tor_careerunlock_level_3.Runelord" text="{=str_tor_careerunlock_level_3_runelord}Talk to the Runelord to reach the final stage" />
+  <string id="tor_careerunlock_level_2.Runelord" text="{=str_tor_careerunlock_level_2_runelord}Ask the Runesmiths Guild to unlock" />
+  <string id="tor_careerunlock_level_3.Runelord" text="{=str_tor_careerunlock_level_3_runelord}Ask the Runesmiths Guild to unlock" />
 
   <!-- Orc Boss (Special unlock conditions) -->
   <string id="tor_careerunlock_level_1.OrcBoss" text="{=str_tor_careerunlock_level_1_orcboss}" />
@@ -6186,14 +6189,28 @@
 	<string id="eonir_spellsinger_troop_refill_offer_text" text="{=str_eonir_spellsinger_troop_refill_offer_text}There are many who live as nomads, far from our villages and deep within the woods. It will take time for any messenger to reach them but it can be done. Is this what you desire?"/>
 	<string id="eonir_spellsinger_troop_refill_cooldown_text" text="{=str_eonir_spellsinger_troop_refill_cooldown_text}We recently called for the forestborn aid. We should wait longer for another call."/>
 	<string id="eonir_spellsinger_troop_refill_accept_text" text="{=str_eonir_spellsinger_troop_refill_accept_text}That would be kind. I am sure we will be able to return the favour  one day. I will decide in favor of the Forestborn."/>
-	<string id="eonir_spellsinger_learn_lore_offer_text" text="{=str_eonir_spellsinger_learn_lore_offer_text}I can teach you, but as much as you are ready to do so, I need your word on the Council."/>
-	<string id="eonir_spellsinger_learn_lore_accept_text" text="{=str_eonir_spellsinger_learn_lore_accept_text}It should not be to your disadvantage."/>
+	<string id="eonir_spellsinger_learn_lore_offer_text" text="{=str_eonir_spellsinger_learn_lore_offer_text}I can teach you, but as much as you are ready to do so, I need your word on the Council. ({BASE_LORE_COST}{FAVOR_ICON})"/>
+	<string id="eonir_spellsinger_learn_lore_accept_text" text="{=str_eonir_spellsinger_learn_lore_accept_text}It should not be to your disadvantage. ({BASE_LORE_COST}{FAVOR_ICON})"/>
 	<string id="eonir_spellsinger_why_here_intro_text" text="{=str_eonir_spellsinger_why_here_intro_text}I am representing a coven of Spellsingers dedicated to the defense of Laurelorn. While the Council is busy with politics, the Faniour, the forest born elves, are endagered by all the threads of the forest."/>
 	<string id="eonir_spellsinger_why_here_displeased_text" text="{=str_eonir_spellsinger_why_here_displeased_text}The forest is beset by destructive beasts and men alike, what then, are you protecting?"/>
 	<string id="eonir_spellsinger_why_here_undecided_text" text="{=str_eonir_spellsinger_why_here_undecided_text}What matters can the Council solve for you? What can you give me in turn?"/>
 	<string id="eonir_spellsinger_why_here_agreement_text" text="{=str_eonir_spellsinger_why_here_agreement_text}The Faniour aswell as the Touriour follow the same people. Your matters, are my matters."/>
 	<string id="eonir_spellsinger_why_here_explain_text" text="{=str_eonir_spellsinger_why_here_explain_text}I am not a man of politics. I am here to stand our case. I know that seemingly the Council, sometimes forgets about us. Thats why I am here, and standing for the forest people. I know that nothing works here, without giving something in return."/>
 	<string id="eonir_spellsinger_why_here_services_text" text="{=str_eonir_spellsinger_why_here_services_text}Help us with your political power, and I will try to make it worth. I can assist you with some magic, like using the world roots of the Asrai, or can make your influence provide you power over the council. Apart, I can see what i can do for teaching you some magic"/>
+  
+  <string id="eonir_spellsinger_learn_lore_description_text" text="{=str_eonir_spellsinger_learn_lore_description_text}Select a new lore to learn." />
+  <string id="spellsinger_envoy_main_hub_spellsinger_highmagic" text="{=str_spellsinger_envoy_main_hub_spellsinger_highmagic}I wish to learn High Magic." />
+  <string id="spellsinger_envoy_main_hub_spellsinger_darkmagic" text="{=str_spellsinger_envoy_main_hub_spellsinger_darkmagic}I wish to learn Dark Magic." />
+
+
+  <string id="eonir_spellsinger_learn_highmagic_offer_text" text="{=str_eonir_spellsinger_learn_highmagic_offer_text}High Magic is the pinnacle of elven sorcery. It requires great dedication and sacrifice to the Council. ({ADVANCED_LORE_COST}{FAVOR_ICON})" />
+  <string id="eonir_spellsinger_learn_highmagic_accept_text" text="{=str_eonir_spellsinger_learn_highmagic_accept_text} I am ready to learn. ({ADVANCED_LORE_COST}{FAVOR_ICON})" />
+  <string id="eonir_spellsinger_learn_highmagic_result_text" text="{=str_eonir_spellsinger_learn_highmagic_result_text} The knowledge of High Magic is now yours." />
+
+  <string id="eonir_spellsinger_learn_darkmagic_offer_text" text="{=str_eonir_spellsinger_learn_darkmagic_offer_text}Dark Magic is forbidden knowledge, dangerous and corrupting. Are you certain you wish to tread this path? ({ADVANCED_LORE_COST}{FAVOR_ICON})" />
+  <string id="eonir_spellsinger_learn_darkmagic_accept_text" text="{=str_eonir_spellsinger_learn_darkmagic_accept_text}I accept the risks. ({ADVANCED_LORE_COST}{FAVOR_ICON})" />
+  <string id="eonir_spellsinger_learn_darkmagic_result_text" text="{=str_eonir_spellsinger_learn_darkmagic_result_text}The forbidden knowledge is now yours. Use it wisely." />
+
 
 	<!-- Engineer Quest Texts -->
 	<string id="tor_engineer_quest_skill_check" text="{=str_tor_engineer_quest_skill_check}Hah! You do not seem like a person with any knowledge of our crafts. What could you possibly need from us?"/>
@@ -6254,4 +6271,11 @@
 	<string id="tor_alliance_limit" text="{=str_tor_alliance_limit}Alliance limit reached"/>
 	<string id="tor_trade_chaos" text="{=str_tor_trade_chaos}The forces of Chaos do not engage in trade."/>
 	<string id="tor_trade_greenskin" text="{=str_tor_trade_greenskin}Greenskins do not understand the concept of trade."/>
+  
+  
+  
+  <string id="tor_stats_troll_bonus_text" text="{=str_tor_stats_troll_bonus_text}Troll bonus" />
+  
+  
+  
 </strings>
