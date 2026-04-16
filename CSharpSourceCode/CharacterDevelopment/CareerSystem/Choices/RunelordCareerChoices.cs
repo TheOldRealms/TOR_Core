@@ -203,7 +203,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             (attacker, victim, mask) => attacker.Character.HasUnitRune() && victim.Character.Race != 0));
         _chiselAndHammerPassive2.Initialize(CareerID, "Kills made with 'Rune' weapons provide Spellcraft experience.", "ChiselAndHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
         _chiselAndHammerPassive3.Initialize(CareerID, "+20% personal 'Rune' ability affect radius.", "ChiselAndHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20f, PassiveEffectType.SpellRadius, true));
-        _chiselAndHammerPassive4.Initialize(CareerID, "-25% 'Oathgold' cost to upgrade 'Elite' troops.", "ChiselAndHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopUpgradeCost, true,
+        _chiselAndHammerPassive4.Initialize(CareerID, "-25% 'Oathgold' cost to upgrade 'Elite' troops.", "ChiselAndHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpgradeCostModifier, true,
             characterObject => characterObject.IsEliteTroop()));
 
         _forHearthAndHomePassive1.Initialize(CareerID, "+10% 'Ward Save' for troops affected by a 'Rune'.", "ForHearthAndHome", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.Spell,
