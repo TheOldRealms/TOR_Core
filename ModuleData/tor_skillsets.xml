@@ -2938,7 +2938,7 @@
 			   value="260" />
 		<skill id="TwoHanded"
 			   value="260" />
-			   
+	</SkillSet> 
 	<SkillSet id="tor_skills_dwarf_giant_slayer">
 		<skill id="Athletics"
 			   value="175" />
