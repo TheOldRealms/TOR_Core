@@ -482,12 +482,12 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
             bool HasEnoughDarkEnergy()
             {
-                string text = TORTextHelper.GetText("tor_spelltrainer_vampire_agree_price",
-                    "Take my gift. Now give me what I demand! (Pay {DARK_ENERGY_COST}{DARKENERGYICON})");
-
                 MBTextManager.SetTextVariable("DARK_ENERGY_COST", DarkEnergyLoreCost);
                 MBTextManager.SetTextVariable("DARKENERGYICON",
                     CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText());
+
+                string text = TORTextHelper.GetText("tor_spelltrainer_vampire_agree_price",
+                    "Take my gift. Now give me what I demand! (Pay {DARK_ENERGY_COST}{DARKENERGYICON})");
                 MBTextManager.SetTextVariable("PAY_DARK_ENERGY_FOR_LORE", text);
                 return Hero.MainHero.GetCustomResourceValue("DarkEnergy") >= DarkEnergyLoreCost;
             }
