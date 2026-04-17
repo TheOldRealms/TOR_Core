@@ -320,7 +320,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 Hero.MainHero.AddReligiousInfluence(nagash, 25, true);
             }
 
-            List<string> allowedLores = new List<string>() { "MinorMagic", "Necromancy", "DarkMagic", "LoreOfMetal", "LoreOfHeavens", "LoreOfDeath" };
+            List<string> allowedLores = new List<string>() { "MinorMagic", "Necromancy", "DarkMagic", "LoreOfMetal", "LoreOfHeavens", "LoreOfDeath", "LoreOfFire", "LoreOfBeasts" };
 
             foreach (var lore in LoreObject.GetAll())
             {
