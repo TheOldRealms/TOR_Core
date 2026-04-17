@@ -1898,10 +1898,25 @@
         <hair_tag name="SlayerHair" />
       </hair_tags>
     </face>
-    <upgrade_targets />
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_dw_giant_slayer" />
+    </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_dw_troll_slayer_template" />
       <EquipmentSet id="tor_dw_troll_slayer_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_dw_giant_slayer" default_group="infantry" level="41" name="{=str_tor_dw_giant_slayer}Dawi Giant Slayer" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_giant_slayer" race="dwarf">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_slayer" />
+      <hair_tags>
+        <hair_tag name="SlayerHair" />
+      </hair_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_dw_giant_slayer_template" />
+      <EquipmentSet id="tor_dw_giant_slayer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_pilgrim" default_group="infantry" level="21" name="{=str_tor_dw_pilgrim}Dawi Pilgrim" occupation="CaravanGuard" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_level21" race="dwarf">

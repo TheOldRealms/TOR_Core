@@ -1631,6 +1631,24 @@
     </DamageProportions>
     <ResourceCost ResourceType="OathGold" UpkeepCost="0" UpgradeCost="1" />
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_dw_giant_slayer">
+    <Abilities />
+    <Attributes>
+      <string>Unbreakable</string>
+    </Attributes>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
+      <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
+      <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
+    </Resistances>
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.50" />
+    </DamageAmplifiers>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ResourceCost ResourceType="OathGold" UpkeepCost="0" UpgradeCost="5" />
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_pilgrim">
     <Abilities />
     <Attributes />
@@ -4663,9 +4681,12 @@
       <string>Unstoppable</string>
     </Attributes>
     <Resistances />
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.20" />
+    </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.50" />
+      <DamageProportionTuple DamageType="Magical" Percent="0.50" />
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_harbinger_champion_two_handed">
@@ -4678,9 +4699,12 @@
       <string>Unstoppable</string>
     </Attributes>
     <Resistances />
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.30" />
+    </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.50" />
+      <DamageProportionTuple DamageType="Magical" Percent="0.50" />
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_harbinger_champion_plate">
@@ -4693,9 +4717,12 @@
       <string>Unstoppable</string>
     </Attributes>
     <Resistances />
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.50" />
+    </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.50" />
+      <DamageProportionTuple DamageType="Magical" Percent="0.50" />
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_harbinger_champion_plate_two_handed">
@@ -4708,9 +4735,12 @@
       <string>Unstoppable</string>
     </Attributes>
     <Resistances />
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.75" />
+    </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.50" />
+      <DamageProportionTuple DamageType="Magical" Percent="0.50" />
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_chaos_cult_acolyte">
@@ -10810,6 +10840,66 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_kwartamasta_greenskins_0">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="gear_practice_dummy_empire">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_1_empire">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_2_empire">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_3_empire">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_1_vlandia">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_2_vlandia">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_3_vlandia">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="gear_practice_dummy_battania">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_1_battania">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_2_battania">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_3_battania">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="gear_practice_dummy_khuzait">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_1_khuzait">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_2_khuzait">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_3_khuzait">
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
