@@ -200,6 +200,8 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
         //learn new lores - base lores (500 favor)
 
+        campaignGameStarter.AddDialogLine("spellsinger_envoy_spellsinger_lores_no_favor", "spellsinger_envoy_spellsinger_lores", "back_to_main_hub_spellsinger",
+            TORTextHelper.GetText("eonir_spellsinger_learn_lore_no_favor_text", "You do not have enough standing with the Council yet. Return when you have earned more favor. ({BASE_LORE_COST}{FAVOR_ICON})"), NotEnoughFavorForBaseLore, null, 210);
         campaignGameStarter.AddDialogLine("spellsinger_envoy_spellsinger_lores", "spellsinger_envoy_spellsinger_lores", "spellsinger_envoy_spellsinger_lores_choice",
             TORTextHelper.GetText("eonir_spellsinger_learn_lore_offer_text", "I can teach you, but as much as you are ready to do so, I need your word on the Council. ({BASE_LORE_COST}{FAVOR_ICON})"), () => IsSpellsingerEnvoy(), null, 200);
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_spellsinger_lores_choice_1", "spellsinger_envoy_spellsinger_lores_choice", "spellsinger_envoy_spellsinger_lores_result",
@@ -233,6 +235,11 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
         campaignGameStarter.AddDialogLine("spellsinger_envoy_spellsinger_darkmagic_result", "spellsinger_envoy_spellsinger_darkmagic_result", "back_to_main_hub_spellsinger",
             TORTextHelper.GetText("eonir_spellsinger_learn_darkmagic_result_text", "The forbidden knowledge is now yours. Use it wisely."), () => IsSpellsingerEnvoy(), null, 200);
+
+        bool NotEnoughFavorForBaseLore()
+        {
+            return IsSpellsingerEnvoy() && _baseLoreCost > Hero.MainHero.GetCultureSpecificCustomResourceValue();
+        }
 
         bool HasEnoughFavorForBaseLore()
         {
