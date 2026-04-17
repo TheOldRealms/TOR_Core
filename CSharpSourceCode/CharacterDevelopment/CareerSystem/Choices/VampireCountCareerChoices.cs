@@ -378,7 +378,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void UnlockCareerBenefitsTier2()
         {
-            Hero.MainHero.AddKnownLore("DarkMagic");
+            // MinorVampire chooses between DarkMagic and LoreOfDeath when talking to the dark magister
         }
     }
 }

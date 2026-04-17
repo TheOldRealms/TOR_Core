@@ -391,6 +391,12 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                     quittoken = "hub_greenskin";
                 }
 
+                if (cultures[i] == TORConstants.Cultures.SYLVANIA || cultures[i] == TORConstants.Cultures.MOUSILLON)
+                {
+                    hub = "vampire_choices";
+                    quittoken = "hub_vampire";
+                }
+
                 campaignGameStarter.AddPlayerLine("enchanter_start_p" + cultures[i], hub, "enchanter_start" + cultures[i],
                     TORTextHelper.GetText("tor_enchanter_start_p", cultures[i], "I wish to learn about enchantment.", true),
                     () => EnchanterCondition(cultures[i]) && cultureCheck(cultures[i]), null, 210);

@@ -405,12 +405,32 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
         private void VampireDialogs(CampaignGameStarter obj)
         {
-            obj.AddPlayerLine("trainer_vampire_learn_lore", "choices", "vampire_dark_energy_request",
+            // Start and hub dialogs
+            obj.AddDialogLine("trainer_vampire_start", "start", "vampire_choices",
+                TORTextHelper.GetText("tor_spelltrainer_vampire_start", "Ah, a creature of the night graces my presence. What do you seek?"),
+                isVampireTrainer, null, 200, null);
+            obj.AddDialogLine("trainer_vampire_hub", "hub_vampire", "vampire_choices",
+                TORTextHelper.GetText("tor_spelltrainer_vampire_hub", "What else do you require?"),
+                isVampireTrainer, null, 200, null);
+
+            // Common options
+            obj.AddPlayerLine("trainer_vampire_learnspells", "vampire_choices", "openbook_vampire",
+                TORTextHelper.GetText("tor_spelltrainer_vampire_open_book", "I wish to study the dark arts."),
+                () => MobileParty.MainParty.HasSpellCasterMember() && vampireCondition(), null, 200, null);
+            obj.AddPlayerLine("trainer_vampire_scrollShop", "vampire_choices", "hub_vampire",
+                TORTextHelper.GetText("tor_spelltrainer_vampire_scrolls", "Show me your forbidden tomes."),
+                null, OpenScrollShop, 200, null);
+            obj.AddDialogLine("trainer_vampire_afterlearnspells", "openbook_vampire", "hub_vampire",
+                TORTextHelper.GetText("tor_spelltrainer_vampire_close_book", "The shadows reveal their secrets to you."),
+                null, openbookconsequence, 200, null);
+
+            // Vampire lore learning
+            obj.AddPlayerLine("trainer_vampire_learn_lore", "vampire_choices", "vampire_dark_energy_request",
                 TORTextHelper.GetText("tor_spelltrainer_magictest_vc_vampire_player_specialize_lore",
                     "I can feel my dark power continuing to grow, teach me more lest I find myself a new 'tutor'. Hurry on to find your Grimoire, lest I grow thirsty in your absence..."),
                 VampireCasterReachedNewRankCondition, null, 200);
 
-            obj.AddDialogLine("trainer_vampire_tier_limit", "vampire_dark_energy_request", "choices",
+            obj.AddDialogLine("trainer_vampire_tier_limit", "vampire_dark_energy_request", "hub_vampire",
                 TORTextHelper.GetText("tor_spelltrainer_vampire_tier_limit",
                     "You have learned all that your current mastery allows. Return when you have advanced further in your dark arts."),
                 HasReachedNecrarchTierLimit, null, 210);
@@ -419,18 +439,30 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                     "Even if you have the everliving-gift, the access to forbidden knowledge is restricted by my master. Provide us a gift and I am not speaking of gold, " +
                     "I need you to pay with the essence of Life. Then my masters can give you access... ({DARK_ENERGY_COST}{DARKENERGYICON})"),
                 SetDarkEnergyCostVariable, null, 200);
-            obj.AddPlayerLine("vampire_dark_energy_accept", "vampire_dark_energy_response", "vampire_lore_chosen",
-                "{PAY_DARK_ENERGY_FOR_LORE}", HasEnoughDarkEnergy, chooseVampireLoreConsequence, 200);
+            obj.AddPlayerLine("vampire_dark_energy_accept", "vampire_dark_energy_response", "vampire_lore_prompt",
+                "{PAY_DARK_ENERGY_FOR_LORE}", HasEnoughDarkEnergy, null, 200);
             obj.AddPlayerLine("vampire_dark_energy_decline", "vampire_dark_energy_response", "vampire_dark_energy_declined",
                 TORTextHelper.GetText("tor_spelltrainer_vampire_decline_price", "I can't provide you this gift"), null,
                 null, 200);
 
-            obj.AddDialogLine("trainer_vampire_lore_chosen", "vampire_lore_chosen", "choices",
+            obj.AddDialogLine("trainer_vampire_lore_prompt", "vampire_lore_prompt", "vampire_lore_chosen",
+                TORTextHelper.GetText("tor_dialog_ellipsis", "..."),
+                null, chooseVampireLoreConsequence, 200);
+            obj.AddDialogLine("trainer_vampire_lore_chosen", "vampire_lore_chosen", "hub_vampire",
                 TORTextHelper.GetText("tor_spelltrainer_vampire_lore_learned", "The dark knowledge is now yours. Use it wisely... or not."),
                 null, null, 200);
-            obj.AddDialogLine("trainer_vampire_dark_energy_declined", "vampire_dark_energy_declined", "choices",
+            obj.AddDialogLine("trainer_vampire_dark_energy_declined", "vampire_dark_energy_declined", "hub_vampire",
                 TORTextHelper.GetText("tor_spelltrainer_vampire_shame", "A shame. What else can I help you with?"),
                 null, null, 200);
+            
+            
+            //good bye
+            obj.AddPlayerLine("trainer_vampire_playergoodbye", "vampire_choices", "saygoodbye_vampire",
+                TORTextHelper.GetText("tor_spelltrainer_vampire_player_goodbye", "I shall take my leave."),
+                null, null, 100, null);
+            obj.AddDialogLine("trainer_vampire_goodbye", "saygoodbye_vampire", "close_window",
+                TORTextHelper.GetText("tor_spelltrainer_vampire_goodbye", "Until the next moonrise..."),
+                isVampireTrainer, null, 200, null);
 
             bool HasReachedNecrarchTierLimit()
             {
@@ -567,6 +599,27 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 if (Hero.MainHero.HasUnlockedCareerChoiceTier(1))
                     return 3;
                 return 2;
+            }
+
+            bool isVampireTrainer()
+            {
+                if (!spelltrainerstartcondition()) return false;
+                var partner = CharacterObject.OneToOneConversationCharacter;
+                if (partner.HeroObject != null && partner.HeroObject.Template.StringId == _vampireTrainerId)
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            bool vampireCondition()
+            {
+                if (Hero.MainHero.IsVampire()) return true;
+                if (Hero.MainHero.PartyBelongedTo != null &&
+                    Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x =>
+                        (x.Culture.StringId == TORConstants.Cultures.SYLVANIA || x.Culture.StringId == TORConstants.Cultures.MOUSILLON) && x.IsSpellCaster()))
+                    return true;
+                return false;
             }
         }
 
