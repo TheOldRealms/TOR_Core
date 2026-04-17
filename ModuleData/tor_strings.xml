@@ -1741,6 +1741,23 @@
       <tag tag_name="EonirTag" />
     </tags>
   </string>
+	<string id="str_liege_title.sturgia" text="{=str_tor_liege_title_sturgia}one of the Hold Kings of Karaz Ankor">
+	<tags>
+		<tag tag_name="SturgianTag" />
+	</tags>
+	</string>
+	<string id="str_liege_title.aserai" text="{=str_tor_liege_title_aserai}da biggest an' baddest Warlord evah">
+	<tags>
+		<tag tag_name="AseraiTag" />
+		<tag tag_name="IsOrcTag" />
+	</tags>
+	</string>
+	<string id="str_liege_title.aserai_goblin" text="{=str_tor_liege_title_aserai_goblin}da sneakiest Gobbo Warlord evah">
+	<tags>
+		<tag tag_name="AseraiTag" />
+		<tag tag_name="IsGoblinTag" />
+	</tags>
+	</string>
   <string id="str_liege_title.chaos_culture" text="{=str_tor_liege_title_chaos_culture}Chaos Lord" />
   <string id="str_liege_title_female.chaos_culture" text="{=str_tor_liege_title_female_chaos_culture}Chaos Lord" />
 
@@ -1941,7 +1958,49 @@
       <tag tag_name="CruelTag" weight="1" />
     </tags>
   </string>
-
+	<string id="str_comment_noble_introduces_self_and_clan.sturgia" text="{=str_tor_comment_noble_introduces_self_and_clan_sturgia}I am {CONVERSATION_CHARACTER.LINK}, of the {CLAN_NAME}, one of the ancient clans of Karaz Ankor.">
+	<tags>
+		<tag tag_name="SturgianTag" />
+	</tags>
+	</string>
+	<string id="str_comment_noble_introduces_self_and_clan.sturgia_boasting" text="{=str_tor_comment_noble_introduces_self_and_clan_sturgia_boasting}I am {CONVERSATION_CHARACTER.LINK}, of the {CLAN_NAME}, a name you will have heard many times in the Dwarfen sagas.">
+	<tags>
+			<tag tag_name="SturgianTag" />
+			<tag tag_name="UncharitableTag" />
+	</tags>
+	</string>
+	<string id="str_comment_noble_introduces_self_and_clan.sturgia_boasting_2" text="{=PBgLvyOa}I am {CONVERSATION_CHARACTER.LINK}, of the {CLAN_NAME}. Our Gromthi stood among those who fought with courage in the War of the Beard. Many craven and treacherous elgi were then sent straight into their graves.">
+	<tags>
+		<tag tag_name="SturgianTag" />
+		<tag tag_name="HonorTag" weight="1" />
+	</tags>
+	</string>
+	<string id="str_comment_noble_introduces_self_and_clan.aserai" text="{=str_tor_comment_noble_introduces_self_and_clan_aserai}I'z da {CONVERSATION_CHARACTER.LINK} ov da {CLAN_NAME}, un uv da baddest an' meanest mobs.">
+	<tags>
+		<tag tag_name="AseraiTag" />
+		<tag tag_name="IsOrcTag" />
+	</tags>
+	</string>
+	<string id="str_comment_noble_introduces_self_and_clan.aserai_boasting" text="{=str_tor_comment_noble_introduces_self_and_clan.aserai_boasting}I'z da {CONVERSATION_CHARACTER.LINK} ov da {CLAN_NAME}, da killiest tribe ov 'em all!">
+		<tags>
+			<tag tag_name="AseraiTag" />
+			<tag tag_name="IsOrcTag" />
+			<tag tag_name="UncharitableTag" />
+		</tags>
+	</string>
+	<string id="str_comment_noble_introduces_self_and_clan.goblin" text="{=str_tor_comment_noble_introduces_self_and_clan_goblin}I'z da {CONVERSATION_CHARACTER.LINK} ov da {CLAN_NAME}, un uv da sneakiest Gobbo tribez dere iz.">
+	<tags>
+		<tag tag_name="AseraiTag" />
+		<tag tag_name="IsGoblinTag" />
+	</tags>
+	</string>
+	<string id="str_comment_noble_introduces_self_and_clan.goblin_boasting" text="{=str_tor_comment_noble_introduces_self_and_clan.goblin_boasting}I'z da {CONVERSATION_CHARACTER.LINK} ov da {CLAN_NAME}, da stabbiest an' nastiest Gobbo clan evah!">
+		<tags>
+			<tag tag_name="AseraiTag" />
+			<tag tag_name="IsGoblinTag" />
+			<tag tag_name="UncharitableTag" />
+		</tags>
+	</string>
   <!--skills-->
   <string id="str_how_to_learn_skill.Faith" text="{=str_tor_how_to_learn_skill_Faith}Use combat prayers." />
   <string id="str_how_to_learn_skill.Gunpowder" text="{=str_tor_how_to_learn_skill_Gunpowder}Fight with a firearm." />
@@ -2240,7 +2299,7 @@
   <!-- Empire 1 - Warrior Priest of Sigmar -->
   <string id="tor_hire_companion_begone.tor_wanderer_empire_1" text="{=str_tor_hire_companion_begone_tor_wanderer_empire_1}Begone heretic. I have no business with your kind." />
   <string id="tor_introduction.tor_wanderer_empire_1" text="{=str_tor_introduction_tor_wanderer_empire_1}Sigmar be with you. How can I help?" />
-  <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_1" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_1}}They call me {PLAYER.NAME}. Tell me about yourself." />
+  <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_1" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_1}They call me {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_empire_1" text="{=str_tor_hire_companion_skip_p_tor_wanderer_empire_1}My name is {PLAYER.NAME}. Let us skip the pleasantries and get right to business." />
   <string id="tor_prebackstory.tor_wanderer_empire_1" text="{=str_tor_prebackstory_tor_wanderer_empire_1}The story of my life is insignificant, but I will speak." />
   <string id="tor_backstory_a.tor_wanderer_empire_1" text="{=str_tor_backstory_a_tor_wanderer_empire_1}I was an orphan left at the doors of a chapel, the Cult of Sigmar took me in and raised me." />
@@ -5638,6 +5697,7 @@
 	<string id="tor_engineer_quest_task2" text="{=str_tor_engineer_quest_task2}Track down Goswin and retrieve the stolen components."/>
 	<string id="tor_engineer_quest_task3" text="{=str_tor_engineer_quest_task3}Return to the Master Engineer in Nuln"/>
 	<string id="tor_rogue_engineer_name" text="{=str_tor_rogue_engineer_name}Goswin"/>
+	<string id="rogueEngineerParty" text="{=str_rogueengineerparty}Goswin"/>
 
 	<!--Mercenary Career Button-->
 	<string id="tor_career_button_mercenary_default" text="{=str_tor_career_button_mercenary_default}Makes the selected troop a companion."/>
