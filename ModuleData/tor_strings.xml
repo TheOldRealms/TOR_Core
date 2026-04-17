@@ -6176,6 +6176,10 @@
 	<string id="eonir_envoy_we_will_see_text" text="{=str_eonir_envoy_we_will_see_text}We will see what we can do."/>
 	<string id="eonir_envoy_will_see_what_can_do_text" text="{=str_eonir_envoy_will_see_what_can_do_text}I will see what I can do."/>
 	<string id="eonir_envoy_anything_else_text" text="{=str_eonir_envoy_anything_else_text}Is there something else I could do for you?"/>
+  
+  <!-- Eonir envoy - not enough favor for lore -->
+  <string id="eonir_spellsinger_learn_lore_no_favor_text" text="{=str_eonir_spellsinger_learn_lore_no_favor_text}[TODO] You do not have enough standing with the Council yet. Return when you have earned more favor. ({BASE_LORE_COST}{FAVOR_ICON})" />
+
 
 	<!-- Eonir Druchii Envoy Texts -->
 	<string id="eonir_druchii_intro_text" text="{=str_eonir_druchii_intro_text}Greetings. What brings you to speak with me?"/>
@@ -6335,6 +6339,33 @@
   
   
   <string id="tor_stats_troll_bonus_text" text="{=str_tor_stats_troll_bonus_text}Troll bonus" />
+  
+  
+  <!-- MinorVampire lore choice popup -->
+  <string id="tor_vampire_lore_choice_label" text="{=str_tor_vampire_lore_choice_label}[TODO] Choose Your Dark Path" />
+  <string id="tor_vampire_lore_choice_description" text="{=str_tor_vampire_lore_choice_description}[TODO] This choice is final. You may only master one of these dark arts." />
+
+  <!-- Necrarch lore choice popup -->
+  <string id="tor_necrarch_lore_choice_description" text="{=str_tor_necrarch_lore_choice_description}[TODO] You may learn {REMAINING_LORES} more lores at your current level of mastery." />
+
+  <!-- Necrarch tier limit dialog -->
+  <string id="tor_spelltrainer_vampire_tier_limit" text="{=str_tor_spelltrainer_vampire_tier_limit}[TODO] You have learned all that your current mastery allows. Return when you have advanced further in your dark arts." />
+
+  <!-- Vampire dialog after lore selection -->
+  <string id="tor_spelltrainer_vampire_lore_learned" text="{=str_tor_spelltrainer_vampire_lore_learned}[TODO] The dark knowledge is now yours. Use it wisely... or not." />
+  <string id="tor_spelltrainer_vampire_lore_acknowledge" text="{=str_tor_spelltrainer_vampire_lore_acknowledge}[TODO] I can feel the power coursing through me." />
+
+  <!-- Dialog ellipsis for intermediate steps -->
+  <string id="tor_dialog_ellipsis" text="{=str_tor_dialog_ellipsis}..." />
+
+  <!-- Vampire trainer dialog hub -->
+  <string id="tor_spelltrainer_vampire_start" text="{=str_tor_spelltrainer_vampire_start}[TODO] Ah, a creature of the night graces my presence. What do you seek?" />
+  <string id="tor_spelltrainer_vampire_hub" text="{=str_tor_spelltrainer_vampire_hub}[TODO] What else do you require?" />
+  <string id="tor_spelltrainer_vampire_open_book" text="{=str_tor_spelltrainer_vampire_open_book}[TODO] I wish to study the dark arts." />
+  <string id="tor_spelltrainer_vampire_scrolls" text="{=str_tor_spelltrainer_vampire_scrolls}[TODO] Show me your forbidden tomes." />
+  <string id="tor_spelltrainer_vampire_player_goodbye" text="{=str_tor_spelltrainer_vampire_player_goodbye}[TODO] I shall take my leave." />
+  <string id="tor_spelltrainer_vampire_goodbye" text="{=str_tor_spelltrainer_vampire_goodbye}[TODO] Until the next moonrise..." />
+  <string id="tor_spelltrainer_vampire_close_book" text="{=str_tor_spelltrainer_vampire_close_book}[TODO] The shadows reveal their secrets to you." />
   
   
   
