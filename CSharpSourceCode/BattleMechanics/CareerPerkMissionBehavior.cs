@@ -251,7 +251,7 @@ namespace TOR_Core.BattleMechanics
 
             if (affectedAgent.HasAttribute("WindsDeathLink"))
             {
-                Hero.MainHero.AddWindsOfMagic(-0.25f);
+                Hero.MainHero.AddWindsOfMagic(-0.15f);
             }
 
             if (affectorAgent.IsMainAgent)
