@@ -596,9 +596,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                     return 8;
                 if (Hero.MainHero.HasUnlockedCareerChoiceTier(2))
                     return 5;
-                if (Hero.MainHero.HasUnlockedCareerChoiceTier(1))
-                    return 3;
-                return 2;
+                return 3;
             }
 
             bool isVampireTrainer()

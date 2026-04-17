@@ -406,6 +406,8 @@ public class TeefBehavior : CampaignBehaviorBase
         var pileItem = MBObjectManager.Instance.GetObject<ItemObject>("tor_gs_gold_pile");
 
         Hero.MainHero.CurrentSettlement.Stash.AddToCounts(pileItem, pileCount);
+        
+        Hero.MainHero.ChangeHeroGold(-gold);
     }
 
     private void AddGoldForTeef(List<InquiryElement> inquiryElements)
