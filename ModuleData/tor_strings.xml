@@ -1741,6 +1741,23 @@
       <tag tag_name="EonirTag" />
     </tags>
   </string>
+	<string id="str_liege_title.sturgia" text="{=str_tor_liege_title_sturgia}one of the Hold Kings of Karaz Ankor">
+	<tags>
+		<tag tag_name="SturgianTag" />
+	</tags>
+	</string>
+	<string id="str_liege_title.aserai" text="{=str_tor_liege_title_aserai}da biggest an' baddest Warlord evah">
+	<tags>
+		<tag tag_name="AseraiTag" />
+		<tag tag_name="IsOrcTag" />
+	</tags>
+	</string>
+	<string id="str_liege_title.aserai_goblin" text="{=str_tor_liege_title_aserai_goblin}da sneakiest Gobbo Warlord evah">
+	<tags>
+		<tag tag_name="AseraiTag" />
+		<tag tag_name="IsGoblinTag" />
+	</tags>
+	</string>
   <string id="str_liege_title.chaos_culture" text="{=str_tor_liege_title_chaos_culture}Chaos Lord" />
   <string id="str_liege_title_female.chaos_culture" text="{=str_tor_liege_title_female_chaos_culture}Chaos Lord" />
 
@@ -1941,7 +1958,49 @@
       <tag tag_name="CruelTag" weight="1" />
     </tags>
   </string>
-
+	<string id="str_comment_noble_introduces_self_and_clan.sturgia" text="{=str_tor_comment_noble_introduces_self_and_clan_sturgia}I am {CONVERSATION_CHARACTER.LINK}, of the {CLAN_NAME}, one of the ancient clans of Karaz Ankor.">
+	<tags>
+		<tag tag_name="SturgianTag" />
+	</tags>
+	</string>
+	<string id="str_comment_noble_introduces_self_and_clan.sturgia_boasting" text="{=str_tor_comment_noble_introduces_self_and_clan_sturgia_boasting}I am {CONVERSATION_CHARACTER.LINK}, of the {CLAN_NAME}, a name you will have heard many times in the Dwarfen sagas.">
+	<tags>
+			<tag tag_name="SturgianTag" />
+			<tag tag_name="UncharitableTag" />
+	</tags>
+	</string>
+	<string id="str_comment_noble_introduces_self_and_clan.sturgia_boasting_2" text="{=PBgLvyOa}I am {CONVERSATION_CHARACTER.LINK}, of the {CLAN_NAME}. Our Gromthi stood among those who fought with courage in the War of the Beard. Many craven and treacherous elgi were then sent straight into their graves.">
+	<tags>
+		<tag tag_name="SturgianTag" />
+		<tag tag_name="HonorTag" weight="1" />
+	</tags>
+	</string>
+	<string id="str_comment_noble_introduces_self_and_clan.aserai" text="{=str_tor_comment_noble_introduces_self_and_clan_aserai}I'z da {CONVERSATION_CHARACTER.LINK} ov da {CLAN_NAME}, un uv da baddest an' meanest mobs.">
+	<tags>
+		<tag tag_name="AseraiTag" />
+		<tag tag_name="IsOrcTag" />
+	</tags>
+	</string>
+	<string id="str_comment_noble_introduces_self_and_clan.aserai_boasting" text="{=str_tor_comment_noble_introduces_self_and_clan.aserai_boasting}I'z da {CONVERSATION_CHARACTER.LINK} ov da {CLAN_NAME}, da killiest tribe ov 'em all!">
+		<tags>
+			<tag tag_name="AseraiTag" />
+			<tag tag_name="IsOrcTag" />
+			<tag tag_name="UncharitableTag" />
+		</tags>
+	</string>
+	<string id="str_comment_noble_introduces_self_and_clan.goblin" text="{=str_tor_comment_noble_introduces_self_and_clan_goblin}I'z da {CONVERSATION_CHARACTER.LINK} ov da {CLAN_NAME}, un uv da sneakiest Gobbo tribez dere iz.">
+	<tags>
+		<tag tag_name="AseraiTag" />
+		<tag tag_name="IsGoblinTag" />
+	</tags>
+	</string>
+	<string id="str_comment_noble_introduces_self_and_clan.goblin_boasting" text="{=str_tor_comment_noble_introduces_self_and_clan.goblin_boasting}I'z da {CONVERSATION_CHARACTER.LINK} ov da {CLAN_NAME}, da stabbiest an' nastiest Gobbo clan evah!">
+		<tags>
+			<tag tag_name="AseraiTag" />
+			<tag tag_name="IsGoblinTag" />
+			<tag tag_name="UncharitableTag" />
+		</tags>
+	</string>
   <!--skills-->
   <string id="str_how_to_learn_skill.Faith" text="{=str_tor_how_to_learn_skill_Faith}Use combat prayers." />
   <string id="str_how_to_learn_skill.Gunpowder" text="{=str_tor_how_to_learn_skill_Gunpowder}Fight with a firearm." />
@@ -2240,7 +2299,7 @@
   <!-- Empire 1 - Warrior Priest of Sigmar -->
   <string id="tor_hire_companion_begone.tor_wanderer_empire_1" text="{=str_tor_hire_companion_begone_tor_wanderer_empire_1}Begone heretic. I have no business with your kind." />
   <string id="tor_introduction.tor_wanderer_empire_1" text="{=str_tor_introduction_tor_wanderer_empire_1}Sigmar be with you. How can I help?" />
-  <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_1" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_1}}They call me {PLAYER.NAME}. Tell me about yourself." />
+  <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_1" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_1}They call me {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_empire_1" text="{=str_tor_hire_companion_skip_p_tor_wanderer_empire_1}My name is {PLAYER.NAME}. Let us skip the pleasantries and get right to business." />
   <string id="tor_prebackstory.tor_wanderer_empire_1" text="{=str_tor_prebackstory_tor_wanderer_empire_1}The story of my life is insignificant, but I will speak." />
   <string id="tor_backstory_a.tor_wanderer_empire_1" text="{=str_tor_backstory_a_tor_wanderer_empire_1}I was an orphan left at the doors of a chapel, the Cult of Sigmar took me in and raised me." />
@@ -4264,7 +4323,7 @@
   <string id="tor_careerchoice_description.IronDrakesPassive1" text="{=str_tor_careerchoice_description_IronDrakesPassive1}+20% Fire damage for 'Irondrake' troops." />
   <string id="tor_careerchoice_description.IronDrakesPassive2" text="{=str_tor_careerchoice_description_IronDrakesPassive2}-25% 'Oathgold' cost for 'Irondrake' troops." />
   <string id="tor_careerchoice_description.IronDrakesPassive3" text="{=str_tor_careerchoice_description_IronDrakesPassive3}+12 ammunition for Drakefire canisters." />
-  <string id="tor_careerchoice_description.IronDrakesPassive4" text="{=str_tor_careerchoice_description_IronDrakesPassive4}+10% ammunition for 'Ironbreaker' troops per Ironbeard companion." />
+  <string id="tor_careerchoice_description.IronDrakesPassive4" text="{=str_tor_careerchoice_description_IronDrakesPassive4}+10% ammunition for 'Ironbreaker' troops per Ironbeard unit." />
 
   <string id="tor_careerchoice_description.GromrilArmorKeystone" text="{=str_tor_careerchoice_description_GromrilArmorKeystone}Impenetrable increases personal 'Physical Resistance' by 0.5% when a hit is taken, lasts 10s." />
   <string id="tor_careerchoice_description.GromrilArmorPassive1" text="{=str_tor_careerchoice_description_GromrilArmorPassive1}+20% 'Physical Resistance' for 'Ironbreaker' troops." />
@@ -4342,7 +4401,7 @@
   <string id="tor_careerchoice_description.ChiselAndHammerPassive1" text="{=str_tor_careerchoice_description_ChiselAndHammerPassive1}+15% 'Physical' damage for troops affected by a 'Rune'." />
   <string id="tor_careerchoice_description.ChiselAndHammerPassive2" text="{=str_tor_careerchoice_description_ChiselAndHammerPassive2}Kills made with 'Rune' weapons provide Spellcraft experience." />
   <string id="tor_careerchoice_description.ChiselAndHammerPassive3" text="{=str_tor_careerchoice_description_ChiselAndHammerPassive3}+20% personal 'Rune' ability affect radius." />
-  <string id="tor_careerchoice_description.ChiselAndHammerPassive4" text="{=str_tor_careerchoice_description_ChiselAndHammerPassive4}-25% 'Oathgold' cost to upgrade 'Elite' troops." />
+  <string id="tor_careerchoice_description.ChiselAndHammerPassive4" text="{=str_tor_careerchoice_description_ChiselAndHammerPassive4}-25% 'Oathgold' cost to Dwarf Noble troops." />
 
   <string id="tor_careerchoice_description.ForHearthAndHomeKeystone" text="{=str_tor_careerchoice_description_ForHearthAndHomeKeystone}The 'Rune' Heart and Home also provides +25% 'Physical' ranged damage." />
   <string id="tor_careerchoice_description.ForHearthAndHomePassive1" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive1}+10% 'Ward Save' for troops affected by a 'Rune'." />
@@ -4678,7 +4737,7 @@
   
   
   <!-- Rewards -->
-<string id="tor_careerunlock_reward_2.MinorVampire" text="{=str_tor_careerunlock_reward_2_minorvampire}[TODO] Unlocks Dark Magic" />
+<string id="tor_careerunlock_reward_2.MinorVampire" text="{=str_tor_careerunlock_reward_2_minorvampire}Unlock Death or Dark Magic" />
 
 <!-- Grail Damsel -->
 <string id="tor_careerunlock_reward_2.GrailDamsel" text="{=str_tor_careerunlock_reward_2_graildamsel}Unlocks 2nd Lore" />
@@ -5638,6 +5697,7 @@
 	<string id="tor_engineer_quest_task2" text="{=str_tor_engineer_quest_task2}Track down Goswin and retrieve the stolen components."/>
 	<string id="tor_engineer_quest_task3" text="{=str_tor_engineer_quest_task3}Return to the Master Engineer in Nuln"/>
 	<string id="tor_rogue_engineer_name" text="{=str_tor_rogue_engineer_name}Goswin"/>
+	<string id="rogueEngineerParty" text="{=str_rogueengineerparty}Goswin"/>
 
 	<!--Mercenary Career Button-->
 	<string id="tor_career_button_mercenary_default" text="{=str_tor_career_button_mercenary_default}Makes the selected troop a companion."/>
@@ -6116,6 +6176,10 @@
 	<string id="eonir_envoy_we_will_see_text" text="{=str_eonir_envoy_we_will_see_text}We will see what we can do."/>
 	<string id="eonir_envoy_will_see_what_can_do_text" text="{=str_eonir_envoy_will_see_what_can_do_text}I will see what I can do."/>
 	<string id="eonir_envoy_anything_else_text" text="{=str_eonir_envoy_anything_else_text}Is there something else I could do for you?"/>
+  
+  <!-- Eonir envoy - not enough favor for lore -->
+  <string id="eonir_spellsinger_learn_lore_no_favor_text" text="{=str_eonir_spellsinger_learn_lore_no_favor_text}You are not ready yet. Return when you have earned more favour. ({BASE_LORE_COST}{FAVOR_ICON})" />
+
 
 	<!-- Eonir Druchii Envoy Texts -->
 	<string id="eonir_druchii_intro_text" text="{=str_eonir_druchii_intro_text}Greetings. What brings you to speak with me?"/>
@@ -6275,6 +6339,33 @@
   
   
   <string id="tor_stats_troll_bonus_text" text="{=str_tor_stats_troll_bonus_text}Troll bonus" />
+  
+  
+  <!-- MinorVampire lore choice popup -->
+  <string id="tor_vampire_lore_choice_label" text="{=str_tor_vampire_lore_choice_label}Choose your Lore of Magic…" />
+  <string id="tor_vampire_lore_choice_description" text="{=str_tor_vampire_lore_choice_description}You may only master one of these Lores of Magic, choose wisely." />
+
+  <!-- Necrarch lore choice popup -->
+  <string id="tor_necrarch_lore_choice_description" text="{=str_tor_necrarch_lore_choice_description}At your current level of mastery you may learn the following number of Lores of Magic: {REMAINING_LORES}" />
+
+  <!-- Necrarch tier limit dialog -->
+  <string id="tor_spelltrainer_vampire_tier_limit" text="{=str_tor_spelltrainer_vampire_tier_limit}You have learned all that you can at this stage. Return when your arcane power has grown." />
+
+  <!-- Vampire dialog after lore selection -->
+  <string id="tor_spelltrainer_vampire_lore_learned" text="{=str_tor_spelltrainer_vampire_lore_learned}Dark powers are now yours to command." />
+  <string id="tor_spelltrainer_vampire_lore_acknowledge" text="{=str_tor_spelltrainer_vampire_lore_acknowledge}Now I can feel the power all around us." />
+
+  <!-- Dialog ellipsis for intermediate steps -->
+  <string id="tor_dialog_ellipsis" text="{=str_tor_dialog_ellipsis}…" />
+
+  <!-- Vampire trainer dialog hub -->
+  <string id="tor_spelltrainer_vampire_start" text="{=str_tor_spelltrainer_vampire_start}This humble servant lives to serve you, my Lord." />
+  <string id="tor_spelltrainer_vampire_hub" text="{=str_tor_spelltrainer_vampire_hub}Was there anything else? I will share what knowledge I have." />
+  <string id="tor_spelltrainer_vampire_open_book" text="{=str_tor_spelltrainer_vampire_open_book}Show me the spells in your possession." />
+  <string id="tor_spelltrainer_vampire_scrolls" text="{=str_tor_spelltrainer_vampire_scrolls}Show me what magic formulas you possess." />
+  <string id="tor_spelltrainer_vampire_player_goodbye" text="{=str_tor_spelltrainer_vampire_player_goodbye}We are finished." />
+  <string id="tor_spelltrainer_vampire_goodbye" text="{=str_tor_spelltrainer_vampire_goodbye}Fare the well, my Lord…" />
+  <string id="tor_spelltrainer_vampire_close_book" text="{=str_tor_spelltrainer_vampire_close_book}I only wish to serve, my Lord…" />
   
   
   

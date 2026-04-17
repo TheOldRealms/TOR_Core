@@ -3018,10 +3018,248 @@
 		<skill id="TwoHanded"
 			   value="300" />
 	</SkillSet>
-	<SkillSet id="tor_skills_minotaur">
+
+	<!--Tier 0-->
+	<SkillSet id="tor_skills_orc">
 		<skill id="Athletics"
-		       value="300" />
+			   value="40" />
+		<skill id="OneHanded"
+			   value="30" />
 		<skill id="TwoHanded"
-		       value="270" />
+			   value="30" />
+	</SkillSet>
+	<!--Tier 1-->
+	<SkillSet id="tor_skills_orc_boy">
+		<skill id="Athletics"
+			   value="60" />
+		<skill id="OneHanded"
+			   value="60" />
+		<skill id="TwoHanded"
+			   value="50" />
+		<skill id="Polearm"
+			   value="20" />
+	</SkillSet>
+
+	<SkillSet id="tor_skills_goblin">
+		<skill id="Athletics"
+			   value="20" />
+		<skill id="OneHanded"
+			   value="15" />
+		<skill id="Polearm"
+			   value="20" />
+	</SkillSet>
+	<!--Tier 2-->
+	<!--Tier 3-->
+	<SkillSet id="tor_skills_orc_boar_boy">
+		<skill id="Athletics"
+			   value="80" />
+		<skill id="Riding"
+			   value="110" />
+		<skill id="OneHanded"
+			   value="90" />
+		<skill id="TwoHanded"
+			   value="80" />
+		<skill id="Polearm"
+			   value="100" />
+	</SkillSet>
+
+	<SkillSet id="tor_skills_orc_choppa">
+		<skill id="Athletics"
+			   value="100" />
+		<skill id="OneHanded"
+			   value="100" />
+		<skill id="TwoHanded"
+			   value="100" />
+		<skill id="Polearm"
+			   value="50" />
+	</SkillSet>
+
+	<SkillSet id="tor_skills_arrer_boy">
+		<skill id="Athletics"
+			   value="80" />
+		<skill id="OneHanded"
+			   value="50" />
+		<skill id="TwoHanded"
+			   value="20" />
+		<skill id="Polearm"
+			   value="50" />
+		<skill id="Bow"
+			   value="100" />
+	</SkillSet>
+	<SkillSet id="tor_skills_goblin_wolf_rida">
+		<skill id="Athletics"
+			   value="40" />
+		<skill id="Riding"
+			   value="70" />
+		<skill id="OneHanded"
+			   value="20" />
+		<skill id="Polearm"
+			   value="70" />
+	</SkillSet>
+	<SkillSet id="tor_skills_goblin_stikka">
+		<skill id="Athletics"
+			   value="40" />
+		<skill id="OneHanded"
+			   value="35" />
+		<skill id="Polearm"
+			   value="50" />
+	</SkillSet>
+	<SkillSet id="tor_skills_goblin_wolf_rida_archer">
+		<skill id="Athletics"
+			   value="50" />
+		<skill id="Riding"
+			   value="80" />
+		<skill id="OneHanded"
+			   value="30" />
+		<skill id="Polearm"
+			   value="60" />
+		<skill id="Bow"
+			   value="75" />
+	</SkillSet>
+
+	<SkillSet id="tor_skills_goblin_nasty_skulker">
+		<skill id="Athletics"
+			   value="90" />
+		<skill id="OneHanded"
+			   value="60" />
+		<skill id="Polearm"
+			   value="70" />
+	</SkillSet>
+	<SkillSet id="tor_skills_goblin_archer">
+		<skill id="Athletics"
+			   value="35" />
+		<skill id="OneHanded"
+			   value="30" />
+		<skill id="Polearm"
+			   value="40" />
+		<skill id="Bow"
+			   value="60" />
+	</SkillSet>
+	<!--Tier 4-->
+	<SkillSet id="tor_skills_arrer_boy_boss">
+		<skill id="Athletics"
+			   value="110" />
+		<skill id="OneHanded"
+			   value="80" />
+		<skill id="TwoHanded"
+			   value="50" />
+		<skill id="Polearm"
+			   value="50" />
+		<skill id="Bow"
+			   value="130" />
+	</SkillSet>
+
+	<SkillSet id="tor_skills_goblin_wolf_rida_boss">
+		<skill id="Athletics"
+			   value="70" />
+		<skill id="Riding"
+			   value="120" />
+		<skill id="OneHanded"
+			   value="80" />
+		<skill id="Polearm"
+			   value="90" />
+	</SkillSet>
+
+	<SkillSet id="tor_skills_goblin_boss">
+		<skill id="Athletics"
+			   value="110" />
+		<skill id="OneHanded"
+			   value="90" />
+		<skill id="Polearm"
+			   value="90" />
+	</SkillSet>
+
+	<!--Tier 5-->
+	<SkillSet id="tor_skills_orc_boar_boy_big">
+		<skill id="Athletics"
+			   value="130" />
+		<skill id="Riding"
+			   value="170" />
+		<skill id="OneHanded"
+			   value="150" />
+		<skill id="TwoHanded"
+			   value="140" />
+		<skill id="Polearm"
+			   value="170" />
+	</SkillSet>
+
+	<SkillSet id="tor_skills_orc_big_un">
+		<skill id="Athletics"
+			   value="150" />
+		<skill id="OneHanded"
+			   value="165" />
+		<skill id="TwoHanded"
+			   value="150" />
+		<skill id="Polearm"
+			   value="50" />
+	</SkillSet>
+	<!--Tier 6-->
+	<SkillSet id="tor_skills_orc_boss">
+		<skill id="Athletics"
+			   value="180" />
+		<skill id="OneHanded"
+			   value="195" />
+		<skill id="TwoHanded"
+			   value="195" />
+		<skill id="Polearm"
+			   value="50" />
+	</SkillSet>
+
+	<SkillSet id="tor_skills_black_orc">
+		<skill id="Athletics"
+			   value="190" />
+		<skill id="OneHanded"
+			   value="200" />
+		<skill id="TwoHanded"
+			   value="200" />
+		<skill id="Polearm"
+			   value="170" />
+	</SkillSet>
+
+	<!--Tier 7-->
+	<SkillSet id="tor_skills_black_orc_brute">
+		<skill id="Athletics"
+			   value="210" />
+		<skill id="OneHanded"
+			   value="250" />
+		<skill id="TwoHanded"
+			   value="220" />
+		<skill id="Polearm"
+			   value="200" />
+	</SkillSet>
+
+	<!--Tier 8-->
+
+	<!--Tier 9-->
+	<SkillSet id="tor_skills_black_orc_boss">
+		<skill id="Athletics"
+			   value="270" />
+		<skill id="OneHanded"
+			   value="290" />
+		<skill id="TwoHanded"
+			   value="270" />
+		<skill id="Polearm"
+			   value="250" />
+	</SkillSet>
+
+	<SkillSet id="tor_skills_black_orc_berzerka">
+		<skill id="Athletics"
+			   value="270" />
+		<skill id="OneHanded"
+			   value="270" />
+		<skill id="TwoHanded"
+			   value="290" />
+		<skill id="Polearm"
+			   value="250" />
+	</SkillSet>
+	<SkillSet id="tor_skills_troll">
+		<skill id="Athletics"
+			   value="270" />
+		<skill id="OneHanded"
+			   value="270" />
+		<skill id="TwoHanded"
+			   value="280" />
+		<skill id="Polearm"
+			   value="90" />
 	</SkillSet>
 </SkillSets>

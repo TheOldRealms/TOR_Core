@@ -234,7 +234,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_empire_young_noble_squire" default_group="infantry" level="16" name="{=str_tor_empire_young_noble_squire}Empire Young Noble Squire" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
     <face>
-      <face_key_template value="BodyProperty.fighter_empireofman_elite" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_empire_noble_cavalry" />
@@ -2001,7 +2001,7 @@
       <EquipmentSet id="tor_dw_troll_slayer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_orc" default_group="infantry" level="1" name="{=str_tor_gs_orc}Orc" occupation="Villager" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level1" race="orc">
+  <NPCCharacter id="tor_gs_orc" default_group="infantry" level="1" name="{=str_tor_gs_orc}Orc" occupation="Villager" culture="Culture.aserai" skill_template="SkillSet.tor_skills_orc" race="orc">
     <face>
       <face_key_template value="BodyProperty.orc_small" />
     </face>
@@ -2013,7 +2013,7 @@
       <EquipmentSet id="tor_gs_orc_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_orc_boy" default_group="infantry" level="6" name="{=str_tor_gs_orc_boy}Orc Boy" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="orc">
+  <NPCCharacter id="tor_gs_orc_boy" default_group="infantry" level="6" name="{=str_tor_gs_orc_boy}Orc Boy" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_orc_boy" is_basic_troop="true" race="orc">
     <face>
       <face_key_template value="BodyProperty.orc_small" />
     </face>
@@ -2027,7 +2027,7 @@
       <EquipmentSet id="tor_gs_orc_boy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_orc_boar_boy" default_group="cavalry" level="16" name="{=str_tor_gs_orc_boar_boy}Orc Boar Boy" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level16" race="orc">
+  <NPCCharacter id="tor_gs_orc_boar_boy" default_group="cavalry" level="16" name="{=str_tor_gs_orc_boar_boy}Orc Boar Boy" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_orc_boar_boy" race="orc">
     <face>
       <face_key_template value="BodyProperty.orc_mid" />
     </face>
@@ -2039,7 +2039,7 @@
       <EquipmentSet id="tor_gs_orc_boar_boy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_orc_choppa" default_group="infantry" level="16" name="{=str_tor_gs_orc_choppa}Orc Choppa" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level16" race="orc">
+  <NPCCharacter id="tor_gs_orc_choppa" default_group="infantry" level="16" name="{=str_tor_gs_orc_choppa}Orc Choppa" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_orc_choppa" race="orc">
     <face>
       <face_key_template value="BodyProperty.orc_mid" />
     </face>
@@ -2051,7 +2051,7 @@
       <EquipmentSet id="tor_gs_orc_choppa_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_orc_arrer_boy" default_group="ranged" level="16" name="{=str_tor_gs_orc_arrer_boy}Orc Arrer Boy" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level16" race="orc">
+  <NPCCharacter id="tor_gs_orc_arrer_boy" default_group="ranged" level="16" name="{=str_tor_gs_orc_arrer_boy}Orc Arrer Boy" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_arrer_boy" race="orc">
     <face>
       <face_key_template value="BodyProperty.orc_small" />
     </face>
@@ -2063,7 +2063,7 @@
       <EquipmentSet id="tor_gs_orc_arrer_boy_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_orc_arrer_boy_boss" default_group="ranged" level="21" name="{=str_tor_gs_orc_arrer_boy_boss}Orc Arrer Boy Boss" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level21" race="orc">
+  <NPCCharacter id="tor_gs_orc_arrer_boy_boss" default_group="ranged" level="21" name="{=str_tor_gs_orc_arrer_boy_boss}Orc Arrer Boy Boss" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_arrer_boy_boss" race="orc">
     <face>
       <face_key_template value="BodyProperty.orc_mid" />
     </face>
@@ -2073,7 +2073,7 @@
       <EquipmentSet id="tor_gs_orc_arrer_boy_boss_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_orc_boar_boy_bigun" default_group="cavalry" level="26" name="{=str_tor_gs_orc_boar_boy_bigun}Orc Boar Boy Big 'Un" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level26" race="orc">
+  <NPCCharacter id="tor_gs_orc_boar_boy_bigun" default_group="cavalry" level="26" name="{=str_tor_gs_orc_boar_boy_bigun}Orc Boar Boy Big 'Un" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_orc_boar_boy_big" race="orc">
     <face>
       <face_key_template value="BodyProperty.orc_small" />
     </face>
@@ -2083,7 +2083,7 @@
       <EquipmentSet id="tor_gs_orc_boar_boy_bigun_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_orc_bigun" default_group="infantry" level="26" name="{=str_tor_gs_orc_bigun}Orc Big 'Un" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level26" race="orc">
+  <NPCCharacter id="tor_gs_orc_bigun" default_group="infantry" level="26" name="{=str_tor_gs_orc_bigun}Orc Big 'Un" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_orc_big_un" race="orc">
     <face>
       <face_key_template value="BodyProperty.orc_big" />
     </face>
@@ -2095,7 +2095,7 @@
       <EquipmentSet id="tor_gs_orc_bigun_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_orc_boss" default_group="infantry" level="31" name="{=str_tor_gs_orc_boss}Orc Boss" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level31" race="orc">
+  <NPCCharacter id="tor_gs_orc_boss" default_group="infantry" level="31" name="{=str_tor_gs_orc_boss}Orc Boss" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_orc_boss" race="orc">
     <face>
       <face_key_template value="BodyProperty.orc_big" />
     </face>
@@ -2105,7 +2105,7 @@
       <EquipmentSet id="tor_gs_orc_boss_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_black_orc" default_group="infantry" level="31" name="{=str_tor_gs_black_orc}Black Orc" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level31" is_basic_troop="true" race="orc">
+  <NPCCharacter id="tor_gs_black_orc" default_group="infantry" level="31" name="{=str_tor_gs_black_orc}Black Orc" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_black_orc" is_basic_troop="true" race="orc">
     <face>
       <face_key_template value="BodyProperty.orc_black" />
     </face>
@@ -2117,7 +2117,7 @@
       <EquipmentSet id="tor_gs_black_orc_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_black_orc_brute" default_group="infantry" level="36" name="{=str_tor_gs_black_orc_brute}Black Orc Brute" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level36" race="orc">
+  <NPCCharacter id="tor_gs_black_orc_brute" default_group="infantry" level="36" name="{=str_tor_gs_black_orc_brute}Black Orc Brute" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_black_orc_brute" race="orc">
     <face>
       <face_key_template value="BodyProperty.orc_black" />
     </face>
@@ -2130,7 +2130,7 @@
       <EquipmentSet id="tor_gs_black_orc_brute_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_black_orc_boss" default_group="infantry" level="46" name="{=str_tor_gs_black_orc_boss}Black Orc Boss" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level46" race="orc">
+  <NPCCharacter id="tor_gs_black_orc_boss" default_group="infantry" level="46" name="{=str_tor_gs_black_orc_boss}Black Orc Boss" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_black_orc_boss" race="orc">
     <face>
       <face_key_template value="BodyProperty.orc_black" />
     </face>
@@ -2140,7 +2140,7 @@
       <EquipmentSet id="tor_gs_black_orc_boss_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_black_orc_berzerka" default_group="infantry" level="46" name="{=str_tor_gs_black_orc_berzerka}Black Orc Berzerka" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level46" race="orc">
+  <NPCCharacter id="tor_gs_black_orc_berzerka" default_group="infantry" level="46" name="{=str_tor_gs_black_orc_berzerka}Black Orc Berzerka" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_black_orc_berzerka" race="orc">
     <face>
       <face_key_template value="BodyProperty.orc_black" />
     </face>
@@ -2150,7 +2150,7 @@
       <EquipmentSet id="tor_gs_black_orc_berzerka_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_goblin" default_group="infantry" level="6" name="{=str_tor_gs_goblin}Goblin" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="goblin">
+  <NPCCharacter id="tor_gs_goblin" default_group="infantry" level="6" name="{=str_tor_gs_goblin}Goblin" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_goblin" is_basic_troop="true" race="goblin">
     <face>
       <face_key_template value="BodyProperty.goblin" />
     </face>
@@ -2163,7 +2163,7 @@
       <EquipmentSet id="tor_gs_goblin_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_goblin_wolf_rida" default_group="cavalry" level="11" name="{=str_tor_gs_goblin_wolf_rida}Goblin Wolf Rida" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level11" race="goblin">
+  <NPCCharacter id="tor_gs_goblin_wolf_rida" default_group="cavalry" level="11" name="{=str_tor_gs_goblin_wolf_rida}Goblin Wolf Rida" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_goblin_wolf_rida" race="goblin">
     <face>
       <face_key_template value="BodyProperty.goblin" />
     </face>
@@ -2176,7 +2176,7 @@
       <EquipmentSet id="tor_gs_goblin_wolf_rida_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_goblin_stikka" default_group="infantry" level="11" name="{=str_tor_gs_goblin_stikka}Goblin Stikka" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level11" race="goblin">
+  <NPCCharacter id="tor_gs_goblin_stikka" default_group="infantry" level="11" name="{=str_tor_gs_goblin_stikka}Goblin Stikka" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_goblin_stikka" race="goblin">
     <face>
       <face_key_template value="BodyProperty.goblin" />
     </face>
@@ -2190,7 +2190,7 @@
       <EquipmentSet id="tor_gs_goblin_stikka_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_goblin_wolf_rida_archer" default_group="horsearcher" level="16" name="{=str_tor_gs_goblin_wolf_rida_archer}Goblin Wolf Rida Archer" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level16" race="goblin">
+  <NPCCharacter id="tor_gs_goblin_wolf_rida_archer" default_group="horsearcher" level="16" name="{=str_tor_gs_goblin_wolf_rida_archer}Goblin Wolf Rida Archer" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_goblin_wolf_rida_archer" race="goblin">
     <face>
       <face_key_template value="BodyProperty.goblin" />
     </face>
@@ -2200,7 +2200,7 @@
       <EquipmentSet id="tor_gs_goblin_wolf_rida_archer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_goblin_nasty_skulker" default_group="infantry" level="16" name="{=str_tor_gs_goblin_nasty_skulker}Nasty Skulker" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level16" race="goblin">
+  <NPCCharacter id="tor_gs_goblin_nasty_skulker" default_group="infantry" level="16" name="{=str_tor_gs_goblin_nasty_skulker}Nasty Skulker" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_goblin_nasty_skulker" race="goblin">
     <face>
       <face_key_template value="BodyProperty.goblin" />
     </face>
@@ -2210,7 +2210,7 @@
       <EquipmentSet id="tor_gs_goblin_nasty_skulker_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_goblin_archer" default_group="ranged" level="16" name="{=str_tor_gs_goblin_archer}Goblin Archer" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level16" race="goblin">
+  <NPCCharacter id="tor_gs_goblin_archer" default_group="ranged" level="16" name="{=str_tor_gs_goblin_archer}Goblin Archer" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_goblin_archer" race="goblin">
     <face>
       <face_key_template value="BodyProperty.goblin" />
     </face>
@@ -2220,7 +2220,7 @@
       <EquipmentSet id="tor_gs_goblin_archer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_goblin_wolf_rida_boss" default_group="cavalry" level="21" name="{=str_tor_gs_goblin_wolf_rida_boss}Goblin Wolf Rida Boss" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level21" race="goblin">
+  <NPCCharacter id="tor_gs_goblin_wolf_rida_boss" default_group="cavalry" level="21" name="{=str_tor_gs_goblin_wolf_rida_boss}Goblin Wolf Rida Boss" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_goblin_wolf_rida_boss" race="goblin">
     <face>
       <face_key_template value="BodyProperty.goblin" />
     </face>
@@ -2230,7 +2230,7 @@
       <EquipmentSet id="tor_gs_goblin_wolf_rida_boss_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_goblin_boss" default_group="infantry" level="21" name="{=str_tor_gs_goblin_boss}Goblin Boss" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level21" race="goblin">
+  <NPCCharacter id="tor_gs_goblin_boss" default_group="infantry" level="21" name="{=str_tor_gs_goblin_boss}Goblin Boss" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_goblin_boss" race="goblin">
     <face>
       <face_key_template value="BodyProperty.goblin" />
     </face>
@@ -2240,7 +2240,7 @@
       <EquipmentSet id="tor_gs_goblin_boss_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_goblin_beast_prodda" default_group="infantry" level="16" name="{=str_tor_gs_goblin_beast_prodda}Goblin Beast Prodda" occupation="CaravanGuard" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level16" race="goblin">
+  <NPCCharacter id="tor_gs_goblin_beast_prodda" default_group="infantry" level="16" name="{=str_tor_gs_goblin_beast_prodda}Goblin Beast Prodda" occupation="CaravanGuard" culture="Culture.aserai" skill_template="SkillSet.tor_skills_goblin_nasty_skulker" race="goblin">
     <face>
       <face_key_template value="BodyProperty.goblin" />
     </face>
@@ -2250,7 +2250,7 @@
       <EquipmentSet id="tor_gs_goblin_stikka_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_goblin_stone_slugga" default_group="ranged" level="16" name="{=str_tor_gs_goblin_stone_slugga}Goblin Stone Slugga" occupation="CaravanGuard" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level16" race="goblin">
+  <NPCCharacter id="tor_gs_goblin_stone_slugga" default_group="ranged" level="16" name="{=str_tor_gs_goblin_stone_slugga}Goblin Stone Slugga" occupation="CaravanGuard" culture="Culture.aserai" skill_template="SkillSet.tor_skills_goblin_archer" race="goblin">
     <face>
       <face_key_template value="BodyProperty.goblin" />
     </face>
@@ -2260,7 +2260,7 @@
       <EquipmentSet id="tor_gs_goblin_stone_slugga_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_orc_bully" default_group="infantry" level="21" name="{=str_tor_gs_orc_bully}Orc Bully" occupation="CaravanGuard" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level21" race="orc">
+  <NPCCharacter id="tor_gs_orc_bully" default_group="infantry" level="21" name="{=str_tor_gs_orc_bully}Orc Bully" occupation="CaravanGuard" culture="Culture.aserai" skill_template="SkillSet.tor_skills_orc_choppa" race="orc">
     <face>
       <face_key_template value="BodyProperty.orc_small" />
     </face>
@@ -2272,7 +2272,7 @@
       <EquipmentSet id="tor_gs_orc_bully_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_orc_bully_bigun" default_group="infantry" level="26" name="{=str_tor_gs_orc_bully_bigun}Orc Bully Big 'Un" occupation="CaravanGuard" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level26" race="orc">
+  <NPCCharacter id="tor_gs_orc_bully_bigun" default_group="infantry" level="26" name="{=str_tor_gs_orc_bully_bigun}Orc Bully Big 'Un" occupation="CaravanGuard" culture="Culture.aserai" skill_template="SkillSet.tor_skills_orc_big_un" race="orc">
     <face>
       <face_key_template value="BodyProperty.orc_small" />
     </face>
@@ -2282,7 +2282,7 @@
       <EquipmentSet id="tor_gs_orc_bully_bigun_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_trolls" default_group="infantry" level="46" name="{=str_tor_gs_trolls}Troll" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level46" race="troll">
+  <NPCCharacter id="tor_gs_trolls" default_group="infantry" level="46" name="{=str_tor_gs_trolls}Troll" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_troll" race="troll">
     <face>
       <face_key_template value="BodyProperty.troll" />
     </face>
@@ -2292,7 +2292,7 @@
       <EquipmentSet id="tor_gs_troll_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_thug" default_group="infantry" level="6" name="{=str_tor_gs_thug}Orc Thug" occupation="Gangster" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="orc">
+  <NPCCharacter id="tor_gs_thug" default_group="infantry" level="6" name="{=str_tor_gs_thug}Orc Thug" occupation="Gangster" culture="Culture.aserai" skill_template="SkillSet.tor_skills_orc_boy" is_basic_troop="true" race="orc">
     <face>
       <face_key_template value="BodyProperty.orc_small" />
     </face>
@@ -2304,7 +2304,7 @@
       <EquipmentSet id="tor_gs_orc_bully_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_expert_thug" default_group="infantry" level="11" name="{=str_tor_gs_expert_thug}Orc Thug Big 'Un" occupation="Gangster" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level11" race="orc">
+  <NPCCharacter id="tor_gs_expert_thug" default_group="infantry" level="11" name="{=str_tor_gs_expert_thug}Orc Thug Big 'Un" occupation="Gangster" culture="Culture.aserai" skill_template="SkillSet.tor_skills_orc_choppa" race="orc">
     <face>
       <face_key_template value="BodyProperty.orc_small" />
     </face>
@@ -2316,7 +2316,7 @@
       <EquipmentSet id="tor_gs_orc_bully_bigun_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_master_thug" default_group="infantry" level="21" name="{=str_tor_gs_master_thug}Orc Thug Boss" occupation="Gangster" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level21" race="orc">
+  <NPCCharacter id="tor_gs_master_thug" default_group="infantry" level="21" name="{=str_tor_gs_master_thug}Orc Thug Boss" occupation="Gangster" culture="Culture.aserai" skill_template="SkillSet.tor_skills_orc_big_un" race="orc">
     <face>
       <face_key_template value="BodyProperty.orc_small" />
     </face>
@@ -3776,7 +3776,7 @@
       <EquipmentSet id="tor_beast_gor_manripper_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_beast_minotaur" default_group="infantry" level="31" name="{=str_tor_beast_minotaur}Minotaur" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_minotaur" is_basic_troop="true" race="medium_humanoid_monster">
+  <NPCCharacter id="tor_beast_minotaur" default_group="infantry" level="31" name="{=str_tor_beast_minotaur}Minotaur" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_troll" is_basic_troop="true" race="medium_humanoid_monster">
     <face>
       <face_key_template value="BodyProperty.minotaur" />
     </face>
@@ -5210,7 +5210,7 @@
       <EquipmentSet id="tor_vc_skeleton_swordsman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_looter" default_group="infantry" level="6" name="{=str_tor_looter}Goblin Git" occupation="Bandit" culture="Culture.looters" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="goblin">
+  <NPCCharacter id="tor_looter" default_group="infantry" level="6" name="{=str_tor_looter}Goblin Git" occupation="Bandit" culture="Culture.looters" skill_template="SkillSet.tor_skills_goblin" is_basic_troop="true" race="goblin">
     <face>
       <face_key_template value="BodyProperty.goblin" />
     </face>
@@ -5222,7 +5222,7 @@
       <EquipmentSet id="tor_looter_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_looter_leader" default_group="infantry" level="16" name="{=str_tor_looter_leader}Goblin Kunnin' Git" occupation="Bandit" culture="Culture.looters" skill_template="SkillSet.tor_skills_level16" race="goblin">
+  <NPCCharacter id="tor_looter_leader" default_group="infantry" level="16" name="{=str_tor_looter_leader}Goblin Kunnin' Git" occupation="Bandit" culture="Culture.looters" skill_template="SkillSet.tor_skills_goblin_nasty_skulker" race="goblin">
     <face>
       <face_key_template value="BodyProperty.goblin" />
     </face>
@@ -5232,7 +5232,7 @@
       <EquipmentSet id="tor_looter_leader_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_bandit_raider" default_group="infantry" level="16" name="{=str_tor_gs_bandit_raider}Orc Raida" occupation="Bandit" culture="Culture.greenskin_bandit" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true" race="orc">
+  <NPCCharacter id="tor_gs_bandit_raider" default_group="infantry" level="16" name="{=str_tor_gs_bandit_raider}Orc Raida" occupation="Bandit" culture="Culture.greenskin_bandit" skill_template="SkillSet.tor_skills_orc_choppa" is_basic_troop="true" race="orc">
     <face>
       <face_key_template value="BodyProperty.orc_small" />
     </face>
@@ -5245,7 +5245,7 @@
       <EquipmentSet id="tor_gs_bandit_raider_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_bandit_raider_arrer" default_group="ranged" level="21" name="{=str_tor_gs_bandit_raider_arrer}Orc Raida Arrer" occupation="Bandit" culture="Culture.greenskin_bandit" skill_template="SkillSet.tor_skills_level21" race="orc">
+  <NPCCharacter id="tor_gs_bandit_raider_arrer" default_group="ranged" level="21" name="{=str_tor_gs_bandit_raider_arrer}Orc Raida Arrer Boy" occupation="Bandit" culture="Culture.greenskin_bandit" skill_template="SkillSet.tor_skills_arrer_boy" race="orc">
     <face>
       <face_key_template value="BodyProperty.orc_small" />
     </face>
@@ -5255,7 +5255,7 @@
       <EquipmentSet id="tor_gs_bandit_raider_arrer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_bandit_raider_boss" default_group="infantry" level="26" name="{=str_tor_gs_bandit_raider_boss}Orc Raida Big 'Un" occupation="Bandit" culture="Culture.greenskin_bandit" skill_template="SkillSet.tor_skills_level26" race="orc">
+  <NPCCharacter id="tor_gs_bandit_raider_boss" default_group="infantry" level="26" name="{=str_tor_gs_bandit_raider_boss}Orc Raida Big 'Un" occupation="Bandit" culture="Culture.greenskin_bandit" skill_template="SkillSet.tor_skills_orc_big_un" race="orc">
     <face>
       <face_key_template value="BodyProperty.orc_mid" />
     </face>

@@ -24,6 +24,12 @@ namespace TOR_Core.Utilities
 
         public const float InitialSpawnAgentCapMultiplier = 1.60f; // active agents cant go beyond 1.60 times the initial spawned agent count
 
+        /// <summary>
+        /// Minimum initial troop count before the soft summon cap is applied.
+        /// Below this threshold, only the hard mission limit applies.
+        /// </summary>
+        public const int SoftCapThreshold = 200;
+
         private static int _initialSpawnedTroopCount;
 
         private static ActionIndexCache? _actRaiseFromGround;
@@ -102,12 +108,13 @@ namespace TOR_Core.Utilities
 
         /// <summary>
         /// Gets the number of available slots for summoning new agents.
+        /// Soft cap only applies when initial troop count >= SoftCapThreshold.
         /// </summary>
         public static int GetAvailableSummonSlots()
         {
             var hardAvailableSlots = Math.Max(0, GetMissionAgentLimit() - GetCurrentAgentCount());
 
-            if (_initialSpawnedTroopCount <= 0)
+            if (_initialSpawnedTroopCount < SoftCapThreshold)
             {
                 return hardAvailableSlots;
             }
