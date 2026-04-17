@@ -787,15 +787,29 @@ namespace TOR_Core.Models
             if (hero.HasCareer(TORCareers.Necrarch))
             {
                 // Necrarch can only learn these specific lores
-                var allowedLores = new[] { "Necromancy", "LoreOfDeath", "LoreOfHeavens", "LoreOfMetal", "LoreOfFire", "LoreOfBeasts" };
+                var allowedLores = new[] { "Necromancy", "LoreOfDeath", "LoreOfHeavens", "LoreOfMetal", "LoreOfFire", "LoreOfBeasts", "DarkMagic" };
                 if (!allowedLores.Contains(loreObject.ID)) return false;
 
-                if (hero.HasUnlockedCareerChoiceTier(3))
-                    if (!hero.HasKnownLore("DarkMagic") && loreObject.ID != "DarkMagic")
-                        return false;
+                // DarkMagic is only available at tier 2+
+                if (loreObject.ID == "DarkMagic" && !hero.HasUnlockedCareerChoiceTier(2))
+                    return false;
 
                 return true;
             }
+
+            if (hero.HasCareer(TORCareers.MinorVampire))
+            {
+                // MinorVampire can only learn Necromancy and one of DarkMagic/LoreOfDeath at tier 2
+                var allowedLores = new[] { "Necromancy", "DarkMagic", "LoreOfDeath" };
+                if (!allowedLores.Contains(loreObject.ID)) return false;
+
+                // DarkMagic and LoreOfDeath only available at tier 2+
+                if ((loreObject.ID == "DarkMagic" || loreObject.ID == "LoreOfDeath") && !hero.HasUnlockedCareerChoiceTier(2))
+                    return false;
+
+                return true;
+            }
+
             return !loreObject.DisabledForCultures.Contains(hero.Culture.StringId);
         }
 
