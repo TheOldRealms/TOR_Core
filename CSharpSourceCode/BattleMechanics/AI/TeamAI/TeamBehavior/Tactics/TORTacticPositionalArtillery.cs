@@ -82,6 +82,13 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
                             continue;
                         }
 
+                        // Only count actual artillery placement abilities, not Anvil of Doom
+                        if (boundAbility.Template.AbilityEffectType != AbilityEffectType.ArtilleryPlacement ||
+                            boundAbility.Template.StringID == "AnvilOfDoomSpawner")
+                        {
+                            continue;
+                        }
+
                         if (boundAbility.GetRemainingCharges() <= 0)
                         {
                             continue;
