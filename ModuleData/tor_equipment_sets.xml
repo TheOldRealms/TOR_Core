@@ -1848,6 +1848,184 @@
       <Equipment slot="Item0" id="Item.empire_mace_2_t4" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_weapon_practice_stage_1_vlandia_template" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.billhook_polearm_t2" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.billhook_polearm_t2" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.billhook_polearm_t2" />
+      <Equipment slot="Item1" id="Item.hunting_bow" />
+      <Equipment slot="Item2" id="Item.tournament_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.billhook_polearm_t2" />
+      <Equipment slot="Item1" id="Item.hunting_bow" />
+      <Equipment slot="Item2" id="Item.tournament_arrows" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.western_spear_2_t2" />
+      <Equipment slot="Item1" id="Item.wide_heater_shield" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.western_spear_2_t2" />
+      <Equipment slot="Item1" id="Item.wide_heater_shield" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
+      <Equipment slot="Item1" id="Item.hunting_bow" />
+      <Equipment slot="Item2" id="Item.tournament_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
+      <Equipment slot="Item1" id="Item.hunting_bow" />
+      <Equipment slot="Item2" id="Item.tournament_arrows" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
+      <Equipment slot="Item1" id="Item.small_heater_shield" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
+      <Equipment slot="Item1" id="Item.small_heater_shield" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.western_spear_2_t2" />
+      <Equipment slot="Item1" id="Item.hunting_bow" />
+      <Equipment slot="Item2" id="Item.tournament_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.western_spear_2_t2" />
+      <Equipment slot="Item1" id="Item.hunting_bow" />
+      <Equipment slot="Item2" id="Item.tournament_arrows" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_weapon_practice_stage_2_vlandia_template" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.vlandia_sword_2_t3" />
+      <Equipment slot="Item1" id="Item.wide_heater_shield" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.vlandia_sword_2_t3" />
+      <Equipment slot="Item1" id="Item.wide_heater_shield" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.vlandia_sword_2_t3" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.vlandia_sword_2_t3" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.billhook_polearm_t2" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.billhook_polearm_t2" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.western_spear_3_t3" />
+      <Equipment slot="Item1" id="Item.small_heater_shield" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.western_spear_3_t3" />
+      <Equipment slot="Item1" id="Item.small_heater_shield" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.vlandia_sword_2_t3" />
+      <Equipment slot="Item1" id="Item.hunting_bow" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.vlandia_sword_2_t3" />
+      <Equipment slot="Item1" id="Item.hunting_bow" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.vlandia_sword_2_t3" />
+      <Equipment slot="Item1" id="Item.wide_heater_shield" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.vlandia_sword_2_t3" />
+      <Equipment slot="Item1" id="Item.wide_heater_shield" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.billhook_polearm_t2" />
+      <Equipment slot="Item1" id="Item.hunting_bow" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.billhook_polearm_t2" />
+      <Equipment slot="Item1" id="Item.hunting_bow" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.western_spear_3_t3" />
+      <Equipment slot="Item1" id="Item.hunting_bow" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.western_spear_3_t3" />
+      <Equipment slot="Item1" id="Item.hunting_bow" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_weapon_practice_stage_3_vlandia_template" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item1" id="Item.wide_heater_shield" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item1" id="Item.wide_heater_shield" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.vlandia_2haxe_1_t4" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.vlandia_2haxe_1_t4" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.western_spear_3_t3" />
+      <Equipment slot="Item1" id="Item.wide_heater_shield" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.western_spear_3_t3" />
+      <Equipment slot="Item1" id="Item.wide_heater_shield" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item1" id="Item.hunting_bow" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item1" id="Item.hunting_bow" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.vlandia_2haxe_1_t4" />
+      <Equipment slot="Item1" id="Item.hunting_bow" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.vlandia_2haxe_1_t4" />
+      <Equipment slot="Item1" id="Item.hunting_bow" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_br_villager_template" culture="Culture.vlandia">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.peasant_pitchfork_1_t1" />
@@ -3248,6 +3426,214 @@
       <Equipment slot="Item1" id="Item.tor_we_tournament_arrows" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_gear_practice_dummy_battania_template" culture="Culture.battania">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_civil_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_civil_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_civil_002" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_003" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_civil_002" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_003" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_civil_003" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_civil_003" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_civil_002" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_civil_002" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_weapon_practice_stage_1_battania_template" culture="Culture.battania">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_001" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_shield_eternalguard_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_001" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_shield_eternalguard_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_spear_001" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_shield_eternalguard_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_spear_001" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_shield_eternalguard_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_spear_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_spear_002" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_spear_003" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_bow_003" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_spear_003" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_bow_003" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_bow_003" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_bow_003" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_weapon_practice_stage_2_battania_template" culture="Culture.battania">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_001" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_shield_eternalguard_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_001" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_shield_eternalguard_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_spear_001" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_shield_eternalguard_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_spear_001" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_shield_eternalguard_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_spear_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_spear_002" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_spear_003" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_bow_003" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_spear_003" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_bow_003" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_bow_003" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_bow_003" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_weapon_practice_stage_3_battania_template" culture="Culture.battania">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_001" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_shield_eternalguard_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_001" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_shield_eternalguard_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_spear_001" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_shield_eternalguard_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_spear_001" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_shield_eternalguard_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_spear_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_spear_002" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_spear_003" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_bow_007" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_spear_003" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_bow_007" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_bow_007" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_bow_007" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_2h_axe_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_2h_axe_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_2h_axe_001" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_bow_007" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_2h_axe_001" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_bow_007" />
+      <Equipment slot="Item2" id="Item.default_arrows" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_eonir_tournament_template_one_participant_v1" culture="Culture.eonir">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
@@ -4532,6 +4918,276 @@
       <Equipment slot="Cape" id="Item.tor_vc_cape_armor_undead_champion" />
       <Equipment slot="Gloves" id="Item.tor_vc_arms_armor_undead_champion" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_armor_undead_champion" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_gear_practice_dummy_khuzait_template" culture="Culture.khuzait">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
+      <Equipment slot="Body" id="Item.khuzait_civil_coat" />
+      <Equipment slot="Cape" id="Item.wolf_shoulder" />
+      <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
+      <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
+      <Equipment slot="Body" id="Item.khuzait_civil_coat" />
+      <Equipment slot="Cape" id="Item.wolf_shoulder" />
+      <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
+      <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
+      <Equipment slot="Body" id="Item.nordic_sloven_leather" />
+      <Equipment slot="Cape" id="Item.scarf" />
+      <Equipment slot="Gloves" id="Item.leather_gloves" />
+      <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
+      <Equipment slot="Body" id="Item.nordic_sloven_leather" />
+      <Equipment slot="Cape" id="Item.scarf" />
+      <Equipment slot="Gloves" id="Item.leather_gloves" />
+      <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
+      <Equipment slot="Body" id="Item.northern_leather_vest" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
+      <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
+      <Equipment slot="Body" id="Item.northern_leather_vest" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_witch_hunter_001" />
+      <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_weapon_practice_stage_1_khuzait_template" culture="Culture.khuzait">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_009" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_009" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_006" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_006" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_002" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_skeleton_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_skeleton_002" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_009" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_skeleton_005" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_009" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_skeleton_005" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_006" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_skeleton_005" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_006" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_skeleton_005" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_002" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_skeleton_005" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_002" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_skeleton_005" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_skeleton_002" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_skeleton_005" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_skeleton_002" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_skeleton_005" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_skeleton_005" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_skeleton_005" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_weapon_practice_stage_2_khuzait_template" culture="Culture.khuzait">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_009" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_009" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_006" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_006" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_002" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_skeleton_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_skeleton_002" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_009" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_009" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_006" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_006" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_002" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_002" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_002" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_skeleton_002" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_skeleton_002" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_002" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_002" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_weapon_practice_stage_3_khuzait_template" culture="Culture.khuzait">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_009" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_009" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_006" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_006" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_002" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_skeleton_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_skeleton_002" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_009" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_vampire_006" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_009" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_vampire_006" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_006" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_vampire_007" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_006" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_vampire_007" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_002" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_vampire_008" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_vampire_002" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_vampire_008" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_skeleton_002" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_vampire_006" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_skeleton_002" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_vampire_006" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_vampire_007" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
+      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_vampire_007" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="tor_vc_weapon_thsword_grave_guard_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="tor_vc_weapon_thsword_grave_guard_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="tor_vc_weapon_thaxe_graveguard_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="tor_vc_weapon_thaxe_graveguard_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_chaos_norscan_tribesman_template" culture="Culture.chaos_culture">
@@ -21683,16 +22339,6 @@
       <Equipment slot="Cape" id="Item.battania_cloak_b" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_003" />
     </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Body" id="Item.tor_we_body_armor_militia_001" />
-      <Equipment slot="Cape" id="Item.battania_cloak_b" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_003" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Body" id="Item.tor_we_body_armor_militia_001" />
-      <Equipment slot="Cape" id="Item.battania_cloak_b" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_003" />
-    </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_we_people_notable_villager_female" culture="Culture.battania">
     <EquipmentSet>
@@ -21703,14 +22349,6 @@
     <EquipmentSet civilian="true">
       <Equipment slot="Body" id="Item.tor_we_body_dress_female_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_dancer_001" />
-      <Equipment slot="Leg" id="Item.ladys_shoe" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Body" id="Item.vlandian_corset_dress" />
-      <Equipment slot="Leg" id="Item.ladys_shoe" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Body" id="Item.vlandian_corset_dress" />
       <Equipment slot="Leg" id="Item.ladys_shoe" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -21727,16 +22365,6 @@
       <Equipment slot="Gloves" id="Item.leather_gloves" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_003" />
     </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Body" id="Item.tor_we_body_armor_ranger_002" />
-      <Equipment slot="Gloves" id="Item.highland_gloves" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Body" id="Item.tor_we_body_armor_ranger_002" />
-      <Equipment slot="Gloves" id="Item.highland_gloves" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
-    </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_we_people_notable_artisan_merchant" culture="Culture.battania">
     <EquipmentSet>
@@ -21746,30 +22374,6 @@
     <EquipmentSet civilian="true">
       <Equipment slot="Body" id="Item.tor_we_body_armor_militia_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_003" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Head" id="Item.tor_we_head_hood_ranger_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_militia_002" />
-      <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_003" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Head" id="Item.tor_we_head_hood_ranger_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_militia_002" />
-      <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_003" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Body" id="Item.tor_we_body_armor_militia_003" />
-      <Equipment slot="Cape" id="Item.a_battania_cloak_a" />
-      <Equipment slot="Gloves" id="Item.highland_gloves" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Body" id="Item.tor_we_body_armor_militia_003" />
-      <Equipment slot="Cape" id="Item.a_battania_cloak_a" />
-      <Equipment slot="Gloves" id="Item.highland_gloves" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_we_people_notable_artisan_shopworker" culture="Culture.battania">
@@ -21782,30 +22386,6 @@
       <Equipment slot="Head" id="Item.battania_civil_hood" />
       <Equipment slot="Body" id="Item.tor_we_body_armor_civil_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_003" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Body" id="Item.tor_we_body_armor_civil_002" />
-      <Equipment slot="Cape" id="Item.a_battania_cloak_a" />
-      <Equipment slot="Gloves" id="Item.highland_gloves" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Body" id="Item.tor_we_body_armor_civil_002" />
-      <Equipment slot="Cape" id="Item.a_battania_cloak_a" />
-      <Equipment slot="Gloves" id="Item.highland_gloves" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Body" id="Item.tor_we_body_armor_civil_003" />
-      <Equipment slot="Cape" id="Item.a_battania_cloak_a" />
-      <Equipment slot="Gloves" id="Item.highland_gloves" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Body" id="Item.tor_we_body_armor_civil_003" />
-      <Equipment slot="Cape" id="Item.a_battania_cloak_a" />
-      <Equipment slot="Gloves" id="Item.highland_gloves" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_we_people_notable_townsman" culture="Culture.battania">
@@ -21821,16 +22401,6 @@
       <Equipment slot="Cape" id="Item.battania_cloak_b" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_003" />
     </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Body" id="Item.tor_we_body_armor_militia_001" />
-      <Equipment slot="Cape" id="Item.battania_cloak_b" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_003" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Body" id="Item.tor_we_body_armor_militia_001" />
-      <Equipment slot="Cape" id="Item.battania_cloak_b" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_003" />
-    </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_we_people_notable_townswoman" culture="Culture.battania">
     <EquipmentSet>
@@ -21841,14 +22411,6 @@
     <EquipmentSet civilian="true">
       <Equipment slot="Body" id="Item.tor_we_body_dress_female_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_dancer_001" />
-      <Equipment slot="Leg" id="Item.ladys_shoe" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Body" id="Item.vlandian_corset_dress" />
-      <Equipment slot="Leg" id="Item.ladys_shoe" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Body" id="Item.vlandian_corset_dress" />
       <Equipment slot="Leg" id="Item.ladys_shoe" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -21864,34 +22426,6 @@
       <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
       <Equipment slot="Body" id="Item.tor_we_body_armor_militia_001" />
       <Equipment slot="Cape" id="Item.a_battania_cloak_a" />
-      <Equipment slot="Gloves" id="Item.highland_gloves" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
-      <Equipment slot="Head" id="Item.tor_eonir_head_mask_fabric_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_militia_002" />
-      <Equipment slot="Cape" id="Item.battania_cloak_b" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_003" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
-      <Equipment slot="Head" id="Item.tor_eonir_head_mask_fabric_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_militia_002" />
-      <Equipment slot="Cape" id="Item.battania_cloak_b" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_003" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
-      <Equipment slot="Head" id="Item.tor_eonir_head_mask_fabric_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_militia_003" />
-      <Equipment slot="Gloves" id="Item.highland_gloves" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
-      <Equipment slot="Head" id="Item.tor_eonir_head_mask_fabric_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_militia_003" />
       <Equipment slot="Gloves" id="Item.highland_gloves" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
     </EquipmentSet>
@@ -21913,18 +22447,6 @@
       <Equipment slot="Gloves" id="Item.armwraps" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_003" />
     </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
-      <Equipment slot="Head" id="Item.tor_eonir_head_mask_fabric_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_civil_002" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
-      <Equipment slot="Head" id="Item.tor_eonir_head_mask_fabric_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_civil_002" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
-    </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_we_people_notable_notary" culture="Culture.battania">
     <EquipmentSet>
@@ -21937,32 +22459,6 @@
       <Equipment slot="Body" id="Item.tor_we_body_armor_militia_001" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_eternalguard_001" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_light_wizard_001" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Head" id="Item.tor_we_head_hood_ranger_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_militia_002" />
-      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_eternalguard_001" />
-      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_light_wizard_001" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Head" id="Item.tor_we_head_hood_ranger_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_militia_002" />
-      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_eternalguard_001" />
-      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_light_wizard_001" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Head" id="Item.tor_we_head_hood_ranger_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_militia_002" />
-      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_wildrider_001" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Head" id="Item.tor_we_head_hood_ranger_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_militia_002" />
-      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_wildrider_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -22707,24 +23203,6 @@
       <Equipment slot="Body" id="Item.we_spellsinger_armor_f" />
       <Equipment slot="Cape" id="Item.we_spellsinger_neck_f" />
       <Equipment slot="Gloves" id="Item.we_spellsinger_arms_f" />
-      <Equipment slot="Leg" id="Item.we_spellsinger_legs_f" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_we_lord_sword_001" />
-      <Equipment slot="Item1" id="Item.tor_prophetess_staff_combined" />
-      <Equipment slot="Head" id="Item.tor_we_spellsinger_crown_001" />
-      <Equipment slot="Body" id="Item.we_spellsinger_armor_f" />
-      <Equipment slot="Cape" id="Item.we_spellsinger_neck_f" />
-      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_spellsinger_001" />
-      <Equipment slot="Leg" id="Item.we_spellsinger_legs_f" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_we_lord_sword_001" />
-      <Equipment slot="Item1" id="Item.tor_prophetess_staff_combined" />
-      <Equipment slot="Head" id="Item.tor_we_spellsinger_crown_001" />
-      <Equipment slot="Body" id="Item.we_spellsinger_armor_f" />
-      <Equipment slot="Cape" id="Item.we_spellsinger_neck_f" />
-      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_spellsinger_001" />
       <Equipment slot="Leg" id="Item.we_spellsinger_legs_f" />
     </EquipmentSet>
   </EquipmentRoster>
