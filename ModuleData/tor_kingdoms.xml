@@ -398,6 +398,11 @@
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
+        <relationships>
+            <relationship kingdom="Kingdom.black_sunz"
+                          value="-1"
+                          isAtWar="true" />
+        </relationships>
     </Kingdom>
     <Kingdom id="gisoreux"
              owner="Hero.tor_br_lord_gisoreux_factionleader"
@@ -490,6 +495,11 @@
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
+        <relationships>
+            <relationship kingdom="Kingdom.massif_choppas"
+                          value="-1"
+                          isAtWar="true" />
+        </relationships>
     </Kingdom>
     <Kingdom id="bordeleaux"
              owner="Hero.tor_br_lord_bordeleaux_factionleader"
