@@ -18,7 +18,7 @@ namespace TOR_Core.Quests.Careers
         private const int RequiredWeaponSkillLevels = 200;
         private const int RequiredBattlesWon = 250;
         private const int RequiredTournamentWins = 35;
-        private const int RequiredBrawlsWon = 75;
+        private const int RequiredBrawlsWon = 55;
         private const int RequiredCitiesCaptured = 5;
         private const int RequiredLordDuels = 12;
         private const int RequiredTeefTransferred = 500000;
