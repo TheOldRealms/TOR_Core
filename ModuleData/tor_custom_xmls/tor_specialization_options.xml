@@ -164,7 +164,7 @@
 													The Knights of Blood run the enemy down
 													
 													The Blood Dragon bloodline is founded upon uncompromising martial prowess and a ruthless code of honour in battle. Yet their honour is far removed from the chivalry of Bretonnia or the knightly orders of the Empire. The knights of the Ordo Draconis scour the Old World in pursuit of worthy opponents, raiding and pillaging in search of exceptional foes.</Description>
-		<PositiveEffect>{=tor_vampire_blood_dragon_positive}</PositiveEffect>
+		<PositiveEffect>{=tor_vampire_blood_dragon_positive}Starts as a vassal</PositiveEffect>
 		<NegativeEffect>{=tor_vampire_blood_dragon_negative}Cannot use magic or acquire spells</NegativeEffect>
 		<SkillsToIncrease>
 			<string>OneHanded</string>
@@ -186,7 +186,7 @@
 												Another tome is theirs to keep
 												
 												The Necrarch bloodline is defined by its relentless pursuit of knowledge and arcane mastery. Necrarch libraries contain grimoires of forbidden lore that predate the fall of ancient empires. Yet with their brilliance comes madness. The Necrarchs are hopelessly deranged, consumed by jealousy and paranoia, and trust neither kin nor servant.</Description>
-		<PositiveEffect>{=tor_vampire_necrarch_positive}</PositiveEffect>
+		<PositiveEffect>{=tor_vampire_necrarch_positive}Starts as a vassal</PositiveEffect>
 		<NegativeEffect>{=tor_vampire_necrarch_negative}Physically feeble and repulsive</NegativeEffect>
 		<SkillsToIncrease>
 			<string>-OneHanded</string>

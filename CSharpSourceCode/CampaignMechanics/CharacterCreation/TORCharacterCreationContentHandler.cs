@@ -1078,6 +1078,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         hero.AddKnownLore("MinorMagic");
                         hero.AddKnownLore("Necromancy");
                         hero.AddCareer(TORCareers.Necrarch);
+                        var necrarchs = Kingdom.All.FirstOrDefault(x => x.StringId == TORConstants.Factions.NECRACHS);
+                        if (necrarchs != null)
+                        {
+                            ChangeKingdomAction.ApplyByJoinToKingdom(Hero.MainHero.Clan, necrarchs);
+                        }
                         var skill = hero.GetSkillValue(TORSkills.Spellcraft);
                         hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Spellcraft, Math.Max(skill, 25));
                         hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);

@@ -678,11 +678,7 @@
              title="{=str_tor_kingdom_title_necrarchs}Tower of Shadows"
              ruler_title="{=str_tor_kingdom_rulertitle_necrarchs}Grand Master"
              text="{=str_tor_kingdom_text_necrarchs}Scribes of the Grimoire Necronium are dedicated to the study of The Grimoire Necronium, it is a powerful necromantic tome. It was created by W'soran, one of the first vampires and the only one to remain loyal to Nagash. In exchange, the arch-necromancer allowed W'soran to study his own tomes of sorcery, the Nine Books of Nagash. W'soran combined their lore with his own studies of the spirit realm and later, his apprentice Melkhior continued his work.">
-        <relationships>
-            <relationship kingdom="Kingdom.ostermark"
-                          value="-1"
-                          isAtWar="true" />
-        </relationships>
+        <relationships />
     </Kingdom>
 	
     <Kingdom id="mousillon"
