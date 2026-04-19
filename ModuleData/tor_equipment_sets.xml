@@ -1092,36 +1092,88 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_empire_flagellant_template" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_002" />
-      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_002" />
-      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
-    </EquipmentSet>
-    <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_flail_001" />
-      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_003" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_flagellant_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_flail_001" />
-      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_003" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_flagellant_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_001" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_002" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_flagellant_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_001" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_002" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_flagellant_001" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_flail_002" />
-      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_flagellant_003" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_003" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_flail_002" />
-      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_flagellant_003" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_003" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_flail_003" />
-      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_004" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_flagellant_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_flail_003" />
-      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_004" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_flagellant_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_empire_doom_prophet_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_002" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_flagellant_003" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_002" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_yoke_worn_002" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_flagellant_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_002" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_flagellant_003" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_002" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_yoke_worn_002" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_flagellant_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_002" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_flagellant_002" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_003" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_yoke_worn_001" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_flagellant_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_002" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_flagellant_002" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_003" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_yoke_worn_001" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_flagellant_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_002" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_flagellant_001" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_004" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_yoke_worn_001" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_flagellant_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_flagellant_002" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_flagellant_001" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_004" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_yoke_worn_001" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_flagellant_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_empire_wh_retinue_template" culture="Culture.empire">
@@ -7384,15 +7436,15 @@
       <Equipment slot="Leg" id="Item.tor_dw_leg_boots_apprentice_001" />
     </EquipmentSet>
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_dwarf_2h_spanner_001" />
-      <Equipment slot="Head" id="Item.tor_dw_head_apprentice_002" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_1h_spanner_001" />
+      <Equipment slot="Head" id="Item.tor_dw_head_apprentice_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_apprentice_001" />
       <Equipment slot="Gloves" id="Item.tor_dw_arm_gloves_apprentice_001" />
       <Equipment slot="Leg" id="Item.tor_dw_leg_boots_journeyman_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_dwarf_2h_spanner_001" />
-      <Equipment slot="Head" id="Item.tor_dw_head_apprentice_002" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_1h_spanner_001" />
+      <Equipment slot="Head" id="Item.tor_dw_head_apprentice_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_apprentice_001" />
       <Equipment slot="Gloves" id="Item.tor_dw_arm_gloves_apprentice_001" />
       <Equipment slot="Leg" id="Item.tor_dw_leg_boots_journeyman_001" />
@@ -7408,6 +7460,40 @@
       <Equipment slot="Body" id="Item.tor_dw_body_armour_apprentice_001" />
       <Equipment slot="Gloves" id="Item.tor_dw_arm_gloves_apprentice_001" />
       <Equipment slot="Leg" id="Item.tor_dw_leg_boots_apprentice_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_dw_artillery_gunner_template" culture="Culture.sturgia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_dwarf_2h_spanner_001" />
+      <Equipment slot="Head" id="Item.tor_dw_head_engineer_002" />
+      <Equipment slot="Body" id="Item.tor_dw_body_armour_engineer_001" />
+      <Equipment slot="Cape" id="Item.tor_dw_shoulder_shoulderpads_apprentice_001" />
+      <Equipment slot="Gloves" id="Item.tor_dw_arm_gloves_journeyman_001" />
+      <Equipment slot="Leg" id="Item.tor_dw_leg_boots_journeyman_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_dwarf_2h_spanner_001" />
+      <Equipment slot="Head" id="Item.tor_dw_head_engineer_002" />
+      <Equipment slot="Body" id="Item.tor_dw_body_armour_engineer_001" />
+      <Equipment slot="Cape" id="Item.tor_dw_shoulder_shoulderpads_apprentice_001" />
+      <Equipment slot="Gloves" id="Item.tor_dw_arm_gloves_journeyman_001" />
+      <Equipment slot="Leg" id="Item.tor_dw_leg_boots_journeyman_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_dwarf_2h_spanner_001" />
+      <Equipment slot="Head" id="Item.tor_dw_head_journeyman_001" />
+      <Equipment slot="Body" id="Item.tor_dw_body_armour_engineer_001" />
+      <Equipment slot="Cape" id="Item.tor_dw_shoulder_shoulderpads_apprentice_001" />
+      <Equipment slot="Gloves" id="Item.tor_dw_arm_gloves_engineer_001" />
+      <Equipment slot="Leg" id="Item.tor_dw_leg_boots_journeyman_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_dwarf_2h_spanner_001" />
+      <Equipment slot="Head" id="Item.tor_dw_head_journeyman_001" />
+      <Equipment slot="Body" id="Item.tor_dw_body_armour_engineer_001" />
+      <Equipment slot="Cape" id="Item.tor_dw_shoulder_shoulderpads_apprentice_001" />
+      <Equipment slot="Gloves" id="Item.tor_dw_arm_gloves_engineer_001" />
+      <Equipment slot="Leg" id="Item.tor_dw_leg_boots_journeyman_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_gs_orc_template" culture="Culture.aserai">
@@ -15730,6 +15816,7 @@
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_thsword_grave_guard_001" />
       <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_skeleton_007" />
+      <Equipment slot="Item2" id="Item.tor_vc_weapon_sword_grave_guard_001" />
       <Equipment slot="Head" id="Item.tor_vc_head_helm_grave_guard_002" />
       <Equipment slot="Body" id="Item.tor_vc_body_breastplate_grave_guard_001" />
       <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_grave_guard_001" />
@@ -15738,6 +15825,7 @@
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_vc_weapon_thsword_grave_guard_001" />
       <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_skeleton_007" />
+      <Equipment slot="Item2" id="Item.tor_vc_weapon_sword_grave_guard_001" />
       <Equipment slot="Head" id="Item.tor_vc_head_helm_grave_guard_002" />
       <Equipment slot="Body" id="Item.tor_vc_body_breastplate_grave_guard_001" />
       <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_grave_guard_001" />

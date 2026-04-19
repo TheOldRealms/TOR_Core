@@ -531,10 +531,22 @@
     <face>
       <face_key_template value="BodyProperty.flagellant" />
     </face>
-    <upgrade_targets />
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_empire_prophet" />
+    </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_empire_flagellant_template" />
       <EquipmentSet id="tor_empire_flagellant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_empire_prophet" default_group="infantry" level="26" name="{=str_tor_empire_prophet}Empire Prophet of Doom" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level26">
+    <face>
+      <face_key_template value="BodyProperty.flagellant" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_empire_doom_prophet_template" />
+      <EquipmentSet id="tor_empire_doom_prophet_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_empire_wolfkin" default_group="infantry" level="16" name="{=str_tor_empire_wolfkin}Wolf Kin" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
@@ -1965,12 +1977,24 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_artillery_crew" default_group="infantry" level="11" name="{=str_tor_dw_artillery_crew}Dawi Artillery Crew" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_militia" race="dwarf">
     <face>
-      <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <face_key_template value="BodyProperty.dwarf_mid_tier" />
     </face>
-    <upgrade_targets />
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_dw_artillery_gunner" />
+    </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_dw_artillery_crew_template" />
       <EquipmentSet id="tor_dw_artillery_crew_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_dw_artillery_gunner" default_group="infantry" level="16" name="{=str_tor_dw_artillery_gunner}Dawi Artillery Gunner" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_militia" race="dwarf">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_mid_tier" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_dw_artillery_gunner_template" />
+      <EquipmentSet id="tor_dw_artillery_gunner_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_thug" default_group="infantry" level="11" name="{=str_tor_dw_thug}Dawi Outcast Slayer" occupation="Gangster" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_slayer" is_basic_troop="true" race="dwarf">
