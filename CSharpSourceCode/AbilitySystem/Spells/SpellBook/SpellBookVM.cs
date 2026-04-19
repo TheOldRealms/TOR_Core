@@ -64,7 +64,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
                 lorestext += info.KnownLores[i].Name;
                 if (i != info.KnownLores.Count - 1) lorestext += ", ";
 
-                if (i > 0 && i % 2 == 1)
+                if (i > 0 && i % 3 == 2)
                 {
                     lorestext += "\n";
                 }
