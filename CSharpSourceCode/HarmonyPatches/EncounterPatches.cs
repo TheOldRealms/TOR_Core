@@ -28,6 +28,7 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public static class EncounterPatches
     {
+        private static readonly FieldInfo PlayerEncounterStateHandledField = AccessTools.Field(typeof(PlayerEncounter), "_stateHandled");
         internal static bool ShouldBypassDeadHirelingEncounter()
         {
             if (!Hero.MainHero.IsEnlisted() || ServeAsAHirelingCampaignBehavior.IsStartingBattle)
@@ -96,7 +97,20 @@ namespace TOR_Core.HarmonyPatches
             return true;
         }
 
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(PlayerTownVisitCampaignBehavior), "game_menu_settlement_leave_on_consequence")]
+        public static bool SettlementLeaveConsequencePrefix(MenuCallbackArgs args)
+        {
+            var behavior = Campaign.Current?.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>();
+            if (behavior == null || !behavior.IsEnlisted())
+            {
+                return true;
+            }
 
+            ServeAsAHirelingCampaignBehavior.TryLeaveSettlementToHirelingMenu(false);
+            Campaign.Current.SaveHandler.SignalAutoSave();
+            return false;
+        }
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(GameMenu), "ActivateGameMenu")]
@@ -142,7 +156,7 @@ namespace TOR_Core.HarmonyPatches
                 }
 
                 var currentEncounter = PlayerEncounter.Current;
-                if (currentEncounter != null && PlayerEncounter.EncounterSettlement == null)
+                if (currentEncounter != null)
                 {
                     return true;
                 }
@@ -248,13 +262,18 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(PlayerEncounter), "DoCaptureHeroes")]
         public static bool DoCaptureHeroesPrefix(PlayerEncounter __instance)
         {
-            if (ServeAsAHirelingCampaignBehavior.TryFinalizeTrackedHirelingVictory()
-                || ServeAsAHirelingCampaignBehavior.TryFinalizeTrackedHirelingVictoryFromCaptureHeroes())
+            var finalizedHirelingVictory =
+                ServeAsAHirelingCampaignBehavior.TryFinalizeTrackedHirelingVictory()
+                || ServeAsAHirelingCampaignBehavior.TryFinalizeTrackedHirelingVictoryFromCaptureHeroes()
+                || ServeAsAHirelingCampaignBehavior.TryFinalizeCurrentWinningFieldHirelingBattle();
+
+            if (!finalizedHirelingVictory)
             {
-                return false;
+                return true;
             }
 
-            return true;
+            PlayerEncounterStateHandledField.SetValue(__instance, true);
+            return false;
         }
 
         [HarmonyPrefix]
