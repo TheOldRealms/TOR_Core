@@ -49,6 +49,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
     private int _peaceCost = 750;
     private int _baseLoreCost = 500;
     private int _advancedLoreCost = 1000;
+    private int _mercenaryLoreCost = 1000;
 
     private Hero _druchiiEnvoy;
     private Hero _asurEnvoy;
@@ -134,6 +135,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         GameTexts.SetVariable("PEACE_COST", _peaceCost);
         GameTexts.SetVariable("BASE_LORE_COST", _baseLoreCost);
         GameTexts.SetVariable("ADVANCED_LORE_COST", _advancedLoreCost);
+        GameTexts.SetVariable("MERCENARY_LORE_COST", _mercenaryLoreCost);
     }
 
     private void AddSpellsingerEnvoyDialogLines(CampaignGameStarter campaignGameStarter)
@@ -160,6 +162,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_spellsinger_darkmagic", "spellsinger_envoy_main_hub", "spellsinger_envoy_spellsinger_darkmagic", TORTextHelper.GetText("spellsinger_envoy_main_hub_spellsinger_darkmagic","I wish to learn Dark Magic."), () => IsSpellsingerEnvoy() && CanGreylordLearnDarkMagic(), null, 200, null);
 
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_mercenary_lore", "spellsinger_envoy_main_hub", "spellsinger_envoy_mercenary_lore", TORTextHelper.GetText("spellsinger_envoy_main_hub_mercenary_lore", "I wish to learn magic, can you teach me?"), () => IsSpellsingerEnvoy() && CanEonirMercenaryLearnLore(), null, 200, null);
 
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_whyareyouhere", "spellsinger_envoy_main_hub", "spellsinger_envoy_whyareyouhere",
             TORTextHelper.GetText("eonir_envoy_why_are_you_here_text", "Why are you here?"), () => IsSpellsingerEnvoy(), null, 200);
@@ -235,6 +238,30 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
         campaignGameStarter.AddDialogLine("spellsinger_envoy_spellsinger_darkmagic_result", "spellsinger_envoy_spellsinger_darkmagic_result", "back_to_main_hub_spellsinger",
             TORTextHelper.GetText("eonir_spellsinger_learn_darkmagic_result_text", "The forbidden knowledge is now yours. Use it wisely."), () => IsSpellsingerEnvoy(), null, 200);
+
+        //learn base lore as Eonir Mercenary (1000 favor) - can only learn 1 lore total
+
+        campaignGameStarter.AddDialogLine("spellsinger_envoy_mercenary_lore_no_favor", "spellsinger_envoy_mercenary_lore", "back_to_main_hub_spellsinger",
+            TORTextHelper.GetText("eonir_spellsinger_mercenary_lore_no_favor_text", "Your standing with the Council is not yet sufficient. Return when you have earned more favor. ({MERCENARY_LORE_COST}{FAVOR_ICON})"), NotEnoughFavorForMercenaryLore, null, 210);
+        campaignGameStarter.AddDialogLine("spellsinger_envoy_mercenary_lore", "spellsinger_envoy_mercenary_lore", "spellsinger_envoy_mercenary_lore_choice",
+            TORTextHelper.GetText("eonir_spellsinger_mercenary_lore_offer_text", "Magic is a rare gift, and one we do not share lightly with outsiders. But you have proven yourself to the Council. I can teach you one lore of magic, but choose wisely - this knowledge comes at a price. ({MERCENARY_LORE_COST}{FAVOR_ICON})"), () => IsSpellsingerEnvoy(), null, 200);
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_mercenary_lore_choice_1", "spellsinger_envoy_mercenary_lore_choice", "spellsinger_envoy_mercenary_lore_result",
+            TORTextHelper.GetText("eonir_spellsinger_mercenary_lore_accept_text", "I understand. I am ready to learn. ({MERCENARY_LORE_COST}{FAVOR_ICON})"), HasEnoughFavorForMercenaryLore, LearnLoreAsEonirMercenaryPrompt, 200);
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_mercenary_lore_choice_2", "spellsinger_envoy_mercenary_lore_choice", "back_to_main_hub_spellsinger",
+            TORTextHelper.GetText("eonir_envoy_need_to_think_text", "I need to think about this."), () => IsSpellsingerEnvoy(), null, 200);
+
+        campaignGameStarter.AddDialogLine("spellsinger_envoy_mercenary_lore_result", "spellsinger_envoy_mercenary_lore_result", "back_to_main_hub_spellsinger",
+            TORTextHelper.GetText("eonir_spellsinger_mercenary_lore_result_text", "The magic is now part of you. Use it well."), () => IsSpellsingerEnvoy(), null, 200);
+
+        bool NotEnoughFavorForMercenaryLore()
+        {
+            return IsSpellsingerEnvoy() && _mercenaryLoreCost > Hero.MainHero.GetCultureSpecificCustomResourceValue();
+        }
+
+        bool HasEnoughFavorForMercenaryLore()
+        {
+            return IsSpellsingerEnvoy() && _mercenaryLoreCost <= Hero.MainHero.GetCultureSpecificCustomResourceValue() && CanEonirMercenaryLearnLore();
+        }
 
         bool NotEnoughFavorForBaseLore()
         {
@@ -328,6 +355,30 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             return !Hero.MainHero.HasKnownLore("DarkMagic");
         }
 
+        bool CanEonirMercenaryLearnLore()
+        {
+            // Must be Eonir culture
+            if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.EONIR)
+            {
+                return false;
+            }
+
+            // Must have Mercenary career
+            if (!Hero.MainHero.HasCareer(TORCareers.Mercenary))
+            {
+                return false;
+            }
+
+            // Can only learn if they don't already know any base lore
+            foreach (var loreId in _baseLores)
+            {
+                if (Hero.MainHero.HasKnownLore(loreId))
+                    return false;
+            }
+
+            return true;
+        }
+
         void LearnBaseLoresPrompt()
         {
             List<InquiryElement> list = [];
@@ -365,6 +416,46 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             Hero.MainHero.AddKnownLore("DarkMagic");
             Hero.MainHero.AddCultureSpecificCustomResource(-_advancedLoreCost);
         }
+
+        void LearnLoreAsEonirMercenaryPrompt()
+        {
+            List<InquiryElement> list = [];
+
+            var lores = LoreObject.GetAll();
+
+            // Filter to only base lores
+            lores = lores.WhereQ(x => _baseLores.Contains(x.ID)).ToList();
+
+            foreach (var lore in lores)
+            {
+                list.Add(new InquiryElement(lore, lore.Name, null, true, TORTextHelper.GetText("eonir_spellsinger_mercenary_lore_hint_text", "Learn this lore")));
+            }
+
+            var inquirydata = new MultiSelectionInquiryData(
+                TORTextHelper.GetText("eonir_spellsinger_mercenary_lore_title_text", "Learn Magic"),
+                TORTextHelper.GetText("eonir_spellsinger_mercenary_lore_description_text", "Choose one lore to learn. This choice is permanent."),
+                list, true, 1, 1,
+                TORTextHelper.GetText("eonir_inquiry_confirm_text", "Confirm"),
+                TORTextHelper.GetText("eonir_inquiry_cancel_text", "Cancel"),
+                SelectLoreAsEonirMercenary, null, "", true);
+            MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
+
+            void SelectLoreAsEonirMercenary(List<InquiryElement> inquiryElements)
+            {
+                var newlore = (LoreObject)inquiryElements[0].Identifier;
+
+                Hero.MainHero.AddKnownLore(newlore.ID);
+                Hero.MainHero.AddCultureSpecificCustomResource(-_mercenaryLoreCost);
+
+                // Grant SpellCaster attribute and entry spellcasting level
+                if (!Hero.MainHero.IsSpellCaster())
+                {
+                    Hero.MainHero.AddAttribute("SpellCaster");
+                }
+                Hero.MainHero.SetSpellCastingLevel(SpellCastingLevel.Entry);
+            }
+        }
+
         void RefillVillages()
         {
             foreach (var village in Settlement.All.WhereQ(x => x.IsVillage && x.Culture.StringId == TORConstants.Cultures.EONIR))
