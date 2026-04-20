@@ -4754,6 +4754,17 @@
 
 <!-- Runelord -->
 <string id="tor_careerunlock_reward_1.Runelord" text="{=str_tor_careerunlock_reward_1_runelord}Unlocks Runecraft for Equipment" />
+
+<!-- Spellsinger -->
+<string id="tor_careerunlock_reward_2.Spellsinger" text="{=str_tor_careerunlock_reward_2_spellsinger}Unlocks 3rd lore and Spellweaver path" />
+<string id="tor_careerunlock_reward_3.Spellsinger" text="{=str_tor_careerunlock_reward_3_spellsinger}Unlocks all 8 winds" />
+
+<!-- Necrarch -->
+<string id="tor_careerunlock_reward_2.Necrarch" text="{=str_tor_careerunlock_reward_2_necrarch}Unlocks up to 5 lores" />
+<string id="tor_careerunlock_reward_3.Necrarch" text="{=str_tor_careerunlock_reward_3_necrarch}Unlocks 8 lores" />
+
+<!-- GreyLord -->
+<string id="tor_careerunlock_reward_2.GreyLord" text="{=str_tor_careerunlock_reward_2_greylord}Unlocks High Magic and then Dark Magic after learning the 8 winds" />
   
   
   

@@ -284,21 +284,27 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
             bool SpellsingerAdditonalLoreCondition()
             {
-                if (!Hero.MainHero.HasUnlockedCareerChoiceTier(3))
+                if (!Hero.MainHero.HasCareer(TORCareers.Spellsinger))
                     return false;
 
-                if (!Hero.MainHero.HasKnownLore("HighMagic") && !Hero.MainHero.HasKnownLore("DarkMagic"))
+                // Count additional base lores only (exclude High/Dark magic and starting lores)
+                var additionalLoreCount = Hero.MainHero.GetKnownLoreCount();
+                if (Hero.MainHero.HasKnownLore("HighMagic")) additionalLoreCount--;
+                if (Hero.MainHero.HasKnownLore("DarkMagic")) additionalLoreCount--;
+                if (Hero.MainHero.HasKnownLore("LoreOfLife")) additionalLoreCount--;
+                if (Hero.MainHero.HasKnownLore("LoreOfBeasts")) additionalLoreCount--;
+
+                if (Hero.MainHero.HasUnlockedCareerChoiceTier(3))
                 {
-                    return false;
+                    return true; // Can learn all remaining base lores
                 }
-                var count = Hero.MainHero.GetKnownLoreCount();
 
-                if (count >= 6)
+                if (Hero.MainHero.HasUnlockedCareerChoiceTier(2))
                 {
-                    return false;
+                    return additionalLoreCount < 3;
                 }
 
-                return true;
+                return additionalLoreCount < 2;
             }
 
             void AdditionalLoresPrompt()
