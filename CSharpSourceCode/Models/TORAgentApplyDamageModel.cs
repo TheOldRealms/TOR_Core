@@ -7,6 +7,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics;
 using TOR_Core.BattleMechanics.DamageSystem;
@@ -47,7 +48,10 @@ namespace TOR_Core.Models
                 CharacterObject partyLeader = attackerAgent.GetPartyLeaderCharacter();
                 //Piercing Shot states only troops, the conditional is less restrictive and allows other heroes in the party to pierce as long as the leader has the perk
                 //because this only checks for cartridges, a flamethrower or a launched grenade would also gain the flag; unsure if that even matters for those weapons
-                if (missileWeapon.CurrentUsageItem.WeaponClass == WeaponClass.Cartridge && character.GetPerkValue(TORPerks.GunPowder.PiercingShots) || (partyLeader != null && partyLeader.GetPerkValue(TORPerks.GunPowder.PiercingShots))) missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
+                if (missileWeapon.CurrentUsageItem.WeaponClass == WeaponClass.Cartridge && character.GetPerkValue(TORPerks.GunPowder.PiercingShots) || (partyLeader != null && partyLeader.GetPerkValue(TORPerks.GunPowder.PiercingShots)))
+                {
+                    missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
+                }
 
                 if (attackerAgent.IsMainAgent && Hero.MainHero.HasAnyCareer())
                 {
@@ -185,6 +189,28 @@ namespace TOR_Core.Models
             var attacker = attackInformation.AttackerAgent;
             if (attacker == null) return result.ResultNumber;
 
+            //This block is a temporary correction for native code that underestimates the damage a projectile deals to a shield if it has been flagged for only one of CanPenetrateShield or MultiplePenetration, but not both as that is calculated correctly.
+            //The bug also includes attacks not benefitting from flags added via DecideMissileWeaponFlags during runtime.
+            //See https://forums.taleworlds.com/index.php?threads/canpenetrateshield-weapon-flag-treated-incorrectly-during-missile-collision-resolution-when-striking-a-shield.470085/ and https://forums.taleworlds.com/index.php?threads/shield-penetration-flag-now-dependent-on-multiple-penetration-flag-as-well.470117/ for the 2 bugs.
+            if (attackInformation.AttackerWeapon.CurrentUsageItem.IsConsumable)//ammos, javelins, but also a variety of other thrown weapons including boulders and stuff
+            {
+                var missionWeapon = attackInformation.AttackerWeapon;
+                var missileWeaponFlags = missionWeapon.CurrentUsageItem.WeaponFlags;
+                
+                //If the original weapon's flags before DecideMissileWeaponFlags contains both flags, then it's damage would have been calculated correctly and it needs no adjustment.
+                if (!missileWeaponFlags.HasAllFlags(WeaponFlags.CanPenetrateShield | WeaponFlags.MultiplePenetration))
+                { 
+                    DecideMissileWeaponFlags(attacker, in missionWeapon, ref missileWeaponFlags);
+
+                    //If DecideMissileWeaponFlags added either of those flags, then it's damage would have been underestimated and we adjust.
+                    //If it has no penetration flag, then it's damage is correct.
+                    if (missileWeaponFlags.HasAnyFlag(WeaponFlags.CanPenetrateShield) || missileWeaponFlags.HasAnyFlag(WeaponFlags.MultiplePenetration))
+                    {
+                        result = new ExplainedNumber(result.ResultNumber / 0.3f);
+                    }
+                }
+            }
+
             if (attacker.IsHero)
             {
                 if (attacker.GetHero() == Hero.MainHero)
@@ -192,7 +218,7 @@ namespace TOR_Core.Models
                     var attackMask = AttackTypeMask.Melee;
                     var weaponComponent = attackInformation.AttackerWeapon.CurrentUsageItem;
 
-                    if (weaponComponent != null && weaponComponent.IsRangedWeapon)
+                    if (weaponComponent != null && weaponComponent.IsRangedWeapon || weaponComponent.IsAmmo)
                     {
                         attackMask = AttackTypeMask.Ranged;
                     }

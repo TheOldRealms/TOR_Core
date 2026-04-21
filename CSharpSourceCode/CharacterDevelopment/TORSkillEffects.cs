@@ -68,9 +68,10 @@ namespace TOR_Core.CharacterDevelopment
 
             _maxWinds.Initialize(TORTextHelper.GetTextObject("tor_skill_effect_max_winds", "Maximum winds of magic: +{a0}"),
             TORSkills.Spellcraft, PartyRole.Personal, 0.3f, EffectIncrementType.Add, 0f, 0f);
-
+            
+            //wardsave is reducing the damage multiplier below 1.00 and is therefore an addition of a negative
             _faithWardSave.Initialize(TORTextHelper.GetTextObject("tor_skill_effect_ward_save", "Ward save: +{a0} %"),
-            TORSkills.Faith, PartyRole.Personal, 0.0008f, EffectIncrementType.AddFactor, 0f, 0f);
+            TORSkills.Faith, PartyRole.Personal, -0.0008f, EffectIncrementType.AddFactor);
 
             _blessingDuration.Initialize(TORTextHelper.GetTextObject("tor_skill_effect_blessing_duration", "Blessing duration increase: +{a0} %"),
             TORSkills.Faith, PartyRole.PartyLeader, 0.01f, EffectIncrementType.AddFactor, 0f, 0f);

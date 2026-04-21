@@ -245,7 +245,10 @@ namespace TOR_Core.CampaignMechanics.Companions
             {
                 return;
             }
-            if (causeOfDeath != KillCharacterAction.KillCharacterActionDetail.Executed || causeOfDeath != KillCharacterAction.KillCharacterActionDetail.Lost ) {result = false;}
+            if (causeOfDeath != KillCharacterAction.KillCharacterActionDetail.Executed || causeOfDeath != KillCharacterAction.KillCharacterActionDetail.Lost)
+            {
+                result = false;
+            }
         }
 
         private void BuildCachedSkillPools()
