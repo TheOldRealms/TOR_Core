@@ -250,6 +250,11 @@ namespace TOR_Core.BattleMechanics
                 return false;
             }
 
+            if (agent.Character?.Culture?.StringId == TORConstants.Cultures.DAWI)
+            {
+                return false;
+            }
+
             if (agent.IsUsingGameObject)
             {
                 return false;
