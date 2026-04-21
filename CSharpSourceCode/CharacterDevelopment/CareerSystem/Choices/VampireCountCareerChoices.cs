@@ -263,7 +263,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             _courtleyPassive1.Initialize(CareerID, "+20% relation gains with 'Notables'.", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //TorDiplomacy model 23
             _courtleyPassive2.Initialize(CareerID, "+15 personal Hitpoints.", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
-            _courtleyPassive3.Initialize(CareerID, "+3% personal 'Magic' and 'Ranged' damage.", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 3), AttackTypeMask.Spell | AttackTypeMask.Ranged));
+            _courtleyPassive3.Initialize(CareerID, "+3% personal 'Magic' damage.", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 3), AttackTypeMask.All));
             _courtleyPassive4.Initialize(CareerID, "Slaying foes with a headstrike (melee) restores +2 personal 'Winds of Magic'.", "Courtley", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2)); //CareerPerkMissionBehavior 28
 
             _lordlyPassive1.Initialize(CareerID, "+5 Companion limit.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));

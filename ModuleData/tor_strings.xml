@@ -3866,7 +3866,7 @@
   <string id="tor_careerchoice_description.CourtleyKeystone" text="{=str_tor_careerchoice_description_CourtleyKeystone}Mist Form also scales with Roguery, and can be cast on battle start." />
   <string id="tor_careerchoice_description.CourtleyPassive1" text="{=str_tor_careerchoice_description_CourtleyPassive1}+20% relation gains with 'Notables'." />
   <string id="tor_careerchoice_description.CourtleyPassive2" text="{=str_tor_careerchoice_description_CourtleyPassive2}+15 personal Hitpoints." />
-  <string id="tor_careerchoice_description.CourtleyPassive3" text="{=str_tor_careerchoice_description_CourtleyPassive3}+3% personal 'Magic' and 'Ranged' damage." />
+  <string id="tor_careerchoice_description.CourtleyPassive3" text="{=str_tor_careerchoice_description_CourtleyPassive3}+3% personal 'Magic' damage." />
   <string id="tor_careerchoice_description.CourtleyPassive4" text="{=str_tor_careerchoice_description_CourtleyPassive4}Slaying foes with a headstrike (melee) restores +2 personal 'Winds of Magic'." />
   
   <string id="tor_careerchoice_description.LordlyKeystone" text="{=str_tor_careerchoice_description_LordlyKeystone}Mist Form also scales with currently equipped weapon skill, and restores 1 Hitpoint per second." />

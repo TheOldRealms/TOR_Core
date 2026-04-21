@@ -23,7 +23,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.FormationBehavior
                 Formation.SetMovementOrder(CurrentOrder);
             }
 
-            var targetAgent = artillery.GetMedianAgent(false, true, artillery.GetAveragePositionOfUnits(true, true));
+            var targetAgent = artillery.GetMedianAgent(true, true, artillery.GetAveragePositionOfUnits(true, true));
             if (targetAgent != null)
             {
                 CurrentOrder = MovementOrder.MovementOrderFollow(targetAgent);
