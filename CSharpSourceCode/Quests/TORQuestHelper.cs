@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.MapEvents;
+using TaleWorlds.CampaignSystem.Party;
 using TOR_Core.Extensions;
 using TOR_Core.Quests.Careers;
 
@@ -108,6 +110,42 @@ namespace TOR_Core.Quests
                 hero = Hero.AllAliveHeroes.Where(x => x.IsSpellTrainer()).TakeRandom(1).FirstOrDefault();
             }
             return new SpecializeLoreQuest("practicemagic", hero, CampaignTime.DaysFromNow(1000), 100);
+        }
+
+        /// <summary>
+        /// Checks if a map event was won by a party belonging to the player's clan or kingdom,
+        /// excluding battles where the player directly participated.
+        /// </summary>
+        /// <param name="mapEvent">The map event to check</param>
+        /// <returns>True if a clan/kingdom party won without direct player involvement</returns>
+        public static bool WasClanOrKingdomBattleWon(MapEvent mapEvent)
+        {
+            if (mapEvent == null) return false;
+            if (mapEvent.IsPlayerMapEvent) return false;
+
+            var playerClan = Hero.MainHero?.Clan;
+            var playerKingdom = Hero.MainHero?.Clan?.Kingdom;
+
+            var winningSide = mapEvent.GetMapEventSide(mapEvent.WinningSide);
+            if (winningSide == null) return false;
+
+            // Skip if main party was in the winning side
+            if (winningSide.Parties.Any(x => x.Party == PartyBase.MainParty))
+                return false;
+
+            foreach (var party in winningSide.Parties)
+            {
+                var partyClan = party.Party?.Owner?.Clan;
+                if (partyClan == null) continue;
+
+                // Check if party belongs to player's clan or kingdom
+                if (partyClan == playerClan || (playerKingdom != null && partyClan.Kingdom == playerKingdom))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
