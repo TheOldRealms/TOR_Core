@@ -533,7 +533,7 @@ namespace TOR_Core.Models
             // 1. KARAK RECLAMATION - Dwarfs vs Greenskins holding Karaks
             if (declaringKingdom.Culture?.StringId == TORConstants.Cultures.DAWI)
             {
-                var targetPantheon = targetKingdom.Leader.GetDominantReligion().Pantheon;
+                var targetPantheon = ReligionObjectHelper.GetPantheonForHero(targetKingdom.Leader);
                 if (targetPantheon == Pantheon.Greenskin)
                 {
                     // Count how many Karaks (dwarf settlements) the greenskins hold
@@ -552,7 +552,7 @@ namespace TOR_Core.Models
             var targetCulture = targetKingdom.Culture?.StringId;
             if (targetCulture == TORConstants.Cultures.CHAOS)
             {
-                var myPantheon = declaringKingdom.Leader.GetDominantReligion().Pantheon;
+                var myPantheon = ReligionObjectHelper.GetPantheonForHero(declaringKingdom.Leader);
                 // Good pantheons: Empire, Bretonnia, Dwarfs, Elves
                 if (myPantheon == Pantheon.Human ||
                     myPantheon == Pantheon.Dwarven ||
@@ -591,7 +591,7 @@ namespace TOR_Core.Models
             float culturalClaimScore = 0f;
             float pantheonClaimScore = 0f;
 
-            var myPantheon = declaringKingdom.Leader?.GetDominantReligion()?.Pantheon ?? Pantheon.Human;
+            var myPantheon = ReligionObjectHelper.GetPantheonForHero(declaringKingdom.Leader);
             var myMidSettlement = declaringKingdom.FactionMidSettlement;
 
             foreach (var settlement in targetKingdom.Settlements)
@@ -626,7 +626,7 @@ namespace TOR_Core.Models
 
                 // Pantheon Claim - settlement belongs to our pantheon but held by different pantheon
                 var rightfulPantheon = ReligionObjectHelper.GetPantheon(rightfulCulture);
-                var holderPantheon = targetKingdom.Leader?.GetDominantReligion()?.Pantheon ?? Pantheon.Human;
+                var holderPantheon = ReligionObjectHelper.GetPantheonForHero(targetKingdom.Leader);
                 if (rightfulPantheon == myPantheon && holderPantheon != rightfulPantheon)
                 {
                     pantheonClaimScore += distanceFactor;
