@@ -3,6 +3,7 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.Core;
 using TOR_Core.Extensions;
 using TOR_Core.Quests.Careers;
 
@@ -126,6 +127,10 @@ namespace TOR_Core.Quests
             var playerClan = Hero.MainHero?.Clan;
             var playerKingdom = Hero.MainHero?.Clan?.Kingdom;
 
+            if (mapEvent.WinningSide == BattleSideEnum.None)
+            {
+                return false;
+            }
             var winningSide = mapEvent.GetMapEventSide(mapEvent.WinningSide);
             if (winningSide == null) return false;
 
