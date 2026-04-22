@@ -4491,7 +4491,7 @@
   <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive1" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenPassive1}More Faith eks-perr-yens afta' lootin' Idols" />
   <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive2" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenPassive2}10% betta mumbo-jumbo killin’" />
   <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive3" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenPassive3}50 more tuffness" />
-  <string id="tor_career_choice_description.GiftzFromDaGreatGreenPassive4" text="{=str_tor_career_choice_description_GiftzFromDaGreatGreenPassive4}Get 15 mumbo-jumbo pointz afta' winnin' scraps" />  
+  <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive4" text="{=str_tor_career_choice_description_GiftzFromDaGreatGreenPassive4}Get 15 mumbo-jumbo pointz afta' winnin' scraps" />  
 
   <string id="tor_careerchoice_description.BrutalCunninKeystone" text="{=str_tor_careerchoice_description_BrutalCunninKeystone}Call uv da Great Green gives da Boys 10% ‘ardiness fer sum time" />
   <string id="tor_careerchoice_description.BrutalCunninPassive1" text="{=str_tor_careerchoice_description_BrutalCunninPassive1}60 more Boys fer da mob" />
