@@ -90,9 +90,15 @@ namespace TOR_Core.AbilitySystem.Scripts
                 if (_soundIndex < 0)
                 {
                     TORCommon.Log($"Sound effect '{soundEffectToPlay}' not found for ability '{_ability.Template.StringID}'.", NLog.LogLevel.Warn);
+                    return;
                 }
 
                 _sound = SoundEvent.CreateEvent(_soundIndex, Scene);
+                if (_sound == null || !_sound.IsValid)
+                {
+                    _sound = null;
+                    _soundIndex = -1;
+                }
             }
         }
 
@@ -204,27 +210,51 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         private void UpdateSound(Vec3 position)
         {
-            if (_sound != null)
+            if (_sound == null)
             {
-                _sound.SetPosition(position);
-                if (IsSoundPlaying()) return;
-                else
+                return;
+            }
+
+            // recreate stale spell sound handles before replaying
+            if (!_sound.IsValid)
+            {
+                if (_soundIndex < 0)
                 {
-                    if (!_soundStarted)
-                    {
-                        _sound.Play();
-                        _soundStarted = true;
-                    }
-                    else if (_ability.Template.ShouldSoundLoopOverDuration)
-                    {
-                        _sound.Play();
-                    }
-                    else
-                    {
-                        _sound.Release();
-                        _sound = null;
-                    }
+                    _sound = null;
+                    return;
                 }
+
+                _sound = SoundEvent.CreateEvent(_soundIndex, Scene);
+                if (_sound == null || !_sound.IsValid)
+                {
+                    _sound = null;
+                    _soundIndex = -1;
+                    return;
+                }
+
+                _soundStarted = false;
+            }
+
+            _sound.SetPosition(position);
+
+            if (IsSoundPlaying())
+            {
+                return;
+            }
+
+            if (!_soundStarted)
+            {
+                _sound.Play();
+                _soundStarted = true;
+            }
+            else if (_ability.Template.ShouldSoundLoopOverDuration)
+            {
+                _sound.Play();
+            }
+            else
+            {
+                _sound.Release();
+                _sound = null;
             }
         }
 

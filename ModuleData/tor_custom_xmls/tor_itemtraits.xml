@@ -378,7 +378,7 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>5</IngredientAmount>
-    <ItemTraitDescription>"10% extra physical damage"</ItemTraitDescription>
+    <ItemTraitDescription>10% extra physical damage</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.10" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_hysh_sanctuary" ItemTraitName="Sanctuary of Hysh" IsCraftable="true" ImbuedEffectChance="0.05" IconName="hysh">
@@ -394,7 +394,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_enchant_hysh_brilliance" ItemTraitName="Brilliance of Hysh" IsCraftable="true" ImbuedEffectChance="0.10" IconName="hysh">
+  <ItemTrait ItemTraitStringId="emp_enchant_hysh_brilliance" ItemTraitName="Brilliance of Hysh" IsCraftable="true" ImbuedEffectChance="0.15" IconName="hysh">
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>10</IngredientAmount>
@@ -403,6 +403,7 @@
       <WeaponScriptArguments>
         <WeaponScriptArgument>hysh_brilliance_enchant</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -451,6 +452,7 @@
         <WeaponScriptArgument>ghyran_brambles_enchant</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>melee</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -469,7 +471,7 @@
     <ItemTraitDescription>25% extra healing rate when travelling</ItemTraitDescription>
     <StatsTuple StatType="HealthRegen" Value="25" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_enchant_ghyran_tendrils" ItemTraitName="Tendrils of Ghyran" IsCraftable="true" ImbuedEffectChance="0.10" IconName="ghyran">
+  <ItemTrait ItemTraitStringId="emp_enchant_ghyran_tendrils" ItemTraitName="Tendrils of Ghyran" IsCraftable="true" ImbuedEffectChance="0.25" IconName="ghyran">
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>15</IngredientAmount>
@@ -478,7 +480,7 @@
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>ghyran_tendrils_enchant</WeaponScriptArgument>
-        <WeaponScriptArgument>false</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
         <WeaponScriptArgument>false</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
@@ -563,11 +565,12 @@
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>14</IngredientAmount>
-    <ItemTraitDescription>"20% extra fire resistance, inflict fire DoT on blocked enemies. This DoT effect can spread onto enemies and allies alike"</ItemTraitDescription>
+    <ItemTraitDescription>"20% extra fire resistance, 15% chance to inflict fire DoT on blocked enemies. This DoT effect can spread onto enemies and allies alike"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.20" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>aqshy_cinders_enchant</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
@@ -589,8 +592,8 @@
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>chamon_transmutation_enchant</WeaponScriptArgument>
-        <WeaponScriptArgument>false</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -633,7 +636,7 @@
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.03" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_chamon_crucible" ItemTraitName="Crucible of Chamon" IsCraftable="true" IconName="chamon">
-    <ValidItemType>Melee</ValidItemType>
+    <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>WarpstoneDust</IngredientItem>
     <IngredientAmount>30</IngredientAmount>
     <ItemTraitDescription>"20 extra magic damage, weapon gains the Cleave trait"</ItemTraitDescription>
@@ -781,6 +784,7 @@
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.UndeadConditionDefenseTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>shyish_deathsight</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
@@ -1114,7 +1118,7 @@
     <ValidItemType>Ranged</ValidItemType>
     <IngredientItem>WarpstoneDust</IngredientItem>
     <IngredientAmount>25</IngredientAmount>
-    <ItemTraitDescription>"25 extra magic damage, ranged shots reduce physical resistance of the target by 50%"</ItemTraitDescription>
+    <ItemTraitDescription>"25% extra magic damage, ranged shots reduce physical resistance of the target by 50%"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Magical" Percent="0.25" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="vc_enchant_touch_jet" ItemTraitName="Touch of Jet" IsCraftable="true" ImbuedEffectChance="1.00" IconName="darkenergy_icon_100">
@@ -1278,6 +1282,7 @@
         <WeaponScriptArgument>thorns_nettles</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>melee</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -1400,8 +1405,9 @@
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>rune_parrying_enchant</WeaponScriptArgument>
-        <WeaponScriptArgument>false</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>melee</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -1525,6 +1531,7 @@
       <WeaponScriptArguments>
         <WeaponScriptArgument>legacy_caledor_enchant</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -1558,7 +1565,7 @@
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.04" />
     <StatsTuple StatType="MovementSpeed" Value="-5" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="gs_enchant_clobberin_shield" ItemTraitName="Blocka uv Clobberin'" IsCraftable="true" IconName="gork_icon">
+  <ItemTrait ItemTraitStringId="gs_enchant_clobberin_shield" ItemTraitName="Blocka uv Clobberin'" IsCraftable="true" ImbuedEffectChance="0.30" IconName="gork_icon">
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>WarpstoneDust</IngredientItem>
     <IngredientAmount>12</IngredientAmount>
@@ -1567,7 +1574,7 @@
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.AttackTypeDefenseTriggerScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>rune_parrying_enchant</WeaponScriptArgument>
-        <WeaponScriptArgument>false</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
         <WeaponScriptArgument>melee</WeaponScriptArgument>
       </WeaponScriptArguments>
@@ -1666,11 +1673,12 @@
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>3</IngredientAmount>
     <ItemTraitDescription>25% chance to knock down foes when blocking melee hits</ItemTraitDescription>
-    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.MeleeDefenseTriggerScript">
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>rune_parrying_enchant</WeaponScriptArgument>
-        <WeaponScriptArgument>false</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>melee</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -1688,11 +1696,12 @@
     <IngredientAmount>8</IngredientAmount>
     <ItemTraitDescription>"33% extra shield HP, 70% chance to knock down foes when blocking melee hits"</ItemTraitDescription>
     <StatsTuple StatType="ShieldHealth" Value="33" />
-    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.MeleeDefenseTriggerScript">
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>rune_parrying_enchant</WeaponScriptArgument>
-        <WeaponScriptArgument>false</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>melee</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -1709,11 +1718,12 @@
     <IngredientAmount>8</IngredientAmount>
     <ItemTraitDescription>"10% physical resistance, 30% chance to knock down foes when blocking melee hits"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
-    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.MeleeDefenseTriggerScript">
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>rune_parrying_enchant</WeaponScriptArgument>
-        <WeaponScriptArgument>false</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>melee</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -2285,7 +2295,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"10 extra physical damage, 20 bonus skillpoints to Riding"</ItemTraitDescription>
+    <ItemTraitDescription>10 extra physical damage</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_ghur_whisper</InventoryScriptArgument>
@@ -3442,14 +3452,14 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_we_enchant_emissaries_mirai" ItemTraitName="Emissaries of Mirai" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_asrai_enchant_emissaries_mirai" ItemTraitName="Emissaries of Mirai" IsCraftable="false" IconName="harmony_icon_100">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>"15 extra magic damage, 15% chance to inflict horrific visions in a radius upon dealing damage. Nearby enemies suffer a DoT effect effect"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
-        <InventoryScriptArgument>we_enchant_emissaries_mirai</InventoryScriptArgument>
+        <InventoryScriptArgument>asrai_enchant_emissaries_mirai_mirai</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
         <InventoryScriptArgument>25</InventoryScriptArgument>
         <InventoryScriptArgument>DarkMagic</InventoryScriptArgument>
@@ -3469,14 +3479,14 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_we_enchant_dusk_wood" ItemTraitName="Dusk of the Woods" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_asrai_enchant_dusk_wood" ItemTraitName="Dusk of the Woods" IsCraftable="false" IconName="harmony_icon_100">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>"-8% physical resistance, 8 extra Winds of Magic"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
-        <InventoryScriptArgument>we_enchant_dusk_wood</InventoryScriptArgument>
+        <InventoryScriptArgument>asrai_enchant_dusk_wood</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
         <InventoryScriptArgument>225</InventoryScriptArgument>
         <InventoryScriptArgument>DarkMagic</InventoryScriptArgument>
@@ -3535,28 +3545,28 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_we_enchant_tranquillity_cadai" ItemTraitName="Tranquillity of Cadai" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_asrai_enchant_tranquillity_cadai" ItemTraitName="Tranquillity of Cadai" IsCraftable="false" IconName="harmony_icon_100">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>"15 extra magic damage and magic resistance, 30% to grant nearby troops the same boons for a short time upon dealing damage"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
-        <InventoryScriptArgument>we_enchant_tranquillity_cadai</InventoryScriptArgument>
+        <InventoryScriptArgument>asrai_enchant_tranquillity_cadai</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
         <InventoryScriptArgument>75</InventoryScriptArgument>
         <InventoryScriptArgument>HighMagic</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_we_enchant_radiance_woods" ItemTraitName="Radiance of the Woods" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_asrai_enchant_radiance_woods" ItemTraitName="Radiance of the Woods" IsCraftable="false" IconName="harmony_icon_100">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>"3% Ward Save, 4 extra Winds of Magic"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
-        <InventoryScriptArgument>we_enchant_radiance_woods</InventoryScriptArgument>
+        <InventoryScriptArgument>asrai_enchant_radiance_woods</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
         <InventoryScriptArgument>225</InventoryScriptArgument>
         <InventoryScriptArgument>HighMagic</InventoryScriptArgument>

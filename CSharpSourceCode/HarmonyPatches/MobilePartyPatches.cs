@@ -1,15 +1,27 @@
 ﻿using HarmonyLib;
+using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Library;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches;
 
 [HarmonyPatch]
 public static class MobilePartyPatches
 {
+    private static bool ShouldUseChaosLordSettlementOverride(Hero hero)
+    {
+        return hero != null &&
+               hero.IsLord &&
+               hero.Culture?.StringId == TORConstants.Cultures.CHAOS &&
+               hero.Clan != null &&
+               !hero.Clan.IsOutlaw;
+    }
+
     //Fill available cultures
     [HarmonyPrefix]
     [HarmonyPatch(typeof(PartyBase), "UpdateVisibilityAndInspected", MethodType.Normal)]
@@ -35,6 +47,25 @@ public static class MobilePartyPatches
     public static bool GiveHighScore(ref float __result)
     {
         __result = 999f;
+        return false;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(HeroHelper), "FindASuitableSettlementToTeleportForHero")]
+    public static bool ChaosHeroTeleportSettlementPrefix(Hero hero, float minimumScore, ref Settlement __result)
+    {
+        if (!ShouldUseChaosLordSettlementOverride(hero))
+        {
+            return true;
+        }
+
+        var preferredSettlement = hero.Clan.HomeSettlement ?? hero.Clan.InitialHomeSettlement;
+        if (preferredSettlement == null)
+        {
+            return true;
+        }
+
+        __result = preferredSettlement;
         return false;
     }
 }

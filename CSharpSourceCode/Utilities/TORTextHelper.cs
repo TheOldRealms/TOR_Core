@@ -80,7 +80,7 @@ namespace TOR_Core.Extensions
                     var pureText = textObject.GetNativeTextWithoutTag();
                     if (pureText != defaultText)
                     {
-                        TORCommon.Log(string.Format("[TEXT]Code text mismatches TOR XML text.{0}, \n XML : {1} \n CODE: {2}", id,pureText,defaultText), LogLevel.Warn);
+                        TORCommon.Log(string.Format("[TEXT]Code text mismatches TOR XML text.{0}.{1}, \n XML : {2} \n CODE: {3}", id,variation,pureText,defaultText), LogLevel.Warn);
                     }
                 }
 

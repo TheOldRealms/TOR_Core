@@ -78,6 +78,12 @@ namespace TOR_Core.Models
                     {
                         consumption.Add(totalAdditionalFood, TORTextHelper.GetTextObject("tor_greenskin_appetite", "Greenskin appetite"));
                     }
+
+                    // 2x food consumption when the party has no gold
+                    if (Hero.MainHero.Gold <= 0)
+                    {
+                        consumption.AddFactor(1.0f, TORTextHelper.GetTextObject("tor_greenskin_no_gold", "No Gold"));
+                    }
                 }
             }
 

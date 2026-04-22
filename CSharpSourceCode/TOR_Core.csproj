@@ -835,6 +835,7 @@
     <Compile Include="Models\TORMobilePartyFoodConsumptionModel.cs" />
     <Compile Include="Models\TORPartyHealingModel.cs" />
     <Compile Include="Models\TORPartyMoraleModel.cs" />
+    <Compile Include="Models\TORPartyDesertionModel.cs" />
     <Compile Include="Models\TORPartySizeModel.cs" />
     <Compile Include="Models\TORPartySpeedCalculatingModel.cs" />
     <Compile Include="Models\TORPartyTrainingModel.cs" />

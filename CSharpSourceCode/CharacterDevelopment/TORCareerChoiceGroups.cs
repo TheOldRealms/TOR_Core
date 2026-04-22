@@ -818,6 +818,10 @@ namespace TOR_Core.CharacterDevelopment
             {
                 text = TORTextHelper.GetText("tor_careerunlock_level_2", "Necrarch", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
+            }, (Hero hero, out string unlockText) =>
+            {
+                unlockText = TORTextHelper.GetText("tor_careerunlock_reward_2", "Necrarch", "Unlocks up to 5 lores");
+                return hero.Clan.Tier >= 2;
             });
             _hungerForKnowledge.Initialize("Hunger for Knowledge", TORCareers.Necrarch, 2, (Hero hero, out string text) =>
             {
@@ -832,6 +836,10 @@ namespace TOR_Core.CharacterDevelopment
             _everlingsSecret.Initialize("The Everlings Secret", TORCareers.Necrarch, 3, (Hero hero, out string text) =>
             {
                 text = TORTextHelper.GetText("tor_careerunlock_level_3", "Necrarch", "Required clan renown: 4");
+                return hero.Clan.Tier >= 4;
+            }, (Hero hero, out string unlockText) =>
+            {
+                unlockText = TORTextHelper.GetText("tor_careerunlock_reward_3", "Necrarch", "Unlocks all 8 lores");
                 return hero.Clan.Tier >= 4;
             });
 
@@ -992,6 +1000,10 @@ namespace TOR_Core.CharacterDevelopment
             {
                 text = TORTextHelper.GetText("tor_careerunlock_level_2", "Spellsinger", "Required clan renown: 2");
                 return hero.Clan.Tier >= 2;
+            }, (Hero hero, out string unlockText) =>
+            {
+                unlockText = TORTextHelper.GetText("tor_careerunlock_reward_2", "Spellsinger", "Unlocks 3rd lore and Spellweaver path");
+                return hero.Clan.Tier >= 2;
             });
 
             _arielsBlessing.Initialize("Ariel's Blessing", TORCareers.Spellsinger, 2, (Hero hero, out string text) =>
@@ -1003,6 +1015,10 @@ namespace TOR_Core.CharacterDevelopment
             _magicOfAthelLoren.Initialize("Fey Magic", TORCareers.Spellsinger, 3, (Hero hero, out string text) =>
             {
                 text = TORTextHelper.GetText("tor_careerunlock_level_3", "Spellsinger", "Required clan renown: 4");
+                return hero.Clan.Tier >= 4;
+            }, (Hero hero, out string unlockText) =>
+            {
+                unlockText = TORTextHelper.GetText("tor_careerunlock_reward_3", "Spellsinger", "Unlocks all base lores");
                 return hero.Clan.Tier >= 4;
             });
 
@@ -1031,6 +1047,10 @@ namespace TOR_Core.CharacterDevelopment
             _unrestrictedMagic.Initialize("Unrestricted Magic", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
             {
                 text = TORTextHelper.GetText("tor_careerunlock_level_2", "GreyLord", "Required clan renown: 2");
+                return hero.Clan.Tier >= 2;
+            }, (Hero hero, out string unlockText) =>
+            {
+                unlockText = TORTextHelper.GetText("tor_careerunlock_reward_2", "GreyLord", "Unlocks High Magic, then Dark Magic");
                 return hero.Clan.Tier >= 2;
             });
 

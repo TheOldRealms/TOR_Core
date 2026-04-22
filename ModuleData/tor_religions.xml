@@ -16,6 +16,7 @@
         </Followers>
         <ReligiousTroops>
             <ReligiousTroop id="NPCCharacter.tor_empire_flagellant" />
+            <ReligiousTroop id="NPCCharacter.tor_empire_prophet" />
         </ReligiousTroops>
         <EliteUnits>
             <EliteUnit id="NPCCharacter.tor_ror_griffon_knight" />

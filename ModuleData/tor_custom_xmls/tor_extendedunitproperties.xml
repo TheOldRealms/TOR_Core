@@ -506,13 +506,32 @@
       <string>Unbreakable</string>
     </Attributes>
     <Resistances>
-      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.25" />
     </Resistances>
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.10" />
+    </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="0.75" />
       <DamageProportionTuple DamageType="Holy" Percent="0.25" />
     </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_empire_prophet">
+    <Abilities />
+    <Attributes>
+      <string>Unbreakable</string>
+    </Attributes>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.25" />
+    </Resistances>
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.25" />
+    </DamageAmplifiers>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="0.75" />
+      <DamageProportionTuple DamageType="Holy" Percent="0.25" />
+    </DamageProportions>
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="1" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_wolfkin">
     <Abilities />
@@ -601,7 +620,7 @@
       <string>Unbreakable</string>
     </Attributes>
     <Resistances>
-      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.25" />
     </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
@@ -1631,6 +1650,24 @@
     </DamageProportions>
     <ResourceCost ResourceType="OathGold" UpkeepCost="0" UpgradeCost="1" />
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_dw_giant_slayer">
+    <Abilities />
+    <Attributes>
+      <string>Unbreakable</string>
+    </Attributes>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
+      <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
+      <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
+    </Resistances>
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.50" />
+    </DamageAmplifiers>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ResourceCost ResourceType="OathGold" UpkeepCost="0" UpgradeCost="5" />
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_pilgrim">
     <Abilities />
     <Attributes />
@@ -1689,7 +1726,23 @@
     <Abilities />
     <Attributes>
       <string>ArtilleryCrew</string>
-      <string>CrewI</string>
+      <string>CrewII</string>
+    </Attributes>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
+      <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
+      <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
+    </Resistances>
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_dw_artillery_gunner">
+    <Abilities />
+    <Attributes>
+      <string>ArtilleryCrew</string>
+      <string>CrewIII</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
@@ -2875,9 +2928,12 @@
       <string>Unbreakable</string>
     </Attributes>
     <Resistances>
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" />
     </Resistances>
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.10" />
+    </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -2889,9 +2945,12 @@
       <string>Unbreakable</string>
     </Attributes>
     <Resistances>
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.20" />
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" />
     </Resistances>
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.10" />
+    </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -2903,10 +2962,12 @@
       <string>Unbreakable</string>
     </Attributes>
     <Resistances>
-      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.30" />
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" />
     </Resistances>
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
+    </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -2918,11 +2979,11 @@
       <string>Unbreakable</string>
     </Attributes>
     <Resistances>
-      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.20" />
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.30" />
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" />
     </Resistances>
     <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.35" />
     </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -2938,7 +2999,9 @@
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" />
     </Resistances>
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.10" />
+    </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -4663,9 +4726,12 @@
       <string>Unstoppable</string>
     </Attributes>
     <Resistances />
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.20" />
+    </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.50" />
+      <DamageProportionTuple DamageType="Magical" Percent="0.50" />
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_harbinger_champion_two_handed">
@@ -4678,9 +4744,12 @@
       <string>Unstoppable</string>
     </Attributes>
     <Resistances />
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.30" />
+    </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.50" />
+      <DamageProportionTuple DamageType="Magical" Percent="0.50" />
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_harbinger_champion_plate">
@@ -4693,9 +4762,12 @@
       <string>Unstoppable</string>
     </Attributes>
     <Resistances />
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.50" />
+    </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.50" />
+      <DamageProportionTuple DamageType="Magical" Percent="0.50" />
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_harbinger_champion_plate_two_handed">
@@ -4708,9 +4780,12 @@
       <string>Unstoppable</string>
     </Attributes>
     <Resistances />
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.75" />
+    </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.50" />
+      <DamageProportionTuple DamageType="Magical" Percent="0.50" />
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_chaos_cult_acolyte">
@@ -8502,7 +8577,8 @@
     <Abilities>
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
-      <string>DaHandUvGork</string>
+      <string>BrainBursta</string>
+      <string>EreWeGo</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -8520,7 +8596,8 @@
     <Abilities>
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
-      <string>DaHandUvGork</string>
+      <string>BrainBursta</string>
+      <string>EreWeGo</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -8646,7 +8723,8 @@
     <Abilities>
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
-      <string>DaHandUvGork</string>
+      <string>BrainBursta</string>
+      <string>EreWeGo</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -8706,7 +8784,8 @@
     <Abilities>
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
-      <string>DaHandUvGork</string>
+      <string>BrainBursta</string>
+      <string>EreWeGo</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -8820,7 +8899,9 @@
     <Abilities>
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
-      <string>DaHandUvGork</string>
+      <string>BrainBursta</string>
+      <string>EreWeGo</string>
+      <string>FootUvGork</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -8911,8 +8992,8 @@
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
       <string>BrainBursta</string>
-      <string>DaHandUvGork</string>
       <string>EreWeGo</string>
+      <string>FootUvGork</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -8930,7 +9011,8 @@
     <Abilities>
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
-      <string>DaHandUvGork</string>
+      <string>BrainBursta</string>
+      <string>EreWeGo</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -8985,7 +9067,6 @@
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
       <string>BrainBursta</string>
-      <string>DaHandUvGork</string>
       <string>EreWeGo</string>
       <string>FootUvGork</string>
     </Abilities>
@@ -9069,7 +9150,8 @@
     <Abilities>
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
-      <string>DaHandUvGork</string>
+      <string>BrainBursta</string>
+      <string>EreWeGo</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -9195,7 +9277,8 @@
     <Abilities>
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
-      <string>DaHandUvGork</string>
+      <string>BrainBursta</string>
+      <string>EreWeGo</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -9268,8 +9351,8 @@
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
       <string>BrainBursta</string>
-      <string>DaHandUvGork</string>
       <string>EreWeGo</string>
+      <string>FootUvGork</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -9299,7 +9382,8 @@
     <Abilities>
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
-      <string>DaHandUvGork</string>
+      <string>BrainBursta</string>
+      <string>EreWeGo</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -9327,7 +9411,8 @@
     <Abilities>
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
-      <string>DaHandUvGork</string>
+      <string>BrainBursta</string>
+      <string>EreWeGo</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -9886,7 +9971,6 @@
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
       <string>BrainBursta</string>
-      <string>DaHandUvGork</string>
       <string>EreWeGo</string>
       <string>FootUvGork</string>
     </Abilities>
@@ -10810,6 +10894,66 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_kwartamasta_greenskins_0">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="gear_practice_dummy_empire">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_1_empire">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_2_empire">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_3_empire">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_1_vlandia">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_2_vlandia">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_3_vlandia">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="gear_practice_dummy_battania">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_1_battania">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_2_battania">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_3_battania">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="gear_practice_dummy_khuzait">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_1_khuzait">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_2_khuzait">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="weapon_practice_stage_3_khuzait">
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>

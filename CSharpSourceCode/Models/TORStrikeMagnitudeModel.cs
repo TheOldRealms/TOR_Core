@@ -2,9 +2,12 @@ using Helpers;
 using SandBox.GameComponents;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.AgentOrigins;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.AbilitySystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.CharacterDevelopment.CareerSystem.Choices;
@@ -12,6 +15,7 @@ using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
+using static TaleWorlds.MountAndBlade.Mission;
 
 namespace TOR_Core.Models
 {
@@ -23,9 +27,8 @@ namespace TOR_Core.Models
             var result = base.CalculateAdjustedArmorForBlow(attackInformation, collisionData, baseArmor, attackerCharacter, attackerCaptainCharacter, victimCharacter, victimCaptainCharacter, weaponComponent);
             ExplainedNumber resultArmor = new(result);
             var attacker = attackerCharacter as CharacterObject;
-            var attackerCaptain = attackerCharacter as CharacterObject;
             var attackerAgent = attackInformation.AttackerAgent;
-            if (weaponComponent != null && attacker != null)
+            if (weaponComponent != null && attackerAgent!=null && attacker != null && !collisionData.IsHorseCharge && !collisionData.IsFallDamage)
             {
                 if (attacker.GetPerkValue(TORPerks.GunPowder.PiercingShots) && weaponComponent.IsGunPowderWeapon())
                 {
@@ -34,8 +37,10 @@ namespace TOR_Core.Models
 
                 if (attacker.IsPlayerCharacter && attacker.HeroObject == Hero.MainHero)
                 {
+                    //Sly : spells are also affected by armor. In the future this could be improved and perks added that grant armour pen to them.
+                    //this will miscategorize certain spells as well like amber spear as it strikes like a ranged weapon but is sourced from a spell
                     var attackMask = AttackTypeMask.Melee;
-                    if (weaponComponent.IsRangedWeapon) attackMask = AttackTypeMask.Ranged;
+                    if (weaponComponent.IsRangedWeapon || weaponComponent.IsAmmo) attackMask = AttackTypeMask.Ranged;
 
                     CareerHelper.ApplyBasicCareerPassives(attacker.HeroObject, ref resultArmor, PassiveEffectType.ArmorPenetration, attackMask, true);
 
@@ -49,61 +54,70 @@ namespace TOR_Core.Models
                     }
                 }
 
-                if (attacker.IsHero && attackerAgent!=null) // never remove this check. operations for item traits can be very heavy
+                if (attacker.IsHero) // never remove this check. operations for item traits can be very heavy
                 {
-                    //Sly : does attackInformation.MissionWeapon not contain the references to the ranged and ammo weapon that are necessary here and could skip missileList iteration?
-                    if (weaponComponent.IsAmmo || weaponComponent.IsRangedWeapon)
+                    var weapon = attackerAgent.WieldedWeapon;
+                    //Sly : was there even any reason to split them out like this, or I could have just done attackerAgent.WieldedWeapon and called it a day for the current patch?
+                    //if (weaponComponent.IsRangedWeapon)//thrown weapons only as weaponComponent derives from attackInformation which only holds the ammo weapon, not the launching one
+                    //{
+                    //    weapon = attackInformation.AttackerWeapon;
+                    //}
+                    //else if (weaponComponent.IsAmmo)//projectiles launched from another weapon
+                    //{
+                    //    if (attackerAgent.WieldedWeapon.CurrentUsageItem != null && attackerAgent.WieldedWeapon.CurrentUsageItem.AmmoClass == weaponComponent.WeaponClass)
+                    //    {
+                    //        weapon = attackerAgent.WieldedWeapon;
+                    //    }
+                    //}
+                    //else if (weaponComponent.IsMeleeWeapon)
+                    //{
+                    //    weapon = attackerAgent.WieldedWeapon;
+                    //}
+
+
+                    var traits = weapon.Item?.GetTraits();
+                    if (traits != null)
                     {
-                        var missile = Mission.Current.MissilesList.FirstOrDefault(x => x.ShooterAgent == attackerAgent && x.Weapon.CurrentUsageItem.GetItemUsageIndex() == weaponComponent.GetItemUsageIndex());
-
-                        if (missile != null)
+                        foreach (var trait in traits)
                         {
-                            var traits = missile.Weapon.Item.GetTraits();
-
-                            foreach (var trait in traits)
+                            if (trait?.StatsTuple?.StatType == ItemTraitStatType.ArmorPenetration)
                             {
-                                if (trait?.StatsTuple?.StatType == ItemTraitStatType.ArmorPenetration)
-                                {
-                                    resultArmor.AddFactor(-trait.StatsTuple.Value / 100);
-                                }
-                            }
-                        }
-                    }
-
-                    if (attackerAgent.WieldedWeapon.CurrentUsageItem != null && attackerAgent.WieldedWeapon.CurrentUsageItem.GetItemUsageIndex() == weaponComponent.GetItemUsageIndex())
-                    {
-                        if (!attackerAgent.WieldedWeapon.IsEmpty)
-                        {
-                            var traits = attackerAgent.WieldedWeapon.Item.GetTraits();
-
-                            foreach (var trait in traits)
-                            {
-                                if (trait?.StatsTuple?.StatType == ItemTraitStatType.ArmorPenetration)
-                                {
-                                    resultArmor.AddFactor(-trait.StatsTuple.Value / 100);
-                                }
+                                resultArmor.AddFactor(-trait.StatsTuple.Value / 100);
                             }
                         }
                     }
                 }
 
-                if (attackerCharacter.IsUndead() && attackerCaptain.IsPlayerCharacter && attackerCaptain.HeroObject == Hero.MainHero)
+                
+                if (attackerAgent.Team.TeamSide == TeamSideEnum.PlayerTeam && attackerCharacter.IsUndead())//Filters for undead that belong to the player, or summoners in the player's party.
                 {
-                    if (Hero.MainHero.HasCareer(TORCareers.Necromancer))
+                    Hero attackerPartyLeader = new();
+                    if (attackInformation.AttackerAgentOrigin is PartyAgentOrigin partyOrigin)
                     {
-                        if (Hero.MainHero.HasCareerChoice("LiberMortisPassive2"))
+                        attackerPartyLeader = partyOrigin.Party.LeaderHero;
+                    }
+                    else if (attackInformation.AttackerAgentOrigin is SummonedAgentOrigin summonedPartyOrigin)
+                    {
+                         attackerPartyLeader = summonedPartyOrigin.OwnerParty?.LeaderHero;//party shouldn't be null unless a summoned troop summons other troops in turn and it could get fucky
+                    }
+
+                    if (attackerPartyLeader == Hero.MainHero)
+                    {
+                        if (Hero.MainHero.HasCareer(TORCareers.Necromancer))
                         {
-                            var choice = TORCareerChoices.GetChoice("LiberMortisPassive2");
-                            resultArmor.AddFactor(choice.GetPassiveValue());
+                            if (Hero.MainHero.HasCareerChoice("LiberMortisPassive2"))
+                            {
+                                var choice = TORCareerChoices.GetChoice("LiberMortisPassive2");
+                                resultArmor.AddFactor(-choice.GetPassiveValue());
+                            }
                         }
                     }
-
-                    // Tree spirits always ignore 80% of enemy armor
-                    if (attacker.IsTreeSpirit())
-                    {
-                        resultArmor.AddFactor(-0.8f);
-                    }
-
+                }
+                
+                // Tree spirits always ignore 80% of enemy armor
+                if (attacker.IsTreeSpirit())
+                {
+                    resultArmor.AddFactor(-0.8f);
                 }
 
                 if (attackerCharacter.HasAttribute("Piercing"))

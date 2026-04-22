@@ -54,6 +54,7 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(HeroTrainingData), 20);
             AddClassDefinition(typeof(TrollCaveComponent), 21);
             AddClassDefinition(typeof(TrollCaveDefenderPartyComponent), 22);
+            AddClassDefinition(typeof(ScriptUseData), 23);
 
 
             //Quests and issues begin at 200 - they generally can't be expanded to cover new use cases
@@ -97,6 +98,7 @@ namespace TOR_Core.SaveGameSystem
             ConstructContainerDefinition(typeof(List<BaseInventoryUseScript>));
             ConstructContainerDefinition(typeof(Dictionary<string, List<BaseInventoryUseScript>>));
             ConstructContainerDefinition(typeof(Dictionary<string, HeroTrainingData>));
+            ConstructContainerDefinition(typeof(List<ScriptUseData>));
         }
     }
 }

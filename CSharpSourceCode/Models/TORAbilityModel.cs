@@ -195,11 +195,9 @@ namespace TOR_Core.Models
                     {
                         if (Agent.Main != null)
                         {
-                            var comp = Agent.Main.GetComponent<AbilityComponent>();
                             var spellcraftValue = Hero.MainHero.GetSkillValue(TORSkills.Spellcraft);
-                            explainedNumber.AddFactor(0.005f * spellcraftValue);
+                            explainedNumber.AddFactor(0.0005f * spellcraftValue); // 0.05% per point as per description
                         }
-
                     }
                 }
             }
@@ -257,14 +255,9 @@ namespace TOR_Core.Models
                     }
                     if (playerHero.HasCareer(TORCareers.Runelord))
                     {
-                        if (playerHero.HasCareerChoice("ChiselAndHammerKeystone")) //Sly : why are these separate?
-                        {
-                            explainedNumber.AddFactor(0.2f);
-                        }
-
                         if (playerHero.HasCareerChoice("ChiselAndHammerKeystone"))
                         {
-                            var comp = Agent.Main.GetComponent<AbilityComponent>(); //what's this component for?
+                            explainedNumber.AddFactor(0.2f);
                             var smithingValue = playerHero.GetSkillValue(DefaultSkills.Crafting);
                             explainedNumber.AddFactor(0.005f * smithingValue);
                         }
@@ -901,8 +894,8 @@ namespace TOR_Core.Models
                     // Perk effects multiplier
                     damage *= GetPerkEffectsOnAbilityDamage(hero.CharacterObject, victim, abilityTemplate);
 
-                    // Skill effectiveness multiplier
-                    damage *= GetSkillEffectivenessForAbilityDamage(hero.CharacterObject, abilityTemplate);
+                    // Note: Skill effectiveness is already applied in TriggeredEffect.Trigger() via damageMultiplier
+                    // Do NOT call GetSkillEffectivenessForAbilityDamage() here to avoid double scaling
 
                     // Career-specific bonuses
                     if (hero.HasAnyCareer())

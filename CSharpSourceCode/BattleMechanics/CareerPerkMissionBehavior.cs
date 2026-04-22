@@ -265,13 +265,13 @@ namespace TOR_Core.BattleMechanics
 
                 if (hitBodyPart == BoneBodyPartType.Head || hitBodyPart == BoneBodyPartType.Neck)
                 {
-                    if (choices.Contains("CourtleyPassive4"))
+                    if (blow.WeaponRecordWeaponFlags.HasAllFlags(WeaponFlags.MeleeWeapon) && choices.Contains("CourtleyPassive4"))
                     {
                         var choice = TORCareerChoices.GetChoice("CourtleyPassive4");
                         if (choice != null)
                         {
                             var value = choice.GetPassiveValue();
-                            playerHero.AddWindsOfMagic(value);
+                            Hero.MainHero.AddWindsOfMagic(value);
                         }
                     }
 

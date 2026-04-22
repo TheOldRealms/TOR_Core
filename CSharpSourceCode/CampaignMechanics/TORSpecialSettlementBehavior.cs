@@ -23,8 +23,8 @@ namespace TOR_Core.CampaignMechanics
             }
             if (!settlement.Owner.Clan.IsCastleFaction()) return;
 
-            // Castle faction food support (Blood Keep, Brass Keep only - greenskins handled separately)
-            if (settlement.IsBloodKeep() || settlement.StringId == "castle_BK2")
+            // Castle faction food support (Blood Keep, Brass Keep, Melkhiors Tower only - greenskins handled separately)
+            if (settlement.IsBloodKeep() || settlement.StringId == "castle_BK2" || settlement.StringId == "castle_MT1")
             {
                 foreach (var  party in settlement.Parties)
                 {
@@ -84,7 +84,8 @@ namespace TOR_Core.CampaignMechanics
             if (melkiortower != null)
             {
                 var wraith = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_cairn_wraith");
-                melkiortower.MilitiaPartyComponent.Party.AddMember(wraith, 100);
+                melkiortower.MilitiaPartyComponent.Party.AddMember(wraith, 1000);
+                melkiortower.SetGarrisonWagePaymentLimit(1600000);
             }
         }
 

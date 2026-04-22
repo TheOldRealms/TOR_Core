@@ -230,7 +230,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
 
                 // Get wounded troops from mapEvent (wounded troops become prisoners)
                 var defeatedGreenskins = party.Troops
-                    .Where(x => (x.IsWounded  || x.IsRouted) && (x.Troop.IsGoblin() || x.Troop.IsOrc()))
+                    .Where(x => (x.IsWounded || x.IsRouted) && !x.Troop.IsHero && (x.Troop.IsGoblin() || x.Troop.IsOrc()))
                     .ToList();
                 
 

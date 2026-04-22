@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.LinQuick;
 using TaleWorlds.SaveSystem;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 using static Ink.Parsed.FlowBase;
@@ -72,8 +74,14 @@ namespace TOR_Core.Items.InventoryUseScripts
                 SkillObject skill = Campaign.Current.ObjectManager.GetObject<SkillObject>(_skillId);
                 if (skill != null)
                 {
-                    party.LeaderHero?.AddSkillXp(skill, _xpAmount / _learningTime);
-                    TORCommon.Say($"Gained {_xpAmount / _learningTime} XP in {skill.Name}.");
+                    if (party.LeaderHero == null) return;
+
+                    var adjustedXp = new ExplainedNumber(_xpAmount);
+
+                    PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.Librarian, party.LeaderHero.CharacterObject, true, ref adjustedXp);
+
+                    party.LeaderHero.AddSkillXp(skill, adjustedXp.RoundedResultNumber / _learningTime);
+                    TORCommon.Say($"Gained {adjustedXp.RoundedResultNumber / _learningTime} XP in {skill.Name}.");
                 }
             }
         }
@@ -90,7 +98,7 @@ namespace TOR_Core.Items.InventoryUseScripts
             {
                 TORCommon.Say(item.Name + " has already been used " + maxUsages + " time(s) by " + userParty.LeaderHero.Name + ".");
             }
-            else if (InventoryUseScriptsCampaignBehavior.Instance.TryAddScriptToParty(userParty, this))
+            else if ((usageData != null && usageData.usages < maxUsages || usageData == null) && InventoryUseScriptsCampaignBehavior.Instance.TryAddScriptToParty(userParty, this))
             {
                 TORCommon.Say($"Started reading skill book for {_skillId}.");
             }

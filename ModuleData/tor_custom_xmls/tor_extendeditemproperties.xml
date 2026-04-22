@@ -1,10 +1,22 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_neutral_head_helm_001" RaceLock="human">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_neutral_head_helm_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_head_helm_flagellant_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_head_helm_flagellant_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_head_helm_flagellant_003" RaceLock="human">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
@@ -842,6 +854,66 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_mask_sos_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_mask_sos_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_mask_sos_003" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_mask_sos_004" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_mask_doomfire_warlock_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_mask_doomfire_warlock_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_mask_doomfire_warlock_003" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_crown_witch_elf_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_crown_witch_elf_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_crown_supreme_sorceress_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_crown_supreme_sorceress_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_helmet_death_hag_004" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_helmet_death_hag_003" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_helmet_death_hag_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_helmet_death_hag_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_de_head_helmet_infantry_001" RaceLock="human">
     <ItemTraits />
     <Description />
@@ -867,6 +939,14 @@
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_shoulder_pauldron_halberdier_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_body_yoke_worn_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_body_yoke_worn_002" RaceLock="human">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
@@ -1304,6 +1384,74 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_sos_003" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_sos_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_sos_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_sorcerer_004" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_sorcerer_003" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_light_witch_elf_003" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_light_witch_elf_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_light_witch_elf_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_khaine_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_khaine_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_khaine_003" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_witch_elf_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_witch_elf_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_witch_elf_003" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_witch_elf_004" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_sorcerer_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_sorcerer_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_infantry_001" RaceLock="human">
     <ItemTraits />
     <Description />
@@ -1581,6 +1729,18 @@
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_body_armor_lord_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_flagellant_armor_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_flagellant_armor_003" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_flagellant_armor_004" RaceLock="human">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
@@ -2137,6 +2297,10 @@
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_arm_gauntlet_general_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_arm_bracers_flagellant_001" RaceLock="human">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
@@ -4051,7 +4215,7 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_weapon_club_troll_001">
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_weapon_club_troll_001" RaceLock="troll">
     <ItemTraits />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -4190,7 +4354,7 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_greenskins_troll_2h_hammer_001">
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskins_troll_2h_hammer_001" RaceLock="troll">
     <ItemTraits />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -4404,6 +4568,12 @@
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_halberd_006">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_halberd_007">
     <ItemTraits />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -6358,7 +6528,7 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_we_enchant_emissaries_mirai">
     <ItemTraits>
-      <ItemTrait>learn_we_enchant_emissaries_mirai</ItemTrait>
+      <ItemTrait>learn_asrai_enchant_emissaries_mirai</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
@@ -6370,7 +6540,7 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_we_enchant_dusk_wood">
     <ItemTraits>
-      <ItemTrait>learn_we_enchant_dusk_wood</ItemTrait>
+      <ItemTrait>learn_asrai_enchant_dusk_wood</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
@@ -6388,7 +6558,7 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_we_enchant_leylines_weave">
     <ItemTraits>
-      <ItemTrait>learn_we_enchant_leylines_weave</ItemTrait>
+      <ItemTrait>learn_asrai_enchant_leylines_weave</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
@@ -6400,13 +6570,13 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_we_enchant_tranquillity_cadai">
     <ItemTraits>
-      <ItemTrait>learn_we_enchant_tranquillity_cadai</ItemTrait>
+      <ItemTrait>learn_asrai_enchant_tranquillity_cadai</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_we_enchant_radiance_woods">
     <ItemTraits>
-      <ItemTrait>learn_we_enchant_radiance_woods</ItemTrait>
+      <ItemTrait>learn_asrai_enchant_radiance_woods</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>

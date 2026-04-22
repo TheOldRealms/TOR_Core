@@ -1384,7 +1384,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
             TORTextHelper.GetText("tor_dw_guildmaster_warrior_influence_for_oath_p", "Can you help improve my standing within the Karaz Ankor?"), () => Hero.MainHero.Clan.Kingdom!=null && !Hero.MainHero.Clan.IsUnderMercenaryService, null, 200);
 
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_warrior_hub_quit_p", hub, "close_window", TORTextHelper.GetText("tor_dw_quit_text", "That will be all"),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_warrior_hub_quit_p", hub, "close_window", TORTextHelper.GetText("tor_dw_quit_text", "That will be all."),
             null, null, 200);
 
 

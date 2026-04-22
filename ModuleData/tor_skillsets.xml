@@ -2828,9 +2828,9 @@
 		<skill id="Athletics"
 			   value="135" />
 		<skill id="OneHanded"
-			   value="160" />
+			   value="190" />
 		<skill id="TwoHanded"
-			   value="160" />
+			   value="190" />
 	</SkillSet>
 	
 	<!--Tier 4-->
@@ -2858,20 +2858,20 @@
 		<skill id="Athletics"
 			   value="80" />
 		<skill id="OneHanded"
-			   value="130" />
+			   value="90" />
 		<skill id="TwoHanded"
-			   value="130" />
+			   value="90" />
 		<skill id="Crossbow"
-			   value="180" />
+			   value="150" />
 	</SkillSet>
 			   
 	<SkillSet id="tor_skills_dwarf_thunderer">
 		<skill id="Athletics"
 			   value="80" />
 		<skill id="OneHanded"
-			   value="130" />
+			   value="90" />
 		<skill id="TwoHanded"
-			   value="130" />
+			   value="90" />
 		<skill id="Gunpowder"
 			   value="180" />
 	</SkillSet>
@@ -2881,9 +2881,9 @@
 		<skill id="Athletics"
 			   value="100" />
 		<skill id="OneHanded"
-			   value="150" />
+			   value="120" />
 		<skill id="TwoHanded"
-			   value="150" />
+			   value="120" />
 		<skill id="Crossbow"
 			   value="225" />
 	</SkillSet>
@@ -2903,9 +2903,9 @@
 		<skill id="Athletics"
 			   value="150" />
 		<skill id="OneHanded"
-			   value="160" />
+			   value="155" />
 		<skill id="TwoHanded"
-			   value="160" />
+			   value="155" />
 		<skill id="Crossbow"
 			   value="225" />
 		<skill id="Throwing"
@@ -2935,18 +2935,26 @@
 		<skill id="Athletics"
 			   value="175" />
 		<skill id="OneHanded"
-			   value="250" />
+			   value="260" />
 		<skill id="TwoHanded"
-			   value="250" />
+			   value="260" />
+	</SkillSet> 
+	<SkillSet id="tor_skills_dwarf_giant_slayer">
+		<skill id="Athletics"
+			   value="175" />
+		<skill id="OneHanded"
+			   value="280" />
+		<skill id="TwoHanded"
+			   value="280" />
 	</SkillSet>
 
 	<SkillSet id="tor_skills_dwarf_ol_deadeye">
 		<skill id="Athletics"
-			   value="160" />
+			   value="165" />
 		<skill id="OneHanded"
-			   value="175" />
+			   value="155" />
 		<skill id="TwoHanded"
-			   value="175" />
+			   value="155" />
 		<skill id="Crossbow"
 			   value="250" />
 		<skill id="Throwing"
@@ -2958,7 +2966,7 @@
 	<!--Tier 8-->
 	<SkillSet id="tor_skills_dwarf_ironbreaker">
 		<skill id="Athletics"
-			   value="135" />
+			   value="125" />
 		<skill id="OneHanded"
 			   value="280" />
 		<skill id="TwoHanded"
@@ -2969,7 +2977,7 @@
 	
 	<SkillSet id="tor_skills_dwarf_hammerer">
 		<skill id="Athletics"
-			   value="135" />
+			   value="125" />
 		<skill id="OneHanded"
 			   value="225" />
 		<skill id="TwoHanded"
@@ -2979,7 +2987,7 @@
 	<!--Tier 9-->
 	<SkillSet id="tor_skills_dwarf_ironbeard">
 		<skill id="Athletics"
-			   value="150" />
+			   value="125" />
 		<skill id="OneHanded"
 			   value="300" />
 		<skill id="TwoHanded"
@@ -2990,29 +2998,29 @@
 	
 	<SkillSet id="tor_skills_dwarf_irondrake">
 		<skill id="Athletics"
-			   value="150" />
+			   value="125" />
 		<skill id="OneHanded"
-			   value="300" />
+			   value="175" />
 		<skill id="TwoHanded"
-			   value="225" />
+			   value="150" />
 		<skill id="Gunpowder"
 			   value="300" />
 	</SkillSet>
 	
 	<SkillSet id="tor_skills_dwarf_irondrake_trollhammer">
 		<skill id="Athletics"
-			   value="150" />
+			   value="125" />
 		<skill id="OneHanded"
-			   value="300" />
+			   value="175" />
 		<skill id="TwoHanded"
-			   value="225" />
+			   value="150" />
 		<skill id="Gunpowder"
 			   value="300" />
 	</SkillSet>
 	
 	<SkillSet id="tor_skills_dwarf_gatekeeper">
 		<skill id="Athletics"
-			   value="150" />
+			   value="125" />
 		<skill id="OneHanded"
 			   value="225" />
 		<skill id="TwoHanded"

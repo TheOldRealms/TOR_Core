@@ -35,6 +35,14 @@ namespace TOR_Core.Models
                     }
                 }
 
+                if (settlement.StringId == "castle_MT1")
+                {
+                    if (settlement.Militia < 2000)
+                    {
+                        result.LimitMin(10);
+                    }
+                }
+
                 switch (settlement.OwnerClan.Culture.StringId)
                 {
                     case TORConstants.Cultures.SYLVANIA:

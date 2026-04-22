@@ -48,9 +48,9 @@
                     <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="30" SuggestedHeight="41" HorizontalAlignment="Right" VerticalAlignment="Top" Brush="PreviousCharacterButtonBrush" Command.Click="ExecuteSelectNextHero" />
                   </Children>
                 </ListPanel>
-                <ListPanel DataSource="{StatItems}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ListPanel DataSource="{StatItems}" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="150" StackLayout.LayoutMethod="VerticalBottomToTop" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="50">
                   <ItemTemplate>
-                    <Listpanel WidthSizePolicy="Fixed" SuggestedWidth="400" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="HorizontalRightToLeft" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Listpanel WidthSizePolicy="Fixed" SuggestedWidth="700" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="HorizontalRightToLeft" HorizontalAlignment="Center" VerticalAlignment="Top">
                       <Children>
                         <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Top" Brush="Quest.CenterPanel.Title.Text" Brush.FontSize="18" Text="@Label" />
                         <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" VerticalAlignment="Top" Brush="Quest.CenterPanel.Title.Text" Brush.FontSize="18" Text="@Value" />

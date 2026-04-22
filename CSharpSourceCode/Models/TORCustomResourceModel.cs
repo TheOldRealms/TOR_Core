@@ -432,6 +432,15 @@ public class TORCustomResourceModel : GameModel
                             unitUpkeep.AddFactor(-0.5f, GameTexts.FindText("tor_generic_siegeCampBonus"));
                         }
                     }
+
+                    // 2x Teef consumption when Greenskin party has no gold
+                    if (hero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
+                    {
+                        if (hero.Gold <= 0)
+                        {
+                            unitUpkeep.AddFactor(1.0f, TORTextHelper.GetTextObject("tor_greenskin_no_gold", "No Gold"));
+                        }
+                    }
                 }
 
                 upkeep.Add(-unitUpkeep.ResultNumber, UPKEEPTEXT);

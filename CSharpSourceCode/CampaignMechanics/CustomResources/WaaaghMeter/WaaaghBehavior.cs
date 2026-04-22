@@ -5,6 +5,8 @@ using SandBox.View.Map;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Roster;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
@@ -30,6 +32,7 @@ public class WaaaghBehavior : CampaignBehaviorBase
         CampaignEvents.OnMissionStartedEvent.AddNonSerializedListener(this, InitialCombatStrengthCalculation);
         CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, OnDailyTick);
         CampaignEvents.MapEventEnded.AddNonSerializedListener(this, CalculateWaaaghGainFromBattle);
+        CampaignEvents.ItemsLooted.AddNonSerializedListener(this, OnItemsLooted);
         ScreenManager.OnPushScreen -= ScreenManager_OnPushScreen;
         ScreenManager.OnPushScreen += ScreenManager_OnPushScreen;
     }
@@ -46,6 +49,22 @@ public class WaaaghBehavior : CampaignBehaviorBase
         {
             mapScreen.AddMapView<WaaaghMeterMapView>();
         }
+    }
+
+    private void OnItemsLooted(MobileParty mobileParty, ItemRoster itemRoster)
+    {
+        if (mobileParty != MobileParty.MainParty) return;
+        
+        if (mobileParty.MapEvent?.IsRaid != true) return;
+        
+        if (Hero.MainHero?.Culture?.StringId != TORConstants.Cultures.GREENSKIN) return;
+
+        // Calculate Waaagh gain based on loot value
+        var lootValue = itemRoster.Sum(x => x.EquipmentElement.ItemValue * x.Amount);
+        var waaaghGain = Math.Max(3, lootValue / 20);
+
+        Hero.MainHero.AddCustomResource("Waaagh", waaaghGain);
+        UpdateWaaaghState();
     }
 
     private void InitialCombatStrengthCalculation(IMission mission)
@@ -78,6 +97,12 @@ public class WaaaghBehavior : CampaignBehaviorBase
             && mapEvent.BattleState == BattleState.None
             && mapEvent.PlayerSide == BattleSideEnum.Attacker
             && mapEvent.AttackerSide.TroopCount > 0)
+        {
+        
+            UpdateWaaaghState();
+            return;
+        }
+        if (!mapEvent.HasWinner)
         {
             UpdateWaaaghState();
             return;

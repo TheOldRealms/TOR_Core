@@ -219,14 +219,6 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             "tor_chaos_shoulder_fur_marauder_001",
             "tor_chaos_shoulder_cape_chaos_warrior_001",
 
-            "tor_empire_staff_cw_001_combined",
-            "tor_empire_staff_cw_002_combined",
-            "tor_empire_staff_cw_003_combined",
-            "tor_empire_staff_bw_001_combined",
-            "tor_empire_staff_bw_002_combined",
-            "tor_empire_staff_lw_001_combined",
-            "tor_empire_staff_lw_002_combined",
-            "tor_empire_staff_lw_003_combined",
             "tor_learn_dw_master_rune_swiftness",
             "tor_learn_dw_master_rune_preservation",
             "tor_learn_dw_master_rune_alaric",
@@ -294,15 +286,6 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 "tor_empire_weapon_sword_runefang_001",
                 "tor_vc_weapon_sword_khopesh_001",
 
-                "tor_empire_staff_cw_001_combined",
-                "tor_empire_staff_cw_002_combined",
-                "tor_empire_staff_cw_003_combined",
-                "tor_empire_staff_bw_001_combined",
-                "tor_empire_staff_bw_002_combined",
-                "tor_empire_staff_lw_001_combined",
-                "tor_empire_staff_lw_002_combined",
-                "tor_empire_staff_lw_003_combined",
-
                 "tor_learn_dw_master_rune_flight",
                 "tor_learn_dw_master_rune_gromril"
             };
@@ -355,15 +338,6 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             "tor_he_weapon_halberd_phoenix_001",
 
             "tor_vc_weapon_sword_khopesh_001",
-
-            "tor_empire_staff_cw_001_combined",
-            "tor_empire_staff_cw_002_combined",
-            "tor_empire_staff_cw_003_combined",
-            "tor_empire_staff_bw_001_combined",
-            "tor_empire_staff_bw_002_combined",
-            "tor_empire_staff_lw_001_combined",
-            "tor_empire_staff_lw_002_combined",
-            "tor_empire_staff_lw_003_combined",
 
             "tor_learn_dw_master_rune_breaking",
             "tor_learn_dw_master_rune_steel",
