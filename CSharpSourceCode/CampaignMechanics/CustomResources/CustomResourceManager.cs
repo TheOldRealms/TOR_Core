@@ -838,9 +838,27 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
         public static void OnTroopTransferred(PartyVM partyVm, PartyScreenLogic.PartyRosterSide fromSide, CharacterObject troop, int transferAmount, bool isPrisoner = false)
         {
+            var partyScreenLogic = partyVm?.PartyScreenLogic;
+            if (partyScreenLogic?.LeftOwnerParty?.IsMobile == true && partyScreenLogic.LeftOwnerParty.MobileParty.IsGarrison)
+            {
+                partyVm.GetExtensionInstance()?.RefreshValues();
+                return;
+            }
+
+            var activePartyState = PartyScreenHelper.GetActivePartyState();
+            if (activePartyState?.PartyScreenMode == PartyScreenMode.TroopsManage && activePartyState.IsDonating)
+            {
+                var currentSettlement = Hero.MainHero.CurrentSettlement;
+                if (currentSettlement?.Town?.GarrisonParty != null && partyScreenLogic?.LeftOwnerParty == null && partyScreenLogic.LeftPartyName?.ToString() == currentSettlement.Town.GarrisonParty.Name.ToString())
+                {
+                    partyVm.GetExtensionInstance()?.RefreshValues();
+                    return;
+                }
+            }
+
             int sign = fromSide == PartyScreenLogic.PartyRosterSide.Left ? 1 : -1;
             var explainedNumber = new ExplainedNumber();
-            bool isLootScreen = PartyScreenHelper.GetActivePartyState()?.PartyScreenMode == PartyScreenMode.Loot;
+            bool isLootScreen = activePartyState?.PartyScreenMode == PartyScreenMode.Loot;
 
             if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
             {
