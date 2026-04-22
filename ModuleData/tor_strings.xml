@@ -6291,24 +6291,24 @@
   
   
     <!-- Dialog option in main hub -->
-  <string id="spellsinger_envoy_main_hub_mercenary_lore" text="{=str_spellsinger_envoy_main_hub_mercenary_lore}[TODO] I wish to learn magic, can you teach me?" />
+  <string id="spellsinger_envoy_main_hub_mercenary_lore" text="{=str_spellsinger_envoy_main_hub_mercenary_lore}I wish to learn magic, can you teach me?" />
 
   <!-- Spellsinger response when not enough favor -->
-  <string id="eonir_spellsinger_mercenary_lore_no_favor_text" text="{=str_eonir_spellsinger_mercenary_lore_no_favor_text}[TODO] Your standing with the Council is not yet sufficient. Return when you have earned more favor. ({MERCENARY_LORE_COST}{FAVOR_ICON})" />
+  <string id="eonir_spellsinger_mercenary_lore_no_favor_text" text="{=str_eonir_spellsinger_mercenary_lore_no_favor_text}Your standing with the Council is not yet sufficient. Return when you have earned more favor. ({MERCENARY_LORE_COST}{FAVOR_ICON})" />
 
   <!-- Spellsinger offer dialog -->
-  <string id="eonir_spellsinger_mercenary_lore_offer_text" text="{=str_eonir_spellsinger_mercenary_lore_offer_text}[TODO] Magic is a rare gift, and one we do not share lightly with outsiders. But you have proven yourself to the Council. I can teach you one lore of magic, but choose wisely - this knowledge comes at a price. ({MERCENARY_LORE_COST}{FAVOR_ICON})" />
+  <string id="eonir_spellsinger_mercenary_lore_offer_text" text="{=str_eonir_spellsinger_mercenary_lore_offer_text}Magic is a rare gift, and one we do not share lightly with outsiders. But you have proven yourself to the Council. I can teach you one lore of magic, but choose wisely - this knowledge comes at a price. ({MERCENARY_LORE_COST}{FAVOR_ICON})" />
 
   <!-- Player acceptance -->
-  <string id="eonir_spellsinger_mercenary_lore_accept_text" text="{=str_eonir_spellsinger_mercenary_lore_accept_text}[TODO] I understand. I am ready to learn. ({MERCENARY_LORE_COST}{FAVOR_ICON})" />
+  <string id="eonir_spellsinger_mercenary_lore_accept_text" text="{=str_eonir_spellsinger_mercenary_lore_accept_text}I understand. I am ready to learn. ({MERCENARY_LORE_COST}{FAVOR_ICON})" />
 
   <!-- Spellsinger result dialog -->
-  <string id="eonir_spellsinger_mercenary_lore_result_text" text="{=str_eonir_spellsinger_mercenary_lore_result_text}[TODO] The magic is now part of you. Use it well." />
+  <string id="eonir_spellsinger_mercenary_lore_result_text" text="{=str_eonir_spellsinger_mercenary_lore_result_text}The magic is now part of you. Use it well." />
 
   <!-- Inquiry popup strings -->
-  <string id="eonir_spellsinger_mercenary_lore_hint_text" text="{=str_eonir_spellsinger_mercenary_lore_hint_text}[TODO] Learn this lore" />
-  <string id="eonir_spellsinger_mercenary_lore_title_text" text="{=str_eonir_spellsinger_mercenary_lore_title_text}[TODO] Learn Magic" />
-  <string id="eonir_spellsinger_mercenary_lore_description_text" text="{=str_eonir_spellsinger_mercenary_lore_description_text}[TODO] Choose one lore to learn. This choice is permanent." />
+  <string id="eonir_spellsinger_mercenary_lore_hint_text" text="{=str_eonir_spellsinger_mercenary_lore_hint_text}Learn this lore" />
+  <string id="eonir_spellsinger_mercenary_lore_title_text" text="{=str_eonir_spellsinger_mercenary_lore_title_text}Learn Magic" />
+  <string id="eonir_spellsinger_mercenary_lore_description_text" text="{=str_eonir_spellsinger_mercenary_lore_description_text}Choose one lore to learn. This choice is permanent." />
 
 
 	<!-- Engineer Quest Texts -->
