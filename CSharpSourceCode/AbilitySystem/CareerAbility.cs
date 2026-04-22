@@ -85,6 +85,23 @@ namespace TOR_Core.AbilitySystem
                 parentEntity.AddChild(prefabEntity);
                 AbilityScript?.Initialize(this, ref parentEntity);
                 AbilityScript?.SetCasterAgent(casterAgent);
+
+                string spellName = Template?.Name?.ToString();
+                if (string.IsNullOrWhiteSpace(spellName))
+                {
+                    spellName = Template?.StringID ?? "unknown_spell";
+                }
+
+                string casterName = casterAgent?.Name?.ToString();
+                if (string.IsNullOrWhiteSpace(casterName))
+                {
+                    casterName = "unknown_caster";
+                }
+
+                TORCommon.Log(
+                    $"spell cast start | spell={spellName} | caster={casterName} | side={casterAgent?.Team?.Side} | ai={casterAgent?.IsAIControlled}",
+                    NLog.LogLevel.Info);
+
                 parentEntity.CallScriptCallbacks(true);
             }
             else
