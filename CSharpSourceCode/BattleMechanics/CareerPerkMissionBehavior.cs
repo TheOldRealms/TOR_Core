@@ -271,7 +271,7 @@ namespace TOR_Core.BattleMechanics
                         if (choice != null)
                         {
                             var value = choice.GetPassiveValue();
-                            playerHero.AddWindsOfMagic(value);
+                            Hero.MainHero.AddWindsOfMagic(value);
                         }
                     }
 
