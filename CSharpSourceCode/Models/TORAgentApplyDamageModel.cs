@@ -192,7 +192,7 @@ namespace TOR_Core.Models
             //This block is a temporary correction for native code that underestimates the damage a projectile deals to a shield if it has been flagged for only one of CanPenetrateShield or MultiplePenetration, but not both as that is calculated correctly.
             //The bug also includes attacks not benefitting from flags added via DecideMissileWeaponFlags during runtime.
             //See https://forums.taleworlds.com/index.php?threads/canpenetrateshield-weapon-flag-treated-incorrectly-during-missile-collision-resolution-when-striking-a-shield.470085/ and https://forums.taleworlds.com/index.php?threads/shield-penetration-flag-now-dependent-on-multiple-penetration-flag-as-well.470117/ for the 2 bugs.
-            if (attackInformation.AttackerWeapon.CurrentUsageItem.IsConsumable)//ammos, javelins, but also a variety of other thrown weapons including boulders and stuff
+            if (attackInformation.AttackerWeapon.CurrentUsageItem != null && attackInformation.AttackerWeapon.CurrentUsageItem.IsConsumable)//ammos, javelins, but also a variety of other thrown weapons including boulders and stuff
             {
                 var missionWeapon = attackInformation.AttackerWeapon;
                 var missileWeaponFlags = missionWeapon.CurrentUsageItem.WeaponFlags;
