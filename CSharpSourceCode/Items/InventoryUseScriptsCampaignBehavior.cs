@@ -106,6 +106,7 @@ namespace TOR_Core.Items
         public override void SyncData(IDataStore dataStore)
         {
             dataStore.SyncData("_activeScripts", ref _activeScripts);
+            dataStore.SyncData("_usages", ref _usages);
         }
 
         ~InventoryUseScriptsCampaignBehavior()
