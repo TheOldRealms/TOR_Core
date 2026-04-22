@@ -8170,7 +8170,7 @@
       <Equipment slot="Leg" id="Item.tor_greenskin_leg_boots_goblin_001" />
     </EquipmentSet>
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.battania_mace_2" />
+      <Equipment slot="Item0" id="Item.battania_mace_2_t2" />
       <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_002" />
@@ -8178,7 +8178,7 @@
       <Equipment slot="Leg" id="Item.tor_greenskin_leg_boots_goblin_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.battania_mace_2" />
+      <Equipment slot="Item0" id="Item.battania_mace_2_t2" />
       <Equipment slot="Item1" id="Item.tor_greenskin_goblin_shield_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_002" />

@@ -8577,7 +8577,8 @@
     <Abilities>
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
-      <string>DaHandUvGork</string>
+      <string>BrainBursta</string>
+      <string>EreWeGo</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -8595,7 +8596,8 @@
     <Abilities>
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
-      <string>DaHandUvGork</string>
+      <string>BrainBursta</string>
+      <string>EreWeGo</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -8721,7 +8723,8 @@
     <Abilities>
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
-      <string>DaHandUvGork</string>
+      <string>BrainBursta</string>
+      <string>EreWeGo</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -8781,7 +8784,8 @@
     <Abilities>
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
-      <string>DaHandUvGork</string>
+      <string>BrainBursta</string>
+      <string>EreWeGo</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -8895,7 +8899,9 @@
     <Abilities>
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
-      <string>DaHandUvGork</string>
+      <string>BrainBursta</string>
+      <string>EreWeGo</string>
+      <string>FootUvGork</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -8986,8 +8992,8 @@
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
       <string>BrainBursta</string>
-      <string>DaHandUvGork</string>
       <string>EreWeGo</string>
+      <string>FootUvGork</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -9005,7 +9011,8 @@
     <Abilities>
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
-      <string>DaHandUvGork</string>
+      <string>BrainBursta</string>
+      <string>EreWeGo</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -9060,7 +9067,6 @@
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
       <string>BrainBursta</string>
-      <string>DaHandUvGork</string>
       <string>EreWeGo</string>
       <string>FootUvGork</string>
     </Abilities>
@@ -9144,7 +9150,8 @@
     <Abilities>
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
-      <string>DaHandUvGork</string>
+      <string>BrainBursta</string>
+      <string>EreWeGo</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -9270,7 +9277,8 @@
     <Abilities>
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
-      <string>DaHandUvGork</string>
+      <string>BrainBursta</string>
+      <string>EreWeGo</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -9343,8 +9351,8 @@
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
       <string>BrainBursta</string>
-      <string>DaHandUvGork</string>
       <string>EreWeGo</string>
+      <string>FootUvGork</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -9374,7 +9382,8 @@
     <Abilities>
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
-      <string>DaHandUvGork</string>
+      <string>BrainBursta</string>
+      <string>EreWeGo</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -9402,7 +9411,8 @@
     <Abilities>
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
-      <string>DaHandUvGork</string>
+      <string>BrainBursta</string>
+      <string>EreWeGo</string>
     </Abilities>
     <Attributes>
       <string>Tough</string>
@@ -9961,7 +9971,6 @@
       <string>GazeUvMork</string>
       <string>ArdAsNails</string>
       <string>BrainBursta</string>
-      <string>DaHandUvGork</string>
       <string>EreWeGo</string>
       <string>FootUvGork</string>
     </Abilities>
