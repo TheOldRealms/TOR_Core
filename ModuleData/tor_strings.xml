@@ -990,7 +990,7 @@
   <string id="tor_dw_brewer_recruit_rangers_text" text="{=str_tor_dw_brewer_recruit_rangers_text}I need some rangers for scouting"/>
   <string id="tor_dw_brewer_recruit_rangers_offer_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_text}Aye, we have some skilled rangers eager to serve. It'll cost ye {RANGER_GOLD_PRICE}{GOLD_ICON} and {RANGER_OATHGOLD_PRICE} Oathgold."/>
   <string id="tor_dw_brewer_recruit_rangers_accept_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_text}They'll serve the holds well."/>
-  <string id="tor_dw_brewer_recruit_rangers_no_funds_text" text="{=str_tor_dw_brewer_recruit_rangers_no_funds_text}I don't have enough coin or Oathgold right now"/>tor_career_choice_description.BonesAnFirepitzPassive1
+  <string id="tor_dw_brewer_recruit_rangers_no_funds_text" text="{=str_tor_dw_brewer_recruit_rangers_no_funds_text}I don't have enough coin or Oathgold right now."/>
   <string id="tor_dw_brewer_recruit_rangers_decline_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_text}Maybe another time"/>
 	
   <!--Warrior Guild -->
@@ -4406,7 +4406,7 @@
   <string id="tor_careerchoice_description.ForHearthAndHomeKeystone" text="{=str_tor_careerchoice_description_ForHearthAndHomeKeystone}The 'Rune' Heart and Home also provides +25% 'Physical' ranged damage." />
   <string id="tor_careerchoice_description.ForHearthAndHomePassive1" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive1}+10% 'Ward Save' for troops affected by a 'Rune'." />
   <string id="tor_careerchoice_description.ForHearthAndHomePassive2" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive2}+3 Hitpoints for every equipment 'Rune' to the wearer." />
-  <string id="tor_careerchoice_description.ForHearthAndHomePassive3" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive3} For every troop affected by a 'Unit Rune', the party gains +0.05 healing." />
+  <string id="tor_careerchoice_description.ForHearthAndHomePassive3" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive3}For every troop affected by a 'Unit Rune', the party gains +0.05 healing." />
   <string id="tor_careerchoice_description.ForHearthAndHomePassive4" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive4}+10% duration of 'Rune' abilities. Points in Faith increases duration by 0.1%." />
 
   <string id="tor_careerchoice_description.StoneAndSteelKeystone" text="{=str_tor_careerchoice_description_StoneAndSteelKeystone}The 'Rune' Spellbreaker drains +50% more 'Winds of Magic'." />
