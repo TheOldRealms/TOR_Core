@@ -5524,6 +5524,9 @@
 	<string id="tor_empire_prestigenoble_exitconvo_p" text="{=str_tor_empire_prestigenoble_exitconvo_p}Thanks, I will come back to you." />
 
 	<!-- Greenskin Brawl Mechanic -->
+  <string id="tor_greenskin_no_gold" text="{=str_tor_greenskin_no_gold}No Shinies" />  
+  
+  
 	<string id="tor_greenskin_brawl_start" text="{=str_tor_greenskin_brawl_start}Start a brawl" />
 	<string id="tor_greenskin_brawl_intro" text="{=str_tor_greenskin_brawl_intro}Time to prove who's da biggest an' strongest! You ready for a proper scrap?" />
 	<string id="tor_greenskin_brawl_victory_desc" text="{=str_tor_greenskin_brawl_victory_desc}You have won the brawl! The crowd cheers your victory. {newline} {BRAWL_RESULT}" />
