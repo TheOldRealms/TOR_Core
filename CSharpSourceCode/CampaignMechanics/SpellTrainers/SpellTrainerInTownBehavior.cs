@@ -452,7 +452,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 null, 200);
 
             obj.AddDialogLine("trainer_vampire_lore_prompt", "vampire_lore_prompt", "vampire_lore_chosen",
-                TORTextHelper.GetText("tor_dialog_ellipsis", "..."),
+                TORTextHelper.GetText("tor_dialog_ellipsis", "…"),
                 null, chooseVampireLoreConsequence, 200);
             obj.AddDialogLine("trainer_vampire_lore_chosen", "vampire_lore_chosen", "hub_vampire",
                 TORTextHelper.GetText("tor_spelltrainer_vampire_lore_learned", "The dark knowledge is now yours. Use it wisely... or not."),
@@ -467,7 +467,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 TORTextHelper.GetText("tor_spelltrainer_vampire_player_goodbye", "I shall take my leave."),
                 null, null, 100, null);
             obj.AddDialogLine("trainer_vampire_goodbye", "saygoodbye_vampire", "close_window",
-                TORTextHelper.GetText("tor_spelltrainer_vampire_goodbye", "Until the next moonrise..."),
+                TORTextHelper.GetText("tor_spelltrainer_vampire_goodbye", "Until the next moonrise…"),
                 isVampireTrainer, null, 200, null);
 
             bool HasReachedNecrarchTierLimit()

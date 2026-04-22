@@ -176,7 +176,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
 
                         cgs.AddPlayerLine($"noble_prestige_item_selection_building_{index}_agree",
                             $"buildingPrestigeSelection{index}_choice",
-                            "noble_hub_intro_repeat", TORTextHelper.GetTextObject("tor_empire_prestigenoble_buildingpay_p", "That sounds good, I will send you the funding. ({BUILDING_COST} {GOLD_ICON}) This can be reformated to seem less awkward with restating the cost - the player should see the npc's previous description on the left with this confirmation option on the right.").SetTextVariable("BUILDING_COST", buildingCosts[index]).ToString(),
+                            "noble_hub_intro_repeat", TORTextHelper.GetTextObject("tor_empire_prestigenoble_buildingpay_p", "That sounds good, I will send you the funding. ({BUILDING_COST} {GOLD_ICON}) That shall do. I am ready to donate ({BUILDING_COST} {GOLD_ICON}) for the betterment of the Empire.").SetTextVariable("BUILDING_COST", buildingCosts[index]).ToString(),
                             () => HasEnoughGold(buildingCosts[index]),
                             () => StartTransaction(buildingCosts[index], index), 200);
 

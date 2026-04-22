@@ -990,7 +990,7 @@
   <string id="tor_dw_brewer_recruit_rangers_text" text="{=str_tor_dw_brewer_recruit_rangers_text}I need some rangers for scouting"/>
   <string id="tor_dw_brewer_recruit_rangers_offer_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_text}Aye, we have some skilled rangers eager to serve. It'll cost ye {RANGER_GOLD_PRICE}{GOLD_ICON} and {RANGER_OATHGOLD_PRICE} Oathgold."/>
   <string id="tor_dw_brewer_recruit_rangers_accept_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_text}They'll serve the holds well."/>
-  <string id="tor_dw_brewer_recruit_rangers_no_funds_text" text="{=str_tor_dw_brewer_recruit_rangers_no_funds_text}I don't have enough coin or Oathgold right now"/>tor_career_choice_description.BonesAnFirepitzPassive1
+  <string id="tor_dw_brewer_recruit_rangers_no_funds_text" text="{=str_tor_dw_brewer_recruit_rangers_no_funds_text}I don't have enough coin or Oathgold right now."/>
   <string id="tor_dw_brewer_recruit_rangers_decline_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_text}Maybe another time"/>
 	
   <!--Warrior Guild -->
@@ -4406,7 +4406,7 @@
   <string id="tor_careerchoice_description.ForHearthAndHomeKeystone" text="{=str_tor_careerchoice_description_ForHearthAndHomeKeystone}The 'Rune' Heart and Home also provides +25% 'Physical' ranged damage." />
   <string id="tor_careerchoice_description.ForHearthAndHomePassive1" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive1}+10% 'Ward Save' for troops affected by a 'Rune'." />
   <string id="tor_careerchoice_description.ForHearthAndHomePassive2" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive2}+3 Hitpoints for every equipment 'Rune' to the wearer." />
-  <string id="tor_careerchoice_description.ForHearthAndHomePassive3" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive3} For every troop affected by a 'Unit Rune', the party gains +0.05 healing." />
+  <string id="tor_careerchoice_description.ForHearthAndHomePassive3" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive3}For every troop affected by a 'Unit Rune', the party gains +0.05 healing." />
   <string id="tor_careerchoice_description.ForHearthAndHomePassive4" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive4}+10% duration of 'Rune' abilities. Points in Faith increases duration by 0.1%." />
 
   <string id="tor_careerchoice_description.StoneAndSteelKeystone" text="{=str_tor_careerchoice_description_StoneAndSteelKeystone}The 'Rune' Spellbreaker drains +50% more 'Winds of Magic'." />
@@ -4491,7 +4491,7 @@
   <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive1" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenPassive1}More Faith eks-perr-yens afta' lootin' Idols" />
   <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive2" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenPassive2}10% betta mumbo-jumbo killin’" />
   <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive3" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenPassive3}50 more tuffness" />
-  <string id="tor_career_choice_description.GiftzFromDaGreatGreenPassive4" text="{=str_tor_career_choice_description_GiftzFromDaGreatGreenPassive4}Get 15 mumbo-jumbo pointz afta' winnin' scraps" />  
+  <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive4" text="{=str_tor_career_choice_description_GiftzFromDaGreatGreenPassive4}Get 15 mumbo-jumbo pointz afta' winnin' scraps" />  
 
   <string id="tor_careerchoice_description.BrutalCunninKeystone" text="{=str_tor_careerchoice_description_BrutalCunninKeystone}Call uv da Great Green gives da Boys 10% ‘ardiness fer sum time" />
   <string id="tor_careerchoice_description.BrutalCunninPassive1" text="{=str_tor_careerchoice_description_BrutalCunninPassive1}60 more Boys fer da mob" />
@@ -5524,6 +5524,9 @@
 	<string id="tor_empire_prestigenoble_exitconvo_p" text="{=str_tor_empire_prestigenoble_exitconvo_p}Thanks, I will come back to you." />
 
 	<!-- Greenskin Brawl Mechanic -->
+  <string id="tor_greenskin_no_gold" text="{=str_tor_greenskin_no_gold}No Shinies" />  
+  
+  
 	<string id="tor_greenskin_brawl_start" text="{=str_tor_greenskin_brawl_start}Start a brawl" />
 	<string id="tor_greenskin_brawl_intro" text="{=str_tor_greenskin_brawl_intro}Time to prove who's da biggest an' strongest! You ready for a proper scrap?" />
 	<string id="tor_greenskin_brawl_victory_desc" text="{=str_tor_greenskin_brawl_victory_desc}You have won the brawl! The crowd cheers your victory. {newline} {BRAWL_RESULT}" />
