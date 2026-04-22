@@ -255,14 +255,9 @@ namespace TOR_Core.Models
                     }
                     if (playerHero.HasCareer(TORCareers.Runelord))
                     {
-                        if (playerHero.HasCareerChoice("ChiselAndHammerKeystone")) //Sly : why are these separate?
-                        {
-                            explainedNumber.AddFactor(0.2f);
-                        }
-
                         if (playerHero.HasCareerChoice("ChiselAndHammerKeystone"))
                         {
-                            var comp = Agent.Main.GetComponent<AbilityComponent>(); //what's this component for?
+                            explainedNumber.AddFactor(0.2f);
                             var smithingValue = playerHero.GetSkillValue(DefaultSkills.Crafting);
                             explainedNumber.AddFactor(0.005f * smithingValue);
                         }

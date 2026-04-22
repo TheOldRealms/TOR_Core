@@ -128,9 +128,10 @@ namespace TOR_Core.CampaignMechanics
                 if (!e.NewItem.IsCraftedByPlayer) return;
 
                 var list = ItemTrait.All.Where(x => e.Traits.Contains(x.ItemTraitStringId)).ToList();
-                var value = 0;
+                var totalIngredientValue = 0;
                 foreach (var trait in list)
                 {
+                    var itemValue = 0;
                     switch (trait.IngredientItem)
                     {
                         case TorTradeGoodType.ArcaneScroll:
@@ -138,18 +139,18 @@ namespace TOR_Core.CampaignMechanics
                         case TorTradeGoodType.BlessedWater:
                         case TorTradeGoodType.AmberCrystal:
                         case TorTradeGoodType.WarpstoneDust:
-                            value += 3;
+                            itemValue += 3;
                             break;
                         case TorTradeGoodType.DragonBlood:
-                            value += 10;
+                            itemValue += 10;
                             break;
                     }
 
-                    value *= trait.IngredientAmount;
+                    totalIngredientValue += itemValue * trait.IngredientAmount;
                 }
 
-                Hero.MainHero.AddSkillXp(DefaultSkills.Crafting, value * 100);
-                Hero.MainHero.AddSkillXp(TORSkills.Spellcraft, value * 100);
+                Hero.MainHero.AddSkillXp(DefaultSkills.Crafting, totalIngredientValue * 100);
+                Hero.MainHero.AddSkillXp(TORSkills.Spellcraft, totalIngredientValue * 100);
             }
         }
 

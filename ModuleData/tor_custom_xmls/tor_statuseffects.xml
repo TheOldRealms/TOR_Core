@@ -1892,7 +1892,7 @@
 		particle_id="curse_of_years"
 		do_not_attach_to_agent_skeleton="false"
 		base_effect_value="-0.5"
-		applies_for_attack_type="All"
+		applies_for_attack_type="Ranged"
 		type="Resistance"
 		damage_type="Physical">
 	</StatusEffectTemplate>
