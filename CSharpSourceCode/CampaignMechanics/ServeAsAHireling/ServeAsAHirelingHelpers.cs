@@ -120,7 +120,7 @@ public static class ServeAsAHirelingHelpers
             GameTexts.SetVariable("HIRELING_DECISION_TEXT", text);
         }
 
-        if (dialogPartner.Clan.IsClanTypeMercenary)
+        if (dialogPartner.Clan.IsClanTypeMercenary || dialogPartner.Clan.Kingdom == null)
         {
             return false;
         }
