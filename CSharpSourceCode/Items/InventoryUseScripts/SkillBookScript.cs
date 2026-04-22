@@ -90,7 +90,7 @@ namespace TOR_Core.Items.InventoryUseScripts
             {
                 TORCommon.Say(item.Name + " has already been used " + maxUsages + " time(s) by " + userParty.LeaderHero.Name + ".");
             }
-            else if (InventoryUseScriptsCampaignBehavior.Instance.TryAddScriptToParty(userParty, this))
+            else if ((usageData != null && usageData.usages < maxUsages || usageData == null) && InventoryUseScriptsCampaignBehavior.Instance.TryAddScriptToParty(userParty, this))
             {
                 TORCommon.Say($"Started reading skill book for {_skillId}.");
             }

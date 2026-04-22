@@ -48,7 +48,7 @@ namespace TOR_Core.Models
                 CharacterObject partyLeader = attackerAgent.GetPartyLeaderCharacter();
                 //Piercing Shot states only troops, the conditional is less restrictive and allows other heroes in the party to pierce as long as the leader has the perk
                 //because this only checks for cartridges, a flamethrower or a launched grenade would also gain the flag; unsure if that even matters for those weapons
-                if (missileWeapon.CurrentUsageItem.WeaponClass == WeaponClass.Cartridge && character.GetPerkValue(TORPerks.GunPowder.PiercingShots) || (partyLeader != null && partyLeader.GetPerkValue(TORPerks.GunPowder.PiercingShots)))
+                if (missileWeapon.CurrentUsageItem.WeaponClass == WeaponClass.Cartridge && (character.GetPerkValue(TORPerks.GunPowder.PiercingShots) || (partyLeader != null && partyLeader.GetPerkValue(TORPerks.GunPowder.PiercingShots))))
                 {
                     missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
                 }
@@ -204,7 +204,7 @@ namespace TOR_Core.Models
 
                     //If DecideMissileWeaponFlags added either of those flags, then it's damage would have been underestimated and we adjust.
                     //If it has no penetration flag, then it's damage is correct.
-                    if (missileWeaponFlags.HasAnyFlag(WeaponFlags.CanPenetrateShield) || missileWeaponFlags.HasAnyFlag(WeaponFlags.MultiplePenetration))
+                    if (missileWeaponFlags.HasAnyFlag(WeaponFlags.CanPenetrateShield | WeaponFlags.MultiplePenetration))
                     {
                         result = new ExplainedNumber(result.ResultNumber / 0.3f);
                     }

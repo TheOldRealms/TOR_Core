@@ -56,23 +56,24 @@ namespace TOR_Core.Models
 
                 if (attacker.IsHero) // never remove this check. operations for item traits can be very heavy
                 {
-                    MissionWeapon weapon = new();
+                    var weapon = attackerAgent.WieldedWeapon;
                     //Sly : was there even any reason to split them out like this, or I could have just done attackerAgent.WieldedWeapon and called it a day for the current patch?
-                    if (weaponComponent.IsRangedWeapon)//thrown weapons only as weaponComponent derives from attackInformation which only holds the ammo weapon, not the launching one
-                    {
-                        weapon = attackInformation.AttackerWeapon;
-                    }
-                    else if (weaponComponent.IsAmmo)//projectiles launched from another weapon
-                    {
-                        if (attackerAgent.WieldedWeapon.CurrentUsageItem != null && attackerAgent.WieldedWeapon.CurrentUsageItem.AmmoClass == weaponComponent.WeaponClass)
-                        {
-                            weapon = attackerAgent.WieldedWeapon;
-                        }
-                    }
-                    else if (weaponComponent.IsMeleeWeapon)
-                    {
-                        weapon = attackerAgent.WieldedWeapon;
-                    }
+                    //if (weaponComponent.IsRangedWeapon)//thrown weapons only as weaponComponent derives from attackInformation which only holds the ammo weapon, not the launching one
+                    //{
+                    //    weapon = attackInformation.AttackerWeapon;
+                    //}
+                    //else if (weaponComponent.IsAmmo)//projectiles launched from another weapon
+                    //{
+                    //    if (attackerAgent.WieldedWeapon.CurrentUsageItem != null && attackerAgent.WieldedWeapon.CurrentUsageItem.AmmoClass == weaponComponent.WeaponClass)
+                    //    {
+                    //        weapon = attackerAgent.WieldedWeapon;
+                    //    }
+                    //}
+                    //else if (weaponComponent.IsMeleeWeapon)
+                    //{
+                    //    weapon = attackerAgent.WieldedWeapon;
+                    //}
+
 
                     var traits = weapon.Item?.GetTraits();
                     if (traits != null)
