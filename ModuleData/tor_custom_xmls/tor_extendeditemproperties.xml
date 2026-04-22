@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_neutral_head_helm_001" RaceLock="human">
     <ItemTraits />
@@ -6592,7 +6592,7 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_we_enchant_emissaries_mirai">
     <ItemTraits>
-      <ItemTrait>learn_we_enchant_emissaries_mirai</ItemTrait>
+      <ItemTrait>learn_asrai_enchant_emissaries_mirai</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
@@ -6604,7 +6604,7 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_we_enchant_dusk_wood">
     <ItemTraits>
-      <ItemTrait>learn_we_enchant_dusk_wood</ItemTrait>
+      <ItemTrait>learn_asrai_enchant_dusk_wood</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
@@ -6622,7 +6622,7 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_we_enchant_leylines_weave">
     <ItemTraits>
-      <ItemTrait>learn_we_enchant_leylines_weave</ItemTrait>
+      <ItemTrait>learn_asrai_enchant_leylines_weave</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
@@ -6634,13 +6634,13 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_we_enchant_tranquillity_cadai">
     <ItemTraits>
-      <ItemTrait>learn_we_enchant_tranquillity_cadai</ItemTrait>
+      <ItemTrait>learn_asrai_enchant_tranquillity_cadai</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_we_enchant_radiance_woods">
     <ItemTraits>
-      <ItemTrait>learn_we_enchant_radiance_woods</ItemTrait>
+      <ItemTrait>learn_asrai_enchant_radiance_woods</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
