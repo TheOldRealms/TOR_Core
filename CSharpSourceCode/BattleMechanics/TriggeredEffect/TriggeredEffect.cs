@@ -131,7 +131,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                     {
                         if (!targets.Contains(triggererAgent)) targets.Add(triggererAgent);
                     }
-                    TORMissionHelper.ApplyStatusEffectToAgents(targets, effect.StringID, triggererAgent, statusEffectDuration, true, _isTemplateMutated);
+                    TORMissionHelper.ApplyStatusEffectToAgents(targets, effect.StringID, triggererAgent, statusEffectDuration, true, _isTemplateMutated, castId);
 
                     // Book status effects and expected DOT/HOT immediately
                     if (castId >= 0 && logic != null)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
@@ -41,6 +42,23 @@ namespace TOR_Core.AbilitySystem.SpellCasting
         public int AgentsFriendlyKilledCount => _agentsFriendlyKilled.Count;
         public int AgentsAffectedByStatusEffectsCount => _agentsAffectedByStatusEffects.Count;
         public int StatusEffectsApplied { get; private set; }
+        public float StartedAtMissionTime { get; }
+        public float AbilityEndedAtMissionTime { get; private set; } = -1f;
+        public float MaxAppliedStatusEffectDurationSeconds { get; private set; }
+
+        public float EffectiveDurationSeconds
+        {
+            get
+            {
+                float abilityRuntime = 0f;
+                if (AbilityEndedAtMissionTime >= StartedAtMissionTime)
+                {
+                    abilityRuntime = AbilityEndedAtMissionTime - StartedAtMissionTime;
+                }
+
+                return Math.Max(abilityRuntime, MaxAppliedStatusEffectDurationSeconds);
+            }
+        }
 
         /// <summary>
         /// Time when the session can be collected (after status effects expire).
@@ -53,6 +71,7 @@ namespace TOR_Core.AbilitySystem.SpellCasting
             Caster = caster;
             AbilityTemplate = abilityTemplate;
             PrimaryDamageType = DamageType.Physical;
+            StartedAtMissionTime = Mission.Current?.CurrentTime ?? 0f;
 
             // Store Hero reference for XP granting (Agent may become invalid after battle)
             if (Game.Current.GameType is Campaign && caster?.IsHero == true)
@@ -138,13 +157,29 @@ namespace TOR_Core.AbilitySystem.SpellCasting
         {
             TickCount++;
         }
+        public void MarkAbilityEnded()
+        {
+            if (AbilityEndedAtMissionTime < 0f)
+            {
+                AbilityEndedAtMissionTime = Mission.Current?.CurrentTime ?? StartedAtMissionTime;
+            }
+        }
+
+        public void TrackAppliedStatusEffectDuration(float duration)
+        {
+            if (duration > MaxAppliedStatusEffectDurationSeconds)
+            {
+                MaxAppliedStatusEffectDurationSeconds = duration;
+            }
+        }
 
         /// <summary>
         /// Extends the earliest collect time to wait for status effects to expire.
         /// </summary>
         public void ExtendCollectTime(float duration)
         {
-            float newTime = Mission.Current.CurrentTime + duration + 1f; // +1 second buffer
+            float currentMissionTime = Mission.Current?.CurrentTime ?? StartedAtMissionTime;
+            float newTime = currentMissionTime + duration + 1f; // +1 second buffer
             if (newTime > EarliestCollectTime)
             {
                 EarliestCollectTime = newTime;
@@ -159,6 +194,6 @@ namespace TOR_Core.AbilitySystem.SpellCasting
         /// <summary>
         /// Returns true if this session has any meaningful data to display or grant XP for.
         /// </summary>
-        public bool HasData => TotalDamageDealt > 0 || TotalHealingDone > 0 || StatusEffectsApplied > 0;
+        public bool HasData => TotalDamageDealt > 0 || TotalFriendlyFireDamage > 0 || TotalHealingDone > 0 || StatusEffectsApplied > 0 || AgentsKilledCount > 0 || AgentsFriendlyKilledCount > 0;
     }
 }

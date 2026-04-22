@@ -102,6 +102,11 @@ public class WaaaghBehavior : CampaignBehaviorBase
             UpdateWaaaghState();
             return;
         }
+        if (!mapEvent.HasWinner)
+        {
+            UpdateWaaaghState();
+            return;
+        }
 
         var playerWon = mapEvent.WinningSide == mapEvent.PlayerSide;
         if (!playerWon)

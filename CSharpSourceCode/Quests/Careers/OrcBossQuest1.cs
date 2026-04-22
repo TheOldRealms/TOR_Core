@@ -1,7 +1,6 @@
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.MapEvents;
-using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
@@ -130,6 +129,7 @@ namespace TOR_Core.Quests.Careers
 
             // Battle tracking
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, OnMapEventEnded);
+            CampaignEvents.MapEventEnded.AddNonSerializedListener(this, OnClanOrKingdomBattleEnded);
 
             // Custom TOR events
             TORCampaignEvents.Instance.BrawlWon += OnBrawlWon;
@@ -164,6 +164,15 @@ namespace TOR_Core.Quests.Careers
 
         private void OnMapEventEnded(MapEvent mapEvent)
         {
+            _currentBattlesWon++;
+            _taskBattlesWon.UpdateCurrentProgress(_currentBattlesWon);
+            UpdateQuest();
+        }
+
+        private void OnClanOrKingdomBattleEnded(MapEvent mapEvent)
+        {
+            if (!TORQuestHelper.WasClanOrKingdomBattleWon(mapEvent)) return;
+
             _currentBattlesWon++;
             _taskBattlesWon.UpdateCurrentProgress(_currentBattlesWon);
             UpdateQuest();

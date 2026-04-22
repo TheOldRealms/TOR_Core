@@ -183,13 +183,20 @@ namespace TOR_Core.HarmonyPatches
         public static bool BehaviorHorseArcherSkirmish_CalculateCurrentOrder_Prefix(BehaviorHorseArcherSkirmish __instance)
         {
             // If CachedClosestEnemyFormation is null, skip the base game's implementation to avoid null reference
-            // The behavior will recalculate on next tick when formations are properly initialized
-            if (__instance.Formation.CachedClosestEnemyFormation == null)
+            var formation = __instance.Formation;
+            if (formation?.CachedClosestEnemyFormation != null ||
+                formation?.QuerySystem?.ClosestSignificantlyLargeEnemyFormation == null)
             {
-                var currentOrder = MovementOrder.MovementOrderMove(__instance.Formation.CachedMedianPosition);
-                Traverse.Create(__instance).Property("CurrentOrder").SetValue(currentOrder);
+                return true;
             }
-            return true; // Run original method
+
+            // split horse archers can be activated before the closest enemy cache becomes available
+            // leave the movement order inactive until caches become available
+            Traverse.Create(__instance)
+                .Property("CurrentOrder")
+                .SetValue(MovementOrder.MovementOrderMove(formation.CachedMedianPosition));
+
+            return false;
         }
 
         // Prefix patch for Mission.RetreatMission to prevent retreat when Necromancer's Champion is still active

@@ -1,5 +1,6 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.TwoDimension;
+using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Religion
@@ -55,6 +56,22 @@ namespace TOR_Core.CampaignMechanics.Religion
                 TORConstants.Cultures.BEASTMEN => Pantheon.Chaos,
                 _ => Pantheon.Human
             };
+        }
+
+        /// <summary>
+        /// Gets the Pantheon for a hero, falling back to their culture's default pantheon
+        /// if they don't have a religion assigned.
+        /// </summary>
+        public static Pantheon GetPantheonForHero(Hero hero)
+        {
+            if (hero == null)
+                return Pantheon.Human;
+
+            var religion = hero.GetDominantReligion();
+            if (religion != null)
+                return religion.Pantheon;
+
+            return GetPantheon(hero.Culture?.StringId);
         }
 
         /// <summary>

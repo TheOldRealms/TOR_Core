@@ -22,6 +22,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         private const int GoldCost = 250;
 
         private const string RetinueId = "tor_wh_retinue";
+        
+        private const int MinimumTier = 3;
 
         public override string CareerButtonIcon => "CareerSystem\\ghal_maraz";
 
@@ -68,6 +70,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             return false;
         }
 
+
         public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner = false)
         {
             var index = -1;
@@ -77,9 +80,16 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             if (index == -1) return false;
 
             displayText = TORTextHelper.GetTextObject("tor_witch_hunter_upgrade_retinue_text", "Upgrades troop to a Witch Hunter Retinue");
+
+            if (characterObject.Tier < MinimumTier)
+            {
+                displayText = TORTextHelper.GetTextObject("tor_witch_hunter_tier_requirement_text", "Only high tier troops can be upgraded to Retinues");
+                return false;
+            }
+
             if (characterObject.IsEliteTroop())
             {
-                displayText = TORTextHelper.GetTextObject("tor_witch_hunter_no_knights_text", "Knights Cant be upgraded to Retinues");
+                displayText = TORTextHelper.GetTextObject("tor_witch_hunter_no_knights_text", "Knights can't be upgraded to Retinues");
                 return false;
             }
 

@@ -4087,7 +4087,7 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_weapon_club_troll_001">
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_weapon_club_troll_001" RaceLock="troll">
     <ItemTraits />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -4226,7 +4226,7 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_greenskins_troll_2h_hammer_001">
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskins_troll_2h_hammer_001" RaceLock="troll">
     <ItemTraits />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />

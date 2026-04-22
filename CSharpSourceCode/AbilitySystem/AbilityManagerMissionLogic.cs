@@ -69,6 +69,7 @@ namespace TOR_Core.AbilitySystem
         private readonly Dictionary<int, SpellCastSession> _activeSpellSessions = new();
         private readonly List<SpellCastSession> _pendingCollectSessions = new();
         private int _nextCastId = 1;
+        private const bool ENABLE_LOG_SPELLS = true;
 
         public delegate void OnHideOutBossFightInit();
         public event OnHideOutBossFightInit OnInitHideOutBossFight;
@@ -1019,6 +1020,7 @@ namespace TOR_Core.AbilitySystem
         {
             if (_activeSpellSessions.TryGetValue(castId, out var session))
             {
+                session.TrackAppliedStatusEffectDuration(duration);
                 session.ExtendCollectTime(duration);
             }
         }
@@ -1031,6 +1033,7 @@ namespace TOR_Core.AbilitySystem
             if (!_activeSpellSessions.TryGetValue(castId, out var session))
                 return;
 
+            session.MarkAbilityEnded();
             _activeSpellSessions.Remove(castId);
 
             // If not ready to collect (status effects still pending), queue for later
@@ -1080,12 +1083,43 @@ namespace TOR_Core.AbilitySystem
             }
             _pendingCollectSessions.Clear();
         }
+        private static void LogSpellSession(SpellCastSession session)
+        {
+            if (!ENABLE_LOG_SPELLS || session == null)
+            {
+                return;
+            }
+
+            string spellName = session.AbilityTemplate?.Name?.ToString();
+            if (string.IsNullOrWhiteSpace(spellName))
+            {
+                spellName = session.AbilityTemplate?.StringID ?? "unknown_spell";
+            }
+
+            string casterName = session.Caster?.Name?.ToString();
+            if (string.IsNullOrWhiteSpace(casterName) && session.CasterHero != null)
+            {
+                casterName = session.CasterHero.Name?.ToString();
+            }
+
+            if (string.IsNullOrWhiteSpace(casterName))
+            {
+                casterName = "unknown_caster";
+            }
+
+            TORCommon.Log(
+                $"spell session end | castId={session.CastID} | spell={spellName} | caster={casterName} | duration={session.EffectiveDurationSeconds:0.0}s | hasData={session.HasData} | kills={session.AgentsKilledCount} | friendlyKills={session.AgentsFriendlyKilledCount} | damaged={session.AgentsDamagedCount} | healed={session.AgentsHealedCount} | statusTargets={session.AgentsAffectedByStatusEffectsCount} | statusApplications={session.StatusEffectsApplied}",
+                NLog.LogLevel.Info);
+        }
 
         /// <summary>
         /// Finalizes a spell session - displays results and grants XP.
         /// </summary>
         private void FinalizeSession(SpellCastSession session)
         {
+            session.MarkAbilityEnded();
+            LogSpellSession(session);
+
             if (!session.HasData)
                 return;
             

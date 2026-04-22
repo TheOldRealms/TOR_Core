@@ -2,7 +2,6 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.MapEvents;
-using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
@@ -157,6 +156,7 @@ namespace TOR_Core.Quests.Careers
 
             // Battle tracking
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, OnMapEventEnded);
+            CampaignEvents.MapEventEnded.AddNonSerializedListener(this, OnClanOrKingdomBattleEnded);
 
             // Settlement captured tracking
             CampaignEvents.OnSettlementOwnerChangedEvent.AddNonSerializedListener(this, OnSettlementOwnerChanged);
@@ -195,6 +195,15 @@ namespace TOR_Core.Quests.Careers
 
         private void OnMapEventEnded(MapEvent mapEvent)
         {
+            _currentBattlesWon++;
+            _taskBattlesWon.UpdateCurrentProgress(_currentBattlesWon);
+            UpdateQuest();
+        }
+
+        private void OnClanOrKingdomBattleEnded(MapEvent mapEvent)
+        {
+            if (!TORQuestHelper.WasClanOrKingdomBattleWon(mapEvent)) return;
+
             _currentBattlesWon++;
             _taskBattlesWon.UpdateCurrentProgress(_currentBattlesWon);
             UpdateQuest();
