@@ -8,6 +8,8 @@ using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.LinQuick;
 using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
@@ -107,6 +109,23 @@ namespace TOR_Core.Models
                     ServeAsAHirelingHelpers.AddHirelingWage(Hero.MainHero, ref income);
                 }
 
+                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
+                {
+                    var playerSettlements = clan.Fiefs.WhereQ(x => x.Settlement.Owner == Hero.MainHero && x.Settlement.IsGreenskinCamp());
+                    var teefBagGold = 0;
+                    foreach (var fief in playerSettlements)
+                    {
+                        var teefBagElement = fief.Settlement.Stash.FirstOrDefaultQ(x => x.EquipmentElement.Item?.StringId == "tor_gs_teef_bag");
+                        if (teefBagElement.EquipmentElement.Item != null)
+                        {
+                            teefBagGold += teefBagElement.Amount * 10;
+                        }
+                    }
+                    if (teefBagGold > 0)
+                    {
+                        income.Add(teefBagGold, new TextObject("Teef Bags"));
+                    }
+                }
             }
 
             return income;
