@@ -1,3 +1,4 @@
+using System.Linq;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -29,6 +30,9 @@ namespace TOR_Core.BattleMechanics.AI
 
             /// <summary>If true, formation prefers to hold position rather than chase (for slow infantry like Dwarfs).</summary>
             public bool PreferStandAndFight;
+
+            /// <summary>Minimum floor for charge weight. Ensures aggressive cultures always have a base charge impulse.</summary>
+            public float ChargeWeightMinimum;
         }
 
         /// <summary>
@@ -38,17 +42,44 @@ namespace TOR_Core.BattleMechanics.AI
         {
             return cultureId switch
             {
-                // All Greenskin cultures - WAAAGH! aggressive behavior
+                // Greenskins - WAAAGH! organized aggression
                 TORConstants.Cultures.GREENSKIN or
-                TORConstants.Cultures.GREENSKIN_BANDIT or
-                "looters" => new BattlePersonality
+                TORConstants.Cultures.GREENSKIN_BANDIT => new BattlePersonality
                 {
-                    ChargeWeightMultiplier = 1.5f,       // +50% charge weight - WAAAGH!
-                    DefendWeightMultiplier = 0.6f,       // -40% defend - orcs don't wait
-                    SkirmishWeightMultiplier = 0.5f,     // -50% skirmish - orcs charge in
-                    EngagementDistanceMultiplier = 0.6f, // Engage 40% sooner
-                    RetreatResistance = 1.3f,            // 30% harder to make retreat
-                    PreferStandAndFight = false
+                    ChargeWeightMultiplier = 3.0f,       // +200% charge weight - WAAAGH!
+                    DefendWeightMultiplier = 0.3f,       // -70% defend - orcs don't wait
+                    SkirmishWeightMultiplier = 0.2f,     // -80% skirmish - orcs charge in
+                    EngagementDistanceMultiplier = 0.5f, // Engage 50% sooner
+                    RetreatResistance = 1.5f,            // 50% harder to make retreat
+                    PreferStandAndFight = false,
+                    ChargeWeightMinimum = 0.5f           // Always have some charge impulse
+                },
+
+                // Bandits - desperate, undisciplined, YOLO charge
+                "looters" or
+                "forest_bandits" or
+                "mountain_bandits" or
+                "sea_raiders" => new BattlePersonality
+                {
+                    ChargeWeightMultiplier = 5.0f,       // +400% charge - desperate attack
+                    DefendWeightMultiplier = 0.2f,       // -80% defend - bandits don't hold lines
+                    SkirmishWeightMultiplier = 0.1f,     // -90% skirmish - no discipline to kite
+                    EngagementDistanceMultiplier = 0.3f, // Engage very early
+                    RetreatResistance = 1.2f,            // Will eventually flee but charge first
+                    PreferStandAndFight = false,
+                    ChargeWeightMinimum = 1.0f           // Strong base charge impulse
+                },
+
+                // Beastmen - feral aggression, like Chaos
+                TORConstants.Cultures.BEASTMEN => new BattlePersonality
+                {
+                    ChargeWeightMultiplier = 3.0f,       // +200% charge - feral aggression
+                    DefendWeightMultiplier = 0.3f,       // -70% defend - beasts don't hold lines
+                    SkirmishWeightMultiplier = 0.2f,     // -80% skirmish - charge in
+                    EngagementDistanceMultiplier = 0.4f, // Engage very early
+                    RetreatResistance = 1.5f,            // Hard to make retreat
+                    PreferStandAndFight = false,
+                    ChargeWeightMinimum = 0.6f
                 },
 
                 TORConstants.Cultures.DAWI => new BattlePersonality
@@ -58,37 +89,41 @@ namespace TOR_Core.BattleMechanics.AI
                     SkirmishWeightMultiplier = 0.3f,     // -70% skirmish - dwarfs don't run
                     EngagementDistanceMultiplier = 1.2f, // Wait for enemy to come closer
                     RetreatResistance = 2.0f,            // Very hard to make retreat
-                    PreferStandAndFight = true           // Don't chase - let them come
+                    PreferStandAndFight = true,          // Don't chase - let them come
+                    ChargeWeightMinimum = 0f
                 },
 
                 TORConstants.Cultures.SYLVANIA => new BattlePersonality
                 {
-                    ChargeWeightMultiplier = 1.3f,       // +30% charge - undead are relentless
-                    DefendWeightMultiplier = 0.8f,       // -20% defend
-                    SkirmishWeightMultiplier = 0.4f,     // Low skirmish - undead march forward
-                    EngagementDistanceMultiplier = 0.8f,
+                    ChargeWeightMultiplier = 2.0f,       // +100% charge - undead are relentless
+                    DefendWeightMultiplier = 0.5f,       // -50% defend
+                    SkirmishWeightMultiplier = 0.2f,     // -80% skirmish - undead march forward
+                    EngagementDistanceMultiplier = 0.6f,
                     RetreatResistance = 10.0f,           // Undead basically never retreat
-                    PreferStandAndFight = false
+                    PreferStandAndFight = false,
+                    ChargeWeightMinimum = 0.4f           // Always shambling forward
                 },
 
                 TORConstants.Cultures.CHAOS => new BattlePersonality
                 {
-                    ChargeWeightMultiplier = 1.4f,       // +40% charge - blood for blood god
-                    DefendWeightMultiplier = 0.5f,       // -50% defend - chaos attacks
-                    SkirmishWeightMultiplier = 0.3f,
-                    EngagementDistanceMultiplier = 0.5f, // Engage very early
+                    ChargeWeightMultiplier = 2.5f,       // +150% charge - blood for blood god
+                    DefendWeightMultiplier = 0.3f,       // -70% defend - chaos attacks
+                    SkirmishWeightMultiplier = 0.2f,
+                    EngagementDistanceMultiplier = 0.4f, // Engage very early
                     RetreatResistance = 1.5f,
-                    PreferStandAndFight = false
+                    PreferStandAndFight = false,
+                    ChargeWeightMinimum = 0.5f
                 },
 
                 TORConstants.Cultures.BRETONNIA => new BattlePersonality
                 {
-                    ChargeWeightMultiplier = 1.3f,       // +30% charge - FOR THE LADY!
-                    DefendWeightMultiplier = 0.9f,
-                    SkirmishWeightMultiplier = 0.8f,
-                    EngagementDistanceMultiplier = 0.8f,
-                    RetreatResistance = 1.1f,
-                    PreferStandAndFight = false
+                    ChargeWeightMultiplier = 1.5f,       // +50% charge - FOR THE LADY!
+                    DefendWeightMultiplier = 0.8f,
+                    SkirmishWeightMultiplier = 0.6f,
+                    EngagementDistanceMultiplier = 0.7f,
+                    RetreatResistance = 1.2f,
+                    PreferStandAndFight = false,
+                    ChargeWeightMinimum = 0.2f
                 },
 
                 // Hit and run tactics - Wood Elves and Herrimaults
@@ -100,7 +135,8 @@ namespace TOR_Core.BattleMechanics.AI
                     SkirmishWeightMultiplier = 1.5f,     // +50% skirmish - hit and run
                     EngagementDistanceMultiplier = 1.3f,
                     RetreatResistance = 0.8f,            // Will tactically retreat
-                    PreferStandAndFight = false
+                    PreferStandAndFight = false,
+                    ChargeWeightMinimum = 0f
                 },
 
                 TORConstants.Cultures.EONIR => new BattlePersonality // High Elves - disciplined, prefer ranged
@@ -110,7 +146,8 @@ namespace TOR_Core.BattleMechanics.AI
                     SkirmishWeightMultiplier = 1.4f,     // Strong skirmishers
                     EngagementDistanceMultiplier = 1.3f, // Wait for enemy to close
                     RetreatResistance = 0.85f,           // Will tactically withdraw
-                    PreferStandAndFight = false
+                    PreferStandAndFight = false,
+                    ChargeWeightMinimum = 0f
                 },
 
                 TORConstants.Cultures.EMPIRE => new BattlePersonality // Empire - balanced but disciplined
@@ -120,7 +157,8 @@ namespace TOR_Core.BattleMechanics.AI
                     SkirmishWeightMultiplier = 1.0f,
                     EngagementDistanceMultiplier = 1.0f,
                     RetreatResistance = 1.0f,
-                    PreferStandAndFight = false
+                    PreferStandAndFight = false,
+                    ChargeWeightMinimum = 0f
                 },
 
                 _ => new BattlePersonality // Default fallback
@@ -130,7 +168,8 @@ namespace TOR_Core.BattleMechanics.AI
                     SkirmishWeightMultiplier = 1.0f,
                     EngagementDistanceMultiplier = 1.0f,
                     RetreatResistance = 1.0f,
-                    PreferStandAndFight = false
+                    PreferStandAndFight = false,
+                    ChargeWeightMinimum = 0f
                 }
             };
         }
@@ -140,9 +179,18 @@ namespace TOR_Core.BattleMechanics.AI
         /// </summary>
         public static string GetTeamCulture(Team team)
         {
-            return team?.GeneralAgent?.Character?.Culture?.StringId
-                ?? team?.Leader?.GetHero()?.Culture?.StringId
-                ?? string.Empty;
+          
+            
+            
+            var culture=  team?.GeneralAgent?.Character?.Culture?.StringId ?? team?.Leader?.GetHero()?.Culture?.StringId;
+
+            if (culture == null)
+            {
+                culture = team.ActiveAgents.FirstOrDefault()?.Character.Culture.StringId;
+            }
+
+
+            return culture;
         }
     }
 }
