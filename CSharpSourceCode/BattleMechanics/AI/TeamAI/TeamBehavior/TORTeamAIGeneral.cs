@@ -68,6 +68,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior
 
             formation.AI.AddAiBehavior(new TORBehaviorDefend(formation));
             formation.AI.AddAiBehavior(new TORBehaviorProtectArtillery(formation));
+            formation.AI.AddAiBehavior(new TORBehaviorAggressiveMelee(formation));
         }
     }
 }
