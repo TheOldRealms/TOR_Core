@@ -218,7 +218,7 @@ namespace TOR_Core.Models
                     var attackMask = AttackTypeMask.Melee;
                     var weaponComponent = attackInformation.AttackerWeapon.CurrentUsageItem;
 
-                    if (weaponComponent != null && weaponComponent.IsRangedWeapon || weaponComponent.IsAmmo)
+                    if (weaponComponent != null && (weaponComponent.IsRangedWeapon || weaponComponent.IsAmmo))
                     {
                         attackMask = AttackTypeMask.Ranged;
                     }
@@ -1104,6 +1104,26 @@ namespace TOR_Core.Models
             float energyFactor = (totalAttackEnergy - threshold) / fullEffectMargin;
             return MBMath.ClampFloat(energyFactor, 0f, 1f);
         }
+        private static bool IsOrcAiMeleeCtbAttack(Agent attackerAgent, WeaponComponentData attackerUsageItem)
+        {
+            if (attackerAgent == null || !attackerAgent.IsHuman || !attackerAgent.IsAIControlled)
+            {
+                return false;
+            }
+
+            CharacterObject attackerCharacter = attackerAgent.Character as CharacterObject;
+            if (attackerCharacter == null || !attackerCharacter.IsOrc())
+            {
+                return false;
+            }
+
+            if (attackerUsageItem == null || !attackerUsageItem.IsMeleeWeapon || attackerUsageItem.IsShield)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public override bool DecideCrushedThrough(Agent attackerAgent, Agent defenderAgent, float totalAttackEnergy, Agent.UsageDirection attackDirection, StrikeType strikeType, WeaponComponentData defendItem, bool isPassiveUsage)
         {
@@ -1137,27 +1157,28 @@ namespace TOR_Core.Models
                 return passed;
             }
 
-            // no ctb against shields
-            if (defendItem != null && defendItem.IsShield)
-            {
-                return false;
-            }
-
-            EquipmentIndex equipmentIndexNonMonster = attackerAgent.GetOffhandWieldedItemIndex();
+            EquipmentIndex equipmentIndexNonMonster = attackerAgent.GetPrimaryWieldedItemIndex();
             if (equipmentIndexNonMonster == EquipmentIndex.None)
             {
-                equipmentIndexNonMonster = attackerAgent.GetPrimaryWieldedItemIndex();
+                equipmentIndexNonMonster = attackerAgent.GetOffhandWieldedItemIndex();
             }
 
             WeaponComponentData attackerUsageItem = (equipmentIndexNonMonster != EquipmentIndex.None)
                 ? attackerAgent.Equipment[equipmentIndexNonMonster].CurrentUsageItem
                 : null;
 
+            bool isOrcAiMeleeCtbAttack = IsOrcAiMeleeCtbAttack(attackerAgent, attackerUsageItem);
+
+            if (defendItem != null && defendItem.IsShield && !isOrcAiMeleeCtbAttack)
+            {
+                return false;
+            }
+
             // base ctb
             if (attackerUsageItem != null
                 && !isPassiveUsage
                 && strikeType == 0
-                && (attackDirection == 0 || attackerAgent.HasAttribute("CrushThrough"))
+                && ((attackDirection == 0 || attackerAgent.HasAttribute("CrushThrough")) || isOrcAiMeleeCtbAttack)
                 && totalAttackEnergy > 58f)
             {
             #if TOR_CTB_LOG
@@ -1216,7 +1237,7 @@ namespace TOR_Core.Models
 
             float chance = overheadChanceFromSkill * energyFactor;
 
-            if (attackDirection != 0)
+            if (attackDirection != 0 && !isOrcAiMeleeCtbAttack)
             {
                 chance *= EXTRA_CTB_NON_OVERHEAD_CHANCE_MULTIPLIER;
             }
