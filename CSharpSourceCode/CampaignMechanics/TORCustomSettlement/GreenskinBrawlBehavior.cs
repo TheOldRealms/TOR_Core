@@ -208,7 +208,23 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
             spawnsLeft -= addCount;
         }
 
+        // Get the tavern location and check if the scene is a greenskin or dwarf tavern
+        // If not and we have more than 4 companions, use the center (city streets) instead
+        // Other culture taverns are too small for large brawls
         Location location = LocationComplex.Current.GetLocationWithId("tavern");
+        var companionCount = playerRoster.TotalHeroes;
+
+        if (companionCount > 4)
+        {
+            var wallLevel = Settlement.CurrentSettlement.Town?.GetWallLevel() ?? 3;
+            var sceneName = location.GetSceneName(wallLevel);
+
+            if (!sceneName.Contains("greenskin") && !sceneName.Contains("dwarf"))
+            {
+                // Use the center location instead - it's larger and can accommodate more fighters
+                location = LocationComplex.Current.GetLocationWithId("center");
+            }
+        }
 
         TroopRoster playerSideTroops = playerRoster;
         TroopRoster rivalSideTroops = enemyRoster;

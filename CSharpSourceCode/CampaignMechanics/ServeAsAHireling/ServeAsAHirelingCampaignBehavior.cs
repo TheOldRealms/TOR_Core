@@ -2240,7 +2240,9 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 {
                     Campaign.Current.TimeControlMode = CampaignTimeControlMode.Stop;
                 }
-                if (currentMenuContext == null && HasTrackedDeadHirelingResultEncounter())
+
+                var hasTrackedDeadHirelingResultEncounter = HasTrackedDeadHirelingResultEncounter();
+                if (currentMenuContext == null && hasTrackedDeadHirelingResultEncounter)
                 {
                     CleanupTrackedDeadHirelingResultEncounter();
                     ActivateAndRefreshHirelingMenu();
@@ -2300,7 +2302,9 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                     || HasActiveNativeSettlementEncounter()
                     || HasPendingNativeHirelingEncounterCleanup();
 
-                if (!_hirelingWaitMenuShown && !waitingForNativeEncounterCleanup)
+                if (!_hirelingWaitMenuShown
+                    && !waitingForNativeEncounterCleanup
+                    && !hasTrackedDeadHirelingResultEncounter)
                 {
                     ActivateAndRefreshHirelingMenu();
                 }

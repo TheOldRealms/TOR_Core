@@ -54,8 +54,11 @@ namespace TOR_Core.Models
             {
                 if (town.Settlement.Owner == Hero.MainHero && town.Settlement.IsGreenskinCamp())
                 {
-                    float shinies = town.Settlement.Stash.FirstOrDefaultQ(x => x.EquipmentElement.Item.StringId == "tor_gs_gold_pile").Amount;
-                    explainedNumber.Add(shinies / 500, new TextObject("Shiny Pile"));
+                    var shinyElement = town.Settlement.Stash.FirstOrDefaultQ(x => x.EquipmentElement.Item?.StringId == "tor_gs_gold_pile");
+                    if (shinyElement.EquipmentElement.Item != null)
+                    {
+                        explainedNumber.Add(shinyElement.Amount / 250f, new TextObject("Shiny Pile"));
+                    }
                 }
             }
 

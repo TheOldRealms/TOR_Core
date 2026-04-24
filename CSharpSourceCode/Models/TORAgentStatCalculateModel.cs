@@ -35,6 +35,7 @@ namespace TOR_Core.Models
         private float vampireDaySpeedModificator = 1.1f;
         private float vampireNightSpeedModificator = 1.2f;
         private CustomCrosshairMissionBehavior _crosshairBehavior;
+        private const float OrcHandlingMultiplier = 2.0f; // will result in more or less 4 times the energy for interrupted swings combined with orc energy bonus
 
         private bool _checkedMissionType = false;
         private bool _isDuelMission = false;
@@ -508,6 +509,59 @@ namespace TOR_Core.Models
             }
 
             UpdateDynamicAgentDrivenProperties(agent, agentDrivenProperties);
+            ApplyOrcMeleeHandlingBoost(agent, agentDrivenProperties);
+        }
+        private static void ApplyOrcMeleeHandlingBoost(Agent agent, AgentDrivenProperties agentDrivenProperties)
+        {
+            MissionWeapon activeMeleeWeapon;
+            if (!TryGetActiveOrcMeleeWeapon(agent, out activeMeleeWeapon))
+            {
+                return;
+            }
+
+            agentDrivenProperties.HandlingMultiplier *= OrcHandlingMultiplier;
+        }
+
+        private static bool TryGetActiveOrcMeleeWeapon(Agent agent, out MissionWeapon activeMeleeWeapon)
+        {
+            activeMeleeWeapon = default(MissionWeapon);
+
+            if (agent == null || !agent.IsHuman)
+            {
+                return false;
+            }
+
+            CharacterObject character = agent.Character as CharacterObject;
+            if (character == null || !character.IsOrc())
+            {
+                return false;
+            }
+
+            MissionWeapon primaryWieldedWeapon = agent.WieldedWeapon;
+            if (!primaryWieldedWeapon.IsEmpty)
+            {
+                WeaponComponentData primaryUsageItem = primaryWieldedWeapon.CurrentUsageItem;
+                if (primaryUsageItem != null && primaryUsageItem.IsMeleeWeapon && !primaryUsageItem.IsShield)
+                {
+                    activeMeleeWeapon = primaryWieldedWeapon;
+                    return true;
+                }
+            }
+
+            MissionWeapon offhandWieldedWeapon = agent.WieldedOffhandWeapon;
+            if (offhandWieldedWeapon.IsEmpty)
+            {
+                return false;
+            }
+
+            WeaponComponentData offhandUsageItem = offhandWieldedWeapon.CurrentUsageItem;
+            if (offhandUsageItem == null || !offhandUsageItem.IsMeleeWeapon || offhandUsageItem.IsShield)
+            {
+                return false;
+            }
+
+            activeMeleeWeapon = offhandWieldedWeapon;
+            return true;
         }
 
         private void UpdateDynamicAgentDrivenProperties(Agent agent, AgentDrivenProperties agentDrivenProperties)

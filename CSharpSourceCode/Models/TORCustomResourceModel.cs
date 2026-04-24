@@ -160,8 +160,11 @@ public class TORCustomResourceModel : GameModel
                 var tribute = 0;
                 foreach (var settlement in playerSettlements)
                 {
-                    var element = settlement.Settlement.Stash.FirstOrDefaultQ(x => x.EquipmentElement.Item.StringId == "tor_gs_loot_pile");
-                    tribute = element.Amount / 10;
+                    var element = settlement.Settlement.Stash.FirstOrDefaultQ(x => x.EquipmentElement.Item?.StringId == "tor_gs_loot_pile");
+                    if (element.EquipmentElement.Item != null)
+                    {
+                        tribute += element.Amount / 10;
+                    }
                 }
 
                 number.Add(tribute, TORTextHelper.GetTextObject("tor_greenskin_teef_tribute_text", "Teef Tribute"));
