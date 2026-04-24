@@ -36,7 +36,6 @@ namespace TOR_Core.Models
         private float vampireNightSpeedModificator = 1.2f;
         private CustomCrosshairMissionBehavior _crosshairBehavior;
         private const float OrcHandlingMultiplier = 2.0f; // will result in more or less 4 times the energy for interrupted swings combined with orc energy bonus
-        private static readonly HashSet<string> LoggedOrcAiHandlingBoosts = new HashSet<string>();
 
         private bool _checkedMissionType = false;
         private bool _isDuelMission = false;
@@ -510,23 +509,20 @@ namespace TOR_Core.Models
             }
 
             UpdateDynamicAgentDrivenProperties(agent, agentDrivenProperties);
-            ApplyOrcAiMeleeHandlingBoost(agent, agentDrivenProperties);
+            ApplyOrcMeleeHandlingBoost(agent, agentDrivenProperties);
         }
-        private static void ApplyOrcAiMeleeHandlingBoost(Agent agent, AgentDrivenProperties agentDrivenProperties)
+        private static void ApplyOrcMeleeHandlingBoost(Agent agent, AgentDrivenProperties agentDrivenProperties)
         {
             MissionWeapon activeMeleeWeapon;
-            if (!TryGetActiveOrcAiMeleeWeapon(agent, out activeMeleeWeapon))
+            if (!TryGetActiveOrcMeleeWeapon(agent, out activeMeleeWeapon))
             {
                 return;
             }
 
-            float handlingMultiplierBefore = agentDrivenProperties.HandlingMultiplier;
             agentDrivenProperties.HandlingMultiplier *= OrcHandlingMultiplier;
-
-            TraceOrcAiHandlingBoost(agent, activeMeleeWeapon, handlingMultiplierBefore, agentDrivenProperties.HandlingMultiplier);
         }
 
-        private static bool TryGetActiveOrcAiMeleeWeapon(Agent agent, out MissionWeapon activeMeleeWeapon)
+        private static bool TryGetActiveOrcMeleeWeapon(Agent agent, out MissionWeapon activeMeleeWeapon)
         {
             activeMeleeWeapon = default(MissionWeapon);
 
@@ -566,21 +562,6 @@ namespace TOR_Core.Models
 
             activeMeleeWeapon = offhandWieldedWeapon;
             return true;
-        }
-
-        private static void TraceOrcAiHandlingBoost(Agent agent, MissionWeapon activeMeleeWeapon, float handlingMultiplierBefore, float handlingMultiplierAfter)
-        {
-            string weaponId = activeMeleeWeapon.Item?.StringId ?? "no_weapon";
-            string logKey = $"{agent.Index}:{weaponId}";
-
-            if (!LoggedOrcAiHandlingBoosts.Add(logKey))
-            {
-                return;
-            }
-
-            float baseHandling = activeMeleeWeapon.GetModifiedHandlingForCurrentUsage();
-            float effectiveHandlingBefore = baseHandling * handlingMultiplierBefore;
-            float effectiveHandlingAfter = baseHandling * handlingMultiplierAfter;
         }
 
         private void UpdateDynamicAgentDrivenProperties(Agent agent, AgentDrivenProperties agentDrivenProperties)
