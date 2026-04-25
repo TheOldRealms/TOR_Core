@@ -259,12 +259,14 @@ namespace TOR_Core.CampaignMechanics
                     }
 
                     //MaxWage for "unlimited" wages is 10k, but what does that matter? why would native call mobParty.HasLimitedWage which would ignore the conditional and allow an ai party to surpass the 10k limit anyways?
-                    if (upgradeTargetCharacter.Tier > troopCharacter.Tier &&
+                    int wageDiff = partyWageModel.GetCharacterWage(upgradeTargetCharacter) - partyWageModel.GetCharacterWage(troopCharacter);
+                    if (wageDiff > 0 &&
+                        upgradeTargetCharacter.Tier > troopCharacter.Tier &&
                         party.MobileParty.HasLimitedWage() &&
                         !party.MobileParty.IsWageLimitExceeded() &&
-                        party.MobileParty.TotalWage + numPossibleTroopsToUpgrade * (partyWageModel.GetCharacterWage(upgradeTargetCharacter) - partyWageModel.GetCharacterWage(troopCharacter)) > party.MobileParty.PaymentLimit)
+                        party.MobileParty.TotalWage + numPossibleTroopsToUpgrade * wageDiff > party.MobileParty.PaymentLimit)
                     {
-                        numPossibleTroopsToUpgrade = (party.MobileParty.PaymentLimit - party.MobileParty.TotalWage) / (partyWageModel.GetCharacterWage(upgradeTargetCharacter) - partyWageModel.GetCharacterWage(troopCharacter));
+                        numPossibleTroopsToUpgrade = (party.MobileParty.PaymentLimit - party.MobileParty.TotalWage) / wageDiff;
                         if (numPossibleTroopsToUpgrade <= 1) { continue; }
                     }
 
@@ -311,11 +313,13 @@ namespace TOR_Core.CampaignMechanics
             int totalWage = party.MobileParty.TotalWage;
             //payable wage check; this assumes that cheat/normal income is enough to cover the upgrade costs which may not be true for eonir due to massive recruitment costs
             //cheat gold and looted gold for the ai has been increased but a future issue may arrive when any sort of economy balancing is pursued
-            if (upgradeTarget.Tier > upgradeSource.Tier &&
+            int wageDifference = partyWageModel.GetCharacterWage(upgradeTarget) - partyWageModel.GetCharacterWage(upgradeSource);
+            if (wageDifference > 0 &&
+                upgradeTarget.Tier > upgradeSource.Tier &&
                 !party.MobileParty.IsWageLimitExceeded() &&
-                totalWage + possibleUpgradeCount * (partyWageModel.GetCharacterWage(upgradeTarget) - partyWageModel.GetCharacterWage(upgradeSource)) > party.MobileParty.PaymentLimit)
+                totalWage + possibleUpgradeCount * wageDifference > party.MobileParty.PaymentLimit)
             {
-                possibleUpgradeCount = (party.MobileParty.PaymentLimit - totalWage) / (partyWageModel.GetCharacterWage(upgradeTarget) - partyWageModel.GetCharacterWage(upgradeSource));
+                possibleUpgradeCount = (party.MobileParty.PaymentLimit - totalWage) / wageDifference;
                 if (possibleUpgradeCount < 1) { return; }
             }
 

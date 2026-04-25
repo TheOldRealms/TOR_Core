@@ -393,8 +393,14 @@
 			<PartyTemplateStack min_value="2" max_value="15" troop="NPCCharacter.tor_gs_black_orc_berzerka" />
 			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_gs_orc_boar_boy" />
 			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_gs_orc_boar_boy_bigun" />
-			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_gs_goblin_wolf_rida" />
-			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_gs_goblin_wolf_rida_archer" />
+			<PartyTemplateStack min_value="40" max_value="50" troop="NPCCharacter.tor_gs_goblin" />
+			<PartyTemplateStack min_value="20" max_value="30" troop="NPCCharacter.tor_gs_goblin_stikka" />
+			<PartyTemplateStack min_value="15" max_value="30" troop="NPCCharacter.tor_gs_goblin_nasty_skulker" />
+			<PartyTemplateStack min_value="15" max_value="30" troop="NPCCharacter.tor_gs_goblin_archer" />
+			<PartyTemplateStack min_value="15" max_value="25" troop="NPCCharacter.tor_gs_goblin_boss" />
+			<PartyTemplateStack min_value="5" max_value="30" troop="NPCCharacter.tor_gs_goblin_wolf_rida" />
+			<PartyTemplateStack min_value="5" max_value="30" troop="NPCCharacter.tor_gs_goblin_wolf_rida_archer" />
+			<PartyTemplateStack min_value="5" max_value="30" troop="NPCCharacter.tor_gs_goblin_wolf_rida_boss" />
 		</stacks>
 	</MBPartyTemplate>
 
