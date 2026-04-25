@@ -975,9 +975,9 @@ namespace TOR_Core.Models
                 }
 
                 //status effects
-                if(statusEffectComp == null)
+                if(statusEffectComp != null)
                 {
-                    var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances(attackTypeMask);
+                    var statusEffectResistances = statusEffectComp.GetResistances(attackTypeMask);
 
                     for (int i = 0; i < damageResistances.Length; i++)
                     {
