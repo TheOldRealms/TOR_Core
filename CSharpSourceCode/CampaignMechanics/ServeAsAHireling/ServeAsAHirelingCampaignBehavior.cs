@@ -1555,51 +1555,63 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 hireling_battle_menu_join_battle_on_condition,
                 delegate (MenuCallbackArgs args)
                 {
-                    while (Campaign.Current.CurrentMenuContext != null)
-                    {
-                        GameMenu.ExitToLast();
-                    }
                     if (TryGetCurrentHirelingSiegeBattle(out var siegeSettlement, out var siegeJoinedSide, out var siegeMapEvent))
                     {
+                        _hirelingLordIsFightingWithoutPlayer = false;
+                        _startBattle = false;
+
+                        while (Campaign.Current.CurrentMenuContext != null)
+                        {
+                            GameMenu.ExitToLast();
+                        }
+
                         TryOpenJoinedHirelingSiegeEncounter(siegeSettlement, siegeJoinedSide, siegeMapEvent, args);
                         return;
                     }
 
                     var eventAlliedLeaderParty = GetCurrentHirelingBattleParty();
-                    if (eventAlliedLeaderParty != null)
+                    if (eventAlliedLeaderParty == null)
                     {
-                        var mapEvent = eventAlliedLeaderParty.MapEvent;
-
-                        var enemyLeaderBase = eventAlliedLeaderParty.MapEventSide.OtherSide.LeaderParty;
-                        if (enemyLeaderBase == null)
-                        {
-                            TORCommon.Log("hireling_join_battle consequence : enemyLeaderBase is null", NLog.LogLevel.Error);
-                        }
-
-                        //the crash is from attempting to join a siege that the enlisting lord is in (siege leader or follower unknown) - is the issue the player not being part of the siege event? or maybe the besieger camp?
-                        var playerParty = MobileParty.MainParty;
-                        if (mapEvent.IsSiegeAssault || mapEvent.IsSiegeOutside)
-                        {
-                            var joinedSide = eventAlliedLeaderParty.MapEventSide.MissionSide;
-                            var siegeEncounterSettlement = mapEvent.MapEventSettlement;
-
-                            TryOpenJoinedHirelingSiegeEncounter(siegeEncounterSettlement, joinedSide, mapEvent, args);
-                            return;
-                        }
-                        else
-                        {
-                            CleanupStaleEncounterBeforeStartingHirelingFieldBattle();
-
-                            playerParty.MapEventSide = null;
-                            playerParty.BesiegerCamp = null;
-                            playerParty.CurrentSettlement = null;
-
-                            _startBattle = true;
-                            EncounterManager.StartPartyEncounter(PartyBase.MainParty, enemyLeaderBase);
-                        }
-
-                        _hirelingLordIsFightingWithoutPlayer = false;
+                        ActivateAndRefreshHirelingMenu();
+                        return;
                     }
+
+                    var mapEvent = eventAlliedLeaderParty.MapEvent;
+                    var enemyLeaderBase = eventAlliedLeaderParty.MapEventSide.OtherSide.LeaderParty;
+                    if (enemyLeaderBase == null)
+                    {
+                        TORCommon.Log("hireling_join_battle consequence : enemyLeaderBase is null", NLog.LogLevel.Error);
+                        ActivateAndRefreshHirelingMenu();
+                        return;
+                    }
+
+                    // join owns the flow again before native encounter menus can open
+                    _hirelingLordIsFightingWithoutPlayer = false;
+                    _startBattle = false;
+
+                    while (Campaign.Current.CurrentMenuContext != null)
+                    {
+                        GameMenu.ExitToLast();
+                    }
+
+                    var playerParty = MobileParty.MainParty;
+                    if (mapEvent.IsSiegeAssault || mapEvent.IsSiegeOutside)
+                    {
+                        var joinedSide = eventAlliedLeaderParty.MapEventSide.MissionSide;
+                        var siegeEncounterSettlement = mapEvent.MapEventSettlement;
+
+                        TryOpenJoinedHirelingSiegeEncounter(siegeEncounterSettlement, joinedSide, mapEvent, args);
+                        return;
+                    }
+
+                    CleanupStaleEncounterBeforeStartingHirelingFieldBattle();
+
+                    playerParty.MapEventSide = null;
+                    playerParty.BesiegerCamp = null;
+                    playerParty.CurrentSettlement = null;
+
+                    _startBattle = true;
+                    EncounterManager.StartPartyEncounter(PartyBase.MainParty, enemyLeaderBase);
                 }
                 , false, 4);
 
@@ -2240,12 +2252,15 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 {
                     Campaign.Current.TimeControlMode = CampaignTimeControlMode.Stop;
                 }
-                if (currentMenuContext == null && HasTrackedDeadHirelingResultEncounter())
+
+                var hasTrackedDeadHirelingResultEncounter = HasTrackedDeadHirelingResultEncounter();
+                if (currentMenuContext == null && hasTrackedDeadHirelingResultEncounter)
                 {
                     CleanupTrackedDeadHirelingResultEncounter();
                     ActivateAndRefreshHirelingMenu();
                     return;
                 }
+
                 if (currentMenuContext?.GameMenu?.StringId == "hireling_menu")
                 {
                     var hirelingMenu = Campaign.Current.GameMenuManager.GetGameMenu("hireling_menu");
@@ -2300,7 +2315,9 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                     || HasActiveNativeSettlementEncounter()
                     || HasPendingNativeHirelingEncounterCleanup();
 
-                if (!_hirelingWaitMenuShown && !waitingForNativeEncounterCleanup)
+                if (!_hirelingWaitMenuShown
+                    && !waitingForNativeEncounterCleanup
+                    && !hasTrackedDeadHirelingResultEncounter)
                 {
                     ActivateAndRefreshHirelingMenu();
                 }

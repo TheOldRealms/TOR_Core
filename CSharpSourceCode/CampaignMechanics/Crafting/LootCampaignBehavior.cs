@@ -7,6 +7,7 @@ using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Party.PartyComponents;
+using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.Settlements.Workshops;
 using TaleWorlds.Core;
@@ -26,23 +27,64 @@ namespace TOR_Core.CampaignMechanics.Crafting;
 public class LootCampaignBehavior : CampaignBehaviorBase
 {
     protected readonly Dictionary<CharacterObject, int> _initialEnemyArmy = new();
+    private MapEvent _trackedEnemyArmyMapEvent;
+    private bool _enemyArmySnapshotLocked;
+    private readonly HashSet<ItemObject> _generatedMagicalLootItems = [];
 
     public override void RegisterEvents()
     {
         CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, AddMagicalItemsFromBattle);
         CampaignEvents.WeeklyTickEvent.AddNonSerializedListener(this, RemovedUnusedLootItems); //slightly less often than on map event end, but skips having to check lots of map events
+        CampaignEvents.MapEventStarted.AddNonSerializedListener(this, StoreInitialArmyFromMapEventStart);
         CampaignEvents.OnMissionStartedEvent.AddNonSerializedListener(this, StoreInitialArmy);
+        CampaignEvents.MapEventEnded.AddNonSerializedListener(this, OnTrackedMapEventEnded);
+        CampaignEvents.OnCollectLootsItemsEvent.AddNonSerializedListener(this, RemoveUnrelatedRuntimeMagicalLootItems);
     }
+    private void StoreInitialArmyFromMapEventStart(MapEvent mapEvent, PartyBase attackerParty, PartyBase defenderParty)
+    {
+        if (!mapEvent.IsPlayerMapEvent)
+            return;
 
+        _initialEnemyArmy.Clear();
+        _generatedMagicalLootItems.Clear();
+        _trackedEnemyArmyMapEvent = mapEvent;
+        _enemyArmySnapshotLocked = false;
+
+        var enemySide = BattleSideEnum.Attacker;
+        if (mapEvent.PlayerSide == BattleSideEnum.Attacker)
+            enemySide = BattleSideEnum.Defender;
+
+        var side = mapEvent.GetMapEventSide(enemySide);
+
+        foreach (var characterObject in from enemyParties in side.Parties from troop in enemyParties.Troops select troop.Troop)
+        {
+            if (_initialEnemyArmy.TryGetValue(characterObject, out var count))
+                _initialEnemyArmy[characterObject] = count + 1;
+            else
+                _initialEnemyArmy.Add(characterObject, 1);
+        }
+    }
 
     private void StoreInitialArmy(IMission obj)
     {
         var playerEvent = Campaign.Current.MainParty.MapEvent;
-
-        var enemySide = BattleSideEnum.Attacker;
         if (playerEvent == null)
             return;
-        if (playerEvent.PlayerSide == BattleSideEnum.Attacker) enemySide = BattleSideEnum.Defender;
+
+        if (_trackedEnemyArmyMapEvent == null)
+        {
+            _trackedEnemyArmyMapEvent = playerEvent;
+            _enemyArmySnapshotLocked = false;
+        }
+
+        if (playerEvent != _trackedEnemyArmyMapEvent || _enemyArmySnapshotLocked)
+            return;
+
+        _initialEnemyArmy.Clear();
+
+        var enemySide = BattleSideEnum.Attacker;
+        if (playerEvent.PlayerSide == BattleSideEnum.Attacker)
+            enemySide = BattleSideEnum.Defender;
 
 
         var side = playerEvent.GetMapEventSide(enemySide);
@@ -54,8 +96,54 @@ public class LootCampaignBehavior : CampaignBehaviorBase
             else
                 _initialEnemyArmy.Add(characterObject, 1);
         }
-    }
 
+        _enemyArmySnapshotLocked = true;
+    }
+    private void OnTrackedMapEventEnded(MapEvent mapEvent)
+    {
+        if (mapEvent != _trackedEnemyArmyMapEvent)
+            return;
+
+        _initialEnemyArmy.Clear();
+        _generatedMagicalLootItems.Clear();
+        _trackedEnemyArmyMapEvent = null;
+        _enemyArmySnapshotLocked = false;
+    }
+    private void RemoveUnrelatedRuntimeMagicalLootItems(PartyBase winnerParty, ItemRoster gainedLoots)
+    {
+        if (winnerParty != PartyBase.MainParty || gainedLoots == null)
+            return;
+
+        var itemsToRemove = new List<ItemRosterElement>();
+
+        foreach (var rosterElement in gainedLoots)
+        {
+            var item = rosterElement.EquipmentElement.Item;
+            if (item == null)
+                continue;
+
+            if (!item.HasAnyLootTraits())
+                continue;
+
+            if (item.IsCraftedByPlayer)
+                continue;
+
+            if (!ExtendedItemObjectManager.IsRuntimeDuplicatedItem(item))
+                continue;
+
+            if (_generatedMagicalLootItems.Contains(item))
+                continue;
+
+            itemsToRemove.Add(rosterElement);
+        }
+
+        foreach (var rosterElement in itemsToRemove)
+        {
+            gainedLoots.AddToCounts(rosterElement.EquipmentElement, -rosterElement.Amount);
+        }
+
+        _generatedMagicalLootItems.Clear();
+    }
     private void RemovedUnusedLootItems()
     {
         var objects = MBObjectManager.Instance.GetObjectTypeList<ItemObject>().Where(x => x.HasAnyLootTraits()).ToMBList();
@@ -139,19 +227,28 @@ public class LootCampaignBehavior : CampaignBehaviorBase
         if (Hero.MainHero.IsEnlisted())
         {
             _initialEnemyArmy.Clear();
+            _generatedMagicalLootItems.Clear();
+            _trackedEnemyArmyMapEvent = null;
+            _enemyArmySnapshotLocked = false;
             return;
         }
 
-        if (mapEvent.PlayerSide != mapEvent.WinningSide) return; //player dying and their troops retreating triggers a PlayerBattleEndEvent with no winner; no point in calculating this for losses
+        if (mapEvent != _trackedEnemyArmyMapEvent)
+            return;
 
+        if (mapEvent.WinningSide == BattleSideEnum.None)
+            return;
 
-        float renownChange, influenceChange, moraleChange, goldChange, playerEarnedLootPercentage;
-        mapEvent.GetBattleRewards(PartyBase.MainParty, out renownChange, out influenceChange, out moraleChange, out goldChange,
-            out playerEarnedLootPercentage);
+        try
+        {
+            if (mapEvent.PlayerSide != mapEvent.WinningSide) return; //player dying and their troops retreating triggers a PlayerBattleEndEvent with no winner; no point in calculating this for losses
 
-        var itemRosterToReceive = PlayerEncounter.Current.RosterToReceiveLootItems;
-        var enemySide = mapEvent.PlayerSide == BattleSideEnum.Attacker ? BattleSideEnum.Defender : BattleSideEnum.Attacker;
-        var model = (TORBattleRewardModel)Campaign.Current.Models.BattleRewardModel;
+            float renownChange, influenceChange, moraleChange, goldChange, playerEarnedLootPercentage;
+            mapEvent.GetBattleRewards(PartyBase.MainParty, out renownChange, out influenceChange, out moraleChange, out goldChange,
+                out playerEarnedLootPercentage);
+
+            var itemRosterToReceive = PlayerEncounter.Current.RosterToReceiveLootItems;
+            var model = (TORBattleRewardModel)Campaign.Current.Models.BattleRewardModel;
 
         foreach (var element in _initialEnemyArmy)
         {
@@ -249,10 +346,16 @@ public class LootCampaignBehavior : CampaignBehaviorBase
 
             var magicItem = EnchantmentHelper.CreateEnchantedItem(item, traitList, name.ToString(), false);
 
-            itemRosterToReceive.Add(new ItemRosterElement(magicItem, 1));
+                _generatedMagicalLootItems.Add(magicItem);
+                itemRosterToReceive.Add(new ItemRosterElement(magicItem, 1));
+            }
         }
-
-        _initialEnemyArmy.Clear();
+        finally
+        {
+            _initialEnemyArmy.Clear();
+            _trackedEnemyArmyMapEvent = null;
+            _enemyArmySnapshotLocked = false;
+        }
     }
 
     public override void SyncData(IDataStore dataStore)

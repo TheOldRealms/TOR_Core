@@ -76,8 +76,14 @@ namespace TOR_Core.Utilities
             }
 
             var skeleton = agent.AgentVisuals.GetSkeleton();
-            if (skeleton == null)
+            if (skeleton == null || !skeleton.IsValid)
             {
+                return null;
+            }
+
+            if (boneIndex < 0 || boneIndex >= skeleton.GetBoneCount())
+            {
+                TORCommon.Log("Attempted to apply a particle to an invalid agent bone. Particle ID: " + particleId + ". Agent name: " + agent.Name + ". Bone index: " + boneIndex, LogLevel.Warn);
                 return null;
             }
 

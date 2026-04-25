@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_neutral_head_helm_001" RaceLock="human">
     <ItemTraits />
@@ -2171,70 +2171,6 @@
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dw_body_armour_runelord_001" RaceLock="dwarf">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_001" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_002" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_003" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_004" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_005" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_006" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_007" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_008" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_009" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_010" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_011" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_012" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_013" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_014" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_015" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_016" RaceLock="human">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
@@ -6592,7 +6528,7 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_we_enchant_emissaries_mirai">
     <ItemTraits>
-      <ItemTrait>learn_we_enchant_emissaries_mirai</ItemTrait>
+      <ItemTrait>learn_asrai_enchant_emissaries_mirai</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
@@ -6604,7 +6540,7 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_we_enchant_dusk_wood">
     <ItemTraits>
-      <ItemTrait>learn_we_enchant_dusk_wood</ItemTrait>
+      <ItemTrait>learn_asrai_enchant_dusk_wood</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
@@ -6622,7 +6558,7 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_we_enchant_leylines_weave">
     <ItemTraits>
-      <ItemTrait>learn_we_enchant_leylines_weave</ItemTrait>
+      <ItemTrait>learn_asrai_enchant_leylines_weave</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
@@ -6634,13 +6570,13 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_we_enchant_tranquillity_cadai">
     <ItemTraits>
-      <ItemTrait>learn_we_enchant_tranquillity_cadai</ItemTrait>
+      <ItemTrait>learn_asrai_enchant_tranquillity_cadai</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_we_enchant_radiance_woods">
     <ItemTraits>
-      <ItemTrait>learn_we_enchant_radiance_woods</ItemTrait>
+      <ItemTrait>learn_asrai_enchant_radiance_woods</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>

@@ -177,9 +177,14 @@ namespace TOR_Core.Items
 
             foreach (var entity in presetState.ChildEntities)
             {
-                Agent?.AgentVisuals?.RemoveChildEntity(entity, 0);
-                entity.RemoveAllParticleSystems();
+                if (entity == null)
+                {
+                    continue;
+                }
+
                 entity.FadeOut(1, true);
+                entity.RemoveAllParticleSystems();
+                Agent.TryRemoveChildEntity(entity);
             }
         }
 
@@ -191,7 +196,15 @@ namespace TOR_Core.Items
                 particle?.SetEnable(enable);
             }
         }
+        public override void OnAgentRemoved()
+        {
+            for (int i = _currentPresets.Count - 1; i >= 0; i--)
+            {
+                RemovePresetVisuals(_currentPresets[i]);
+            }
 
+            _currentPresets.Clear();
+        }
 
         public void ApplyParticlePreset(WeaponParticlePreset preset, MissionWeapon weapon)
         {

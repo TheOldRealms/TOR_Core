@@ -398,6 +398,30 @@ namespace TOR_Core.BattleMechanics
                 return;
             }
 
+            Agent.ActionCodeType upperBodyActionType = agent.GetCurrentActionType(1);
+            if (upperBodyActionType == Agent.ActionCodeType.EquipUnequip ||
+                upperBodyActionType == Agent.ActionCodeType.SwitchAlternative ||
+                upperBodyActionType == Agent.ActionCodeType.ReleaseMelee ||
+                upperBodyActionType == Agent.ActionCodeType.ReleaseRanged ||
+                upperBodyActionType == Agent.ActionCodeType.ReleaseThrowing ||
+                upperBodyActionType == Agent.ActionCodeType.WeaponBash)
+            {
+                return;
+            }
+
+            Agent.ActionCodeType fullBodyActionType = agent.GetCurrentActionType(0);
+            if (fullBodyActionType == Agent.ActionCodeType.Mount ||
+                fullBodyActionType == Agent.ActionCodeType.Dismount ||
+                fullBodyActionType == Agent.ActionCodeType.Fall ||
+                fullBodyActionType == Agent.ActionCodeType.JumpStart ||
+                fullBodyActionType == Agent.ActionCodeType.Jump ||
+                fullBodyActionType == Agent.ActionCodeType.JumpEnd ||
+                fullBodyActionType == Agent.ActionCodeType.JumpEndHard ||
+                agent.IsInBeingStruckAction)
+            {
+                return;
+            }
+
             MissionWeapon missionWeapon = agent.Equipment[weaponSlot];
             if (missionWeapon.IsEmpty || missionWeapon.CurrentUsageItem == null)
             {

@@ -240,6 +240,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         private void RemoveEffect(StatusEffect effect)
         {
             EffectData data = _currentEffects[effect];
+            bool visualsUsable = Agent != null && Agent.HasUsableVisuals();
 
             if (data.IsParticleAttachedToAgentSkeleton)
             {
@@ -249,6 +250,12 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     {
                         continue;
                     }
+
+                    if (!visualsUsable)
+                    {
+                        continue;
+                    }
+
                     entity.FadeOut(1, true);
                     entity.RemoveAllParticleSystems();
                     // attached effect outliving the ownin visuals, only detach through AgentVisuals while that object is still safe
