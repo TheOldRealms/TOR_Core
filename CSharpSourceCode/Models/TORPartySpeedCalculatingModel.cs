@@ -108,30 +108,22 @@ namespace TOR_Core.Models
 
             if (leaderHero.IsVampire())//player vamp
             {
-                if (Campaign.Current.IsNight || faceTerrainType == TerrainType.Forest || leaderHero.HasCareerChoice("NewBloodPassive4") || leaderHero.HasCareerChoice("ControlledHungerPassive1"))
+                if (Campaign.Current.IsNight)
                 {
+                    //night is always beneficial
                     result.AddFactor(0.50f, TORTextHelper.GetTextObject("tor_vampire_nighttime_bonus", "Vampire Nighttime bonus"));
+                }
+                else if (faceTerrainType == TerrainType.Forest || leaderHero.HasCareerChoice("NewBloodPassive4") || leaderHero.HasCareerChoice("ControlledHungerPassive1"))
+                {
+                    //daytime penalties avoided in some circumstances
                 }
                 else
                 {
+                    //daytime penalty is otherwise the default
                     result.AddFactor(-0.25f, TORTextHelper.GetTextObject("tor_suffering_sunlight", "Suffering from sun light"));
                 }
             }
-            /*This requires editing the base speed calculation because it implements nighttime hours which are very restrictive and causes a mismatch between our night bonus and their night penalty. Not worth pursuing atm until more willing to understand and modify the speed calculation in more detail.
-            //if (leaderHero.IsVampire()) //is this about vampire, or undead in general? would a necro player be supposed to take the penalty?
-            //{
-            //    int timeOfDay = CampaignTime.Now.GetHourOfDay;
-            //    var isNight = timeOfDay >= 22 || timeOfDay < 6;
-
-            //    if (!isNight && (leaderHero != Hero.MainHero || (faceTerrainType != TerrainType.Forest && !leaderHero.HasCareerChoice("NewBloodPassive4") && !leaderHero.HasCareerChoice("ControlledHungerPassive1"))))
-            //    {
-            //        result.AddFactor(-0.25f, new TextObject("Suffering from sun light"));
-            //    }
-            //    else
-            //    {
-            //        result.AddFactor(0.5f, new TextObject("Vampire Nighttime bonus"));
-            //    }
-            }*/
+            
 
             var positionEvent = Campaign.Current.Models.MapWeatherModel.GetWeatherEventInPosition(mobileParty.Position.ToVec2());
 
