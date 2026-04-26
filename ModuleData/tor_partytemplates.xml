@@ -324,6 +324,29 @@
 			<PartyTemplateStack min_value="2" max_value="7" troop="NPCCharacter.tor_dw_irondrake" />
 			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_dw_veteran_quarreller" />
 			<PartyTemplateStack min_value="2" max_value="2" troop="NPCCharacter.tor_dw_irondrake_trollhammer" />
+			<PartyTemplateStack min_value="6" max_value="10" troop="NPCCharacter.tor_dw_artillery_crew" />
+			<PartyTemplateStack min_value="4" max_value="6" troop="NPCCharacter.tor_dw_artillery_gunner" />
+		</stacks>
+	</MBPartyTemplate>
+	<MBPartyTemplate id="dawi_slayers_lordparty_template" >
+		<stacks>
+			<PartyTemplateStack min_value="25" max_value="40" troop="NPCCharacter.tor_dw_slayer" />
+			<PartyTemplateStack min_value="16" max_value="24" troop="NPCCharacter.tor_dw_troll_slayer" />
+			<PartyTemplateStack min_value="5" max_value="14" troop="NPCCharacter.tor_dw_giant_slayer" />
+			<PartyTemplateStack min_value="10" max_value="16" troop="NPCCharacter.tor_dw_militia" />
+			<PartyTemplateStack min_value="10" max_value="16" troop="NPCCharacter.tor_dw_miner" />
+			<PartyTemplateStack min_value="16" max_value="26" troop="NPCCharacter.tor_dw_warrior" />
+			<PartyTemplateStack min_value="4" max_value="16" troop="NPCCharacter.tor_dw_longbeard" />
+			<PartyTemplateStack min_value="12" max_value="26" troop="NPCCharacter.tor_dw_scout" />
+			<PartyTemplateStack min_value="12" max_value="26" troop="NPCCharacter.tor_dw_quarreller" />
+			<PartyTemplateStack min_value="4" max_value="12" troop="NPCCharacter.tor_dw_ironbreaker" />
+			<PartyTemplateStack min_value="4" max_value="10" troop="NPCCharacter.tor_dw_oldguard" />
+			<PartyTemplateStack min_value="4" max_value="10" troop="NPCCharacter.tor_dw_sharpshooter" />
+			<PartyTemplateStack min_value="2" max_value="7" troop="NPCCharacter.tor_dw_irondrake" />
+			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_dw_veteran_quarreller" />
+			<PartyTemplateStack min_value="2" max_value="2" troop="NPCCharacter.tor_dw_irondrake_trollhammer" />
+			<PartyTemplateStack min_value="6" max_value="10" troop="NPCCharacter.tor_dw_artillery_crew" />
+			<PartyTemplateStack min_value="4" max_value="6" troop="NPCCharacter.tor_dw_artillery_gunner" />
 		</stacks>
 	</MBPartyTemplate>
 	<MBPartyTemplate id="chaos_lordparty_template" >
