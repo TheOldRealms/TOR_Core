@@ -86,7 +86,7 @@ namespace TOR_Core.Quests
             LoadAllLogs();
             _task1 = AddDiscreteLog(_logs[0].LogText, _logs[0].TaskName, 0, 1);
             RogueEngineerLeaderName = new TextObject("{ROGUE_ENGINEER_NAME}").ToString();
-            RogueEngineerDisplayName = GameTexts.FindText("str_quest_tor_engineer", "rogueEngineerParty").ToString();
+            RogueEngineerDisplayName = TORTextHelper.GetText("rogueEngineerParty", "Goswin");
             CultistPartyDisplayName = new TextObject("{tor_quest_engineer_cultist_party_str} Runaway Thieves").ToString();
             CultistPartyLeaderName = new TextObject("{tor_quest_engineer_cultist_party_leader_str} Runaway Thieves Leader").ToString();
             _currentActiveLog = 0;
