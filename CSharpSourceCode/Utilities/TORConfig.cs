@@ -8,6 +8,7 @@ namespace TOR_Core.Utilities
     public static class TORConfig
     {
         private static TORConfiguration _config = null;
+        private static bool _freeRaceSelectionEnabled = false;
         public static int FakeBannerFrequency => _config.FakeBannerFrequency;
         public static int MaximumCustomResourceValue => _config.MaximumCustomResourceValue;
         public static int NumberOfTroopsPerFormationWithStandard => _config.NumberOfTroopsPerFormationWithStandard;
@@ -31,7 +32,17 @@ namespace TOR_Core.Utilities
         public static int AIGoldAdjustmentAmount => _config.AIGoldAdjustmentAmount;
         public static bool UseAlternativeVoiceManager => _config.UseAlternativeVoiceManager;
         public static bool DisableMinstrelEvent => _config.DisableMinstrelEvent;
-        public static bool AllowFreeRaceSelection => _config.AllowFreeRaceSelection;
+        public static bool AllowFreeRaceSelection => _freeRaceSelectionEnabled;
+
+        public static bool EnableFreeRaceSelection(string password)
+        {
+            if (password == "IKnowWhatImDoing")
+            {
+                _freeRaceSelectionEnabled = true;
+                return true;
+            }
+            return false;
+        }
 
         public static void ReadConfig()
         {
@@ -97,8 +108,6 @@ namespace TOR_Core.Utilities
             public bool UseAlternativeVoiceManager;
             [XmlAttribute]
             public bool DisableMinstrelEvent;
-            [XmlAttribute]
-            public bool AllowFreeRaceSelection;
         }
     }
 }
