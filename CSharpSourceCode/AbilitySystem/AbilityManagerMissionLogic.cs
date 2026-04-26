@@ -68,14 +68,7 @@ namespace TOR_Core.AbilitySystem
         // Spell cast session tracking
         private readonly Dictionary<int, SpellCastSession> _activeSpellSessions = new();
         private readonly List<SpellCastSession> _pendingCollectSessions = new();
-        // spell damage can now live past ability entity 
-        private readonly Queue<QueuedSpellDamage> _queuedSpellDamage = new();
-        private readonly Dictionary<int, int> _queuedSpellDamageCountByCastId = new();
         private int _nextCastId = 1;
-        private int _spellBlowsAppliedThisTick;
-        private int _largestQueuedSpellDamageCount;
-        private const int SPELL_BLOW_BUDGET_PER_TICK = 24; // 
-        private const int SPELL_DAMAGE_QUEUE_LOG_THRESHOLD = 48;
         private const bool ENABLE_LOG_SPELLS = true;
 
         public delegate void OnHideOutBossFightInit();
@@ -127,8 +120,6 @@ namespace TOR_Core.AbilitySystem
         public override void OnPreMissionTick(float dt)
         {
             // Process any pending spell sessions that are ready to collect
-            _spellBlowsAppliedThisTick = 0;
-            ProcessQueuedSpellDamage();
             ProcessPendingSpellSessions();
             TriggeredEffect.ProcessPendingDisposals(Mission.Current.CurrentTime);
 
@@ -975,231 +966,9 @@ namespace TOR_Core.AbilitySystem
             if (_activeSpellSessions.TryGetValue(castId, out var session))
             {
                 session.BookDamage(victim, damageDealt, damageAbsorbed, damageType);
-                return;
-            }
-
-            var pendingSession = _pendingCollectSessions.Find(s => s.CastID == castId);
-            pendingSession?.BookDamage(victim, damageDealt, damageAbsorbed, damageType);
-        }
-
-        public void ApplyOrQueueSpellDamage(
-            Agent target,
-            int damage,
-            Vec3 impactPosition,
-            Agent caster,
-            DamageType damageType,
-            AbilityTemplate abilityTemplate,
-            TriggeredEffectTemplate triggeredEffectTemplate,
-            bool hasShockWave,
-            int castId)
-        {
-            var spellDamage = new QueuedSpellDamage(
-                target,
-                damage,
-                impactPosition,
-                caster,
-                damageType,
-                abilityTemplate,
-                triggeredEffectTemplate?.StringID,
-                hasShockWave,
-                castId);
-
-            if (!ShouldDelaySpellBlow(abilityTemplate, triggeredEffectTemplate) ||
-                (_queuedSpellDamage.Count == 0 && _spellBlowsAppliedThisTick < SPELL_BLOW_BUDGET_PER_TICK))
-            {
-                ApplyResolvedSpellDamage(spellDamage);
-                return;
-            }
-
-            EnqueueSpellDamage(spellDamage);
-        }
-
-        private void EnqueueSpellDamage(QueuedSpellDamage spellDamage)
-        {
-            _queuedSpellDamage.Enqueue(spellDamage);
-
-            if (spellDamage.CastId >= 0)
-            {
-                _queuedSpellDamageCountByCastId.TryGetValue(spellDamage.CastId, out var count);
-                _queuedSpellDamageCountByCastId[spellDamage.CastId] = count + 1;
-            }
-
-            LogSpellDamageQueueSpike(spellDamage);
-        }
-
-        private void ProcessQueuedSpellDamage()
-        {
-            while (_queuedSpellDamage.Count > 0 && _spellBlowsAppliedThisTick < SPELL_BLOW_BUDGET_PER_TICK)
-            {
-                var spellDamage = _queuedSpellDamage.Dequeue();
-
-                ApplyResolvedSpellDamage(spellDamage);
-                CompleteQueuedSpellDamage(spellDamage.CastId);
             }
         }
-
-        private void ApplyResolvedSpellDamage(QueuedSpellDamage spellDamage)
-        {
-            if (!CanApplyResolvedSpellDamage(spellDamage))
-            {
-                return;
-            }
-
-            // resolved at cast tick
-            spellDamage.Target.ApplyDamage(
-                spellDamage.Damage,
-                spellDamage.ImpactPosition,
-                spellDamage.Caster,
-                doBlow: true,
-                hasShockWave: spellDamage.HasShockWave,
-                originatesFromAbility: spellDamage.AbilityTemplate != null);
-
-            _spellBlowsAppliedThisTick++;
-
-            if (spellDamage.CastId < 0)
-            {
-                return;
-            }
-
-            BookSpellDamage(spellDamage.CastId, spellDamage.Target, spellDamage.Damage, 0, spellDamage.DamageType);
-
-            if (spellDamage.Target.Health <= 0 ||
-                spellDamage.Target.State == AgentState.Killed ||
-                spellDamage.Target.State == AgentState.Unconscious)
-            {
-                BookSpellKill(spellDamage.CastId, spellDamage.Target);
-            }
-        }
-
-        private static bool ShouldDelaySpellBlow(AbilityTemplate abilityTemplate, TriggeredEffectTemplate triggeredEffectTemplate)
-        {
-            if (abilityTemplate == null || triggeredEffectTemplate == null)
-            {
-                return false;
-            }
-
-            if (triggeredEffectTemplate.AssociatedStatusEffects?.Count > 0) // note: damage templates are dependant on TriggeredEffect order. delaying the damage will result in inconsistent OnHit state
-            {
-                return false;
-            }
-
-            return triggeredEffectTemplate.DamageAmount > 0 &&
-                   triggeredEffectTemplate.Radius >= 4f &&
-                   (triggeredEffectTemplate.TargetType == TargetType.All ||
-                    triggeredEffectTemplate.TargetType == TargetType.Enemy);
-        }
-
-        private static bool CanApplyResolvedSpellDamage(QueuedSpellDamage spellDamage)
-        {
-            if (Mission.Current == null ||
-                Mission.Current.MissionEnded ||
-                Mission.Current.IsMissionEnding ||
-                Mission.Current.MissionIsEnding)
-            {
-                return false;
-            }
-
-            if (spellDamage.Target == null ||
-                !spellDamage.Target.IsHuman ||
-                !spellDamage.Target.IsActive() ||
-                spellDamage.Target.Health < 1 ||
-                spellDamage.Target.IsFadingOut())
-            {
-                return false;
-            }
-
-            if (spellDamage.Caster == null ||
-                !spellDamage.Caster.IsHuman)
-            {
-                return false;
-            }
-
-            return Mission.Current.FindAgentWithIndex(spellDamage.Target.Index) == spellDamage.Target &&
-                   Mission.Current.FindAgentWithIndex(spellDamage.Caster.Index) == spellDamage.Caster;
-        }
-
-        private void CompleteQueuedSpellDamage(int castId)
-        {
-            if (castId < 0 || !_queuedSpellDamageCountByCastId.TryGetValue(castId, out var count))
-            {
-                return;
-            }
-
-            if (count <= 1)
-            {
-                _queuedSpellDamageCountByCastId.Remove(castId);
-                return;
-            }
-
-            _queuedSpellDamageCountByCastId[castId] = count - 1;
-        }
-
-        private bool HasQueuedSpellDamage(int castId)
-        {
-            return castId >= 0 &&
-                   _queuedSpellDamageCountByCastId.TryGetValue(castId, out var count) &&
-                   count > 0;
-        }
-
-        private void LogSpellDamageQueueSpike(QueuedSpellDamage spellDamage)
-        {
-            if (!ENABLE_LOG_SPELLS ||
-                _queuedSpellDamage.Count < SPELL_DAMAGE_QUEUE_LOG_THRESHOLD)
-            {
-                return;
-            }
-
-            var nextLoggedQueueSize = Math.Max(
-                SPELL_DAMAGE_QUEUE_LOG_THRESHOLD,
-                _largestQueuedSpellDamageCount + SPELL_DAMAGE_QUEUE_LOG_THRESHOLD);
-
-            if (_queuedSpellDamage.Count < nextLoggedQueueSize)
-            {
-                return;
-            }
-
-            _largestQueuedSpellDamageCount = _queuedSpellDamage.Count;
-
-            TORCommon.Log(
-                $"spell damage queue spike | queued={_queuedSpellDamage.Count} | castId={spellDamage.CastId} | effect={spellDamage.TriggeredEffectId ?? "unknown_effect"}",
-                NLog.LogLevel.Warn);
-        }
-
-        private readonly struct QueuedSpellDamage
-        {
-            public QueuedSpellDamage(
-                Agent target,
-                int damage,
-                Vec3 impactPosition,
-                Agent caster,
-                DamageType damageType,
-                AbilityTemplate abilityTemplate,
-                string triggeredEffectId,
-                bool hasShockWave,
-                int castId)
-            {
-                Target = target;
-                Damage = damage;
-                ImpactPosition = impactPosition;
-                Caster = caster;
-                DamageType = damageType;
-                AbilityTemplate = abilityTemplate;
-                TriggeredEffectId = triggeredEffectId;
-                HasShockWave = hasShockWave;
-                CastId = castId;
-            }
-
-            public Agent Target { get; }
-            public int Damage { get; }
-            public Vec3 ImpactPosition { get; }
-            public Agent Caster { get; }
-            public DamageType DamageType { get; }
-            public AbilityTemplate AbilityTemplate { get; }
-            public string TriggeredEffectId { get; }
-            public bool HasShockWave { get; }
-            public int CastId { get; }
-        }
-
+        
         public void BookSpellHealing(int castId, Agent target, int healingDone)
         {
             if (_activeSpellSessions.TryGetValue(castId, out var session))
@@ -1268,7 +1037,7 @@ namespace TOR_Core.AbilitySystem
             _activeSpellSessions.Remove(castId);
 
             // If not ready to collect (status effects still pending), queue for later
-            if (!session.IsReadyToCollect || HasQueuedSpellDamage(castId))
+            if (!session.IsReadyToCollect)
             {
                 _pendingCollectSessions.Add(session);
                 return;
@@ -1286,7 +1055,7 @@ namespace TOR_Core.AbilitySystem
             for (int i = _pendingCollectSessions.Count - 1; i >= 0; i--)
             {
                 var session = _pendingCollectSessions[i];
-                if (session.IsReadyToCollect && !HasQueuedSpellDamage(session.CastID))
+                if (session.IsReadyToCollect)
                 {
                     _pendingCollectSessions.RemoveAt(i);
                     FinalizeSession(session);
@@ -1300,9 +1069,6 @@ namespace TOR_Core.AbilitySystem
         /// </summary>
         private void FinalizeAllPendingSessions()
         {
-            _queuedSpellDamage.Clear();
-            _queuedSpellDamageCountByCastId.Clear();
-
             // Finalize all active sessions
             foreach (var session in _activeSpellSessions.Values)
             {

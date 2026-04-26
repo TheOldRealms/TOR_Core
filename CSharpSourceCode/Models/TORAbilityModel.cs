@@ -1006,25 +1006,20 @@ namespace TOR_Core.Models
 
                 if (finalDamage > 0)
                 {
-                    // Book damage to session if we have a valid castId
-                    if (logic != null)
-                    {
-                        logic.ApplyOrQueueSpellDamage(
-                            agent,
-                            finalDamage,
-                            impactPosition,
-                            caster,
-                            damageType,
-                            abilityTemplate,
-                            triggeredEffectTemplate,
-                            hasShockWave,
-                            castId);
-                    }
-                    else
-                    {
-                        agent.ApplyDamage(finalDamage, impactPosition, caster, doBlow: true, hasShockWave: hasShockWave, originatesFromAbility: abilityTemplate != null);
-                    }
+                    // Apply the damage
+                    agent.ApplyDamage(finalDamage, impactPosition, caster, doBlow: true, hasShockWave: hasShockWave, originatesFromAbility: abilityTemplate != null);
 
+                    // Book damage to session if we have a valid castId
+                    if (castId >= 0 && logic != null)
+                    {
+                        logic.BookSpellDamage(castId, agent, finalDamage, 0, damageType);
+
+                        // Track kill if the agent died from this damage
+                        if (agent.Health <= 0 || agent.State == AgentState.Killed || agent.State == AgentState.Unconscious)
+                        {
+                            logic.BookSpellKill(castId, agent);
+                        }
+                    }
                     // Note: Career ability charge is applied through OnAgentHit when RegisterBlow is called
                 }
             }
