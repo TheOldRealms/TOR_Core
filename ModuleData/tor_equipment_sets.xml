@@ -8432,8 +8432,8 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_gs_goblin_stone_slugga_template" culture="Culture.aserai">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.steppe_bow" />
-      <Equipment slot="Item1" id="Item.blunt_arrows" />
+      <Equipment slot="Item0" id="Item.throwing_stone" />
+      <Equipment slot="Item1" id="Item.throwing_stone" />
       <Equipment slot="Item2" id="Item.vlandia_mace_1_t2" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_001" />
@@ -8441,8 +8441,8 @@
       <Equipment slot="Leg" id="Item.tor_greenskin_leg_boots_goblin_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.steppe_bow" />
-      <Equipment slot="Item1" id="Item.blunt_arrows" />
+      <Equipment slot="Item0" id="Item.throwing_stone" />
+      <Equipment slot="Item1" id="Item.throwing_stone" />
       <Equipment slot="Item2" id="Item.vlandia_mace_1_t2" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_001" />
@@ -11192,7 +11192,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_empire_reiksguard_demigryph_knight_template" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_knight_001" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_reiksguard_knight_001" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_lord_002" />
@@ -11204,7 +11204,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_knight_001" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_reiksguard_knight_001" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_lord_002" />
@@ -11216,7 +11216,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_001" />
     </EquipmentSet>
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_002" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_knight_002" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_reiksguard_knight_002" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_vlandian" />
@@ -11228,7 +11228,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_002" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_knight_002" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_reiksguard_knight_002" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_vlandian" />
@@ -11240,7 +11240,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_001" />
     </EquipmentSet>
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_knight_003" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_reiksguard_knight_003" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_sallet_001" />
@@ -11252,7 +11252,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_knight_003" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_reiksguard_knight_003" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_sallet_001" />
@@ -11500,7 +11500,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_empire_reiksguard_demigryph_innercircle_template" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_reiksguard_circle_001" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_sallet_001" />
@@ -11512,7 +11512,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_002" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_reiksguard_circle_001" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_sallet_001" />
@@ -11524,7 +11524,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_002" />
     </EquipmentSet>
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_002" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_circle_002" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_reiksguard_circle_002" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_pigface_bascinet_002" />
@@ -11536,7 +11536,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_004" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_002" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_circle_002" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_reiksguard_circle_002" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_pigface_bascinet_002" />
@@ -11548,7 +11548,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_004" />
     </EquipmentSet>
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_circle_003" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_reiksguard_circle_003" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_vlandian" />
@@ -11560,7 +11560,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_003" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_reiksguard_knight_001" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_circle_003" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_reiksguard_circle_003" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_vlandian" />
@@ -17696,7 +17696,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_blazing_sun_demigryph_knight_template" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_004" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.vlandia_sword_3_t4" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_002" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_kobs_003" />
@@ -17708,7 +17708,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_004" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_004" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.vlandia_sword_3_t4" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_002" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_kobs_003" />
@@ -17720,7 +17720,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_004" />
     </EquipmentSet>
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_004" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.vlandia_sword_3_t4" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_001" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_kobs_001" />
@@ -17732,7 +17732,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_003" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_004" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.vlandia_sword_3_t4" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_001" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_kobs_001" />
@@ -17796,7 +17796,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_blazing_sun_demigryph_innercircle_template" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_004" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.aserai_noble_sword_1_t5" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_002" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_kobs_002" />
@@ -17808,7 +17808,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_004" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_004" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.aserai_noble_sword_1_t5" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_002" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_kobs_002" />
@@ -17820,7 +17820,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_004" />
     </EquipmentSet>
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_004" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.aserai_noble_sword_1_t5" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_001" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_kobs_001" />
@@ -17832,7 +17832,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_002" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_004" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.aserai_noble_sword_1_t5" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_001" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_kobs_001" />
@@ -17924,7 +17924,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_ror_griffon_demi_knight_template" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_005" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_circle_003" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_003" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_pigface_bascinet_003" />
@@ -17936,7 +17936,7 @@
       <Equipment slot="HorseHarness" id="tor_empire_mountarmor_ror_demigryph_armor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_005" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_circle_003" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_003" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_pigface_bascinet_003" />
@@ -17950,7 +17950,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_ror_griffon_demi_preceptor_knight_template" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_005" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_circle_003" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_reiksguard_circle_002" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_pigface_bascinet_003" />
@@ -17962,7 +17962,7 @@
       <Equipment slot="HorseHarness" id="tor_empire_mountarmor_ror_demigryph_armor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_005" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_sword_reiksguard_circle_003" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_reiksguard_circle_002" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_pigface_bascinet_003" />
@@ -20130,7 +20130,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_generic_empire_lord_heavyblack_demi_template" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_001" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.broad_arming_sword_t4" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_004" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_lion_001" />
@@ -20142,7 +20142,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_004" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_001" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.broad_arming_sword_t4" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_004" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_lion_001" />
@@ -20156,7 +20156,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_generic_empire_lord_heavy_demi_template" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_005" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_thsword_greatsword_001" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_reiksguard_knight_002" />
       <Equipment slot="Item3" id="Item.battania_noble_sword_3_t5" />
@@ -20169,7 +20169,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_demigryph_armor_004" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_005" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_halberd_007" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_thsword_greatsword_001" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_reiksguard_knight_002" />
       <Equipment slot="Item3" id="Item.battania_noble_sword_3_t5" />
