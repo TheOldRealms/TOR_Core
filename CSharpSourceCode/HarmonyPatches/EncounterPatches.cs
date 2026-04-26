@@ -369,6 +369,97 @@ namespace TOR_Core.HarmonyPatches
     public static class EncounterGameMenuBehaviorPatches
     {
         [HarmonyPrefix]
+        [HarmonyPatch(typeof(EncounterGameMenuBehavior), "UpdateVillageHostileActionEncounter")]
+        public static bool UpdateVillageHostileActionEncounterPrefix(MenuCallbackArgs args)
+        {
+            if (!Hero.MainHero.IsEnlisted() || ServeAsAHirelingCampaignBehavior.IsStartingBattle)
+            {
+                return true;
+            }
+
+            var battle = PlayerEncounter.Battle;
+            if (battle?.MapEventSettlement?.IsVillage != true)
+            {
+                return true;
+            }
+
+            var playerSide = battle.PlayerSide;
+            var playerHasValidBattleSide =
+                playerSide == BattleSideEnum.Attacker
+                || playerSide == BattleSideEnum.Defender;
+
+            if (playerHasValidBattleSide)
+            {
+                return true;
+            }
+
+            var hirelingBehavior = Campaign.Current?.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>();
+            var enlistingLordParty = hirelingBehavior?.EnlistingLord?.PartyBelongedTo;
+            var enlistingLordSide = enlistingLordParty?.MapEventSide?.MissionSide;
+
+            var lordIsInThisBattle =
+                enlistingLordParty?.MapEvent == battle
+                && enlistingLordSide != null;
+
+            var battleIsJoinableForHirelingLord =
+                lordIsInThisBattle
+                && ServeAsAHirelingCampaignBehavior.IsJoinableHirelingMapEvent(battle, enlistingLordSide);
+
+            var isVillageHostileAction =
+                battle.IsRaid
+                || battle.IsForcingSupplies
+                || battle.IsForcingVolunteers;
+
+            var lordIsOnVillageHostileActionSide =
+                isVillageHostileAction
+                && enlistingLordParty != null
+                && battle.AttackerSide.Parties.Any(attackerParty => attackerParty.Party == enlistingLordParty.Party);
+
+            var hasExternalRaidInterrupter = false;
+            if (isVillageHostileAction)
+            {
+                var defaultSettlementDefenders = battle.MapEventSettlement.GetInvolvedPartiesForEventType(battle.EventType);
+                hasExternalRaidInterrupter = battle.DefenderSide.Parties.Any(defenderParty => !defaultSettlementDefenders.Contains(defenderParty.Party));
+            }
+
+            var shouldKeepLordRaidOutOfBattleMenu =
+                lordIsOnVillageHostileActionSide
+                && !hasExternalRaidInterrupter;
+
+            var shouldOpenHirelingBattleMenu =
+                battleIsJoinableForHirelingLord
+                && !shouldKeepLordRaidOutOfBattleMenu;
+
+            ServeAsAHirelingCampaignBehavior.ClearCurrentHirelingLoot();
+
+            if (PlayerEncounter.LocationEncounter != null)
+            {
+                PlayerEncounter.LocationEncounter = null;
+            }
+
+            if (PlayerEncounter.Current != null)
+            {
+                PlayerEncounter.Finish(false);
+            }
+
+            var mainParty = MobileParty.MainParty;
+            mainParty.MapEventSide = null;
+            mainParty.BesiegerCamp = null;
+            mainParty.CurrentSettlement = null;
+
+            if (shouldOpenHirelingBattleMenu)
+            {
+                GameMenu.SwitchToMenu("hireling_battle_menu");
+                ServeAsAHirelingCampaignBehavior.MarkHirelingWaitMenuShown();
+                return false;
+            }
+
+            GameMenu.SwitchToMenu("hireling_menu");
+            ServeAsAHirelingCampaignBehavior.MarkHirelingWaitMenuShown();
+            return false;
+        }
+
+        [HarmonyPrefix]
         [HarmonyPatch(typeof(EncounterGameMenuBehavior), "game_menu_encounter_on_init")]
         public static bool EncounterGameMenuOnInitPrefix(MenuCallbackArgs args)
         {
