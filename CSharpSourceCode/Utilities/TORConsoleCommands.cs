@@ -552,6 +552,21 @@ namespace TOR_Core.Utilities
             return "TOR config reloaded. \n";
         }
 
+        [CommandLineFunctionality.CommandLineArgumentFunction("enable_free_race_selection", "tor")]
+        public static string EnableFreeRaceSelection(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+
+            if (arguments == null || arguments.Count == 0)
+                return "Password required.\n";
+
+            if (TORConfig.EnableFreeRaceSelection(arguments[0]))
+                return "Free race selection enabled for this session.\n";
+
+            return "Incorrect password.\n";
+        }
+
         [CommandLineFunctionality.CommandLineArgumentFunction("open_test_mission", "tor")]
         public static string OpenTestMission(List<string> arguments)
         {

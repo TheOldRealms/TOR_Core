@@ -468,6 +468,49 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
+	
+	<SkillSet id="tor_skills_wanderer_damsel">
+		<skill id="Athletics"
+		       value="0" />
+		<skill id="Riding"
+		       value="0" />
+		<skill id="OneHanded"
+		       value="0" />
+		<skill id="TwoHanded"
+		       value="0" />
+		<skill id="Polearm"
+		       value="0" />
+		<skill id="Bow"
+		       value="0" />
+		<skill id="Crossbow"
+		       value="0" />
+		<skill id="Throwing"
+		       value="0" />
+		<skill id="Medicine"
+		       value="0" />
+		<skill id="Steward"
+		       value="50" />
+		<skill id="Engineering"
+		       value="0" />
+		<skill id="Tactics"
+		       value="0" />
+		<skill id="Scouting"
+		       value="0" />
+		<skill id="Charm"
+		       value="0" />
+		<skill id="Leadership"
+		       value="0" />
+		<skill id="Roguery"
+		       value="0" />
+		<skill id="Trade"
+		       value="0" />
+		<skill id="Gunpowder"
+		       value="0" />
+		<skill id="Faith"
+		       value="75" />
+		<skill id="Spellcraft"
+		       value="100" />
+	</SkillSet>
 
 	<SkillSet id="tor_skills_wanderer_vampire">
 		<skill id="Athletics"
@@ -647,7 +690,7 @@
 		<skill id="Riding"
 		       value="0" />
 		<skill id="OneHanded"
-		       value="100" />
+		       value="50" />
 		<skill id="TwoHanded"
 		       value="0" />
 		<skill id="Polearm"
@@ -655,7 +698,7 @@
 		<skill id="Bow"
 		       value="0" />
 		<skill id="Crossbow"
-		       value="50" />
+		       value="0" />
 		<skill id="Throwing"
 		       value="0" />
 		<skill id="Crafting"
@@ -683,7 +726,7 @@
 		<skill id="Faith"
 		       value="0" />
 		<skill id="Spellcraft"
-		       value="0" />
+		       value="75" />
 	</SkillSet>
 	
 	<SkillSet id="tor_skills_wanderer_thane">

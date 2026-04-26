@@ -975,9 +975,9 @@ namespace TOR_Core.Models
                 }
 
                 //status effects
-                if(statusEffectComp == null)
+                if(statusEffectComp != null)
                 {
-                    var statusEffectResistances = agent.GetComponent<StatusEffectComponent>().GetResistances(attackTypeMask);
+                    var statusEffectResistances = statusEffectComp.GetResistances(attackTypeMask);
 
                     for (int i = 0; i < damageResistances.Length; i++)
                     {
@@ -1052,19 +1052,6 @@ namespace TOR_Core.Models
             }
                 
             return newMomentum;
-        }
-
-        // for crush through blocks converts the target overhead chance at skill diff into an exponential growth rate
-        private static float CalculateExtraCtbSkillGrowthRate()
-        {
-            int delta = EXTRA_CTB_TARGET_SKILL_DIFF - EXTRA_CTB_SKILL_DEAD_ZONE;
-            if (delta <= 0)
-            {
-                return 0f;
-            }
-
-            float targetChance = MBMath.ClampFloat(EXTRA_CTB_TARGET_OVERHEAD_CHANCE_AT_TARGET_DIFF, 0.001f, 0.999f);
-            return (float)(-Math.Log(1.0 - targetChance) / delta);
         }
 
         // for crush through blocks returns the overhead swing base chance coming purely from skill diff and ramps up with a exponential curve

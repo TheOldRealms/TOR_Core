@@ -599,7 +599,8 @@
       <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.50" />
     </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.40" />
+      <DamageProportionTuple DamageType="Frost" Percent="0.60" />
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="30" />
   </CharacterExtendedInfo>
@@ -1806,9 +1807,7 @@
       <string>Expendable</string>
     </Attributes>
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1817,9 +1816,7 @@
     <Abilities />
     <Attributes />
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1829,9 +1826,7 @@
     <Abilities />
     <Attributes />
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1841,9 +1836,7 @@
     <Abilities />
     <Attributes />
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1853,9 +1846,7 @@
     <Abilities />
     <Attributes />
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1865,9 +1856,7 @@
     <Abilities />
     <Attributes />
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1877,9 +1866,7 @@
     <Abilities />
     <Attributes />
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1889,9 +1876,7 @@
     <Abilities />
     <Attributes />
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1901,9 +1886,7 @@
     <Abilities />
     <Attributes />
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -1914,7 +1897,7 @@
     <Attributes />
     <Resistances />
     <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.40" />
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
     </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -1926,7 +1909,7 @@
     <Attributes />
     <Resistances />
     <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.40" />
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
     </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -1938,7 +1921,7 @@
     <Attributes />
     <Resistances />
     <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.40" />
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.30" />
     </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -1950,7 +1933,7 @@
     <Attributes />
     <Resistances />
     <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.40" />
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.30" />
     </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -2097,9 +2080,7 @@
     <Abilities />
     <Attributes />
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -2109,9 +2090,7 @@
     <Abilities />
     <Attributes />
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -2143,9 +2122,7 @@
       <string>Expendable</string>
     </Attributes>
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -2156,9 +2133,7 @@
       <string>Expendable</string>
     </Attributes>
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -2169,9 +2144,7 @@
       <string>Expendable</string>
     </Attributes>
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -7774,9 +7747,10 @@
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_factionleader">
     <Abilities />
     <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
       <string>LegendaryLord</string>
       <string>Tough</string>
-      <string>CanPlaceArtillery</string>
       <string>SlayerLord</string>
     </Attributes>
   </CharacterExtendedInfo>
@@ -7843,8 +7817,9 @@
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_second_1">
     <Abilities />
     <Attributes>
-      <string>Tough</string>
+      <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
+      <string>Tough</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_second_2">
@@ -7887,15 +7862,17 @@
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_second_8">
     <Abilities />
     <Attributes>
-      <string>Tough</string>
+      <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
+      <string>Tough</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_angazhar_factionleader">
     <Abilities />
     <Attributes>
-      <string>Tough</string>
+      <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
+      <string>Tough</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_angazhar_first_2">
@@ -7955,8 +7932,9 @@
   <CharacterExtendedInfo id="tor_dw_lord_karak_azgaraz_factionleader">
     <Abilities />
     <Attributes>
-      <string>Tough</string>
+      <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
+      <string>Tough</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_azgaraz_first_2">
@@ -8016,8 +7994,9 @@
   <CharacterExtendedInfo id="tor_dw_lord_karak_eksfilaz_factionleader">
     <Abilities />
     <Attributes>
-      <string>Tough</string>
+      <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
+      <string>Tough</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_eksfilaz_first_2">
@@ -8077,8 +8056,9 @@
   <CharacterExtendedInfo id="tor_dw_lord_karak_gantuk_factionleader">
     <Abilities />
     <Attributes>
-      <string>Tough</string>
+      <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
+      <string>Tough</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_gantuk_first_2">
@@ -8138,8 +8118,9 @@
   <CharacterExtendedInfo id="tor_dw_lord_karak_hirn_factionleader">
     <Abilities />
     <Attributes>
-      <string>Tough</string>
+      <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
+      <string>Tough</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_hirn_first_2">
@@ -8199,8 +8180,9 @@
   <CharacterExtendedInfo id="tor_dw_lord_karak_izor_factionleader">
     <Abilities />
     <Attributes>
-      <string>Tough</string>
+      <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
+      <string>Tough</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_izor_first_2">
@@ -8260,8 +8242,9 @@
   <CharacterExtendedInfo id="tor_dw_lord_karak_kaferkammaz_factionleader">
     <Abilities />
     <Attributes>
-      <string>Tough</string>
+      <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
+      <string>Tough</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kaferkammaz_first_2">
@@ -8321,8 +8304,9 @@
   <CharacterExtendedInfo id="tor_dw_lord_karak_norn_factionleader">
     <Abilities />
     <Attributes>
-      <string>Tough</string>
+      <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
+      <string>Tough</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_norn_first_2">
@@ -8382,24 +8366,27 @@
   <CharacterExtendedInfo id="tor_dw_lord_karak_zhufbar_factionleader">
     <Abilities />
     <Attributes>
-      <string>Tough</string>
+      <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
+      <string>Tough</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_zhufbar_first_2">
     <Abilities />
     <Attributes>
-      <string>LegendaryLord</string>
-      <string>Tough</string>
+      <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
+      <string>Tough</string>
+      <string>LegendaryLord</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_zhufbar_first_3">
     <Abilities />
     <Attributes>
-      <string>LegendaryLord</string>
-      <string>Tough</string>
+      <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
+      <string>Tough</string>
+      <string>LegendaryLord</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_zhufbar_first_4">
@@ -8447,8 +8434,9 @@
   <CharacterExtendedInfo id="tor_dw_lord_karak_ziflin_factionleader">
     <Abilities />
     <Attributes>
-      <string>Tough</string>
+      <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
+      <string>Tough</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_ziflin_first_2">
@@ -10136,6 +10124,7 @@
       <string>Regrowth</string>
       <string>Thunderbolt</string>
       <string>TanglingThorn</string>
+      <string>AuraOfTheLady</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>

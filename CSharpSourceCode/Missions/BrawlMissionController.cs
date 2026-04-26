@@ -41,6 +41,22 @@ public class BrawlMissionController : MissionLogic, IMissionAgentSpawnLogic
 
     public override void AfterStart()
     {
+        var gates = Mission.GetActiveEntitiesWithScriptComponentOfType<CastleGate>();
+
+        if (gates != null)
+        {
+            foreach (var gate in gates)
+            {
+                var components = gate.GetScriptComponents<CastleGate>();
+                foreach (var component in components)
+                {
+                    //component.AutoOpen = true;
+                   // component.SetAutoOpenState(true);
+                    component.OpenDoorAndDisableGateForCivilianMission();
+                }
+            }
+        }
+        
         Mission.SetMissionMode(MissionMode.StartUp, true);
         Mission.IsInventoryAccessible = false;
         Mission.IsQuestScreenAccessible = true;

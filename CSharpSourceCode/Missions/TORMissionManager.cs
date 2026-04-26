@@ -188,7 +188,7 @@ namespace TOR_Core.Missions
         public static Mission OpenBrawlFightMission(Location location, TroopRoster playerSideTroops,
             TroopRoster enemyPartyRoster, int enemyPartySize, Action<BrawlMissionResult> onMissionEnd = null)
         {
-            return MissionState.OpenNew("BrawlFight", SandBoxMissions.CreateSandBoxMissionInitializerRecord(location.GetSceneName(3), "", false, DecalAtlasGroup.All),
+            return MissionState.OpenNew("BrawlFight", SandBoxMissions.CreateSandBoxMissionInitializerRecord(location.GetSceneName(3), "level_3 civilian", false, DecalAtlasGroup.All),
             (Mission mission) =>
                 [
                     new MissionOptionsComponent(),

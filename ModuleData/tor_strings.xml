@@ -4575,7 +4575,7 @@
 
   <string id="tor_career_rank1_name.Slayer" text="{=str_tor_career_rank1_name_Slayer}Slayer" />
   <string id="tor_career_rank2_name.Slayer" text="{=str_tor_career_rank2_name_Slayer}Trollslayer" />
-  <string id="tor_career_rank3_name.Slayer" text="{=str_tor_career_rank3_name_Slayer}Demonslayer" />
+  <string id="tor_career_rank3_name.Slayer" text="{=str_tor_career_rank3_name_Slayer}Daemonslayer" />
 
   <string id="tor_career_rank1_name.Warden" text="{=str_tor_career_rank1_name_Warden}Highborn" />
   <string id="tor_career_rank2_name.Warden" text="{=str_tor_career_rank2_name_Warden}Glade Captain" />
@@ -4764,7 +4764,7 @@
 <string id="tor_careerunlock_reward_3.Necrarch" text="{=str_tor_careerunlock_reward_3_necrarch}Unlocks 8 lores" />
 
 <!-- GreyLord -->
-<string id="tor_careerunlock_reward_2.GreyLord" text="{=str_tor_careerunlock_reward_2_greylord}Unlocks High Magic and then Dark Magic after learning the 8 winds" />
+<string id="tor_careerunlock_reward_2.GreyLord" text="{=str_tor_careerunlock_reward_2_greylord}Unlock Qhaysh and Dhar after learning 8 Lores" />
   
   
   

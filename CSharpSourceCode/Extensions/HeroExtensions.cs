@@ -20,6 +20,7 @@ using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
 using FaceGen = TaleWorlds.Core.FaceGen;
+using LogLevel = NLog.LogLevel;
 
 namespace TOR_Core.Extensions
 {
@@ -329,10 +330,18 @@ namespace TOR_Core.Extensions
                 if (showNotification)
                 {
                     var itemTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == bluePrint);
-                    var learnedEnchantmentText = TORTextHelper.GetTextObject("tor_learned_enchantment_text", "{HERO_NAME} learned the enchantment {ENCHANTMENT_NAME}");
-                    learnedEnchantmentText.SetTextVariable("HERO_NAME", hero.Name);
-                    learnedEnchantmentText.SetTextVariable("ENCHANTMENT_NAME", itemTrait!.ItemTraitName);
-                    MBInformationManager.AddQuickInformation(learnedEnchantmentText, 0, hero.CharacterObject);
+                    if (itemTrait != null)
+                    {
+                        var learnedEnchantmentText = TORTextHelper.GetTextObject("tor_learned_enchantment_text", "{HERO_NAME} learned the enchantment {ENCHANTMENT_NAME}");
+                        learnedEnchantmentText.SetTextVariable("HERO_NAME", hero.Name);
+                        learnedEnchantmentText.SetTextVariable("ENCHANTMENT_NAME", itemTrait!.ItemTraitName);
+                        MBInformationManager.AddQuickInformation(learnedEnchantmentText, 0, hero.CharacterObject);
+                    }
+                    else
+                    {
+                        TORCommon.Log("ENCHANTMENT ERROR:  recipe "+ bluePrint +" doesnt exist", LogLevel.Error);
+                    }
+
                 }
             }
         }

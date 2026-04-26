@@ -34,8 +34,6 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         private bool _playerIsSkilledEnough;
         private EngineerQuest RunawayPartsQuest;
 
-        private string questDialogId = "str_quest_tor_engineer";
-
         private string GetRogueEngineerName()
         {
             return TORTextHelper.GetText("tor_rogue_engineer_name", "Goswin");
