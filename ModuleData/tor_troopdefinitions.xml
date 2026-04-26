@@ -759,7 +759,7 @@
       <EquipmentSet id="tor_br_foot_squire_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_mounted_yeoman" default_group="cavalry" level="21" name="{=str_tor_br_mounted_yeoman}Bretonnian Mounted Yeoman" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21" race="bretonnian">
+  <NPCCharacter id="tor_br_mounted_yeoman" default_group="horsearcher" level="21" name="{=str_tor_br_mounted_yeoman}Bretonnian Mounted Yeoman" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21" race="bretonnian">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -771,7 +771,7 @@
       <EquipmentSet id="tor_br_mounted_yeoman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_mounted_warden" default_group="cavalry" level="26" name="{=str_tor_br_mounted_warden}Bretonnian Mounted Yeoman Warden" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26" race="bretonnian">
+  <NPCCharacter id="tor_br_mounted_warden" default_group="horsearcher" level="26" name="{=str_tor_br_mounted_warden}Bretonnian Mounted Yeoman Warden" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26" race="bretonnian">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -4923,7 +4923,7 @@
       <EquipmentSet id="tor_kharmourts_blade_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ror_br_mounted_bowman" default_group="cavalry" level="21" name="{=str_tor_ror_br_mounted_bowman}Warden of Montfort" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true" race="bretonnian">
+  <NPCCharacter id="tor_ror_br_mounted_bowman" default_group="horsearcher" level="21" name="{=str_tor_ror_br_mounted_bowman}Warden of Montfort" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true" race="bretonnian">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -4935,7 +4935,7 @@
       <EquipmentSet id="tor_brettonian_mounted_bowman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ror_warden_montfort" default_group="cavalry" level="26" name="{=str_tor_ror_warden_montfort}Yeoman Warden of Montfort" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26" race="bretonnian">
+  <NPCCharacter id="tor_ror_warden_montfort" default_group="horsearcher" level="26" name="{=str_tor_ror_warden_montfort}Yeoman Warden of Montfort" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26" race="bretonnian">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
