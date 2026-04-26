@@ -690,7 +690,7 @@
 		<skill id="Riding"
 		       value="0" />
 		<skill id="OneHanded"
-		       value="100" />
+		       value="50" />
 		<skill id="TwoHanded"
 		       value="0" />
 		<skill id="Polearm"
@@ -698,7 +698,7 @@
 		<skill id="Bow"
 		       value="0" />
 		<skill id="Crossbow"
-		       value="50" />
+		       value="0" />
 		<skill id="Throwing"
 		       value="0" />
 		<skill id="Crafting"
@@ -726,7 +726,7 @@
 		<skill id="Faith"
 		       value="0" />
 		<skill id="Spellcraft"
-		       value="0" />
+		       value="75" />
 	</SkillSet>
 	
 	<SkillSet id="tor_skills_wanderer_thane">
