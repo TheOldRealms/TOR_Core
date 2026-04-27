@@ -120,7 +120,7 @@ namespace TOR_Core.Models
                     resultArmor.AddFactor(-0.8f);
                 }
 
-                if (attackerCharacter.HasAttribute("Piercing"))
+                if (attackerAgent.HasPiercing())
                 {
                     resultArmor.AddFactor(-0.4f);
                 }

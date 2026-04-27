@@ -8,6 +8,9 @@ using TaleWorlds.CampaignSystem.Encyclopedia;
 using TaleWorlds.CampaignSystem.Encyclopedia.Pages;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia.Pages;
+using TaleWorlds.Core.ViewModelCollection.Generic;
+using TaleWorlds.Core.ViewModelCollection.Information;
+using TaleWorlds.Library;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.Religion;
@@ -136,6 +139,65 @@ namespace TOR_Core.HarmonyPatches
             var list = new List<EncyclopediaFilterGroup>();
             list.Add(result);
             __result = list;
+        }
+    }
+
+    [HarmonyPatch]
+    [HarmonyPatchCategory("LatePatches")]
+    public static class EncyclopediaUnitAttributeIconPatches
+    {
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(EncyclopediaUnitPageVM), nameof(EncyclopediaUnitPageVM.RefreshValues))]
+        private static void AddUnitAttributeIcons(EncyclopediaUnitPageVM __instance)
+        {
+            var character = __instance.Obj as CharacterObject;
+            if (character == null || __instance.PropertiesList == null)
+            {
+                return;
+            }
+
+            foreach (var attribute in character.GetAttributes())
+            {
+                var iconPath = GetUnitAttributeIconPath(attribute);
+                if (string.IsNullOrEmpty(iconPath))
+                {
+                    continue;
+                }
+
+                if (!GameTexts.TryGetText("tor_extendedInfo", out TextObject hintText, attribute))
+                {
+                    continue;
+                }
+
+                __instance.PropertiesList.Add(new StringItemWithHintVM(iconPath, hintText));
+            }
+        }
+
+        private static string GetUnitAttributeIconPath(string attribute)
+        {
+            switch (attribute)
+            {
+                case "TheHunger":
+                    return "darkenergy_icon_45"; // test
+                case "Frenzy":
+                    return "";
+                case "WightKing":
+                    return "";
+                case "UndeadSlayer":
+                    return "";
+                case "Immortality":
+                    return "";
+                case "Deadeye":
+                    return "";
+                case "Ethereal":
+                    return "";
+                case "KillingBlow":
+                    return "";
+                case "MonsterSlayer":
+                    return "";
+                default:
+                    return null;
+            }
         }
     }
 }
