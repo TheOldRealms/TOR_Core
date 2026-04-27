@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Settlements>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Settlements>
   <!--Custom Settlements-->
   <Settlement id="oak_of_ages" name="{=str_tor_settlements_oak_of_ages}Oak of Ages" owner="Faction.athel_loren_clan_1" posX="1218.711" posY="798.5" culture="Culture.battania" text="{=!}Oak of Ages" gate_posX="1218.711" gate_posY="798.5">
     <Components>
@@ -1030,7 +1031,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_ST4" name="{=Settlements.Settlement.name.town_ST4}Mittlenburg" owner="Faction.stirland_clan_1" posX="1554.683" posY="881.617" culture="Culture.empire" gate_posX="1554.314" gate_posY="882.6886" text="{=Settlements.Settlement.text.town_ST4}Mittlenburg sits at the foot of the black mountains, not far from the fallen Karak Varn and lake Black Water. The town is a modest one, the people here are very aware of their precarious position between Black Fire Pass and Sylvania, as such the town is decently fortified in preparation for these threats. The temples of Sigmar and Taal are well consecrated, and the Garden of Morr has a protective curtain wall around it. Many pilgrims on their way to take the trek up to the final temple of Skaranorak stop in Mittlenburg to purchase supplies.&#13;&#10;Special Scenes: no special scenes, besides maybe the temples, would be nice if one of the temples of Skaranorak was visible from a vantage point somewhere in the town.">
+  <Settlement id="town_ST4" name="{=Settlements.Settlement.name.town_ST4}Mittlenburg" owner="Faction.stirland_clan_1" posX="1554.683" posY="881.617" culture="Culture.empire" gate_posX="1554.314" gate_posY="882.6886" text="{=Settlements.Settlement.text.town_ST4}Mittlenburg sits at the foot of the black mountains, not far from the fallen Karak Varn and lake Black Water. The town is a modest one, the people here are very aware of their precarious position between Black Fire Pass and Sylvania, as such the town is decently fortified in preparation for these threats. The temples of Sigmar and Taal are well consecrated, and the Garden of Morr has a protective curtain wall around it. Many pilgrims on their way to take the trek up to the final temple of Skaranorak stop in Mittlenburg to purchase supplies.&#xD;&#xA;Special Scenes: no special scenes, besides maybe the temples, would be nice if one of the temples of Skaranorak was visible from a vantage point somewhere in the town.">
     <Components>
       <Town id="town_comp_ST4" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="2150">
         <Buildings>
