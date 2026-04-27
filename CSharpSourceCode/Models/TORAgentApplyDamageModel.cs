@@ -486,8 +486,8 @@ namespace TOR_Core.Models
             var isWightKing = attackerAgent.HasWightKingTrait();
 
             var tierOneChance = isWightKing ? 0.40f : 0.20f; // chance against tier 1
-            var chanceLostPerTier = isWightKing ? 0.025f : 0.020f; // lower chance vs higher tier
-            var minimumChance = isWightKing ? 0.04f : 0.02f; // floor chance
+            var chanceLostPerTier = isWightKing ? 0.025f : 0.040f; // lower chance vs higher tier
+            var minimumChance = isWightKing ? 0.04f : 0.00f; // floor chance
 
             var killingBlowChance = tierOneChance - ((targetTier - 1) * chanceLostPerTier);
             killingBlowChance = MBMath.ClampFloat(killingBlowChance, minimumChance, tierOneChance);
