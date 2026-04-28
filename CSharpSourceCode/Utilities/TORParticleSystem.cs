@@ -22,6 +22,10 @@ namespace TOR_Core.Utilities
         {
             List<ParticleSystem> particleList = new List<ParticleSystem>();
             childEntities = new List<GameEntity>();
+            if (string.IsNullOrWhiteSpace(particleId) || particleId.Trim().Equals("none", System.StringComparison.OrdinalIgnoreCase))
+            {
+                return particleList;
+            }
             if (intensity == ParticleIntensity.Undefined)
             {
                 TORCommon.Log("Attempted to give an agent a particle with undefined intensity.", LogLevel.Warn);
@@ -62,6 +66,10 @@ namespace TOR_Core.Utilities
         public static ParticleSystem ApplyParticleToAgentBone(Agent agent, string particleId, sbyte boneIndex, out GameEntity childEntity, float elevationOffset = 0, Vec3 rotationOffset = default)
         {
             childEntity = null;
+            if (string.IsNullOrWhiteSpace(particleId) || particleId.Trim().Equals("none", System.StringComparison.OrdinalIgnoreCase))
+            {
+                return null;
+            }
 
             // for battle transitions an agent existing while its visuals are already invalid
             if (!agent.HasUsableVisuals())
