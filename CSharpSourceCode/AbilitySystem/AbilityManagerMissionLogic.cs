@@ -74,8 +74,8 @@ namespace TOR_Core.AbilitySystem
         private int _nextCastId = 1;
         private int _spellBlowsAppliedThisTick;
         private int _largestQueuedSpellDamageCount;
-        private const int SPELL_BLOW_BUDGET_PER_TICK = 24; // 
-        private const int SPELL_DAMAGE_QUEUE_LOG_THRESHOLD = 48;
+        private const int SPELL_BLOW_BUDGET_PER_TICK = 16; // 
+        private const int SPELL_DAMAGE_QUEUE_LOG_THRESHOLD = 24;
         private const bool ENABLE_LOG_SPELLS = true;
 
         public delegate void OnHideOutBossFightInit();
@@ -1004,8 +1004,7 @@ namespace TOR_Core.AbilitySystem
                 hasShockWave,
                 castId);
 
-            if (!ShouldDelaySpellBlow(abilityTemplate, triggeredEffectTemplate) ||
-                (_queuedSpellDamage.Count == 0 && _spellBlowsAppliedThisTick < SPELL_BLOW_BUDGET_PER_TICK))
+            if (!ShouldDelaySpellBlow(abilityTemplate, triggeredEffectTemplate))
             {
                 ApplyResolvedSpellDamage(spellDamage);
                 return;
