@@ -24,6 +24,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         private static readonly object _pendingDisposeLock = new();
 
         private static readonly List<PendingDisposal> _pendingDisposals = new();
+        private const int PENDING_SOUND_DISPOSALS_PER_TICK = 16;
 
         public float EffectRadius => _template.Radius;
         public string SummonedTroopId => _template.TroopIdToSummon;
@@ -44,17 +45,40 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
 
         internal static void ProcessPendingDisposals(float currentMissionTime)
         {
+            List<TriggeredEffect> effectsToDispose = null;
+            int remainingPendingDisposals = 0;
+
             lock (_pendingDisposeLock)
             {
                 for (int i = _pendingDisposals.Count - 1; i >= 0; i--)
                 {
+                    if (effectsToDispose?.Count >= PENDING_SOUND_DISPOSALS_PER_TICK)
+                    {
+                        break;
+                    }
+
                     var pending = _pendingDisposals[i];
                     if (currentMissionTime < pending.DisposeAtMissionTime)
+                    {
                         continue;
+                    }
 
+                    effectsToDispose ??= new List<TriggeredEffect>();
+                    effectsToDispose.Add(pending.Effect);
                     _pendingDisposals.RemoveAt(i);
-                    pending.Effect.Dispose();
                 }
+
+                remainingPendingDisposals = _pendingDisposals.Count;
+            }
+
+            if (effectsToDispose == null)
+            {
+                return;
+            }
+
+            foreach (var effect in effectsToDispose)
+            {
+                effect.Dispose();
             }
         }
 

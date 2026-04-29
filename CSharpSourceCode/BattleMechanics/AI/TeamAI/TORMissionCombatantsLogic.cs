@@ -86,25 +86,53 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI
                         while (enumerator.MoveNext())
                         {
                             Team team = enumerator.Current;
-                            team.AddTacticOption(new TacticCharge(team));
-                            team.AddTacticOption(new TacticFullScaleAttack(team));
 
-                            if (team.Side == BattleSideEnum.Defender)
+                            // Get max tactics skill from all commanders on this team's side (vanilla behavior)
+                            int tacticsSkill = _battleCombatants
+                                .Where(bc => bc.Side == team.Side)
+                                .Max(bcs => bcs.GetTacticsSkillAmount());
+
+                            // Always available - basic charge
+                            team.AddTacticOption(new TacticCharge(team));
+
+                            // Tactics skill >= 20: Intermediate tactics
+                            if (tacticsSkill >= 20)
                             {
-                                team.AddTacticOption(new TacticDefensiveEngagement(team));
-                                team.AddTacticOption(new TacticDefensiveLine(team));
-                                team.AddTacticOption(new TacticDefensiveRing(team));
-                                team.AddTacticOption(new TacticHoldChokePoint(team));
-                                team.AddTacticOption(new TORTacticPositionalArtillery(team));
+                                team.AddTacticOption(new TacticFullScaleAttack(team));
+
+                                if (team.Side == BattleSideEnum.Defender)
+                                {
+                                    team.AddTacticOption(new TacticDefensiveEngagement(team));
+                                    team.AddTacticOption(new TacticDefensiveLine(team));
+                                }
+
+                                if (team.Side == BattleSideEnum.Attacker)
+                                {
+                                    team.AddTacticOption(new TacticRangedHarrassmentOffensive(team));
+                                }
                             }
 
-                            if (team.Side == BattleSideEnum.Attacker)
+                            // Tactics skill >= 50: Advanced tactics
+                            if (tacticsSkill >= 50)
                             {
                                 team.AddTacticOption(new TacticFrontalCavalryCharge(team));
-                                team.AddTacticOption(new TacticRangedHarrassmentOffensive(team));
-                                team.AddTacticOption(new TacticCoordinatedRetreat(team));
-                               // team.AddTacticOption(new TORTacticPositionalArtillery(team));
-                                // NOTE: Artillery tactic is ONLY for defenders - attackers need different artillery logic
+
+                                if (team.Side == BattleSideEnum.Defender)
+                                {
+                                    team.AddTacticOption(new TacticDefensiveRing(team));
+                                    team.AddTacticOption(new TacticHoldChokePoint(team));
+                                }
+
+                                if (team.Side == BattleSideEnum.Attacker)
+                                {
+                                    team.AddTacticOption(new TacticCoordinatedRetreat(team));
+                                }
+                            }
+
+                            // TOR-specific: Artillery positioning (defenders only, always available)
+                            if (team.Side == BattleSideEnum.Defender)
+                            {
+                                team.AddTacticOption(new TORTacticPositionalArtillery(team));
                             }
                         }
 
