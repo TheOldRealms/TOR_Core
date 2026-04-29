@@ -14,26 +14,9 @@ namespace TOR_Core.Extensions
 {
     public static class ItemObjectExtensions
     {
-
-        private static Dictionary<string, ItemTrait> _itemTraitByStringId;
-
         private static ItemTrait GetItemTraitByStringId(string itemTraitStringId)
         {
-            if (_itemTraitByStringId == null)
-            {
-                _itemTraitByStringId = new Dictionary<string, ItemTrait>(StringComparer.Ordinal);
-
-                foreach (var trait in ItemTrait.All)
-                {
-                    if (!string.IsNullOrWhiteSpace(trait?.ItemTraitStringId))
-                    {
-                        _itemTraitByStringId[trait.ItemTraitStringId] = trait;
-                    }
-                }
-            }
-
-            _itemTraitByStringId.TryGetValue(itemTraitStringId, out var itemTrait);
-            return itemTrait;
+            return ItemTraitManager.Instance.GetItemTraitByStringId(itemTraitStringId);
         }
 
         public static bool IsMeleeWeapon(this ItemObject item)
@@ -124,7 +107,7 @@ namespace TOR_Core.Extensions
             var result = new List<ItemTrait>(props.ItemTraits.Count);
             foreach (var traitId in props.ItemTraits)
             {
-                var itemTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == traitId);
+                var itemTrait = GetItemTraitByStringId(traitId);
                 if (itemTrait != null)
                 {
                     result.Add(itemTrait);

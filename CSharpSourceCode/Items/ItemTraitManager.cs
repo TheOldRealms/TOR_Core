@@ -16,6 +16,9 @@ namespace TOR_Core.Items
         private static readonly Lazy<ItemTraitManager> _instance = new(() => new ItemTraitManager());
         private static readonly string _fileName = "tor_itemtraits.xml";
         private List<ItemTrait> _itemTraits;
+        private Dictionary<string, ItemTrait> _itemTraitByStringId;
+        private List<ItemTrait> _itemTraitCacheSource;
+        private int _itemTraitCacheSourceCount;
 
         public static ItemTraitManager Instance => _instance.Value;
 
@@ -39,11 +42,50 @@ namespace TOR_Core.Items
             }
 
             Instance._itemTraits = Instance._itemTraits.Where(ValidateItemTrait).ToListQ();
+            Instance.RebuildItemTraitCache();
         }
 
         public List<ItemTrait> GetItemTraits()
         {
             return _itemTraits;
+        }
+
+        public ItemTrait GetItemTraitByStringId(string itemTraitStringId)
+        {
+            if (string.IsNullOrWhiteSpace(itemTraitStringId))
+            {
+                return null;
+            }
+
+            if (_itemTraitByStringId == null ||
+                !ReferenceEquals(_itemTraitCacheSource, _itemTraits) ||
+                _itemTraitCacheSourceCount != _itemTraits.Count)
+            {
+                RebuildItemTraitCache();
+            }
+
+            _itemTraitByStringId.TryGetValue(itemTraitStringId, out var itemTrait);
+            return itemTrait;
+        }
+
+        private void RebuildItemTraitCache()
+        {
+            var itemTraitCacheSource = _itemTraits;
+            var itemTraitByStringId = new Dictionary<string, ItemTrait>(StringComparer.Ordinal);
+
+            foreach (var itemTrait in itemTraitCacheSource)
+            {
+                if (string.IsNullOrWhiteSpace(itemTrait?.ItemTraitStringId) ||
+                    itemTraitByStringId.ContainsKey(itemTrait.ItemTraitStringId))
+                {
+                    continue;
+                }
+
+                itemTraitByStringId.Add(itemTrait.ItemTraitStringId, itemTrait);
+            }
+            _itemTraitByStringId = itemTraitByStringId;
+            _itemTraitCacheSource = itemTraitCacheSource;
+            _itemTraitCacheSourceCount = itemTraitCacheSource.Count;
         }
 
 

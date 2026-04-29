@@ -1,9 +1,11 @@
 ﻿using HarmonyLib;
 using System;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.Core;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.Diplomacy;
 using TOR_Core.Extensions;
 using TOR_Core.Models;
@@ -17,6 +19,8 @@ namespace TOR_Core.CampaignMechanics
         {
             CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
             CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter, int>(this.SpawnAiHeroParties));
+            CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter, int>(this.GiveInitialGrainToAILords));
+            CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter, int>(this.GiveInitialInfluenceToClans));
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
         }
 
@@ -44,6 +48,53 @@ namespace TOR_Core.CampaignMechanics
                 considerSpawningLordPartiesMethod.Invoke(heroSpawnCampaignBehaviorInstance, new object[] { clan, true });
             }
 
+        }
+
+        /// <summary>
+        /// Gives all AI lords an initial contingent of 100 grain at campaign start.
+        /// </summary>
+        private void GiveInitialGrainToAILords(CampaignGameStarter starter, int i)
+        {
+            var grain = MBObjectManager.Instance.GetObject<ItemObject>("grain");
+            if (grain == null) return;
+
+            foreach (Hero hero in Hero.AllAliveHeroes)
+            {
+                if (hero == Hero.MainHero) continue;
+                if (!hero.IsLord) continue;
+                if (hero.PartyBelongedTo == null) continue;
+
+                hero.PartyBelongedTo.Party.ItemRoster.AddToCounts(grain, 100);
+            }
+        }
+
+        /// <summary>
+        /// Gives the faction leader and one other clan in each kingdom 200 starting influence.
+        /// </summary>
+        private void GiveInitialInfluenceToClans(CampaignGameStarter starter, int i)
+        {
+            if (i != 90) return;
+
+            foreach (Kingdom kingdom in Kingdom.All)
+            {
+                if (kingdom.IsEliminated) continue;
+                if (kingdom.Clans.Count == 0) continue;
+
+                // Give ruling clan 200 influence
+                var rulingClan = kingdom.RulingClan;
+                if (rulingClan != null)
+                {
+                    rulingClan.Influence+=200f;
+                }
+
+                // Give one other random clan 200 influence
+                var randomClan = kingdom.Clans.Where(c => c != rulingClan && !c.IsEliminated).TakeRandom(1).FirstOrDefault();
+
+                if (randomClan != null)
+                {
+                    randomClan.Influence+=200f;
+                }
+            }
         }
 
         public override void SyncData(IDataStore dataStore)

@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Settlements>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Settlements>
   <!--Custom Settlements-->
   <Settlement id="oak_of_ages" name="{=str_tor_settlements_oak_of_ages}Oak of Ages" owner="Faction.athel_loren_clan_1" posX="1218.711" posY="798.5" culture="Culture.battania" text="{=!}Oak of Ages" gate_posX="1218.711" gate_posY="798.5">
     <Components>
@@ -377,12 +378,12 @@
   </Settlement>
   <Settlement id="troll_cave_02" name="{=str_tor_settlements_troll_cave}Troll Cave" owner="Faction.troll_clan_1" posX="1057.335" posY="998.37" culture="Culture.greenskin" text="{=!}Centuries ago, the hills outside of Mousillon were used as a mass grave to bury the thousands who died of Red Pox. So many victims were there that to this day the soil covering their pits is visible from the city walls. The air here is sometimes poisonous and like the rest of the cursed land the long dead rest uneasily.">
     <Components>
-      <TrollCave id="troll_cave_02" background_crop_position="0.0" background_mesh="cursed_battlesite" battle_scene="TOR_troll_hideout_01" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <TrollCave id="troll_cave_02" background_crop_position="0.0" background_mesh="cursed_battlesite" battle_scene="TOR_troll_hideout_02" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="troll_cave_03" name="{=str_tor_settlements_troll_cave}Troll Cave" owner="Faction.troll_clan_1" posX="1719.524" posY="867.392" culture="Culture.greenskin" text="{=!}Centuries ago, the hills outside of Mousillon were used as a mass grave to bury the thousands who died of Red Pox. So many victims were there that to this day the soil covering their pits is visible from the city walls. The air here is sometimes poisonous and like the rest of the cursed land the long dead rest uneasily.">
     <Components>
-      <TrollCave id="troll_cave_03" background_crop_position="0.0" background_mesh="cursed_battlesite" battle_scene="TOR_troll_hideout_01" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <TrollCave id="troll_cave_03" background_crop_position="0.0" background_mesh="cursed_battlesite" battle_scene="TOR_troll_hideout_02" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="troll_cave_04" name="{=str_tor_settlements_troll_cave}Troll Cave" owner="Faction.troll_clan_1" posX="1258.702" posY="726.793" culture="Culture.greenskin" text="{=!}Centuries ago, the hills outside of Mousillon were used as a mass grave to bury the thousands who died of Red Pox. So many victims were there that to this day the soil covering their pits is visible from the city walls. The air here is sometimes poisonous and like the rest of the cursed land the long dead rest uneasily.">
@@ -1030,7 +1031,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_ST4" name="{=Settlements.Settlement.name.town_ST4}Mittlenburg" owner="Faction.stirland_clan_1" posX="1554.683" posY="881.617" culture="Culture.empire" gate_posX="1554.314" gate_posY="882.6886" text="{=Settlements.Settlement.text.town_ST4}Mittlenburg sits at the foot of the black mountains, not far from the fallen Karak Varn and lake Black Water. The town is a modest one, the people here are very aware of their precarious position between Black Fire Pass and Sylvania, as such the town is decently fortified in preparation for these threats. The temples of Sigmar and Taal are well consecrated, and the Garden of Morr has a protective curtain wall around it. Many pilgrims on their way to take the trek up to the final temple of Skaranorak stop in Mittlenburg to purchase supplies.&#13;&#10;Special Scenes: no special scenes, besides maybe the temples, would be nice if one of the temples of Skaranorak was visible from a vantage point somewhere in the town.">
+  <Settlement id="town_ST4" name="{=Settlements.Settlement.name.town_ST4}Mittlenburg" owner="Faction.stirland_clan_1" posX="1554.683" posY="881.617" culture="Culture.empire" gate_posX="1554.314" gate_posY="882.6886" text="{=Settlements.Settlement.text.town_ST4}Mittlenburg sits at the foot of the black mountains, not far from the fallen Karak Varn and lake Black Water. The town is a modest one, the people here are very aware of their precarious position between Black Fire Pass and Sylvania, as such the town is decently fortified in preparation for these threats. The temples of Sigmar and Taal are well consecrated, and the Garden of Morr has a protective curtain wall around it. Many pilgrims on their way to take the trek up to the final temple of Skaranorak stop in Mittlenburg to purchase supplies.&#xD;&#xA;Special Scenes: no special scenes, besides maybe the temples, would be nice if one of the temples of Skaranorak was visible from a vantage point somewhere in the town.">
     <Components>
       <Town id="town_comp_ST4" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="2150">
         <Buildings>
@@ -1798,7 +1799,7 @@
     </CommonAreas>
   </Settlement>
   <!--Wissenland 7 towns 6 castles 35 villages -->
-  <Settlement id="town_WI1" name="{=Settlements.Settlement.name.town_WI1}Nuln" owner="Faction.wissenland_clan_1" posX="1338.789" posY="948.639" culture="Culture.empire" gate_posX="1339.859" gate_posY="946.4326" text="{=Settlements.Settlement.text.town_WI1}Nuln is the greatest industrial city of the Empire, producing the vast majority of the gunpowder weapons and artillery pieces used by the military, as well as the arms and armaments of the Imperial armies. Nuln is a centre for trade, as the trade from Southern Wissenland and Solland, Averland, as well as trade that comes through Blackfire pass or the Grey and Black Mountains must first pass through Nuln before reaching the rest of the Empire. Nuln has served as the capital of the Empire for long periods of time and has historically received the support needed to truly become a metropolis. It is also the religious capital in the south for the Sigmarite Church, overseeing Wissenland, Stirland and Averland. The Elector-Countess of all of Wissenland makes her court here, while the provincial capitol remains in Wissenberg, she much prefers the comfort of Nuln to the ‘Po-faced Boughers’ of the Assembly of Wissenland.">
+  <Settlement id="town_WI1" name="{=Settlements.Settlement.name.town_WI1}Nuln" owner="Faction.wissenland_clan_1" posX="1341.021" posY="953.3976" culture="Culture.empire" gate_posX="1339.859" gate_posY="946.4326" text="{=Settlements.Settlement.text.town_WI1}Nuln is the greatest industrial city of the Empire, producing the vast majority of the gunpowder weapons and artillery pieces used by the military, as well as the arms and armaments of the Imperial armies. Nuln is a centre for trade, as the trade from Southern Wissenland and Solland, Averland, as well as trade that comes through Blackfire pass or the Grey and Black Mountains must first pass through Nuln before reaching the rest of the Empire. Nuln has served as the capital of the Empire for long periods of time and has historically received the support needed to truly become a metropolis. It is also the religious capital in the south for the Sigmarite Church, overseeing Wissenland, Stirland and Averland. The Elector-Countess of all of Wissenland makes her court here, while the provincial capitol remains in Wissenberg, she much prefers the comfort of Nuln to the ‘Po-faced Boughers’ of the Assembly of Wissenland.">
     <Components>
       <Town id="town_comp_WI1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="5100">
         <Buildings>

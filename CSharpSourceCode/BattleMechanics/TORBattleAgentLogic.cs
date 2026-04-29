@@ -85,7 +85,7 @@ namespace TOR_Core.BattleMechanics
 
                     if (targetAgent.MountAgent == null && targetDistanceSq <= targetDistanceThresholdSq)
                     {
-                        if (IsLanceUsage(agent.WieldedWeapon.CurrentUsageItem))
+                        if (IsLanceUsage(agent.WieldedWeapon))
                         {
                             var targetSidearmSlot = FindBestNonLanceMeleeWeaponSlot(agent);
                             if (targetSidearmSlot.HasValue)
@@ -117,7 +117,7 @@ namespace TOR_Core.BattleMechanics
                     continue;
                 }
 
-                if (!IsLanceUsage(agent.WieldedWeapon.CurrentUsageItem))
+                if (!IsLanceUsage(agent.WieldedWeapon))
                 {
                     continue;
                 }
@@ -240,6 +240,16 @@ namespace TOR_Core.BattleMechanics
                 return false;
             }
 
+            var mission = agent.Mission;
+            if (mission == null ||
+                mission.CurrentState != Mission.State.Continuing ||
+                mission.MissionEnded ||
+                mission.IsMissionEnding ||
+                mission.MissionIsEnding)
+            {
+                return false;
+            }
+
             if (agent == Agent.Main)
             {
                 return false;
@@ -255,7 +265,28 @@ namespace TOR_Core.BattleMechanics
                 return false;
             }
 
-            if (agent.IsUsingGameObject)
+            if (agent.IsFadingOut() || agent.IsRetreating() || agent.IsRunningAway)
+            {
+                return false;
+            }
+
+            if (agent.InteractingWithAnyGameObject())
+            {
+                return false;
+            }
+
+            var objectUseFlags =
+                Agent.AIStateFlag.UseObjectMoving |
+                Agent.AIStateFlag.UseObjectUsing |
+                Agent.AIStateFlag.UseObjectWaiting;
+
+            if (agent.AIStateFlags.HasAnyFlag(objectUseFlags))
+            {
+                return false;
+            }
+
+            var abilityComponent = agent.GetComponent<AbilityComponent>();
+            if (abilityComponent?.KnownAbilitySystem.Any(ability => ability.IsActive) == true)
             {
                 return false;
             }
@@ -277,8 +308,9 @@ namespace TOR_Core.BattleMechanics
         }
 
 
-        private static bool IsLanceUsage(WeaponComponentData usageItem)
+        private static bool IsLanceUsage(MissionWeapon missionWeapon)
         {
+            var usageItem = missionWeapon.CurrentUsageItem;
             if (usageItem == null)
             {
                 return false;
@@ -288,8 +320,27 @@ namespace TOR_Core.BattleMechanics
             {
                 return false;
             }
-            return usageItem.WeaponLength > LANCE_LENGTH_THRESHOLD;
+
+            if (usageItem.WeaponLength <= LANCE_LENGTH_THRESHOLD)
+            {
+                return false;
+            }
+
+            if (usageItem.WeaponClass != WeaponClass.OneHandedPolearm &&
+                usageItem.WeaponClass != WeaponClass.TwoHandedPolearm &&
+                usageItem.WeaponClass != WeaponClass.LowGripPolearm)
+            {
+                return false;
+            }
+
+            var itemId = missionWeapon.Item?.StringId;
+            var itemUsage = usageItem.ItemUsage;
+
+            return (itemId != null && itemId.IndexOf("lance", System.StringComparison.OrdinalIgnoreCase) >= 0) ||
+                   (itemUsage != null && itemUsage.IndexOf("lance", System.StringComparison.OrdinalIgnoreCase) >= 0) ||
+                   (itemUsage != null && itemUsage.IndexOf("couch", System.StringComparison.OrdinalIgnoreCase) >= 0);
         }
+
         private void EvaluateLocalThreats(
             Agent agent,
             Agent[] missionAgentsSnapshot,
@@ -382,6 +433,42 @@ namespace TOR_Core.BattleMechanics
 
         private static void TryWieldSlotIfNotAlready(Agent agent, EquipmentIndex weaponSlot)
         {
+            var mission = agent.Mission;
+            if (mission == null ||
+                mission.CurrentState != Mission.State.Continuing ||
+                mission.MissionEnded ||
+                mission.IsMissionEnding ||
+                mission.MissionIsEnding)
+            {
+                return;
+            }
+
+            if (agent.IsFadingOut() || agent.IsRetreating() || agent.IsRunningAway)
+            {
+                return;
+            }
+
+            if (agent.InteractingWithAnyGameObject())
+            {
+                return;
+            }
+
+            var objectUseFlags =
+                Agent.AIStateFlag.UseObjectMoving |
+                Agent.AIStateFlag.UseObjectUsing |
+                Agent.AIStateFlag.UseObjectWaiting;
+
+            if (agent.AIStateFlags.HasAnyFlag(objectUseFlags))
+            {
+                return;
+            }
+
+            var abilityComponent = agent.GetComponent<AbilityComponent>();
+            if (abilityComponent?.KnownAbilitySystem.Any(ability => ability.IsActive) == true)
+            {
+                return;
+            }
+
             EquipmentIndex currentSlot = agent.GetPrimaryWieldedItemIndex();
             if (currentSlot == weaponSlot)
             {
@@ -428,6 +515,32 @@ namespace TOR_Core.BattleMechanics
                 return;
             }
 
+            mission = agent.Mission;
+            if (mission == null ||
+                mission.CurrentState != Mission.State.Continuing ||
+                mission.MissionEnded ||
+                mission.IsMissionEnding ||
+                mission.MissionIsEnding)
+            {
+                return;
+            }
+
+            if (agent.IsFadingOut() || agent.IsRetreating() || agent.IsRunningAway)
+            {
+                return;
+            }
+
+            if (agent.InteractingWithAnyGameObject() || agent.AIStateFlags.HasAnyFlag(objectUseFlags))
+            {
+                return;
+            }
+
+            abilityComponent = agent.GetComponent<AbilityComponent>();
+            if (abilityComponent?.KnownAbilitySystem.Any(ability => ability.IsActive) == true)
+            {
+                return;
+            }
+
             agent.TryToWieldWeaponInSlot(
                 weaponSlot,
                 Agent.WeaponWieldActionType.WithAnimation,
@@ -449,7 +562,7 @@ namespace TOR_Core.BattleMechanics
                 }
 
                 var usageItem = missionWeapon.CurrentUsageItem;
-                if (!IsLanceUsage(usageItem))
+                if (!IsLanceUsage(missionWeapon))
                 {
                     continue;
                 }
@@ -485,7 +598,7 @@ namespace TOR_Core.BattleMechanics
                     continue;
                 }
 
-                if (IsLanceUsage(usageItem))
+                if (IsLanceUsage(missionWeapon))
                 {
                     continue;
                 }

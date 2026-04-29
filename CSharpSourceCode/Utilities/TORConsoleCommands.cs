@@ -9,6 +9,11 @@ using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.GameState;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Encyclopedia;
+using TaleWorlds.CampaignSystem.Party.PartyComponents;
+using TaleWorlds.CampaignSystem.Roster;
+using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.Localization;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
@@ -33,6 +38,11 @@ namespace TOR_Core.Utilities
     public class TORConsoleCommands
     {
         private static List<string> torSpellNames = AbilityFactory.GetAllSpellNamesAsList();
+        private const string HostilePartyCheatClanId = "forest_bandits";
+        private const int HostilePartyCheatTroopStackCount = 500;
+        private const int HostilePartyCheatHeroStackCount = 1;
+        private const int HostilePartyCheatPartySizeLimit = 2000;
+        private const float HostilePartyCheatSpawnRadius = 2f;
 
         //TODO currently disabled due to missing Engineer Quest
         [CommandLineFunctionality.CommandLineArgumentFunction("whereisgoswin", "tor")]
@@ -797,6 +807,303 @@ namespace TOR_Core.Utilities
             return "";
         }
         */
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("spawn_hostile_party", "tor")]
+        public static string SpawnHostileParty(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+
+            if (CampaignCheats.CheckHelp(arguments))
+                return "Usage: tor.spawn_hostile_party\nopens a troop selection screen. move troops to spawn a hostile party nearby";
+
+            if (ScreenManager.TopScreen is not MapScreen)
+                return "function only available while on the campaign map";
+
+            if (Mission.Current != null ||
+                MobileParty.MainParty.MapEvent != null ||
+                MobileParty.MainParty.SiegeEvent != null ||
+                Campaign.Current.ConversationManager.OneToOneConversationCharacter != null)
+            {
+                return "end the encounter to use the function";
+            }
+
+            OpenHostilePartySpawnScreen();
+
+            return "move troops and press done to spawn a hostile party";
+        }
+
+        private static void OpenHostilePartySpawnScreen()
+        {
+            var availableTroopsRoster = GetRosterWithAllGameTroopsForHostilePartyCheat();
+            var selectedTroopsRoster = TroopRoster.CreateDummyTroopRoster();
+
+            var partyScreenLogic = new PartyScreenLogic();
+            var initializationData = new PartyScreenLogicInitializationData
+            {
+                LeftOwnerParty = null,
+                RightOwnerParty = null,
+                LeftMemberRoster = availableTroopsRoster,
+                LeftPrisonerRoster = TroopRoster.CreateDummyTroopRoster(),
+                RightMemberRoster = selectedTroopsRoster,
+                RightPrisonerRoster = TroopRoster.CreateDummyTroopRoster(),
+                LeftLeaderHero = null,
+                RightLeaderHero = null,
+                LeftPartyMembersSizeLimit = availableTroopsRoster.TotalManCount,
+                LeftPartyPrisonersSizeLimit = 0,
+                RightPartyMembersSizeLimit = HostilePartyCheatPartySizeLimit,
+                RightPartyPrisonersSizeLimit = 0,
+                LeftPartyName = new TextObject("{=!}Available troops"),
+                RightPartyName = new TextObject("{=!}Hostile party"),
+                Header = new TextObject("{=!}Spawn Hostile Party"),
+                TroopTransferableDelegate = HostilePartySpawnTroopTransferableDelegate,
+                PartyPresentationDoneButtonDelegate = SpawnHostilePartyDoneHandler,
+                PartyPresentationDoneButtonConditionDelegate = HostilePartySpawnDoneCondition,
+                PartyPresentationCancelButtonActivateDelegate = null,
+                PartyPresentationCancelButtonDelegate = null,
+                PartyScreenClosedDelegate = null,
+                DoNotApplyGoldTransactions = true,
+                IsDismissMode = false,
+                TransferHealthiesGetWoundedsFirst = false,
+                IsTroopUpgradesDisabled = true,
+                ShowProgressBar = false,
+                MemberTransferState = PartyScreenLogic.TransferState.Transferable,
+                PrisonerTransferState = PartyScreenLogic.TransferState.NotTransferable,
+                AccompanyingTransferState = PartyScreenLogic.TransferState.NotTransferable,
+                PartyScreenMode = PartyScreenHelper.PartyScreenMode.TroopsManage
+            };
+
+            partyScreenLogic.Initialize(initializationData);
+
+            var partyState = Game.Current.GameStateManager.CreateState<PartyState>();
+            partyState.PartyScreenLogic = partyScreenLogic;
+            partyState.IsDonating = false;
+            partyState.PartyScreenMode = PartyScreenHelper.PartyScreenMode.TroopsManage;
+
+            Game.Current.GameStateManager.PushState(partyState);
+        }
+
+        private static TroopRoster GetRosterWithAllGameTroopsForHostilePartyCheat()
+        {
+            var troopRoster = TroopRoster.CreateDummyTroopRoster();
+
+            var normalTroops = CharacterObject.All
+                .Where(character => !character.IsHero)
+                .Where(CanUseCharacterInHostilePartyCheat)
+                .OrderBy(character => character.Name.ToString());
+
+            foreach (var character in normalTroops)
+            {
+                troopRoster.AddToCounts(character, HostilePartyCheatTroopStackCount);
+            }
+
+            var heroes = Hero.AllAliveHeroes
+                .Where(CanUseHeroInHostilePartyCheat)
+                .OrderBy(hero => hero.Name.ToString());
+
+            foreach (var hero in heroes)
+            {
+                troopRoster.AddToCounts(hero.CharacterObject, HostilePartyCheatHeroStackCount);
+            }
+
+            return troopRoster;
+        }
+
+        private static bool CanUseCharacterInHostilePartyCheat(CharacterObject character)
+        {
+            if (character == null ||
+                character == CharacterObject.PlayerCharacter ||
+                character.IsTemplate)
+            {
+                return false;
+            }
+
+            if (character.IsHero)
+            {
+                return CanUseHeroInHostilePartyCheat(character.HeroObject);
+            }
+
+            return true;
+        }
+        private static bool HasHostilePartyCheatHeroRole(Hero hero)
+        {
+            const string spellCasterAttribute = "SpellCaster";
+            const string artilleryAttribute = "CanPlaceArtillery";
+
+            return hero.HasAttribute(spellCasterAttribute) ||
+                   hero.HasAttribute(artilleryAttribute);
+        }
+        private static bool CanUseHeroInHostilePartyCheat(Hero hero)
+        {
+            if (hero == null ||
+                hero == Hero.MainHero ||
+                !hero.IsAlive ||
+                hero.IsPrisoner ||
+                hero.CharacterObject == null ||
+                hero.CharacterObject.IsTemplate)
+            {
+                return false;
+            }
+
+            if (hero.PartyBelongedTo != null && hero.PartyBelongedTo.LeaderHero == hero)
+            {
+                return false;
+            }
+
+            if (!HasHostilePartyCheatHeroRole(hero))
+            {
+                return false;
+            }
+
+            return hero.Age >= Campaign.Current.Models.AgeModel.HeroComesOfAge;
+        }
+
+        private static bool HostilePartySpawnTroopTransferableDelegate(
+            CharacterObject character,
+            PartyScreenLogic.TroopType type,
+            PartyScreenLogic.PartyRosterSide side,
+            PartyBase leftOwnerParty)
+        {
+            return type == PartyScreenLogic.TroopType.Member &&
+                   CanUseCharacterInHostilePartyCheat(character);
+        }
+
+        private static Tuple<bool, TextObject> HostilePartySpawnDoneCondition(
+            TroopRoster leftMemberRoster,
+            TroopRoster leftPrisonRoster,
+            TroopRoster rightMemberRoster,
+            TroopRoster rightPrisonRoster,
+            int leftPartyMembersSizeLimit,
+            int leftPartyPrisonersSizeLimit)
+        {
+            if (rightMemberRoster.TotalManCount <= 0)
+            {
+                return new Tuple<bool, TextObject>(false, new TextObject("{=!}pick at least one troop."));
+            }
+
+            return new Tuple<bool, TextObject>(true, TextObject.GetEmpty());
+        }
+
+        private static bool SpawnHostilePartyDoneHandler(
+            TroopRoster leftMemberRoster,
+            TroopRoster leftPrisonRoster,
+            TroopRoster rightMemberRoster,
+            TroopRoster rightPrisonRoster,
+            FlattenedTroopRoster takenPrisonerRoster,
+            FlattenedTroopRoster releasedPrisonerRoster,
+            bool isForced,
+            PartyBase leftParty = null,
+            PartyBase rightParty = null)
+        {
+            var cultistClan = Clan.All.FirstOrDefault(clan => clan.StringId == HostilePartyCheatClanId);
+            if (cultistClan == null)
+            {
+                ShowHostilePartyCheatMessage("hostile party clan not found: " + HostilePartyCheatClanId);
+                return false;
+            }
+
+            var normalTroopRoster = TroopRoster.CreateDummyTroopRoster();
+            var selectedHeroes = new List<Hero>();
+
+            SplitSelectedHostilePartyRoster(rightMemberRoster, normalTroopRoster, selectedHeroes);
+
+            if (normalTroopRoster.TotalManCount == 0 && selectedHeroes.Count == 0)
+            {
+                ShowHostilePartyCheatMessage("pick at least one troop");
+                return false;
+            }
+
+            var hostileParty = CreateHostilePartyNearPlayer(cultistClan, normalTroopRoster);
+
+            foreach (var selectedHero in selectedHeroes)
+            {
+                AddHeroToPartyAction.Apply(selectedHero, hostileParty, showNotification: false);
+            }
+
+            hostileParty.SetMoveEngageParty(MobileParty.MainParty, MobileParty.NavigationType.Default);
+
+            ShowHostilePartyCheatMessage("spawned hostile party with " + hostileParty.MemberRoster.TotalManCount + " troops.");
+
+            return true;
+        }
+
+        private static void SplitSelectedHostilePartyRoster(
+            TroopRoster selectedRoster,
+            TroopRoster normalTroopRoster,
+            List<Hero> selectedHeroes)
+        {
+            for (var index = 0; index < selectedRoster.Count; index++)
+            {
+                var selectedElement = selectedRoster.GetElementCopyAtIndex(index);
+                var selectedCharacter = selectedElement.Character;
+
+                if (!CanUseCharacterInHostilePartyCheat(selectedCharacter))
+                {
+                    continue;
+                }
+
+                if (selectedCharacter.IsHero)
+                {
+                    var selectedHero = selectedCharacter.HeroObject;
+                    if (!selectedHeroes.Contains(selectedHero))
+                    {
+                        selectedHeroes.Add(selectedHero);
+                    }
+
+                    continue;
+                }
+
+                normalTroopRoster.AddToCounts(
+                    selectedCharacter,
+                    selectedElement.Number,
+                    insertAtFront: false,
+                    selectedElement.WoundedNumber,
+                    selectedElement.Xp);
+            }
+        }
+
+        private static MobileParty CreateHostilePartyNearPlayer(Clan cultistClan, TroopRoster normalTroopRoster)
+        {
+            var spawnPosition = NavigationHelper.FindReachablePointAroundPosition(
+                MobileParty.MainParty.Position,
+                MobileParty.NavigationType.Default,
+                HostilePartyCheatSpawnRadius);
+
+            var nearestSettlement = SettlementHelper.FindNearestSettlementToMobileParty(
+                MobileParty.MainParty,
+                MobileParty.NavigationType.Default);
+
+            var hostileParty = BanditPartyComponent.CreateLooterParty(
+                "tor_spawned_hostile_party_" + Guid.NewGuid().ToString("N"),
+                cultistClan,
+                nearestSettlement,
+                false,
+                null,
+                spawnPosition);
+
+            for (var index = 0; index < normalTroopRoster.Count; index++)
+            {
+                var troopElement = normalTroopRoster.GetElementCopyAtIndex(index);
+                hostileParty.MemberRoster.AddToCounts(
+                    troopElement.Character,
+                    troopElement.Number,
+                    insertAtFront: false,
+                    troopElement.WoundedNumber,
+                    troopElement.Xp);
+            }
+
+            return hostileParty;
+        }
+
+        private static void ShowHostilePartyCheatMessage(string message)
+        {
+            MBInformationManager.AddQuickInformation(
+                new TextObject("{=!}" + message),
+                0,
+                null,
+                null,
+                "");
+        }
 
         [CommandLineFunctionality.CommandLineArgumentFunction("finalize_quest", "tor")]
         public static string FinalizeQuest(List<string> arguments)
