@@ -4366,7 +4366,7 @@
 
   <string id="tor_careerchoice_description.GiantSlayerKeystone" text="{=str_tor_careerchoice_description_GiantSlayerKeystone}Doom Seeking also scales with Two-Handed, and begins battle charged." />
   <string id="tor_careerchoice_description.GiantSlayerPassive1" text="{=str_tor_careerchoice_description_GiantSlayerPassive1}+15 personal Hitpoints." />
-  <string id="tor_careerchoice_description.GiantSlayerPassive2" text="{=str_tor_careerchoice_description_GiantSlayerPassive2}If armour weight is less than 9, +25% personal melee damage to mounted/monsterous troops." />
+  <string id="tor_careerchoice_description.GiantSlayerPassive2" text="{=str_tor_careerchoice_description_GiantSlayerPassive2}If armour weight is less than 9, +25% melee damage to mounts and monster troops." />
   <string id="tor_careerchoice_description.GiantSlayerPassive3" text="{=str_tor_careerchoice_description_GiantSlayerPassive3}+50 Two-Handed skill for all 'Slayer' troops." />
   <string id="tor_careerchoice_description.GiantSlayerPassive4" text="{=str_tor_careerchoice_description_GiantSlayerPassive4}You can no longer be staggered by damage." />
 
