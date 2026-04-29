@@ -27,6 +27,7 @@ namespace TOR_Core.BattleMechanics.Banners
         private bool _hasUnprocessedAgents;
         private int _indexOfCurrentAgent = 0;
         private readonly Dictionary<int, EquipmentIndex> _agentsWithBanners = [];
+        private const int BANNER_AGENTS_TO_PROCESS_PER_TICK = 48;
 
 
         /*Sly : could we use
@@ -52,37 +53,49 @@ namespace TOR_Core.BattleMechanics.Banners
         public override void OnMissionTick(float dt)
         {
             if (!Mission.Current.HasMissionBehavior<BattleSpawnLogic>() && Game.Current.GameType is Campaign) return;
-            if (_hasUnprocessedAgents)
+            if (!_hasUnprocessedAgents)
             {
-                while (_unprocessedAgents.Count > 0)
-                {
-                    var agent = _unprocessedAgents.Dequeue();
-                    var banner = DetermineBanner(agent);
-                    if (agent == null || agent.State != AgentState.Active || agent.IsFadingOut()) continue;
-                    if (banner == null)
-                    {
-                        TORCommon.Log("CustomBannerMissionLogic : Tried to assign null shield pattern to agent : " + agent.ToString() + ".", NLog.LogLevel.Warn);
-                        continue;
-                    }
-                    try
-                    {
-                        SwitchTableauPatterns(agent, banner);
-                        if (_indexOfCurrentAgent > TORConfig.FakeBannerFrequency)
-                        {
-                            if (CheckEligibleAndAddBanner(agent, banner))
-                            {
-                                _indexOfCurrentAgent = 0;
-                            }
-                        }
-                        _indexOfCurrentAgent++;
-                    }
-                    catch(Exception e)
-                    {
-                        TORCommon.Log("CustomBannerMissionLogic : Tried to assign shield pattern to agent but failed. Error: " + e.Message, NLog.LogLevel.Warn);
-                    }
-                }
-                _hasUnprocessedAgents = false;
+                return;
             }
+
+            var remainingAgentsToProcess = BANNER_AGENTS_TO_PROCESS_PER_TICK;
+
+            while (_unprocessedAgents.Count > 0 && remainingAgentsToProcess > 0)
+            {
+                remainingAgentsToProcess--;
+
+                var agent = _unprocessedAgents.Dequeue();
+                if (agent == null || agent.State != AgentState.Active || agent.IsFadingOut())
+                {
+                    continue;
+                }
+
+                var banner = DetermineBanner(agent);
+                if (banner == null)
+                {
+                    continue;
+                }
+
+                try
+                {
+                    SwitchTableauPatterns(agent, banner);
+                    if (_indexOfCurrentAgent > TORConfig.FakeBannerFrequency)
+                    {
+                        if (CheckEligibleAndAddBanner(agent, banner))
+                        {
+                            _indexOfCurrentAgent = 0;
+                        }
+                    }
+
+                    _indexOfCurrentAgent++;
+                }
+                catch (Exception e)
+                {
+                    TORCommon.Log("CustomBannerMissionLogic : Tried to assign shield pattern to agent but failed. Error: " + e.Message, NLog.LogLevel.Warn);
+                }
+            }
+
+            _hasUnprocessedAgents = _unprocessedAgents.Count > 0;
         }
 
         public override void OnEarlyAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
