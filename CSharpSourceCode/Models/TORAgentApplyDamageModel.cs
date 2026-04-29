@@ -100,6 +100,10 @@ namespace TOR_Core.Models
                     {
                         missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
                     }
+                    if (traits.Any(t => t.StatsTuple?.StatType == ItemTraitStatType.MultiPenetration))
+                    {
+                        missileWeaponFlags |= WeaponFlags.MultiplePenetration;
+                    }
                 }
             }
         }

@@ -32,7 +32,6 @@ namespace TOR_Core.CampaignMechanics.Religion
         public override void RegisterEvents()
         {
             CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this, AfterNewGameStart);
-            CampaignEvents.OnCharacterCreationIsOverEvent.AddNonSerializedListener(this, PlayerCreationFinished);
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionStart);
             CampaignEvents.OnItemsDiscardedByPlayerEvent.AddNonSerializedListener(this, OnItemsDiscarded);
             CampaignEvents.HourlyTickSettlementEvent.AddNonSerializedListener(this, SettlementHourlyReligionTick);
@@ -40,30 +39,6 @@ namespace TOR_Core.CampaignMechanics.Religion
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, PlayerBattleEnded);
             TORCampaignEvents.Instance.DevotionLevelChanged += OnDevotionLevelChanged;
             TORCampaignEvents.Instance.HeroExtendedInfoCreated += OnHeroExtendedInfoCreated;
-        }
-
-        /// <summary>
-        /// Gives the player a culture-based starting religion and adjusts relations with other heroes based on dominant religion.
-        /// </summary>
-        /// <remarks>
-        /// In the case of religious influence granted by character creation options, their influence dominates over the cultural amount.
-        /// </remarks>
-        private void PlayerCreationFinished()
-        {/* Some sort of issue with the delegates used in the consequences for creation choices - leaving this out until I come back around to other character creation related stuff
-            var playerHero = Hero.MainHero;
-
-            //why is this being skipped? MulticastDelegate.CtorClosedStatic is being called, then nothing else happens afterward and it goes to the foreach loop - should I be calling a different method?
-            if (playerHero.GetDominantReligion == null)
-            {
-                DetermineReligionForHero(playerHero); //adds default religious influence which will default to the culture's default religion because parent and clan religion are null
-            }
-
-            foreach (var otherHero in Campaign.Current.AliveHeroes)
-            {
-                if (otherHero.IsNotable || otherHero == playerHero) continue;
-
-                ChangeRelationBasedOnReligion(playerHero, otherHero);
-            }*/
         }
 
         private void PlayerBattleEnded(MapEvent mapEvent)

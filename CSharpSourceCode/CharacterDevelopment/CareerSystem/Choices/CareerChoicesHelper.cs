@@ -67,16 +67,21 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             return false;
         }
 
-        public static bool ContainsSpellType(AbilityComponent component, AbilityTargetType[] excludedTargetTypes)
+        /// <summary>
+        /// Detects the presence of an unwanted AbilityTargetType in the agent's known ability list for the relevant AbilityType.
+        /// </summary>
+        /// <returns>
+        /// True when an excluded ability is found.
+        /// </returns>
+        public static bool ContainsAbilityType(AbilityComponent component, AbilityType checkedType, AbilityTargetType[] excludedTargetTypes)
         {
-            var wrongSpell = false;
             if (component == null) return false;
             var spellCount = component.KnownAbilitySystem.Count;
             for (int i = 0; i < spellCount; i++)
             {
                 var ability = component.GetAbility(i);
-                if (ability is CareerAbility) continue;
-                if (ability.Template == null) continue;
+
+                if (ability.Template?.AbilityType != checkedType) continue;
 
                 if (excludedTargetTypes.AnyQ(x => x == ability.Template.AbilityTargetType))
                 {

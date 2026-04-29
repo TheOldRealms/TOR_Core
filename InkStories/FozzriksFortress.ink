@@ -1,6 +1,6 @@
 //Global story tags
 # title: Fozzrik's Fortress
-# frequency: Uncommon
+# frequency: Rare
 # development: false
 # illustration: castle
 

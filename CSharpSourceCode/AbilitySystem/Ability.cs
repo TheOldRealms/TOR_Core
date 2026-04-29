@@ -439,6 +439,11 @@ namespace TOR_Core.AbilitySystem
                         frame.origin = casterAgent.GetEyeGlobalPosition();
                         break;
                     }
+                case AbilityEffectType.Projectile:
+                    {
+                        //frame.origin = casterAgent.GetEyeGlobalPosition();
+                        break;
+                    }
                 case AbilityEffectType.Wind:
                     {
                         frame = Crosshair.Frame;

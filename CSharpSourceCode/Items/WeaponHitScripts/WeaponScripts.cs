@@ -290,6 +290,8 @@ public class StealthAttackScript(string[] arguments) : BaseWeaponHitScript(argum
 {
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow inflictedDamge, MissionWeapon missionWeapon, AttackCollisionData collisionData)
     {
+        if (attackedAgent == null) return;
+
         var percent = 0f;
         if (int.TryParse(_arguments[0], out var percentValue))
         {

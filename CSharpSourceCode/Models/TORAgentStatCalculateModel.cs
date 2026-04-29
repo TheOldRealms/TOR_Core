@@ -416,7 +416,7 @@ namespace TOR_Core.Models
 
                     if (character.IsTroll())
                     {
-                        //agent.SetAgentFlags(agent.GetAgentFlags() & ~AgentFlag.CanDefend);//Sly : I set to false directly in their monster entry which applies to both custom battles and sandbox.
+                        agent.SetAgentFlags(agent.GetAgentFlags() & ~AgentFlag.CanDefend);//Sly : I set to false directly in their monster entry which applies to both custom battles and sandbox. Wasn't that causing a crash due to missing human component in custom battles and it was supposed to have been put back to true in the xml and set to false here?
                         agent.Defensiveness = 0.001f;
                     }
 
