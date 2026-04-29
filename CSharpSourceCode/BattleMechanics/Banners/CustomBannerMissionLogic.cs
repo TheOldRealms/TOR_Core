@@ -27,7 +27,7 @@ namespace TOR_Core.BattleMechanics.Banners
         private bool _hasUnprocessedAgents;
         private int _indexOfCurrentAgent = 0;
         private readonly Dictionary<int, EquipmentIndex> _agentsWithBanners = [];
-        private const int BANNER_AGENTS_TO_PROCESS_PER_TICK = 48;
+        private const int BANNER_AGENTS_TO_PROCESS_PER_TICK = 30;
 
 
         /*Sly : could we use
