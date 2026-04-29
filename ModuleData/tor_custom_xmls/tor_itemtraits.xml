@@ -579,8 +579,9 @@
     <ValidItemType>Ammo</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>12</IngredientAmount>
-    <ItemTraitDescription>"20 extra fire damage, projectiles penetrate targets"</ItemTraitDescription>
+    <ItemTraitDescription>"20% extra fire damage, projectiles penetrate targets"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Fire" Percent="0.20" />
+    <StatsTuple StatType="MultiPenetration" Value="1" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_chamon_aegis" ItemTraitName="Aegis of Chamon" IsCraftable="true" ImbuedEffectChance="0.50" IconName="chamon">
     <ValidItemType>Shield</ValidItemType>
@@ -636,10 +637,10 @@
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.03" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_chamon_crucible" ItemTraitName="Crucible of Chamon" IsCraftable="true" IconName="chamon">
-    <ValidItemType>Weapon</ValidItemType>
+    <ValidItemType>Melee</ValidItemType>
     <IngredientItem>WarpstoneDust</IngredientItem>
     <IngredientAmount>30</IngredientAmount>
-    <ItemTraitDescription>"20 extra magic damage, weapon gains the Cleave trait"</ItemTraitDescription>
+    <ItemTraitDescription>"20% extra magic damage, weapon gains the Cleave trait"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Magical" Percent="0.20" />
     <StatsTuple StatType="Cleave" Value="1" />
   </ItemTrait>
@@ -842,7 +843,7 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>20</IngredientAmount>
-    <ItemTraitDescription>"20 extra holy damage, 10% chance to deal 100 damage against Undead and Daemons"</ItemTraitDescription>
+    <ItemTraitDescription>"20% extra holy damage, 10% chance to deal 100 damage against Undead and Daemons"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Holy" Percent="0.20" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.BonusDamageOnUndeadEffectScript">
       <WeaponScriptArguments>
@@ -854,7 +855,7 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>5</IngredientAmount>
-    <ItemTraitDescription>12 extra holy damage</ItemTraitDescription>
+    <ItemTraitDescription>12% extra holy damage</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Holy" Percent="0.12" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_blessing_ulric_wrath" ItemTraitName="Wrath of Ulric" IsCraftable="true" IconName="whitewolf_icon">
@@ -1089,7 +1090,7 @@
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>WarpstoneDust</IngredientItem>
     <IngredientAmount>10</IngredientAmount>
-    <ItemTraitDescription>"5% extra magic resistance, 15% chance to reduce attack speed and damage of nearby enemies upon receiving damage{"</ItemTraitDescription>
+    <ItemTraitDescription>"5% extra magic resistance, 15% chance to reduce attack speed and damage of nearby enemies upon receiving damage"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.05" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
@@ -1210,7 +1211,7 @@
     <ValidItemType>Thrown</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>6</IngredientAmount>
-    <ItemTraitDescription>"10 extra physical damage, 10% extra armour penetration"</ItemTraitDescription>
+    <ItemTraitDescription>"10% extra physical damage, 10% extra armour penetration"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
     <StatsTuple StatType="ArmorPenetration" Value="10" />
   </ItemTrait>
@@ -1218,7 +1219,7 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>WarpstoneDust</IngredientItem>
     <IngredientAmount>18</IngredientAmount>
-    <ItemTraitDescription>"15 extra magic damage, 15% chance to inflict horrific visions in a radius upon dealing damage. Nearby enemies suffer a DoT effect effect"</ItemTraitDescription>
+    <ItemTraitDescription>"15% extra magic damage, 15% chance to inflict horrific visions in a radius upon dealing damage. Nearby enemies suffer a DoT effect effect"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Magical" Percent="0.15" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
       <WeaponScriptArguments>
@@ -1236,7 +1237,7 @@
     <AdditionalDamageTuple DamageType="Physical" Percent="0.10" />
     <StatsTuple StatType="MissileSpeed" Value="15" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="we_enchant_dusk_wood" ItemTraitName="Dusk of the Woods" IsCraftable="true" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="asrai_enchant_dusk_wood" ItemTraitName="Dusk of the Woods" IsCraftable="true" IconName="harmony_icon_100">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>8</IngredientAmount>
@@ -1309,7 +1310,7 @@
     <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.15" />
     <AdditionalDamageTuple DamageType="Magical" Percent="0.15" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="we_enchant_radiance_woods" ItemTraitName="Radiance of the Woods" IsCraftable="true" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="asrai_enchant_radiance_woods" ItemTraitName="Radiance of the Woods" IsCraftable="true" IconName="harmony_icon_100">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>40</IngredientAmount>
@@ -3289,7 +3290,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"5% extra magic resistance, 15% chance to reduce attack speed and damage of nearby enemies upon receiving damage{"</ItemTraitDescription>
+    <ItemTraitDescription>"5% extra magic resistance, 15% chance to reduce attack speed and damage of nearby enemies upon receiving damage"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>vc_enchant_nightshroud</InventoryScriptArgument>
@@ -3452,14 +3453,14 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_asrai_enchant_emissaries_mirai" ItemTraitName="Emissaries of Mirai" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_we_enchant_emissaries_mirai" ItemTraitName="Emissaries of Mirai" IsCraftable="false" IconName="harmony_icon_100">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>"15 extra magic damage, 15% chance to inflict horrific visions in a radius upon dealing damage. Nearby enemies suffer a DoT effect effect"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
-        <InventoryScriptArgument>asrai_enchant_emissaries_mirai_mirai</InventoryScriptArgument>
+        <InventoryScriptArgument>we_enchant_emissaries_mirai</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
         <InventoryScriptArgument>25</InventoryScriptArgument>
         <InventoryScriptArgument>DarkMagic</InventoryScriptArgument>
@@ -3545,14 +3546,14 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_asrai_enchant_tranquillity_cadai" ItemTraitName="Tranquillity of Cadai" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_we_enchant_tranquillity_cadai" ItemTraitName="Tranquillity of Cadai" IsCraftable="false" IconName="harmony_icon_100">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"15 extra magic damage and magic resistance, 30% to grant nearby troops the same boons for a short time upon dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"15% extra magic damage and magic resistance, 30% to grant nearby troops the same boons for a short time upon dealing damage"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
-        <InventoryScriptArgument>asrai_enchant_tranquillity_cadai</InventoryScriptArgument>
+        <InventoryScriptArgument>we_enchant_tranquillity_cadai</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
         <InventoryScriptArgument>75</InventoryScriptArgument>
         <InventoryScriptArgument>HighMagic</InventoryScriptArgument>
@@ -3655,7 +3656,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>10 extra magic damage and 10% extra missile speed</ItemTraitDescription>
+    <ItemTraitDescription>10% extra magic damage and 10% extra missile speed</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>we_enchant_swift_shiver</InventoryScriptArgument>

@@ -450,9 +450,28 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
         }
         
         
-        private bool HasBattleBeenJoined() => _mainInfantry?.QuerySystem.ClosestSignificantlyLargeEnemyFormation == null || _mainInfantry.AI.ActiveBehavior is BehaviorCharge || _mainInfantry.AI.ActiveBehavior is BehaviorTacticalCharge ||
-                                              _mainInfantry.CachedMedianPosition.AsVec2.Distance(_mainInfantry.QuerySystem.ClosestSignificantlyLargeEnemyFormation.Formation.CachedMedianPosition.AsVec2) / (double)_mainInfantry.QuerySystem.ClosestSignificantlyLargeEnemyFormation.MovementSpeedMaximum <=
-                                              5.0 + (_hasBattleBeenJoined ? 5.0 : 0.0); //TODO: Need to improve logic for detecting that battle has started.
+        private bool HasBattleBeenJoined()
+        {
+            if (_mainInfantry?.QuerySystem.ClosestSignificantlyLargeEnemyFormation == null)
+                return true;
+
+            if (_mainInfantry.AI.ActiveBehavior is BehaviorCharge || _mainInfantry.AI.ActiveBehavior is BehaviorTacticalCharge)
+                return true;
+
+            // Apply culture-specific engagement distance modifier
+            var culture = TORCultureBattleSettings.GetTeamCulture(Team);
+            var personality = TORCultureBattleSettings.GetPersonality(culture);
+
+            // Base threshold is 5 seconds, modified by culture (lower = engage sooner)
+            float baseThreshold = 5.0f * personality.EngagementDistanceMultiplier;
+            float hysteresisBonus = _hasBattleBeenJoined ? 5.0f : 0.0f;
+
+            var enemyFormation = _mainInfantry.QuerySystem.ClosestSignificantlyLargeEnemyFormation;
+            float distanceInSeconds = _mainInfantry.CachedMedianPosition.AsVec2.Distance(
+                enemyFormation.Formation.CachedMedianPosition.AsVec2) / enemyFormation.MovementSpeedMaximum;
+
+            return distanceInSeconds <= baseThreshold + hysteresisBonus;
+        }
 
         protected override bool CheckAndSetAvailableFormationsChanged()
         {
@@ -481,13 +500,27 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
             if (Team.IsPlayerTeam && !Team.IsPlayerGeneral && Team.IsPlayerSergeant)
                 SoundTacticalHorn(MoveHornSoundIndex);
 
+            // Get culture-specific battle personality
+            var culture = TORCultureBattleSettings.GetTeamCulture(Team);
+            var personality = TORCultureBattleSettings.GetPersonality(culture);
 
             if (_mainInfantry != null)
             {
                 _mainInfantry.AI.ResetBehaviorWeights();
                 SetDefaultBehaviorWeights(_mainInfantry);
-                _mainInfantry.AI.SetBehaviorWeight<BehaviorDefend>(5f).TacticalDefendPosition = _mainDefensiveLinePosition;
-                _mainInfantry.AI.SetBehaviorWeight<BehaviorTacticalCharge>(1f);
+
+                // Apply culture modifiers to behavior weights
+                float defendWeight = 5f * personality.DefendWeightMultiplier;
+                float chargeWeight = 1f * personality.ChargeWeightMultiplier;
+
+                _mainInfantry.AI.SetBehaviorWeight<BehaviorDefend>(defendWeight).TacticalDefendPosition = _mainDefensiveLinePosition;
+                _mainInfantry.AI.SetBehaviorWeight<BehaviorTacticalCharge>(chargeWeight);
+
+                // For aggressive cultures, also boost regular charge
+                if (personality.ChargeWeightMultiplier > 1.0f)
+                {
+                    _mainInfantry.AI.SetBehaviorWeight<BehaviorCharge>(chargeWeight * 0.5f);
+                }
             }
 
             if (_artilleryFormation != null && _artilleryFormation.CountOfUnits > 0 && _chosenArtilleryPosition != null)
@@ -520,16 +553,29 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
             {
                 _archers.AI.ResetBehaviorWeights();
                 SetDefaultBehaviorWeights(_archers);
-                _archers.AI.SetBehaviorWeight<BehaviorSkirmishLine>(1f);
-                _archers.AI.SetBehaviorWeight<BehaviorScreenedSkirmish>(1f);
+
+                // Apply culture-specific skirmish modifiers
+                float skirmishWeight = 1f * personality.SkirmishWeightMultiplier;
+                _archers.AI.SetBehaviorWeight<BehaviorSkirmishLine>(skirmishWeight);
+                _archers.AI.SetBehaviorWeight<BehaviorScreenedSkirmish>(skirmishWeight);
+
                 if (_linkedRangedDefensivePosition != null)
-                    _archers.AI.SetBehaviorWeight<BehaviorDefend>(10f).TacticalDefendPosition = _linkedRangedDefensivePosition;
+                {
+                    float archerDefendWeight = 10f * personality.DefendWeightMultiplier;
+                    _archers.AI.SetBehaviorWeight<BehaviorDefend>(archerDefendWeight).TacticalDefendPosition = _linkedRangedDefensivePosition;
+                }
             }
 
             if (_leftCavalry != null)
             {
                 _leftCavalry.AI.ResetBehaviorWeights();
                 SetDefaultBehaviorWeights(_leftCavalry);
+
+                // Aggressive cultures might want cavalry to charge more
+                float cavChargeWeight = personality.ChargeWeightMultiplier > 1.0f ? personality.ChargeWeightMultiplier * 0.5f : 0f;
+                if (cavChargeWeight > 0f)
+                    _leftCavalry.AI.SetBehaviorWeight<BehaviorFlank>(cavChargeWeight);
+
                 _leftCavalry.AI.SetBehaviorWeight<BehaviorProtectFlank>(1f).FlankSide = FormationAI.BehaviorSide.Left;
                 _leftCavalry.AI.SetBehaviorWeight<BehaviorCavalryScreen>(1f);
             }
@@ -538,6 +584,11 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
             {
                 _rightCavalry.AI.ResetBehaviorWeights();
                 SetDefaultBehaviorWeights(_rightCavalry);
+
+                float cavChargeWeight = personality.ChargeWeightMultiplier > 1.0f ? personality.ChargeWeightMultiplier * 0.5f : 0f;
+                if (cavChargeWeight > 0f)
+                    _rightCavalry.AI.SetBehaviorWeight<BehaviorFlank>(cavChargeWeight);
+
                 _rightCavalry.AI.SetBehaviorWeight<BehaviorProtectFlank>(1f).FlankSide = FormationAI.BehaviorSide.Right;
                 _rightCavalry.AI.SetBehaviorWeight<BehaviorCavalryScreen>(1f);
             }
@@ -546,55 +597,85 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
                 return;
             _rangedCavalry.AI.ResetBehaviorWeights();
             SetDefaultBehaviorWeights(_rangedCavalry);
-            _rangedCavalry.AI.SetBehaviorWeight<BehaviorMountedSkirmish>(1f);
-            _rangedCavalry.AI.SetBehaviorWeight<BehaviorHorseArcherSkirmish>(1f);
+
+            // Apply skirmish modifiers to ranged cavalry
+            float rangedCavSkirmish = 1f * personality.SkirmishWeightMultiplier;
+            _rangedCavalry.AI.SetBehaviorWeight<BehaviorMountedSkirmish>(rangedCavSkirmish);
+            _rangedCavalry.AI.SetBehaviorWeight<BehaviorHorseArcherSkirmish>(rangedCavSkirmish);
         }
 
         private void Engage()
         {
             if (Team.IsPlayerTeam && !Team.IsPlayerGeneral && Team.IsPlayerSergeant)
                 SoundTacticalHorn(AttackHornSoundIndex);
+
+            // Get culture-specific battle personality
+            var culture = TORCultureBattleSettings.GetTeamCulture(Team);
+            var personality = TORCultureBattleSettings.GetPersonality(culture);
+
             if (_mainInfantry != null)
             {
                 _mainInfantry.AI.ResetBehaviorWeights();
                 SetDefaultBehaviorWeights(_mainInfantry);
-                _mainInfantry.AI.SetBehaviorWeight<BehaviorDefend>(1f).TacticalDefendPosition = _mainDefensiveLinePosition;
-                _mainInfantry.AI.SetBehaviorWeight<BehaviorTacticalCharge>(1f);
-            }
 
+                // In engage phase, charge weight is more important
+                float defendWeight = 1f * personality.DefendWeightMultiplier;
+                float chargeWeight = 1f * personality.ChargeWeightMultiplier;
+
+                _mainInfantry.AI.SetBehaviorWeight<BehaviorDefend>(defendWeight).TacticalDefendPosition = _mainDefensiveLinePosition;
+                _mainInfantry.AI.SetBehaviorWeight<BehaviorTacticalCharge>(chargeWeight);
+
+                // Aggressive cultures get a boost to regular charge too
+                if (personality.ChargeWeightMultiplier > 1.0f)
+                {
+                    _mainInfantry.AI.SetBehaviorWeight<BehaviorCharge>(chargeWeight);
+                }
+            }
 
             if (_archers != null)
             {
                 _archers.AI.ResetBehaviorWeights();
                 SetDefaultBehaviorWeights(_archers);
-                _archers.AI.SetBehaviorWeight<BehaviorSkirmish>(1f);
-                _archers.AI.SetBehaviorWeight<BehaviorScreenedSkirmish>(1f);
+
+                float skirmishWeight = 1f * personality.SkirmishWeightMultiplier;
+                _archers.AI.SetBehaviorWeight<BehaviorSkirmish>(skirmishWeight);
+                _archers.AI.SetBehaviorWeight<BehaviorScreenedSkirmish>(skirmishWeight);
+
                 if (_linkedRangedDefensivePosition != null)
-                    _archers.AI.SetBehaviorWeight<BehaviorDefend>(1f).TacticalDefendPosition = _linkedRangedDefensivePosition;
+                {
+                    float defendWeight = 1f * personality.DefendWeightMultiplier;
+                    _archers.AI.SetBehaviorWeight<BehaviorDefend>(defendWeight).TacticalDefendPosition = _linkedRangedDefensivePosition;
+                }
             }
 
             if (_leftCavalry != null)
             {
                 _leftCavalry.AI.ResetBehaviorWeights();
                 SetDefaultBehaviorWeights(_leftCavalry);
-                _leftCavalry.AI.SetBehaviorWeight<BehaviorFlank>(1f);
-                _leftCavalry.AI.SetBehaviorWeight<BehaviorTacticalCharge>(1f);
+
+                float chargeWeight = 1f * personality.ChargeWeightMultiplier;
+                _leftCavalry.AI.SetBehaviorWeight<BehaviorFlank>(chargeWeight);
+                _leftCavalry.AI.SetBehaviorWeight<BehaviorTacticalCharge>(chargeWeight);
             }
 
             if (_rightCavalry != null)
             {
                 _rightCavalry.AI.ResetBehaviorWeights();
                 SetDefaultBehaviorWeights(_rightCavalry);
-                _rightCavalry.AI.SetBehaviorWeight<BehaviorFlank>(1f);
-                _rightCavalry.AI.SetBehaviorWeight<BehaviorTacticalCharge>(1f);
+
+                float chargeWeight = 1f * personality.ChargeWeightMultiplier;
+                _rightCavalry.AI.SetBehaviorWeight<BehaviorFlank>(chargeWeight);
+                _rightCavalry.AI.SetBehaviorWeight<BehaviorTacticalCharge>(chargeWeight);
             }
 
             if (_rangedCavalry == null)
                 return;
             _rangedCavalry.AI.ResetBehaviorWeights();
             SetDefaultBehaviorWeights(_rangedCavalry);
-            _rangedCavalry.AI.SetBehaviorWeight<BehaviorMountedSkirmish>(1f);
-            _rangedCavalry.AI.SetBehaviorWeight<BehaviorHorseArcherSkirmish>(1f);
+
+            float rangedCavSkirmish = 1f * personality.SkirmishWeightMultiplier;
+            _rangedCavalry.AI.SetBehaviorWeight<BehaviorMountedSkirmish>(rangedCavSkirmish);
+            _rangedCavalry.AI.SetBehaviorWeight<BehaviorHorseArcherSkirmish>(rangedCavSkirmish);
         }
 
         protected override void OnCancel()

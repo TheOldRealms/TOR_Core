@@ -105,6 +105,7 @@ namespace TOR_Core.Models
                         missileWeaponFlags |= WeaponFlags.MultiplePenetration;
                     }
                 }
+                
             }
         }
 

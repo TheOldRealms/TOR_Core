@@ -15,30 +15,32 @@ namespace TOR_Core.BattleMechanics.Banners
 
         public static Banner GetRandomBannerFor(string cultureId, string faction = "")
         {
-            FactionBannerOverride bannerOverride;
-            if (faction == "")
+            FactionBannerOverride bannerOverride = null;
+
+            if (!string.IsNullOrEmpty(faction))
             {
-                _overrides.TryGetValue(cultureId, out bannerOverride);
-            }
-            else if (faction == "player_faction")
-            {
-                _overrides.TryGetValue(Hero.MainHero.Culture.StringId, out bannerOverride);
-            }
-            else
-            {
-                _overrides.TryGetValue(faction, out bannerOverride);
-                if (bannerOverride?.Banners?.Count == 0)
+                var bannerOverrideId = faction == "player_faction"
+                    ? Hero.MainHero.Culture.StringId
+                    : faction;
+
+                if (!_overrides.TryGetValue(bannerOverrideId, out bannerOverride) ||
+                    bannerOverride.Banners.Count == 0)
                 {
                     _overrides.TryGetValue(cultureId, out bannerOverride);
                 }
             }
+            else
+            {
+                _overrides.TryGetValue(cultureId, out bannerOverride);
+            }
 
             if (bannerOverride?.Banners?.Count > 0)
             {
-                var i = _random.Next(0, bannerOverride.Banners.Count);
-                return bannerOverride.Banners[i];
+                var index = _random.Next(0, bannerOverride.Banners.Count);
+                return bannerOverride.Banners[index];
             }
-            else return null;
+
+            return null;
         }
 
         public static void LoadXML()

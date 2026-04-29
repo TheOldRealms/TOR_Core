@@ -242,7 +242,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             EffectData data = _currentEffects[effect];
             bool visualsUsable = Agent != null && Agent.HasUsableVisuals();
 
-            if (data.IsParticleAttachedToAgentSkeleton)
+            if (data.Entities != null)
             {
                 foreach (var entity in data.Entities)
                 {
@@ -251,37 +251,35 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                         continue;
                     }
 
-                    if (!visualsUsable)
+                    if (data.IsParticleAttachedToAgentSkeleton)
                     {
-                        continue;
-                    }
+                        if (!visualsUsable)
+                        {
+                            continue;
+                        }
 
                     entity.FadeOut(1, true);
                     entity.RemoveAllParticleSystems();
                     // attached effect outliving the ownin visuals, only detach through AgentVisuals while that object is still safe
                     Agent.TryRemoveChildEntity(entity);
+                    }
+                    else
+                    {
+                        entity.RemoveAllParticleSystems();
+                        entity.Remove(0);
+                    }
                 }
             }
-            _dummyEntity?.RemoveAllParticleSystems();
 
             if (data.Effect.Template.Type == StatusEffectTemplate.EffectType.MovementManipulation)
             {
                 if (Mathf.Abs(GetMovementSpeedModifier() - effect.Template.BaseEffectValue) - 0.00001f <= 0f)
                 {
-                    this.Agent.UpdateAgentProperties();
+                    Agent.UpdateAgentProperties();
                 }
             }
 
             _currentEffects.Remove(effect);
-            foreach (var currEffect in _currentEffects.Keys)
-            {
-                if (!_currentEffects[currEffect].IsParticleAttachedToAgentSkeleton)
-                {
-                    _currentEffects[currEffect].Particles.Clear();
-                    MatrixFrame frame = MatrixFrame.Identity;
-                    _currentEffects[currEffect].Particles.Add(ParticleSystem.CreateParticleSystemAttachedToEntity(currEffect.Template.ParticleId, _dummyEntity, ref frame));
-                }
-            }
         }
 
         public float[] GetAmplifiers(AttackTypeMask mask)
@@ -368,17 +366,41 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         private void AddEffect(StatusEffect effect)
         {
             EffectData data;
+
             if (effect.Template.DoNotAttachToAgentSkeleton)
             {
-                MatrixFrame frame = MatrixFrame.Identity;
-                var psys = ParticleSystem.CreateParticleSystemAttachedToEntity(effect.Template.ParticleId, _dummyEntity, ref frame);
-                if (effect.Template.Rotation)
+                var particles = new List<ParticleSystem>();
+                var entities = new List<GameEntity>();
+
+                var particleId = effect.Template.ParticleId?.Trim();
+                if (!string.IsNullOrWhiteSpace(particleId) &&
+                    !particleId.Equals("none", StringComparison.OrdinalIgnoreCase))
                 {
-                    _dummyEntity.CreateAndAddScriptComponent("TORSpinner", true);
-                    _dummyEntity.GetFirstScriptOfType<TORSpinner>().RotationSpeed = effect.Template.RotationSpeed;
+                    var effectEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
+                    effectEntity.Name = "_statusEffectEntity_" + Agent.Index + "_" + effect.Template.StringID;
+
+                    MatrixFrame entityFrame = MatrixFrame.Identity;
+                    effectEntity.SetFrame(ref entityFrame);
+                    _dummyEntity.AddChild(effectEntity);
+
+                    MatrixFrame particleFrame = MatrixFrame.Identity;
+                    var particle = ParticleSystem.CreateParticleSystemAttachedToEntity(particleId, effectEntity, ref particleFrame);
+
+                    if (particle != null)
+                    {
+                        particles.Add(particle);
+                    }
+
+                    if (effect.Template.Rotation)
+                    {
+                        effectEntity.CreateAndAddScriptComponent("TORSpinner", true);
+                        effectEntity.GetFirstScriptOfType<TORSpinner>().RotationSpeed = effect.Template.RotationSpeed;
+                    }
+
+                    entities.Add(effectEntity);
                 }
 
-                data = new EffectData(effect, new List<ParticleSystem> { psys }, null);
+                data = new EffectData(effect, particles, entities);
                 data.IsParticleAttachedToAgentSkeleton = false;
             }
             else

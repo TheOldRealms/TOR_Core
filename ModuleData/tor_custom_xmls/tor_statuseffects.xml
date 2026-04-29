@@ -1363,10 +1363,10 @@
 		id="amaranth"
 		particle_id="amaranth"
 		particle_intensity="High"
-    	base_effect_value="40"
+    	base_effect_value="50"
 		do_not_attach_to_agent_skeleton="true"
 		type="Resistance"
-		damage_type="Physical"/>
+		damage_type="Magical"/>
 	
 	
 	<StatusEffectTemplate
@@ -1376,7 +1376,7 @@
     	base_effect_value="10"
 		do_not_attach_to_agent_skeleton="true"
 		type="DamageOverTime"
-		damage_type="Physical"/>
+		damage_type="Magical"/>
 		
 	<StatusEffectTemplate
 		id="spirit_leech_heal"
@@ -1385,7 +1385,7 @@
     	base_effect_value="3"
 		do_not_attach_to_agent_skeleton="true"
 		type="HealthOverTime"
-		damage_type="Physical"/>
+		damage_type="Magical"/>
 		
 	<StatusEffectTemplate
 		id="fate_of_bjuna_dot"
@@ -1394,7 +1394,7 @@
 		base_effect_value="3"
 		applies_for_attack_type="Ranged"
 		type="DamageOverTime"
-		damage_type="Fire">
+		damage_type="Magical">
 	</StatusEffectTemplate>
 	
 	<StatusEffectTemplate
@@ -1404,7 +1404,7 @@
 		base_effect_value="-0.5"
 		applies_for_attack_type="Ranged"
 		type="MovementManipulation"
-		damage_type="Fire">
+		damage_type="Magical">
 	</StatusEffectTemplate>
 	
 	<!-- rune magic -->

@@ -6528,7 +6528,7 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_we_enchant_emissaries_mirai">
     <ItemTraits>
-      <ItemTrait>learn_asrai_enchant_emissaries_mirai</ItemTrait>
+      <ItemTrait>learn_we_enchant_emissaries_mirai</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
@@ -6570,7 +6570,7 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_we_enchant_tranquillity_cadai">
     <ItemTraits>
-      <ItemTrait>learn_asrai_enchant_tranquillity_cadai</ItemTrait>
+      <ItemTrait>learn_we_enchant_tranquillity_cadai</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>

@@ -428,9 +428,14 @@
     <Compile Include="BattleMechanics\AI\CommonAIFunctions\IAgentBehavior.cs" />
     <Compile Include="BattleMechanics\AI\CommonAIFunctions\ScoringFunctions.cs" />
     <Compile Include="BattleMechanics\AI\CommonAIFunctions\Target.cs" />
+    <Compile Include="BattleMechanics\AI\TORCultureBattleSettings.cs" />
+    <Compile Include="BattleMechanics\AI\TeamAI\FormationBehavior\TORBehaviorAggressiveMelee.cs" />
     <Compile Include="BattleMechanics\AI\TeamAI\FormationBehavior\TORBehaviorBase.cs" />
+    <Compile Include="BattleMechanics\AI\TeamAI\FormationBehavior\TORBehaviorCharge.cs" />
     <Compile Include="BattleMechanics\AI\TeamAI\FormationBehavior\TORBehaviorDefend.cs" />
     <Compile Include="BattleMechanics\AI\TeamAI\FormationBehavior\TORBehaviorProtectArtillery.cs" />
+    <Compile Include="BattleMechanics\AI\TeamAI\FormationBehavior\TORBehaviorRetreat.cs" />
+    <Compile Include="BattleMechanics\AI\TeamAI\FormationBehavior\TORBehaviorSkirmish.cs" />
     <Compile Include="BattleMechanics\AI\TeamAI\FormationBehavior\TORFormationClass.cs" />
     <Compile Include="BattleMechanics\AI\TeamAI\TeamBehavior\Tactics\TORTacticPositionalArtillery.cs" />
     <Compile Include="BattleMechanics\AI\TeamAI\TeamBehavior\TORTeamAIGeneral.cs" />
