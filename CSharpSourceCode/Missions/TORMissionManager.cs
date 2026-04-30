@@ -47,6 +47,7 @@ namespace TOR_Core.Missions
                     new CampaignMissionComponent(),
                     new EquipmentControllerLeaveLogic(),
                     archeryContestMissionController,
+                    new MissionExperienceBehavior(),
                     new ArcheryContestTournamentBehavior(tournamentGame, settlement, archeryContestMissionController, isPlayerParticipating),
                     new AgentVictoryLogic(),
                     new MissionAgentPanicHandler(),
@@ -72,6 +73,7 @@ namespace TOR_Core.Missions
                     new CampaignMissionComponent(),
                     new EquipmentControllerLeaveLogic(),
                     joustFightMissionController,
+                    new MissionExperienceBehavior(),
                     new JoustTournamentBehavior(tournamentGame, settlement, joustFightMissionController, isPlayerParticipating),
                     new AgentVictoryLogic(),
                     new MissionAgentPanicHandler(),
@@ -100,6 +102,7 @@ namespace TOR_Core.Missions
                 new AgentHumanAILogic(),
                 new MissionConversationLogic(),
                 new DuelFightMissionController(onMissionEnd, duelHero, useRapier),
+                new MissionExperienceBehavior(),
                 new TORMissionAgentHandler(),
                 new HeroSkillHandler(),
                 new MissionFightHandler(),
@@ -125,6 +128,7 @@ namespace TOR_Core.Missions
                 new AgentHumanAILogic(),
                 new MissionConversationLogic(),
                 new QuestFightMissionController(enemyPartyTemplate, enemyCount, onMissionEnd, forceUsableMachineActivation),
+                new MissionExperienceBehavior(),
                 new TORMissionAgentHandler(),
                 new HeroSkillHandler(),
                 new MissionFightHandler(),
@@ -154,6 +158,7 @@ namespace TOR_Core.Missions
                     new BattlePowerCalculationLogic(), //OK
                     new BattleSpawnLogic("battle_set"), //OK
                     new GraveyardFightMissionController(), //OK
+                    new MissionExperienceBehavior(),
                     new CampaignMissionComponent(), //OK
                     new BattleAgentLogic(), //OK
                     new MountAgentLogic(), //OK
@@ -197,6 +202,7 @@ namespace TOR_Core.Missions
                     new BattleSpawnLogic("battle_set"),
                     new AgentHumanAILogic(),
                     new BrawlMissionController(playerSideTroops, enemyPartyRoster, enemyPartySize, onMissionEnd),
+                    new MissionExperienceBehavior(),
                     new HeroSkillHandler(),
                     new MissionFightHandler(),
                     new MissionFacialAnimationHandler(),
@@ -236,6 +242,7 @@ namespace TOR_Core.Missions
                     new AgentMoraleInteractionLogic(),
                     // Custom spawning controller - sets PlayerOwner directly like HideoutMissionController
                     new TrollCaveMissionController(selectedTroops, trollCount, defenderParty, stealthMode),
+                    new MissionExperienceBehavior(),
                     new HeroSkillHandler(),
                     new MissionFightHandler(),
                     new MissionFacialAnimationHandler(),

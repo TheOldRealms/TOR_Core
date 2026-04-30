@@ -37,31 +37,34 @@ namespace TOR_Core.Models
 
                     if (troop != null)
                     {
-                        if (troop.IsUndead())
+                        if (troop.Culture == settlement.Culture)
                         {
-                            var count = 0;
-
-                            var undeadRoRMaximum = 3;
-                            if (settlement.IsVillage)
+                            if (troop.IsUndead())
                             {
-                                undeadRoRMaximum = 1;
-                            }
+                                var count = 0;
 
-                            for (int i = 0; i < settlement.Notables.Count; i++)
-                            {
-                                count++;
-                                if (settlement.Notables[i] == sellerHero)
+                                var undeadRoRMaximum = 3;
+                                if (settlement.IsVillage)
                                 {
-                                    if (count <= undeadRoRMaximum)
-                                    {
-                                        return troop;
-                                    }
+                                    undeadRoRMaximum = 1;
+                                }
 
-                                    return base.GetBasicVolunteer(sellerHero);
+                                for (int i = 0; i < settlement.Notables.Count; i++)
+                                {
+                                    count++;
+                                    if (settlement.Notables[i] == sellerHero)
+                                    {
+                                        if (count <= undeadRoRMaximum)
+                                        {
+                                            return troop;
+                                        }
+
+                                        return base.GetBasicVolunteer(sellerHero);
+                                    }
                                 }
                             }
+                            return troop;
                         }
-                        return troop;
                     }
                 }
             }

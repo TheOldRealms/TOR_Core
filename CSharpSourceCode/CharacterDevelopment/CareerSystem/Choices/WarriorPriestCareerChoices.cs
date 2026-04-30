@@ -1,8 +1,10 @@
+using Helpers;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
@@ -336,8 +338,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         private static bool IsSigmariteTroop(CharacterObject troop)
         {
             var sigmarReligion = Hero.MainHero.GetDominantReligion();
+            var empireCulture = MBObjectManager.Instance.GetObject<CultureObject>(x => x.StringId == TORConstants.Cultures.EMPIRE);
             return (troop.UnitBelongsToCult("cult_of_sigmar") || sigmarReligion.EliteUnits.Contains(troop.OriginalCharacter) || 
-                    (!troop.IsReligiousUnit() && Hero.MainHero.HasCareerChoice("ArchLectorPassive2")));
+                    (troop.Culture.StringId == TORConstants.Cultures.EMPIRE && Hero.MainHero.HasCareerChoice("ArchLectorPassive2") && CharacterHelper.GetTroopTree(empireCulture.BasicTroop).Contains(troop)));
         }
 
         private static bool HolyPurgePassive2(Agent attacker, Agent victim, AttackTypeMask mask)

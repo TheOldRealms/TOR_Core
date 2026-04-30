@@ -2053,6 +2053,7 @@
   <string id="str_weapon_usage.TorOrcTwoHandedPolearm" text="{=str_tor_weapon_usage_TorOrcTwoHandedPolearm}Orc Greatpolearm" />
   <string id="str_weapon_usage.TorOrcTwoHandedAxe" text="{=str_tor_weapon_usage_TorOrcTwoHandedAxe}Orc Two Handed Axe" />
   <string id="str_weapon_usage.TorOrcStaves" text="{=str_tor_weapon_usage_TorOrcStaves}Orc Staff" /> 
+  <string id="str_weapon_usage.TorLargeMonsterWeapon" text="{=str_tor_weapon_usage_TorLargeMonsterWeapon}LargeMonsterWeapon" /> 
 
 
 <!--crafting-->

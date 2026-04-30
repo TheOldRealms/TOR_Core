@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia.Pages;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Generic;
 using TaleWorlds.Library;
+using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TaleWorlds.TwoDimension;
 using TOR_Core.CampaignMechanics.Religion;
@@ -55,6 +56,14 @@ namespace TOR_Core.Extensions.UI
                     }
 
                     var label = TORTextHelper.GetTextObject("tor_religion_label", "Religion") + ": ";
+
+                    //Sly : a bastard of a bandaid to prevent multiple Religion entries from being added. The postfix that leads here triggers on every method implicated in the inheritance chain for the Refresh which causes the additional entries.
+                    foreach (var item in heroVM.Stats.ToList())
+                    {
+                        if (item.Definition == "Religion: ")
+                            heroVM.Stats.Remove(item);
+                    }
+                    
                     heroVM.Stats.Add(new StringPairItemVM(label, religionText));
                 }
             }

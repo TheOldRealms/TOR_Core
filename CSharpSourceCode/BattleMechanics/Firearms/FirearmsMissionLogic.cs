@@ -187,11 +187,11 @@ namespace TOR_Core.BattleMechanics.Firearms
         {
             
             var weaponData = shooterAgent.WieldedWeapon.CurrentUsageItem;
-
+            
             // Check for any weapon with scatter trait
             var traits = shooterAgent.WieldedWeapon.Item?.GetTraits(shooterAgent);
             var scatterTrait = traits?.FirstOrDefaultQ(t => t.StatsTuple?.StatType == ItemTraitStatType.ScatterShot);
-            if (scatterTrait != null)
+            if (scatterTrait != null && ItemTrait.IsValidFor(scatterTrait, shooterAgent.WieldedWeapon.Item.ItemType))
             {
                 RemoveLastProjectile(shooterAgent);
                 float accuracy = 0.05f; // Higher value = more spread for shotgun-style shots

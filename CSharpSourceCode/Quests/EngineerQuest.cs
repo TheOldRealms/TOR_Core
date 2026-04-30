@@ -31,16 +31,17 @@ namespace TOR_Core.Quests
         [SaveableField(5)] private JournalLog _task4 = null;
         [SaveableField(6)] private MobileParty _targetParty = null;
         [SaveableField(7)] private bool _failstate;
+        [SaveableField(8)] private Hero _questHeroToKill = null;
         private bool _skipImprisonment;
-        private string RogueEngineerLeaderName;
+        private string RogueEngineerLeaderName = new TextObject("{ROGUE_ENGINEER_NAME}").ToString();
         private const string QuestName = "Runaway Parts";
         private const string CultistFactionId = "forest_bandits";
-        private string CultistPartyDisplayName;
-        private string CultistPartyLeaderName;
+        private string CultistPartyDisplayName = new TextObject("{tor_quest_engineer_cultist_party_str} Runaway Thieves").ToString();
+        private string CultistPartyLeaderName = new TextObject("{tor_quest_engineer_cultist_party_leader_str} Runaway Thieves Leader").ToString();
         private const string CultistPartyTemplateId = "broken_wheel";
         private const string CultistLeaderTemplateId = "tor_bw_cultist_lord_0";
         private const string EngineerFactionId = "mountain_bandits";
-        private string RogueEngineerDisplayName;
+        private string RogueEngineerDisplayName = TORTextHelper.GetText("rogueEngineerParty", "Goswin");
 
         private const string RogueEngineerPartyTemplateId = "empire_deserters_boss_party";
         private const string RogueEngineerLeaderTemplateId = "tor_engineerquesthero";
@@ -85,10 +86,6 @@ namespace TOR_Core.Quests
         {
             LoadAllLogs();
             _task1 = AddDiscreteLog(_logs[0].LogText, _logs[0].TaskName, 0, 1);
-            RogueEngineerLeaderName = new TextObject("{ROGUE_ENGINEER_NAME}").ToString();
-            RogueEngineerDisplayName = TORTextHelper.GetText("rogueEngineerParty", "Goswin");
-            CultistPartyDisplayName = new TextObject("{tor_quest_engineer_cultist_party_str} Runaway Thieves").ToString();
-            CultistPartyLeaderName = new TextObject("{tor_quest_engineer_cultist_party_leader_str} Runaway Thieves Leader").ToString();
             _currentActiveLog = 0;
         }
 
@@ -123,7 +120,7 @@ namespace TOR_Core.Quests
             base.RegisterEvents();
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, QuestBattleEnded);
             CampaignEvents.OnAgentJoinedConversationEvent.AddNonSerializedListener(this, SkipDialog);
-            CampaignEvents.OnPartyRemovedEvent.AddNonSerializedListener(this, KillLeaderFromQuestPartyAfterDialog);
+            CampaignEvents.OnPartyRemovedEvent.AddNonSerializedListener(this, TrackHeroToKillOnQuestAdvancement);
             CampaignEvents.MapEventEnded.AddNonSerializedListener(this, QuestBattleEndedWithFail);
         }
 
@@ -190,11 +187,11 @@ namespace TOR_Core.Quests
             _skipImprisonment = false;
         }
 
-        private void KillLeaderFromQuestPartyAfterDialog(PartyBase obj)
+        private void TrackHeroToKillOnQuestAdvancement(PartyBase obj)
         {
             if (obj.MobileParty == _targetParty)
             {
-                KillCharacterAction.ApplyByRemove(obj.Owner, false);
+                _questHeroToKill = obj.Owner;
             }
         }
 
@@ -228,6 +225,11 @@ namespace TOR_Core.Quests
                     _task2.UpdateCurrentProgress(1);
                     if (withProgress)
                     {
+                        if (_questHeroToKill != null)
+                        {
+                            KillCharacterAction.ApplyByRemove(_questHeroToKill);//Sly : This doesn't unregister the character object copy associated with the hero. That should probably be added in the future if the game doesn't perform its own cleanup on game load or something.
+                            _questHeroToKill = null;
+                        }
                         SpawnQuestParty(RogueEngineerLeaderTemplateId, RogueEngineerPartyTemplateId, EngineerFactionId,
                             RogueEngineerLeaderName, RogueEngineerDisplayName);
                         _task3 = AddDiscreteLog(_logs[2].LogText, _logs[2].TaskName, 0, 1);
@@ -245,6 +247,11 @@ namespace TOR_Core.Quests
                 case EngineerQuestStates.HandInRogueEngineerHunt:
                     _task4.UpdateCurrentProgress(1);
                     CompleteQuestWithSuccess();
+                    if (_questHeroToKill != null)
+                    {
+                        KillCharacterAction.ApplyByRemove(_questHeroToKill);
+                        _questHeroToKill = null;
+                    }
                     break;
             }
 
@@ -312,6 +319,7 @@ namespace TOR_Core.Quests
             var partyTextObject = new TextObject(partyNameOverride);
             var heroTextObject = new TextObject(heroNameOverride);
             var hero = HeroCreator.CreateSpecialHero(leaderTemplate, settlement, factionClan, null, 45);
+            hero.SetNewOccupation(Occupation.Special);//Sly : the first hero to be spawned draws from a Lord template and this is trying to avoid any issues that could derive from the difference.
             hero.CharacterObject.HiddenInEncyclopedia = true;
             if (heroNameOverride != null) hero.SetName(heroTextObject, heroTextObject);
             var party = QuestPartyComponent.CreateParty(settlement, hero, factionClan, partyTemplate);

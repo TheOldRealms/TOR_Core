@@ -180,7 +180,7 @@ namespace TOR_Core.Models
                         if (Agent.Main != null)
                         {
                             var comp = Agent.Main.GetComponent<AbilityComponent>();
-                            if (!CareerChoicesHelper.ContainsSpellType(comp, [AbilityTargetType.AlliesInAOE, AbilityTargetType.EnemiesInAOE, AbilityTargetType.GroundAtPosition]))
+                            if (!CareerChoicesHelper.ContainsAbilityType(comp, AbilityType.Spell, [AbilityTargetType.AlliesInAOE, AbilityTargetType.EnemiesInAOE, AbilityTargetType.GroundAtPosition]))
                             {
                                 explainedNumber.AddFactor(choice.GetPassiveValue());
                             }

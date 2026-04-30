@@ -31,7 +31,7 @@ namespace TOR_Core.HarmonyPatches
         static void Postfix(ViewModel __instance)
         {
             var extension = __instance.GetExtensionInstance();
-            extension?.RefreshValues();
+            extension?.RefreshValues(); //Sly : this lead to duplicate Religion descriptors on heroes because the postfix would trigger on the base refresh method as well as all of the overrides and it would keep appending a new Stat on for each inheritance level implicated. There should be a better way to do this which doesn't require a bandaid of deleting the previous texts and adding one back afterward.
         }
     }
 }

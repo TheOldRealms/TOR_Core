@@ -346,7 +346,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                         if (evilCultures.Contains(party.Party.Culture.StringId))
                         {
                             var choice = TORCareerChoices.GetChoice("HuntTheWickedPassive2");
-                            var value = choice.GetPassiveValue() / 100f;
+                            var value = choice.GetPassiveValue();
                             renownChange *= (1 + value);
                             break;
                         }
