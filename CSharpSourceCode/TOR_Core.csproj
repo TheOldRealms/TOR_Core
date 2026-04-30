@@ -792,6 +792,7 @@
     <Compile Include="Missions\DuelFightMissionController.cs" />
     <Compile Include="Missions\GraveyardFightMissionController.cs" />
     <Compile Include="Missions\JoustFightMissionController.cs" />
+    <Compile Include="Missions\MissionExperienceBehavior.cs" />
     <Compile Include="Missions\QuestFightMissionController.cs" />
     <Compile Include="Missions\TrollCaveMissionController.cs" />
     <Compile Include="Missions\TORMissionAgentHandler.cs" />

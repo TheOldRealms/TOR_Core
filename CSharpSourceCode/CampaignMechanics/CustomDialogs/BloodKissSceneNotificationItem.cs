@@ -15,7 +15,7 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
 {
     public class BloodKissSceneNotificationItem : SceneNotificationData
     {
-        private Kingdom _sylvania;
+        private Kingdom _sylvania; //Sly : this needs to be updated for the fact that bloodkissable lords are spread across 3 kingdoms initially, and a 4th is possible via Mousillon
         public override RelevantContextType RelevantContext => RelevantContextType.Map;
 
         public override TextObject TitleText => TORTextHelper.GetTextObject("tor_bloodkiss_player_notification", "Player recieves the Blood Kiss.");
@@ -50,6 +50,14 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
         public BloodKissSceneNotificationItem()
         {
             _sylvania = Kingdom.All.FirstOrDefault(x => x.StringId == "sylvania");
+            _sylvania ??= Kingdom.All.FirstOrDefault(x => x.StringId == "necrachs");
+            _sylvania ??= Kingdom.All.FirstOrDefault(x => x.StringId == "blooddragons");
+            _sylvania ??= Kingdom.All.FirstOrDefault(x => x.StringId == "mousillon");
+            if (_sylvania == null)
+            {
+                _sylvania = Kingdom.All.FirstOrDefault();
+                TORCommon.Log("BloodKissSceneNotificationItem : all vampire cultures are dead, using fallback kingdom for bloodkiss. How is a vampire even still alive to grant the bloodkiss?", NLog.LogLevel.Warn);
+            }
         }
     }
 }
