@@ -6406,5 +6406,8 @@
   <!-- Formation AI Strings -->
   <string id="str_formation_ai_behavior_text.TORBehaviorDefend" text="{=str_tor_formation_ai_behavior_text_torbehaviordefend}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are defending." />
   <string id="str_formation_ai_behavior_text.TORBehaviorProtectArtillery" text="{=str_tor_formation_ai_behavior_text_torbehaviorprotectartillery}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are protecting artillery." />	
-  
+  <string id="str_formation_ai_behavior_text.TORBehaviorCharge" text="{=str_tor_formation_ai_behavior_text_torbehaviorcharge}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are charging." />
+  <string id="str_formation_ai_behavior_text.TORBehaviorAggressiveMelee" text="{=str_tor_formation_ai_behavior_text_torbehavioraggressivemelee}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are attacking." />
+  <string id="str_formation_ai_behavior_text.TORBehaviorRetreat" text="{=str_tor_formation_ai_behavior_text_torbehaviorretreat}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are retreating." />
+  <string id="str_formation_ai_behavior_text.TORBehaviorSkirmish" text="{=str_tor_formation_ai_behavior_text_torbehaviorskirmish}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are skirmishing." />  
 </strings>
