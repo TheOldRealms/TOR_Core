@@ -983,10 +983,19 @@ namespace TOR_Core.Models
             if (agents == null || caster == null) return;
 
             var logic = Mission.Current?.GetMissionBehavior<AbilitySystem.AbilityManagerMissionLogic>();
+            var mission = Mission.Current;
 
             foreach (var agent in agents)
             {
-                if (agent == null) continue;
+                if (agent == null || !agent.IsHuman || !agent.IsActive() || agent.Health < 1f || agent.IsFadingOut())
+                {
+                    continue;
+                }
+
+                if (mission != null && mission.FindAgentWithIndex(agent.Index) != agent)
+                {
+                    continue;
+                }
 
                 // Calculate base damage with variance
                 var baseDamage = maxDamage < minDamage ? minDamage : MBRandom.RandomInt(minDamage, maxDamage);
@@ -1045,10 +1054,19 @@ namespace TOR_Core.Models
             if (agents == null) return;
 
             var logic = Mission.Current?.GetMissionBehavior<AbilitySystem.AbilityManagerMissionLogic>();
+            var mission = Mission.Current;
 
             foreach (var agent in agents)
             {
-                if (agent == null) continue;
+                if (agent == null || !agent.IsActive() || agent.Health <= 0f || agent.IsFadingOut())
+                {
+                    continue;
+                }
+
+                if (mission != null && mission.FindAgentWithIndex(agent.Index) != agent)
+                {
+                    continue;
+                }
 
                 var baseHealing = minHeal;
                 if (maxHeal >= minHeal)

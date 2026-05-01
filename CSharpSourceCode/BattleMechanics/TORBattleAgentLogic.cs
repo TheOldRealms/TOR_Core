@@ -1,10 +1,9 @@
 ﻿using SandBox.Missions.MissionLogics;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.Core;
-using TaleWorlds.MountAndBlade;
 using TaleWorlds.Library;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.Utilities;
@@ -486,18 +485,34 @@ namespace TOR_Core.BattleMechanics
             }
 
             Agent.ActionCodeType upperBodyActionType = agent.GetCurrentActionType(1);
-            if (upperBodyActionType == Agent.ActionCodeType.EquipUnequip ||
+            int upperBodyActionCode = (int)upperBodyActionType;
+
+            if ((upperBodyActionCode > (int)Agent.ActionCodeType.Other &&
+                 upperBodyActionCode < (int)Agent.ActionCodeType.Fall) ||
+                (upperBodyActionCode >= (int)Agent.ActionCodeType.Kick &&
+                 upperBodyActionCode <= (int)Agent.ActionCodeType.PassiveUsage) ||
+                (upperBodyActionCode >= (int)Agent.ActionCodeType.StrikeBegin &&
+                 upperBodyActionCode <= (int)Agent.ActionCodeType.MountStrike) ||
+                upperBodyActionType == Agent.ActionCodeType.EquipUnequip ||
                 upperBodyActionType == Agent.ActionCodeType.SwitchAlternative ||
-                upperBodyActionType == Agent.ActionCodeType.ReleaseMelee ||
-                upperBodyActionType == Agent.ActionCodeType.ReleaseRanged ||
-                upperBodyActionType == Agent.ActionCodeType.ReleaseThrowing ||
-                upperBodyActionType == Agent.ActionCodeType.WeaponBash)
+                upperBodyActionType == Agent.ActionCodeType.Guard)
             {
                 return;
             }
 
             Agent.ActionCodeType fullBodyActionType = agent.GetCurrentActionType(0);
-            if (fullBodyActionType == Agent.ActionCodeType.Mount ||
+            int fullBodyActionCode = (int)fullBodyActionType;
+
+            if ((fullBodyActionCode > (int)Agent.ActionCodeType.Other &&
+                 fullBodyActionCode < (int)Agent.ActionCodeType.Fall) ||
+                (fullBodyActionCode >= (int)Agent.ActionCodeType.Kick &&
+                 fullBodyActionCode <= (int)Agent.ActionCodeType.PassiveUsage) ||
+                (fullBodyActionCode >= (int)Agent.ActionCodeType.StrikeBegin &&
+                 fullBodyActionCode <= (int)Agent.ActionCodeType.MountStrike) ||
+                fullBodyActionType == Agent.ActionCodeType.EquipUnequip ||
+                fullBodyActionType == Agent.ActionCodeType.SwitchAlternative ||
+                fullBodyActionType == Agent.ActionCodeType.Guard ||
+                fullBodyActionType == Agent.ActionCodeType.Mount ||
                 fullBodyActionType == Agent.ActionCodeType.Dismount ||
                 fullBodyActionType == Agent.ActionCodeType.Fall ||
                 fullBodyActionType == Agent.ActionCodeType.JumpStart ||
@@ -537,6 +552,46 @@ namespace TOR_Core.BattleMechanics
 
             abilityComponent = agent.GetComponent<AbilityComponent>();
             if (abilityComponent?.KnownAbilitySystem.Any(ability => ability.IsActive) == true)
+            {
+                return;
+            }
+
+            upperBodyActionType = agent.GetCurrentActionType(1);
+            upperBodyActionCode = (int)upperBodyActionType;
+
+            if ((upperBodyActionCode > (int)Agent.ActionCodeType.Other &&
+                 upperBodyActionCode < (int)Agent.ActionCodeType.Fall) ||
+                (upperBodyActionCode >= (int)Agent.ActionCodeType.Kick &&
+                 upperBodyActionCode <= (int)Agent.ActionCodeType.PassiveUsage) ||
+                (upperBodyActionCode >= (int)Agent.ActionCodeType.StrikeBegin &&
+                 upperBodyActionCode <= (int)Agent.ActionCodeType.MountStrike) ||
+                upperBodyActionType == Agent.ActionCodeType.EquipUnequip ||
+                upperBodyActionType == Agent.ActionCodeType.SwitchAlternative ||
+                upperBodyActionType == Agent.ActionCodeType.Guard)
+            {
+                return;
+            }
+
+            fullBodyActionType = agent.GetCurrentActionType(0);
+            fullBodyActionCode = (int)fullBodyActionType;
+
+            if ((fullBodyActionCode > (int)Agent.ActionCodeType.Other &&
+                 fullBodyActionCode < (int)Agent.ActionCodeType.Fall) ||
+                (fullBodyActionCode >= (int)Agent.ActionCodeType.Kick &&
+                 fullBodyActionCode <= (int)Agent.ActionCodeType.PassiveUsage) ||
+                (fullBodyActionCode >= (int)Agent.ActionCodeType.StrikeBegin &&
+                 fullBodyActionCode <= (int)Agent.ActionCodeType.MountStrike) ||
+                fullBodyActionType == Agent.ActionCodeType.EquipUnequip ||
+                fullBodyActionType == Agent.ActionCodeType.SwitchAlternative ||
+                fullBodyActionType == Agent.ActionCodeType.Guard ||
+                fullBodyActionType == Agent.ActionCodeType.Mount ||
+                fullBodyActionType == Agent.ActionCodeType.Dismount ||
+                fullBodyActionType == Agent.ActionCodeType.Fall ||
+                fullBodyActionType == Agent.ActionCodeType.JumpStart ||
+                fullBodyActionType == Agent.ActionCodeType.Jump ||
+                fullBodyActionType == Agent.ActionCodeType.JumpEnd ||
+                fullBodyActionType == Agent.ActionCodeType.JumpEndHard ||
+                agent.IsInBeingStruckAction)
             {
                 return;
             }
@@ -593,6 +648,16 @@ namespace TOR_Core.BattleMechanics
                 }
 
                 var usageItem = missionWeapon.CurrentUsageItem;
+                var item = missionWeapon.Item;
+                var itemStringId = item?.StringId;
+
+                if (item?.ItemType == ItemObject.ItemTypeEnum.Banner ||
+                    usageItem.ItemUsage == "torch" ||
+                    itemStringId?.Contains("banner") == true)
+                {
+                    continue;
+                }
+
                 if (!usageItem.IsMeleeWeapon || usageItem.IsRangedWeapon || usageItem.IsShield)
                 {
                     continue;

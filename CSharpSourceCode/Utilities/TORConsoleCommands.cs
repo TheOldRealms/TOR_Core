@@ -928,10 +928,34 @@ namespace TOR_Core.Utilities
         private static bool HasHostilePartyCheatHeroRole(Hero hero)
         {
             const string spellCasterAttribute = "SpellCaster";
+            const string runesmithAttribute = "Runesmith";
             const string artilleryAttribute = "CanPlaceArtillery";
+            const string engineerCompanionAttribute = "EngineerCompanion";
 
-            return hero.HasAttribute(spellCasterAttribute) ||
-                   hero.HasAttribute(artilleryAttribute);
+            if (hero.IsSpellCaster() ||
+                hero.HasAttribute(spellCasterAttribute) ||
+                hero.HasAttribute(runesmithAttribute) ||
+                hero.HasAttribute(artilleryAttribute) ||
+                hero.HasAttribute(engineerCompanionAttribute))
+            {
+                return true;
+            }
+
+            var extendedInfo = hero.GetExtendedInfo();
+            if (extendedInfo?.AllAbilities == null)
+            {
+                return false;
+            }
+
+            foreach (var abilityId in extendedInfo.AllAbilities)
+            {
+                if (torSpellNames.Contains(abilityId))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
         private static bool CanUseHeroInHostilePartyCheat(Hero hero)
         {
@@ -945,7 +969,9 @@ namespace TOR_Core.Utilities
                 return false;
             }
 
-            if (hero.PartyBelongedTo != null && hero.PartyBelongedTo.LeaderHero == hero)
+            if (hero.PartyBelongedTo != null &&
+                (hero.PartyBelongedTo.MapEvent != null ||
+                 hero.PartyBelongedTo.SiegeEvent != null))
             {
                 return false;
             }
@@ -1017,8 +1043,21 @@ namespace TOR_Core.Utilities
 
             foreach (var selectedHero in selectedHeroes)
             {
+                var sourceParty = selectedHero.PartyBelongedTo;
+
+                if (sourceParty != null &&
+                    sourceParty.IsActive &&
+                    sourceParty != MobileParty.MainParty &&
+                    sourceParty.LeaderHero == selectedHero)
+                {
+                    DestroyPartyAction.Apply(null, sourceParty);
+                }
+
                 AddHeroToPartyAction.Apply(selectedHero, hostileParty, showNotification: false);
             }
+
+            const float hostilePartyCheatMorale = 40f;
+            hostileParty.RecentEventsMorale += hostilePartyCheatMorale - hostileParty.Morale;
 
             hostileParty.SetMoveEngageParty(MobileParty.MainParty, MobileParty.NavigationType.Default);
 

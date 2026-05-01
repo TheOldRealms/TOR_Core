@@ -82,7 +82,14 @@ namespace TOR_Core.Models
                         var ammoTraits = attackInformation.AttackerWeapon.Item?.GetTraits(attackerAgent);//Sly : this assumes that no effects may be applied to multiple weapons in the equipment which would allow ranged weapons to benefit multiple times from a single source. This can otherwise fetch just the traits of the ammo item itself if bugs occur.
                         if (ammoTraits != null)
                         {
-                            traits.AddRange(ammoTraits);
+                            if (traits == null)
+                            {
+                                traits = ammoTraits.ToList();
+                            }
+                            else
+                            {
+                                traits.AddRange(ammoTraits);
+                            }
                         }
                     }
 

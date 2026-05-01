@@ -34,8 +34,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         {
             _currentEffects = new Dictionary<StatusEffect, EffectData>();
             _effectAggregate = new EffectAggregate();
-            _dummyEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
-            _dummyEntity.Name = "_dummyEntity_" + Agent.Index;
+            _dummyEntity = null;
             _baseValues = new Dictionary<DrivenProperty, float>();
         }
 
@@ -105,6 +104,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             return _initBaseValues;
         }
 
+        public bool HasActiveEffects => _currentEffects.Count > 0;
+
         public override void OnAgentRemoved() => CleanUp();
 
         public override void OnComponentRemoved() => CleanUp();
@@ -123,7 +124,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 effect.CurrentDuration--;
                 if (effect.CurrentDuration <= 0)
                 {
-                    RemoveEffect(effect);
+                    RemoveEffect(effect, false);
                 }
             }
 
@@ -237,7 +238,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             _dummyEntity.SetGlobalFrame(new MatrixFrame(_dummyEntity.GetFrame().rotation, Agent.GetChestGlobalPosition()));
         }
 
-        private void RemoveEffect(StatusEffect effect)
+        private void RemoveEffect(StatusEffect effect, bool refreshStatusState = true)
         {
             EffectData data = _currentEffects[effect];
             bool visualsUsable = Agent != null && Agent.HasUsableVisuals();
@@ -271,15 +272,79 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 }
             }
 
-            if (data.Effect.Template.Type == StatusEffectTemplate.EffectType.MovementManipulation)
+            _currentEffects.Remove(effect);
+
+            if (!data.IsParticleAttachedToAgentSkeleton)
             {
-                if (Mathf.Abs(GetMovementSpeedModifier() - effect.Template.BaseEffectValue) - 0.00001f <= 0f)
+                RemoveDetachedDummyIfEmpty();
+            }
+
+            if (refreshStatusState)
+            {
+                RefreshStatusStateAfterRemoval();
+            }
+        }
+
+        private void RemoveDetachedDummyIfEmpty()
+        {
+            if (_dummyEntity == null)
+            {
+                return;
+            }
+            foreach (var effectData in _currentEffects.Values)
+            {
+                if (!effectData.IsParticleAttachedToAgentSkeleton &&
+                    effectData.Entities != null &&
+                    effectData.Entities.Count > 0)
                 {
-                    Agent.UpdateAgentProperties();
+                    return;
                 }
             }
 
-            _currentEffects.Remove(effect);
+            _dummyEntity.RemoveAllChildren();
+            _dummyEntity.Remove(0);
+            _dummyEntity = null;
+        }
+        private void RefreshStatusStateAfterRemoval()
+        {
+            CalculateEffectAggregate();
+
+            ModifiedDrivenProperties =
+                _effectAggregate.SpeedProperties != 0 ||
+                _effectAggregate.AttackSpeedProperties != 0 ||
+                _effectAggregate.ReloadSpeedProperties != 0;
+
+            if (Agent == null || !Agent.IsActive() || Agent.IsFadingOut())
+            {
+                return;
+            }
+
+            if (ModifiedDrivenProperties)
+            {
+                _restoredBaseValues = false;
+                Agent.UpdateAgentProperties();
+
+                if (Agent.HasMount)
+                {
+                    Agent.MountAgent.UpdateAgentProperties();
+                }
+
+                return;
+            }
+
+            if (_restoredBaseValues)
+            {
+                return;
+            }
+
+            Agent.UpdateAgentProperties();
+
+            if (Agent.HasMount)
+            {
+                Agent.MountAgent.UpdateAgentProperties();
+            }
+
+            _restoredBaseValues = true;
         }
 
         public float[] GetAmplifiers(AttackTypeMask mask)
@@ -365,17 +430,27 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         private void AddEffect(StatusEffect effect)
         {
+            bool wasDormant = _currentEffects.Count == 0;
             EffectData data;
+            var particleId = effect.Template.ParticleId?.Trim();
+            bool hasVisibleParticle =
+                !string.IsNullOrWhiteSpace(particleId) &&
+                !particleId.Equals("none", StringComparison.OrdinalIgnoreCase);
 
             if (effect.Template.DoNotAttachToAgentSkeleton)
             {
                 var particles = new List<ParticleSystem>();
                 var entities = new List<GameEntity>();
 
-                var particleId = effect.Template.ParticleId?.Trim();
-                if (!string.IsNullOrWhiteSpace(particleId) &&
-                    !particleId.Equals("none", StringComparison.OrdinalIgnoreCase))
+                if (hasVisibleParticle)
                 {
+                    if (_dummyEntity == null)
+                    {
+                        _dummyEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
+                        _dummyEntity.Name = "_dummyEntity_" + Agent.Index;
+                        _dummyEntity.SetGlobalFrame(new MatrixFrame(Mat3.Identity, Agent.GetChestGlobalPosition()));
+                    }
+
                     var effectEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
                     effectEntity.Name = "_statusEffectEntity_" + Agent.Index + "_" + effect.Template.StringID;
 
@@ -390,14 +465,22 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     {
                         particles.Add(particle);
                     }
-
-                    if (effect.Template.Rotation)
+                    else
                     {
-                        effectEntity.CreateAndAddScriptComponent("TORSpinner", true);
-                        effectEntity.GetFirstScriptOfType<TORSpinner>().RotationSpeed = effect.Template.RotationSpeed;
+                        effectEntity.Remove(0);
+                        effectEntity = null;
                     }
 
-                    entities.Add(effectEntity);
+                    if (effectEntity != null)
+                    {
+                        if (effect.Template.Rotation)
+                        {
+                            effectEntity.CreateAndAddScriptComponent("TORSpinner", true);
+                            effectEntity.GetFirstScriptOfType<TORSpinner>().RotationSpeed = effect.Template.RotationSpeed;
+                        }
+
+                        entities.Add(effectEntity);
+                    }
                 }
 
                 data = new EffectData(effect, particles, entities);
@@ -406,18 +489,30 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             else
             {
                 List<GameEntity> entities;
-                List<ParticleSystem> particles = TORParticleSystem.ApplyParticleToAgent(Agent, effect.Template.ParticleId, out entities, effect.Template.ParticleIntensity, effect.Template.ApplyToRootBoneOnly);
+                List<ParticleSystem> particles = TORParticleSystem.ApplyParticleToAgent(
+                    Agent,
+                    effect.Template.ParticleId,
+                    out entities,
+                    effect.Template.ParticleIntensity,
+                    effect.Template.ApplyToRootBoneOnly);
+
                 data = new EffectData(effect, particles, entities);
             }
 
             _currentEffects.Add(effect, data);
+
+            if (wasDormant)
+            {
+                //avoid sync newer over time effects on the same delayed tick
+                _deltaSinceLastTick = MBRandom.RandomFloatRanged(0, _updateFrequency);
+            }
         }
 
         private void CleanUp()
         {
             foreach (var item in _currentEffects.ToList())
             {
-                RemoveEffect(item.Key);
+                RemoveEffect(item.Key, false);
             }
 
             _currentEffects.Clear();
@@ -549,35 +644,53 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         public void RemoveStatusEffect(string StatusEffectID, EffectFlag flag = EffectFlag.Single)
         {
-            if (flag != EffectFlag.Single)
+            if (flag == EffectFlag.Single)
             {
-                var targetEffects = _currentEffects.Keys.Where(x => x.Template.StringID.Contains(StatusEffectID)).ToList();
-                foreach (var statusEffect in targetEffects)
+                var targetEffect = _currentEffects.Keys.FirstOrDefault(x => x.Template.StringID.Contains(StatusEffectID));
+
+                if (targetEffect == null)
                 {
-                    var type = statusEffect.Template.Type;
-
-                    if (flag == EffectFlag.Enemy)
-                    {
-                        var isHex = type == StatusEffectTemplate.EffectType.DamageOverTime || statusEffect.Template.BaseEffectValue < 0 &&
-                            (type == StatusEffectTemplate.EffectType.DamageAmplification ||
-                             type == StatusEffectTemplate.EffectType.ReloadSpeedManipulation ||
-                             type == StatusEffectTemplate.EffectType.AttackSpeedManipulation ||
-                             type == StatusEffectTemplate.EffectType.MovementManipulation);
-
-                        if (isHex)
-                        {
-                            RemoveEffect(statusEffect);
-                        }
-                    }
-
-                    RemoveEffect(statusEffect);
+                    return;
                 }
+
+                RemoveEffect(targetEffect);
+                return;
             }
-            var targetEffect = _currentEffects.Keys.FirstOrDefault(x => x.Template.StringID.Contains(StatusEffectID));
 
-            if (targetEffect == null) return;
+            var targetEffects = _currentEffects.Keys
+                .Where(x => x.Template.StringID.Contains(StatusEffectID))
+                .ToList();
 
-            RemoveEffect(targetEffect);
+            bool removedAnyStatusEffect = false;
+
+            foreach (var statusEffect in targetEffects)
+            {
+                if (flag == EffectFlag.Enemy && !IsEnemyStatusEffect(statusEffect))
+                {
+                    continue;
+                }
+
+                RemoveEffect(statusEffect, false);
+                removedAnyStatusEffect = true;
+            }
+
+            if (removedAnyStatusEffect)
+            {
+                RefreshStatusStateAfterRemoval();
+            }
+        }
+
+        private static bool IsEnemyStatusEffect(StatusEffect statusEffect)
+        {
+            var type = statusEffect.Template.Type;
+
+            return type == StatusEffectTemplate.EffectType.DamageOverTime ||
+                   statusEffect.Template.BaseEffectValue < 0 &&
+                   (type == StatusEffectTemplate.EffectType.DamageAmplification ||
+                    type == StatusEffectTemplate.EffectType.Resistance ||
+                    type == StatusEffectTemplate.EffectType.ReloadSpeedManipulation ||
+                    type == StatusEffectTemplate.EffectType.AttackSpeedManipulation ||
+                    type == StatusEffectTemplate.EffectType.MovementManipulation);
         }
 
         public enum EffectFlag

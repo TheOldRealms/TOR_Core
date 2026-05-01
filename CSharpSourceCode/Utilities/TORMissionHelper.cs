@@ -44,9 +44,19 @@ namespace TOR_Core.Utilities
             }
 
             // Fallback for non-campaign mode
+            var mission = Mission.Current;
+
             foreach (var agent in agents)
             {
-                if (agent == null) continue;
+                if (agent == null || !agent.IsHuman ||  !agent.IsActive() || agent.Health < 1f || agent.IsFadingOut())
+                {
+                    continue;
+                }
+
+                if (mission != null && mission.FindAgentWithIndex(agent.Index) != agent)
+                {
+                    continue;
+                }
 
                 var baseDamage = maxDamage < minDamage ? minDamage : MBRandom.RandomInt(minDamage, maxDamage);
                 if (baseDamage < 0) continue;
@@ -85,9 +95,19 @@ namespace TOR_Core.Utilities
             // Fallback for non-campaign mode
             var logic = Mission.Current?.GetMissionBehavior<AbilitySystem.AbilityManagerMissionLogic>();
 
+            var mission = Mission.Current;
+
             foreach (var agent in agents)
             {
-                if (agent == null) continue;
+                if (agent == null || !agent.IsActive() || agent.Health <= 0f || agent.IsFadingOut())
+                {
+                    continue;
+                }
+
+                if (mission != null && mission.FindAgentWithIndex(agent.Index) != agent)
+                {
+                    continue;
+                }
                 var amount = minHeal;
                 if (maxHeal < minHeal)
                 {
@@ -114,13 +134,25 @@ namespace TOR_Core.Utilities
 
         public static void ApplyStatusEffectToAgents(IEnumerable<Agent> agents, string effectId, Agent applierAgent, float duration = 5, bool append = true, bool isMutated = false, int castId = -1)
         {
-            if (agents != null)
+            if (agents == null)
             {
-                foreach (var agent in agents)
+                return;
+            }
+
+            var mission = Mission.Current;
+
+            foreach (var agent in agents)
+            {
+                if (agent == null || !agent.IsHuman || !agent.IsActive() || agent.Health < 1f || agent.IsFadingOut())
                 {
-                    if (agent == null) continue;
-                    agent.ApplyStatusEffect(effectId, applierAgent, duration, append, isMutated, false, castId);
+                    continue;
                 }
+                if (mission != null && mission.FindAgentWithIndex(agent.Index) != agent)
+                {
+                    continue;
+                }
+
+                agent.ApplyStatusEffect(effectId, applierAgent, duration, append, isMutated, false, castId);
             }
         }
 
