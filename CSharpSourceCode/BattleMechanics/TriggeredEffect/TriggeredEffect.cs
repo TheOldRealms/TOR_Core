@@ -46,7 +46,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         internal static void ProcessPendingDisposals(float currentMissionTime)
         {
             List<TriggeredEffect> effectsToDispose = null;
-            int remainingPendingDisposals = 0;
 
             lock (_pendingDisposeLock)
             {
@@ -67,8 +66,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                     effectsToDispose.Add(pending.Effect);
                     _pendingDisposals.RemoveAt(i);
                 }
-
-                remainingPendingDisposals = _pendingDisposals.Count;
             }
 
             if (effectsToDispose == null)
@@ -151,22 +148,42 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
 
                 foreach (var effect in _template.AssociatedStatusEffects)
                 {
-                    if (triggererAgent.Character is CharacterObject triggererCharacter && triggererCharacter.GetPerkValue(TORPerks.Spellcraft.ArcaneLink) && effect.IsBuffEffect && (_template.TargetType == TargetType.Friendly || _template.TargetType == TargetType.FriendlyHero))
+                    if (triggererAgent.Character is CharacterObject triggererCharacter &&
+                        triggererCharacter.GetPerkValue(TORPerks.Spellcraft.ArcaneLink) &&
+                        effect.IsBuffEffect &&
+                        (_template.TargetType == TargetType.Friendly || _template.TargetType == TargetType.FriendlyHero))
                     {
-                        if (!targets.Contains(triggererAgent)) targets.Add(triggererAgent);
+                        if (!targets.Contains(triggererAgent))
+                        {
+                            targets.Add(triggererAgent);
+                        }
                     }
-                    TORMissionHelper.ApplyStatusEffectToAgents(targets, effect.StringID, triggererAgent, statusEffectDuration, true, _isTemplateMutated, castId);
+
+                    var statusTargets = new MBList<Agent>();
+                    foreach (var target in targets)
+                    {
+                        if (CanReceiveTriggeredStatusEffect(target))
+                        {
+                            statusTargets.Add(target);
+                        }
+                    }
+
+                    if (statusTargets.Count == 0)
+                    {
+                        continue;
+                    }
 
                     // Book status effects and expected DOT/HOT immediately
+                    TORMissionHelper.ApplyStatusEffectToAgents(statusTargets, effect.StringID, triggererAgent, statusEffectDuration, true, _isTemplateMutated, castId);
+
                     if (castId >= 0 && logic != null)
                     {
                         int expectedTicks = (int)statusEffectDuration;
                         int expectedValuePerTarget = (int)(expectedTicks * effect.BaseEffectValue);
 
-                        foreach (var target in targets)
+                        // session status should follow the same target filter as its apply method to prevent aoe status effects counting to non active agents
+                        foreach (var target in statusTargets)
                         {
-                            if (target == null) continue;
-
                             // Book status effect application for XP
                             logic.BookSpellStatusEffect(castId, target);
 
@@ -216,13 +233,23 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 Dispose();
             }
         }
+        private static bool CanReceiveTriggeredStatusEffect(Agent agent)
+        {
+            if (agent == null || !agent.IsHuman || !agent.IsActive() || agent.Health < 1f || agent.IsFadingOut())
+            {
+                return false;
+            }
 
+            var mission = Mission.Current;
+            return mission == null || mission.FindAgentWithIndex(agent.Index) == agent;
+        }
 
         private void SpawnVisuals(Vec3 position, Vec3 normal)
         {
             //play visuals
             var burstPrefab = _template?.BurstParticleEffectPrefab?.Trim();
-            if (!string.IsNullOrEmpty(burstPrefab) && burstPrefab != "none")
+            if (!string.IsNullOrWhiteSpace(burstPrefab) &&
+                !burstPrefab.Equals("none", StringComparison.OrdinalIgnoreCase))
             {
                 var effect = GameEntity.CreateEmpty(Mission.Current.Scene);
                 MatrixFrame frame = MatrixFrame.Identity;
@@ -243,7 +270,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 return;
 
             soundEffectId = soundEffectId.Trim();
-            if (soundEffectId == "none")
+            if (soundEffectId.Equals("none", StringComparison.OrdinalIgnoreCase))
                 return;
 
             var soundIndex = SoundEvent.GetEventIdFromString(soundEffectId);

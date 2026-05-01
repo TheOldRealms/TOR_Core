@@ -22,6 +22,23 @@ public static class MobilePartyPatches
                !hero.Clan.IsOutlaw;
     }
 
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(Clan), "get_DefaultPartyTemplate")]
+    public static void UseCultureTemplateForBrokenClanDefaultTemplate(Clan __instance, ref PartyTemplateObject __result)
+    {
+        if (__result?.Stacks != null && __result.ShipHulls != null)
+        {
+            return;
+        }
+
+        var culturePartyTemplate = __instance.Culture?.DefaultPartyTemplate;
+        if (culturePartyTemplate?.Stacks == null || culturePartyTemplate.ShipHulls == null)
+        {
+            return;
+        }
+        __result = culturePartyTemplate;
+    }
+
     //Fill available cultures
     [HarmonyPrefix]
     [HarmonyPatch(typeof(PartyBase), "UpdateVisibilityAndInspected", MethodType.Normal)]
