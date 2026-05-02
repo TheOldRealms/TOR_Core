@@ -14,5 +14,15 @@ namespace TOR_Core.Models
         {
             return false;
         }
+        public override bool IsClanSuitableForMarriage(Clan clan)
+        {
+            return false;
+        }
+
+        public override bool ShouldNpcMarriageBetweenClansBeAllowed(Clan consideringClan, Clan targetClan)
+        {
+            return false;
+        }
+
     }
 }
