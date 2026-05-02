@@ -96,6 +96,16 @@ namespace TOR_Core.Models
                 if (traitSourceItem != null)
                 {
                     var traits = traitSourceItem.GetTraits(attackerAgent);
+
+                    if (missileWeapon.IsAnyAmmo())
+                    {
+                        var ammoTraits = missileWeapon.Item?.GetTraits(attackerAgent);
+                        if (ammoTraits != null)
+                        {
+                            traits.AddRange(ammoTraits);
+                        }
+                    }
+
                     if (traits.Any(t => t.StatsTuple?.StatType == ItemTraitStatType.ShieldPenetration))
                     {
                         missileWeaponFlags |= WeaponFlags.CanPenetrateShield;

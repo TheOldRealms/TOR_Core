@@ -1,5 +1,6 @@
 using Helpers;
 using SandBox.GameComponents;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.AgentOrigins;
@@ -82,18 +83,23 @@ namespace TOR_Core.Models
                         var ammoTraits = attackInformation.AttackerWeapon.Item?.GetTraits(attackerAgent);//Sly : this assumes that no effects may be applied to multiple weapons in the equipment which would allow ranged weapons to benefit multiple times from a single source. This can otherwise fetch just the traits of the ammo item itself if bugs occur.
                         if (ammoTraits != null)
                         {
-                            traits.AddRange(ammoTraits);
+                            if (traits == null)
+                            {
+                                traits = ammoTraits;
+                            }
+                            else
+                            {
+                                traits.AddRange(ammoTraits);
+                            }
+                                
                         }
                     }
 
                     if (traits != null)
                     {
-                        foreach (var trait in traits)
+                        foreach (var trait in traits.WhereQ(x => x.StatsTuple?.StatType == ItemTraitStatType.ArmorPenetration))
                         {
-                            if (trait?.StatsTuple?.StatType == ItemTraitStatType.ArmorPenetration)
-                            {
-                                resultArmor.AddFactor(-trait.StatsTuple.Value / 100);
-                            }
+                            resultArmor.AddFactor(-trait.StatsTuple.Value / 100);
                         }
                     }
                 }

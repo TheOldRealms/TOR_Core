@@ -43,7 +43,8 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
 
                         foreach (var item in equipmentItems)
                         {
-                            bonus += item.GetTraits().Count;
+                            if (item.GetTraits().Any())
+                                bonus += 1;
                         }
                     }
                 }

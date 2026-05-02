@@ -48,9 +48,9 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     TORCommon.Log("StatusEffectMissionLogic : null agent checked for status - probably dead and removed from the list due to reinforcements.", LogLevel.Warn);
                     continue;
                 }
-                if (agent?.GetComponent<StatusEffectComponent>() != null)
+                if (agent.IsActive() && agent.Health > 1f)
                 {
-                    if (agent.IsActive() && agent.Health > 1f)
+                    if (agent?.GetComponent<StatusEffectComponent>() != null)
                     {
                         var comp = agent.GetComponent<StatusEffectComponent>();
                         comp.OnTick(dt);
