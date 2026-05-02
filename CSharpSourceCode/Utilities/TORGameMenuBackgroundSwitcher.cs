@@ -155,6 +155,9 @@ namespace TOR_Core.Utilities
                 case TORConstants.Cultures.ASRAI:
                     args.MenuContext.SetBackgroundMeshName("we_tavern");
                     return;
+                case TORConstants.Cultures.DAWI:
+                    args.MenuContext.SetBackgroundMeshName("dwarf_tavern");
+                    return;
             }
         }
 
