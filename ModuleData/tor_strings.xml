@@ -3637,7 +3637,7 @@
   <string id="tor_careerchoice_description.SilverHammerPassive1" text="{=str_tor_careerchoice_description_SilverHammerPassive1}Gain Faith skill per kill when facing the forces of 'Chaos' or 'Undead'." />
   <string id="tor_careerchoice_description.SilverHammerPassive2" text="{=str_tor_careerchoice_description_SilverHammerPassive2}+10% 'Holy' damage for all units when facing the forces of 'Chaos' or 'Undead'." />
   <string id="tor_careerchoice_description.SilverHammerPassive3" text="{=str_tor_careerchoice_description_SilverHammerPassive3}'Sneak' attacks gain a 'Holy' damage boost based off Faith. (0.5% per level.)" />
-  <string id="tor_careerchoice_description.SilverHammerPassive4" text="{=str_tor_careerchoice_description_SilverHammerPassive4}Promote non 'Knight' tier 4+ troops to your personal Retinue." />
+  <string id="tor_careerchoice_description.SilverHammerPassive4" text="{=str_tor_careerchoice_description_SilverHammerPassive4}Promote non 'Knight' tier 3+ troops to your personal Retinue." />
   
   <string id="tor_careerchoice_description.NoRestAgainstEvilKeystone" text="{=str_tor_careerchoice_description_NoRestAgainstEvilKeystone}Accusation now allows for 'Shield Penetration' and no longer risks losing its Mark on hit." />
   <string id="tor_careerchoice_description.NoRestAgainstEvilPassive1" text="{=str_tor_careerchoice_description_NoRestAgainstEvilPassive1}+10% personal 'Holy' melee damage." />
