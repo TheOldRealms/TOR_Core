@@ -374,6 +374,27 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     }
 
 
+    public class ApplyMightyHeavensItemTraitScript : ITriggeredScript
+    {
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
+        {
+            if (triggeredAgents.Count() > 0)
+            {
+                var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "mighty_true_sapphire");
+                if (trait == null) return;
+
+                foreach (Agent agent in triggeredAgents)
+                {
+                    var comp = agent?.GetComponent<ItemTraitAgentComponent>();
+                    if (comp != null)
+                    {
+                        comp.AddTraitToWieldedWeapon(trait, duration);
+                    }
+                }
+            }
+        }
+    }
+
     public class SpiritLeech : ITriggeredScript
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
