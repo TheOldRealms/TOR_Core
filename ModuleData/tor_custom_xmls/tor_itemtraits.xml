@@ -63,6 +63,15 @@
     <AdditionalDamageTuple DamageType="Lightning" Percent="0.20" />
     <WeaponParticlePreset ParticlePrefab="electric_weapon" IsUniqueSingleCopy="false" />
   </ItemTrait>
+  <ItemTrait ItemTraitStringId="mighty_true_sapphire" ItemTraitName="Mighty True Sapphire" IsCraftable="false" ImbuedStatusEffectId="powerstone_heavens_debuff" IconName="traits_lightning_icon">
+    <ValidItemType>Weapon</ValidItemType>
+    <IngredientItem>AmberCrystal</IngredientItem>
+    <IngredientAmount>1</IngredientAmount>
+    <ItemTraitDescription>This weapon is guided by Azyr. It deals an extra 20% lightning damage, amplifies physical damage by 20%, and slows enemies on hit.</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Lightning" Percent="0.20" />
+    <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
+    <WeaponParticlePreset ParticlePrefab="electric_weapon" IsUniqueSingleCopy="false" />
+  </ItemTrait>
   <ItemTrait ItemTraitStringId="shyish_weapon" ItemTraitName="Shyish Infused Weapon" IsCraftable="false" IconName="traits_magic_icon">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>

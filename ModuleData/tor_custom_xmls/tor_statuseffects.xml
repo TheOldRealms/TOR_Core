@@ -1971,6 +1971,16 @@
 	<!-- powerstones -->
 
 	<StatusEffectTemplate
+		id="powerstone_fire_amp_1"
+		particle_id="general_fire_buff"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.50"
+		applies_for_attack_type="All"
+		type="DamageAmplification"
+		damage_type="Fire">
+	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
 		id="powerstone_fire_amp_2"
 		particle_id="general_fire_buff"
 		do_not_attach_to_agent_skeleton="true"
@@ -2071,6 +2081,16 @@
 	</StatusEffectTemplate>
 	
 	<StatusEffectTemplate
+		id="powerstone_light_dmg"
+		particle_id="general_light_buff"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.15"
+		applies_for_attack_type="Melee"
+		type="DamageAmplification"
+		damage_type="Physical">
+	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
 		id="powerstone_light_amp_1"
 		particle_id="general_light_buff"
 		do_not_attach_to_agent_skeleton="true"
@@ -2079,7 +2099,7 @@
 		type="DamageAmplification"
 		damage_type="Physical">
 	</StatusEffectTemplate>
-	
+
 	<StatusEffectTemplate
 		id="powerstone_light_mov_debuff"
 		particle_id="general_light_debuff"

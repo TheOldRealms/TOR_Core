@@ -1,5 +1,6 @@
 using Helpers;
 using SandBox.GameComponents;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.AgentOrigins;
@@ -84,23 +85,21 @@ namespace TOR_Core.Models
                         {
                             if (traits == null)
                             {
-                                traits = ammoTraits.ToList();
+                                traits = ammoTraits;
                             }
                             else
                             {
                                 traits.AddRange(ammoTraits);
                             }
+                                
                         }
                     }
 
                     if (traits != null)
                     {
-                        foreach (var trait in traits)
+                        foreach (var trait in traits.WhereQ(x => x.StatsTuple?.StatType == ItemTraitStatType.ArmorPenetration))
                         {
-                            if (trait?.StatsTuple?.StatType == ItemTraitStatType.ArmorPenetration)
-                            {
-                                resultArmor.AddFactor(-trait.StatsTuple.Value / 100);
-                            }
+                            resultArmor.AddFactor(-trait.StatsTuple.Value / 100);
                         }
                     }
                 }

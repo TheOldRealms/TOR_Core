@@ -49,10 +49,13 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     continue;
                 }
 
-                var comp = agent.GetComponent<StatusEffectComponent>();
-                if (comp != null && comp.HasActiveEffects && agent.IsActive() && agent.Health > 1f)
+                if (agent.IsActive() && agent.Health > 1f)
                 {
-                    comp.OnTick(dt);
+                    var comp = agent.GetComponent<StatusEffectComponent>();
+                    if (comp != null && comp.HasActiveEffects)
+                    {
+                        comp.OnTick(dt);
+                    }
                 }
             }
 
