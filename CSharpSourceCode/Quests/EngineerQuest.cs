@@ -122,6 +122,7 @@ namespace TOR_Core.Quests
             CampaignEvents.OnAgentJoinedConversationEvent.AddNonSerializedListener(this, SkipDialog);
             CampaignEvents.OnPartyRemovedEvent.AddNonSerializedListener(this, TrackHeroToKillOnQuestAdvancement);
             CampaignEvents.MapEventEnded.AddNonSerializedListener(this, QuestBattleEndedWithFail);
+            CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, CorrectHeroOccupationAndClanStatus);
         }
 
         private void QuestBattleEnded(MapEvent mapEvent)
@@ -319,7 +320,6 @@ namespace TOR_Core.Quests
             var partyTextObject = new TextObject(partyNameOverride);
             var heroTextObject = new TextObject(heroNameOverride);
             var hero = HeroCreator.CreateSpecialHero(leaderTemplate, settlement, factionClan, null, 45);
-            hero.SetNewOccupation(Occupation.Special);//Sly : the first hero to be spawned draws from a Lord template and this is trying to avoid any issues that could derive from the difference.
             hero.CharacterObject.HiddenInEncyclopedia = true;
             if (heroNameOverride != null) hero.SetName(heroTextObject, heroTextObject);
             var party = QuestPartyComponent.CreateParty(settlement, hero, factionClan, partyTemplate);
@@ -337,6 +337,34 @@ namespace TOR_Core.Quests
 
         protected override void HourlyTick()
         {
+        }
+
+        /// <summary>
+        /// Fixes a quest NPC in a half spawned state that has them not be considered part of the clan they're assigned to and therefore when the player finishes a conversation with them, it causes a call to Clan.Leader to find the reputation for the playerHero and returns a null leader because the clan has no heroes in its caches (but the hero's clan is properly set to the clan; it's one directional mismatch).
+        /// </summary>
+        /// <remarks>
+        /// This can be removed at a future point as it was specifically for a bug introduced in our April 30th, 2026 release that caused a crash if the player spawned Goswin's quest party after the patch. The issue was fixed when this method was created and this serves to uncorrupt Goswin's state.
+        /// </remarks>
+        protected void CorrectHeroOccupationAndClanStatus(CampaignGameStarter campaignGameStarter)
+        {
+            foreach (var quest in Campaign.Current.QuestManager.Quests.WhereQ(x => x.GetType() == typeof(EngineerQuest)))
+            {
+                var quest2 = quest as EngineerQuest;
+                var party = quest2.TargetParty;
+                var leader = party.LeaderHero;
+                if (leader != null && leader.IsSpecial && leader.CharacterObject.OriginalCharacter != null && leader.CharacterObject.OriginalCharacter.StringId == RogueEngineerLeaderTemplateId)
+                {
+                    if (leader.IsNotSpawned)
+                    {
+                        leader.ChangeState(Hero.CharacterStates.Active);
+                        leader.SetNewOccupation(Occupation.Lord);
+                        if (leader.Clan != null && !leader.IsClanLeader)
+                        {
+                            leader.Clan.SetLeader(leader);
+                        }
+                    }
+                }
+            }
         }
     }
 
