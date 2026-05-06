@@ -248,7 +248,16 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
     public bool IsEnchanter(Hero hero)
     {
+        if (hero.Template != null)
+        {
+            _cultureToTemplateMap.TryGetValue(hero.Culture.StringId, out var templateId);
+            if (hero.Template.StringId == templateId.enchanterTemplate)
+            {
+                return true;
+            }
+        }
         return _settlementToEnchanterMap.ContainsValue(hero.StringId);
+        
     }
 
     private bool SettlementMatchesEnchanterCulture(string culture)
