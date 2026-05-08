@@ -2,7 +2,7 @@
 # title: Enchanting and Artifacts
 # frequency: Special
 # development: false
-# illustration: campfirenight
+# illustration: generic_magic
 
 INCLUDE include.ink
 
