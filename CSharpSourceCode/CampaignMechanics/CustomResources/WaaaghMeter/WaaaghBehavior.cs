@@ -128,7 +128,12 @@ public class WaaaghBehavior : CampaignBehaviorBase
 
         // Get renown change directly from battle rewards (works for both manual and autoresolve)
         mapEvent.GetBattleRewards(PartyBase.MainParty, out float renownChange, out _, out _, out _, out _);
+        if (double.IsNaN(renownChange))
+        {
+            renownChange = 0f;
+        }
         var renownDelta = Math.Max(0.0, renownChange);
+
         var isSimulation = false;
 
         if (mapEvent.IsPlayerSimulation)

@@ -3077,6 +3077,19 @@
                              ScriptNameToTrigger="none">
         <ImbuedStatusEffect>powerstone_light_mov</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
+    <TriggeredEffectTemplate StringID="powerstone_light_dmg"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Physical"
+                             DamageAmount="0"
+                             Radius="15"
+                             HasShockWave="false"
+                             TargetType="Friendly"
+                             ImbuedStatusEffectDuration="8"
+                             ScriptNameToTrigger="none">
+        <ImbuedStatusEffect>powerstone_light_dmg</ImbuedStatusEffect>
+    </TriggeredEffectTemplate>
     <TriggeredEffectTemplate StringID="powerstone_light_res2"
                              BurstParticleEffectPrefab="none"
                              SoundEffectId="none"
