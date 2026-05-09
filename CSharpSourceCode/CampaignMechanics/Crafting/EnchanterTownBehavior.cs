@@ -124,8 +124,33 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
     private void SpawnEnchanterIfNeeded()
     {
-        if (Settlement.CurrentSettlement != null && Settlement.CurrentSettlement.IsTown && !IsTrainerInCollege(Settlement.CurrentSettlement))
+        if (Settlement.CurrentSettlement == null || !Settlement.CurrentSettlement.IsTown)
+            return;
+
+        EnsureEnchanterMappedForSettlement(Settlement.CurrentSettlement);
+
+        if (!IsTrainerInCollege(Settlement.CurrentSettlement))
             SpawnEnchanter(Settlement.CurrentSettlement, true);
+    }
+
+    private void EnsureEnchanterMappedForSettlement(Settlement settlement)
+    {
+        if (_settlementToEnchanterMap.ContainsKey(settlement.StringId))
+            return;
+
+        // Check if this is an enchanter town (culture has enchanter support)
+        if (!_cultureToTemplateMap.TryGetValue(settlement.Culture.StringId, out var templateInfo))
+            return;
+
+        if (_multiUseCultures.Contains(settlement.Culture.StringId))
+        {
+            // Multi-use cultures share an enchanter - find and map them
+            var enchanterHero = Hero.FindFirst(x => x.StringId == templateInfo.enchanterTemplate);
+            if (enchanterHero != null)
+            {
+                _settlementToEnchanterMap.Add(settlement.StringId, enchanterHero.StringId);
+            }
+        }
     }
 
     private void SpawnEnchanter(Settlement settlement, bool forceSpawn = false)
@@ -223,26 +248,16 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
     public bool IsEnchanter(Hero hero)
     {
-        var settlement = Hero.MainHero.CurrentSettlement;
-        if (settlement == null || !settlement.IsTown) return false;
-
-        var isEnchanter = _settlementToEnchanterMap.ContainsValue(hero.StringId);
-
-        if (isEnchanter) return true;
-
-        if (!_multiUseCultures.Contains(settlement.Culture.StringId)) return false;
-
-        AddCharacterToEnchanterMapIrregular(settlement, hero);
-        return true;
-    }
-
-    private void AddCharacterToEnchanterMapIrregular(Settlement settlement, Hero hero)
-    {
-        var templateId = _cultureToTemplateMap[settlement.Culture.StringId];
-
-        if (hero.Template?.StringId == templateId.enchanterTemplate)
-            _settlementToEnchanterMap.Add(settlement.StringId,
-                hero.StringId); //we collected the missing member, next time we just look in the serialized dictionary.
+        if (hero.Template != null)
+        {
+            _cultureToTemplateMap.TryGetValue(hero.Culture.StringId, out var templateId);
+            if (hero.Template.StringId == templateId.enchanterTemplate)
+            {
+                return true;
+            }
+        }
+        return _settlementToEnchanterMap.ContainsValue(hero.StringId);
+        
     }
 
     private bool SettlementMatchesEnchanterCulture(string culture)
