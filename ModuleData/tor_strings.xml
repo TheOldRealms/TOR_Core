@@ -3333,6 +3333,15 @@
 
   <!-- Career Button Messages -->
   
+  <!--Mercenary Career Button-->
+  <string id="tor_career_button_mercenary_default" text="{=str_tor_career_button_mercenary_default}Makes the selected troop a companion."/>
+  <string id="tor_career_button_mercenary_companion_limit" text="{=str_tor_career_button_mercenary_companion_limit}Clan companion limit has been reached."/>
+  <string id="tor_career_button_mercenary_no_knightly" text="{=str_tor_career_button_mercenary_no_knightly}Only works for non-knightly units."/>
+  <string id="tor_career_button_mercenary_no_tree_undead" text="{=str_tor_career_button_mercenary_no_tree_undead}Only works for humans, dwarfs or elves"/>
+  <string id="tor_career_button_mercenary_not_tier5" text="{=str_tor_career_button_mercenary_not_tier5}Troop needs to reach tier 5 or higher."/>
+  <string id="tor_career_button_mercenary_wrong_culture" text="{=str_tor_career_button_mercenary_wrong_culture}Troop must be of your culture."/>
+
+  <string id="tor_waywatcher_select_arrows_text" text="{=str_tor_waywatcher_select_arrows_text}select magical arrows for this unit" />  
   <string id="tor_waywatcher_arrow_name.Swiftshiver" text="{=str_tor_waywatcher_arrow_name_swiftshiver}Swiftshiver Shards" />                                                                                               
   <string id="tor_waywatcher_arrow_name.Hagbane" text="{=str_tor_waywatcher_arrow_name_hagbane}Hagbane Tipps" />                                                                                                            
   <string id="tor_waywatcher_arrow_name.Starfire" text="{=str_tor_waywatcher_arrow_name_starfire}Starfire Shafts" />  
@@ -3347,6 +3356,36 @@
   <string id="tor_learnSpell" text="{=str_tor_learnSpell}Learn {GOLDCOST} {COINIMAGE}"/>
   <string id="tor_learnSpellDisabled_canLearn" text="{=str_tor_learnSpellDisabled_canLearn}Can learn"/>
   <string id="tor_learnSpellDisabled_spellTier" text="{=str_tor_learnSpellDisabled_spellTier}Insufficient caster level"/>
+ 
+  <string id="tor_black_grail_not_enough_prisoners_text" text="{=str_tor_black_grail_not_enough_prisoners_text}Not enough healthy prisoners available"/>
+  <string id="tor_black_grail_not_enough_troops_text" text="{=str_tor_black_grail_not_enough_troops_text}Not enough healthy troops available"/>
+  <string id="tor_black_grail_requires_text" text="{=str_tor_black_grail_requires_text}Requires atleast {EXCHANGE_COST} {DARK_ENERGY_ICON}"/>
+  <string id="tor_black_grail_no_grail_knights_text" text="{=str_tor_black_grail_no_grail_knights_text}Grail knights can't be convinced"/>
+ 
+  <string id="tor_orc_boss_extort_teef_text" text="{=str_tor_orc_boss_extort_teef_text}Extort Teef but damage party morale."/>
+  <string id="tor_greenskin_not_a_prisoner_text" text="{=str_tor_greenskin_not_a_prisoner_text}Not a prisoner"/>
+  <string id="tor_greenskin_cant_chop_text" text="{=str_tor_greenskin_cant_chop_text}This can't be chopped"/>
+  <string id="tor_greenskin_no_prisoners_text" text="{=str_tor_greenskin_no_prisoners_text}No prisoners of this type"/>
+  <string id="tor_greenskin_chop_text" text="{=str_tor_greenskin_chop_text}Chop"/>
+  
+  <string id="tor_ironbreaker_not_enough_resources_text" text="{=str_tor_ironbreaker_not_enough_resources_text}Not enough resources"/>
+  <string id="tor_ironbreaker_level_too_low_text" text="{=str_tor_ironbreaker_level_too_low_text} not high enough level"/>
+
+  <string id="tor_necrarch_winds_full_text" text="{=str_tor_necrarch_winds_full_text}Your Winds are already full"/>
+  <string id="tor_necrarch_requires_text" text="{=str_tor_necrarch_requires_text}Requires {COST}{DARK_ENERGY_ICON}for exchange"/>
+  <string id="tor_necrarch_exchange_text" text="{=str_tor_necrarch_exchange_text}Exchange {COST}{DARK_ENERGY_ICON} for {GAIN}{WINDS_ICON}"/>
+  
+  <string id="tor_slayer_tier_too_low_text" text="{=str_tor_slayer_tier_too_low_text}Tier too low. Unit can't be ashamed"/>
+
+  <string id="tor_witch_hunter_upgrade_retinue_text" text="{=str_tor_witch_hunter_upgrade_retinue_text}Upgrades troop to a Witch Hunter Retinue"/>
+  <string id="tor_witch_hunter_tier_requirement_text" text="{=str_tor_witch_hunter_tier_requirement_text}Only high tier troops can be upgraded to Retinues"/>
+  <string id="tor_witch_hunter_no_knights_text" text="{=str_tor_witch_hunter_no_knights_text}Knights can't be upgraded to Retinues"/>
+  <string id="tor_witch_hunter_not_enough_troops_text" text="{=str_tor_witch_hunter_not_enough_troops_text}Not enough healthy troops available"/>
+  <string id="tor_witch_hunter_culture_requirement_text" text="{=str_tor_witch_hunter_culture_requirement_text}Needs to be part of the empire or southern realms"/>
+  <string id="tor_witch_hunter_requires_text" text="{=str_tor_witch_hunter_requires_text}Requires atleast {EXCHANGE_COST} {PRESTIGE_ICON}"/>
+
+
+
 
   <!-- Necromancer Choice Group Names -->
   <string id="tor_career_choicegroup_name.LiberNecris" text="{=str_tor_career_choicegroup_name_LiberNecris}Liber Necris" />
@@ -5714,14 +5753,6 @@
 	<string id="tor_rogue_engineer_name" text="{=str_tor_rogue_engineer_name}Goswin"/>
 	<string id="rogueEngineerParty" text="{=str_rogueengineerparty}Goswin"/>
 
-	<!--Mercenary Career Button-->
-	<string id="tor_career_button_mercenary_default" text="{=str_tor_career_button_mercenary_default}Makes the selected troop a companion."/>
-	<string id="tor_career_button_mercenary_companion_limit" text="{=str_tor_career_button_mercenary_companion_limit}Clan companion limit has been reached."/>
-	<string id="tor_career_button_mercenary_no_knightly" text="{=str_tor_career_button_mercenary_no_knightly}Only works for non-knightly units."/>
-	<string id="tor_career_button_mercenary_no_tree_undead" text="{=str_tor_career_button_mercenary_no_tree_undead}Only works for humans or elves"/>
-	<string id="tor_career_button_mercenary_not_tier5" text="{=str_tor_career_button_mercenary_not_tier5}Troop needs to reach tier 5 or higher."/>
-	<string id="tor_career_button_mercenary_wrong_culture" text="{=str_tor_career_button_mercenary_wrong_culture}Troop must be of your culture."/>
-
 	<!--Cursed Site Menus-->
 	<string id="tor_custom_settlement_cursed_site_not_enough_free_slots" text="{=str_tor_custom_settlement_cursed_site_not_enough_free_slots}You have not enough space in your party."/>
 	<string id="tor_custom_settlement_cursed_site_not_necromancer" text="{=str_tor_custom_settlement_cursed_site_not_necromancer}You are not a practitioner of necromancy."/>
@@ -6191,6 +6222,8 @@
 	<string id="eonir_envoy_we_will_see_text" text="{=str_eonir_envoy_we_will_see_text}We will see what we can do."/>
 	<string id="eonir_envoy_will_see_what_can_do_text" text="{=str_eonir_envoy_will_see_what_can_do_text}I will see what I can do."/>
 	<string id="eonir_envoy_anything_else_text" text="{=str_eonir_envoy_anything_else_text}Is there something else I could do for you?"/>
+	<string id="eonir_inquiry_confirm_text" text="{=str_eonir_inquiry_confirm_text}Confirm"/>
+	<string id="eonir_inquiry_cancel_text" text="{=str_eonir_inquiry_cancel_text}Cancel"/>	
   
   <!-- Eonir envoy - not enough favor for lore -->
   <string id="eonir_spellsinger_learn_lore_no_favor_text" text="{=str_eonir_spellsinger_learn_lore_no_favor_text}You are not ready yet. Return when you have earned more favour. ({BASE_LORE_COST}{FAVOR_ICON})" />
@@ -6215,6 +6248,13 @@
 	<string id="eonir_druchii_why_here_explain_text" text="{=str_eonir_druchii_why_here_explain_text}We are not your enemy, the opposite is true. Few share our bond of suffering at the hands of the Asur, few can understand our mutual plight. There are many ways we can coexist and thrive, together. - Join us, we have been scorned by our kin for far too long and this is the best path for our futures combined."/>
 	<string id="eonir_druchii_why_here_services_text" text="{=str_eonir_druchii_why_here_services_text}Your seas will be safe from raids and protected from any foe, the darkest desires of your people will be free of judgement and all we seek is influence over your council. - We merely wish to lessen the gap between our peoples so that we may stand against the Asur together, a sure and just cause, do you not agree?"/>
 	<string id="eonir_druchii_anything_else_text" text="{=str_eonir_druchii_anything_else_text}Is there anything else?"/>
+	
+	<string id="eonir_druchii_force_war_title_text" text="{=str_eonir_druchii_force_war_title_text}Force War"/>
+	<string id="eonir_druchii_force_war_description_text" text="{=str_eonir_druchii_force_war_description_text}Select 2 Factions war will emerge between."/>
+	<string id="eonir_druchii_force_war_hint_text" text="{=str_eonir_druchii_force_war_hint_text}Force war between two kingdoms"/>
+	<string id="eonir_druchii_slaver_tide_title_text" text="{=str_eonir_druchii_slaver_tide_title_text}Choose a kingdom to be swarmed"/>
+	<string id="eonir_druchii_slaver_tide_description_text" text="{=str_eonir_druchii_slaver_tide_description_text}Select a kingdom being swarmed by druchii slaver troops."/>
+
 
 	<!-- Eonir Asur Envoy Texts -->
 	<string id="eonir_asur_intro_text" text="{=str_eonir_asur_intro_text}Greetings, kinsman. How may I assist you?"/>
@@ -6234,6 +6274,11 @@
 	<string id="eonir_asur_why_here_agreement_text" text="{=str_eonir_asur_why_here_agreement_text}We are kin and have been apart for far too long, we seek the help of the Asur and appreciate any that can be offered."/>
 	<string id="eonir_asur_why_here_explain_text" text="{=str_eonir_asur_why_here_explain_text}We are willing to offer aid in many forms, as long as it increases our influence within the council."/>
 	<string id="eonir_asur_why_here_services_text" text="{=str_eonir_asur_why_here_services_text}Ulthuan has connections across the Old World, should finances, a good word with an enemy or soldiers to defend your forest be needed, we can provide it. For the agreed price, of course."/>
+	
+	<string id="eonir_asur_troops_title_text" text="{=str_eonir_asur_troops_title_text}Asur support"/>
+	<string id="eonir_asur_diplomacy_hint_text" text="{=str_eonir_asur_diplomacy_hint_text}Improve relationship"/>
+	<string id="eonir_asur_diplomacy_title_text" text="{=str_eonir_asur_diplomacy_title_text}Improve Relationship with one faction"/>
+	<string id="eonir_asur_diplomacy_description_text" text="{=str_eonir_asur_diplomacy_description_text}Choose a faction, the relation of you will improve by 15, and the eonir faction aswell."/>
 
 	<!-- Eonir Empire Envoy Texts -->
 	<string id="eonir_empire_intro_text" text="{=str_eonir_empire_intro_text}Is there some way I can be of assistance?"/>
