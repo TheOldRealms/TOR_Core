@@ -48,7 +48,7 @@ namespace TOR_Core.Utilities
             }
             else
             {
-                boneIndexes = [0, 1, 2, 3, 5, 6, 7, 9, 12, 13, 15, 17, 22, 24];
+                boneIndexes = [0, 9, 12, 15, 22, 1, 5, 2, 6, 3, 7, 13, 17, 24];
             }
 
             for (byte i = 0; i < boneIndexes.Length / (int)intensity; i++)
