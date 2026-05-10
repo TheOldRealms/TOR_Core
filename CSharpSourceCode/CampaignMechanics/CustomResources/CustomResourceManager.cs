@@ -20,6 +20,7 @@ using TaleWorlds.CampaignSystem.ViewModelCollection.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ScreenSystem;
 using TaleWorlds.TwoDimension;
@@ -815,8 +816,9 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
         public static void AddResourceChanges(CustomResource resource, int amount)
         {
+            Instance._massBudget.Remove(resource.StringId);
             Instance._resourceChanges.Add(new Tuple<string, int>(resource.StringId, amount));
-            PartyVMExtension.ViewModelInstance?.GetExtensionInstance()?.RefreshValues();
+            RefreshPartyScreenStateForCustomResources();
         }
 
 
@@ -846,6 +848,15 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             }
 
             var activePartyState = PartyScreenHelper.GetActivePartyState();
+            if (isPrisoner &&
+                fromSide == PartyScreenLogic.PartyRosterSide.Right &&
+                activePartyState?.PartyScreenMode == PartyScreenMode.PrisonerManage &&
+                Hero.MainHero.CurrentSettlement?.Party?.PrisonRoster == partyScreenLogic?.PrisonerRosters[(int)PartyScreenLogic.PartyRosterSide.Left])
+            {
+                partyVm.GetExtensionInstance()?.RefreshValues();
+                return;
+            }
+
             if (activePartyState?.PartyScreenMode == PartyScreenMode.TroopsManage && activePartyState.IsDonating)
             {
                 var currentSettlement = Hero.MainHero.CurrentSettlement;
@@ -902,9 +913,17 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(), resourceDelta);
             }
 
-            partyVm.GetExtensionInstance()?.RefreshValues();
+            RefreshPartyUpgradeResourceState(partyVm);
         }
+        private static void RefreshPartyUpgradeResourceState(PartyVM partyVm)
+        {
+            partyVm.GetExtensionInstance()?.RefreshValues();
 
+            foreach (var troopVm in partyVm.MainPartyTroops)
+            {
+                troopVm.InitializeUpgrades();
+            }
+        }
         public static void OverridePendingResources(Dictionary<CustomResource, int> spendMap)
         {
             Instance._resourceChanges.Clear();
@@ -914,7 +933,25 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 var amount = entry.Value;
                 Instance._resourceChanges.Add(new Tuple<string, int>(resourceId, amount));
             }
-            PartyVMExtension.ViewModelInstance?.GetExtensionInstance()?.RefreshValues();
+            RefreshPartyScreenStateForCustomResources();
+        }
+        private static void RefreshPartyScreenStateForCustomResources()
+        {
+            var partyVm = PartyVMExtension.ViewModelInstance;
+            if (partyVm == null)
+            {
+                return;
+            }
+
+            partyVm.GetExtensionInstance()?.RefreshValues();
+
+            foreach (var troopVm in partyVm.MainPartyTroops)
+            {
+                troopVm.InitializeUpgrades();
+            }
+
+            partyVm.IsDoneDisabled = !partyVm.PartyScreenLogic.IsDoneActive();
+            partyVm.DoneHint.HintText = new TextObject("{=!}" + partyVm.PartyScreenLogic.DoneReasonString);
         }
 
         public static int GetPendingFor(string resourceId)
