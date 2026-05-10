@@ -6411,7 +6411,7 @@
 		is_main_culture="true"
 		color="0xff284E19"
 		color2="0xffB4F0F1"
-		elite_basic_troop="NPCCharacter.tor_we_wardancer"
+		elite_basic_troop="NPCCharacter.tor_we_scout"
 		basic_troop="NPCCharacter.tor_we_militia"
 		melee_militia_troop="NPCCharacter.tor_we_eternal_guard"
 		ranged_militia_troop="NPCCharacter.tor_we_glade_guard"

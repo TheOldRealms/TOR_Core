@@ -2199,7 +2199,7 @@
 	<StatusEffectTemplate
 		id="troll_regeneration"
 		particle_id="none"
-		base_effect_value="1"
+		base_effect_value="3"
 		type="HealthOverTime">
 	</StatusEffectTemplate>
 
