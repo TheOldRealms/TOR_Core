@@ -634,6 +634,14 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_head_orion_horns_autumn" RaceLock="orion">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_head_orion_horns" RaceLock="orion">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_accessories_001" RaceLock="ungor">
     <ItemTraits />
     <Description />
@@ -784,6 +792,70 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_mask_sos_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_mask_sos_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_mask_sos_003" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_mask_sos_004" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_mask_doomfire_warlock_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_mask_doomfire_warlock_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_mask_doomfire_warlock_003" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_crown_witch_elf_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_crown_witch_elf_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_crown_supreme_sorceress_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_crown_supreme_sorceress_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_helmet_death_hag_004" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_helmet_death_hag_003" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_helmet_death_hag_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_helmet_death_hag_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_head_helmet_infantry_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dw_head_helm_militia_001" RaceLock="dwarf">
     <ItemTraits />
     <Description />
@@ -883,70 +955,6 @@
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dw_head_helm_hammerer_001" RaceLock="dwarf">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_head_mask_sos_001" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_head_mask_sos_002" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_head_mask_sos_003" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_head_mask_sos_004" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_head_mask_doomfire_warlock_001" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_head_mask_doomfire_warlock_002" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_head_mask_doomfire_warlock_003" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_head_crown_witch_elf_001" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_head_crown_witch_elf_002" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_head_crown_supreme_sorceress_001" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_head_crown_supreme_sorceress_002" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_head_helmet_death_hag_004" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_head_helmet_death_hag_003" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_head_helmet_death_hag_002" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_head_helmet_death_hag_001" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_de_head_helmet_infantry_001" RaceLock="human">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
@@ -1334,6 +1342,14 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_shoulder_cape_orion_autumn" RaceLock="orion">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_shoulder_cape_orion" RaceLock="orion">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_he_shoulder_cape_phoenix_001" RaceLock="human">
     <ItemTraits />
     <Description />
@@ -1425,6 +1441,74 @@
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_infantry_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_sos_003" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_sos_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_sos_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_sorcerer_004" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_sorcerer_003" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_light_witch_elf_003" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_light_witch_elf_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_light_witch_elf_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_khaine_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_khaine_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_khaine_003" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_witch_elf_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_witch_elf_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_witch_elf_003" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_witch_elf_004" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_sorcerer_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_sorcerer_001" RaceLock="human">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
@@ -2048,6 +2132,14 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_body_armor_orion_autumn" RaceLock="orion">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_body_armor_orion" RaceLock="orion">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_eo_body_kithband_leather_scale_001" RaceLock="human">
     <ItemTraits />
     <Description />
@@ -2155,6 +2247,70 @@
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_infantry_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_002" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_003" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_004" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_005" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_006" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_007" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_008" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_009" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_010" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_011" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_012" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_013" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_014" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_015" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_witchelf_016" RaceLock="human">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
@@ -4884,6 +5040,12 @@
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_treeman_fist">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_weapon_orion_spear">
     <ItemTraits />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
