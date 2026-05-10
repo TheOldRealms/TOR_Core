@@ -7,6 +7,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
@@ -18,7 +19,7 @@ namespace TOR_Core.Items
     public class WeaponHitScriptsMissionLogic : MissionLogic
     {
         private static readonly float _triggerCooldown = 2;
-        private Dictionary<int, Queue<string>> _traitCoolDownMap = new();
+        private Dictionary<int, Dictionary<string, float>> _traitCoolDownMap = new();
         private float _deltaTime;
         public override void OnAgentBuild(Agent agent, Banner banner)
         {
@@ -38,14 +39,35 @@ namespace TOR_Core.Items
             }
 
             _deltaTime += dt;
-            if (_deltaTime > _triggerCooldown)
+            if (_deltaTime < _triggerCooldown)
             {
-                if (_traitCoolDownMap.AnyQ())
+                return;
+            }
+
+            _deltaTime = 0f;
+
+            if (!_traitCoolDownMap.AnyQ())
+            {
+                return;
+            }
+
+            var currentMissionTime = Mission.Current.CurrentTime;
+
+            foreach (var agentIndex in _traitCoolDownMap.Keys.ToList())
+            {
+                var traitCooldowns = _traitCoolDownMap[agentIndex];
+
+                foreach (var cooldownId in traitCooldowns.Keys.ToList())
                 {
-                    foreach (var entry in _traitCoolDownMap.WhereQ(entry => entry.Value.AnyQ()))
+                    if (traitCooldowns[cooldownId] <= currentMissionTime)
                     {
-                        entry.Value.Dequeue();
+                        traitCooldowns.Remove(cooldownId);
                     }
+                }
+
+                if (traitCooldowns.Count == 0)
+                {
+                    _traitCoolDownMap.Remove(agentIndex);
                 }
             }
         }
@@ -54,6 +76,7 @@ namespace TOR_Core.Items
         {
             base.OnBattleEnded();
             _traitCoolDownMap.Clear();
+            _deltaTime = 0f;
         }
 
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
@@ -61,18 +84,24 @@ namespace TOR_Core.Items
             if (affectedAgent == affectorAgent)
                 return;
 
-            if (affectorWeapon.Item != null && affectorWeapon.Item.HasAnyTrait(affectorAgent))
+            if (affectorWeapon.Item != null &&
+                affectorWeapon.Item.HasAnyTrait(affectorAgent) &&
+                CanApplyOffensiveWeaponTrait(affectedAgent, affectorAgent))
             {
-                var statusEffectTraits = affectorWeapon.Item.GetTraits(affectorAgent).Where(x => x.ImbuedStatusEffectId != "none" && x.ImbuedStatusEffectId != null);
-                if (statusEffectTraits != null && statusEffectTraits.Count() > 0)
-                {
-                    foreach (var trait in statusEffectTraits)
-                    {
-                        if (MBRandom.RandomFloat <= trait.ImbuedEffectChance)
-                        {
-                            affectedAgent.ApplyStatusEffect(trait.ImbuedStatusEffectId, affectorAgent, 5, false);
-                        }
+                var statusEffectTraits = affectorWeapon.Item.GetTraits(affectorAgent)
+                 .Where(x => !string.IsNullOrWhiteSpace(x.ImbuedStatusEffectId) &&
+                 !x.ImbuedStatusEffectId.Equals("none", StringComparison.OrdinalIgnoreCase));
 
+                foreach (var trait in statusEffectTraits)
+                {
+                    if (!CanReceiveWeaponStatusEffect(affectedAgent))
+                    {
+                        continue;
+                    }
+
+                    if (MBRandom.RandomFloat <= trait.ImbuedEffectChance)
+                    {
+                        ApplyWeaponStatusEffect(affectedAgent, trait.ImbuedStatusEffectId, affectorAgent, 5, false);
                     }
                 }
 
@@ -83,7 +112,8 @@ namespace TOR_Core.Items
                 {
                     foreach (var trait in onHitTraits)
                     {
-                        ApplySpecialTrait(trait, affectorAgent, affectedAgent, true, blow, affectorWeapon, attackCollisionData);
+                        var coolDownOnAffectedAgent = !ShouldCooldownOnWielder(trait);
+                        ApplySpecialTrait(trait, affectorAgent, affectedAgent, coolDownOnAffectedAgent, blow, affectorWeapon, attackCollisionData);
                     }
                 }
             }
@@ -128,7 +158,7 @@ namespace TOR_Core.Items
                         {
                             continue;
                         }
-                        affectedAgent.ApplyStatusEffect(trait.ImbuedStatusEffectId, affectedAgent, 5, false);
+                        ApplyWeaponStatusEffect(affectedAgent, trait.ImbuedStatusEffectId, affectedAgent, 5, false);
                     }
                 }
                 var onHitTraits = traits.WhereQ(x => x.OnWeaponHitScript != null && !string.IsNullOrWhiteSpace(x.OnWeaponHitScript.WeaponScriptName) && x.OnWeaponHitScript.WeaponScriptName != "invalid");
@@ -140,6 +170,10 @@ namespace TOR_Core.Items
                     }
                 }
             }
+        }
+        public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
+        {
+            _traitCoolDownMap.Remove(affectedAgent.Index);
         }
 
         /// <summary>
@@ -167,107 +201,257 @@ namespace TOR_Core.Items
 
             return targetItem;
         }
-
-
-        private void ApplySpecialTrait(ItemTrait trait, Agent affectorAgent, Agent affectedAgent, bool isDefenceTrait, Blow blow, MissionWeapon affectorWeapon, AttackCollisionData attackCollisionData)
+        private static bool ShouldCooldownOnWielder(ItemTrait trait)
         {
-            Agent targetAgent = null;
+            var scriptName = trait?.OnWeaponHitScript?.WeaponScriptName;
+            if (string.IsNullOrWhiteSpace(scriptName))
+            {
+                return false;
+            }
+            var scriptType = AccessTools.TypeByName(scriptName);
+            if (scriptType == null ||
+                !typeof(WeaponTriggerEffectScript).IsAssignableFrom(scriptType))
+            {
+                return false;
+            }
+            var arguments = trait.OnWeaponHitScript.WeaponScriptArguments;
+            if (arguments == null || arguments.Count < 2)
+            {
+                return false;
+            }
 
-            targetAgent = isDefenceTrait ? affectedAgent : affectorAgent;
+            if (!bool.TryParse(arguments[1], out var appliesAroundAttacker))
+            {
+                return false;
+            }
+            // aoe procs using wielder cooldown to prevent per agent cd
+            return appliesAroundAttacker;
+        }
+        private static string GetWeaponTriggerEffectId(ItemTrait trait)
+        {
+            var arguments = trait?.OnWeaponHitScript?.WeaponScriptArguments;
+            if (arguments == null || arguments.Count == 0)
+            {
+                return "";
+            }
+
+            return arguments[0];
+        }
+        private static bool CanApplyOffensiveWeaponTrait(Agent affectedAgent, Agent affectorAgent)
+        {
+            return affectedAgent != null &&
+                   affectorAgent != null &&
+                   affectedAgent != affectorAgent &&
+                   affectedAgent.IsActive() &&
+                   affectedAgent.Health > 0f &&
+                   !affectedAgent.IsFadingOut() &&
+                   (Mission.Current == null || Mission.Current.FindAgentWithIndex(affectedAgent.Index) == affectedAgent);
+        }
+
+        private bool IsTraitOnCooldown(ItemTrait trait, Agent targetAgent)
+        {
+            if (trait == null || targetAgent == null)
+            {
+                return false;
+            }
+
+            var cooldownId = GetTraitCooldownId(trait);
+            if (string.IsNullOrWhiteSpace(cooldownId))
+            {
+                return false;
+            }
+
+            if (!_traitCoolDownMap.TryGetValue(targetAgent.Index, out var traitCooldowns))
+            {
+                return false;
+            }
+
+            return traitCooldowns.TryGetValue(cooldownId, out var cooldownEndTime) &&
+                   cooldownEndTime > Mission.Current.CurrentTime;
+        }
+
+        private void RegisterTraitCooldown(ItemTrait trait, Agent targetAgent)
+        {
+            if (trait == null || targetAgent == null)
+            {
+                return;
+            }
+
+            var cooldownId = GetTraitCooldownId(trait);
+            if (string.IsNullOrWhiteSpace(cooldownId))
+            {
+                return;
+            }
+
+            if (!_traitCoolDownMap.TryGetValue(targetAgent.Index, out var traitCooldowns))
+            {
+                traitCooldowns = new Dictionary<string, float>();
+                _traitCoolDownMap.Add(targetAgent.Index, traitCooldowns);
+            }
+
+            traitCooldowns[cooldownId] = Mission.Current.CurrentTime + _triggerCooldown;
+        }
+
+        private static string GetTraitCooldownId(ItemTrait trait)
+        {
+            var cooldownId = trait.ItemTraitStringId;
+            if (string.IsNullOrWhiteSpace(cooldownId))
+            {
+                cooldownId = trait.OnWeaponHitScript?.WeaponScriptName;
+            }
+
+            if (string.IsNullOrWhiteSpace(cooldownId) ||
+                cooldownId.Equals("none", StringComparison.OrdinalIgnoreCase))
+            {
+                return "";
+            }
+
+            return cooldownId;
+        }
+
+        private static bool CanReceiveWeaponStatusEffect(Agent agent)
+        {
+            return agent != null && agent.IsHuman && agent.IsActive() && agent.Health > 0f && !agent.IsFadingOut();
+        }
+        private static void ApplyWeaponStatusEffect(Agent target, string effectId, Agent applierAgent, float duration, bool append = false, bool isMutated = false)
+        {
+            if (target == null ||
+                string.IsNullOrWhiteSpace(effectId))
+            {
+                return;
+            }
+
+            var abilityLogic = Mission.Current?.GetMissionBehavior<AbilityManagerMissionLogic>();
+            if (abilityLogic != null)
+            {
+                abilityLogic.QueueTriggeredStatusEffect(target, effectId, applierAgent, duration, append, isMutated);
+
+                return;
+            }
+
+            if (!CanReceiveWeaponStatusEffect(target))
+            {
+                return;
+            }
+            target.ApplyStatusEffect(effectId, applierAgent, duration, append, isMutated);
+        }
+        private void ApplySpecialTrait(ItemTrait trait, Agent affectorAgent, Agent affectedAgent, bool cooldownOnTarget, Blow blow, MissionWeapon affectorWeapon, AttackCollisionData attackCollisionData, bool fromMissile = false)
+        {
+            var targetAgent = cooldownOnTarget ? affectedAgent : affectorAgent;
+            if (targetAgent == null)
+            {
+                return;
+            }
+
             if (MBRandom.RandomFloatRanged(0f, 1f) > trait.ImbuedEffectChance)
             {
                 return;
             }
-            if (_traitCoolDownMap.TryGetValue(targetAgent.Index, out var value))
-            {
-                if (value.Contains(trait.ItemTraitStringId))
-                    return;
-                _traitCoolDownMap[targetAgent.Index] = value;
-            }
-            else
-            {
-                _traitCoolDownMap.Add(targetAgent.Index, new Queue<string>([trait.ItemTraitStringId]));
 
+            var appliesAroundAttacker = ShouldCooldownOnWielder(trait);
+            var cooldownOnWielder = !cooldownOnTarget;
+            var triggeredEffectId = GetWeaponTriggerEffectId(trait);
+
+            if (IsTraitOnCooldown(trait, targetAgent))
+            {
+                return;
             }
 
             try
             {
                 object script;
+                var scriptType = AccessTools.TypeByName(trait.OnWeaponHitScript.WeaponScriptName);
+
+                if (scriptType == null)
+                {
+                    TORCommon.Log(
+                        "weapon on-hit script type not found" +" | script=" + trait.OnWeaponHitScript.WeaponScriptName +" | trait=" + trait.ItemTraitStringId +" | args=" + string.Join(",", trait.OnWeaponHitScript.WeaponScriptArguments ?? []),
+                        NLog.LogLevel.Error);
+
+                    return;
+                }
 
                 if (trait.OnWeaponHitScript.WeaponScriptArguments != null && trait.OnWeaponHitScript.WeaponScriptArguments.Count > 0)
                 {
-                    script = Activator.CreateInstance(Type.GetType(trait.OnWeaponHitScript.WeaponScriptName), [trait.OnWeaponHitScript.WeaponScriptArguments.ToArray()]);
+                    script = Activator.CreateInstance(scriptType, [trait.OnWeaponHitScript.WeaponScriptArguments.ToArray()]);
                 }
                 else
                 {
-                    var type = Type.GetType(trait.OnWeaponHitScript.WeaponScriptName);
-                    script = Activator.CreateInstance(type);
+                    script = Activator.CreateInstance(scriptType);
                 }
                 if (script is BaseWeaponHitScript weaponHitScript)
                 {
                     weaponHitScript.OnHit(affectorAgent, affectedAgent, blow, affectorWeapon, attackCollisionData);
+                    RegisterTraitCooldown(trait, targetAgent);
+
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                TORCommon.Log("Tried to create magicweapon onhitscript: " + trait.OnWeaponHitScript.WeaponScriptName + ", but failed.", NLog.LogLevel.Error);
+                TORCommon.Log("weapon on-hit script failed" + " | script=" + trait.OnWeaponHitScript.WeaponScriptName + " | trait=" + trait.ItemTraitStringId + " | args=" + string.Join(",", trait.OnWeaponHitScript.WeaponScriptArguments ?? []) + " | exception=" + ex.GetType().Name + " | message=" + ex.Message,
+                    NLog.LogLevel.Error);
             }
 
         }
 
         public override void OnMissileHit(Agent attacker, Agent victim, bool isCanceled, AttackCollisionData collisionData)
         {
-            if (attacker == victim)
-                return;
-
-            if (attacker != null)
+            if (attacker == victim || attacker == null)
             {
-                if (HasWeaponWithTrait(attacker, out var traits))
+                return;
+            }
+
+            if (!HasWeaponWithTrait(attacker, out var traits))
+            {
+                return;
+            }
+
+            bool canApplyTraitsToVictim = victim != null && victim.IsActive() && victim.Health > 0f && !victim.IsFadingOut();
+
+            if (canApplyTraitsToVictim)
+            {
+                foreach (var trait in traits)
                 {
-
-                    if (traits != null && traits.Count() > 0 && victim != null && !(collisionData.MissileBlockedWithWeapon || collisionData.AttackBlockedWithShield))
+                    if (!collisionData.MissileBlockedWithWeapon &&
+                        !collisionData.AttackBlockedWithShield &&
+                        !string.IsNullOrWhiteSpace(trait.ImbuedStatusEffectId) &&
+                        !trait.ImbuedStatusEffectId.Equals("none", StringComparison.OrdinalIgnoreCase))
                     {
-                        foreach (var trait in traits)
+                        var chance = MBRandom.RandomFloat;
+
+                        if (chance <= trait.ImbuedEffectChance)
                         {
-                            if (trait.ImbuedStatusEffectId != "none")
-                            {
-                                var chance = MBRandom.RandomFloat;
-
-                                if (chance <= trait.ImbuedEffectChance)
-                                {
-                                    victim.ApplyStatusEffect(trait.ImbuedStatusEffectId, attacker, 5, false);
-                                }
-                            }
-
-                            // StarfireEssencePassive3: Troops with Starfire Shafts also apply fire vulnerability
-                            if (Campaign.Current != null && trait.ItemTraitStringId == "ca_starfire_shards" &&
-                                !attacker.IsMainAgent && attacker.BelongsToMainParty() &&
-                                Hero.MainHero.HasCareerChoice("StarfireEssencePassive3"))
-                            {
-                                victim.ApplyStatusEffect("starfire_fire_vulnerability", attacker, 6, false);
-                            }
+                            ApplyWeaponStatusEffect(victim, trait.ImbuedStatusEffectId, attacker, 5, false);
                         }
                     }
 
-                    // Trigger OnWeaponHitScripts for missiles (same pattern as OnAgentHit)
-                    var onHitTraits = traits.WhereQ(x => x.OnWeaponHitScript != null &&
-                        !string.IsNullOrWhiteSpace(x.OnWeaponHitScript.WeaponScriptName) &&
-                        x.OnWeaponHitScript.WeaponScriptName != "invalid");
-
-                    if (onHitTraits != null && onHitTraits.Any())
+                    // StarfireEssencePassive3: Troops with Starfire Shafts also apply fire vulnerability
+                    if (Campaign.Current != null && trait.ItemTraitStringId == "ca_starfire_shards" &&
+                        !attacker.IsMainAgent && attacker.BelongsToMainParty() &&
+                        Hero.MainHero.HasCareerChoice("StarfireEssencePassive3"))
                     {
-                        foreach (var trait in onHitTraits)
-                        {
-                            ApplySpecialTrait(trait, attacker, victim, false, default, attacker.WieldedWeapon, collisionData);
-                        }
+                        ApplyWeaponStatusEffect(victim, "starfire_fire_vulnerability", attacker, 6, false);
                     }
+                }
 
-                    var missileIndex = collisionData.AffectorWeaponSlotOrMissileIndex;
-                    var targetMissile = Mission.Current.MissilesList.FirstOrDefault(x => x.Index == missileIndex);
-                    targetMissile?.Entity.RemoveAllParticleSystems();
+                var onHitTraits = traits.WhereQ(x =>
+                    x.OnWeaponHitScript != null &&
+                    !string.IsNullOrWhiteSpace(x.OnWeaponHitScript.WeaponScriptName) &&
+                    x.OnWeaponHitScript.WeaponScriptName != "invalid");
+
+                if (onHitTraits != null && onHitTraits.Any())
+                {
+                    foreach (var trait in onHitTraits)
+                    {
+                        ApplySpecialTrait(trait, attacker, victim, false, default, attacker.WieldedWeapon, collisionData, true);
+                    }
                 }
             }
+
+            var missileIndex = collisionData.AffectorWeaponSlotOrMissileIndex;
+            var targetMissile = Mission.Current.MissilesList.FirstOrDefault(x => x.Index == missileIndex);
+            targetMissile?.Entity.RemoveAllParticleSystems();
         }
 
         public override void OnAgentShootMissile(Agent shooterAgent, EquipmentIndex weaponIndex, Vec3 position, Vec3 velocity, Mat3 orientation, bool hasRigidBody,

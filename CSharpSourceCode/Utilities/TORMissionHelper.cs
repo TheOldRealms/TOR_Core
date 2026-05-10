@@ -139,21 +139,28 @@ namespace TOR_Core.Utilities
                 return;
             }
 
-            var mission = Mission.Current;
-
             foreach (var agent in agents)
             {
-                if (agent == null || !agent.IsHuman || !agent.IsActive() || agent.Health < 1f || agent.IsFadingOut())
-                {
-                    continue;
-                }
-                if (mission != null && mission.FindAgentWithIndex(agent.Index) != agent)
-                {
-                    continue;
-                }
-
-                agent.ApplyStatusEffect(effectId, applierAgent, duration, append, isMutated, false, castId);
+                ApplyStatusEffectToAgent(agent, effectId, applierAgent, duration, append, isMutated, false, castId);
             }
+        }
+
+        public static bool ApplyStatusEffectToAgent(Agent agent, string effectId, Agent applierAgent, float duration = 5, bool append = true, bool isMutated = false, bool stack = false, int castId = -1)
+        {
+            if (agent == null || string.IsNullOrWhiteSpace(effectId) || !agent.IsHuman || !agent.IsActive() || agent.Health < 1f || agent.IsFadingOut())
+            {
+                return false;
+            }
+
+            var mission = Mission.Current;
+            if (mission != null &&
+                mission.FindAgentWithIndex(agent.Index) != agent)
+            {
+                return false;
+            }
+
+            agent.ApplyStatusEffect(effectId, applierAgent, duration, append, isMutated, stack, castId);
+            return true;
         }
 
         /// <summary>

@@ -139,6 +139,11 @@ namespace TOR_Core.BattleMechanics.Firearms
 
             foreach (int index in _firingAgentsToRemove)
             {
+                if (_continousFiringAgents.TryGetValue(index, out var firingData))
+                {
+                    firingData.CleanUpParticle();
+                }
+
                 _continousFiringAgents.Remove(index);
             }
 
@@ -160,6 +165,13 @@ namespace TOR_Core.BattleMechanics.Firearms
 
         protected override void OnEndMission()
         {
+            foreach (var firingData in _continousFiringAgents.Values)
+            {
+                firingData.CleanUpParticle();
+            }
+
+            _continousFiringAgents.Clear();
+
             //clean up any sounds if they are still playing
             _soundsToRemove.Clear();
             foreach (var item in _activeSounds)
@@ -177,6 +189,7 @@ namespace TOR_Core.BattleMechanics.Firearms
             if (_continousFiringAgents.TryGetValue(affectedIndex, out var firingData))
             {
                 firingData.IsParticleEnabled = false;
+                firingData.CleanUpParticle();
                 RemoveLastProjectileByShooterIndex(affectedIndex);
                 _continousFiringAgents.Remove(affectedIndex);
             }
@@ -228,14 +241,21 @@ namespace TOR_Core.BattleMechanics.Firearms
                 RemoveLastProjectile(shooterAgent);
 
                 // Canister mode: Continuous flamethrower
-                _continousFiringAgents[shooterAgent.Index] = new ContinousFiringData
+                if (!_continousFiringAgents.TryGetValue(shooterAgent.Index, out var firingData) ||
+                    firingData.OwnerAgent != shooterAgent)
                 {
-                    OwnerAgent = shooterAgent,
-                    FireAmmoId = ammoId,
-                    RemainingTime = _continousFiringBurstLength,
-                    LastFiredTime = MissionTime.Now.ToMilliseconds,
-                    IsParticleEnabled = true,
-                };
+                    firingData?.CleanUpParticle();
+                    firingData = new ContinousFiringData
+                    {
+                        OwnerAgent = shooterAgent
+                    };
+                    _continousFiringAgents[shooterAgent.Index] = firingData;
+                }
+
+                firingData.FireAmmoId = ammoId;
+                firingData.RemainingTime = _continousFiringBurstLength;
+                firingData.LastFiredTime = MissionTime.Now.ToMilliseconds;
+                firingData.IsParticleEnabled = true;
                 BurstFireShot(shooterAgent, 0.1f, ammoId);
                 CreateMuzzleFireSound(position, MuzzleFireSoundType.DrakeGun);
                 return;
@@ -287,48 +307,53 @@ namespace TOR_Core.BattleMechanics.Firearms
             }
         }
 
-        //TODO implement explicit SoundEvent creation, add them to a dictionary, keep track of lifetime and when sound playback is over, explicitly remove them, null out the memory pointer
+        // non continuous firearm sounds owned by mission audio. keeping managed sound event handles this class will screw native lifetime handling
         private void CreateMuzzleFireSound(Vec3 position, MuzzleFireSoundType soundTypetype = MuzzleFireSoundType.Musket)
         {
-            int selected = 0;
+            string soundName = null;
+
             switch (soundTypetype)
             {
                 case MuzzleFireSoundType.Musket:
                     if (_soundNames.Length > 0)
                     {
-                        selected = _random.Next(0, _soundNames.Length - 1);
-                        var soundIndex = SoundEvent.GetEventIdFromString(_soundNames[selected]);
-                        var soundEvent = SoundEvent.CreateEvent(soundIndex, Mission.Scene);
-                        _activeSounds.Add(soundEvent.GetSoundId(), soundEvent);
-                        soundEvent.PlayInPosition(position);
+                        soundName = _soundNames[_random.Next(_soundNames.Length)];
                     }
 
                     break;
                 case MuzzleFireSoundType.Grenadelauncher:
                     if (_grenadeSoundNames.Length > 0)
                     {
-                        selected = _random.Next(0, _grenadeSoundNames.Length - 1);
-                        var soundIndex = SoundEvent.GetEventIdFromString(_grenadeSoundNames[selected]);
-                        var soundEvent = SoundEvent.CreateEvent(soundIndex, Mission.Scene);
-                        _activeSounds.Add(soundEvent.GetSoundId(), soundEvent);
-                        soundEvent.PlayInPosition(position);
+                        soundName = _grenadeSoundNames[_random.Next(_grenadeSoundNames.Length)];
                     }
 
                     break;
                 case MuzzleFireSoundType.DrakeGun:
-                    {
-                        var selectedName = "drakefire";
-                        var soundIndex = SoundEvent.GetEventIdFromString(selectedName);
-                        var soundEvent = SoundEvent.CreateEvent(soundIndex, Mission.Scene);
-                        _activeSounds.Add(soundEvent.GetSoundId(), soundEvent);
-                        soundEvent.PlayInPosition(position);
-                        break;
-                    }
-                case MuzzleFireSoundType.Pistol: //no sounds for pistol?
+                    soundName = "drakefire";
                     break;
+                case MuzzleFireSoundType.Pistol:
+                    return;
             }
-        }
 
+            if (string.IsNullOrWhiteSpace(soundName))
+            {
+                return;
+            }
+
+            var soundIndex = SoundEvent.GetEventIdFromString(soundName);
+            if (soundIndex < 0)
+            {
+                return;
+            }
+
+            Mission.MakeSound(
+                soundIndex,
+                position,
+                soundCanBePredicted: false,
+                isReliable: false,
+                relatedAgent1: -1,
+                relatedAgent2: -1);
+        }
 
         private void RemoveLastProjectile(Agent shooterAgent)
         {
@@ -461,9 +486,21 @@ namespace TOR_Core.BattleMechanics.Firearms
             farAwaySoundID ??= soundID;
 
             var distanceFromPlayer = position.Distance(Mission.Current.GetCameraFrame().origin);
-            int soundIndex = distanceFromPlayer < 30 ? SoundEvent.GetEventIdFromString(soundID) : SoundEvent.GetEventIdFromString(farAwaySoundID);
-            var sound = SoundEvent.CreateEvent(soundIndex, Mission.Current.Scene);
-            sound?.PlayInPosition(position);
+            var soundName = distanceFromPlayer < 30 ? soundID : farAwaySoundID;
+            var soundIndex = SoundEvent.GetEventIdFromString(soundName);
+
+            if (soundIndex < 0)
+            {
+                return;
+            }
+
+            Mission.Current.MakeSound(
+                soundIndex,
+                position,
+                soundCanBePredicted: false,
+                isReliable: false,
+                relatedAgent1: -1,
+                relatedAgent2: -1);
         }
 
         public override void OnScoreHit(Agent affectedAgent, Agent affectorAgent, WeaponComponentData attackerWeapon, bool isBlocked, bool isSiegeEngineHit, in Blow blow,
@@ -531,9 +568,10 @@ namespace TOR_Core.BattleMechanics.Firearms
         public float RemainingTime;
         public double LastFiredTime;
         public ParticleSystem FireStreamPS;
+        public GameEntity FireStreamEntity;
         public Agent OwnerAgent;
-        public string FireAmmoId;
         private bool _isParticleEnabled;
+        public string FireAmmoId;
 
         public bool IsParticleEnabled
         {
@@ -548,8 +586,8 @@ namespace TOR_Core.BattleMechanics.Firearms
                     _isParticleEnabled = value;
                     if (_isParticleEnabled && OwnerAgent != null)
                     {
-                        if (FireStreamPS == null) FireStreamPS = TORParticleSystem.ApplyParticleToAgentBone(OwnerAgent, "drakegun_fire", Game.Current.DefaultMonster.MainHandItemBoneIndex, out _, 0, new Vec3(90, 0, 0));
-                        FireStreamPS.SetEnable(true);
+                        if (FireStreamPS == null) FireStreamPS = TORParticleSystem.ApplyParticleToAgentBone(OwnerAgent, "drakegun_fire", Game.Current.DefaultMonster.MainHandItemBoneIndex, out FireStreamEntity, 0, new Vec3(90, 0, 0));
+                        FireStreamPS?.SetEnable(true);
                     }
                     else
                     {
@@ -557,6 +595,27 @@ namespace TOR_Core.BattleMechanics.Firearms
                     }
                 }
             }
+        }
+
+        // drakegun fire is both a bone component and child entity carrier. changed state will require a clean cleanup
+        public void CleanUpParticle()
+        {
+            TORParticleSystem.RemoveParticleFromAgentBone(OwnerAgent, FireStreamPS);
+
+            if (FireStreamEntity != null)
+            {
+                FireStreamEntity.RemoveAllParticleSystems();
+                if (OwnerAgent == null ||
+                    !OwnerAgent.HasUsableVisuals() ||
+                    !OwnerAgent.TryRemoveChildEntity(FireStreamEntity))
+                {
+                    FireStreamEntity.Remove(0);
+                }
+            }
+
+            FireStreamPS = null;
+            FireStreamEntity = null;
+            _isParticleEnabled = false;
         }
     }
 }

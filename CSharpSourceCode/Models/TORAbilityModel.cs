@@ -1018,7 +1018,7 @@ namespace TOR_Core.Models
                     // Book damage to session if we have a valid castId
                     if (logic != null)
                     {
-                        logic.ApplyOrQueueSpellDamage(
+                        logic.ApplySpellDamageinBudget(
                             agent,
                             finalDamage,
                             impactPosition,
@@ -1081,12 +1081,13 @@ namespace TOR_Core.Models
 
                 if (finalHealing > 0)
                 {
-                    agent.Heal(finalHealing);
-
-                    // Book healing to session if we have a valid castId
-                    if (castId >= 0 && logic != null)
+                    if (logic != null)
                     {
-                        logic.BookSpellHealing(castId, agent, finalHealing);
+                        logic.ApplySpellHealinginBudget(agent, finalHealing, healer, abilityTemplate, castId);
+                    }
+                    else
+                    {
+                        agent.Heal(finalHealing);
                     }
 
                     // Career ability charge is now applied once per session in FinalizeSession, not per-agent

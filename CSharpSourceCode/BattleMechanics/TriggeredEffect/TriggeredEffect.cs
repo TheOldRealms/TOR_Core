@@ -111,9 +111,10 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 }
             }
             //Determine targets
-            if (targets == null && triggererAgent != null)
+            if (targets == null)
             {
-                targets = [];
+                targets = new MBList<Agent>();
+
                 if (_template.TargetType == TargetType.Self)
                 {
                     targets.Add(triggererAgent);
@@ -132,6 +133,37 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                     targets = Mission.Current.GetNearbyAgents(position.AsVec2, radius, targets);
                 }
             }
+
+            targets = NormalizeTriggeredTargets(targets);
+
+            var effectPosition = position;
+
+            var effectNormal = normal;
+
+            if (_template.DoNotAlignParticleEffectPrefabOnImpact)
+            {
+                var groundPos = new Vec3(effectPosition.x, effectPosition.y, effectPosition.z - 5f);
+                using (new TWSharedMutexReadLock(Scene.PhysicsAndRayCastLock))
+                {
+                    Mission.Current.Scene.RayCastForClosestEntityOrTerrain(effectPosition, groundPos, out float distance, 0.01f, BodyFlags.CommonCollisionExcludeFlagsForAgent);
+                    if (distance >= 0.0000001f)
+                    {
+                        effectPosition = new Vec3(effectPosition.x, effectPosition.y, effectPosition.z - distance);
+                    }
+                }
+
+                effectNormal = Vec3.Forward;
+            }
+
+            var logic = Mission.Current?.GetMissionBehavior<AbilityManagerMissionLogic>();
+            if (logic != null)
+            {
+                logic.QueueTriggeredEffectSound(_template.StringID, _template.SoundEffectId, effectPosition, castId);
+            }
+            else
+            {
+                PlaySound(effectPosition);
+            }
             //Cause Damage
             if (_template.DamageAmount > 0)
             {
@@ -144,7 +176,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             //Apply status effects
             if (_template.AssociatedStatusEffects != null && _template.AssociatedStatusEffects.Count > 0)
             {
-                var logic = Mission.Current?.GetMissionBehavior<AbilityManagerMissionLogic>();
 
                 foreach (var effect in _template.AssociatedStatusEffects)
                 {
@@ -173,66 +204,67 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                         continue;
                     }
 
-                    // Book status effects and expected DOT/HOT immediately
-                    TORMissionHelper.ApplyStatusEffectToAgents(statusTargets, effect.StringID, triggererAgent, statusEffectDuration, true, _isTemplateMutated, castId);
-
-                    if (castId >= 0 && logic != null)
+                    foreach (var target in statusTargets)
                     {
-                        int expectedTicks = (int)statusEffectDuration;
-                        int expectedValuePerTarget = (int)(expectedTicks * effect.BaseEffectValue);
-
-                        // session status should follow the same target filter as its apply method to prevent aoe status effects counting to non active agents
-                        foreach (var target in statusTargets)
+                        if (logic != null)
                         {
-                            // Book status effect application for XP
-                            logic.BookSpellStatusEffect(castId, target);
-
-                            // Book expected DOT/HOT values based on duration × value per tick
-                            if (effect.Type == StatusEffectTemplate.EffectType.DamageOverTime)
-                            {
-                                logic.BookSpellDamage(castId, target, expectedValuePerTarget, 0, effect.DamageType);
-                            }
-                            else if (effect.Type == StatusEffectTemplate.EffectType.HealthOverTime)
-                            {
-                                logic.BookSpellHealing(castId, target, expectedValuePerTarget);
-                            }
+                            logic.QueueTriggeredStatusEffect( target, effect, triggererAgent,statusEffectDuration, true, _isTemplateMutated, castId);
                         }
-
-                        // Extend session collect time to wait for status effects to expire (for kill tracking)
-                        logic.ExtendSessionCollectTime(castId, statusEffectDuration);
+                        else
+                        {
+                            TORMissionHelper.ApplyStatusEffectToAgent( target, effect.StringID, triggererAgent, statusEffectDuration, true, _isTemplateMutated, false, castId);
+                        }
                     }
                 }
             }
-            if (_template.DoNotAlignParticleEffectPrefabOnImpact)
+            if (logic != null)
             {
-                var groundPos = new Vec3(position.x, position.y, position.z - 5f);
-                using (new TWSharedMutexReadLock(Scene.PhysicsAndRayCastLock))
-                {
-                    Mission.Current.Scene.RayCastForClosestEntityOrTerrain(position, groundPos, out float distance, 0.01f, BodyFlags.CommonCollisionExcludeFlagsForAgent);
-                    if (distance >= 0.0000001f)
-                    {
-                        position = new Vec3(position.x, position.y, position.z - distance);
-                    }
-                }
-                normal = Vec3.Forward;
-            }
-
-            SpawnVisuals(position, normal);
-            PlaySound(position);
-            TriggerScript(position, triggererAgent, targets, statusEffectDuration);
-            if (_sound != null)
-            {
-                float disposeDelaySeconds = _template.SoundEffectLength > 0f ? _template.SoundEffectLength : 2f;
-                lock (_pendingDisposeLock)
-                {
-                    _pendingDisposals.Add(new PendingDisposal(this, Mission.Current.CurrentTime + disposeDelaySeconds));
-                }
+                logic.QueueTriggeredEffectVisual(_template.StringID, _template.BurstParticleEffectPrefab, _template.SoundEffectLength, effectPosition, effectNormal, castId);
             }
             else
             {
-                Dispose();
+                SpawnVisuals(effectPosition, effectNormal);
             }
+            TriggerScript(effectPosition, triggererAgent, targets, statusEffectDuration);
+            Dispose();
         }
+        private static MBList<Agent> NormalizeTriggeredTargets(IEnumerable<Agent> rawTargets)
+        {
+            var result = new MBList<Agent>();
+            if (rawTargets == null)
+            {
+                return result;
+            }
+
+            var mission = Mission.Current;
+            var seen = new HashSet<int>();
+
+            foreach (var candidate in rawTargets)
+            {
+                if (candidate == null ||
+                    !candidate.IsActive() ||
+                    candidate.Health < 1f ||
+                    candidate.IsFadingOut())
+                {
+                    continue;
+                }
+
+                if (mission != null && mission.FindAgentWithIndex(candidate.Index) != candidate)
+                {
+                    continue;
+                }
+
+                if (!seen.Add(candidate.Index))
+                {
+                    continue;
+                }
+
+                result.Add(candidate);
+            }
+
+            return result;
+        }
+
         private static bool CanReceiveTriggeredStatusEffect(Agent agent)
         {
             if (agent == null || !agent.IsHuman || !agent.IsActive() || agent.Health < 1f || agent.IsFadingOut())
@@ -263,28 +295,43 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         private void PlaySound(Vec3 position)
         {
             // play sound
-            if (_template == null) return;
+            if (_template == null)
+            {
+                return;
+            }
 
             var soundEffectId = _template.SoundEffectId;
             if (string.IsNullOrWhiteSpace(soundEffectId))
+            {
                 return;
+            }
 
             soundEffectId = soundEffectId.Trim();
             if (soundEffectId.Equals("none", StringComparison.OrdinalIgnoreCase))
+            {
                 return;
+            }
 
             var soundIndex = SoundEvent.GetEventIdFromString(soundEffectId);
             if (soundIndex < 0)
             {
-                throw new InvalidOperationException(
-                    $"[TOR] Missing sound event '{soundEffectId}' for triggered effect '{_template.StringID}'.");
+                TORCommon.Log(
+                    "missing triggered effect sound" +  " | effect=" + _template.StringID + " | sound=" + soundEffectId,
+                    NLog.LogLevel.Warn);
+                return;
             }
 
-            _soundIndex = soundIndex;
-            _sound = SoundEvent.CreateEvent(_soundIndex, Mission.Current.Scene);
-            _sound?.PlayInPosition(position);
-        }
+            Mission.Current.MakeSound(
+                soundIndex,
+                position,
+                soundCanBePredicted: false,
+                isReliable: false,
+                relatedAgent1: -1,
+                relatedAgent2: -1);
 
+            _soundIndex = -1;
+            _sound = null;
+        }
         private void TriggerScript(Vec3 position, Agent triggerer, IEnumerable<Agent> triggeredAgents, float duration)
         {
             var scriptNameToTrigger = _template?.ScriptNameToTrigger?.Trim();

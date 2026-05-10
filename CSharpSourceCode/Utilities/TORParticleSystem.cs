@@ -1,4 +1,5 @@
 ﻿using NLog;
+using System;
 using System.Collections.Generic;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
@@ -20,35 +21,46 @@ namespace TOR_Core.Utilities
         /// <returns>A List of ParticleSystems attached to the agent</returns>
         public static List<ParticleSystem> ApplyParticleToAgent(Agent agent, string particleId, out List<GameEntity> childEntities, ParticleIntensity intensity = ParticleIntensity.High, bool rootOnly = false)
         {
+            return ApplyParticleToAgent(agent, particleId, out childEntities, out _, intensity, rootOnly);
+        }
+
+        public static List<ParticleSystem> ApplyParticleToAgent(Agent agent, string particleId, out List<GameEntity> childEntities, out List<sbyte> particleBoneIndexes, ParticleIntensity intensity = ParticleIntensity.High, bool rootOnly = false)
+        {
             List<ParticleSystem> particleList = new List<ParticleSystem>();
             childEntities = new List<GameEntity>();
-            if (string.IsNullOrWhiteSpace(particleId) || particleId.Trim().Equals("none", System.StringComparison.OrdinalIgnoreCase))
+            particleBoneIndexes = new List<sbyte>();
+
+            if (string.IsNullOrWhiteSpace(particleId) ||
+                particleId.Trim().Equals("none", StringComparison.OrdinalIgnoreCase))
             {
                 return particleList;
             }
             if (intensity == ParticleIntensity.Undefined)
             {
                 TORCommon.Log("Attempted to give an agent a particle with undefined intensity.", LogLevel.Warn);
+                return particleList;
+            }
+
+            int[] boneIndexes;
+            if (rootOnly)
+            {
+                boneIndexes = [1];
             }
             else
             {
-                int[] boneIndexes;
-                if (rootOnly)
+                boneIndexes = [0, 1, 2, 3, 5, 6, 7, 9, 12, 13, 15, 17, 22, 24];
+            }
+
+            for (byte i = 0; i < boneIndexes.Length / (int)intensity; i++)
+            {
+                var boneIndex = (sbyte)boneIndexes[i];
+                var particle = ApplyParticleToAgentBone(agent, particleId, boneIndex, out var childEntity);
+
+                if (particle != null && childEntity != null)
                 {
-                    boneIndexes = [1];
-                }
-                else
-                {
-                    boneIndexes = [0, 1, 2, 3, 5, 6, 7, 9, 12, 13, 15, 17, 22, 24];
-                }
-                for (byte i = 0; i < boneIndexes.Length / (int)intensity; i++)
-                {
-                    var particle = ApplyParticleToAgentBone(agent, particleId, (sbyte)boneIndexes[i], out var childEntity);
-                    if (particle != null && childEntity != null)
-                    {
-                        particleList.Add(particle);
-                        childEntities.Add(childEntity);
-                    }
+                    particleList.Add(particle);
+                    childEntities.Add(childEntity);
+                    particleBoneIndexes.Add(boneIndex);
                 }
             }
 
@@ -115,6 +127,39 @@ namespace TOR_Core.Utilities
             agent.AgentVisuals.AddChildEntity(childEntity);
             skeleton.AddComponentToBone(boneIndex, particle);
             return particle;
+        }
+
+        // fallback for lost bone ownership
+        public static void RemoveParticleFromAgentBone(Agent agent, ParticleSystem particle)
+        {
+            if (particle == null)
+            {
+                return;
+            }
+
+            particle.SetRuntimeEmissionRateMultiplier(0f);
+            particle.SetEnable(false);
+
+            if (agent == null || !agent.HasUsableVisuals())
+            {
+                return;
+            }
+
+            var skeleton = agent.AgentVisuals.GetSkeleton();
+            if (skeleton == null || !skeleton.IsValid)
+            {
+                return;
+            }
+
+            int boneCount = skeleton.GetBoneCount();
+            for (int i = 0; i < boneCount; i++)
+            {
+                var boneIndex = (sbyte)i;
+                if (skeleton.HasBoneComponent(boneIndex, particle))
+                {
+                    skeleton.RemoveBoneComponent(boneIndex, particle);
+                }
+            }
         }
 
         public enum ParticleIntensity
