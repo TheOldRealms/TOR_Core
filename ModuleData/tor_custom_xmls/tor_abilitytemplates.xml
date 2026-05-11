@@ -4575,7 +4575,7 @@
         <TriggeredEffect>apply_doom_seeking</TriggeredEffect>
     </AbilityTemplate>
     <AbilityTemplate StringID="WisdomOfThungni"
-                     Name="{=doom_seeking_label_str}Wisdom of Thungni"
+                     Name="{=wisdom_of_thungni_str}Wisdom of Thungni"
                      SpriteName="wisdom_of_thungni_icon"
                      CoolDown="60"
                      WindsOfMagicCost="0"

@@ -4678,7 +4678,7 @@
   <!-- Necromancer -->
   <string id="tor_careerunlock_level_1.Necromancer" text="{=str_tor_careerunlock_level_1_necromancer}" />
   <string id="tor_careerunlock_level_2.Necromancer" text="{=str_tor_careerunlock_level_2_necromancer}Required clan renown: 2" />
-  <string id="tor_careerunlock_level_3.Necromancer" text="{=str_tor_careerunlock_level_3_necromancer}[TODO] Required clan renown: 4" />
+  <string id="tor_careerunlock_level_3.Necromancer" text="{=str_tor_careerunlock_level_3_necromancer}Required clan renown: 4" />
 
   <!-- Minor Vampire (Vampire Count) -->
   <string id="tor_careerunlock_level_1.MinorVampire" text="{=str_tor_careerunlock_level_1_minorvampire}" />
@@ -4713,7 +4713,7 @@
   <!-- Necrarch -->
   <string id="tor_careerunlock_level_1.Necrarch" text="{=str_tor_careerunlock_level_1_necrarch}" />
   <string id="tor_careerunlock_level_2.Necrarch" text="{=str_tor_careerunlock_level_2_necrarch}Required clan renown: 2" />
-  <string id="tor_careerunlock_level_3.Necrarch" text="{=str_tor_careerunlock_level_3_necrarch}[TODO] Required clan renown: 4" />
+  <string id="tor_careerunlock_level_3.Necrarch" text="{=str_tor_careerunlock_level_3_necrarch}Required clan renown: 4" />
 
   <!-- Warrior Priest of Ulric -->
   <string id="tor_careerunlock_level_1.WarriorPriestUlric" text="{=str_tor_careerunlock_level_1_warriorpriestulric}" />
@@ -4748,7 +4748,7 @@
   <!-- Ironbreaker -->
   <string id="tor_careerunlock_level_1.Ironbreaker" text="{=str_tor_careerunlock_level_1_ironbreaker}" />
   <string id="tor_careerunlock_level_2.Ironbreaker" text="{=str_tor_careerunlock_level_2_ironbreaker}Required clan renown: 2" />
-  <string id="tor_careerunlock_level_3.Ironbreaker" text="{=str_tor_careerunlock_level_3_ironbreaker}[TODO] Required clan renown: 4" />
+  <string id="tor_careerunlock_level_3.Ironbreaker" text="{=str_tor_careerunlock_level_3_ironbreaker}Required clan renown: 4" />
 
   <!-- Slayer -->
   <string id="tor_careerunlock_level_1.Slayer" text="{=str_tor_careerunlock_level_1_slayer}" />
@@ -4789,7 +4789,7 @@
 
 <!-- Waywatcher -->
 <string id="tor_careerunlock_reward_1.Waywatcher" text="{=str_tor_careerunlock_reward_1_waywatcher}Swiftshiver shards upgrade for troops" />
-<string id="tor_careerunlock_reward_2.Waywatcher" text="{=str_tor_careerunlock_reward_2_waywatcher}agbane Tipps upgrade for troops" />
+<string id="tor_careerunlock_reward_2.Waywatcher" text="{=str_tor_careerunlock_reward_2_waywatcher}Hagbane Tipps upgrade for troops" />
 <string id="tor_careerunlock_reward_3.Waywatcher" text="{=str_tor_careerunlock_reward_3_waywatcher}Unlocks Starfire shafts" />
 
 <!-- Runelord -->
@@ -5744,7 +5744,9 @@
 	<string id="tor_item_hint_use" text="{=str_tor_item_hint_use}Use Item"/>
 	<string id="tor_religion_follower_none" text="{=str_tor_religion_follower_none}Not a follower of any religion"/>
 	<string id="tor_bloodkiss_player_notification" text="{=str_tor_bloodkiss_player_notification}Player recieves the Blood Kiss."/>
-
+	<string id="tor_forest_harmony_level.Unbound" text="{=str_tor_forest_harmony_level_unbound}Unbound"/>
+	<string id="tor_forest_harmony_level.Bound" text="{=str_tor_forest_harmony_level_bound}Bound"/>
+	<string id="tor_forest_harmony_level.Harmony" text="{=str_tor_forest_harmony_level_harmony}Harmony"/>
 	<!--Engineer Quest-->
 	<string id="tor_engineer_quest_log0" text="{=str_tor_engineer_quest_log0}The Master Engineer has tasked me with hunting down thieving runaways, I should find them and bring back what they stole."/>
 	<string id="tor_engineer_quest_log1" text="{=str_tor_engineer_quest_log1}I found the thieves, but they did not have the stolen components. I should return to the Master Engineer with the news."/>
@@ -5956,7 +5958,9 @@
 	<string id="tor_oak_symbol_wanderer_apply" text="{=str_tor_oak_symbol_wanderer_apply}Apply the Symbol of the Wanderer. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"/>
 	<string id="tor_oak_symbol_durthu_unlock" text="{=str_tor_oak_symbol_durthu_unlock}Decipher the Symbol of Durthu. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"/>
 	<string id="tor_oak_symbol_durthu_apply" text="{=str_tor_oak_symbol_durthu_apply}Apply the Symbol of Durthu. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"/>
-
+	<string id="tor_custom_settlement_we_already_unlocked" text="{=str_tor_custom_settlement_we_already_unlocked}Already unlocked"/>
+	<string id="tor_custom_settlement_we_not_enough_harmony_travel" text="{=str_tor_custom_settlement_we_not_enough_harmony_travel}Not enough Harmony for traveling."/>
+	
 	<!--Graveyard Menus-->
 	<string id="tor_graveyard_go_to" text="{=str_tor_graveyard_go_to}Go to the graveyard"/>
 	<string id="tor_graveyard_title" text="{=str_tor_graveyard_title}Graveyard"/>
@@ -6461,5 +6465,6 @@
   <string id="str_formation_ai_behavior_text.TORBehaviorProtectArtillery" text="{=str_tor_formation_ai_behavior_text_torbehaviorprotectartillery}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are protecting artillery." />
 	<string id="str_formation_ai_behavior_text.TORBehaviorRetreat" text="{=str_tor_formation_ai_behavior_text_torbehaviorretreat}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are retreating." />
 	<string id="str_formation_ai_behavior_text.TORBehaviorSkirmish" text="{=str_tor_formation_ai_behavior_text_torbehaviorskirmish}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are skirmishing." />	
+
   
 </strings>
