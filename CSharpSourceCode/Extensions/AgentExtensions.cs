@@ -135,6 +135,100 @@ namespace TOR_Core.Extensions
 
             return false;
         }
+        public static bool HasTrollRegeneration(this Agent agent)
+        {
+            return agent.GetAttributes().Contains("TrollRegeneration");
+        }
+
+        public static bool HasPiercing(this Agent agent)
+        {
+            return agent.GetAttributes().Contains("Piercing");
+        }
+
+        public static bool HasShieldPenetration(this Agent agent)
+        {
+            return agent.GetAttributes().Contains("ShieldPenetration");
+        }
+
+        public static bool HasHorseLink(this Agent agent)
+        {
+            return agent.GetAttributes().Contains("HorseLink");
+        }
+
+        public static bool HasHorseSteady(this Agent agent)
+        {
+            return agent.GetAttributes().Contains("HorseSteady");
+        }
+
+        public static bool IsUnstoppable(this Agent agent)
+        {
+            return agent.GetAttributes().Contains("Unstoppable");
+        }
+
+        public static bool HasSlice(this Agent agent)
+        {
+            return agent.GetAttributes().Contains("Slice");
+        }
+
+        public static bool HasMonsterAttack(this Agent agent)
+        {
+            return agent.GetAttributes().Contains("MonsterAttack");
+        }
+
+        public static bool HasCrushThrough(this Agent agent)
+        {
+            return agent.GetAttributes().Contains("CrushThrough");
+        }
+
+        public static bool HasTheHunger(this Agent agent)
+        {
+            return agent.GetAttributes().Contains("TheHunger");
+        }
+
+        public static bool HasFrenzy(this Agent agent)
+        {
+            return agent.GetAttributes().Contains("Frenzy");
+        }
+
+        public static bool HasWightKingTrait(this Agent agent)
+        {
+            return agent.GetAttributes().Contains("WightKing");
+        }
+
+        public static bool HasUndeadSlayer(this Agent agent)
+        {
+            return agent.GetAttributes().Contains("UndeadSlayer");
+        }
+
+        public static bool HasImmortality(this Agent agent)
+        {
+            return agent.GetAttributes().Contains("Immortality");
+        }
+
+        public static bool HasDeadeye(this Agent agent)
+        {
+            return agent.GetAttributes().Contains("Deadeye");
+        }
+
+        public static bool IsEthereal(this Agent agent)
+        {
+            return agent.GetAttributes().Contains("Ethereal");
+        }
+
+        public static bool HasKillingBlow(this Agent agent)
+        {
+            return agent.GetAttributes().Contains("KillingBlow");
+        }
+
+        public static bool HasMonsterSlayer(this Agent agent)
+        {
+            return agent.GetAttributes().Contains("MonsterSlayer");
+        }
+
+        public static bool IsMonstrous(this Agent agent)
+        {
+            return agent.Character != null && !agent.Character.CanClimbLadders(); // monster, for now
+        }
 
         public static bool ShouldNotBleed(this Agent agent)
         {

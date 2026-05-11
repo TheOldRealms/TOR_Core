@@ -39,6 +39,8 @@ namespace TOR_Core.Models
         private const float EXTRA_CTB_ENERGY_MARGIN_FOR_FULL_EFFECT = 0.27f;
 
         private static readonly float ExtraCtbSkillGrowthRate = EXTRA_CTB_SKILL_GROWTH_RATE;
+
+        private static readonly HashSet<int> _killingBlowVictimAgentIndices = new();
         public override void DecideMissileWeaponFlags(Agent attackerAgent, in MissionWeapon missileWeapon, ref WeaponFlags missileWeaponFlags)
         {
             base.DecideMissileWeaponFlags(attackerAgent, missileWeapon, ref missileWeaponFlags);
@@ -70,7 +72,7 @@ namespace TOR_Core.Models
                     }
                 }
 
-                if (attackerAgent.HasAttribute("ShieldPenetration"))
+                if (attackerAgent.HasShieldPenetration())
                 {
                     missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
                 }
@@ -118,7 +120,69 @@ namespace TOR_Core.Models
                 
             }
         }
+        public override bool IsDamageIgnored(in AttackInformation attackInformation, in AttackCollisionData collisionData)
+        {
+            if (base.IsDamageIgnored(in attackInformation, in collisionData))
+            {
+                return true;
+            }
 
+            var attackerAgent = attackInformation.IsAttackerAgentMount ? attackInformation.AttackerAgent?.RiderAgent : attackInformation.AttackerAgent;
+            var victimAgent = attackInformation.IsVictimAgentMount ? attackInformation.VictimAgent?.RiderAgent : attackInformation.VictimAgent;
+
+            if (attackerAgent == null || victimAgent == null)
+            {
+                return false;
+            }
+
+            if (!attackerAgent.IsHuman || !victimAgent.IsHuman)
+            {
+                return false;
+            }
+
+            if (!victimAgent.IsEthereal())
+            {
+                return false;
+            }
+
+            if (!IsPurePhysicalAttack(attackerAgent, collisionData))
+            {
+                return false;
+            }
+
+            var dodgeChance = 0.35f; // chance to dodge pure physical hits
+            if (MBRandom.RandomFloat >= dodgeChance)
+            {
+                return false;
+            }
+
+            if (attackerAgent.IsMainAgent)
+            {
+                InformationManager.DisplayMessage(new InformationMessage(GameTexts.FindText("tor_ethereal_hit_ignored").ToString(), new Color(0.65f, 0.20f, 1f)));
+            }
+
+            return true;
+        }
+
+        private bool IsPurePhysicalAttack(Agent attackerAgent, in AttackCollisionData collisionData)
+        {
+            var attackTypeMask = collisionData.IsMissile ? AttackTypeMask.Ranged : AttackTypeMask.Melee;
+            var attackerProperties = CreateAgentPropertyContainer(attackerAgent, PropertyMask.Attack, attackTypeMask);
+
+            return !HasPositiveDamageType(attackerProperties, DamageType.Magical)
+                   && !HasPositiveDamageType(attackerProperties, DamageType.Fire)
+                   && !HasPositiveDamageType(attackerProperties, DamageType.Holy)
+                   && !HasPositiveDamageType(attackerProperties, DamageType.Lightning)
+                   && !HasPositiveDamageType(attackerProperties, DamageType.Frost);
+        }
+
+        private static bool HasPositiveDamageType(AgentPropertyContainer properties, DamageType damageType)
+        {
+            var damageTypeIndex = (int)damageType;
+
+            return properties.DamageProportions[damageTypeIndex] > 0f
+                   || properties.AdditionalDamagePercentages[damageTypeIndex] > 0f;
+        }
 
         public override bool CanWeaponDealSneakAttack(in AttackInformation attackInformation, WeaponComponentData weapon)
         {
@@ -293,7 +357,7 @@ namespace TOR_Core.Models
         {
             var value = base.DecideMountRearedByBlow(attackerAgent, victimAgent, collisionData, attackerWeapon, blow);
 
-            if (victimAgent.RiderAgent != null && victimAgent.RiderAgent.HasAttribute("HorseSteady"))
+            if (victimAgent.RiderAgent != null && victimAgent.RiderAgent.HasHorseSteady())
             {
                 return false;
             }
@@ -375,6 +439,7 @@ namespace TOR_Core.Models
                     }
                 }
             }
+            vanillaDamage = ApplySlayerAttributes(attackerAgent, victimAgent, vanillaDamage);
 
             // Calculate damage with TOR's damage type system
             float resultDamage = TORDamageHelper.CalculateDamageWithProportions(
@@ -385,7 +450,71 @@ namespace TOR_Core.Models
             float wardSaveFactor = CalculateWardSaveFactor(attackerAgent, victimAgent, resistancePercentages, friendlyFire);
             resultDamage *= wardSaveFactor;
 
+            resultDamage = ApplyKillingBlowAttributes(attackerAgent, victimAgent, resultDamage);
+
             return resultDamage;
+        }
+        private static float ApplySlayerAttributes(Agent attackerAgent, Agent victimAgent, float damage)
+        {
+            if (attackerAgent.HasUndeadSlayer() && victimAgent.IsUndead())
+            {
+                damage *= 1.25f; // undead slayer damage bonus
+            }
+
+            if (attackerAgent.HasMonsterSlayer() && victimAgent.IsMonstrous())
+            {
+                damage *= 1.50f; // monster slayer damage bonus
+            }
+
+            return damage;
+        }
+        internal static void MarkKillingBlowVictim(Agent victimAgent)
+        {
+            _killingBlowVictimAgentIndices.Add(victimAgent.Index);
+        }
+
+        internal static bool ConsumeKillingBlowVictim(Agent victimAgent)
+        {
+            return _killingBlowVictimAgentIndices.Remove(victimAgent.Index);
+        }
+
+        private static float ApplyKillingBlowAttributes(Agent attackerAgent, Agent victimAgent, float resultDamage)
+        {
+            if (resultDamage <= 0f)
+            {
+                return resultDamage;
+            }
+
+            if (victimAgent.IsHero)
+            {
+                return resultDamage;
+            }
+
+            if (!attackerAgent.HasKillingBlow() && !attackerAgent.HasWightKingTrait())
+            {
+                return resultDamage;
+            }
+
+            var victimCharacter = victimAgent.Character as CharacterObject;
+            var targetTier = victimCharacter?.Tier ?? 1;
+
+            var isWightKing = attackerAgent.HasWightKingTrait();
+
+            var tierOneChance = isWightKing ? 0.40f : 0.20f; // chance against tier 1
+            var chanceLostPerTier = isWightKing ? 0.025f : 0.040f; // lower chance vs higher tier
+            var minimumChance = isWightKing ? 0.04f : 0.00f; // floor chance
+
+            var killingBlowChance = tierOneChance - ((targetTier - 1) * chanceLostPerTier);
+            killingBlowChance = MBMath.ClampFloat(killingBlowChance, minimumChance, tierOneChance);
+
+            if (MBRandom.RandomFloat >= killingBlowChance)
+            {
+                return resultDamage;
+            }
+            MarkKillingBlowVictim(victimAgent);
+
+            var killingBlowDamage = victimAgent.Health + 100f;
+            return MathF.Max(resultDamage, killingBlowDamage);
         }
 
         /// <summary>
@@ -398,8 +527,8 @@ namespace TOR_Core.Models
             var baseShrugOff = base.DecideAgentShrugOffBlow(victimAgent, collisionData, blow);
             if (baseShrugOff)
                 return true;
-            
-            if (victimAgent.HasAttribute("Unstoppable"))
+
+            if (victimAgent.IsUnstoppable())
                 return true;
 
             // Agent's own damage threshold check
@@ -1047,7 +1176,7 @@ namespace TOR_Core.Models
                     return true;
                 }
             }
-            if (attacker.HasAttribute("Slice"))
+            if (attacker.HasSlice())
                 return true;
 
             return false;
@@ -1131,7 +1260,7 @@ namespace TOR_Core.Models
         {
             // Monster attacks (trolls, minotaurs, etc.) can only be blocked with shields
             bool isShieldBlock = defendItem != null && defendItem.IsShield;
-            if (attackerAgent != null && attackerAgent.HasAttribute("MonsterAttack"))
+            if (attackerAgent != null && attackerAgent.HasMonsterAttack())
             {
                 if (defendItem == null || !defendItem.IsShield)
                 {
@@ -1144,7 +1273,7 @@ namespace TOR_Core.Models
                     equipmentIndex = attackerAgent.GetPrimaryWieldedItemIndex();
                 }
 
-                if (((equipmentIndex != EquipmentIndex.None) ? attackerAgent.Equipment[equipmentIndex].CurrentUsageItem : null) == null || isPassiveUsage || strikeType != 0 || (attackDirection != 0 && !attackerAgent.HasAttribute("CrushThrough")))
+                if (((equipmentIndex != EquipmentIndex.None) ? attackerAgent.Equipment[equipmentIndex].CurrentUsageItem : null) == null || isPassiveUsage || strikeType != 0 || (attackDirection != 0 && !attackerAgent.HasCrushThrough()))
                 {
                     return false;
                 }
@@ -1180,7 +1309,7 @@ namespace TOR_Core.Models
             if (attackerUsageItem != null
                 && !isPassiveUsage
                 && strikeType == 0
-                && ((attackDirection == 0 || attackerAgent.HasAttribute("CrushThrough")) || isOrcAiMeleeCtbAttack)
+                && ((attackDirection == 0 || attackerAgent.HasCrushThrough()) || isOrcAiMeleeCtbAttack)
                 && totalAttackEnergy > 58f)
             {
             #if TOR_CTB_LOG

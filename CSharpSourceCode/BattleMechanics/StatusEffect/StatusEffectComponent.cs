@@ -165,7 +165,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     var healingValue = (int)_effectAggregate.HealthOverTime;
                     Agent.Heal(healingValue);
 
-                    if (Agent.HasMount && Agent.HasAttribute("HorseLink"))
+                    if (Agent.HasMount && Agent.HasHorseLink())
                     {
                         Agent.MountAgent.Heal(healingValue);
                     }

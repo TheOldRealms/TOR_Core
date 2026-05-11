@@ -5132,6 +5132,27 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_test_subject">
+    <Abilities />
+    <Attributes>
+      <string>TheHunger</string>
+      <string>Frenzy</string>
+      <string>WightKing</string>
+      <string>UndeadSlayer</string>
+      <string>Immortality</string>
+      <string>Deadeye</string>
+      <string>Ethereal</string>
+      <string>KillingBlow</string>
+      <string>MonsterSlayer</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.00" />
+    </DamageAmplifiers>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_averland_factionleader">
     <Abilities />
     <Attributes>

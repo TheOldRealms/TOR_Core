@@ -15,7 +15,7 @@ namespace TOR_Core.Extensions
 
         public static void SetDynamicCombatProperties(this AgentDrivenProperties agentDrivenProperties, StatusEffectComponent statusEffectComponent, float multiplier)
         {
-            agentDrivenProperties.SwingSpeedMultiplier = statusEffectComponent.GetBaseValueForDrivenProperty(DrivenProperty.ThrustOrRangedReadySpeedMultiplier) * multiplier;
+            agentDrivenProperties.ThrustOrRangedReadySpeedMultiplier = statusEffectComponent.GetBaseValueForDrivenProperty(DrivenProperty.ThrustOrRangedReadySpeedMultiplier) * multiplier;
             agentDrivenProperties.SwingSpeedMultiplier = statusEffectComponent.GetBaseValueForDrivenProperty(DrivenProperty.SwingSpeedMultiplier) * multiplier;
         }
 

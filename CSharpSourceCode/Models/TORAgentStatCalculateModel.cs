@@ -385,6 +385,8 @@ namespace TOR_Core.Models
             {
                 AddSkillEffectsForAgent(agent, agentDrivenProperties);
                 AddPerkEffectsForAgent(agent, agentDrivenProperties);
+                ApplyDeadeye(agent, agentDrivenProperties);
+
                 var character = agent.Character as CharacterObject;
                 if (character != null)
                 {
@@ -511,6 +513,26 @@ namespace TOR_Core.Models
             UpdateDynamicAgentDrivenProperties(agent, agentDrivenProperties);
             ApplyOrcMeleeHandlingBoost(agent, agentDrivenProperties);
         }
+        private static void ApplyDeadeye(Agent agent, AgentDrivenProperties agentDrivenProperties)
+        {
+            if (!agent.HasDeadeye())
+            {
+                return;
+            }
+
+            if (agent.WieldedWeapon.IsEmpty || agent.WieldedWeapon.CurrentUsageItem == null)
+            {
+                return;
+            }
+
+            if (!agent.WieldedWeapon.CurrentUsageItem.IsRangedWeapon)
+            {
+                return;
+            }
+
+            agentDrivenProperties.WeaponMaxMovementAccuracyPenalty = 0f; // no running accuracy penalty
+        }
+
         private static void ApplyOrcMeleeHandlingBoost(Agent agent, AgentDrivenProperties agentDrivenProperties)
         {
             MissionWeapon activeMeleeWeapon;

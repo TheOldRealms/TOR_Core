@@ -1,5 +1,8 @@
 ﻿using HarmonyLib;
 using System.Collections.Generic;
+using SandBox.GameComponents;
+using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.GameComponents;
@@ -39,6 +42,62 @@ public static class ModelPatches
             return;
         }
         amount = -clan.Influence;
+    }
+
+    // unit attributes overriding kill/ko
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(SandboxAgentDecideKilledOrUnconsciousModel), nameof(SandboxAgentDecideKilledOrUnconsciousModel.GetAgentStateProbability))]
+    private static bool Prefix_SandboxAgentStateProbability(
+    Agent affectorAgent,
+    Agent effectedAgent,
+    DamageTypes damageType,
+    WeaponFlags weaponFlags,
+    ref float __result,
+    ref float useSurgeryProbability)
+    {
+        return OverrideAgentKilledOrUnconsciousState(effectedAgent, ref __result, ref useSurgeryProbability);
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(DefaultAgentDecideKilledOrUnconsciousModel), nameof(DefaultAgentDecideKilledOrUnconsciousModel.GetAgentStateProbability))]
+    private static bool Prefix_DefaultAgentStateProbability(
+        Agent affectorAgent,
+        Agent effectedAgent,
+        DamageTypes damageType,
+        WeaponFlags weaponFlags,
+        ref float __result,
+        ref float useSurgeryProbability)
+    {
+        return OverrideAgentKilledOrUnconsciousState(effectedAgent, ref __result, ref useSurgeryProbability);
+    }
+
+    private static bool OverrideAgentKilledOrUnconsciousState(
+        Agent effectedAgent,
+        ref float result,
+        ref float useSurgeryProbability)
+    {
+        if (effectedAgent == null)
+        {
+            return true;
+        }
+
+        var killingBlowForcedKill = TORAgentApplyDamageModel.ConsumeKillingBlowVictim(effectedAgent);
+
+        if (effectedAgent.HasImmortality())
+        {
+            useSurgeryProbability = 1f;
+            result = 0f; // force knockout
+            return false;
+        }
+
+        if (killingBlowForcedKill)
+        {
+            useSurgeryProbability = 0f;
+            result = 1f; // force kill
+            return false;
+        }
+
+        return true;
     }
 
     // removes auto recruitment hard cap
