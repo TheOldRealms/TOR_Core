@@ -1131,7 +1131,6 @@
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_we_eternal_guard" />
       <upgrade_target id="NPCCharacter.tor_we_glade_guard" />
-      <upgrade_target id="NPCCharacter.tor_we_glade_rider" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_we_militia_template" />
@@ -1150,6 +1149,7 @@
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_we_kings_bowman" />
+      <upgrade_target id="NPCCharacter.tor_we_glade_rider" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_we_glade_guard_template" />
@@ -1255,8 +1255,8 @@
       <upgrade_target id="NPCCharacter.tor_we_wildwood_ranger" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_we_deepwood_scout_template" />
-      <EquipmentSet id="tor_we_deepwood_scout_template" civilian="true" />
+      <EquipmentSet id="tor_we_scout_template" />
+      <EquipmentSet id="tor_we_scout_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_we_deepwood_scout" default_group="ranged" level="16" name="{=str_tor_we_deepwood_scout}Asrai Deepwood Scout" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level16" race="elf">
@@ -1440,7 +1440,7 @@
       <EquipmentSet id="tor_we_great_stag_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_dryad" default_group="infantry" level="31" name="{=str_tor_we_dryad}Dryad" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level31" is_basic_troop="true">
+  <NPCCharacter id="tor_we_dryad" default_group="infantry" level="21" name="{=str_tor_we_dryad}Dryad" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
       <hair_tags>
