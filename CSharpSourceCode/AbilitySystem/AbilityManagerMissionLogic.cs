@@ -1437,8 +1437,13 @@ namespace TOR_Core.AbilitySystem
             var effect = GameEntity.CreateEmpty(Mission.Current.Scene);
             MatrixFrame frame = MatrixFrame.Identity;
             ParticleSystem.CreateParticleSystemAttachedToEntity(work.BurstParticleEffectPrefab, effect, ref frame);
-            var normal = work.Normal;
-            var globalFrame = new MatrixFrame(Mat3.CreateMat3WithForward(in normal), work.Position);
+            var effectForward = work.Normal;
+            if (Math.Abs(effectForward.x) + Math.Abs(effectForward.y) + Math.Abs(effectForward.z) < 0.0001f)
+            {
+                effectForward = Vec3.Forward;
+            }
+
+            var globalFrame = new MatrixFrame(Mat3.CreateMat3WithForward(in effectForward), work.Position);
             effect.SetGlobalFrame(globalFrame);
             effect.FadeOut(work.FadeOutTime, true);
 

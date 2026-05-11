@@ -286,7 +286,13 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 var effect = GameEntity.CreateEmpty(Mission.Current.Scene);
                 MatrixFrame frame = MatrixFrame.Identity;
                 ParticleSystem.CreateParticleSystemAttachedToEntity(burstPrefab, effect, ref frame);
-                var globalFrame = new MatrixFrame(Mat3.CreateMat3WithForward(in normal), position);
+                var effectForward = normal;
+                if (Math.Abs(effectForward.x) + Math.Abs(effectForward.y) + Math.Abs(effectForward.z) < 0.0001f)
+                {
+                    effectForward = Vec3.Forward;
+                }
+
+                var globalFrame = new MatrixFrame(Mat3.CreateMat3WithForward(in effectForward), position);
                 effect.SetGlobalFrame(globalFrame);
                 effect.FadeOut(_template.SoundEffectLength, true);
             }

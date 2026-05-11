@@ -278,7 +278,7 @@ namespace TOR_Core.AbilitySystem
                 frame = new MatrixFrame(Mat3.CreateMat3WithForward(Vec3.Forward), frame.origin);
             }
 
-            GameEntity parentEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
+            GameEntity parentEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false, true, false);
             parentEntity.SetGlobalFrame(frame);
 
             AddLight(ref parentEntity);
@@ -672,23 +672,87 @@ namespace TOR_Core.AbilitySystem
             {
                 if (casterAgent.IsAIControlled)
                 {
-                    AbilityScript.SetTargetSeeking(casterAgent.GetComponent<WizardAIComponent>().CurrentCastingBehavior.CurrentTarget, Template.SeekerParameters);
-                }
-                else
-                {
-                    Target target;
-                    if (Crosshair.CrosshairType == CrosshairType.SingleTarget)
-                    {
-                        target = new Target { Agent = (Crosshair as SingleTargetCrosshair).CachedTarget };
-                    }
-                    else
-                    {
-                        target = new Target { Formation = casterAgent.Formation.CachedClosestEnemyFormation.Formation };
-                    }
+                    var wizardAIComponent = casterAgent.GetComponent<WizardAIComponent>();
+                    var target = wizardAIComponent.CurrentCastingBehavior.CurrentTarget;
 
+                    if (IsUsableSeekerTarget(target, casterAgent))
+                    {
+                        AbilityScript.SetTargetSeeking(target, Template.SeekerParameters);
+                    }
+                }
+                else if (TryCreatePlayerSeekerTarget(casterAgent, out var target))
+                {
                     AbilityScript.SetTargetSeeking(target, Template.SeekerParameters);
                 }
             }
+
+            entity.CallScriptCallbacks(true);
+        }
+        private bool TryCreatePlayerSeekerTarget(Agent casterAgent, out Target target)
+        {
+            target = null;
+
+            if (Crosshair?.CrosshairType == CrosshairType.SingleTarget)
+            {
+                var targetAgent = (Crosshair as SingleTargetCrosshair)?.CachedTarget;
+                if (!IsUsableSeekerAgent(targetAgent, casterAgent))
+                {
+                    return false;
+                }
+
+                target = new Target { Agent = targetAgent };
+                return true;
+            }
+
+            var formation = casterAgent.Formation?.CachedClosestEnemyFormation?.Formation;
+            if (formation == null || formation.CountOfUnits <= 0)
+            {
+                return false;
+            }
+
+            target = new Target { Formation = formation };
+            return true;
+        }
+
+        private bool IsUsableSeekerTarget(Target target, Agent casterAgent)
+        {
+            if (target == null)
+            {
+                return false;
+            }
+
+            if (target.Agent != null)
+            {
+                return IsUsableSeekerAgent(target.Agent, casterAgent);
+            }
+
+            return target.Formation != null && target.Formation.CountOfUnits > 0;
+        }
+        private bool IsUsableSeekerAgent(Agent targetAgent, Agent casterAgent)
+        {
+            if (targetAgent == null || casterAgent == null)
+            {
+                return false;
+            }
+
+            if (!targetAgent.IsActive() || targetAgent.Health <= 0 || targetAgent.IsFadingOut())
+            {
+                return false;
+            }
+
+            if (Template.AbilityTargetType == AbilityTargetType.SingleEnemy ||
+                Template.AbilityTargetType == AbilityTargetType.EnemiesInAOE)
+            {
+                return targetAgent.IsEnemyOf(casterAgent);
+            }
+
+            if (Template.AbilityTargetType == AbilityTargetType.SingleAlly ||
+                Template.AbilityTargetType == AbilityTargetType.AlliesInAOE)
+            {
+                return !targetAgent.IsEnemyOf(casterAgent);
+            }
+
+            return true;
         }
 
         protected virtual void AddExactBehaviour<TAbilityScript>(ref GameEntity parentEntity, Agent casterAgent)
@@ -716,8 +780,6 @@ namespace TOR_Core.AbilitySystem
             TORCommon.Log(
                 $"spell cast start | spell={spellName} | caster={casterName} | side={casterAgent?.Team?.Side} | ai={casterAgent?.IsAIControlled}",
                 NLog.LogLevel.Info);
-
-            parentEntity.CallScriptCallbacks(true);
         }
 
         private void SetAnimationAction(Agent casterAgent)
