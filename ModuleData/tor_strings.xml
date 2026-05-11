@@ -4907,11 +4907,17 @@
   <string id="tor_damage_display_spell_damage" text="{=str_tor_damage_display_spell_damage}{ICON} {SPELL_NAME} dealt {DAMAGE} {DAMAGE_TYPE} damage to {COUNT} {TARGET_TEXT}"/>
   <string id="tor_damage_display_spell_damage_with_kills" text="{=str_tor_damage_display_spell_damage_with_kills}{ICON} {SPELL_NAME} dealt {DAMAGE} {DAMAGE_TYPE} damage to {COUNT} {TARGET_TEXT}, {KILL_COUNT} eliminated"/>
   <string id="tor_damage_display_spell_healing" text="{=str_tor_damage_display_spell_healing}{ICON} {SPELL_NAME} healed {HEALING} health to {COUNT} {TARGET_TEXT}"/>
+  <string id="tor_damage_display_friendly_fire" text="{=str_tor_damage_display_friendly_fire}{ICON} {SPELL_NAME} hit {COUNT} {TARGET_TEXT} for {DAMAGE} friendly fire damage"/>
+  <string id="tor_damage_display_friendly_fire_with_kills" text="{=str_tor_damage_display_friendly_fire_with_kills}{ICON} {SPELL_NAME} hit {COUNT} {TARGET_TEXT} for {DAMAGE} friendly fire damage, {KILL_COUNT} killed"/>
 
+  
+  
   <!-- Shared Text -->
   <string id="tor_damage_display_spell" text="{=str_tor_damage_display_spell}Spell"/>
   <string id="tor_damage_display_target_singular" text="{=str_tor_damage_display_target_singular}target"/>
   <string id="tor_damage_display_target_plural" text="{=str_tor_damage_display_target_plural}targets"/>
+  <string id="tor_damage_display_ally_singular" text="{=str_tor_damage_display_ally_singular}ally"/>
+  <string id="tor_damage_display_ally_plural" text="{=str_tor_damage_display_ally_plural}allies"/> 
 
   <!-- Damage Types -->
   <string id="tor_damage_type_fire" text="{=str_tor_damage_type_fire}Fire"/>
