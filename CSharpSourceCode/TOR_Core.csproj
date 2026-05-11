@@ -539,6 +539,7 @@
     <Compile Include="CampaignMechanics\CustomEvents\CustomEvent.cs" />
     <Compile Include="CampaignMechanics\CustomEvents\CustomEventsCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomEvents\SimpleCareerQuestBehavior.cs" />
+    <Compile Include="CampaignMechanics\CustomResourceBehavior\Constants\RunelordShopConstants.cs" />
     <Compile Include="CampaignMechanics\CustomResourceBehavior\EonirFavorEnvoyTownBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomResourceBehavior\OathGoldBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomResourceBehavior\PrestigeNobleTownBehavior.cs" />

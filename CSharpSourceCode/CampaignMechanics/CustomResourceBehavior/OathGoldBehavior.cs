@@ -2,6 +2,7 @@ using Helpers;
 using Ink.Parsed;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Text;
 using System.Linq;
 using System.Windows.Forms.VisualStyles;
 using TaleWorlds.CampaignSystem;
@@ -9,6 +10,7 @@ using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.ComponentInterfaces;
 using TaleWorlds.CampaignSystem.CraftingSystem;
+using TaleWorlds.CampaignSystem.Extensions;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Inventory;
 using TaleWorlds.CampaignSystem.Issues;
@@ -26,6 +28,7 @@ using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.Crafting;
+using TOR_Core.CampaignMechanics.CustomResourceBehavior.Constants;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
@@ -302,7 +305,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_learn_rune_magic_p", hub, reintro,
             TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_hub_learn_rune_magic_p", "I wish to learn more of Rune Magic and the Anvils of Doom."),
-    () => Hero.MainHero.HasAttribute("PlayerRunesmith") || Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.HasAttribute("Runesmith")) && Hero.MainHero.PartyBelongedTo.HasAnvilOfDoom(), openbookconsequence, 200);
+        () => Hero.MainHero.HasAttribute("PlayerRunesmith") || Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.HasAttribute("Runesmith")) && Hero.MainHero.PartyBelongedTo.HasAnvilOfDoom(), openbookconsequence, 200);
 
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_1_p", hub, "tor_dw_guildmaster_rune_smith_hub_rune_lord_career",
@@ -434,79 +437,41 @@ public class OathGoldBehavior : CampaignBehaviorBase
         }
 
 
+        void AddTier1List(MBList<ItemObject> inputList) => inputList.AppendList(MBObjectManager.Instance.GetObjectTypeList<ItemObject>()
+            .WhereQ(x => RunelordShopConstants.TIER_1_ARMOUR_UNLOCKS.Contains(x.StringId)).ToMBList());
 
-        void OpenRuneLordShop()
-        {
-            var excludedItems = new List<string>
-            {
-                // Weapons
-                "tor_dwarf_weapon_1h_axe_of_grimnir",
-                "tor_dwarf_weapon_greataxe_001",
-                "tor_dwarf_weapon_greataxe_ungrim_001",
-                "tor_dwarf_1h_spanner_001",
-                "dwarf_1h_engineer_hammer_001",
-                "tor_dwarf_weapon_hammer_of_angrund",
-                "tor_dwarf_2h_spanner_001",
-                "dwarf_2h_engineer_hammer_001",
-                // Armors - Head
-                "tor_dw_head_helm_ungrim_001",
-                "tor_dw_head_helm_ranger_001",
-                "tor_dw_head_helm_ranger_002",
-                "tor_dw_head_helm_ranger_003",
-                "tor_dw_head_helm_ranger_004",
-                "tor_dw_head_apprentice_002",
-                "tor_dw_head_apprentice_001",
-                "tor_dw_head_journeyman_001",
-                "tor_dw_head_engineer_001",
-                "tor_dw_head_engineer_002",
-                // Armors - Shoulder
-                "tor_dw_shoulder_cape_ranger_001",
-                "tor_dw_shoulder_cape_ranger_002",
-                "tor_dw_shoulder_shoulderpads_apprentice_001",
-                "tor_dw_shoulder_shoulderpads_journeyman_001",
-                "tor_dw_shoulder_shoulderpads_engineer_001",
-                "tor_dw_shoulder_shoulderpads_ungrim_001",
-                // Armors - Body
-                "tor_dw_body_armour_apprentice_001",
-                "tor_dw_body_armour_journeyman_001",
-                "tor_dw_body_armour_engineer_001",
-                "tor_dw_body_armour_ungrim_001",
-                "tor_dw_body_armour_ranger_001",
-                // Armors - Arms
-                "tor_dw_arm_gloves_apprentice_001",
-                "tor_dw_arm_gloves_journeyman_001",
-                "tor_dw_arm_gloves_engineer_001",
-                "tor_dw_arm_bracers_ranger_001",
-                // Armors - Legs
-                "tor_dw_leg_boots_apprentice_001",
-                "tor_dw_leg_boots_journeyman_001",
-                "tor_dw_leg_boots_engineer_001",
-                "tor_dw_leg_boots_ranger_001"
-            };
+        void AddTier2List(MBList<ItemObject> inputList) => inputList.AppendList(MBObjectManager.Instance.GetObjectTypeList<ItemObject>()
+            .WhereQ(x => RunelordShopConstants.TIER_1_ARMOUR_UNLOCKS.Contains(x.StringId) || RunelordShopConstants.TIER_2_ARMOUR_UNLOCKS.Contains(x.StringId)).ToMBList());
 
+        void OpenRuneLordShop() {
             ItemRoster roster = new ItemRoster();
-
             var items = new MBList<ItemObject>();
 
-            if (Hero.MainHero.HasAttribute("RuneSmithI"))
-            {
-                items.AppendList(MBObjectManager.Instance.GetObjectTypeList<ItemObject>().WhereQ(x => x.Culture?.StringId == TORConstants.Cultures.DAWI && x.IsTorItem() && (x.IsMeleeWeapon()) && x.Tier < ItemObject.ItemTiers.Tier3).ToMBList());
-            }
-
-            if (Hero.MainHero.HasAttribute("RuneSmithII"))
-            {
-                items.AppendList(MBObjectManager.Instance.GetObjectTypeList<ItemObject>().WhereQ(x => x.Culture?.StringId == TORConstants.Cultures.DAWI && x.IsTorItem() && (x.IsMeleeWeapon() || x.IsArmor()) && x.Tier < ItemObject.ItemTiers.Tier4).ToMBList());
-            }
             if (Hero.MainHero.HasAttribute("RuneSmithIII"))
             {
-                items.AppendList(MBObjectManager.Instance.GetObjectTypeList<ItemObject>().WhereQ(x => x.Culture?.StringId == TORConstants.Cultures.DAWI && x.IsTorItem() && (x.IsMeleeWeapon() || (x.IsArmor() && x.Tier > ItemObject.ItemTiers.Tier4))).ToMBList());
+                items.AppendList(MBObjectManager.Instance.GetObjectTypeList<ItemObject>()
+                .WhereQ(x => x.Culture?.StringId == TORConstants.Cultures.DAWI && x.IsTorItem()
+                && (x.IsMeleeWeapon() || x.IsArmor() || x.IsShield())).ToMBList());
                 var anvilOfDoom = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_anvil_of_doom");
                 items.Add(anvilOfDoom);
             }
+            else if (Hero.MainHero.HasAttribute("RuneSmithII"))
+            {
+                items.AppendList(MBObjectManager.Instance.GetObjectTypeList<ItemObject>()
+                .WhereQ(x => x.Culture?.StringId == TORConstants.Cultures.DAWI && x.IsTorItem()
+                && (x.IsMeleeWeapon() || x.IsShield()) && x.Tier <= ItemObject.ItemTiers.Tier5).ToMBList());
+                AddTier2List(items);
+            }
+            else if (Hero.MainHero.HasAttribute("RuneSmithI"))
+            {
+                items.AppendList(MBObjectManager.Instance.GetObjectTypeList<ItemObject>()
+                .WhereQ(x => x.Culture?.StringId == TORConstants.Cultures.DAWI && x.IsTorItem() 
+                && (x.IsMeleeWeapon() || x.IsShield()) && x.Tier <= ItemObject.ItemTiers.Tier3).ToMBList());
+                AddTier1List(items);
+            }
 
-
-            items.WhereQ(x => (!x.IsCraftedByPlayer || x.HasAnyLootTraits()) && !excludedItems.Contains(x.StringId))
-                .ToMBList().ForEach(x => roster.Add(new ItemRosterElement(x, MBRandom.RandomInt(1, 2))));
+            items.WhereQ(x => (!x.IsCraftedByPlayer || x.HasAnyLootTraits()) && !RunelordShopConstants.EXCLUDED_ITEMS.Contains(x.StringId))
+                .ToMBList().ForEach(x => roster.Add(new ItemRosterElement(x, 20)));
 
             InventoryScreenHelper.OpenScreenAsTrade(roster, Settlement.CurrentSettlement.Town);
         }
