@@ -224,14 +224,6 @@
         RegimentName="{=str_tor_ror_settlement_name_lionhearted}Knights of the lionhearted"
         RegimentHQName="{=str_tor_ror_settlement_hqname_lionhearted}Chapel of the Lady"
 	/>
-    <RORSettlementTemplate
-		SettlementId="castle_village_AL6_1"
-        BaseTroopId="tor_we_wildwood_ranger"
-        MenuHeaderText="{=str_tor_ror_settlement_text_wildwood_ranger}Not all Forest Spirits wish to coexist with the Asrai. Malevolent and deranged denizens of the forest are banished to the Wildwood, where elite Willdwood Rangers keep their eternal watch."
-        MenuBackgroundImageId="invalid"
-        RegimentName="{=str_tor_ror_settlement_name_wildwood_ranger}Wildwood Rangers"
-        RegimentHQName="{=str_tor_ror_settlement_hqname_wildwood_ranger}Wildwood"
-    />
 	<RORSettlementTemplate
 		SettlementId="town_AL5"
         BaseTroopId="tor_ror_loec_trickster"

@@ -769,7 +769,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_quest_knight">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Piercing</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -955,7 +957,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_doomed_questing_knight">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Piercing</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -1049,6 +1053,15 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_we_kings_bowman">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_eternal_guard">
     <Abilities />
     <Attributes />
@@ -1058,11 +1071,9 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_we_deepwood_scout">
+  <CharacterExtendedInfo id="tor_we_eternal_warden">
     <Abilities />
-    <Attributes>
-      <string>Piercing</string>
-    </Attributes>
+    <Attributes />
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -1078,9 +1089,30 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_we_eternal_warden">
+  <CharacterExtendedInfo id="tor_we_glade_knight">
     <Abilities />
     <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ResourceCost ResourceType="ForestHarmony" UpkeepCost="0" UpgradeCost="15" />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_we_scout">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_we_deepwood_scout">
+    <Abilities />
+    <Attributes>
+      <string>Piercing</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -1104,16 +1136,6 @@
     <Attributes>
       <string>Piercing</string>
     </Attributes>
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-    <ResourceCost ResourceType="ForestHarmony" UpkeepCost="0" UpgradeCost="15" />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_we_glade_knight">
-    <Abilities />
-    <Attributes />
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -3992,7 +4014,9 @@
   <CharacterExtendedInfo id="tor_ror_ward_of_taal">
     <Abilities />
     <Attributes />
-    <Resistances />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
+    </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -4001,20 +4025,26 @@
   <CharacterExtendedInfo id="tor_ror_hunter_of_taal">
     <Abilities />
     <Attributes />
-    <Resistances />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.15" />
+    </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="3" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_horned_hunter">
     <Abilities />
     <Attributes />
-    <Resistances />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.25" />
+    </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="5" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_longshank_initiate">
     <Abilities />
@@ -4033,6 +4063,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="1" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_longshank_warden">
     <Abilities />
@@ -4042,6 +4073,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="3" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_longshank_ranger">
     <Abilities />
@@ -4051,6 +4083,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="5" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_griffon_initiate">
     <Abilities />
@@ -4410,7 +4443,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_peasant_squire">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Expendable</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -4419,7 +4454,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_peasant_squight">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Expendable</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -4429,7 +4466,10 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_peasant_knight">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Expendable</string>
+      <string>Piercing</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -4461,13 +4501,16 @@
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.80" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.60" />
       <DamageProportionTuple DamageType="Holy" Percent="0.20" />
+      <DamageProportionTuple DamageType="Fire" Percent="0.20" />
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_bergerac_herrimault">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Piercing</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -4476,7 +4519,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_bergerac_ranger">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Piercing</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -4486,7 +4531,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_bergerac_bowman">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Piercing</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.25" />
@@ -4584,7 +4631,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_bastonne_beastslayer">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Piercing</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
