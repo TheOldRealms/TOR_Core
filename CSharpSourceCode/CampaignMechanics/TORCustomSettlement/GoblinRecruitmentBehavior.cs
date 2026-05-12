@@ -12,9 +12,11 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 using TOR_Core.Extensions;
 using TOR_Core.Missions;
 using TOR_Core.Utilities;
+
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement;
 
@@ -75,7 +77,7 @@ public class GoblinRecruitmentBehavior : CampaignBehaviorBase
     }
 
     // AI greenskin lords also get goblins when recruiting orcs
-    private void OnAIOrcRecruitedAddGoblins(Hero recruiter, Settlement settlement, Hero recruitmentSource, CharacterObject troop, int amount)
+    private void OnAIOrcRecruitedAddGoblins(Hero recruiter, Settlement.Settlement settlement, Hero recruitmentSource, CharacterObject troop, int amount)
     {
         if (recruiter == null || recruiter == Hero.MainHero) return;
         if (recruiter.Culture?.StringId != TORConstants.Cultures.GREENSKIN) return;

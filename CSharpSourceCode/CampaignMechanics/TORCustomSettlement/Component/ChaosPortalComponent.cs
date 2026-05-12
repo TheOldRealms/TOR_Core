@@ -5,10 +5,11 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.RaidingParties;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
-namespace TOR_Core.CampaignMechanics.TORCustomSettlement.Settlement;
+namespace TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 
 //Sly : I wonder if we could send out large armies from these components that target settlements to capture. Unsure what would happen if the siege was a success; would it be attributed to the chaos clan?
 //OnPartLefty to announce an invasion beginning, then the player can react to it as they wish.

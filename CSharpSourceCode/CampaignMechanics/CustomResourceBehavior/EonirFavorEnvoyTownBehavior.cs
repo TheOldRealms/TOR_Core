@@ -22,7 +22,7 @@ using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.RaidingParties;
-using TOR_Core.CampaignMechanics.TORCustomSettlement.Settlement;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;

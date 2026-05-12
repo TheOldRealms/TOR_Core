@@ -22,7 +22,7 @@ using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Models;
 using TOR_Core.Utilities;
-using TOR_Core.CampaignMechanics.TORCustomSettlement.Settlement;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement;
 

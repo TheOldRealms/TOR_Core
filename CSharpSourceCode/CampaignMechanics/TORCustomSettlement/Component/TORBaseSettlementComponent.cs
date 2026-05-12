@@ -6,7 +6,7 @@ using TaleWorlds.Core;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.Religion;
 
-namespace TOR_Core.CampaignMechanics.TORCustomSettlement.Settlement;
+namespace TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 
 public abstract class TORBaseSettlementComponent : SettlementComponent
 {

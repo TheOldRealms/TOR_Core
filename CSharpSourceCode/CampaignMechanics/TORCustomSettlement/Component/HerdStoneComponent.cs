@@ -5,10 +5,11 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.RaidingParties;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
-namespace TOR_Core.CampaignMechanics.TORCustomSettlement.Settlement;
+namespace TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 
 public class HerdStoneComponent : BaseRaiderSpawnerComponent
 {

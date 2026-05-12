@@ -3,7 +3,7 @@ using System.Linq;
 using TaleWorlds.CampaignSystem.Party;
 using TOR_Core.Extensions;
 
-namespace TOR_Core.CampaignMechanics.TORCustomSettlement.Settlement;
+namespace TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 
 public abstract class BaseRaiderSpawnerComponent : TORBaseSettlementComponent
 {

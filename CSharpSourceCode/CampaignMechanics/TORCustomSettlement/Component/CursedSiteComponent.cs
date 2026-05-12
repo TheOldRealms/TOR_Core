@@ -6,7 +6,7 @@ using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.ScreenSystem;
 
-namespace TOR_Core.CampaignMechanics.TORCustomSettlement.Settlement;
+namespace TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 
 //Sly : OnPartyEntered can be implemented as an override here to handle wraith recruitment for Ai parties directly rather than making use of the SettlementEntered events
 public class CursedSiteComponent : TORBaseSettlementComponent, IDisposable
