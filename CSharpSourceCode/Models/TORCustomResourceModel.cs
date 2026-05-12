@@ -13,6 +13,7 @@ using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.Settlement;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;

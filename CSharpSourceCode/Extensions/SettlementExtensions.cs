@@ -8,7 +8,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TOR_Core.CampaignMechanics.Assimilation;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
-using TOR_Core.CampaignMechanics.TORCustomSettlement;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.Settlement;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions

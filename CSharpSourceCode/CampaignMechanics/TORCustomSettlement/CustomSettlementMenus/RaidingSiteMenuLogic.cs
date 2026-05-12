@@ -10,6 +10,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.RaidingParties;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.Settlement;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
