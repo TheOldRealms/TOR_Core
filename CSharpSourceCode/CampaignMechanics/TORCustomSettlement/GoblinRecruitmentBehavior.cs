@@ -77,7 +77,7 @@ public class GoblinRecruitmentBehavior : CampaignBehaviorBase
     }
 
     // AI greenskin lords also get goblins when recruiting orcs
-    private void OnAIOrcRecruitedAddGoblins(Hero recruiter, Settlement.Settlement settlement, Hero recruitmentSource, CharacterObject troop, int amount)
+    private void OnAIOrcRecruitedAddGoblins(Hero recruiter, Settlement settlement, Hero recruitmentSource, CharacterObject troop, int amount)
     {
         if (recruiter == null || recruiter == Hero.MainHero) return;
         if (recruiter.Culture?.StringId != TORConstants.Cultures.GREENSKIN) return;

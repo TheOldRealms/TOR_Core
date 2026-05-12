@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.ScreenSystem;
+using TaleWorlds.CampaignSystem.Settlements;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 

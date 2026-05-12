@@ -10,6 +10,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;

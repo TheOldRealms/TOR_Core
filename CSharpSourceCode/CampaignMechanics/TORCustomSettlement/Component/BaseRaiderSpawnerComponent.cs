@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Settlements;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
