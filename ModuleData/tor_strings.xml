@@ -339,8 +339,6 @@
   <!-- Career Button - UI -->
   <string id="tor_inquiry_cancel_text" text="{=str_tor_inquiry_cancel_text}Cancel" />
   <string id="tor_inquiry_confirm_text" text="{=str_tor_inquiry_confirm_text}Confirm" />
-  <string id="tor_inquiry_confirm_text" text="{=str_tor_inquiry_confirm_text}Confirm" />
-  <string id="tor_inquiry_cancel_text" text="{=str_tor_inquiry_cancel_text}Cancel" />
 
   <!-- Career Button - unit rune -->
   <string id="tor_unit_rune_cost_display" text="{=str_tor_unit_rune_cost_display}{RUNE_DESCRIPTION}{newline}{newline}Required ingredients:{newline}{RUNE_COST_LIST}" />
@@ -428,6 +426,9 @@
 
   <!-- Character Creation Texts -->
   <string id="tor_cc_specialization_title_lore" text="{=str_tor_cc_specialization_title_lore}Choose Your Lore of Magic…" />
+  <string id="tor_cc_specialization_desc_generic" text="{=str_tor_cc_specialization_desc_generic}Choose your specialization" />
+
+  <!-- Character Creation  -->
   <string id="tor_cc_specialization_desc_lore" text="{=str_tor_cc_specialization_desc_lore}The gift of Witchsight allows you to channel one of the eight Winds of Magic:" />
   <string id="tor_cc_specialization_title_bloodline" text="{=str_tor_cc_specialization_title_bloodline}Choose Your Bloodline…" />
   <string id="tor_cc_specialization_desc_bloodline" text="{=str_tor_cc_specialization_desc_bloodline}The Vampirekind is divided into several distinct bloodlines:" />
@@ -442,15 +443,6 @@
   <string id="tor_cc_profession_summary" text="{=str_tor_cc_profession_summary}Profession" />
   <string id="tor_cc_profession_fallback_text" text="{=str_tor_cc_profession_fallback_text}Your starting profession..." />
   <string id="tor_cc_specialization_title_generic" text="{=str_tor_cc_specialization_title_generic}Specialization" />
-  <string id="tor_cc_specialization_desc_generic" text="{=str_tor_cc_specialization_desc_generic}Choose your specialization" />
-  <string id="tor_cc_specialization_title_lore" text="{=str_tor_cc_specialization_title_lore}Choose Your Lore" />
-  <string id="tor_cc_specialization_desc_lore" text="{=str_tor_cc_specialization_desc_lore}As a spellcaster, you must choose a lore of magic to specialize in. This will determine which spells you can learn." />
-  <string id="tor_cc_specialization_title_bloodline" text="{=str_tor_cc_specialization_title_bloodline}Choose Your Bloodline" />
-  <string id="tor_cc_specialization_desc_bloodline" text="{=str_tor_cc_specialization_desc_bloodline}As a vampire, you must choose your bloodline. This will determine your abilities and strengths." />
-  <string id="tor_cc_specialization_title_god" text="{=str_tor_cc_specialization_title_god}Choose Your God" />
-  <string id="tor_cc_specialization_desc_god" text="{=str_tor_cc_specialization_desc_god}As a priest, you must choose which god you serve. This will determine your divine powers." />
-  <string id="tor_cc_specialization_title_order" text="{=str_tor_cc_specialization_title_order}Choose Your Order" />
-  <string id="tor_cc_specialization_desc_order" text="{=str_tor_cc_specialization_desc_order}As a knight, you must choose which knightly order you belong to. This will determine your martial traditions and bonuses." />
 
   <!-- priest blessings -->
   <string id="tor_priest_hub_intro.cult_of_ulric" text="{=str_tor_priest_hub_intro_cult_of_ulric}In the name of Ulric, how can I help you?" />
