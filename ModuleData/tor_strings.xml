@@ -262,9 +262,6 @@
   <string id="tor_item_hint_use" text="{=str_tor_item_hint_use}Use Item" />
   <string id="tor_religion_follower_none" text="{=str_tor_religion_follower_none}Not a follower of any religion" />
   <string id="tor_bloodkiss_player_notification" text="{=str_tor_bloodkiss_player_notification}Player recieves the Blood Kiss." />
-  <string id="tor_forest_harmony_level.Unbound" text="{=str_tor_forest_harmony_level_unbound}Unbound" />
-  <string id="tor_forest_harmony_level.Bound" text="{=str_tor_forest_harmony_level_bound}Bound" />
-  <string id="tor_forest_harmony_level.Harmony" text="{=str_tor_forest_harmony_level_harmony}Harmony" />
 
   <!-- Ink Stories -->
   <string id="tor_ink_end" text="{=str_tor_ink_end}End" />
@@ -5572,9 +5569,7 @@
   <string id="spellsinger_envoy_main_hub_spellsinger_lores" text="{=str_spellsinger_envoy_main_hub_spellsinger_lores}Teach me about the lores of magic." />
   <string id="eonir_spellsinger_world_roots_price_text" text="{=str_eonir_spellsinger_world_roots_price_text}I can, but there is a price. Help our people, and then I will allow you to travel the Worldroots." />
   <string id="eonir_spellsinger_world_roots_accept_text" text="{=str_eonir_spellsinger_world_roots_accept_text}Of course, I am willing to help. Now as my guide, please tell me how I can travel along these ancient pathways?" />
-  <string id="eonir_spellsinger_world_roots_explain_text" text="{=str_eonir_spellsinger_world_roots_explain_text}There is an entranceway to the Worldroots here in Laurelorn, first you must find it. Once there, a Spellsinger will help you travel across it but only to Maisontaal in the distant lands of Bretonnia.
-
-We can go no further, as I am not willing to offend the Asrai. The roots are sacred, it is rare enough for non-Asrai to cross them." />
+  <string id="eonir_spellsinger_world_roots_explain_text" text="{=str_eonir_spellsinger_world_roots_explain_text}There is an entranceway to the Worldroots here in Laurelorn, first you must find it. Once there, a Spellsinger will help you travel across it but only to Maisontaal in the distant lands of Bretonnia.  We can go no further, as I am not willing to offend the Asrai. The roots are sacred, it is rare enough for non-Asrai to cross them." />
   <string id="eonir_spellsinger_troop_refill_offer_text" text="{=str_eonir_spellsinger_troop_refill_offer_text}There are many who live as nomads, far from our villages and deep within the woods. It will take time for any messenger to reach them but it can be done. Is this what you desire?" />
   <string id="eonir_spellsinger_troop_refill_cooldown_text" text="{=str_eonir_spellsinger_troop_refill_cooldown_text}We recently called for the forestborn aid. We should wait longer for another call." />
   <string id="eonir_spellsinger_troop_refill_accept_text" text="{=str_eonir_spellsinger_troop_refill_accept_text}That would be kind. I am sure we will be able to return the favour  one day. I will decide in favor of the Forestborn." />
