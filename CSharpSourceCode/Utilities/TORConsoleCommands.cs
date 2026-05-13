@@ -747,7 +747,7 @@ namespace TOR_Core.Utilities
         {
             if (CampaignCheats.CheckHelp(arguments))
             {
-                return "\nTeleports MainParty to a pair of coordinates on the campaign map with disregard for terrain. Arguments are interpreted as floats with a period as the decimal separator. Enter as form : x value | y value, eg. 1203.956 | 957.18).\n";
+                return "\nTeleports MainParty to a pair of coordinates on the campaign map with disregard for terrain.\nArguments are interpreted as floats with a period as the decimal separator.\nEnter as form : x value | y value, eg. 1203.956 | 957.18).\n";
             }
             if (arguments.Count() != 3)
             {

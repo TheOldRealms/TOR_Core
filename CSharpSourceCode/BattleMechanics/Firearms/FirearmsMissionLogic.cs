@@ -204,7 +204,11 @@ namespace TOR_Core.BattleMechanics.Firearms
             // Check for any weapon with scatter trait
             var traits = shooterAgent.WieldedWeapon.Item?.GetTraits(shooterAgent);
             var scatterTrait = traits?.FirstOrDefaultQ(t => t.StatsTuple?.StatType == ItemTraitStatType.ScatterShot);
-            if (scatterTrait != null && ItemTrait.IsValidFor(scatterTrait, shooterAgent.WieldedWeapon.Item.ItemType))
+
+            //Sly : siege equipment boulders and fire pots have a Weapon and AmmoClass of boulder which need to be filtered out here as f.e. waywatcher scattershot from perks applies to the thrown boulder but will crash when trying to spawn additional projectiles.
+            //There are 2 other weapon classes that exist, but seem unused so I haven't bothered to include them : BallistaBoulder and BallistaStone. The actual ballista projectiles are classed as Arrow and have no ammo class.
+            //If a WeaponComponent has no ammo_class on deserialize, WeaponClass.Undefined is assigned.
+            if (scatterTrait != null && weaponData.AmmoClass != WeaponClass.Boulder)//Sly : numbnuts, you already know that temporary throwing weapons are held in the 5th equipment slot as if they're banners. Is this implementation better than that?
             {
                 RemoveLastProjectile(shooterAgent);
                 float accuracy = 0.05f; // Higher value = more spread for shotgun-style shots
@@ -374,7 +378,7 @@ namespace TOR_Core.BattleMechanics.Firearms
         {
             for (int i = 0; i < scatterShotAmount; i++)
             {
-                var deviation = TORCommon.GetRandomOrientation(shotOrientation, accuracy);
+                var deviation = TORCommon.GetRandomOrientation(shotOrientation, accuracy);//Sly : how does this compare to Mat3.RotateAboutAnArbitraryVector?
                 var missile = Mission.AddCustomMissileWithWeaponDamage(shooterAgent, projectileType, shotPosition, deviation.f, deviation,
                     missileSpeed, missileSpeed, false, null);
                 ApplyWeaponTraitParticles(missile, shooterAgent);
@@ -520,6 +524,7 @@ namespace TOR_Core.BattleMechanics.Firearms
                 }
             }
         }
+
         private static bool CanUseAffectorForScriptedExplosion(Agent affector)
         {
             return affector != null &&
@@ -533,6 +538,7 @@ namespace TOR_Core.BattleMechanics.Firearms
                    affector.Character != null &&
                    affector.Monster != null;
         }
+
         private void ApplySplashDamage(Agent affector, Vec3 position, float explosionRadius, int explosionDamage, float damageVariance)
         {
             var nearbyAgents = Mission.Current.GetNearbyAgents(position.AsVec2, explosionRadius, new MBList<Agent>()).ToArray();

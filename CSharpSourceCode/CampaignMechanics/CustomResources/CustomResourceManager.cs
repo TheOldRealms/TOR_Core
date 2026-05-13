@@ -341,10 +341,14 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
                 if (playerHero.HasCareerChoice("HuntTheWickedPassive2"))
                 {
-                    var evilCultures = new[] { TORConstants.Cultures.CHAOS, TORConstants.Cultures.BEASTMEN, TORConstants.Cultures.SYLVANIA, TORConstants.Cultures.MOUSILLON };
+                    var evilCultures = new[] { TORConstants.Cultures.CHAOS, TORConstants.Cultures.BEASTMEN, TORConstants.Cultures.SYLVANIA, TORConstants.Cultures.MOUSILLON, TORConstants.Cultures.CHAOSCULTIST};
                     foreach (var party in defeatedSide.Parties)
                     {
-                        if (evilCultures.Contains(party.Party.Culture.StringId))
+                        //Sly : Party.Culture can't be used because it actually uses Party.MapFaction.Culture and MapFaction can be a kingdom or a clan. Party.Owner.Culture is unreliable because bandit clans usually don't have a clan leader and it would therefore be null. ActualClan is used because this will return a valid clan even for bandit parties.
+                        //Note that village militias that spawn during a defense are PartyBases with no associated MobileParty, but because the village's culture will be derived from the settlement owner's culture which will be based on the kingdom's culture, this will be close enough in the interim as the types of troops that spawn in the militia are also based on the settlement's culture.
+                        //Garrisons are mobile party's with no ActualClan. Why are all of these bads choices?
+                        var partyCulture = party.Party.MobileParty?.ActualClan?.Culture ?? party.Party.Culture;
+                        if (evilCultures.Contains(partyCulture.StringId))
                         {
                             var choice = TORCareerChoices.GetChoice("HuntTheWickedPassive2");
                             var value = choice.GetPassiveValue();
@@ -394,7 +398,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
                 }
 
-                if (playerCulture.StringId == TORConstants.Cultures.ASRAI && playerParty.InAthelLoren() && defeatedSide.Parties.AnyQ(x => x.Party.Culture.StringId == TORConstants.Cultures.BEASTMEN))
+                if (playerCulture.StringId == TORConstants.Cultures.ASRAI && playerParty.InAthelLoren() && defeatedSide.Parties.AnyQ(x => x.Party.Culture.StringId == TORConstants.Cultures.BEASTMEN))//risky, but MapFaction.Culture will refer back to the bandit clan culture which works out
                 {
                     renownChange *= 3;
                 }
@@ -413,6 +417,8 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 if (playerCulture.StringId == TORConstants.Cultures.DAWI)
                 {
                     var hasgrudge = false;
+
+                    //Sly : a bunch of these culture detections will fail against mercenary clans who are hired by a kingdom who's culture doesn't match their own.
                     foreach (var party in defeatedSide.Parties)
                     {
                         if (hasgrudge) break;

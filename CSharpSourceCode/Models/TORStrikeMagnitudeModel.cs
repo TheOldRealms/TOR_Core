@@ -145,5 +145,11 @@ namespace TOR_Core.Models
 
             return resultArmor.ResultNumber;
         }
+
+        //Sly : for if we want to adjust unarmed damage
+        //public override float CalculateStrikeMagnitudeForUnarmedAttack(in AttackInformation attackInformation, in AttackCollisionData collisionData, float progressEffect, float momentumRemaining)
+        //{
+		//	return momentumRemaining * progressEffect * TaleWorlds.Core.ManagedParameters.Instance.GetManagedParameter(TaleWorlds.Core.ManagedParametersEnum.FistFightDamageMultiplier) * 2f;
+		//}
     }
 }

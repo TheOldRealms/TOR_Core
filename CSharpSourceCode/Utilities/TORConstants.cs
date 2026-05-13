@@ -48,6 +48,7 @@ namespace TOR_Core.Utilities
             public const string DAWI = "sturgia";
             public const string GREENSKIN = "aserai";
             public const string GREENSKIN_BANDIT = "greenskin_bandit";
+            public const string CHAOSCULTIST = "forest_bandits";
 
             public static readonly List<string> All =
             [

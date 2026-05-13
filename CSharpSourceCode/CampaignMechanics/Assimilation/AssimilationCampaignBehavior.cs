@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
@@ -41,6 +40,17 @@ namespace TOR_Core.CampaignMechanics.Assimilation
             CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, DailyTickSettlement);
             CampaignEvents.DailyTickPartyEvent.AddNonSerializedListener(this, DailyTickParty);
             CampaignEvents.OnLootDistributedToPartyEvent.AddNonSerializedListener(this, OnDistributeLootToParty);
+            CampaignEvents.HeroKilledEvent.AddNonSerializedListener(this, OnNotableKilled);
+        }
+
+        private void OnNotableKilled(Hero victim, Hero killer, KillCharacterAction.KillCharacterActionDetail detail, bool showNotification)
+        {
+            if (!victim.IsNotable) return;
+
+            foreach (var caravanComponent in victim.OwnedCaravans.ToList())
+            {
+                DestroyPartyAction.Apply(null, caravanComponent.MobileParty);
+            }
         }
 
         private void OnDistributeLootToParty(PartyBase winnerParty, PartyBase defeatedParty, ItemRoster roster)
@@ -186,6 +196,8 @@ namespace TOR_Core.CampaignMechanics.Assimilation
 
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
+            //why is this here?
+
             foreach (var settlement in _settlementCulturePairs.Keys)
             {
                 CultureObject settlementCulture = _settlementCulturePairs[settlement];
@@ -286,27 +298,61 @@ namespace TOR_Core.CampaignMechanics.Assimilation
         {
             if (IsSpecialSettlement(settlement))
                 return;
+            
+            //Sly : resets morale on the garrison party to prevent prior siege defeats under a different owner from affecting the new garrison in its sieges
+            if (settlement.IsFortification && settlement.Town.GarrisonParty != null)
+            {
+                settlement.Town.GarrisonParty.RecentEventsMorale = 0;
+            }
 
+            //handles killing the old, and replacing them with a new equivalent. If a settlement is missing notables when ownership changes, they'll be replaced on the pseudo weekly tick in NotablesCampaignBehavior
             if (newOwner.MapFaction != null && oldOwner.MapFaction != null)
             {
                 if (newOwner.MapFaction.Culture != settlement.Culture)
                 {
                     settlement.Culture = newOwner.MapFaction.Culture;
-                    foreach (var notable in settlement.Notables)
+
+                    foreach (var notable in settlement.Notables.ToList())
                     {
-                        if (notable.Culture != settlement.Culture) notable.Culture = settlement.Culture;
+                        if (notable.Culture != settlement.Culture)
+                        {
+                            var occupation = notable.Occupation;
+                            KillCharacterAction.ApplyByRemove(notable);
+
+                            EnterSettlementAction.ApplyForCharacterOnly(HeroCreator.CreateNotable(occupation, settlement), settlement);
+                        }
                     }
+
                     if (settlement.BoundVillages != null && settlement.BoundVillages.Count > 0)
                     {
                         foreach (var village in settlement.BoundVillages)
                         {
                             village.Settlement.Culture = settlement.Culture;
-                            foreach (var villageNotable in village.Settlement.Notables)
+
+                            foreach (var villageNotable in village.Settlement.Notables.ToList())
                             {
-                                if (villageNotable.Culture != settlement.Culture) villageNotable.Culture = settlement.Culture;
+                                if (villageNotable.Culture != settlement.Culture)
+                                {
+                                    var occupation = villageNotable.Occupation;
+                                    KillCharacterAction.ApplyByRemove(villageNotable);
+
+                                    EnterSettlementAction.ApplyForCharacterOnly(HeroCreator.CreateNotable(occupation, village.Settlement), village.Settlement);
+                                }
                             }
                         }
                     }
+                }
+            }
+
+            
+            //When a kingdom vote completes and the longer-term owner is set, the new owner gains a relations bonus with the new notables.
+            //The 2nd case is for the player as the new owner after winning a siege and there is no other clan in the kingdom to potentially receive it so it stays with the player without passing through a vote.
+            //This goes after the notable swap so that if the 2nd case is the relevant one, then all of the new notables would have been created.
+            if (detail == ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail.ByKingDecision || newOwner.IsKingdomLeader && newOwner == Hero.MainHero)
+            {
+                foreach (var notable in settlement.Notables)
+                {
+                    notable.SetPersonalRelation(newOwner, 20);
                 }
             }
         }

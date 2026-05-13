@@ -2098,7 +2098,8 @@ namespace TOR_Core.AbilitySystem
                 }
                 
                 // Grant career ability charge once per session (instead of every tick)
-                if (session.Caster != null)
+                
+                if (session.Caster != null && (session.AbilityTemplate.AbilityType == AbilityType.Spell || session.AbilityTemplate.AbilityType == AbilityType.Prayer))
                 {
                     // Apply charge for damage dealt
                     if (session.TotalDamageDealt > 0)

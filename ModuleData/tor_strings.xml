@@ -3995,7 +3995,7 @@
 
   <string id="tor_careerchoice_description.UnhallowedSoulKeystone" text="{=str_tor_careerchoice_description_UnhallowedSoulKeystone}Blast of Agony is now 'Target Seeking', and its damage is increased by 25%." />
   <string id="tor_careerchoice_description.UnhallowedSoulPassive1" text="{=str_tor_careerchoice_description_UnhallowedSoulPassive1}+20% duration for 'Augment' spells." />
-  <string id="tor_careerchoice_description.UnhallowedSoulPassive2" text="{=str_tor_careerchoice_description_UnhallowedSoulPassive2}Defiling a shrine yeilds increased 'Dark Energy', and can summon 'Spectral' troops." />
+  <string id="tor_careerchoice_description.UnhallowedSoulPassive2" text="{=str_tor_careerchoice_description_UnhallowedSoulPassive2}Defiling a shrine yields increased 'Dark Energy', and can summon 'Spectral' troops." />
   <string id="tor_careerchoice_description.UnhallowedSoulPassive3" text="{=str_tor_careerchoice_description_UnhallowedSoulPassive3}+15% personal 'Spell Power' if armour weight does not exceed 11." />
   <string id="tor_careerchoice_description.UnhallowedSoulPassive4" text="{=str_tor_careerchoice_description_UnhallowedSoulPassive4}+5% personal 'Lighting' spell damage." />
 

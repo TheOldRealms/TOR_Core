@@ -173,9 +173,8 @@ public class LootCampaignBehavior : CampaignBehaviorBase
         {
             var found = settlements.AnyQ(settlement => settlement.ItemRoster.AnyQ(x => x.EquipmentElement.Item == item));
 
-            var heroes = Hero.MainHero.IsKingdomLeader ? Hero.MainHero.Clan.Kingdom.Heroes : Hero.MainHero.Clan.Heroes; //Sly : is the goal of the kingdom usage to allow player companions that were promoted to vassals to keep their equipment that may contain loot traits? Code isn't set up to give them those benefits on campaign map/in battle so those would be useless enchantments. If this was being left in long term, part of this block should be in an event triggered by promoting a companion to vassal which swaps their enchanted equipment for the base non-magical equivalent and allows the ObjectManager to delete the now unused ItemObject.
+            var heroes = Hero.MainHero.IsKingdomLeader ? Hero.MainHero.Clan.Kingdom.Heroes : Hero.MainHero.Clan.Heroes;
 
-            //if the goal is to remove lesser enchanted items from mobileParty item rosters later, why avoid doing that due to the player's clan/kingdom parties having the item? They could instead all be removed; those parties can't do anything with the item, it can be removed and unregistered.
             if ((MobileParty.MainParty?.ItemRoster.AnyQ(x => x.EquipmentElement.Item == item)) == true)
             {
                 found = true;

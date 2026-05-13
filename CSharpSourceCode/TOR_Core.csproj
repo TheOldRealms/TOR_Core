@@ -715,6 +715,7 @@
     <Compile Include="GameManagers\TORGameKeyContext.cs" />
     <Compile Include="GameManagers\TORKeyInputManager.cs" />
     <Compile Include="GameManagers\TORShaderGameManager.cs" />
+    <Compile Include="HarmonyPatches\NotablesCampaignBehaviorPatches.cs" />
     <Compile Include="HarmonyPatches\AgentPatches.cs" />
     <Compile Include="HarmonyPatches\ArenaPracticePatch.cs" />
     <Compile Include="HarmonyPatches\MapEventJoinRestrictionsPatch.cs" />
