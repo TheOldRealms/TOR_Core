@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <strings>
 
-  <!-- Uncategorized -->
+  <!-- Character Creation - specialization -->
   <string id="tor_cc_review_description" text="{=str_tor_cc_review_description}The Old World awaits you, with all of its glory and horrors. This is your character. Continue if you are ready, or go back and make changes." />
+  <string id="tor_cc_specialization_title_bloodline" text="{=str_tor_cc_specialization_title_bloodline}Choose Your Bloodline…" />
+  <string id="tor_cc_specialization_title_lore" text="{=str_tor_cc_specialization_title_lore}Choose Your Lore of Magic…" />
+  <string id="tor_cc_specialization_desc_generic" text="{=str_tor_cc_specialization_desc_generic}Choose your specialization" />
+  <string id="tor_cc_specialization_desc_bloodline" text="{=str_tor_cc_specialization_desc_bloodline}The Vampirekind is divided into several distinct bloodlines:" />
+  <string id="tor_cc_specialization_title_god" text="{=str_tor_cc_specialization_title_god}Choose Your Deity…" />
+  <string id="tor_cc_specialization_desc_god" text="{=str_tor_cc_specialization_desc_god}All Warrior Priests serve one particular god:" />
+  <string id="tor_cc_specialization_title_order" text="{=str_tor_cc_specialization_title_order}Choose Your Order…" />
+  <string id="tor_cc_specialization_desc_order" text="{=str_tor_cc_specialization_desc_order}All knights are members of an esteemed knightly order:" />
+  <string id="tor_cc_origin_fallback_text" text="{=str_tor_cc_origin_fallback_text}Choose your family's background..." />
+  <string id="tor_cc_origin_summary" text="{=str_tor_cc_origin_summary}Origin" />
+  <string id="tor_cc_growth_summary" text="{=str_tor_cc_growth_summary}Growth" />
+  <string id="tor_cc_growth_fallback_text" text="{=str_tor_cc_growth_fallback_text}Teenage years..." />
+  <string id="tor_cc_profession_summary" text="{=str_tor_cc_profession_summary}Profession" />
+  <string id="tor_cc_profession_fallback_text" text="{=str_tor_cc_profession_fallback_text}Your starting profession..." />
+  <string id="tor_cc_specialization_title_generic" text="{=str_tor_cc_specialization_title_generic}Specialization" />
+  <string id="tor_cc_growth.battania" text="{=str_tor_cc_growth_battania}You spent most of your life venerating one of the Asrai deities…" />
+  <string id="tor_cc_profession.battania" text="{=str_tor_cc_profession_battania}Choose your path…" />
+  <string id="tor_cc_origin.sturgia" text="{=str_tor_cc_origin_sturgia}Your Clan is famous for its…" />
+  <string id="tor_cc_growth.sturgia" text="{=str_tor_cc_growth_sturgia}The proud Dawi cultivate every grudge aimed at their kin…" />
+  <string id="tor_cc_profession.sturgia" text="{=str_tor_cc_profession_sturgia}Your current profession…" />
+  <string id="tor_cc_origin.aserai" text="{=str_tor_cc_origin_aserai}Greenskins reproduce via spores, and yours landed on…" />
+  <string id="tor_cc_growth.aserai" text="{=str_tor_cc_growth_aserai}After joining a tribe your biggest achievement was…" />
+  <string id="tor_cc_profession.aserai" text="{=str_tor_cc_profession_aserai}Before leaving the tribe, you were one of the…" />
 
   <!-- UI -->
   <string id="str_career_screen.title" text="{=str_tor_career_screen_title}Career" />
@@ -413,36 +436,6 @@
   <string id="tor_healing_shallya_seal_text" text="{=str_tor_healing_shallya_seal_text}Shallya Seal" />
   <string id="tor_undead_food_saving_text" text="{=str_tor_undead_food_saving_text}Saving from undead troops" />
   <string id="tor_healing_rune_text" text="{=str_tor_healing_rune_text}Runic Respite" />
-
-  <!-- CC Options -->
-  <string id="tor_cc_growth.battania" text="{=str_tor_cc_growth_battania}You spent most of your life venerating one of the Asrai deities…" />
-  <string id="tor_cc_profession.battania" text="{=str_tor_cc_profession_battania}Choose your path…" />
-  <string id="tor_cc_origin.sturgia" text="{=str_tor_cc_origin_sturgia}Your Clan is famous for its…" />
-  <string id="tor_cc_growth.sturgia" text="{=str_tor_cc_growth_sturgia}The proud Dawi cultivate every grudge aimed at their kin…" />
-  <string id="tor_cc_profession.sturgia" text="{=str_tor_cc_profession_sturgia}Your current profession…" />
-  <string id="tor_cc_origin.aserai" text="{=str_tor_cc_origin_aserai}Greenskins reproduce via spores, and yours landed on…" />
-  <string id="tor_cc_growth.aserai" text="{=str_tor_cc_growth_aserai}After joining a tribe your biggest achievement was…" />
-  <string id="tor_cc_profession.aserai" text="{=str_tor_cc_profession_aserai}Before leaving the tribe, you were one of the…" />
-
-  <!-- Character Creation Texts -->
-  <string id="tor_cc_specialization_title_lore" text="{=str_tor_cc_specialization_title_lore}Choose Your Lore of Magic…" />
-  <string id="tor_cc_specialization_desc_generic" text="{=str_tor_cc_specialization_desc_generic}Choose your specialization" />
-
-  <!-- Character Creation  -->
-  <string id="tor_cc_specialization_desc_lore" text="{=str_tor_cc_specialization_desc_lore}The gift of Witchsight allows you to channel one of the eight Winds of Magic:" />
-  <string id="tor_cc_specialization_title_bloodline" text="{=str_tor_cc_specialization_title_bloodline}Choose Your Bloodline…" />
-  <string id="tor_cc_specialization_desc_bloodline" text="{=str_tor_cc_specialization_desc_bloodline}The Vampirekind is divided into several distinct bloodlines:" />
-  <string id="tor_cc_specialization_title_god" text="{=str_tor_cc_specialization_title_god}Choose Your Deity…" />
-  <string id="tor_cc_specialization_desc_god" text="{=str_tor_cc_specialization_desc_god}All Warrior Priests serve one particular god:" />
-  <string id="tor_cc_specialization_title_order" text="{=str_tor_cc_specialization_title_order}Choose Your Order…" />
-  <string id="tor_cc_specialization_desc_order" text="{=str_tor_cc_specialization_desc_order}All knights are members of an esteemed knightly order:" />
-  <string id="tor_cc_origin_fallback_text" text="{=str_tor_cc_origin_fallback_text}Choose your family's background..." />
-  <string id="tor_cc_origin_summary" text="{=str_tor_cc_origin_summary}Origin" />
-  <string id="tor_cc_growth_summary" text="{=str_tor_cc_growth_summary}Growth" />
-  <string id="tor_cc_growth_fallback_text" text="{=str_tor_cc_growth_fallback_text}Teenage years..." />
-  <string id="tor_cc_profession_summary" text="{=str_tor_cc_profession_summary}Profession" />
-  <string id="tor_cc_profession_fallback_text" text="{=str_tor_cc_profession_fallback_text}Your starting profession..." />
-  <string id="tor_cc_specialization_title_generic" text="{=str_tor_cc_specialization_title_generic}Specialization" />
 
   <!-- priest blessings -->
   <string id="tor_priest_hub_intro.cult_of_ulric" text="{=str_tor_priest_hub_intro_cult_of_ulric}In the name of Ulric, how can I help you?" />
