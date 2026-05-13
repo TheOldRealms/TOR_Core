@@ -560,6 +560,7 @@
     <Compile Include="CampaignMechanics\TORCustomSettlement\Component\OakOfAgesComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\Component\CursedSiteComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\Component\ShrineComponent.cs" />
+    <Compile Include="CampaignMechanics\TORCustomSettlement\Component\SlaverCampComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\Component\TrollCaveComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\Component\WorldRootsComponent.cs" />
     <Compile Include="CampaignMechanics\Villages\TORTownManagementVillageItemVM.cs" />

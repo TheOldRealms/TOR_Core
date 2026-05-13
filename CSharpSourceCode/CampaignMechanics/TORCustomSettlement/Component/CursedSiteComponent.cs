@@ -2,16 +2,23 @@
 using SandBox.View.Map;
 using System;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
+using TaleWorlds.ObjectSystem;
 using TaleWorlds.ScreenSystem;
-using TaleWorlds.CampaignSystem.Settlements;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 
-//Sly : OnPartyEntered can be implemented as an override here to handle wraith recruitment for Ai parties directly rather than making use of the SettlementEntered events
 public class CursedSiteComponent : TORBaseSettlementComponent, IDisposable
 {
+
+    public static int MIN_TROOP_COUNT = 1;
+    public static int MAX_TROOP_COUNT = 4;
     private int _wardHours = 0;
     private bool _isMarkerShown = false;
     private GameEntity _markerEntity;
@@ -84,6 +91,49 @@ public class CursedSiteComponent : TORBaseSettlementComponent, IDisposable
             _markerEntity.AddComponent(_markerDecal);
         }
     }
+    
+    /*
+    public override void OnPartyEntered(MobileParty party)
+    {
+
+        if (party == null || party.LeaderHero == null || party == MobileParty.MainParty) return;
+        var leaderHero = party.LeaderHero;
+
+        if (leaderHero.IsNecromancer() || leaderHero.IsVampire())
+        {
+            var freeSlots = party.Party.PartySizeLimit - party.MemberRoster.TotalManCount;
+            if (freeSlots > 0)
+            {
+                var troop = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_spirit_host");
+                int raisePower = Math.Max(1, (int)leaderHero.GetExtendedInfo().SpellCastingLevel);
+                var count = MBRandom.RandomInt(MIN_TROOP_COUNT, MAX_TROOP_COUNT);
+                count *= raisePower;
+                if (freeSlots < count) count = freeSlots;
+                party.MemberRoster.AddToCounts(troop, count);
+                CampaignEventDispatcher.Instance.OnTroopRecruited(party.LeaderHero, Settlement, null, troop, count);
+
+                
+                if (_lastGhostRecruitmentTime.ContainsKey(party.LeaderHero.StringId))
+                {
+                    _lastGhostRecruitmentTime[party.LeaderHero.StringId] = (int)CampaignTime.Now.ToDays;
+                }
+                else
+                {
+                    _lastGhostRecruitmentTime.Add(party.LeaderHero.StringId, (int)CampaignTime.Now.ToDays);
+                }
+                
+            }
+        }
+
+        LeaveSettlementAction.ApplyForParty(party);
+
+        if (party.Army == null || party.Army.LeaderParty == party)//unsure what happens if all of the attached parties in an army are set to start thinking; player-facing issue only as AI armies won't try to visit shrines
+        {
+            party.SetMoveModeHold();
+            party.Ai.SetDoNotMakeNewDecisions(false);
+            party.Ai.RethinkAtNextHourlyTick = true;
+        }
+    }*/
 
     public void Dispose()
     {

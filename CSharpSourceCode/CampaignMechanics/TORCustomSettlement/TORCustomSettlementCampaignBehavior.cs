@@ -123,7 +123,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         CampaignEvents.HourlyTickSettlementEvent.AddNonSerializedListener(this, OnSettlementHourlyTick);
         CampaignEvents.OnMissionEndedEvent.AddNonSerializedListener(this, OnMissionEnded);
         CampaignEvents.TickPartialHourlyAiEvent.AddNonSerializedListener(this, OnAiTick);
-        CampaignEvents.SettlementEntered.AddNonSerializedListener(this, OnSettlementEntered);
+        //CampaignEvents.SettlementEntered.AddNonSerializedListener(this, OnSettlementEntered);
         CampaignEvents.OnNewGameCreatedPartialFollowUpEndEvent.AddNonSerializedListener(this, OnNewGameStart);
         CampaignEvents.OnBeforeSaveEvent.AddNonSerializedListener(this, CollectSettlementData);
     }
@@ -544,7 +544,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
             comp.IsActive = true;
         }
     }
-
+    
     //Sly : this should be transfered over into the relevant settlement component's OnPartyEntered override method; we can perform this without needing to evaluate every party entering unrelated settlement types. See hideouts in native for an example.
     private void OnSettlementEntered(MobileParty party, Settlement settlement, Hero leaderHero)
     {
@@ -589,6 +589,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
             party.Ai.RethinkAtNextHourlyTick = true;
         }
     }
+    
 
     private void OnAiTick(MobileParty party)
     {
