@@ -15,14 +15,13 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
 using TOR_Core.CampaignMechanics.Crafting;
-using TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
 using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
 using TOR_Core.Extensions;
-using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Models;
 using TOR_Core.Utilities;
-using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement;
 
@@ -61,7 +60,8 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
     }
 
     /// <remarks>
-    /// If the hero has never bound wraiths, then the first entry for them is non-existent (or "far" in the past), rather than the present day to avoid the player unable to bind wraiths the first time they enter a cursed site in a campaign.
+    /// If the hero has never bound wraiths, then the first entry for them is non-existent (or "far" in the past), 
+    /// rather than the present day to avoid the player unable to bind wraiths the first time they enter a cursed site in a campaign.
     /// </remarks>
     public int LastGhostRecruitmentTime(Hero hero)
     {
@@ -550,56 +550,9 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
     {
         var settleComp = settlement.SettlementComponent;
         if (party == null || leaderHero == null || party == MobileParty.MainParty) return;
-        if (settleComp is not ShrineComponent && settleComp is not CursedSiteComponent) return;
-        if (settleComp is ShrineComponent shrine)
-        {
-            //with no check for the religion of the hero, a dedicated player can take nobles into their army and slowly change their religion by taking them to shrines that will give influence from a different religion than their current dominant one
-            party.AddBlessingToParty(shrine.Religion.StringId);
+        if (settleComp is not CursedSiteComponent) return;
 
-            // AI religious troop recruitment from shrines
-            if (shrine.Religion.ReligiousTroops != null && shrine.Religion.ReligiousTroops.Count > 0)
-            {
-                var heroReligion = leaderHero.GetDominantReligion();
-                if (heroReligion == shrine.Religion)
-                {
-                    var freeSlots = party.Party.PartySizeLimit - party.MemberRoster.TotalManCount;
-                    if (freeSlots > 0)
-                    {
-                        var troop = shrine.Religion.ReligiousTroops.FirstOrDefault(x => x.IsBasicTroop && x.Occupation == Occupation.Soldier);
-                        if (troop != null)
-                        {
-                            var devotion = leaderHero.GetDevotionLevelForReligion(heroReligion);
-                            int troopCount = 0;
-
-                            // Scale troops based on devotion level
-                            switch (devotion)
-                            {
-                                case DevotionLevel.Follower:
-                                    troopCount = MBRandom.RandomInt(3, 7); // 3-6 troops
-                                    break;
-                                case DevotionLevel.Devoted:
-                                    troopCount = MBRandom.RandomInt(7, 11); // 7-10 troops
-                                    break;
-                                case DevotionLevel.Fanatic:
-                                    troopCount = MBRandom.RandomInt(11, 15); // 11-14 troops
-                                    break;
-                                default:
-                                    troopCount = 0; // No troops for Skeptic/Believer
-                                    break;
-                            }
-
-                            if (troopCount > 0)
-                            {
-                                if (freeSlots < troopCount) troopCount = freeSlots;
-                                party.MemberRoster.AddToCounts(troop, troopCount);
-                                CampaignEventDispatcher.Instance.OnTroopRecruited(leaderHero, settlement, null, troop, troopCount);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        else if (settleComp is CursedSiteComponent)
+        if (settleComp is CursedSiteComponent)
         {
             //no check would have parties in a player's army (who's attempting to deactivate the site) attempt to recruit wraiths who would then be culturally converted to an equivalent if one exists, or crash in some cases
             if (leaderHero.IsNecromancer() || leaderHero.IsVampire())
