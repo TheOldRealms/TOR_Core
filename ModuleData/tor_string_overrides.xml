@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<strings>
+
+  <!-- Arena - Greetings -->
+  <string id="GAsVO8cZ" text="{=str_tor_arena_orc}Lookin' ta bash some 'eadz? Da fightin' pitz could use more boyz!">
+    <tags>
+      <tag tag_name="IsOrcTag" />
+    </tags>
+  </string>
+  <string id="rqFKxm24" text="{=str_tor_arena_orc_no_tournament}Oi! Lookin' fer a scrap? Too bad, ya git! No fightin' today. Come back later if ya wanna bash some 'eadz!">
+    <tags>
+      <tag tag_name="IsOrcTag" />
+    </tags>
+  </string>
+</strings>
