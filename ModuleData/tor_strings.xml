@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <strings>
 
-  <!-- Character Creation - specialization -->
+  <!-- Uncategorized -->
   <string id="tor_cc_review_description" text="{=str_tor_cc_review_description}The Old World awaits you, with all of its glory and horrors. This is your character. Continue if you are ready, or go back and make changes." />
+
+  <!-- Character Creation - specialization -->
   <string id="tor_cc_specialization_title_bloodline" text="{=str_tor_cc_specialization_title_bloodline}Choose Your Bloodline…" />
   <string id="tor_cc_specialization_title_lore" text="{=str_tor_cc_specialization_title_lore}Choose Your Lore of Magic…" />
   <string id="tor_cc_specialization_desc_generic" text="{=str_tor_cc_specialization_desc_generic}Choose your specialization" />
@@ -13,11 +15,17 @@
   <string id="tor_cc_specialization_desc_order" text="{=str_tor_cc_specialization_desc_order}All knights are members of an esteemed knightly order:" />
   <string id="tor_cc_origin_fallback_text" text="{=str_tor_cc_origin_fallback_text}Choose your family's background..." />
   <string id="tor_cc_origin_summary" text="{=str_tor_cc_origin_summary}Origin" />
-  <string id="tor_cc_growth_summary" text="{=str_tor_cc_growth_summary}Growth" />
-  <string id="tor_cc_growth_fallback_text" text="{=str_tor_cc_growth_fallback_text}Teenage years..." />
-  <string id="tor_cc_profession_summary" text="{=str_tor_cc_profession_summary}Profession" />
-  <string id="tor_cc_profession_fallback_text" text="{=str_tor_cc_profession_fallback_text}Your starting profession..." />
   <string id="tor_cc_specialization_title_generic" text="{=str_tor_cc_specialization_title_generic}Specialization" />
+
+  <!-- Character Creation - Stage 1 -->
+  <string id="tor_cc_growth_summary" text="{=str_tor_cc_growth_summary}Growth" />
+  <string id="tor_cc_profession_fallback_text" text="{=str_tor_cc_profession_fallback_text}Your starting profession..." />
+
+  <!-- Character Creation - Stage 2 -->
+  <string id="tor_cc_growth_fallback_text" text="{=str_tor_cc_growth_fallback_text}Teenage years..." />
+
+  <!-- Character Creation - Stage 3 -->
+  <string id="tor_cc_profession_summary" text="{=str_tor_cc_profession_summary}Profession" />
   <string id="tor_cc_growth.battania" text="{=str_tor_cc_growth_battania}You spent most of your life venerating one of the Asrai deities…" />
   <string id="tor_cc_profession.battania" text="{=str_tor_cc_profession_battania}Choose your path…" />
   <string id="tor_cc_origin.sturgia" text="{=str_tor_cc_origin_sturgia}Your Clan is famous for its…" />
@@ -483,13 +491,7 @@
   <string id="tor_priest_hub_party_blessing_decline.cult_of_shallya" text="{=str_tor_priest_hub_party_blessing_decline_cult_of_shallya}The Lady's healing light is with you still, return at a later time." />
   <string id="tor_priest_hub_quit.cult_of_shallya" text="{=str_tor_priest_hub_quit_cult_of_shallya}May Shallya's mercy be with you." />
 
-  <!-- Skill Trainer Texts -->
-  <string id="tor_priest_train_hub_quit_p" text="{=str_tor_priest_train_hub_quit_p}default train hub quit. defaulted to if no variant exists. If you don't want to write specific lines for every variant, make use of this generic default. Also, consider a more generic string id because this can likely be used in a variety of conversations and save a bunch of duplicate or almost identical lines." />
-  <string id="tor_teach_skills_dialog_p" text="{=str_tor_teach_skills_dialog_p}default tor_teach_skills_dialog_p. defaulted to if no variant exists." />
-  <string id="tor_skill_teacher_train_1" text="{=str_tor_skill_teacher_train_1}default tor_skill_teacher_train_1. defaulted to if no variant exists." />
-  <string id="tor_skill_teacher_train_2" text="{=str_tor_skill_teacher_train_2}tor_skill_teacher_train_2. defaulted to if no variant exists." />
-  <string id="tor_skill_train_hub_select_companion_p" text="{=str_tor_skill_train_hub_select_companion_p}default tor_skill_train_hub_select_companion_p. defaulted to if no variant exists." />
-  <string id="tor_skill_train_hub_select_companion_decline" text="{=str_tor_skill_train_hub_select_companion_decline}default tor_skill_train_hub_select_companion_decline. defaulted to if no variant exists." />
+  <!-- Skill Trainer - general -->
   <string id="tor_teach_skills_dialog_p" text="{=str_tor_teach_skills_dialog_p}I would like to arrange training for one of my companions." />
   <string id="tor_skill_teacher_train_1" text="{=str_tor_skill_teacher_train_1}Of course. I can train your companions in the necessary skills." />
   <string id="tor_skill_teacher_train_2" text="{=str_tor_skill_teacher_train_2}The training will take some time, but your companion will learn much. What do you wish to do?" />
@@ -498,8 +500,10 @@
   <string id="tor_skill_train_hub_select_companion_decline" text="{=str_tor_skill_train_hub_select_companion_decline}I am afraid none of your companions are eligible for training at this time." />
   <string id="tor_priest_train_hub_quit_p" text="{=str_tor_priest_train_hub_quit_p}Farewell." />
 
-  <!-- skill training -->
+  <!-- skill training - general -->
   <string id="tor_skill_train_hub_select_companion" text="{=str_tor_skill_train_hub_select_companion}default tor_skill_train_hub_select_companion. defaulted to if no variant exists." />
+
+  <!-- skill training - runelord -->
   <string id="tor_teach_skills_dialog_p.DwarfRunelord" text="{=str_tor_teach_skills_dialog_p_DwarfRunelord}Can you teach my runesmith companion the sacred arts of the runes?" />
   <string id="tor_skill_teacher_train_1.DwarfRunelord" text="{=str_tor_skill_teacher_train_1_DwarfRunelord}I can help, but it will take a substantial amount of time and gold to do so." />
   <string id="tor_skill_teacher_train_2.DwarfRunelord" text="{=str_tor_skill_teacher_train_2_DwarfRunelord}Would you still like me to pass down my teachings?" />
@@ -507,6 +511,8 @@
   <string id="tor_skill_train_hub_select_companion.DwarfRunelord" text="{=str_tor_skill_train_hub_select_companion_DwarfRunelord}Very well, I will pass down my teachings. Your friend will be sent back when his training is finished." />
   <string id="tor_skill_train_hub_select_companion_decline.DwarfRunelord" text="{=str_tor_skill_train_hub_select_companion_decline_DwarfRunelord}There is nobody worth teaching in your party." />
   <string id="tor_priest_train_hub_quit_p.DwarfRunelord" text="{=str_tor_priest_train_hub_quit_p_DwarfRunelord}Forgive me, Rhunrik, I've changed my mind." />
+
+  <!-- skill training - empire engineer -->
   <string id="tor_teach_skills_dialog_p.EngineerEmpire" text="{=str_tor_teach_skills_dialog_p_EngineerEmpire}Can you teach my companion more about Engineering?" />
   <string id="tor_skill_teacher_train_1.EngineerEmpire" text="{=str_tor_skill_teacher_train_1_EngineerEmpire}Sure. I can teach your companions. They will stay here. But I can tell this will cost you dearly " />
   <string id="tor_skill_teacher_train_2.EngineerEmpire" text="{=str_tor_skill_teacher_train_2_EngineerEmpire}So how should we proceed?" />
@@ -514,6 +520,8 @@
   <string id="tor_priest_train_hub_quit_p.EngineerEmpire" text="{=str_tor_priest_train_hub_quit_p_EngineerEmpire}There is something else" />
   <string id="tor_skill_train_hub_select_companion.EngineerEmpire" text="{=str_tor_skill_train_hub_select_companion_EngineerEmpire}Choose a companion you want to teach." />
   <string id="tor_skill_train_hub_select_companion_decline.EngineerEmpire" text="{=str_tor_skill_train_hub_select_companion_decline_EngineerEmpire}Your companions are not ready yet." />
+
+  <!-- skill training - empire magister -->
   <string id="tor_skill_teacher_train_1.EmpireMagister" text="{=str_tor_skill_teacher_train_1_EmpireMagister}I can teach your companion magic, if you allow them to stay at the colleges." />
   <string id="tor_skill_teacher_train_2.EmpireMagister" text="{=str_tor_skill_teacher_train_2_EmpireMagister}Who should join the college and learn the art of the arkane?" />
   <string id="tor_teach_skills_dialog_p.EmpireMagister" text="{=str_tor_teach_skills_dialog_p_EmpireMagister}Can you teach my wizard companion the secrets of magic?" />
@@ -522,27 +530,33 @@
   <string id="tor_skill_train_hub_select_companion_decline.EmpireMagister" text="{=str_tor_skill_train_hub_select_companion_decline_EmpireMagister}There is nobody worth teaching in your party." />
   <string id="tor_priest_train_hub_quit_p.EmpireMagister" text="{=str_tor_priest_train_hub_quit_p_EmpireMagister}Forgive me, I've changed my mind." />
   <string id="tor_teach_skills_dialog_p.SigmarTrain" text="{=str_tor_teach_skills_dialog_p_SigmarPriest}My companion wishes to deepen his faith, can you guide them?" />
+
+  <!-- skill training - sigmar priest -->
   <string id="tor_skill_teacher_train_1.SigmarTrain" text="{=str_tor_skill_teacher_train_1_SigmarPriest}It would be remiss of me not to pass on Sigmar's holy word. However; your companion must stay and train here." />
   <string id="tor_skill_teacher_train_2.SigmarTrain" text="{=str_tor_skill_teacher_train_2_SigmarPriest}Who among your companions shall learn the ways of our Lord Sigmar?" />
   <string id="tor_skill_train_hub_select_companion_p.SigmarTrain" text="{=str_tor_skill_train_hub_select_companion_p_SigmarPriest}Yes, please guide one of my companions in Sigmar's teachings." />
   <string id="tor_skill_train_hub_select_companion.SigmarTrain" text="{=str_tor_skill_train_hub_select_companion_SigmarPriest}Very well, they shall learn under Sigmar's guidance. Your companion will return when the training is complete." />
   <string id="tor_skill_train_hub_select_companion_decline.SigmarTrain" text="{=str_tor_skill_train_hub_select_companion_decline_SigmarPriest}None of your companions are worthy of Sigmar's teachings." />
   <string id="tor_priest_train_hub_quit_p.SigmarTrain" text="{=str_tor_priest_train_hub_quit_p_SigmarPriest}Sigmar guide you, I must take my leave." />
+
+  <!-- skill training - ulric priest -->
   <string id="tor_skill_teacher_train_1.UlricTrain" text="{=str_tor_skill_teacher_train_1_UlricPriest}If Ulric deems them worthy, they may learn. Leave them with me." />
   <string id="tor_skill_teacher_train_2.UlricTrain" text="{=str_tor_skill_teacher_train_2_UlricPriest}Who shall learn of the Winter-Father's ways?" />
   <string id="tor_teach_skills_dialog_p.UlricTrain" text="{=str_tor_teach_skills_dialog_p_UlricPriest}My companion wishes to deepen his faith, can you guide them?" />
   <string id="tor_skill_train_hub_select_companion_p.UlricTrain" text="{=str_tor_skill_train_hub_select_companion_p_UlricPriest}Yes, please guide one of my companions." />
   <string id="tor_skill_train_hub_select_companion.UlricTrain" text="{=str_tor_skill_train_hub_select_companion_UlricPriest}Very well, they shall return with sharpened fangs." />
   <string id="tor_skill_train_hub_select_companion_decline.UlricTrain" text="{=str_tor_skill_train_hub_select_companion_decline_UlricPriest}There is no one in your party worth teaching." />
+
+  <!-- skill training - ui -->
   <string id="tor_priest_train_hub_quit_p.UlricTrain" text="{=str_tor_priest_train_hub_quit_p_UlricPriest}Forgive me, I've changed my mind." />
   <string id="tor_skill_training_prompt.title" text="{=str_tor_skill_training_prompt_title}Teach a companion {SKILL_NAME}" />
   <string id="tor_skill_training_prompt.skill_value" text="{=str_tor_skill_training_prompt_skill_value}Current Skill value: {SKILL_VALUE}" />
-  <string id="tor_skill_training_prompt.description" text="{=str_tor_skill_training_prompt_description}Training will cost you {GOLD_ICON} and {CUSTOMRESOURCE}. The selected companion will leave your party and remain here for a period of time. Cancelling this process will not refund any spent resources." />
   <string id="tor_skill_training_reason.NoCustomResource" text="{=str_tor_skill_training_reason_NoCustomResource}You do not possess enough {CUSTOMRESOURCE}." />
   <string id="tor_skill_training_hover.NoGold" text="{=str_tor_skill_training_hover_NoGold}You do not possess enough {GOLD_ICON}." />
   <string id="tor_skill_training_hover.NoCustomResource" text="{=str_tor_skill_training_hover_NoCustomResource}You do not possess enough {CUSTOMRESOURCE}." />
   <string id="tor_skill_training_hover.Costs" text="{=str_tor_skill_training_hover_Costs}Requires {GOLD_COST}{GOLD_ICON}, {CR_COST}{CUSTOMRESOURCE}" />
   <string id="tor_skill_training_hover.Full" text="{=str_tor_skill_training_hover_Full}{SKILLTRAINING_REASON} {SKILL_TRAINING_COSTS}" />
+  <string id="tor_skill_training_prompt.description" text="{=str_tor_skill_training_prompt_description}Training will cost you {GOLD_ICON} and {CUSTOMRESOURCE}. The selected companion will leave your party and remain here for a period of time. Cancelling this process will not refund any spent resources." />
   <string id="tor_teach_skills_dialog_p.ShallyaTrainRE" text="{=str_tor_teach_skills_dialog_p_ShallyaTrainRE}Can you teach my companions more about Medicine?" />
   <string id="tor_skill_teacher_train_1.ShallyaTrainRE" text="{=str_tor_skill_teacher_train_1_ShallyaTrainRE}The Dove's mercy guides our hands in healing. I can teach your companion the ways of the merciful." />
   <string id="tor_skill_teacher_train_2.ShallyaTrainRE" text="{=str_tor_skill_teacher_train_2_ShallyaTrainRE}Who among your companions shall learn the healing arts?" />
@@ -2075,7 +2089,7 @@
   <!-- wanderer stories -->
   <string id="tor_wanderer_leave" text="{=str_tor_wanderer_leave}Safe travels, stranger." />
 
-  <!-- Empire 0 - Bright Wizard -->
+  <!-- Companion - Empire 0 - Bright Wizard -->
   <string id="tor_hire_companion_begone.tor_wanderer_empire_0" text="{=str_tor_hire_companion_begone_tor_wanderer_empire_0}Begone, your kind is not welcome here!" />
   <string id="tor_introduction.tor_wanderer_empire_0" text="{=str_tor_introduction_tor_wanderer_empire_0}Greetings, what can a member of the Bright College do for you?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_0" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_0}They call me {PLAYER.NAME}. Tell me about yourself." />
@@ -2084,6 +2098,8 @@
   <string id="tor_backstory_a.tor_wanderer_empire_0" text="{=str_tor_backstory_a_tor_wanderer_empire_0}As a boy I discovered I was not like most children, it was not long before the colleges realised this as well." />
   <string id="tor_backstory_b.tor_wanderer_empire_0" text="{=str_tor_backstory_b_tor_wanderer_empire_0}Once my affinity for Aqshy was known, I was ripped from my peasant life and became an initiate within the Colleges in Altdorf." />
   <string id="tor_backstory_c.tor_wanderer_empire_0" text="{=str_tor_backstory_c_tor_wanderer_empire_0}That fire in Altdorf a few years back that started in a tavern? Definitely wasn't me!." />
+
+  <!-- Empire 0 - Bright Wizard -->
   <string id="tor_response_1.tor_wanderer_empire_0" text="{=str_tor_response_1_tor_wanderer_empire_0}Most interesting." />
   <string id="tor_response_2.tor_wanderer_empire_0" text="{=str_tor_response_2_tor_wanderer_empire_0}Yes, yes, and then?" />
   <string id="tor_backstory_d.tor_wanderer_empire_0" text="{=str_tor_backstory_d_tor_wanderer_empire_0}I am a licensed Bright Wizard from the Colleges in Altdorf. I'm sure by now you have met a few of us and may know how powerful we can be." />
@@ -2093,7 +2109,7 @@
   <string id="tor_hire_accept_p.tor_wanderer_empire_0" text="{=str_tor_hire_accept_p_tor_wanderer_empire_0}So be it… Take this {GOLD_AMOUNT} then." />
   <string id="tor_hire_decline_p.tor_wanderer_empire_0" text="{=str_tor_hire_decline_p_tor_wanderer_empire_0}Apologies, I cannot afford that just yet." />
 
-  <!-- Empire 1 - Warrior Priest of Sigmar -->
+  <!-- Empire 1 - Warrior Priest of Sigmar - Empire 1 - Warrior Priest of Sigmar -->
   <string id="tor_hire_companion_begone.tor_wanderer_empire_1" text="{=str_tor_hire_companion_begone_tor_wanderer_empire_1}Begone heretic. I have no business with your kind." />
   <string id="tor_introduction.tor_wanderer_empire_1" text="{=str_tor_introduction_tor_wanderer_empire_1}Sigmar be with you. How can I help?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_1" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_1}They call me {PLAYER.NAME}. Tell me about yourself." />
@@ -2111,7 +2127,7 @@
   <string id="tor_hire_accept_p.tor_wanderer_empire_1" text="{=str_tor_hire_accept_p_tor_wanderer_empire_1}So be it… Take this {GOLD_AMOUNT} then." />
   <string id="tor_hire_decline_p.tor_wanderer_empire_1" text="{=str_tor_hire_decline_p_tor_wanderer_empire_1}Apologies, I cannot afford that just yet." />
 
-  <!-- Empire 2 - Witch Hunter -->
+  <!-- Empire 2 - Witch Hunter - Empire 2 - Witch Hunter -->
   <string id="tor_hire_companion_begone.tor_wanderer_empire_2" text="{=str_tor_hire_companion_begone_tor_wanderer_empire_2}Begone, my fellow Templars are already on their way." />
   <string id="tor_introduction.tor_wanderer_empire_2" text="{=str_tor_introduction_tor_wanderer_empire_2}Speak, citizen. I have work to do." />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_2" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_2}They call me {PLAYER.NAME}. Tell me about yourself." />
@@ -3274,7 +3290,7 @@
   <string id="tor_career_choicegroup_name.GorkAnMorkAreWatchin" text="{=str_tor_career_choicegroup_name_GorkAnMorkAreWatchin}Gork an' Mork are watchin'" />
   <string id="tor_career_choicegroup_name.PowerUvDaWaaagh" text="{=str_tor_career_choicegroup_name_PowerUvDaWaaagh}Power uv da Waaagh!" />
 
-  <!-- WarriorPriest Career Choice Descriptions -->
+  <!-- Career Choice Description - WarriorPriest -->
   <string id="tor_careerchoice_description.WarriorPriestRoot" text="{=str_tor_careerchoice_description_WarriorPriestRoot}Unleash Sigmar's wrath with your Righteous Fury! Empower both you and nearby allies with +20% melee damage for 8s. For every level of Faith, increase effect damage by 0.05% and duration by 0.05s. (Ability charges by taking damage.)" />
   <string id="tor_careerchoice_description.BookOfSigmarKeyStone" text="{=str_tor_careerchoice_description_BookOfSigmarKeyStone}Righteous Fury is now also charged by melee attacks." />
   <string id="tor_careerchoice_description.BookOfSigmarPassive1" text="{=str_tor_careerchoice_description_BookOfSigmarPassive1}+10 personal Hitpoints." />
@@ -3311,9 +3327,9 @@
   <string id="tor_careerchoice_description.TwinTailedCometPassive2" text="{=str_tor_careerchoice_description_TwinTailedCometPassive2}+5 Companion limit." />
   <string id="tor_careerchoice_description.TwinTailedCometPassive3" text="{=str_tor_careerchoice_description_TwinTailedCometPassive3}+20% personal melee 'Armour Penetration'." />
   <string id="tor_careerchoice_description.TwinTailedCometPassive4" text="{=str_tor_careerchoice_description_TwinTailedCometPassive4}+20 personal Hitpoints." />
-
-  <!-- WarriorPriestUlric Career Choice Descriptions -->
   <string id="tor_careerchoice_description.WarriorPriestUlricRoot" text="{=str_tor_careerchoice_description_WarriorPriestUlricRoot}Let all know the fury of the wolf god! Like Ulric and his axe Blitzbeil before you, slam your weapon into the earth, erupting the ground in a 2 meter radius. This attack cannot be parried. For every level in your highest melee weapon skill, increase Axe of Ulric's damage by 0.1%. (Ability charges by dealing melee 'Physical' damage.)" />
+
+  <!-- Career Choice Description - WarriorPriestUlric -->
   <string id="tor_careerchoice_description.CrusherOfTheWeakKeystone" text="{=str_tor_careerchoice_description_CrusherOfTheWeakKeystone}Axe of Ulric knocks foes down." />
   <string id="tor_careerchoice_description.CrusherOfTheWeakPassive1" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive1}+10 personal Hitpoints." />
   <string id="tor_careerchoice_description.CrusherOfTheWeakPassive2" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive2}+5% personal 'Physical' melee damage." />
@@ -3350,7 +3366,7 @@
   <string id="tor_careerchoice_description.FlameOfUlricPassive3" text="{=str_tor_careerchoice_description_FlameOfUlricPassive3}Victory against a stronger force provide +100% prestige." />
   <string id="tor_careerchoice_description.FlameOfUlricPassive4" text="{=str_tor_careerchoice_description_FlameOfUlricPassive4}Kills done by you or 'Ulrician' troops cause 25% morale damage to enemies." />
 
-  <!-- WitchHunter Career Choice Descriptions -->
+  <!-- Career Choice Description - WitchHunter -->
   <string id="tor_careerchoice_description.WitchHunterRoot" text="{=str_tor_careerchoice_description_WitchHunterRoot}Accuse an enemy of Heresy! Place an Accusation Mark on an enemy for the next 8s, the first hit you inflict deals +20% 'Physical' damage. After a hit there is a 50% chance the foe stays marked. For every level of Gunpowder or Crossbow, increase Accusation Mark's chance to remain on the foe by 0.1%. (Ability charges by dealing ranged 'Physical' damage.)" />
   <string id="tor_careerchoice_description.ToolsOfJudgementKeystone" text="{=str_tor_careerchoice_description_ToolsOfJudgementKeystone}Accusation also scales with the highest skill of either One/Two-handed and gains +6s." />
   <string id="tor_careerchoice_description.ToolsOfJudgementPassive1" text="{=str_tor_careerchoice_description_ToolsOfJudgementPassive1}+25 personal Hitpoints." />
@@ -3388,7 +3404,7 @@
   <string id="tor_careerchoice_description.GuiltyByAssociationPassive3" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive3}Companions gain +25 Hitpoints." />
   <string id="tor_careerchoice_description.GuiltyByAssociationPassive4" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive4}Headshot kills provide a temporary increase to reload/swing speed." />
 
-  <!-- ImperialMagister Career Choice Descriptions -->
+  <!-- Career Choice Description - ImperialMagister -->
   <string id="tor_careerchoice_description.ImperialMagisterRoot" text="{=str_tor_careerchoice_description_ImperialMagisterRoot}Channel the 'Winds of Magic' into a wondrous gale! Every second up to 10, regain 2% of your total 'Winds of Magic' pool. While channeling, you are more vulnerable to damage, and your movements become sluggish. Every second 'Keystone' career talent unlocked provides +1 charge of Arcane Conduit. For every 50 levels in Spellcraft, Arcane Conduit's duration increases by +1s. (Ability charges by dealing spell damage.)" />
   <string id="tor_careerchoice_description.StudyAndPractiseKeystone" text="{=str_tor_careerchoice_description_StudyAndPractiseKeystone}+1 charge of Arcane Conduit, and +50% 'Physical Resistance' while channeling." />
   <string id="tor_careerchoice_description.StudyAndPractisePassive1" text="{=str_tor_careerchoice_description_StudyAndPractisePassive1}+3 personal max 'Winds of Magic' capacity." />
@@ -3426,7 +3442,7 @@
   <string id="tor_careerchoice_description.ArcaneKnowledgePassive3" text="{=str_tor_careerchoice_description_ArcaneKnowledgePassive3}+10% spell power if armour weight does not exceed 11." />
   <string id="tor_careerchoice_description.ArcaneKnowledgePassive4" text="{=str_tor_careerchoice_description_ArcaneKnowledgePassive4}+2 personal max 'Winds of Magic' per Imperial Wizard Companion." />
 
-  <!-- KnightOldWorld Career Choice Descriptions -->
+  <!-- Career Choice Description - KnightOldWorld -->
   <string id="tor_careerchoice_description.KnightOldWorldRoot" text="{=str_tor_careerchoice_description_KnightOldWorldRoot}Slay the Empire's foes with a Knightly Strike! Gain +20% personal 'Physical' melee damage on the next enemy hit within 15s. Every 'Keystone' career talent unlocked provides +1 charge of Knightly Strike. Each level in the One Handed skill increases the damage of Knightly Strike by 1%. (Ability charges by dealing 'Physical' melee damage.)" />
   <string id="tor_careerchoice_description.SecularOrdersKeystone" text="{=str_tor_careerchoice_description_SecularOrdersKeystone}Knightly Strike gains a charge every 100 points in a melee weapon skill up to a max of 15." />
   <string id="tor_careerchoice_description.SecularOrdersPassive1" text="{=str_tor_careerchoice_description_SecularOrdersPassive1}-25% 'Prestige' cost for upgrading 'Knight' troops." />
@@ -3464,7 +3480,7 @@
   <string id="tor_careerchoice_description.PathOfGloryPassive3" text="{=str_tor_careerchoice_description_PathOfGloryPassive3}+6% personal 'Ward Save'." />
   <string id="tor_careerchoice_description.PathOfGloryPassive4" text="{=str_tor_careerchoice_description_PathOfGloryPassive4}'Knight' troops can now be given an additional 'Templar or Secular seal'." />
 
-  <!-- Mercenary Career Choice Descriptions -->
+  <!-- Career Choice Description - Mercenary -->
   <string id="tor_careerchoice_description.MercenaryRoot" text="{=str_tor_careerchoice_description_MercenaryRoot}Never retreat! Never surrender! Inspire nearby troops with a rallying cry! Making them 'Unbreakable' and 'Unstoppable' for 15s. (60s cooldown.)" />
   <string id="tor_careerchoice_description.SurvivalistKeystone" text="{=str_tor_careerchoice_description_SurvivalistKeystone}Let Them Have It! also provides +15% 'Physical Resistance'." />
   <string id="tor_careerchoice_description.SurvivalistPassive1" text="{=str_tor_careerchoice_description_SurvivalistPassive1}+3 extra ammo per ammunition pouch, or quiver you equip." />
@@ -3502,7 +3518,7 @@
   <string id="tor_careerchoice_description.CommanderPassive3" text="{=str_tor_careerchoice_description_CommanderPassive3}Hits below 15 damage no longer stagger you." />
   <string id="tor_careerchoice_description.CommanderPassive4" text="{=str_tor_careerchoice_description_CommanderPassive4}+15 Hitpoints for Companions." />
 
-  <!-- Necromancer Career Choice Descriptions -->
+  <!-- Career Choice Description - Necromancer -->
   <string id="tor_careerchoice_description.NecromancerRoot" text="{=str_tor_careerchoice_description_NecromancerRoot}What is death but an obstacle to overcome? Summon and possess an ancient Harbinger of an old age, to slay your foes! Every 2s, the Harbinger loses -5 Hitpoints. For every 3 levels in Spellcraft, the Harbinger gains 1 Hitpoint. (Ability charges by dealing 'Spell' damage, healing, summoning 'Lesser Undead' troops, or by 'Lesser Undead' troop damage.)" />
   <string id="tor_careerchoice_description.LiberNecrisKeystone" text="{=str_tor_careerchoice_description_LiberNecrisKeystone}Harbinger also scales with Roguery and gains a Two-Handed weapon." />
   <string id="tor_careerchoice_description.LiberNecrisPassive1" text="{=str_tor_careerchoice_description_LiberNecrisPassive1}-20% party weight of 'Lesser Undead' troops." />
@@ -3540,7 +3556,7 @@
   <string id="tor_careerchoice_description.BooksOfNagashPassive3" text="{=str_tor_careerchoice_description_BooksOfNagashPassive3}+25 personal 'Winds of Magic' capacity." />
   <string id="tor_careerchoice_description.BooksOfNagashPassive4" text="{=str_tor_careerchoice_description_BooksOfNagashPassive4}-50% 'Dark Energy' cost for upgrading troops." />
 
-  <!-- VampireCount Career Choice Descriptions -->
+  <!-- Career Choice Description - VampireCount -->
   <string id="tor_careerchoice_description.VampireCountRoot" text="{=str_tor_careerchoice_description_VampireCountRoot}The Empire shall soon belong to the Midnight Aristocracy! Disappear and take flight into a swarm of bats and fog for up to 5s. For every level in Athletics, Mist Form's duration increases by +0.03s. (Ability is charged by dealing any form of damage.)" />
   <string id="tor_careerchoice_description.NewBloodKeystone" text="{=str_tor_careerchoice_description_NewBloodKeystone}Mist Form charges 20% faster." />
   <string id="tor_careerchoice_description.NewBloodPassive1" text="{=str_tor_careerchoice_description_NewBloodPassive1}+15 personal Hitpoints." />
@@ -3578,7 +3594,7 @@
   <string id="tor_careerchoice_description.MasterOfDeadPassive3" text="{=str_tor_careerchoice_description_MasterOfDeadPassive3}+20% higher chance to 'Raise Dead' after a battle." />
   <string id="tor_careerchoice_description.MasterOfDeadPassive4" text="{=str_tor_careerchoice_description_MasterOfDeadPassive4}+20% chance tier 4+ 'Lesser Undead' troops will be wounded instead of killed." />
 
-  <!-- BloodKnight Career Choice Descriptions -->
+  <!-- Career Choice Description - BloodKnight -->
   <string id="tor_careerchoice_description.BloodKnightRoot" text="{=str_tor_careerchoice_description_BloodKnightRoot}The Ordo Draconis shall rise once again! Channel your urges into a Red Fury towards the foe, and slay them in The Wanderer's name! For the next 6s, gain +45% 'Physical' melee damage and +20% 'Physical Resistance'. Red Fury's buffs increase by 0.05% per skill level of the currently equipped melee weapon. (Ability charges by killing enemies.)" />
   <string id="tor_careerchoice_description.PeerlessWarriorKeystone" text="{=str_tor_careerchoice_description_PeerlessWarriorKeystone}Red Fury also scales with Athletics, and provides a +20% personal movement speed increase." />
   <string id="tor_careerchoice_description.PeerlessWarriorPassive1" text="{=str_tor_careerchoice_description_PeerlessWarriorPassive1}+25 personal Hitpoints." />
@@ -3616,7 +3632,7 @@
   <string id="tor_careerchoice_description.DreadKnightPassive3" text="{=str_tor_careerchoice_description_DreadKnightPassive3}+20% 'Physical' melee damage for 'Cavalry' troops." />
   <string id="tor_careerchoice_description.DreadKnightPassive4" text="{=str_tor_careerchoice_description_DreadKnightPassive4}+20% personal 'Armour Penetration' for melee attacks." />
 
-  <!-- Necrarch Career Choice Descriptions -->
+  <!-- Career Choice Description - Necrarch -->
   <string id="tor_careerchoice_description.NecrarchRoot" text="{=str_tor_careerchoice_description_NecrarchRoot}Siphon the winds into a Blast of Agony! When used, Blast of Agony hurls a ball of condensed darkness, exploding on impact dealing 80 'Magic' damage. For every level of Spellcraft, increase Blast of Agony's radius by 0.01m. (Ability is charged by dealing 'Spell' damage.)" />
   <string id="tor_careerchoice_description.DiscipleOfAccursedKeystone" text="{=str_tor_careerchoice_description_DiscipleOfAccursedKeystone}Blast of Agony also scales with Roguery and, 'Lesser Undead' troops charge Blast of Agony." />
   <string id="tor_careerchoice_description.DiscipleOfAccursedPassive1" text="{=str_tor_careerchoice_description_DiscipleOfAccursedPassive1}-50% party weight of 'Lesser Undead' troops." />
@@ -3654,7 +3670,7 @@
   <string id="tor_careerchoice_description.EverlingsSecretPassive3" text="{=str_tor_careerchoice_description_EverlingsSecretPassive3}When at max 'Winds of Magic', excess generated becomes 'Dark Energy'." />
   <string id="tor_careerchoice_description.EverlingsSecretPassive4" text="{=str_tor_careerchoice_description_EverlingsSecretPassive4}All forms of 'Spell' damage buffs now applies to every lore of magic." />
 
-  <!-- GrailKnight Career Choice Descriptions -->
+  <!-- Career Choice Description - GrailKnight -->
   <string id="tor_careerchoice_description.GrailKnightRoot" text="{=str_tor_careerchoice_description_GrailKnightRoot}Honour is all, Chivalry is all! Slay your foes with a Knightly Charge! For the next 6s while mounted, gain +20% movement speed and +20% chance for a couched lance to not reset after a hit. For every level of Riding, gain +0.1% chance to not reset a couched lance during Knightly Charge. (60s cooldown)" />
   <string id="tor_careerchoice_description.ErrantryWarKeystone" text="{=str_tor_careerchoice_description_ErrantryWarKeystone}Knightly Charge also scales with One-Handed skill, and gains +10% 'Physical' melee damage." />
   <string id="tor_careerchoice_description.ErrantryWarPassive1" text="{=str_tor_careerchoice_description_ErrantryWarPassive1}+5% personal 'Physical' melee damage." />
@@ -3692,7 +3708,7 @@
   <string id="tor_careerchoice_description.HolyCrusaderPassive3" text="{=str_tor_careerchoice_description_HolyCrusaderPassive3}'Grail Knight' troops can be upgraded to Companions." />
   <string id="tor_careerchoice_description.HolyCrusaderPassive4" text="{=str_tor_careerchoice_description_HolyCrusaderPassive4}+7 Companion limit." />
 
-  <!-- GrailDamsel Career Choice Descriptions -->
+  <!-- Career Choice Description - GrailDamsel -->
   <string id="tor_careerchoice_description.GrailDamselRoot" text="{=str_tor_careerchoice_description_GrailDamselRoot}Bretonnia calls, and its daughters shall answer! Wander through the Fey-Paths. Teleporting to the targeted ground position. (Ability is charged by dealing 'Spell' damage/healing.)" />
   <string id="tor_careerchoice_description.FeyEnchantmentKeystone" text="{=str_tor_careerchoice_description_FeyEnchantmentKeystone}Fey-Paths knocks over enemies in its radius." />
   <string id="tor_careerchoice_description.FeyEnchantmentPassive1" text="{=str_tor_careerchoice_description_FeyEnchantmentPassive1}+5% personal 'Spell' damage." />
@@ -3730,7 +3746,7 @@
   <string id="tor_careerchoice_description.EnvoyOfTheLadyPassive3" text="{=str_tor_careerchoice_description_EnvoyOfTheLadyPassive3}+10 'Winds of Magic' capacity for Damsel companions." />
   <string id="tor_careerchoice_description.EnvoyOfTheLadyPassive4" text="{=str_tor_careerchoice_description_EnvoyOfTheLadyPassive4}Can force Bretonnian Lords to make diplomatic decisions." />
 
-  <!-- BlackGrailKnight Career Choice Descriptions -->
+  <!-- Career Choice Description - BlackGrailKnight -->
   <string id="tor_careerchoice_description.BlackGrailKnightRoot" text="{=str_tor_careerchoice_description_BlackGrailKnightRoot}The lies of the Lady shall blind us no more! Slay your foes with a Knightly Charge! For the next 6s while mounted, gain +20% movement speed and +20% chance for a couched lance to not reset after a hit. For every level of Riding, gain +0.1% chance to not reset a couched lance during Knightly Charge. (60s cooldown)" />
   <string id="tor_careerchoice_description.CurseOfMousillonKeystone" text="{=str_tor_careerchoice_description_CurseOfMousillonKeystone}Knightly Charge also scales with One-Handed skill, and gains +10% 'Physical' melee damage." />
   <string id="tor_careerchoice_description.CurseOfMousillonPassive1" text="{=str_tor_careerchoice_description_CurseOfMousillonPassive1}+30 personal Hitpoints." />
@@ -3768,7 +3784,7 @@
   <string id="tor_careerchoice_description.BlackGrailVowPassive3" text="{=str_tor_careerchoice_description_BlackGrailVowPassive3}+8% 'Ward Save' for Mousillon 'Knight' troops." />
   <string id="tor_careerchoice_description.BlackGrailVowPassive4" text="{=str_tor_careerchoice_description_BlackGrailVowPassive4}+5 daily 'Dark Energy' per Necromancer and Vampire companion." />
 
-  <!-- Waywatcher Career Choice Descriptions -->
+  <!-- Career Choice Description - Waywatcher -->
   <string id="tor_careerchoice_description.WayWatcherRoot" text="{=str_tor_careerchoice_description_WayWatcherRoot}Soon, the Lumberfoots shall regret their trespass! Fire a Lethal Shot, with deadly precision! +50% 'Physical' damage to your next shot. Every 'Keystone' career perk unlocked increases arrows affected by Lethal Shot by +1, but decreases its recharge rate. (Ability is charged by dealing 'Physical' damage with bows.)" />
   <string id="tor_careerchoice_description.ProtectorOfTheWoodsKeystone" text="{=str_tor_careerchoice_description_ProtectorOfTheWoodsKeystone}Lethal Shot can be used on battle start, reduces required damage to use, and affects +1 shot." />
   <string id="tor_careerchoice_description.ProtectorOfTheWoodsPassive1" text="{=str_tor_careerchoice_description_ProtectorOfTheWoodsPassive1}+10% personal ranged 'Physical' damage." />
@@ -3806,7 +3822,7 @@
   <string id="tor_careerchoice_description.EyeOfTheHunterPassive3" text="{=str_tor_careerchoice_description_EyeOfTheHunterPassive3}+50 Bow skill for 'Elven' ranged troops." />
   <string id="tor_careerchoice_description.EyeOfTheHunterPassive4" text="{=str_tor_careerchoice_description_EyeOfTheHunterPassive4}Roguery skill allows your attacks to reduce an enemies armour up to 60%." />
 
-  <!-- Spellsinger Career Choice Descriptions -->
+  <!-- Career Choice Description - Spellsinger -->
   <string id="tor_careerchoice_description.SpellSingerRoot" text="{=str_tor_careerchoice_description_SpellSingerRoot}The forests are restless! Chant an ancient litany, to bring forth the Wrath of the Wood, summoning Dryads to your aid! For every level of Spellcraft, gain 0.05% chance of an additional Dryad being summoned. (Ability is charged by dealing 'Spell' damage.)" />
   <string id="tor_careerchoice_description.PathShapingKeystone" text="{=str_tor_careerchoice_description_PathShapingKeystone}Wrath of the Wood also scales with Scouting, and buffs 'Forest Spirits' move speed by +10%." />
   <string id="tor_careerchoice_description.PathShapingPassive1" text="{=str_tor_careerchoice_description_PathShapingPassive1}+1 party move speed on campaign map." />
@@ -3844,7 +3860,7 @@
   <string id="tor_careerchoice_description.FuryOfTheForestPassive3" text="{=str_tor_careerchoice_description_FuryOfTheForestPassive3}-20% 'Harmony' upkeep for Treemen." />
   <string id="tor_careerchoice_description.FuryOfTheForestPassive4" text="{=str_tor_careerchoice_description_FuryOfTheForestPassive4}+25% personal spell cooldown reduction." />
 
-  <!-- Warden Career Choice Descriptions -->
+  <!-- Career Choice Description - Warden -->
   <string id="tor_careerchoice_description.WardenRoot" text="{=str_tor_careerchoice_description_WardenRoot}The borders of Athel Loren must stand! Call upon your trusty bird companion Hawk Eye! Designate an area, reducing the 'Physical' melee damage of foes within. For every level of Scouting, gain 0.01% radius of Hawk Eye. (Ability has a 100s cooldown.)" />
   <string id="tor_careerchoice_description.WardenOfCavarocKeystone" text="{=str_tor_careerchoice_description_WardenOfCavarocKeystone}Hawk Eye also scales with Riding, and reduces enemy movement speed." />
   <string id="tor_careerchoice_description.WardenOfCavarocPassive1" text="{=str_tor_careerchoice_description_WardenOfCavarocPassive1}+1 party move speed on campaign map." />
@@ -3882,7 +3898,7 @@
   <string id="tor_careerchoice_description.WardenOfArgwylonPassive3" text="{=str_tor_careerchoice_description_WardenOfArgwylonPassive3}+10 'Harmony' daily." />
   <string id="tor_careerchoice_description.WardenOfArgwylonPassive4" text="{=str_tor_careerchoice_description_WardenOfArgwylonPassive4}+15 'Winds of Magic' capacity for all Spellsinger Companions." />
 
-  <!-- GreyLord Career Choice Descriptions -->
+  <!-- Career Choice Description - GreyLord -->
   <string id="tor_careerchoice_description.GreyLordRoot" text="{=str_tor_careerchoice_description_GreyLordRoot}These feeble-minded rabble can be put to good use! Call upon the forbidden arts of magical manipulation, to seep into the psyche of your lessers. Providing a 10% chance to turn them against one another with the ancient art of Mind Control! For every level of Spellcraft gain 0.06% success chance. (Ability is charged by dealing spell damage.)" />
   <string id="tor_careerchoice_description.CaelithsWisdomKeystone" text="{=str_tor_careerchoice_description_CaelithsWisdomKeystone}Mind control also scales with Leadership, gains +2 targets, can be charged by melee damage." />
   <string id="tor_careerchoice_description.CaelithsWisdomPassive1" text="{=str_tor_careerchoice_description_CaelithsWisdomPassive1}+10 personal Hitpoints." />
@@ -3920,7 +3936,7 @@
   <string id="tor_careerchoice_description.SecretOfFellfangPassive3" text="{=str_tor_careerchoice_description_SecretOfFellfangPassive3}30% of your max 'Winds of Magic' capacity is restored after battle." />
   <string id="tor_careerchoice_description.SecretOfFellfangPassive4" text="{=str_tor_careerchoice_description_SecretOfFellfangPassive4}+10% personal 'Fire' spell damage." />
 
-  <!-- Ironbreaker Career Choice Descriptions -->
+  <!-- Career Choice Description - Ironbreaker -->
   <string id="tor_careerchoice_description.IronbreakerRoot" text="{=str_tor_careerchoice_description_IronbreakerRoot}Khazukan Kazakit-ha! For a brief period become Impenetrable. Gain +95% personal 'Ward Save', but move 25% slower. For every level of Athletics, gain 0.004s of Impenetrable. (Ability is charged by receiving and blocking damage.)" />
   <string id="tor_careerchoice_description.NestCleansingKeystone" text="{=str_tor_careerchoice_description_NestCleansingKeystone}Impenetrable provides fire, explosive, and knockback resistance." />
   <string id="tor_careerchoice_description.NestCleansingPassive1" text="{=str_tor_careerchoice_description_NestCleansingPassive1}+10 personal Hitpoints." />
@@ -3958,7 +3974,7 @@
   <string id="tor_careerchoice_description.RuneWeaponsPassive3" text="{=str_tor_careerchoice_description_RuneWeaponsPassive3}+20% personal 'Armour Penetration' for melee attacks." />
   <string id="tor_careerchoice_description.RuneWeaponsPassive4" text="{=str_tor_careerchoice_description_RuneWeaponsPassive4}+15% personal weapon swing speed." />
 
-  <!-- Slayer Career Choice Descriptions -->
+  <!-- Career Choice Description - Slayer -->
   <string id="tor_careerchoice_description.SlayerRoot" text="{=str_tor_careerchoice_description_SlayerRoot}By Grimnir's axe, we shall have vengeance! Every slayer must attone for their crimes by Doom Seeking. When Doom Seeking, gain +20% running and weapon swing speed for 20s. For every kill made when Doom Seeking, gain a stack of Doom Seeker. Increasing your melee 'Physical' damage by +1% until the end of the battle. For every level of Athletics gain +0.02s of Doom Seeking. (Ability is charged by dealing damage and a bonus for killing enemies. Keystone perks increase required damage.)" />
   <string id="tor_careerchoice_description.AxeOfGrimnirKeystone" text="{=str_tor_careerchoice_description_AxeOfGrimnirKeystone}Doom Seeking also scales with Faith." />
   <string id="tor_careerchoice_description.AxeOfGrimnirPassive1" text="{=str_tor_careerchoice_description_AxeOfGrimnirPassive1}+10 personal Hitpoints." />
@@ -3996,7 +4012,7 @@
   <string id="tor_careerchoice_description.TheLastJourneyPassive3" text="{=str_tor_careerchoice_description_TheLastJourneyPassive3}+15% melee 'Physical Resistance' for all 'Slayer' troops." />
   <string id="tor_careerchoice_description.TheLastJourneyPassive4" text="{=str_tor_careerchoice_description_TheLastJourneyPassive4}+40% ranged 'Physical Resistance' for all 'Slayer' troops." />
 
-  <!-- Runelord Career Choice Descriptions -->
+  <!-- Career Choice Description - Runelord -->
   <string id="tor_careerchoice_description.RunelordRoot" text="{=str_tor_careerchoice_description_RunelordRoot}The runes are cast! By the Wisdom of Thungni, reduce the cooldown of the next 'Rune' ability by 15s, and empower all 'Rune' abilities for 5s. For every level of Smithing, Wisdom of Thungni's cooldown is reduced by 0.1s. (60s cooldown.)" />
   <string id="tor_careerchoice_description.ForgefireBurningKeystone" text="{=str_tor_careerchoice_description_ForgefireBurningKeystone}Wisdom of Thungi now applies to the next 'Rune' in the sequence at half efficency as well." />
   <string id="tor_careerchoice_description.ForgefireBurningPassive1" text="{=str_tor_careerchoice_description_ForgefireBurningPassive1}+1 charcoal from burning wood." />
@@ -4034,7 +4050,7 @@
   <string id="tor_careerchoice_description.AnvilOfDoomPassive3" text="{=str_tor_careerchoice_description_AnvilOfDoomPassive3}-2% cooldown to your runes per Runesmith companion." />
   <string id="tor_careerchoice_description.AnvilOfDoomPassive4" text="{=str_tor_careerchoice_description_AnvilOfDoomPassive4}You can now place 2 Unit Runes per unit." />
 
-  <!-- OrcBoss Career Choice Descriptions -->
+  <!-- Career Choice Description - OrcBoss -->
   <string id="tor_careerchoice_description.OrcBossRoot" text="{=str_tor_careerchoice_description_OrcBossRoot}Take yer choppa, an' smash it proppa 'ard on any o' da gits, make 'em scream. Sum choppas are betta at uvva fings: Smalla choppas an' blockas are good fer timez when you'z in da scrap, an' iz time fer sum speedy 'taktikz'. Bigga choppas are best fer mobs o' gits. Makes 'em weaker da more ya hit 'em too. Longa choppas, now dese be useful fer ridas, an' uva pesky beasties. An' if you fink you can't chop any more, you jus' need ta wait, an' den chop sum more!" />
   <string id="tor_careerchoice_description.TufferDanNailsKeystone" text="{=str_tor_careerchoice_description_TufferDanNailsKeystone}Armed to da Teef makes da gits bleed" />
   <string id="tor_careerchoice_description.TufferDanNailsPassive1" text="{=str_tor_careerchoice_description_TufferDanNailsPassive1}‘Ardiness iz 10% betta" />
@@ -4072,7 +4088,7 @@
   <string id="tor_careerchoice_description.BestofDaBestPassive3" text="{=str_tor_careerchoice_description_BestofDaBestPassive3}75 more tuffness" />
   <string id="tor_careerchoice_description.BestofDaBestPassive4" text="{=str_tor_careerchoice_description_BestofDaBestPassive4}100 more tuffness fer Big Bosses in da mob" />
 
-  <!-- OrcShaman Career Choice Descriptions -->
+  <!-- Career Choice Description - OrcShaman -->
   <string id="tor_careerchoice_description.OrcShamanRoot" text="{=str_tor_careerchoice_description_OrcShamanRoot}Da Shaman iz da centah uv da WAAAGH! You kunnect yerself to da boys ‘round, an’ dey will give you more ju-ju powa’ fer ZAPPIN’ an’ BLASTIN’. But if da boys start dyin’, den yer zappy energy gets blasted outta ya, an’ they take it wiv dem! Da betta ya get, de more you can kunnect to da WAAAGH!. An’ remember to stay close to da old ways. Wearin’ ‘ard bits an’ metal an’ stuff like dem ‘ard boyz iz gunna get ya less ju-ju powa’." />
   <string id="tor_careerchoice_description.BonesAnFirepitzKeystone" text="{=str_tor_careerchoice_description_BonesAnFirepitzKeystone}Call uv da Great Green iz always ready fer da scrap" />
   <string id="tor_career_choice_description.BonesAnFirepitzPassive1" text="{=str_tor_career_choice_description_BonesAnFirepitzPassive1}Get 15 mumbo-jumbo pointz afta' winnin' brawls" />
@@ -4473,7 +4489,7 @@
   <!-- TOR_CHOICE_TROOPUPGRADECOST -->
   <string id="tor_careerchoice_basic.Ammo" text="{=str_tor_careerchoice_basic_ammo}{EFFECT_VALUE} extra ammunition" />
 
-  <!-- Custom resource names and descriptions - these are built around the resource ID in code which starts with a capital, hence the capitalization in the variant. -->
+  <!-- Custom Resource -->
   <string id="tor_custom_resource_name.Prestige" text="{=str_tor_custom_resource_name_prestige}Prestige" />
   <string id="tor_custom_resource_name.Chivalry" text="{=str_tor_custom_resource_name_chivalry}Chivalry" />
   <string id="tor_custom_resource_name.DarkEnergy" text="{=str_tor_custom_resource_name_darkenergy}Dark Energy" />
@@ -5386,7 +5402,7 @@
   <string id="tor_attribute_discipline_description" text="{=str_tor_attribute_discipline_description}Discipline represents mental fortitude and self-control." />
   <string id="tor_attribute_discipline_abbreviation" text="{=str_tor_attribute_discipline_abbreviation}DIS" />
 
-  <!-- Encyclopedia Texts -->
+  <!-- Encyclopedia -->
   <string id="tor_encyclopedia_sort_none" text="{=str_tor_encyclopedia_sort_none}None" />
   <string id="tor_encyclopedia_filter_characters" text="{=str_tor_encyclopedia_filter_characters}Characters" />
   <string id="tor_encyclopedia_filter_kingdoms" text="{=str_tor_encyclopedia_filter_kingdoms}Kingdoms" />
