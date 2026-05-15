@@ -123,7 +123,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         CampaignEvents.HourlyTickSettlementEvent.AddNonSerializedListener(this, OnSettlementHourlyTick);
         CampaignEvents.OnMissionEndedEvent.AddNonSerializedListener(this, OnMissionEnded);
         CampaignEvents.TickPartialHourlyAiEvent.AddNonSerializedListener(this, OnAiTick);
-        //CampaignEvents.SettlementEntered.AddNonSerializedListener(this, OnSettlementEntered);
+        CampaignEvents.SettlementEntered.AddNonSerializedListener(this, OnSettlementEntered);
         CampaignEvents.OnNewGameCreatedPartialFollowUpEndEvent.AddNonSerializedListener(this, OnNewGameStart);
         CampaignEvents.OnBeforeSaveEvent.AddNonSerializedListener(this, CollectSettlementData);
     }
@@ -544,50 +544,24 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
             comp.IsActive = true;
         }
     }
-    
-    //Sly : this should be transfered over into the relevant settlement component's OnPartyEntered override method; we can perform this without needing to evaluate every party entering unrelated settlement types. See hideouts in native for an example.
+   
     private void OnSettlementEntered(MobileParty party, Settlement settlement, Hero leaderHero)
     {
         var settleComp = settlement.SettlementComponent;
+        if (settleComp is not ShrineComponent or settleComp is not CursedSiteComponent) return;
         if (party == null || leaderHero == null || party == MobileParty.MainParty) return;
-        if (settleComp is not CursedSiteComponent) return;
-
-        if (settleComp is CursedSiteComponent)
-        {
-            //no check would have parties in a player's army (who's attempting to deactivate the site) attempt to recruit wraiths who would then be culturally converted to an equivalent if one exists, or crash in some cases
-            if (leaderHero.IsNecromancer() || leaderHero.IsVampire())
-            {
-                var freeSlots = party.Party.PartySizeLimit - party.MemberRoster.TotalManCount;
-                if (freeSlots > 0)
-                {
-                    var troop = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_spirit_host");
-                    int raisePower = Math.Max(1, (int)leaderHero.GetExtendedInfo().SpellCastingLevel);
-                    var count = MBRandom.RandomInt(0, 4);
-                    count *= raisePower;
-                    if (freeSlots < count) count = freeSlots;
-                    party.MemberRoster.AddToCounts(troop, count);
-                    CampaignEventDispatcher.Instance.OnTroopRecruited(party.LeaderHero, settlement, null, troop, count);
-
-                    if (_lastGhostRecruitmentTime.ContainsKey(party.LeaderHero.StringId))
-                    {
-                        _lastGhostRecruitmentTime[party.LeaderHero.StringId] = (int)CampaignTime.Now.ToDays;
-                    }
-                    else
-                    {
-                        _lastGhostRecruitmentTime.Add(party.LeaderHero.StringId, (int)CampaignTime.Now.ToDays);
-                    }
-                }
-            }
-        }
 
         LeaveSettlementAction.ApplyForParty(party);
 
-        if (party.Army == null || party.Army.LeaderParty == party)//unsure what happens if all of the attached parties in an army are set to start thinking; player-facing issue only as AI armies won't try to visit shrines
+        if (party.Army == null || party.Army.LeaderParty == party)
+            //unsure what happens if all of the attached parties in an army are set to start thinking;
+            //player-facing issue only as AI armies won't try to visit shrines
         {
             party.SetMoveModeHold();
             party.Ai.SetDoNotMakeNewDecisions(false);
             party.Ai.RethinkAtNextHourlyTick = true;
         }
+        
     }
     
 

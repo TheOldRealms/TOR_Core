@@ -57,17 +57,6 @@ public class ShrineComponent : TORBaseSettlementComponent
                 }
             }
         }
-
-        LeaveSettlementAction.ApplyForParty(party);
-
-        //unsure what happens if all of the attached parties in an army are set to start thinking;
-        //player-facing issue only as AI armies won't try to visit shrines
-        if (party.Army == null || party.Army.LeaderParty == party)
-        {
-            party.SetMoveModeHold();
-            party.Ai.SetDoNotMakeNewDecisions(false);
-            party.Ai.RethinkAtNextHourlyTick = true;
-        }
     }
     
     private int GetTroopCountByDevotion(DevotionLevel devotionLevel)
