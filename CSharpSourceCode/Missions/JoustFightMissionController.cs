@@ -14,7 +14,6 @@ using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.MountAndBlade.View.MissionViews;
 using TOR_Core.BattleMechanics.CustomArenaModes;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -40,7 +39,6 @@ namespace TOR_Core.Missions
         private List<TournamentTeam> _aliveTeams;
         private readonly List<Agent> _currentTournamentAgents = [];
         private readonly List<Agent> _currentTournamentMountAgents = [];
-        private MissionCameraFadeView _cameraView;
         private JoustFightState _currentState = JoustFightState.MountedCombat;
 
         public JoustFightState CurrentState => _currentState;
@@ -59,7 +57,6 @@ namespace TOR_Core.Missions
             _team1MountedSpawn = Mission.Scene.FindEntityWithTag("team1_mounted_spawn");
             _team0FootSpawn = Mission.Scene.FindEntityWithTag("team0_foot_spawn");
             _team1FootSpawn = Mission.Scene.FindEntityWithTag("team1_foot_spawn");
-            _cameraView = Mission.GetMissionBehavior<MissionCameraFadeView>();
         }
 
         public override void OnMissionTick(float dt)
@@ -192,26 +189,23 @@ namespace TOR_Core.Missions
         {
             if (!IsMatchEnded() && _endTimer == null)
             {
-                if (_cameraView != null)
+                ScreenFadeController.BeginFadeOutAndIn(0.1f, 0.1f, 0.5f);
+                foreach (var agent in _currentTournamentAgents)
                 {
-                    _cameraView.BeginFadeOutAndIn(0.1f, 0.1f, 0.5f);
-                    foreach (var agent in _currentTournamentAgents)
+                    if (agent.Team.TeamIndex == 0)
                     {
-                        if (agent.Team.TeamIndex == 0)
-                        {
-                            agent.TeleportToPosition(_team0MountedSpawn.GlobalPosition);
-                            agent.LookDirection = _team0MountedSpawn.GetFrame().rotation.f;
-                        }
-                        else if (agent.Team.TeamIndex == 1)
-                        {
-                            agent.TeleportToPosition(_team1MountedSpawn.GlobalPosition);
-                            agent.LookDirection = _team1MountedSpawn.GetFrame().rotation.f;
-                        }
+                        agent.TeleportToPosition(_team0MountedSpawn.GlobalPosition);
+                        agent.LookDirection = _team0MountedSpawn.GetFrame().rotation.f;
+                    }
+                    else if (agent.Team.TeamIndex == 1)
+                    {
+                        agent.TeleportToPosition(_team1MountedSpawn.GlobalPosition);
+                        agent.LookDirection = _team1MountedSpawn.GetFrame().rotation.f;
+                    }
 
-                        if (agent.IsMainAgent)
-                        {
-                            agent.ApplyStatusEffect("ArenaImpairment", agent, 1f);//Sly : reduced from 1.5 as it would take very high riding skill to be able to reach couch speed in time and as a result the player was playing chicken with thrust attacks each pass.
-                        }
+                    if (agent.IsMainAgent)
+                    {
+                        agent.ApplyStatusEffect("ArenaImpairment", agent, 1f);//Sly : reduced from 1.5 as it would take very high riding skill to be able to reach couch speed in time and as a result the player was playing chicken with thrust attacks each pass.
                     }
                 }
             }

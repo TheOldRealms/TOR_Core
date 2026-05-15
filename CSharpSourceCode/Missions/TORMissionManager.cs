@@ -381,8 +381,7 @@ namespace TOR_Core.Missions
                     ViewCreator.CreateMissionAgentLabelUIHandler(mission),
                     new MissionItemContourControllerView(),
                     new MissionCampaignBattleSpectatorView(),
-                    ViewCreator.CreatePhotoModeView(),
-                    new MissionCameraFadeView()
+                    ViewCreator.CreatePhotoModeView()
                 }.ToArray();
         }
     }
@@ -413,8 +412,7 @@ namespace TOR_Core.Missions
                     ViewCreator.CreateMissionAgentLabelUIHandler(mission),
                     new MissionItemContourControllerView(),
                     new MissionCampaignBattleSpectatorView(),
-                    ViewCreator.CreatePhotoModeView(),
-                    new MissionCameraFadeView()
+                    ViewCreator.CreatePhotoModeView()
                 }.ToArray();
         }
     }

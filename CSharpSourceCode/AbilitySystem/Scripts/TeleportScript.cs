@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.MountAndBlade.View.MissionViews;
 using TOR_Core.BattleMechanics.TriggeredEffect.Scripts;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -10,13 +9,11 @@ namespace TOR_Core.AbilitySystem.Scripts
 {
     public class TeleportScript : CareerAbilityScript
     {
-        private MissionCameraFadeView _cameraView;
         protected Vec3 targetPosition;
 
         protected override void OnInit()
         {
             targetPosition = GameEntity.GlobalPosition; //works for what ever reason better
-            _cameraView = Mission.Current.GetMissionBehavior<MissionCameraFadeView>();
         }
 
         protected override void OnAfterTick(float dt)
@@ -43,7 +40,7 @@ namespace TOR_Core.AbilitySystem.Scripts
                 troop.TeleportToPosition(Mission.Current.GetRandomPositionAroundPoint(targetPosition, 1, 3));
             }
 
-            _cameraView.BeginFadeOutAndIn(0.1f, 0.1f, 0.5f);
+            ScreenFadeController.BeginFadeOutAndIn(0.1f, 0.1f, 0.5f);
 
             CasterAgent.TeleportToPosition(targetPosition);
 
@@ -53,13 +50,11 @@ namespace TOR_Core.AbilitySystem.Scripts
 
     public class DamselTeleportScript : CareerAbilityScript
     {
-        private MissionCameraFadeView _cameraView;
         private Vec3 targetPosition;
 
         protected override void OnInit()
         {
             targetPosition = GameEntity.GlobalPosition;
-            _cameraView = Mission.Current.GetMissionBehavior<MissionCameraFadeView>();
         }
 
         protected override void OnAfterTick(float dt)
@@ -83,7 +78,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             }
 
             // Always teleport the caster
-            _cameraView.BeginFadeOutAndIn(0.1f, 0.1f, 0.5f);
+            ScreenFadeController.BeginFadeOutAndIn(0.1f, 0.1f, 0.5f);
             CasterAgent.TeleportToPosition(targetPosition);
 
             Stop();
@@ -108,8 +103,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             // Camera fade effect only for player-controlled agents
             if (triggeredByAgent.IsPlayerControlled)
             {
-                var cameraView = Mission.Current?.GetMissionBehavior<MissionCameraFadeView>();
-                cameraView?.BeginFadeOutAndIn(0.1f, 0.1f, 0.5f);
+                ScreenFadeController.BeginFadeOutAndIn(0.1f, 0.1f, 0.5f);
             }
 
             // Teleport the caster to the target position

@@ -4,7 +4,6 @@ using TaleWorlds.Core;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.MountAndBlade.View.MissionViews;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.GameManagers;
@@ -14,7 +13,6 @@ namespace TOR_Core.AbilitySystem.Scripts
 {
     public class SummonChampionScript : CareerAbilityScript
     {
-        private MissionCameraFadeView _cameraView;
         private Agent _champion;
         private bool _championIsActive;
         private bool _isDisabled;
@@ -48,8 +46,6 @@ namespace TOR_Core.AbilitySystem.Scripts
             }
 
             Mission.Current.OnBeforeAgentRemoved += AgentRemoved;
-
-            _cameraView = Mission.Current.GetMissionBehavior<MissionCameraFadeView>();
 
             _specialMoveKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey(TORGameKeyContext.CareerAbilityCast);
 
@@ -150,7 +146,7 @@ namespace TOR_Core.AbilitySystem.Scripts
 
             _champion.WieldInitialWeapons();
 
-            _cameraView.BeginFadeOutAndIn(0.1f, 0.1f, 0.5f);
+            ScreenFadeController.BeginFadeOutAndIn(0.1f, 0.1f, 0.5f);
         }
 
         private void ShiftControllerToCaster()
@@ -169,9 +165,9 @@ namespace TOR_Core.AbilitySystem.Scripts
                 CasterAgent.RemoveStatusEffect("greater_harbinger_ward_protection");
             }
 
-            _cameraView.BeginFadeOutAndIn(0.1f, 0.1f, 0.5f);
+            ScreenFadeController.BeginFadeOutAndIn(0.1f, 0.1f, 0.5f);
             CasterAgent.WieldInitialWeapons();
-            //TODO there is an initial weird hit that is done by caster and champion. Have to investigate this. 
+            //TODO there is an initial weird hit that is done by caster and champion. Have to investigate this.
             _championIsActive = false;
         }
 
