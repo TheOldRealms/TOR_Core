@@ -44,9 +44,9 @@ namespace TOR_Core.Models
             return value;
         }
 
-        public override ExplainedNumber CalculateRenownGain(PartyBase party, float renownValueOfBattle, float contributionShare)
+        public override ExplainedNumber CalculateRenownGain(PartyBase party, float renownValueOfBattle, float contributionShare, float renownMultiplier, bool includeDescriptions)
         {
-            var result = base.CalculateRenownGain(party, renownValueOfBattle, contributionShare);
+            var result = base.CalculateRenownGain(party, renownValueOfBattle, contributionShare, renownMultiplier, includeDescriptions);
 
             if (party == PartyBase.MainParty)
             {
@@ -61,9 +61,9 @@ namespace TOR_Core.Models
 
             return result;
         }
-        public override ExplainedNumber CalculateInfluenceGain(PartyBase party, float influenceValueOfBattle, float contributionShare)
+        public override ExplainedNumber CalculateInfluenceGain(PartyBase party, float influenceValueOfBattle, float contributionShare, float influenceMultiplier, bool includeDescriptions)
         {
-            var result = base.CalculateInfluenceGain(party, influenceValueOfBattle, contributionShare);
+            var result = base.CalculateInfluenceGain(party, influenceValueOfBattle, contributionShare, influenceMultiplier, includeDescriptions);
 
             if (ShouldReduceBanditBattleInfluence(party))
             {
