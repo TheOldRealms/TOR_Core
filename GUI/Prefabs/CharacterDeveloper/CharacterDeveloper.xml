@@ -557,7 +557,7 @@
               <Children>
 
                 <NavigationScopeTargeter ScopeID="AttributesScope" ScopeParent="..\AttributesList" ScopeMovements="Vertical" RightNavigationScope="SkillsScope" />
-                <NavigatableListPanel Id="AttributesList" DataSource="{CurrentCharacter\Attributes}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                <NavigatableListPanel Id="AttributesList" DataSource="{CurrentCharacter\Attributes}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                   <ItemTemplate>
                     <AttributeListItem MarginBottom="6"/>
                   </ItemTemplate>
