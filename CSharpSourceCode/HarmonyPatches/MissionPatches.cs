@@ -78,7 +78,7 @@ namespace TOR_Core.HarmonyPatches
 
 
         [HarmonyPostfix]
-        [HarmonyPatch(typeof(MissionAgentSpawnLogic), "IsSideDepleted")]
+        [HarmonyPatch(typeof(DefaultBattleMissionAgentSpawnLogic), "IsSideDepleted")]
         public static void IsSideDepletedPostfix(BattleSideEnum side, ref bool __result)
         {
             if (__result == true)

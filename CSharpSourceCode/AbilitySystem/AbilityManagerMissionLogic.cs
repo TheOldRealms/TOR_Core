@@ -35,7 +35,7 @@ namespace TOR_Core.AbilitySystem
 {
     public class AbilityManagerMissionLogic : MissionLogic
     {
-        private MissionAgentSpawnLogic _missionAgentSpawnLogic;
+        private DefaultBattleMissionAgentSpawnLogic _missionAgentSpawnLogic;
         private bool _shouldSheathWeapon;
         private bool _shouldWieldWeapon;
         private bool _shouldPlayIdleCastStanceAnim;
@@ -124,7 +124,7 @@ namespace TOR_Core.AbilitySystem
 
             TORSummonHelper.ResetInitialSpawnedTroopCount();
 
-            _missionAgentSpawnLogic = Mission.GetMissionBehavior<MissionAgentSpawnLogic>();
+            _missionAgentSpawnLogic = Mission.GetMissionBehavior<DefaultBattleMissionAgentSpawnLogic>();
             if (_missionAgentSpawnLogic != null)
             {
                 _missionAgentSpawnLogic.OnInitialTroopsSpawned += OnInitialTroopsSpawned;

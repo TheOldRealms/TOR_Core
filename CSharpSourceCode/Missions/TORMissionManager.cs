@@ -154,7 +154,7 @@ namespace TOR_Core.Missions
                 ];
                 List<MissionBehavior> list =
                 [
-                    new MissionAgentSpawnLogic(suppliers, BattleSideEnum.Defender, BattleSizeType.Battle), //OK
+                    new DefaultBattleMissionAgentSpawnLogic(suppliers, BattleSideEnum.Defender, BattleSizeType.Battle), //OK
                     new BattlePowerCalculationLogic(), //OK
                     new BattleSpawnLogic("battle_set"), //OK
                     new GraveyardFightMissionController(), //OK
