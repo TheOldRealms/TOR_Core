@@ -446,9 +446,16 @@ namespace TOR_Core.Missions
         public void StopSpawner(BattleSideEnum side) { }
         public bool IsSideSpawnEnabled(BattleSideEnum side) => false;
         public bool IsSideDepleted(BattleSideEnum side) => side == BattleSideEnum.Defender ? GetActiveTrollCount() == 0 : false;
+        public float GetReinforcementInterval(BattleSideEnum side = BattleSideEnum.None)
+        {
+            return 0;
+        }
+
         public float GetReinforcementInterval() => 0f;
         public bool GetSpawnHorses(BattleSideEnum side) => false;
         public int GetNumberOfPlayerControllableTroops() => _spawnedPlayerTroopCount;
+        public BattleSideEnum PlayerSide => BattleSideEnum.Attacker;
+
         public IEnumerable<IAgentOriginBase> GetAllTroopsForSide(BattleSideEnum side) => Enumerable.Empty<IAgentOriginBase>();
     }
 }
