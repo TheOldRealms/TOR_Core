@@ -8,11 +8,11 @@
           <Widget Id="ClipRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ClipContents="true">
             <Children>
 
-              <ListPanel Id="VerticalList" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+              <ListPanel Id="VerticalList" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                 <Children>
 
                   <!--Gender Selection Buttons-->
-                  <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop" MarginTop="25" IsVisible="@CanChangeGender">
+                  <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalTopToBottom" MarginTop="25" IsVisible="@CanChangeGender">
                     <Children>
 
                       <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="FaceGen.Property.Text" Text="@GenderLbl" ClipContents="false"/>
@@ -52,7 +52,7 @@
 
                   <!--Skin Color Selection-->
                   <NavigationAutoScrollWidget TrackedWidget="..\SkinColorSelection" />
-                  <ListPanel Id="SkinColorSelection" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop" MarginTop="35">
+                  <ListPanel Id="SkinColorSelection" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalTopToBottom" MarginTop="35">
                     <Children>
 
                       <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="FaceGen.Property.Text" Text="@SkinColorLbl" ClipContents="false"/>
@@ -88,13 +88,13 @@
                   <!--<Widget Id="VoiceTestButton" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="48" SuggestedHeight="48" HorizontalAlignment="Right" PositionXOffset="-30" PositionYOffset="-55"/>-->
                   
 									<NavigationScopeTargeter ScopeID="PropertiesScope" ScopeParent="..\BodyProperties" ScopeMovements="Vertical" />
-                  <NavigatableListPanel Id="BodyProperties" DataSource="{BodyProperties}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" PositionXOffset="10" PositionYOffset="-128" StackLayout.LayoutMethod="VerticalBottomToTop" UpdateChildrenStates="true" ChildTarget="SliderHandle" MinIndex="5" MaxIndex="50">
+                  <NavigatableListPanel Id="BodyProperties" DataSource="{BodyProperties}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" PositionXOffset="10" PositionYOffset="-128" StackLayout.LayoutMethod="VerticalTopToBottom" UpdateChildrenStates="true" ChildTarget="SliderHandle" MinIndex="5" MaxIndex="50">
                     <ItemTemplate>
 
                       <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" FromTarget=".\" ToTarget="List\ScrollBar\SliderHandle">
                         <Children>
                           <NavigationTargetSwitcher WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" FromTarget="..\." ToTarget="..\List\ScrollBar\SliderHandle" />
-                          <ListPanel Id="List" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsEnabled="@IsEnabled" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop" >
+                          <ListPanel Id="List" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsEnabled="@IsEnabled" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalTopToBottom" >
                             <Children>
 
                               <!--Property Name-->
