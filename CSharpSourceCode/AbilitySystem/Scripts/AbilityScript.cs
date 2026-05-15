@@ -293,7 +293,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             return agents.Any(agent => agent != _casterAgent && Math.Abs(GameEntity.GetGlobalFrame().origin.Z - agent.Position.Z) < collisionRadius);
         }
 
-        protected sealed override void OnPhysicsCollision(ref PhysicsContact contact, WeakGameEntity entity0, WeakGameEntity entity1, bool isFirstShape)
+        protected sealed override void OnPhysicsCollision(ref PhysicsContact contact, WeakGameEntity entity0, WeakGameEntity entity1)
         {
             if (_ability.Template.TriggerType == TriggerType.OnCollision && _canCollide)
             {
