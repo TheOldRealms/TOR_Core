@@ -619,7 +619,7 @@ namespace TOR_Core.Models
             var hero = baseCharacter?.HeroObject;
             if (hero == null || !hero.IsSpellCaster()) return 0f;
             if (hero.Culture.StringId == TORConstants.Cultures.DAWI) return 0;
-            if (hero.PartyBelongedTo != MobileParty.MainParty && !hero.IsHumanPlayerCharacter)//ai casters and player taken prisoner
+            if (hero.PartyBelongedTo != MobileParty.MainParty && !hero.IsHumanPlayerCharacter)//ai casters only; if the player is a prisoner they will pass through the normal calculations despite PartyBelongedTo being null
             {
                 return 100f;//equiv to 333 spellcraft --  Sly : leaving this at 100 for the moment because the AI is dumb and wastes half of it anyways
             }
@@ -627,7 +627,6 @@ namespace TOR_Core.Models
             ExplainedNumber explainedNumber = new(10f, false, null);
             SkillHelper.AddSkillBonusForCharacter(TORSkillEffects.MaxWinds, baseCharacter, ref explainedNumber);
 
-            //PartyBelongedTo is necessarily not null here due to the "!= MobileParty.MainParty" condition. If a hero is a prisoner, sitting in a town alone, etc..., they use the default npc value above.
 
             var WoMFromEquipment = hero.GetAggregatedStatEffectFromEquipment(ItemTraitStatType.WindsOfMagicMax);
             if (WoMFromEquipment > 0)
@@ -759,7 +758,7 @@ namespace TOR_Core.Models
             {
                 if (Hero.MainHero.HasAttribute("WEArielSymbol"))
                 {
-                    if (hero.PartyBelongedTo.InAthelLoren())
+                    if (hero.PartyBelongedTo?.InAthelLoren() == true)
                     {
                         explainedNumber.Add(15, ForestHarmonyHelper.TreeSymbolText("WEArielSymbol"));
                     }

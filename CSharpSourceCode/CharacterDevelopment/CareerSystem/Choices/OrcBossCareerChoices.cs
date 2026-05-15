@@ -337,6 +337,6 @@ public class OrcBossCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _bestofDaBestPassive1.Initialize(CareerID, "10% betta killin’", "BestofDaBest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
         _bestofDaBestPassive2.Initialize(CareerID, "Choppa attacks are 10% fasta", "BestofDaBest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10f, PassiveEffectType.SwingSpeed, true));
         _bestofDaBestPassive3.Initialize(CareerID, "75 more tuffness", "BestofDaBest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(75, PassiveEffectType.Health));
-        _bestofDaBestPassive4.Initialize(CareerID, "100 more tuffness fer Big Bosses in da mob", "BestofDaBest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special, true));
+        _bestofDaBestPassive4.Initialize(CareerID, "100 more tuffness fer Big Bosses in da mob", "BestofDaBest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special));
     }
 }

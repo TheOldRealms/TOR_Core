@@ -4,6 +4,7 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.MapEvents;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.Diplomacy;
@@ -29,9 +30,7 @@ namespace TOR_Core.CampaignMechanics
         /// </summary>
         /// <remarks>
         /// The game already calls this through the OnNewGameCreatedPartialFollowUp event in HeroSpawnCampaignBehavior with the OnNonBanditClanDailyTick method call, but that's occurring too soon as tor's nobles aren't spawning with parties.
-        ///
-        /// LordPartyComponent.InitializeLordPartyProperties will check if GameStarted != true (ie. during the campaign initialization), then it will pass through a larger value to InitializeMobilePartyAroundPosition(PartyTemplate, ...) which in turn passes it into FillPartyStacks
-        /// SpawnLordParty after Game start will grant the minimum between 19 troops + leader or 10% of their max party size
+        ///SpawnLordParty checks for newGame == true and adds additional troops to the party to scale up the member count to be closer to the maximum party size.
         /// </remarks>
 
         //Sly : this could likely resolved be by clans/kingdoms having an initial home settlement now. This is what is done to handle the raider clans, empire deserters, etc..
@@ -45,6 +44,7 @@ namespace TOR_Core.CampaignMechanics
             //Campaign.Current.GameStarted is still false at this point in campaign initialization; it will be set to true on the first game tick
             foreach (Clan clan in Campaign.Current.Clans)
             {
+                if (clan.StringId == "troll_clan_1") continue;//prevents troll clan parties with leader heroes from spawning with hundreds of trolls
                 considerSpawningLordPartiesMethod.Invoke(heroSpawnCampaignBehaviorInstance, new object[] { clan, true });
             }
 
@@ -137,7 +137,7 @@ namespace TOR_Core.CampaignMechanics
             //override TradePenaltyReduction description once effects are initialized
             TOR_Core.Models.TORTradeItemPriceFactorModel.ApplyTradePenaltyReductionDescriptionOverride();
 
-            TORPartySizeModel.RecalculateMainPartySize();//Forces the main party's size to be recalculated so it performs a full calculation using all of TOR's bonuses
+            PartyBase.MainParty.MemberRoster.UpdateVersion();//Forces the main party's size to be recalculated due to version mismatch on next value refresh for UI so it performs a full calculation after the CharacterAttributes have been loaded so detection of specific attibutes like Undead
 
             TORPartyWageModel.ClearCharacterWageCache();//Initial wage calculations are performed during campaign loading before the extended info manager is initialized which is needed to detect troops with wage exceptions, eg. undead and tree spirits.
         }

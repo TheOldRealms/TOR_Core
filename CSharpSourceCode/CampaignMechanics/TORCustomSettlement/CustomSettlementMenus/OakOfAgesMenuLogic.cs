@@ -174,7 +174,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
         starter.AddGameMenu("oak_of_ages_menu", "{LOCATION_DESCRIPTION}", OakOfAgeMenuInit);
 
 
-        starter.AddGameMenuOption("oak_of_ages_menu", "tree_spirits", "Tree Spirits", _ =>
+        starter.AddGameMenuOption("oak_of_ages_menu", "tree_spirits", "{=str_tor_oak_of_ages_menu_tree_spirits}Tree Spirits", _ =>
         {
             _.optionLeaveType = GameMenuOption.LeaveType.Submenu;
             return IsAsrai();
@@ -184,7 +184,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             GameMenu.SwitchToMenu("oak_of_ages_tree_spirits_menu");
         }, false, 4, false);
 
-        starter.AddGameMenuOption("oak_of_ages_menu", "branch", "Branches of the Oak", _ =>
+        starter.AddGameMenuOption("oak_of_ages_menu", "branch", "{=str_tor_oak_of_ages_menu_branch}Branches of the Oak", _ =>
         {
             _.optionLeaveType = GameMenuOption.LeaveType.Submenu;
             return IsAsrai();
@@ -194,7 +194,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             GameMenu.SwitchToMenu("oak_of_ages_branches_menu");
         }, false, 4, false);
 
-        starter.AddGameMenuOption("oak_of_ages_menu", "roots", "World roots of the Oak", _ =>
+        starter.AddGameMenuOption("oak_of_ages_menu", "roots", "{=str_tor_oak_of_ages_menu_roots}World roots of the Oak", _ =>
         {
             _.optionLeaveType = GameMenuOption.LeaveType.Submenu;
             return IsAsrai();
@@ -204,7 +204,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             GameMenu.SwitchToMenu("oak_of_ages_roots_menu");
         }, false, 4, false);
 
-        starter.AddGameMenuOption("oak_of_ages_menu", "symbols", "Tree Symbols", _ =>
+        starter.AddGameMenuOption("oak_of_ages_menu", "symbols", "{=str_tor_oak_of_ages_menu_symbols}Tree Symbols", _ =>
         {
             _.optionLeaveType = GameMenuOption.LeaveType.Submenu;
             return IsAsrai();
@@ -215,7 +215,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
         }, false, 4, false);
 
 
-        starter.AddGameMenuOption("oak_of_ages_menu", "leave", "{tor_custom_settlement_menu_leave_str}Leave...", delegate (MenuCallbackArgs args)
+        starter.AddGameMenuOption("oak_of_ages_menu", "leave", "{=str_tor_custom_settlement_menu_leave}Leave...", delegate (MenuCallbackArgs args)
         {
             _currentMenu = "";
             args.optionLeaveType = GameMenuOption.LeaveType.Leave;
@@ -237,10 +237,10 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
     {
 
         starter.AddGameMenu("oak_of_ages_tree_spirits_menu",
-            "Communicate with the Tree spirits around the oak.",
+            "{=str_tor_oak_of_ages_tree_spirits_menu}Communicate with the Tree spirits around the oak.",
             OakOfAgeMenuInit);
 
-        starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_A", "{tor_custom_settlement_menu_cursed_site_ghost_str}Commune with the forest {DRYAD_PRICE}{FORESTHARMONY}",
+        starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_A", "{=str_tor_oak_of_ages_tree_spirits_menu_treespirits_a}Commune with the forest {DRYAD_PRICE}{FORESTHARMONY}",
              (args) => TreeSpiritHelpers.CanBindTreeSpirits() && CanBindDryads(args), _ =>
              {
                  Hero.MainHero.AddCustomResource("ForestHarmony", -DryadPrice);
@@ -248,15 +248,15 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
              });
 
 
-        starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_B", "Rouse Treemen {TREEMAN_PRICE}{FORESTHARMONY}", args => TreeSpiritHelpers.CanBindTreeSpirits() && CanBindTreeman(args),
+        starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_B", "{=str_tor_oak_of_ages_tree_spirits_menu_treespirits_b}Rouse Treemen {TREEMAN_PRICE}{FORESTHARMONY}", args => TreeSpiritHelpers.CanBindTreeSpirits() && CanBindTreeman(args),
             AddTreemen);
 
-        starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_C", "Relieve (yourself of) Treespirits", null, (args)
+        starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_C", "{=str_tor_oak_of_ages_tree_spirits_menu_treespirits_c}Relieve (yourself of) Treespirits", null, (args)
                 => PartyScreenHelper.OpenScreenAsQuest(TroopRoster.CreateDummyTroopRoster(), TORTextHelper.GetTextObject("tor_oak_of_ages_donated_spirits", "Donated Spirits"),
                     500, 0, null, TranferCompleted, IsTransferableTreeSpirit, null),
             false);     //check if left side only contain tree spirits done button condition
 
-        starter.AddWaitGameMenu("oak_of_ages_tree_spirits_menu_bind_dryads", "{=str_tor_custom_settlement_cursed_site_ghosts_progress}Performing binding ritual...",
+        starter.AddWaitGameMenu("oak_of_ages_tree_spirits_menu_bind_dryads", "{=str_tor_oak_of_ages_tree_spirits_menu_bind_dryads}Performing binding ritual...",
             delegate (MenuCallbackArgs args)
             {
                 _startWaitTime = CampaignTime.Now;
@@ -268,7 +268,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameMenu.MenuOverlayType.None, 8f, GameMenu.MenuFlags.None, null);
 
 
-        starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpiritsMenu_leave", "Leave...", delegate (MenuCallbackArgs args)
+        starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpiritsMenu_leave", "{=str_tor_oak_of_ages_tree_spirits_menu_leave}Leave...", delegate (MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Leave;
             return true;
@@ -390,12 +390,12 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
 
             if (numberOfTroopsFromInteraction == 0)
             {
-                GameTexts.SetVariable("DRYAD_RESULT", "You were unable to bind any tree spirits");
+                GameTexts.SetVariable("DRYAD_RESULT", "{=str_tor_oak_of_ages_tree_spirits_menu_bind_dryads_fail}You were unable to bind any tree spirits");
             }
             else
             {
                 GameTexts.SetVariable("NUMBEROFTROOPS", numberOfTroopsFromInteraction);
-                GameTexts.SetVariable("DRYAD_RESULT", "You were able to bind {NUMBEROFTROOPS} dryads to your party."); //one day we'll pluralize it
+                GameTexts.SetVariable("DRYAD_RESULT", "{=str_tor_oak_of_ages_tree_spirits_menu_bind_dryads_success}You were able to bind {NUMBEROFTROOPS} dryads to your party."); //one day we'll pluralize it
             }
             GameMenu.SwitchToMenu("dryads_result");
         }
@@ -412,7 +412,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
     private void AddTreeSymbolMenu(CampaignGameStarter starter)
     {
         starter.AddGameMenu("oak_of_ages_tree_symbols_menu",
-            "Tree Symbols: Choose one Symbol activated for your party. The Symbols provide strong enhancements, yet they will also provide strong disadvantages. Choose wisely, only one Symbol can be active at once.",
+            "{=str_tor_oak_of_ages_tree_symbols_menu}Tree Symbols: Choose one Symbol activated for your party. The Symbols provide strong enhancements, yet they will also provide strong disadvantages. Choose wisely, only one Symbol can be active at once.",
             OakOfAgeMenuInit);
 
         MBTextManager.SetTextVariable("TREESYMBOLCHANGECOST", TreeSymbolChangeCost);
@@ -432,14 +432,14 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             index++;
         }
 
-        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_remove", "Remove symbol", _ => RemoveSymbolCondition(),
+        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_remove", "{=str_tor_oak_of_ages_tree_symbols_menu_remove}Remove symbol", _ => RemoveSymbolCondition(),
             _ => RemoveSymbolConsequence(true));
-        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_chalk", "Magical chalk. {TREESYMBOLFREEUPGRADE}{FORESTHARMONY}",
+        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_chalk", "{=str_tor_oak_of_ages_tree_symbols_menu_chalk}Magical chalk. {TREESYMBOLFREEUPGRADE}{FORESTHARMONY}",
             args => DefaultUnlockOakUpgradeCondition(args, "WESymbolReduceCosts", TreeSymbolUpgradeNoCost,
                 TORTextHelper.GetTextObject("tor_oak_upgrade_remove_symbol_costs", "Remove Symbol change costs.{newline}{UPGRADEFAILEDREASON}")),
             _ => UnlockOakUpgrade("WESymbolReduceCosts", TreeSymbolUpgradeNoCost));
 
-        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_leave", "Leave...", delegate (MenuCallbackArgs args)
+        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_leave", "{=str_tor_oak_of_ages_tree_spirits_menu_leave}Leave...", delegate (MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Leave;
             return true;
@@ -481,27 +481,27 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             if (Hero.MainHero.Level < minimumLevel)
             {
                 args.IsEnabled = false;
-                MBTextManager.SetTextVariable("UPGRADEFAILEDREASON", "Requires level " + minimumLevel);
-                failreasonStringBuilder.Append("{newline}Requires level " + minimumLevel);
+                MBTextManager.SetTextVariable("UPGRADEFAILEDREASON", "{=str_tor_oak_of_ages_tree_spirits_menu_requires_level1}Requires level " + minimumLevel);
+                failreasonStringBuilder.Append("{=str_tor_oak_of_ages_tree_spirits_menu_requires_level2}{newline}Requires level " + minimumLevel);
             }
 
         if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < cost)
         {
-            failreasonStringBuilder.Append("{newline}Not enough harmony");
+            failreasonStringBuilder.Append("{=str_tor_oak_of_ages_tree_spirits_notenoughharmony}{newline}Not enough harmony");
             args.IsEnabled = false;
         }
 
         if (HasUnlockedUpgrade(upgrade))
         {
             failreasonStringBuilder.Clear();
-            failreasonStringBuilder.Append("{newline}Upgrade has been already unlocked");
+            failreasonStringBuilder.Append("{=str_tor_oak_of_ages_tree_spirits_already_unlocked}{newline}Upgrade has been already unlocked");
             args.IsEnabled = false;
         }
 
         if (upgrade == "")
         {
             failreasonStringBuilder.Clear();
-            failreasonStringBuilder.Append("{newline}No further upgrades available");
+            failreasonStringBuilder.Append("{=str_tor_oak_of_ages_tree_spirits_no_available}{newline}No further upgrades available");
 
             args.IsEnabled = false;
         }
@@ -538,7 +538,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
 
         if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < upgradeCost)
         {
-            failreasonStringBuilder.Append("{newline}Not enough Harmony.");
+            failreasonStringBuilder.Append("{=str_tor_oak_of_ages_tree_spirits_notenoughharmony}{newline}Not enough Harmony.");
             args.IsEnabled = false;
         }
 
@@ -560,7 +560,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
         if (!HasUnlockedUpgrade("WESymbolReduceCosts") && Hero.MainHero.GetCultureSpecificCustomResourceValue() < upgradeCost)
         {
             args.IsEnabled = false;
-            failreasonStringBuilder.Append("{newline}Not enough Harmony.");
+            failreasonStringBuilder.Append("{=str_tor_oak_of_ages_tree_spirits_notenoughharmony}{newline}Not enough Harmony.");
         }
 
         if (Hero.MainHero.HasAttribute(upgrade))
@@ -568,7 +568,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             if (showAnyway)
             {
                 failreasonStringBuilder.Clear();
-                failreasonStringBuilder.Append("{newline}Treesymbol is currently activ");
+                failreasonStringBuilder.Append("{=str_tor_oak_of_ages_tree_spirits_active}{newline}Treesymbol is currently active");
                 args.IsEnabled = false;
             }
             else
@@ -599,7 +599,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
     private void AddWorldRootMenu(CampaignGameStarter starter)
     {
         starter.AddGameMenu("oak_of_ages_roots_menu",
-            "World Roots : The world roots create a braid of pathways with the oaks Roots. With them the Asrai are allowed to travel world. Help to restablish the roots and travel to roots ends in the old World",
+            "{=str_tor_oak_of_ages_roots_menu}World Roots : The world roots create a braid of pathways with the oaks Roots. With them the Asrai are allowed to travel world. Help to restablish the roots and travel to roots ends in the old World",
             OakOfAgeMenuInit);
 
         MBTextManager.SetTextVariable("ROOTUNLOCKCOST", RootUnlockCost);
@@ -609,47 +609,47 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
         MBTextManager.SetTextVariable("WORLDROOTTRAVELCOST", TravelCost);
 
         starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_arden_unlock",
-            "Unlock Pathway to the Forest of Arden. {ROOTUNLOCKCOST}{FORESTHARMONY}",
+            "{=str_tor_oak_of_ages_roots_menu_arden_unlock}Unlock Pathway to the Forest of Arden. {ROOTUNLOCKCOST}{FORESTHARMONY}",
             args => RootUpgradeCondition(args, RootUnlockCost, "WorldRootTarget_Arden"),
             _ => UnlockOakUpgrade("WorldRootTarget_Arden", RootUnlockCost));
 
         starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_arden_travel",
-            "Travel to the forest of Arden. {WORLDROOTTRAVELCOST}{FORESTHARMONY}",
+            "{=str_tor_oak_of_ages_roots_menu_arden_travel}Travel to the forest of Arden. {WORLDROOTTRAVELCOST}{FORESTHARMONY}",
             args => RootAccessibleCondition(args, TravelCost, "WorldRootTarget_Arden"), _ => RootTravelConsequence(_ardenLocation));
 
-        starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_laurelorn_unlock", "Unlock the pathway to Laurelorn. {ROOTUNLOCKCOST}{FORESTHARMONY}",
+        starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_laurelorn_unlock", "{=str_tor_oak_of_ages_roots_menu_laurelorn_unlock}Unlock the pathway to Laurelorn. {ROOTUNLOCKCOST}{FORESTHARMONY}",
             args => RootUpgradeCondition(args, RootUnlockCost, "WorldRootTarget_Laurelorn"),
             _ => UnlockOakUpgrade("WorldRootTarget_Laurelorn", RootUnlockCost));
 
-        starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_laurelorn_travel", "Travel to Laurelorn. {WORLDROOTTRAVELCOST}{FORESTHARMONY}",
+        starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_laurelorn_travel", "{=str_tor_oak_of_ages_roots_menu_laurelorn_travel}Travel to Laurelorn. {WORLDROOTTRAVELCOST}{FORESTHARMONY}",
             args => RootAccessibleCondition(args, TravelCost, "WorldRootTarget_Laurelorn"), _ => RootTravelConsequence(_laurelornLocation));
 
         starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_gryphenWood_unlock",
-            "Unlock the pathway to the Gryphenwood. {ROOTUNLOCKCOST}{FORESTHARMONY}",
+            "{=str_tor_oak_of_ages_roots_menu_gryphenwood_unlock}Unlock the pathway to the Gryphenwood. {ROOTUNLOCKCOST}{FORESTHARMONY}",
             args => RootUpgradeCondition(args, RootUnlockCost, "WorldRootTarget_GryphenWood"),
             _ => UnlockOakUpgrade("WorldRootTarget_GryphenWood", RootUnlockCost));
 
-        starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_gryphenWood_travel", "Travel to the Gryphenwood. {WORLDROOTTRAVELCOST}{FORESTHARMONY}",
+        starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_gryphenWood_travel", "{=str_tor_oak_of_ages_roots_menu_gryphenwood_travel}Travel to the Gryphenwood. {WORLDROOTTRAVELCOST}{FORESTHARMONY}",
             args => RootAccessibleCondition(args, TravelCost, "WorldRootTarget_GryphenWood"), _ => RootTravelConsequence(_gryphenWoodLocation));
 
 
-        starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_internalizePaths", "Internalize the root pathways. {ROOTTRAVELUPGRADE}{FORESTHARMONY}",
+        starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_internalizePaths", "{=str_tor_oak_of_ages_roots_menu_internalizepaths}Internalize the root pathways. {ROOTTRAVELUPGRADE}{FORESTHARMONY}",
             args => DefaultUnlockOakUpgradeCondition(args, "WETravelCostUpgrade", RootTravelCostReductionUpgradeCost,
                 TORTextHelper.GetTextObject("tor_oak_upgrade_reduce_travel_cost", "Reduce the travel cost.{newline}{UPGRADEFAILEDREASON}")),
             _ => UnlockOakUpgrade("WETravelCostUpgrade", RootTravelCostReductionUpgradeCost));
 
         starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_returnPath",
-            "Establish pathways back to the Oak of Ages. {ROOTRETURNUPGRADE}{FORESTHARMONY}",
+            "{=str_tor_oak_of_ages_roots_menu_returnpath}Establish pathways back to the Oak of Ages. {ROOTRETURNUPGRADE}{FORESTHARMONY}",
             args => DefaultUnlockOakUpgradeCondition(args, "WETravelBackUpgrade", RootTravelBackUpgradeCost,
                 TORTextHelper.GetTextObject("tor_oak_upgrade_return_to_oak", "Return to the Oak from the root exit.{UPGRADEFAILEDREASON}")),
             _ => UnlockOakUpgrade("WETravelBackUpgrade", RootTravelBackUpgradeCost));
 
-        starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_healingRoot", "Healing Aura of roots. {ROOTHEALUPGRADE}{FORESTHARMONY}",
+        starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_healingRoot", "{=str_tor_oak_of_ages_roots_menu_healingroot}Healing Aura of roots. {ROOTHEALUPGRADE}{FORESTHARMONY}",
             args => DefaultUnlockOakUpgradeCondition(args, "WETravelHealUpgrade", RootTravelBackUpgradeCost,
                 TORTextHelper.GetTextObject("tor_oak_upgrade_healing_roots", "All troops and heroes are healed upon using the world roots.{newline}{UPGRADEFAILEDREASON}")),
             _ => UnlockOakUpgrade("WETravelHealUpgrade", RootHealUpgradeCost));
 
-        starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_leave", "Leave...", delegate (MenuCallbackArgs args)
+        starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_leave", "{=str_tor_oak_of_ages_tree_spirits_menu_leave}Leave...", delegate (MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Leave;
             return true;
@@ -698,7 +698,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             return true;
         }
 
-        args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_we_not_enough_harmony_travel", "Not enough Harmony for traveling.");
+        args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_we_not_enough_harmony_travel", "Not enough Harmony for travelling.");
         args.IsEnabled = false;
         return true;
     }
@@ -751,22 +751,22 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
         starter.AddGameMenu("worldroots_menu", "{LOCATION_DESCRIPTION}", WorldRootsMenuInit);
 
         //duplicate string ids, these will need to be differentiated when implementing string fetching from GameTexts
-        starter.AddGameMenuOption("worldroots_menu", "worldroots_travel_maisontaal", "{tor_custom_settlement_menu_leave_str}Travel to Maisontaal",
+        starter.AddGameMenuOption("worldroots_menu", "worldroots_travel_maisontaal", "{=str_tor_worldroots_travel_maisontaal}Travel to Maisontaal",
             args => TravelEonirCondition(args) && Hero.MainHero.CurrentSettlement.StringId == "worldroot_02", (MenuCallbackArgs args) => RootTravelConsequence(_maisonTaalLocation, true), false);
 
-        starter.AddGameMenuOption("worldroots_menu", "worldroots_travel_laurelorn", "{tor_custom_settlement_menu_leave_str}Travel to Laurelorn",
+        starter.AddGameMenuOption("worldroots_menu", "worldroots_travel_laurelorn", "{=str_tor_worldroots_travel_laurelorn}Travel to Laurelorn",
             args => TravelEonirCondition(args) && Hero.MainHero.CurrentSettlement.StringId == "worldroot_04", (MenuCallbackArgs args) => RootTravelConsequence(_laurelornLocation, true), false);
 
-        starter.AddGameMenuOption("worldroots_menu", "worldroots_travel_athelloren", "{tor_custom_settlement_menu_leave_str}Travel back to Athel Loren...",
+        starter.AddGameMenuOption("worldroots_menu", "worldroots_travel_athelloren", "{=str_tor_worldroots_travel_athelloren}Travel back to Athel Loren...",
             args => TravelBackCondition(args), (MenuCallbackArgs args) => RootTravelConsequence(_athelLorenLocation, true), false);
 
         starter.AddGameMenuOption("worldroots_menu", "worldroots_return_paths",
-            "Establish pathways back to the Oak of Ages. {ROOTRETURNUPGRADE}{FORESTHARMONY}",
+            "{=str_tor_oak_of_ages_roots_menu_returnpath}Establish pathways back to the Oak of Ages. {ROOTRETURNUPGRADE}{FORESTHARMONY}",
             args => DefaultUnlockOakUpgradeCondition(args, "WETravelBackUpgrade", RootTravelBackUpgradeCost,
                 TORTextHelper.GetTextObject("tor_oak_upgrade_return_to_oak", "Return to the Oak from the root exit.{UPGRADEFAILEDREASON}")),
             _ => UnlockOakUpgrade("WETravelBackUpgrade", RootTravelBackUpgradeCost));
 
-        starter.AddGameMenuOption("worldroots_menu", "leave", "{tor_custom_settlement_menu_leave_str}Leave...", delegate (MenuCallbackArgs args)
+        starter.AddGameMenuOption("worldroots_menu", "leave", "{=str_tor_custom_settlement_menu_leave}Leave...", delegate (MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Leave;
             return true;
@@ -851,9 +851,9 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
 
     private void AddBranchesOfTheOakMenu(CampaignGameStarter starter)
     {
-        starter.AddGameMenu("oak_of_ages_branches_menu", "Branches of The Oak", null);
+        starter.AddGameMenu("oak_of_ages_branches_menu", "{=str_tor_oak_of_ages_branches_menu}Branches of The Oak", null);
 
-        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_A", "Build Outposts. {PARTYSIZEUPGRADECOST}",
+        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_A", "{=str_tor_oak_of_ages_branches_menu_option_a}Build Outposts. {PARTYSIZEUPGRADECOST}",
             args =>
             {
                 var upgrade = GetCurrentUpgrade("WEPartySizeUpgrade", out var numberOfUpgrades);
@@ -872,7 +872,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             },
             _ => UnlockOakUpgrade(GetCurrentUpgrade("WEPartySizeUpgrade", out var numberOfUpgrades), PartySizeUpgradeCost * (1 + numberOfUpgrades)));
 
-        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_B", "Strong branches. {HEALTHUPGRADECOST}",
+        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_B", "{=str_tor_oak_of_ages_branches_menu_option_b}Strong branches. {HEALTHUPGRADECOST}",
             args =>
             {
                 var upgrade = GetCurrentUpgrade("WEHealthUpgrade", out var numberOfUpgrades);
@@ -890,7 +890,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             },
             _ => UnlockOakUpgrade(GetCurrentUpgrade("WEHealthUpgrade", out var numberOfUpgrades), HealthUpgradeCost * (1 + numberOfUpgrades)));
 
-        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_C", "Thriving Leaves. {GAINUPGRADECOST}",
+        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_C", "{=str_tor_oak_of_ages_branches_menu_option_c}Thriving Leaves. {GAINUPGRADECOST}",
             args =>
             {//multiple text objects or a separate string?
                 var upgrade = GetCurrentUpgrade("WEGainUpgrade", out var numberOfUpgrades);
@@ -909,7 +909,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             _ => UnlockOakUpgrade(GetCurrentUpgrade("WEGainUpgrade", out var numberOfUpgrades), GainUpgradeCost * (1 + numberOfUpgrades)));
 
 
-        starter.AddGameMenuOption("oak_of_ages_branches_menu", "treeBranchUpgradeMenu_leave", "Leave...", delegate (MenuCallbackArgs args)
+        starter.AddGameMenuOption("oak_of_ages_branches_menu", "treeBranchUpgradeMenu_leave", "{=str_tor_oak_of_ages_tree_spirits_menu_leave}Leave...", delegate (MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Leave;
             return true;

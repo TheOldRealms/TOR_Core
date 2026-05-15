@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using TaleWorlds.Core;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.ServeAsAHireling;
 
 public class ServeAsAHirelingActivities
 {
-    private readonly Dictionary<CareerObject, List<SkillObject>> _activitySets;
+    public Dictionary<CareerObject, List<SkillObject>> _activitySets;
     public ServeAsAHirelingActivities()
     {
         _activitySets = new Dictionary<CareerObject, List<SkillObject>>
@@ -228,7 +229,8 @@ public class ServeAsAHirelingActivities
         {
             if (!_activitySets.ContainsKey(career))
             {
-                throw new Exception("Zerca register the hireling career acitivities, you dumb ass! missing : " + career.Name);
+                TORCommon.Log("ServeAsAHirelingActivities : Zerca, you forgot hireling activities for :" + career.StringId, NLog.LogLevel.Error);
+                TORCommon.Say("Add the fooking hireling activites for " + career.Id + ", ya nincompooop.");
             }
         }
     }

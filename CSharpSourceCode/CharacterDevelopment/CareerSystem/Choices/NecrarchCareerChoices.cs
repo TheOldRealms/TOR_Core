@@ -254,7 +254,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _darkVisionPassive4.Initialize(CareerID, "+1 personal 'Winds of Magic' capacity per known spell.", "DarkVision", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.Special, false));
 
             _unhallowedSoulPassive1.Initialize(CareerID, "+20% duration for 'Augment' spells.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.20f, PassiveEffectType.BuffDuration, true));
-            _unhallowedSoulPassive2.Initialize(CareerID, "Defiling a shrine yeilds increased 'Dark Energy', and can summon 'Spectral' troops.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+            _unhallowedSoulPassive2.Initialize(CareerID, "Defiling a shrine yields increased 'Dark Energy', and can summon 'Spectral' troops.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
             _unhallowedSoulPassive3.Initialize(CareerID, "+15% personal 'Spell Power' if armour weight does not exceed 11.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.SpellEffectiveness, true,
                 (characterObject => Hero.MainHero.BattleEquipment.GetTotalWeightOfArmor(true) < 11f)));
             _unhallowedSoulPassive4.Initialize(CareerID, "+5% personal 'Lighting' spell damage.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Lightning, 5), AttackTypeMask.Spell));
