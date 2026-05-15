@@ -430,7 +430,7 @@ namespace TOR_Core.Missions
                     ViewCreator.CreateMissionSingleplayerEscapeMenu(CampaignOptions.IsIronmanMode),
                     ViewCreator.CreateOptionsUIHandler(),
                     ViewCreator.CreateMissionMainAgentEquipDropView(mission),
-                    ViewCreator.CreateMissionBattleScoreUIHandler(mission, new SPScoreboardVM(null)),
+                    ViewCreator.CreateMissionBattleScoreUIHandler(mission, new SPScoreboardVM(null, null)),
                     new MissionSingleplayerViewHandler(),
                     ViewCreator.CreateMissionAgentStatusUIHandler(mission),
                     ViewCreator.CreateMissionMainAgentEquipmentController(mission),

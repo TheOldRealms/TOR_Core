@@ -283,7 +283,6 @@ namespace TOR_Core.Missions
                         formationTroopIndex: 0,
                         isAlarmed: true,
                         wieldInitialWeapons: true,
-                        forceDismounted: true,
                         initialPosition: spawnPos,
                         initialDirection: playerSpawnFrame.rotation.f.AsVec2.Normalized());
 
@@ -329,7 +328,7 @@ namespace TOR_Core.Missions
                 // Use PartyAgentOrigin with defender party so deaths sync with MapEvent
                 var origin = new PartyAgentOrigin(_defenderParty.Party, trollCharacter);
 
-                var agent = Mission.SpawnTroop(origin, false, true, false, false, 0, 0, true, true, false,
+                var agent = Mission.SpawnTroop(origin, false, true, false, false, 0, 0, true, true,
                     spawnPos, spawnDir);
 
                 agent.WieldInitialWeapons(Agent.WeaponWieldActionType.InstantAfterPickUp);
