@@ -12,11 +12,11 @@
           <Children>
             <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center">
               <Children>
-                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                   <Children>
                     <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="380" SuggestedHeight="103" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="100" Sprite="InitialMenu\main_menu_logo" />
                     <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="94" SuggestedHeight="10" HorizontalAlignment="Center" MarginTop="75" Sprite="InitialMenu\information_panel_separator" Color="#D09365FF" IsVisible="false" />
-                    <ListPanel Id="MyInnerPanel" DataSource="{MenuOptions}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MinHeight="630" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="65" MarginBottom="15" StackLayout.LayoutMethod="VerticalBottomToTop">
+                    <ListPanel Id="MyInnerPanel" DataSource="{MenuOptions}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MinHeight="630" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="65" MarginBottom="15" StackLayout.LayoutMethod="VerticalTopToBottom">
                       <ItemTemplate>
                         <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="50" HorizontalAlignment="Center" MarginTop="18" UseSiblingIndexForNavigation="true">
                           <Children>
@@ -51,7 +51,7 @@
 
         <!--Select Profile-->
 
-        <ListPanel WidthSizePolicy = "CoverChildren" HeightSizePolicy = "CoverChildren" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginBottom="50" MarginRight="50" Sprite="BlankWhiteSquare_9" Color="#000000AA" AlphaFactor="0.7" IsVisible="@IsProfileSelectionEnabled" LayoutImp.LayoutMethod="VerticalBottomToTop">
+        <ListPanel WidthSizePolicy = "CoverChildren" HeightSizePolicy = "CoverChildren" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginBottom="50" MarginRight="50" Sprite="BlankWhiteSquare_9" Color="#000000AA" AlphaFactor="0.7" IsVisible="@IsProfileSelectionEnabled" LayoutImp.LayoutMethod="VerticalTopToBottom">
           <Children>
 
             <!--Profile Name-->
