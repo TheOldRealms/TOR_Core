@@ -7112,7 +7112,7 @@
       <Equipment slot="Body" id="Item.tor_we_body_armor_ranger_002" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
-      <Equipment slot="Leg" id="Item.Item.tor_we_leg_boots_ranger_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_ranger_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_we_weapon_bow_001" />
@@ -7123,7 +7123,7 @@
       <Equipment slot="Body" id="Item.tor_we_body_armor_ranger_002" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
-      <Equipment slot="Leg" id="Item.Item.tor_we_leg_boots_ranger_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_ranger_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_we_waywatcher_template" culture="Culture.battania">
@@ -7149,28 +7149,6 @@
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_waywatcher_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_waywatcher_001" />
     </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
-      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_001" />
-      <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
-      <Equipment slot="Item3" id="Item.bodkin_arrows_b" />
-      <Equipment slot="Head" id="Item.tor_we_head_hood_waywatcher_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_waywatcher_001" />
-      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_waywatcher_001" />
-      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_waywatcher_001" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_waywatcher_001" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
-      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_001" />
-      <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
-      <Equipment slot="Item3" id="Item.bodkin_arrows_b" />
-      <Equipment slot="Head" id="Item.tor_we_head_hood_waywatcher_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_waywatcher_001" />
-      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_waywatcher_001" />
-      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_waywatcher_001" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_waywatcher_001" />
-    </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_we_waywatcher_sentinel_template" culture="Culture.battania">
     <EquipmentSet>
@@ -7186,28 +7164,6 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
-      <Equipment slot="Item1" id="Item.tor_we_weapon_2h_sword_001" />
-      <Equipment slot="Item2" id="Item.bodkin_arrows_a" />
-      <Equipment slot="Item3" id="Item.bodkin_arrows_a" />
-      <Equipment slot="Head" id="Item.tor_we_head_hood_waywatcher_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_waywatcher_001" />
-      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_waywatcher_001" />
-      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_waywatcher_001" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_waywatcher_001" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_012" />
-      <Equipment slot="Item1" id="Item.tor_we_weapon_2h_sword_001" />
-      <Equipment slot="Item2" id="Item.bodkin_arrows_a" />
-      <Equipment slot="Item3" id="Item.bodkin_arrows_a" />
-      <Equipment slot="Head" id="Item.tor_we_head_hood_waywatcher_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_waywatcher_001" />
-      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_waywatcher_001" />
-      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_waywatcher_001" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_waywatcher_001" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_012" />
       <Equipment slot="Item1" id="Item.tor_we_weapon_2h_sword_001" />
       <Equipment slot="Item2" id="Item.bodkin_arrows_a" />
       <Equipment slot="Item3" id="Item.bodkin_arrows_a" />

@@ -1952,6 +1952,10 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_body_armor_knight_003" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_body_armor_knight_002" RaceLock="human">
     <ItemTraits />
     <Description />
@@ -5040,12 +5044,6 @@
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_treeman_fist">
-    <ItemTraits />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_we_weapon_orion_spear">
     <ItemTraits />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />

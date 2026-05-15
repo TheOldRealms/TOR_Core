@@ -1135,6 +1135,7 @@
     <Abilities />
     <Attributes>
       <string>Piercing</string>
+      <string>Deadeye</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -1147,6 +1148,7 @@
     <Abilities />
     <Attributes>
       <string>Piercing</string>
+      <string>Deadeye</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -7719,8 +7721,7 @@
   <CharacterExtendedInfo id="tor_we_lord_athel_loren_thirteenth_1">
     <Abilities />
     <Attributes>
-      <string>
-      </string>
+      <string />
       <string>LegendaryLord</string>
     </Attributes>
   </CharacterExtendedInfo>

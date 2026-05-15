@@ -1100,7 +1100,7 @@
       <EquipmentSet id="tor_m_manatarms_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_servant" default_group="infantry" level="1" name="{=str_tor_we_servant}Asrai Servant" occupation="Villager" culture="Culture.battania" skill_template="SkillSet.tor_skills_level1" race="elf">
+  <NPCCharacter id="tor_we_servant" default_group="infantry" level="6" name="{=str_tor_we_servant}Asrai Servant" occupation="Villager" culture="Culture.battania" skill_template="SkillSet.tor_skills_level6" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1118,7 +1118,7 @@
       <EquipmentSet id="tor_we_servant_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_militia" default_group="infantry" level="6" name="{=str_tor_we_militia}Asrai Glade Servant" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="elf">
+  <NPCCharacter id="tor_we_militia" default_group="infantry" level="11" name="{=str_tor_we_militia}Asrai Hall Servant" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1137,7 +1137,7 @@
       <EquipmentSet id="tor_we_militia_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_glade_guard" default_group="ranged" level="11" name="{=str_tor_we_glade_guard}Asrai Glade Guard" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level11" race="elf">
+  <NPCCharacter id="tor_we_glade_guard" default_group="ranged" level="16" name="{=str_tor_we_glade_guard}Asrai Glade Guard" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level16" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1156,7 +1156,7 @@
       <EquipmentSet id="tor_we_glade_guard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_kings_bowman" default_group="ranged" level="16" name="{=str_tor_we_kings_bowman}Asrai Kings Bowman" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level16" race="elf">
+  <NPCCharacter id="tor_we_kings_bowman" default_group="ranged" level="21" name="{=str_tor_we_kings_bowman}Asrai Kings Bowman" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1172,7 +1172,7 @@
       <EquipmentSet id="tor_we_glade_guard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_eternal_guard" default_group="infantry" level="11" name="{=str_tor_we_eternal_guard}Asrai Eternal Guard" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level11" race="elf">
+  <NPCCharacter id="tor_we_eternal_guard" default_group="infantry" level="16" name="{=str_tor_we_eternal_guard}Asrai Eternal Guard" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level16" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1206,7 +1206,7 @@
       <EquipmentSet id="tor_we_eternal_warden_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_glade_rider" default_group="horsearcher" level="16" name="{=str_tor_we_glade_rider}Asrai Glade Rider" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level16" race="elf">
+  <NPCCharacter id="tor_we_glade_rider" default_group="horsearcher" level="21" name="{=str_tor_we_glade_rider}Asrai Glade Rider" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1224,7 +1224,7 @@
       <EquipmentSet id="tor_we_glade_rider_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_glade_knight" default_group="cavalry" level="21" name="{=str_tor_we_glade_knight}Asrai Glade Knight" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" race="elf">
+  <NPCCharacter id="tor_we_glade_knight" default_group="cavalry" level="26" name="{=str_tor_we_glade_knight}Asrai Glade Knight" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level26" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1240,7 +1240,7 @@
       <EquipmentSet id="tor_we_glade_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_scout" default_group="ranged" level="6" name="{=str_tor_we_scout}Asrai Ranger" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="elf">
+  <NPCCharacter id="tor_we_scout" default_group="ranged" level="11" name="{=str_tor_we_scout}Asrai Ranger" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -5472,8 +5472,7 @@
         <beard_tag name="Cleanshaven" />
       </beard_tags>
     </face>
-    <upgrade_targets>
-    </upgrade_targets>
+    <upgrade_targets />
     <Equipments>
       <EquipmentSet id="tor_he_seaelf_spearman_template" />
       <EquipmentSet id="tor_he_seaelf_spearman_template" civilian="true" />
