@@ -354,5 +354,5 @@ public class BrawlMissionController : MissionLogic, IMissionAgentSpawnLogic
     public IEnumerable<IAgentOriginBase> GetAllTroopsForSide(BattleSideEnum side) => Enumerable.Empty<IAgentOriginBase>();
     public bool GetSpawnHorses(BattleSideEnum side) => false;
     public int GetNumberOfPlayerControllableTroops() => 0;
-    public BattleSideEnum PlayerSide { get; }
+    public BattleSideEnum PlayerSide { get; } //TODO  think that needs to be set properly
 }
