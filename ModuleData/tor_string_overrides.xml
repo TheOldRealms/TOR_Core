@@ -2116,56 +2116,6 @@
       <tag tag_name="IsDwarfTag" />
     </tags>
   </string>
-  <string id="!.conversation_prisoner_recruit_start_1_orc" text="{=str_tor_conversation_prisoner_recruit_start_1_orc}We's gunna let ya go, if yoo do somefing for us.">
-    <tags>
-      <tag tag_name="PlayerIsOrcTag" />
-    </tags>
-  </string>
-  <string id="!.conversation_prisoner_recruit_start_1_dwarf" text="{=str_tor_conversation_prisoner_recruit_start_1_dwarf}Here's a chance to regain some honour, seize it it whilst you can.">
-    <tags>
-      <tag tag_name="PlayerIsDwarfTag" />
-    </tags>
-  </string>
-  <string id="!.conversation_prisoner_recruit_start_orc" text="{=str_tor_conversation_prisoner_recruit_start_orc}So 'ow's about yoo join my mob for a proppa scrap?">
-    <tags>
-      <tag tag_name="PlayerIsOrcTag" />
-    </tags>
-  </string>
-  <string id="!.conversation_prisoner_recruit_start_dwarf" text="{=str_tor_conversation_prisoner_recruit_start_dwarf}Yer ready to join the shieldwall with us?">
-    <tags>
-      <tag tag_name="PlayerIsDwarfTag" />
-    </tags>
-  </string>
-  <string id="!.prisoner_recruit_1_orc" text="{=str_tor_prisoner_recruit_1_orc}S'pose I would, yoo beat me after all.">
-    <tags>
-      <tag tag_name="IsOrcTag" />
-    </tags>
-  </string>
-  <string id="!.prisoner_recruit_1_dwarf" text="{=str_tor_prisoner_recruit_1_dwarf}Aye, I'll fight with you and earn me keep.">
-    <tags>
-      <tag tag_name="IsDwarfTag" />
-    </tags>
-  </string>
-  <string id="!.prisoner_recruit_2_orc" text="{=str_tor_prisoner_recruit_2_orc}Yoo got lucky, if I gets out I's gonna stomp yoo in da ground">
-    <tags>
-      <tag tag_name="IsOrcTag" />
-    </tags>
-  </string>
-  <string id="!.prisoner_recruit_2_dwarf" text="{=str_tor_prisoner_recruit_2_dwarf}I'm no oathbreaker, you bloody unbaraki!">
-    <tags>
-      <tag tag_name="IsDwarfTag" />
-    </tags>
-  </string>
-  <string id="!.prisoner_recruit_3_orc" text="{=str_tor_prisoner_recruit_3_orc}Yoo 'eard me, now zog off.">
-    <tags>
-      <tag tag_name="IsOrcTag" />
-    </tags>
-  </string>
-  <string id="!.prisoner_recruit_3_dwarf" text="{=str_tor_prisoner_recruit_3_dwarf}I heard good and well the first time. You can shove your offer where the sun never shines.">
-    <tags>
-      <tag tag_name="IsDwarfTag" />
-    </tags>
-  </string>
   <string id="uTycGRdI.disguise_start_conversation_alt_orc" text="{=str_tor_disguise_start_conversation_alt_orc}I's gots nuffin' for ya, zog off!">
     <tags>
       <tag tag_name="IsOrcTag" />
@@ -3598,26 +3548,6 @@
       <tag tag_name="IsDwarfTag" />
     </tags>
   </string>
-  <string id="!.lord_talk_ask_something_2_orc" text="{=str_tor_lord_talk_ask_something_2_orc}Ain't I da best?">
-    <tags>
-      <tag tag_name="IsOrcTag" />
-    </tags>
-  </string>
-  <string id="!.lord_talk_ask_something_2_dwarf" text="{=str_tor_lord_talk_ask_something_2_dwarf}Prostrate yourself, for I have arrived!">
-    <tags>
-      <tag tag_name="IsDwarfTag" />
-    </tags>
-  </string>
-  <string id="!.lord_talk_ask_something_2_2_orc" text="{=str_tor_lord_talk_ask_something_2_2_orc}Wot are you gits doing!?">
-    <tags>
-      <tag tag_name="PlayerIsOrcTag" />
-    </tags>
-  </string>
-  <string id="!.lord_talk_ask_something_2_2_dwarf" text="{=str_tor_lord_talk_ask_something_2_2_dwarf}What is the purpose of this throng you lead?">
-    <tags>
-      <tag tag_name="PlayerIsDwarfTag" />
-    </tags>
-  </string>
   <string id="Ymgbv2gV.lord_talk_ask_something_2_3_orc" text="{=str_tor_lord_talk_ask_something_2_3_orc}Wot wuz yer deal again?">
     <tags>
       <tag tag_name="PlayerIsOrcTag" />
@@ -3636,16 +3566,6 @@
   <string id="D33fIGQe.lord_talk_ask_something_2_4_dwarf" text="{=str_tor_lord_talk_ask_something_2_4_dwarf}Forget it.">
     <tags>
       <tag tag_name="PlayerIsDwarfTag" />
-    </tags>
-  </string>
-  <string id="!.lord_answers_the_war_question_orc" text="{=str_tor_lord_answers_the_war_question_orc}Good lad! Where we goin!?">
-    <tags>
-      <tag tag_name="IsOrcTag" />
-    </tags>
-  </string>
-  <string id="!.lord_answers_the_war_question_dwarf" text="{=str_tor_lord_answers_the_war_question_dwarf}Drengbarazi! Good to see you, what news do you bring?">
-    <tags>
-      <tag tag_name="IsDwarfTag" />
     </tags>
   </string>
   <string id="wdQ54wn2.hero_doesnt_have_quest_orc" text="{=str_tor_hero_doesnt_have_quest_orc}Zog off, I ain't got nuffin for ya!">
