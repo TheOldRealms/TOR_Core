@@ -12,7 +12,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_blooddragons_0b" name="{=str_tor_notable_blooddragons_0b}{FIRSTNAME} the Vintner" is_template="true" voice="ironic" default_group="Infantry" is_hero="false" culture="Culture.blooddragons" occupation="Merchant">
@@ -27,7 +27,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_blooddragons_1" name="{=str_tor_notable_blooddragons_1}Empire merchant 3, ruthless" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.blooddragons" occupation="Merchant">
@@ -41,7 +41,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_blooddragons_1b" name="{=str_tor_notable_blooddragons_1b}Cold imperial merchant" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.blooddragons" occupation="Merchant">
@@ -56,7 +56,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_blooddragons_2" name="{=str_tor_notable_blooddragons_2}{FIRSTNAME} the Saltpanner" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.blooddragons" occupation="Merchant">
@@ -70,7 +70,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_blooddragons_2b" name="{=str_tor_notable_blooddragons_2b}Empire merchant 6, cautious" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.blooddragons" occupation="Merchant">
@@ -85,7 +85,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_blooddragons_3" name="{=str_tor_notable_blooddragons_3}Empire merchant 7, selfmade" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.blooddragons" occupation="Merchant">
@@ -98,7 +98,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_blooddragons_3b" name="{=str_tor_notable_blooddragons_3b}Empire merchant 8, jocular" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.blooddragons" occupation="Merchant">
@@ -112,7 +112,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_blooddragons_4" name="{=str_tor_notable_blooddragons_4}Empire merchant 9, heiress" voice="curt" is_template="true" is_female="true" default_group="Infantry" is_hero="false" culture="Culture.blooddragons" occupation="Merchant">
@@ -126,7 +126,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_blooddragons_4b" name="{=str_tor_notable_blooddragons_4b}Empire merchant 10, devious" voice="ironic" is_template="true" is_female="true" default_group="Infantry" is_hero="false" culture="Culture.blooddragons" occupation="Merchant">
@@ -142,7 +142,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_blooddragons_5" name="{=str_tor_notable_blooddragons_5}Messianic imperial preacher" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.blooddragons" occupation="Preacher">
@@ -156,7 +156,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_blooddragons_6" name="{=str_tor_notable_blooddragons_6}Puritan imperial preacher" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.blooddragons" occupation="Preacher">
@@ -170,7 +170,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_blooddragons_7" name="{=str_tor_notable_blooddragons_7}Female imperial mystic" voice="earnest" is_template="true" default_group="Infantry" is_female="true" culture="Culture.blooddragons" occupation="Preacher">
@@ -184,7 +184,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_blooddragons_8" name="{=str_tor_notable_blooddragons_8}Imperial gruff labor leader" voice="curt" is_template="true" default_group="Infantry" is_female="false" culture="Culture.blooddragons" occupation="Artisan">
@@ -197,7 +197,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_blooddragons_9" name="{=str_tor_notable_blooddragons_9}Imperial outgoing labor leader" voice="earnest" is_template="true" default_group="Infantry" is_female="false" culture="Culture.blooddragons" occupation="Artisan">
@@ -210,7 +210,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_blooddragons_gl1" name="{=str_tor_notable_blooddragons_gl1}Protective imperial male gang leader" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.blooddragons" occupation="GangLeader">
@@ -225,7 +225,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_blooddragons_10" name="{=str_tor_notable_blooddragons_10}Ironic imperial gang leader" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.blooddragons" occupation="GangLeader">
@@ -240,7 +240,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_blooddragons_11" name="{=str_tor_notable_blooddragons_11}Intimidating male imperial gang leader" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.blooddragons" occupation="GangLeader">
@@ -255,7 +255,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_blooddragons_gl4" name="{=str_tor_notable_blooddragons_gl4}Bestial male imperial gang leader" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.blooddragons" occupation="GangLeader">
@@ -270,7 +270,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_blooddragons_12" name="{=str_tor_notable_blooddragons_12}Female imperial gang leader" voice="ironic" is_template="true" is_female="true" culture="Culture.blooddragons" occupation="GangLeader" default_group="Infantry">
@@ -284,7 +284,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_blooddragons_13" name="{=str_tor_notable_blooddragons_13}Menacing female imperial gang leader" voice="softspoken" is_template="true" is_female="true" culture="Culture.blooddragons" occupation="GangLeader" default_group="Infantry">
@@ -299,7 +299,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_blooddragons_21" name="{=str_tor_notable_blooddragons_21}Empire gruff rural notable" voice="curt" is_template="true" default_group="Infantry" culture="Culture.blooddragons" occupation="RuralNotable">
@@ -312,7 +312,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_blooddragons_22" name="{=22}Empire rural notable agreeable" voice="softspoken" is_template="true" default_group="Infantry" culture="Culture.blooddragons" occupation="RuralNotable">
@@ -325,7 +325,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_blooddragons_headman_1" name="{=str_tor_blooddragons_headman_1}empire rebellious headman" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.blooddragons" occupation="Headman">
@@ -339,7 +339,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_blooddragons_headman_2" name="{=str_tor_blooddragons_headman_2}empire conservative headman" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.blooddragons" occupation="Headman">
@@ -353,7 +353,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_blooddragons_headman_3" name="{=str_tor_blooddragons_headman_3}empire devious headman" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.blooddragons" occupation="Headman">
@@ -367,7 +367,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 </NPCCharacters>

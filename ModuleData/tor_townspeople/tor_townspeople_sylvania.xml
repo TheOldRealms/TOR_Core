@@ -12,7 +12,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_sylvania_0b" name="{=str_tor_notable_sylvania_0b}{FIRSTNAME} the Vintner" is_template="true" voice="ironic" default_group="Infantry" is_hero="false" culture="Culture.khuzait" occupation="Merchant">
@@ -27,7 +27,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_sylvania_1" name="{=str_tor_notable_sylvania_1}Empire merchant 3, ruthless" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.khuzait" occupation="Merchant">
@@ -41,7 +41,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_sylvania_1b" name="{=str_tor_notable_sylvania_1b}Cold imperial merchant" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.khuzait" occupation="Merchant">
@@ -56,7 +56,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_sylvania_2" name="{=str_tor_notable_sylvania_2}{FIRSTNAME} the Saltpanner" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.khuzait" occupation="Merchant">
@@ -70,7 +70,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_sylvania_2b" name="{=str_tor_notable_sylvania_2b}Empire merchant 6, cautious" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.khuzait" occupation="Merchant">
@@ -85,7 +85,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_sylvania_3" name="{=str_tor_notable_sylvania_3}Empire merchant 7, selfmade" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.khuzait" occupation="Merchant">
@@ -98,7 +98,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_sylvania_3b" name="{=str_tor_notable_sylvania_3b}Empire merchant 8, jocular" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.khuzait" occupation="Merchant">
@@ -112,7 +112,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_sylvania_4" name="{=str_tor_notable_sylvania_4}Empire merchant 9, heiress" voice="curt" is_template="true" is_female="true" default_group="Infantry" is_hero="false" culture="Culture.khuzait" occupation="Merchant">
@@ -126,7 +126,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_sylvania_4b" name="{=str_tor_notable_sylvania_4b}Empire merchant 10, devious" voice="ironic" is_template="true" is_female="true" default_group="Infantry" is_hero="false" culture="Culture.khuzait" occupation="Merchant">
@@ -142,7 +142,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_sylvania_5" name="{=str_tor_notable_sylvania_5}Messianic imperial preacher" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.khuzait" occupation="Preacher">
@@ -156,7 +156,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_sylvania_6" name="{=str_tor_notable_sylvania_6}Puritan imperial preacher" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.khuzait" occupation="Preacher">
@@ -170,7 +170,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_sylvania_7" name="{=str_tor_notable_sylvania_7}Female imperial mystic" voice="earnest" is_template="true" default_group="Infantry" is_female="true" culture="Culture.khuzait" occupation="Preacher">
@@ -184,7 +184,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_sylvania_8" name="{=str_tor_notable_sylvania_8}Imperial gruff labor leader" voice="curt" is_template="true" default_group="Infantry" is_female="false" culture="Culture.khuzait" occupation="Artisan">
@@ -197,7 +197,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_sylvania_9" name="{=str_tor_notable_sylvania_9}Imperial outgoing labor leader" voice="earnest" is_template="true" default_group="Infantry" is_female="false" culture="Culture.khuzait" occupation="Artisan">
@@ -210,7 +210,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_sylvania_gl1" name="{=str_tor_notable_sylvania_gl1}Protective imperial male gang leader" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.khuzait" occupation="GangLeader">
@@ -225,7 +225,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_sylvania_10" name="{=str_tor_notable_sylvania_10}Ironic imperial gang leader" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.khuzait" occupation="GangLeader">
@@ -240,7 +240,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_sylvania_11" name="{=str_tor_notable_sylvania_11}Intimidating male imperial gang leader" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.khuzait" occupation="GangLeader">
@@ -255,7 +255,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_sylvania_gl4" name="{=str_tor_notable_sylvania_gl4}Bestial male imperial gang leader" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.khuzait" occupation="GangLeader">
@@ -270,7 +270,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_sylvania_12" name="{=str_tor_notable_sylvania_12}Female imperial gang leader" voice="ironic" is_template="true" is_female="true" culture="Culture.khuzait" occupation="GangLeader" default_group="Infantry">
@@ -284,7 +284,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_sylvania_13" name="{=str_tor_notable_sylvania_13}Menacing female imperial gang leader" voice="softspoken" is_template="true" is_female="true" culture="Culture.khuzait" occupation="GangLeader" default_group="Infantry">
@@ -299,7 +299,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_sylvania_21" name="{=str_tor_notable_sylvania_21}Empire gruff rural notable" voice="curt" is_template="true" default_group="Infantry" culture="Culture.khuzait" occupation="RuralNotable">
@@ -312,7 +312,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_sylvania_22" name="{=str_tor_notable_sylvania_22}Empire rural notable agreeable" voice="softspoken" is_template="true" default_group="Infantry" culture="Culture.khuzait" occupation="RuralNotable">
@@ -325,7 +325,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_sylvania_headman_1" name="{=str_tor_sylvania_headman_1}empire rebellious headman" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.khuzait" occupation="Headman">
@@ -339,7 +339,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_sylvania_headman_2" name="{=str_tor_sylvania_headman_2}empire conservative headman" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.khuzait" occupation="Headman">
@@ -353,7 +353,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_sylvania_headman_3" name="{=str_tor_sylvania_headman_3}empire devious headman" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.khuzait" occupation="Headman">
@@ -367,7 +367,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 </NPCCharacters>

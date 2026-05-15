@@ -11,7 +11,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_vlandia" />
-      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_notable_bretonnia_merch2" name="{=str_spc_notable_bretonnia_merch2}curt bretonnia merchant" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.vlandia" occupation="Merchant">
@@ -26,7 +26,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_vlandia" />
-      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_notable_bretonnia_merch3" name="{=str_spc_notable_bretonnia_merch3}Daring bretonnia merchant" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.vlandia" occupation="Merchant">
@@ -40,7 +40,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_vlandia" />
-      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_notable_bretonnia_merch4" name="{=str_spc_notable_bretonnia_merch4}Softspoken bretonnia merchant" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.vlandia" occupation="Merchant">
@@ -54,7 +54,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_vlandia" />
-      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_notable_bretonnia_merch5" name="{=str_spc_notable_bretonnia_merch5}{FIRSTNAME} the Manciple" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.vlandia" occupation="Merchant">
@@ -68,7 +68,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_vlandia" />
-      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_notable_bretonnia_1" name="{=str_spc_notable_bretonnia_1}{FIRSTNAME} the Warehouser" voice="ironic" is_template="true" is_female="true" default_group="Infantry" is_hero="false" culture="Culture.vlandia" occupation="Merchant">
@@ -81,7 +81,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_vlandia" />
-      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_notable_bretonnia_1b" name="{=str_spc_notable_bretonnia_1b}{FIRSTNAME} the Heiress" voice="ironic" is_template="true" is_female="true" default_group="Infantry" is_hero="false" culture="Culture.vlandia" occupation="Merchant">
@@ -95,7 +95,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_vlandia" />
-      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_notable_bretonnia_2" name="{=str_spc_notable_bretonnia_2}Puritan male preacher" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.vlandia" occupation="Preacher">
@@ -108,7 +108,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_vlandia" />
-      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_notable_bretonnia_3" name="{=str_spc_notable_bretonnia_3}Rebellious female preacher" voice="earnest" is_template="true" default_group="Infantry" is_female="true" culture="Culture.vlandia" occupation="Preacher">
@@ -121,7 +121,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_vlandia" />
-      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_bretonnia_gangleader_1" name="{=str_spc_bretonnia_gangleader_1}Standard male gang leader" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.vlandia" occupation="GangLeader">
@@ -134,7 +134,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_vlandia" />
-      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_bretonnia_gangleader_2" name="{=str_spc_bretonnia_gangleader_2}Female gang leader" voice="ironic" is_template="true" default_group="Infantry" is_female="true" culture="Culture.vlandia" occupation="GangLeader">
@@ -147,7 +147,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_vlandia" />
-      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_bretonnia_gangleader_3" name="{=str_spc_bretonnia_gangleader_3}Male gang leader" voice="ironic" is_template="true" default_group="Infantry" is_female="true" culture="Culture.vlandia" occupation="GangLeader">
@@ -161,7 +161,7 @@
       <Trait id="Honor" value="-1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" equipmentType="Civilian" />
       <EquipmentSet id="npc_wanderer_equipment_template_vlandia" />
     </Equipments>
   </NPCCharacter>
@@ -174,7 +174,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_vlandia" />
-      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_notable_bretonnia_artisan_2" name="{=str_spc_notable_bretonnia_artisan_2}Bretonnian artisan 2" voice="curt" is_template="true" default_group="Infantry" culture="Culture.vlandia" occupation="Artisan">
@@ -186,7 +186,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_vlandia" />
-      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_notable_bretonnia_rural_1" name="{=str_spc_notable_bretonnia_rural_1}Bretonnian yeoman" voice="curt" is_template="true" default_group="Infantry" culture="Culture.vlandia" occupation="RuralNotable">
@@ -198,7 +198,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_vlandia" />
-      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_notable_bretonnia_rural_2" name="{=str_spc_notable_bretonnia_rural_2}Bretonnian yeoman" voice="softspoken" is_template="true" default_group="Infantry" culture="Culture.vlandia" occupation="RuralNotable">
@@ -211,7 +211,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_vlandia" />
-      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_bretonnia_headman_1" name="{=str_spc_bretonnia_headman_1}Bretonnian rebellious headman" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.vlandia" occupation="Headman">
@@ -225,7 +225,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_vlandia" />
-      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_bretonnia_headman_2" name="{=str_spc_bretonnia_headman_2}Bretonnian conservative headman" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.vlandia" occupation="Headman">
@@ -239,7 +239,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_vlandia" />
-      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_bretonnia_headman_3" name="{=str_spc_bretonnia_headman_3}Bretonnian devious headman" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.vlandia" occupation="Headman">
@@ -253,7 +253,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_vlandia" />
-      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_vlandia" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 </NPCCharacters>
