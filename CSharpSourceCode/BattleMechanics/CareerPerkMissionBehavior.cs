@@ -351,7 +351,7 @@ namespace TOR_Core.BattleMechanics
                     }
                 }
 
-                if (affectedAgent.IsUndead() || affectedAgent.Character.IsCultist())
+                if (affectedAgent.IsUndead() || affectedAgent.Character.IsChaos()|| affectedAgent.Character.IsBeastman())
                 {
                     if (choices.Contains("SilverHammerPassive1") ||
                         choices.Contains("TemplarOrdersPassive2"))

@@ -254,7 +254,7 @@ public class AmmoRechargeOnHit : BaseWeaponHitScript
 {
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData collisionData)
     {
-
+        
         if (blow.InflictedDamage <= 0)
             return;
 
@@ -272,7 +272,6 @@ public class AmmoRechargeOnHit : BaseWeaponHitScript
             if (equipment[equipmentIndex].CurrentUsageItem == missionWeapon.CurrentUsageItem)
             {
                 var amount = missionWeapon.Amount;
-
                 amount++;
 
                 if (amount != missionWeapon.Amount)

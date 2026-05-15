@@ -50,8 +50,6 @@ namespace TOR_Core.CampaignMechanics.Companions
             CampaignEvents.HeroKilledEvent.AddNonSerializedListener(this, OnHeroKilled);
             CampaignEvents.HeroOccupationChangedEvent.AddNonSerializedListener(this, OnHeroOccupationChanged);
 
-            //to be determined if I keep here or move elsewhere
-            CampaignEvents.CanHeroDieEvent.AddNonSerializedListener(this, CanHeroDie);
             CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, AddDailySkillXpToCompanions); //checking all parties via the daily party event includes caravans, patrols, bandits, etc... which are a waste. Because heroes who have companions in their party and could therefore make use of the perk checked by this action are part of clans (eg. temporary heroes created for the engineer quest have no other hero in the party and we don't care about their long-term growth), we can iterate through the clan members and check for their party to restrict the amount checked significantly. 
         }
 
@@ -237,20 +235,6 @@ namespace TOR_Core.CampaignMechanics.Companions
 			}
         }
 
-        private void CanHeroDie(Hero dyingHero, KillCharacterAction.KillCharacterActionDetail causeOfDeath, ref bool result)
-        {
-            //Sly : prevents some hero deaths; I still need to look up what npc-npc execution details are. (maybe execution after battle?)
-            //Lost is for deleting notables (village raied, no workshops) and wanderers (companions fired).
-            if (!dyingHero.IsWanderer && !dyingHero.IsLord && !dyingHero.IsAICompanion())//whatever, ai companions can be here too
-            {
-                return;
-            }
-            if (causeOfDeath != KillCharacterAction.KillCharacterActionDetail.Executed && causeOfDeath != KillCharacterAction.KillCharacterActionDetail.Lost && causeOfDeath != KillCharacterAction.KillCharacterActionDetail.ExecutionAfterMapEvent)
-            {
-                result = false;
-            }
-        }
-
         private void BuildCachedSkillPools()
         {
             _cachedSkillObjectsNoFaith = new List<SkillObject>(_cachedSkillObjects.Count);
@@ -317,7 +301,8 @@ namespace TOR_Core.CampaignMechanics.Companions
 
             var amount = TORPerks.Spellcraft.StoryTeller.PrimaryBonus;
             var skillCount = _cachedSkillObjects.Count;
-
+            
+            //Sly : alternatively this could iterate through the clan's WarPartyComponents which only includes their existing mobile military parties, ie the first check instead becomes (partyComp.MobileParty.LeaderHero == null) continue;
             foreach (Hero clanmember in clan.AliveLords)
             {
                 if (!clanmember.IsPartyLeader)
@@ -494,12 +479,12 @@ namespace TOR_Core.CampaignMechanics.Companions
          * - awareness of companions promoted to lord via vassalship
          * - ability to delete, clear out, and unregister outdated companions; nothing should be left behind related to them if they have nothing to contribute to the save file
          * - spawning for new companions to fill empty settlements, correct culture mismatches on settlement owndership change
-         * - equipment verification and adjustments (do we want to reimplement the native companion modifier penalty?)
+         * - equipment verification and adjustments
          * 
          * Goals :
          * - limited overhead, no wasting processing as this will become a larger and larger cost as the map grows
          * - towns only support wanderers of their culture
-         * - the encyclopedia should contain no traces of wanderers that the player will never be able to find
+         * - the encyclopedia should contain no traces of wanderers that the player will never be able to find, ie removed ones
          * - a variety of wanderers offered to avoid being pigeon-holed into a handful of choices
          * - governors not getting removed
          * - a wanderer recruited and placed as governor doesn't prevent the spawning of a new one

@@ -103,6 +103,8 @@ namespace TOR_Core.AbilitySystem
 
         public BattleSideEnum Side { get; private set; }
 
+        //public IBattleCombatant BattleCombatant => ;
+
         public BasicCultureObject BasicCulture { get; private set; }
 
         public BasicCharacterObject General { get; private set; }

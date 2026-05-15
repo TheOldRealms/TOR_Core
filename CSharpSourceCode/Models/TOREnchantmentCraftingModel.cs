@@ -17,25 +17,29 @@ public class TOREnchantmentCraftingModel : GameModel
 {
     public int MaximumAmountOfEnchantments(List<Hero> heroes)
     {
+        //Sly : the arguments do not permit a differentiation between enchantments and blessings. If this is desired, the method will need a change in implementation to be achieved.
         var value = 1;
         foreach (var hero in heroes)
         {
+            if (value == 3) return value;
+
+            bool isDwarf = hero.Culture?.StringId == TORConstants.Cultures.DAWI;
+
             // True Transmutation perk: 2 enchantments, 3 if dwarf
             if (hero.GetPerkValue(TORPerks.Spellcraft.TrueTransmutation))
             {
-                bool isDwarf = hero.Culture?.StringId == TORConstants.Cultures.DAWI;
-                value = isDwarf ? Math.Max(value, 3) : Math.Max(value, 2);
+                value = Math.Max(value, isDwarf ?  3 : 2);
             }
 
             // Miracle perk: 2 blessings
-            if (hero.GetPerkValue(TORPerks.Faith.Miracle))
+            //Sly : I'm considering blessings and enchantments equivalent until the desired usage is clarified at which point this method can be updated and this comment removed.
+            else if (hero.GetPerkValue(TORPerks.Faith.Miracle))
             {
-                bool isDwarf = hero.Culture?.StringId == TORConstants.Cultures.DAWI;
-                value = isDwarf ? Math.Max(value, 3) : Math.Max(value, 2);
+                value = Math.Max(value, isDwarf ?  3 : 2);
             }
 
             // Dwarfs get 2 enchantments by default
-            if (hero == Hero.MainHero && Hero.MainHero.Culture?.StringId == TORConstants.Cultures.DAWI)
+            else if (isDwarf)
             {
                 return Math.Max(value, 2);
             }

@@ -100,9 +100,12 @@ namespace TOR_Core.CampaignMechanics.Religion
             
             foreach (var mobileParty in settlement.Parties.WhereQ(x => x.IsLordParty && x.LeaderHero != null && x.IsActive && !x.IsDisbanding))
             {
-                if (mobileParty.LeaderHero.GetPerkValue(TORPerks.Faith.Imperturbable))
+                foreach (var hero in  mobileParty.GetMemberHeroes())
                 {
-                    mobileParty.LeaderHero.AddSkillXp(TORSkills.Faith, TORPerks.Faith.Imperturbable.PrimaryBonus / 24);
+                    if (hero.GetPerkValue(TORPerks.Faith.Imperturbable))
+                    {
+                        hero.AddSkillXp(TORSkills.Faith, TORPerks.Faith.Imperturbable.PrimaryBonus / 24);
+                    }
                 }
             }
         }
