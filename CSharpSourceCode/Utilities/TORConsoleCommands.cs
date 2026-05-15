@@ -913,7 +913,8 @@ namespace TOR_Core.Utilities
         {
             if (character == null ||
                 character == CharacterObject.PlayerCharacter ||
-                character.IsTemplate)
+                character.IsTemplate ||
+                !character.StringId.StartsWith("tor", StringComparison.OrdinalIgnoreCase))
             {
                 return false;
             }
