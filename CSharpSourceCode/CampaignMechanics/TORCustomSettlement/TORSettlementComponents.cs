@@ -157,7 +157,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             var trollRaidingParty = RaidingPartyComponent.CreateRaidingParty("troll_clan_1_party_" + RaidingPartyCount + 1, Settlement, "Troll Raiders", template, trollClan, MBRandom.RandomInt(7, 15));
             if (find != null)
             {
-                SetPartyAiAction.GetActionForRaidingSettlement(trollRaidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false);
+                SetPartyAiAction.GetActionForRaidingSettlement(trollRaidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false, false);
                 ((RaidingPartyComponent)trollRaidingParty.PartyComponent).Target = initialTarget ?? find;
             }
             else
@@ -243,7 +243,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             var chaosRaidingParty = RaidingPartyComponent.CreateRaidingParty("chaos_clan_1_party_" + RaidingPartyCount + 1, Settlement, TORTextHelper.GetText("tor_chaos_raiders", "Chaos Raiders"), template, chaosClan, targetPartySize);
             if (find != null)
             {
-                SetPartyAiAction.GetActionForRaidingSettlement(chaosRaidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false);
+                SetPartyAiAction.GetActionForRaidingSettlement(chaosRaidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false, false);
                 ((RaidingPartyComponent)chaosRaidingParty.PartyComponent).Target = initialTarget ?? find;
             }
             else //a target will be attempted after spawn via RaidingPartyComponent.HourlyTickAI
@@ -300,7 +300,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             var raidingParty = RaidingPartyComponent.CreateRaidingParty("beastmen_clan_1_party_" + RaidingPartyCount + 1, Settlement, TORTextHelper.GetText("tor_beastmen_raiders", "Beastmen Raiders"), template, beastmenClan, MBRandom.RandomInt(75, 99));
             if (find != null)
             {
-                SetPartyAiAction.GetActionForRaidingSettlement(raidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false);
+                SetPartyAiAction.GetActionForRaidingSettlement(raidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false, false);
                 ((RaidingPartyComponent)raidingParty.PartyComponent).Target = initialTarget ?? find;
             }
             else //a target will be attempted after spawn via RaidingPartyComponent.HourlyTickAI
@@ -353,7 +353,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             var raidingParty = RaidingPartyComponent.CreateRaidingParty("druchii_clan_1_party_" + RaidingPartyCount + 1, Settlement, TORTextHelper.GetText("tor_dark_elf_slavers", "Druchii Slavers"), template, clan, MBRandom.RandomInt(75, 99));
             if (find != null)
             {
-                SetPartyAiAction.GetActionForRaidingSettlement(raidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false);
+                SetPartyAiAction.GetActionForRaidingSettlement(raidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false, false);
                 ((RaidingPartyComponent)raidingParty.PartyComponent).Target = initialTarget ?? find;
             }
             else //a target will be attempted after spawn via RaidingPartyComponent.HourlyTickAI
