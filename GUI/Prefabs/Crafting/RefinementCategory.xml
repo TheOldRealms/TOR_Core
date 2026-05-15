@@ -42,7 +42,7 @@
                     <Widget Id="ClipRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ClipContents="true">
                       <Children>
 
-                        <NavigatableListPanel Id="RefinementActionsList" DataSource="{AvailableRefinementActions}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" MarginBottom="40">
+                        <NavigatableListPanel Id="RefinementActionsList" DataSource="{AvailableRefinementActions}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" MarginBottom="40">
                           <ItemTemplate>
 
                             <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Refinement.Tuple.Width" SuggestedHeight="!Refinement.Tuple.Height" Brush="Refinement.Tuple" Command.Click="ExecuteSelectAction" IsSelected="@IsSelected" IsEnabled="@IsEnabled" UpdateChildrenStates="true" MarginBottom="0" DoNotUseCustomScaleAndChildren="true">
@@ -53,7 +53,7 @@
 
                                     <ListPanel DataSource="{InputMaterials}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="HorizontalRightToLeft" VerticalAlignment="Center">
                                       <ItemTemplate>
-                                        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                                        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                                           <Children>
                                             <CraftingMaterialVisualBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="75" SuggestedHeight="55" HorizontalAlignment="Center" Brush="Crafting.Material.Brush" MaterialType="@ResourceMaterialTypeAsStr" />
                                             <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Refinement.Amount.Text" HorizontalAlignment="Center" VerticalAlignment="Center" MarginTop="5" IntText="@ResourceAmount" IsEnabled="@IsResourceAvailable" />
@@ -67,7 +67,7 @@
 
                                     <ListPanel DataSource="{OutputMaterials}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" VerticalAlignment="Center">
                                       <ItemTemplate>
-                                        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                                        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                                           <Children>
                                             <CraftingMaterialVisualBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="75" SuggestedHeight="55" HorizontalAlignment="Center" Brush="Crafting.Material.Brush" MaterialType="@ResourceMaterialTypeAsStr" />
                                             <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Refinement.Amount.Text" HorizontalAlignment="Center" VerticalAlignment="Center" MarginTop="5" IntText="@ResourceAmount" />
