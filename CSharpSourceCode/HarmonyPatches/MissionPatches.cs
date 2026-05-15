@@ -116,7 +116,7 @@ namespace TOR_Core.HarmonyPatches
             {
                 var sceneName = scene; //TODO This is to test the kingsglade map, this might revision later since we have now more woodelf city/castle  maps!
                 //__result = SandBoxMissions.OpenBattleMission(GetBattleSceneForAsraiSiege(), true); //This method is not useful, it would randomize maps, but we want specific map load.
-                __result = SandBoxMissions.OpenBattleMission(sceneName, true);
+                __result = SandBoxMissions.OpenBattleMission(sceneName, true,""); //TODO most likely will crash, we need the proper levels for the scene.
                 return false;
             }
 
@@ -131,7 +131,7 @@ namespace TOR_Core.HarmonyPatches
             {
                 var sceneName = scene;
                 //__result = SandBoxMissions.OpenBattleMission(GetBattleSceneForAsraiSiege(), true);
-                __result = SandBoxMissions.OpenBattleMission(sceneName, true);
+                __result = SandBoxMissions.OpenBattleMission(sceneName, true, ""); //TODO see above: needs check for scene levels
                 return false;
             }
 

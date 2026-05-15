@@ -132,8 +132,8 @@ namespace TOR_Core.Models
                 return score;
             }
 
-            // Get the evaluating leader for personality traits
-            Hero evaluatingLeader = GetEvaluatingLeader(evaluatingFaction);
+            // Get the evaluating leader for personality traits (proposing kingdom is the one evaluating)
+            Hero evaluatingLeader = GetEvaluatingLeader(proposingKingdom);
 
             // Get trait modifiers
             float honorModifier = DiplomacyHelpers.GetTraitModifier(evaluatingLeader, DefaultTraits.Honor);
