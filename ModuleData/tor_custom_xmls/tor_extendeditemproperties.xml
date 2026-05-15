@@ -514,6 +514,10 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_head_leafs_001" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_head_mask_fabric_001" RaceLock="human">
     <ItemTraits />
     <Description />
@@ -622,7 +626,7 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_we_head_hood_ranger_green" RaceLock="human">
+  <ExtendedItemObjectProperties ItemStringId="tor_we_head_hood_ranger_006" RaceLock="human">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
@@ -1334,7 +1338,7 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_we_shoulder_cape_ranger_green" RaceLock="human">
+  <ExtendedItemObjectProperties ItemStringId="tor_we_shoulder_cape_ranger_002" RaceLock="human">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>

@@ -23262,28 +23262,6 @@
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_sister_001" />
     </EquipmentSet>
   </EquipmentRoster>
-  <EquipmentRoster id="tor_we_waywatcher_template" culture="Culture.battania">
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_005" />
-      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_001" />
-      <Equipment slot="Item2" id="Item.piercing_arrows" />
-      <Equipment slot="Head" id="Item.tor_we_head_hood_ranger_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_eternalguard_001" />
-      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
-      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_005" />
-      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_001" />
-      <Equipment slot="Item2" id="Item.piercing_arrows" />
-      <Equipment slot="Head" id="Item.tor_we_head_hood_ranger_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_eternalguard_001" />
-      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
-      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
-    </EquipmentSet>
-  </EquipmentRoster>
   <EquipmentRoster id="tor_we_spellsinger_template" culture="Culture.battania">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_we_lord_sword_001" />
