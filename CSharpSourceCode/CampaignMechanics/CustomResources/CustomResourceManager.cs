@@ -215,7 +215,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             }
         }
 
-        private void CalculateHideOutCompletedGain(BattleSideEnum battleSideEnum, HideoutEventComponent eventComponent)
+        private void CalculateHideOutCompletedGain(BattleSideEnum battleSideEnum, HideoutEventComponent eventComponent, HideoutEventComponent.HideoutBattleEndState arg3)
         {
             var hideout = eventComponent.MapEvent.MapEventSettlement;
             if (eventComponent.MapEvent.PlayerSide == eventComponent.MapEvent.WinningSide)
