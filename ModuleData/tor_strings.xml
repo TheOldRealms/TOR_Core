@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <strings>
 
-  <!-- Uncategorized -->
+  <!-- Character Creation -->
   <string id="tor_cc_review_description" text="{=str_tor_cc_review_description}The Old World awaits you, with all of its glory and horrors. This is your character. Continue if you are ready, or go back and make changes." />
+  <string id="tor_cc_growth_summary" text="{=str_tor_cc_growth_summary}Growth" />
+  <string id="tor_cc_profession_fallback_text" text="{=str_tor_cc_profession_fallback_text}Your starting profession..." />
+  <string id="tor_cc_growth_fallback_text" text="{=str_tor_cc_growth_fallback_text}Teenage years..." />
+  <string id="tor_cc_profession_summary" text="{=str_tor_cc_profession_summary}Profession" />
 
   <!-- Character Creation - specialization -->
   <string id="tor_cc_specialization_title_bloodline" text="{=str_tor_cc_specialization_title_bloodline}Choose Your Bloodline…" />
@@ -17,20 +21,16 @@
   <string id="tor_cc_origin_summary" text="{=str_tor_cc_origin_summary}Origin" />
   <string id="tor_cc_specialization_title_generic" text="{=str_tor_cc_specialization_title_generic}Specialization" />
 
-  <!-- Character Creation - Stage 1 -->
-  <string id="tor_cc_growth_summary" text="{=str_tor_cc_growth_summary}Growth" />
-  <string id="tor_cc_profession_fallback_text" text="{=str_tor_cc_profession_fallback_text}Your starting profession..." />
-
-  <!-- Character Creation - Stage 2 -->
-  <string id="tor_cc_growth_fallback_text" text="{=str_tor_cc_growth_fallback_text}Teenage years..." />
-
-  <!-- Character Creation - Stage 3 -->
-  <string id="tor_cc_profession_summary" text="{=str_tor_cc_profession_summary}Profession" />
+  <!-- Character Creation - asrai -->
   <string id="tor_cc_growth.battania" text="{=str_tor_cc_growth_battania}You spent most of your life venerating one of the Asrai deities…" />
   <string id="tor_cc_profession.battania" text="{=str_tor_cc_profession_battania}Choose your path…" />
+
+  <!-- Character Creation - dwarf -->
   <string id="tor_cc_origin.sturgia" text="{=str_tor_cc_origin_sturgia}Your Clan is famous for its…" />
   <string id="tor_cc_growth.sturgia" text="{=str_tor_cc_growth_sturgia}The proud Dawi cultivate every grudge aimed at their kin…" />
   <string id="tor_cc_profession.sturgia" text="{=str_tor_cc_profession_sturgia}Your current profession…" />
+
+  <!-- Character Creation - greenskin -->
   <string id="tor_cc_origin.aserai" text="{=str_tor_cc_origin_aserai}Greenskins reproduce via spores, and yours landed on…" />
   <string id="tor_cc_growth.aserai" text="{=str_tor_cc_growth_aserai}After joining a tribe your biggest achievement was…" />
   <string id="tor_cc_profession.aserai" text="{=str_tor_cc_profession_aserai}Before leaving the tribe, you were one of the…" />
