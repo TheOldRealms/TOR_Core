@@ -242,9 +242,7 @@ public class LootCampaignBehavior : CampaignBehaviorBase
         {
             if (mapEvent.PlayerSide != mapEvent.WinningSide) return; //player dying and their troops retreating triggers a PlayerBattleEndEvent with no winner; no point in calculating this for losses
 
-            float renownChange, influenceChange, moraleChange, goldChange, playerEarnedLootPercentage;
-            mapEvent.GetBattleRewards(PartyBase.MainParty, out renownChange, out influenceChange, out moraleChange, out goldChange,
-                out playerEarnedLootPercentage);
+            PlayerEncounter.Current.GetBattleRewards(out _, out _, out _, out float playerEarnedLootPercentage, out _);
 
             var itemRosterToReceive = PlayerEncounter.Current.RosterToReceiveLootItems;
             var model = (TORBattleRewardModel)Campaign.Current.Models.BattleRewardModel;

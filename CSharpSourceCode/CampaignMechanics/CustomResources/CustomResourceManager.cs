@@ -293,7 +293,8 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             var playerParty = MobileParty.MainParty;
             var playerCulture = playerHero.Culture;
             var defeatedSide = mapEvent.GetMapEventSide(mapEvent.DefeatedSide); //crash when defeated in hideout battle
-            mapEvent.GetBattleRewards(playerParty.Party, out var renownChange, out _, out _, out _, out _);
+            PlayerEncounter.Current.GetBattleRewards(out var renownChangeExplained, out _, out _, out _, out _);
+            var renownChange = renownChangeExplained.ResultNumber;
 
 
             //Sly : each resource is assigned to a single culture, and if they weren't, GetCultureSpecificCustomResource using FirstOrDefault could cause issues by returning a secondary resource rather than a primary one
