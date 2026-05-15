@@ -4146,9 +4146,6 @@
   <string id="tor_career_rank1_name.BlackGrailKnight" text="{=str_tor_career_rank1_name_BlackGrailKnight}Ill-fated Noble" />
   <string id="tor_career_rank2_name.BlackGrailKnight" text="{=str_tor_career_rank2_name_BlackGrailKnight}Ill-fated Questing Knight" />
   <string id="tor_career_rank3_name.BlackGrailKnight" text="{=str_tor_career_rank3_name_BlackGrailKnight}Knight of the Black Grail" />
-  <string id="tor_career_rank1_name.Necrarch" text="{=str_tor_career_rank1_name_Necrarch}Apprentice" />
-  <string id="tor_career_rank2_name.Necrarch" text="{=str_tor_career_rank2_name_Necrarch}Seeker" />
-  <string id="tor_career_rank3_name.Necrarch" text="{=str_tor_career_rank3_name_Necrarch}Ascended" />
   <string id="tor_career_rank1_name.ImperialMagister" text="{=str_tor_career_rank1_name_ImperialMagister}Apprentice Magister" />
   <string id="tor_career_rank2_name.ImperialMagister" text="{=str_tor_career_rank2_name_ImperialMagister}Battle Wizard" />
   <string id="tor_career_rank3_name.ImperialMagister" text="{=str_tor_career_rank3_name_ImperialMagister}Lord Magister" />
@@ -4182,6 +4179,11 @@
   <string id="tor_career_rank1_name.OrcShaman" text="{=str_tor_career_rank1_name_OrcShaman}Orc Shaman" />
   <string id="tor_career_rank2_name.OrcShaman" text="{=str_tor_career_rank2_name_OrcShaman}Favoured uv Da Godz" />
   <string id="tor_career_rank3_name.OrcShaman" text="{=str_tor_career_rank3_name_OrcShaman}Great Shaman Lord" />
+
+  <!-- Career Rank Label - Necrarch -->
+  <string id="tor_career_rank1_name.Necrarch" text="{=str_tor_career_rank1_name_Necrarch}Apprentice" />
+  <string id="tor_career_rank2_name.Necrarch" text="{=str_tor_career_rank2_name_Necrarch}Seeker" />
+  <string id="tor_career_rank3_name.Necrarch" text="{=str_tor_career_rank3_name_Necrarch}Ascended" />
 
   <!-- Warrior Priest -->
   <string id="tor_careerunlock_level_1.WarriorPriest" text="{=str_tor_careerunlock_level_1_warriorpriest}" />
@@ -4231,9 +4233,11 @@
   <string id="tor_careerunlock_level_2.BlackGrailKnight" text="{=str_tor_careerunlock_level_2_blackgrailknight}Required clan renown: 2" />
   <string id="tor_careerunlock_level_3.BlackGrailKnight" text="{=str_tor_careerunlock_level_3_blackgrailknight}Required clan renown: 4" />
 
-  <!-- Necrarch -->
+  <!-- Career Unlock - Necrarch -->
   <string id="tor_careerunlock_level_1.Necrarch" text="{=str_tor_careerunlock_level_1_necrarch}" />
   <string id="tor_careerunlock_level_2.Necrarch" text="{=str_tor_careerunlock_level_2_necrarch}Required clan renown: 2" />
+
+  <!-- Necrarch - Necrarch -->
   <string id="tor_careerunlock_level_3.Necrarch" text="{=str_tor_careerunlock_level_3_necrarch}Required clan renown: 4" />
   <string id="tor_careerunlock_reward_2.Necrarch" text="{=str_tor_careerunlock_reward_2_necrarch}Unlocks up to 5 lores" />
   <string id="tor_careerunlock_reward_3.Necrarch" text="{=str_tor_careerunlock_reward_3_necrarch}Unlocks 8 lores" />
@@ -4733,11 +4737,6 @@
   <string id="tor_hirelingactivity2.MinorVampire" text="{=str_tor_hirelingactivity2_MinorVampire}Focus on the vile energies in the area" />
   <string id="tor_hirelingactivity3.MinorVampire" text="{=str_tor_hirelingactivity3_MinorVampire}Search for prey to feed on" />
   <string id="tor_hirelingactivity4.MinorVampire" text="{=str_tor_hirelingactivity4_MinorVampire}Command the sheep" />
-  <string id="tor_hirelingactivity0.Necrarch" text="{=str_tor_hirelingactivity0_Necrarch}Hone your Witchsight" />
-  <string id="tor_hirelingactivity1.Necrarch" text="{=str_tor_hirelingactivity1_Necrarch}Search for prey to feed on" />
-  <string id="tor_hirelingactivity2.Necrarch" text="{=str_tor_hirelingactivity2_Necrarch}Dissect test subjects" />
-  <string id="tor_hirelingactivity3.Necrarch" text="{=str_tor_hirelingactivity3_Necrarch}Study arcane blueprints" />
-  <string id="tor_hirelingactivity4.Necrarch" text="{=str_tor_hirelingactivity4_Necrarch}Issue orders to your servants" />
   <string id="tor_hirelingactivity0.Necromancer" text="{=str_tor_hirelingactivity0_Necromancer}Study tomes of knowledge" />
   <string id="tor_hirelingactivity1.Necromancer" text="{=str_tor_hirelingactivity1_Necromancer}Raid nearby cemeteries" />
   <string id="tor_hirelingactivity2.Necromancer" text="{=str_tor_hirelingactivity2_Necromancer}Experiment on dead bodies" />
@@ -4799,6 +4798,13 @@
   <string id="tor_hirelingactivity3.OrcShaman" text="{=str_tor_hirelingactivity3_OrcBoss}Cut sum gobbos open" />
   <string id="tor_hirelingactivity4.OrcShaman" text="{=str_tor_hirelingactivity4_OrcBoss}Look fer sum 'shrooms in da caves" />
   <string id="tor_hireling_wage" text="{=str_tor_hireling_wage}Hireling Wage" />
+
+  <!-- Hireling Activities - Necrarch -->
+  <string id="tor_hirelingactivity0.Necrarch" text="{=str_tor_hirelingactivity0_Necrarch}Hone your Witchsight" />
+  <string id="tor_hirelingactivity1.Necrarch" text="{=str_tor_hirelingactivity1_Necrarch}Search for prey to feed on" />
+  <string id="tor_hirelingactivity2.Necrarch" text="{=str_tor_hirelingactivity2_Necrarch}Dissect test subjects" />
+  <string id="tor_hirelingactivity3.Necrarch" text="{=str_tor_hirelingactivity3_Necrarch}Study arcane blueprints" />
+  <string id="tor_hirelingactivity4.Necrarch" text="{=str_tor_hirelingactivity4_Necrarch}Issue orders to your servants" />
 
   <!-- Meadow -->
   <string id="tor_inky_Meadow.IsNight_True" text="{=str_tor_inky_meadow_isnight_true}Silver moonlight" />
@@ -5206,8 +5212,9 @@
   <string id="tor_bloodkiss_blooddragon_receive" text="{=str_tor_bloodkiss_blooddragon_receive}Embrace the Bloodkiss, become one with the night, and ascend to greatness alongside the Blood Dragons." />
   <string id="tor_bloodkiss_blooddragon_player_receive_end" text="{=str_tor_bloodkiss_blooddragon_player_receive_end}Rise, young blood dragon." />
 
-  <!-- Necrarch Dialogs -->
+  <!-- Blood Kiss - Necrarch -->
   <string id="tor_bloodkiss_necrach_request" text="{=str_tor_bloodkiss_necrach_request}My lord. Zacharias. The Everliving. The disciple of Melkihor the Ancient. The most powerful of necrarchs. I wish to shed my mortal shell and serve you eternally." />
+  <string id="tor_bloodkiss_player_receive_end_necrarch" text="{=str_tor_bloodkiss_player_receive_end_necrarch}Behold! The new addition to the brotherhood of the necrarchs." />
 
   <!-- Black Grail Dialogs -->
   <string id="tor_blackgrail_request" text="{=str_tor_blackgrail_request}You keep saying the Lady is not real. What exactly do you mean?" />
@@ -5474,7 +5481,6 @@
   <string id="tor_bloodkiss_player_receive_end_carstein" text="{=str_tor_bloodkiss_player_receive_end_carstein}Rise, von Carstein scion." />
   <string id="tor_bloodkiss_necrach_answer_line2" text="{=str_tor_bloodkiss_necrach_answer_line2}You has served me and mine loyally, as my teacher did with me long ago. I will share the gift of immortality with you" />
   <string id="tor_bloodkiss_necrach_answer_line3" text="{=str_tor_bloodkiss_necrach_answer_line3}Are you sure you are ready to leave your entire mortal life behind and enter forever into the lap of eternal night?" />
-  <string id="tor_bloodkiss_player_receive_end_necrarch" text="{=str_tor_bloodkiss_player_receive_end_necrarch}Behold! The new addition to the brotherhood of the necrarchs." />
 
   <!-- Eonir Envoy Texts -->
   <string id="eonir_envoy_foreign_text" text="{=str_eonir_envoy_foreign_text}You are not part of these people, begone." />
