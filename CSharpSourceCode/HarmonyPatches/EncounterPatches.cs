@@ -317,51 +317,54 @@ namespace TOR_Core.HarmonyPatches
             ServeAsAHirelingCampaignBehavior.ClearCurrentHirelingLoot();
         }
 
-        [HarmonyPostfix]
-        [HarmonyPatch(typeof(MapEvent), "GetMemberRosterReceivingLootShare")]
-        public static void GetMemberRosterPostfix(MapEvent __instance, TroopRoster __result)
-        {
-            if (__result == null)
-            {
-                return;
-            }
+        // TODO: These methods were removed in 1.4. The loot system now uses MapEventParty.RosterToReceiveLootMembers
+        // and RosterToReceiveLootPrisoners properties instead. Need to find new hook points if this functionality is still needed.
 
-            if (ServeAsAHirelingCampaignBehavior.ShouldSuppressTrackedHirelingBattleLoot(__instance))
-            {
-                ClearRoster(__result);
-                PendingLootedTroopManager.ResetAllPendingState();
-                return;
-            }
-
-            if (PendingLootedTroopManager.HasPendingModifications)
-            {
-                PendingLootedTroopManager.ApplyMemberModifications(__result);
-                PendingLootedTroopManager.ConsumeMemberModifications();
-            }
-        }
-
-        [HarmonyPostfix]
-        [HarmonyPatch(typeof(MapEvent), "GetPrisonerRosterReceivingLootShare")]
-        public static void GetPrisonerRosterPostfix(MapEvent __instance, TroopRoster __result)
-        {
-            if (__result == null)
-            {
-                return;
-            }
-
-            if (ServeAsAHirelingCampaignBehavior.ShouldSuppressTrackedHirelingBattleLoot(__instance))
-            {
-                ClearRoster(__result);
-                PendingLootedTroopManager.ResetAllPendingState();
-                return;
-            }
-
-            if (PendingLootedTroopManager.HasPendingModifications)
-            {
-                PendingLootedTroopManager.ApplyPrisonerModifications(__result);
-                PendingLootedTroopManager.ConsumePrisonerModifications();
-            }
-        }
+        // [HarmonyPostfix]
+        // [HarmonyPatch(typeof(MapEvent), "GetMemberRosterReceivingLootShare")]
+        // public static void GetMemberRosterPostfix(MapEvent __instance, TroopRoster __result)
+        // {
+        //     if (__result == null)
+        //     {
+        //         return;
+        //     }
+        //
+        //     if (ServeAsAHirelingCampaignBehavior.ShouldSuppressTrackedHirelingBattleLoot(__instance))
+        //     {
+        //         ClearRoster(__result);
+        //         PendingLootedTroopManager.ResetAllPendingState();
+        //         return;
+        //     }
+        //
+        //     if (PendingLootedTroopManager.HasPendingModifications)
+        //     {
+        //         PendingLootedTroopManager.ApplyMemberModifications(__result);
+        //         PendingLootedTroopManager.ConsumeMemberModifications();
+        //     }
+        // }
+        //
+        // [HarmonyPostfix]
+        // [HarmonyPatch(typeof(MapEvent), "GetPrisonerRosterReceivingLootShare")]
+        // public static void GetPrisonerRosterPostfix(MapEvent __instance, TroopRoster __result)
+        // {
+        //     if (__result == null)
+        //     {
+        //         return;
+        //     }
+        //
+        //     if (ServeAsAHirelingCampaignBehavior.ShouldSuppressTrackedHirelingBattleLoot(__instance))
+        //     {
+        //         ClearRoster(__result);
+        //         PendingLootedTroopManager.ResetAllPendingState();
+        //         return;
+        //     }
+        //
+        //     if (PendingLootedTroopManager.HasPendingModifications)
+        //     {
+        //         PendingLootedTroopManager.ApplyPrisonerModifications(__result);
+        //         PendingLootedTroopManager.ConsumePrisonerModifications();
+        //     }
+        // }
     }
     
     [HarmonyPatch]

@@ -67,22 +67,26 @@ public static class MobilePartyPatches
         return false;
     }
 
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(HeroHelper), "FindASuitableSettlementToTeleportForHero")]
-    public static bool ChaosHeroTeleportSettlementPrefix(Hero hero, float minimumScore, ref Settlement __result)
-    {
-        if (!ShouldUseChaosLordSettlementOverride(hero))
-        {
-            return true;
-        }
+    // TODO: HeroHelper.FindASuitableSettlementToTeleportForHero was removed in 1.4.
+    // The teleportation system now expects callers to provide target settlements directly.
+    // If Chaos lord settlement override is still needed, find the new call sites that determine teleport targets.
 
-        var preferredSettlement = hero.Clan.HomeSettlement ?? hero.Clan.InitialHomeSettlement;
-        if (preferredSettlement == null)
-        {
-            return true;
-        }
-
-        __result = preferredSettlement;
-        return false;
-    }
+    // [HarmonyPrefix]
+    // [HarmonyPatch(typeof(HeroHelper), "FindASuitableSettlementToTeleportForHero")]
+    // public static bool ChaosHeroTeleportSettlementPrefix(Hero hero, float minimumScore, ref Settlement __result)
+    // {
+    //     if (!ShouldUseChaosLordSettlementOverride(hero))
+    //     {
+    //         return true;
+    //     }
+    //
+    //     var preferredSettlement = hero.Clan.HomeSettlement ?? hero.Clan.InitialHomeSettlement;
+    //     if (preferredSettlement == null)
+    //     {
+    //         return true;
+    //     }
+    //
+    //     __result = preferredSettlement;
+    //     return false;
+    // }
 }

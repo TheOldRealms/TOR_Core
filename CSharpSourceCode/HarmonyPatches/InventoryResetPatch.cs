@@ -70,10 +70,12 @@ public static class InventoryResetPatch
         [HarmonyTargetMethod]
         private static MethodBase TargetMethod()
         {
-            return AccessTools.Method(PartyEquipmentType, "ResetEquipment", new[] { typeof(MobileParty) });
+            // ResetEquipment no longer takes a MobileParty parameter in 1.4
+            return AccessTools.Method(PartyEquipmentType, "ResetEquipment");
         }
 
-        private static bool Prefix(object __instance, MobileParty ownerParty)
+        [HarmonyPrefix]
+        private static bool Prefix(object __instance)
         {
             var characterEquipments =
                 (Dictionary<CharacterObject, Equipment[]>)CharacterEquipmentsBackingField.GetValue(__instance);
