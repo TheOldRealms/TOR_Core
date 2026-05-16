@@ -548,7 +548,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
     private void OnSettlementEntered(MobileParty party, Settlement settlement, Hero leaderHero)
     {
         var settleComp = settlement.SettlementComponent;
-        if (settleComp is not ShrineComponent or settleComp is not CursedSiteComponent) return;
+        if (settleComp is not ShrineComponent && settleComp is not CursedSiteComponent) return;
         if (party == null || leaderHero == null || party == MobileParty.MainParty) return;
 
         LeaveSettlementAction.ApplyForParty(party);
@@ -564,7 +564,6 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         
     }
     
-
     private void OnAiTick(MobileParty party)
     {
         if (!party.IsLordParty || party.LeaderHero == null || party == MobileParty.MainParty) return;
