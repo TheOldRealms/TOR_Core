@@ -92,48 +92,26 @@ public class CursedSiteComponent : TORBaseSettlementComponent, IDisposable
         }
     }
     
-    /*
     public override void OnPartyEntered(MobileParty party)
     {
 
         if (party == null || party.LeaderHero == null || party == MobileParty.MainParty) return;
         var leaderHero = party.LeaderHero;
 
-        if (leaderHero.IsNecromancer() || leaderHero.IsVampire())
-        {
-            var freeSlots = party.Party.PartySizeLimit - party.MemberRoster.TotalManCount;
-            if (freeSlots > 0)
-            {
-                var troop = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_spirit_host");
-                int raisePower = Math.Max(1, (int)leaderHero.GetExtendedInfo().SpellCastingLevel);
-                var count = MBRandom.RandomInt(MIN_TROOP_COUNT, MAX_TROOP_COUNT);
-                count *= raisePower;
-                if (freeSlots < count) count = freeSlots;
-                party.MemberRoster.AddToCounts(troop, count);
-                CampaignEventDispatcher.Instance.OnTroopRecruited(party.LeaderHero, Settlement, null, troop, count);
+        if (!leaderHero.IsNecromancer() && !leaderHero.IsVampire()) return;
 
-                
-                if (_lastGhostRecruitmentTime.ContainsKey(party.LeaderHero.StringId))
-                {
-                    _lastGhostRecruitmentTime[party.LeaderHero.StringId] = (int)CampaignTime.Now.ToDays;
-                }
-                else
-                {
-                    _lastGhostRecruitmentTime.Add(party.LeaderHero.StringId, (int)CampaignTime.Now.ToDays);
-                }
-                
-            }
-        }
+        var freeSlots = party.Party.PartySizeLimit - party.MemberRoster.TotalManCount;
+        if (freeSlots <= 0) return;
 
-        LeaveSettlementAction.ApplyForParty(party);
-
-        if (party.Army == null || party.Army.LeaderParty == party)//unsure what happens if all of the attached parties in an army are set to start thinking; player-facing issue only as AI armies won't try to visit shrines
-        {
-            party.SetMoveModeHold();
-            party.Ai.SetDoNotMakeNewDecisions(false);
-            party.Ai.RethinkAtNextHourlyTick = true;
-        }
-    }*/
+        var troop = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_spirit_host");
+        int raisePower = Math.Max(1, (int)leaderHero.GetExtendedInfo().SpellCastingLevel);
+        var count = MBRandom.RandomInt(MIN_TROOP_COUNT, MAX_TROOP_COUNT);
+        count *= raisePower;
+        if (freeSlots < count) count = freeSlots;
+        party.MemberRoster.AddToCounts(troop, count);
+        CampaignEventDispatcher.Instance.OnTroopRecruited(leaderHero, Settlement, null, troop, count);
+        Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().SetLastGhostRecruitmentTime(leaderHero, (int)CampaignTime.Now.ToDays);
+    }
 
     public void Dispose()
     {

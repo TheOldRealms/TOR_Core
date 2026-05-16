@@ -11,7 +11,6 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 
 public class ShrineComponent : TORBaseSettlementComponent
 {
-    //TODO: Maybe we expose this to XML?
     public static int DEVOTION_FOLLOWER_TROOPS_MIN = 3;
     public static int DEVOTION_FOLLOWER_TROOPS_MAX = 7;
     public static int DEVOTION_DEVOTED_TROOPS_MIN = 7;
@@ -33,32 +32,40 @@ public class ShrineComponent : TORBaseSettlementComponent
         party.AddBlessingToParty(Religion.StringId);
 
         // AI religious troop recruitment from shrines
-        if (Religion.ReligiousTroops != null && Religion.ReligiousTroops.Count > 0)
+        if (Religion.ReligiousTroops == null || Religion.ReligiousTroops.Count <= 0)
         {
-            var heroReligion = leaderHero.GetDominantReligion();
-            if (heroReligion == Religion)
-            {
-                var freeSlots = party.Party.PartySizeLimit - party.MemberRoster.TotalManCount;
-                if (freeSlots > 0)
-                {
-                    var troop = Religion.ReligiousTroops.FirstOrDefault(x => x.IsBasicTroop && x.Occupation == Occupation.Soldier);
-                    if (troop != null)
-                    {
-                        var devotion = leaderHero.GetDevotionLevelForReligion(heroReligion);
-                        int troopCount = GetTroopCountByDevotion(devotion);
+            return;
+        }
 
-                        if (troopCount > 0)
-                        {
-                            if (freeSlots < troopCount) troopCount = freeSlots;
-                            party.MemberRoster.AddToCounts(troop, troopCount);
-                            CampaignEventDispatcher.Instance.OnTroopRecruited(leaderHero, Settlement, null, troop, troopCount);
-                        }
-                    }
-                }
-            }
+        var heroReligion = leaderHero.GetDominantReligion();
+
+        if (heroReligion != Religion)
+        {
+            return;
+        }
+
+        var freeSlots = party.Party.PartySizeLimit - party.MemberRoster.TotalManCount;
+        if (freeSlots <= 0)
+        {
+            return;
+        }
+
+        var troop = Religion.ReligiousTroops.FirstOrDefault(x => x.IsBasicTroop && x.Occupation == Occupation.Soldier);
+        if (troop == null)
+        {
+            return;
+        }
+
+        var devotion = leaderHero.GetDevotionLevelForReligion(heroReligion);
+        int troopCount = GetTroopCountByDevotion(devotion);
+        if (troopCount > 0)
+        {
+            if (freeSlots < troopCount) troopCount = freeSlots;
+            party.MemberRoster.AddToCounts(troop, troopCount);
+            CampaignEventDispatcher.Instance.OnTroopRecruited(leaderHero, Settlement, null, troop, troopCount);
         }
     }
-    
+
     private int GetTroopCountByDevotion(DevotionLevel devotionLevel)
     {
         return devotionLevel switch
