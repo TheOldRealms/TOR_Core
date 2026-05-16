@@ -157,7 +157,7 @@
       <tag tag_name="PlayerIsOrcTag" />
     </tags>
   </string>
-  <string id="H2aaMAe5.arena_practice_fight_rules_dwarf" text="{=str_tor_arena_practice_fight_rules_dwarf}(subject to change) How do you run warm-ups?">
+  <string id="H2aaMAe5.arena_practice_fight_rules_dwarf" text="{=str_tor_arena_practice_fight_rules_dwarf}How do you run warm-ups?">
     <tags>
       <tag tag_name="PlayerIsDwarfTag" />
     </tags>
