@@ -514,10 +514,6 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_we_head_leafs_001" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_head_mask_fabric_001" RaceLock="human">
     <ItemTraits />
     <Description />

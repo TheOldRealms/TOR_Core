@@ -24440,8 +24440,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_generic_druchii_lord_template" culture="Culture.druchii">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_de_weapon_sword_001" />
-      <Equipment slot="Item1" id="Item.tor_de_weapon_shield_001" />
+      <Equipment slot="Item0" id="Item.tor_de_weapon_spear_002" />
       <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
       <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
       <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
@@ -24451,8 +24450,7 @@
       <Equipment slot="HorseHarness" id="Item.celtic_frost" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_de_weapon_sword_001" />
-      <Equipment slot="Item1" id="Item.tor_de_weapon_shield_001" />
+      <Equipment slot="Item0" id="Item.tor_de_weapon_spear_002" />
       <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
       <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
       <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
@@ -27199,17 +27197,15 @@
   <EquipmentRoster id="tor_qnpc_eonir_envoy_druchii" culture="Culture.eonir">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_de_weapon_sword_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_militia_003" />
-      <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
-      <Equipment slot="Gloves" id="Item.tor_de_arm_bracers_infantry_001" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
+      <Equipment slot="Body" id="Item.tor_de_body_armor_witchelf_014" />
+      <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_sorcerer_001" />
+      <Equipment slot="Head" id="Item.tor_de_head_crown_supreme_sorceress_002" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_de_weapon_sword_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_militia_003" />
-      <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
-      <Equipment slot="Gloves" id="Item.tor_de_arm_bracers_infantry_001" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
+      <Equipment slot="Body" id="Item.tor_de_body_armor_witchelf_014" />
+      <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_sorcerer_001" />
+      <Equipment slot="Head" id="Item.tor_de_head_crown_supreme_sorceress_002" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_qnpc_eonir_envoy_spellsinger" culture="Culture.eonir">

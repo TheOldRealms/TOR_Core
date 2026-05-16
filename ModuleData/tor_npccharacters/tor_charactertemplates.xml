@@ -2101,9 +2101,9 @@
       <EquipmentSet id="tor_chaos_undivided_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_druchii_lord_0" default_group="cavalry" name="{=str_tor_druchii_lord_0}{DOESNTMATTER}" occupation="Lord" culture="Culture.druchii" voice="curt" age="30" race="elf" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_druchii_lord_0" default_group="cavalry" name="{=str_tor_druchii_lord_0}{DOESNTMATTER}" occupation="Lord" culture="Culture.druchii" voice="curt" age="30" race="elf" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false" is_female="true">
     <face>
-      <face_key_template value="BodyProperty.male_wood_elf" />
+      <face_key_template value="BodyProperty.female_wood_elf" />
     </face>
     <Traits>
       <Trait id="Mercy" value="-2" />
@@ -2117,9 +2117,9 @@
       <EquipmentSet id="tor_generic_druchii_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_druchii_lord_1" default_group="cavalry" name="{=str_tor_druchii_lord_1}{DOESNTMATTER}" occupation="Lord" culture="Culture.druchii" voice="curt" age="30" race="elf" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_druchii_lord_1" default_group="cavalry" name="{=str_tor_druchii_lord_1}{DOESNTMATTER}" occupation="Lord" culture="Culture.druchii" voice="curt" age="30" race="elf" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false" is_female="true">
     <face>
-      <face_key_template value="BodyProperty.male_wood_elf" />
+      <face_key_template value="BodyProperty.female_wood_elf" />
     </face>
     <Traits>
       <Trait id="Mercy" value="-2" />
@@ -2133,9 +2133,9 @@
       <EquipmentSet id="tor_generic_druchii_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_druchii_lord_2" default_group="cavalry" name="{=str_tor_druchii_lord_2}{DOESNTMATTER}" occupation="Lord" culture="Culture.druchii" voice="curt" age="30" race="elf" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_druchii_lord_2" default_group="cavalry" name="{=str_tor_druchii_lord_2}{DOESNTMATTER}" occupation="Lord" culture="Culture.druchii" voice="curt" age="30" race="elf" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false" is_female="true">
     <face>
-      <face_key_template value="BodyProperty.male_wood_elf" />
+      <face_key_template value="BodyProperty.female_wood_elf" />
     </face>
     <Traits>
       <Trait id="Mercy" value="-2" />
@@ -2421,9 +2421,9 @@
       <EquipmentSet id="tor_gs_orc_shaman_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eonir_druchii_envoy_0" default_group="infantry" name="{=str_tor_eonir_druchii_envoy_0}Witch King Envoy" occupation="Special" culture="Culture.eonir" voice="ironic" age="30" race="elf" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_eonir_druchii_envoy_0" default_group="infantry" name="{=str_tor_eonir_druchii_envoy_0}Witch King Envoy" occupation="Special" culture="Culture.eonir" voice="ironic" age="30" race="elf" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false" is_female="true">
     <face>
-      <face_key_template value="BodyProperty.male_wood_elf" />
+      <face_key_template value="BodyProperty.female_wood_elf" />
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />
