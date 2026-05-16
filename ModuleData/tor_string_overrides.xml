@@ -7,9 +7,9 @@
       <tag tag_name="IsOrcTag" />
     </tags>
   </string>
-  <string id="GAsVO8cZ.arena_master_tournament_meet_dwarf" text="{=str_tor_arena_master_tournament_meet_dwarf}Lookin' ta bash some 'eadz? Da fightin' pitz could use more boyz!">
+  <string id="GAsVO8cZ.arena_master_tournament_meet_dwarf" text="{=str_tor_arena_master_tournament_meet_dwarf}Welcome, lad, are you here for the Grozkazak?">
     <tags>
-      <tag tag_name="IsOrcTag" />
+      <tag tag_name="IsDwarfTag" />
     </tags>
   </string>
   <string id="rqFKxm24.arena_master_tournament_meet_2_orc" text="{=str_tor_arena_master_tournament_meet_2_orc}You lookin' for a fight? Well da pitz waitin' so get in there!">
