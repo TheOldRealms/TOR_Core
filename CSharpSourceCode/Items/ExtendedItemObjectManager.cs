@@ -1,3 +1,4 @@
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -115,15 +116,34 @@ namespace TOR_Core.Items
             else return character.Race == FaceGen.GetRaceOrDefault(info.RaceLock);
         }
 
-        public static void LoadXML()
+        /// <summary>
+        /// Loads an xml containing the extended ItemObject properties to be added or overwritten.
+        /// </summary>
+        /// <param name="filePath">A file path including the file type extension of the target xml.</param>
+        /// <param name="clearExistingMapping">Clears all prior keys from the dictionary; default is false.</param>
+        /// <remarks>
+        /// Loading an empty entry from xml for a given id will clear the prior properties.
+        /// </remarks>
+        public static void LoadXML(string filePath, bool clearExistingMapping = false)
         {
-            _itemToInfoMap.Clear();
-            _runtimeDuplicatedItemIds.Clear();
-
-            if (File.Exists(XMLPath))
+            if (clearExistingMapping)
             {
+                TORCommon.Log("ExtendedItemObjectManager : item object manager clearExistingMapping = true.\nFile path of caller : " + filePath, NLog.LogLevel.Info);
+                _itemToInfoMap.Clear();
+                _runtimeDuplicatedItemIds.Clear();
+            }
+
+            if (string.IsNullOrEmpty(filePath) == true)
+            {
+                TORCommon.Log("ExtendedItemObjectManager : empty file path passed, using TOR's default path", NLog.LogLevel.Info);
+                filePath = XMLPath;
+            }
+
+            if (File.Exists(filePath))
+            {
+                TORCommon.Log("ExtendedItemObjectManager : loading extended item properties from : " + filePath, LogLevel.Warn);
                 XmlSerializer ser = new XmlSerializer(typeof(List<ExtendedItemObjectProperties>));
-                using var stream = File.OpenRead(XMLPath);
+                using var stream = File.OpenRead(filePath);
 
                 List<ExtendedItemObjectProperties> list = ser.Deserialize(stream) as List<ExtendedItemObjectProperties>;
                 if (list != null && list.Count > 0)
@@ -133,6 +153,10 @@ namespace TOR_Core.Items
                         _itemToInfoMap[item.ItemStringId] = item;
                     }
                 }
+            }
+            else
+            {
+                TORCommon.Log("ExtendedItemObjectManager : No extended item info xml found at : " + filePath, LogLevel.Warn);
             }
         }
     }

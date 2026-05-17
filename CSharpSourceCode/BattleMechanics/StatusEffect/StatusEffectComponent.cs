@@ -1,3 +1,4 @@
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         private float _updateFrequency = 1;
         private float _deltaSinceLastTick = MBRandom.RandomFloatRanged(0, 0.1f);
         private Dictionary<StatusEffect, EffectData> _currentEffects;
+        private readonly Dictionary<string, StatusParticleVisualPoolEntry> _statusParticleVisualPool = new();
+        private const float STATUS_PARTICLE_POOL_DORMANT_SECONDS = 21f; // after this many seconds cache for attached particles will be cleared
         private EffectAggregate _effectAggregate;
         public bool ModifiedDrivenProperties;
         private bool _restoredBaseValues;
@@ -105,6 +108,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         }
 
         public bool HasActiveEffects => _currentEffects.Count > 0;
+        public bool NeedsStatusEffectTick => _currentEffects.Count > 0 || _statusParticleVisualPool.Count > 0;
 
         public override void OnAgentRemoved() => CleanUp();
 
@@ -151,13 +155,19 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
                     // Career ability charge is now applied once per session in FinalizeSession, not every tick
 
-                    Agent.ApplyDamage(damageValue, Agent.Position, applier, false, false);
-
-                    // Track DOT kill if the agent died
-                    if (effect != null && effect.CastId >= 0 && (Agent.Health <= 0 || Agent.State == AgentState.Killed || Agent.State == AgentState.Unconscious))
+                    var logic = Mission.Current?.GetMissionBehavior<AbilityManagerMissionLogic>();
+                    if (logic != null)
                     {
-                        var logic = Mission.Current?.GetMissionBehavior<AbilityManagerMissionLogic>();
-                        logic?.BookSpellKill(effect.CastId, Agent);
+                        logic.QueueStatusDotDamage(
+                            Agent,
+                            damageValue,
+                            Agent.Position,
+                            applier,
+                            effect?.CastId ?? -1);
+                    }
+                    else
+                    {
+                        Agent.ApplyDamage(damageValue, Agent.Position, applier, false, false);
                     }
                 }
                 else if (_effectAggregate.HealthOverTime > 0)
@@ -218,14 +228,44 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         public void OnTick(float dt)
         {
-            _deltaSinceLastTick += dt;
-            if (_deltaSinceLastTick > _updateFrequency)
+            if (_currentEffects.Count > 0)
             {
-                _deltaSinceLastTick = MBRandom.RandomFloatRanged(0, 0.1f);
-                OnElapsed(dt);
+                _deltaSinceLastTick += dt;
+                if (_deltaSinceLastTick > _updateFrequency)
+                {
+                    _deltaSinceLastTick = MBRandom.RandomFloatRanged(0, 0.1f);
+                    OnElapsed(dt);
+                }
             }
 
             UpdateDummyEntity(dt);
+
+            if (_statusParticleVisualPool.Count == 0)
+            {
+                return;
+            }
+
+            if (Agent == null || !Agent.IsActive() || Agent.IsFadingOut() || !Agent.HasUsableVisuals())
+            {
+                DestroyDormantStatusParticleVisuals();
+                return;
+            }
+
+            var currentMissionTime = Mission.Current?.CurrentTime ?? 0f;
+            foreach (var pair in _statusParticleVisualPool.ToList())
+            {
+                var poolEntry = pair.Value;
+                if (poolEntry == null ||
+                    poolEntry.IsInUse ||
+                    poolEntry.LastReleasedMissionTime < 0f ||
+                    currentMissionTime - poolEntry.LastReleasedMissionTime < STATUS_PARTICLE_POOL_DORMANT_SECONDS)
+                {
+                    continue;
+                }
+
+                DestroyStatusParticleVisuals(poolEntry);
+                _statusParticleVisualPool.Remove(pair.Key);
+            }
         }
 
         private void UpdateDummyEntity(float dt)
@@ -237,41 +277,454 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
             _dummyEntity.SetGlobalFrame(new MatrixFrame(_dummyEntity.GetFrame().rotation, Agent.GetChestGlobalPosition()));
         }
-
-        private void RemoveEffect(StatusEffect effect, bool refreshStatusState = true)
+        private EffectData CreateAttachedStatusParticleData(StatusEffect effect, string particleId)
         {
-            EffectData data = _currentEffects[effect];
-            bool visualsUsable = Agent != null && Agent.HasUsableVisuals();
+            var particles = new List<ParticleSystem>();
+            var entities = new List<GameEntity>();
+            var particleBoneIndexes = new List<sbyte>();
 
-            if (data.Entities != null)
+            bool hasVisibleParticle =
+                !string.IsNullOrWhiteSpace(particleId) &&
+                !particleId.Equals("none", StringComparison.OrdinalIgnoreCase);
+
+            if (!hasVisibleParticle || Agent == null || !Agent.HasUsableVisuals())
             {
-                foreach (var entity in data.Entities)
+                return new EffectData(effect, particles, entities, particleBoneIndexes, GetAttachedVisualSkeleton());
+            }
+
+            var poolEntry = AcquireStatusParticleVisuals(
+                particleId,
+                effect.Template.ParticleIntensity,
+                effect.Template.ApplyToRootBoneOnly);
+
+            if (poolEntry != null)
+            {
+                return new EffectData(
+                    effect,
+                    poolEntry.Particles,
+                    poolEntry.Entities,
+                    poolEntry.ParticleBoneIndexes,
+                    poolEntry.AttachedSkeleton,
+                    poolEntry);
+            }
+
+            return CreateUnpooledStatusParticleData(effect, particleId);
+        }
+
+        private StatusParticleVisualPoolEntry AcquireStatusParticleVisuals(string particleId, TORParticleSystem.ParticleIntensity intensity, bool rootOnly)
+        {
+            if (intensity == TORParticleSystem.ParticleIntensity.Undefined)
+            {
+                return null;
+            }
+
+            var poolKey = GetStatusParticleVisualPoolKey(particleId, intensity, rootOnly);
+            if (!_statusParticleVisualPool.TryGetValue(poolKey, out var poolEntry))
+            {
+                poolEntry = CreateStatusParticleVisuals(particleId, intensity, rootOnly);
+                if (poolEntry == null)
                 {
-                    if (entity == null)
+                    return null;
+                }
+
+                _statusParticleVisualPool.Add(poolKey, poolEntry);
+            }
+            else
+            {
+                if (poolEntry.IsInUse)
+                {
+                    return null;
+                }
+
+                var currentMissionTime = Mission.Current?.CurrentTime ?? 0f;
+                bool dormantPoolEntryExpired =
+                    poolEntry.LastReleasedMissionTime >= 0f &&
+                    currentMissionTime - poolEntry.LastReleasedMissionTime >= STATUS_PARTICLE_POOL_DORMANT_SECONDS;
+
+                if (dormantPoolEntryExpired || !IsStatusParticleVisualPoolEntryUsable(poolEntry))
+                {
+                    DestroyStatusParticleVisuals(poolEntry);
+                    poolEntry = CreateStatusParticleVisuals(particleId, intensity, rootOnly);
+                    if (poolEntry == null)
                     {
-                        continue;
+                        _statusParticleVisualPool.Remove(poolKey);
+                        return null;
                     }
 
-                    if (data.IsParticleAttachedToAgentSkeleton)
-                    {
-                        if (!visualsUsable)
-                        {
-                            continue;
-                        }
-
-                    entity.FadeOut(1, true);
-                    entity.RemoveAllParticleSystems();
-                    // attached effect outliving the ownin visuals, only detach through AgentVisuals while that object is still safe
-                    Agent.TryRemoveChildEntity(entity);
-                    }
-                    else
-                    {
-                        entity.RemoveAllParticleSystems();
-                        entity.Remove(0);
-                    }
+                    _statusParticleVisualPool[poolKey] = poolEntry;
                 }
             }
 
+            poolEntry.IsInUse = true;
+            poolEntry.LastReleasedMissionTime = -1f;
+            EnableStatusParticleVisuals(poolEntry, true);
+            return poolEntry;
+        }
+
+        private EffectData CreateUnpooledStatusParticleData(StatusEffect effect, string particleId)
+        {
+            var particles = TORParticleSystem.ApplyParticleToAgent(
+                Agent,
+                particleId,
+                out var entities,
+                out var particleBoneIndexes,
+                effect.Template.ParticleIntensity,
+                effect.Template.ApplyToRootBoneOnly);
+
+            if (particles.Count == 0)
+            {
+                foreach (var entity in entities)
+                {
+                    entity?.RemoveAllParticleSystems();
+                    entity?.Remove(0);
+                }
+
+                entities.Clear();
+                particleBoneIndexes.Clear();
+            }
+
+            return new EffectData(effect, particles, entities, particleBoneIndexes, GetAttachedVisualSkeleton());
+        }
+
+        private StatusParticleVisualPoolEntry CreateStatusParticleVisuals(
+            string particleId,
+            TORParticleSystem.ParticleIntensity intensity,
+            bool rootOnly)
+        {
+            var particles = TORParticleSystem.ApplyParticleToAgent(
+                Agent,
+                particleId,
+                out var entities,
+                out var particleBoneIndexes,
+                intensity,
+                rootOnly);
+
+            if (particles.Count == 0)
+            {
+                foreach (var entity in entities)
+                {
+                    entity?.RemoveAllParticleSystems();
+                    entity?.Remove(0);
+                }
+
+                return null;
+            }
+
+            return new StatusParticleVisualPoolEntry(
+                particleId,
+                intensity,
+                rootOnly,
+                particles,
+                entities,
+                particleBoneIndexes,
+                GetAttachedVisualSkeleton());
+        }
+
+        private static string GetStatusParticleVisualPoolKey(
+            string particleId,
+            TORParticleSystem.ParticleIntensity intensity,
+            bool rootOnly)
+        {
+            return particleId.Trim().ToLowerInvariant() + "|" + intensity + "|root=" + rootOnly;
+        }
+
+        private static void EnableStatusParticleVisuals(StatusParticleVisualPoolEntry poolEntry, bool enable)
+        {
+            foreach (var particle in poolEntry.Particles)
+            {
+                if (particle == null)
+                {
+                    continue;
+                }
+
+                particle.SetRuntimeEmissionRateMultiplier(enable ? 1f : 0f);
+                particle.SetEnable(enable);
+
+                if (enable)
+                {
+                    particle.Restart();
+                }
+            }
+        }
+
+        private static bool IsStatusParticleVisualPoolEntryUsable(StatusParticleVisualPoolEntry poolEntry)
+        {
+            if (poolEntry == null ||
+                poolEntry.AttachedSkeleton == null ||
+                !poolEntry.AttachedSkeleton.IsValid ||
+                poolEntry.Particles == null ||
+                poolEntry.ParticleBoneIndexes == null ||
+                poolEntry.Particles.Count == 0 ||
+                poolEntry.Particles.Count != poolEntry.ParticleBoneIndexes.Count)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < poolEntry.Particles.Count; i++)
+            {
+                var particle = poolEntry.Particles[i];
+                if (particle == null ||
+                    !poolEntry.AttachedSkeleton.HasBoneComponent(poolEntry.ParticleBoneIndexes[i], particle))
+                {
+                    return false;
+                }
+            }
+
+            int pairedVisualCount = Math.Min(poolEntry.Particles.Count, poolEntry.Entities?.Count ?? 0);
+            for (int i = 0; i < pairedVisualCount; i++)
+            {
+                var particle = poolEntry.Particles[i];
+                var entity = poolEntry.Entities[i];
+                if (particle != null && entity != null && !entity.HasComponent(particle))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private void ReleaseStatusParticleVisuals(StatusParticleVisualPoolEntry poolEntry)
+        {
+            if (poolEntry == null)
+            {
+                return;
+            }
+
+            EnableStatusParticleVisuals(poolEntry, false);
+            poolEntry.IsInUse = false;
+            poolEntry.LastReleasedMissionTime = Mission.Current?.CurrentTime ?? 0f;
+        }
+
+        private void DestroyDormantStatusParticleVisuals()
+        {
+            foreach (var poolEntry in _statusParticleVisualPool.Values)
+            {
+                DestroyStatusParticleVisuals(poolEntry);
+            }
+
+            _statusParticleVisualPool.Clear();
+        }
+
+        private void DestroyStatusParticleVisuals(StatusParticleVisualPoolEntry poolEntry)
+        {
+            if (poolEntry == null)
+            {
+                return;
+            }
+
+            var skeleton = poolEntry.AttachedSkeleton;
+            if (skeleton == null || !skeleton.IsValid)
+            {
+                skeleton = GetAttachedVisualSkeleton();
+            }
+
+            for (int i = 0; i < poolEntry.Particles.Count; i++)
+            {
+                var particle = poolEntry.Particles[i];
+                if (particle == null)
+                {
+                    continue;
+                }
+
+                particle.SetRuntimeEmissionRateMultiplier(0f);
+                particle.SetEnable(false);
+
+                bool removedFromRegisteredBone = false;
+                if (skeleton != null &&
+                    skeleton.IsValid &&
+                    i < poolEntry.ParticleBoneIndexes.Count)
+                {
+                    var boneIndex = poolEntry.ParticleBoneIndexes[i];
+                    if (skeleton.HasBoneComponent(boneIndex, particle))
+                    {
+                        skeleton.RemoveBoneComponent(boneIndex, particle);
+                        removedFromRegisteredBone = true;
+                    }
+                }
+
+                if (!removedFromRegisteredBone)
+                {
+                    TORParticleSystem.RemoveParticleFromAgentBone(Agent, particle);
+                }
+            }
+
+            int pairedVisualCount = Math.Min(poolEntry.Particles.Count, poolEntry.Entities.Count);
+            for (int i = 0; i < pairedVisualCount; i++)
+            {
+                var particle = poolEntry.Particles[i];
+                var entity = poolEntry.Entities[i];
+
+                if (particle != null && entity != null && entity.HasComponent(particle))
+                {
+                    entity.RemoveComponent(particle);
+                }
+            }
+
+            bool canDetachFromAgentVisuals = Agent != null && Agent.HasUsableVisuals();
+            foreach (var entity in poolEntry.Entities)
+            {
+                if (entity == null)
+                {
+                    continue;
+                }
+
+                entity.RemoveAllParticleSystems();
+
+                if (canDetachFromAgentVisuals && Agent.TryRemoveChildEntity(entity))
+                {
+                    continue;
+                }
+
+                entity.Remove(0);
+            }
+
+            poolEntry.Particles.Clear();
+            poolEntry.Entities.Clear();
+            poolEntry.ParticleBoneIndexes.Clear();
+            poolEntry.IsInUse = false;
+        }
+
+        private void RemoveVisuals(EffectData data)
+        {
+            if (data == null)
+            {
+                return;
+            }
+
+            if (data.PoolEntry != null)
+            {
+                ReleaseStatusParticleVisuals(data.PoolEntry);
+                return;
+            }
+
+            if (data.IsParticleAttachedToAgentSkeleton)
+            {
+                RemoveAttachedParticlesFromAgentSkeleton(data);
+                RemoveAttachedParticlesFromCarrierEntities(data);
+            }
+
+            if (data.Entities == null)
+            {
+                return;
+            }
+
+            bool canDetachFromAgentVisuals = Agent != null && Agent.HasUsableVisuals();
+
+            foreach (var entity in data.Entities)
+            {
+                if (entity == null)
+                {
+                    continue;
+                }
+
+                entity.RemoveAllParticleSystems();
+
+                if (data.IsParticleAttachedToAgentSkeleton &&
+                    canDetachFromAgentVisuals &&
+                    Agent.TryRemoveChildEntity(entity))
+                {
+                    continue;
+                }
+
+                entity.Remove(0);
+            }
+        }
+
+        private void RemoveAttachedParticlesFromAgentSkeleton(EffectData data)
+        {
+            if (data?.Particles == null ||
+                !data.IsParticleAttachedToAgentSkeleton)
+            {
+                return;
+            }
+
+            var skeleton = data.AttachedSkeleton;
+            if (skeleton == null || !skeleton.IsValid)
+            {
+                skeleton = GetAttachedVisualSkeleton();
+            }
+
+            for (int i = 0; i < data.Particles.Count; i++)
+            {
+                var particle = data.Particles[i];
+                if (particle == null)
+                {
+                    continue;
+                }
+
+                particle.SetRuntimeEmissionRateMultiplier(0f);
+                particle.SetEnable(false);
+
+                bool removedFromRegisteredBone = false;
+                if (skeleton != null &&
+                    skeleton.IsValid &&
+                    data.ParticleBoneIndexes != null &&
+                    i < data.ParticleBoneIndexes.Count)
+                {
+                    var boneIndex = data.ParticleBoneIndexes[i];
+                    if (skeleton.HasBoneComponent(boneIndex, particle))
+                    {
+                        skeleton.RemoveBoneComponent(boneIndex, particle);
+                        removedFromRegisteredBone = true;
+                    }
+                }
+
+                if (!removedFromRegisteredBone)
+                {
+                    TORParticleSystem.RemoveParticleFromAgentBone(Agent, particle);
+                }
+            }
+        }
+        private void RemoveAttachedParticlesFromCarrierEntities(EffectData data)
+        {
+            if (data?.Particles == null ||
+                data.Entities == null ||
+                !data.IsParticleAttachedToAgentSkeleton)
+            {
+                return;
+            }
+
+            int pairedVisualCount = Math.Min(data.Particles.Count, data.Entities.Count);
+
+            for (int i = 0; i < pairedVisualCount; i++)
+            {
+                var particle = data.Particles[i];
+                var carrierEntity = data.Entities[i];
+
+                if (particle == null)
+                {
+                    continue;
+                }
+
+                particle.SetRuntimeEmissionRateMultiplier(0f);
+                particle.SetEnable(false);
+
+                if (carrierEntity != null && carrierEntity.HasComponent(particle))
+                {
+                    carrierEntity.RemoveComponent(particle);
+                }
+            }
+        }
+
+        private Skeleton GetAttachedVisualSkeleton()
+        {
+            if (Agent == null || !Agent.HasUsableVisuals())
+            {
+                return null;
+            }
+
+            var skeleton = Agent.AgentVisuals.GetSkeleton();
+            return skeleton != null && skeleton.IsValid ? skeleton : null;
+        }
+      
+        private void RemoveEffect(StatusEffect effect, bool refreshStatusState = true)
+        {
+            if (!_currentEffects.TryGetValue(effect, out var data))
+            {
+                return;
+            }
+            RemoveVisuals(data);
             _currentEffects.Remove(effect);
 
             if (!data.IsParticleAttachedToAgentSkeleton)
@@ -488,15 +941,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             }
             else
             {
-                List<GameEntity> entities;
-                List<ParticleSystem> particles = TORParticleSystem.ApplyParticleToAgent(
-                    Agent,
-                    effect.Template.ParticleId,
-                    out entities,
-                    effect.Template.ParticleIntensity,
-                    effect.Template.ApplyToRootBoneOnly);
-
-                data = new EffectData(effect, particles, entities);
+                data = CreateAttachedStatusParticleData(effect, particleId);
+                data.IsParticleAttachedToAgentSkeleton = true;
             }
 
             _currentEffects.Add(effect, data);
@@ -512,10 +958,12 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         {
             foreach (var item in _currentEffects.ToList())
             {
-                RemoveEffect(item.Key, false);
+                RemoveVisuals(item.Value);
             }
 
             _currentEffects.Clear();
+            DestroyDormantStatusParticleVisuals();
+
             _effectAggregate = null;
             _dummyEntity?.RemoveAllChildren();
             _dummyEntity?.Remove(0);
@@ -528,21 +976,63 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             CleanUp();
         }
 
+        private sealed class StatusParticleVisualPoolEntry
+        {
+            public StatusParticleVisualPoolEntry(
+                string particleId,
+                TORParticleSystem.ParticleIntensity intensity,
+                bool rootOnly,
+                List<ParticleSystem> particles,
+                List<GameEntity> entities,
+                List<sbyte> particleBoneIndexes,
+                Skeleton attachedSkeleton)
+            {
+                ParticleId = particleId;
+                Intensity = intensity;
+                RootOnly = rootOnly;
+                Particles = particles ?? new List<ParticleSystem>();
+                Entities = entities ?? new List<GameEntity>();
+                ParticleBoneIndexes = particleBoneIndexes ?? new List<sbyte>();
+                AttachedSkeleton = attachedSkeleton;
+            }
+
+            public string ParticleId { get; }
+            public TORParticleSystem.ParticleIntensity Intensity { get; }
+            public bool RootOnly { get; }
+            public List<ParticleSystem> Particles { get; }
+            public List<GameEntity> Entities { get; }
+            public List<sbyte> ParticleBoneIndexes { get; }
+            public Skeleton AttachedSkeleton { get; }
+            public bool IsInUse { get; set; }
+            public float LastReleasedMissionTime { get; set; } = -1f;
+        }
+
         private class EffectData
         {
-            public EffectData(StatusEffect effect, List<ParticleSystem> particles, List<GameEntity> entities)
+            public EffectData(
+                StatusEffect effect,
+                List<ParticleSystem> particles,
+                List<GameEntity> entities,
+                List<sbyte> particleBoneIndexes = null,
+                Skeleton attachedSkeleton = null,
+                StatusParticleVisualPoolEntry poolEntry = null)
             {
                 Effect = effect;
                 Particles = particles;
                 Entities = entities;
+                ParticleBoneIndexes = particleBoneIndexes ?? new List<sbyte>();
+                AttachedSkeleton = attachedSkeleton;
+                PoolEntry = poolEntry;
             }
 
             public List<ParticleSystem> Particles { get; set; }
             public List<GameEntity> Entities { get; set; }
+            public List<sbyte> ParticleBoneIndexes { get; set; }
+            public Skeleton AttachedSkeleton { get; set; }
             public StatusEffect Effect { get; set; }
+            public StatusParticleVisualPoolEntry PoolEntry { get; set; }
             public bool IsParticleAttachedToAgentSkeleton { get; set; } = true;
         }
-
         private class EffectAggregate
         {
             public float WindsOverTime { get; set; } = 0;

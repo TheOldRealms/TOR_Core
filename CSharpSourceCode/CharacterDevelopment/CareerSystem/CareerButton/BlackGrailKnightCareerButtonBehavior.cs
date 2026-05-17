@@ -97,8 +97,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 }
             }
 
-            var pendingResources = CustomResourceManager.GetPendingResources();
-            if (!pendingResources.IsEmpty() && pendingResources[Hero.MainHero.GetCultureSpecificCustomResource()] + ExchangeCost > Hero.MainHero.GetCultureSpecificCustomResourceValue())
+            var darkEnergyResource = Hero.MainHero.GetCultureSpecificCustomResource();
+            var pendingDarkEnergyCost = CustomResourceManager.GetPendingFor(darkEnergyResource.StringId);
+            if (pendingDarkEnergyCost + ExchangeCost > Hero.MainHero.GetCultureSpecificCustomResourceValue())
             {
                 var requiresText = TORTextHelper.GetTextObject("tor_black_grail_requires_text", "Requires atleast {EXCHANGE_COST} {DARK_ENERGY_ICON}");
                 requiresText.SetTextVariable("EXCHANGE_COST", ExchangeCost);

@@ -34,7 +34,7 @@ namespace TOR_Core.Models
         //the % of an item's value that the AI gets when it liquidates looted equipment after winning a battle, ish
         public override float GetAITradePenalty()
         {
-            return 0.3f;
+            return 0.1f;
         }
 
 

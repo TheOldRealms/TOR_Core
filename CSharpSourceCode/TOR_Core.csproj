@@ -700,6 +700,7 @@
     <Compile Include="Extensions\TeamExtensions.cs" />
     <Compile Include="Extensions\UI\BaseViewModelExtension.cs" />
     <Compile Include="Extensions\UI\CraftingVMExtension.cs" />
+    <Compile Include="Extensions\UI\ConversationItemVMExtension.cs" />
     <Compile Include="Extensions\UI\HeroEncyclopediaVMExtension.cs" />
     <Compile Include="Extensions\UI\MissionConversationVMExtension.cs" />
     <Compile Include="Extensions\UI\PartyCharacterVMExtension.cs" />
@@ -715,6 +716,7 @@
     <Compile Include="GameManagers\TORGameKeyContext.cs" />
     <Compile Include="GameManagers\TORKeyInputManager.cs" />
     <Compile Include="GameManagers\TORShaderGameManager.cs" />
+    <Compile Include="HarmonyPatches\NotablesCampaignBehaviorPatches.cs" />
     <Compile Include="HarmonyPatches\AgentPatches.cs" />
     <Compile Include="HarmonyPatches\ArenaPracticePatch.cs" />
     <Compile Include="HarmonyPatches\MapEventJoinRestrictionsPatch.cs" />

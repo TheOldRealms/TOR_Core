@@ -172,7 +172,7 @@ namespace TOR_Core.Items
             //no invis entities
             foreach (var particle in presetState.Particles)
             {
-                particle?.SetEnable(false);
+                TORParticleSystem.RemoveParticleFromAgentBone(Agent, particle);
             }
 
             foreach (var entity in presetState.ChildEntities)

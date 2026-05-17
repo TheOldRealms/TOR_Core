@@ -262,6 +262,27 @@ namespace TOR_Core.AbilitySystem.Scripts
         {
             return _sound != null && _sound.IsValid && _sound.IsPlaying();
         }
+        private void StopOrReleaseSpellSound()
+        {
+            if (_sound == null)
+            {
+                return;
+            }
+
+            if (_sound.IsValid)
+            {
+                if (_sound.IsPlaying())
+                {
+                    _sound.Stop();
+                }
+                else
+                {
+                    _sound.Release();
+                }
+            }
+
+            _sound = null;
+        }
 
         protected virtual bool CollidedWithAgent()
         {
@@ -349,8 +370,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             }
 
             OnBeforeRemoved(removeReason);
-            _sound?.Release();
-            _sound = null;
+            StopOrReleaseSpellSound();
             _ability = null;
             _entity = null;
             _casterAgent = null;

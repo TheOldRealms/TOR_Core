@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <EquipmentRosters>
   <EquipmentRoster id="tor_empire_villager_template" culture="Culture.empire">
     <EquipmentSet>
@@ -6911,7 +6911,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_we_weapon_2h_axe_001" />
-      <Equipment slot="Head" id="Item.tor_we_head_hood_ranger_005" />
+      <Equipment slot="Head" id="Item.tor_we_head_hood_ranger_001" />
       <Equipment slot="Body" id="Item.tor_we_body_armor_ranger_001" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
@@ -6921,7 +6921,7 @@
   <EquipmentRoster id="tor_we_wildwood_warden_template" culture="Culture.battania">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_we_weapon_2h_axe_001" />
-      <Equipment slot="Head" id="Item.tor_we_head_hood_ranger_003" />
+      <Equipment slot="Head" id="Item.tor_we_head_mask_eternalguard_001" />
       <Equipment slot="Body" id="Item.tor_we_body_armor_ranger_001" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
@@ -6929,7 +6929,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_we_weapon_2h_axe_001" />
-      <Equipment slot="Head" id="Item.tor_we_head_hood_ranger_003" />
+      <Equipment slot="Head" id="Item.tor_we_head_mask_eternalguard_001" />
       <Equipment slot="Body" id="Item.tor_we_body_armor_ranger_001" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
