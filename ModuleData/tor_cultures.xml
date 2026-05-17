@@ -5939,7 +5939,7 @@
 		basic_troop="NPCCharacter.tor_bandit_norscan_raider"
 		is_bandit="true"
 		can_have_settlement="true"
-		encounter_background_mesh="bandit_encounter_background"
+		encounter_background_mesh="norsca_raiders_encounter"
 		bandit_boss_party_template="PartyTemplate.norscan_sea_raider_bandit_party"
 		default_stealth_equipment_roster="EquipmentRoster.default_stealth_equipment_roster">
 		<banner_bearer_replacement_weapons>
@@ -5979,7 +5979,7 @@
 		basic_troop="NPCCharacter.tor_gs_bandit_raider"
 		is_bandit="true"
 		can_have_settlement="true"
-		encounter_background_mesh="bretonnia_bandits"
+		encounter_background_mesh="orc_raiders_encounter"
 		bandit_boss_party_template="PartyTemplate.greenskin_bandit_template"
 		default_stealth_equipment_roster="EquipmentRoster.default_stealth_equipment_roster">
 		<banner_bearer_replacement_weapons>
