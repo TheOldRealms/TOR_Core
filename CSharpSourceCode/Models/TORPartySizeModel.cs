@@ -28,15 +28,15 @@ namespace TOR_Core.Models
 
             var num = base.GetPartyMemberSizeLimit(party, includeDescriptions);
 
-            var partyCulture = party.MobileParty?.ActualClan?.Culture ?? party.Culture;
+            var partyCulture = GetPartyCultureForPartySize(party);
 
-            if (partyCulture.StringId == TORConstants.Cultures.SYLVANIA)
+            if (partyCulture?.StringId == TORConstants.Cultures.SYLVANIA)
             {
                 if (party.LeaderHero != null && party.LeaderHero.IsHumanPlayerCharacter)
                 {
                     num.Add(20, TORTextHelper.GetTextObject("tor_party_size_desc", "FriendOfUndead", "Friend of undead"));
                 }
-                else if (party.MobileParty.IsCaravan)
+                else if (party.IsMobile && party.MobileParty.IsCaravan)
                 {
                     num.Add(50, TORTextHelper.GetTextObject("tor_party_size_desc", "CaravanOfDeath", "Caravan of death"));
                 }
@@ -57,7 +57,7 @@ namespace TOR_Core.Models
                 }
             }
 
-            if (partyCulture.StringId == TORConstants.Cultures.GREENSKIN &&
+            if (partyCulture?.StringId == TORConstants.Cultures.GREENSKIN &&
                 party.IsMobile &&
                 party.LeaderHero != Hero.MainHero)
             {
@@ -79,12 +79,12 @@ namespace TOR_Core.Models
                 AddCareerPassivesForPartySize(Hero.MainHero, party, ref num);
             }
 
-            if (partyCulture.StringId == TORConstants.Cultures.DAWI)
+            if (partyCulture?.StringId == TORConstants.Cultures.DAWI)
             {
                 num.AddFactor(-0.25f, TORTextHelper.GetTextObject("tor_party_size_desc", "DwarfPenalty", "Dwarf cultural penalty"));
             }
 
-            if (partyCulture.StringId == TORConstants.Cultures.ASRAI)
+            if (partyCulture?.StringId == TORConstants.Cultures.ASRAI)
             {
                 num.AddFactor(-0.25f, TORTextHelper.GetTextObject("tor_party_size_desc", "WoodelfPenalty", "Woodelf cultural penalty"));
 
@@ -132,7 +132,20 @@ namespace TOR_Core.Models
 
             return compositeNum;
         }
+        private static CultureObject GetPartyCultureForPartySize(PartyBase party)
+        {
+            if (party.IsMobile)
+            {
+                var mobileParty = party.MobileParty;
 
+                return mobileParty.ActualClan?.Culture
+                    ?? mobileParty.HomeSettlement?.Culture
+                    ?? mobileParty.LeaderHero?.Culture
+                    ?? mobileParty.Owner?.Culture
+                    ?? mobileParty.MapFaction?.Culture;
+            }
+            return party.Settlement?.Culture ?? party.MapFaction?.Culture;
+        }
         public override TroopRoster FindAppropriateInitialRosterForMobileParty(MobileParty party, PartyTemplateObject partyTemplate)
         {
             if (!party.IsRaidingParty()) return base.FindAppropriateInitialRosterForMobileParty(party, partyTemplate);
