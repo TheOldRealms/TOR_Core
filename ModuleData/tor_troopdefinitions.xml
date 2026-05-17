@@ -829,7 +829,7 @@
       <EquipmentSet id="tor_br_quest_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_grail_knight" default_group="cavalry" level="46" name="{=str_tor_br_grail_knight}Bretonnian Grail Knight" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level46" race="bretonnian">
+  <NPCCharacter id="tor_br_grail_knight" default_group="cavalry" level="46" name="{=str_tor_br_grail_knight}Bretonnian Grail Knight" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level46" race="bretonnian" ext_UpgradeCost="800">
     <face>
       <face_key_template value="BodyProperty.bretonnianknight" />
     </face>
@@ -1156,7 +1156,7 @@
       <EquipmentSet id="tor_we_glade_guard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_kings_bowman" default_group="ranged" level="21" name="{=str_tor_we_kings_bowman}Asrai Kings Bowman" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" race="elf">
+  <NPCCharacter id="tor_we_kings_bowman" default_group="ranged" level="21" name="{=str_tor_we_kings_bowman}Asrai Kings Bowman" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" race="elf" ext_ResourceType="ForestHarmony" ext_UpgradeCost="5">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1168,7 +1168,7 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_we_glade_guard_template" />
+      <EquipmentSet id="tor_we_kings_bowman_template" />
       <EquipmentSet id="tor_we_glade_guard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
@@ -1190,7 +1190,7 @@
       <EquipmentSet id="tor_we_eternal_guard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_eternal_warden" default_group="infantry" level="21" name="{=str_tor_we_eternal_warden}Asrai Eternal Warden" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" race="elf">
+  <NPCCharacter id="tor_we_eternal_warden" default_group="infantry" level="21" name="{=str_tor_we_eternal_warden}Asrai Eternal Warden" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" race="elf" ext_ResourceType="ForestHarmony" ext_UpgradeCost="5">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1259,7 +1259,7 @@
       <EquipmentSet id="tor_we_scout_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_deepwood_scout" default_group="ranged" level="16" name="{=str_tor_we_deepwood_scout}Asrai Deepwood Scout" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level16" race="elf">
+  <NPCCharacter id="tor_we_deepwood_scout" default_group="ranged" level="16" name="{=str_tor_we_deepwood_scout}Asrai Deepwood Scout" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level16" race="elf" ext_ResourceType="ForestHarmony" ext_UpgradeCost="5">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>

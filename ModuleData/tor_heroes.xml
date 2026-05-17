@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <Heroes>
   <Hero id="main_hero" faction="Faction.player_faction" />
   <Hero id="tor_emp_lord_averland_factionleader" faction="Faction.averland_clan_1" text="{=str_encyclopedia_tor_emp_lord_averland_factionleader}Also known as the Mad Count of Averland, Marius Leitdorf is one of the most eccentric Elector Counts the Empire has seen so far. His emotions vary erratically, from bouts of incoherent screaming and babbling to long fits of depression. Don’t let this trick you however, as he is one of the best swordsmen and tacticians the empire has seen, after seeing him in battle, you will know why he is trusted by Karl Franz… just remember to not mention bees or fishmen around him." />
