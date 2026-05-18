@@ -740,17 +740,17 @@ namespace TOR_Core.Models
                     }
                 }
 
-                if (Hero.MainHero.HasCareer(TORCareers.ImperialMagister)) //Sly : penalizes all mages in party, don't care because it requires off-culture companions to occur - idk what the description is for powerstones
+                if (Hero.MainHero.HasCareer(TORCareers.ImperialMagister))
                 {
                     var stoneBehavior =
                         CareerButtons.Instance.GetCareerButton(TORCareers.ImperialMagister) as
                             ImperialMagisterCareerButtonBehavior;
 
-                    var powerstones = stoneBehavior.GetAllPowerstones();
-
-                    var reserved = powerstones.Sum(pair => (pair.Upkeep));
-
-                    explainedNumber.Add(-reserved);
+                    var powerstone = stoneBehavior?.GetPowerstone(baseCharacter);
+                    if (powerstone != null)
+                    {
+                        explainedNumber.Add(-powerstone.Upkeep);
+                    }
                 }
             }
 
@@ -910,19 +910,16 @@ namespace TOR_Core.Models
                         }
                     }
 
-                    if (hero.PartyBelongedTo == MobileParty.MainParty)
+                    if (hero.PartyBelongedTo == MobileParty.MainParty && hero != Hero.MainHero && hero.IsImperialMagister())
                     {
-                        if (MobileParty.MainParty.LeaderHero.HasAnyCareer())
+                        if (Hero.MainHero.HasCareerChoice("AncientScrollsPassive4"))
                         {
-                            if (Hero.MainHero.HasCareerChoice("AncientScrollsPassive4"))
-                            {
-                                damageAmplifications[damageTypeIndex] += 0.2f;
-                            }
+                            damageAmplifications[damageTypeIndex] += 0.2f;
+                        }
 
-                            if (Hero.MainHero.HasCareerChoice("ArcaneKnowledgePassive1") && hero != Hero.MainHero)
-                            {
-                                damageAmplifications[damageTypeIndex] += 0.1f;
-                            }
+                        if (Hero.MainHero.HasCareerChoice("ArcaneKnowledgePassive1"))
+                        {
+                            damageAmplifications[damageTypeIndex] += 0.1f;
                         }
                     }
 
