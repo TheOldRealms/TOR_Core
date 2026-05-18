@@ -5712,4 +5712,5 @@
   <string id="str_formation_ai_behavior_text.TORBehaviorProtectArtillery" text="{=str_tor_formation_ai_behavior_text_torbehaviorprotectartillery}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are protecting artillery." />
   <string id="str_formation_ai_behavior_text.TORBehaviorRetreat" text="{=str_tor_formation_ai_behavior_text_torbehaviorretreat}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are retreating." />
   <string id="str_formation_ai_behavior_text.TORBehaviorSkirmish" text="{=str_tor_formation_ai_behavior_text_torbehaviorskirmish}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are skirmishing." />
+  <string id="str_formation_ai_sergeant_instruction_behaviour_text.TORBehaviorCharge" text="{=str_formation_ai_sergeant_instruction_behaviour_text.torbehaviorcharge}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are Charging." />
 </strings>
