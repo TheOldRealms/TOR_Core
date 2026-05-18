@@ -1345,6 +1345,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
         {
             var basicRanger = MBObjectManager.Instance.GetObject<CharacterObject>("tor_dw_ranger");
             var veteranRanger = MBObjectManager.Instance.GetObject<CharacterObject>("tor_dw_ol_deadeye");
+            var bugmanRanger = MBObjectManager.Instance.GetObject<CharacterObject>("tor_ror_bugman_ranger");
             if (basicRanger == null) return;
 
             GiveGoldAction.ApplyBetweenCharacters(Hero.MainHero, null, RangerGoldCost);
@@ -1353,10 +1354,21 @@ public class OathGoldBehavior : CampaignBehaviorBase
             // Recruit 4 rangers
             for (int i = 0; i < 4; i++)
             {
-                // Level II and III have 30% chance for veteran rangers
-                if ((Hero.MainHero.HasAttribute("DwarfBrewersII") || Hero.MainHero.HasAttribute("DwarfBrewersIII")) && veteranRanger != null)
+                // Level II and III have 30% chance for veteran rangers and 15% for bugman rangers
+                if (Hero.MainHero.HasAttribute("DwarfBrewersII") || Hero.MainHero.HasAttribute("DwarfBrewersIII"))
                 {
-                    var ranger = MBRandom.RandomFloat < 0.3f ? veteranRanger : basicRanger;
+                    var roll = MBRandom.RandomFloat;
+                    var ranger = basicRanger;
+
+                    if (bugmanRanger != null && roll < 0.15f)
+                    {
+                        ranger = bugmanRanger;
+                    }
+                    else if (veteranRanger != null && roll < 0.45f)
+                    {
+                        ranger = veteranRanger;
+                    }
+
                     MobileParty.MainParty.MemberRoster.AddToCounts(ranger, 1);
                 }
                 else

@@ -26,6 +26,14 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public static class MissionPatches
     {
+        private static readonly FieldInfo SimulationFormationTempField = AccessTools.Field(typeof(Formation), "_simulationFormationTemp");
+        private static readonly FieldInfo SimulationFormationUniqueIdentifierField = AccessTools.Field(typeof(Formation), "_simulationFormationUniqueIdentifier");
+
+        private static void ClearFormationSpawnSimulationCache()
+        {
+            SimulationFormationTempField.SetValue(null, null);
+            SimulationFormationUniqueIdentifierField.SetValue(null, -1);
+        }
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(CampaignAgentComponent), "OwnerParty", MethodType.Getter)]
@@ -91,7 +99,9 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch("ScriptingInterfaceOfIMBMission", "InitializeMission")]
         public static void SetSceneAtmosphere(ref MissionInitializerRecord rec)
         {
-            if (rec.SceneName.Contains("atmo_w_night") )
+            ClearFormationSpawnSimulationCache();
+
+            if (rec.SceneName.Contains("atmo_w_night"))
             {
                 rec.PlayingInCampaignMode = false;
                 rec.AtmosphereOnCampaign = default;

@@ -585,7 +585,7 @@ namespace TOR_Core.Models
 
             if (isMount)
             {
-                agentDrivenProperties.SetDynamicMountMovementProperties(statusEffectComponent, speedMultiplier);
+                agentDrivenProperties.SetDynamicMountMovementProperties(speedMultiplier);
             }
             else
             {

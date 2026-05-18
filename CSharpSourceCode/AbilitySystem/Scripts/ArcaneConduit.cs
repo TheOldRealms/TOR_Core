@@ -30,7 +30,9 @@ namespace TOR_Core.AbilitySystem.Scripts
 
                 foreach (var agent in heroAgents)
                 {
-                    if (!agent.BelongsToMainParty() && !agent.IsSpellCaster()) continue;
+                    if (agent == Agent.Main) continue;
+                    if (!agent.BelongsToMainParty()) continue;
+                    if (!agent.IsSpellCaster()) continue;
 
                     foreach (var effect in effects)
                     {

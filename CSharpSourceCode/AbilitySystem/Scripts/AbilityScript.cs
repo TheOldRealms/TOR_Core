@@ -49,6 +49,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         public Vec3 CurrentGlobalPosition => GameEntity.GetGlobalFrame().origin;
         public Vec3 LastFrameGlobalPosition => _previousFrameOrigin;
         public bool HasTickedOnce => _hasTickedOnce;
+        protected bool CanCollide => _canCollide;
 
         public void SetTargetSeeking(Target target, SeekerParameters parameters) => _controller = new SeekerController(target, parameters);
 
