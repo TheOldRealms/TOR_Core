@@ -22818,6 +22818,20 @@
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_we_orion_template" culture="Culture.battania">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_orion_spear" />
+      <Equipment slot="Head" id="Item.tor_we_head_orion_horns" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_orion" />
+      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_orion" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_orion_spear" />
+      <Equipment slot="Head" id="Item.tor_we_head_orion_horns" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_orion" />
+      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_orion" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_we_sister_thorne_lord_template" culture="Culture.battania">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_we_lord_sword_001" />

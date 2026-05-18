@@ -11017,4 +11017,9 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_we_orion_factionleader">
+    <Attributes>
+      <string>Legendary</string>
+    </Attributes>
+  </CharacterExtendedInfo>
 </ArrayOfCharacterExtendedInfo>
