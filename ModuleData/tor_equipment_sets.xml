@@ -3921,6 +3921,7 @@
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_kotww_001" />
       <Equipment slot="Horse" id="Item.tor_empire_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.mail_and_plate_barding" />
+      <Equipment slot="Head" id="Item.tor_invisible_head_01" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_empire_weapon_polehammer_warrior_priest_001" />
@@ -3930,6 +3931,7 @@
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_kotww_001" />
       <Equipment slot="Horse" id="Item.tor_empire_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.mail_and_plate_barding" />
+      <Equipment slot="Head" id="Item.tor_invisible_head_01" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_empire_weapon_polehammer_warrior_priest_002" />
@@ -3939,6 +3941,7 @@
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_kotww_001" />
       <Equipment slot="Horse" id="Item.tor_empire_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.mail_and_plate_barding" />
+      <Equipment slot="Head" id="Item.tor_invisible_head_01" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_empire_weapon_polehammer_warrior_priest_002" />
@@ -3948,6 +3951,7 @@
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_kotww_001" />
       <Equipment slot="Horse" id="Item.tor_empire_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.mail_and_plate_barding" />
+      <Equipment slot="Head" id="Item.tor_invisible_head_01" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_empire_weapon_polehammer_warrior_priest_003" />
@@ -3957,6 +3961,7 @@
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_kotww_001" />
       <Equipment slot="Horse" id="Item.tor_empire_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.mail_and_plate_barding" />
+      <Equipment slot="Head" id="Item.tor_invisible_head_01" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_empire_weapon_polehammer_warrior_priest_003" />
@@ -3966,6 +3971,7 @@
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_kotww_001" />
       <Equipment slot="Horse" id="Item.tor_empire_mount_horse_003" />
       <Equipment slot="HorseHarness" id="Item.mail_and_plate_barding" />
+      <Equipment slot="Head" id="Item.tor_invisible_head_01" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_br_villager_template" culture="Culture.vlandia">
@@ -5866,6 +5872,66 @@
       <Equipment slot="Cape" id="Item.empire_cape_a" />
       <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_m_convict_template" culture="Culture.mousillon">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.old_kite_shield" />
+      <Equipment slot="Item1" id="Item.flail" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_hood_001" />
+      <Equipment slot="Body" id="Item.veteran_mercenary_armor" />
+      <Equipment slot="Gloves" id="Item.guarded_armwraps" />
+      <Equipment slot="Leg" id="Item.sturgia_boots_c" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.old_kite_shield" />
+      <Equipment slot="Item1" id="Item.flail" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_hood_001" />
+      <Equipment slot="Body" id="Item.veteran_mercenary_armor" />
+      <Equipment slot="Gloves" id="Item.guarded_armwraps" />
+      <Equipment slot="Leg" id="Item.sturgia_boots_c" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_m_ducal_template" culture="Culture.mousillon">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.aserai_2haxe_2_t4" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_hood_001" />
+      <Equipment slot="Body" id="Item.rough_fur_over_chain" />
+      <Equipment slot="Gloves" id="Item.rough_tied_bracers" />
+      <Equipment slot="Leg" id="Item.rough_tied_boots" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.aserai_2haxe_2_t4" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_hood_001" />
+      <Equipment slot="Body" id="Item.rough_fur_over_chain" />
+      <Equipment slot="Gloves" id="Item.rough_tied_bracers" />
+      <Equipment slot="Leg" id="Item.rough_tied_boots" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_m_horse_thief_template" culture="Culture.mousillon">
+    <EquipmentSet>
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_hood_001" />
+      <Equipment slot="Item0" id="Item.crossbow_h" />
+      <Equipment slot="Item1" id="Item.bolt_a" />
+      <Equipment slot="Item2" id="Item.flail_b" />
+      <Equipment slot="Item3" id="Item.small_flat_heater_shield" />
+      <Equipment slot="Body" id="Item.veteran_mercenary_armor" />
+      <Equipment slot="Gloves" id="Item.guarded_armwraps" />
+      <Equipment slot="Leg" id="Item.sturgia_boots_c" />
+      <Equipment slot="Horse" id="Item.t2_vlandia_horse" />
+      <Equipment slot="HorseHarness" id="Item.bandit_saddle_highland" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_hood_001" />
+      <Equipment slot="Item0" id="Item.crossbow_h" />
+      <Equipment slot="Item1" id="Item.bolt_a" />
+      <Equipment slot="Item2" id="Item.flail_b" />
+      <Equipment slot="Item3" id="Item.small_flat_heater_shield" />
+      <Equipment slot="Body" id="Item.veteran_mercenary_armor" />
+      <Equipment slot="Gloves" id="Item.guarded_armwraps" />
+      <Equipment slot="Leg" id="Item.sturgia_boots_c" />
+      <Equipment slot="Horse" id="Item.t2_vlandia_horse" />
+      <Equipment slot="HorseHarness" id="Item.bandit_saddle_highland" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_m_ill_fated_foot_squire_template" culture="Culture.mousillon">
@@ -16091,10 +16157,10 @@
       <Equipment slot="Item0" id="Item.tor_vc_weapon_lance_black_knight_001" />
       <Equipment slot="Item1" id="Item.tor_vc_weapon_thmace_vampire_001" />
       <Equipment slot="Item2" id="Item.tor_vc_weapon_shield_vampire_010" />
-      <Equipment slot="Head" id="Item.tor_vc_head_helm_blood_knight_002" />
-      <Equipment slot="Body" id="Item.tor_vc_body_armor_blood_knight_001" />
-      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_blood_knight_002" />
-      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_blood_knight_001" />
+      <Equipment slot="Head" id="Item.tor_vc_head_helm_blood_dragon_knight_001" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_blood_dragon_knight_001" />
+      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_blood_dragon_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_blood_dragon_knight_001" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_blood_dragon_knight_001" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_nightmare_001" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_vampire_001" />
@@ -16103,10 +16169,10 @@
       <Equipment slot="Item0" id="Item.tor_vc_weapon_lance_black_knight_001" />
       <Equipment slot="Item1" id="Item.tor_vc_weapon_thmace_vampire_001" />
       <Equipment slot="Item2" id="Item.tor_vc_weapon_shield_vampire_010" />
-      <Equipment slot="Head" id="Item.tor_vc_head_helm_blood_knight_002" />
-      <Equipment slot="Body" id="Item.tor_vc_body_armor_blood_knight_001" />
-      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_blood_knight_002" />
-      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_blood_knight_001" />
+      <Equipment slot="Head" id="Item.tor_vc_head_helm_blood_dragon_knight_001" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_blood_dragon_knight_001" />
+      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_blood_dragon_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_blood_dragon_knight_001" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_blood_dragon_knight_001" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_nightmare_001" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_vampire_001" />
@@ -16115,10 +16181,10 @@
       <Equipment slot="Item0" id="Item.tor_vc_weapon_lance_black_knight_001" />
       <Equipment slot="Item1" id="Item.tor_vc_weapon_thaxe_vampire_001" />
       <Equipment slot="Item2" id="Item.tor_vc_weapon_shield_vampire_009" />
-      <Equipment slot="Head" id="Item.tor_vc_head_helm_blood_knight_002" />
-      <Equipment slot="Body" id="Item.tor_vc_body_armor_blood_knight_001" />
-      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_blood_knight_002" />
-      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_blood_knight_001" />
+      <Equipment slot="Head" id="Item.tor_vc_head_helm_blood_dragon_knight_001" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_blood_dragon_knight_001" />
+      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_blood_dragon_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_blood_dragon_knight_001" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_blood_dragon_knight_001" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_nightmare_001" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_vampire_001" />
@@ -16127,10 +16193,10 @@
       <Equipment slot="Item0" id="Item.tor_vc_weapon_lance_black_knight_001" />
       <Equipment slot="Item1" id="Item.tor_vc_weapon_thaxe_vampire_001" />
       <Equipment slot="Item2" id="Item.tor_vc_weapon_shield_vampire_009" />
-      <Equipment slot="Head" id="Item.tor_vc_head_helm_blood_knight_002" />
-      <Equipment slot="Body" id="Item.tor_vc_body_armor_blood_knight_001" />
-      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_blood_knight_002" />
-      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_blood_knight_001" />
+      <Equipment slot="Head" id="Item.tor_vc_head_helm_blood_dragon_knight_001" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_blood_dragon_knight_001" />
+      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_blood_dragon_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_blood_dragon_knight_001" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_blood_dragon_knight_001" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_nightmare_001" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_vampire_001" />
@@ -16139,10 +16205,10 @@
       <Equipment slot="Item0" id="Item.tor_vc_weapon_lance_black_knight_001" />
       <Equipment slot="Item1" id="Item.tor_vc_weapon_thsword_vampire_001" />
       <Equipment slot="Item2" id="Item.tor_vc_weapon_shield_vampire_009" />
-      <Equipment slot="Head" id="Item.tor_vc_head_helm_blood_knight_002" />
-      <Equipment slot="Body" id="Item.tor_vc_body_armor_blood_knight_001" />
-      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_blood_knight_002" />
-      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_blood_knight_001" />
+      <Equipment slot="Head" id="Item.tor_vc_head_helm_blood_dragon_knight_001" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_blood_dragon_knight_001" />
+      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_blood_dragon_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_blood_dragon_knight_001" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_blood_dragon_knight_001" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_nightmare_001" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_vampire_001" />
@@ -16151,10 +16217,10 @@
       <Equipment slot="Item0" id="Item.tor_vc_weapon_lance_black_knight_001" />
       <Equipment slot="Item1" id="Item.tor_vc_weapon_thsword_vampire_001" />
       <Equipment slot="Item2" id="Item.tor_vc_weapon_shield_vampire_009" />
-      <Equipment slot="Head" id="Item.tor_vc_head_helm_blood_knight_002" />
-      <Equipment slot="Body" id="Item.tor_vc_body_armor_blood_knight_001" />
-      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_blood_knight_002" />
-      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_blood_knight_001" />
+      <Equipment slot="Head" id="Item.tor_vc_head_helm_blood_dragon_knight_001" />
+      <Equipment slot="Body" id="Item.tor_vc_body_armor_blood_dragon_knight_001" />
+      <Equipment slot="Cape" id="Item.tor_vc_shoulder_pauldron_blood_dragon_knight_001" />
+      <Equipment slot="Gloves" id="Item.tor_vc_arm_gauntlet_blood_dragon_knight_001" />
       <Equipment slot="Leg" id="Item.tor_vc_leg_boots_blood_dragon_knight_001" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_nightmare_001" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_vampire_001" />
