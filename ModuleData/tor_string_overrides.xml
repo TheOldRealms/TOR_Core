@@ -3148,12 +3148,12 @@
   </string>
   <string id="EaIO20WN.player_wants_to_make_peace_result_orc" text="{=str_tor_player_wants_to_make_peace_result_orc}Fine. Got betta fights ta win, anyway!">
     <tags>
-      <tag tag_name="IsOrcTag" />
+      <tag tag_name="PlayerIsOrcTag" />
     </tags>
   </string>
   <string id="EaIO20WN.player_wants_to_make_peace_result_dwarf" text="{=str_tor_player_wants_to_make_peace_result_dwarf}Break out a keg of Bugman's, there's a peace to celebrate!">
     <tags>
-      <tag tag_name="IsDwarfTag" />
+      <tag tag_name="PlayerIsDwarfTag" />
     </tags>
   </string>
   <string id="EcYGHEVS.player_ask_to_claim_land_answer_orc" text="{=str_tor_player_ask_to_claim_land_answer_orc}I's gonna give you a reward fer krumpin' dem gitz good, yer boyz can have dat land. [Will cost {VALUE} influence]">
@@ -3310,12 +3310,12 @@
   </string>
   <string id="PitXi5n6.main_option_hostile_1_2_orc" text="{=str_tor_main_option_hostile_1_2_orc}Yoo gonna die, or yoo gonna give us da goodz?">
     <tags>
-      <tag tag_name="IsOrcTag" />
+      <tag tag_name="PlayerIsOrcTag" />
     </tags>
   </string>
   <string id="PitXi5n6.main_option_hostile_1_2_dwarf" text="{=str_tor_main_option_hostile_1_2_dwarf}We're on the warpath to settle grudges with you. Your choice whether we do this peaceful.">
     <tags>
-      <tag tag_name="IsDwarfTag" />
+      <tag tag_name="PlayerIsDwarfTag" />
     </tags>
   </string>
   <string id="jBN2LlgF.545_orc" text="{=str_tor_545_orc}We's gonna go down fightin'! WAAAAAGH!">
