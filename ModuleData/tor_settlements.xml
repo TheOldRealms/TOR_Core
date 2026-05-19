@@ -148,17 +148,17 @@
   </Settlement>
   <Settlement id="grungni_shrine_01" name="{=str_tor_settlements_grugni_shrine01}Shrine of Grungni" owner="Faction.karak_kaferkammaz_clan_1" posX="1204.403" posY="676.666" culture="Culture.sturgia" text="{=!}Shrine of Grugni">
     <Components>
-      <Shrine id="grungni_shrine_01" religion="cult_of_grungni" background_crop_position="0.0" background_mesh="shrine_of_grungni" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <Shrine id="grungni_shrine_01" religion="cult_of_grungni" background_crop_position="0.0" background_mesh="shrine_of_grimnir" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="grungni_shrine_02" name="{=str_tor_settlements_grugni_shrine02}Shrine of Grungni" owner="Faction.karak_zhubar_clan_1" posX="1710.184" posY="887.722" culture="Culture.sturgia" text="{=!}Shrine of Grugni">
     <Components>
-      <Shrine id="grungni_shrine_02" religion="cult_of_grungni" background_crop_position="0.0" background_mesh="shrine_of_grungni" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <Shrine id="grungni_shrine_02" religion="cult_of_grungni" background_crop_position="0.0" background_mesh="shrine_of_grimnir" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="grungni_shrine_03" name="{=str_tor_settlements_grugni_shrine03}Shrine of Grungni" owner="Faction.karak_angazhar_clan_1" posX="1512.274" posY="810.563" culture="Culture.sturgia" text="{=!}Shrine of Grugni">
     <Components>
-      <Shrine id="grungni_shrine_03" religion="cult_of_grungni" background_crop_position="0.0" background_mesh="shrine_of_grungni" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <Shrine id="grungni_shrine_03" religion="cult_of_grungni" background_crop_position="0.0" background_mesh="shrine_of_grimnir" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="valaya_shrine_01" name="{=str_tor_settlements_valaya_shrine01}Shrine of Valaya" owner="Faction.karak_izor_clan_1" posX="1223.375" posY="686.964" culture="Culture.sturgia" text="{=!}Shrine of Valaya">
