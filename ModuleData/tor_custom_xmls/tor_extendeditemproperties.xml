@@ -270,10 +270,6 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_invisible_head_01" RaceLock="human">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_head_head_spirit_host_001" RaceLock="spirit_host">
     <ItemTraits />
     <Description />
@@ -651,6 +647,10 @@
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_accessories_001" RaceLock="ungor">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_minotaur_facemask_001" RaceLock="minotaur">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
@@ -1608,6 +1608,10 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_necklace_minotaur_001" RaceLock="minotaur">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_tilean_shoulder_pauldron_knight_001" RaceLock="human">
     <ItemTraits />
     <Description />
@@ -2432,6 +2436,10 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_armour_minotaur_001" RaceLock="minotaur">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_body_minotaur_001" RaceLock="ungor">
     <ItemTraits />
     <Description />
@@ -2839,6 +2847,10 @@
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_greenskin_bracers_troll_001" RaceLock="troll">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_arm_bracers_minotaur_001" RaceLock="minotaur">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
