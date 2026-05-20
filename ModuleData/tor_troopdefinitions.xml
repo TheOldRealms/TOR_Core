@@ -942,7 +942,7 @@
       <EquipmentSet id="tor_m_villein_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_manatarms_militia" default_group="infantry" level="11" name="{=str_tor_m_manatarms_militia}Mousillon Man-at-Arms militiaman" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level11">
+  <NPCCharacter id="tor_m_manatarms_militia" default_group="infantry" level="11" name="{=str_tor_m_manatarms_militia}Mousillon Man-at-Arms Militiaman" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level11">
     <face>
       <face_key_template value="BodyProperty.fighter_mousillon_peasant" />
     </face>
@@ -961,7 +961,7 @@
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_m_manatarms_halberd" />
       <upgrade_target id="NPCCharacter.tor_m_yeoman" />
-      <upgrade_target id="NPCCharacter.tor_m_mounted_yeoman" />
+      <upgrade_target id="NPCCharacter.tor_m_convict" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_m_manatarms_template" />
@@ -982,13 +982,15 @@
     <face>
       <face_key_template value="BodyProperty.fighter_mousillon_peasant" />
     </face>
-    <upgrade_targets />
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_m_mounted_yeoman" />
+    </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_m_yeoman_template" />
       <EquipmentSet id="tor_m_yeoman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_mounted_yeoman" default_group="cavalry" level="26" name="{=str_tor_m_mounted_yeoman}Mousillon Mounted Yeoman" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level26">
+  <NPCCharacter id="tor_m_mounted_yeoman" default_group="horsearcher" level="26" name="{=str_tor_m_mounted_yeoman}Mousillon Mounted Yeoman" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level26">
     <face>
       <face_key_template value="BodyProperty.fighter_mousillon_peasant" />
     </face>
@@ -996,6 +998,38 @@
     <Equipments>
       <EquipmentSet id="tor_m_mounted_yeoman_template" />
       <EquipmentSet id="tor_m_mounted_yeoman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_convict" occupation="Soldier" name="Mousillon Convicted" level="21" default_group="infantry" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21" ext_Attributes="Expendable">
+    <face>
+      <face_key_template value="BodyProperty.fighter_mousillon_peasant" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_m_horse_thief" />
+      <upgrade_target id="NPCCharacter.tor_m_ducal_decapitator" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_m_convict_template" />
+      <EquipmentSet id="tor_m_convict_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_ducal_decapitator" name="Mousillon Ducal Decapitator" level="26" default_group="infantry" culture="Culture.mousillon" occupation="Soldier" skill_template="SkillSet.tor_skills_level26">
+    <face>
+      <face_key_template value="BodyProperty.fighter_mousillon_peasant" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_m_ducal_template" />
+      <EquipmentSet id="tor_m_ducal_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_horse_thief" name="Mousillon Horse Thief" level="26" default_group="horsearcher" culture="Culture.mousillon" occupation="Soldier" skill_template="SkillSet.tor_skills_level26">
+    <face>
+      <face_key_template value="BodyProperty.fighter_mousillon_peasant" />
+    </face>
+    <Equipments>
+      <EquipmentSet id="tor_m_horse_thief_template" />
+      <EquipmentSet id="tor_m_horse_thief_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_m_illfated_squire" default_group="infantry" level="11" name="{=str_tor_m_illfated_squire}Mousillon Ill-fated Squire" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true">
