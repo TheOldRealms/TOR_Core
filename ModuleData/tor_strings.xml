@@ -631,9 +631,9 @@
   <string id="tor_enchant_prompt_donate_items.text" text="{=str_tor_enchant_prompt_donate_items_text}Select the items you want to donate. You will obtain {CUSTOMRESOURCE_ICON} from this action. " />
 
   <!-- EMPIRE (empire) - Imperial Alchemist dialogs -->
-  <string id="tor_enchanter_start_p.empire" text="{=str_tor_enchanter_start_p_empire}TODO: EMPIRE - Player initiates conversation about enchantment" />
-  <string id="tor_enchanter_start_enchanter.empire" text="{=str_tor_enchanter_start_enchanter_empire}TODO: EMPIRE - Enchanter greets fellow practitioner (career check)" />
-  <string id="tor_enchanter_dialog_start.empire" text="{=str_tor_enchanter_dialog_start_empire}TODO: EMPIRE - Enchanter greets general visitor" />
+  <string id="tor_enchanter_start_p.empire" text="{=str_tor_enchanter_start_p_empire}I wish to learn about enchantment." />
+  <string id="tor_enchanter_start_enchanter.empire" text="{=str_tor_enchanter_start_enchanter_empire}Welcome, fellow practitioner of the arts." />
+  <string id="tor_enchanter_dialog_start.empire" text="{=str_tor_enchanter_dialog_start_empire}Greetings, visitor. How may I assist you?" />
   <string id="tor_enchanter_dialog_start_quit.empire" text="{=str_tor_enchanter_dialog_start_quit_empire}You are not serving the empire. begone" />
   <string id="tor_enchanter_dialog_start_1.empire" text="{=str_tor_enchanter_dialog_start_1_empire}Greetings, those loyal to the Empire are always welcome here." />
   <string id="tor_enchanter_dialog_start_2.empire" text="{=str_tor_enchanter_dialog_start_2_empire}Ah, a fellow practioner! You are most welcome, there is much we can discuss as colleagues." />
@@ -658,8 +658,8 @@
   <string id="tor_enchanter_start_enchanter.vlandia" text="{=str_tor_enchanter_start_enchanter_vlandia}Fellow Daughter of the Grail, I shall gladly help you." />
   <string id="tor_enchanter_dialog_start.vlandia" text="{=str_tor_enchanter_dialog_start_vlandia}Friends of Bretonnia are always welcome here." />
   <string id="tor_enchanter_dialog_start_quit.vlandia" text="{=str_tor_enchanter_dialog_start_quit_vlandia}Vile filth, begone from my sight." />
-  <string id="tor_enchanter_dialog_start_1.vlandia" text="{=str_tor_enchanter_dialog_start_1_vlandia}TODO: BRETONNIA - Prophetess welcomes visitor" />
-  <string id="tor_enchanter_dialog_start_2.vlandia" text="{=str_tor_enchanter_dialog_start_2_vlandia}TODO: BRETONNIA - Prophetess greets fellow practitioner" />
+  <string id="tor_enchanter_dialog_start_1.vlandia" text="{=str_tor_enchanter_dialog_start_1_vlandia}Welcome, friend of Bretonnia. You have proven yourself worthy of my attention." />
+  <string id="tor_enchanter_dialog_start_2.vlandia" text="{=str_tor_enchanter_dialog_start_2_vlandia}Fellow Daughter of the Grail, you are most welcome here." />
   <string id="tor_enchanter_hub_intro.vlandia" text="{=str_tor_enchanter_hub_intro_vlandia}What do you wish to know?" />
   <string id="tor_enchanter_hub_reintro.vlandia" text="{=str_tor_enchanter_hub_reintro_vlandia}Was there anything else?" />
   <string id="tor_enchanter_hub_info_p.vlandia" text="{=str_tor_enchanter_hub_info_p_vlandia}My lady, I wish to know more of the Lady's teachings." />
@@ -674,7 +674,7 @@
   <string id="tor_enchanter_donate_items_hub_p.vlandia" text="{=str_tor_enchanter_donate_items_hub_p_vlandia}I wish to donate the following items…" />
   <string id="tor_enchanter_gift_items_hub_return_p.vlandia" text="{=str_tor_enchanter_gift_items_hub_return_p_vlandia}Forgive me, I need to give this more thought." />
   <string id="tor_enchanter_donate_items_2.vlandia" text="{=str_tor_enchanter_donate_items_2_vlandia}What did you have in mind?" />
-  <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.vlandia" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_vlandia}TODO: BRETONNIA - First visit with career" />
+  <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.vlandia" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_vlandia}Of course! Take this, it will help you get started." />
   <string id="tor_enchanter_info_hub_intro_first_visit.vlandia" text="{=str_tor_enchanter_info_hub_intro_first_visit_vlandia}Take this tome of knowledge. It should answer all your questions." />
   <string id="tor_enchanter_info_hub_intro_read_book.vlandia" text="{=str_tor_enchanter_info_hub_intro_read_book_vlandia}You already carry the tome of the Lady. Study it for the answers you seek." />
   <string id="tor_enchanter_start_p.khuzait" text="{=str_tor_enchanter_start_p_khuzait}I wish to know more of magical and cursed items." />
@@ -779,8 +779,8 @@
   <string id="tor_enchanter_start_enchanter.battania" text="{=str_tor_enchanter_start_enchanter_battania}A fellow spellsinger? A rare pleasure in these times." />
   <string id="tor_enchanter_dialog_start.battania" text="{=str_tor_enchanter_dialog_start_battania}Your contributions to these woods have earnt a measure of tolerance." />
   <string id="tor_enchanter_dialog_start_quit.battania" text="{=str_tor_enchanter_dialog_start_quit_battania}You trespass on sacred ground, leave before my patience reaches its end." />
-  <string id="tor_enchanter_dialog_start_1.battania" text="{=str_tor_enchanter_dialog_start_1_battania}TODO: ASRAI - Welcome message" />
-  <string id="tor_enchanter_dialog_start_2.battania" text="{=str_tor_enchanter_dialog_start_2_battania}TODO: ASRAI - Fellow practitioner" />
+  <string id="tor_enchanter_dialog_start_1.battania" text="{=str_tor_enchanter_dialog_start_1_battania}Welcome. You have proven yourself worthy of my attention." />
+  <string id="tor_enchanter_dialog_start_2.battania" text="{=str_tor_enchanter_dialog_start_2_battania}Ah, a fellow practitioner! You are most welcome here." />
   <string id="tor_enchanter_hub_intro.battania" text="{=str_tor_enchanter_hub_intro_battania}What purpose carries you here?" />
   <string id="tor_enchanter_hub_reintro.battania" text="{=str_tor_enchanter_hub_reintro_battania}What purpose carries you here?" />
   <string id="tor_enchanter_hub_info_p.battania" text="{=str_tor_enchanter_hub_info_p_battania}I seek the wisdom of the forest and your knowledge of magical items." />
@@ -802,8 +802,8 @@
   <string id="tor_enchanter_start_enchanter.eonir" text="{=str_tor_enchanter_start_enchanter_eonir}Welcome to Laurelorn kindred; I hope your time outside our borders was fruitful." />
   <string id="tor_enchanter_dialog_start.eonir" text="{=str_tor_enchanter_dialog_start_eonir}Your deeds in these woods have earnt my ear, for a time." />
   <string id="tor_enchanter_dialog_start_quit.eonir" text="{=str_tor_enchanter_dialog_start_quit_eonir}You are not one of us. Leave before I call the guards." />
-  <string id="tor_enchanter_dialog_start_1.eonir" text="{=str_tor_enchanter_dialog_start_1_eonir}TODO: EONIR - Welcome message" />
-  <string id="tor_enchanter_dialog_start_2.eonir" text="{=str_tor_enchanter_dialog_start_2_eonir}TODO: EONIR - Fellow practitioner" />
+  <string id="tor_enchanter_dialog_start_1.eonir" text="{=str_tor_enchanter_dialog_start_1_eonir}Welcome. You have proven yourself worthy of my attention." />
+  <string id="tor_enchanter_dialog_start_2.eonir" text="{=str_tor_enchanter_dialog_start_2_eonir}Ah, a fellow practitioner! You are most welcome here." />
   <string id="tor_enchanter_hub_intro.eonir" text="{=str_tor_enchanter_hub_intro_eonir}Blessings of Isha upon you, what aid can I bestow?" />
   <string id="tor_enchanter_hub_reintro.eonir" text="{=str_tor_enchanter_hub_reintro_eonir}Blessings of Isha upon you, what aid can I bestow?" />
   <string id="tor_enchanter_hub_info_p.eonir" text="{=str_tor_enchanter_hub_info_p_eonir}Can you help me learn the basics of enchanting?" />
