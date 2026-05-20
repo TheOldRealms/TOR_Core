@@ -1466,7 +1466,11 @@
 			<PartyTemplateStack min_value="4" max_value="10" troop="NPCCharacter.tor_m_villein" />
 			<PartyTemplateStack min_value="8" max_value="12" troop="NPCCharacter.tor_m_manatarms" />
 			<PartyTemplateStack min_value="3" max_value="10" troop="NPCCharacter.tor_m_manatarms_halberd" />
+			<PartyTemplateStack min_value="3" max_value="7" troop="NPCCharacter.tor_m_yeoman" />
 			<PartyTemplateStack min_value="3" max_value="7" troop="NPCCharacter.tor_m_mounted_yeoman" />
+			<PartyTemplateStack min_value="3" max_value="7" troop="NPCCharacter.tor_m_convict" />
+			<PartyTemplateStack min_value="3" max_value="7" troop="NPCCharacter.tor_m_ducal_decapitator" />
+			<PartyTemplateStack min_value="3" max_value="7" troop="NPCCharacter.tor_m_horse_thief" />
 			<PartyTemplateStack min_value="7" max_value="9" troop="NPCCharacter.tor_m_illfated_squire" />
 			<PartyTemplateStack min_value="5" max_value="7" troop="NPCCharacter.tor_m_outcast_errant" />
 			<PartyTemplateStack min_value="5" max_value="7" troop="NPCCharacter.tor_m_knight_of_misfortune" />
@@ -1483,7 +1487,11 @@
 			<PartyTemplateStack min_value="4" max_value="10" troop="NPCCharacter.tor_m_villein" />
 			<PartyTemplateStack min_value="7" max_value="13" troop="NPCCharacter.tor_m_manatarms" />
 			<PartyTemplateStack min_value="2" max_value="10" troop="NPCCharacter.tor_m_manatarms_halberd" />
+			<PartyTemplateStack min_value="3" max_value="7" troop="NPCCharacter.tor_m_yeoman" />
 			<PartyTemplateStack min_value="2" max_value="7" troop="NPCCharacter.tor_m_mounted_yeoman" />
+			<PartyTemplateStack min_value="3" max_value="7" troop="NPCCharacter.tor_m_convict" />
+			<PartyTemplateStack min_value="3" max_value="7" troop="NPCCharacter.tor_m_ducal_decapitator" />
+			<PartyTemplateStack min_value="3" max_value="7" troop="NPCCharacter.tor_m_horse_thief" />
 			<PartyTemplateStack min_value="6" max_value="10" troop="NPCCharacter.tor_m_illfated_squire" />
 			<PartyTemplateStack min_value="4" max_value="7" troop="NPCCharacter.tor_m_outcast_errant" />
 			<PartyTemplateStack min_value="10" max_value="14" troop="NPCCharacter.tor_m_knight_of_misfortune" />
