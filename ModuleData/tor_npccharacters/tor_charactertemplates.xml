@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <NPCCharacters>
   <NPCCharacter id="tor_wanderer_empire_0" default_group="ranged" name="{=str_tor_wanderer_empire_0}{FIRSTNAME} the Bright Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="55" skill_template="SkillSet.tor_skills_wanderer_wizard" is_template="true" is_hero="false">
     <face>
@@ -46,7 +46,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_wanderer_empire_2" default_group="infantry" name="{=str_tor_wanderer_empire_2}{FIRSTNAME} the Witch Hunter" occupation="Wanderer" culture="Culture.empire" voice="curt" age="29" skill_template="SkillSet.tor_skills_wanderer_witch_hunter" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire_veteran" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
       <hair_tags>
         <hair_tag name="LongAndBushy" />
       </hair_tags>
@@ -112,7 +112,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_wanderer_empire_5" default_group="infantry" name="{=str_tor_wanderer_empire_5}{FIRSTNAME} the Engineer" occupation="Wanderer" culture="Culture.empire" voice="curt" age="49" skill_template="SkillSet.tor_skills_wanderer_engineer" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
       <hair_tags>
         <hair_tag name="ShortAndThin" />
       </hair_tags>
@@ -150,7 +150,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_wanderer_empire_7" default_group="infantry" name="{=str_tor_wanderer_empire_7}{FIRSTNAME} the Huntsman" occupation="Wanderer" culture="Culture.empire" voice="curt" age="42" skill_template="SkillSet.tor_skills_wanderer_huntsman" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />
@@ -261,7 +261,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_wanderer_empire_13" default_group="cavalry" name="{=str_tor_wanderer_empire_13}{FIRSTNAME} the Empire Noble" occupation="Wanderer" culture="Culture.empire" voice="ironic" age="30" skill_template="SkillSet.tor_skills_wanderer_merchant" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />
@@ -781,9 +781,9 @@
       <EquipmentSet id="tor_gs_goblin_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_deserter_lord_0" default_group="cavalry" name="{=str_tor_empire_deserter_lord_0}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_commander_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_deserter_lord_0" default_group="cavalry" name="{=str_tor_empire_deserter_lord_0}{FIRSTNAME} the Deserter Captain" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_commander_lord" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="Mercy" value="-1" />
@@ -797,9 +797,9 @@
       <EquipmentSet id="tor_empire_deserter_leader_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_deserter_lord_1" default_group="cavalry" name="{=str_tor_empire_deserter_lord_1}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_commander_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_deserter_lord_1" default_group="cavalry" name="{=str_tor_empire_deserter_lord_1}{FIRSTNAME} the Deserter Captain" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_commander_lord" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="Mercy" value="-1" />
@@ -813,9 +813,9 @@
       <EquipmentSet id="tor_empire_deserter_leader_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_deserter_lord_2" default_group="cavalry" name="{=str_tor_empire_deserter_lord_2}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_commander_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_deserter_lord_2" default_group="cavalry" name="{=str_tor_empire_deserter_lord_2}{FIRSTNAME} the Deserter Captain" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_commander_lord" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="Mercy" value="-1" />
@@ -829,9 +829,9 @@
       <EquipmentSet id="tor_empire_deserter_leader_2h_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_deserter_lord_3" default_group="infantry" name="{=str_tor_empire_deserter_lord_3}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_commander_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_deserter_lord_3" default_group="infantry" name="{=str_tor_empire_deserter_lord_3}{FIRSTNAME} the Deserter Captain" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_commander_lord" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="Mercy" value="-1" />
@@ -845,7 +845,7 @@
       <EquipmentSet id="tor_empire_deserter_leader_2h_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_rogue_lord_0" default_group="infantry" name="{=str_tor_empire_rogue_lord_0}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="60" skill_template="SkillSet.tor_skills_caster_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_rogue_lord_0" default_group="infantry" name="{=str_tor_empire_rogue_lord_0}{FIRSTNAME} the Bright Magister" occupation="Lord" culture="Culture.empire" voice="curt" age="60" skill_template="SkillSet.tor_skills_caster_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.brightwizard" />
       <hair_tags>
@@ -867,7 +867,7 @@
       <EquipmentSet id="tor_bright_wizard_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_rogue_lord_1" default_group="infantry" name="{=str_tor_empire_rogue_lord_1}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="softspoken" age="60" skill_template="SkillSet.tor_skills_caster_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_rogue_lord_1" default_group="infantry" name="{=str_tor_empire_rogue_lord_1}{FIRSTNAME} the Hierophant" occupation="Lord" culture="Culture.empire" voice="softspoken" age="60" skill_template="SkillSet.tor_skills_caster_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -883,7 +883,7 @@
       <EquipmentSet id="tor_light_wizard_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_rogue_lord_2" default_group="infantry" name="{=str_tor_empire_rogue_lord_2}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="ironic" age="60" skill_template="SkillSet.tor_skills_caster_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_rogue_lord_2" default_group="infantry" name="{=str_tor_empire_rogue_lord_2}{FIRSTNAME} the Celestial Magister" occupation="Lord" culture="Culture.empire" voice="ironic" age="60" skill_template="SkillSet.tor_skills_caster_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -899,7 +899,7 @@
       <EquipmentSet id="tor_celestial_wizard_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_rogue_lord_3" default_group="infantry" name="{=str_tor_empire_rogue_lord_3}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="ironic" age="60" skill_template="SkillSet.tor_skills_caster_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_rogue_lord_3" default_group="infantry" name="{=str_tor_empire_rogue_lord_3}{FIRSTNAME} the Magister-Alchemist" occupation="Lord" culture="Culture.empire" voice="ironic" age="60" skill_template="SkillSet.tor_skills_caster_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -915,7 +915,7 @@
       <EquipmentSet id="tor_gold_wizard_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_rogue_lord_4" default_group="infantry" name="{=str_tor_empire_rogue_lord_4}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="50" skill_template="SkillSet.tor_skills_berserker_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_rogue_lord_4" default_group="infantry" name="{=str_tor_empire_rogue_lord_4}Arch Lector {FIRSTNAME}" occupation="Lord" culture="Culture.empire" voice="curt" age="50" skill_template="SkillSet.tor_skills_berserker_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.warriorpriest" />
       <hair_tags>
@@ -937,7 +937,7 @@
       <EquipmentSet id="tor_warrior_priest_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_rogue_lord_5" default_group="infantry" name="{=str_tor_empire_rogue_lord_5}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_berserker_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_rogue_lord_5" default_group="infantry" name="{=str_tor_empire_rogue_lord_5}Arch Lector {FIRSTNAME}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_berserker_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.warriorpriest" />
       <hair_tags>
@@ -959,7 +959,7 @@
       <EquipmentSet id="tor_warrior_priest_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_rogue_lord_6" default_group="infantry" name="{=str_tor_empire_rogue_lord_6}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="40" skill_template="SkillSet.tor_skills_berserker_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_rogue_lord_6" default_group="infantry" name="{=str_tor_empire_rogue_lord_6}Arch Lector {FIRSTNAME}" occupation="Lord" culture="Culture.empire" voice="curt" age="40" skill_template="SkillSet.tor_skills_berserker_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.warriorpriest" />
       <hair_tags>
@@ -1333,7 +1333,7 @@
       <EquipmentSet id="tor_gs_troll_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_bergerac_lord" default_group="ranged" name="{=str_tor_br_bergerac_lord}{DOESNTMATTER}" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_skills_archer_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_br_bergerac_lord" default_group="ranged" name="{=str_tor_br_bergerac_lord}{FIRSTNAME} the Herrimault" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_skills_archer_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -1349,7 +1349,7 @@
       <EquipmentSet id="tor_ror_bergerac_bowman_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_peasantknight_lord" default_group="cavalry" name="{=str_tor_br_peasantknight_lord}{DOESNTMATTER}" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_br_peasantknight_lord" default_group="cavalry" name="{=str_tor_br_peasantknight_lord}{FIRSTNAME} the Peasant Knight" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -1365,7 +1365,7 @@
       <EquipmentSet id="tor_peasant_knight_leader_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_troubadour_questing_knight_1" default_group="cavalry" name="{=str_tor_br_troubadour_questing_knight_1}{DOESNTMATTER}" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_skills_knight_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_br_troubadour_questing_knight_1" default_group="cavalry" name="{=str_tor_br_troubadour_questing_knight_1}{FIRSTNAME} the Bard" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_skills_knight_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -1381,7 +1381,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_troubadour_questing_knight_2" default_group="cavalry" name="{=str_tor_br_troubadour_questing_knight_2}{DOESNTMATTER}" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_skills_knight_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_br_troubadour_questing_knight_2" default_group="cavalry" name="{=str_tor_br_troubadour_questing_knight_2}{FIRSTNAME} the Bard" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_skills_knight_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -1397,7 +1397,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_2" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog1_lord_0" default_group="infantry" name="{=str_tor_empire_dog1_lord_0}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_archer_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog1_lord_0" default_group="infantry" name="{=str_tor_empire_dog1_lord_0}{FIRSTNAME} the Besieger" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_archer_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1413,7 +1413,7 @@
       <EquipmentSet id="dog_braganza_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog1_lord_1" default_group="infantry" name="{=str_tor_empire_dog1_lord_1}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_archer_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog1_lord_1" default_group="infantry" name="{=str_tor_empire_dog1_lord_1}{FIRSTNAME} the Besieger" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_archer_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1429,7 +1429,7 @@
       <EquipmentSet id="dog_braganza_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog1_lord_2" default_group="infantry" name="{=str_tor_empire_dog1_lord_2}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_archer_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog1_lord_2" default_group="infantry" name="{=str_tor_empire_dog1_lord_2}{FIRSTNAME} the Besieger" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_archer_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1445,7 +1445,7 @@
       <EquipmentSet id="dog_braganza_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog1_lord_3" default_group="infantry" name="{=str_tor_empire_dog1_lord_3}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_archer_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog1_lord_3" default_group="infantry" name="{=str_tor_empire_dog1_lord_3}{FIRSTNAME} the Besieger" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_archer_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1461,7 +1461,7 @@
       <EquipmentSet id="dog_braganza_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog2_lord_0" default_group="infantry" name="{=str_tor_empire_dog2_lord_0}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" race="skeleton" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog2_lord_0" default_group="infantry" name="{=str_tor_empire_dog2_lord_0}Sergeant {FIRSTNAME} the Cursed" occupation="Lord" culture="Culture.empire" voice="curt" age="30" race="skeleton" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.skeleton" />
     </face>
@@ -1477,7 +1477,7 @@
       <EquipmentSet id="dog_cursed_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog2_lord_1" default_group="infantry" name="{=str_tor_empire_dog2_lord_1}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" race="skeleton" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog2_lord_1" default_group="infantry" name="{=str_tor_empire_dog2_lord_1}Sergeant {FIRSTNAME} the Cursed" occupation="Lord" culture="Culture.empire" voice="curt" age="30" race="skeleton" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.skeleton" />
     </face>
@@ -1493,7 +1493,7 @@
       <EquipmentSet id="dog_cursed_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog2_lord_2" default_group="infantry" name="{=str_tor_empire_dog2_lord_2}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" race="skeleton" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog2_lord_2" default_group="infantry" name="{=str_tor_empire_dog2_lord_2}Sergeant {FIRSTNAME} the Cursed" occupation="Lord" culture="Culture.empire" voice="curt" age="30" race="skeleton" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.skeleton" />
     </face>
@@ -1509,7 +1509,7 @@
       <EquipmentSet id="dog_cursed_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog2_lord_3" default_group="infantry" name="{=str_tor_empire_dog2_lord_3}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" race="skeleton" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog2_lord_3" default_group="infantry" name="{=str_tor_empire_dog2_lord_3}Sergeant {FIRSTNAME} the Cursed" occupation="Lord" culture="Culture.empire" voice="curt" age="30" race="skeleton" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.skeleton" />
     </face>
@@ -1525,7 +1525,7 @@
       <EquipmentSet id="dog_cursed_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog3_lord_0" default_group="infantry" name="{=str_tor_empire_dog3_lord_0}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_berserker_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog3_lord_0" default_group="infantry" name="{=str_tor_empire_dog3_lord_0}{FIRSTNAME} the Leopard" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_berserker_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1541,7 +1541,7 @@
       <EquipmentSet id="dog_leopard_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog3_lord_1" default_group="infantry" name="{=str_tor_empire_dog3_lord_1}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_berserker_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog3_lord_1" default_group="infantry" name="{=str_tor_empire_dog3_lord_1}{FIRSTNAME} the Leopard" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_berserker_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1557,7 +1557,7 @@
       <EquipmentSet id="dog_leopard_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog3_lord_2" default_group="infantry" name="{=str_tor_empire_dog3_lord_2}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_berserker_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog3_lord_2" default_group="infantry" name="{=str_tor_empire_dog3_lord_2}{FIRSTNAME} the Leopard" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_berserker_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1573,7 +1573,7 @@
       <EquipmentSet id="dog_leopard_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog3_lord_3" default_group="infantry" name="{=str_tor_empire_dog3_lord_3}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_berserker_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog3_lord_3" default_group="infantry" name="{=str_tor_empire_dog3_lord_3}{FIRSTNAME} the Leopard" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_berserker_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1589,7 +1589,7 @@
       <EquipmentSet id="dog_leopard_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog4_lord_0" default_group="cavalry" name="{=str_tor_empire_dog4_lord_0}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_knight_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog4_lord_0" default_group="cavalry" name="{=str_tor_empire_dog4_lord_0}{FIRSTNAME} the Venator" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_knight_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1605,7 +1605,7 @@
       <EquipmentSet id="dog_voland_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog4_lord_1" default_group="cavalry" name="{=str_tor_empire_dog4_lord_1}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_knight_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog4_lord_1" default_group="cavalry" name="{=str_tor_empire_dog4_lord_1}{FIRSTNAME} the Venator" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_knight_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1621,7 +1621,7 @@
       <EquipmentSet id="dog_voland_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog4_lord_2" default_group="cavalry" name="{=str_tor_empire_dog4_lord_2}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_knight_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog4_lord_2" default_group="cavalry" name="{=str_tor_empire_dog4_lord_2}{FIRSTNAME} the Venator" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_knight_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1637,7 +1637,7 @@
       <EquipmentSet id="dog_voland_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog4_lord_3" default_group="cavalry" name="{=str_tor_empire_dog4_lord_3}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_knight_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog4_lord_3" default_group="cavalry" name="{=str_tor_empire_dog4_lord_3}{FIRSTNAME} the Venator" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_knight_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1653,7 +1653,7 @@
       <EquipmentSet id="dog_voland_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog5_lord_0" default_group="infantry" name="{=str_tor_empire_dog5_lord_0}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_archer_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog5_lord_0" default_group="infantry" name="{=str_tor_empire_dog5_lord_0}{FIRSTNAME} the Marksman" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_archer_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1669,7 +1669,7 @@
       <EquipmentSet id="dog_miragliano_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog5_lord_1" default_group="infantry" name="{=str_tor_empire_dog5_lord_1}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_archer_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog5_lord_1" default_group="infantry" name="{=str_tor_empire_dog5_lord_1}{FIRSTNAME} the Marksman" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_archer_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1685,7 +1685,7 @@
       <EquipmentSet id="dog_miragliano_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog5_lord_2" default_group="infantry" name="{=str_tor_empire_dog5_lord_2}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_archer_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog5_lord_2" default_group="infantry" name="{=str_tor_empire_dog5_lord_2}{FIRSTNAME} the Marksman" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_archer_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1701,7 +1701,7 @@
       <EquipmentSet id="dog_miragliano_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog5_lord_3" default_group="infantry" name="{=str_tor_empire_dog5_lord_3}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_archer_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog5_lord_3" default_group="infantry" name="{=str_tor_empire_dog5_lord_3}{FIRSTNAME} the Marksman" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_archer_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1717,7 +1717,7 @@
       <EquipmentSet id="dog_miragliano_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog6_lord_0" default_group="infantry" name="{=str_tor_empire_dog6_lord_0}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog6_lord_0" default_group="infantry" name="{=str_tor_empire_dog6_lord_0}{FIRSTNAME} of the Republican Guard" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1733,7 +1733,7 @@
       <EquipmentSet id="dog_ricco_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog6_lord_1" default_group="infantry" name="{=str_tor_empire_dog6_lord_1}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog6_lord_1" default_group="infantry" name="{=str_tor_empire_dog6_lord_1}{FIRSTNAME} of the Republican Guard" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1749,7 +1749,7 @@
       <EquipmentSet id="dog_ricco_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog6_lord_2" default_group="infantry" name="{=str_tor_empire_dog6_lord_2}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog6_lord_2" default_group="infantry" name="{=str_tor_empire_dog6_lord_2}{FIRSTNAME} of the Republican Guard" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1765,7 +1765,7 @@
       <EquipmentSet id="dog_ricco_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog6_lord_3" default_group="infantry" name="{=str_tor_empire_dog6_lord_3}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog6_lord_3" default_group="infantry" name="{=str_tor_empire_dog6_lord_3}{FIRSTNAME} of the Republican Guard" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -1781,7 +1781,7 @@
       <EquipmentSet id="dog_ricco_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog7_lord_0" default_group="cavalry" name="{=str_tor_empire_dog7_lord_0}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog7_lord_0" default_group="cavalry" name="{=str_tor_empire_dog7_lord_0}{FIRSTNAME} of the Desert Dogs" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_aserai" />
     </face>
@@ -1797,7 +1797,7 @@
       <EquipmentSet id="dog_muktar_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog7_lord_1" default_group="cavalry" name="{=str_tor_empire_dog7_lord_1}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog7_lord_1" default_group="cavalry" name="{=str_tor_empire_dog7_lord_1}{FIRSTNAME} of the Desert Dogs" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_aserai" />
     </face>
@@ -1813,7 +1813,7 @@
       <EquipmentSet id="dog_muktar_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog7_lord_2" default_group="cavalry" name="{=str_tor_empire_dog7_lord_2}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog7_lord_2" default_group="cavalry" name="{=str_tor_empire_dog7_lord_2}{FIRSTNAME} of the Desert Dogs" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_aserai" />
     </face>
@@ -1829,7 +1829,7 @@
       <EquipmentSet id="dog_muktar_hero_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_dog7_lord_3" default_group="cavalry" name="{=str_tor_empire_dog7_lord_3}{DOESNTMATTER}" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_empire_dog7_lord_3" default_group="cavalry" name="{=str_tor_empire_dog7_lord_3}{FIRSTNAME} of the Desert Dogs" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_aserai" />
     </face>
@@ -2053,7 +2053,7 @@
       <EquipmentSet id="tor_chaos_wanderer_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_0" default_group="cavalry" name="{=str_tor_chaos_lord_0}{DOESNTMATTER}" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="30" race="chaos_ud_cultist" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_chaos_lord_0" default_group="cavalry" name="{=str_tor_chaos_lord_0}{FIRSTNAME} the Chosen" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="30" race="chaos_ud_cultist" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
@@ -2069,7 +2069,7 @@
       <EquipmentSet id="tor_chaos_undivided_knight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_1" default_group="cavalry" name="{=str_tor_chaos_lord_1}{DOESNTMATTER}" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="30" race="chaos_ud_cultist" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_chaos_lord_1" default_group="cavalry" name="{=str_tor_chaos_lord_1}{FIRSTNAME} the Chosen" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="30" race="chaos_ud_cultist" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
@@ -2085,7 +2085,7 @@
       <EquipmentSet id="tor_chaos_undivided_knight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_2" default_group="cavalry" name="{=str_tor_chaos_lord_2}{DOESNTMATTER}" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="30" race="chaos_ud_cultist" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_chaos_lord_2" default_group="cavalry" name="{=str_tor_chaos_lord_2}{FIRSTNAME} the Chosen" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="30" race="chaos_ud_cultist" skill_template="SkillSet.tor_skills_warrior_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
@@ -2149,9 +2149,9 @@
       <EquipmentSet id="tor_generic_druchii_lord_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_beastman_lord_0" default_group="infantry" name="{=str_tor_beastman_lord_0}{DOESNTMATTER}" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="30" race="ungor" skill_template="SkillSet.tor_skills_berserker_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_beastman_lord_0" default_group="infantry" name="{=str_tor_beastman_lord_0}{DOESNTMATTER}" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="30" race="gor" skill_template="SkillSet.tor_skills_berserker_lord" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.ungor" />
+      <face_key_template value="BodyProperty.gor" />
     </face>
     <Traits>
       <Trait id="Mercy" value="-2" />
@@ -2165,9 +2165,9 @@
       <EquipmentSet id="tor_beast_ungor_chief_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_beastman_lord_1" default_group="infantry" name="{=str_tor_beastman_lord_1}{DOESNTMATTER}" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="30" race="ungor" skill_template="SkillSet.tor_skills_berserker_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_beastman_lord_1" default_group="infantry" name="{=str_tor_beastman_lord_1}{DOESNTMATTER}" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="30" race="gor" skill_template="SkillSet.tor_skills_berserker_lord" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.ungor" />
+      <face_key_template value="BodyProperty.gor" />
     </face>
     <Traits>
       <Trait id="Mercy" value="-2" />
@@ -2181,9 +2181,9 @@
       <EquipmentSet id="tor_beast_ungor_chief_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_beastman_lord_2" default_group="infantry" name="{=str_tor_beastman_lord_2}{DOESNTMATTER}" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="30" race="ungor" skill_template="SkillSet.tor_skills_berserker_lord" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_beastman_lord_2" default_group="infantry" name="{=str_tor_beastman_lord_2}{DOESNTMATTER}" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="30" race="gor" skill_template="SkillSet.tor_skills_berserker_lord" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.ungor" />
+      <face_key_template value="BodyProperty.gor" />
     </face>
     <Traits>
       <Trait id="Mercy" value="-2" />
@@ -2215,7 +2215,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_bountymaster_empire_0" default_group="infantry" name="{=str_tor_bountymaster_empire_0}{FIRSTNAME} the Witch Hunter Templar" occupation="Special" culture="Culture.empire" voice="ironic" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />
@@ -2231,7 +2231,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_nulnengineernpc_empire" default_group="infantry" name="{=str_tor_nulnengineernpc_empire}{FIRSTNAME} the Master Engineer" occupation="Special" culture="Culture.empire" voice="ironic" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />
@@ -2245,9 +2245,9 @@
       <EquipmentSet id="tor_qnpc_masterengineer_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_prestige_noble_empire" default_group="infantry" name="{=str_tor_prestige_noble_empire}{SHORTTITLE} {FIRSTNAME} {LASTNAME}{TITLE}" occupation="Special" culture="Culture.empire" voice="ironic" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_prestige_noble_empire" default_group="infantry" name="{=str_tor_prestige_noble_empire}{SHORTTITLE} {FIRSTNAME} {LASTNAME} {TITLE}" occupation="Special" culture="Culture.empire" voice="ironic" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />
@@ -2263,7 +2263,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_spelltrainer_empire_0" default_group="infantry" name="{=str_tor_spelltrainer_empire_0}College Magister" occupation="Special" culture="Culture.empire" voice="ironic" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />
@@ -2295,7 +2295,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_priest_trainer_empire_sigmar_0" default_group="infantry" name="{=str_tor_priest_trainer_empire_sigmar_0}Arch Lector Kasmir XI" occupation="Special" culture="Culture.empire" voice="ironic" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.warriorpriest" />
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />
@@ -2311,7 +2311,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_priest_trainer_empire_ulric_0" default_group="infantry" name="{=str_tor_priest_trainer_empire_ulric_0}Krieger of the Ulrican Cult" occupation="Special" culture="Culture.empire" voice="ironic" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.ulric_warrior" />
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />
@@ -2327,7 +2327,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_priest_trainer_empire_shallya_0" default_group="infantry" name="{=str_tor_priest_trainer_empire_shallya_0}Highpriestess Anja Gustavson" occupation="Special" culture="Culture.empire" voice="ironic" age="30" is_female="true" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.BodyProperty.fey_enchantress" />
+      <face_key_template value="BodyProperty.BodyProperty.townswoman_empire" />
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />
@@ -2341,9 +2341,9 @@
       <EquipmentSet id="tor_priestess_of_shallya_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_priest_trainer_empire_shallya_1" default_group="infantry" name="{=str_tor_priest_trainer_empire_shallya_1}The Most Holy Matriarch Lisegund" occupation="Special" culture="Culture.empire" voice="ironic" age="30" is_female="true" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_priest_trainer_empire_shallya_1" default_group="infantry" name="{=str_tor_priest_trainer_empire_shallya_1}The Most Holy Matriarch Lisegund" occupation="Special" culture="Culture.empire" voice="ironic" age="95" is_female="true" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.BodyProperty.fey_enchantress" />
+      <face_key_template value="BodyProperty.BodyProperty.townswoman_empire" />
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />
@@ -2455,7 +2455,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_eonir_empire_envoy_0" default_group="infantry" name="{=str_tor_eonir_empire_envoy_0}Empire Envoy" occupation="Special" culture="Culture.eonir" voice="ironic" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />

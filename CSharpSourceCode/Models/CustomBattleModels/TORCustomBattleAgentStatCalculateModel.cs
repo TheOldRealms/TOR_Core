@@ -102,7 +102,7 @@ namespace TOR_Core.Models.CustomBattleModels
                 var speedMultiplier = Mathf.Clamp(speedModifier + 1, 0, 2); //to set in the right offset, where -100% would actually result in 0% movement speed
                 if (agent.IsMount)
                 {
-                    agentDrivenProperties.SetDynamicMountMovementProperties(statusEffectComponent, speedMultiplier);
+                    agentDrivenProperties.SetDynamicMountMovementProperties(speedMultiplier);
                 }
                 else
                 {
@@ -113,7 +113,7 @@ namespace TOR_Core.Models.CustomBattleModels
             {
                 if (agent.IsMount)
                 {
-                    agentDrivenProperties.SetDynamicMountMovementProperties(statusEffectComponent, 1);
+                    agentDrivenProperties.SetDynamicMountMovementProperties(1);
                 }
                 else
                 {

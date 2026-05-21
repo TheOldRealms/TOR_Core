@@ -342,13 +342,14 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
                 if (playerHero.HasCareerChoice("HuntTheWickedPassive2"))
                 {
-                    var evilCultures = new[] { TORConstants.Cultures.CHAOS, TORConstants.Cultures.BEASTMEN, TORConstants.Cultures.SYLVANIA, TORConstants.Cultures.MOUSILLON, TORConstants.Cultures.CHAOSCULTIST};
+                    var evilCultures = new[] { TORConstants.Cultures.CHAOS, TORConstants.Cultures.BEASTMEN, TORConstants.Cultures.SYLVANIA, TORConstants.Cultures.MOUSILLON, TORConstants.Cultures.CHAOS_CULTIST};
                     foreach (var party in defeatedSide.Parties)
                     {
-                        //Sly : Party.Culture can't be used because it actually uses Party.MapFaction.Culture and MapFaction can be a kingdom or a clan. Party.Owner.Culture is unreliable because bandit clans usually don't have a clan leader and it would therefore be null. ActualClan is used because this will return a valid clan even for bandit parties.
+                        //Sly : Party.Culture can't be used because it actually uses Party.MapFaction.Culture and MapFaction can be null if MobileParty or Settlement is null. Party.Owner.Culture is unreliable because bandit clans usually don't have a clan leader and it would therefore be null. ActualClan is used because this will return a valid clan even for bandit parties.
                         //Note that village militias that spawn during a defense are PartyBases with no associated MobileParty, but because the village's culture will be derived from the settlement owner's culture which will be based on the kingdom's culture, this will be close enough in the interim as the types of troops that spawn in the militia are also based on the settlement's culture.
                         //Garrisons are mobile party's with no ActualClan. Why are all of these bads choices?
-                        var partyCulture = party.Party.MobileParty?.ActualClan?.Culture ?? party.Party.Culture;
+                        var partyCulture = party.Party.MobileParty?.ActualClan?.Culture ?? party.Party.MapFaction?.Culture;
+                        if (partyCulture == null) continue;
                         if (evilCultures.Contains(partyCulture.StringId))
                         {
                             var choice = TORCareerChoices.GetChoice("HuntTheWickedPassive2");
@@ -399,7 +400,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
                 }
 
-                if (playerCulture.StringId == TORConstants.Cultures.ASRAI && playerParty.InAthelLoren() && defeatedSide.Parties.AnyQ(x => x.Party.Culture.StringId == TORConstants.Cultures.BEASTMEN))//risky, but MapFaction.Culture will refer back to the bandit clan culture which works out
+                if (playerCulture.StringId == TORConstants.Cultures.ASRAI && playerParty.InAthelLoren() && defeatedSide.Parties.AnyQ(x => x.Party.MapFaction?.Culture.StringId == TORConstants.Cultures.BEASTMEN))//risky, but MapFaction.Culture will refer back to the bandit clan culture which works out
                 {
                     renownChange *= 3;
                 }
@@ -424,9 +425,11 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                     {
                         if (hasgrudge) break;
 
+                        var partyCulture = party.Party.MobileParty?.ActualClan?.Culture ?? party.Party.MapFaction?.Culture ?? party.Party.MobileParty?.HomeSettlement?.Culture ?? party.Party.LeaderHero?.Culture;
+
                         if (playerHero.HasAttribute("HumanGrudge"))
                         {
-                            var humanCultures = new[] { TORConstants.Cultures.EMPIRE, TORConstants.Cultures.BRETONNIA };
+                            var humanCultures = new[] { TORConstants.Cultures.EMPIRE, TORConstants.Cultures.BRETONNIA, TORConstants.Cultures.HERRIMAULT, TORConstants.Cultures.EMPIRE_DESERTERS, TORConstants.Cultures.CHAOS_CULTIST };
 
                             if (party.Party.MobileParty != null && party.Party.MobileParty.IsBandit)
                             {
@@ -437,7 +440,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                             }
                             else
                             {
-                                if (humanCultures.Contains(party.Party.Culture.StringId))
+                                if (humanCultures.Contains(partyCulture.StringId))
                                 {
                                     hasgrudge = true;
                                 }
@@ -446,8 +449,8 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
                         if (playerHero.HasAttribute("GreenskinGrudge"))
                         {
-                            var greenskinCultures = new[] { TORConstants.Cultures.GREENSKIN };
-                            if (greenskinCultures.Contains(party.Party.Culture.StringId))
+                            var greenskinCultures = new[] { TORConstants.Cultures.GREENSKIN, TORConstants.Cultures.GREENSKIN_BANDIT, TORConstants.Cultures.GOBLIN_BANDIT };
+                            if (greenskinCultures.Contains(partyCulture.StringId))
                             {
                                 hasgrudge = true;
                             }
@@ -456,7 +459,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                         if (playerHero.HasAttribute("UndeadGrudge"))
                         {
                             var undeadCultures = new[] { TORConstants.Cultures.SYLVANIA, TORConstants.Cultures.MOUSILLON };
-                            if (undeadCultures.Contains(party.Party.Culture.StringId))
+                            if (undeadCultures.Contains(partyCulture.StringId))
                             {
                                 hasgrudge = true;
                             }
@@ -465,7 +468,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                         if (playerHero.HasAttribute("ElfGrudge"))
                         {
                             var elfCultures = new[] { TORConstants.Cultures.ASRAI, TORConstants.Cultures.EONIR, TORConstants.Cultures.DRUCHII };
-                            if (elfCultures.Contains(party.Party.Culture.StringId))
+                            if (elfCultures.Contains(partyCulture.StringId))
                             {
                                 hasgrudge = true;
                             }

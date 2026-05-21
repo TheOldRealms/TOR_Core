@@ -330,17 +330,17 @@ namespace TOR_Core.Extensions
 
         public static bool IsCultist(this BasicCharacterObject characterObject)
         {
-            return characterObject.Culture.StringId == TORConstants.Cultures.CHAOSCULTIST;//Sly : this has been changed from using the race because the cultist race was applied to a bunch of unrelated troops among the undead cultures which lead to misdetection. When this is fixed, this could be switched back to the cultist race if that's more performant/clear.
+            return characterObject.Culture.StringId == TORConstants.Cultures.CHAOS_CULTIST;//Sly : this has been changed from using the race because the cultist race was applied to a bunch of unrelated troops among the undead cultures which lead to misdetection. When this is fixed, this could be switched back to the cultist race if that's more performant/clear.
         }
 
         public static bool IsChaos(this CharacterObject characterObject)
         {
-            return characterObject.Culture.StringId == TORConstants.Cultures.CHAOS || characterObject.Culture.StringId == TORConstants.Cultures.CHAOSCULTIST;
+            return characterObject.Culture.StringId == TORConstants.Cultures.CHAOS || characterObject.Culture.StringId == TORConstants.Cultures.CHAOS_CULTIST;
         }
 
         public static bool IsChaos(this BasicCharacterObject characterObject)
         {
-            return characterObject.Culture.StringId == TORConstants.Cultures.CHAOS || characterObject.Culture.StringId == TORConstants.Cultures.CHAOSCULTIST;
+            return characterObject.Culture.StringId == TORConstants.Cultures.CHAOS || characterObject.Culture.StringId == TORConstants.Cultures.CHAOS_CULTIST;
         }
 
         public static bool IsBloodDragon(this BasicCharacterObject characterObject)

@@ -83,6 +83,12 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
         private static readonly AccessTools.FieldRef<MobileParty, CampaignTime> DisorganizedUntilTime =
             AccessTools.FieldRefAccess<MobileParty, CampaignTime>("_disorganizedUntilTime");
 
+        private static readonly AccessTools.FieldRef<MapEvent, BattleSideEnum> MapEventRetreatingSide =
+            AccessTools.FieldRefAccess<MapEvent, BattleSideEnum>("<RetreatingSide>k__BackingField");
+
+        private static readonly AccessTools.FieldRef<MapEvent, int> MapEventPursuitRoundNumber =
+            AccessTools.FieldRefAccess<MapEvent, int>("<PursuitRoundNumber>k__BackingField");
+
         private static readonly AccessTools.FieldRef<MapEventSide, List<UniqueTroopDescriptor>> SimulationTroopList =
             AccessTools.FieldRefAccess<MapEventSide, List<UniqueTroopDescriptor>>("_simulationTroopList");
 
@@ -774,6 +780,10 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
                 var didRouteAnyTroops = ApplyPartialRouting(mapEventSide, routingState);
                 if (!didRouteAnyTroops)
                     return false;
+
+                MapEventRetreatingSide(__instance) = mapEventSide.MissionSide;
+                MapEventPursuitRoundNumber(__instance) =
+                    Campaign.Current.Models.CombatSimulationModel.GetPursuitRoundCount(__instance);
 
                 var retreatingMobileParties = new List<MobileParty>();
 
