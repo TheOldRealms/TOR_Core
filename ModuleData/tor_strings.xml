@@ -5713,4 +5713,7 @@
   <string id="str_formation_ai_behavior_text.TORBehaviorRetreat" text="{=str_tor_formation_ai_behavior_text_torbehaviorretreat}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are retreating." />
   <string id="str_formation_ai_behavior_text.TORBehaviorSkirmish" text="{=str_tor_formation_ai_behavior_text_torbehaviorskirmish}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are skirmishing." />
   <string id="str_formation_ai_sergeant_instruction_behaviour_text.TORBehaviorCharge" text="{=str_formation_ai_sergeant_instruction_behaviour_text.torbehaviorcharge}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are Charging." />
+  <string id="tor_we_scout" text="{=str_tor_we_scout}Asrai Ranger" category="Units" subcategory="Wood Elves" />
+  <string id="tor_we_kings_bowman" text="{=str_tor_we_kings_bowman}Asrai Kings Bowman" category="Units" subcategory="Wood Elves" />
+  <string id="tor_test_subject" text="{=str_tor_test_subject}Test Subject" category="Units" subcategory="Test" />
 </strings>
