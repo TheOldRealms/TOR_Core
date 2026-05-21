@@ -15,7 +15,7 @@ namespace TOR_Core.Missions
         public override void OnBehaviorInitialize()
         {
             base.OnBehaviorInitialize();
-            _missionAgentSpawnLogic = Mission.GetMissionBehavior<MissionAgentSpawnLogic>();
+            _missionAgentSpawnLogic = Mission.GetMissionBehavior<DefaultBattleMissionAgentSpawnLogic>();
             _mapEvent = MapEvent.PlayerMapEvent;
         }
 
@@ -31,7 +31,7 @@ namespace TOR_Core.Missions
             _missionAgentSpawnLogic.InitWithSinglePhase(numDefender, numAttacker, defenderInitialSpawn, attackerInitialSpawn, true, true, MissionSpawnSettings.CreateDefaultSpawnSettings());
         }
 
-        private MissionAgentSpawnLogic _missionAgentSpawnLogic;
+        private DefaultBattleMissionAgentSpawnLogic _missionAgentSpawnLogic;
         private MapEvent _mapEvent;
     }
 }

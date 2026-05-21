@@ -111,7 +111,7 @@
         </CharacterTableauWidget>
 
         <!--_____Center Panel_______-->
-        <ListPanel Id="CharacterInfo" VisualDefinition="TopMenu" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="485" SuggestedHeight="70" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="150" StackLayout.LayoutMethod="VerticalBottomToTop">
+        <ListPanel Id="CharacterInfo" VisualDefinition="TopMenu" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="485" SuggestedHeight="70" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="150" StackLayout.LayoutMethod="VerticalTopToBottom">
           <Children>
             <TextWidget DataSource="{CurrentCharacter}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" SuggestedWidth="330" HorizontalAlignment="Center" Brush="Party.Text.CenterName" Text="@Name" />
 
@@ -177,7 +177,7 @@
 
                 <DelayedStateChanger Id="ClipRect" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="58" SuggestedHeight="!FormationClipRect.Height" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="87" ClipContents="true" TargetWidget="DropdownListPanel">
                   <Children>
-                    <ListPanel Id="DropdownListPanel" DataSource="{ItemList}" VisualDefinition="FormationListPanel" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginTop="!FormationListPanel.MarginTop" IsVisible="false" StackLayout.LayoutMethod="VerticalBottomToTop">
+                    <ListPanel Id="DropdownListPanel" DataSource="{ItemList}" VisualDefinition="FormationListPanel" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginTop="!FormationListPanel.MarginTop" IsVisible="false" StackLayout.LayoutMethod="VerticalTopToBottom">
                       <ItemTemplate>
                         <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.Formation.Item.Width" SuggestedHeight="!Party.Formation.Item.Height" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginTop="4" MarginBottom="4" Brush="Party.Formation.Item" ButtonType="Radio" DominantSelectedState="false">
                           <Children>
@@ -201,7 +201,7 @@
         <BoolStateChangerWidget DoNotAcceptEvents="true" DoNotPassEventsToChildren="true" BooleanCheck="@IsAnyPopUpOpen" FalseState="Default" TargetWidget="..\TripleDialogCloseButtons" TrueState="Opened"/>
         <Standard.TripleDialogCloseButtons VisualDefinition="BottomMenu" Id="TripleDialogCloseButtons" PositionYOffset="200" Parameter.CancelButtonAction="ExecuteCancel" Parameter.CancelButtonText="@CancelLbl" Parameter.CancelButtonDisabled="@IsCancelDisabled" Parameter.ResetInputKeyDataSource="{ResetInputKey}" Parameter.CancelInputKeyDataSource="{CancelInputKey}" Parameter.DoneButtonAction="ExecuteDone" Parameter.DoneButtonDisabled="@IsDoneDisabled" Parameter.DoneButtonText="@DoneLbl" Parameter.DoneInputKeyDataSource="{DoneInputKey}" Parameter.DoneButtonHintDataSource="{DoneHint}" Parameter.ResetButtonAction="ExecuteReset" Parameter.ResetButtonHintDataSource="{ResetHint}"/>
 
-        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="125" StackLayout.LayoutMethod="VerticalBottomToTop">
+        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="125" StackLayout.LayoutMethod="VerticalTopToBottom">
           <Children>
             <!--Morale Change Label-->
             <Widget Id="MoraleLabelContainer" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" IsDisabled="true" Sprite="BlankWhiteSquare_9" Color="#00000066">
@@ -286,7 +286,7 @@
                 <Widget Id="MyClipRect" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="!SidePanel.ScrollablePanel.Width" HorizontalAlignment="Center" ClipContents="true">
                   <Children>
 										
-                    <ListPanel Id="OtherPartyInnerPanel" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="!PartyToggle.Width" HorizontalAlignment="Center" VerticalAlignment="Top" StackLayout.LayoutMethod="VerticalBottomToTop">
+                    <ListPanel Id="OtherPartyInnerPanel" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="!PartyToggle.Width" HorizontalAlignment="Center" VerticalAlignment="Top" StackLayout.LayoutMethod="VerticalTopToBottom">
                       <Children>
 
                         <!--Other Party Troops Header-->
@@ -297,7 +297,7 @@
                           <Children>
 
                             <!--_____Other Party Troops_______-->
-                            <PartyListPanel Id="List" DataSource="{OtherPartyTroops}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" AcceptDrop="true" Command.Drop="..\ExecuteTransferWithParameters" CommandParameter.Drop="OtherPartyTroops" StackLayout.LayoutMethod="VerticalBottomToTop" MinIndex="1" MaxIndex="1000000" StepSize="10" AutoScrollTopOffset="150" AutoScrollBottomOffset="150">
+                            <PartyListPanel Id="List" DataSource="{OtherPartyTroops}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" AcceptDrop="true" Command.Drop="..\ExecuteTransferWithParameters" CommandParameter.Drop="OtherPartyTroops" StackLayout.LayoutMethod="VerticalTopToBottom" MinIndex="1" MaxIndex="1000000" StepSize="10" AutoScrollTopOffset="150" AutoScrollBottomOffset="150">
                               <ItemTemplate>
                                 <PartyTroopTupleLeft/>
                               </ItemTemplate>
@@ -320,7 +320,7 @@
                           <Children>
 
                             <!--_____Other Party Prisoners_______-->
-                            <PartyListPanel Id="List" DataSource="{OtherPartyPrisoners}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" AcceptDrop="true" Command.Drop="..\ExecuteTransferWithParameters" CommandParameter.Drop="OtherPartyPrisoners" StackLayout.LayoutMethod="VerticalBottomToTop" MinIndex="1000002" MaxIndex="2000000" StepSize="10" AutoScrollTopOffset="150" AutoScrollBottomOffset="150">
+                            <PartyListPanel Id="List" DataSource="{OtherPartyPrisoners}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" AcceptDrop="true" Command.Drop="..\ExecuteTransferWithParameters" CommandParameter.Drop="OtherPartyPrisoners" StackLayout.LayoutMethod="VerticalTopToBottom" MinIndex="1000002" MaxIndex="2000000" StepSize="10" AutoScrollTopOffset="150" AutoScrollBottomOffset="150">
                               <ItemTemplate>
                                 <PartyTroopTupleLeft/>
                               </ItemTemplate>
@@ -413,7 +413,7 @@
                 <Widget Id="MyClipRect" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="!SidePanel.ScrollablePanel.Width" HorizontalAlignment="Center" ClipContents="true">
                   <Children>
 										
-                    <ListPanel Id="MainPartyInnerPanel" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="!PartyToggle.Width" HorizontalAlignment="Center" VerticalAlignment="Top" StackLayout.LayoutMethod="VerticalBottomToTop">
+                    <ListPanel Id="MainPartyInnerPanel" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="!PartyToggle.Width" HorizontalAlignment="Center" VerticalAlignment="Top" StackLayout.LayoutMethod="VerticalTopToBottom">
                       <Children>
 
                         <!--Main Party Troops Header-->
@@ -424,7 +424,7 @@
                           <Children>
 
                             <!--_____Main Party Troops_______-->
-                            <PartyListPanel Id="List" DataSource="{MainPartyTroops}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" AcceptDrop="true" Command.Drop="..\ExecuteTransferWithParameters" CommandParameter.Drop="MainPartyTroops" StackLayout.LayoutMethod="VerticalBottomToTop" MinIndex="1" MaxIndex="1000000" StepSize="10" AutoScrollTopOffset="150" AutoScrollBottomOffset="150">
+                            <PartyListPanel Id="List" DataSource="{MainPartyTroops}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" AcceptDrop="true" Command.Drop="..\ExecuteTransferWithParameters" CommandParameter.Drop="MainPartyTroops" StackLayout.LayoutMethod="VerticalTopToBottom" MinIndex="1" MaxIndex="1000000" StepSize="10" AutoScrollTopOffset="150" AutoScrollBottomOffset="150">
                               <ItemTemplate>
                                 <PartyTroopTuple/>
                               </ItemTemplate>
@@ -447,7 +447,7 @@
                         <Widget Id="MainPartyPrisonersList" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginBottom="20">
                           <Children>
 
-                            <PartyListPanel Id="List" DataSource="{MainPartyPrisoners}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" AcceptDrop="true" Command.Drop="..\ExecuteTransferWithParameters" CommandParameter.Drop="MainPartyPrisoners" StackLayout.LayoutMethod="VerticalBottomToTop" MinIndex="1000002" MaxIndex="2000000" StepSize="10" AutoScrollTopOffset="150" AutoScrollBottomOffset="150">
+                            <PartyListPanel Id="List" DataSource="{MainPartyPrisoners}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" AcceptDrop="true" Command.Drop="..\ExecuteTransferWithParameters" CommandParameter.Drop="MainPartyPrisoners" StackLayout.LayoutMethod="VerticalTopToBottom" MinIndex="1000002" MaxIndex="2000000" StepSize="10" AutoScrollTopOffset="150" AutoScrollBottomOffset="150">
                               <ItemTemplate>
                                 <PartyTroopTuple/>
                               </ItemTemplate>

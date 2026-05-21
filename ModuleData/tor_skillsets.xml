@@ -42,7 +42,7 @@
 		<skill id="Athletics"
 		       value="0" />
 		<skill id="Riding"
-		       value="0" />
+		       value="50" />
 		<skill id="OneHanded"
 		       value="0" />
 		<skill id="TwoHanded"
@@ -99,7 +99,7 @@
 		<skill id="Throwing"
 		       value="0" />
 		<skill id="Medicine"
-		       value="0" />
+		       value="50" />
 		<skill id="Steward"
 		       value="50" />
 		<skill id="Engineering"
@@ -169,11 +169,11 @@
 
 	<SkillSet id="tor_skills_wanderer_witch_hunter">
 		<skill id="Athletics"
-		       value="0" />
+		       value="50" />
 		<skill id="Riding"
 		       value="0" />
 		<skill id="OneHanded"
-		       value="0" />
+		       value="50" />
 		<skill id="TwoHanded"
 		       value="0" />
 		<skill id="Polearm"
@@ -199,20 +199,20 @@
 		<skill id="Leadership"
 		       value="0" />
 		<skill id="Roguery"
-		       value="0" />
+		       value="50" />
 		<skill id="Trade"
 		       value="0" />
 		<skill id="Gunpowder"
 		       value="100" />
 		<skill id="Faith"
-		       value="0" />
+		       value="50" />
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
 
 	<SkillSet id="tor_skills_wanderer_huntsman">
 		<skill id="Athletics"
-		       value="0" />
+		       value="50" />
 		<skill id="Riding"
 		       value="0" />
 		<skill id="OneHanded"
@@ -242,7 +242,7 @@
 		<skill id="Leadership"
 		       value="0" />
 		<skill id="Roguery"
-		       value="0" />
+		       value="50" />
 		<skill id="Trade"
 		       value="0" />
 		<skill id="Gunpowder"
@@ -255,15 +255,15 @@
 
 	<SkillSet id="tor_skills_wanderer_merchant">
 		<skill id="Athletics"
-		       value="0" />
+		       value="50" />
 		<skill id="Riding"
-		       value="0" />
+		       value="50" />
 		<skill id="OneHanded"
-		       value="0" />
+		       value="50" />
 		<skill id="TwoHanded"
-		       value="0" />
+		       value="50" />
 		<skill id="Polearm"
-		       value="0" />
+		       value="50" />
 		<skill id="Bow"
 		       value="0" />
 		<skill id="Crossbow"
@@ -281,7 +281,7 @@
 		<skill id="Scouting"
 		       value="50" />
 		<skill id="Charm"
-		       value="0" />
+		       value="100" />
 		<skill id="Leadership"
 		       value="0" />
 		<skill id="Roguery"
@@ -302,7 +302,7 @@
 		<skill id="Riding"
 		       value="30" />
 		<skill id="OneHanded"
-		       value="50" />
+		       value="100" />
 		<skill id="TwoHanded"
 		       value="50" />
 		<skill id="Polearm"
@@ -316,23 +316,23 @@
 		<skill id="Medicine"
 		       value="0" />
 		<skill id="Steward"
-		       value="50" />
+		       value="100" />
 		<skill id="Engineering"
 		       value="0" />
 		<skill id="Tactics"
-		       value="0" />
+		       value="100" />
 		<skill id="Scouting"
 		       value="0" />
 		<skill id="Charm"
 		       value="0" />
 		<skill id="Leadership"
-		       value="0" />
+		       value="100" />
 		<skill id="Roguery"
 		       value="0" />
 		<skill id="Trade"
 		       value="0" />
 		<skill id="Gunpowder"
-		       value="0" />
+		       value="30" />
 		<skill id="Faith"
 		       value="0" />
 		<skill id="Spellcraft"
@@ -544,7 +544,7 @@
 		<skill id="Leadership"
 		       value="0" />
 		<skill id="Roguery"
-		       value="0" />
+		       value="50" />
 		<skill id="Trade"
 		       value="0" />
 		<skill id="Gunpowder"
@@ -587,7 +587,7 @@
 		<skill id="Leadership"
 		       value="0" />
 		<skill id="Roguery"
-		       value="0" />
+		       value="50" />
 		<skill id="Trade"
 		       value="0" />
 		<skill id="Gunpowder"
@@ -841,9 +841,9 @@
 		<skill id="Charm"
 		       value="0" />
 		<skill id="Leadership"
-		       value="0" />
+		       value="100" />
 		<skill id="Roguery"
-		       value="0" />
+		       value="50" />
 		<skill id="Trade"
 		       value="0" />
 		<skill id="Gunpowder"

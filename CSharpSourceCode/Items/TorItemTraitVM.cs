@@ -19,7 +19,8 @@ namespace TOR_Core.Items
                 return;
             }
             _hintText = new HintViewModel(new TaleWorlds.Localization.TextObject(trait.ItemTraitDescription));
-            _icon = "<img src=\"" + trait.IconName + "\"/>";
+            // A valid icon is required - empty/null IconName causes RichTextWidget to crash when rendering the tooltip
+            _icon = "<img src=\"" + (string.IsNullOrEmpty(trait.IconName) ? "winds_icon_45" : trait.IconName) + "\"/>";
         }
 
         private TorItemTraitVM() { }
@@ -55,7 +56,7 @@ namespace TOR_Core.Items
         {
             get
             {
-                return _icon;
+                return _icon ?? string.Empty;
             }
             set
             {

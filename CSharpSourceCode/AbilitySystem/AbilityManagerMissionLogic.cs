@@ -35,7 +35,7 @@ namespace TOR_Core.AbilitySystem
 {
     public class AbilityManagerMissionLogic : MissionLogic
     {
-        private MissionAgentSpawnLogic _missionAgentSpawnLogic;
+        private DefaultBattleMissionAgentSpawnLogic _missionAgentSpawnLogic;
         private bool _shouldSheathWeapon;
         private bool _shouldWieldWeapon;
         private bool _shouldPlayIdleCastStanceAnim;
@@ -124,7 +124,7 @@ namespace TOR_Core.AbilitySystem
 
             TORSummonHelper.ResetInitialSpawnedTroopCount();
 
-            _missionAgentSpawnLogic = Mission.GetMissionBehavior<MissionAgentSpawnLogic>();
+            _missionAgentSpawnLogic = Mission.GetMissionBehavior<DefaultBattleMissionAgentSpawnLogic>();
             if (_missionAgentSpawnLogic != null)
             {
                 _missionAgentSpawnLogic.OnInitialTroopsSpawned += OnInitialTroopsSpawned;
@@ -694,6 +694,8 @@ namespace TOR_Core.AbilitySystem
         protected override void OnEndMission()
         {
             base.OnEndMission();
+            ClampExceedingWinds();
+
             if (_missionAgentSpawnLogic != null)
             {
                 _missionAgentSpawnLogic.OnInitialTroopsSpawned -= OnInitialTroopsSpawned;
@@ -928,6 +930,35 @@ namespace TOR_Core.AbilitySystem
                 EnableCastStanceParticles(false);
             }
         }
+        private void ClampExceedingWinds()
+        {
+            if (Game.Current?.GameType is not Campaign)
+            {
+                return;
+            }
+
+            var roster = Campaign.Current.MainParty.MemberRoster.GetTroopRoster();
+            for (int i = 0; i < roster.Count; i++)
+            {
+                var character = roster[i].Character;
+                if (!character.IsHero)
+                {
+                    continue;
+                }
+
+                var info = character.HeroObject.GetExtendedInfo();
+                if (info == null)
+                {
+                    continue;
+                }
+
+                var maximumWindsOfMagic = info.MaxWindsOfMagic;
+                if (info.GetCustomResourceValue("WindsOfMagic") > maximumWindsOfMagic)
+                {
+                    info.SetCustomResourceValue("WindsOfMagic", maximumWindsOfMagic);
+                }
+            }
+        }
 
         private void AddPerkEffectsToStartingWindsOfMagic()
         {
@@ -979,7 +1010,8 @@ namespace TOR_Core.AbilitySystem
                     {
                         info.AddCustomResource(
                             "WindsOfMagic",
-                            magicItemCount * TORPerks.Spellcraft.Catalyst.PrimaryBonus
+                            magicItemCount * TORPerks.Spellcraft.Catalyst.PrimaryBonus,
+                            allowWindsOfMagicOverMaximum: true
                         );
                     }
                 }

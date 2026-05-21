@@ -8,7 +8,7 @@
 
         <Widget Id="TargetItemTooltip" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" ExtendTop="10" ExtendLeft="10" ExtendRight="10" ExtendBottom="10" Sprite="inventory_tooltip_9">
           <Children>
-            <ListPanel DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop">
+            <ListPanel DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalTopToBottom">
               <Children>
                 <TextWidget Text="@ItemName" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MaxWidth="280" SuggestedHeight="65" MarginTop="20" MarginLeft="20" MarginRight="20" HorizontalAlignment="Center" Brush="InventoryDefaultFontBrush" Brush.FontSize="26" Brush.TextColor="#E1E1E1FF" Brush.TextVerticalAlignment="Center" Brush.TextHorizontalAlignment="Center"/>
                 <TextWidget Text="Magic Item" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" MaxWidth="280" SuggestedHeight="40" MarginTop="5" MarginLeft="20" MarginRight="20" HorizontalAlignment="Center" Brush="TorInventoryMagicItemBrush" Brush.TextVerticalAlignment="Center" Brush.TextHorizontalAlignment="Center" IsVisible="@IsMagicItem"/>

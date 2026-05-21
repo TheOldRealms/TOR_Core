@@ -27,7 +27,7 @@ namespace TOR_Core.GameManagers
                 keyList.Add(item);
             }
             if (!keyList.Any(x => x is TORGameKeyContext)) keyList.Add(new TORGameKeyContext());
-            HotKeyManager.RegisterInitialContexts(keyList, true);
+            HotKeyManager.RegisterInitialContexts(keyList);
 
             var context = nameof(TORGameKeyContext);
             var ContextTitleElement = Module.CurrentModule.GlobalTextManager.GetGameText("str_key_category_name");

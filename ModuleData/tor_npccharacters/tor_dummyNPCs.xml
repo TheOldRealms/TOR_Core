@@ -11,7 +11,7 @@
         <Equipments>
             <EquipmentSet id="tor_empire_tournament_template_one_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 
@@ -23,7 +23,7 @@
             <EquipmentSet id="tor_empire_tournament_template_two_participant_v1" />
             <EquipmentSet id="tor_empire_tournament_template_two_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 
@@ -37,7 +37,7 @@
             <EquipmentSet id="tor_empire_tournament_template_four_participant_v1" />
             <EquipmentSet id="tor_empire_tournament_template_four_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 
@@ -49,7 +49,7 @@
         <Equipments>
             <EquipmentSet id="tor_bretonnia_tournament_template_one_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 
@@ -60,7 +60,7 @@
         <Equipments>
             <EquipmentSet id="tor_bretonnia_tournament_template_two_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 
@@ -71,7 +71,7 @@
         <Equipments>
             <EquipmentSet id="tor_bretonnia_tournament_template_four_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 
@@ -83,7 +83,7 @@
         <Equipments>
             <EquipmentSet id="tor_m_tournament_template_one_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 
@@ -94,7 +94,7 @@
         <Equipments>
             <EquipmentSet id="tor_m_tournament_template_two_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 
@@ -105,7 +105,7 @@
         <Equipments>
             <EquipmentSet id="tor_m_tournament_template_four_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 
@@ -117,7 +117,7 @@
         <Equipments>
             <EquipmentSet id="tor_gs_tournament_template_one_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 
@@ -129,7 +129,7 @@
             <EquipmentSet id="tor_gs_tournament_template_two_participant_v1" />
             <EquipmentSet id="tor_gs_tournament_template_two_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 
@@ -143,7 +143,7 @@
             <EquipmentSet id="tor_gs_tournament_template_four_participant_v1" />
             <EquipmentSet id="tor_gs_tournament_template_four_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 
@@ -155,7 +155,7 @@
         <Equipments>
             <EquipmentSet id="tor_vc_tournament_template_one_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 
@@ -167,7 +167,7 @@
             <EquipmentSet id="tor_vc_tournament_template_two_participant_v1" />
             <EquipmentSet id="tor_vc_tournament_template_two_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 
@@ -181,7 +181,7 @@
             <EquipmentSet id="tor_vc_tournament_template_four_participant_v1" />
             <EquipmentSet id="tor_vc_tournament_template_four_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 
@@ -193,7 +193,7 @@
         <Equipments>
             <EquipmentSet id="tor_asrai_tournament_template_one_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 
@@ -204,7 +204,7 @@
         <Equipments>
             <EquipmentSet id="tor_asrai_tournament_template_two_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 
@@ -215,7 +215,7 @@
         <Equipments>
             <EquipmentSet id="tor_asrai_tournament_template_four_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 
@@ -227,7 +227,7 @@
         <Equipments>
             <EquipmentSet id="tor_eonir_tournament_template_one_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 
@@ -239,7 +239,7 @@
             <EquipmentSet id="tor_eonir_tournament_template_two_participant_v1" />
 	        <EquipmentSet id="tor_eonir_tournament_template_two_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 
@@ -253,7 +253,7 @@
 			<EquipmentSet id="tor_eonir_tournament_template_four_participant_v1" />
 			<EquipmentSet id="tor_eonir_tournament_template_four_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 
@@ -265,7 +265,7 @@
         <Equipments>
             <EquipmentSet id="tor_dw_tournament_template_one_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 
@@ -277,7 +277,7 @@
             <EquipmentSet id="tor_dw_tournament_template_two_participant_v1" />
 			<EquipmentSet id="tor_dw_tournament_template_two_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 
@@ -291,7 +291,7 @@
 			<EquipmentSet id="tor_dw_tournament_template_four_participant_v1" />
 			<EquipmentSet id="tor_dw_tournament_template_four_participant_v1" />
             <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
-            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
         </Equipments>
     </NPCCharacter>
 

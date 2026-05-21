@@ -24,11 +24,11 @@ namespace TOR_Core.Extensions
             agentDrivenProperties.MaxSpeedMultiplier = statusEffectComponent.GetBaseValueForDrivenProperty(DrivenProperty.MaxSpeedMultiplier) * multiplier;
         }
 
-        public static void SetDynamicMountMovementProperties(this AgentDrivenProperties agentDrivenProperties, StatusEffectComponent statusEffectComponent, float multiplier)
+        public static void SetDynamicMountMovementProperties(this AgentDrivenProperties agentDrivenProperties, float multiplier)
         {
-            agentDrivenProperties.MountSpeed = statusEffectComponent.GetBaseValueForDrivenProperty(DrivenProperty.MountSpeed) * multiplier;
-            agentDrivenProperties.MountDashAccelerationMultiplier = statusEffectComponent.GetBaseValueForDrivenProperty(DrivenProperty.MountDashAccelerationMultiplier) * multiplier;
-            agentDrivenProperties.MountManeuver = statusEffectComponent.GetBaseValueForDrivenProperty(DrivenProperty.MountManeuver) * multiplier;
+            agentDrivenProperties.MountSpeed *= multiplier;
+            agentDrivenProperties.MountDashAccelerationMultiplier *= multiplier;
+            agentDrivenProperties.MountManeuver *= multiplier;
         }
     }
 }

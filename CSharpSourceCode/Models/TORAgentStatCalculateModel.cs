@@ -257,14 +257,14 @@ namespace TOR_Core.Models
         {
             if (agent.Origin is SummonedAgentOrigin) return agent.Character.GetSkillValue(skill);
             var result = base.GetEffectiveSkill(agent, skill);
-            ExplainedNumber resultNumber = new ExplainedNumber(result, false, null);
+            ExplainedNumber effectiveSkill = new ExplainedNumber(result, false, null);
 
             if (agent.GetHero() is Hero hero)
             {
                 var skillEffectFromEquipment = hero.GetAggregatedSkillEffectFromEquipment(skill.StringId);
                 if (skillEffectFromEquipment != 0)
                 {
-                    resultNumber.Add(skillEffectFromEquipment, GameTexts.FindText("tor_generic_enchantedEquipment"));
+                    effectiveSkill.Add(skillEffectFromEquipment, GameTexts.FindText("tor_generic_enchantedEquipment"));
                 }
             }
 
@@ -275,17 +275,17 @@ namespace TOR_Core.Models
                 {
                     if (skill == TORSkills.GunPowder && agent.Character.Equipment.HasWeaponOfClass(WeaponClass.Cartridge))
                     {
-                        PerkHelper.AddPerkBonusForParty(TORPerks.GunPowder.RunAndGun, mobileParty, false, ref resultNumber);
+                        PerkHelper.AddPerkBonusForParty(TORPerks.GunPowder.RunAndGun, mobileParty, false, ref effectiveSkill);
                     }
-
+ 
                     if (skill == DefaultSkills.OneHanded && agent.Character.Equipment.HasWeaponOfClass(WeaponClass.Cartridge))
                     {
-                        PerkHelper.AddPerkBonusForParty(TORPerks.GunPowder.CloseQuarters, mobileParty, false, ref resultNumber);
+                        PerkHelper.AddPerkBonusForParty(TORPerks.GunPowder.CloseQuarters, mobileParty, false, ref effectiveSkill);
                     }
 
                     if (skill == DefaultSkills.Riding && agent.Character.IsMounted && agent.Character.Equipment.HasWeaponOfClass(WeaponClass.Cartridge))
                     {
-                        PerkHelper.AddPerkBonusForParty(TORPerks.GunPowder.MountedHeritage, mobileParty, false, ref resultNumber);
+                        PerkHelper.AddPerkBonusForParty(TORPerks.GunPowder.MountedHeritage, mobileParty, false, ref effectiveSkill);
                     }
 
                     if (mobileParty == MobileParty.MainParty)
@@ -294,14 +294,14 @@ namespace TOR_Core.Models
                         {
                             if (!agent.IsMainAgent && !agent.Character.IsHero)
                             {
-                                CareerHelper.ApplySkillBonusForTroops(ref resultNumber, skill, agent.Character);
+                                CareerHelper.ApplySkillBonusForTroops(ref effectiveSkill, skill, agent.Character);
                             }
                         }
                     }
                 }
             }
 
-            return (int)resultNumber.ResultNumber;
+            return (int)effectiveSkill.ResultNumber;
         }
 
         public override string GetMissionDebugInfoForAgent(Agent agent)
@@ -607,7 +607,7 @@ namespace TOR_Core.Models
 
             if (isMount)
             {
-                agentDrivenProperties.SetDynamicMountMovementProperties(statusEffectComponent, speedMultiplier);
+                agentDrivenProperties.SetDynamicMountMovementProperties(speedMultiplier);
             }
             else
             {

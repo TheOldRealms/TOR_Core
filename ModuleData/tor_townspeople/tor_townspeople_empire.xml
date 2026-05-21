@@ -8,7 +8,7 @@
     <upgrade_targets></upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_empire_halberdier_template" />
-      <EquipmentSet id="tor_empire_halberdier_template" civilian="true" />
+      <EquipmentSet id="tor_empire_halberdier_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_townsman_villager" default_group="Infantry" name="{=muu5cofb}Townsman" occupation="Townsfolk" culture="Culture.empire" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
@@ -64,12 +64,12 @@
         <equipment slot="Leg" id="Item.steppe_leather_boots" />
         <equipment slot="Head" id="Item.tor_empire_head_helm_hunter_001" />
       </EquipmentRoster>
-      <EquipmentRoster civilian="true">
+      <EquipmentRoster equipmentType="Civilian">
         <equipment slot="Body" id="Item.leather_coat_over_cloth" />
         <equipment slot="Leg" id="Item.belted_leather_boots" />
         <equipment slot="Head" id="Item.tor_empire_head_hat_woodsman_001" />
       </EquipmentRoster>
-      <EquipmentRoster civilian="true">
+      <EquipmentRoster equipmentType="Civilian">
         <equipment slot="Body" id="Item.sackcloth_tunic" />
         <equipment slot="Leg" id="Item.Item.wrapped_shoes" />
       </EquipmentRoster>
@@ -82,14 +82,14 @@
     </face>
     <skills></skills>
     <Equipments>
-      <EquipmentRoster civilian="true">
+      <EquipmentRoster equipmentType="Civilian">
         <equipment slot="Item0" id="Item.short_sword_t3" />
         <equipment slot="Body" id="Item.cloth_apron" />
         <equipment slot="Leg" id="Item.battania_leather_boots" />
         <equipment slot="Cape" id="Item.rough_bearskin" />
         <equipment slot="Head" id="Item.tor_empire_head_helm_hunter_001" />
       </EquipmentRoster>
-      <EquipmentRoster civilian="true">
+      <EquipmentRoster equipmentType="Civilian">
         <equipment slot="Item0" id="Item.short_sword_t3" />
         <equipment slot="Body" id="Item.merchants_fur_coat" />
         <equipment slot="Head" id="Item.tor_empire_head_helm_hunter_001" />
@@ -115,7 +115,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_0b" name="{=str_tor_notable_empire_0b}{FIRSTNAME} the Vintner" is_template="true" voice="ironic" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Merchant">
@@ -130,7 +130,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_1" name="{=str_tor_notable_empire_1}Empire merchant 3, ruthless" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Merchant">
@@ -144,7 +144,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_1b" name="{=str_tor_notable_empire_1b}Cold imperial merchant" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Merchant">
@@ -159,7 +159,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_2" name="{=str_tor_notable_empire_2}{FIRSTNAME} the Saltpanner" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Merchant">
@@ -173,7 +173,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_2b" name="{=str_tor_notable_empire_2b}Empire merchant 6, cautious" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Merchant">
@@ -188,7 +188,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_3" name="{=str_tor_notable_empire_3}Empire merchant 7, selfmade" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Merchant">
@@ -201,7 +201,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_3b" name="{=str_tor_notable_empire_3b}Empire merchant 8, jocular" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Merchant">
@@ -215,7 +215,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_4" name="{=str_tor_notable_empire_4}Empire merchant 9, heiress" voice="curt" is_template="true" is_female="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Merchant">
@@ -229,7 +229,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_4b" name="{=str_tor_notable_empire_4b}Empire merchant 10, devious" voice="ironic" is_template="true" is_female="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Merchant">
@@ -245,7 +245,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_5" name="{=str_tor_notable_empire_5}Messianic imperial preacher" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Preacher">
@@ -259,7 +259,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_6" name="{=str_tor_notable_empire_6}Puritan imperial preacher" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Preacher">
@@ -273,7 +273,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_7" name="{=str_tor_notable_empire_7}Female imperial mystic" voice="earnest" is_template="true" default_group="Infantry" is_female="true" culture="Culture.empire" occupation="Preacher">
@@ -287,7 +287,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_8" name="{=str_tor_notable_empire_8}Imperial gruff labor leader" voice="curt" is_template="true" default_group="Infantry" is_female="false" culture="Culture.empire" occupation="Artisan">
@@ -300,7 +300,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_9" name="{=str_tor_notable_empire_9}Imperial outgoing labor leader" voice="earnest" is_template="true" default_group="Infantry" is_female="false" culture="Culture.empire" occupation="Artisan">
@@ -313,7 +313,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_gl1" name="{=str_tor_notable_empire_gl1}Protective imperial male gang leader" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="GangLeader">
@@ -328,7 +328,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_10" name="{=str_tor_notable_empire_10}Ironic imperial gang leader" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="GangLeader">
@@ -343,7 +343,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_11" name="{=str_tor_notable_empire_11}Intimidating male imperial gang leader" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="GangLeader">
@@ -358,7 +358,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_gl4" name="{=str_tor_notable_empire_gl4}Bestial male imperial gang leader" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="GangLeader">
@@ -373,7 +373,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_12" name="{=str_tor_notable_empire_12}Female imperial gang leader" voice="ironic" is_template="true" is_female="true" culture="Culture.empire" occupation="GangLeader" default_group="Infantry">
@@ -387,7 +387,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_13" name="{=str_tor_notable_empire_13}Menacing female imperial gang leader" voice="softspoken" is_template="true" is_female="true" culture="Culture.empire" occupation="GangLeader" default_group="Infantry">
@@ -402,7 +402,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_21" name="{=str_tor_notable_empire_21}Empire gruff rural notable" voice="curt" is_template="true" default_group="Infantry" culture="Culture.empire" occupation="RuralNotable">
@@ -415,7 +415,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_notable_empire_22" name="{=str_tor_notable_empire_22}Empire rural notable agreeable" voice="softspoken" is_template="true" default_group="Infantry" culture="Culture.empire" occupation="RuralNotable">
@@ -428,7 +428,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_empire_headman_1" name="{=str_tor_empire_headman_1}empire rebellious headman" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Headman">
@@ -442,7 +442,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_empire_headman_2" name="{=str_tor_empire_headman_2}empire conservative headman" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Headman">
@@ -456,7 +456,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_empire_headman_3" name="{=str_tor_empire_headman_3}empire devious headman" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.empire" occupation="Headman">
@@ -470,7 +470,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="npc_armed_wanderer_equipment_template_empire" />
-      <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+      <EquipmentSet id="npc_wanderer_equipment_template_empire" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 </NPCCharacters>

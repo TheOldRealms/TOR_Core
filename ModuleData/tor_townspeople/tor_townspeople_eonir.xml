@@ -11,7 +11,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_artisan_smith" />
-      <EquipmentSet id="tor_we_people_notable_artisan_smith" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_artisan_smith" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 
@@ -25,7 +25,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_artisan_smith" />
-      <EquipmentSet id="tor_we_people_notable_artisan_smith" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_artisan_smith" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 
@@ -40,7 +40,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_artisan_smith" />
-      <EquipmentSet id="tor_we_people_notable_artisan_smith" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_artisan_smith" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 
@@ -54,7 +54,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_townsman" />
-      <EquipmentSet id="tor_we_people_notable_townsman" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_townsman" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 
@@ -68,7 +68,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_townswoman" />
-      <EquipmentSet id="tor_we_people_notable_townswoman" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_townswoman" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 
@@ -83,7 +83,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_townsman" />
-      <EquipmentSet id="tor_we_people_notable_townsman" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_townsman" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 
@@ -97,7 +97,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_townswoman" />
-      <EquipmentSet id="tor_we_people_notable_townswoman" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_townswoman" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 
@@ -111,7 +111,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_artisan_merchant" />
-      <EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 
@@ -125,7 +125,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_artisan_shopworker" />
-      <EquipmentSet id="tor_we_people_notable_artisan_shopworker" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_artisan_shopworker" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 
@@ -139,7 +139,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_artisan_merchant" />
-      <EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   
@@ -154,7 +154,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_townsman" />
-      <EquipmentSet id="tor_we_people_notable_townsman" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_townsman" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   
@@ -168,7 +168,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_artisan_shopworker" />
-      <EquipmentSet id="tor_we_people_notable_artisan_shopworker" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_artisan_shopworker" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 
@@ -182,7 +182,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_artisan_shopworker" />
-      <EquipmentSet id="tor_we_people_notable_artisan_shopworker" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_artisan_shopworker" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 
@@ -197,7 +197,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_townswoman" />
-      <EquipmentSet id="tor_we_people_notable_townswoman" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_townswoman" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 
@@ -211,7 +211,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_townswoman" />
-      <EquipmentSet id="tor_we_people_notable_townswoman" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_townswoman" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 
@@ -226,7 +226,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_artisan_merchant" />
-      <EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 
@@ -240,7 +240,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_artisan_smith" />
-      <EquipmentSet id="tor_we_people_notable_artisan_smith" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_artisan_smith" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 
@@ -254,7 +254,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_notary" />
-      <EquipmentSet id="tor_we_people_notable_notary" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_notary" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 
@@ -268,7 +268,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_notary" />
-      <EquipmentSet id="tor_we_people_notable_notary" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_notary" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 
@@ -282,7 +282,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_notary" />
-      <EquipmentSet id="tor_we_people_notable_notary" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_notary" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 
@@ -296,7 +296,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_rogue_leader" />
-      <EquipmentSet id="tor_we_people_notable_rogue_leader" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_rogue_leader" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 
@@ -310,7 +310,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_eo_queens_guard_halberd_template" />
-      <EquipmentSet id="tor_eo_queens_guard_halberd_template" civilian="true" />
+      <EquipmentSet id="tor_eo_queens_guard_halberd_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 
@@ -324,7 +324,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_eternal_guard_template" />
-      <EquipmentSet id="tor_we_eternal_guard_template" civilian="true" />
+      <EquipmentSet id="tor_we_eternal_guard_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 
@@ -338,7 +338,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_rogue" />
-      <EquipmentSet id="tor_we_people_notable_rogue" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_rogue" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 
@@ -352,7 +352,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_artisan_merchant" />
-      <EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_notable_eonir_merch2" name="{=str_spc_notable_eonir_merch2}curt eonir merchant" voice="curt" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Merchant">
@@ -367,7 +367,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_artisan_merchant" />
-      <EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_notable_eonir_merch3" name="{=str_spc_notable_eonir_merch3}Daring eonir merchant" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Merchant">
@@ -381,7 +381,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_artisan_merchant" />
-      <EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_notable_eonir_merch4" name="{=str_spc_notable_eonir_merch4}Softspoken eonir merchant" voice="softspoken" is_template="true" default_group="Infantry" race ="elf" is_hero="false" culture="Culture.eonir" occupation="Merchant">
@@ -395,7 +395,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_artisan_merchant" />
-      <EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_notable_eonir_merch5" name="{=str_spc_notable_eonir_merch5}{FIRSTNAME} the Manciple" voice="softspoken" is_template="true" default_group="Infantry" race ="elf" is_hero="false" culture="Culture.eonir" occupation="Merchant">
@@ -409,7 +409,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_artisan_merchant" />
-      <EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_notable_eonir_1" name="{=str_spc_notable_eonir_1}{FIRSTNAME} the Warehouser" voice="ironic" is_template="true" is_female="true" default_group="Infantry" race ="elf" is_hero="false" culture="Culture.eonir" occupation="Merchant">
@@ -422,7 +422,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_artisan_merchant" />
-      <EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_notable_eonir_1b" name="{=str_spc_notable_eonir_b}{FIRSTNAME} the Heiress" voice="ironic" is_template="true" is_female="true" default_group="Infantry" race ="elf" is_hero="false" culture="Culture.eonir" occupation="Merchant">
@@ -436,7 +436,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_artisan_merchant" />
-      <EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_artisan_merchant" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_notable_eonir_2" name="{=str_spc_notable_eonir_2}Puritan male preacher" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Preacher">
@@ -449,7 +449,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_villager" />
-      <EquipmentSet id="tor_we_people_notable_villager" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_villager" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_notable_eonir_3" name="{=str_spc_notable_eonir_3}Rebellious female preacher" voice="earnest" is_template="true" default_group="Infantry" is_female="true" race ="elf" culture="Culture.eonir" occupation="Preacher">
@@ -462,7 +462,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_villager_female" />
-      <EquipmentSet id="tor_we_people_notable_villager_female" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_villager_female" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_eonir_gangleader_1" name="{=str_spc_eonir_gangleader_1}Standard male gang leader" voice="curt" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="GangLeader">
@@ -475,7 +475,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_rogue_leader" />
-      <EquipmentSet id="tor_we_people_notable_rogue_leader" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_rogue_leader" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_eonir_gangleader_2" name="{=str_spc_eonir_gangleader_2}Female gang leader" voice="ironic" is_template="true" default_group="Infantry" is_female="true" race ="elf" culture="Culture.eonir" occupation="GangLeader">
@@ -488,7 +488,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_rogue_leader" />
-      <EquipmentSet id="tor_we_people_notable_rogue_leader" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_rogue_leader" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_eonir_gangleader_3" name="{=str_spc_eonir_gangleader_3}Male gang leader" voice="ironic" is_template="true" default_group="Infantry" is_female="true" race ="elf" culture="Culture.eonir" occupation="GangLeader">
@@ -502,7 +502,7 @@
       <Trait id="Honor" value="-1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_we_people_notable_rogue_leader" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_rogue_leader" equipmentType="Civilian" />
       <EquipmentSet id="tor_we_people_notable_rogue_leader" />
     </Equipments>
   </NPCCharacter>
@@ -515,7 +515,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_artisan_shopworker" />
-      <EquipmentSet id="tor_we_people_notable_artisan_shopworker" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_artisan_shopworker" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_notable_eonir_artisan_2" name="{=str_spc_notable_eonir_artisan_2}eonirn artisan 2" voice="curt" is_template="true" default_group="Infantry" culture="Culture.eonir" race ="elf" occupation="Artisan">
@@ -527,7 +527,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_artisan_shopworker" />
-      <EquipmentSet id="tor_we_people_notable_artisan_shopworker" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_artisan_shopworker" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_notable_eonir_rural_1" name="{=str_spc_notable_eonir_rural_1}eonirn yeoman" voice="curt" is_template="true" default_group="Infantry" culture="Culture.eonir" race ="elf" occupation="RuralNotable">
@@ -539,7 +539,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_villager" />
-      <EquipmentSet id="tor_we_people_notable_villager" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_villager" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_notable_eonir_rural_2" name="{=str_spc_notable_eonir_rural_2}Eonir yeoman" voice="softspoken" is_template="true" default_group="Infantry" culture="Culture.eonir" race ="elf" occupation="RuralNotable">
@@ -552,7 +552,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_eo_ranger_template" />
-      <EquipmentSet id="tor_eo_ranger_template" civilian="true" />
+      <EquipmentSet id="tor_eo_ranger_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_eonir_headman_1" name="{=str_eonir_headman_1}eonirn rebellious headman" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.eonir" race ="elf" occupation="Headman">
@@ -566,7 +566,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_villager" />
-      <EquipmentSet id="tor_we_people_notable_villager" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_villager" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_eonir_headman_2" name="{=str_eonir_headman_2}eonirn conservative headman" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.eonir"  race ="elf" occupation="Headman">
@@ -580,7 +580,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_villager" />
-      <EquipmentSet id="tor_we_people_notable_villager" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_villager" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_eonir_headman_3" name="{=str_eonir_headman_3}eonirn devious headman" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.eonir" race ="elf" occupation="Headman">
@@ -594,7 +594,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_villager" />
-      <EquipmentSet id="tor_we_people_notable_villager" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_villager" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 </NPCCharacters>

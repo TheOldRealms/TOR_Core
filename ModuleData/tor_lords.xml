@@ -15,7 +15,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_generic_empire_lord_heavy_demi_template" />
-      <EquipmentSet id="tor_generic_empire_lord_heavy_demi_template" civilian="true" />
+      <EquipmentSet id="tor_generic_empire_lord_heavy_demi_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_bw_lord" default_group="cavalry" name="{=str_tor_bw_lord}Bright Wizard" occupation="Lord" culture="Culture.empire" voice="curt" age="55" skill_template="SkillSet.tor_custombattle_generic" is_hero="true">
@@ -33,7 +33,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_bright_wizard_template" />
-      <EquipmentSet id="tor_bright_wizard_template" civilian="true" />
+      <EquipmentSet id="tor_bright_wizard_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_lw_lord" default_group="cavalry" name="{=str_tor_lw_lord}Light Wizard" occupation="Lord" culture="Culture.empire" voice="curt" age="55" skill_template="SkillSet.tor_custombattle_generic" is_hero="true">
@@ -51,7 +51,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_light_wizard_template" />
-      <EquipmentSet id="tor_light_wizard_template" civilian="true" />
+      <EquipmentSet id="tor_light_wizard_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_cw_lord" default_group="cavalry" name="{=str_tor_cw_lord}Celestial Wizard" occupation="Lord" culture="Culture.empire" voice="curt" age="55" skill_template="SkillSet.tor_custombattle_generic" is_hero="true">
@@ -69,7 +69,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_celestial_wizard_template" />
-      <EquipmentSet id="tor_celestial_wizard_template" civilian="true" />
+      <EquipmentSet id="tor_celestial_wizard_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_mw_lord" default_group="cavalry" name="{=str_tor_mw_lord}Metal Wizard" occupation="Lord" culture="Culture.empire" voice="curt" age="55" skill_template="SkillSet.tor_custombattle_generic" is_hero="true">
@@ -87,7 +87,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_gold_wizard_template" />
-      <EquipmentSet id="tor_gold_wizard_template" civilian="true" />
+      <EquipmentSet id="tor_gold_wizard_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord" default_group="cavalry" name="{=str_tor_dw_lord}Death Wizard" occupation="Lord" culture="Culture.empire" voice="curt" age="55" skill_template="SkillSet.tor_custombattle_generic" is_hero="true">
@@ -105,7 +105,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_balthazar_gelt_template" />
-      <EquipmentSet id="tor_balthazar_gelt_template" civilian="true" />
+      <EquipmentSet id="tor_balthazar_gelt_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_bret_lord" default_group="cavalry" name="{=str_tor_bret_lord}Bretonnian Lord" occupation="Lord" culture="Culture.vlandia" voice="curt" age="50" skill_template="SkillSet.tor_custombattle_generic" race="bretonnian" is_hero="true">
@@ -123,7 +123,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_br_grail_knight_template" />
-      <EquipmentSet id="tor_br_grail_knight_template" civilian="true" />
+      <EquipmentSet id="tor_br_grail_knight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_prophetess_lw" default_group="cavalry" name="{=str_tor_prophetess_lw}Prophetess(Life)" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_custombattle_generic" is_female="true" race="bretonnian" is_hero="true">
@@ -141,7 +141,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_prophetess_template" />
-      <EquipmentSet id="tor_prophetess_template" civilian="true" />
+      <EquipmentSet id="tor_prophetess_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_prophetess_bw" default_group="cavalry" name="{=str_tor_prophetess_bw}Prophetess(Beast)" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_custombattle_generic" is_female="true" race="bretonnian" is_hero="true">
@@ -159,7 +159,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_prophetess_template" />
-      <EquipmentSet id="tor_prophetess_template" civilian="true" />
+      <EquipmentSet id="tor_prophetess_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_hm_lord" default_group="cavalry" name="{=str_tor_hm_lord}High magic Wizard" occupation="Lord" culture="Culture.battania" voice="curt" age="30" skill_template="SkillSet.tor_custombattle_generic" is_female="true" race="elf" is_hero="true">
@@ -177,7 +177,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_prophetess_template" />
-      <EquipmentSet id="tor_prophetess_template" civilian="true" />
+      <EquipmentSet id="tor_prophetess_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_glade_lord" default_group="cavalry" name="{=str_tor_glade_lord}Glade Lord" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_custombattle_generic" race="elf" is_hero="true">
@@ -195,7 +195,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_glade_lord_template" />
-      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+      <EquipmentSet id="tor_we_glade_lord_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dwarf_lord" default_group="infantry" name="{=str_tor_dwarf_lord}Dwarf Lord" occupation="Lord" culture="Culture.sturgia" voice="curt" age="30" skill_template="SkillSet.tor_custombattle_generic" race="dwarf" is_hero="true">
@@ -213,7 +213,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_001" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_slayer_lord" default_group="infantry" name="{=str_tor_slayer_lord}Slayer Lord" occupation="Lord" culture="Culture.sturgia" voice="ironic" age="40" skill_template="SkillSet.tor_custombattle_generic" race="dwarf" is_hero="true">
@@ -231,7 +231,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_slayer_lord_template" />
-      <EquipmentSet id="tor_dw_slayer_lord_template" civilian="true" />
+      <EquipmentSet id="tor_dw_slayer_lord_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_warboss_lord" default_group="infantry" name="{=str_tor_warboss_lord}Warboss" occupation="Lord" culture="Culture.aserai" voice="ironic" age="30" skill_template="SkillSet.tor_custombattle_generic" race="orc" is_hero="true">
@@ -249,7 +249,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_template_001" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_shaman_lord" default_group="infantry" name="{=str_tor_shaman_lord}Shaman Lord" occupation="Lord" culture="Culture.aserai" voice="curt" age="40" skill_template="SkillSet.tor_custombattle_generic" race="orc" is_hero="true">
@@ -267,7 +267,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_gs_orc_great_shaman_template_001" />
-      <EquipmentSet id="tor_gs_orc_great_shaman_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_great_shaman_template_001" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord" default_group="cavalry" name="{=str_tor_vc_lord}Vampire Lord" occupation="Lord" culture="Culture.khuzait" voice="curt" age="50" skill_template="SkillSet.tor_custombattle_generic" race="vampire" is_hero="true">
@@ -285,7 +285,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_generic_vampire_template" />
-      <EquipmentSet id="tor_generic_vampire_template" civilian="true" />
+      <EquipmentSet id="tor_generic_vampire_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_necromancer_lord" default_group="infantry" name="{=str_tor_necromancer_lord}Necromancer" occupation="Lord" culture="Culture.khuzait" voice="curt" age="80" skill_template="SkillSet.tor_custombattle_generic" is_hero="true">
@@ -303,7 +303,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_necromancer_template" />
-      <EquipmentSet id="tor_necromancer_template" civilian="true" />
+      <EquipmentSet id="tor_necromancer_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 </NPCCharacters>

@@ -47,7 +47,7 @@ namespace TOR_Core.HarmonyPatches
             }
 
             // only when donating and player party has relevant perks
-            if (!____inventoryLogic.IsDiscardDonating || !PerkHelper.PlayerHasAnyItemDonationPerk())
+            if (!____inventoryLogic.CanGainXpFromDiscarding || !PerkHelper.PlayerHasAnyItemDonationPerk())
             {
                 return true;
             }

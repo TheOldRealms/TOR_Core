@@ -45,7 +45,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
         {
             if (Agent.GetAbility(AbilityIndex).IsOnCooldown()) return; //this is being attempted every tick
 
-            var spawnLogic = Mission.Current.GetMissionBehavior<MissionAgentSpawnLogic>();
+            var spawnLogic = Mission.Current.GetMissionBehavior<DefaultBattleMissionAgentSpawnLogic>();
             if (spawnLogic != null)
             {
                 bool ongoingReinforcementSpawning = (Traverse.Create(spawnLogic).Field("_spawningReinforcements").GetValue() as bool?).Value;

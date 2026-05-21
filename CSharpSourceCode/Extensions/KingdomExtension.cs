@@ -59,7 +59,7 @@ public static class KingdomExtension
 
         return Kingdom.All
             .Where(k => k != kingdom && !k.IsEliminated)
-            .Where(k => tradeAgreementBehavior.HasTradeAgreement(kingdom, k));
+            .Where(k => tradeAgreementBehavior.HasTradeAgreement(kingdom, k, out _));
     }
     
     public static int GetTradeAgreementCount(this Kingdom kingdom)
@@ -73,7 +73,7 @@ public static class KingdomExtension
         if (tradeAgreementBehavior == null)
             return false;
 
-        return tradeAgreementBehavior.HasTradeAgreement(kingdom, otherKingdom);
+        return tradeAgreementBehavior.HasTradeAgreement(kingdom, otherKingdom, out _);
     }
     
     public static IEnumerable<Kingdom> GetEnemyKingdoms(this Kingdom kingdom)

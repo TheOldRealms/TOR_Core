@@ -32,12 +32,12 @@
                   WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"
                   HorizontalAlignment="Left" VerticalAlignment="Center">
             <Children>
-              <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="20" DoNotUseCustomScaleAndChildren="true" StackLayout.LayoutMethod="VerticalBottomToTop">
+              <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="20" DoNotUseCustomScaleAndChildren="true" StackLayout.LayoutMethod="VerticalTopToBottom">
                 <Children>
-                  <ListPanel Id="GainedProperties" DataSource="{GainGroups}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                  <ListPanel Id="GainedProperties" DataSource="{GainGroups}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                     <ItemTemplate>
                       <!--Gain Group (Attribute + Skills)-->
-                      <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" MarginTop="5" MarginBottom="3" DoNotUseCustomScaleAndChildren="true">
+                      <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" MarginTop="5" MarginBottom="3" DoNotUseCustomScaleAndChildren="true">
                         <Children>
                           <SiblingIndexVisibilityWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="290" SuggestedHeight="2" Sprite="GradientDivider_9" Color="#CDA970FF" IndexToBeVisible="0" WatchType="BiggerThan" WidgetToWatch="..\." MarginBottom="5" />
 
@@ -77,7 +77,7 @@
                           <!--Skills (arranged horizontally)-->
                           <ListPanel DataSource="{Skills}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginTop="5" StackLayout.LayoutMethod="HorizontalLeftToRight">
                             <ItemTemplate>
-                              <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="13" MarginRight="13" StackLayout.LayoutMethod="VerticalBottomToTop" DoNotUseCustomScaleAndChildren="true">
+                              <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="13" MarginRight="13" StackLayout.LayoutMethod="VerticalTopToBottom" DoNotUseCustomScaleAndChildren="true">
                                 <Children>
                                   <SkillIconVisualWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="61" SuggestedHeight="61" SkillId="@SkillId" UseSmallVariation="true" />
 
@@ -168,7 +168,7 @@
                     <ListPanel Id="OptionsList" DataSource="{Options}"
                                WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
                                HorizontalAlignment="Center" VerticalAlignment="Top"
-                               StackLayout.LayoutMethod="VerticalBottomToTop">
+                               StackLayout.LayoutMethod="VerticalTopToBottom">
                       <ItemTemplate>
                         <ButtonWidget DoNotPassEventsToChildren="true"
                                       Command.Click="ExecuteSelect"
@@ -249,7 +249,7 @@
                     IsVisible="@HasSelection">
               <Children>
                 <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
-                           StackLayout.LayoutMethod="VerticalBottomToTop">
+                           StackLayout.LayoutMethod="VerticalTopToBottom">
                   <Children>
 
                     <!-- Description -->

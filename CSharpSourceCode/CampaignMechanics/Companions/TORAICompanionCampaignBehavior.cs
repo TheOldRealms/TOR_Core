@@ -28,8 +28,9 @@ namespace TOR_Core.CampaignMechanics.Companions
             CampaignEvents.OnPartyDisbandedEvent.AddNonSerializedListener(this, OnPartyDisbanded);
             CampaignEvents.MobilePartyDestroyed.AddNonSerializedListener(this, OnPartyDestroyed);
             CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this, OnNewGameCreated);
-            CampaignEvents.CanHeroBecomePrisonerEvent.AddNonSerializedListener(this, new ReferenceAction<Hero, bool>(this.CanHeroBecomePrisoner));
+            CampaignEvents.CanHeroBecomePrisonerEvent.AddNonSerializedListener(this, CanHeroBecomePrisoner);
             CampaignEvents.MapEventEnded.AddNonSerializedListener(this, OnMapEventEnded);
+            CampaignEvents.CanHeroLeadPartyEvent.AddNonSerializedListener(this, CanHeroLeadParty);
             return;
 
             void OnMapEventEnded(MapEvent mapEvent)
@@ -45,6 +46,14 @@ namespace TOR_Core.CampaignMechanics.Companions
                     }
                     //Sly : do we need to queue the party for manual destruction after removing a stray companion?
                 }
+            }
+        }
+
+        private void CanHeroLeadParty(Hero heroCandidate, ref bool isAllowed)
+        {
+            if (heroCandidate.IsSpecial)
+            {
+                isAllowed = false;//AI companions, and troops turned to companions are set as special. These 
             }
         }
 

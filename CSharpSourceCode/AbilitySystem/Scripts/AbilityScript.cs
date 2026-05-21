@@ -49,6 +49,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         public Vec3 CurrentGlobalPosition => GameEntity.GetGlobalFrame().origin;
         public Vec3 LastFrameGlobalPosition => _previousFrameOrigin;
         public bool HasTickedOnce => _hasTickedOnce;
+        protected bool CanCollide => _canCollide;
 
         public void SetTargetSeeking(Target target, SeekerParameters parameters) => _controller = new SeekerController(target, parameters);
 
@@ -293,7 +294,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             return agents.Any(agent => agent != _casterAgent && Math.Abs(GameEntity.GetGlobalFrame().origin.Z - agent.Position.Z) < collisionRadius);
         }
 
-        protected sealed override void OnPhysicsCollision(ref PhysicsContact contact, WeakGameEntity entity0, WeakGameEntity entity1, bool isFirstShape)
+        protected sealed override void OnPhysicsCollision(ref PhysicsContact contact, WeakGameEntity entity0, WeakGameEntity entity1)
         {
             if (_ability.Template.TriggerType == TriggerType.OnCollision && _canCollide)
             {

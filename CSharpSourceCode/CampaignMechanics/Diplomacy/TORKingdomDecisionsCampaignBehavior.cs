@@ -331,7 +331,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             var alliesByScore = new List<(Kingdom kingdom, float value)>();
             foreach (var targetKingdom in potentialAllies)
             {
-                float score = allianceModel.GetScoreOfStartingAlliance(kingdom, targetKingdom, kingdom.RulingClan, out _).ResultNumber;
+                float score = allianceModel.GetScoreOfStartingAlliance(kingdom, targetKingdom, out _).ResultNumber;
                 alliesByScore.Add((targetKingdom, (int)score));
             }
             

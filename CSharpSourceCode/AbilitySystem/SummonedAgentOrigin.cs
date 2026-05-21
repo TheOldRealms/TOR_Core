@@ -11,6 +11,8 @@ namespace TOR_Core.AbilitySystem
         private int _rank = -1;
         private UniqueTroopDescriptor _uniqueTroopDescriptor;
         public bool IsUnderPlayersCommand { get; private set; }
+        
+        public bool IsInSameArmyAsPlayer { get; }   //TODO figure out how we are affected by this.
 
         public uint FactionColor { get; private set; }
 
@@ -99,6 +101,12 @@ namespace TOR_Core.AbilitySystem
 
     public class SummonedCombatant : IBattleCombatant
     {
+        public bool IsUnderPlayersCommand(BattleSideEnum playerSide)
+        {
+            //TODO figure out how we are affected by this , necromancer for example
+            return false;
+        }
+
         public TextObject Name { get; private set; }
 
         public BattleSideEnum Side { get; private set; }

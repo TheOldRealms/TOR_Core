@@ -423,6 +423,7 @@ namespace TOR_Core.CampaignMechanics.Companions
 
         private void SwapStealthEquipment(Hero hero, Equipment stealthEquipment)
         {
+            //Helpers.EquipmentHelper maybe?
             var battleRoster = hero.BattleEquipment;
             for (EquipmentIndex equipmentIndex = EquipmentIndex.WeaponItemBeginSlot; equipmentIndex < EquipmentIndex.ArmorItemEndSlot; equipmentIndex++)
             {

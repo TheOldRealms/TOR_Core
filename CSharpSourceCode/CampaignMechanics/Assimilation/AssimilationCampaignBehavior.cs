@@ -81,7 +81,7 @@ namespace TOR_Core.CampaignMechanics.Assimilation
 
             EnsureMercenaryTroopCacheInitialized();
 
-            var partyCulture = party.HomeSettlement?.Culture ?? party.ActualClan?.Culture ?? party.Party.Culture ?? party.LeaderHero?.Culture;
+            var partyCulture = party.HomeSettlement?.Culture ?? party.ActualClan?.Culture ?? party.Party.MapFaction?.Culture ?? party.LeaderHero?.Culture;
             if (partyCulture == null) return;
 
             foreach (var rosterElement in party.MemberRoster.GetTroopRoster().ToList())

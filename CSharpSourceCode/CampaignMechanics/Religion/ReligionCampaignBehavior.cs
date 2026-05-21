@@ -96,7 +96,7 @@ namespace TOR_Core.CampaignMechanics.Religion
         private void SettlementHourlyReligionTick(Settlement settlement)
         {
             if (!settlement.IsTown) return;
-            if (settlement.NumberOfLordPartiesAt < 1) return;
+            if (!settlement.Parties.Any(x => x.IsLordParty)) return;
             
             foreach (var mobileParty in settlement.Parties.WhereQ(x => x.IsLordParty && x.LeaderHero != null && x.IsActive && !x.IsDisbanding))
             {

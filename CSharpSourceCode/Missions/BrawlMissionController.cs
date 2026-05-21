@@ -345,8 +345,14 @@ public class BrawlMissionController : MissionLogic, IMissionAgentSpawnLogic
     public void StopSpawner(BattleSideEnum side) { }
     public bool IsSideSpawnEnabled(BattleSideEnum side) => false;
     public bool IsSideDepleted(BattleSideEnum side) => true;
+    public float GetReinforcementInterval(BattleSideEnum side = BattleSideEnum.None)
+    {
+        return 0;
+    }
+
     public float GetReinforcementInterval() => 1;
     public IEnumerable<IAgentOriginBase> GetAllTroopsForSide(BattleSideEnum side) => Enumerable.Empty<IAgentOriginBase>();
     public bool GetSpawnHorses(BattleSideEnum side) => false;
     public int GetNumberOfPlayerControllableTroops() => 0;
+    public BattleSideEnum PlayerSide { get; } //TODO  think that needs to be set properly
 }
