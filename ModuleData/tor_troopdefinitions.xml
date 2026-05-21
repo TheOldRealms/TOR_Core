@@ -3885,7 +3885,7 @@
       <EquipmentSet id="tor_beast_gor_manripper_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_beast_minotaur" default_group="infantry" level="31" name="{=str_tor_beast_minotaur}Minotaur" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_troll" is_basic_troop="true" race="medium_humanoid_monster">
+  <NPCCharacter id="tor_beast_minotaur" default_group="infantry" level="31" name="{=str_tor_beast_minotaur}Minotaur" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_troll" is_basic_troop="true" race="minotaur">
     <face>
       <face_key_template value="BodyProperty.minotaur" />
     </face>
@@ -5295,28 +5295,6 @@
     <Equipments>
       <EquipmentSet id="tor_cult_fsf_ulcerator_template" />
       <EquipmentSet id="tor_cult_fsf_ulcerator_template" civilian="true" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_roaming_undead_skeleton" default_group="infantry" level="6" name="{=str_tor_roaming_undead_skeleton}Roaming Undead" occupation="Bandit" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="skeleton">
-    <face>
-      <face_key_template value="BodyProperty.skeleton" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_roaming_undead_warrior" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_vc_skeleton_template" />
-      <EquipmentSet id="tor_vc_skeleton_template" civilian="true" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_roaming_undead_warrior" default_group="infantry" level="11" name="{=str_tor_roaming_undead_warrior}Roaming Undead Warrior" occupation="Bandit" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level11" race="skeleton">
-    <face>
-      <face_key_template value="BodyProperty.skeleton" />
-    </face>
-    <upgrade_targets />
-    <Equipments>
-      <EquipmentSet id="tor_vc_skeleton_swordsman_template" />
-      <EquipmentSet id="tor_vc_skeleton_swordsman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_looter" default_group="infantry" level="6" name="{=str_tor_looter}Goblin Git" occupation="Bandit" culture="Culture.looters" skill_template="SkillSet.tor_skills_goblin" is_basic_troop="true" race="goblin">

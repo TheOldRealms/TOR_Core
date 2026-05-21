@@ -19603,17 +19603,17 @@
   <EquipmentRoster id="tor_beast_minotaur_template" culture="Culture.steppe_bandits">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_greataxe_minotaur_001" />
-      <Equipment slot="Head" id="Item.tor_beastmen_accessories_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_minotaur_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_hands_minotaur_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_accessories_2_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_minotaur_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_armour_minotaur_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_minotaur_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_necklace_minotaur_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_greataxe_minotaur_001" />
-      <Equipment slot="Head" id="Item.tor_beastmen_accessories_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_minotaur_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_hands_minotaur_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_accessories_2_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_minotaur_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_armour_minotaur_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_minotaur_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_necklace_minotaur_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_empire_deserter_scout_template" culture="Culture.empire">

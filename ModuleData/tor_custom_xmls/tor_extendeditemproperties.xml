@@ -650,7 +650,7 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_accessories_001" RaceLock="ungor">
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_accessories_001" RaceLock="minotaur">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
@@ -2444,7 +2444,7 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_body_minotaur_001" RaceLock="ungor">
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_body_minotaur_001" RaceLock="minotaur">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
@@ -2858,7 +2858,7 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_arm_hands_minotaur_001" RaceLock="ungor">
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_arm_hands_minotaur_001" RaceLock="minotaur">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
@@ -3500,7 +3500,7 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_accessories_2_001" RaceLock="ungor">
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_accessories_2_001" RaceLock="minotaur">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
