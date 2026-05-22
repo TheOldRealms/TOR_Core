@@ -108,12 +108,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             }
 
 
-            var pendingResources = CustomResourceManager.GetPendingResources();
-            if (!pendingResources.IsEmpty() && pendingResources[Hero.MainHero.GetCultureSpecificCustomResource()] + ExchangeCost > Hero.MainHero.GetCultureSpecificCustomResourceValue())
+            var prestigeResource = Hero.MainHero.GetCultureSpecificCustomResource();
+            var pendingPrestigeCost = CustomResourceManager.GetPendingFor(prestigeResource.StringId);
+            if (pendingPrestigeCost + ExchangeCost > Hero.MainHero.GetCultureSpecificCustomResourceValue())
             {
-                var requiresText = TORTextHelper.GetTextObject("tor_witch_hunter_requires_text", "Requires atleast {EXCHANGE_COST} {DARK_ENERGY_ICON}");
+                var requiresText = TORTextHelper.GetTextObject("tor_witch_hunter_requires_text", "Requires atleast {EXCHANGE_COST} {PRESTIGE_ICON}");
                 requiresText.SetTextVariable("EXCHANGE_COST", ExchangeCost);
-                requiresText.SetTextVariable("DARK_ENERGY_ICON", CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText());
+                requiresText.SetTextVariable("PRESTIGE_ICON", CustomResourceManager.GetResourceObject("Prestige").GetCustomResourceIconAsText());
                 displayText = requiresText;
                 return false;
             }

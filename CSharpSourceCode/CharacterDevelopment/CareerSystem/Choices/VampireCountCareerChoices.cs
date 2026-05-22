@@ -297,7 +297,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         private static bool MartiallePassive3(Agent attacker, Agent victim, AttackTypeMask mask)
         {
-            return victim.Character.Race == 0 || victim.Character.IsCultist(); //other humans should be added if applicable
+            return victim.Character.IsHuman() || victim.Character.IsCultist();
         }
 
         public override void InitialCareerSetup()

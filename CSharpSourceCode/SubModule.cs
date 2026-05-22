@@ -100,7 +100,7 @@ namespace TOR_Core
             StatusEffectManager.LoadStatusEffects();
             TriggeredEffectManager.LoadTemplates();
             AbilityFactory.LoadTemplates();
-            ExtendedItemObjectManager.LoadXML();
+            ExtendedItemObjectManager.LoadXML("", true);
             CustomBannerManager.LoadXML();
             RORManager.LoadTemplates();
             InkStoryManager.Initialize();

@@ -121,6 +121,9 @@
 				<GameType value="CampaignStoryMode" />
 			</IncludedGameTypes>
 		</XmlNode>
+    <XmlNode>
+			<XmlName id="GameText" path="tor_string_overrides" />
+		</XmlNode>
 		<XmlNode>
 			<XmlName id="GameText" path="tor_strings" />
 		</XmlNode>

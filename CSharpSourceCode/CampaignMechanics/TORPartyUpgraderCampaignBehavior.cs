@@ -137,13 +137,13 @@ namespace TOR_Core.CampaignMechanics
             
             //exclude heroes from the count so the composition is only based on troops
             float troopCount = memberRoster.TotalRegulars;
-            var defaultTemplate = (party.MobileParty?.ActualClan != null) ? party.MobileParty.ActualClan.DefaultPartyTemplate : party.Culture?.DefaultPartyTemplate;//bandit and mercenary clan parties use a template taken from their Clan object, and if a clan has no party template then it falls back to the cultural template. The culture fallback exists here because RaidingPartyComponents don't have a clan atm, they are only assigned to a hero.
+            var defaultTemplate = party.MobileParty.ActualClan?.DefaultPartyTemplate ?? party.MapFaction?.Culture?.DefaultPartyTemplate;//bandit and mercenary clan parties use a template taken from their Clan object, and if a clan has no party template then it falls back to the cultural template. The culture fallback exists here because RaidingPartyComponents don't have a clan atm, they are only assigned to a hero.
 
             var cultureTemplateStacks = defaultTemplate?.Stacks;
             Dictionary<CharacterObject, float> missingTroopsAtEachTier = []; //these could probably be stored as ints and rounded up at each step as the precision doesn't really matter; it will give slightly stronger parties.
             
-
-            if (party?.Culture != null && _cultureTemplateData.TryGetValue(party.Culture.StringId, out var cultureData) && cultureData != null)
+            var partyCulture = party.MobileParty?.ActualClan?.Culture ?? party.MapFaction?.Culture;
+            if (partyCulture != null && _cultureTemplateData.TryGetValue(partyCulture.StringId, out var cultureData) && cultureData != null)
             {
                 float totalTroopsInTemplate = cultureData.Item1;
                 var highTierCultureTemplateStacks = cultureData.Item2; //only care about the high tier ones
@@ -232,7 +232,7 @@ namespace TOR_Core.CampaignMechanics
 
         private bool BanditPerkAndItemCheck(PartyBase party, CharacterObject troopCharacter, CharacterObject upgradeTargetCharacter, PartyTroopUpgradeModel partyTroopUpgradeModel)
         {
-            return (!party.Culture.IsBandit || upgradeTargetCharacter.Culture.IsBandit) && (troopCharacter.Occupation != Occupation.Bandit || partyTroopUpgradeModel.CanPartyUpgradeTroopToTarget(party, troopCharacter, upgradeTargetCharacter));
+            return (((party.MapFaction?.Culture)?.IsBandit == true) || upgradeTargetCharacter.Culture.IsBandit) && (troopCharacter.Occupation != Occupation.Bandit || partyTroopUpgradeModel.CanPartyUpgradeTroopToTarget(party, troopCharacter, upgradeTargetCharacter));
         }
 
         private List<TORTroopUpgradeArgs> GetPossibleUpgradeTargets(PartyBase party, TroopRosterElement rosterElement)

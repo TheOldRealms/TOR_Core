@@ -108,7 +108,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
 
             if (characterObject.IsTreeSpirit() || characterObject.IsUndead())
             {
-                displayText = TORTextHelper.GetTextObject("tor_career_button_mercenary_no_tree_undead", "Only works for humans or elves");
+                displayText = TORTextHelper.GetTextObject("tor_career_button_mercenary_no_tree_undead", "Only works for humans, dwarfs or elves");
                 return false;
             }
 

@@ -30,6 +30,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         private static Dictionary<string, string> _bannerResources = [];
         private static ExtendedInfoManager _instance;
         private static readonly Dictionary<string, List<string>> _settlementInfos = [];
+        private readonly string _torUnitPropertiesPath = TORPaths.TORCoreModuleExtendedDataPath + "tor_extendedunitproperties.xml";
 
         public static ExtendedInfoManager Instance => _instance;
 
@@ -197,13 +198,13 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         private void OnNewGameCreated(CampaignGameStarter starter)
         {
             if (_characterInfos.Count > 0) _characterInfos.Clear();
-            TryLoadCharacters(out _characterInfos);
+            TryLoadCharacters(_torUnitPropertiesPath, out _characterInfos);
         }
 
         private void OnSessionStart(CampaignGameStarter obj)
         {
             if (_characterInfos.Count > 0) _characterInfos.Clear();
-            TryLoadCharacters(out _characterInfos);
+            TryLoadCharacters(_torUnitPropertiesPath, out _characterInfos);
             var success = _characterInfos.Any(x => x.Value.ResourceCost != null);
             EnsurePartyInfos();
             HideVanillaUnitsInEncyclopedia();
@@ -298,12 +299,20 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
         public static void CreateDefaultInstanceAndLoad()
         {
-            _ = new ExtendedInfoManager();
+            var manager = new ExtendedInfoManager();
             if (_characterInfos.Count > 0) _characterInfos.Clear();
-            TryLoadCharacters(out _characterInfos);
+            TryLoadCharacters(manager._torUnitPropertiesPath, out _characterInfos);
         }
 
-        private static void TryLoadCharacters(out Dictionary<string, CharacterExtendedInfo> infos)
+        /// <summary>
+        /// Loads an xml containing the extended CharacterObject properties to be added or overwritten.
+        /// </summary>
+        /// <param name="filepath">A file path including the file type extension of the target xml.</param>
+        /// <param name="infos">Argument used to verify if the loading was a success. This should just be evaluated in the method and a bool put out instead of the whole dictionary.</param>
+        /// <remarks>
+        /// Loading an empty entry from xml for a given id will clear the prior properties.
+        /// </remarks>
+        public static void TryLoadCharacters(in string filepath, out Dictionary<string, CharacterExtendedInfo> infos)
         {
             //construct character info for all CharacterObject templates loaded by the game.
             //this can be safely reconstructed at each session start without the need to save/load.
@@ -311,22 +320,31 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             infos = unitlist;
             try
             {
-                var path = TORPaths.TORCoreModuleExtendedDataPath + "tor_extendedunitproperties.xml";
-                if (File.Exists(path))
+                if (File.Exists(filepath))
                 {
+                    TORCommon.Log("ExtendedInfoManager : loading extended troop properties from : " + filepath, LogLevel.Warn);
                     var ser = new XmlSerializer(typeof(List<CharacterExtendedInfo>));
-                    var list = ser.Deserialize(File.OpenRead(path)) as List<CharacterExtendedInfo>;
+                    var list = ser.Deserialize(File.OpenRead(filepath)) as List<CharacterExtendedInfo>;
                     foreach (var item in list)
                     {
-                        if (!infos.TryGetValue(item?.CharacterStringId, out _))
+                        if (item == null || item.CharacterStringId == null)
                         {
-                            infos.Add(item.CharacterStringId, item);
+                            TORCommon.Log("ExtendedInfoManager : TryLoadCharacters item or stringID null. \n" + (item == null ? ("Item is null") : item.ToString() + " is null"), LogLevel.Debug);
+                        }
+                        else if (infos.TryGetValue(item.CharacterStringId, out _))
+                        {
+                            TORCommon.Log("ExtendedInfoManager : TryLoadCharacters item already in dictionary overriding prior properties. \n" + "Character : " + item.CharacterStringId, LogLevel.Debug);
+                            infos[item.CharacterStringId] = item;
                         }
                         else
                         {
-                            TORCommon.Log("ExtendedInfo : TryLoadCharacters item already in dictionary or null. \n" + (item?.CharacterStringId != null ? ("Character : " + item.CharacterStringId) : ("Item or stringID null")), LogLevel.Debug);
+                            infos.Add(item.CharacterStringId, item);
                         }
                     }
+                }
+                else
+                {
+                    TORCommon.Log("ExtendedInfoManager : No extended troop info xml found at : " + filepath, LogLevel.Warn);
                 }
             }
             catch (Exception e)

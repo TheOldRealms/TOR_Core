@@ -49,6 +49,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         public Vec3 CurrentGlobalPosition => GameEntity.GetGlobalFrame().origin;
         public Vec3 LastFrameGlobalPosition => _previousFrameOrigin;
         public bool HasTickedOnce => _hasTickedOnce;
+        protected bool CanCollide => _canCollide;
 
         public void SetTargetSeeking(Target target, SeekerParameters parameters) => _controller = new SeekerController(target, parameters);
 
@@ -262,6 +263,27 @@ namespace TOR_Core.AbilitySystem.Scripts
         {
             return _sound != null && _sound.IsValid && _sound.IsPlaying();
         }
+        private void StopOrReleaseSpellSound()
+        {
+            if (_sound == null)
+            {
+                return;
+            }
+
+            if (_sound.IsValid)
+            {
+                if (_sound.IsPlaying())
+                {
+                    _sound.Stop();
+                }
+                else
+                {
+                    _sound.Release();
+                }
+            }
+
+            _sound = null;
+        }
 
         protected virtual bool CollidedWithAgent()
         {
@@ -349,8 +371,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             }
 
             OnBeforeRemoved(removeReason);
-            _sound?.Release();
-            _sound = null;
+            StopOrReleaseSpellSound();
             _ability = null;
             _entity = null;
             _casterAgent = null;

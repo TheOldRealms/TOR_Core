@@ -34,29 +34,30 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
         public CharacterObject BaseCharacter => _baseCharacter;
 
-        public void AddCustomResource(string id, float amount)
+        public void AddCustomResource(string id, float amount, bool allowWindsOfMagicOverMaximum = false)
         {
             if (!CustomResourceManager.DoesResourceObjectExist(id)) return;
             if (CustomResources.ContainsKey(id))
             {
                 CustomResources[id] = Math.Max(0, CustomResources[id] + amount);
-                if (id == "WindsOfMagic")
-                {
-                    CustomResources[id] = Math.Min(MaxWindsOfMagic, CustomResources[id]);
-                }
-                else CustomResources[id] = Math.Min(TORConfig.MaximumCustomResourceValue, CustomResources[id]);
             }
             else
             {
                 CustomResources.Add(id, amount);
-                if (id == "WindsOfMagic")
+            }
+
+            if (id == "WindsOfMagic")
+            {
+                if (!allowWindsOfMagicOverMaximum)
                 {
                     CustomResources[id] = Math.Min(MaxWindsOfMagic, CustomResources[id]);
                 }
-                else CustomResources[id] = Math.Min(TORConfig.MaximumCustomResourceValue, CustomResources[id]);
+            }
+            else
+            {
+                CustomResources[id] = Math.Min(TORConfig.MaximumCustomResourceValue, CustomResources[id]);
             }
         }
-
         public void SetCustomResourceValue(string id, float amount)
         {
             if (!CustomResourceManager.DoesResourceObjectExist(id)) return;

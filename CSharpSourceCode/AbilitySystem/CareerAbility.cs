@@ -101,8 +101,6 @@ namespace TOR_Core.AbilitySystem
                 TORCommon.Log(
                     $"spell cast start | spell={spellName} | caster={casterName} | side={casterAgent?.Team?.Side} | ai={casterAgent?.IsAIControlled}",
                     NLog.LogLevel.Info);
-
-                parentEntity.CallScriptCallbacks(true);
             }
             else
             {

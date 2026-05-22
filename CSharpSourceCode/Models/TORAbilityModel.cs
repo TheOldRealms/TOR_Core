@@ -619,7 +619,7 @@ namespace TOR_Core.Models
             var hero = baseCharacter?.HeroObject;
             if (hero == null || !hero.IsSpellCaster()) return 0f;
             if (hero.Culture.StringId == TORConstants.Cultures.DAWI) return 0;
-            if (hero.PartyBelongedTo != MobileParty.MainParty && !hero.IsHumanPlayerCharacter)//ai casters and player taken prisoner
+            if (hero.PartyBelongedTo != MobileParty.MainParty && !hero.IsHumanPlayerCharacter)//ai casters only; if the player is a prisoner they will pass through the normal calculations despite PartyBelongedTo being null
             {
                 return 100f;//equiv to 333 spellcraft --  Sly : leaving this at 100 for the moment because the AI is dumb and wastes half of it anyways
             }
@@ -627,7 +627,6 @@ namespace TOR_Core.Models
             ExplainedNumber explainedNumber = new(10f, false, null);
             SkillHelper.AddSkillBonusForCharacter(TORSkillEffects.MaxWinds, baseCharacter, ref explainedNumber);
 
-            //PartyBelongedTo is necessarily not null here due to the "!= MobileParty.MainParty" condition. If a hero is a prisoner, sitting in a town alone, etc..., they use the default npc value above.
 
             var WoMFromEquipment = hero.GetAggregatedStatEffectFromEquipment(ItemTraitStatType.WindsOfMagicMax);
             if (WoMFromEquipment > 0)
@@ -741,17 +740,17 @@ namespace TOR_Core.Models
                     }
                 }
 
-                if (Hero.MainHero.HasCareer(TORCareers.ImperialMagister)) //Sly : penalizes all mages in party, don't care because it requires off-culture companions to occur - idk what the description is for powerstones
+                if (Hero.MainHero.HasCareer(TORCareers.ImperialMagister))
                 {
                     var stoneBehavior =
                         CareerButtons.Instance.GetCareerButton(TORCareers.ImperialMagister) as
                             ImperialMagisterCareerButtonBehavior;
 
-                    var powerstones = stoneBehavior.GetAllPowerstones();
-
-                    var reserved = powerstones.Sum(pair => (pair.Upkeep));
-
-                    explainedNumber.Add(-reserved);
+                    var powerstone = stoneBehavior?.GetPowerstone(baseCharacter);
+                    if (powerstone != null)
+                    {
+                        explainedNumber.Add(-powerstone.Upkeep);
+                    }
                 }
             }
 
@@ -759,7 +758,7 @@ namespace TOR_Core.Models
             {
                 if (Hero.MainHero.HasAttribute("WEArielSymbol"))
                 {
-                    if (hero.PartyBelongedTo.InAthelLoren())
+                    if (hero.PartyBelongedTo?.InAthelLoren() == true)
                     {
                         explainedNumber.Add(15, ForestHarmonyHelper.TreeSymbolText("WEArielSymbol"));
                     }
@@ -911,19 +910,16 @@ namespace TOR_Core.Models
                         }
                     }
 
-                    if (hero.PartyBelongedTo == MobileParty.MainParty)
+                    if (hero.PartyBelongedTo == MobileParty.MainParty && hero != Hero.MainHero && hero.IsImperialMagister())
                     {
-                        if (MobileParty.MainParty.LeaderHero.HasAnyCareer())
+                        if (Hero.MainHero.HasCareerChoice("AncientScrollsPassive4"))
                         {
-                            if (Hero.MainHero.HasCareerChoice("AncientScrollsPassive4"))
-                            {
-                                damageAmplifications[damageTypeIndex] += 0.2f;
-                            }
+                            damageAmplifications[damageTypeIndex] += 0.2f;
+                        }
 
-                            if (Hero.MainHero.HasCareerChoice("ArcaneKnowledgePassive1") && hero != Hero.MainHero)
-                            {
-                                damageAmplifications[damageTypeIndex] += 0.1f;
-                            }
+                        if (Hero.MainHero.HasCareerChoice("ArcaneKnowledgePassive1"))
+                        {
+                            damageAmplifications[damageTypeIndex] += 0.1f;
                         }
                     }
 
@@ -1018,7 +1014,7 @@ namespace TOR_Core.Models
                     // Book damage to session if we have a valid castId
                     if (logic != null)
                     {
-                        logic.ApplyOrQueueSpellDamage(
+                        logic.ApplySpellDamageinBudget(
                             agent,
                             finalDamage,
                             impactPosition,
@@ -1081,12 +1077,13 @@ namespace TOR_Core.Models
 
                 if (finalHealing > 0)
                 {
-                    agent.Heal(finalHealing);
-
-                    // Book healing to session if we have a valid castId
-                    if (castId >= 0 && logic != null)
+                    if (logic != null)
                     {
-                        logic.BookSpellHealing(castId, agent, finalHealing);
+                        logic.ApplySpellHealinginBudget(agent, finalHealing, healer, abilityTemplate, castId);
+                    }
+                    else
+                    {
+                        agent.Heal(finalHealing);
                     }
 
                     // Career ability charge is now applied once per session in FinalizeSession, not per-agent
