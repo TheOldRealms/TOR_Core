@@ -86,7 +86,7 @@ namespace TOR_Core.Items
 
             if (affectorWeapon.Item != null &&
                 affectorWeapon.Item.HasAnyTrait(affectorAgent) &&
-                CanApplyOffensiveWeaponTrait(affectedAgent, affectorAgent))
+                CanUseOffensiveWeaponTraitTarget(affectedAgent, affectorAgent))
             {
                 var statusEffectTraits = affectorWeapon.Item.GetTraits(affectorAgent)
                  .Where(x => !string.IsNullOrWhiteSpace(x.ImbuedStatusEffectId) &&
@@ -112,6 +112,11 @@ namespace TOR_Core.Items
                 {
                     foreach (var trait in onHitTraits)
                     {
+                        if (!CanApplyOffensiveWeaponTrait(trait, affectedAgent, affectorAgent, blow))
+                        {
+                            continue;
+                        }
+
                         var coolDownOnAffectedAgent = !ShouldCooldownOnWielder(trait);
                         ApplySpecialTrait(trait, affectorAgent, affectedAgent, coolDownOnAffectedAgent, blow, affectorWeapon, attackCollisionData);
                     }
@@ -146,7 +151,7 @@ namespace TOR_Core.Items
 
                 foreach (var item in items)
                 {
-                    traits.AddRange(item.GetTraits().Where(x => x.OnWeaponHitScript != null).ToList());
+                    traits.AddRange(item.GetTraits());
                 }
 
                 var simpleStatusEffects = traits.Where(x => x.ImbuedStatusEffectId != "none" && x.ImbuedStatusEffectId != null);
@@ -154,7 +159,7 @@ namespace TOR_Core.Items
                 {
                     foreach (var trait in simpleStatusEffects)
                     {
-                        if (MBRandom.RandomFloatNormal > trait.ImbuedEffectChance)
+                        if (MBRandom.RandomFloat > trait.ImbuedEffectChance)
                         {
                             continue;
                         }
@@ -203,12 +208,7 @@ namespace TOR_Core.Items
         }
         private static bool ShouldCooldownOnWielder(ItemTrait trait)
         {
-            var scriptName = trait?.OnWeaponHitScript?.WeaponScriptName;
-            if (string.IsNullOrWhiteSpace(scriptName))
-            {
-                return false;
-            }
-            var scriptType = AccessTools.TypeByName(scriptName);
+            var scriptType = GetWeaponHitScriptType(trait);
             if (scriptType == null ||
                 !typeof(WeaponTriggerEffectScript).IsAssignableFrom(scriptType))
             {
@@ -237,15 +237,70 @@ namespace TOR_Core.Items
 
             return arguments[0];
         }
-        private static bool CanApplyOffensiveWeaponTrait(Agent affectedAgent, Agent affectorAgent)
+        private static Type GetWeaponHitScriptType(ItemTrait trait)
+        {
+            var scriptName = trait?.OnWeaponHitScript?.WeaponScriptName;
+            if (string.IsNullOrWhiteSpace(scriptName))
+            {
+                return null;
+            }
+
+            return AccessTools.TypeByName(scriptName);
+        }
+        private static bool CanAttemptSpecialTrait(ItemTrait trait, Agent affectedAgent)
+        {
+            var scriptType = GetWeaponHitScriptType(trait);
+            if (scriptType == null)
+            {
+                return true;
+            }
+
+            if (typeof(ReviveScript).IsAssignableFrom(scriptType))
+            {
+                return affectedAgent.Health <= 0f;
+            }
+
+            if (affectedAgent.Health > 0f)
+            {
+                return true;
+            }
+
+            return typeof(TriggerOnKillScript).IsAssignableFrom(scriptType) ||
+                   typeof(KnockOutCheckTriggerScript).IsAssignableFrom(scriptType) ||
+                   typeof(BuffStackOnKill).IsAssignableFrom(scriptType);
+        }
+
+        private static bool CanUseOffensiveWeaponTraitTarget(Agent affectedAgent, Agent affectorAgent)
         {
             return affectedAgent != null &&
                    affectorAgent != null &&
                    affectedAgent != affectorAgent &&
                    affectedAgent.IsActive() &&
-                   affectedAgent.Health > 0f &&
                    !affectedAgent.IsFadingOut() &&
                    (Mission.Current == null || Mission.Current.FindAgentWithIndex(affectedAgent.Index) == affectedAgent);
+        }
+
+        private static bool CanApplyOffensiveWeaponTrait(ItemTrait trait, Agent affectedAgent, Agent affectorAgent, Blow blow)
+        {
+            if (!CanUseOffensiveWeaponTraitTarget(affectedAgent, affectorAgent))
+            {
+                return false;
+            }
+
+            if (IsTriggerOnKillScript(trait))
+            {
+                return affectedAgent.Health <= 0f && !blow.IsMissile;
+            }
+
+            return affectedAgent.Health > 0f;
+        }
+
+        private static bool IsTriggerOnKillScript(ItemTrait trait)
+        {
+            var scriptName = trait?.OnWeaponHitScript?.WeaponScriptName;
+
+            return string.Equals(scriptName, typeof(TriggerOnKillScript).FullName, StringComparison.Ordinal) ||
+                   string.Equals(scriptName, nameof(TriggerOnKillScript), StringComparison.Ordinal);
         }
 
         private bool IsTraitOnCooldown(ItemTrait trait, Agent targetAgent)
@@ -343,6 +398,11 @@ namespace TOR_Core.Items
                 return;
             }
 
+            if (!CanAttemptSpecialTrait(trait, affectedAgent))
+            {
+                return;
+            }
+
             if (MBRandom.RandomFloatRanged(0f, 1f) > trait.ImbuedEffectChance)
             {
                 return;
@@ -360,7 +420,7 @@ namespace TOR_Core.Items
             try
             {
                 object script;
-                var scriptType = AccessTools.TypeByName(trait.OnWeaponHitScript.WeaponScriptName);
+                var scriptType = GetWeaponHitScriptType(trait);
 
                 if (scriptType == null)
                 {

@@ -648,10 +648,10 @@ namespace TOR_Core.Models
 
                     var offHand = agent.WieldedOffhandWeapon.Item;
 
-                    wieldedItemTraits.AddRange(weapon.GetTraits());
+                    wieldedItemTraits.AddRange(weapon.GetTraits(agent));
                     if (offHand != null)
                     {
-                        wieldedItemTraits.AddRange(offHand.GetTraits());
+                        wieldedItemTraits.AddRange(offHand.GetTraits(agent));
                     }
 
                     foreach (var itemTrait in wieldedItemTraits)
