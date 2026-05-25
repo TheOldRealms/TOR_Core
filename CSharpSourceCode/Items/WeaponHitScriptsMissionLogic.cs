@@ -154,6 +154,23 @@ namespace TOR_Core.Items
                     traits.AddRange(item.GetTraits());
                 }
 
+                if (affectedAgent.Health <= 0f &&
+                    (attackCollisionData.CollidedWithShieldOnBack ||
+                     attackCollisionData.AttackBlockedWithShield ||
+                     attackCollisionData.IsShieldBroken))
+                {
+                    foreach (var armorItem in affectedAgent.Character.GetCharacterEquipment(EquipmentIndex.ArmorItemBeginSlot))
+                    {
+                        traits.AddRange(armorItem.GetTraits().WhereQ(trait =>
+                        {
+                            var scriptType = GetWeaponHitScriptType(trait);
+
+                            return scriptType != null &&
+                                   typeof(ReviveScript).IsAssignableFrom(scriptType);
+                        }));
+                    }
+                }
+
                 var simpleStatusEffects = traits.Where(x => x.ImbuedStatusEffectId != "none" && x.ImbuedStatusEffectId != null);
                 if (simpleStatusEffects != null && simpleStatusEffects.Count() > 0)
                 {
