@@ -5080,7 +5080,7 @@
   </string>
   <string id="jBN2LlgF.disbanding_leaderless_party_answer_orc" text="{=str_tor_disbanding_leaderless_party_answer_orc}Yer skin'z gonna be my next coat, den!">
     <tags>
-      <tag tag_name="IsOrcTag" />
+      <tag tag_name="PlayerIsOrcTag" />
     </tags>
   </string>
 
