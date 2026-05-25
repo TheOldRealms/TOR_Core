@@ -1102,12 +1102,12 @@
   </string>
   <string id="EhxS7NQ4.player_decided_to_fight_orc" text="{=str_tor_player_decided_to_fight_orc}Good, I wuz itchin' fer a fight!">
     <tags>
-      <tag tag_name="IsOrcTag" />
+      <tag tag_name="PlayerIsOrcTag" />
     </tags>
   </string>
   <string id="EhxS7NQ4.player_decided_to_fight_dwarf" text="{=str_tor_player_decided_to_fight_dwarf}Alright then. Dawi, attack!">
     <tags>
-      <tag tag_name="IsDwarfTag" />
+      <tag tag_name="PlayerIsDwarfTag" />
     </tags>
   </string>
   <string id="bfPsE9M1.player_decided_to_not_fight_1_orc" text="{=str_tor_player_decided_to_not_fight_1_orc}Nah, doubt ye got any good lootz anyway, now get!">
@@ -3308,7 +3308,7 @@
       <tag tag_name="IsDwarfTag" />
     </tags>
   </string>
-  <string id="PitXi5n6.main_option_hostile_1_2_orc" text="{=str_tor_main_option_hostile_1_2_orc}Yoo gonna die, or yoo gonna give us da goodz?">
+  <string id="PitXi5n6.main_option_hostile_1_2_orc" text="{=str_tor_main_option_hostile_1_2_orc}Yoo gonna surrenda, or yoo'z gonna die!">
     <tags>
       <tag tag_name="PlayerIsOrcTag" />
     </tags>
@@ -5080,7 +5080,7 @@
   </string>
   <string id="jBN2LlgF.disbanding_leaderless_party_answer_orc" text="{=str_tor_disbanding_leaderless_party_answer_orc}Yer skin'z gonna be my next coat, den!">
     <tags>
-      <tag tag_name="IsOrcTag" />
+      <tag tag_name="PlayerIsOrcTag" />
     </tags>
   </string>
 
