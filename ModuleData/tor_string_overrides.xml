@@ -3308,7 +3308,7 @@
       <tag tag_name="IsDwarfTag" />
     </tags>
   </string>
-  <string id="PitXi5n6.main_option_hostile_1_2_orc" text="{=str_tor_main_option_hostile_1_2_orc}Yoo gonna die, or yoo gonna give us da goodz?">
+  <string id="PitXi5n6.main_option_hostile_1_2_orc" text="{=str_tor_main_option_hostile_1_2_orc}Yoo gonna surrenda, or yoo'z gonna die!">
     <tags>
       <tag tag_name="PlayerIsOrcTag" />
     </tags>
