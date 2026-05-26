@@ -180,7 +180,6 @@ public class ReviveScript() : BaseWeaponHitScript()
 
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData attackCollisionData)
     {
-        if (attackingAgent == null) return;
         if (attackedAgent == null) return;
 
         ResetReviveStateIfMissionChanged();
