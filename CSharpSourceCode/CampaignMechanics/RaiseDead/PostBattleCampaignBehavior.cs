@@ -110,9 +110,8 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
 
         private void InitializeRaiseableCharacters(CampaignGameStarter starter)
         {
-            var characters = MBObjectManager.Instance.GetObjectTypeList<CharacterObject>();
-
-            _raiseableCharacters = characters.Where(character => character.IsBasicTroop && character.IsUndead() && character.Race == TaleWorlds.Core.FaceGen.GetRaceOrDefault("skeleton") && !character.HasAttribute("NecromancerChampion")).ToList();
+            //Only the basic skeleton upgrading into graveguards and black knights is granted. Sternieste skeletons and other ones are removed. At a future point this can be expanded to include zombies or other minor undead when those are available.
+            _raiseableCharacters.Add(MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_skeleton"));
 
             //extension later
             _treeSpiritUnits.Add(MBObjectManager.Instance.GetObject<CharacterObject>("tor_we_dryad"));
@@ -166,7 +165,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 foreach (var rosterMember in killedTroops)
                 {
                     // Skip orcs and goblins - they cannot be raised as undead
-                    if (rosterMember.Troop.IsOrc() || rosterMember.Troop.IsGoblin())
+                    if (rosterMember.Troop.IsGreenskin())
                     {
                         troopIndex++;
                         continue;

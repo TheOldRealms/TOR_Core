@@ -234,7 +234,7 @@ namespace TOR_Core.CharacterDevelopment
                 PartyRole.Captain, 0.1f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
 
             _trueTransmutation.Initialize("{=str_tor_perk_true_transmutation_label}True Transmutation", TORSkills.Spellcraft, 300, null,
-                "{=str_tor_perk_true_transmutation_1}Allows you to apply 2 enchantments to weapons. Dwarfs can apply a 3rd enchantment.",
+                "{=str_tor_perk_true_transmutation_1}Allows you to apply 2 enchantments. Dwarfs can apply a 3rd enchantment.",
                 PartyRole.Personal, 2f, EffectIncrementType.Add);
 
             _novicePrayers.Initialize("{=str_tor_perk_novice_prayer_label}Novice Prayers", TORSkills.Faith, 25, null,
@@ -292,8 +292,8 @@ namespace TOR_Core.CharacterDevelopment
             _miracle.Initialize("{=str_tor_perk_miracle_label}Miracle", TORSkills.Faith, 300, null,
                 "{=str_tor_perk_miracle_1}Your faith is so strong that it is able to manifest miraculous events from time to time.",
                 PartyRole.Personal, 1f, EffectIncrementType.Add,
-                "{=str_tor_perk_miracle_2}Allows you to apply 2 blessings to weapons.",
-                PartyRole.Personal, 2f, EffectIncrementType.Add);
+                "{=str_tor_perk_miracle_2}Allows you to apply 2 blessings.",
+                PartyRole.PartyMember, 2f, EffectIncrementType.Add);
         }
 
         public static class Spellcraft

@@ -2,7 +2,7 @@
 {
     public enum TORFormationClass
     {
-        Artillery = 11,
-        ArtilleryGuard = 12
+        Artillery = 12,
+        ArtilleryGuard = 13
     }
 }
