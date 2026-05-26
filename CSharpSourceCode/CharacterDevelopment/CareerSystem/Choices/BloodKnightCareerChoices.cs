@@ -361,8 +361,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _peerlessWarriorPassive4.Initialize(CareerID, "+100 experience daily in a random melee weapon skill.", "PeerlessWarrior", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special, false));  // CareerChoicePerkCampaignBehavior 123
 
             _nightRiderPassive1.Initialize(CareerID, "+25 personal Hitpoints.", "NightRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
-            _nightRiderPassive2.Initialize(CareerID, "+20 to all melee skills of 'Lesser Undead', and 'Vampire' troops.", "NightRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, new List<string>() { nameof(DefaultSkills.TwoHanded), nameof(DefaultSkills.OneHanded) },
-                    characterObject => !characterObject.IsHero && (characterObject.IsUndead() || characterObject.IsVampire())));
+            _nightRiderPassive2.Initialize(CareerID, "+20 to all melee skills of 'Lesser Undead', and 'Vampire' troops.", "NightRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, new List<string>() { nameof(DefaultSkills.TwoHanded), nameof(DefaultSkills.OneHanded), nameof(DefaultSkills.Polearm) },
+                    characterObject => !characterObject.IsHero && (characterObject.IsSkeleton() || characterObject.IsVampire())));
             _nightRiderPassive3.Initialize(CareerID, "+50% faster raiding speed during the night.", "NightRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special, true));
             _nightRiderPassive4.Initialize(CareerID, "Personal damage against shields is increased.", "NightRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.BonusDamageShield, AttackTypeMask.Melee)); // or however you like it, assuming the whole effect won't change after this point
 

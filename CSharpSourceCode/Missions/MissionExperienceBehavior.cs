@@ -41,8 +41,9 @@ namespace TOR_Core.Missions
 
         public void EnemyHitReward(Agent affectedAgent, Agent affectorAgent, float lastSpeedBonus, float lastShotDifficulty, WeaponComponentData lastAttackerWeapon, AgentAttackType attackType, float hitpointRatio, float damageAmount, bool isSneakAttack)
         {
-        	CharacterObject affectorCharacter = (CharacterObject)affectedAgent.Character;
-        	CharacterObject affectedCharacter = (CharacterObject)affectorAgent.Character;
+        	CharacterObject affectorCharacter = (CharacterObject)affectorAgent.Character;
+        	CharacterObject affectedCharacter = (CharacterObject)affectedAgent.Character;
+
         	if (affectedAgent.Origin != null && affectorAgent != null && affectorAgent.Origin != null)
         	{
         		bool isHorseCharge = affectorAgent.MountAgent != null && attackType == AgentAttackType.Collision;
