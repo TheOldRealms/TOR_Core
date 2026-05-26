@@ -53,7 +53,7 @@ namespace TOR_Core.Models
                 }
             }
 
-            if (!character.IsUndead())
+            if (!character.IsSkeleton())
             {
                 return survivalChance;
             }

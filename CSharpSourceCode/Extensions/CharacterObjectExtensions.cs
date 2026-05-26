@@ -313,6 +313,11 @@ namespace TOR_Core.Extensions
             return characterObject.GetAttributes().Contains("Undead");
         }
 
+        public static bool IsSkeleton(this BasicCharacterObject characterObject)
+        {
+            return characterObject.Race == FaceGen.GetRaceOrDefault("skeleton");
+        }
+
         public static bool IsGhost(this BasicCharacterObject characterObject)
         {
             return characterObject.StringId.Contains("spirit_host") || characterObject.StringId.Contains("wraith");
