@@ -120,7 +120,7 @@ namespace TOR_Core.Quests
             base.RegisterEvents();
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, QuestBattleEnded);
             CampaignEvents.OnAgentJoinedConversationEvent.AddNonSerializedListener(this, SkipDialog);
-            CampaignEvents.OnPartyRemovedEvent.AddNonSerializedListener(this, TrackHeroToKillOnQuestAdvancement);
+            CampaignEvents.OnPartyRemovedEvent.AddNonSerializedListener(this, TrackHeroToKill);
             CampaignEvents.MapEventEnded.AddNonSerializedListener(this, QuestBattleEndedWithFail);
             CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, CorrectHeroOccupationAndClanStatus);
         }
@@ -133,6 +133,7 @@ namespace TOR_Core.Quests
             {
                 _skipImprisonment = true;
                 UpdateProgressOnQuest();
+                SetQuestPartyAiAfterBattle();
             }
         }
 
@@ -160,7 +161,17 @@ namespace TOR_Core.Quests
             }
 
             _failstate = true;
-            DestroyPartyAction.Apply(PartyBase.MainParty, _targetParty);
+            SetQuestPartyAiAfterBattle();
+        }
+
+        private void SetQuestPartyAiAfterBattle()
+        {
+            //Party cleanup is verified on an hourly tick
+            if (_targetParty.IsActive)
+			{
+				_targetParty.Ai.SetDoNotMakeNewDecisions(false);
+				SetPartyAiAction.GetActionForVisitingSettlement(_targetParty, _targetParty.HomeSettlement, MobileParty.NavigationType.Default, false, false);
+			}
         }
 
         private void SkipDialog(IAgent agent) //TODO check if this works as intended
@@ -188,11 +199,11 @@ namespace TOR_Core.Quests
             _skipImprisonment = false;
         }
 
-        private void TrackHeroToKillOnQuestAdvancement(PartyBase obj)
+        private void TrackHeroToKill(PartyBase partyBase)
         {
-            if (obj.MobileParty == _targetParty)
+            if (partyBase.MobileParty == _targetParty)
             {
-                _questHeroToKill = obj.Owner;
+                _questHeroToKill = partyBase.Owner;
             }
         }
 
@@ -337,6 +348,24 @@ namespace TOR_Core.Quests
 
         protected override void HourlyTick()
         {
+            if (_questHeroToKill != null && (_currentActiveLog == EngineerQuestStates.HandInCultisthunt || _currentActiveLog == EngineerQuestStates.HandInRogueEngineerHunt))
+            {
+                KillCharacterAction.ApplyByRemove(_questHeroToKill);//Sly : This doesn't unregister the character object copy associated with the hero. That should probably be added in the future if the game doesn't perform its own cleanup on game load or something.
+                _questHeroToKill = null;
+            }
+            if (_targetParty != null && (_currentActiveLog == EngineerQuestStates.HandInCultisthunt || _currentActiveLog == EngineerQuestStates.HandInRogueEngineerHunt))
+            {
+                if (_targetParty.IsActive && _targetParty.MapEvent == null)
+                {
+                    if (_targetParty.LeaderHero != null)
+                    {
+                        KillCharacterAction.ApplyByRemove(_targetParty.LeaderHero);
+                        _questHeroToKill = null;
+                    }
+                    DestroyPartyAction.Apply(null, _targetParty);
+                    _targetParty = null;
+                }
+            }
         }
 
         /// <summary>
