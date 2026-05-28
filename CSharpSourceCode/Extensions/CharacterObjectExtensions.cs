@@ -183,6 +183,11 @@ namespace TOR_Core.Extensions
             return characterObject.Race == FaceGen.GetRaceOrDefault("medium_humanoid_monster") && characterObject.HasAttribute("Minotaur");
         }
 
+        public static bool IsTreeman(this BasicCharacterObject basicCharacterObject)
+        {
+            return basicCharacterObject.Race == FaceGen.GetRaceOrDefault("large_humanoid_monster");
+        }
+
         public static bool IsLargeTarget(this CharacterObject characterObject)
         {
             return characterObject.IsMounted || characterObject.IsTroll() || characterObject.IsMinotaur();

@@ -33,16 +33,16 @@ namespace TOR_Core.Quests
         [SaveableField(7)] private bool _failstate;
         [SaveableField(8)] private Hero _questHeroToKill = null;
         private bool _skipImprisonment;
-        private string RogueEngineerLeaderName = new TextObject("{ROGUE_ENGINEER_NAME}").ToString();
         private const string QuestName = "Runaway Parts";
         private const string CultistFactionId = "forest_bandits";
         private string CultistPartyDisplayName = new TextObject("{tor_quest_engineer_cultist_party_str} Runaway Thieves").ToString();
         private string CultistPartyLeaderName = new TextObject("{tor_quest_engineer_cultist_party_leader_str} Runaway Thieves Leader").ToString();
         private const string CultistPartyTemplateId = "broken_wheel";
         private const string CultistLeaderTemplateId = "tor_bw_cultist_lord_0";
-        private const string EngineerFactionId = "mountain_bandits";
+        
+        private string RogueEngineerLeaderName = TORTextHelper.GetText("tor_rogue_engineer_name", "Goswin");
         private string RogueEngineerDisplayName = TORTextHelper.GetText("rogueEngineerParty", "Goswin");
-
+        private const string EngineerFactionId = "mountain_bandits";
         private const string RogueEngineerPartyTemplateId = "empire_deserters_boss_party";
         private const string RogueEngineerLeaderTemplateId = "tor_engineerquesthero";
         public EngineerQuestStates CurrentActiveLog => (EngineerQuestStates)_currentActiveLog;
@@ -103,8 +103,7 @@ namespace TOR_Core.Quests
             if (_currentActiveLog == EngineerQuestStates.RogueEngineerhunt)
             {
                 RemoveLog(_task3);
-                SpawnQuestParty(RogueEngineerLeaderTemplateId, RogueEngineerPartyTemplateId, EngineerFactionId,
-                    RogueEngineerLeaderName, RogueEngineerDisplayName);
+                SpawnQuestParty(RogueEngineerLeaderTemplateId, RogueEngineerPartyTemplateId, EngineerFactionId, RogueEngineerLeaderName, RogueEngineerDisplayName);
                 _task3 = AddDiscreteLog(_logs[(int)EngineerQuestStates.RogueEngineerhunt].LogText,
                     _logs[(int)EngineerQuestStates.RogueEngineerhunt].TaskName, 0, 1);
             }
@@ -242,8 +241,7 @@ namespace TOR_Core.Quests
                             KillCharacterAction.ApplyByRemove(_questHeroToKill);//Sly : This doesn't unregister the character object copy associated with the hero. That should probably be added in the future if the game doesn't perform its own cleanup on game load or something.
                             _questHeroToKill = null;
                         }
-                        SpawnQuestParty(RogueEngineerLeaderTemplateId, RogueEngineerPartyTemplateId, EngineerFactionId,
-                            RogueEngineerLeaderName, RogueEngineerDisplayName);
+                        SpawnQuestParty(RogueEngineerLeaderTemplateId, RogueEngineerPartyTemplateId, EngineerFactionId, RogueEngineerLeaderName, RogueEngineerDisplayName);
                         _task3 = AddDiscreteLog(_logs[2].LogText, _logs[2].TaskName, 0, 1);
                     }
 
@@ -304,10 +302,10 @@ namespace TOR_Core.Quests
             return returnvalue;
         }
 
-        private void SpawnQuestParty(string partyLeaderTemplate, string partyTemplate, string factionId,
+        private void SpawnQuestParty(string partyLeaderCharacterTemplate, string partyTemplateId, string factionId,
             string heroNameOverride = null, string partyNameOverride = null, Settlement spawnLocationOverride = null)
         {
-            var leaderTemplate = MBObjectManager.Instance.GetObject<CharacterObject>(partyLeaderTemplate);
+            var leaderTemplate = MBObjectManager.Instance.GetObject<CharacterObject>(partyLeaderCharacterTemplate);
             var faction = Current.Factions.FirstOrDefault(x => x.StringId.ToString() == factionId);
             var factionClan = (Clan)faction;
             //this is intended as a quick fix, if we dont  want a full random spawning
@@ -333,8 +331,9 @@ namespace TOR_Core.Quests
             var hero = HeroCreator.CreateSpecialHero(leaderTemplate, settlement, factionClan, null, 45);
             hero.CharacterObject.HiddenInEncyclopedia = true;
             if (heroNameOverride != null) hero.SetName(heroTextObject, heroTextObject);
-            var party = QuestPartyComponent.CreateParty(settlement, hero, factionClan, partyTemplate);
+            var party = QuestPartyComponent.CreateParty(settlement, hero, factionClan, partyTemplateId);
             if (partyNameOverride != null) party.Party.SetCustomName(partyTextObject);
+            
             party.Aggressiveness = 0f;
             party.IgnoreByOtherPartiesTill(CampaignTime.Never);
             //SetPartyUsedByQuest == true would normally prevent a party from having map trackers on them; see MapMobilePartyTrackerVMPatches for changes to that

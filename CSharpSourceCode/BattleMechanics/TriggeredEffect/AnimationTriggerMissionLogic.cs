@@ -5,6 +5,7 @@ using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.Source.Missions;
+using TOR_Core.AbilitySystem;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.TriggeredEffect
@@ -15,7 +16,16 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
 
         public override void OnAgentBuild(Agent agent, Banner banner)
         {
-            if (!Mission.Current.HasMissionBehavior<BattleSpawnLogic>() && Game.Current.GameType is Campaign) return;
+            if (!Mission.Current.HasMissionBehavior<BattleSpawnLogic>() && Game.Current.GameType is Campaign)
+            {
+                //special mission types like troll caves don't have a spawn logic but should still permit tracking and usage of animation triggers
+                if (!Mission.Current.HasMissionBehavior<AbilityManagerMissionLogic>() || !Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>().IsCastingMission())
+                {
+                    return;
+                }
+            }
+
+
             if (agent.IsHuman)
             {
                 if (!agent.IsHero && agent.Character != null && agent.Character.HasAttribute("HasAnimationTriggeredEffects"))
@@ -29,6 +39,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             }
 
         }
+
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow killingBlow)
         {
             _trackedAgents.Remove(affectedAgent);
@@ -38,6 +49,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         {
             _trackedAgents.Remove(affectedAgent);
         }
+
         public override void OnMissionTick(float dt)
         {
             foreach (var entry in _trackedAgents.ToMBList())

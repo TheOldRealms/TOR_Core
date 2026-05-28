@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using SandBox;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
@@ -20,7 +21,7 @@ namespace TOR_Core.Utilities
     {
         public static void DamageAgents(IEnumerable<Agent> agents, int minDamage, int maxDamage = -1, Agent damager = null, TargetType targetType = TargetType.All, TriggeredEffectTemplate triggeredeffectTemplate = null, DamageType damageType = DamageType.Physical, bool hasShockWave = false, Vec3 impactPosition = default, AbilityTemplate originSpellTemplate = null, int castId = -1)
         {
-            if (agents == null || damager == null) return;
+            if (agents == null || !agents.Any() || damager == null) return;
 
             // Delegate to TORAbilityModel for aggregate damage handling
             if (Game.Current.GameType is Campaign)
