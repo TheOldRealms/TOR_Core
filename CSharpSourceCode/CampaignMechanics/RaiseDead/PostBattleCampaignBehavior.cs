@@ -161,6 +161,9 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
 
             foreach (var party in partiesOnSide)
             {
+                //Sly : there's no adjustment so the player gains all possible undead as if other undead lords in the battle ceded all claims on raising skeletons for themselves. This should probably account for player battle contribution.
+                //This can also consider all parties on both sides; a necromancer likely has no qualms raising some marsh farmer that just died as a skeleton to fight for them in undeath.
+                //Though with no consideration for !IsUndead, the necromancer would be able to constantly re-raise some portion of their own dead skeletons. Not exactly an issue, but to be considered when balancing.
                 var killedTroops = party.Troops.Where(x => x.IsKilled);
                 foreach (var rosterMember in killedTroops)
                 {
