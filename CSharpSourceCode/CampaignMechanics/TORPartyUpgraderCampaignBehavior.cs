@@ -22,10 +22,10 @@ namespace TOR_Core.CampaignMechanics
 
         ///<summary>Only troops above this level will have restricted upgrades</summary>
         /// <remarks>
-        /// Tier is equivalent to : Ceiling(level/5 - 1) : level 25 = t4; 26 = t5
+        /// Tier = Ceiling(level/5 - 1) : level 25 = t4; 26 = t5
         /// because an upgrade target must be at least 1 tier above their source and because this is used in a context where a target exists, we can safely ignore any lower bound and evaluate the level directly
         /// </remarks>
-        private int _cutoffLevel = 25;
+        private int _cutoffLevel = 35;//tier 6 unrestricted, t7 limited
 
         //culture id, total troops in template, list of troops above _cutoffLevel ordered by descending level
         private static Dictionary<string, Tuple<int, List<PartyTemplateStack>>> _cultureTemplateData = [];
