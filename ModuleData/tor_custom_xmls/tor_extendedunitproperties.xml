@@ -4994,9 +4994,7 @@
     <Abilities />
     <Attributes />
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -5005,9 +5003,7 @@
     <Abilities />
     <Attributes />
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -5016,9 +5012,7 @@
     <Abilities />
     <Attributes />
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
