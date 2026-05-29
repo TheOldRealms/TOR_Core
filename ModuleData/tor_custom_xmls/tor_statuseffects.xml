@@ -1151,10 +1151,10 @@
 		id="flock_of_doom_dot"
 		particle_id="flock_of_doom"
 		particle_intensity="High"
-    	base_effect_value="4"
+    	base_effect_value="8"
 		do_not_attach_to_agent_skeleton="true"
 		type="DamageOverTime"
-		damage_type="Physical"/>
+		damage_type="Magical"/>
 		
 	<StatusEffectTemplate
 		id="flock_of_doom_phy_red"

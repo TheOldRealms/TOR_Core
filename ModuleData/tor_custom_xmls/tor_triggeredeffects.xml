@@ -619,10 +619,10 @@
                              BurstParticleEffectPrefab="none"
                              SoundEffectId="none"
                              SoundEffectLength="0"
-                             DamageType="Physical"
-                             ImbuedStatusEffectDuration="1"
+                             DamageType="Magical"
+                             ImbuedStatusEffectDuration="10"
                              DamageAmount="0"
-                             Radius="8"
+                             Radius="10"
                              HasShockWave="false"
                              TargetType="Enemy"
                              DamageVariance="2">

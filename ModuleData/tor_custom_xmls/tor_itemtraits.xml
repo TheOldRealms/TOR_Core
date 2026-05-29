@@ -2994,7 +2994,7 @@
     <ItemTraitDescription>"10% extra swing speed, 15% to receive a fleeting 6 frost damage bonus upon dealing damage. Stacks up to 5 times"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
-        <InventoryScriptArgument>emp_blessing_ulric_wolf-god_bite_of_the</InventoryScriptArgument>
+        <InventoryScriptArgument>emp_blessing_ulric_wolf-god_bite</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
         <InventoryScriptArgument>125</InventoryScriptArgument>
         <InventoryScriptArgument>PriestUlric</InventoryScriptArgument>
