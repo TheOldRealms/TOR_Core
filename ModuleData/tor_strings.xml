@@ -4377,13 +4377,23 @@
   <string id="tor_career_button_knightoldworld_seal_decline.devout_no_perk_for_secular" text="{=tor_career_button_knightoldworld_seal_decline.devout_no_perk_for_secular}You need the Secular Orders perk to apply Templar seals to secular knights." />
   <string id="tor_career_button_knightoldworld_seal_decline.not_eligible" text="{=tor_career_button_knightoldworld_seal_decline.not_eligible}Not eligible for seal." />
 
-  <!-- TOR Information and data -->
-  <string id="tor_extendedInfo.Undead" text="{=str_tor_extendedinfo_undead}Undead - not affected by morale, and instead of fleeing, shall crumble to dust. If defeated, this unit cannot be wounded." />
-  <string id="tor_extendedInfo.ArtilleryCrew" text="{=str_tor_extendedinfo_artillerycrew}Artillery Crew - required to operate most artillery pieces." />
-  <string id="tor_extendedInfo.Unbreakable" text="{=str_tor_extendedinfo_unbreakable}Unbreakable - shall never flee due to low morale." />
-  <string id="tor_extendedInfo.Unstoppable" text="{=str_tor_extendedinfo_unstoppable}Unstoppable - does not stagger upon receiving damage." />
-  <string id="tor_extendedInfo.TrollRegeneration" text="{=str_tor_extendedinfo_troll_regeneration}Troll Regeneration - regenerates health over time." />
-  <string id="tor_extendedInfo.Piercing" text="{=str_tor_extendedinfo_piercing}Unit deals 40% Armor piercing damage." />
+<!--TOR Information and data !-->
+
+  <string id="tor_extendedInfo.Undead" text="{=str_tor_extendedinfo_undead}Undead - not affected by morale, and instead of fleeing, shall crumble to dust. If defeated, this unit cannot be wounded."/>
+  <string id="tor_extendedInfo.ArtilleryCrew" text="{=str_tor_extendedinfo_artillerycrew}Artillery Crew - required to operate most artillery pieces."/>
+  <string id="tor_extendedInfo.Unbreakable" text="{=str_tor_extendedinfo_unbreakable}Unbreakable - shall never flee due to low morale."/>
+  <string id="tor_extendedInfo.Unstoppable" text="{=str_tor_extendedinfo_unstoppable}Unstoppable - does not stagger upon receiving damage."/>
+  <string id="tor_extendedInfo.TrollRegeneration" text="{=str_tor_extendedinfo_troll_regeneration}Troll Regeneration - regenerates health over time."/>
+  <string id="tor_extendedInfo.Piercing" text="{=str_tor_extendedinfo_piercing}Unit deals 40% Armor piercing damage."/>
+  <string id="tor_extendedInfo.TheHunger" text="{=str_tor_extendedinfo_the_hunger}The Hunger - restores health after killing an enemy."/>
+  <string id="tor_extendedInfo.Frenzy" text="{=str_tor_extendedinfo_frenzy}Frenzy - gains increased attack and movement speed upon killing an enemy"/>
+  <string id="tor_extendedInfo.UndeadSlayer" text="{=str_tor_extendedinfo_undead_slayer}Undead Slayer - deals increased damage against undead units."/>
+  <string id="tor_extendedInfo.Immortality" text="{=str_tor_extendedinfo_immortality}Immortality - Cannot be killed."/>
+  <string id="tor_extendedInfo.Deadeye" text="{=str_tor_extendedinfo_deadeye}Deadeye - suffers no ranged accuracy penalty while moving."/>
+  <string id="tor_extendedInfo.Ethereal" text="{=str_tor_extendedinfo_ethereal}Ethereal - has a chance to ignore non magical weapon hits."/>
+  <string id="tor_extendedInfo.KillingBlow" text="{=str_tor_extendedinfo_killing_blow}Killing Blow - has a chance to instantly kill enemy units."/>
+  <string id="tor_extendedInfo.WightKing" text="{=str_tor_extendedinfo_wight_king}Wight King - has an increased chance to instantly kill enemy units"/>
+  <string id="tor_extendedInfo.MonsterSlayer" text="{=str_tor_extendedinfo_monster_slayer}Monster Slayer - deals increased damage against monstrous units."/>
   <string id="tor_damagetype.Invalid" text="{=str_tor_damagetype_invalid}Invalid" />
   <string id="tor_damagetype.Physical" text="{=str_tor_damagetype_physical}Physical" />
   <string id="tor_damagetype.Magical" text="{=str_tor_damagetype_magical}Magical" />
