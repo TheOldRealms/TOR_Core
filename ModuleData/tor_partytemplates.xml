@@ -1254,7 +1254,6 @@
 			<PartyTemplateStack min_value="4" max_value="6" troop="NPCCharacter.tor_br_foot_squire" />
 			<PartyTemplateStack min_value="5" max_value="8" troop="NPCCharacter.tor_br_mounted_yeoman" />
 			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_br_mounted_warden" />
-			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_br_noble" />
 			<PartyTemplateStack min_value="5" max_value="8" troop="NPCCharacter.tor_br_knight_errant" />
 			<PartyTemplateStack min_value="5" max_value="6" troop="NPCCharacter.tor_br_realm_knight" />
 			<PartyTemplateStack min_value="2" max_value="5" troop="NPCCharacter.tor_br_quest_knight" />
@@ -1276,7 +1275,6 @@
 			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_br_foot_squire" />
 			<PartyTemplateStack min_value="8" max_value="12" troop="NPCCharacter.tor_br_mounted_yeoman" />
 			<PartyTemplateStack min_value="5" max_value="8" troop="NPCCharacter.tor_br_mounted_warden" />
-			<PartyTemplateStack min_value="5" max_value="15" troop="NPCCharacter.tor_br_noble" />
 			<PartyTemplateStack min_value="3" max_value="12" troop="NPCCharacter.tor_br_knight_errant" />
 			<PartyTemplateStack min_value="2" max_value="8" troop="NPCCharacter.tor_br_realm_knight" />
 			<PartyTemplateStack min_value="2" max_value="8" troop="NPCCharacter.tor_br_quest_knight" />
@@ -1304,7 +1302,6 @@
 			<PartyTemplateStack min_value="4" max_value="6" troop="NPCCharacter.tor_br_foot_squire" />
 			<PartyTemplateStack min_value="5" max_value="8" troop="NPCCharacter.tor_br_mounted_yeoman" />
 			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_br_mounted_warden" />
-			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_br_noble" />
 			<PartyTemplateStack min_value="5" max_value="8" troop="NPCCharacter.tor_br_knight_errant" />
 			<PartyTemplateStack min_value="5" max_value="6" troop="NPCCharacter.tor_br_realm_knight" />
 			<PartyTemplateStack min_value="2" max_value="5" troop="NPCCharacter.tor_br_quest_knight" />
@@ -1328,7 +1325,6 @@
 			<PartyTemplateStack min_value="4" max_value="6" troop="NPCCharacter.tor_br_foot_squire" />
 			<PartyTemplateStack min_value="5" max_value="8" troop="NPCCharacter.tor_br_mounted_yeoman" />
 			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_br_mounted_warden" />
-			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_br_noble" />
 			<PartyTemplateStack min_value="5" max_value="8" troop="NPCCharacter.tor_br_knight_errant" />
 			<PartyTemplateStack min_value="5" max_value="6" troop="NPCCharacter.tor_br_realm_knight" />
 			<PartyTemplateStack min_value="2" max_value="5" troop="NPCCharacter.tor_br_quest_knight" />
@@ -1353,7 +1349,6 @@
 			<PartyTemplateStack min_value="4" max_value="6" troop="NPCCharacter.tor_br_foot_squire" />
 			<PartyTemplateStack min_value="5" max_value="8" troop="NPCCharacter.tor_br_mounted_yeoman" />
 			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_br_mounted_warden" />
-			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_br_noble" />
 			<PartyTemplateStack min_value="6" max_value="9" troop="NPCCharacter.tor_br_knight_errant" />
 			<PartyTemplateStack min_value="6" max_value="8" troop="NPCCharacter.tor_br_realm_knight" />
 			<PartyTemplateStack min_value="3" max_value="6" troop="NPCCharacter.tor_br_quest_knight" />
@@ -1377,7 +1372,6 @@
 			<PartyTemplateStack min_value="4" max_value="6" troop="NPCCharacter.tor_br_foot_squire" />
 			<PartyTemplateStack min_value="5" max_value="8" troop="NPCCharacter.tor_br_mounted_yeoman" />
 			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_br_mounted_warden" />
-			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_br_noble" />
 			<PartyTemplateStack min_value="5" max_value="8" troop="NPCCharacter.tor_br_knight_errant" />
 			<PartyTemplateStack min_value="5" max_value="6" troop="NPCCharacter.tor_br_realm_knight" />
 			<PartyTemplateStack min_value="2" max_value="5" troop="NPCCharacter.tor_br_quest_knight" />
@@ -1399,7 +1393,6 @@
 			<PartyTemplateStack min_value="4" max_value="6" troop="NPCCharacter.tor_br_foot_squire" />
 			<PartyTemplateStack min_value="5" max_value="8" troop="NPCCharacter.tor_br_mounted_yeoman" />
 			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_br_mounted_warden" />
-			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_br_noble" />
 			<PartyTemplateStack min_value="4" max_value="7" troop="NPCCharacter.tor_br_knight_errant" />
 			<PartyTemplateStack min_value="4" max_value="5" troop="NPCCharacter.tor_br_realm_knight" />
 			<PartyTemplateStack min_value="1" max_value="4" troop="NPCCharacter.tor_br_quest_knight" />
@@ -1424,7 +1417,6 @@
 			<PartyTemplateStack min_value="4" max_value="6" troop="NPCCharacter.tor_br_foot_squire" />
 			<PartyTemplateStack min_value="4" max_value="6" troop="NPCCharacter.tor_br_mounted_yeoman" />
 			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_br_mounted_warden" />
-			<PartyTemplateStack min_value="1" max_value="4" troop="NPCCharacter.tor_br_noble" />
 			<PartyTemplateStack min_value="4" max_value="6" troop="NPCCharacter.tor_br_knight_errant" />
 			<PartyTemplateStack min_value="4" max_value="5" troop="NPCCharacter.tor_br_realm_knight" />
 			<PartyTemplateStack min_value="2" max_value="5" troop="NPCCharacter.tor_br_quest_knight" />
@@ -1450,7 +1442,6 @@
 			<PartyTemplateStack min_value="4" max_value="6" troop="NPCCharacter.tor_br_foot_squire" />
 			<PartyTemplateStack min_value="6" max_value="9" troop="NPCCharacter.tor_br_mounted_yeoman" />
 			<PartyTemplateStack min_value="3" max_value="5" troop="NPCCharacter.tor_br_mounted_warden" />
-			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_br_noble" />
 			<PartyTemplateStack min_value="5" max_value="8" troop="NPCCharacter.tor_br_knight_errant" />
 			<PartyTemplateStack min_value="5" max_value="6" troop="NPCCharacter.tor_br_realm_knight" />
 			<PartyTemplateStack min_value="2" max_value="5" troop="NPCCharacter.tor_br_quest_knight" />
@@ -1471,7 +1462,6 @@
 			<PartyTemplateStack min_value="3" max_value="7" troop="NPCCharacter.tor_m_convict" />
 			<PartyTemplateStack min_value="3" max_value="7" troop="NPCCharacter.tor_m_ducal_decapitator" />
 			<PartyTemplateStack min_value="3" max_value="7" troop="NPCCharacter.tor_m_horse_thief" />
-			<PartyTemplateStack min_value="7" max_value="9" troop="NPCCharacter.tor_m_illfated_squire" />
 			<PartyTemplateStack min_value="5" max_value="7" troop="NPCCharacter.tor_m_outcast_errant" />
 			<PartyTemplateStack min_value="5" max_value="7" troop="NPCCharacter.tor_m_knight_of_misfortune" />
 			<PartyTemplateStack min_value="3" max_value="6" troop="NPCCharacter.tor_m_doomed_questing_knight" />
@@ -1492,7 +1482,6 @@
 			<PartyTemplateStack min_value="3" max_value="7" troop="NPCCharacter.tor_m_convict" />
 			<PartyTemplateStack min_value="3" max_value="7" troop="NPCCharacter.tor_m_ducal_decapitator" />
 			<PartyTemplateStack min_value="3" max_value="7" troop="NPCCharacter.tor_m_horse_thief" />
-			<PartyTemplateStack min_value="6" max_value="10" troop="NPCCharacter.tor_m_illfated_squire" />
 			<PartyTemplateStack min_value="4" max_value="7" troop="NPCCharacter.tor_m_outcast_errant" />
 			<PartyTemplateStack min_value="10" max_value="14" troop="NPCCharacter.tor_m_knight_of_misfortune" />
 			<PartyTemplateStack min_value="6" max_value="10" troop="NPCCharacter.tor_m_doomed_questing_knight" />

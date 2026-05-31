@@ -738,15 +738,6 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_br_noble">
-    <Abilities />
-    <Attributes />
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_knight_errant">
     <Abilities />
     <Attributes />
@@ -920,15 +911,6 @@
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_mounted_yeoman">
-    <Abilities />
-    <Attributes />
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_m_illfated_squire">
     <Abilities />
     <Attributes />
     <Resistances />
@@ -11020,21 +11002,24 @@
     <Attributes>
       <string>Expendable</string>
     </Attributes>
-  <DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" />
-  </DamageProportions>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
   </CharacterExtendedInfo>
-    <CharacterExtendedInfo id="tor_m_ducal_decapitator">
+  <CharacterExtendedInfo id="tor_m_ducal_decapitator">
     <Attributes>
       <string>Expendable</string>
     </Attributes>
-  <DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" />
-  </DamageProportions>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
   </CharacterExtendedInfo>
-    <CharacterExtendedInfo id="tor_m_horse_thief">
+  <CharacterExtendedInfo id="tor_m_horse_thief">
     <Attributes>
       <string>Expendable</string>
     </Attributes>
-  <DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" />
-  </DamageProportions>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
   </CharacterExtendedInfo>
 </ArrayOfCharacterExtendedInfo>
