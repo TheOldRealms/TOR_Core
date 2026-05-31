@@ -3441,7 +3441,7 @@
                      WindsOfMagicCost="20"
                      BaseMisCastChance="0.05"
                      Duration="0"
-                     Radius="12"
+                     Radius="15"
                      AbilityType="Spell"
                      AbilityEffectType="Augment"
                      BaseMovementSpeed="0"
@@ -3467,7 +3467,7 @@
                      CrosshairType="TargetedAOE"
                      SpellTier="4"
                      BelongsToLoreID="LoreOfBeasts"
-                     TooltipDescription="{=the_beast_unleashed_description_str}Unleashes the primal savagery of the caster's allies, driving them into a frenzy. Grants a 25% physical damage and attack speed bonus for a duration of 60 seconds.">
+                     TooltipDescription="{=the_beast_unleashed_description_str}Unleashes the primal savagery of the caster's allies in a 15m radius, driving them into a frenzy. Grants a 25% physical damage and attack speed bonus for a duration of 60 seconds.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -3512,7 +3512,7 @@
                      CrosshairType="TargetedAOE"
                      SpellTier="4"
                      BelongsToLoreID="LoreOfBeasts"
-                     TooltipDescription="{=curse_of_anraheir_description_str}Woodland sprites hinder all enemies caught in the area for 15 seconds, reducing movement (35%) and attack speed (50%) as well as causing 3 damage per second.">
+                     TooltipDescription="{=curse_of_anraheir_description_str}Woodland sprites hinder all enemies caught in the area for 15 seconds, reducing movement (35%) and attack speed (50%) as well as causing 3 physical damage per second.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"

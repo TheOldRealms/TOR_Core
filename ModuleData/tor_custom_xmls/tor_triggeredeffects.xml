@@ -568,8 +568,8 @@
                              Radius="4"
                              HasShockWave="false"
                              TargetType="Enemy"
-                             ImbuedStatusEffectDuration="2"
                              DamageVariance="0"
+                             ImbuedStatusEffectDuration="2"
                              ScriptNameToTrigger="none">
         <ImbuedStatusEffect />
     </TriggeredEffectTemplate>
@@ -593,7 +593,7 @@
                              SoundEffectLength="1"
                              DamageType="Invalid"
                              DamageAmount="0"
-                             Radius="5"
+                             Radius="7"
                              HasShockWave="false"
                              TargetType="Enemy"
                              ImbuedStatusEffectDuration="10"
@@ -607,7 +607,7 @@
                              SoundEffectLength="0"
                              DamageType="Invalid"
                              DamageAmount="0"
-                             Radius="4"
+                             Radius="7"
                              HasShockWave="false"
                              TargetType="Friendly"
                              ImbuedStatusEffectDuration="40"
@@ -636,7 +636,7 @@
                              DamageType="Physical"
                              ImbuedStatusEffectDuration="60"
                              DamageAmount="0"
-                             Radius="20"
+                             Radius="15"
                              HasShockWave="false"
                              TargetType="Friendly"
                              DamageVariance="2"
@@ -649,9 +649,9 @@
                              SoundEffectId="none"
                              SoundEffectLength="0"
                              DamageType="Physical"
-                             ImbuedStatusEffectDuration="1"
+                             ImbuedStatusEffectDuration="15"
                              DamageAmount="0"
-                             Radius="8"
+                             Radius="10"
                              HasShockWave="false"
                              TargetType="Enemy"
                              DamageVariance="2">
