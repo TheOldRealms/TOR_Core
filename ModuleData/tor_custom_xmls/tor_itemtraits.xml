@@ -570,7 +570,7 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>12</IngredientAmount>
-    <ItemTraitDescription>Damaging burning enemies inflicts an extra 50 extra fire damage</ItemTraitDescription>
+    <ItemTraitDescription>Damaging burning enemies inflicts an extra 50 fire damage</ItemTraitDescription>
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.BonusDOTDamageEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>50</WeaponScriptArgument>
@@ -888,11 +888,11 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_blessing_ulric_wolf-god_bite" ItemTraitName="Bite of the Wolf-God" IsCraftable="true" ImbuedEffectChance="0.15" IconName="whitewolf_icon">
+  <ItemTrait ItemTraitStringId="emp_blessing_ulric_wolf_god_bite" ItemTraitName="Bite of the Wolf-God" IsCraftable="true" ImbuedEffectChance="0.15" IconName="whitewolf_icon">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>35</IngredientAmount>
-    <ItemTraitDescription>"10% extra swing speed, 15% to receive a fleeting 6 frost damage bonus upon dealing damage. Stacks up to 5 times each lasting 15 seconds"</ItemTraitDescription>
+    <ItemTraitDescription>"10% extra swing speed, 15% to receive a fleeting 6% extra damageas frost damage bonus upon dealing damage. Stacks up to 5 times each lasting 15 seconds"</ItemTraitDescription>
     <StatsTuple StatType="SwingSpeed" Value="10" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponBuffStackScript">
       <WeaponScriptArguments>
@@ -2564,7 +2564,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>Damaging burning enemies inflicts an extra 50 extra fire damage</ItemTraitDescription>
+    <ItemTraitDescription>Damaging burning enemies inflicts an extra 50 fire damage</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_aqshy_fury</InventoryScriptArgument>
@@ -2994,14 +2994,14 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_emp_blessing_ulric_wolf-god_bite" ItemTraitName="Bite of the Wolf-God" IsCraftable="false" IconName="whitewolf_icon">
+  <ItemTrait ItemTraitStringId="learn_emp_blessing_ulric_wolf_god_bite" ItemTraitName="Bite of the Wolf-God" IsCraftable="false" IconName="whitewolf_icon">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>"10% extra swing speed, 15% to receive a fleeting 6 frost damage bonus upon dealing damage. Stacks up to 5 times each lasting 15 seconds"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
-        <InventoryScriptArgument>emp_blessing_ulric_wolf-god_bite</InventoryScriptArgument>
+        <InventoryScriptArgument>emp_blessing_ulric_wolf_god_bite</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
         <InventoryScriptArgument>125</InventoryScriptArgument>
         <InventoryScriptArgument>PriestUlric</InventoryScriptArgument>
