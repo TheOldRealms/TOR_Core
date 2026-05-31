@@ -4383,7 +4383,7 @@
   <string id="tor_extendedInfo.ArtilleryCrew" text="{=str_tor_extendedinfo_artillerycrew}Artillery Crew - required to operate most artillery pieces."/>
   <string id="tor_extendedInfo.Unbreakable" text="{=str_tor_extendedinfo_unbreakable}Unbreakable - shall never flee due to low morale."/>
   <string id="tor_extendedInfo.Unstoppable" text="{=str_tor_extendedinfo_unstoppable}Unstoppable - does not stagger upon receiving damage."/>
-  <string id="tor_extendedInfo.TrollRegeneration" text="{=str_tor_extendedinfo_troll_regeneration}Troll Regeneration - regenerates health over time."/>
+  <string id="tor_extendedInfo.TrollRegeneration" text="{=str_tor_extendedinfo_troll_regeneration}Regeneration - regenerates health over time."/>
   <string id="tor_extendedInfo.Piercing" text="{=str_tor_extendedinfo_piercing}Piercing - Unit deals 40% Armor piercing damage."/>
   <string id="tor_extendedInfo.TheHunger" text="{=str_tor_extendedinfo_the_hunger}The Hunger - restores health after killing an enemy."/>
   <string id="tor_extendedInfo.Frenzy" text="{=str_tor_extendedinfo_frenzy}Frenzy - gains increased attack and movement speed upon killing an enemy"/>

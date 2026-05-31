@@ -1215,7 +1215,7 @@
       <tag tag_name="IsOrcTag" />
     </tags>
   </string>
-  <string id="BvytaDUJ.caravan_do_not_warn_player_dwarf" text="{=str_tor_caravan_do_not_warn_player_dwarf}Ancestors, guide our axes against their filth!">
+  <string id="BvytaDUJ.caravan_do_not_warn_player_dwarf" text="{=str_tor_caravan_do_not_warn_player_dwarf}Gromthi, forgive us such shame.">
     <tags>
       <tag tag_name="IsDwarfTag" />
     </tags>

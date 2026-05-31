@@ -172,7 +172,10 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_huntsman">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>MonsterSlayer</string>
+      <string>Deadeye</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -503,6 +506,7 @@
   <CharacterExtendedInfo id="tor_empire_flagellant">
     <Abilities />
     <Attributes>
+      <string>Expendable</string>
       <string>Unbreakable</string>
     </Attributes>
     <Resistances>
@@ -520,6 +524,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
+      <string>Frenzy</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.25" />
@@ -577,6 +582,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
+      <string>Frenzy</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers>
@@ -593,6 +599,7 @@
     <Attributes>
       <string>Unbreakable</string>
       <string>Knightly</string>
+      <string>Frenzy</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers>
@@ -750,7 +757,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_realm_knight">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Piercing</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -762,6 +771,7 @@
     <Abilities />
     <Attributes>
       <string>Piercing</string>
+      <string>Unbreakable</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -774,8 +784,10 @@
     <Abilities />
     <Attributes>
       <string>Piercing</string>
+      <string>Unbreakable</string>
       <string>Unstoppable</string>
       <string>MonsterAttack</string>
+      <string>TrollRegeneration</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.35" />
@@ -901,7 +913,7 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_m_yeoman">
+    <CharacterExtendedInfo id="tor_m_yeoman">
     <Abilities />
     <Attributes />
     <Resistances />
@@ -911,6 +923,15 @@
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_mounted_yeoman">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+   <CharacterExtendedInfo id="tor_m_illfated_squire">
     <Abilities />
     <Attributes />
     <Resistances />
@@ -930,7 +951,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_knight_of_misfortune">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Piercing</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -941,6 +964,7 @@
     <Abilities />
     <Attributes>
       <string>Piercing</string>
+      <string>Frenzy</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -955,6 +979,8 @@
       <string>Piercing</string>
       <string>Unstoppable</string>
       <string>MonsterAttack</string>
+      <string>Frenzy</string>
+      <string>KillingBlow</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.35" />
@@ -1141,7 +1167,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_wardancer">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Frenzy</string>
+    </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
     </Resistances>
@@ -1152,7 +1180,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_shadowdancer">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Frenzy</string>
+    </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
     </Resistances>
@@ -1164,7 +1194,10 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_bladesinger">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Frenzy</string>
+      <string>Unstoppable</string>
+    </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
     </Resistances>
@@ -1626,6 +1659,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
+      <string>Frenzy</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
@@ -1643,6 +1677,8 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
+      <string>Frenzy</string>
+      <string>MonsterSlayer</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
@@ -1661,6 +1697,9 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
+      <string>Unstoppable</string>
+      <string>Frenzy</string>
+      <string>MonsterSlayer</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
@@ -1764,7 +1803,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_thug">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Frenzy</string>
+    </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
@@ -1779,7 +1820,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_expert_thug">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Frenzy</string>
+    </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
@@ -1794,7 +1837,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_master_thug">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Frenzy</string>
+    </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
@@ -1936,7 +1981,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_black_orc_berzerka">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Frenzy</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.30" />
@@ -2242,7 +2289,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_eo_ranger">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Deadeye</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -2815,6 +2864,7 @@
     <Abilities />
     <Attributes>
       <string>Undead</string>
+      <string>Ethereal</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
@@ -2833,6 +2883,7 @@
     <Abilities />
     <Attributes>
       <string>Undead</string>
+      <string>Ethereal</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
@@ -2851,6 +2902,7 @@
     <Abilities />
     <Attributes>
       <string>Undead</string>
+      <string>Ethereal</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
@@ -2869,6 +2921,7 @@
     <Abilities />
     <Attributes>
       <string>Undead</string>
+      <string>Ethereal</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
@@ -2887,6 +2940,7 @@
     <Abilities />
     <Attributes>
       <string>Undead</string>
+      <string>Ethereal</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
@@ -2905,6 +2959,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
+      <string>TheHunger</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
@@ -2922,6 +2977,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
+      <string>TheHunger</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.20" />
@@ -2939,6 +2995,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
+      <string>TheHunger</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.30" />
@@ -2956,6 +3013,8 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
+      <string>Unstoppable</string>
+      <string>TheHunger</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.30" />
@@ -2973,6 +3032,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
+      <string>TheHunger</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
@@ -2990,6 +3050,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
+      <string>TheHunger</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.20" />
@@ -3007,6 +3068,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
+      <string>TheHunger</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.30" />
@@ -3024,6 +3086,8 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
+      <string>Unstoppable</string>
+      <string>TheHunger</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.30" />
@@ -3250,7 +3314,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_chaos_khorne_warrior">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Frenzy</string>
+    </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.50" />
     </Resistances>
@@ -3450,6 +3516,7 @@
       <string>Minotaur</string>
       <string>Unbreakable</string>
       <string>Unstoppable</string>
+      <string>Frenzy</string>
       <string>MonsterAttack</string>
       <string>CannotClimbLadders</string>
     </Attributes>
@@ -3632,7 +3699,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dog_miragliano_02">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Piercing</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -3643,6 +3712,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
+      <string>Piercing</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -3814,7 +3884,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_stir_river_patrol_nimrod">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Deadeye</string>
+    </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.30" />
     </Resistances>
@@ -3987,7 +4059,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_deathjack_toxophilite">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Deadeye</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -4051,7 +4125,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_longshank_warden">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Deadeye</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -4061,7 +4137,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_longshank_ranger">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Deadeye</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -4240,6 +4318,7 @@
     <Abilities />
     <Attributes>
       <string>Piercing</string>
+      <string>MonsterSlayer</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -4296,7 +4375,10 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_nordland_seahawk">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Unbreakable</string>
+      <string>Piercing</string>
+    </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.25" />
     </Resistances>
@@ -4505,6 +4587,7 @@
     <Abilities />
     <Attributes>
       <string>Piercing</string>
+      <string>Deadeye</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -4517,6 +4600,7 @@
     <Abilities />
     <Attributes>
       <string>Piercing</string>
+      <string>Deadeye</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers>
@@ -4617,6 +4701,7 @@
     <Abilities />
     <Attributes>
       <string>Piercing</string>
+      <string>MonsterSlayer</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -4649,7 +4734,11 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_loec_trickster">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Frenzy</string>
+      <string>Unstoppable</string>
+      <string>KillingBlow</string>
+    </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.35" />
     </Resistances>
@@ -4676,7 +4765,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wh_retinue">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>UndeadSlayer</string>
+    </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.15" />
     </Resistances>
@@ -4691,6 +4782,7 @@
   <CharacterExtendedInfo id="tor_wh_retinue_hunter">
     <Abilities />
     <Attributes>
+      <string>UndeadSlayer</string>
       <string>Piercing</string>
     </Attributes>
     <Resistances>
@@ -4708,7 +4800,9 @@
   <CharacterExtendedInfo id="tor_wh_retinue_headhunter">
     <Abilities />
     <Attributes>
+      <string>UndeadSlayer</string>
       <string>Piercing</string>
+      <string>MonsterSlayer</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
@@ -11022,4 +11116,4 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
-</ArrayOfCharacterExtendedInfo>
+<CharacterExtendedInfo id="new_entry_1"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></CharacterExtendedInfo></ArrayOfCharacterExtendedInfo>

@@ -312,7 +312,7 @@
     </Equipments>
   </NPCCharacter>
 
-  <NPCCharacter id="tournament_master_greenskins" name="{=str_tournament_master_greenskins}Tournament Master" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="orc" culture="Culture.aserai" occupation="ArenaMaster">
+  <NPCCharacter id="tournament_master_greenskins" name="{=str_tournament_master_greenskins}Scrapmasta" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="orc" culture="Culture.aserai" occupation="ArenaMaster">
     <face>
       <face_key_template value="BodyProperty.orc_small" />
     </face>
@@ -326,7 +326,7 @@
     </Equipments>
   </NPCCharacter>
 
-  <NPCCharacter id="gangleader_bodyguard_greenskins" name="{=str_gangleader_bodyguard_greenskins}Orc Gang Leader" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="orc" culture="Culture.aserai" occupation="Gangster">
+  <NPCCharacter id="gangleader_bodyguard_greenskins" name="{=str_gangleader_bodyguard_greenskins}Orc Gang Boss" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="orc" culture="Culture.aserai" occupation="Gangster">
     <face>
       <face_key_template value="BodyProperty.orc_small" />
     </face>
