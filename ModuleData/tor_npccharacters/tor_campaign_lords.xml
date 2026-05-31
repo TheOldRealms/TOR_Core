@@ -13158,7 +13158,7 @@
       <EquipmentSet id="tor_brasskeep_lord_1_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_brasskeep_first_3" default_group="cavalry" name="{=str_tor_chaos_lord_brasskeep_first_3}The Glop-helm" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_berserker_lord" race="marauder" is_hero="true">
+  <NPCCharacter id="tor_chaos_lord_brasskeep_first_3" default_group="cavalry" name="{=str_tor_chaos_lord_brasskeep_first_3}The Glop-Helm" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_berserker_lord" race="marauder" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.4911" build="0.7987" key="0015D8029CA000006F4C958D997B67E47983C626E57163E8FEF1EFEEB45488C593829603030EEEDFC7D3C65235B08883000000000000000300000000365C5002" />
     </face>
@@ -13248,7 +13248,7 @@
       <EquipmentSet id="tor_generic_druchii_lord_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_orion_factionleader" name="Orion Master of the Wildhunt" default_group="infantry" occupation="Lord" culture="Culture.battania" voice="curt" age="25" race="orion" is_hero="true" skill_template="SkillSet.tor_skills_karlfranz" ext_Attributes="Legendary">
+  <NPCCharacter id="tor_we_orion_factionleader" name="Orion, Master of the Wild Hunt" default_group="infantry" occupation="Lord" culture="Culture.battania" voice="curt" age="25" race="orion" is_hero="true" skill_template="SkillSet.tor_skills_karlfranz" ext_Attributes="Legendary">
     <face>
       <BodyProperties age="25" weight="0.2608" build="0.3997" key="0000AC0FC0B40000B97634CE6774B835537D86629511323BDCB177278A840203010646130048B49500000000000000000000000000000000000000003E040000" />
     </face>

@@ -28,9 +28,6 @@
       <hair_tags>
         <hair_tag name="Bald" />
       </hair_tags>
-      <beard_tags>
-        <beard_tag name="Cleanshaven" />
-      </beard_tags>
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />
@@ -68,13 +65,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_wanderer_empire_3" default_group="ranged" name="{=str_tor_wanderer_empire_3}{FIRSTNAME} the Light Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="50" skill_template="SkillSet.tor_skills_wanderer_wizard" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
-      <hair_tags>
-        <hair_tag name="ShortAndThin" />
-      </hair_tags>
-      <beard_tags>
-        <beard_tag name="Cleanshaven" />
-      </beard_tags>
+      <face_key_template value="BodyProperty.genericwizard" />
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />
@@ -90,13 +81,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_wanderer_empire_4" default_group="ranged" name="{=str_tor_wanderer_empire_4}{FIRSTNAME} the Celestial Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="50" skill_template="SkillSet.tor_skills_wanderer_wizard" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
-      <hair_tags>
-        <hair_tag name="ShortAndThin" />
-      </hair_tags>
-      <beard_tags>
-        <beard_tag name="Cleanshaven" />
-      </beard_tags>
+      <face_key_template value="BodyProperty.genericwizard" />
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />
@@ -166,7 +151,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_wanderer_empire_8" default_group="infantry" name="{=str_tor_wanderer_empire_8}{FIRSTNAME} the Gold Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="44" skill_template="SkillSet.tor_skills_wanderer_wizard" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.genericwizard" />
       <hair_tags>
         <hair_tag name="Bald" />
       </hair_tags>
@@ -188,13 +173,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_wanderer_empire_9" default_group="infantry" name="{=str_tor_wanderer_empire_9}{FIRSTNAME} the Life Wizard" occupation="Wanderer" culture="Culture.empire" voice="softspoken" age="25" skill_template="SkillSet.tor_skills_wanderer_wizard" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
-      <hair_tags>
-        <hair_tag name="ShortAndThin" />
-      </hair_tags>
-      <beard_tags>
-        <beard_tag name="Cleanshaven" />
-      </beard_tags>
+      <face_key_template value="BodyProperty.genericwizard" />
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />
@@ -210,7 +189,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_wanderer_empire_10" default_group="infantry" name="{=str_tor_wanderer_empire_10}{FIRSTNAME} the Beast Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="50" skill_template="SkillSet.tor_skills_wanderer_wizard" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.hornedhunter" />
       <beard_tags>
         <beard_tag name="LongScragglyBeard" />
       </beard_tags>
@@ -407,7 +386,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_wanderer_mousillon_1" default_group="infantry" name="{=str_tor_wanderer_mousillon_1}{FIRSTNAME} the Necromancer of Mousillon" occupation="Wanderer" culture="Culture.mousillon" voice="ironic" age="55" skill_template="SkillSet.tor_skills_wanderer_wizard" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.genericwizard" />
       <hair_tags>
         <hair_tag name="ShortAndThin" />
       </hair_tags>
@@ -483,7 +462,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_wanderer_vampire_0" default_group="infantry" name="{=str_tor_wanderer_vampire_0}{FIRSTNAME} the Necromancer" occupation="Wanderer" culture="Culture.khuzait" voice="ironic" age="55" skill_template="SkillSet.tor_skills_wanderer_wizard" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.genericwizard" />
       <hair_tags>
         <hair_tag name="ShortAndThin" />
       </hair_tags>
@@ -2261,9 +2240,9 @@
       <EquipmentSet id="tor_qnpc_prestige_noble_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_spelltrainer_empire_0" default_group="infantry" name="{=str_tor_spelltrainer_empire_0}College Magister" occupation="Special" culture="Culture.empire" voice="ironic" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_spelltrainer_empire_0" default_group="infantry" name="{=str_tor_spelltrainer_empire_0}College Magister" occupation="Special" culture="Culture.empire" voice="ironic" age="102" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empireofman" />
+      <face_key_template value="BodyProperty.genericwizard" />
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />
