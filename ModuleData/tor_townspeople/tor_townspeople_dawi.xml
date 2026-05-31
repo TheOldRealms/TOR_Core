@@ -312,7 +312,7 @@
     </Equipments>
   </NPCCharacter>
 
-  <NPCCharacter id="tournament_master_dawi" name="{=str_tournament_master_dawi}Tournament Master" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="dwarf" culture="Culture.sturgia" occupation="ArenaMaster">
+  <NPCCharacter id="tournament_master_dawi" name="{=str_tournament_master_dawi}Master of Grozkazak" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="dwarf" culture="Culture.sturgia" occupation="ArenaMaster">
     <face>
       <face_key_template value="BodyProperty.dwarf_low_tier" />
     </face>

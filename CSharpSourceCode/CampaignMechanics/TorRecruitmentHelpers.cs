@@ -27,9 +27,6 @@ namespace TOR_Core.CampaignMechanics
             var knightID = "";
             switch (bretonnianTroop.StringId)
             {
-                case "tor_br_noble":
-                    knightID = "tor_m_illfated_squire";
-                    break;
                 case "tor_br_knight_errant":
                     knightID = "tor_m_outcast_errant";
                     break;
@@ -68,9 +65,6 @@ namespace TOR_Core.CampaignMechanics
             var knightID = "";
             switch (mousillonTroop.StringId)
             {
-                case "tor_m_illfated_squire":
-                    knightID = "tor_br_noble";
-                    break;
                 case "tor_m_outcast_errant":
                     knightID = "tor_br_knight_errant";
                     break;

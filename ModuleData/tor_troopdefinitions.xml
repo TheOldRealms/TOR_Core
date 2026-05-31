@@ -633,7 +633,7 @@
       <EquipmentSet id="tor_br_villager_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_battle_pilgrim" default_group="infantry" level="16" name="{=str_tor_br_battle_pilgrim}Battle Pilgrim" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true" race="bretonnian">
+  <NPCCharacter id="tor_br_battle_pilgrim" default_group="infantry" level="21" name="{=str_tor_br_battle_pilgrim}Battle Pilgrim" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true" race="bretonnian">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -781,19 +781,7 @@
       <EquipmentSet id="tor_br_mounted_yeoman_warden_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_noble" default_group="cavalry" level="11" name="{=str_tor_br_noble}Bretonnian Noble" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true" race="bretonnian">
-    <face>
-      <face_key_template value="BodyProperty.fighter_vlandia" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_br_knight_errant" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_br_noble_template" />
-      <EquipmentSet id="tor_br_noble_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_br_knight_errant" default_group="cavalry" level="21" name="{=str_tor_br_knight_errant}Bretonnian Knight Errant" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21" race="bretonnian">
+  <NPCCharacter id="tor_br_knight_errant" default_group="cavalry" level="26" name="{=str_tor_br_knight_errant}Bretonnian Knight Errant" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26" race="bretonnian" is_basic_troop="true">
     <face>
       <face_key_template value="BodyProperty.bretonnianknight" />
     </face>
@@ -817,7 +805,7 @@
       <EquipmentSet id="tor_br_realm_knight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_quest_knight" default_group="cavalry" level="41" name="{=str_tor_br_quest_knight}Bretonnian Questing Knight" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level41" race="bretonnian">
+  <NPCCharacter id="tor_br_quest_knight" default_group="cavalry" level="36" name="{=str_tor_br_quest_knight}Bretonnian Questing Knight" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level36" race="bretonnian">
     <face>
       <face_key_template value="BodyProperty.bretonnianknight" />
     </face>
@@ -829,7 +817,7 @@
       <EquipmentSet id="tor_br_quest_knight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_grail_knight" default_group="cavalry" level="46" name="{=str_tor_br_grail_knight}Bretonnian Grail Knight" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level46" race="bretonnian" ext_UpgradeCost="800">
+  <NPCCharacter id="tor_br_grail_knight" default_group="cavalry" level="46" name="{=str_tor_br_grail_knight}Bretonnian Grail Knight" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level46" race="bretonnian">
     <face>
       <face_key_template value="BodyProperty.bretonnianknight" />
     </face>
@@ -1000,7 +988,7 @@
       <EquipmentSet id="tor_m_mounted_yeoman_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_convict" occupation="Soldier" name="Mousillon Convicted" level="21" default_group="infantry" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21" ext_Attributes="Expendable">
+  <NPCCharacter id="tor_m_convict" occupation="Soldier" name="Mousillon Convicted" level="21" default_group="infantry" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21">
     <face>
       <face_key_template value="BodyProperty.fighter_mousillon_peasant" />
     </face>
@@ -1032,19 +1020,7 @@
       <EquipmentSet id="tor_m_horse_thief_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_illfated_squire" default_group="infantry" level="11" name="{=str_tor_m_illfated_squire}Mousillon Ill-fated Squire" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true">
-    <face>
-      <face_key_template value="BodyProperty.fighter_vlandia" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_m_outcast_errant" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_m_ill_fated_foot_squire_template" />
-      <EquipmentSet id="tor_m_ill_fated_foot_squire_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_m_outcast_errant" default_group="cavalry" level="21" name="{=str_tor_m_outcast_errant}Mousillon Outcast Errant" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21">
+  <NPCCharacter id="tor_m_outcast_errant" default_group="cavalry" level="26" name="{=str_tor_m_outcast_errant}Mousillon Outcast Errant" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level26" is_basic_troop="true">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -1068,7 +1044,7 @@
       <EquipmentSet id="tor_m_knight_of_misfortune_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_doomed_questing_knight" default_group="cavalry" level="41" name="{=str_tor_m_doomed_questing_knight}Mousillon Doomed Questing Knight" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level41">
+  <NPCCharacter id="tor_m_doomed_questing_knight" default_group="cavalry" level="36" name="{=str_tor_m_doomed_questing_knight}Mousillon Doomed Questing Knight" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level36">
     <face>
       <face_key_template value="BodyProperty.bretonnianknight" />
     </face>
@@ -1190,7 +1166,7 @@
       <EquipmentSet id="tor_we_glade_guard_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_kings_bowman" default_group="ranged" level="21" name="{=str_tor_we_kings_bowman}Asrai Kings Bowman" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" race="elf" ext_ResourceType="ForestHarmony" ext_UpgradeCost="5">
+  <NPCCharacter id="tor_we_kings_bowman" default_group="ranged" level="21" name="{=str_tor_we_kings_bowman}Asrai Kings Bowman" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1224,7 +1200,7 @@
       <EquipmentSet id="tor_we_eternal_guard_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_eternal_warden" default_group="infantry" level="21" name="{=str_tor_we_eternal_warden}Asrai Eternal Warden" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" race="elf" ext_ResourceType="ForestHarmony" ext_UpgradeCost="5">
+  <NPCCharacter id="tor_we_eternal_warden" default_group="infantry" level="21" name="{=str_tor_we_eternal_warden}Asrai Eternal Warden" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1293,7 +1269,7 @@
       <EquipmentSet id="tor_we_scout_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_deepwood_scout" default_group="ranged" level="16" name="{=str_tor_we_deepwood_scout}Asrai Deepwood Scout" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level16" race="elf" ext_ResourceType="ForestHarmony" ext_UpgradeCost="5">
+  <NPCCharacter id="tor_we_deepwood_scout" default_group="ranged" level="16" name="{=str_tor_we_deepwood_scout}Asrai Deepwood Scout" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level16" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -2391,7 +2367,7 @@
       <EquipmentSet id="tor_gs_orc_bully_bigun_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_trolls" default_group="infantry" level="46" name="{=str_tor_gs_trolls}Troll" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_troll" race="troll">
+  <NPCCharacter id="tor_gs_trolls" default_group="infantry" level="36" name="{=str_tor_gs_trolls}Troll" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_troll" race="troll">
     <face>
       <face_key_template value="BodyProperty.troll" />
     </face>
