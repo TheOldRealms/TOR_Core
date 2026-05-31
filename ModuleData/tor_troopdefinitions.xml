@@ -817,7 +817,7 @@
       <EquipmentSet id="tor_br_realm_knight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_quest_knight" default_group="cavalry" level="41" name="{=str_tor_br_quest_knight}Bretonnian Questing Knight" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level41" race="bretonnian">
+  <NPCCharacter id="tor_br_quest_knight" default_group="cavalry" level="36" name="{=str_tor_br_quest_knight}Bretonnian Questing Knight" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level36" race="bretonnian">
     <face>
       <face_key_template value="BodyProperty.bretonnianknight" />
     </face>
@@ -839,7 +839,7 @@
       <EquipmentSet id="tor_br_grail_knight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_caravan_guard" default_group="cavalry" level="21" name="{=str_tor_br_caravan_guard}Bretonnian Caravan Horseman" occupation="CaravanGuard" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21" race="bretonnian">
+  <NPCCharacter id="tor_br_caravan_guard" default_group="horsearcher" level="21" name="{=str_tor_br_caravan_guard}Bretonnian Caravan Horseman" occupation="CaravanGuard" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21" race="bretonnian">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -1068,7 +1068,7 @@
       <EquipmentSet id="tor_m_knight_of_misfortune_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_doomed_questing_knight" default_group="cavalry" level="41" name="{=str_tor_m_doomed_questing_knight}Mousillon Doomed Questing Knight" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level41">
+  <NPCCharacter id="tor_m_doomed_questing_knight" default_group="cavalry" level="36" name="{=str_tor_m_doomed_questing_knight}Mousillon Doomed Questing Knight" occupation="Soldier" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level36">
     <face>
       <face_key_template value="BodyProperty.bretonnianknight" />
     </face>
@@ -1090,7 +1090,7 @@
       <EquipmentSet id="tor_m_black_grail_knight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_caravan_guard" default_group="cavalry" level="21" name="{=str_tor_m_caravan_guard}Mousillon Caravan Horseman" occupation="CaravanGuard" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21">
+  <NPCCharacter id="tor_m_caravan_guard" default_group="horsearcher" level="21" name="{=str_tor_m_caravan_guard}Mousillon Caravan Horseman" occupation="CaravanGuard" culture="Culture.mousillon" skill_template="SkillSet.tor_skills_level21">
     <face>
       <face_key_template value="BodyProperty.fighter_mousillon_peasant" />
     </face>
