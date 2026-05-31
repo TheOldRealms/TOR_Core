@@ -509,7 +509,7 @@
     <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.15" />
     <StatsTuple StatType="HealthMax" Value="3" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_enchant_ghyran_intuition" ItemTraitName="Intuition of Ghyran" IsCraftable="true" IconName="ghyran"> <!----REMOVE DEBUFFS---->>>
+  <ItemTrait ItemTraitStringId="emp_enchant_ghyran_intuition" ItemTraitName="Intuition of Ghyran" IsCraftable="true" IconName="ghyran">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>18</IngredientAmount>
@@ -522,7 +522,7 @@
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>12</IngredientAmount>
     <ItemTraitDescription>"7% bonus to fire based damage, -25% fire resistance"</ItemTraitDescription>
-    <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.25" />  <!----REMOVE DEBUFFS---->>>
+    <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.25" /> 
     <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="0.07" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_aqshy_firebreath" ItemTraitName="Firebreath of Aqshy" IsCraftable="true" ImbuedEffectChance="0.20" IconName="aqshy">
@@ -556,7 +556,7 @@
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>8</IngredientAmount>
     <ItemTraitDescription>"40% extra damage dealt as fire damage, -15% fire resistance"</ItemTraitDescription>
-    <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.15" /> <!----REMOVE DEBUFFS---->>>
+    <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.15" /> 
     <AdditionalDamageTuple DamageType="Fire" Percent="0.40" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_aqshy_whisper" ItemTraitName="Whisper of Aqshy" IsCraftable="true" IconName="aqshy">
