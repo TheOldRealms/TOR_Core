@@ -691,7 +691,7 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>25</IngredientAmount>
-    <ItemTraitDescription>"15% extra armour penetration, 15% chance to summon a gust of wind knocking down surrounding enemies on hitting enemies"</ItemTraitDescription>
+    <ItemTraitDescription>"15% extra armour penetration, 15% chance to summon a gust of wind knocking down enemies in a 3m radius dealing an immediate 10 lightning damage"</ItemTraitDescription>
     <StatsTuple StatType="ArmorPenetration" Value="15" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
       <WeaponScriptArguments>
@@ -742,7 +742,7 @@
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>WarpstoneDust</IngredientItem>
     <IngredientAmount>9</IngredientAmount>
-    <ItemTraitDescription>"7% bonus to magic damage, -3 HP"</ItemTraitDescription>
+    <ItemTraitDescription>"7% bonus to magic based damage, -3 HP"</ItemTraitDescription>
     <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.07" />
     <StatsTuple StatType="HealthMax" Value="-3" />
   </ItemTrait>
@@ -770,7 +770,7 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>20</IngredientAmount>
-    <ItemTraitDescription>"15 extra magic damage, gain a stacking 10% magic resistance bonus upon killing enemies. Stacks up to 5 times and fades after a short while"</ItemTraitDescription>
+    <ItemTraitDescription>"15% extra damage as Magical damage, gain a stacking 10% magic resistance bonus upon killing enemies. Stacks up to 5 times and fades after a short while"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Magical" Percent="0.15" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.BuffStackOnKill">
       <WeaponScriptArguments>
@@ -2452,7 +2452,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"15% extra physical resistance, 25% to snare nearby enemies with powerful roots for 20 seconds upon blocking damage"</ItemTraitDescription>
+    <ItemTraitDescription>"15% extra physical resistance, 25% chance to snare enemies within 3m with powerful roots for 20 seconds upon taking damage"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_ghyran_tendrils</InventoryScriptArgument>
@@ -2494,7 +2494,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"7% bonus to fire damage, -25% fire resistance"</ItemTraitDescription>
+    <ItemTraitDescription>"7% bonus to fire based damage, -25% fire resistance"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_aqshy_hearth</InventoryScriptArgument>
@@ -2508,7 +2508,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"25 extra fire damage, 20% to summon a fiery explosion upon dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"25% extra damage dealt as Fire, 20% to summon a fiery explosion dealing 60 fire damage in a 3m radius and inflicting burning (4 fire damage per second for 5 seconds)"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_aqshy_firebreath</InventoryScriptArgument>
@@ -2522,7 +2522,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"15 extra fire damage, 15% to inflict fire DoT effect on nearby enemies upon dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"15% extra damage dealt as Fire, 15% chance to inflict burning on nearby enemies in a 3m radius (4 fire damage per second for 5 seconds) upon dealing damage"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_aqshy_cinders</InventoryScriptArgument>
@@ -2536,7 +2536,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"40 extra fire damage, -15% fire resistance"</ItemTraitDescription>
+    <ItemTraitDescription>"40% extra damage dealt as fire damage, -15% fire resistance"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_aqshy_rage</InventoryScriptArgument>
@@ -2550,7 +2550,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>12 extra fire damage</ItemTraitDescription>
+    <ItemTraitDescription>12% extra damage dealt as fire damage</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_aqshy_whisper</InventoryScriptArgument>
@@ -2564,7 +2564,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>Damaging burning enemies inflicts 50 extra fire damage</ItemTraitDescription>
+    <ItemTraitDescription>Damaging burning enemies inflicts an extra 50 extra fire damage</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_aqshy_fury</InventoryScriptArgument>
@@ -2578,7 +2578,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"20% extra fire resistance, inflict fire DoT on blocked enemies. This DoT effect can spread onto enemies and allies alike"</ItemTraitDescription>
+    <ItemTraitDescription>"20% extra fire resistance, 15% chance to inflict fire DoT on blocked enemies (4 fire damage per second for 5 seconds). This DoT effect can spread onto enemies and allies alike"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_aqshy_curtain</InventoryScriptArgument>
@@ -2592,7 +2592,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"20 extra fire damage, projectiles penetrate targets"</ItemTraitDescription>
+    <ItemTraitDescription>"20% extra damage dealt fire, projectiles penetrate targets"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_chamon_transmutation</InventoryScriptArgument>
@@ -2606,7 +2606,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"20% extra shield HP, 5% physical resistance, 50% chance to decrease physical resistance of nearby enemies upon blocking damage"</ItemTraitDescription>
+    <ItemTraitDescription>"20% extra shield HP, 5% physical resistance, 50% chance to decrease physical resistance of nearby enemies by 40% for 5 sec upon blocking damage"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_chamon_aegis</InventoryScriptArgument>
@@ -2662,7 +2662,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"30% extra reload speed, 10 extra magic damage"</ItemTraitDescription>
+    <ItemTraitDescription>"30% extra reload speed, 10% extra damage dealt as magic damage"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_chamon_forge</InventoryScriptArgument>
@@ -2690,7 +2690,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"20 extra magic damage, weapon gains the Cleave trait"</ItemTraitDescription>
+    <ItemTraitDescription>"20% extra damage magic, weapon gains the Cleave trait"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_chamon_crucible</InventoryScriptArgument>
@@ -2718,7 +2718,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>4% bonus to lightning damage</ItemTraitDescription>
+    <ItemTraitDescription>4% bonus to lightning based damage</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_azyr_harmony</InventoryScriptArgument>
@@ -2732,7 +2732,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"2% extra physical resistance, deal 15 lightning damage to enemies attacking you in melee"</ItemTraitDescription>
+    <ItemTraitDescription>"2% extra physical resistance, deal 15 lightning damage and knockdown to enemies attacking you in melee within 2m"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_azyr_azure_mirror</InventoryScriptArgument>
@@ -2746,7 +2746,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"15% extra armour penetration, 15% to summon a gust of wind knocking down surrounding enemies upon dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"15% extra armour penetration, 15% chance to summon a gust of wind knocking down enemies in a 3m radius dealing an immediate 10 lightning damage"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_azyr_gale</InventoryScriptArgument>
@@ -2760,7 +2760,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"15 extra lightning damage and physical resistance, 15% to grant nearby troops the same boons for a short time upon dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"Gain 15% Physical Resistance and 15% bonus Lightning damage. Your attacks have a 15% chance to inspire nearby allies, granting them the same Lightning bonus for 20 seconds"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_azyr_foresight</InventoryScriptArgument>
@@ -2802,7 +2802,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"10% magic dmg amp, -5 HP"</ItemTraitDescription>
+    <ItemTraitDescription>"7% bonus to magic based damage, -3 HP"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_shyish_pale_grip</InventoryScriptArgument>
@@ -2816,7 +2816,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"5% extra magic resistance, 10% chance to inflict horrific visions in a small radius upon taking damage. Nearby enemies suffer a DoT effect"</ItemTraitDescription>
+    <ItemTraitDescription>"5% extra magic resistance, 10% chance to inflict horrific visions in a 7m radius upon taking damage. Nearby enemies suffer 4 magical damage per second for 20 seconds"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_shyish_messengers</InventoryScriptArgument>
@@ -2830,7 +2830,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"25 extra magic damage, damaged enemies suffer a 25% physical resistance penalty"</ItemTraitDescription>
+    <ItemTraitDescription>"25% extra damage dealt as Magical,10% chance to reduce physical resistance of struck enemies by 25% for 5 seconds"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_shyish_blight</InventoryScriptArgument>
@@ -2844,7 +2844,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"15 extra magic damage, gain a stacking 10% magic resistance bonus upon killing enemies. Stacks up to 5 times and fades after a short while"</ItemTraitDescription>
+    <ItemTraitDescription>"15% extra damage as Magical damage, gain a stacking 10% magic resistance bonus upon killing enemies. Stacks up to 5 times and fades after a short while"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_shyish_pall</InventoryScriptArgument>
@@ -2858,7 +2858,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"10 extra magic damage, 10% chance to reduce attack speed of nearby enemies by 15% when dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"10% extra damage dealt as Magical,10% chance to reduce movement speed of the struck enemy by 25% for 5 seconds"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_shyish_withering</InventoryScriptArgument>
@@ -2872,7 +2872,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>12 extra magic damage</ItemTraitDescription>
+    <ItemTraitDescription>12% extra damage dealt as Magic damage</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_shyish_whisper</InventoryScriptArgument>
@@ -2886,7 +2886,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"Blocking hits of Undead units carries a 50% chance to apply an 'Exorcism', granting 33% extra magic melee dmg for 10 seconds against the target"</ItemTraitDescription>
+    <ItemTraitDescription>"Blocking hits of Undead units carries a 50% chance to apply an 'Exorcism', debuffing enemies making them 33% more vulnerable to Magical damage"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_shyish_deathsight</InventoryScriptArgument>
@@ -2914,7 +2914,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>Gain a fleeting 10% bonus to holy damage when blocking blows of Undead and Daemons. Stacks up to 5 times</ItemTraitDescription>
+    <ItemTraitDescription>"Gain a fleeting 10% bonus to holy damage when blocking blows of Undead and Daemons. Stacks up to 5 times, each lasting 15 seconds"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_sigmar_retribution</InventoryScriptArgument>
@@ -2928,7 +2928,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"6% extra magic resistance, 3 extra HP, 10% chance to emit a damaging wave of holy energy whenever attacked by Undead and Daemons in melee"</ItemTraitDescription>
+    <ItemTraitDescription>"6% extra Magical resistance, 3 extra HP, 10% chance to emit a damaging wave of holy energy dealing 35 damage in a 7m radius whenever attacked by Undead and Daemons in melee"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_sigmar_soulfire</InventoryScriptArgument>
@@ -2942,7 +2942,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"6% extra magic resistance, 3 extra HP, 10% chance to gain minor regeneration whenever attacked by Undead and Daemons in melee"</ItemTraitDescription>
+    <ItemTraitDescription>"6% extra magic resistance, 3 extra HP, 10% chance to gain 2HP per second for 20 seconds whenever attacked by Undead and Daemons in melee"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_sigmar_light</InventoryScriptArgument>
@@ -2956,7 +2956,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"20 extra holy damage, 10% chance to deal 100 damage against Undead and Daemons"</ItemTraitDescription>
+    <ItemTraitDescription>"20% extra damage dealt as Holy damage, 10% chance to deal 100 damage against Undead and Daemons"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_sigmar_exorcism</InventoryScriptArgument>
@@ -2970,7 +2970,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>12 extra holy damage</ItemTraitDescription>
+    <ItemTraitDescription>12% extra damage dealt as Holy damage</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_sigmar_justice</InventoryScriptArgument>
@@ -3012,7 +3012,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>15 extra frost damage</ItemTraitDescription>
+    <ItemTraitDescription>15% extra damage dealt as Frost damage</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_ulric_chill</InventoryScriptArgument>
@@ -3068,7 +3068,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>Chance to heal 2 HP when defeating enemies (based on knockout probability)</ItemTraitDescription>
+    <ItemTraitDescription>"Mercy is piety. Chance to heal 2 HP for 5 seconds when knocking out enemies")</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_shallya_pacifism</InventoryScriptArgument>
@@ -3110,7 +3110,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"3 extra HP, taking damage has a 33% chance to heal nearby friendly units"</ItemTraitDescription>
+    <ItemTraitDescription>"3 extra HP, taking damage has a 33% chance to heal nearby friendly units for 2HP for 6 seconds in a 3m radius"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_shallya_martyrdom</InventoryScriptArgument>
@@ -3152,7 +3152,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"30 extra holy damage, weapon gais the Cleave trait"</ItemTraitDescription>
+    <ItemTraitDescription>"30% extra damage dealt as Holy damage, weapon gains the Cleave trait"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>bret_blessing_grail_legacy</InventoryScriptArgument>
@@ -3166,7 +3166,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"10% extra magic resistance, once per battle fatal wounds will revive you with 50% HP"</ItemTraitDescription>
+    <ItemTraitDescription>"10% extra magic resistance, Once per battle fatal wounds will revive you with 50% HP"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>bret_blessing_lady_ward</InventoryScriptArgument>
@@ -3180,7 +3180,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"5% extra swing speed, 50% chance to deal 50 holy damage against Undead and Daemons"</ItemTraitDescription>
+    <ItemTraitDescription>"5% extra swing speed, 50% chance to deal 40 holy damage in a 3m radius against Undead and Daemons"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>bret_blessing_scourge_evil</InventoryScriptArgument>
