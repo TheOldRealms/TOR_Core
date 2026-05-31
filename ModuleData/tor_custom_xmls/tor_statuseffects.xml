@@ -1679,7 +1679,6 @@
 		base_effect_value="2"
 		applies_for_attack_type="All"
 		type="HealthOverTime"
-		damage_type="Frost">
 	</StatusEffectTemplate>
 	
 	
@@ -1778,7 +1777,7 @@
 		id="sigmar_light"
 		particle_id="healing_hand"
 		do_not_attach_to_agent_skeleton="false"
-		base_effect_value="0"
+		base_effect_value="2"
 		applies_for_attack_type="All"
 		type="HealthOverTime"
 		damage_type="Holy">
@@ -1788,7 +1787,7 @@
 		id="ulric_wrath"
 		particle_id="ulrics_gift"
 		do_not_attach_to_agent_skeleton="false"
-		base_effect_value="0.02"
+		base_effect_value="0.03"
 		applies_for_attack_type="All"
 		type="AttackSpeedManipulation"
 		damage_type="Holy">

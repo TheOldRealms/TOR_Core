@@ -2070,10 +2070,10 @@
                              HasShockWave="false"
                              DamageVariance="0.0"
                              ImbuedStatusEffectDuration="20"
-                             ScriptNameToTrigger="">
-                         Radius="0"
-                         TargetType="Self"
-		 <ImbuedStatusEffect>sigmar_light</ImbuedStatusEffect>
+                             ScriptNameToTrigger=""
+                             Radius="0"
+                             TargetType="Self">
+        <ImbuedStatusEffect>sigmar_light</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
 	
 	<TriggeredEffectTemplate StringID="ulric_frenzy_enchant"

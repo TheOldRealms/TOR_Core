@@ -445,7 +445,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                     }
                 }
 
-                if (_currentTrainedSkill != null && Hero.MainHero.IsHealthFull())
+                if (_currentTrainedSkill != null && Hero.MainHero.HitPoints >= Hero.MainHero.MaxHitPoints * 0.5f)
                 {
                     Hero.MainHero.AddSkillXp(_currentTrainedSkill, 25);
                 }
