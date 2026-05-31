@@ -330,11 +330,11 @@
     <ItemTraitDescription>5% extra magic resistance</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.05" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_enchant_ghur_wildform" ItemTraitName="Wildform of Ghur" IsCraftable="true" ImbuedEffectChance="1.00" IconName="ghur">
+  <ItemTrait ItemTraitStringId="emp_enchant_ghur_wildform" ItemTraitName="Wildform of Ghur" IsCraftable="true" ImbuedEffectChance=".15" IconName="ghur">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>10</IngredientAmount>
-    <ItemTraitDescription>"3% extra physical resistance, 15% to receive a fleeting 3% physical resistance bonus upon receiving damage. Stacks up to 3 times"</ItemTraitDescription>
+    <ItemTraitDescription>"3% extra physical resistance, 15% chance to receive a fleeting 3% physical resistance bonus for 10 seconds upon receiving damage. Stacks up to 3 times"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.03" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseStackBuffScript">
       <WeaponScriptArguments>
@@ -344,11 +344,11 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_enchant_ghur_savagery" ItemTraitName="Savagery of Ghur" IsCraftable="true" ImbuedEffectChance="1.00" IconName="ghur">
+  <ItemTrait ItemTraitStringId="emp_enchant_ghur_savagery" ItemTraitName="Savagery of Ghur" IsCraftable="true" ImbuedEffectChance=".10" IconName="ghur">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>18</IngredientAmount>
-    <ItemTraitDescription>"10% extra physical damage, 10% to receive a fleeting 2% attack speed bonus upon dealing damge. Stacks up to 5 times"</ItemTraitDescription>
+    <ItemTraitDescription>"10% extra damage done as physical, 10% chance to receive a fleeting 2% attack speed bonus for 20 seconds upon dealing damge. Stacks up to 5 times"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.10" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponBuffStackScript">
       <WeaponScriptArguments>
@@ -362,7 +362,7 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>8</IngredientAmount>
-    <ItemTraitDescription>"10% extra physical damage, 10% to summon vicious crows in a very small area upon dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"10% extra damage dealt as Physical, 10% chance to summon vicious crows in a 3 metre radius, inflicting 2 frost damage per second for 20 seconds"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.10" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
       <WeaponScriptArguments>
@@ -374,7 +374,7 @@
     <ValidItemType>Ranged</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>12</IngredientAmount>
-    <ItemTraitDescription>"15% extra physical damage, 15% extra missile speed, 10% to reduce movement speed of nearby enemies upon dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"15% extra damage dealt as Physical, 15% extra missile speed, 10% to reduce movement speed of nearby enemies by 20% for 20 seconds upon dealing damage"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.15" />
     <StatsTuple StatType="MissileSpeed" Value="15" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
@@ -387,14 +387,14 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>5</IngredientAmount>
-    <ItemTraitDescription>10% extra physical damage</ItemTraitDescription>
+    <ItemTraitDescription>"10% extra damage dealt as Physical"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.10" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_hysh_sanctuary" ItemTraitName="Sanctuary of Hysh" IsCraftable="true" ImbuedEffectChance="0.05" IconName="hysh">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>14</IngredientAmount>
-    <ItemTraitDescription>"3% extra physical resistance, 5% to snare nearby enemies with a net of Hysh upon receiving damage"</ItemTraitDescription>
+    <ItemTraitDescription>"3% extra physical resistance, 5% chance to snare nearby enemies with a net of Hysh for 20 seconds upon receiving damage"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.03" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
@@ -407,7 +407,7 @@
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>10</IngredientAmount>
-    <ItemTraitDescription>15% to trigger a burst of light upon blocking damage. Reduces attack speed of nearby enemies for a short time</ItemTraitDescription>
+    <ItemTraitDescription>"15% chance to trigger a burst of light upon blocking damage. Reduces attack speed of nearby enemies within 3m for 20 seconds"</ItemTraitDescription>
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>hysh_brilliance_enchant</WeaponScriptArgument>
@@ -420,11 +420,11 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>6</IngredientAmount>
-    <ItemTraitDescription>"20 extra magic damage, 15% to receive a movement speed buff for a short time upon dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"20% extra damage dealt as Magical, 15% chance to receive a 40% movement speed buff for 3 seconds upon dealing damage"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Magical" Percent="0.20" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
       <WeaponScriptArguments>
-        <WeaponScriptArgument>hysh_brilliance_enchant</WeaponScriptArgument>
+        <WeaponScriptArgument>hysh_timewarp_enchant</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -432,14 +432,14 @@
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>25</IngredientAmount>
-    <ItemTraitDescription>3 extra Winds of Magic</ItemTraitDescription>
+    <ItemTraitDescription>"3 extra Winds of Magic"</ItemTraitDescription>
     <StatsTuple StatType="WindsOfMagicMax" Value="3" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_hysh_whisper" ItemTraitName="Whisper of Hysh" IsCraftable="true" IconName="hysh">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>5</IngredientAmount>
-    <ItemTraitDescription>10 extra magic damage</ItemTraitDescription>
+    <ItemTraitDescription>"10% extra damage dealt as Magical"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Magical" Percent="0.10" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_hysh_providence" ItemTraitName="Providence of Hysh" IsCraftable="true" IconName="hysh">

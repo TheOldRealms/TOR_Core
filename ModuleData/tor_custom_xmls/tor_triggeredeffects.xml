@@ -1829,7 +1829,7 @@
                              SoundEffectLength="0"
                              DamageType="Invalid"
                              DamageAmount="0"
-                             Radius="12"
+                             Radius="3"
                              HasShockWave="false"
                              TargetType="Enemy"
                              DamageVariance="0.0"
