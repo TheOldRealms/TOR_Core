@@ -3513,7 +3513,6 @@
   <CharacterExtendedInfo id="tor_beast_minotaur">
     <Abilities />
     <Attributes>
-      <string>Minotaur</string>
       <string>Unbreakable</string>
       <string>Unstoppable</string>
       <string>Frenzy</string>

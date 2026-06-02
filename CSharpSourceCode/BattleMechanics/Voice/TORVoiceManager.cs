@@ -54,6 +54,7 @@ namespace TOR_Core.BattleMechanics.Voice
                     "elf" => "elf_male_01",
                     "large_humanoid_monster" => "tree_spirit_01",
                     "medium_humanoid_monster" => "beastmen_01",
+                    "minotaur" => "beastmen_01",
                     "gor" => "beastmen_01",
                     "necrarch" => "vampire_male_01",
                     "dwarf" => "empire_male_01",

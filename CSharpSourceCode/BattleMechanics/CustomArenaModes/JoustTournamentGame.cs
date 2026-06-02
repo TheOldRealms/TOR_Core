@@ -22,6 +22,7 @@ namespace TOR_Core.BattleMechanics.CustomArenaModes
         {
             if (character.Race == FaceGen.GetRaceOrDefault("large_humanoid_monster") ||
                 character.Race == FaceGen.GetRaceOrDefault("medium_humanoid_monster") ||
+                character.IsMinotaur() ||
                 character.HasAttribute("HasAnimationTriggeredEffects") ||
                 character.Culture?.StringId == "chaos_culture")
             {
