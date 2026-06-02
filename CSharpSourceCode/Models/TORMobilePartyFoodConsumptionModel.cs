@@ -9,6 +9,7 @@ using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.RaidingParties;
+using TOR_Core.CampaignMechanics.UniqueSpawns;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -128,6 +129,11 @@ namespace TOR_Core.Models
 
             //Sly : Raiding parties would stop starving once they've been away from their spawn settlement after ~40 days (they receive 2 food per party member on spawn).
             if (mobileParty.IsRaidingParty())
+            {
+                return false;
+            }
+
+            if (mobileParty.GetUniqueSpawnComponent() is { ConsumesFood: false })
             {
                 return false;
             }

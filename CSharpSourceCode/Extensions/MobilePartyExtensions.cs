@@ -7,6 +7,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
+using TOR_Core.CampaignMechanics.UniqueSpawns;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
 
@@ -17,6 +18,14 @@ namespace TOR_Core.Extensions
         public static bool IsRaidingParty(this MobileParty party)
         {
             return party.PartyComponent is IRaidingParty;
+        }
+        public static bool IsUniqueSpawn(this MobileParty party)
+        {
+            return party.PartyComponent is UniqueSpawnPartyComponent;
+        }
+        public static UniqueSpawnPartyComponent GetUniqueSpawnComponent(this MobileParty party)
+        {
+            return party.PartyComponent as UniqueSpawnPartyComponent;
         }
 
         public static MobilePartyExtendedInfo GetPartyInfo(this MobileParty party)

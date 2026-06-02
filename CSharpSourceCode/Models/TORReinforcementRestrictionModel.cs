@@ -2,6 +2,8 @@
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TOR_Core.CampaignMechanics.UniqueSpawns;
+using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
@@ -15,7 +17,7 @@ namespace TOR_Core.Models
                 return true;
             }
 
-            string joiningCultureId = joiningParty.MapFaction?.Culture?.StringId;
+            string joiningCultureId = GetReinforcementCultureId(joiningParty);
             if (!IsRestrictedCulture(joiningCultureId))
             {
                 return true;
@@ -34,7 +36,7 @@ namespace TOR_Core.Models
                     continue;
                 }
 
-                string sideCultureId = sideParty.MapFaction?.Culture?.StringId;
+                string sideCultureId = GetReinforcementCultureId(sideParty);
                 if (!IsRestrictedCulture(sideCultureId))
                 {
                     continue;
@@ -48,7 +50,15 @@ namespace TOR_Core.Models
 
             return true;
         }
+        protected virtual string GetReinforcementCultureId(PartyBase party)
+        {
+            if (party?.MobileParty?.GetUniqueSpawnComponent()?.UniqueSpawnId == OrionCampaignBehavior.OrionSpawnId)
+            {
+                return TORConstants.Cultures.ASRAI;
+            }
 
+            return party?.MapFaction?.Culture?.StringId;
+        }
         protected virtual bool HasDirectJoinOverride(PartyBase joiningParty, PartyBase sideParty)
         {
             IFaction joiningFaction = joiningParty.MapFaction;

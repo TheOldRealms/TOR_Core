@@ -555,6 +555,9 @@
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\TORMapNotificationView.cs" />
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghMeterVM.cs" />
     <Compile Include="CampaignMechanics\TORCampaignMusicHandler.cs" />
+    <Compile Include="CampaignMechanics\UniqueSpawns\OrionCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\UniqueSpawns\UniqueSpawnCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\UniqueSpawns\UniqueSpawnPartyComponent.cs" />
     <Compile Include="CampaignMechanics\Villages\TORTownManagementVillageItemVM.cs" />
     <Compile Include="CampaignMechanics\Villages\TORVillageTypes.cs" />
     <Compile Include="Extensions\UI\PartyVMExtension.cs" />

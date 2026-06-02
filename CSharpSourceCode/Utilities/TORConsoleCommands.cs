@@ -25,6 +25,7 @@ using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.CampaignMechanics.UniqueSpawns;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Ink;
@@ -549,6 +550,107 @@ namespace TOR_Core.Utilities
             InkStoryManager.ReloadStories();
 
             return "Ink Stories reloaded. \n";
+        }
+        [CommandLineFunctionality.CommandLineArgumentFunction("orion_status", "tor")]
+        public static string OrionStatus(List<string> arguments)
+        {
+            if (Campaign.Current == null)
+            {
+                return "campaign is not active.";
+            }
+
+            var uniqueSpawnBehavior = Campaign.Current.GetCampaignBehavior<OrionCampaignBehavior>();
+            if (uniqueSpawnBehavior == null)
+            {
+                return "unique spawn behavior is not active.";
+            }
+
+            return uniqueSpawnBehavior.GetOrionDebugStatus();
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("spawn_orion", "tor")]
+        public static string SpawnOrion(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+            {
+                return CampaignCheats.ErrorType;
+            }
+
+            var uniqueSpawnBehavior = Campaign.Current.GetCampaignBehavior<OrionCampaignBehavior>();
+            if (uniqueSpawnBehavior == null)
+            {
+                return "unique spawn behavior is not active.";
+            }
+
+            return uniqueSpawnBehavior.TestSpawnOrion();
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("retreat_orion", "tor")]
+        public static string RetreatOrion(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+            {
+                return CampaignCheats.ErrorType;
+            }
+
+            var uniqueSpawnBehavior = Campaign.Current.GetCampaignBehavior<OrionCampaignBehavior>();
+            if (uniqueSpawnBehavior == null)
+            {
+                return "unique spawn behavior is not active.";
+            }
+
+            return uniqueSpawnBehavior.TestRetreatOrion();
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("complete_orion_retreat", "tor")]
+        public static string CompleteOrionRetreat(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+            {
+                return CampaignCheats.ErrorType;
+            }
+
+            var uniqueSpawnBehavior = Campaign.Current.GetCampaignBehavior<OrionCampaignBehavior>();
+            if (uniqueSpawnBehavior == null)
+            {
+                return "unique spawn behavior is not active.";
+            }
+
+            return uniqueSpawnBehavior.TestRetreatCompleteOrion();
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("defeat_orion", "tor")]
+        public static string DefeatOrion(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+            {
+                return CampaignCheats.ErrorType;
+            }
+
+            var uniqueSpawnBehavior = Campaign.Current.GetCampaignBehavior<OrionCampaignBehavior>();
+            if (uniqueSpawnBehavior == null)
+            {
+                return "unique spawn behavior is not active.";
+            }
+
+            return uniqueSpawnBehavior.TestDefeatOrion();
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("reset_orion", "tor")]
+        public static string ResetOrion(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+            {
+                return CampaignCheats.ErrorType;
+            }
+
+            var uniqueSpawnBehavior = Campaign.Current.GetCampaignBehavior<OrionCampaignBehavior>();
+            if (uniqueSpawnBehavior == null)
+            {
+                return "unique spawn behavior is not active.";
+            }
+
+            return uniqueSpawnBehavior.TestResetOrion();
         }
 
         [CommandLineFunctionality.CommandLineArgumentFunction("reload_config", "tor")]

@@ -305,6 +305,10 @@
 
   <!-- Event Notifications -->
   <string id="tor_chaos_rebellion_text" text="{=str_tor_chaos_rebellion_text}Chaos corruption reaches a critical level in {SETTLEMENT_NAME} and rebellion breaks out." />
+  <string id="tor_unique_orion_spawned_message" text="{=str_tor_unique_orion_spawned_message}orion spawns" />
+  <string id="tor_unique_orion_returned_message" text="{=str_tor_unique_orion_returned_message}orion returns" />
+  <string id="tor_unique_orion_retreat_started_message" text="{=str_tor_unique_orion_retreat_started_message}Winter cold orion back" />
+  <string id="tor_unique_orion_defeated_message" text="{=str_tor_unique_orion_defeated_message}Orion gone 3 year" />
 
   <!-- Combat Messages -->
   <string id="tor_stealth_attack_text" text="{=str_tor_stealth_attack_text}Stealth Attack!" />

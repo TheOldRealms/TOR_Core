@@ -11,6 +11,7 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.RaidingParties;
+using TOR_Core.CampaignMechanics.UniqueSpawns;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -27,6 +28,11 @@ namespace TOR_Core.Models
             //Using MobileParty.ActualClan.Culture can circumvent this, but it must be noted that village militias that spawn during a defense are PartyBases with no associated MobileParty, but because the village's culture will be derived from the settlement owner's culture which will be based on the kingdom's culture, this will be close enough in the interim as the types of troops that spawn in the militia are also based on the settlement's culture.
 
             var num = base.GetPartyMemberSizeLimit(party, includeDescriptions);
+
+            if (party.IsMobile && party.MobileParty.GetUniqueSpawnComponent() is { TargetPartySize: > 0 } uniqueSpawnComponent)
+            {
+                return new ExplainedNumber(uniqueSpawnComponent.TargetPartySize, includeDescriptions, null);
+            }
 
             var partyCulture = GetPartyCultureForPartySize(party);
 
@@ -148,7 +154,10 @@ namespace TOR_Core.Models
         }
         public override TroopRoster FindAppropriateInitialRosterForMobileParty(MobileParty party, PartyTemplateObject partyTemplate)
         {
-            if (!party.IsRaidingParty()) return base.FindAppropriateInitialRosterForMobileParty(party, partyTemplate);
+            if (!party.IsRaidingParty())
+            {
+                return base.FindAppropriateInitialRosterForMobileParty(party, partyTemplate);
+            }
 
             //scales the party size to the approximately approriate amount based on the field that stores the intended amount during component initialization
             var raidingComponent = party.PartyComponent as RaidingPartyComponent;

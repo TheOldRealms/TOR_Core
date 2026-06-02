@@ -13,6 +13,7 @@ using TOR_Core.CampaignMechanics.Diplomacy;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
+using TOR_Core.CampaignMechanics.UniqueSpawns;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items.InventoryUseScripts;
 using TOR_Core.Quests;
@@ -55,6 +56,7 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(TrollCaveComponent), 21);
             AddClassDefinition(typeof(TrollCaveDefenderPartyComponent), 22);
             AddClassDefinition(typeof(ScriptUseData), 23);
+            AddClassDefinition(typeof(UniqueSpawnPartyComponent), 24);
 
 
             //Quests and issues begin at 200 - they generally can't be expanded to cover new use cases
@@ -77,6 +79,7 @@ namespace TOR_Core.SaveGameSystem
             //Enums between 100-199
             AddEnumDefinition(typeof(EngineerQuestStates), 100);
             AddEnumDefinition(typeof(SpellCastingLevel), 101);
+            AddEnumDefinition(typeof(UniqueSpawnState), 102);
         }
 
         protected override void DefineContainerDefinitions()
@@ -99,6 +102,7 @@ namespace TOR_Core.SaveGameSystem
             ConstructContainerDefinition(typeof(Dictionary<string, List<BaseInventoryUseScript>>));
             ConstructContainerDefinition(typeof(Dictionary<string, HeroTrainingData>));
             ConstructContainerDefinition(typeof(List<ScriptUseData>));
+            ConstructContainerDefinition(typeof(List<string>));
         }
     }
 }

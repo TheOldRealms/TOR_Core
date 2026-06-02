@@ -14,6 +14,7 @@ using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CampaignMechanics.UniqueSpawns;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -138,6 +139,24 @@ namespace TOR_Core.Models
             if (mobileParty == null)
             {
                 return value;
+            }
+
+            if (mobileParty.GetUniqueSpawnComponent()?.UniqueSpawnId == OrionCampaignBehavior.OrionSpawnId)
+            {
+
+                var orionWage = new ExplainedNumber(0, includeDescriptions);
+
+                foreach (var troop in troopRoster.GetTroopRoster())
+                {
+                    if (troop.Character == null || troop.Character.IsHero)
+                    {
+                        continue;
+                    }
+
+                    orionWage.Add(troop.Number * OrionCampaignBehavior.OrionTroopWage);
+                }
+
+                return orionWage;
             }
             void StoreCacheIfPossible()
             {

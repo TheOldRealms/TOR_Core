@@ -46,6 +46,7 @@ using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
+using TOR_Core.CampaignMechanics.UniqueSpawns;
 using TOR_Core.CampaignSupport.TownBehaviours;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -152,6 +153,8 @@ namespace TOR_Core
                 starter.AddBehavior(new TORCustomSettlementCampaignBehavior());
                 starter.AddBehavior(new TrollCaveCampaignBehavior());
                 starter.AddBehavior(new RaidingPartyCampaignBehavior());
+                starter.AddBehavior(new UniqueSpawnCampaignBehavior());
+                starter.AddBehavior(new OrionCampaignBehavior());
                 starter.AddBehavior(new CustomDialogCampaignBehavior());
                 starter.AddBehavior(new TORCompanionDialogBehavior());
                 starter.AddBehavior(new PostBattleCampaignBehavior());

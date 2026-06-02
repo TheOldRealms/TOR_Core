@@ -10,6 +10,7 @@ using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.CampaignMechanics.UniqueSpawns;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -147,12 +148,26 @@ namespace TOR_Core.Models
 
         public override ExplainedNumber GetDailyHealingForRegulars(PartyBase party, bool isPrisoners, bool includeDescriptions = false)
         {
-            if (party?.MobileParty == null || !party.MobileParty.IsLordParty)
+            if (party?.MobileParty == null)
             {
                 return base.GetDailyHealingForRegulars(party, isPrisoners, includeDescriptions);
             }
 
             var mobileParty = party.MobileParty;
+
+            if (mobileParty.GetUniqueSpawnComponent() != null)
+            {
+
+                var uniqueSpawnHealing = base.GetDailyHealingForRegulars(party, isPrisoners, includeDescriptions);
+
+                uniqueSpawnHealing.AddFactor(UniqueSpawnCampaignBehavior.UniqueSpawnHealingFactor);
+                return uniqueSpawnHealing;
+            }
+
+            if (!mobileParty.IsLordParty)
+            {
+                return base.GetDailyHealingForRegulars(party, isPrisoners, includeDescriptions);
+            }
 
             if (mobileParty.IsAffectedByCurse() && mobileParty.CurrentSettlement == null && mobileParty.BesiegedSettlement == null)
             {
@@ -182,7 +197,20 @@ namespace TOR_Core.Models
 
         public override ExplainedNumber GetDailyHealingHpForHeroes(PartyBase party, bool isPrisoners, bool includeDescriptions = false)
         {
-            if (party?.MobileParty == null || !party.MobileParty.IsLordParty)
+            if (party?.MobileParty == null)
+            {
+                return base.GetDailyHealingHpForHeroes(party, isPrisoners, includeDescriptions);
+            }
+
+            if (party.MobileParty.GetUniqueSpawnComponent() != null)
+            {
+                var uniqueSpawnHeroHealing = base.GetDailyHealingHpForHeroes(party, isPrisoners, includeDescriptions);
+
+                uniqueSpawnHeroHealing.AddFactor(UniqueSpawnCampaignBehavior.UniqueSpawnHealingFactor);
+                return uniqueSpawnHeroHealing;
+            }
+
+            if (!party.MobileParty.IsLordParty)
             {
                 return base.GetDailyHealingHpForHeroes(party, isPrisoners, includeDescriptions);
             }
