@@ -15,6 +15,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
     public class GrailKnightCareerButtonBehavior : CareerButtonBehaviorBase
     {
         private CharacterObject _currentCharacterTemplate;
+        private const int GRAILKNIGHTCOMPANIONPROMOTIONCOST = 100;
 
         public GrailKnightCareerButtonBehavior(CareerObject career) : base(career)
         {
@@ -73,7 +74,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
             var choices = Hero.MainHero.GetAllCareerChoices();
 
-            if (choices.Contains("HolyCrusaderPassive3") && Hero.MainHero.GetCultureSpecificCustomResourceValue() >= 100)
+            if (choices.Contains("HolyCrusaderPassive3"))
             {
                 return true;
             }
@@ -84,9 +85,26 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner = false)
         {
             var icon = Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText();
-            var promotionText = TORTextHelper.GetTextObject("tor_grail_knight_promote_companion_text", "Promotes your Grail Knight to a companion (Cost 100{RESOURCE_ICON})");
+            
+            if (Hero.MainHero.GetCultureSpecificCustomResourceValue() <= GRAILKNIGHTCOMPANIONPROMOTIONCOST)
+            {
+                displayText = TORTextHelper.GetTextObject("tor_generic_customResourceCost", "Requires {AMOUNT} {RESOURCE_ICON}", true);
+                displayText.SetTextVariable("AMOUNT", GRAILKNIGHTCOMPANIONPROMOTIONCOST);
+                displayText.SetTextVariable("RESOURCE_ICON", icon);
+                return false;
+            }
+            else if (Clan.PlayerClan.Companions.Count >= Clan.PlayerClan.CompanionLimit)
+            {
+                displayText = TORTextHelper.GetTextObject("tor_generic_companionLimitReached", "Clan companion limit reached", true);
+                return false;
+            }
+
+            var promotionText = TORTextHelper.GetTextObject("tor_grail_knight_promote_companion_text", "Promotes your Grail Knight to a companion (Costs {AMOUNT} {RESOURCE_ICON})");
+            promotionText.SetTextVariable("AMOUNT", GRAILKNIGHTCOMPANIONPROMOTIONCOST);
             promotionText.SetTextVariable("RESOURCE_ICON", icon);
+
             displayText = promotionText;
+
             return true;
         }
     }

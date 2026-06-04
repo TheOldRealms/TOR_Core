@@ -4,10 +4,97 @@
     <BodyPropertiesMin version="4" age="28" weight="0.8" build="1"  key="001EB80780CC18557C76442E90C98895A377866254C69643C4B647398C3BA0340077760307A74973FC000000000000000000000000000007000000003AF47002"  />
     <BodyPropertiesMax version="4" age="40" weight="0.5" build="0.5"  key="001EB80780CC1C587CBF542F90C08895A377869794EACF0EC4B647398C3BA0340077760307A7497377000000000000000000000000000007000000003AF47002"  />
   </BodyProperty>
-  <BodyProperty id="warriorpriest">
-    <BodyPropertiesMin version="4" age="26" weight="0.8" build="0.8" key="001B700D0000300031B6643A94911597753532B5D79865318406473985253032007776030753917700000000000000000000000000000000000000003AF47002" />
-    <BodyPropertiesMax version="4" age="50" weight="0.8" build="0.8" key="001B700D0000300031B6643A94911597753532B5D79865318406473985253032007776030753917700000000000000000000000000000000000000003AF47002" />
-  </BodyProperty>
+	<BodyProperty
+		id="warriorpriest">
+		<BodyPropertiesMin
+			version="4"
+			age="21.03"
+			weight="0.1867"
+			build="0.5423"
+			key="00000400000000002110000001011010010211111010002011111001301101000060600306112000000000000000000000000000000000000000000000D00000" />
+		<BodyPropertiesMax
+			version="4"
+			age="76.04"
+			weight="0.3336"
+			build="0.9244"
+			key="0008A00B9E003CDCFEFEEFFEAAAFFFFFF8FFFF979EF8FFFEFFFFFFEFFEFB9F9F00FE40030FFFFFFF000000000000000000000000000000000000000077F89005" />
+		<hair_tags>
+			<hair_tag
+				name="Bald" />
+		</hair_tags>
+		<beard_tags>
+			<beard_tag
+				name="Cleanshaven" />
+			<beard_tag
+				name="DroopyMustache" />
+			<beard_tag
+				name="EmpireBeard01" />
+			<beard_tag
+				name="Cleanshaven" />
+			<beard_tag
+				name="BrightWizardBeard04" />
+			<beard_tag
+				name="EmpireBeard03" />
+			<beard_tag
+				name="SoldierMustache" />
+			<beard_tag
+				name="MediumDutch" />
+			<beard_tag
+				name="EmpireBeard05" />
+			<beard_tag
+				name="BrightWizardBeard02" />
+			<beard_tag
+				name="BrightWizardBeard03" />
+			<beard_tag
+				name="EmpireBeard02" />
+			<beard_tag
+				name="ThinMustache" />
+			<beard_tag
+				name="EmpireBeard04" />
+			<beard_tag
+				name="EmpireBeard05" />
+			<beard_tag
+				name="Cleanshaven" />
+			<beard_tag
+				name="EmpireBeard05" />
+		</beard_tags>
+		<tattoo_tags>
+			<tattoo_tag
+				name="Cleanface" />
+			<tattoo_tag
+				name="Cleanface" />
+			<tattoo_tag
+				name="Cleanface" />
+			<tattoo_tag
+				name="Scar2" />
+			<tattoo_tag
+				name="Cleanface" />
+			<tattoo_tag
+				name="Scar4" />
+			<tattoo_tag
+				name="Scar1" />
+			<tattoo_tag
+				name="Scar5" />
+			<tattoo_tag
+				name="Scar7" />
+			<tattoo_tag
+				name="Scar10" />
+			<tattoo_tag
+				name="Scar11" />
+			<tattoo_tag
+				name="Cleanface" />
+			<tattoo_tag
+				name="Cleanface" />
+			<tattoo_tag
+				name="Cleanface" />
+			<tattoo_tag
+				name="Cleanface" />
+			<tattoo_tag
+				name="Scar15" />
+			<tattoo_tag
+				name="Scar15" />
+		</tattoo_tags>
+	</BodyProperty>
   <BodyProperty id="brute">
     <BodyPropertiesMin version="4" age="30" weight="1" build="1" key="0023740D80E411C1B0397A7F648796BE58652693D0A410001C9397B6DA8634C805FFF6570FFF98CA000000000000000000000000000000000000000055FC7104" />
     <BodyPropertiesMax version="4" age="50" weight="1" build="1" key="0023740D80E411C1B0397A7F648796BE58652693D0A410001C9397B6DA8634C805FFF6570FFF98CA000000000000000000000000000000000000000055FC7104" />
@@ -201,8 +288,8 @@
 		</tattoo_tags>
 	</BodyProperty>
   <BodyProperty id="fey_enchantress">
-    <BodyPropertiesMin version="4" age="22.23" weight="0.6267" build="0.7855" key="0010780540003601BB5733977454756A4FD5AC625ADC5645A48DB7A65974F398009C96030977996700000000000000000000000000000000000000003F2C4085" />
-    <BodyPropertiesMax version="4" age="22.23" weight="0.6267" build="0.7855" key="0010780540003601BB5733977454756A4FD5AC625ADC5645A48DB7A65974F398009C96030977996700000000000000000000000000000000000000003F2C4085" />
+    <BodyPropertiesMin version="4" age="22.33" weight="0" build="0.3472"  key="00026C0000CC100A666BB60F558025B05BF5A77EF9F8F7008A4968B95EA8600000A506030A88164C00000000000000000000000000000000000000000F4C4003"  />
+    <BodyPropertiesMax version="4" age="22.33" weight="0" build="0.3472"  key="00026C0000CC100A666BB60F558025B05BF5A77EF9F8F7008A4968B95EA8600000A506030A88164C00000000000000000000000000000000000000000F4C4003"  />
   </BodyProperty>
 	<BodyProperty
 		id="male_wood_elf">

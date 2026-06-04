@@ -35,7 +35,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         private string _deathIcon = "chamon";
 
 
-        public List<PowerStone> AvailablePowerStones { get; } = new List<PowerStone>();
+        public List<PowerStone> AllPowerStones { get; } = new List<PowerStone>();
 
         private CharacterObject _setCharacter;
 
@@ -66,7 +66,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             {
                 foreach (var attribute in characterAttributeContainer.Value)
                 {
-                    var stone = AvailablePowerStones.FirstOrDefault(x => x.Id == attribute);
+                    var stone = AllPowerStones.FirstOrDefault(x => x.Id == attribute);
                     if (stone != null)
                     {
                         list.Add(stone);
@@ -80,7 +80,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
         public PowerStone GetPowerstone(CharacterObject characterObject)
         {
-            List<PowerStone> stones = CareerButtonHelper.GetCurrentActiveItems(characterObject, AvailablePowerStones, s => s.Id);
+            List<PowerStone> stones = CareerButtonHelper.GetCurrentActiveItems(characterObject, AllPowerStones, s => s.Id);
             return stones?.FirstOrDefault();
         }
 
@@ -96,7 +96,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             MBTextManager.SetTextVariable("BEAST_ICON", string.Format("<img src=\"{0}\"/>", _beastIcon));
             MBTextManager.SetTextVariable("METAL_ICON", string.Format("<img src=\"{0}\"/>", _metalIcon));
             MBTextManager.SetTextVariable("DEATH_ICON", string.Format("<img src=\"{0}\"/>", _metalIcon));
-            AvailablePowerStones = CreateStoneList();
+            AllPowerStones = CreateStoneList();
         }
 
         private List<PowerStone> CreateStoneList()
@@ -266,7 +266,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 new PowerStone("metal_magic_dmg_phys", TORTextHelper.GetTextObject("tor_powerstone_metal_magic_dmg_phys_name", "Mighty Goldstone"), TORTextHelper.GetTextObject("tor_powerstone_metal_magic_dmg_phys_desc", "40% Armor penetration, 20% magical, 20% fire"),  "powerstone_metal_trait2", 50, 50,
                     "LoreOfMetal", PowerSize.Mighty),
 
-                new PowerStone("death_magic_surv_100", TORTextHelper.GetTextObject("tor_powerstone_death_magic_surv_100_name", "Mighty Endstone"), TORTextHelper.GetTextObject("tor_powerstone_death_magic_surv_100_desc", "100% survival Chance for Unit"),  "powerstone_metal_trait2", 50, 50,
+                new PowerStone("death_magic_surv_100", TORTextHelper.GetTextObject("tor_powerstone_death_magic_surv_100_name", "Mighty Endstone"), TORTextHelper.GetTextObject("tor_powerstone_death_magic_surv_100_desc", "100% survival Chance for Unit"),  "powerstone_death_survivor", 50, 50,
                 "LoreOfDeath", PowerSize.Mighty)
             };
 
@@ -295,7 +295,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             _setCharacter = characterObject;
             var list = new List<InquiryElement>();
 
-            var stones = AvailablePowerStones.ToList();
+            var stones = AllPowerStones.ToList();
 
             var availablePrestige = Hero.MainHero.GetCultureSpecificCustomResourceValue();
 
@@ -442,7 +442,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 displayText = TORTextHelper.GetTextObject("tor_powerstone_not_experienced_enough_text", "troop is not expierenced enough (tier 4 and above)");
                 return false;
             }
-            var powerstones = AvailablePowerStones;
+            var powerstones = AllPowerStones;
 
             var powerstone = GetPowerstone(characterObject);
 

@@ -88,7 +88,7 @@ namespace TOR_Core.AbilitySystem.SpellCasting
         {
             if (victim == null) return;
 
-            bool isFriendlyFire = Caster != null && victim.Team == Caster.Team;
+            bool isFriendlyFire = Caster != null && !victim.IsEnemyOf(Caster);
 
             if (isFriendlyFire)
             {
@@ -126,7 +126,7 @@ namespace TOR_Core.AbilitySystem.SpellCasting
         {
             if (victim == null) return;
 
-            bool isFriendlyFire = Caster != null && victim.Team == Caster.Team;
+            bool isFriendlyFire = Caster != null && !victim.IsEnemyOf(Caster);
 
             if (isFriendlyFire)
             {

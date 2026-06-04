@@ -194,7 +194,7 @@
                              DamageType="Physical"
                              DamageAmount="35"
                              Radius="15"
-                             TargetType="All"
+                             TargetType="Enemy"
                              DamageVariance="0.1"
                              ScriptNameToTrigger="none"
                              HasShockWave="true" />
@@ -2457,7 +2457,7 @@
                              SoundEffectLength="0"
                              DamageType="Physical"
                              DamageAmount="50"
-                             Radius="1.5"
+                             Radius="3"
                              HasShockWave="true"
                              DoNotAlignParticleEffectPrefabOnImpact="true"
                              TargetType="Enemy"

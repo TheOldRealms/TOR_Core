@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
@@ -103,6 +104,13 @@ namespace TOR_Core.CampaignMechanics
                 ("saddle_horse", 0.5f),
                 ("old_horse", 0.5f)
 			]);
+
+            foreach (var villageType in Game.Current.ObjectManager.GetObjectTypeList<VillageType>())
+            {
+                if (villageType.PrimaryProduction.StringId == "grain") continue;
+
+                AddVillageProductions(villageType, [("grain", 10f)]);
+            }
         }
 
         private VillageType RegisterVillageTypeObject(string id)

@@ -17,7 +17,7 @@ namespace TOR_Core.Models
         /// </remarks>
         public override bool IsPrisonerRecruitable(PartyBase party, CharacterObject prisoner, out int conformityNeeded)
         {
-            var partyCulture = party.MobileParty?.ActualClan?.Culture ?? party.Culture;
+            var partyCulture = party.MobileParty?.ActualClan?.Culture ?? party.MapFaction?.Culture;
             if (partyCulture != prisoner.Culture)
             {
                 conformityNeeded = 0;
@@ -46,7 +46,7 @@ namespace TOR_Core.Models
         /// </remarks>
         public override ExplainedNumber GetConformityChangePerHour(PartyBase party, CharacterObject prisoner)
         {
-            var partyCulture = party.MobileParty?.ActualClan?.Culture ?? party.Culture;
+            var partyCulture = party.MobileParty?.ActualClan?.Culture ?? party.MapFaction?.Culture;
             if (partyCulture != prisoner.Culture) return new ExplainedNumber();
             
             //Undead and treespirits have 0 wage and cause division errors during recruitment for ai parties in RecruitPrisonersCampaignBehavior. Conformity calculations cut off here to avoid wastage.
