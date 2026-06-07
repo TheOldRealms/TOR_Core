@@ -1559,7 +1559,7 @@
       <tag tag_name="IsOrcTag" />
     </tags>
   </string>
-  <string id="o2g6Wi9K.companion_forage_1_dwarf" text="{=str_tor_companion_forage_1_dwarf}Ai, I shall do this. Can you spare some Kazaki forthis task?">
+  <string id="o2g6Wi9K.companion_forage_1_dwarf" text="{=str_tor_companion_forage_1_dwarf}Ai, I shall do this. Can you spare some Kazaki for this task?">
     <tags>
       <tag tag_name="IsDwarfTag" />
     </tags>
