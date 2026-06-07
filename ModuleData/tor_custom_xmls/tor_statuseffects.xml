@@ -1592,7 +1592,7 @@
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="0.3"
 		applies_for_attack_type="All"
-		type="MovementManipulation"
+		type="Resistance"
 		damage_type="All">
 	</StatusEffectTemplate>
 	

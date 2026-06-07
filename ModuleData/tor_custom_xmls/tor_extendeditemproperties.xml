@@ -6508,7 +6508,7 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_emp_blessing_ulric_wolf-god_bite_of_the">
     <ItemTraits>
-      <ItemTrait>learn_emp_blessing_ulric_wolf-god_bite_of_the</ItemTrait>
+      <ItemTrait>learn_emp_blessing_ulric_wolf_god_bite</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>

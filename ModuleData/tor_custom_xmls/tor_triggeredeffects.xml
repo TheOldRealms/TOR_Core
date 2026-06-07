@@ -1628,7 +1628,7 @@
                              BurstParticleEffectPrefab="none"
                              SoundEffectId="none"
                              SoundEffectLength="0"
-                             DamageType="Invalid"
+                             DamageType="Magical"
                              DamageAmount="20"
                              Radius="8"
                              HasShockWave="false"
@@ -1658,7 +1658,7 @@
                              SoundEffectId="none"
                              SoundEffectLength="0"
                              DamageType="Invalid"
-                             DamageAmount="0"
+                             DamageAmount="5"
                              Radius="12"
                              HasShockWave="false"
                              TargetType="Enemy"
@@ -2126,7 +2126,7 @@
                              SoundEffectId="none"
                              SoundEffectLength="0"
                              DamageType="Physical"
-                             DamageAmount="1"
+                             DamageAmount="10"
                              Radius="3"
                              HasShockWave="true"
                              TargetType="Enemy"
@@ -2160,7 +2160,7 @@
                              HasShockWave="true"
                              TargetType="Self"
                              DamageVariance="0.0"
-                             ImbuedStatusEffectDuration="0"
+                             ImbuedStatusEffectDuration="8"
                              ScriptNameToTrigger="">
 		 <ImbuedStatusEffect>rune_spell_eating</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
@@ -2175,7 +2175,7 @@
                              HasShockWave="true"
                              TargetType="Self"
                              DamageVariance="0.0"
-                             ImbuedStatusEffectDuration="0"
+                             ImbuedStatusEffectDuration="5"
                              ScriptNameToTrigger="">
 		 <ImbuedStatusEffect>rune_preservation</ImbuedStatusEffect>
     </TriggeredEffectTemplate>

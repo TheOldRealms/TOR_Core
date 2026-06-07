@@ -1003,6 +1003,7 @@
     <IngredientAmount>10</IngredientAmount>
     <ItemTraitDescription>"30% extra damage dealt as Holy damage, weapon gains the Cleave trait"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Holy" Percent="0.30" />
+	<StatsTuple StatType="Cleave" Value="1" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="bret_blessing_lady_ward" ItemTraitName="Ward of the Lady" IsCraftable="true" ImbuedEffectChance="1.00" IconName="grail">
     <ValidItemType>Armor</ValidItemType>
@@ -1667,7 +1668,7 @@
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>4</IngredientAmount>
-    <ItemTraitDescription>"5% physical resistance, 33% extra shield HP"</ItemTraitDescription>
+    <ItemTraitDescription>5% physical resistance, 33% extra shield HP</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.05" />
     <StatsTuple StatType="ShieldHealth" Value="33" />
   </ItemTrait>
@@ -1690,7 +1691,7 @@
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>3</IngredientAmount>
     <ItemTraitDescription>25% chance to knock down foes when blocking melee hits</ItemTraitDescription>
-    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.AttackTypeDefenseTriggerScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>rune_parrying_enchant</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
@@ -1703,7 +1704,7 @@
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>4</IngredientAmount>
-    <ItemTraitDescription>"5% extra magic resistance, 2 extra HP"</ItemTraitDescription>
+    <ItemTraitDescription>5% extra magic resistance, 2 extra HP</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.05" />
     <StatsTuple StatType="HealthMax" Value="2" />
   </ItemTrait>
@@ -1711,9 +1712,9 @@
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>8</IngredientAmount>
-    <ItemTraitDescription>"33% extra shield HP, 70% chance to knock down foes when blocking melee hits"</ItemTraitDescription>
+    <ItemTraitDescription>33% extra shield HP, 70% chance to knock down foes when blocking melee hits</ItemTraitDescription>
     <StatsTuple StatType="ShieldHealth" Value="33" />
-    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.AttackTypeDefenseTriggerScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>rune_parrying_enchant</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
@@ -1733,9 +1734,9 @@
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>8</IngredientAmount>
-    <ItemTraitDescription>"10% physical resistance, 30% chance to knock down foes when blocking melee hits"</ItemTraitDescription>
+    <ItemTraitDescription>10% physical resistance, 30% chance to knock down foes when blocking melee hits</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
-    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.AttackTypeDefenseTriggerScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>rune_parrying_enchant</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
@@ -1748,7 +1749,7 @@
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>13</IngredientAmount>
-    <ItemTraitDescription>"3% Ward Save, 4 extra HP"</ItemTraitDescription>
+    <ItemTraitDescription>3% Ward Save, 4 extra HP</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.03" />
     <StatsTuple StatType="HealthMax" Value="4" />
   </ItemTrait>
@@ -1756,7 +1757,7 @@
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>10</IngredientAmount>
-    <ItemTraitDescription>"10% extra magic resistance, 50% chance to gain 100% magic resistance for a short time upon taking damage"</ItemTraitDescription>
+    <ItemTraitDescription>10% extra magic resistance, 50% chance to gain 100% magic resistance for a short time upon taking damage</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
@@ -1770,7 +1771,7 @@
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>25</IngredientAmount>
-    <ItemTraitDescription>"6 max HP bonus, 10% chance to ignore lethal damage and recover 5 HP upon taking damage"</ItemTraitDescription>
+    <ItemTraitDescription>6 max HP bonus, 10% chance to recover 2 HP upon taking damage</ItemTraitDescription>
     <StatsTuple StatType="HealthMax" Value="6" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
@@ -1805,7 +1806,7 @@
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>8</IngredientAmount>
-    <ItemTraitDescription>"10% Ward Save, 50% extra shield HP"</ItemTraitDescription>
+    <ItemTraitDescription>10% Ward Save, 50% extra shield HP</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.10" />
     <StatsTuple StatType="ShieldHealth" Value="50" />
   </ItemTrait>
@@ -1813,7 +1814,7 @@
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>6</IngredientAmount>
-    <ItemTraitDescription>"5% extra swing speed, 10% extra physical damage"</ItemTraitDescription>
+    <ItemTraitDescription>5% extra swing speed, 10% extra damage dealt as Physical</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.10" />
     <StatsTuple StatType="SwingSpeed" Value="5" />
   </ItemTrait>
@@ -1821,7 +1822,7 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>4</IngredientAmount>
-    <ItemTraitDescription>20% extra fire damage</ItemTraitDescription>
+    <ItemTraitDescription>20% extra damage dealt as Fire</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Fire" Percent="0.20" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="dw_rune_speed" ItemTraitName="Rune of Speed" IsCraftable="true" IconName="rune_speed">
@@ -1835,7 +1836,7 @@
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>5</IngredientAmount>
-    <ItemTraitDescription>"20% extra physical damage, 15% extra armour penetration"</ItemTraitDescription>
+    <ItemTraitDescription>20% extra damage dealt as Physical, 15% extra armour penetration</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.20" />
     <StatsTuple StatType="ArmorPenetration" Value="15" />
   </ItemTrait>
@@ -1843,7 +1844,7 @@
     <ValidItemType>Ranged</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>5</IngredientAmount>
-    <ItemTraitDescription>"10% extra physical damage, 15% reduced reload speed"</ItemTraitDescription>
+    <ItemTraitDescription>10% extra damage dealt as Physical, 15% faster reload speed</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.10" />
     <StatsTuple StatType="ReloadSpeed" Value="15" />
   </ItemTrait>
@@ -1863,7 +1864,7 @@
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>16</IngredientAmount>
-    <ItemTraitDescription>"25% extra magic damage, 15% extra magic resistance"</ItemTraitDescription>
+    <ItemTraitDescription>25% extra damage dealt as Magical, 15% extra magic resistance</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.15" />
     <AdditionalDamageTuple DamageType="Magical" Percent="0.25" />
   </ItemTrait>
@@ -1882,21 +1883,22 @@
     <ValidItemType>Ranged</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>30</IngredientAmount>
-    <ItemTraitDescription>50% reduced reload speed</ItemTraitDescription>
+    <ItemTraitDescription>50% faster reload speed</ItemTraitDescription>
     <StatsTuple StatType="ReloadSpeed" Value="50" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="dw_rune_cleaving" ItemTraitName="Rune of Cleaving" IsCraftable="true" IconName="rune_cleaving">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>18</IngredientAmount>
-    <ItemTraitDescription>"25% extra physical damage, weapon gains the Cleave trait"</ItemTraitDescription>
+    <ItemTraitDescription>25% extra damage dealt as Physical, weapon gains the Cleave trait</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.25" />
+    <StatsTuple StatType="Cleave" Value="1" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="dw_rune_fury" ItemTraitName="Rune of Fury" IsCraftable="true" IconName="rune_fury">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>35</IngredientAmount>
-    <ItemTraitDescription>"25% extra swing speed, 15 extra physical damage"</ItemTraitDescription>
+    <ItemTraitDescription>25% extra swing speed, 15% extra damage dealt as Physical</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.15" />
     <StatsTuple StatType="SwingSpeed" Value="25" />
   </ItemTrait>
@@ -1904,16 +1906,16 @@
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>42</IngredientAmount>
-    <ItemTraitDescription>"500% extra shield damage, 50% extra physical damage"</ItemTraitDescription>
+    <ItemTraitDescription>500% extra shield damage, 50% extra damage dealt as Physical</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.50" />
     <StatsTuple StatType="ShieldDamage" Value="500" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="dw_master_rune_swiftness" ItemTraitName="Master Rune of Swiftness" IsCraftable="true" IconName="rune_ switftness">
+  <ItemTrait ItemTraitStringId="dw_master_rune_swiftness" ItemTraitName="Master Rune of Swiftness" IsCraftable="true" IconName="rune_swiftness">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>25</IngredientAmount>
-    <ItemTraitDescription>"50% extra swing speed, 15% extra physical damage"</ItemTraitDescription>
-    <AdditionalDamageTuple DamageType="Magical" Percent="0.15" />
+    <ItemTraitDescription>50% extra swing speed, 15% extra damage dealt as Physical</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Physical" Percent="0.15" />
     <StatsTuple StatType="SwingSpeed" Value="50" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="dw_master_rune_flight" ItemTraitName="Master Rune of Flight" IsCraftable="true" IconName="rune_flight">
@@ -1935,7 +1937,7 @@
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>15</IngredientAmount>
-    <ItemTraitDescription>"50% bonus to physical damage, 75 extra magic damage"</ItemTraitDescription>
+    <ItemTraitDescription>50% bonus to physical damage, 75% extra damage dealt as Magical</ItemTraitDescription>
     <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.50" />
     <AdditionalDamageTuple DamageType="Magical" Percent="0.75" />
   </ItemTrait>
@@ -4027,7 +4029,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"5% physical resistance, 33% extra shield HP"</ItemTraitDescription>
+    <ItemTraitDescription>5% physical resistance, 33% extra shield HP</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_shielding</InventoryScriptArgument>
@@ -4083,7 +4085,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"5% extra magic resistance, 2 extra HP"</ItemTraitDescription>
+    <ItemTraitDescription>5% extra magic resistance, 2 extra HP</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_protection</InventoryScriptArgument>
@@ -4097,7 +4099,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"33% extra shield HP, 70% chance to knock down foes when blocking melee hits"</ItemTraitDescription>
+    <ItemTraitDescription>33% extra shield HP, 70% chance to knock down foes when blocking melee hits</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_force</InventoryScriptArgument>
@@ -4125,7 +4127,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"10% physical resistance, 30% chance to knock down foes when blocking melee hits"</ItemTraitDescription>
+    <ItemTraitDescription>10% physical resistance, 30% chance to knock down foes when blocking melee hits</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_impact</InventoryScriptArgument>
@@ -4139,7 +4141,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"3% Ward Save, 4 extra HP"</ItemTraitDescription>
+    <ItemTraitDescription>3% Ward Save, 4 extra HP</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_fortitude</InventoryScriptArgument>
@@ -4153,7 +4155,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"10% extra magic resistance, 50% chance to gain 100% magic resistance for a short time upon taking damage"</ItemTraitDescription>
+    <ItemTraitDescription>10% extra magic resistance, 50% chance to gain 100% magic resistance for a short time upon taking damage</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_spell_eating</InventoryScriptArgument>
@@ -4167,7 +4169,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"6 max HP bonus, 10% chance to ignore lethal damage and recover 5 HP upon taking damage"</ItemTraitDescription>
+    <ItemTraitDescription>6 max HP bonus, 10% chance to recover 2 HP upon taking damage</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_master_rune_preservation</InventoryScriptArgument>
@@ -4223,7 +4225,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"10% Ward Save, 50% extra shield HP"</ItemTraitDescription>
+    <ItemTraitDescription>10% Ward Save, 50% extra shield HP</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_master_rune_adamant</InventoryScriptArgument>
@@ -4237,7 +4239,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"5% extra swing speed, 10% extra physical damage"</ItemTraitDescription>
+    <ItemTraitDescription>5% extra swing speed, 10% extra damage dealt as Physical</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_striking</InventoryScriptArgument>
@@ -4251,7 +4253,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>20% extra fire damage</ItemTraitDescription>
+    <ItemTraitDescription>20% extra damage dealt as Fire</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_fire</InventoryScriptArgument>
@@ -4279,7 +4281,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"20% extra physical damage, 15% extra armour penetration"</ItemTraitDescription>
+    <ItemTraitDescription>20% extra damage dealt as Physical, 15% extra armour penetration</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_might</InventoryScriptArgument>
@@ -4293,7 +4295,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"10% extra physical damage, 15% reduced reload speed"</ItemTraitDescription>
+    <ItemTraitDescription>10% extra damage dealt as Physical, 15% faster reload speed</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_clear_sights</InventoryScriptArgument>
@@ -4321,7 +4323,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"25% extra magic damage, 15% extra magic resistance"</ItemTraitDescription>
+    <ItemTraitDescription>25% extra damage dealt as Magical, 15% extra magic resistance</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_unbinding</InventoryScriptArgument>
@@ -4349,7 +4351,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>50% reduced reload speed</ItemTraitDescription>
+    <ItemTraitDescription>50% faster reload speed</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_reloading</InventoryScriptArgument>
@@ -4363,7 +4365,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"25% extra physical damage, weapon gains the Cleave trait"</ItemTraitDescription>
+    <ItemTraitDescription>25% extra damage dealt as Physical, weapon gains the Cleave trait</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_cleaving</InventoryScriptArgument>
@@ -4377,7 +4379,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"25% extra swing speed, 15 extra physical damage"</ItemTraitDescription>
+    <ItemTraitDescription>25% extra swing speed, 15% extra damage dealt as Physical</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_fury</InventoryScriptArgument>
@@ -4391,7 +4393,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"500% extra shield damage, 50% extra physical damage"</ItemTraitDescription>
+    <ItemTraitDescription>500% extra shield damage, 50% extra damage dealt as Physical</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_master_rune_breaking</InventoryScriptArgument>
@@ -4401,11 +4403,11 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_dw_master_rune_swiftness" ItemTraitName="Master Rune of Swiftness" IsCraftable="false" IconName="rune_ switftness">
+  <ItemTrait ItemTraitStringId="learn_dw_master_rune_swiftness" ItemTraitName="Master Rune of Swiftness" IsCraftable="false" IconName="rune_swiftness">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"50% extra swing speed, 15% extra physical damage"</ItemTraitDescription>
+    <ItemTraitDescription>50% extra swing speed, 15% extra damage dealt as Physical</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_master_rune_swiftness</InventoryScriptArgument>
@@ -4447,7 +4449,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"50% bonus to physical damage, 75 extra magic damage"</ItemTraitDescription>
+    <ItemTraitDescription>50% bonus to physical damage, 75% extra damage dealt as Magical</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_master_rune_skalf</InventoryScriptArgument>
