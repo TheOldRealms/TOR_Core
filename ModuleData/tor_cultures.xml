@@ -5979,7 +5979,7 @@
 		basic_troop="NPCCharacter.tor_gs_bandit_raider"
 		is_bandit="true"
 		can_have_settlement="true"
-		encounter_background_mesh="orc_raiders_encounter"
+		encounter_background_mesh="bretonnia_bandits"
 		bandit_boss_party_template="PartyTemplate.greenskin_bandit_template"
 		default_stealth_equipment_roster="EquipmentRoster.default_stealth_equipment_roster">
 		<banner_bearer_replacement_weapons>
