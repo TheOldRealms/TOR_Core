@@ -163,12 +163,12 @@
   </Settlement>
   <Settlement id="valaya_shrine_01" name="{=str_tor_settlements_valaya_shrine01}Shrine of Valaya" owner="Faction.karak_izor_clan_1" posX="1223.375" posY="686.964" culture="Culture.sturgia" text="{=!}Shrine of Valaya">
     <Components>
-      <Shrine id="valaya_shrine_01" religion="cult_of_valaya" background_crop_position="0.0" background_mesh="shrine_of_grimnir" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <Shrine id="valaya_shrine_01" religion="cult_of_valaya" background_crop_position="0.0" background_mesh="shrine_of_valaya" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="valaya_shrine_02" name="{=str_tor_settlements_valaya_shrine02}Shrine of Valaya" owner="Faction.karak_gantuk_clan_1" posX="1457.496" posY="783.512" culture="Culture.sturgia" text="{=!}Shrine of Valaya">
     <Components>
-      <Shrine id="valaya_shrine_02" religion="cult_of_valaya" background_crop_position="0.0" background_mesh="shrine_of_grimnir" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <Shrine id="valaya_shrine_02" religion="cult_of_valaya" background_crop_position="0.0" background_mesh="shrine_of_valaya" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="herdstone_01" name="{=str_tor_settlements_beastmen_herdstone1}Beastmen Herdstone" owner="Faction.beastmen_clan_1" posX="1472.928" posY="1069.09" culture="Culture.chaos_culture" text="{=!}Beastmen Herdstone" gate_posX="1472.928" gate_posY="1069.09">

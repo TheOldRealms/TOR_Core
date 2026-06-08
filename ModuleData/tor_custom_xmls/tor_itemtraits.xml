@@ -1224,7 +1224,7 @@
     <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.05" />
     <StatsTuple StatType="WindsOfMagicMax" Value="4" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="we_enchant_blackbriar_kiss" ItemTraitName="Blackbriar's Kiss" IsCraftable="true" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="we_enchant_blackbriar_kiss" ItemTraitName="Blackbriar's Kiss" IsCraftable="true" IconName="we_enchant_blackbriar_kiss">
     <ValidItemType>Thrown</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>6</IngredientAmount>
@@ -1232,7 +1232,7 @@
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
     <StatsTuple StatType="ArmorPenetration" Value="10" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="we_enchant_emissaries_mirai" ItemTraitName="Emissaries of Mirai" IsCraftable="true" ImbuedEffectChance="0.15" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="we_enchant_emissaries_mirai" ItemTraitName="Emissaries of Mirai" IsCraftable="true" ImbuedEffectChance="0.15" IconName="we_enchant_emissaries_mirai">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>WarpstoneDust</IngredientItem>
     <IngredientAmount>18</IngredientAmount>
@@ -1246,7 +1246,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="we_enchant_song_doom" ItemTraitName="Song of Doom" IsCraftable="true" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="we_enchant_song_doom" ItemTraitName="Song of Doom" IsCraftable="true" IconName="we_enchant_song_doom">
     <ValidItemType>Ranged</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>6</IngredientAmount>
@@ -1254,7 +1254,7 @@
     <AdditionalDamageTuple DamageType="Physical" Percent="0.10" />
     <StatsTuple StatType="MissileSpeed" Value="15" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="asrai_enchant_dusk_wood" ItemTraitName="Dusk of the Woods" IsCraftable="true" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="asrai_enchant_dusk_wood" ItemTraitName="Dusk of the Woods" IsCraftable="true" IconName="we_enchant_dusk_wood">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>8</IngredientAmount>
@@ -1262,7 +1262,7 @@
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="-0.08" />
     <StatsTuple StatType="WindsOfMagicMax" Value="8" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="we_enchant_moon_stone" ItemTraitName="Moonstone of the Hidden Ways" IsCraftable="true" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="we_enchant_moon_stone" ItemTraitName="Moonstone of the Hidden Ways" IsCraftable="true" IconName="we_enchant_moon_stone">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>5</IngredientAmount>
@@ -1270,7 +1270,7 @@
     <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
     <StatsTuple StatType="PartySpeed" Value="12" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="we_enchant_trickery_loec" ItemTraitName="Trickery of Loec" IsCraftable="true" ImbuedEffectChance="1.00" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="we_enchant_trickery_loec" ItemTraitName="Trickery of Loec" IsCraftable="true" ImbuedEffectChance="1.00" IconName="we_enchant_trickery_loec">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>4</IngredientAmount>
@@ -1281,7 +1281,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="asrai_enchant_leylines_weave" ItemTraitName="Leylines and the Weave" IsCraftable="true" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="asrai_enchant_leylines_weave" ItemTraitName="Leylines and the Weave" IsCraftable="true" IconName="we_enchant_leylines_weave">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>16</IngredientAmount>
@@ -1289,7 +1289,7 @@
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.03" />
     <StatsTuple StatType="CustomResourceGain" Value="7" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="we_enchant_thorns_nettles" ItemTraitName="&quot;Thorns, Nettles and Spines&quot;" IsCraftable="true" ImbuedEffectChance="1.00" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="we_enchant_thorns_nettles" ItemTraitName="&quot;Thorns, Nettles and Spines&quot;" IsCraftable="true" ImbuedEffectChance="1.00" IconName="we_enchant_thorns_nettles">
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>14</IngredientAmount>
@@ -1304,7 +1304,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="we_enchant_tranquillity_cadai" ItemTraitName="Tranquillity of Cadai" IsCraftable="true" ImbuedEffectChance="0.30" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="we_enchant_tranquillity_cadai" ItemTraitName="Tranquillity of Cadai" IsCraftable="true" ImbuedEffectChance="0.30" IconName="we_enchant_tranquillity_cadai">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>20</IngredientAmount>
@@ -1319,7 +1319,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="we_enchant_tranquillity_cadai_copy" ItemTraitName="Tranquillity of Cadai" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="we_enchant_tranquillity_cadai_copy" ItemTraitName="Tranquillity of Cadai" IsCraftable="false" IconName="we_enchant_tranquillity_cadai">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -1327,7 +1327,7 @@
     <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.15" />
     <AdditionalDamageTuple DamageType="Magical" Percent="0.15" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="asrai_enchant_radiance_woods" ItemTraitName="Radiance of the Woods" IsCraftable="true" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="asrai_enchant_radiance_woods" ItemTraitName="Radiance of the Woods" IsCraftable="true" IconName="we_enchant_radiance_woods">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>40</IngredientAmount>
@@ -1335,7 +1335,7 @@
     <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.03" />
     <StatsTuple StatType="WindsOfMagicMax" Value="4" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="we_enchant_touch_lileath" ItemTraitName="Touch of Lileath" IsCraftable="true" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="we_enchant_touch_lileath" ItemTraitName="Touch of Lileath" IsCraftable="true" IconName="we_enchant_touch_lileath">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>15</IngredientAmount>
@@ -1343,7 +1343,7 @@
     <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.05" />
     <StatsTuple StatType="WindsOfMagicMax" Value="3" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="we_enchant_dusk_dawn" ItemTraitName="Dusk and Dawn" IsCraftable="true" ImbuedEffectChance="1.00" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="we_enchant_dusk_dawn" ItemTraitName="Dusk and Dawn" IsCraftable="true" ImbuedEffectChance="1.00" IconName="we_enchant_dusk_dawn">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>12</IngredientAmount>
@@ -1357,27 +1357,27 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="we_enchant_arcane_bodkins" ItemTraitName="Arcane Bodkins" IsCraftable="true" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="we_enchant_arcane_bodkins" ItemTraitName="Arcane Bodkins" IsCraftable="true" IconName="we_enchant_arcane_bodkins">
     <ValidItemType>Ammo</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>6</IngredientAmount>
     <ItemTraitDescription>10% extra armour penetration</ItemTraitDescription>
     <StatsTuple StatType="ArmorPenetration" Value="10" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="we_enchant_hagbane_tips" ItemTraitName="Hagbane Tips" IsCraftable="true" ImbuedStatusEffectId="hagbane_debuff" ImbuedEffectChance="0.50" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="we_enchant_hagbane_tips" ItemTraitName="Hagbane Tips" IsCraftable="true" ImbuedStatusEffectId="hagbane_debuff" ImbuedEffectChance="0.50" IconName="we_enchant_hagbane_tips">
     <ValidItemType>Ammo</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>4</IngredientAmount>
     <ItemTraitDescription>50% chance to decrease the movement speed of the target by 40%</ItemTraitDescription>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="we_enchant_moon_fire" ItemTraitName="Moonfire Shot" IsCraftable="true" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="we_enchant_moon_fire" ItemTraitName="Moonfire Shot" IsCraftable="true" IconName="we_enchant_moon_fire">
     <ValidItemType>Ammo</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>8</IngredientAmount>
     <ItemTraitDescription>20 extra fire damage</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Fire" Percent="0.20" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="we_enchant_star_fire" ItemTraitName="Starfire Shafts" IsCraftable="true" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="we_enchant_star_fire" ItemTraitName="Starfire Shafts" IsCraftable="true" IconName="we_enchant_star_fire">
     <ValidItemType>Ammo</ValidItemType>
     <IngredientItem>WarpstoneDust</IngredientItem>
     <IngredientAmount>7</IngredientAmount>
@@ -1385,7 +1385,7 @@
     <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="0.25" />
     <StatsTuple StatType="ArmorPenetration" Value="25" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="we_enchant_swift_shiver" ItemTraitName="Swiftshiver Shards" IsCraftable="true" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="we_enchant_swift_shiver" ItemTraitName="Swiftshiver Shards" IsCraftable="true" IconName="we_enchant_swift_shiver">
     <ValidItemType>Ammo</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>12</IngredientAmount>
@@ -1393,14 +1393,14 @@
     <AdditionalDamageTuple DamageType="Magical" Percent="0.10" />
     <StatsTuple StatType="MissileSpeed" Value="10" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="we_enchant_trueflight" ItemTraitName="Trueflight Arrows" IsCraftable="true" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="we_enchant_trueflight" ItemTraitName="Trueflight Arrows" IsCraftable="true" IconName="we_enchant_trueflight">
     <ValidItemType>Ammo</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>4</IngredientAmount>
     <ItemTraitDescription>40% extra armour penetration</ItemTraitDescription>
     <StatsTuple StatType="ArmorPenetration" Value="40" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="asrai_enchant_tree_lord" ItemTraitName="The Tree Lords' Bargain" IsCraftable="true" ImbuedEffectChance="0.15" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="asrai_enchant_tree_lord" ItemTraitName="The Tree Lords' Bargain" IsCraftable="true" ImbuedEffectChance="0.15" IconName="asrai_enchant_tree_lord">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>20</IngredientAmount>
@@ -1414,7 +1414,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="asrai_enchant_quake_hukon" ItemTraitName="Quake of Hukon" IsCraftable="true" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="asrai_enchant_quake_hukon" ItemTraitName="Quake of Hukon" IsCraftable="true" IconName="asrai_enchant_quake_hukon">
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>10</IngredientAmount>
@@ -1429,7 +1429,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="asrai_enchant_morai_heg" ItemTraitName="Schemes of Morai-heg" IsCraftable="true" ImbuedEffectChance="1.00" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="asrai_enchant_morai_heg" ItemTraitName="Schemes of Morai-heg" IsCraftable="true" ImbuedEffectChance="1.00" IconName="asrai_enchant_morai_heg">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>WarpstoneDust</IngredientItem>
     <IngredientAmount>8</IngredientAmount>
@@ -1441,7 +1441,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="asrai_enchant_oakhart_blessing" ItemTraitName="Oakheart's Blessing" IsCraftable="true" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="asrai_enchant_oakhart_blessing" ItemTraitName="Oakheart's Blessing" IsCraftable="true" IconName="asrai_enchant_oakhart_blessing">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>18</IngredientAmount>
@@ -1449,7 +1449,7 @@
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.04" />
     <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.04" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="asrai_enchant_vengeance_khaine" ItemTraitName="Vengeance of Khaine" IsCraftable="true" ImbuedEffectChance="1.00" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="asrai_enchant_vengeance_khaine" ItemTraitName="Vengeance of Khaine" IsCraftable="true" ImbuedEffectChance="1.00" IconName="asrai_enchant_vengeance_khaine">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>WarpstoneDust</IngredientItem>
     <IngredientAmount>10</IngredientAmount>
@@ -1462,7 +1462,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="asrai_enchant_anath_raema" ItemTraitName="Predator of Anath Raema" IsCraftable="true" ImbuedEffectChance="1.00" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="asrai_enchant_anath_raema" ItemTraitName="Predator of Anath Raema" IsCraftable="true" ImbuedEffectChance="1.00" IconName="asrai_enchant_anath_raema">
     <ValidItemType>Ranged</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>30</IngredientAmount>
@@ -1477,7 +1477,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="asrai_enchant_trance_loec" ItemTraitName="Trance of Loec" IsCraftable="true" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="asrai_enchant_trance_loec" ItemTraitName="Trance of Loec" IsCraftable="true" IconName="asrai_enchant_trance_loec">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>16</IngredientAmount>
@@ -1486,7 +1486,7 @@
     <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.10" />
     <StatsTuple StatType="SwingSpeed" Value="10" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="asrai_enchant_embrace_isha" ItemTraitName="Embrace of Isha" IsCraftable="true" ImbuedEffectChance="0.10" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="asrai_enchant_embrace_isha" ItemTraitName="Embrace of Isha" IsCraftable="true" ImbuedEffectChance="0.10" IconName="asrai_enchant_embrace_isha">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>12</IngredientAmount>
@@ -1499,7 +1499,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="asrai_enchant_ferocity_kurnous" ItemTraitName="Ferocity of Kurnous" IsCraftable="true" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="asrai_enchant_ferocity_kurnous" ItemTraitName="Ferocity of Kurnous" IsCraftable="true" IconName="asrai_enchant_ferocity_kurnous">
     <ValidItemType>Thrown</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>15</IngredientAmount>
@@ -1507,7 +1507,7 @@
     <AdditionalDamageTuple DamageType="Magical" Percent="0.30" />
     <StatsTuple StatType="MissileSpeed" Value="50" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="eo_enchant_wisdom_hoeth" ItemTraitName="Wisdom of Hoeth" IsCraftable="true" IconName="favor_icon_100">
+  <ItemTrait ItemTraitStringId="eo_enchant_wisdom_hoeth" ItemTraitName="Wisdom of Hoeth" IsCraftable="true" IconName="eonir_enchant_wisdom_hoeth">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>28</IngredientAmount>
@@ -1515,7 +1515,7 @@
     <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.05" />
     <StatsTuple StatType="WindsOfMagicMax" Value="7" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="eo_enchant_storms_mathlann" ItemTraitName="Storms of Mathlann" IsCraftable="true" ImbuedEffectChance="0.25" IconName="favor_icon_100">
+  <ItemTrait ItemTraitStringId="eo_enchant_storms_mathlann" ItemTraitName="Storms of Mathlann" IsCraftable="true" ImbuedEffectChance="0.25" IconName="eonir_enchant_storms_mathlann">
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>28</IngredientAmount>
@@ -1530,7 +1530,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="eo_enchant_flames_asuryan" ItemTraitName="Flames of Asuryan" IsCraftable="true" IconName="favor_icon_100">
+  <ItemTrait ItemTraitStringId="eo_enchant_flames_asuryan" ItemTraitName="Flames of Asuryan" IsCraftable="true" IconName="eonir_enchant_flames_asuryan">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>14</IngredientAmount>
@@ -1538,7 +1538,7 @@
     <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.15" />
     <AdditionalDamageTuple DamageType="Fire" Percent="0.60" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="eo_enchant_legacy_caledor" ItemTraitName="Legacy of Caledor" IsCraftable="true" ImbuedEffectChance="0.25" IconName="favor_icon_100">
+  <ItemTrait ItemTraitStringId="eo_enchant_legacy_caledor" ItemTraitName="Legacy of Caledor" IsCraftable="true" ImbuedEffectChance="0.25" IconName="eonir_enchant_legacy_caledor">
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>8</IngredientAmount>
@@ -1553,7 +1553,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="eo_enchant_sanctuary_saphery" ItemTraitName="Sanctuary of Saphery" IsCraftable="true" ImbuedEffectChance="1.00" IconName="favor_icon_100">
+  <ItemTrait ItemTraitStringId="eo_enchant_sanctuary_saphery" ItemTraitName="Sanctuary of Saphery" IsCraftable="true" ImbuedEffectChance="1.00" IconName="eonir_enchant_sanctuary_saphery">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>60</IngredientAmount>
@@ -3458,7 +3458,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_we_enchant_blackbriar_kiss" ItemTraitName="Blackbriar's Kiss" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_we_enchant_blackbriar_kiss" ItemTraitName="Blackbriar's Kiss" IsCraftable="false" IconName="we_enchant_blackbriar_kiss">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3471,7 +3471,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_we_enchant_emissaries_mirai" ItemTraitName="Emissaries of Mirai" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_we_enchant_emissaries_mirai" ItemTraitName="Emissaries of Mirai" IsCraftable="false" IconName="we_enchant_emissaries_mirai">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3485,7 +3485,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_we_enchant_song_doom" ItemTraitName="Song of Doom" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_we_enchant_song_doom" ItemTraitName="Song of Doom" IsCraftable="false" IconName="we_enchant_song_doom">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3498,7 +3498,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_asrai_enchant_dusk_wood" ItemTraitName="Dusk of the Woods" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_asrai_enchant_dusk_wood" ItemTraitName="Dusk of the Woods" IsCraftable="false" IconName="we_enchant_dusk_wood">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3512,7 +3512,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_we_enchant_moon_stone" ItemTraitName="Moonstone of the Hidden Ways" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_we_enchant_moon_stone" ItemTraitName="Moonstone of the Hidden Ways" IsCraftable="false" IconName="we_enchant_moon_stone">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3525,7 +3525,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_we_enchant_trickery_loec" ItemTraitName="Trickery of Loec" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_we_enchant_trickery_loec" ItemTraitName="Trickery of Loec" IsCraftable="false" IconName="we_enchant_trickery_loec">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3538,7 +3538,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_asrai_enchant_leylines_weave" ItemTraitName="Leylines and the Weave" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_asrai_enchant_leylines_weave" ItemTraitName="Leylines and the Weave" IsCraftable="false" IconName="we_enchant_leylines_weave">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3551,7 +3551,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_we_enchant_thorns_nettles" ItemTraitName="&quot;Thorns, Nettles and Spines&quot;" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_we_enchant_thorns_nettles" ItemTraitName="&quot;Thorns, Nettles and Spines&quot;" IsCraftable="false" IconName="we_enchant_thorns_nettles">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3564,7 +3564,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_we_enchant_tranquillity_cadai" ItemTraitName="Tranquillity of Cadai" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_we_enchant_tranquillity_cadai" ItemTraitName="Tranquillity of Cadai" IsCraftable="false" IconName="we_enchant_tranquillity_cadai">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3578,7 +3578,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_asrai_enchant_radiance_woods" ItemTraitName="Radiance of the Woods" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_asrai_enchant_radiance_woods" ItemTraitName="Radiance of the Woods" IsCraftable="false" IconName="we_enchant_radiance_woods">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3592,7 +3592,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_we_enchant_touch_lileath" ItemTraitName="Touch of Lileath" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_we_enchant_touch_lileath" ItemTraitName="Touch of Lileath" IsCraftable="false" IconName="we_enchant_touch_lileath">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3605,7 +3605,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_we_enchant_dusk_dawn" ItemTraitName="Dusk and Dawn" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_we_enchant_dusk_dawn" ItemTraitName="Dusk and Dawn" IsCraftable="false" IconName="we_enchant_dusk_dawn">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3618,7 +3618,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_we_enchant_arcane_bodkins" ItemTraitName="Arcane Bodkins" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_we_enchant_arcane_bodkins" ItemTraitName="Arcane Bodkins" IsCraftable="false" IconName="we_enchant_arcane_bodkins">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3631,7 +3631,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_we_enchant_hagbane_tips" ItemTraitName="Hagbane Tips" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_we_enchant_hagbane_tips" ItemTraitName="Hagbane Tips" IsCraftable="false" IconName="we_enchant_hagbane_tips">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3644,7 +3644,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_we_enchant_moon_fire" ItemTraitName="Moonfire Shot" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_we_enchant_moon_fire" ItemTraitName="Moonfire Shot" IsCraftable="false" IconName="we_enchant_moon_fire">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3657,7 +3657,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_we_enchant_star_fire" ItemTraitName="Starfire Shafts" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_we_enchant_star_fire" ItemTraitName="Starfire Shafts" IsCraftable="false" IconName="we_enchant_star_fire">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3670,7 +3670,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_we_enchant_swift_shiver" ItemTraitName="Swiftshiver Shards" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_we_enchant_swift_shiver" ItemTraitName="Swiftshiver Shards" IsCraftable="false" IconName="we_enchant_swift_shiver">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3683,7 +3683,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_we_enchant_trueflight" ItemTraitName="Trueflight Arrows" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_we_enchant_trueflight" ItemTraitName="Trueflight Arrows" IsCraftable="false" IconName="we_enchant_trueflight">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3696,7 +3696,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_asrai_enchant_tree_lord" ItemTraitName="The Tree Lords' Bargain" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_asrai_enchant_tree_lord" ItemTraitName="The Tree Lords' Bargain" IsCraftable="false" IconName="asrai_enchant_tree_lord">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3709,7 +3709,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_asrai_enchant_quake_hukon" ItemTraitName="Quake of Hukon" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_asrai_enchant_quake_hukon" ItemTraitName="Quake of Hukon" IsCraftable="false" IconName="asrai_enchant_quake_hukon">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3722,7 +3722,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_asrai_enchant_morai_heg" ItemTraitName="Schemes of Morai-heg" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_asrai_enchant_morai_heg" ItemTraitName="Schemes of Morai-heg" IsCraftable="false" IconName="asrai_enchant_morai_heg">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3736,7 +3736,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_asrai_enchant_oakhart_blessing" ItemTraitName="Oakheart's Blessing" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_asrai_enchant_oakhart_blessing" ItemTraitName="Oakheart's Blessing" IsCraftable="false" IconName="asrai_enchant_oakhart_blessing">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3750,7 +3750,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_asrai_enchant_vengeance_khaine" ItemTraitName="Vengeance of Khaine" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_asrai_enchant_vengeance_khaine" ItemTraitName="Vengeance of Khaine" IsCraftable="false" IconName="asrai_enchant_vengeance_khaine">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3764,7 +3764,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_asrai_enchant_anath_raema" ItemTraitName="Predator of Anath Raema" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_asrai_enchant_anath_raema" ItemTraitName="Predator of Anath Raema" IsCraftable="false" IconName="asrai_enchant_anath_raema">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3778,7 +3778,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_asrai_enchant_trance_loec" ItemTraitName="Trance of Loec" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_asrai_enchant_trance_loec" ItemTraitName="Trance of Loec" IsCraftable="false" IconName="asrai_enchant_trance_loec">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3791,7 +3791,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_asrai_enchant_embrace_isha" ItemTraitName="Embrace of Isha" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_asrai_enchant_embrace_isha" ItemTraitName="Embrace of Isha" IsCraftable="false" IconName="asrai_enchant_embrace_isha">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3805,7 +3805,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_asrai_enchant_ferocity_kurnous" ItemTraitName="Ferocity of Kurnous" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_asrai_enchant_ferocity_kurnous" ItemTraitName="Ferocity of Kurnous" IsCraftable="false" IconName="asrai_enchant_ferocity_kurnous">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3818,7 +3818,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_eo_enchant_wisdom_hoeth" ItemTraitName="Wisdom of Hoeth" IsCraftable="false" IconName="favor_icon_100">
+  <ItemTrait ItemTraitStringId="learn_eo_enchant_wisdom_hoeth" ItemTraitName="Wisdom of Hoeth" IsCraftable="false" IconName="eonir_enchant_wisdom_hoeth">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3832,7 +3832,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_eo_enchant_storms_mathlann" ItemTraitName="Storms of Mathlann" IsCraftable="false" IconName="favor_icon_100">
+  <ItemTrait ItemTraitStringId="learn_eo_enchant_storms_mathlann" ItemTraitName="Storms of Mathlann" IsCraftable="false" IconName="eonir_enchant_storms_mathlann">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3858,7 +3858,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_eo_enchant_legacy_caledor" ItemTraitName="Legacy of Caledor" IsCraftable="false" IconName="favor_icon_100">
+  <ItemTrait ItemTraitStringId="learn_eo_enchant_legacy_caledor" ItemTraitName="Legacy of Caledor" IsCraftable="false" IconName="eonir_enchant_legacy_caledor">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3871,7 +3871,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_eo_enchant_sanctuary_saphery" ItemTraitName="Sanctuary of Saphery" IsCraftable="false" IconName="favor_icon_100">
+  <ItemTrait ItemTraitStringId="learn_eo_enchant_sanctuary_saphery" ItemTraitName="Sanctuary of Saphery" IsCraftable="false" IconName="eonir_enchant_sanctuary_saphery">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>

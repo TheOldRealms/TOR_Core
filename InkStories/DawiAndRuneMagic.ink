@@ -2,7 +2,7 @@
 # title: Dawi and Rune Magic
 # frequency: Special
 # development: false
-# illustration: campfirenight
+# illustration: rune_magic
 
 INCLUDE include.ink
 

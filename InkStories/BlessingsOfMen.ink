@@ -2,7 +2,7 @@
 # title: Blessings of Men
 # frequency: Special
 # development: false
-# illustration: campfirenight
+# illustration: generic_prayer
 
 INCLUDE include.ink
 
