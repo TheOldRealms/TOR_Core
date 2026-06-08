@@ -15,6 +15,8 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatchCategory("LatePatches")]
     public static class AgentPatches
     {
+        private const string STAFF_ID = "staff";
+
         [HarmonyPrefix]
         [HarmonyPatch(typeof(Agent), "MakeVoice")]
         public static bool MakeVoicePatch(Agent __instance, SkinVoiceManager.SkinVoiceType voiceType)
@@ -69,6 +71,68 @@ namespace TOR_Core.HarmonyPatches
                     }
                 }
             }
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(Agent), "GetDefendMovementFlag")]
+        public static bool GetDefendMovementFlagPatch(Agent __instance, ref Agent.MovementControlFlag __result)
+        {
+
+            if (!ShouldSuppressStaffJavelinBlock(__instance))
+            {
+                return true;
+            }
+
+            __result = Agent.MovementControlFlag.None;
+            return false;
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(Agent), "MovementFlags", MethodType.Setter)]
+        public static void MovementFlagsSetterPatch(Agent __instance, ref Agent.MovementControlFlag value)
+        {
+
+            if ((value & Agent.MovementControlFlag.DefendMask) == Agent.MovementControlFlag.None)
+            {
+                return;
+            }
+
+            if (!ShouldSuppressStaffJavelinBlock(__instance))
+            {
+                return;
+            }
+
+            value &= ~Agent.MovementControlFlag.DefendMask;
+        }
+
+        private static bool ShouldSuppressStaffJavelinBlock(Agent agent)
+        {
+            var mainHandWeapon = agent.WieldedWeapon;
+            if (mainHandWeapon.IsEmpty ||
+                mainHandWeapon.CurrentUsageItem.WeaponClass != WeaponClass.Javelin)
+            {
+                return false;
+            }
+
+            var offHandWeaponIndex = agent.GetOffhandWieldedItemIndex();
+            if (offHandWeaponIndex < EquipmentIndex.WeaponItemBeginSlot)
+            {
+                return false;
+            }
+
+            var offHandWeapon = agent.Equipment[offHandWeaponIndex];
+            if (offHandWeapon.IsEmpty)
+            {
+                return false;
+            }
+
+            return IsOffhandStaff(offHandWeapon.Item);
+        }
+
+        private static bool IsOffhandStaff(ItemObject item)
+        {
+            return (item.ItemFlags & ItemFlags.HeldInOffHand) != 0 &&
+                   item.StringId.IndexOf(STAFF_ID, StringComparison.OrdinalIgnoreCase) >= 0;
         }
 
         [HarmonyPostfix]

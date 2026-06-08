@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
+using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
@@ -96,7 +97,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
             var model = (TOREnchantmentCraftingModel)Campaign.Current.Models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TOREnchantmentCraftingModel));
             if (model != null)
             {
-                traitAmount = model.MaximumAmountOfEnchantments(MobileParty.MainParty.GetMemberHeroes());
+                traitAmount = model.MaximumAmountOfEnchantments([.. MobileParty.MainParty.GetMemberHeroes().WhereQ(x => x.IsAbilityUser())]);
             }
 
             return traitAmount;

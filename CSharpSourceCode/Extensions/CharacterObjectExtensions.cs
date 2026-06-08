@@ -193,6 +193,11 @@ namespace TOR_Core.Extensions
             return characterObject.Race == FaceGen.GetRaceOrDefault("human") || characterObject.Race == FaceGen.GetRaceOrDefault("marauder") || characterObject.Race == FaceGen.GetRaceOrDefault("bretonnian");
         }
 
+        public static bool IsHuman(this BasicCharacterObject characterObject)
+        {
+            return characterObject.Race == FaceGen.GetRaceOrDefault("human") || characterObject.Race == FaceGen.GetRaceOrDefault("marauder") || characterObject.Race == FaceGen.GetRaceOrDefault("bretonnian");
+        }
+
         public static bool IsElf(this CharacterObject characterObject)
         {
             return characterObject.Race == FaceGen.GetRaceOrDefault("elf");
@@ -295,7 +300,12 @@ namespace TOR_Core.Extensions
 
         public static bool IsBeastman(this CharacterObject characterObject)
         {
-            return characterObject.Race == FaceGen.GetRaceOrDefault("ungor");
+            return characterObject.Culture.StringId == TORConstants.Cultures.BEASTMEN;//all beastmen currently belong to the bandit culture
+        }
+
+        public static bool IsBeastman(this BasicCharacterObject characterObject)
+        {
+            return characterObject.Culture.StringId == TORConstants.Cultures.BEASTMEN;//all beastmen currently belong to the bandit culture
         }
 
         public static bool IsUndead(this BasicCharacterObject characterObject)
@@ -320,7 +330,17 @@ namespace TOR_Core.Extensions
 
         public static bool IsCultist(this BasicCharacterObject characterObject)
         {
-            return characterObject?.Race == FaceGen.GetRaceOrDefault("chaos_ud_cultist");
+            return characterObject.Culture.StringId == TORConstants.Cultures.CHAOS_CULTIST;//Sly : this has been changed from using the race because the cultist race was applied to a bunch of unrelated troops among the undead cultures which lead to misdetection. When this is fixed, this could be switched back to the cultist race if that's more performant/clear.
+        }
+
+        public static bool IsChaos(this CharacterObject characterObject)
+        {
+            return characterObject.Culture.StringId == TORConstants.Cultures.CHAOS || characterObject.Culture.StringId == TORConstants.Cultures.CHAOS_CULTIST;
+        }
+
+        public static bool IsChaos(this BasicCharacterObject characterObject)
+        {
+            return characterObject.Culture.StringId == TORConstants.Cultures.CHAOS || characterObject.Culture.StringId == TORConstants.Cultures.CHAOS_CULTIST;
         }
 
         public static bool IsBloodDragon(this BasicCharacterObject characterObject)

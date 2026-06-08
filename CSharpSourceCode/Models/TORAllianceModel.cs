@@ -103,12 +103,11 @@ namespace TOR_Core.Models
         public override ExplainedNumber GetScoreOfStartingAlliance(
             Kingdom proposingKingdom,
             Kingdom targetKingdom,
-            IFaction evaluatingFaction,
             out TextObject explanationText,
             bool includeDescription = false)
         {
             var score = base.GetScoreOfStartingAlliance(
-                proposingKingdom, targetKingdom, evaluatingFaction,
+                proposingKingdom, targetKingdom,
                 out explanationText, includeDescription);
 
             // Hard lore restrictions - return early with massive penalty
@@ -133,8 +132,8 @@ namespace TOR_Core.Models
                 return score;
             }
 
-            // Get the evaluating leader for personality traits
-            Hero evaluatingLeader = GetEvaluatingLeader(evaluatingFaction);
+            // Get the evaluating leader for personality traits (proposing kingdom is the one evaluating)
+            Hero evaluatingLeader = GetEvaluatingLeader(proposingKingdom);
 
             // Get trait modifiers
             float honorModifier = DiplomacyHelpers.GetTraitModifier(evaluatingLeader, DefaultTraits.Honor);
@@ -711,7 +710,7 @@ namespace TOR_Core.Models
                 .Select(k => new
                 {
                     Kingdom = k,
-                    Score = GetScoreOfStartingAlliance(kingdom, k, kingdom.RulingClan, out _).ResultNumber
+                    Score = GetScoreOfStartingAlliance(kingdom, k, out _).ResultNumber
                 })
                 .Where(x => x.Score > 50)
                 .OrderByDescending(x => x.Score)

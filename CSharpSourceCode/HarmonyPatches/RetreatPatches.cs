@@ -83,6 +83,12 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
         private static readonly AccessTools.FieldRef<MobileParty, CampaignTime> DisorganizedUntilTime =
             AccessTools.FieldRefAccess<MobileParty, CampaignTime>("_disorganizedUntilTime");
 
+        private static readonly AccessTools.FieldRef<MapEvent, BattleSideEnum> MapEventRetreatingSide =
+            AccessTools.FieldRefAccess<MapEvent, BattleSideEnum>("<RetreatingSide>k__BackingField");
+
+        private static readonly AccessTools.FieldRef<MapEvent, int> MapEventPursuitRoundNumber =
+            AccessTools.FieldRefAccess<MapEvent, int>("<PursuitRoundNumber>k__BackingField");
+
         private static readonly AccessTools.FieldRef<MapEventSide, List<UniqueTroopDescriptor>> SimulationTroopList =
             AccessTools.FieldRefAccess<MapEventSide, List<UniqueTroopDescriptor>>("_simulationTroopList");
 
@@ -775,6 +781,10 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
                 if (!didRouteAnyTroops)
                     return false;
 
+                MapEventRetreatingSide(__instance) = mapEventSide.MissionSide;
+                MapEventPursuitRoundNumber(__instance) =
+                    Campaign.Current.Models.CombatSimulationModel.GetPursuitRoundCount(__instance);
+
                 var retreatingMobileParties = new List<MobileParty>();
 
                 for (var i = 0; i < mapEventSide.Parties.Count; i++)
@@ -895,70 +905,23 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
             }
         }
 
-        [HarmonyPatch(typeof(DefaultBattleRewardModel), nameof(DefaultBattleRewardModel.CalculateMoraleChangeOnRoundVictory))]
-        private static class DefaultBattleRewardModel_CalculateMoraleChangeOnRoundVictory_Patch
-        {
-            private static bool Prefix(
-                PartyBase party,
-                MapEventSide partySide,
-                BattleSideEnum roundWinner,
-                ref ExplainedNumber __result)
-            {
-                if (!party.IsMobile || roundWinner == BattleSideEnum.None)
-                {
-                    __result = new ExplainedNumber(0f);
-                    return false;
-                }
-
-                var mapEvent = partySide.MapEvent;
-                if (!ShouldUseRetreatRouting(mapEvent, partySide))
-                    return true;
-
-                // once retreat has started keep vanilla behavior
-                if (mapEvent.RetreatingSide != BattleSideEnum.None)
-                {
-                    var vanilla = 0f;
-
-                    if (mapEvent.RetreatingSide == party.OpponentSide)
-                    {
-                        vanilla = VANILLA_MORALE_CHANGE_WHEN_OPPONENT_IS_RETREATING;
-                    }
-                    else if (mapEvent.RetreatingSide == party.Side)
-                    {
-                        vanilla = VANILLA_MORALE_CHANGE_WHEN_THIS_SIDE_IS_RETREATING;
-                    }
-
-                    __result = new ExplainedNumber(vanilla);
-                    return false;
-                }
-
-                if (roundWinner == party.Side)
-                {
-                    __result = new ExplainedNumber(0f);
-                    return false;
-                }
-
-                var currentMorale = party.MobileParty.Morale;
-
-                if (currentMorale < ROUND_LOSS_MORALE_THRESHOLD_30)
-                {
-                    __result = new ExplainedNumber(ROUND_LOSS_MORALE_CHANGE_BELOW_30);
-                    return false;
-                }
-
-                if (currentMorale < ROUND_LOSS_MORALE_THRESHOLD_40)
-                {
-                    __result = new ExplainedNumber(ROUND_LOSS_MORALE_CHANGE_BELOW_40);
-                    return false;
-                }
-
-                __result = new ExplainedNumber(ROUND_LOSS_MORALE_CHANGE_DEFAULT);
-                return false;
-            }
-        }
+        // Moved to TORBattleRewardModel.CalculateMoraleChangeOnRoundVictory override
+        // [HarmonyPatch(typeof(DefaultBattleRewardModel), nameof(DefaultBattleRewardModel.CalculateMoraleChangeOnRoundVictory))]
+        // private static class DefaultBattleRewardModel_CalculateMoraleChangeOnRoundVictory_Patch
+        // {
+        //     private static bool Prefix(
+        //         PartyBase party,
+        //         MapEventSide partySide,
+        //         BattleSideEnum roundWinner,
+        //         ref float __result)
+        //     {
+        //         ...
+        //     }
+        // }
 
         // wounded in battle always goes to winner
-        [HarmonyPatch(typeof(MapEvent), "LootDefeatedPartyMembers")]
+        // LootDefeatedPartyMembers was renamed to LootDefeatedPartyCasualties in 1.4
+        [HarmonyPatch(typeof(MapEvent), "LootDefeatedPartyCasualties")]
         private static class MapEvent_LootDefeatedPartyMembers_Patch
         {
             private static void Postfix(

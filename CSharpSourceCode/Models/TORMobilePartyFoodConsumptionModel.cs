@@ -35,8 +35,11 @@ namespace TOR_Core.Models
             }
 
             base.CalculateDailyFoodConsumptionf (party, consumption);
-			
-            if (party.Party.Culture.StringId == TORConstants.Cultures.SYLVANIA || party.Party.Culture.StringId == TORConstants.Cultures.MOUSILLON)
+
+			var partyCulture = party.Party.MobileParty?.ActualClan?.Culture ?? party.Party.MapFaction?.Culture;
+            if (partyCulture == null) return consumption;
+
+            if (partyCulture.StringId == TORConstants.Cultures.SYLVANIA || partyCulture.StringId == TORConstants.Cultures.MOUSILLON)
             {
                 var totalMembers = party.Party.NumberOfAllMembers;
                 var noneatingMemberCount = party.Party.MemberRoster.Sum(item => item.Character.IsUndead() ? item.Number : 0);
@@ -56,7 +59,7 @@ namespace TOR_Core.Models
 
 
             // Apply greenskin-specific food consumption rates
-            if (party.IsMainParty && party.Party.Culture.StringId == TORConstants.Cultures.GREENSKIN)       //Main party only - npcs are dumb sadly
+            if (party.IsMainParty && party.LeaderHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)       //Main party only - npcs are dumb sadly
             {
                 var totalMembers = party.Party.MemberRoster.Sum(item => item.Number);
                 if (totalMembers > 0)
@@ -130,7 +133,7 @@ namespace TOR_Core.Models
             }
 
             //Sly : both chaos revolts and brasskeep will have no food consumption to skip their AI needing to find settlements for replenishing.
-            if (mobileParty.Party.MapFaction?.Culture.StringId == TORConstants.Cultures.CHAOS)//Party.Culture doesn't null protect against MapFaction
+            if (mobileParty.Party.MapFaction?.Culture.StringId == TORConstants.Cultures.CHAOS && mobileParty != MobileParty.MainParty)//Party.Culture doesn't null protect against MapFaction
             {
                 return false;
             }

@@ -12,7 +12,7 @@
         <RundownTooltipWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" ValueCategorizationAsInt="@ValueCategorizationAsInt" LineContainerWidget="Body\Explanations\Lines" DividerCollectionWidget="Body\Explanations\DividerCollectionParent\DividerCollection" IsVisible="@IsActive">
           <Children>
 
-            <ListPanel Id="Body" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" Sprite="BlankWhiteSquare_9" Color="#000000ff">
+            <ListPanel Id="Body" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" Sprite="BlankWhiteSquare_9" Color="#000000ff">
               <Children>
                 
                 <!--Top Bar-->
@@ -64,7 +64,7 @@
                 <!--Bottom Bar-->
                 <DimensionSyncWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="42" HorizontalAlignment="Center" DimensionToSync="Horizontal" IsEnabled="false" WidgetToCopyHeightFrom="..\Explanations\Lines" PaddingAmount="0">
                   <Children>
-                    <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalBottomToTop">
+                    <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalTopToBottom">
                       <Children>
 
                         <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="horizontal_gradient_divider" ExtendBottom="6" Color="#492406ff">

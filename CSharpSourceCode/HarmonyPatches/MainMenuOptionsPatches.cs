@@ -22,8 +22,9 @@ namespace TOR_Core.HarmonyPatches
         {
             List<InitialStateOption> newlist = new List<InitialStateOption>();
             newlist = __result.Where(x => x.Id != "StoryModeNewGame" && x.Id != "SandBoxNewGame").ToList();
-            var torOption = new InitialStateOption("TORNewgame", new TextObject("{=str_tor_menu_enter_game}Enter the Old World"), 3, OnCLick, IsDisabledAndReason);
-            var torOption2 = new InitialStateOption("TORForceLoad", new TextObject("{=str_tor_menu_shader_cache}Build Shader Cache"), 4, OnForceClick, IsDisabledAndReason);
+            // Low OrderIndex to appear at top (UI changed from BottomToTop to TopToBottom in 1.4)
+            var torOption = new InitialStateOption("TORNewgame", new TextObject("{=str_tor_menu_enter_game}Enter the Old World"), 1, OnCLick, IsDisabledAndReason);
+            var torOption2 = new InitialStateOption("TORForceLoad", new TextObject("{=str_tor_menu_shader_cache}Build Shader Cache"), 2, OnForceClick, IsDisabledAndReason);
             newlist.Add(torOption);
             newlist.Add(torOption2);
             newlist.Sort((x, y) => x.OrderIndex.CompareTo(y.OrderIndex));

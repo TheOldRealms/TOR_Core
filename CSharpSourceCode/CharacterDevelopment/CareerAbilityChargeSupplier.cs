@@ -173,16 +173,13 @@ namespace TOR_Core.CharacterDevelopment
             if (!affectingAgent.IsHero) return 0;
 
 
-            ExplainedNumber explainedNumber = new ExplainedNumber();
-
             if (affectingAgent.GetOriginMobileParty() != MobileParty.MainParty) return 0;
 
 
             if (!affectingAgent.IsMainAgent && !Hero.MainHero.HasCareerChoice("InspirationOfTheLadyKeystone")) return 0;
-
-            explainedNumber.Add(chargeValue);
-
-            explainedNumber.AddFactor(-0.9f);
+            
+            float adjustedCharge = chargeValue * 0.9f;
+            ExplainedNumber explainedNumber = new(adjustedCharge);
 
             var choices = Hero.MainHero.GetAllCareerChoices();
 
@@ -191,7 +188,6 @@ namespace TOR_Core.CharacterDevelopment
                 var choice = TORCareerChoices.GetChoice("VividVisionsKeystone");
                 if (choice != null)
                 {
-                    //the passive value for this is 30, which therefore adds a 30f factor
                     var value = choice.GetPassiveValue();
                     explainedNumber.AddFactor(value);
                 }
@@ -202,7 +198,7 @@ namespace TOR_Core.CharacterDevelopment
                 var choice = TORCareerChoices.GetChoice("InspirationOfTheLadyKeystone");
                 if (choice != null)
                 {
-                    explainedNumber.AddFactor(-0.05f); // Originally only 10% of charge is taken into account, now it would be 5% 
+                    explainedNumber.AddFactor(1f);//Sly : description states twice as fast; therefore, +100%.
                 }
             }
 
@@ -349,7 +345,7 @@ namespace TOR_Core.CharacterDevelopment
 
             if (!affectingAgent.IsMainAgent && affectingAgent.BelongsToMainParty() &&
                 !Hero.MainHero.HasCareerChoice("ForestStalkerKeystone")) return 0;
-
+            //Sly : party members killing enemies with siege equipment also contributes charge atm.
 
             chargeValue = Math.Min(150, chargeValue);
 
@@ -512,6 +508,7 @@ namespace TOR_Core.CharacterDevelopment
             AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
             // Damage taken: check if the affected agent (one being hit) is the main hero - 5x charge from blocking
+            //Sly : this doesn't account for blocked hits in any way?
             if (chargeType == ChargeType.DamageTaken && affectedAgent == Agent.Main && affectedAgent.GetHero() == Hero.MainHero)
             {
                 return chargeValue * 5;

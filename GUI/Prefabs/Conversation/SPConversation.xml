@@ -79,7 +79,7 @@
         </ListPanel>
 
         <!--Vertical Persuasion and Bottom panels Container-->
-        <ListPanel Id="VerticalContainer" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" HorizontalAlignment="Center" VerticalAlignment="Bottom" DoNotAcceptEvents="true">
+        <ListPanel Id="VerticalContainer" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" HorizontalAlignment="Center" VerticalAlignment="Bottom" DoNotAcceptEvents="true">
           <Children>
 
             <!--Horizontal Left and Right panels container (Dialogue and answers)-->
@@ -107,7 +107,7 @@
                 <NavigationScopeTargeter ScopeID="SPConversationItemsScope" ScopeParent="..\AnswerListContainer" ScopeMovements="Vertical" HasCircularMovement="true" IsDefaultNavigationScope="true" />
                 <Widget Id="AnswerListContainer" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" SuggestedWidth="750" HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="10">
                   <Children>
-                    <NavigatableListPanel Id="AnswerList" DataSource="{AnswerList}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" StackLayout.LayoutMethod="VerticalBottomToTop">
+                    <NavigatableListPanel Id="AnswerList" DataSource="{AnswerList}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" StackLayout.LayoutMethod="VerticalTopToBottom">
                       <ItemTemplate>
                         <ConversationItem />
                       </ItemTemplate>
@@ -129,7 +129,7 @@
 
                         <ConversationPersuasionProgressRichTextWidget DataSource="{Persuasion}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" Text="@ProgressText" PositionYOffset="-50" StayTime="2.5" Brush="Conversation.Persuasion.Progress.Text" DoNotAcceptEvents="true" ClipContents="false"/>
 
-                        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" MarginBottom="10" MarginTop="10">
+                        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" MarginBottom="10" MarginTop="10">
                           <Children>
 
                             <!--<TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="40" HorizontalAlignment="Center" Brush="Conversation.PersuasionTitle.Text" Text="@PersuasionText" />-->

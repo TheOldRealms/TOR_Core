@@ -9618,7 +9618,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_AQ3_2" name="{=Settlements.Settlement.name.castle_village_AQ2_2}Bergerac" posX="1052.751" posY="890.032" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AQ3_2}Situated somewhat north of Castle Curemonte is the humble hamlet of Bergerac. While the village does not get as much trade as its neighbouring settlements, it still benefits from the dukedom's more peaceful setting. Most of its traffic comes from its prosperous mining community thanks to the discovery of a silver deposit nearby.">
+  <Settlement id="castle_village_AQ3_2" name="{=Settlements.Settlement.name.castle_village_AQ3_2}Bergerac" posX="1052.751" posY="890.032" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AQ3_2}Situated somewhat north of Castle Curemonte is the humble hamlet of Bergerac. While the village does not get as much trade as its neighbouring settlements, it still benefits from the dukedom's more peaceful setting. Most of its traffic comes from its prosperous mining community thanks to the discovery of a silver deposit nearby.">
     <Components>
       <Village id="castle_village_comp_AQ3_2" village_type="VillageType.silver_mine" hearth="200" bound="Settlement.castle_AQ3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>

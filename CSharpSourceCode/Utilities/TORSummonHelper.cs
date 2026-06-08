@@ -103,7 +103,7 @@ namespace TOR_Core.Utilities
 
         public static int GetMissionAgentLimit()
         {
-            return Math.Max(0, MissionAgentSpawnLogic.MaxNumberOfAgentsForMission - AgentSafetyBuffer);
+            return Math.Max(0, DefaultBattleMissionAgentSpawnLogic.MaxNumberOfAgentsForMission - AgentSafetyBuffer);
         }
 
         /// <summary>

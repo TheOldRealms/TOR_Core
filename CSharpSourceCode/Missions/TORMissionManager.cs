@@ -154,7 +154,7 @@ namespace TOR_Core.Missions
                 ];
                 List<MissionBehavior> list =
                 [
-                    new MissionAgentSpawnLogic(suppliers, BattleSideEnum.Defender, BattleSizeType.Battle), //OK
+                    new DefaultBattleMissionAgentSpawnLogic(suppliers, BattleSideEnum.Defender, BattleSizeType.Battle), //OK
                     new BattlePowerCalculationLogic(), //OK
                     new BattleSpawnLogic("battle_set"), //OK
                     new GraveyardFightMissionController(), //OK
@@ -381,8 +381,7 @@ namespace TOR_Core.Missions
                     ViewCreator.CreateMissionAgentLabelUIHandler(mission),
                     new MissionItemContourControllerView(),
                     new MissionCampaignBattleSpectatorView(),
-                    ViewCreator.CreatePhotoModeView(),
-                    new MissionCameraFadeView()
+                    ViewCreator.CreatePhotoModeView()
                 }.ToArray();
         }
     }
@@ -413,8 +412,7 @@ namespace TOR_Core.Missions
                     ViewCreator.CreateMissionAgentLabelUIHandler(mission),
                     new MissionItemContourControllerView(),
                     new MissionCampaignBattleSpectatorView(),
-                    ViewCreator.CreatePhotoModeView(),
-                    new MissionCameraFadeView()
+                    ViewCreator.CreatePhotoModeView()
                 }.ToArray();
         }
     }
@@ -432,7 +430,7 @@ namespace TOR_Core.Missions
                     ViewCreator.CreateMissionSingleplayerEscapeMenu(CampaignOptions.IsIronmanMode),
                     ViewCreator.CreateOptionsUIHandler(),
                     ViewCreator.CreateMissionMainAgentEquipDropView(mission),
-                    ViewCreator.CreateMissionBattleScoreUIHandler(mission, new SPScoreboardVM(null)),
+                    ViewCreator.CreateMissionBattleScoreUIHandler(mission, new SPScoreboardVM(null, null)),
                     new MissionSingleplayerViewHandler(),
                     ViewCreator.CreateMissionAgentStatusUIHandler(mission),
                     ViewCreator.CreateMissionMainAgentEquipmentController(mission),

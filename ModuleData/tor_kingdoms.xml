@@ -123,7 +123,7 @@
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	<Kingdom id="middenland"
+    <Kingdom id="middenland"
              owner="Hero.tor_emp_lord_middenland_factionleader"
              banner_key="11.12.148.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_middenland"
              primary_banner_color="0xffb3b3b3"
@@ -141,7 +141,7 @@
              title="{=str_tor_kingdom_title_middenland}Middenland"
              ruler_title="{=str_tor_kingdom_rulertitle_middenland}Elector Count"
              text="{=str_tor_kingdom_text_middenland}Middenland, officially the Grand Duchies of Middenland and Middenheim, is a founding Electoral Province of the Empire that lies in the north-central region of that realm. Towering above the gloomy canopies of the Drakwald Forest is a sheer-sided pinnacle of white rock atop which sits the fortress city-state of Middenheim, capital of Middenland and the sacred City of the White Wolf. The White Wolf is the holy symbol of Ulric, the Imperial god of war, winter and wolves.">
-		<relationships>
+        <relationships>
             <relationship kingdom="Kingdom.reikland"
                           value="-1"
                           isAtWar="true" />
@@ -150,7 +150,7 @@
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	<Kingdom id="ostermark"
+    <Kingdom id="ostermark"
              owner="Hero.tor_emp_lord_ostermark_factionleader"
              banner_key="1.8.116.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_ostermark"
              primary_banner_color="0xff5a1c47"
@@ -173,7 +173,7 @@
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	<Kingdom id="hochland"
+    <Kingdom id="hochland"
              owner="Hero.tor_emp_lord_hochland_factionleader"
              banner_key="11.126.116.1500.1500.764.764.1.1.0.505.83.120.1312.2582.1025.212.0.0.89.505.20.41.507.507.764.764.0.0.0:kingdom_hochland"
              primary_banner_color="0xff00630f"
@@ -196,7 +196,7 @@
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	<Kingdom id="nordland"
+    <Kingdom id="nordland"
              owner="Hero.tor_emp_lord_nordland_factionleader"
              banner_key="3.116.12.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_nordland"
              primary_banner_color="0xff00408a"
@@ -219,7 +219,7 @@
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	<Kingdom id="ostland"
+    <Kingdom id="ostland"
              owner="Hero.tor_emp_lord_ostland_factionleader"
              banner_key="11.14.140.8000.8000.764.764.0.1.0.505.140.116.681.681.764.764.0.0.0:kingdom_ostland"
              primary_banner_color="0xfff0f0f0"
@@ -259,8 +259,7 @@
              short_name="{=str_tor_kingdom_shortname_brasskeep}Repugnauts"
              title="{=str_tor_kingdom_title_brasskeep}Brass Keep"
              ruler_title="{=str_tor_kingdom_rulertitle_brasskeep}Chaos Champion"
-             text="{=str_tor_kingdom_text_brasskeep}After the defiling of the Brass Keep in the Great War Against Chaos, the fortress became an oozing mess of slop and gushing mucus after the Nurgle worshippers asked the plaguefather to bless the fortresses foundations. After being cut off and surrounded the non Nurgle aligned warriors slowly fell to the diseases. Only the servants of Nurgle survived the gifts of plague, and they eventually became known as Putrid Blightkings.Now most of the band are trivial servants of chaos and aspiring warriors to Grandfather Nurgle, while they are led by the original survivors of the Fecund Fortress.">
-    </Kingdom>
+             text="{=str_tor_kingdom_text_brasskeep}After the defiling of the Brass Keep in the Great War Against Chaos, the fortress became an oozing mess of slop and gushing mucus after the Nurgle worshippers asked the plaguefather to bless the fortresses foundations. After being cut off and surrounded the non Nurgle aligned warriors slowly fell to the diseases. Only the servants of Nurgle survived the gifts of plague, and they eventually became known as Putrid Blightkings.Now most of the band are trivial servants of chaos and aspiring warriors to Grandfather Nurgle, while they are led by the original survivors of the Fecund Fortress." />
     <Kingdom id="wasteland"
              owner="Hero.tor_emp_lord_wasteland_factionleader"
              banner_key="11.131.148.1500.1500.764.764.1.1.0.122.20.41.601.601.764.764.0.0.0:kingdom_wasteland"
@@ -429,7 +428,7 @@
     </Kingdom>
     <Kingdom id="parravon"
              owner="Hero.tor_br_lord_parravon_factionleader"
-			 banner_key="11.116.116.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_parravon"
+             banner_key="11.116.116.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_parravon"
              primary_banner_color="0xff292625"
              secondary_banner_color="0xfffad373"
              label_color="FFfad373"
@@ -642,7 +641,7 @@
     </Kingdom>
     <Kingdom id="blooddragons"
              owner="Hero.tor_vc_lord_blooddragons_factionleader"
-			 banner_key="11.116.142.1633.1633.814.959.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_blooddragons"
+             banner_key="11.116.142.1633.1633.814.959.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_blooddragons"
              primary_banner_color="0xffC94B4E"
              secondary_banner_color="0xff211F1F"
              label_color="FF211F1F"
@@ -657,10 +656,8 @@
              short_name="{=str_tor_kingdom_shortname_blooddragons}Blood Dragons"
              title="{=str_tor_kingdom_title_blooddragons}Blood Keep"
              ruler_title="{=str_tor_kingdom_rulertitle_blooddragons}Grand Master"
-             text="{=str_tor_kingdom_text_blooddragons}Blood Keep was once the home of a valiant order of Knights known as the Order of the Blood Dragon, or the Ordo Draconis. One fateful night, a Vampire known as Walach Harkon challenged every Knight to single combat, eventually turning all who he deemed worthy into Vampires. The death of the Ordo Draconis was followed by their rebirth in blood; ever since then these terrifying warriors have been known as the Blood Dragons. The Imperials suffered under their attacks and depravations for sixty years, before they amassed a force to raze the Keep. That was almost six centuries ago, for all that time the ruins of the keep lay undisturbed. Now, the keep rises again, built by the silent undead, and the men of the Empire will again know fear.">
-    </Kingdom>
-	
-	<Kingdom id="necrachs"
+             text="{=str_tor_kingdom_text_blooddragons}Blood Keep was once the home of a valiant order of Knights known as the Order of the Blood Dragon, or the Ordo Draconis. One fateful night, a Vampire known as Walach Harkon challenged every Knight to single combat, eventually turning all who he deemed worthy into Vampires. The death of the Ordo Draconis was followed by their rebirth in blood; ever since then these terrifying warriors have been known as the Blood Dragons. The Imperials suffered under their attacks and depravations for sixty years, before they amassed a force to raze the Keep. That was almost six centuries ago, for all that time the ruins of the keep lay undisturbed. Now, the keep rises again, built by the silent undead, and the men of the Empire will again know fear." />
+    <Kingdom id="necrachs"
              owner="Hero.tor_vc_lord_necrarch_first_factionleader"
              banner_key="11.12.149.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_necrarch"
              primary_banner_color="0xffC94B4E"
@@ -680,10 +677,9 @@
              text="{=str_tor_kingdom_text_necrarchs}Scribes of the Grimoire Necronium are dedicated to the study of The Grimoire Necronium, it is a powerful necromantic tome. It was created by W'soran, one of the first vampires and the only one to remain loyal to Nagash. In exchange, the arch-necromancer allowed W'soran to study his own tomes of sorcery, the Nine Books of Nagash. W'soran combined their lore with his own studies of the spirit realm and later, his apprentice Melkhior continued his work.">
         <relationships />
     </Kingdom>
-	
     <Kingdom id="mousillon"
              owner="Hero.tor_m_lord_mousillon_factionleader"
-			 banner_key="11.39.142.1633.1633.814.959.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_mousillon"
+             banner_key="11.39.142.1633.1633.814.959.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_mousillon"
              primary_banner_color="0xff7d5300"
              secondary_banner_color="0xff1a1815"
              label_color="FF211F1F"
@@ -722,9 +718,8 @@
              short_name="{=str_tor_kingdom_shortname_athelloren}Athel Loren"
              title="{=str_tor_kingdom_title_athelloren}Athel Loren"
              ruler_title="{=str_tor_kingdom_rulertitle_athelloren}Highborn"
-             text="{=str_tor_kingdom_text_athelloren}Athel Loren the great forest of the old world is divided into twelve Asrai kingdoms, each ruled by ancient lord's and lady's of the great council. The flow of time works different in Athel Loren. Some realms are permanently locked in time and what seems like the passing of a season is actually years. Others dwell in an eternal night or in the glory of the light of the midday sun. The magical halls of elven lords and ladies are scattered throughout the glades of these kingdoms forming having their own identity and custom's. In these places, enveloped by a dim light, you can hear laughter and ghostly tunes that are reminiscent of the wind blowing through the spring branches. Its magnificent entrance portals are interwoven with the trunks of ancient trees or carved into the slopes of a hill. These places remain hidden from all those who are not welcomed by the Asrai. These beings may pass very close to these entrances, but they will never discover them.">
-    </Kingdom>
-	<Kingdom id="laurelorn"
+             text="{=str_tor_kingdom_text_athelloren}Athel Loren the great forest of the old world is divided into twelve Asrai kingdoms, each ruled by ancient lord's and lady's of the great council. The flow of time works different in Athel Loren. Some realms are permanently locked in time and what seems like the passing of a season is actually years. Others dwell in an eternal night or in the glory of the light of the midday sun. The magical halls of elven lords and ladies are scattered throughout the glades of these kingdoms forming having their own identity and custom's. In these places, enveloped by a dim light, you can hear laughter and ghostly tunes that are reminiscent of the wind blowing through the spring branches. Its magnificent entrance portals are interwoven with the trunks of ancient trees or carved into the slopes of a hill. These places remain hidden from all those who are not welcomed by the Asrai. These beings may pass very close to these entrances, but they will never discover them." />
+    <Kingdom id="laurelorn"
              owner="Hero.tor_eo_lord_laurelorn_factionleader"
              banner_key="11.126.148.1500.1500.764.764.1.1.0.218.38.138.2000.1000.1414.964.0.0.0.218.38.138.2000.1000.1414.564.0.1.180.218.38.138.2000.1000.114.964.0.0.0.218.38.132.2000.1000.114.564.0.1.180.122.20.41.550.675.764.764.0.0.0:kingdom_wardens_sun"
              primary_banner_color="0xff777251"
@@ -741,9 +736,8 @@
              short_name="{=str_tor_kingdom_shortname_laurelorn}Laurelorn"
              title="{=str_tor_kingdom_title_laurelorn}Laurelorn"
              ruler_title="{=str_tor_kingdom_rulertitle_laurelorn}Highborn"
-             text="{=str_tor_kingdom_text_laurelorn}Once a proud colony of the Phoenix King, the Eonir of Laurelorn are the last remains of the High elves in the Old World, however, they assert their complete independence from Ulthuan after thousands of years of separation. In the Tragic events of the War of the Beards against the Dwarves, All colonies were either dissolved or burned down by the Dwarfs, leading to most of the remaining elves searching for shelter in the most northern province in Tor Lithanel. Though they called for support from the Phoenix Throne, Tor Lithanel did not receive any response and had a long-lasting fight for their survival as a result of these events, Laurelorn declared their independence. Today, the relationship between Ulthuan and Laurelorn has improved again. Yet, the Eonir do not believe anymore in the cause of the Asur. Instead, they arranged their situation in the middle of the empire of men. ">
-    </Kingdom>
-	<Kingdom id="karak_kadrin"
+             text="{=str_tor_kingdom_text_laurelorn}Once a proud colony of the Phoenix King, the Eonir of Laurelorn are the last remains of the High elves in the Old World, however, they assert their complete independence from Ulthuan after thousands of years of separation. In the Tragic events of the War of the Beards against the Dwarves, All colonies were either dissolved or burned down by the Dwarfs, leading to most of the remaining elves searching for shelter in the most northern province in Tor Lithanel. Though they called for support from the Phoenix Throne, Tor Lithanel did not receive any response and had a long-lasting fight for their survival as a result of these events, Laurelorn declared their independence. Today, the relationship between Ulthuan and Laurelorn has improved again. Yet, the Eonir do not believe anymore in the cause of the Asur. Instead, they arranged their situation in the middle of the empire of men. " />
+    <Kingdom id="karak_kadrin"
              owner="Hero.tor_dw_lord_karak_kadrin_factionleader"
              banner_key="11.123.140.1398.1615.785.765.0.0.90.505.123.18.620.620.764.764.0.0.0:kingdom_kadrin"
              primary_banner_color="0xfff0f0f0"
@@ -766,8 +760,7 @@
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	
-	<Kingdom id="karak_angazhar"
+    <Kingdom id="karak_angazhar"
              owner="Hero.tor_dw_lord_karak_angazhar_factionleader"
              banner_key="11.99.116.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_angazhar"
              primary_banner_color="0xfff0f0f0"
@@ -784,14 +777,13 @@
              short_name="{=str_tor_kingdom_shortname_karak_angazhar}Karak Angazhar"
              title="{=str_tor_kingdom_title_karak_angazhar}Karak Angazhar"
              ruler_title="{=str_tor_kingdom_rulertitle_karak_angazhar}King"
-			 text="{=str_tor_kingdom_text_karak_angazhar}Karak Angazhar WIP.">
+             text="{=str_tor_kingdom_text_karak_angazhar}Karak Angazhar WIP.">
         <relationships />
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	
-	<Kingdom id="karak_azgaraz"
+    <Kingdom id="karak_azgaraz"
              owner="Hero.tor_dw_lord_karak_azgaraz_factionleader"
              banner_key="11.146.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_azgaraz"
              primary_banner_color="0xfff0f0f0"
@@ -808,14 +800,13 @@
              short_name="{=str_tor_kingdom_shortname_karak_azgaraz}Karak Azgaraz"
              title="{=str_tor_kingdom_title_karak_azgaraz}Karak Azgaraz"
              ruler_title="{=str_tor_kingdom_rulertitle_karak_azgaraz}King"
-			 text="{=str_tor_kingdom_text_karak_azgaraz}Karak Azgaraz is one of the major strongholds in the Grey Mountains. Though there are many Dwarf holds scattered across the range, none rival the majesty or wealth of those in the eastern realms. Karak Azgaraz stood long before the townships of the Empire were built, once enjoying rich seams of gold and silver. However, the more accessible veins have long since been mined out, and the hold now relies heavily on trade with the Empire to sustain itself. The King understands that for Karak Azgaraz to endure, new veins must be uncovered. As such, he frequently orders assaults upon the savage tribes infesting the surrounding wilderness, driving them back to clear the way for prospectors and mining parties. The hold’s survival, as ever, lies in stone, steel, and unyielding determination.">
+             text="{=str_tor_kingdom_text_karak_azgaraz}Karak Azgaraz is one of the major strongholds in the Grey Mountains. Though there are many Dwarf holds scattered across the range, none rival the majesty or wealth of those in the eastern realms. Karak Azgaraz stood long before the townships of the Empire were built, once enjoying rich seams of gold and silver. However, the more accessible veins have long since been mined out, and the hold now relies heavily on trade with the Empire to sustain itself. The King understands that for Karak Azgaraz to endure, new veins must be uncovered. As such, he frequently orders assaults upon the savage tribes infesting the surrounding wilderness, driving them back to clear the way for prospectors and mining parties. The hold’s survival, as ever, lies in stone, steel, and unyielding determination.">
         <relationships />
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	
-	<Kingdom id="karak_eksfilaz"
+    <Kingdom id="karak_eksfilaz"
              owner="Hero.tor_dw_lord_karak_eksfilaz_factionleader"
              banner_key="11.126.116.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_eksfilaz"
              primary_banner_color="0xfff0f0f0"
@@ -832,14 +823,13 @@
              short_name="{=str_tor_kingdom_shortname_karak_eksfilaz}Karak Eksfilaz"
              title="{=str_tor_kingdom_title_karak_eksfilaz}Karak Eksfilaz"
              ruler_title="{=str_tor_kingdom_rulertitle_karak_eksfilaz}King"
-			 text="{=str_tor_kingdom_text_karak_eksfilaz}Karak Eksfilaz is a small hold situated in the far western reaches of the Vaults. Though not blessed with rich veins of gold or silver, the hold boasts an abundance of base ores, well-suited to the forging of weapons, armour, and tools of fine Dwarfen make. Karak Eksfilaz maintains various trade agreements with the men of the South, supplying many mercenary companies with Dwarfen-forged arms and armour to aid them in their endless wars.">
+             text="{=str_tor_kingdom_text_karak_eksfilaz}Karak Eksfilaz is a small hold situated in the far western reaches of the Vaults. Though not blessed with rich veins of gold or silver, the hold boasts an abundance of base ores, well-suited to the forging of weapons, armour, and tools of fine Dwarfen make. Karak Eksfilaz maintains various trade agreements with the men of the South, supplying many mercenary companies with Dwarfen-forged arms and armour to aid them in their endless wars.">
         <relationships />
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	
-	<Kingdom id="karak_gantuk"
+    <Kingdom id="karak_gantuk"
              owner="Hero.tor_dw_lord_karak_gantuk_factionleader"
              banner_key="11.92.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_gantuk"
              primary_banner_color="0xfff0f0f0"
@@ -856,14 +846,13 @@
              short_name="{=str_tor_kingdom_shortname_karak_gantuk}Karak Gantuk"
              title="{=str_tor_kingdom_title_karak_gantuk}Karak Gantuk"
              ruler_title="{=str_tor_kingdom_rulertitle_karak_gantuk}King"
-			 text="{=str_tor_kingdom_text_karak_gantuk}Karak Gantuk sits nestled between Karak Hirn and Karak Angazhar. While Karak Hirn and Karak Angazhar enjoy trade with the Empire and are shielded from major threats from the south and east, Karak Gantuk has no such fortune due to its perilous positioning. As a result, the hold trades primarily with the Southern Realms and the occasional caravan from Barak Varr. In ages past, during the Time of Woes, Karak Gantuk bore witness to a great influx of refugees fleeing their fallen holds. These Dwarfs have since been fully integrated into the hold, yet their hearts still burn with the fire of loss, dreaming of the day they might reclaim that which was taken from them.">
+             text="{=str_tor_kingdom_text_karak_gantuk}Karak Gantuk sits nestled between Karak Hirn and Karak Angazhar. While Karak Hirn and Karak Angazhar enjoy trade with the Empire and are shielded from major threats from the south and east, Karak Gantuk has no such fortune due to its perilous positioning. As a result, the hold trades primarily with the Southern Realms and the occasional caravan from Barak Varr. In ages past, during the Time of Woes, Karak Gantuk bore witness to a great influx of refugees fleeing their fallen holds. These Dwarfs have since been fully integrated into the hold, yet their hearts still burn with the fire of loss, dreaming of the day they might reclaim that which was taken from them.">
         <relationships />
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-
-	<Kingdom id="karak_hirn"
+    <Kingdom id="karak_hirn"
              owner="Hero.tor_dw_lord_karak_hirn_factionleader"
              banner_key="11.113.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_hirn"
              primary_banner_color="0xfff0f0f0"
@@ -880,14 +869,13 @@
              short_name="{=str_tor_kingdom_shortname_karak_hirn}Karak Hirn"
              title="{=str_tor_kingdom_title_karak_hirn}Karak Hirn"
              ruler_title="{=str_tor_kingdom_rulertitle_karak_hirn}King"
-			 text="{=str_tor_kingdom_text_karak_hirn}Karak Hirn, known in Khazalid as the “Hornhold”, stands as the mightiest and most influential Dwarf stronghold in the Black Mountains, nestled between the northern reaches of the Border Princes and the southern boundaries of the Empire. Though comparatively young by Dwarfen reckoning, Karak Hirn has grown in stature and power, especially in the wake of the decline of the ancient Karaz Ankor. The hold's rise was slow and deliberate, built stone by stone in the shadow of adversity, and bolstered by the loyalty of numerous vassal clans and outlying settlements. Unlike many older holds, parts of Karak Hirn are carved openly into the mountain’s flanks, with some outposts exposed to the surface—an unusual feature in traditional Dwarf architecture, born of necessity rather than preference. Owing to its isolated location, the hold is not linked to the vast Underway network, forcing travellers and trade to brave the treacherous mountain passes and cliffside roads that wind perilously through the peaks. The mountains surrounding Karak Hirn are rich in iron and common metals, with smaller, hard-won seams of rarer ores and gems scattered throughout the depths. Yet it is not wealth alone that lends the Hornhold its renown.Karak Hirn earns its name from a vast cavern near the summit of the mountain, which produces an eerie, thunderous wail when the wind blows through it. This natural phenomenon has been masterfully harnessed by the Dwarfs. By constructing resonating chambers and massive iron gates that can be opened or sealed to control the airflow, they have fashioned a kind of natural war horn, one capable of shaking the very stones and striking dread into the hearts of any who would dare threaten the hold.">
+             text="{=str_tor_kingdom_text_karak_hirn}Karak Hirn, known in Khazalid as the “Hornhold”, stands as the mightiest and most influential Dwarf stronghold in the Black Mountains, nestled between the northern reaches of the Border Princes and the southern boundaries of the Empire. Though comparatively young by Dwarfen reckoning, Karak Hirn has grown in stature and power, especially in the wake of the decline of the ancient Karaz Ankor. The hold's rise was slow and deliberate, built stone by stone in the shadow of adversity, and bolstered by the loyalty of numerous vassal clans and outlying settlements. Unlike many older holds, parts of Karak Hirn are carved openly into the mountain’s flanks, with some outposts exposed to the surface—an unusual feature in traditional Dwarf architecture, born of necessity rather than preference. Owing to its isolated location, the hold is not linked to the vast Underway network, forcing travellers and trade to brave the treacherous mountain passes and cliffside roads that wind perilously through the peaks. The mountains surrounding Karak Hirn are rich in iron and common metals, with smaller, hard-won seams of rarer ores and gems scattered throughout the depths. Yet it is not wealth alone that lends the Hornhold its renown.Karak Hirn earns its name from a vast cavern near the summit of the mountain, which produces an eerie, thunderous wail when the wind blows through it. This natural phenomenon has been masterfully harnessed by the Dwarfs. By constructing resonating chambers and massive iron gates that can be opened or sealed to control the airflow, they have fashioned a kind of natural war horn, one capable of shaking the very stones and striking dread into the hearts of any who would dare threaten the hold.">
         <relationships />
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	
-	<Kingdom id="karak_izor"
+    <Kingdom id="karak_izor"
              owner="Hero.tor_dw_lord_karak_izor_factionleader"
              banner_key="11.72.140.1398.1615.785.765.0.0.90.505.72.18.620.620.764.764.0.0.0:kingdom_izor"
              primary_banner_color="0xfff0f0f0"
@@ -904,14 +892,13 @@
              short_name="{=str_tor_kingdom_shortname_karak_izor}Karak Izor"
              title="{=str_tor_kingdom_title_karak_izor}Karak Izor"
              ruler_title="{=str_tor_kingdom_rulertitle_karak_izor}King"
-			 text="{=str_tor_kingdom_text_karak_izor}Karak Izor, known in Khazalid as the “Copper Hold” and called “Copper Mountain” by Humans, stands as the foremost and largest Dwarfhold beyond the World’s Edge Mountains. Its age, wealth, and enduring strength have made it a bastion of Dwarfen culture in the west. Dwarf settlements scattered throughout the Vaults and even as far as the eastern Irrana and northern Apuccini Mountains look to Karak Izor for leadership, protection, and kinship in times of strife. The mountain upon which the hold is built lies within the rugged expanse of the Vaults, a wild range where towering peaks, glacial cliffs, and deep, ice-hewn valleys mark the land. Here, the ancient rock yields generous veins of copper, iron, tin, and other useful ores, fuelling the forges of Karak Izor and making it one of the richest mining centres outside of the ancestral heartlands. Some of the oldest and deepest workings ever dug beyond the World’s Edge Mountains delve into these slopes, their tunnels echoing with the sound of pickaxes. Though the mountain itself is the heart of the hold, the influence of Karak Izor stretches far. In ages past, following the ruin of holds in the east, many Dwarf clans sought refuge here. Among them were remnants of the Dragonback Clan and the once-proud Clan Angrund. These exiled folk settled throughout the valleys, founding so-called “valley-kingdoms” beneath the shadows of the mountains. Though largely independent, these outposts remained culturally and spiritually tied to Karak Izor, looking to it as their ancestral anchor while they rebuilt, forged anew, and plotted the long road to reclamation. In the higher reaches, some daring Dwarf kings even carved homes within the glaciers themselves, stout halls of ice and stone, braced against the wind and time. Such places, though few, stand as testaments to the resilience and ingenuity of the Dawi. A handful of small, isolated human villages are permitted to farm in the more sheltered valleys below, but their presence is closely watched. Let none mistake it, the mountains belong to the Dwarfs. Every stone, every stream, every breath of wind that whispers through the peaks answers to the Copper Hold.">
+             text="{=str_tor_kingdom_text_karak_izor}Karak Izor, known in Khazalid as the “Copper Hold” and called “Copper Mountain” by Humans, stands as the foremost and largest Dwarfhold beyond the World’s Edge Mountains. Its age, wealth, and enduring strength have made it a bastion of Dwarfen culture in the west. Dwarf settlements scattered throughout the Vaults and even as far as the eastern Irrana and northern Apuccini Mountains look to Karak Izor for leadership, protection, and kinship in times of strife. The mountain upon which the hold is built lies within the rugged expanse of the Vaults, a wild range where towering peaks, glacial cliffs, and deep, ice-hewn valleys mark the land. Here, the ancient rock yields generous veins of copper, iron, tin, and other useful ores, fuelling the forges of Karak Izor and making it one of the richest mining centres outside of the ancestral heartlands. Some of the oldest and deepest workings ever dug beyond the World’s Edge Mountains delve into these slopes, their tunnels echoing with the sound of pickaxes. Though the mountain itself is the heart of the hold, the influence of Karak Izor stretches far. In ages past, following the ruin of holds in the east, many Dwarf clans sought refuge here. Among them were remnants of the Dragonback Clan and the once-proud Clan Angrund. These exiled folk settled throughout the valleys, founding so-called “valley-kingdoms” beneath the shadows of the mountains. Though largely independent, these outposts remained culturally and spiritually tied to Karak Izor, looking to it as their ancestral anchor while they rebuilt, forged anew, and plotted the long road to reclamation. In the higher reaches, some daring Dwarf kings even carved homes within the glaciers themselves, stout halls of ice and stone, braced against the wind and time. Such places, though few, stand as testaments to the resilience and ingenuity of the Dawi. A handful of small, isolated human villages are permitted to farm in the more sheltered valleys below, but their presence is closely watched. Let none mistake it, the mountains belong to the Dwarfs. Every stone, every stream, every breath of wind that whispers through the peaks answers to the Copper Hold.">
         <relationships />
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	
-	<Kingdom id="karak_kaferkammaz"
+    <Kingdom id="karak_kaferkammaz"
              owner="Hero.tor_dw_lord_karak_kaferkammaz_factionleader"
              banner_key="11.71.142.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_kaferkammaz"
              primary_banner_color="0xfff0f0f0"
@@ -928,14 +915,13 @@
              short_name="{=str_tor_kingdom_shortname_karak_kaferkammaz}Karak Kaferkammaz"
              title="{=str_tor_kingdom_title_karak_kaferkammaz}Karak Kaferkammaz"
              ruler_title="{=str_tor_kingdom_rulertitle_karak_kaferkammaz}King"
-			 text="{=str_tor_kingdom_text_karak_kaferkammaz}Karak Kaferkammaz is a modest hold nestled tightly between karak Eksfilaz and Karak Izor. Because of its remote location, the hold only sees incursions from the underway, which is why the underway underneath Karak Kaferkammaz is still in good shape. The Dwarfs of Karak Kaferkammaz are very much aware of their proximity to the Wood Elves in the north and have had many reluctant dealings and border skirmishes with them, almost reaching a boiling point and leading to a war that neither could afford. King Skalf Redbeard was invited to the northern border by the Glade lords of Athel Loren a few centuries ago to negotiate, Skalf brought his own retinue of lords and thanes to the table. After many insults, threats and near fist fights, the meeting was interrupted by an ambushing force of Beastmen, who were waiting for the two groups to be distracted enough before striking. The battle was brief, the beastmen barely able to get close enough to the Dwarfen shield wall before they were felled by arrows, and those that did were swiftly cut down. As frustrations were vented during the attack the negotiations resumed and went much more amicably. Agreements were struck, pacts were sealed and the groups went their own way. Ever since, trade has flourished. Though centuries have passed, tensions are once again rising. The Wood Elves keep delivering shoddier wood, so the Dwarfs keep sending fewer shipments of metals.">
+             text="{=str_tor_kingdom_text_karak_kaferkammaz}Karak Kaferkammaz is a modest hold nestled tightly between karak Eksfilaz and Karak Izor. Because of its remote location, the hold only sees incursions from the underway, which is why the underway underneath Karak Kaferkammaz is still in good shape. The Dwarfs of Karak Kaferkammaz are very much aware of their proximity to the Wood Elves in the north and have had many reluctant dealings and border skirmishes with them, almost reaching a boiling point and leading to a war that neither could afford. King Skalf Redbeard was invited to the northern border by the Glade lords of Athel Loren a few centuries ago to negotiate, Skalf brought his own retinue of lords and thanes to the table. After many insults, threats and near fist fights, the meeting was interrupted by an ambushing force of Beastmen, who were waiting for the two groups to be distracted enough before striking. The battle was brief, the beastmen barely able to get close enough to the Dwarfen shield wall before they were felled by arrows, and those that did were swiftly cut down. As frustrations were vented during the attack the negotiations resumed and went much more amicably. Agreements were struck, pacts were sealed and the groups went their own way. Ever since, trade has flourished. Though centuries have passed, tensions are once again rising. The Wood Elves keep delivering shoddier wood, so the Dwarfs keep sending fewer shipments of metals.">
         <relationships />
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	
-	<Kingdom id="karak_norn"
+    <Kingdom id="karak_norn"
              owner="Hero.tor_dw_lord_karak_norn_factionleader"
              banner_key="1.127.142.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_norn"
              primary_banner_color="0xfff0f0f0"
@@ -952,14 +938,13 @@
              short_name="{=str_tor_kingdom_shortname_karak_norn}Karak Norn"
              title="{=str_tor_kingdom_title_karak_norn}Karak Norn"
              ruler_title="{=str_tor_kingdom_rulertitle_karak_norn}King"
-			 text="{=str_tor_kingdom_text_karak_norn}Out of all the hills and mountains settled by the Dwarfs, the Grey Mountains are by far the poorest in minerals. The ore and gem deposits are also harder to mine because of the unstable bedrock. The Dwarfs who settled here were led by tales of untold riches underneath the earth, and their descendants cling to these tales with usual Dwarfen stubbornness, hoping to find these riches one day. Unfortunately, many years have passed, and more and more younger Dwarfs leave the Grey Mountains to seek their fortune elsewhere, the mood among those who remain is increasingly sombre and dour. The largest hold in the Grey Mountains is Karak Norn, Barren Earth Hold. Populated by displaced clans from several fallen holds such as Mount Silverspear and the watchtowers of Mad Dog Pass. Karak Norn sits on the only sizable deposit of ore and gemstones and is strategically placed with its upper level visible on a plateau high above the forest of Athel Loren. This allows the Dwarfs to monitor the activities of the Wood Elves, albeit from a considerable distance. While the Asrai haven't been a threat for over 4,000 years, and the grudge against the High Elves was officially settled with the taking of the Phoenix Crown at the end of the War of Vengeance, the Dwarfs see no harm in precautions. Karak Norn is the smallest of the main Dwarf holds outside the Worlds Edge Mountains, but it still has strong influence over the surrounding Dwarf settlements. The Grey Mountain Dwarfs enjoy a relatively peaceful co-existence with the Bretonnians to the west and a very uneasy truce with the Wood Elves of Athel Loren. They side with the Empire in times of war with Bretonnia, and have been known to close all major passes in the southern Grey Mountains, including the well-travelled Montdidier Pass that transverses the southern end of the range, near The Vaults.Karak Norn is defended by large Flame Cannons and powerful Bolt Throwers. Although clearly designed with the Wood Elves of Athel Loren in mind, the Dwarf defences are a formidable deterrent to any who might seek to invade their realm.">
+             text="{=str_tor_kingdom_text_karak_norn}Out of all the hills and mountains settled by the Dwarfs, the Grey Mountains are by far the poorest in minerals. The ore and gem deposits are also harder to mine because of the unstable bedrock. The Dwarfs who settled here were led by tales of untold riches underneath the earth, and their descendants cling to these tales with usual Dwarfen stubbornness, hoping to find these riches one day. Unfortunately, many years have passed, and more and more younger Dwarfs leave the Grey Mountains to seek their fortune elsewhere, the mood among those who remain is increasingly sombre and dour. The largest hold in the Grey Mountains is Karak Norn, Barren Earth Hold. Populated by displaced clans from several fallen holds such as Mount Silverspear and the watchtowers of Mad Dog Pass. Karak Norn sits on the only sizable deposit of ore and gemstones and is strategically placed with its upper level visible on a plateau high above the forest of Athel Loren. This allows the Dwarfs to monitor the activities of the Wood Elves, albeit from a considerable distance. While the Asrai haven't been a threat for over 4,000 years, and the grudge against the High Elves was officially settled with the taking of the Phoenix Crown at the end of the War of Vengeance, the Dwarfs see no harm in precautions. Karak Norn is the smallest of the main Dwarf holds outside the Worlds Edge Mountains, but it still has strong influence over the surrounding Dwarf settlements. The Grey Mountain Dwarfs enjoy a relatively peaceful co-existence with the Bretonnians to the west and a very uneasy truce with the Wood Elves of Athel Loren. They side with the Empire in times of war with Bretonnia, and have been known to close all major passes in the southern Grey Mountains, including the well-travelled Montdidier Pass that transverses the southern end of the range, near The Vaults.Karak Norn is defended by large Flame Cannons and powerful Bolt Throwers. Although clearly designed with the Wood Elves of Athel Loren in mind, the Dwarf defences are a formidable deterrent to any who might seek to invade their realm.">
         <relationships />
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	
-	<Kingdom id="karak_zhufbar"
+    <Kingdom id="karak_zhufbar"
              owner="Hero.tor_dw_lord_karak_zhufbar_factionleader"
              banner_key="11.101.140.1398.1615.785.765.0.0.90.505.101.18.620.620.764.764.0.0.0:kingdom_zhufbar"
              primary_banner_color="0xfff0f0f0"
@@ -976,14 +961,13 @@
              short_name="{=str_tor_kingdom_shortname_karak_zhufbar}Karak Zhufbar"
              title="{=str_tor_kingdom_title_karak_zhufbar}Karak Zhufbar"
              ruler_title="{=str_tor_kingdom_rulertitle_karak_zhufbar}King"
-			 text="{=str_tor_kingdom_text_karak_zhufbar}Zhufbar houses the Dawi’s finest smiths and Engineers guilds in all of the Karaz Ankor. The surrounding lands house the superior metal known as Mithri- I mean Gromril, and is made into the finest crafts in the grand smiths in Zhufbar. Zhufbar is often looked down upon by many of the Longbeards and Greybeards for their innovation when it comes to gunpowder and technology. The Hold stands firm in the face of Greenskin raids, and Skaven incursions from beneath, as well as neighboring Sylvania. The hold is not open for any visitors from any nation besides that of its own, and honored Dawongr — trusted Dwarf Friends.">
+             text="{=str_tor_kingdom_text_karak_zhufbar}Zhufbar houses the Dawi’s finest smiths and Engineers guilds in all of the Karaz Ankor. The surrounding lands house the superior metal known as Mithri- I mean Gromril, and is made into the finest crafts in the grand smiths in Zhufbar. Zhufbar is often looked down upon by many of the Longbeards and Greybeards for their innovation when it comes to gunpowder and technology. The Hold stands firm in the face of Greenskin raids, and Skaven incursions from beneath, as well as neighboring Sylvania. The hold is not open for any visitors from any nation besides that of its own, and honored Dawongr — trusted Dwarf Friends.">
         <relationships />
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	
-	<Kingdom id="karak_ziflin"
+    <Kingdom id="karak_ziflin"
              owner="Hero.tor_dw_lord_karak_ziflin_factionleader"
              banner_key="11.38.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_ziflin"
              primary_banner_color="0xfff0f0f0"
@@ -1000,17 +984,15 @@
              short_name="{=str_tor_kingdom_shortname_karak_ziflin}Karak Ziflin"
              title="{=str_tor_kingdom_title_karak_ziflin}Karak Ziflin"
              ruler_title="{=str_tor_kingdom_rulertitle_karak_ziflin}King"
-			 text="{=str_tor_kingdom_text_karak_ziflin}Nestled within the Southern Grey Mountains, Karak Ziflin was a key chokepoint for the Dwarfs during the War of Vengeance.">
+             text="{=str_tor_kingdom_text_karak_ziflin}Nestled within the Southern Grey Mountains, Karak Ziflin was a key chokepoint for the Dwarfs during the War of Vengeance.">
         <relationships />
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	
-	
-	<Kingdom id="bad_axes"
+    <Kingdom id="bad_axes"
              owner="Hero.tor_greenskin_lord_bad_axes_factionleader"
-			 banner_key="11.142.116.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_badaxes"
+             banner_key="11.142.116.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_badaxes"
              primary_banner_color="0xfff0f0f0"
              secondary_banner_color="0xff050505"
              label_color="FF830808"
@@ -1025,16 +1007,15 @@
              short_name="{=str_tor_kingdom_shortname_bad_axes}Bad Axes"
              title="{=str_tor_kingdom_title_bad_axes}Bad Axes Tribe"
              ruler_title="{=str_tor_kingdom_rulertitle_bad_axes}Warboss"
-			 text="{=str_tor_kingdom_text_bad_axes}High in the Grey Mountains of Bretonnia the Tribe of Bad Axes roams. The Bad Axes are an unusual tribe for Greenskin as they ride Hagranyms into battle - A race of carnivorous horse-like beings. These animals are smarter than Greenskins and only allow themselves to be mounted as their Orc riders eventually ride down into bloody battles. The Bad Axes bear a grudge against the Dukedom of Couronne due to an event involving one of the past Royarchs and Gromodrak Hoofslasha, the current warboss of the Bad Axes Tribe.">
+             text="{=str_tor_kingdom_text_bad_axes}High in the Grey Mountains of Bretonnia the Tribe of Bad Axes roams. The Bad Axes are an unusual tribe for Greenskin as they ride Hagranyms into battle - A race of carnivorous horse-like beings. These animals are smarter than Greenskins and only allow themselves to be mounted as their Orc riders eventually ride down into bloody battles. The Bad Axes bear a grudge against the Dukedom of Couronne due to an event involving one of the past Royarchs and Gromodrak Hoofslasha, the current warboss of the Bad Axes Tribe.">
         <relationships />
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	
-	<Kingdom id="black_sunz"
+    <Kingdom id="black_sunz"
              owner="Hero.tor_greenskin_lord_black_sunz_factionleader"
-			 banner_key="11.149.90.1449.1410.815.674.0.0.-90.505.149.142.787.787.764.764.0.1.0:kingdom_blacksunz"
+             banner_key="11.149.90.1449.1410.815.674.0.0.-90.505.149.142.787.787.764.764.0.1.0:kingdom_blacksunz"
              primary_banner_color="0xfff0f0f0"
              secondary_banner_color="0xff050505"
              label_color="FF0b0c11"
@@ -1049,16 +1030,15 @@
              short_name="{=str_tor_kingdom_shortname_black_sunz}Black Sunz"
              title="{=str_tor_kingdom_title_black_sunz}Black Sunz Tribe"
              ruler_title="{=str_tor_kingdom_rulertitle_black_sunz}Warboss"
-			 text="{=str_tor_kingdom_text_black_sunz}On the Western side of the Pale Sisters wanders the once mighty Black Sunz Tribe. Hailing originally from the plains of Zharr-Naggrund, led by the Black Ork Zorbak, these boyz migrated half the world to join up with the great Waaagh! that was supposed to destroy Ulthuan. Being late to the party, they ended up finding a scattered horde and found themselves quickly surrounded by the Brettonian humies. After a bloody last stand, the boyz were chased into the Pale Sisters and retreated inside the deep caves. Occasionally coming out of their stinky lairs raiding the lands of nearby Couronne and Gisoreux, the Orcs led by Zorbak are sure to make a comeback and return to their former strength.">
+             text="{=str_tor_kingdom_text_black_sunz}On the Western side of the Pale Sisters wanders the once mighty Black Sunz Tribe. Hailing originally from the plains of Zharr-Naggrund, led by the Black Ork Zorbak, these boyz migrated half the world to join up with the great Waaagh! that was supposed to destroy Ulthuan. Being late to the party, they ended up finding a scattered horde and found themselves quickly surrounded by the Brettonian humies. After a bloody last stand, the boyz were chased into the Pale Sisters and retreated inside the deep caves. Occasionally coming out of their stinky lairs raiding the lands of nearby Couronne and Gisoreux, the Orcs led by Zorbak are sure to make a comeback and return to their former strength.">
         <relationships />
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	
-	<Kingdom id="crooked_eye"
+    <Kingdom id="crooked_eye"
              owner="Hero.tor_greenskin_lord_crooked_eye_factionleader"
-			 banner_key="11.8.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_crookedeye"
+             banner_key="11.8.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_crookedeye"
              primary_banner_color="0xfff0f0f0"
              secondary_banner_color="0xff050505"
              label_color="FF453e38"
@@ -1073,16 +1053,15 @@
              short_name="{=str_tor_kingdom_shortname_crooked_eye}Crooked Eye"
              title="{=str_tor_kingdom_title_crooked_eye}Crooked Eye Tribe"
              ruler_title="{=str_tor_kingdom_rulertitle_crooked_eye}Warboss"
-			 text="{=str_tor_kingdom_text_crooked_eye}Facing a fatal defeat against the Dawi-Zharr the Crooked Eye Tribe kicked out their former leader, Ruglud Bonechewer. After a heavy brawl over who should become the next Warboss. A victor appeared; it was Bazglud Daemonstompa. The mad lad had destroyed one of the Daemons sent by the Dawi-Zharr; he had made sure a part of the tribe could escape. Under this new leadership, the tribe restored its numbers and now makes itself ready to make Da Biggest Waaagh!">
+             text="{=str_tor_kingdom_text_crooked_eye}Facing a fatal defeat against the Dawi-Zharr the Crooked Eye Tribe kicked out their former leader, Ruglud Bonechewer. After a heavy brawl over who should become the next Warboss. A victor appeared; it was Bazglud Daemonstompa. The mad lad had destroyed one of the Daemons sent by the Dawi-Zharr; he had made sure a part of the tribe could escape. Under this new leadership, the tribe restored its numbers and now makes itself ready to make Da Biggest Waaagh!">
         <relationships />
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	
-	<Kingdom id="deff_grindaz"
+    <Kingdom id="deff_grindaz"
              owner="Hero.tor_greenskin_lord_deff_grindaz_factionleader"
-			 banner_key="11.119.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_deffgrindaz"
+             banner_key="11.119.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_deffgrindaz"
              primary_banner_color="0xfff0f0f0"
              secondary_banner_color="0xff050505"
              label_color="FFea4f00"
@@ -1097,16 +1076,15 @@
              short_name="{=str_tor_kingdom_shortname_deff_grindaz}Deff Grindaz"
              title="{=str_tor_kingdom_title_deff_grindaz}Deff Grindaz Tribe"
              ruler_title="{=str_tor_kingdom_rulertitle_deff_grindaz}Warboss"
-			 text="{=str_tor_kingdom_text_deff_grindaz}The Deff Grindaz is an Orc tribe north of Karak Norn, and east of Athel Loren. They are famous for the everlasting battle against their surrounding enemies. Waging war against the Wood Elves of Athel Loren, the Dwarfs of Karak Norn, and the Humans of Wissenland. They rule the southern part of the Grey Mountains. Capturing the old spoils of Gorbad Ironclaw’s Waaagh they became well supplied and an efficient enemy of the surrounding races.">
+             text="{=str_tor_kingdom_text_deff_grindaz}The Deff Grindaz is an Orc tribe north of Karak Norn, and east of Athel Loren. They are famous for the everlasting battle against their surrounding enemies. Waging war against the Wood Elves of Athel Loren, the Dwarfs of Karak Norn, and the Humans of Wissenland. They rule the southern part of the Grey Mountains. Capturing the old spoils of Gorbad Ironclaw’s Waaagh they became well supplied and an efficient enemy of the surrounding races.">
         <relationships />
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-
-	<Kingdom id="iron_tribe"
+    <Kingdom id="iron_tribe"
              owner="Hero.tor_greenskin_lord_iron_tribe_factionleader"
-			 banner_key="11.116.116.1400.1400.768.788.1.0.0.505.116.116.694.694.764.764.0.0.0:kingdom_irontribe"
+             banner_key="11.116.116.1400.1400.768.788.1.0.0.505.116.116.694.694.764.764.0.0.0:kingdom_irontribe"
              primary_banner_color="0xfff0f0f0"
              secondary_banner_color="0xff050505"
              label_color="FFf1c232"
@@ -1121,16 +1099,15 @@
              short_name="{=str_tor_kingdom_shortname_iron_tribe}Iron Tribe"
              title="{=str_tor_kingdom_title_iron_tribe}Iron Tribe"
              ruler_title="{=str_tor_kingdom_rulertitle_iron_tribe}Warboss"
-			 text="{=str_tor_kingdom_text_iron_tribe}Nearly 100 years ago, the enormous Waaagh! of Grom the Paunch swept through the Old World like a plague, ultimately meeting its end in Ulthuan by crashing upon the silver towers of Tor Yvresse. When the victorious Asur dispersed the Greenskin invaders, many severely weakened tribes sailed back to the Old World — The Iron Tribe being one of them. Now its hardy members are looking to replenish their numbers and raid neighboring humie kingdoms in true Greenskin fashion.">
+             text="{=str_tor_kingdom_text_iron_tribe}Nearly 100 years ago, the enormous Waaagh! of Grom the Paunch swept through the Old World like a plague, ultimately meeting its end in Ulthuan by crashing upon the silver towers of Tor Yvresse. When the victorious Asur dispersed the Greenskin invaders, many severely weakened tribes sailed back to the Old World — The Iron Tribe being one of them. Now its hardy members are looking to replenish their numbers and raid neighboring humie kingdoms in true Greenskin fashion.">
         <relationships />
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-
-	<Kingdom id="massif_choppas"
+    <Kingdom id="massif_choppas"
              owner="Hero.tor_greenskin_lord_massif_choppas_factionleader"
-			 banner_key="11.84.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_massif_choppas"
+             banner_key="11.84.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_massif_choppas"
              primary_banner_color="0xfff0f0f0"
              secondary_banner_color="0xff050505"
              label_color="FFcacccb"
@@ -1145,16 +1122,15 @@
              short_name="{=str_tor_kingdom_shortname_massif_choppas}Massif Choppas"
              title="{=str_tor_kingdom_title_massif_choppas}Massif Choppas Tribe"
              ruler_title="{=str_tor_kingdom_rulertitle_massif_choppas}Warboss"
-			 text="{=str_tor_kingdom_text_massif_choppas}Greenskins of the Massif Choppas Tribe are the remnants of the once great hordes that had been scoured from the lands of Bretonnia during the founding of the kingdom. From their camp in the deep caves of the fortress known as Massif Orcal the Massif Choppas make themselves ready for the big Waaagh! that will make Bretonnia tremble once more.">
+             text="{=str_tor_kingdom_text_massif_choppas}Greenskins of the Massif Choppas Tribe are the remnants of the once great hordes that had been scoured from the lands of Bretonnia during the founding of the kingdom. From their camp in the deep caves of the fortress known as Massif Orcal the Massif Choppas make themselves ready for the big Waaagh! that will make Bretonnia tremble once more.">
         <relationships />
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	
-	<Kingdom id="neck_snappers"
+    <Kingdom id="neck_snappers"
              owner="Hero.tor_greenskin_lord_neck_snappers_factionleader"
-			 banner_key="11.26.90.1449.1410.764.764.0.0.-90.505.26.142.787.787.764.764.0.1.0:kingdom_necksnappers"
+             banner_key="11.26.90.1449.1410.764.764.0.0.-90.505.26.142.787.787.764.764.0.1.0:kingdom_necksnappers"
              primary_banner_color="0xfff0f0f0"
              secondary_banner_color="0xff050505"
              label_color="FF211f1f"
@@ -1169,16 +1145,15 @@
              short_name="{=str_tor_kingdom_shortname_neck_snappers}Necksnappers"
              title="{=str_tor_kingdom_title_neck_snappers}Necksnappers Tribe"
              ruler_title="{=str_tor_kingdom_rulertitle_neck_snappers}Warboss"
-			 text="{=str_tor_kingdom_text_neck_snappers}Morglum Necksnapper is an infamous Black Orc Warboss who has led his mob from the desolate east to conquer many Orc and Goblin tribes in the World’s Edge Mountains. Those who fight hard enough (and survive) are allowed to join the Necksnappers Tribe, a still-growing horde that has achieved numerous victories. The Necksnappers Tribe is the most feared of the Black Orc tribes who have undertaken the arduous journey across the Dark Lands into the west.">
+             text="{=str_tor_kingdom_text_neck_snappers}Morglum Necksnapper is an infamous Black Orc Warboss who has led his mob from the desolate east to conquer many Orc and Goblin tribes in the World’s Edge Mountains. Those who fight hard enough (and survive) are allowed to join the Necksnappers Tribe, a still-growing horde that has achieved numerous victories. The Necksnappers Tribe is the most feared of the Black Orc tribes who have undertaken the arduous journey across the Dark Lands into the west.">
         <relationships />
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	
-	<Kingdom id="skull_smasherz"
+    <Kingdom id="skull_smasherz"
              owner="Hero.tor_greenskin_lord_skull_smasherz_factionleader"
-			 banner_key="11.35.140.1398.1615.785.765.1.0.90.505.35.142.714.714.764.764.0.0.0:kingdom_skullsmasherz"
+             banner_key="11.35.140.1398.1615.785.765.1.0.90.505.35.142.714.714.764.764.0.0.0:kingdom_skullsmasherz"
              primary_banner_color="0xfff0f0f0"
              secondary_banner_color="0xff050505"
              label_color="FFe44434"
@@ -1193,16 +1168,15 @@
              short_name="{=str_tor_kingdom_shortname_skull_smasherz}Skullsmasherz"
              title="{=str_tor_kingdom_title_skull_smasherz}Skullsmasherz Tribe"
              ruler_title="{=str_tor_kingdom_rulertitle_skull_smasherz}Warboss"
-			 text="{=str_tor_kingdom_text_skull_smasherz}Known for terrorizing the Axe Bite Pass the Skullsmasherz are feared in both Bretonnia and the Empire. Reigning over the mountaintops and depths of the Grey Mountains, these Greenskins are a force to be reckoned with. Even feared among their own kind, the Skullsmasherz are one of the most, if not the most powerful, Greenskin clans in the west of the Old World.">
+             text="{=str_tor_kingdom_text_skull_smasherz}Known for terrorizing the Axe Bite Pass the Skullsmasherz are feared in both Bretonnia and the Empire. Reigning over the mountaintops and depths of the Grey Mountains, these Greenskins are a force to be reckoned with. Even feared among their own kind, the Skullsmasherz are one of the most, if not the most powerful, Greenskin clans in the west of the Old World.">
         <relationships />
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	
-	<Kingdom id="bloody_spearz"
+    <Kingdom id="bloody_spearz"
              owner="Hero.tor_greenskin_lord_bloody_spearz_factionleader"
-			 banner_key="11.126.90.1449.1410.764.764.0.0.-90.505.129.142.787.787.764.764.0.1.0:kingdom_bloodyspearz"
+             banner_key="11.126.90.1449.1410.764.764.0.0.-90.505.129.142.787.787.764.764.0.1.0:kingdom_bloodyspearz"
              primary_banner_color="0xfff0f0f0"
              secondary_banner_color="0xff050505"
              label_color="FF34671e"
@@ -1217,16 +1191,15 @@
              short_name="{=str_tor_kingdom_shortname_bloody_spearz}Bloody Spearz"
              title="{=str_tor_kingdom_title_bloody_spearz}Bloody Spearz Tribe"
              ruler_title="{=str_tor_kingdom_rulertitle_bloody_spearz}Warboss"
-			 text="{=str_tor_kingdom_text_bloody_spearz}The Bloody Spearz Tribe is a clan of Night Goblins who ambush human and dwarfen caravans attempting to traverse the east provinces of the Empire near the Worlds Edge Mountains. Such is their wealth, it is said that other goblins, orcs, and even trolls flock to them seeking riches and war.">
+             text="{=str_tor_kingdom_text_bloody_spearz}The Bloody Spearz Tribe is a clan of Night Goblins who ambush human and dwarfen caravans attempting to traverse the east provinces of the Empire near the Worlds Edge Mountains. Such is their wealth, it is said that other goblins, orcs, and even trolls flock to them seeking riches and war.">
         <relationships />
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	
-	<Kingdom id="red_eye"
+    <Kingdom id="red_eye"
              owner="Hero.tor_greenskin_lord_red_eye_factionleader"
-			 banner_key="11.83.90.1449.1410.764.764.0.0.-90.505.83.142.787.787.764.764.0.1.0:kingdom_redeye"
+             banner_key="11.83.90.1449.1410.764.764.0.0.-90.505.83.142.787.787.764.764.0.1.0:kingdom_redeye"
              primary_banner_color="0xfff0f0f0"
              secondary_banner_color="0xff050505"
              label_color="FFe44434"
@@ -1241,16 +1214,15 @@
              short_name="{=str_tor_kingdom_shortname_red_eye}Red Eye"
              title="{=str_tor_kingdom_title_red_eye}Red Eye Tribe"
              ruler_title="{=str_tor_kingdom_rulertitle_red_eye}Warboss"
-			 text="{=str_tor_kingdom_text_red_eye}The Red Eye Tribe is a tribe of Night Goblins settled on the ancient dwarfen fortress of Karak Ungor. After the goblin occupation, it was renamed Red Eye Mountain. The greenskins stormed the dwarfen fortress by surprise from an underground route, driving the dwarfs out and taking over the fortress. Orcs were also involved in the assault, but they later abandoned the city, leaving the goblins of the Red Eye Tribe as sole owners of the hold. Today, Goblins of the Red Eye continue to be the owner of the place, ending the lives of up to 3 dwarf lords who wished to retake it.">
+             text="{=str_tor_kingdom_text_red_eye}The Red Eye Tribe is a tribe of Night Goblins settled on the ancient dwarfen fortress of Karak Ungor. After the goblin occupation, it was renamed Red Eye Mountain. The greenskins stormed the dwarfen fortress by surprise from an underground route, driving the dwarfs out and taking over the fortress. Orcs were also involved in the assault, but they later abandoned the city, leaving the goblins of the Red Eye Tribe as sole owners of the hold. Today, Goblins of the Red Eye continue to be the owner of the place, ending the lives of up to 3 dwarf lords who wished to retake it.">
         <relationships />
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	
-	<Kingdom id="black_pit"
+    <Kingdom id="black_pit"
              owner="Hero.tor_greenskin_lord_black_pit_factionleader"
-			 banner_key="11.149.90.1449.1410.764.764.0.0.-90.505.149.142.787.787.764.764.0.1.0:kingdom_spiderkult"
+             banner_key="11.149.90.1449.1410.764.764.0.0.-90.505.149.142.787.787.764.764.0.1.0:kingdom_spiderkult"
              primary_banner_color="0xfff0f0f0"
              secondary_banner_color="0xff050505"
              label_color="FF211f1f"
@@ -1265,16 +1237,15 @@
              short_name="{=str_tor_kingdom_shortname_black_pit}Spider-Kult"
              title="{=str_tor_kingdom_title_black_pit}Spider-Kult"
              ruler_title="{=str_tor_kingdom_rulertitle_black_pit}Warboss"
-			 text="{=str_tor_kingdom_text_black_pit}When humans first entered the forests of Drakwald, they simultaneously pushed the goblins living there into the unknown depths of the forest, where other vile creatures such as Beastmen and enormous spiders already existed. Over time, these goblins learned to live with the spiders and even domesticated them for their own purposes. They used them as pets, mounts, food, or even to distill their poisons; and obviously, for war. From this relationship arose the Spider-Kult.">
+             text="{=str_tor_kingdom_text_black_pit}When humans first entered the forests of Drakwald, they simultaneously pushed the goblins living there into the unknown depths of the forest, where other vile creatures such as Beastmen and enormous spiders already existed. Over time, these goblins learned to live with the spiders and even domesticated them for their own purposes. They used them as pets, mounts, food, or even to distill their poisons; and obviously, for war. From this relationship arose the Spider-Kult.">
         <relationships />
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	
-	<Kingdom id="reavaz"
+    <Kingdom id="reavaz"
              owner="Hero.tor_greenskin_lord_reavaz_factionleader"
-			 banner_key="11.149.90.1449.1410.646.799.0.0.-90.505.149.142.787.787.764.764.0.1.0:kingdom_reavaz"
+             banner_key="11.149.90.1449.1410.646.799.0.0.-90.505.149.142.787.787.764.764.0.1.0:kingdom_reavaz"
              primary_banner_color="0xfff0f0f0"
              secondary_banner_color="0xff050505"
              label_color="FFf3f3f3"
@@ -1289,13 +1260,10 @@
              short_name="{=str_tor_kingdom_shortname_reavaz}Reavaz"
              title="{=str_tor_kingdom_title_reavaz}Reavaz"
              ruler_title="{=str_tor_kingdom_rulertitle_reavaz}Warboss"
-			 text="{=str_tor_kingdom_text_black_pit}When humans first entered the forests of Drakwald, they simultaneously pushed the goblins living there into the unknown depths of the forest, where other vile creatures such as Beastmen and enormous spiders already existed. Over time, these goblins learned to live with the spiders and even domesticated them for their own purposes. They used them as pets, mounts, food, or even to distill their poisons; and obviously, for war. From this relationship arose the Spider-Kult.">
+             text="{=str_tor_kingdom_text_black_pit}When humans first entered the forests of Drakwald, they simultaneously pushed the goblins living there into the unknown depths of the forest, where other vile creatures such as Beastmen and enormous spiders already existed. Over time, these goblins learned to live with the spiders and even domesticated them for their own purposes. They used them as pets, mounts, food, or even to distill their poisons; and obviously, for war. From this relationship arose the Spider-Kult.">
         <relationships />
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
-	
-	
-	
 </Kingdoms>

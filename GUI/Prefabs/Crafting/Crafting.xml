@@ -34,7 +34,7 @@
             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="95" SuggestedHeight="96" VerticalAlignment="Bottom" DoNotPassEventsToChildren="true">
               <Children>
 
-                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                   <Children>
                     <CraftingMaterialVisualBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="90" SuggestedHeight="55" HorizontalAlignment="Center" Brush="Crafting.Material.Brush" MaterialType="@ResourceMaterialTypeAsStr" IsBig="true"/>
                     <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="90" SuggestedHeight="24" VerticalAlignment="Bottom" Sprite="Crafting\number_background" Color="#EFAB6BFF" >
@@ -57,7 +57,7 @@
 
         <!--Crafting Left Side-->
         <!--Difficulty Bar-->
-        <ListPanel Id="DebugDifficultyBarParent" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="100" MarginBottom="230" IsVisible="@IsInCraftingMode" StackLayout.LayoutMethod="VerticalTopToBottom">
+        <ListPanel Id="DebugDifficultyBarParent" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="100" MarginBottom="230" IsVisible="@IsInCraftingMode" StackLayout.LayoutMethod="VerticalBottomToTop">
           <Children>
 
             <TextWidget DataSource="{WeaponDesign}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="100" SuggestedHeight="30" HorizontalAlignment="Left" VerticalAlignment="Bottom" MarginLeft="4" Brush="Crafting.Difficulty.Text" Brush.TextHorizontalAlignment="Center" Brush.FontSize="24" Text="@DifficultyText" />
@@ -70,7 +70,7 @@
                   <Children>
 
                     <!--Dimension Sync Widget for the Top part of the difficulty-->
-                    <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalBottomToTop" MarginLeft="40" MarginRight="40" MarginBottom="40" MarginTop="40">
+                    <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalTopToBottom" MarginLeft="40" MarginRight="40" MarginBottom="40" MarginTop="40">
                       <Children>
                         <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="crafting_difficulty_top_9"/>
                         <DimensionSyncWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" DimensionToSync="Vertical" IsEnabled="false" WidgetToCopyHeightFrom="..\..\CraftingHeroDifficultyBar\FillWidget"/>
@@ -139,7 +139,7 @@
 
         <!--Right Bottom Buttons-->
         <NavigationScopeTargeter ScopeID="RightBottomButtonsScope" ScopeParent="..\RightBottomButtons" ScopeMovements="Vertical" />
-        <ListPanel Id="RightBottomButtons" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginRight="675" MarginBottom="60" IsVisible="@IsInCraftingMode" StackLayout.LayoutMethod="VerticalTopToBottom" DoNotUseCustomScale="true">
+        <ListPanel Id="RightBottomButtons" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginRight="675" MarginBottom="60" IsVisible="@IsInCraftingMode" StackLayout.LayoutMethod="VerticalBottomToTop" DoNotUseCustomScale="true">
           <Children>
 
             <!--Reset Angle Button-->
@@ -161,7 +161,7 @@
         <!--Input Key List-->
         <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginRight="675" MarginBottom="225" IsVisible="@AreGamepadControlHintsEnabled" DoNotAcceptEvents="true" DoNotPassEventsToChildren="true" DoNotUseCustomScale="true">
           <Children>
-            <ListPanel DataSource="{CameraControlKeys}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+            <ListPanel DataSource="{CameraControlKeys}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
               <ItemTemplate>
                 <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="HorizontalLeftToRight">
                   <Children>
@@ -181,11 +181,11 @@
             <Widget DataSource="{WeaponDesign}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="96" SuggestedHeight="286" MarginLeft="32" MarginTop="45">
               <Children>
 
-                <ListPanel DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginTop="10" StackLayout.LayoutMethod="VerticalBottomToTop">
+                <ListPanel DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginTop="10" StackLayout.LayoutMethod="VerticalTopToBottom">
                   <Children>
                     <!-- Piece Type Selections (Blade, Pommel, Guard, Handle) -->
                     <NavigationScopeTargeter ScopeID="PieceListsScope" ScopeParent="..\PieceLists" ScopeMovements="Vertical" />
-                    <NavigatableListPanel Id="PieceLists" DataSource="{PieceLists}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" >
+                    <NavigatableListPanel Id="PieceLists" DataSource="{PieceLists}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" >
                       <ItemTemplate>
                         <CraftingPieceTypeSelectorButtonWidget VisualsWidget="CraftingPieceItemImageWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="84" SuggestedHeight="59" MarginBottom="10" Command.Click="ExecuteSelect" DoNotPassEventsToChildren="true" IsSelected="@IsSelected" IsVisible="@IsEnabled" DoNotUseCustomScaleAndChildren="true">
                           <Children>
@@ -271,7 +271,7 @@
             <Widget DataSource="{Smelting}" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="1053" HorizontalAlignment="Center" MarginTop="4" Sprite="Crafting\left_field_canvas" Color="#000000FF" MinHeight="287">
               <Children>
 
-                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="@IsAnyItemSelected" StackLayout.LayoutMethod="VerticalBottomToTop">
+                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="@IsAnyItemSelected" StackLayout.LayoutMethod="VerticalTopToBottom">
                   <Children>
 
                     <ListPanel DataSource="{CurrentSelectedItem}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" MarginBottom="60" MarginTop="60" StackLayout.LayoutMethod="HorizontalLeftToRight">
@@ -285,13 +285,13 @@
 
                         <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Text="+" Brush.FontColor="#F4E1C4FF" Brush.FontSize="48" MarginRight="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-                        <ListPanel DataSource="{InputMaterials}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" VerticalAlignment="Center">
+                        <ListPanel DataSource="{InputMaterials}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" VerticalAlignment="Center">
                           <ItemTemplate>
 
                             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="95" SuggestedHeight="96" VerticalAlignment="Bottom" DoNotPassEventsToChildren="true">
                               <Children>
 
-                                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                                   <Children>
                                     <CraftingMaterialVisualBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="90" SuggestedHeight="55" HorizontalAlignment="Center" Brush="Crafting.Material.Brush" MaterialType="@ResourceMaterialTypeAsStr" IsBig="true"/>
                                     <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="90" SuggestedHeight="24" VerticalAlignment="Bottom" Sprite="Crafting\number_background" Color="#EFAB6BFF" >
@@ -313,14 +313,14 @@
                         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="96" SuggestedHeight="29" VerticalAlignment="Center" HorizontalAligment="Center" MarginLeft="15" MarginRight="15" Sprite="Crafting\arrow" />
 
                         <!--Item Yield Values-->
-                        <ListPanel DataSource="{Yield}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop">
+                        <ListPanel DataSource="{Yield}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" StackLayout.LayoutMethod="VerticalTopToBottom">
                           <ItemTemplate>
 
                             <!--Resource Item-->
                             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="95" SuggestedHeight="96" VerticalAlignment="Bottom" DoNotPassEventsToChildren="true">
                               <Children>
 
-                                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                                   <Children>
                                     <CraftingMaterialVisualBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="90" SuggestedHeight="55" HorizontalAlignment="Center" Brush="Crafting.Material.Brush" MaterialType="@ResourceMaterialTypeAsStr" IsBig="true"/>
                                     <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="90" SuggestedHeight="24" VerticalAlignment="Bottom" Sprite="Crafting\number_background" Color="#EFAB6BFF" >
@@ -370,7 +370,7 @@
 
                         <ListPanel DataSource="{InputMaterials}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center">
                           <ItemTemplate>
-                            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                               <Children>
                                 <CraftingMaterialVisualBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="181" SuggestedHeight="110" HorizontalAlignment="Center" Brush="Crafting.Material.Brush" IsBig="true" MaterialType="@ResourceMaterialTypeAsStr" />
                                 <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Refinement.Amount.Text" HorizontalAlignment="Center" VerticalAlignment="Center" MarginTop="5" IntText="@ResourceAmount" />
@@ -384,7 +384,7 @@
 
                         <ListPanel DataSource="{OutputMaterials}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center">
                           <ItemTemplate>
-                            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                               <Children>
                                 <CraftingMaterialVisualBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="181" SuggestedHeight="110" HorizontalAlignment="Center" Brush="Crafting.Material.Brush" IsBig="true" MaterialType="@ResourceMaterialTypeAsStr"/>
                                 <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Refinement.Amount.Text" HorizontalAlignment="Center" VerticalAlignment="Center" MarginTop="5" IntText="@ResourceAmount" />
@@ -415,14 +415,14 @@
             <ButtonWidget Id="SmeltingCategoryButton" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="380" SuggestedHeight="136"  Brush="Crafting.SmeltingTab.Button" Command.Click="ExecuteSwitchToSmelting" IsSelected="@IsInSmeltingMode" UpdateChildrenStates="true">
               <Children>
 
-                <ListPanel DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalBottomToTop" VerticalAlignment="Center" MarginTop="7" UpdateChildrenStates="true" IsHidden="@IsInSmeltingMode">
+                <ListPanel DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalTopToBottom" VerticalAlignment="Center" MarginTop="7" UpdateChildrenStates="true" IsHidden="@IsInSmeltingMode">
                   <Children>
                     <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="33" SuggestedHeight="29" HorizontalAlignment="Center" VerticalAlignment="Top" Brush="Crafting.Smelt.Icon" />
                     <TextWidget  WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="100" MarginRight="100" MarginBottom="60" Brush="Crafting.Tabs.Text" Text="@SmeltingText"/>
                   </Children>
                 </ListPanel>
 
-                <ListPanel DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalBottomToTop" VerticalAlignment="Center" MarginTop="7" UpdateChildrenStates="true" IsVisible="@IsInSmeltingMode">
+                <ListPanel DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalTopToBottom" VerticalAlignment="Center" MarginTop="7" UpdateChildrenStates="true" IsVisible="@IsInSmeltingMode">
                   <Children>
                     <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="45" SuggestedHeight="40" HorizontalAlignment="Center" VerticalAlignment="Top" Brush="Crafting.Smelt.Icon" />
                     <TextWidget  WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="100" MarginRight="100" MarginBottom="45" Brush="Crafting.Tabs.Text.Large" Text="@SmeltingText"/>
@@ -440,14 +440,14 @@
             <ButtonWidget Id="CraftingCategoryButton" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="380" SuggestedHeight="136" Brush="Crafting.CraftingTab.Button" Command.Click="ExecuteSwitchToCrafting" IsSelected="@IsInCraftingMode" UpdateChildrenStates="true">
               <Children>
 
-                <ListPanel DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginTop="7" StackLayout.LayoutMethod="VerticalBottomToTop" UpdateChildrenStates="true" IsHidden="@IsInCraftingMode">
+                <ListPanel DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginTop="7" StackLayout.LayoutMethod="VerticalTopToBottom" UpdateChildrenStates="true" IsHidden="@IsInCraftingMode">
                   <Children>
                     <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="33" SuggestedHeight="29" HorizontalAlignment="Center" VerticalAlignment="Top" Brush="Crafting.Craft.Icon" />
                     <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="100" MarginRight="100" MarginBottom="60" Brush="Crafting.Tabs.Text" Text="@CraftingText" />
                   </Children>
                 </ListPanel>
 
-                <ListPanel DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginTop="7" StackLayout.LayoutMethod="VerticalBottomToTop" UpdateChildrenStates="true" IsVisible="@IsInCraftingMode">
+                <ListPanel DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginTop="7" StackLayout.LayoutMethod="VerticalTopToBottom" UpdateChildrenStates="true" IsVisible="@IsInCraftingMode">
                   <Children>
                     <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="45" SuggestedHeight="40" HorizontalAlignment="Center" VerticalAlignment="Top" Brush="Crafting.Craft.Icon" />
                     <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="100" MarginRight="100" MarginBottom="45" Brush="Crafting.Tabs.Text.Large" Text="@CraftingText" />
@@ -460,14 +460,14 @@
             <ButtonWidget Id="RefinementCategoryButton" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="380" SuggestedHeight="136"  Brush="Crafting.RefinementTab.Button" Command.Click="ExecuteSwitchToRefinement" IsSelected="@IsInRefinementMode" UpdateChildrenStates="true" ClipContents="false" >
               <Children>
 
-                <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop" MarginTop="7" UpdateChildrenStates="true" IsHidden="@IsInRefinementMode">
+                <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" StackLayout.LayoutMethod="VerticalTopToBottom" MarginTop="7" UpdateChildrenStates="true" IsHidden="@IsInRefinementMode">
                   <Children>
                     <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="33" SuggestedHeight="29" HorizontalAlignment="Center" VerticalAlignment="Top" Brush="Crafting.Refine.Icon" />
                     <TextWidget  WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="100" MarginRight="100" MarginBottom="60" Brush="Crafting.Tabs.Text" Text="@RefinementText"/>
                   </Children>
                 </ListPanel>
 
-                <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop" MarginTop="7" UpdateChildrenStates="true" IsVisible="@IsInRefinementMode">
+                <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" StackLayout.LayoutMethod="VerticalTopToBottom" MarginTop="7" UpdateChildrenStates="true" IsVisible="@IsInRefinementMode">
                   <Children>
                     <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="45" SuggestedHeight="40" HorizontalAlignment="Center" VerticalAlignment="Top" Brush="Crafting.Refine.Icon" />
                     <TextWidget  WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="100" MarginRight="100" MarginBottom="45" Brush="Crafting.Tabs.Text.Large" Text="@RefinementText"/>
@@ -488,7 +488,7 @@
 
         <!--Character Switch-->
         <NavigationScopeTargeter ScopeID="CharacterSelectionScope" ScopeParent="..\CharacterSelection" ScopeMovements="Horizontal"/>
-        <ListPanel Id="CharacterSelection" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" MarginBottom="120" MarginLeft="60" VerticalAlignment="Bottom">
+        <ListPanel Id="CharacterSelection" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" MarginBottom="120" MarginLeft="60" VerticalAlignment="Bottom">
           <Children>
             <ButtonWidget Id="CurrentCraftingHeroToggleWidget" DataSource="{CurrentCraftingHero}" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="130" SuggestedHeight="96" UpdateChildrenStates="true" GamepadNavigationIndex="0" Command.Click="..\CraftingHeroPopup\ExecuteOpenPopup" >
               <Children>
@@ -499,7 +499,7 @@
                 <HintWidget DataSource="{Hint}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
 
                 <!--Stamina-->
-                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Top" HorizontalAlignment="Right" MarginTop="6" MarginRight="6" StackLayout.LayoutMethod="VerticalTopToBottom">
+                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Top" HorizontalAlignment="Right" MarginTop="6" MarginRight="6" StackLayout.LayoutMethod="VerticalBottomToTop">
                   <Children>
                     <!--Stamina Bar-->
                     <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="8" SuggestedHeight="50" MarginTop="5" HorizontalAlignment="Center" Brush="TownManagement.GovernorPopup.GoldFrame">

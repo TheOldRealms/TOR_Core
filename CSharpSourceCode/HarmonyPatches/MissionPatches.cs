@@ -26,6 +26,14 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public static class MissionPatches
     {
+        private static readonly FieldInfo SimulationFormationTempField = AccessTools.Field(typeof(Formation), "_simulationFormationTemp");
+        private static readonly FieldInfo SimulationFormationUniqueIdentifierField = AccessTools.Field(typeof(Formation), "_simulationFormationUniqueIdentifier");
+
+        private static void ClearFormationSpawnSimulationCache()
+        {
+            SimulationFormationTempField.SetValue(null, null);
+            SimulationFormationUniqueIdentifierField.SetValue(null, -1);
+        }
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(CampaignAgentComponent), "OwnerParty", MethodType.Getter)]
@@ -70,7 +78,7 @@ namespace TOR_Core.HarmonyPatches
 
 
         [HarmonyPostfix]
-        [HarmonyPatch(typeof(MissionAgentSpawnLogic), "IsSideDepleted")]
+        [HarmonyPatch(typeof(DefaultBattleMissionAgentSpawnLogic), "IsSideDepleted")]
         public static void IsSideDepletedPostfix(BattleSideEnum side, ref bool __result)
         {
             if (__result == true)
@@ -91,7 +99,9 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch("ScriptingInterfaceOfIMBMission", "InitializeMission")]
         public static void SetSceneAtmosphere(ref MissionInitializerRecord rec)
         {
-            if (rec.SceneName.Contains("atmo_w_night") )
+            ClearFormationSpawnSimulationCache();
+
+            if (rec.SceneName.Contains("atmo_w_night"))
             {
                 rec.PlayingInCampaignMode = false;
                 rec.AtmosphereOnCampaign = default;
@@ -106,7 +116,7 @@ namespace TOR_Core.HarmonyPatches
             {
                 var sceneName = scene; //TODO This is to test the kingsglade map, this might revision later since we have now more woodelf city/castle  maps!
                 //__result = SandBoxMissions.OpenBattleMission(GetBattleSceneForAsraiSiege(), true); //This method is not useful, it would randomize maps, but we want specific map load.
-                __result = SandBoxMissions.OpenBattleMission(sceneName, true);
+                __result = SandBoxMissions.OpenBattleMission(sceneName, true,""); //TODO most likely will crash, we need the proper levels for the scene.
                 return false;
             }
 
@@ -121,7 +131,7 @@ namespace TOR_Core.HarmonyPatches
             {
                 var sceneName = scene;
                 //__result = SandBoxMissions.OpenBattleMission(GetBattleSceneForAsraiSiege(), true);
-                __result = SandBoxMissions.OpenBattleMission(sceneName, true);
+                __result = SandBoxMissions.OpenBattleMission(sceneName, true, ""); //TODO see above: needs check for scene levels
                 return false;
             }
 

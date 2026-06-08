@@ -92,11 +92,7 @@ public class EnchantmentIngredientLootCampaignBehavior : CampaignBehaviorBase
             }
         }
 
-        mapEvent.GetBattleRewards(
-            PartyBase.MainParty,
-            out var _renown, out var _influence, out var _morale, out var _gold,
-            out var playerLootShare
-        );
+        PlayerEncounter.Current.GetBattleRewards(out _, out _, out _, out var playerLootShare, out _);
 
         var lootRoster = PlayerEncounter.Current?.RosterToReceiveLootItems;
         var usedLootFallback = lootRoster == null;

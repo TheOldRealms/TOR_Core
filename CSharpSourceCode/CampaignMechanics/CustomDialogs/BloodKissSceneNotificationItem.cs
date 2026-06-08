@@ -49,14 +49,14 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
 
         public BloodKissSceneNotificationItem()
         {
-            _sylvania = Kingdom.All.FirstOrDefault(x => x.StringId == "sylvania");
-            _sylvania ??= Kingdom.All.FirstOrDefault(x => x.StringId == "necrachs");
-            _sylvania ??= Kingdom.All.FirstOrDefault(x => x.StringId == "blooddragons");
-            _sylvania ??= Kingdom.All.FirstOrDefault(x => x.StringId == "mousillon");
+            _sylvania = Kingdom.All.FirstOrDefault(x => x.StringId == "sylvania" && !x.IsEliminated);
+            _sylvania ??= Kingdom.All.FirstOrDefault(x => x.StringId == "necrachs" && !x.IsEliminated);
+            _sylvania ??= Kingdom.All.FirstOrDefault(x => x.StringId == "blooddragons" && !x.IsEliminated);
+            _sylvania ??= Kingdom.All.FirstOrDefault(x => x.StringId == "mousillon" && !x.IsEliminated);
             if (_sylvania == null)
             {
-                _sylvania = Kingdom.All.FirstOrDefault();
-                TORCommon.Log("BloodKissSceneNotificationItem : all vampire cultures are dead, using fallback kingdom for bloodkiss. How is a vampire even still alive to grant the bloodkiss?", NLog.LogLevel.Warn);
+                _sylvania = Kingdom.All.FirstOrDefault(x => !x.IsEliminated);
+                TORCommon.Log("BloodKissSceneNotificationItem : all vampire cultures are dead, using fallback kingdom for bloodkiss. How is a vampire even still alive to grant the bloodkiss?", NLog.LogLevel.Warn);//Sly : this would normally only occur if a player created kingdom was the last undead one alive
             }
         }
     }

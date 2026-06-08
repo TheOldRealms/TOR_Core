@@ -286,6 +286,11 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
 
             foreach (var hero in heroes.Where(hero => hero != Hero.MainHero))
             {
+                if (hero.PartyBelongedTo == MobileParty.MainParty)
+                {
+                    _heroesInTraining.Remove(hero.StringId);
+                }
+
                 if (!HeroMatchesTrainingRestrictions(hero, restrictions))
                 {
                     continue;
@@ -347,6 +352,12 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
             {
                 continue;
             }
+
+            if (hero.PartyBelongedTo == MobileParty.MainParty)
+            {
+                _heroesInTraining.Remove(hero.StringId);
+            }
+
             var isEnabled = false;
             if (!HeroMatchesTrainingRestrictions(hero, restrictions))
             {
@@ -414,9 +425,24 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
             if (hero == null)
                 return;
 
+            if (hero.PartyBelongedTo == MobileParty.MainParty)
+            {
+                _heroesInTraining.Remove(hero.StringId);
+            }
+
+            if (_heroesInTraining.ContainsKey(hero.StringId))
+            {
+                return;
+            }
+
             var partner = Hero.OneToOneConversationHero;
 
             TeleportHeroAction.ApplyImmediateTeleportToSettlement(hero, partner.CurrentSettlement);
+
+            if (hero.PartyBelongedTo != null || hero.CurrentSettlement != partner.CurrentSettlement)
+            {
+                return;
+            }
 
             Hero.MainHero.ChangeHeroGold(-costs.goldCost);
 

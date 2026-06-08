@@ -247,7 +247,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             _silverHammerPassive1.Initialize(CareerID, "Gain Faith skill per kill when facing the forces of 'Chaos' or 'Undead'.", "SilverHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special));
             _silverHammerPassive2.Initialize(CareerID, "+10% 'Holy' damage for all units when facing the forces of 'Chaos' or 'Undead'.", "SilverHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Holy, 10), AttackTypeMask.All,
-                (attacker, victim, mask) => victim.Character.Race != 0));
+                (attacker, victim, mask) => victim.Character.IsBeastman() || victim.Character.IsChaos() || victim.IsUndead()));
             _silverHammerPassive3.Initialize(CareerID, "'Sneak' attacks gain a 'Holy' damage boost based off Faith. (0.5% per level.)", "SilverHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.005f, PassiveEffectType.Special));
             _silverHammerPassive4.Initialize(CareerID, "Promote non 'Knight' tier 4+ troops to your personal Retinue.", "SilverHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true));          //TORAgentStatCalculateModel 458
 

@@ -12,7 +12,7 @@
         <PropertyBasedTooltipWidget Id="TooltipWidget" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsVisible="@IsActive" Mode="@Mode" NeutralColor="#000000D9" AllyColor="#061704D9" EnemyColor="#160705D9" PropertyListBackground="Body\PropertyListBackground" PropertyList="Body\PropertyListBackground\PropertyList" EnemyTroopsTextBrush="Tooltip.EnemyTroop.Text" AllyTroopsTextBrush="Tooltip.AllyTroop.Text" NeutralTroopsTextBrush="Tooltip.NeutralTroop.Text">
           <Children>
 
-            <ListPanel Id="Body" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+            <ListPanel Id="Body" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
               <Children>
 
                 <DimensionSyncWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="220" SuggestedHeight="12" HorizontalAlignment="Center" PositionYOffset="5" DimensionToSync="Horizontal" IsEnabled="false" PaddingAmount="20" WidgetToCopyHeightFrom="..\PropertyListBackground\PropertyList" Sprite="General\TooltipHint\tooltip_frame" ExtendLeft="4" ExtendRight="4"/>
@@ -20,7 +20,7 @@
                 <Widget Id="PropertyListBackground" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" Sprite="BlankWhiteSquare_9">
                   <Children>
 
-                    <ListPanel Id="PropertyList" DataSource="{TooltipPropertyList}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="5" MarginBottom="5" StackLayout.LayoutMethod="VerticalBottomToTop" >
+                    <ListPanel Id="PropertyList" DataSource="{TooltipPropertyList}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="5" MarginBottom="5" StackLayout.LayoutMethod="VerticalTopToBottom" >
                       <ItemTemplate>
 
                         <TooltipPropertyWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" MarginLeft="7" MarginRight="7" DefinitionLabel="ListPanel\ValueBackgroundSpriteWidget\DefinitionLabelContainer\DefinitionLabel" DefinitionLabelContainer="ListPanel\ValueBackgroundSpriteWidget\DefinitionLabelContainer" DefinitionText="@DefinitionLabel" PropertyModifier="@PropertyModifier" DescriptionTextBrush="Tooltip.Description.Text" RundownSeperatorSpriteName="General\TooltipHint\tooltip_divider_abovestats" DefaultSeperatorSpriteName="General\TooltipHint\tooltip_divider_simple" SubtextBrush="Tooltip.SubText.Text" TextColor="@TextColor" TextHeight="@TextHeight" TitleBackgroundSpriteName="General\TooltipHint\tooltip_title_base" TitleTextBrush="Tooltip.Title.Text" ValueBackgroundSpriteWidget="ListPanel\ValueBackgroundSpriteWidget" ValueLabel="ListPanel\ValueBackgroundSpriteWidget\ValueLabelContainer\ValueLabel" ValueLabelContainer="ListPanel\ValueBackgroundSpriteWidget\ValueLabelContainer" ValueNameTextBrush="Tooltip.ValueName.Text" ValueText="@ValueLabel" ValueTextBrush="Tooltip.Value.Text" >

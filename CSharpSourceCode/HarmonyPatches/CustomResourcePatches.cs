@@ -20,6 +20,8 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public class CustomResourcePatches
     {
+        private static readonly MethodInfo DoneReasonStringSetter = AccessTools.PropertySetter(typeof(PartyScreenLogic), "DoneReasonString");
+
         [HarmonyPrefix]
         [HarmonyPatch(typeof(PartyCharacterVM), "InitializeUpgrades")]
         public static bool AdditionalUpgradeLogic(PartyCharacterVM __instance, PartyScreenLogic ____partyScreenLogic)
@@ -225,7 +227,70 @@ namespace TOR_Core.HarmonyPatches
             }
             return text;
         }
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(PartyScreenLogic), "IsDoneActive")]
+        public static void BlockDoneForMissingCustomResourcePostfix(PartyScreenLogic __instance, ref bool __result)
+        {
+            if (!__result)
+            {
+                return;
+            }
 
+            if (CanAffordPendingCustomResourceChanges(out var failureText))
+            {
+                return;
+            }
+
+            SetDoneReasonString(__instance, failureText);
+            __result = false;
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(PartyScreenLogic), "DoneLogic")]
+        public static bool BlockDoneLogicForMissingCustomResourcePrefix(ref bool __result)
+        {
+            if (CanAffordPendingCustomResourceChanges(out var failureText))
+            {
+                return true;
+            }
+
+            MBInformationManager.AddQuickInformation(failureText, 0, null, null, "");
+            __result = false;
+            return false;
+        }
+
+        private static bool CanAffordPendingCustomResourceChanges(out TextObject failureText)
+        {
+            failureText = TextObject.GetEmpty();
+
+            foreach (var pendingResource in CustomResourceManager.GetPendingResources())
+            {
+                var resource = pendingResource.Key;
+                var pendingChange = pendingResource.Value;
+
+                if (resource.StringId == "Meat")
+                {
+                    continue;
+                }
+
+                var projectedResourceValue = Hero.MainHero.GetCustomResourceValue(resource.StringId) - pendingChange;
+                if (projectedResourceValue >= -0.01f)
+                {
+                    continue;
+                }
+
+                failureText = TORTextHelper.GetTextObject("tor_skill_training_reason.NoCustomResource", "You do not possess enough {CUSTOMRESOURCE}.");
+                failureText.SetTextVariable("CUSTOMRESOURCE", resource.Name);
+                return false;
+            }
+
+            return true;
+        }
+
+        private static void SetDoneReasonString(PartyScreenLogic partyScreenLogic, TextObject reasonText)
+        {
+            DoneReasonStringSetter.Invoke(partyScreenLogic, new object[] { reasonText.ToString() });
+        }
         [HarmonyPrefix]
         [HarmonyPatch(typeof(PartyScreenLogic), "AddCommand")]
         public static bool ClampUpgradeInAdd_Prefix(ref PartyScreenLogic.PartyCommand command)

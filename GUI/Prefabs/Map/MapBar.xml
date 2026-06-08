@@ -63,11 +63,11 @@
         <NavigationScopeTargeter ScopeID="MapNavigationScope" ScopeParent="..\MapBar" ScopeMovements="Horizontal" ForceGainNavigationOnClosestChild="true" RightNavigationScope="MapBarCenterPanelScope" />
         <ListPanel Id="MapBar" DataSource="{MapNavigation\NavigationItems}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Bottom" StackLayout.LayoutMethod="HorizontalLeftToRight" Sprite="MapBar\mapbar_left_canvas">
           <ItemTemplate>
-            <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginRight="!MapBar.Buttons.HorizonalSpacing" UpdateChildrenStates="true">
+            <Widget Id="@ItemId" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginRight="!MapBar.Buttons.HorizonalSpacing" UpdateChildrenStates="true">
               <Children>
                 <IconOffsetButtonWidget Id="NavigationButton" DoNotPassEventsToChildren="true" UpdateChildrenStates="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" VerticalAlignment="Bottom" Brush="MapBar.Left.Button" IconBrush="MapBar.Left.Button.Backgrounds" IconID="@ItemId" ButtonIcon="Icon" Command.Click="ExecuteOpen" Command.AlternateClick="ExecuteGoToLink" PressedXOffset="!MapBar.ButtonIcon.XOffset" PressedYOffset="!MapBar.ButtonIcon.YOffset" IsEnabled="@IsEnabled" IsSelected="@IsActive" GamepadNavigationIndex="0">
                   <Children>
-                    <IconBrushWidget Id="Icon" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="40" SuggestedHeight="40" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="MapBar.Left.Generic.Icon" IconBrush="MapBar.Left.Icons" IconID="@ItemId" UseIconSize="true" UseStylesFromSourceIcon="true" />
+                    <IconBrushWidget Id="Icon" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="60" SuggestedHeight="40" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="MapBar.Left.Generic.Icon" IconBrush="MapBar.Left.Icons" IconID="@ItemId" UseStylesFromSourceIcon="true" />
                     <HintWidget DataSource="{Tooltip}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" />
                   </Children>
                 </IconOffsetButtonWidget>
@@ -80,7 +80,7 @@
         <!-- Frame -->
         <DimensionSyncWidget DoNotAcceptEvents="true" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" HorizontalAlignment="Left" VerticalAlignment="Bottom" PositionYOffset="12" PositionXOffset="-10" DimensionToSync="HorizontalAndVertical" WidgetToCopyHeightFrom="..\MapBar">
           <Children>
-            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ExtendTop="25" ExtendRight="25" Sprite="MapBar\mapbar_left_frame" NinePatchRight="66" NinePatchTop="20" />
+            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ExtendTop="25" ExtendRight="25" ExtendLeft="5" Sprite="MapBar\mapbar_left_frame" NinePatchRight="66" NinePatchTop="20" />
           </Children>
         </DimensionSyncWidget>
 
@@ -162,7 +162,7 @@
         <MapInfoBarWidget VisualDefinition="InfoBar" DataSource="{MapInfo}" Id="InfoBarWidget" DoNotAcceptEvents="false" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedWidth="541" SuggestedHeight="99" HorizontalAlignment="Right" VerticalAlignment="Bottom" PositionYOffset="49" Sprite="MapBar\mapbar_right_frame" ExtendButtonWidget="ExtendButtonWidget" IsInfoBarExtended="@IsInfoBarExtended" IsVisible="@IsInfoBarEnabled" NinePatchLeft="70" NinePatchTop="87" NinePatchRight="10" NinePatchBottom="11">
           <Children>
 
-            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalBottomToTop" >
+            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalTopToBottom" >
               <Children>
 
                 <NavigationScopeTargeter ScopeID="MapBarRightPanelTopInfoBarScope" ScopeParent="..\TopInfoBar" ScopeMovements="Horizontal" ExtendDiscoveryAreaRight="-60" LeftNavigationScope="MapBarCenterPanelScope" NavigateFromScopeEdges="true" UseDiscoveryAreaAsScopeEdges="true" />

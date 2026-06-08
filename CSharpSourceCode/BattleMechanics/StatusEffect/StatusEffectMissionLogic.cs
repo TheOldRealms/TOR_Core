@@ -37,6 +37,84 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             StatusEffectComponent effectComponent = agent.GetComponent<StatusEffectComponent>();
             effectComponent.SynchronizeBaseValues(true);
         }
+        public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
+        {
+            if (!IsValidAttributeKill(affectedAgent, affectorAgent, agentState))
+            {
+                return;
+            }
+
+            ApplyTheHungerOnKill(affectorAgent);
+            ApplyFrenzyOnKill(affectorAgent);
+        }
+
+        private static bool IsValidAttributeKill(Agent killedAgent, Agent killerAgent, AgentState agentState)
+        {
+            if (killedAgent == null || killerAgent == null)
+            {
+                return false;
+            }
+
+            if (killedAgent == killerAgent)
+            {
+                return false;
+            }
+
+            if (!killedAgent.IsHuman || !killerAgent.IsHuman)
+            {
+                return false;
+            }
+
+            if (!killerAgent.IsActive())
+            {
+                return false;
+            }
+
+            if (killedAgent.Team == killerAgent.Team)
+            {
+                return false;
+            }
+
+            return agentState == AgentState.Killed || agentState == AgentState.Unconscious;
+        }
+
+        private static void ApplyTheHungerOnKill(Agent killerAgent)
+        {
+            if (!killerAgent.HasTheHunger())
+            {
+                return;
+            }
+
+            var healPercentOfMaxHealth = 0.05f; // heal per kill
+            killerAgent.Heal(killerAgent.HealthLimit * healPercentOfMaxHealth);
+        }
+
+        private static void ApplyFrenzyOnKill(Agent killerAgent)
+        {
+            if (!killerAgent.HasFrenzy())
+            {
+                return;
+            }
+
+            var statusEffectComponent = killerAgent.GetComponent<StatusEffectComponent>();
+            if (statusEffectComponent == null)
+            {
+                return;
+            }
+
+            var frenzyMovementEffectId = "trait_frenzy_movement_speed";
+            var frenzyAttackSpeedEffectId = "trait_frenzy_attack_speed";
+            var maxFrenzyStacks = 5; // max kill stacks 
+            var frenzyStackDuration = 30f; // 30 seconds 
+
+            if (statusEffectComponent.GetActiveEffectCount(frenzyAttackSpeedEffectId) >= maxFrenzyStacks)
+            {
+                return;
+            }
+
+            killerAgent.ApplyStatusEffect(frenzyMovementEffectId, killerAgent, frenzyStackDuration, false, false, true);
+            killerAgent.ApplyStatusEffect(frenzyAttackSpeedEffectId, killerAgent, frenzyStackDuration, false, false, true);
+        }
 
         public override void OnMissionTick(float dt)
         {
@@ -49,14 +127,12 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     continue;
                 }
 
-                if (agent.IsActive() && agent.Health > 1f)
+                var statusEffectComponent = agent.GetComponent<StatusEffectComponent>(); // bakilsin
+                if (statusEffectComponent?.NeedsStatusEffectTick == true)
                 {
-                    var comp = agent.GetComponent<StatusEffectComponent>();
-                    if (comp != null && comp.HasActiveEffects)
-                    {
-                        comp.OnTick(dt);
-                    }
+                    statusEffectComponent.OnTick(dt);
                 }
+
             }
 
             while (_unprocessedAgents.Count > 0)
@@ -80,7 +156,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             }
 
             // Race-based innate abilities (apply to all agents of that race)
-            if ((agent.HasAttribute("TrollRegeneration")))
+            if (agent.HasTrollRegeneration())
             {
                 CareerHelper.AddDefaultPermanentMissionEffect(agent, "troll_regeneration");
             }

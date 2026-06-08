@@ -16,6 +16,79 @@ namespace TOR_Core.Models
 {
     public class TORBattleRewardModel : DefaultBattleRewardModel
     {
+        // Retreat routing morale constants (moved from RetreatPatches)
+        private const float ROUND_LOSS_MORALE_CHANGE_DEFAULT = -3f; // vanilla
+        private const float ROUND_LOSS_MORALE_CHANGE_BELOW_40 = -2f;
+        private const float ROUND_LOSS_MORALE_CHANGE_BELOW_30 = -1f;
+        private const float ROUND_LOSS_MORALE_THRESHOLD_40 = 40f;
+        private const float ROUND_LOSS_MORALE_THRESHOLD_30 = 30f;
+        private const float VANILLA_MORALE_CHANGE_WHEN_OPPONENT_IS_RETREATING = -3f;
+        private const float VANILLA_MORALE_CHANGE_WHEN_THIS_SIDE_IS_RETREATING = -1f;
+
+        /// <summary>
+        /// Custom morale change on round victory for retreat routing system.
+        /// Reduces morale loss at low morale to prevent instant routs.
+        /// </summary>
+        public override float CalculateMoraleChangeOnRoundVictory(PartyBase party, MapEventSide partySide, BattleSideEnum roundWinner)
+        {
+            if (!party.IsMobile || roundWinner == BattleSideEnum.None)
+            {
+                return 0f;
+            }
+
+            var mapEvent = partySide.MapEvent;
+            if (!ShouldUseRetreatRouting(mapEvent))
+            {
+                return base.CalculateMoraleChangeOnRoundVictory(party, partySide, roundWinner);
+            }
+
+            // Once retreat has started, use vanilla behavior
+            if (mapEvent.RetreatingSide != BattleSideEnum.None)
+            {
+                if (mapEvent.RetreatingSide == party.OpponentSide)
+                {
+                    return VANILLA_MORALE_CHANGE_WHEN_OPPONENT_IS_RETREATING;
+                }
+                else if (mapEvent.RetreatingSide == party.Side)
+                {
+                    return VANILLA_MORALE_CHANGE_WHEN_THIS_SIDE_IS_RETREATING;
+                }
+                return 0f;
+            }
+
+            // Winner of round gets no morale change
+            if (roundWinner == party.Side)
+            {
+                return 0f;
+            }
+
+            // Loser gets reduced morale loss at low morale
+            var currentMorale = party.MobileParty.Morale;
+
+            if (currentMorale < ROUND_LOSS_MORALE_THRESHOLD_30)
+            {
+                return ROUND_LOSS_MORALE_CHANGE_BELOW_30;
+            }
+
+            if (currentMorale < ROUND_LOSS_MORALE_THRESHOLD_40)
+            {
+                return ROUND_LOSS_MORALE_CHANGE_BELOW_40;
+            }
+
+            return ROUND_LOSS_MORALE_CHANGE_DEFAULT;
+        }
+
+        private static bool ShouldUseRetreatRouting(MapEvent mapEvent)
+        {
+            if (mapEvent == null)
+                return false;
+
+            if (mapEvent.EventType == MapEvent.BattleTypes.FieldBattle)
+                return true;
+
+            return mapEvent.MapEventSettlement?.SiegeEvent != null;
+        }
+
         //does this have the same effect as the commented out method below (it no longer exists)?
         //We are trying to prevent AI from saving prisoners as members to cultural mismatch and slowing down parties.
         public override MBReadOnlyList<KeyValuePair<MapEventParty, float>> GetLootPrisonerChances(MBReadOnlyList<MapEventParty> winnerParties, TroopRosterElement prisonerElement)
@@ -34,7 +107,7 @@ namespace TOR_Core.Models
         //the % of an item's value that the AI gets when it liquidates looted equipment after winning a battle, ish
         public override float GetAITradePenalty()
         {
-            return 0.3f;
+            return 0.1f;
         }
 
 
@@ -44,9 +117,9 @@ namespace TOR_Core.Models
             return value;
         }
 
-        public override ExplainedNumber CalculateRenownGain(PartyBase party, float renownValueOfBattle, float contributionShare)
+        public override ExplainedNumber CalculateRenownGain(PartyBase party, float renownValueOfBattle, float contributionShare, float renownMultiplier, bool includeDescriptions)
         {
-            var result = base.CalculateRenownGain(party, renownValueOfBattle, contributionShare);
+            var result = base.CalculateRenownGain(party, renownValueOfBattle, contributionShare, renownMultiplier, includeDescriptions);
 
             if (party == PartyBase.MainParty)
             {
@@ -61,9 +134,9 @@ namespace TOR_Core.Models
 
             return result;
         }
-        public override ExplainedNumber CalculateInfluenceGain(PartyBase party, float influenceValueOfBattle, float contributionShare)
+        public override ExplainedNumber CalculateInfluenceGain(PartyBase party, float influenceValueOfBattle, float contributionShare, float influenceMultiplier, bool includeDescriptions)
         {
-            var result = base.CalculateInfluenceGain(party, influenceValueOfBattle, contributionShare);
+            var result = base.CalculateInfluenceGain(party, influenceValueOfBattle, contributionShare, influenceMultiplier, includeDescriptions);
 
             if (ShouldReduceBanditBattleInfluence(party))
             {

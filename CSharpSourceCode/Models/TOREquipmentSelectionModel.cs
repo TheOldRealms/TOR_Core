@@ -1,31 +1,24 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Core;
-using TaleWorlds.Library;
-using TOR_Core.Extensions;
 
 namespace TOR_Core.Models
 {
     public class TOREquipmentSelectionModel : DefaultEquipmentSelectionModel
     {
-        public override MBList<MBEquipmentRoster> GetEquipmentRostersForCompanion(
-            Hero hero,
-            bool isCivilian)
+        /// <summary>
+        /// Override to preserve companion's existing equipment when they become a lord.
+        /// Returns the companion's current equipment instead of generating new equipment.
+        /// </summary>
+        public override Equipment GetEquipmentForCompanionWhenTurningToLord(
+            Hero companionHero,
+            Equipment.EquipmentType equipmentType)
         {
-            var roster = new MBEquipmentRoster();
-            roster.Initialize();
-
-            var equipment = new Equipment(isCivilian ? Equipment.EquipmentType.Civilian : Equipment.EquipmentType.Battle);
-            equipment.FillFrom(isCivilian ? hero.CivilianEquipment : hero.BattleEquipment);
-
-            roster.AddEquipment(equipment);
-
-            var list = new MBList<MBEquipmentRoster>
-            {
-                roster
-            };
-
-            return list;
+            var equipment = new Equipment(equipmentType);
+            equipment.FillFrom(equipmentType == Equipment.EquipmentType.Civilian
+                ? companionHero.CivilianEquipment
+                : companionHero.BattleEquipment);
+            return equipment;
         }
     }
 }

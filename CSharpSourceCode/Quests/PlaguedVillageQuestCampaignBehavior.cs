@@ -123,7 +123,7 @@ namespace TOR_Core.Quests
                 return mapFaction != null && !mapFaction.IsAtWarWith(Clan.PlayerClan);
             }
 
-            protected override bool CanPlayerTakeQuestConditions(Hero issueGiver, out PreconditionFlags flag, out Hero relationHero, out SkillObject skill)
+            protected override bool CanPlayerTakeQuestConditions(Hero issueGiver, out PreconditionFlags flag, out Hero relationHero, out SkillObject skill, out int requiredGold)
             {
                 flag = PreconditionFlags.None;
                 relationHero = issueGiver;
@@ -138,6 +138,9 @@ namespace TOR_Core.Quests
                 {
                     flag |= PreconditionFlags.AtWar;
                 }
+
+                requiredGold = 0;
+                
                 return flag == PreconditionFlags.None;
             }
 

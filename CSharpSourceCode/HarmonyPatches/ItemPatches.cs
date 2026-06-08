@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ImageIdentifiers;
@@ -13,6 +15,7 @@ using TaleWorlds.MountAndBlade.View.Tableaus;
 using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -39,6 +42,65 @@ namespace TOR_Core.HarmonyPatches
             return 1f;
         }
 
+        private static bool IsStrictTorWorkshopTown(Town town)
+        {
+            string cultureStringId = town?.Culture?.StringId;
+            return cultureStringId == TORConstants.Cultures.SYLVANIA
+                || cultureStringId == TORConstants.Cultures.GREENSKIN
+                || cultureStringId == TORConstants.Cultures.DAWI;
+        }
+        private static bool IsRestrictedMerchandiseCategory(ItemCategory itemCategory)
+        {
+            return itemCategory != null && !itemCategory.IsTradeGood;
+        }
+
+        private static bool IsRestrictedMerchandiseItem(ItemObject item)
+        {
+            return item != null
+                && !item.NotMerchandise
+                && IsRestrictedMerchandiseCategory(item.ItemCategory);
+        }
+
+        private static float GetNativeWorkshopSelectionWeight(ItemObject item)
+        {
+            int clampedValue = item.Value > 100 ? item.Value : 100;
+            return (1f / (clampedValue + 100f)) * GetWorkshopProductionWeight(item);
+        }
+        private static bool IsVampireCountTown(Town town)
+        {
+            return town?.Culture?.StringId == TORConstants.Cultures.SYLVANIA;
+        }
+
+        private static bool IsVanillaHorseAllowedInStrictTown(Town town, ItemObject item)
+        {
+            return IsVampireCountTown(town) && item?.HasHorseComponent == true;
+        }
+        private static bool IsAllowedItemInStrictTown(Town town, ItemObject item)
+        {
+            return item != null && (item.IsTorItem() || IsVanillaHorseAllowedInStrictTown(town, item));
+        }
+
+        private static Town GetTradeTownFromSaleContext(PartyBase buyerParty, Settlement currentSettlement)
+        {
+            Settlement settlement = buyerParty?.Settlement ?? currentSettlement;
+            if (settlement == null)
+            {
+                return null;
+            }
+
+            if (settlement.Town != null)
+            {
+                return settlement.Town;
+            }
+
+            if (settlement.IsVillage)
+            {
+                return settlement.Village.TradeBound?.Town ?? settlement.Village.Bound?.Town;
+            }
+
+            return null;
+        }
+
         [HarmonyPrefix]
         [HarmonyPatch(typeof(WeaponComponentData), "GetRelevantSkillFromWeaponClass")]
         public static bool AddGunpowderRelevantSkill(ref SkillObject __result, WeaponClass weaponClass)
@@ -53,51 +115,105 @@ namespace TOR_Core.HarmonyPatches
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(WorkshopsCampaignBehavior), "IsItemPreferredForTown")]
-        public static void OnlyProduceTorItems(ref bool __result, ItemObject item, Town townComponent)
+        public static void OnlyPreferTorItemsInStrictTownWorkshops(ref bool __result, ItemObject item, Town townComponent)
         {
-            if (__result && item.Culture == townComponent.Culture) __result = item.IsTorItem();
+            if (!__result || !IsStrictTorWorkshopTown(townComponent) || !IsRestrictedMerchandiseItem(item))
+            {
+                return;
+            }
+
+            if (item.Culture == townComponent.Culture)
+            {
+                __result = IsAllowedItemInStrictTown(townComponent, item);
+            }
+        }
+
+        // aux only will leak vanilla 
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(WorkshopsCampaignBehavior), "GetRandomItem")]
+        public static bool OnlyProduceTorItemsInStrictTownWorkshops(
+            ref EquipmentElement __result,
+            ItemCategory itemGroupBase,
+            Town townComponent,
+            Dictionary<ItemCategory, List<ItemObject>> ____itemsInCategory)
+        {
+            if (!IsStrictTorWorkshopTown(townComponent) || !IsRestrictedMerchandiseCategory(itemGroupBase))
+            {
+                return true;
+            }
+
+            if (!____itemsInCategory.TryGetValue(itemGroupBase, out List<ItemObject> allItemsInGroup))
+            {
+                return true;
+            }
+
+            List<(ItemObject Item, float Weight)> exactCultureAllowedItems = new();
+            List<(ItemObject Item, float Weight)> fallbackAllowedItems = new();
+
+            foreach (ItemObject item in allItemsInGroup)
+            {
+                if (!IsRestrictedMerchandiseItem(item) || item.ItemCategory != itemGroupBase || !IsAllowedItemInStrictTown(townComponent, item))
+                {
+                    continue;
+                }
+
+                float weight = GetNativeWorkshopSelectionWeight(item);
+
+                if (item.Culture == townComponent.Culture)
+                {
+                    exactCultureAllowedItems.Add((item, weight));
+                }
+                else
+                {
+                    fallbackAllowedItems.Add((item, weight));
+                }
+            }
+
+            List<(ItemObject Item, float Weight)> itemsToChooseFrom = exactCultureAllowedItems.Count > 0
+                ? exactCultureAllowedItems
+                : fallbackAllowedItems;
+
+            if (itemsToChooseFrom.Count < 1)
+            {
+                return true;
+            }
+
+            ItemObject itemObject = MBRandom.ChooseWeighted(itemsToChooseFrom);
+
+            ItemModifierGroup itemModifierGroup = itemObject?.ItemComponent?.ItemModifierGroup;
+            ItemModifier itemModifier = itemModifierGroup?.GetRandomItemModifierProductionScoreBased();
+
+            __result = new EquipmentElement(itemObject, itemModifier, null, false);
+            return false;
         }
 
         [HarmonyPrefix]
-        [HarmonyPatch(typeof(WorkshopsCampaignBehavior), "GetRandomItemAux")]
-        public static bool OnlyProduceCultureMatchingItems(ref EquipmentElement __result, ItemCategory itemGroupBase, Town townComponent, Dictionary<ItemCategory, List<ItemObject>> ____itemsInCategory)
+        [HarmonyPatch(typeof(SellItemsAction), "Apply")]
+        public static bool PreventVanillaMerchandiseFromEnteringStrictTownMarkets(
+            PartyBase receiverParty,
+            PartyBase payerParty,
+            ItemRosterElement subject,
+            int number,
+            Settlement currentSettlement)
         {
-            if (____itemsInCategory.TryGetValue(itemGroupBase, out var allItemsInGroup))
+            if (number < 1 || payerParty?.Settlement == null)
             {
-                var weightedItems = new List<(ItemObject Item, float Weight)>();
-
-                foreach (ItemObject item in allItemsInGroup)
-                {
-                    if (townComponent != null && item.Culture == townComponent.Culture && item.ItemCategory == itemGroupBase)
-                    {
-                        weightedItems.Add((item, GetWorkshopProductionWeight(item)));
-                    }
-                }
-
-                if (weightedItems.Count < 1)
-                {
-                    return true;
-                }
-
-                ItemObject itemObject = MBRandom.ChooseWeighted(weightedItems);
-
-                ItemModifierGroup itemModifierGroup = null;
-                if (itemObject != null)
-                {
-                    ItemComponent itemComponent = itemObject.ItemComponent;
-                    itemModifierGroup = itemComponent?.ItemModifierGroup;
-                }
-
-                ItemModifier itemModifier = null;
-                if (itemModifierGroup != null)
-                {
-                    itemModifier = itemModifierGroup.GetRandomItemModifierProductionScoreBased();
-                }
-
-                __result = new EquipmentElement(itemObject, itemModifier, null, false);
-                return false;
+                return true;
             }
-            return true;
+
+            Town destinationTown = GetTradeTownFromSaleContext(payerParty, currentSettlement);
+            if (!IsStrictTorWorkshopTown(destinationTown))
+            {
+                return true;
+            }
+
+            ItemObject item = subject.EquipmentElement.Item;
+            if (!IsRestrictedMerchandiseItem(item))
+            {
+                return true;
+            }
+
+            return IsAllowedItemInStrictTown(destinationTown, item);
         }
 
         [HarmonyPostfix]

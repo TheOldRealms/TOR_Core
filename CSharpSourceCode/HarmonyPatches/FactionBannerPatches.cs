@@ -22,6 +22,7 @@ namespace TOR_Core.HarmonyPatches
             string code = node?.Attributes?.GetNamedItem("banner_key")?.Value;
             if (code != null)
             {
+                StripImageResource(ref code);
                 _cache[__instance.StringId] = new Banner(code);
             }
         }
@@ -33,6 +34,7 @@ namespace TOR_Core.HarmonyPatches
             string code = node?.Attributes?.GetNamedItem("banner_key")?.Value;
             if (code != null)
             {
+                StripImageResource(ref code);
                 _cache[__instance.StringId] = new Banner(code);
             }
         }
@@ -67,12 +69,17 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(Banner), "TryGetBannerDataFromCode")]
         public static void StripImageResource(ref string bannerCode)
         {
-            var array = bannerCode.Split([':']);
-            if (array.Length > 1)
+            var imageResourceSeparatorIndex = bannerCode.IndexOf(':');
+            if (imageResourceSeparatorIndex <= 0)
             {
-                bannerCode = array[0];
-                ExtendedInfoManager.AddBannerImageResource(array[0], array[1]);
+                return;
             }
+
+            var bannerCodeWithoutImageResource = bannerCode.Substring(0, imageResourceSeparatorIndex);
+            var imageResource = bannerCode.Substring(imageResourceSeparatorIndex + 1);
+
+            bannerCode = bannerCodeWithoutImageResource;
+            ExtendedInfoManager.AddBannerImageResource(bannerCodeWithoutImageResource, imageResource);
         }
 
         [HarmonyPostfix]

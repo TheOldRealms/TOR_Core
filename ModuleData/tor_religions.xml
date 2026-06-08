@@ -373,6 +373,7 @@
             <FollowerClan stringId="athel_loren_clan_2" />
         </Followers>
         <ReligiousTroops>
+			<ReligiousTroop id="NPCCharacter.tor_we_wild_rider" />
         </ReligiousTroops>
     </Religion>
     <Religion id="cult_of_vaul" Name="{=tor_religion_cult_name_cult_of_vaul_str}Cult of Vaul" Culture="Culture.battania" Pantheon="Elven" DeityName="Vaul">
@@ -444,6 +445,7 @@
             <FollowerClan stringId="athel_loren_clan_8" />
         </Followers>
         <ReligiousTroops>
+		   <ReligiousTroop id="NPCCharacter.tor_we_wardancer" />
         </ReligiousTroops>
     </Religion>
 	<Religion id="cult_of_grimnir" Name="{=tor_religion_cult_name_cult_of_grimnir_str}Cult of Grimnir" Culture="Culture.sturgia" Pantheon="Dwarven" DeityName="Grimnir">

@@ -23,16 +23,20 @@ namespace TOR_Core.Models
     {
         public override ExplainedNumber GetPartyMemberSizeLimit(PartyBase party, bool includeDescriptions = false)
         {
-            //Sly : PartyBase.Culture is actually PartyBase.MapFaction.Culture with no null protection on MapFaction in native
+            //Sly : PartyBase.Culture is actually PartyBase.MapFaction.Culture with no null protection on MapFaction in native. However, MapFaction can be both a clan or kingdom, and therefore makes the culture variable depending on which specific kingdom a clan belongs to at a given moment.
+            //Using MobileParty.ActualClan.Culture can circumvent this, but it must be noted that village militias that spawn during a defense are PartyBases with no associated MobileParty, but because the village's culture will be derived from the settlement owner's culture which will be based on the kingdom's culture, this will be close enough in the interim as the types of troops that spawn in the militia are also based on the settlement's culture.
 
             var num = base.GetPartyMemberSizeLimit(party, includeDescriptions);
-            if (party?.MapFaction != null && party.Culture != null && party.Culture.StringId == TORConstants.Cultures.SYLVANIA)
+
+            var partyCulture = GetPartyCultureForPartySize(party);
+
+            if (partyCulture?.StringId == TORConstants.Cultures.SYLVANIA)
             {
                 if (party.LeaderHero != null && party.LeaderHero.IsHumanPlayerCharacter)
                 {
                     num.Add(20, TORTextHelper.GetTextObject("tor_party_size_desc", "FriendOfUndead", "Friend of undead"));
                 }
-                else if (party.MobileParty.IsCaravan)
+                else if (party.IsMobile && party.MobileParty.IsCaravan)
                 {
                     num.Add(50, TORTextHelper.GetTextObject("tor_party_size_desc", "CaravanOfDeath", "Caravan of death"));
                 }
@@ -53,7 +57,7 @@ namespace TOR_Core.Models
                 }
             }
 
-            if (party?.MapFaction != null && party.Culture?.StringId == TORConstants.Cultures.GREENSKIN &&
+            if (partyCulture?.StringId == TORConstants.Cultures.GREENSKIN &&
                 party.IsMobile &&
                 party.LeaderHero != Hero.MainHero)
             {
@@ -69,18 +73,18 @@ namespace TOR_Core.Models
             if (party == null || party.LeaderHero == null)
                 return num;
 
-
+            
             if (party.LeaderHero == Hero.MainHero)
             {
                 AddCareerPassivesForPartySize(Hero.MainHero, party, ref num);
             }
 
-            if (party.MapFaction != null && party.Culture?.StringId == TORConstants.Cultures.DAWI)
+            if (partyCulture?.StringId == TORConstants.Cultures.DAWI)
             {
                 num.AddFactor(-0.25f, TORTextHelper.GetTextObject("tor_party_size_desc", "DwarfPenalty", "Dwarf cultural penalty"));
             }
 
-            if (party.MapFaction != null && party.Culture?.StringId == TORConstants.Cultures.ASRAI)
+            if (partyCulture?.StringId == TORConstants.Cultures.ASRAI)
             {
                 num.AddFactor(-0.25f, TORTextHelper.GetTextObject("tor_party_size_desc", "WoodelfPenalty", "Woodelf cultural penalty"));
 
@@ -128,7 +132,20 @@ namespace TOR_Core.Models
 
             return compositeNum;
         }
+        private static CultureObject GetPartyCultureForPartySize(PartyBase party)
+        {
+            if (party.IsMobile)
+            {
+                var mobileParty = party.MobileParty;
 
+                return mobileParty.ActualClan?.Culture
+                    ?? mobileParty.HomeSettlement?.Culture
+                    ?? mobileParty.LeaderHero?.Culture
+                    ?? mobileParty.Owner?.Culture
+                    ?? mobileParty.MapFaction?.Culture;
+            }
+            return party.Settlement?.Culture ?? party.MapFaction?.Culture;
+        }
         public override TroopRoster FindAppropriateInitialRosterForMobileParty(MobileParty party, PartyTemplateObject partyTemplate)
         {
             if (!party.IsRaidingParty()) return base.FindAppropriateInitialRosterForMobileParty(party, partyTemplate);
@@ -302,11 +319,6 @@ namespace TOR_Core.Models
             {
                 number.Add(0.5f * goblinCount, TORTextHelper.GetTextObject("tor_party_size_desc", "GoblinWeight", "Goblin weight"));
             }
-        }
-
-        public static void RecalculateMainPartySize()
-        {
-            var _ = PartyBase.MainParty.PartySizeLimit;//recalculate to force a cache refresh of the underlying PartyBase's PartySizeLimit - the value is of no consequence.
         }
     }
 }
