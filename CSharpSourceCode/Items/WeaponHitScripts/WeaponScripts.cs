@@ -90,8 +90,8 @@ public class WeaponTriggerEffectScript(string[] arguments) : BaseWeaponHitScript
         }
         else
         {
-            var position = attackedAgent.Position; // doesnt matter
             var target = applyOnAttacker ? attackingAgent : attackedAgent;
+            var position = target.Position;//traits that trigger shockwaves diminish their effect based on distance from the position. The radius is centred on the principle agent receiving the effect.
             effect.Trigger(position, Vec3.Up, _triggererAgent, null, new MBList<Agent>() { target });
         }
     }
