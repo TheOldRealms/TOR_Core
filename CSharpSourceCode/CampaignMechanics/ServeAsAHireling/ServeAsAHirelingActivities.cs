@@ -155,7 +155,7 @@ public class ServeAsAHirelingActivities
                 ]
             },
             {
-                TORCareers.Warden, [
+                TORCareers.Warden, [// Glade Lord in-game
                     DefaultSkills.Polearm,    // Sparring practice with spears
                     DefaultSkills.Throwing,   // Javelin target practice
                     DefaultSkills.Bow,        // Bow target practice
