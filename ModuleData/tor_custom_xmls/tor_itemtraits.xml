@@ -424,7 +424,7 @@
     <AdditionalDamageTuple DamageType="Magical" Percent="0.20" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
       <WeaponScriptArguments>
-        <WeaponScriptArgument>hysh_brilliance_enchant</WeaponScriptArgument>
+        <WeaponScriptArgument>hysh_timewarp_enchant</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -767,8 +767,9 @@
     <AdditionalDamageTuple DamageType="Magical" Percent="0.15" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.BuffStackOnKill">
       <WeaponScriptArguments>
-        <WeaponScriptArgument>shyish_pall_buff</WeaponScriptArgument>
-        <WeaponScriptArgument>50</WeaponScriptArgument>
+      <WeaponScriptArgument>shyish_pall_buff</WeaponScriptArgument>
+      <WeaponScriptArgument>5</WeaponScriptArgument>
+      <WeaponScriptArgument>50</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -793,7 +794,7 @@
     <ItemTraitDescription>"Blocking hits of Undead units carries a 50% chance to apply an 'Exorcism', granting 33% extra magic melee dmg for 10 seconds against the target"</ItemTraitDescription>
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.UndeadConditionDefenseTriggerEffectScript">
       <WeaponScriptArguments>
-        <WeaponScriptArgument>shyish_deathsight</WeaponScriptArgument>
+        <WeaponScriptArgument>shyish_deathsight_enchant</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
       </WeaponScriptArguments>
@@ -835,7 +836,7 @@
     <StatsTuple StatType="HealthMax" Value="3" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.UndeadConditionDefenseTriggerEffectScript">
       <WeaponScriptArguments>
-        <WeaponScriptArgument>sigmar_light</WeaponScriptArgument>
+        <WeaponScriptArgument>sigmar_light_enchant</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
