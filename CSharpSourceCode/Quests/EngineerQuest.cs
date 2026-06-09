@@ -33,16 +33,16 @@ namespace TOR_Core.Quests
         [SaveableField(7)] private bool _failstate;
         [SaveableField(8)] private Hero _questHeroToKill = null;
         private bool _skipImprisonment;
-        private string RogueEngineerLeaderName = new TextObject("{ROGUE_ENGINEER_NAME}").ToString();
         private const string QuestName = "Runaway Parts";
         private const string CultistFactionId = "forest_bandits";
         private string CultistPartyDisplayName = new TextObject("{tor_quest_engineer_cultist_party_str} Runaway Thieves").ToString();
         private string CultistPartyLeaderName = new TextObject("{tor_quest_engineer_cultist_party_leader_str} Runaway Thieves Leader").ToString();
         private const string CultistPartyTemplateId = "broken_wheel";
         private const string CultistLeaderTemplateId = "tor_bw_cultist_lord_0";
-        private const string EngineerFactionId = "mountain_bandits";
+        
+        private string RogueEngineerLeaderName = TORTextHelper.GetText("tor_rogue_engineer_name", "Goswin");
         private string RogueEngineerDisplayName = TORTextHelper.GetText("rogueEngineerParty", "Goswin");
-
+        private const string EngineerFactionId = "mountain_bandits";
         private const string RogueEngineerPartyTemplateId = "empire_deserters_boss_party";
         private const string RogueEngineerLeaderTemplateId = "tor_engineerquesthero";
         public EngineerQuestStates CurrentActiveLog => (EngineerQuestStates)_currentActiveLog;
@@ -103,8 +103,7 @@ namespace TOR_Core.Quests
             if (_currentActiveLog == EngineerQuestStates.RogueEngineerhunt)
             {
                 RemoveLog(_task3);
-                SpawnQuestParty(RogueEngineerLeaderTemplateId, RogueEngineerPartyTemplateId, EngineerFactionId,
-                    RogueEngineerLeaderName, RogueEngineerDisplayName);
+                SpawnQuestParty(RogueEngineerLeaderTemplateId, RogueEngineerPartyTemplateId, EngineerFactionId, RogueEngineerLeaderName, RogueEngineerDisplayName);
                 _task3 = AddDiscreteLog(_logs[(int)EngineerQuestStates.RogueEngineerhunt].LogText,
                     _logs[(int)EngineerQuestStates.RogueEngineerhunt].TaskName, 0, 1);
             }
@@ -120,7 +119,7 @@ namespace TOR_Core.Quests
             base.RegisterEvents();
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, QuestBattleEnded);
             CampaignEvents.OnAgentJoinedConversationEvent.AddNonSerializedListener(this, SkipDialog);
-            CampaignEvents.OnPartyRemovedEvent.AddNonSerializedListener(this, TrackHeroToKillOnQuestAdvancement);
+            CampaignEvents.OnPartyRemovedEvent.AddNonSerializedListener(this, TrackHeroToKill);
             CampaignEvents.MapEventEnded.AddNonSerializedListener(this, QuestBattleEndedWithFail);
             CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, CorrectHeroOccupationAndClanStatus);
         }
@@ -133,6 +132,7 @@ namespace TOR_Core.Quests
             {
                 _skipImprisonment = true;
                 UpdateProgressOnQuest();
+                SetQuestPartyAiAfterBattle();
             }
         }
 
@@ -160,7 +160,17 @@ namespace TOR_Core.Quests
             }
 
             _failstate = true;
-            DestroyPartyAction.Apply(PartyBase.MainParty, _targetParty);
+            SetQuestPartyAiAfterBattle();
+        }
+
+        private void SetQuestPartyAiAfterBattle()
+        {
+            //Party cleanup is verified on an hourly tick
+            if (_targetParty.IsActive)
+			{
+				_targetParty.Ai.SetDoNotMakeNewDecisions(false);
+				SetPartyAiAction.GetActionForVisitingSettlement(_targetParty, _targetParty.HomeSettlement, MobileParty.NavigationType.Default, false, false);
+			}
         }
 
         private void SkipDialog(IAgent agent) //TODO check if this works as intended
@@ -188,11 +198,11 @@ namespace TOR_Core.Quests
             _skipImprisonment = false;
         }
 
-        private void TrackHeroToKillOnQuestAdvancement(PartyBase obj)
+        private void TrackHeroToKill(PartyBase partyBase)
         {
-            if (obj.MobileParty == _targetParty)
+            if (partyBase.MobileParty == _targetParty)
             {
-                _questHeroToKill = obj.Owner;
+                _questHeroToKill = partyBase.Owner;
             }
         }
 
@@ -231,8 +241,7 @@ namespace TOR_Core.Quests
                             KillCharacterAction.ApplyByRemove(_questHeroToKill);//Sly : This doesn't unregister the character object copy associated with the hero. That should probably be added in the future if the game doesn't perform its own cleanup on game load or something.
                             _questHeroToKill = null;
                         }
-                        SpawnQuestParty(RogueEngineerLeaderTemplateId, RogueEngineerPartyTemplateId, EngineerFactionId,
-                            RogueEngineerLeaderName, RogueEngineerDisplayName);
+                        SpawnQuestParty(RogueEngineerLeaderTemplateId, RogueEngineerPartyTemplateId, EngineerFactionId, RogueEngineerLeaderName, RogueEngineerDisplayName);
                         _task3 = AddDiscreteLog(_logs[2].LogText, _logs[2].TaskName, 0, 1);
                     }
 
@@ -293,10 +302,10 @@ namespace TOR_Core.Quests
             return returnvalue;
         }
 
-        private void SpawnQuestParty(string partyLeaderTemplate, string partyTemplate, string factionId,
+        private void SpawnQuestParty(string partyLeaderCharacterTemplate, string partyTemplateId, string factionId,
             string heroNameOverride = null, string partyNameOverride = null, Settlement spawnLocationOverride = null)
         {
-            var leaderTemplate = MBObjectManager.Instance.GetObject<CharacterObject>(partyLeaderTemplate);
+            var leaderTemplate = MBObjectManager.Instance.GetObject<CharacterObject>(partyLeaderCharacterTemplate);
             var faction = Current.Factions.FirstOrDefault(x => x.StringId.ToString() == factionId);
             var factionClan = (Clan)faction;
             //this is intended as a quick fix, if we dont  want a full random spawning
@@ -322,8 +331,9 @@ namespace TOR_Core.Quests
             var hero = HeroCreator.CreateSpecialHero(leaderTemplate, settlement, factionClan, null, 45);
             hero.CharacterObject.HiddenInEncyclopedia = true;
             if (heroNameOverride != null) hero.SetName(heroTextObject, heroTextObject);
-            var party = QuestPartyComponent.CreateParty(settlement, hero, factionClan, partyTemplate);
+            var party = QuestPartyComponent.CreateParty(settlement, hero, factionClan, partyTemplateId);
             if (partyNameOverride != null) party.Party.SetCustomName(partyTextObject);
+            
             party.Aggressiveness = 0f;
             party.IgnoreByOtherPartiesTill(CampaignTime.Never);
             //SetPartyUsedByQuest == true would normally prevent a party from having map trackers on them; see MapMobilePartyTrackerVMPatches for changes to that
@@ -337,6 +347,24 @@ namespace TOR_Core.Quests
 
         protected override void HourlyTick()
         {
+            if (_questHeroToKill != null && (_currentActiveLog == EngineerQuestStates.HandInCultisthunt || _currentActiveLog == EngineerQuestStates.HandInRogueEngineerHunt))
+            {
+                KillCharacterAction.ApplyByRemove(_questHeroToKill);//Sly : This doesn't unregister the character object copy associated with the hero. That should probably be added in the future if the game doesn't perform its own cleanup on game load or something.
+                _questHeroToKill = null;
+            }
+            if (_targetParty != null && (_currentActiveLog == EngineerQuestStates.HandInCultisthunt || _currentActiveLog == EngineerQuestStates.HandInRogueEngineerHunt))
+            {
+                if (_targetParty.IsActive && _targetParty.MapEvent == null)
+                {
+                    if (_targetParty.LeaderHero != null)
+                    {
+                        KillCharacterAction.ApplyByRemove(_targetParty.LeaderHero);
+                        _questHeroToKill = null;
+                    }
+                    DestroyPartyAction.Apply(null, _targetParty);
+                    _targetParty = null;
+                }
+            }
         }
 
         /// <summary>

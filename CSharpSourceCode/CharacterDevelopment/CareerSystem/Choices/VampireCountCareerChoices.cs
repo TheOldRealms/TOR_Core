@@ -269,7 +269,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _lordlyPassive1.Initialize(CareerID, "+5 Companion limit.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
             _lordlyPassive2.Initialize(CareerID, "+20 increased party size.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.PartySize));
             _lordlyPassive3.Initialize(CareerID, "-15% 'Dark Energy' upkeep for 'Vampire' troops.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.TroopWages, true, LordlyPassive3));
-            _lordlyPassive4.Initialize(CareerID, "For every 2 'Lesser Undead' increase party size by 1.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.5f, PassiveEffectType.UnitPartyWeight, false, characterObject => characterObject.IsUndead()));
+            _lordlyPassive4.Initialize(CareerID, "For every 2 'Lesser Undead' increase party size by 1.", "Lordly", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.5f, PassiveEffectType.UnitPartyWeight, false, characterObject => characterObject.IsSkeleton()));
 
             _martiallePassive1.Initialize(CareerID, "+5% personal 'Physical' melee damage.", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 5), AttackTypeMask.Melee));
             _martiallePassive2.Initialize(CareerID, "+35 personal Hitpoints.", "Martialle", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(35, PassiveEffectType.Health));
@@ -279,7 +279,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _masterOfDeadPassive1.Initialize(CareerID, "+5 'Dark Energy' daily.", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CustomResourceGain));
             _masterOfDeadPassive2.Initialize(CareerID, "+10% 'Ward Save' for 'Lesser Undead'.", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.All, MasterOfDeadPassive2));
             _masterOfDeadPassive3.Initialize(CareerID, "+20% higher chance to 'Raise Dead' after a battle.", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); // HeroExtension 44
-            _masterOfDeadPassive4.Initialize(CareerID, "+20% chance tier 4+ 'Lesser Undead' troops will be wounded instead of killed.", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.Special, true)); //HealingpartyModel 33
+            _masterOfDeadPassive4.Initialize(CareerID, "+20% chance tier 4+ 'Lesser Undead' troops will be wounded instead of killed.", "MasterOfDead", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.Special, true));
         }
 
         private static bool LordlyPassive3(CharacterObject characterObject)
@@ -292,7 +292,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         {
             if (!victim.BelongsToMainParty()) return false;
             if (victim.IsHero) return false;
-            return victim.IsUndead();
+            return victim.Character.IsSkeleton();
         }
 
         private static bool MartiallePassive3(Agent attacker, Agent victim, AttackTypeMask mask)

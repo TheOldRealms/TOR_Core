@@ -2440,7 +2440,7 @@
 		id="powerstone_de_magic_res"
 		particle_id="general_metal_buff"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="0.15"
+		base_effect_value="0.2"
 		applies_for_attack_type="All"
 		type="Resistance"
 		damage_type="Magical">

@@ -594,7 +594,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         {
             if (GetCareerButton() is ImperialMagisterCareerButtonBehavior button)
             {
-                var stones = button.AvailablePowerStones;
+                var stones = button.AllPowerStones;
 
                 foreach (var attribute in attributes)
                 {

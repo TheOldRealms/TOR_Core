@@ -3,6 +3,7 @@ using SandBox.GameComponents;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Media.TextFormatting;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -777,10 +778,10 @@ namespace TOR_Core.Models
 
                     var offHand = agent.WieldedOffhandWeapon.Item;
 
-                    wieldedItemTraits.AddRange(weapon.GetTraits());
+                    wieldedItemTraits.AddRange(weapon.GetTraits(agent));
                     if (offHand != null)
                     {
-                        wieldedItemTraits.AddRange(offHand.GetTraits());
+                        wieldedItemTraits.AddRange(offHand.GetTraits(agent));
                     }
 
                     foreach (var itemTrait in wieldedItemTraits)
@@ -1070,7 +1071,8 @@ namespace TOR_Core.Models
                     damageAmplifications[(int)property.AmplifiedDamageType] += property.DamageAmplifier;
                 }
                 //add temporary effects like buffs to attack bonuses on items
-                List<ItemTrait> dynamicTraits = agent.GetComponent<ItemTraitAgentComponent>()?.GetDynamicTraits(agent.WieldedWeapon.Item);
+                var itemTraitAgentComponent = agent.GetComponent<ItemTraitAgentComponent>();
+                List<ItemTrait> dynamicTraits = itemTraitAgentComponent?.GetDynamicTraits(agent.WieldedWeapon.Item) ?? new List<ItemTrait>();
 
                 foreach (var dynamicTrait in dynamicTraits)
                 {
@@ -1107,7 +1109,8 @@ namespace TOR_Core.Models
                 }
 
                 //add temporary effects like buffs to defense bonuses
-                List<ItemTrait> dynamicTraits = agent.GetComponent<ItemTraitAgentComponent>()?.GetDynamicTraits(agent.WieldedWeapon.Item);
+                var itemTraitAgentComponent = agent.GetComponent<ItemTraitAgentComponent>();
+                List<ItemTrait> dynamicTraits = itemTraitAgentComponent?.GetDynamicTraits(agent.WieldedWeapon.Item) ?? new List<ItemTrait>();
 
                 foreach (var dynamicTrait in dynamicTraits)
                 {
@@ -1390,6 +1393,27 @@ namespace TOR_Core.Models
         #endif
 
             return passedExtra;
+        }
+
+        public override void DecideWeaponCollisionReaction(in Blow registeredBlow, in AttackCollisionData collisionData, Agent attacker, Agent defender, in MissionWeapon attackerWeapon, bool isFatalHit, bool isShruggedOff, float momentumRemaining, out MeleeCollisionReaction colReaction)
+        {
+            base.DecideWeaponCollisionReaction(registeredBlow, collisionData, attacker, defender, attackerWeapon, isFatalHit, isShruggedOff, momentumRemaining, out colReaction);
+
+            if (defender == null) return;
+            if (momentumRemaining == 0) return;
+
+            
+            //if (collisionData.CollisionResult == CombatCollisionResult.None) return;
+
+            //if (collisionData.CollisionHitResultFlags
+
+            if (attacker.IsTroll() || attacker.IsTreeman())
+            {
+                //if (colReaction == MeleeCollisionReaction.Bounced || colReaction == MeleeCollisionReaction.Staggered || colReaction == MeleeCollisionReaction.Stuck)
+                {
+                    colReaction = MeleeCollisionReaction.SlicedThrough;
+                }
+            }
         }
     }
 }

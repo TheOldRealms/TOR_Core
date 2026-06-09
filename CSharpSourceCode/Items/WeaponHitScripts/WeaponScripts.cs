@@ -74,10 +74,7 @@ public class WeaponTriggerEffectScript(string[] arguments) : BaseWeaponHitScript
         var applyOnAttacker = false;
         if (_arguments.Length >= 2)
         {
-            if (!bool.TryParse(_arguments[1], out applyOnAttacker))
-            {
-
-            }
+            bool.TryParse(_arguments[1], out applyOnAttacker);
         }
         var targeted = false;
         if (_arguments.Length >= 3)

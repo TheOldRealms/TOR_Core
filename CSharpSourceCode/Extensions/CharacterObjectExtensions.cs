@@ -183,6 +183,11 @@ namespace TOR_Core.Extensions
             return characterObject.Race == FaceGen.GetRaceOrDefault("minotaur");
         }
 
+        public static bool IsTreeman(this BasicCharacterObject basicCharacterObject)
+        {
+            return basicCharacterObject.Race == FaceGen.GetRaceOrDefault("large_humanoid_monster");
+        }
+
         public static bool IsLargeTarget(this CharacterObject characterObject)
         {
             return characterObject.IsMounted || characterObject.IsTroll() || characterObject.IsMinotaur();
@@ -311,6 +316,11 @@ namespace TOR_Core.Extensions
         public static bool IsUndead(this BasicCharacterObject characterObject)
         {
             return characterObject.GetAttributes().Contains("Undead");
+        }
+
+        public static bool IsSkeleton(this BasicCharacterObject characterObject)
+        {
+            return characterObject.Race == FaceGen.GetRaceOrDefault("skeleton");
         }
 
         public static bool IsGhost(this BasicCharacterObject characterObject)

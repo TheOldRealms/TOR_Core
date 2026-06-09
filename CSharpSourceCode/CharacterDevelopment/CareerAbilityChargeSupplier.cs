@@ -111,7 +111,7 @@ namespace TOR_Core.CharacterDevelopment
             if (chargeType != ChargeType.DamageDone && chargeType != ChargeType.Healed) return 0;
             ExplainedNumber explainedNumber = new ExplainedNumber();
 
-            if (!affectingAgent.IsHero && affectingAgent.IsUndead() && Hero.MainHero.HasCareerChoice("DiscipleOfAccursedKeystone"))
+            if (!affectingAgent.IsHero && affectingAgent.Character.IsSkeleton() && Hero.MainHero.HasCareerChoice("DiscipleOfAccursedKeystone"))
             {
                 explainedNumber.Add(chargeValue);
                 explainedNumber.AddFactor(-0.75f);

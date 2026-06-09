@@ -364,6 +364,8 @@
   <string id="tor_generic_isRaided" text="{=str_tor_generic_isRaided}{SETTLEMENT} is raided" />
   <string id="tor_generic_isLooted" text="{=str_tor_generic_isLooted}{SETTLEMENT} is destroyed" />
   <string id="tor_generic_isCaptured" text="{=str_tor_generic_isCaptured}{SETTLEMENT} is captured" />
+  <string id="tor_generic_companionLimitReached" text="{=str_tor_generic_companionLimitReached}Clan companion limit reached" />
+  <string id="tor_generic_customResourceCost" text="{=str_tor_generic_customResourceCost}Requires {AMOUNT} {RESOURCE_ICON}" />
 
   <!-- Generic UI Messages -->
   <string id="tor_inquiry_ok_text" text="{=str_tor_inquiry_ok_text}OK" />
@@ -3087,7 +3089,7 @@
   <string id="tor_waywatcher_arrow_desc.Swiftshiver" text="{=str_tor_waywatcher_arrow_desc_swiftshiver}adds 15% Magical damage" />
   <string id="tor_waywatcher_arrow_desc.Hagbane" text="{=str_tor_waywatcher_arrow_desc_hagbane}adds a 25% chance for 40% movement speed slowdown" />
   <string id="tor_waywatcher_arrow_desc.Starfire" text="{=str_tor_waywatcher_arrow_desc_starfire}Adds a 25% chance for fire damage over time and fire vulnerability" />
-  <string id="tor_grail_knight_promote_companion_text" text="{=str_tor_grail_knight_promote_companion_text}Promotes your Grail Knight to a companion (Cost 100{RESOURCE_ICON})" />
+  <string id="tor_grail_knight_promote_companion_text" text="{=str_tor_grail_knight_promote_companion_text}Promotes your Grail Knight to a companion (Costs {AMOUNT} {RESOURCE_ICON})" />
   <string id="tor_learned_spell_text" text="{=str_tor_learned_spell_text}Successfully learned spell: {SPELL_NAME}" />
   <string id="tor_learnSpell" text="{=str_tor_learnSpell}Learn {GOLDCOST} {COINIMAGE}" />
   <string id="tor_learnSpellDisabled_canLearn" text="{=str_tor_learnSpellDisabled_canLearn}Can learn" />
