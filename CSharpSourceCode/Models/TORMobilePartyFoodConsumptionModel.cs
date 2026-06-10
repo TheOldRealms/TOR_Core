@@ -36,7 +36,7 @@ namespace TOR_Core.Models
 
             var consumption = base.CalculateDailyFoodConsumptionf (party, baseConsumption);
 
-			var partyCulture = party.Party.MobileParty?.ActualClan?.Culture ?? party.Party.MapFaction?.Culture;
+			var partyCulture = party?.ActualClan?.Culture ?? party.Party.MapFaction?.Culture;
             if (partyCulture == null) return consumption;
 
             if (partyCulture.StringId == TORConstants.Cultures.SYLVANIA || partyCulture.StringId == TORConstants.Cultures.MOUSILLON)
