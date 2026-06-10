@@ -274,6 +274,10 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 Hero.MainHero.AddCultureSpecificCustomResource(-2500);
                 Hero.MainHero.AddAttribute("SpellCaster");
                 Hero.MainHero.SetSpellCastingLevel(SpellCastingLevel.Entry);
+                if (Hero.MainHero.GetSkillValue(TORSkills.Spellcraft) < 25)
+                {
+                    Hero.MainHero.SetSkillValue(TORSkills.Spellcraft, 25);
+                }
             }
 
             void learnMagicWardenSecondLore()
