@@ -16,12 +16,14 @@ namespace TOR_Core.CampaignMechanics
     {
         private const float SurvivalDurationForIndependentClanInWeeks = 4f;
         private Dictionary<string, double> _independentClans = [];
+        private List<string> _kingdomsPendingDiscontinuation = [];
 
         public override void RegisterEvents()
         {
             CampaignEvents.OnSettlementOwnerChangedEvent.AddNonSerializedListener(this, OnSettlementOwnerChanged);
             CampaignEvents.OnClanChangedKingdomEvent.AddNonSerializedListener(this, OnClanChangedKingdom);
             CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, DailyTickClan);
+            CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, DailyTick);
         }
 
         public void OnSettlementOwnerChanged(Settlement settlement, bool openToClaim, Hero newOwner, Hero oldOwner, Hero capturerHero, ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail detail)
@@ -37,7 +39,7 @@ namespace TOR_Core.CampaignMechanics
             Kingdom kingdom = oldOwner.Clan.Kingdom;
             if (kingdom != null && CanKingdomBeDiscontinued(kingdom))
             {
-                DiscontinueKingdom(kingdom);
+                QueueKingdomDiscontinuation(kingdom);
             }
         }
 
@@ -56,7 +58,28 @@ namespace TOR_Core.CampaignMechanics
             }
             if (clan == Clan.PlayerClan && oldKingdom != null && CanKingdomBeDiscontinued(oldKingdom))
             {
-                DiscontinueKingdom(oldKingdom);
+                QueueKingdomDiscontinuation(oldKingdom);
+            }
+        }
+        private void DailyTick()
+        {
+            foreach (var kingdomId in _kingdomsPendingDiscontinuation.ToList())
+            {
+                _kingdomsPendingDiscontinuation.Remove(kingdomId);
+
+                var kingdom = Kingdom.All.FirstOrDefault(x => x.StringId == kingdomId);
+                if (kingdom != null && CanKingdomBeDiscontinued(kingdom))
+                {
+                    DiscontinueKingdom(kingdom);
+                }
+            }
+        }
+
+        private void QueueKingdomDiscontinuation(Kingdom kingdom)
+        {
+            if (!_kingdomsPendingDiscontinuation.Contains(kingdom.StringId))
+            {
+                _kingdomsPendingDiscontinuation.Add(kingdom.StringId);
             }
         }
 
@@ -180,6 +203,7 @@ namespace TOR_Core.CampaignMechanics
         public override void SyncData(IDataStore dataStore)
         {
             dataStore.SyncData("_independentClans", ref _independentClans);
+            dataStore.SyncData("_kingdomsPendingDiscontinuation", ref _kingdomsPendingDiscontinuation);
         }
     }
 }
