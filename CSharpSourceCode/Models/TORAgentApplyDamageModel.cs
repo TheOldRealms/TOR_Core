@@ -169,7 +169,7 @@ namespace TOR_Core.Models
 
             if (isFatalHit && attacker.IsMainAgent)
             {
-                if (Hero.MainHero.HasCareer(TORCareers.KnightOldWorld) && attacker.HasAttribute("KnightlyStrike") && Hero.MainHero.HasCareerChoice("PathOfViliganceKeystone"))
+                if (Hero.MainHero.HasCareer(TORCareers.KnightOldWorld) && attacker.HasAttribute("KnightlyStrike") && Hero.MainHero.HasCareerChoice("PathOfVigilanceKeystone"))
                 {
                     attacker.ApplyStatusEffect("knightly_strike", attacker, 30, false, false, true);
                 }
