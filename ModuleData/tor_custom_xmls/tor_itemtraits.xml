@@ -330,11 +330,11 @@
     <ItemTraitDescription>5% extra magic resistance</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.05" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_enchant_ghur_wildform" ItemTraitName="Wildform of Ghur" IsCraftable="true" ImbuedEffectChance="1.00" IconName="ghur">
+  <ItemTrait ItemTraitStringId="emp_enchant_ghur_wildform" ItemTraitName="Wildform of Ghur" IsCraftable="true" ImbuedEffectChance=".15" IconName="ghur">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>10</IngredientAmount>
-    <ItemTraitDescription>"3% extra physical resistance, 15% to receive a fleeting 3% physical resistance bonus upon receiving damage. Stacks up to 3 times"</ItemTraitDescription>
+    <ItemTraitDescription>"3% extra physical resistance, 15% chance to receive a fleeting 3% physical resistance bonus for 10 seconds upon receiving damage. Stacks up to 3 times"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.03" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseStackBuffScript">
       <WeaponScriptArguments>
@@ -344,11 +344,11 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_enchant_ghur_savagery" ItemTraitName="Savagery of Ghur" IsCraftable="true" ImbuedEffectChance="1.00" IconName="ghur">
+  <ItemTrait ItemTraitStringId="emp_enchant_ghur_savagery" ItemTraitName="Savagery of Ghur" IsCraftable="true" ImbuedEffectChance=".10" IconName="ghur">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>18</IngredientAmount>
-    <ItemTraitDescription>"10% extra physical damage, 10% to receive a fleeting 2% attack speed bonus upon dealing damge. Stacks up to 5 times"</ItemTraitDescription>
+    <ItemTraitDescription>"10% extra damage done as physical, 10% chance to receive a fleeting 2% attack speed bonus for 20 seconds upon dealing damge. Stacks up to 5 times"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.10" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponBuffStackScript">
       <WeaponScriptArguments>
@@ -362,7 +362,7 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>8</IngredientAmount>
-    <ItemTraitDescription>"10% extra physical damage, 10% to summon vicious crows in a very small area upon dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"10% extra damage dealt as Physical, 10% chance to summon vicious crows in a 3m radius, inflicting 2 frost damage per second for 20 seconds"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.10" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
       <WeaponScriptArguments>
@@ -374,7 +374,7 @@
     <ValidItemType>Ranged</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>12</IngredientAmount>
-    <ItemTraitDescription>"15% extra physical damage, 15% extra missile speed, 10% to reduce movement speed of nearby enemies upon dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"15% extra damage dealt as Physical, 15% extra missile speed, 10% to reduce movement speed of nearby enemies by 20% for 20 seconds upon dealing damage"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.15" />
     <StatsTuple StatType="MissileSpeed" Value="15" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
@@ -387,14 +387,14 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>5</IngredientAmount>
-    <ItemTraitDescription>10% extra physical damage</ItemTraitDescription>
+    <ItemTraitDescription>"10% extra damage dealt as Physical"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.10" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_hysh_sanctuary" ItemTraitName="Sanctuary of Hysh" IsCraftable="true" ImbuedEffectChance="0.05" IconName="hysh">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>14</IngredientAmount>
-    <ItemTraitDescription>"3% extra physical resistance, 5% to snare nearby enemies with a net of Hysh upon receiving damage"</ItemTraitDescription>
+    <ItemTraitDescription>"3% extra physical resistance, 5% chance to snare nearby enemies with a net of Hysh for 20 seconds upon receiving damage"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.03" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
@@ -407,7 +407,7 @@
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>10</IngredientAmount>
-    <ItemTraitDescription>15% to trigger a burst of light upon blocking damage. Reduces attack speed of nearby enemies for a short time</ItemTraitDescription>
+    <ItemTraitDescription>"15% chance to trigger a burst of light upon blocking damage. Reduces attack speed of nearby enemies within 3m for 20 seconds"</ItemTraitDescription>
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>hysh_brilliance_enchant</WeaponScriptArgument>
@@ -420,7 +420,7 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>6</IngredientAmount>
-    <ItemTraitDescription>"20 extra magic damage, 15% to receive a movement speed buff for a short time upon dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"20% extra damage dealt as Magical, 15% chance to receive a 40% movement speed buff for 3 seconds upon dealing damage"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Magical" Percent="0.20" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
       <WeaponScriptArguments>
@@ -432,14 +432,14 @@
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>25</IngredientAmount>
-    <ItemTraitDescription>3 extra Winds of Magic</ItemTraitDescription>
+    <ItemTraitDescription>"3 extra Winds of Magic"</ItemTraitDescription>
     <StatsTuple StatType="WindsOfMagicMax" Value="3" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_hysh_whisper" ItemTraitName="Whisper of Hysh" IsCraftable="true" IconName="hysh">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>5</IngredientAmount>
-    <ItemTraitDescription>10 extra magic damage</ItemTraitDescription>
+    <ItemTraitDescription>"10% extra damage dealt as Magical"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Magical" Percent="0.10" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_hysh_providence" ItemTraitName="Providence of Hysh" IsCraftable="true" IconName="hysh">
@@ -454,7 +454,7 @@
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>10</IngredientAmount>
-    <ItemTraitDescription>"Deal 25 physical damage to enemies blocked in melee, -10% fire resistance"</ItemTraitDescription>
+    <ItemTraitDescription>"Deal 25 physical damage to enemies blocked in melee -10% fire resistance"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.10" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
@@ -465,13 +465,20 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_enchant_ghyran_bloom" ItemTraitName="Bloom of Ghyran" IsCraftable="true" ImbuedStatusEffectId="ghyran_bloom_enchant_heal" ImbuedEffectChance="0.10" IconName="ghyran">
+  <ItemTrait ItemTraitStringId="emp_enchant_ghyran_bloom" ItemTraitName="Bloom of Ghyran" IsCraftable="true" ImbuedEffectChance="0.15" IconName="ghyran">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
-    <IngredientAmount>10</IngredientAmount>
-    <ItemTraitDescription>"6 max HP bonus, -10% fire resistance, 10% chance to recover 2 HP per second for a short time upon receiving damage"</ItemTraitDescription>
+    <IngredientAmount>8</IngredientAmount>
+    <ItemTraitDescription>"6 max HP bonus, -10% fire resistance, 15% chance to regen 2HP per second for 5 seconds upon receiving damage"</ItemTraitDescription> 
     <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.10" />
     <StatsTuple StatType="HealthMax" Value="6" />
+	<OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseStackBuffScript">
+    <WeaponScriptArguments>
+      <WeaponScriptArgument>ghyran_bloom_enchant_heal</WeaponScriptArgument>
+      <WeaponScriptArgument>1</WeaponScriptArgument>
+      <WeaponScriptArgument>5</WeaponScriptArgument>
+    </WeaponScriptArguments>
+  </OnWeaponHitScript>
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_ghyran_cloak" ItemTraitName="Cloak of Ghyran" IsCraftable="true" IconName="ghyran">
     <ValidItemType>Armor</ValidItemType>
@@ -484,7 +491,7 @@
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>15</IngredientAmount>
-    <ItemTraitDescription>"15% extra physical resistance, 25% to snare nearby enemies with powerful roots upon blocking damage"</ItemTraitDescription>
+    <ItemTraitDescription>"15% extra physical resistance, 25% to snare enemies within 3m with powerful roots for 20 seconds upon taking damage"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.15" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
@@ -507,22 +514,22 @@
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>18</IngredientAmount>
     <ItemTraitDescription>"3 extra Winds of Magic, -25% fire resistance"</ItemTraitDescription>
-    <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.25" />
+    <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.25" /> 
     <StatsTuple StatType="WindsOfMagicMax" Value="3" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_aqshy_hearth" ItemTraitName="Hearth of Aqshy" IsCraftable="true" IconName="aqshy">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>12</IngredientAmount>
-    <ItemTraitDescription>"7% bonus to fire damage, -25% fire resistance"</ItemTraitDescription>
-    <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.25" />
+    <ItemTraitDescription>"7% bonus to fire based damage, -25% fire resistance"</ItemTraitDescription>
+    <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.25" /> 
     <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="0.07" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_aqshy_firebreath" ItemTraitName="Firebreath of Aqshy" IsCraftable="true" ImbuedEffectChance="0.20" IconName="aqshy">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>10</IngredientAmount>
-    <ItemTraitDescription>"25 extra fire damage, 20% to summon a fiery explosion upon dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"25% extra damage dealt as Fire, 20% to summon a fiery explosion dealing 60 fire damage in a 3m radius and inflicting burning (4 fire damage per second for 5 seconds)"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Fire" Percent="0.25" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
       <WeaponScriptArguments>
@@ -535,7 +542,7 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>WarpstoneDust</IngredientItem>
     <IngredientAmount>15</IngredientAmount>
-    <ItemTraitDescription>"15 extra fire damage, 15% to inflict fire DoT effect on nearby enemies upon dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"15% extra damage dealt as Fire, 15% chance to inflict burning on nearby enemies in a 3m radius (4 fire damage per second for 5 seconds) upon dealing damage"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Fire" Percent="0.15" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
       <WeaponScriptArguments>
@@ -548,22 +555,22 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>8</IngredientAmount>
-    <ItemTraitDescription>"40% extra fire damage, -15% fire resistance"</ItemTraitDescription>
-    <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.15" />
+    <ItemTraitDescription>"40% extra damage dealt as fire damage, -15% fire resistance"</ItemTraitDescription>
+    <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.15" /> 
     <AdditionalDamageTuple DamageType="Fire" Percent="0.40" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_aqshy_whisper" ItemTraitName="Whisper of Aqshy" IsCraftable="true" IconName="aqshy">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>5</IngredientAmount>
-    <ItemTraitDescription>12% extra fire damage</ItemTraitDescription>
+    <ItemTraitDescription>12% extra damage dealt as fire damage</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Fire" Percent="0.12" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_aqshy_fury" ItemTraitName="Fury of Aqshy" IsCraftable="true" ImbuedEffectChance="1.00" IconName="aqshy">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>12</IngredientAmount>
-    <ItemTraitDescription>Damaging burning enemies inflicts 50 extra fire damage</ItemTraitDescription>
+    <ItemTraitDescription>Damaging burning enemies inflicts an extra 50 fire damage</ItemTraitDescription>
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.BonusDOTDamageEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>50</WeaponScriptArgument>
@@ -574,7 +581,7 @@
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>14</IngredientAmount>
-    <ItemTraitDescription>"20% extra fire resistance, 15% chance to inflict fire DoT on blocked enemies. This DoT effect can spread onto enemies and allies alike"</ItemTraitDescription>
+    <ItemTraitDescription>"20% extra fire resistance, 15% chance to inflict fire DoT on blocked enemies (4 fire damage per second for 5 seconds). This DoT effect can spread onto enemies and allies alike"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.20" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
@@ -588,7 +595,7 @@
     <ValidItemType>Ammo</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>12</IngredientAmount>
-    <ItemTraitDescription>"20% extra fire damage, projectiles penetrate targets"</ItemTraitDescription>
+    <ItemTraitDescription>"20% extra damage dealt fire, projectiles penetrate targets"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Fire" Percent="0.20" />
     <StatsTuple StatType="MultiPenetration" Value="1" />
   </ItemTrait>
@@ -596,7 +603,7 @@
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>10</IngredientAmount>
-    <ItemTraitDescription>"20% extra shield HP, 5% physical resistance, 50% chance to decrease physical resistance of nearby enemies upon blocking damage"</ItemTraitDescription>
+    <ItemTraitDescription>"20% extra shield HP, 5% physical resistance, 50% chance to decrease physical resistance of nearby enemies by 40% for 5 sec upon blocking damage"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.05" />
     <StatsTuple StatType="ShieldHealth" Value="20" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
@@ -634,7 +641,7 @@
     <ValidItemType>Ranged</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>20</IngredientAmount>
-    <ItemTraitDescription>"30% extra reload speed, 10 extra magic damage"</ItemTraitDescription>
+    <ItemTraitDescription>"30% extra reload speed, 10% extra damage dealt as magic"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Magical" Percent="0.10" />
     <StatsTuple StatType="ReloadSpeed" Value="30" />
   </ItemTrait>
@@ -649,7 +656,7 @@
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>WarpstoneDust</IngredientItem>
     <IngredientAmount>30</IngredientAmount>
-    <ItemTraitDescription>"20% extra magic damage, weapon gains the Cleave trait"</ItemTraitDescription>
+    <ItemTraitDescription>"20% extra damage magic, weapon gains the Cleave trait"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Magical" Percent="0.20" />
     <StatsTuple StatType="Cleave" Value="1" />
   </ItemTrait>
@@ -664,14 +671,14 @@
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>9</IngredientAmount>
-    <ItemTraitDescription>4% bonus to lightning damage</ItemTraitDescription>
+    <ItemTraitDescription>4% bonus to lightning based damage</ItemTraitDescription>
     <AmplifierTuple AmplifiedDamageType="Lightning" DamageAmplifier="0.04" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_azyr_azure_mirror" ItemTraitName="Azure Mirror of Azyr" IsCraftable="true" ImbuedEffectChance="1.00" IconName="azyr">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>5</IngredientAmount>
-    <ItemTraitDescription>"2% extra physical resistance, deal 15 lightning damage to enemies attacking you in melee"</ItemTraitDescription>
+    <ItemTraitDescription>"2% extra physical resistance, deal 15 lightning damage and knockdown to enemies attacking you in melee within 2m"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.02" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
@@ -684,7 +691,7 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>25</IngredientAmount>
-    <ItemTraitDescription>"15% extra armour penetration, 15% to summon a gust of wind knocking down surrounding enemies upon dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"15% extra armour penetration, 15% chance to summon a gust of wind knocking down enemies in a 3m radius dealing an immediate 10 lightning damage"</ItemTraitDescription>
     <StatsTuple StatType="ArmorPenetration" Value="15" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
       <WeaponScriptArguments>
@@ -693,11 +700,11 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-   <ItemTrait ItemTraitStringId="emp_enchant_azyr_foresight" ItemTraitName="Foresight of Azyr" IsCraftable="true" ImbuedEffectChance="0.15" IconName="azyr">
+  <ItemTrait ItemTraitStringId="emp_enchant_azyr_foresight" ItemTraitName="Foresight of Azyr" IsCraftable="true" ImbuedEffectChance="0.15" IconName="azyr">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>10</IngredientAmount>
-    <ItemTraitDescription>"15% extra lightning damage and 15% physical resistance, 15% chance to grant nearby troops the same boons for 20 seconds upon dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"Gain 15% Physical Resistance and 15% bonus Lightning damage. Your attacks have a 15% chance to inspire nearby allies, granting them the same Lightning bonus for 20 seconds"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.15" />
     <AdditionalDamageTuple DamageType="Lightning" Percent="0.15" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
@@ -711,7 +718,7 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"15% extra lightning damage and 15% physical resistance for a short time"</ItemTraitDescription>
+    <ItemTraitDescription>"Gain 15% Physical Resistance and 15% bonus Lightning damage. Your attacks have a 15% chance to inspire nearby allies, granting them the same Lightning bonus for 20 seconds"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.15" />
     <AdditionalDamageTuple DamageType="Lightning" Percent="0.15" />
   </ItemTrait>
@@ -720,7 +727,7 @@
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>10</IngredientAmount>
     <ItemTraitDescription>"5% extra magic resistance, 7% extra party travel speed"</ItemTraitDescription>
-    <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.05" />
+    <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.05" />
     <StatsTuple StatType="PartySpeed" Value="7" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_azyr_whisper" ItemTraitName="Whisper of Azyr" IsCraftable="true" IconName="azyr">
@@ -735,7 +742,7 @@
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>WarpstoneDust</IngredientItem>
     <IngredientAmount>9</IngredientAmount>
-    <ItemTraitDescription>"7% bonus to magic damage, -3 HP"</ItemTraitDescription>
+    <ItemTraitDescription>"7% bonus to magic based damage, -3 HP"</ItemTraitDescription>
     <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.07" />
     <StatsTuple StatType="HealthMax" Value="-3" />
   </ItemTrait>
@@ -743,7 +750,7 @@
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>WarpstoneDust</IngredientItem>
     <IngredientAmount>6</IngredientAmount>
-    <ItemTraitDescription>"5% extra magic resistance, 10% chance to inflict horrific visions in a small radius upon taking damage. Nearby enemies suffer a DoT effect"</ItemTraitDescription>
+    <ItemTraitDescription>"5% extra magic resistance, 10% chance to inflict horrific visions in a 7m radius upon taking damage. Nearby enemies suffer 4 magical damage per second for 20 seconds"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.05" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
@@ -756,20 +763,19 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>9</IngredientAmount>
-    <ItemTraitDescription>"25 extra magic damage, damaged enemies suffer a 25% physical resistance penalty"</ItemTraitDescription>
+    <ItemTraitDescription>"25% extra damage dealt as Magical,10% chance to reduce physical resistance of struck enemies by 25% for 5 seconds"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Magical" Percent="0.25" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_shyish_pall" ItemTraitName="Pall of Shyish" IsCraftable="true" ImbuedEffectChance="1.00" IconName="shyish">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>20</IngredientAmount>
-    <ItemTraitDescription>"15 extra magic damage, gain a stacking 10% magic resistance bonus upon killing enemies. Stacks up to 5 times and fades after a short while"</ItemTraitDescription>
+    <ItemTraitDescription>"15% extra damage as Magical damage, gain a stacking 10% magic resistance bonus upon killing enemies. Stacks up to 5 times and fades after a short while"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Magical" Percent="0.15" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.BuffStackOnKill">
       <WeaponScriptArguments>
-      <WeaponScriptArgument>shyish_pall_buff</WeaponScriptArgument>
-      <WeaponScriptArgument>5</WeaponScriptArgument>
-      <WeaponScriptArgument>50</WeaponScriptArgument>
+        <WeaponScriptArgument>shyish_pall_buff</WeaponScriptArgument>
+        <WeaponScriptArgument>5</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
@@ -777,21 +783,21 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>30</IngredientAmount>
-    <ItemTraitDescription>"10% extra magic damage, 10% chance to reduce attack speed of nearby enemies by 15% when dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"10% extra damage dealt as Magical,10% chance to reduce movement speed of the struck enemy by 25% for 5 seconds"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Magical" Percent="0.10" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_shyish_whisper" ItemTraitName="Whisper of Shyish" IsCraftable="true" IconName="shyish">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>5</IngredientAmount>
-    <ItemTraitDescription>12% extra magic damage</ItemTraitDescription>
+    <ItemTraitDescription>12% extra damage dealt as Magic damage</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Magical" Percent="0.12" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_shyish_deathsight" ItemTraitName="Deathsight of Shyish" IsCraftable="true" ImbuedEffectChance="0.50" IconName="shyish">
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>12</IngredientAmount>
-    <ItemTraitDescription>"Blocking hits of Undead units carries a 50% chance to apply an 'Exorcism', granting 33% extra magic melee dmg for 10 seconds against the target"</ItemTraitDescription>
+    <ItemTraitDescription>"Blocking hits of Undead units carries a 50% chance to apply an 'Exorcism', debuffing enemies making them 33% more vulnerable to Magical damage"</ItemTraitDescription>
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.UndeadConditionDefenseTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>shyish_deathsight_enchant</WeaponScriptArgument>
@@ -804,7 +810,7 @@
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>15</IngredientAmount>
-    <ItemTraitDescription>Gain a fleeting 10% bonus to holy damage when blocking blows of Undead and Daemons. Stacks up to 5 times</ItemTraitDescription>
+    <ItemTraitDescription>Gain a fleeting 10% bonus to holy damage when blocking blows of Undead and Daemons. Stacks up to 5 times, each lasting 15 seconds"</ItemTraitDescription>
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.UndeadConditionDefenseStackBuffScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>sigmar_retribution</WeaponScriptArgument>
@@ -817,7 +823,7 @@
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>9</IngredientAmount>
-    <ItemTraitDescription>"6% extra magic resistance, 3 extra HP, 10% chance to emit a damaging wave of holy energy whenever attacked by Undead and Daemons in melee"</ItemTraitDescription>
+    <ItemTraitDescription>"6% extra Magical resistance, 3 extra HP, 10% chance to emit a damaging wave of holy energy dealing 35 damage in a 7m radius whenever attacked by Undead and Daemons in melee"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.06" />
     <StatsTuple StatType="HealthMax" Value="3" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.UndeadConditionDefenseTriggerEffectScript">
@@ -831,7 +837,7 @@
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>22</IngredientAmount>
-    <ItemTraitDescription>"6% extra magic resistance, 3 extra HP, 10% chance to gain minor regeneration whenever attacked by Undead and Daemons in melee"</ItemTraitDescription>
+    <ItemTraitDescription>"6% extra magic resistance, 3 extra HP, 10% chance to gain 2HP per second for 20 seconds whenever attacked by Undead and Daemons in melee"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.06" />
     <StatsTuple StatType="HealthMax" Value="3" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.UndeadConditionDefenseTriggerEffectScript">
@@ -853,7 +859,7 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>20</IngredientAmount>
-    <ItemTraitDescription>"20% extra holy damage, 10% chance to deal 100 damage against Undead and Daemons"</ItemTraitDescription>
+    <ItemTraitDescription>"20% extra damage dealt as Holy damage, 10% chance to deal 100 damage against Undead and Daemons"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Holy" Percent="0.20" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.BonusDamageOnUndeadEffectScript">
       <WeaponScriptArguments>
@@ -865,14 +871,14 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>5</IngredientAmount>
-    <ItemTraitDescription>12% extra holy damage</ItemTraitDescription>
+    <ItemTraitDescription>12% extra damage dealt as Holy damage</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Holy" Percent="0.12" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_blessing_ulric_wrath" ItemTraitName="Wrath of Ulric" IsCraftable="true" IconName="whitewolf_icon">
+  <ItemTrait ItemTraitStringId="emp_blessing_ulric_wrath" ItemTraitName="Wrath of Ulric" IsCraftable="true" ImbuedEffectChance="0.15" IconName="whitewolf_icon">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>12</IngredientAmount>
-    <ItemTraitDescription>"350% extra shield damage, 15% to receive a fleeting 2% attack speed bonus upon dealing damage. Stacks up to 5 times"</ItemTraitDescription>
+    <ItemTraitDescription>"350% extra shield damage, 15% to receive a fleeting 3% attack speed bonus upon dealing damage. Stacks up to 5 times, each lasting 15 seconds"</ItemTraitDescription>
     <StatsTuple StatType="ShieldDamage" Value="350" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponBuffStackScript">
       <WeaponScriptArguments>
@@ -882,11 +888,11 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_blessing_ulric_wolf-god_bite" ItemTraitName="Bite of the Wolf-God" IsCraftable="true" ImbuedEffectChance="1.00" IconName="whitewolf_icon">
+  <ItemTrait ItemTraitStringId="emp_blessing_ulric_wolf_god_bite" ItemTraitName="Bite of the Wolf-God" IsCraftable="true" ImbuedEffectChance="0.15" IconName="whitewolf_icon">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>35</IngredientAmount>
-    <ItemTraitDescription>"10% extra swing speed, 15% to receive a fleeting 6 frost damage bonus upon dealing damage. Stacks up to 5 times"</ItemTraitDescription>
+    <ItemTraitDescription>"10% extra swing speed, 15% to receive a fleeting 6% extra damageas frost damage bonus upon dealing damage. Stacks up to 5 times each lasting 15 seconds"</ItemTraitDescription>
     <StatsTuple StatType="SwingSpeed" Value="10" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponBuffStackScript">
       <WeaponScriptArguments>
@@ -900,14 +906,14 @@
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>5</IngredientAmount>
-    <ItemTraitDescription>15% extra frost damage</ItemTraitDescription>
+    <ItemTraitDescription>15% extra damage dealt as Frost damage</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Frost" Percent="0.15" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_blessing_ulric_frenzy" ItemTraitName="Frenzy of Ulric" IsCraftable="true" ImbuedEffectChance="0.15" IconName="whitewolf_icon">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>9</IngredientAmount>
-    <ItemTraitDescription>"5% extra physical resistance, receiving melee damage carries a 15% chance to drive nearby allies into a battle frenzy"</ItemTraitDescription>
+    <ItemTraitDescription>"5% extra physical resistance, receiving melee damage carries a 15% chance in a 3m radius to give allies a 15% attack speed increase for 20 seconds"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.05" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
@@ -931,12 +937,12 @@
     <ItemTraitDescription>6 extra HP</ItemTraitDescription>
     <StatsTuple StatType="HealthMax" Value="6" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_blessing_shallya_pacifism" ItemTraitName="Pacifism of Shallya" IsCraftable="true" ImbuedEffectChance="1.00" IconName="shallya_dove_icon">
+  <ItemTrait ItemTraitStringId="emp_blessing_shallya_pacifism" ItemTraitName="Pacifism of Shallya" IsCraftable="true" IconName="shallya_dove_icon">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>26</IngredientAmount>
-    <ItemTraitDescription>Chance to recover 2 HP per second for a short time when defeating enemies (based on knockout probability)</ItemTraitDescription>
-    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.KnockOutCheckTriggerScript">
+    <ItemTraitDescription>"Mercy is piety. Chance to heal 2 HP for 5 seconds when knocking out enemies"</ItemTraitDescription>
+    <OnWeaponHitScript WeaponScriptName="KnockOutCheckTriggerScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>shallya_pacifism_enchant</WeaponScriptArgument>
       </WeaponScriptArguments>
@@ -967,7 +973,7 @@
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>4</IngredientAmount>
-    <ItemTraitDescription>"3 extra HP, taking damage has a 33% chance to heal nearby friendly units"</ItemTraitDescription>
+    <ItemTraitDescription>"3 extra HP, taking damage has a 33% chance to heal nearby friendly units for 2HP for 6 seconds in a 3m radius"</ItemTraitDescription>
     <StatsTuple StatType="HealthMax" Value="3" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
@@ -995,15 +1001,15 @@
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>10</IngredientAmount>
-    <ItemTraitDescription>"30% extra holy damage, weapon gains the Cleave trait"</ItemTraitDescription>
+    <ItemTraitDescription>"30% extra damage dealt as Holy damage, weapon gains the Cleave trait"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Holy" Percent="0.30" />
-    <StatsTuple StatType="Cleave" Value="1" />
+	<StatsTuple StatType="Cleave" Value="1" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="bret_blessing_lady_ward" ItemTraitName="Ward of the Lady" IsCraftable="true" ImbuedEffectChance="1.00" IconName="grail">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>12</IngredientAmount>
-    <ItemTraitDescription>"10% extra magic resistance, once per battle fatal wounds will revive you with 50% HP"</ItemTraitDescription>
+    <ItemTraitDescription>"10% extra magic resistance, Once per battle fatal wounds will revive you with 50% HP"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.ReviveScript" />
   </ItemTrait>
@@ -1015,11 +1021,11 @@
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.03" />
     <StatsTuple StatType="SpellRadius" Value="15" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="bret_blessing_scourge_evil" ItemTraitName="Scourge of Evil" IsCraftable="true" IconName="grail">
+  <ItemTrait ItemTraitStringId="bret_blessing_scourge_evil" ItemTraitName="Scourge of Evil" IsCraftable="true" ImbuedEffectChance="0.50" IconName="grail">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>35</IngredientAmount>
-    <ItemTraitDescription>"5% extra swing speed, 50% chance to deal 50 holy damage against Undead and Daemons"</ItemTraitDescription>
+    <ItemTraitDescription>"5% extra swing speed, 50% chance to deal 40 holy damage in a 3m radius against Undead and Daemons"</ItemTraitDescription>
     <StatsTuple StatType="SwingSpeed" Value="5" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.UndeadTriggeredEffectScript">
       <WeaponScriptArguments>
@@ -1029,7 +1035,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="bret_blessing_shield_faith" ItemTraitName="Shield of Faith" IsCraftable="true" IconName="grail">
+  <ItemTrait ItemTraitStringId="bret_blessing_shield_faith" ItemTraitName="Shield of Faith" IsCraftable="true" ImbuedEffectChance="1.00" IconName="grail">
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>25</IngredientAmount>
@@ -1662,7 +1668,7 @@
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>4</IngredientAmount>
-    <ItemTraitDescription>"5% physical resistance, 33% extra shield HP"</ItemTraitDescription>
+    <ItemTraitDescription>5% physical resistance, 33% extra shield HP</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.05" />
     <StatsTuple StatType="ShieldHealth" Value="33" />
   </ItemTrait>
@@ -1685,7 +1691,7 @@
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>3</IngredientAmount>
     <ItemTraitDescription>25% chance to knock down foes when blocking melee hits</ItemTraitDescription>
-    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.AttackTypeDefenseTriggerScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>rune_parrying_enchant</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
@@ -1698,7 +1704,7 @@
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>4</IngredientAmount>
-    <ItemTraitDescription>"5% extra magic resistance, 2 extra HP"</ItemTraitDescription>
+    <ItemTraitDescription>5% extra magic resistance, 2 extra HP</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.05" />
     <StatsTuple StatType="HealthMax" Value="2" />
   </ItemTrait>
@@ -1706,9 +1712,9 @@
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>8</IngredientAmount>
-    <ItemTraitDescription>"33% extra shield HP, 70% chance to knock down foes when blocking melee hits"</ItemTraitDescription>
+    <ItemTraitDescription>33% extra shield HP, 70% chance to knock down foes when blocking melee hits</ItemTraitDescription>
     <StatsTuple StatType="ShieldHealth" Value="33" />
-    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.AttackTypeDefenseTriggerScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>rune_parrying_enchant</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
@@ -1728,9 +1734,9 @@
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>8</IngredientAmount>
-    <ItemTraitDescription>"10% physical resistance, 30% chance to knock down foes when blocking melee hits"</ItemTraitDescription>
+    <ItemTraitDescription>10% physical resistance, 30% chance to knock down foes when blocking melee hits</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
-    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.AttackTypeDefenseTriggerScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>rune_parrying_enchant</WeaponScriptArgument>
         <WeaponScriptArgument>true</WeaponScriptArgument>
@@ -1743,7 +1749,7 @@
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>13</IngredientAmount>
-    <ItemTraitDescription>"3% Ward Save, 4 extra HP"</ItemTraitDescription>
+    <ItemTraitDescription>3% Ward Save, 4 extra HP</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.03" />
     <StatsTuple StatType="HealthMax" Value="4" />
   </ItemTrait>
@@ -1751,7 +1757,7 @@
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>10</IngredientAmount>
-    <ItemTraitDescription>"10% extra magic resistance, 50% chance to gain 100% magic resistance for a short time upon taking damage"</ItemTraitDescription>
+    <ItemTraitDescription>10% extra magic resistance, 50% chance to gain 100% magic resistance for a short time upon taking damage</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
@@ -1765,7 +1771,7 @@
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>25</IngredientAmount>
-    <ItemTraitDescription>"6 max HP bonus, 10% chance to ignore lethal damage and recover 5 HP upon taking damage"</ItemTraitDescription>
+    <ItemTraitDescription>6 max HP bonus, 10% chance to recover 2 HP upon taking damage</ItemTraitDescription>
     <StatsTuple StatType="HealthMax" Value="6" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
@@ -1800,7 +1806,7 @@
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>8</IngredientAmount>
-    <ItemTraitDescription>"10% Ward Save, 50% extra shield HP"</ItemTraitDescription>
+    <ItemTraitDescription>10% Ward Save, 50% extra shield HP</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.10" />
     <StatsTuple StatType="ShieldHealth" Value="50" />
   </ItemTrait>
@@ -1808,7 +1814,7 @@
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>6</IngredientAmount>
-    <ItemTraitDescription>"5% extra swing speed, 10% extra physical damage"</ItemTraitDescription>
+    <ItemTraitDescription>5% extra swing speed, 10% extra damage dealt as Physical</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.10" />
     <StatsTuple StatType="SwingSpeed" Value="5" />
   </ItemTrait>
@@ -1816,7 +1822,7 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>4</IngredientAmount>
-    <ItemTraitDescription>20% extra fire damage</ItemTraitDescription>
+    <ItemTraitDescription>20% extra damage dealt as Fire</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Fire" Percent="0.20" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="dw_rune_speed" ItemTraitName="Rune of Speed" IsCraftable="true" IconName="rune_speed">
@@ -1830,7 +1836,7 @@
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>5</IngredientAmount>
-    <ItemTraitDescription>"20% extra physical damage, 15% extra armour penetration"</ItemTraitDescription>
+    <ItemTraitDescription>20% extra damage dealt as Physical, 15% extra armour penetration</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.20" />
     <StatsTuple StatType="ArmorPenetration" Value="15" />
   </ItemTrait>
@@ -1838,7 +1844,7 @@
     <ValidItemType>Ranged</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>5</IngredientAmount>
-    <ItemTraitDescription>"10% extra physical damage, 15% reduced reload speed"</ItemTraitDescription>
+    <ItemTraitDescription>10% extra damage dealt as Physical, 15% faster reload speed</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.10" />
     <StatsTuple StatType="ReloadSpeed" Value="15" />
   </ItemTrait>
@@ -1858,7 +1864,7 @@
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>16</IngredientAmount>
-    <ItemTraitDescription>"25% extra magic damage, 15% extra magic resistance"</ItemTraitDescription>
+    <ItemTraitDescription>25% extra damage dealt as Magical, 15% extra magic resistance</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.15" />
     <AdditionalDamageTuple DamageType="Magical" Percent="0.25" />
   </ItemTrait>
@@ -1877,21 +1883,22 @@
     <ValidItemType>Ranged</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>30</IngredientAmount>
-    <ItemTraitDescription>50% reduced reload speed</ItemTraitDescription>
+    <ItemTraitDescription>50% faster reload speed</ItemTraitDescription>
     <StatsTuple StatType="ReloadSpeed" Value="50" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="dw_rune_cleaving" ItemTraitName="Rune of Cleaving" IsCraftable="true" IconName="rune_cleaving">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>18</IngredientAmount>
-    <ItemTraitDescription>"25% extra physical damage, weapon gains the Cleave trait"</ItemTraitDescription>
+    <ItemTraitDescription>25% extra damage dealt as Physical, weapon gains the Cleave trait</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.25" />
+    <StatsTuple StatType="Cleave" Value="1" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="dw_rune_fury" ItemTraitName="Rune of Fury" IsCraftable="true" IconName="rune_fury">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>35</IngredientAmount>
-    <ItemTraitDescription>"25% extra swing speed, 15 extra physical damage"</ItemTraitDescription>
+    <ItemTraitDescription>25% extra swing speed, 15% extra damage dealt as Physical</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.15" />
     <StatsTuple StatType="SwingSpeed" Value="25" />
   </ItemTrait>
@@ -1899,16 +1906,16 @@
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>42</IngredientAmount>
-    <ItemTraitDescription>"500% extra shield damage, 50% extra physical damage"</ItemTraitDescription>
+    <ItemTraitDescription>500% extra shield damage, 50% extra damage dealt as Physical</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.50" />
     <StatsTuple StatType="ShieldDamage" Value="500" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="dw_master_rune_swiftness" ItemTraitName="Master Rune of Swiftness" IsCraftable="true" IconName="rune_ switftness">
+  <ItemTrait ItemTraitStringId="dw_master_rune_swiftness" ItemTraitName="Master Rune of Swiftness" IsCraftable="true" IconName="rune_swiftness">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>25</IngredientAmount>
-    <ItemTraitDescription>"50% extra swing speed, 15% extra physical damage"</ItemTraitDescription>
-    <AdditionalDamageTuple DamageType="Magical" Percent="0.15" />
+    <ItemTraitDescription>50% extra swing speed, 15% extra damage dealt as Physical</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Physical" Percent="0.15" />
     <StatsTuple StatType="SwingSpeed" Value="50" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="dw_master_rune_flight" ItemTraitName="Master Rune of Flight" IsCraftable="true" IconName="rune_flight">
@@ -1930,7 +1937,7 @@
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>15</IngredientAmount>
-    <ItemTraitDescription>"50% bonus to physical damage, 75 extra magic damage"</ItemTraitDescription>
+    <ItemTraitDescription>50% bonus to physical damage, 75% extra damage dealt as Magical</ItemTraitDescription>
     <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.50" />
     <AdditionalDamageTuple DamageType="Magical" Percent="0.75" />
   </ItemTrait>
@@ -2251,7 +2258,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"3% extra physical resistance, 15% to receive a fleeting 3% physical resistance bonus upon receiving damage. Stacks up to 3 times"</ItemTraitDescription>
+    <ItemTraitDescription>"3% extra physical resistance, 15% chance to receive a fleeting 3% physical resistance bonus for 10 seconds upon receiving damage. Stacks up to 3 times"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_ghur_wildform</InventoryScriptArgument>
@@ -2265,7 +2272,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"10 extra physical damage, 10% to receive a fleeting 2% attack speed bonus upon dealing damge. Stacks up to 5 times"</ItemTraitDescription>
+    <ItemTraitDescription>"10% extra damage done as physical, 10% chance to receive a fleeting 2% attack speed bonus for 20 seconds upon dealing damge. Stacks up to 5 times, each lasting 20 seconds"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_ghur_savagery</InventoryScriptArgument>
@@ -2279,7 +2286,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"10 extra physical damage, 10% to summon vicious crows in a very small area upon dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"10% extra damage dealt as Physical, 10% chance to summon vicious crows in a 3 metre radius, inflicting 2 frost damage per second for 20 seconds"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_ghur_crows</InventoryScriptArgument>
@@ -2293,7 +2300,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"15 extra physical damage, 15% extra missile speed, 10% to reduce movement speed of nearby enemies upon dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"15% extra damage dealt as Physical, 15% extra missile speed, 10% to reduce movement speed of nearby enemies by 20% for 20 seconds upon dealing damage"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_ghur_echo</InventoryScriptArgument>
@@ -2307,7 +2314,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>10 extra physical damage</ItemTraitDescription>
+    <ItemTraitDescription>10% extra damage dealt as Physical</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_ghur_whisper</InventoryScriptArgument>
@@ -2321,7 +2328,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"3% extra physical resistance, 5% to snare nearby enemies with a net of Hysh upon receiving damage"</ItemTraitDescription>
+    <ItemTraitDescription>"3% extra physical resistance, 5% chance to snare nearby enemies with a net of Hysh for 20 seconds upon receiving damage"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_hysh_sanctuary</InventoryScriptArgument>
@@ -2335,7 +2342,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>15% to trigger a burst of light upon blocking damage. Reduces attack speed of nearby enemies for a short time</ItemTraitDescription>
+    <ItemTraitDescription>15% chance to trigger a burst of light upon blocking damage. Reduces attack speed of nearby enemies within 3m for 20 seconds</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_hysh_brilliance</InventoryScriptArgument>
@@ -2349,7 +2356,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"20 extra magic damage, 15% to receive a movement speed buff for a short time upon dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"20% extra damage dealt as Magical, 15% chance to receive a 40% movement speed buff for 3 seconds upon dealing damage"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_hysh_timewarp</InventoryScriptArgument>
@@ -2377,7 +2384,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>10 extra magic damage</ItemTraitDescription>
+    <ItemTraitDescription>10% extra damage dealt as Magical damage</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_hysh_whisper</InventoryScriptArgument>
@@ -2405,7 +2412,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"Deal 25 physical damage to enemies blocked in melee, -10% fire resistance"</ItemTraitDescription>
+    <ItemTraitDescription>"Deal 25 physical damage to enemies blocked in melee -10% fire resistance"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_ghyran_brambles</InventoryScriptArgument>
@@ -2419,7 +2426,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"6 max HP bonus, -10% fire resistance, 10% to recover 5 HP upon receiving damage"</ItemTraitDescription>
+    <ItemTraitDescription>"6 max HP bonus, -10% fire resistance, 15% chance to regen 2HP per second for 5 seconds upon receiving damage"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_ghyran_bloom</InventoryScriptArgument>
@@ -2447,7 +2454,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"15% extra physical resistance, 25% to snare nearby enemies with powerful roots upon blocking damage"</ItemTraitDescription>
+    <ItemTraitDescription>"15% extra physical resistance, 25% chance to snare enemies within 3m with powerful roots for 20 seconds upon taking damage"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_ghyran_tendrils</InventoryScriptArgument>
@@ -2489,7 +2496,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"7% bonus to fire damage, -25% fire resistance"</ItemTraitDescription>
+    <ItemTraitDescription>"7% bonus to fire based damage, -25% fire resistance"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_aqshy_hearth</InventoryScriptArgument>
@@ -2503,7 +2510,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"25 extra fire damage, 20% to summon a fiery explosion upon dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"25% extra damage dealt as Fire, 20% to summon a fiery explosion dealing 60 fire damage in a 3m radius and inflicting burning (4 fire damage per second for 5 seconds)"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_aqshy_firebreath</InventoryScriptArgument>
@@ -2517,7 +2524,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"15 extra fire damage, 15% to inflict fire DoT effect on nearby enemies upon dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"15% extra damage dealt as Fire, 15% chance to inflict burning on nearby enemies in a 3m radius (4 fire damage per second for 5 seconds) upon dealing damage"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_aqshy_cinders</InventoryScriptArgument>
@@ -2531,7 +2538,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"40 extra fire damage, -15% fire resistance"</ItemTraitDescription>
+    <ItemTraitDescription>"40% extra damage dealt as fire damage, -15% fire resistance"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_aqshy_rage</InventoryScriptArgument>
@@ -2545,7 +2552,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>12 extra fire damage</ItemTraitDescription>
+    <ItemTraitDescription>12% extra damage dealt as fire damage</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_aqshy_whisper</InventoryScriptArgument>
@@ -2559,7 +2566,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>Damaging burning enemies inflicts 50 extra fire damage</ItemTraitDescription>
+    <ItemTraitDescription>Damaging burning enemies inflicts an extra 50 fire damage</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_aqshy_fury</InventoryScriptArgument>
@@ -2573,7 +2580,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"20% extra fire resistance, inflict fire DoT on blocked enemies. This DoT effect can spread onto enemies and allies alike"</ItemTraitDescription>
+    <ItemTraitDescription>"20% extra fire resistance, 15% chance to inflict fire DoT on blocked enemies (4 fire damage per second for 5 seconds). This DoT effect can spread onto enemies and allies alike"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_aqshy_curtain</InventoryScriptArgument>
@@ -2587,7 +2594,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"20 extra fire damage, projectiles penetrate targets"</ItemTraitDescription>
+    <ItemTraitDescription>"20% extra damage dealt fire, projectiles penetrate targets"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_chamon_transmutation</InventoryScriptArgument>
@@ -2601,7 +2608,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"20% extra shield HP, 5% physical resistance, 50% chance to decrease physical resistance of nearby enemies upon blocking damage"</ItemTraitDescription>
+    <ItemTraitDescription>"20% extra shield HP, 5% physical resistance, 50% chance to decrease physical resistance of nearby enemies by 40% for 5 sec upon blocking damage"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_chamon_aegis</InventoryScriptArgument>
@@ -2657,7 +2664,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"30% extra reload speed, 10 extra magic damage"</ItemTraitDescription>
+    <ItemTraitDescription>"30% extra reload speed, 10% extra damage dealt as magic damage"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_chamon_forge</InventoryScriptArgument>
@@ -2685,7 +2692,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"20 extra magic damage, weapon gains the Cleave trait"</ItemTraitDescription>
+    <ItemTraitDescription>"20% extra damage magic, weapon gains the Cleave trait"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_chamon_crucible</InventoryScriptArgument>
@@ -2713,7 +2720,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>4% bonus to lightning damage</ItemTraitDescription>
+    <ItemTraitDescription>4% bonus to lightning based damage</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_azyr_harmony</InventoryScriptArgument>
@@ -2727,7 +2734,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"2% extra physical resistance, deal 15 lightning damage to enemies attacking you in melee"</ItemTraitDescription>
+    <ItemTraitDescription>"2% extra physical resistance, deal 15 lightning damage and knockdown to enemies attacking you in melee within 2m"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_azyr_azure_mirror</InventoryScriptArgument>
@@ -2741,7 +2748,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"15% extra armour penetration, 15% to summon a gust of wind knocking down surrounding enemies upon dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"15% extra armour penetration, 15% chance to summon a gust of wind knocking down enemies in a 3m radius dealing an immediate 10 lightning damage"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_azyr_gale</InventoryScriptArgument>
@@ -2755,7 +2762,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"15 extra lightning damage and physical resistance, 15% to grant nearby troops the same boons for a short time upon dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"Gain 15% Physical Resistance and 15% bonus Lightning damage. Your attacks have a 15% chance to inspire nearby allies, granting them the same Lightning bonus for 20 seconds"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_azyr_foresight</InventoryScriptArgument>
@@ -2797,7 +2804,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"10% magic dmg amp, -5 HP"</ItemTraitDescription>
+    <ItemTraitDescription>"7% bonus to magic based damage, -3 HP"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_shyish_pale_grip</InventoryScriptArgument>
@@ -2811,7 +2818,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"5% extra magic resistance, 10% chance to inflict horrific visions in a small radius upon taking damage. Nearby enemies suffer a DoT effect"</ItemTraitDescription>
+    <ItemTraitDescription>"5% extra magic resistance, 10% chance to inflict horrific visions in a 7m radius upon taking damage. Nearby enemies suffer 4 magical damage per second for 20 seconds"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_shyish_messengers</InventoryScriptArgument>
@@ -2825,7 +2832,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"25 extra magic damage, damaged enemies suffer a 25% physical resistance penalty"</ItemTraitDescription>
+    <ItemTraitDescription>"25% extra damage dealt as Magical,10% chance to reduce physical resistance of struck enemies by 25% for 5 seconds"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_shyish_blight</InventoryScriptArgument>
@@ -2839,7 +2846,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"15 extra magic damage, gain a stacking 10% magic resistance bonus upon killing enemies. Stacks up to 5 times and fades after a short while"</ItemTraitDescription>
+    <ItemTraitDescription>"15% extra damage as Magical damage, gain a stacking 10% magic resistance bonus upon killing enemies. Stacks up to 5 times and fades after a short while"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_shyish_pall</InventoryScriptArgument>
@@ -2853,7 +2860,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"10 extra magic damage, 10% chance to reduce attack speed of nearby enemies by 15% when dealing damage"</ItemTraitDescription>
+    <ItemTraitDescription>"10% extra damage dealt as Magical,10% chance to reduce movement speed of the struck enemy by 25% for 5 seconds"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_shyish_withering</InventoryScriptArgument>
@@ -2867,7 +2874,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>12 extra magic damage</ItemTraitDescription>
+    <ItemTraitDescription>12% extra damage dealt as Magic damage</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_shyish_whisper</InventoryScriptArgument>
@@ -2881,7 +2888,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"Blocking hits of Undead units carries a 50% chance to apply an 'Exorcism', granting 33% extra magic melee dmg for 10 seconds against the target"</ItemTraitDescription>
+    <ItemTraitDescription>"Blocking hits of Undead units carries a 50% chance to apply an 'Exorcism', debuffing enemies making them 33% more vulnerable to Magical damage"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_shyish_deathsight</InventoryScriptArgument>
@@ -2909,7 +2916,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>Gain a fleeting 10% bonus to holy damage when blocking blows of Undead and Daemons. Stacks up to 5 times</ItemTraitDescription>
+    <ItemTraitDescription>"Gain a fleeting 10% bonus to holy damage when blocking blows of Undead and Daemons. Stacks up to 5 times, each lasting 15 seconds"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_sigmar_retribution</InventoryScriptArgument>
@@ -2923,7 +2930,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"6% extra magic resistance, 3 extra HP, 10% chance to emit a damaging wave of holy energy whenever attacked by Undead and Daemons in melee"</ItemTraitDescription>
+    <ItemTraitDescription>"6% extra Magical resistance, 3 extra HP, 10% chance to emit a damaging wave of holy energy dealing 35 damage in a 7m radius whenever attacked by Undead and Daemons in melee"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_sigmar_soulfire</InventoryScriptArgument>
@@ -2937,7 +2944,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"6% extra magic resistance, 3 extra HP, 10% chance to gain minor regeneration whenever attacked by Undead and Daemons in melee"</ItemTraitDescription>
+    <ItemTraitDescription>"6% extra magic resistance, 3 extra HP, 10% chance to gain 2HP per second for 20 seconds whenever attacked by Undead and Daemons in melee"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_sigmar_light</InventoryScriptArgument>
@@ -2951,7 +2958,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"20 extra holy damage, 10% chance to deal 100 damage against Undead and Daemons"</ItemTraitDescription>
+    <ItemTraitDescription>"20% extra damage dealt as Holy damage, 10% chance to deal 100 damage against Undead and Daemons"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_sigmar_exorcism</InventoryScriptArgument>
@@ -2965,7 +2972,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>12 extra holy damage</ItemTraitDescription>
+    <ItemTraitDescription>12% extra damage dealt as Holy damage</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_sigmar_justice</InventoryScriptArgument>
@@ -2979,7 +2986,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"350% extra shield damage, 15% to receive a fleeting 2% attack speed bonus upon dealing damage. Stacks up to 5 times"</ItemTraitDescription>
+    <ItemTraitDescription>"350% extra shield damage, 15% to receive a fleeting 2% attack speed bonus upon dealing damage. Stacks up to 5 times each lasting 15 seconds"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_ulric_wrath</InventoryScriptArgument>
@@ -2989,14 +2996,14 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_emp_blessing_ulric_wolf-god_bite_of_the" ItemTraitName="Bite of the Wolf-God" IsCraftable="false" IconName="whitewolf_icon">
+  <ItemTrait ItemTraitStringId="learn_emp_blessing_ulric_wolf_god_bite" ItemTraitName="Bite of the Wolf-God" IsCraftable="false" IconName="whitewolf_icon">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"10% extra swing speed, 15% to receive a fleeting 6 frost damage bonus upon dealing damage. Stacks up to 5 times"</ItemTraitDescription>
+    <ItemTraitDescription>"10% extra swing speed, 15% to receive a fleeting 6 frost damage bonus upon dealing damage. Stacks up to 5 times each lasting 15 seconds"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
-        <InventoryScriptArgument>emp_blessing_ulric_wolf-god_bite</InventoryScriptArgument>
+        <InventoryScriptArgument>emp_blessing_ulric_wolf_god_bite</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
         <InventoryScriptArgument>125</InventoryScriptArgument>
         <InventoryScriptArgument>PriestUlric</InventoryScriptArgument>
@@ -3007,7 +3014,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>15 extra frost damage</ItemTraitDescription>
+    <ItemTraitDescription>15% extra damage dealt as Frost damage</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_ulric_chill</InventoryScriptArgument>
@@ -3021,7 +3028,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"5% extra physical resistance, receiving melee damage carries a 15% chance to drive nearby allies into a battle frenzy"</ItemTraitDescription>
+    <ItemTraitDescription>"5% extra physical resistance, receiving melee damage carries a 15% chance in a 3m radius to give allies a 15% attack speed increase for 20 seconds"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_ulric_frenzy</InventoryScriptArgument>
@@ -3063,7 +3070,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>Chance to heal 2 HP when defeating enemies (based on knockout probability)</ItemTraitDescription>
+    <ItemTraitDescription>"Mercy is piety. Chance to heal 2 HP for 5 seconds when knocking out enemies")</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_shallya_pacifism</InventoryScriptArgument>
@@ -3105,7 +3112,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"3 extra HP, taking damage has a 33% chance to heal nearby friendly units"</ItemTraitDescription>
+    <ItemTraitDescription>"3 extra HP, taking damage has a 33% chance to heal nearby friendly units for 2HP for 6 seconds in a 3m radius"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_shallya_martyrdom</InventoryScriptArgument>
@@ -3147,7 +3154,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"30 extra holy damage, weapon gais the Cleave trait"</ItemTraitDescription>
+    <ItemTraitDescription>"30% extra damage dealt as Holy damage, weapon gains the Cleave trait"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>bret_blessing_grail_legacy</InventoryScriptArgument>
@@ -3161,7 +3168,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"10% extra magic resistance, once per battle fatal wounds will revive you with 50% HP"</ItemTraitDescription>
+    <ItemTraitDescription>"10% extra magic resistance, Once per battle fatal wounds will revive you with 50% HP"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>bret_blessing_lady_ward</InventoryScriptArgument>
@@ -3175,7 +3182,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"5% extra swing speed, 50% chance to deal 50 holy damage against Undead and Daemons"</ItemTraitDescription>
+    <ItemTraitDescription>"5% extra swing speed, 50% chance to deal 40 holy damage in a 3m radius against Undead and Daemons"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>bret_blessing_scourge_evil</InventoryScriptArgument>
@@ -4022,7 +4029,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"5% physical resistance, 33% extra shield HP"</ItemTraitDescription>
+    <ItemTraitDescription>5% physical resistance, 33% extra shield HP</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_shielding</InventoryScriptArgument>
@@ -4078,7 +4085,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"5% extra magic resistance, 2 extra HP"</ItemTraitDescription>
+    <ItemTraitDescription>5% extra magic resistance, 2 extra HP</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_protection</InventoryScriptArgument>
@@ -4092,7 +4099,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"33% extra shield HP, 70% chance to knock down foes when blocking melee hits"</ItemTraitDescription>
+    <ItemTraitDescription>33% extra shield HP, 70% chance to knock down foes when blocking melee hits</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_force</InventoryScriptArgument>
@@ -4120,7 +4127,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"10% physical resistance, 30% chance to knock down foes when blocking melee hits"</ItemTraitDescription>
+    <ItemTraitDescription>10% physical resistance, 30% chance to knock down foes when blocking melee hits</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_impact</InventoryScriptArgument>
@@ -4134,7 +4141,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"3% Ward Save, 4 extra HP"</ItemTraitDescription>
+    <ItemTraitDescription>3% Ward Save, 4 extra HP</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_fortitude</InventoryScriptArgument>
@@ -4148,7 +4155,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"10% extra magic resistance, 50% chance to gain 100% magic resistance for a short time upon taking damage"</ItemTraitDescription>
+    <ItemTraitDescription>10% extra magic resistance, 50% chance to gain 100% magic resistance for a short time upon taking damage</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_spell_eating</InventoryScriptArgument>
@@ -4162,7 +4169,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"6 max HP bonus, 10% chance to ignore lethal damage and recover 5 HP upon taking damage"</ItemTraitDescription>
+    <ItemTraitDescription>6 max HP bonus, 10% chance to recover 2 HP upon taking damage</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_master_rune_preservation</InventoryScriptArgument>
@@ -4218,7 +4225,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"10% Ward Save, 50% extra shield HP"</ItemTraitDescription>
+    <ItemTraitDescription>10% Ward Save, 50% extra shield HP</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_master_rune_adamant</InventoryScriptArgument>
@@ -4232,7 +4239,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"5% extra swing speed, 10% extra physical damage"</ItemTraitDescription>
+    <ItemTraitDescription>5% extra swing speed, 10% extra damage dealt as Physical</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_striking</InventoryScriptArgument>
@@ -4246,7 +4253,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>20% extra fire damage</ItemTraitDescription>
+    <ItemTraitDescription>20% extra damage dealt as Fire</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_fire</InventoryScriptArgument>
@@ -4274,7 +4281,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"20% extra physical damage, 15% extra armour penetration"</ItemTraitDescription>
+    <ItemTraitDescription>20% extra damage dealt as Physical, 15% extra armour penetration</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_might</InventoryScriptArgument>
@@ -4288,7 +4295,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"10% extra physical damage, 15% reduced reload speed"</ItemTraitDescription>
+    <ItemTraitDescription>10% extra damage dealt as Physical, 15% faster reload speed</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_clear_sights</InventoryScriptArgument>
@@ -4316,7 +4323,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"25% extra magic damage, 15% extra magic resistance"</ItemTraitDescription>
+    <ItemTraitDescription>25% extra damage dealt as Magical, 15% extra magic resistance</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_unbinding</InventoryScriptArgument>
@@ -4344,7 +4351,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>50% reduced reload speed</ItemTraitDescription>
+    <ItemTraitDescription>50% faster reload speed</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_reloading</InventoryScriptArgument>
@@ -4358,7 +4365,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"25% extra physical damage, weapon gains the Cleave trait"</ItemTraitDescription>
+    <ItemTraitDescription>25% extra damage dealt as Physical, weapon gains the Cleave trait</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_cleaving</InventoryScriptArgument>
@@ -4372,7 +4379,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"25% extra swing speed, 15 extra physical damage"</ItemTraitDescription>
+    <ItemTraitDescription>25% extra swing speed, 15% extra damage dealt as Physical</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_fury</InventoryScriptArgument>
@@ -4386,7 +4393,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"500% extra shield damage, 50% extra physical damage"</ItemTraitDescription>
+    <ItemTraitDescription>500% extra shield damage, 50% extra damage dealt as Physical</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_master_rune_breaking</InventoryScriptArgument>
@@ -4396,11 +4403,11 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_dw_master_rune_swiftness" ItemTraitName="Master Rune of Swiftness" IsCraftable="false" IconName="rune_ switftness">
+  <ItemTrait ItemTraitStringId="learn_dw_master_rune_swiftness" ItemTraitName="Master Rune of Swiftness" IsCraftable="false" IconName="rune_swiftness">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"50% extra swing speed, 15% extra physical damage"</ItemTraitDescription>
+    <ItemTraitDescription>50% extra swing speed, 15% extra damage dealt as Physical</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_master_rune_swiftness</InventoryScriptArgument>
@@ -4442,7 +4449,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"50% bonus to physical damage, 75 extra magic damage"</ItemTraitDescription>
+    <ItemTraitDescription>50% bonus to physical damage, 75% extra damage dealt as Magical</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_master_rune_skalf</InventoryScriptArgument>
