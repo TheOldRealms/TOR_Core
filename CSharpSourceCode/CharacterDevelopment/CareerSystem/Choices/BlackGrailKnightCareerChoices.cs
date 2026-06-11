@@ -390,6 +390,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             CultureObject mousillonCulture = MBObjectManager.Instance.GetObject<CultureObject>("mousillon");
             Hero.MainHero.Culture = mousillonCulture;
+            Clan.PlayerClan.Culture = mousillonCulture;
         }
 
         private bool isMousillonKnight(CharacterObject characterObject)

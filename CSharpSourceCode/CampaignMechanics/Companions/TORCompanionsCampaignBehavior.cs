@@ -96,7 +96,7 @@ namespace TOR_Core.CampaignMechanics.Companions
             //Iterating through kingdoms assumes that no rebellions occur besides the chaos ones as normal rebellions don't create kingdoms, only Factions. If a native rebellion does occur, they will have no wanderer until the player enters the town and one is forced to be created.
             foreach (var kingdom in Campaign.Current.Kingdoms)
             {
-                if (kingdom.Fiefs.Count == 0) continue;
+                if (kingdom.Fiefs.Count < 1) continue;
 
                 var townList = kingdom.Fiefs.WhereQ(x => x.IsTown && !x.IsUnderSiege).ToList();
                 townList.Randomize();
@@ -113,7 +113,7 @@ namespace TOR_Core.CampaignMechanics.Companions
                     //wanderers are shuffled forward 1 town, and the last town generates a new wanderer to replace the old one.
                     if (i == 0)
                     {
-                        DisableWanderer(wanderer);
+                        RemoveWanderer(wanderer);
                         if (townCount == 1) SpawnWanderer(townList[i].Settlement, out _);//single town kingdoms have no shuffling and therefore replace immediately
                     }
                     //Tried to use the TeleportHeroAction to perform a delayed teleport to simulate travel times for the wanderers. Turns out the delay calculation checks for naval navigation capacity via the hero's clan with no null detection or handling. Yay null ref.
@@ -134,7 +134,7 @@ namespace TOR_Core.CampaignMechanics.Companions
             //weekly check for outdated wanderer cleanup. Also removes the wanderers that were just disabled by the cycling.
             foreach (var wandererToRemove in _spawnedCompanions.ToArray())
             {
-                if (wandererToRemove.HeroState == Hero.CharacterStates.Disabled || wandererToRemove.HeroState == Hero.CharacterStates.Dead)
+                if (wandererToRemove.HeroState == Hero.CharacterStates.Dead)
                 {
                     UnregisterWandererObject(wandererToRemove);
                 }
@@ -143,7 +143,7 @@ namespace TOR_Core.CampaignMechanics.Companions
 
         //Sly : this is here for centralizing the companion mechanics, but I'd prefer to put this into the PartyEntered for town components so that it's not checked for every other settlement component
         private void VerifyWanderersOnEnter(MobileParty party, Settlement settlement, Hero hero)
-        {//I hope this event isn't thrown after a siege completes but before the settlement stops being considered under siege!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        {//I hope this event isn't thrown after a siege completes but before the settlement stops being considered under siege!
             if (hero != Hero.MainHero || hero.IsPrisoner || party != MobileParty.MainParty) return;
 
             if (!settlement.IsTown) return;//don't spawn wanderers into the wrong settlement components
@@ -158,7 +158,7 @@ namespace TOR_Core.CampaignMechanics.Companions
                 int clanless = clanlessWanderers.Count();
                 foreach(var wrongCultureWanderer in clanlessWanderers.WhereQ(x => x.Culture != settlement.Culture))
                 {
-                    DisableWanderer(wrongCultureWanderer);
+                    RemoveWanderer(wrongCultureWanderer);
                     clanless--;
                 }
                 if (clanless > 0) return;//a wanderer of the correct culture is still left in the settlement and there's no need to spawn another 
@@ -190,7 +190,7 @@ namespace TOR_Core.CampaignMechanics.Companions
             {
                 foreach (var wrongWanderer in existingWanderers)
                 {
-                    DisableWanderer(wrongWanderer);
+                    RemoveWanderer(wrongWanderer);
                 }
             }
 
@@ -210,7 +210,7 @@ namespace TOR_Core.CampaignMechanics.Companions
         {
 			if (victim.IsWanderer)
 			{
-                DisableWanderer(victim);//firing a companion kills them with a detail of Lost; those will be picked up by the weekly for removal as they are already met; if you make decisions that go against the traits of a companion, they will first warn you, then immediately disappear from your party on the next infraction. The encyclopedia entry is at least a vague way of knowing what happened if it occurs.
+                RemoveWanderer(victim);//firing a companion kills them with a detail of Lost; those will be picked up by the weekly for removal as they are already met; if you make decisions that go against the traits of a companion, they will first warn you, then immediately disappear from your party on the next infraction. The encyclopedia entry is at least a vague way of knowing what happened if it occurs.
 
                 if (!victim.HasMet)//not bothering to wait for weekly tick
                 {
@@ -386,10 +386,12 @@ namespace TOR_Core.CampaignMechanics.Companions
 			EnterSettlementAction.ApplyForCharacterOnly(hero, settlement);
         }
 
-        private void DisableWanderer(Hero wanderer)//should this kill them instead? still unsure on the nuance of dead/disable, except that death shows up in the encyclopedia and the obituary is default text of little relevance
+        /// <remarks>
+        /// Disabled heroes are ones that were previously active, but are temporarily blocked from performing certain actions. Companions sent to resolve Issues are a native usage of CharacterStates.Disabled.
+        /// </remarks>
+        private void RemoveWanderer(Hero wanderer)
         {
-            //wanderer is disabled, clean up occurs on the weekly tick to clear out outdated wanderers from the object managers
-            DisableHeroAction.Apply(wanderer);//takes care of party membership, settlement, prisonership, CharacterState
+            KillCharacterAction.ApplyByRemove(wanderer);//takes care of party membership, settlement, prisonership, CharacterState
         }
 
         private void UnregisterWandererObject(Hero hero)
