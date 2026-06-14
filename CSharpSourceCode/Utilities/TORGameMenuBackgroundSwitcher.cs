@@ -47,6 +47,9 @@ namespace TOR_Core.Utilities
                 case TORConstants.Cultures.ASRAI:
                     args.MenuContext.SetBackgroundMeshName("we_village_burned");
                     return;
+                case TORConstants.Cultures.GREENSKIN:
+                    args.MenuContext.SetBackgroundMeshName("greenskin_looted_village");
+                    return;
                 default:
                     args.MenuContext.SetBackgroundMeshName("wait_raiding_village");
                     return;

@@ -12768,7 +12768,7 @@
   <!-- Massif Choppaz-->
   <Settlement id="town_MC1" name="{=Settlements.Settlement.name.town_MC1}Massif Orcal" owner="Faction.massif_choppas_clan_1" posX="1104.443" posY="955.414" culture="Culture.aserai" gate_posX="1101.582" gate_posY="956.223" text="{=Settlements.Settlement.text.town_MC1}Massif Orcal, the legacy of Grom the Paunch,  is a stronghold in the middle of Bretonnia marking the ever danger of the Greenskins in the region. A vast network of tunnels connect the many halls in which the Greenskins live and make room to evade attackers. Massif Orcal has withstood many sieges and will continue to do so for its natural protection is hard to penetrate.">
     <Components>
-      <Town id="town_comp_MC1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="2800">
+      <Town id="town_comp_MC1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_city" gate_rotation="0.908" prosperity="2800">
         <Buildings>
           <Building id="building_settlement_fortifications" level="3" />
           <Building id="building_settlement_barracks" level="1" />
@@ -12804,7 +12804,7 @@
   </Settlement>
   <Settlement id="village_MC1_1" name="{=Settlements.Settlement.name.village_MC1_1}Greentop" posX="1106.225" posY="970.897" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_MC1_1}Greentop was named by Bretonnians after numerous battles against the Greenskins. The hilltop stood full with dead Goblins and Orcs creating a large mound of green carcasses reaching impressive heights.">
     <Components>
-      <Village id="village_comp_MC1_1" village_type="VillageType.salt_mine" hearth="250" bound="Settlement.town_MC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_MC1_1" village_type="VillageType.salt_mine" hearth="250" bound="Settlement.town_MC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -12817,7 +12817,7 @@
   </Settlement>
   <Settlement id="village_MC1_2" name="{=Settlements.Settlement.name.village_MC1_2}Hursend" posX="1086.941" posY="971.327" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_MC1_2}Kalkaat is a small town located on the road between the Empire and Marienburg. The people here are MCstelanders through and through but do feel a certain loyalty to the empire and its gods. In particular the cult of Sigmar has a very long standing, as well as extremely orthodox, temple here. Due to exotic trade with their global partners, Marienburg has got foreign animals from the deserts of Araby. The Landsraad has decided to store and breed the animal in Kalkaat to bring the animals worth down for future trade.">
     <Components>
-      <Village id="village_comp_MC1_2" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_MC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_MC1_2" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_MC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -12830,7 +12830,7 @@
   </Settlement>
   <Settlement id="village_MC1_3" name="{=Settlements.Settlement.name.village_MC1_3}Brumdorp" posX="1091.372" posY="954.325" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_MC1_3}A small abandoned Bretonnian village now occupied by nasty Goblins. It lies south of Massif Orcal and provides large amounts of wood for the local tribes.">
     <Components>
-      <Village id="village_comp_MC1_3" village_type="VillageType.lumberjack" hearth="250" bound="Settlement.town_MC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_MC1_3" village_type="VillageType.lumberjack" hearth="250" bound="Settlement.town_MC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -12843,7 +12843,7 @@
   </Settlement>
   <Settlement id="town_MC2" name="{=Settlements.Settlement.name.town_MC2}Malmont" owner="Faction.massif_choppas_clan_1" posX="1100.255" posY="927.0601" culture="Culture.aserai" gate_posX="1098.002" gate_posY="928.9992" text="{=Settlements.Settlement.text.town_MC2}The highest peak of Massif Orcal serves as a bastion for the rest of the mountain’s populace. Highly defensible and fortified, this peak is deadly and sharp, giving a high ground advantage to the defenders.">
     <Components>
-      <Town id="town_comp_MC2" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="2100">
+      <Town id="town_comp_MC2" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_city" gate_rotation="0.908" prosperity="2100">
         <Buildings>
           <Building id="building_settlement_fortifications" level="3" />
           <Building id="building_settlement_barracks" level="1" />
@@ -12879,7 +12879,7 @@
   </Settlement>
   <Settlement id="village_MC2_1" name="{=Settlements.Settlement.name.village_MC2_1}Boney Git Tunnel" posX="1090.649" posY="937.32" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_MC2_1}This gravesite is the location of the last battle between the Knights of Cuileux and the Greenskin hordes. The barrows are scattered over a wide area north of the Gilleau, some in the Forest of Châlons and some in the mountains of the Massif Orcal. A typical barrow has about twenty burial chambers linked by tunnels, but some are far larger. Adventurers claim to have seen a barrow the size of a town within the forest, but were driven off by the undead before they could explore it. Most of the barrows in the lowlands are now merely empty chambers, long looted by Orcs and Bretonnians alike. Orcs conquered most of these barrows and used their foundation to their advantage; they also sought the challenge of defeating the last undead guardians.">
     <Components>
-      <Village id="village_comp_MC2_1" village_type="VillageType.clay_mine" hearth="250" bound="Settlement.town_MC2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_MC2_1" village_type="VillageType.clay_mine" hearth="250" bound="Settlement.town_MC2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -12892,7 +12892,7 @@
   </Settlement>
   <Settlement id="village_MC2_2" name="{=Settlements.Settlement.name.village_MC2_2}Da Lizard Nest" posX="1085.614" posY="928.707" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_MC2_2}Once a great green dragon's nest, Da Lizard Nest is now a small Orc fort. Standing as a monument to the Boyz that defeated the Great Green Lizard.">
     <Components>
-      <Village id="village_comp_MC2_2" village_type="VillageType.trapper" hearth="250" bound="Settlement.town_MC2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_MC2_2" village_type="VillageType.trapper" hearth="250" bound="Settlement.town_MC2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -12905,7 +12905,7 @@
   </Settlement>
   <Settlement id="castle_MC1" name="{=Settlements.Settlement.name.castle_MC1}Dughold" owner="Faction.massif_choppas_clan_1" posX="1067.982" posY="939.987" culture="Culture.aserai" gate_posX="1065.083" gate_posY="939.3284" text="{=Settlements.Settlement.text.castle_MC1}A small hold used as a counter attack point against invaders that march to siege Massif Orcal. Dughold has withstood years of artillery fire and looks ravaged but still stands firm.">
     <Components>
-      <Town id="castle_comp_MC1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_castle" gate_rotation="0.908" prosperity="650">
+      <Town id="castle_comp_MC1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_castle" gate_rotation="0.908" prosperity="650">
         <Buildings>
           <Building id="building_castle_fortifications" level="3" />
           <Building id="building_castle_barracks" level="1" />
@@ -12942,7 +12942,7 @@
   </Settlement>
   <Settlement id="castle_village_MC1_2" name="{=Settlements.Settlement.name.castle_village_MC1_2}Humie Huts" posX="1067.115" posY="953.186" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_MC1_2}A small village long abandoned. It is even said to be occupied by Sigmarites in the past. Not much is left of the village; only wood is collected from the area.">
     <Components>
-      <Village id="castle_village_comp_MC1_2" village_type="VillageType.trapper" hearth="200" bound="Settlement.castle_MC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_MC1_2" village_type="VillageType.trapper" hearth="200" bound="Settlement.castle_MC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -12955,7 +12955,7 @@
   </Settlement>
   <Settlement id="castle_MC2" name="{=Settlements.Settlement.name.castle_MC2}Skulgulz Poles" owner="Faction.massif_choppas_clan_1" posX="1056.325" posY="977.556" culture="Culture.aserai" gate_posX="1055.868" gate_posY="974.6186" text="{=Settlements.Settlement.text.castle_MC2}A fortress decorated with skulls and stakes. The barrow has withstood a number of assaults, which only served to provide new collections of skulls to the fort’s Greenskin masters.">
     <Components>
-      <Town id="castle_comp_MC2" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_castle" gate_rotation="0.908" prosperity="700">
+      <Town id="castle_comp_MC2" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_castle" gate_rotation="0.908" prosperity="700">
         <Buildings>
           <Building id="building_castle_fortifications" level="3" />
           <Building id="building_castle_barracks" level="1" />
@@ -12979,7 +12979,7 @@
   </Settlement>
   <Settlement id="castle_village_MC2_1" name="{=Settlements.Settlement.name.castle_village_MC2_1}Dragork Tree" posX="1060.313" posY="962.522" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_MC2_1}A Greenskin camp located near a large hanging tree surrounded with dead Orcs who defied their Bosses. A grisly memento of Orc brutality and a warning sign to all da humiez passing by. The camp is mostly used as a siege workshop, and the nearby trophy tree certainly keeps the Goblin workers highly motivated.">
     <Components>
-      <Village id="castle_village_comp_MC2_1" village_type="VillageType.lumberjack" hearth="200" bound="Settlement.castle_MC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_MC2_1" village_type="VillageType.lumberjack" hearth="200" bound="Settlement.castle_MC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -12992,7 +12992,7 @@
   </Settlement>
   <Settlement id="castle_village_MC2_2" name="{=Settlements.Settlement.name.castle_village_MC2_2}Massif Steepz" posX="1046.483" posY="947.355" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_MC2_2}A salty cliff mined for its minerals. The place is not well defended and often falls prey to Bretonnian counter attacks.">
     <Components>
-      <Village id="castle_village_comp_MC2_2" village_type="VillageType.salt_mine" hearth="200" bound="Settlement.castle_MC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_MC2_2" village_type="VillageType.salt_mine" hearth="200" bound="Settlement.castle_MC1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13006,7 +13006,7 @@
   <!-- Bad Axe Tribe-->
   <Settlement id="town_BX1" name="{=Settlements.Settlement.name.town_BX1}Gromodrak Hold" owner="Faction.bad_axes_clan_1" posX="1073.626" posY="1152.703" culture="Culture.aserai" gate_posX="1075.402" gate_posY="1155.087" text="{=Settlements.Settlement.text.town_BX1}A big and mean looking stronghold, Gromodrak Hold is hidden between the mountain peaks. Not many have witnessed the hold and lived to tell the tale. Fortified with spikes and skulls, not a single army has managed to ever lay siege to Gromodrak Hold. Even the famous Royarch Louen Orc-Slayer never succeeded in finding this Greenskin lair.">
     <Components>
-      <Town id="town_comp_BX1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="2100">
+      <Town id="town_comp_BX1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_city" gate_rotation="0.908" prosperity="2100">
         <Buildings>
           <Building id="building_settlement_fortifications" level="3" />
           <Building id="building_settlement_barracks" level="1" />
@@ -13042,7 +13042,7 @@
   </Settlement>
   <Settlement id="village_BX1_1" name="{=Settlements.Settlement.name.village_BX1_1}Gollog Point" posX="1092.856" posY="1148.01" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_BX1_1}BroekBXter is a poor community along the coast of the Manannspoort Sea, consisting mostly of several run down cottages, a smattering of decrypted inns and a handful of fishing huts. It is the only inhabited settlement on the ancient coast road between Marienburg and Bretonnia, as such its continued existence is likely only spurred on by traders and travellers. Rumours persist as well that pirates may be using the area as their base of operations, but nothing official has been said or done about them.">
     <Components>
-      <Village id="village_comp_BX1_1" village_type="VillageType.salt_mine" hearth="250" bound="Settlement.town_BX1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BX1_1" village_type="VillageType.salt_mine" hearth="250" bound="Settlement.town_BX1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -13055,7 +13055,7 @@
   </Settlement>
   <Settlement id="town_BX2" name="{=Settlements.Settlement.name.town_BX2}Axe Fort" owner="Faction.bad_axes_clan_1" posX="1046.817" posY="1220.425" culture="Culture.aserai" gate_posX="1046.191" gate_posY="1223.331" text="{=Settlements.Settlement.text.town_BX2}An Orc camp that grew into a fortified fortress over time. Goblins toil day and night to smelt looted humie goods into choppas for da Boyz.">
     <Components>
-      <Town id="town_comp_BX2" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="1800">
+      <Town id="town_comp_BX2" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_city" gate_rotation="0.908" prosperity="1800">
         <Buildings>
           <Building id="building_settlement_fortifications" level="1" />
           <Building id="building_settlement_barracks" level="0" />
@@ -13091,7 +13091,7 @@
   </Settlement>
   <Settlement id="village_BX2_1" name="{=Settlements.Settlement.name.village_BX2_1}Greytroll Lair" posX="1066.844" posY="1235.288" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_BX2_1}Greytroll Lair serves as a lair to a group of Trolls. Filled with silver and gold, the cave was soon captured by Gromodrak and the Trolls were forcefully ‘persuaded’ to join the Greenskin mob.">
     <Components>
-      <Village id="village_comp_BX2_1" village_type="VillageType.greenskin_wolf_farm" hearth="250" bound="Settlement.town_BX2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BX2_1" village_type="VillageType.greenskin_wolf_farm" hearth="250" bound="Settlement.town_BX2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_005" />
@@ -13104,7 +13104,7 @@
   </Settlement>
   <Settlement id="village_BX2_2" name="{=Settlements.Settlement.name.village_BX2_2}Limestone Hills" posX="1021.89" posY="1222.599" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_BX2_2}Limestone Hills is a large stone quarry. Local Goblin workers are covered in white dust, which makes them nigh indistinguishable from humiez by the mob’s Arrer Boyz. The quarry also holds an enormous amount of iron and coal.">
     <Components>
-      <Village id="village_comp_BX2_2" village_type="VillageType.iron_mine" hearth="250" bound="Settlement.town_BX2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BX2_2" village_type="VillageType.iron_mine" hearth="250" bound="Settlement.town_BX2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_004" />
@@ -13117,7 +13117,7 @@
   </Settlement>
   <Settlement id="castle_BX1" name="{=Settlements.Settlement.name.castle_BX1}Hagranym Den" owner="Faction.bad_axes_clan_1" posX="1060.513" posY="1170.489" culture="Culture.aserai" gate_posX="1062.856" gate_posY="1172.319" text="{=Settlements.Settlement.text.castle_BX1}Home to the carnivorous creatures called Hagranyms. The Greenskins have built fortifications around the Den. Nobody knows who gave the order but it was constructed in only a few days. Loud noises can be heard from the murder grounds where the Hagranyms dine on their victims.">
     <Components>
-      <Town id="castle_comp_BX1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_castle" gate_rotation="0.908" prosperity="700">
+      <Town id="castle_comp_BX1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_castle" gate_rotation="0.908" prosperity="700">
         <Buildings>
           <Building id="building_castle_fortifications" level="3" />
           <Building id="building_castle_barracks" level="1" />
@@ -13141,7 +13141,7 @@
   </Settlement>
   <Settlement id="castle_village_BX1_1" name="{=Settlements.Settlement.name.castle_village_BX1_1}Hagroar Field" posX="1075.625" posY="1171.966" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_BX1_1}Named after the herd leader of the Hagranyms, the field serves as hunting grounds for these flesh-eating beasts. Wild flax grows in abundance in the surrounding area and it is not uncommon to see local humiez trying to harvest it. Unfortunately for them, Hagranyms will not tolerate intruders on their territory.">
     <Components>
-      <Village id="castle_village_comp_BX1_1" village_type="VillageType.flax_plant" hearth="200" bound="Settlement.castle_BX1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BX1_1" village_type="VillageType.flax_plant" hearth="200" bound="Settlement.castle_BX1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13154,7 +13154,7 @@
   </Settlement>
   <Settlement id="castle_village_BX1_2" name="{=Settlements.Settlement.name.castle_village_BX1_2}Kragdropz" posX="1086.78" posY="1168.114" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_BX1_2}A raiding outpost and an arrow making post. Siege engines are often constructed with lumber coming from the surrounding forests.">
     <Components>
-      <Village id="castle_village_comp_BX1_2" village_type="VillageType.lumberjack" hearth="200" bound="Settlement.castle_BX1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BX1_2" village_type="VillageType.lumberjack" hearth="200" bound="Settlement.castle_BX1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13167,7 +13167,7 @@
   </Settlement>
   <Settlement id="castle_village_BX1_3" name="{=Settlements.Settlement.name.castle_village_BX1_3}Shiney Bitz" posX="1068.504" posY="1186.387" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_BX1_3}A riverside camp used as an ambush point for caravans and local Brettonian villagers. Loot such as silver is collected and transported to Gromodrak Hold.">
     <Components>
-      <Village id="castle_village_comp_BX1_3" village_type="VillageType.silver_mine" hearth="200" bound="Settlement.castle_BX1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BX1_3" village_type="VillageType.silver_mine" hearth="200" bound="Settlement.castle_BX1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -13180,7 +13180,7 @@
   </Settlement>
   <Settlement id="castle_village_BX1_4" name="{=Settlements.Settlement.name.castle_village_BX1_4}Boney Pit" posX="1092.137" posY="1160.74" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_BX1_4}Every Geheimnisnacht hordes of skeletons march out of their barrows. The relentless undead make for a great punching bag to the local Orcs. Da Boyz sure love a good scrap.">
     <Components>
-      <Village id="castle_village_comp_BX1_4" village_type="VillageType.greenskin_swine_farm" hearth="200" bound="Settlement.castle_BX1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BX1_4" village_type="VillageType.greenskin_swine_farm" hearth="200" bound="Settlement.castle_BX1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13193,7 +13193,7 @@
   </Settlement>
   <Settlement id="castle_BX2" name="{=Settlements.Settlement.name.castle_BX2}Grey Keep" owner="Faction.bad_axes_clan_1" posX="1074.864" posY="1208.317" culture="Culture.aserai" gate_posX="1077.68" gate_posY="1209.268" text="{=Settlements.Settlement.text.castle_BX3} The keep was a project started by the local marshall to get a hold on the Greenskin plague. However, the Orc tribes besieged and captured the unfinished fortress. The castle now serves new Greenskin Bosses.">
     <Components>
-      <Town id="castle_comp_BX2" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_castle" gate_rotation="0.908" prosperity="900">
+      <Town id="castle_comp_BX2" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_castle" gate_rotation="0.908" prosperity="900">
         <Buildings>
           <Building id="building_castle_fortifications" level="3" />
           <Building id="building_castle_barracks" level="2" />
@@ -13217,7 +13217,7 @@
   </Settlement>
   <Settlement id="castle_village_BX2_1" name="{=Settlements.Settlement.name.castle_village_BX2_1}Pale Cave" posX="1092.311" posY="1207.454" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_BX2_1} Covered in limestone the Pale Cave is a mine rich in iron. Worked by Goblins, the location is an important part of the Greenskin war effort.">
     <Components>
-      <Village id="castle_village_comp_BX2_1" village_type="VillageType.iron_mine" hearth="200" bound="Settlement.castle_BX2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BX2_1" village_type="VillageType.iron_mine" hearth="200" bound="Settlement.castle_BX2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_005" />
@@ -13230,7 +13230,7 @@
   </Settlement>
   <Settlement id="castle_village_BX2_2" name="{=Settlements.Settlement.name.castle_village_BX2_2}Pale Steep Fall" posX="1089.931" posY="1220.052" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_BX2_2}A small Orc camp on the bottom of a cliff houses garrisoned by Arrer Boyz, who track wild game for furs and leather.">
     <Components>
-      <Village id="castle_village_comp_BX2_2" village_type="VillageType.trapper" hearth="200" bound="Settlement.castle_BX2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BX2_2" village_type="VillageType.trapper" hearth="200" bound="Settlement.castle_BX2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13244,7 +13244,7 @@
   <!-- Black Sunz-->
   <Settlement id="town_BZ1" name="{=Settlements.Settlement.name.town_BZ1}Black Orc Fort" owner="Faction.black_sunz_clan_1" posX="1007.051" posY="1188.586" culture="Culture.aserai" gate_posX="1006.054" gate_posY="1191.387" text="{=Settlements.Settlement.text.town_BZ1}Da black stronghold of the Black Orc Zorbak. This towering settlement is a true definition of the Greenskin might. Ridden with spikes and tall walls only few are brave enough to even consider approaching this region.">
     <Components>
-      <Town id="town_comp_BZ1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="2300">
+      <Town id="town_comp_BZ1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_city" gate_rotation="0.908" prosperity="2300">
         <Buildings>
           <Building id="building_settlement_fortifications" level="3" />
           <Building id="building_settlement_barracks" level="1" />
@@ -13280,7 +13280,7 @@
   </Settlement>
   <Settlement id="village_BZ1_1" name="{=Settlements.Settlement.name.village_BZ1_1}Krushrock" posX="1002.399" posY="1208.645" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_BZ1_1}A shrine to Mork that is famous for a huge round boulder in the center. Greenskins of the Black Sunz once used it to crush an entire Bretonnian regiment.">
     <Components>
-      <Village id="village_comp_BZ1_1" village_type="VillageType.greenskin_wolf_farm" hearth="250" bound="Settlement.town_BZ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BZ1_1" village_type="VillageType.greenskin_wolf_farm" hearth="250" bound="Settlement.town_BZ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13293,7 +13293,7 @@
   </Settlement>
   <Settlement id="village_BZ1_2" name="{=Settlements.Settlement.name.village_BZ1_2}Fall of Charlemagne" posX="991.502" posY="1191.627" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_BZ1_2}Bretonnian crusade against the Greenskins did not proceed without defeats. A Grail Knight known as Robert Charlemagne commanded his troop of 47 knights and 359 peasants into the mountains, but lost his entire army in a cunning Greenskin ambush. Black Sunz Orcs rolled giant boulders down the valley path and crushed the entire Bretonnian force in mere seconds.">
     <Components>
-      <Village id="village_comp_BZ1_2" village_type="VillageType.greenskin_wolf_farm" hearth="250" bound="Settlement.town_BZ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BZ1_2" village_type="VillageType.greenskin_wolf_farm" hearth="250" bound="Settlement.town_BZ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13306,7 +13306,7 @@
   </Settlement>
   <Settlement id="town_BZ2" name="{=Settlements.Settlement.name.town_BZ2}Rocky Sistaz" owner="Faction.black_sunz_clan_1" posX="1049.212" posY="1192.795" culture="Culture.aserai" gate_posX="1046.327" gate_posY="1192.079" text="{=Settlements.Settlement.text.town_BZ2}The group of high mountain peaks - the Pale Sisters - of the Grey Mountains is a sight to behold. A battlefield between the Knights of Gisoreux and the Greenskin tribes of Black Sunz. This sturdy settlement changes its owner regularly.">
     <Components>
-      <Town id="town_comp_BZ2" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="1800">
+      <Town id="town_comp_BZ2" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_city" gate_rotation="0.908" prosperity="1800">
         <Buildings>
           <Building id="building_settlement_fortifications" level="1" />
           <Building id="building_settlement_barracks" level="0" />
@@ -13342,7 +13342,7 @@
   </Settlement>
   <Settlement id="village_BZ2_1" name="{=Settlements.Settlement.name.village_BZ2_1}Snowy Topz" posX="1030.958" posY="1196.053" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_BZ2_1}White snow on limestone white hills - One could spot an intruder in an instant. The Orc camp hosts a number of Boyz riding their ever ferocious War Boarz.">
     <Components>
-      <Village id="village_comp_BZ2_1" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_BZ2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BZ2_1" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_BZ2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -13355,7 +13355,7 @@
   </Settlement>
   <Settlement id="castle_BZ1" name="{=Settlements.Settlement.name.castle_BZ1}Camp Ov Sunz" owner="Faction.black_sunz_clan_1" posX="1001.332" posY="1167.145" culture="Culture.aserai" gate_posX="998.8575" gate_posY="1165.497" text="{=Settlements.Settlement.text.castle_BZ1}The first Greenskins that settled in this region founded Camp Ov Sunz. The story goes that these Orcs found the sun grossly beautiful, and some were even rendered blind due to all the staring. They deemed it punishment from Gork (or Mork), and rather thought the spontaneous blindness originated from insufficient staring, so the Boyz quickly redoubled their sungazing efforts. Unluckily for the Orcs, this ocular affliction rendered them utterly defenseless against a chain of Bretonnian attacks that soon proved to be their doom. The Black Sunz tribe does not share the passion of its predecessors, but the name was indeed preserved.">
     <Components>
-      <Town id="castle_comp_BZ1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_castle" gate_rotation="0.908" prosperity="650">
+      <Town id="castle_comp_BZ1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_castle" gate_rotation="0.908" prosperity="650">
         <Buildings>
           <Building id="building_castle_fortifications" level="3" />
           <Building id="building_castle_barracks" level="1" />
@@ -13379,7 +13379,7 @@
   </Settlement>
   <Settlement id="castle_village_BZ1_1" name="{=Settlements.Settlement.name.castle_village_BZ1_1}Kreeper Slopes" posX="992.471" posY="1154.2" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_BZ3_1}A rather desolate and lonely region. LocalGoblins have built a small camp on this hill to harvest timber for the war effort, and yet they are always uneasy as the region is home to giant spiders breeding and skulking in nearby caves.">
     <Components>
-      <Village id="castle_village_comp_BZ1_1" village_type="VillageType.lumberjack" hearth="200" bound="Settlement.castle_BZ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BZ1_1" village_type="VillageType.lumberjack" hearth="200" bound="Settlement.castle_BZ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -13393,7 +13393,7 @@
   <!-- Skull Smasherz-->
   <Settlement id="town_SM1" name="{=Settlements.Settlement.name.town_SM1}Garban’s Hold" owner="Faction.skull_smasherz_clan_1" posX="1105.572" posY="1080.201" culture="Culture.aserai" gate_posX="1102.733" gate_posY="1081.082" text="{=Settlements.Settlement.text.town_SM1}Named by the Brettonians the Hold is a mystery and its location is unknown. Built on some old dwarven ruins, the hold offers a 360 degrees sight on incoming enemies and has multiple watchtowers overseeing the roads below.">
     <Components>
-      <Town id="town_comp_SM1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="2100">
+      <Town id="town_comp_SM1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_city" gate_rotation="0.908" prosperity="2100">
         <Buildings>
           <Building id="building_settlement_fortifications" level="3" />
           <Building id="building_settlement_barracks" level="1" />
@@ -13429,7 +13429,7 @@
   </Settlement>
   <Settlement id="village_SM1_1" name="{=Settlements.Settlement.name.village_SM1_1}Krakstone" posX="1092.386" posY="1086.227" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_SM1_1}An old shed probably constructed by some passing dwarves. It now serves as a watch post.">
     <Components>
-      <Village id="village_comp_SM1_1" village_type="VillageType.trapper" hearth="250" bound="Settlement.town_SM1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_SM1_1" village_type="VillageType.trapper" hearth="250" bound="Settlement.town_SM1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13442,7 +13442,7 @@
   </Settlement>
   <Settlement id="village_SM1_2" name="{=Settlements.Settlement.name.village_SM1_2}Zug" posX="1092.666" posY="1076.821" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_SM1_2}A orcish outpost weakly guarded but with a great high ground advantage. Wild boar herds roam the area.">
     <Components>
-      <Village id="village_comp_SM1_2" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_SM1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_SM1_2" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_SM1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13455,7 +13455,7 @@
   </Settlement>
   <Settlement id="town_SM2" name="{=Settlements.Settlement.name.town_SM2}Orchart" owner="Faction.skull_smasherz_clan_1" posX="1132.933" posY="1077.26" culture="Culture.aserai" gate_posX="1132.815" gate_posY="1080.231" text="{=Settlements.Settlement.text.town_SM2}A orcish stronghold. Steady walls and a natural protection of the mountains behind it. The tunnels give a clear advantage for armies to hide while under bombardment.">
     <Components>
-      <Town id="town_comp_SM2" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="1800">
+      <Town id="town_comp_SM2" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_city" gate_rotation="0.908" prosperity="1800">
         <Buildings>
           <Building id="building_settlement_fortifications" level="1" />
           <Building id="building_settlement_barracks" level="0" />
@@ -13491,7 +13491,7 @@
   </Settlement>
   <Settlement id="village_SM2_1" name="{=Settlements.Settlement.name.village_SM2_1}Shiny Pit" posX="1141.688" posY="1089.247" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_SM2_1}The area is rich with rare veins waiting to be taken.">
     <Components>
-      <Village id="village_comp_SM2_1" village_type="VillageType.silver_mine" hearth="250" bound="Settlement.town_SM2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_SM2_1" village_type="VillageType.silver_mine" hearth="250" bound="Settlement.town_SM2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13504,7 +13504,7 @@
   </Settlement>
   <Settlement id="village_SM2_2" name="{=Settlements.Settlement.name.village_SM2_2}Krud Rock Top" posX="1124.956" posY="1093.759" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_SM2_2}A watchtower where the orcs have built a rudimentary watchtower.">
     <Components>
-      <Village id="village_comp_SM2_2" village_type="VillageType.trapper" hearth="250" bound="Settlement.town_SM2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_SM2_2" village_type="VillageType.trapper" hearth="250" bound="Settlement.town_SM2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13517,7 +13517,7 @@
   </Settlement>
   <Settlement id="town_SM3" name="{=Settlements.Settlement.name.town_SM3}Jura Peak" owner="Faction.skull_smasherz_clan_1" posX="1224.244" posY="1000.889" culture="Culture.aserai" gate_posX="1226.115" gate_posY="1003.199" text="{=Settlements.Settlement.text.town_SM3}One of the higher peaks in the middle of the grey mountains. Jura has a small fortification and is a vault for the spoils of war. A network of tunnels lead to the other fortresses making it easy to get supplies.">
     <Components>
-      <Town id="town_comp_SM3" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="1700">
+      <Town id="town_comp_SM3" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_city" gate_rotation="0.908" prosperity="1700">
         <Buildings>
           <Building id="building_settlement_fortifications" level="1" />
           <Building id="building_settlement_barracks" level="0" />
@@ -13553,7 +13553,7 @@
   </Settlement>
   <Settlement id="village_SM3_1" name="{=Settlements.Settlement.name.village_SM3_1}Smashnob" posX="1207.918" posY="1020.901" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_SM3_1}Lélex used to be a thriving community they had a good strategic position for trade in the region. After a massive orcish attack from the mountain side.">
     <Components>
-      <Village id="village_comp_SM3_1" village_type="VillageType.vineyard" hearth="250" bound="Settlement.town_SM3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_SM3_1" village_type="VillageType.vineyard" hearth="250" bound="Settlement.town_SM3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_004" />
@@ -13566,7 +13566,7 @@
   </Settlement>
   <Settlement id="village_SM3_2" name="{=Settlements.Settlement.name.village_SM3_2}Troll Hag Pass" posX="1222.547" posY="1015.3" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_SM3_2}At the front door of the Empire, Troll Hag Pass is cursed by humans for miles around. Although the Hag is now long dead, Goblins and Orcs often raid the surrounding lands before retreating to their defensive and sinister place of residence. The most sensitive Greenskin shamans often dislike the place. Something about a foul odor, even for their...limited sensibilities.">
     <Components>
-      <Village id="village_comp_SM3_2" village_type="VillageType.trapper" hearth="250" bound="Settlement.town_SM3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_SM3_2" village_type="VillageType.trapper" hearth="250" bound="Settlement.town_SM3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13579,7 +13579,7 @@
   </Settlement>
   <Settlement id="village_SM3_3" name="{=Settlements.Settlement.name.village_SM3_3}Boardropz" posX="1236.894" posY="1017.806" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_SM3_3}A boar breeding camp. Also goblin workers make makeshift armors for the warbeasts.">
     <Components>
-      <Village id="village_comp_SM3_3" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_SM3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_SM3_3" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_SM3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13592,7 +13592,7 @@
   </Settlement>
   <Settlement id="castle_SM1" name="{=Settlements.Settlement.name.castle_SM1}Tower Of Grom" owner="Faction.skull_smasherz_clan_1" posX="1158.032" posY="1060.174" culture="Culture.aserai" gate_posX="1156.737" gate_posY="1062.85" text="{=Settlements.Settlement.text.castle_SM1}">
     <Components>
-      <Town id="castle_comp_SM1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_castle" gate_rotation="0.908" prosperity="800">
+      <Town id="castle_comp_SM1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_castle" gate_rotation="0.908" prosperity="800">
         <Buildings>
           <Building id="building_castle_fortifications" level="3" />
           <Building id="building_castle_barracks" level="2" />
@@ -13616,7 +13616,7 @@
   </Settlement>
   <Settlement id="castle_village_SM1_1" name="{=Settlements.Settlement.name.castle_village_SM1_1}Deff Road" posX="1167.515" posY="1067.465" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_SM1_1}">
     <Components>
-      <Village id="castle_village_comp_SM1_1" village_type="VillageType.flax_plant" hearth="200" bound="Settlement.castle_SM1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_SM1_1" village_type="VillageType.flax_plant" hearth="200" bound="Settlement.castle_SM1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13629,7 +13629,7 @@
   </Settlement>
   <Settlement id="castle_village_SM1_2" name="{=Settlements.Settlement.name.castle_village_SM1_2}Goblin Caves" posX="1178.919" posY="1061.407" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_SM3_1}A bunch of galleries too small for orcs, which serves to prevent goblins from taking a beating from their larger kin.">
     <Components>
-      <Village id="castle_village_comp_SM1_2" village_type="VillageType.clay_mine" hearth="200" bound="Settlement.castle_SM1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_SM1_2" village_type="VillageType.clay_mine" hearth="200" bound="Settlement.castle_SM1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_005" />
@@ -13642,7 +13642,7 @@
   </Settlement>
   <Settlement id="castle_SM2" name="{=Settlements.Settlement.name.castle_SM2}Misty Rock" owner="Faction.skull_smasherz_clan_1" posX="1210.645" posY="985.899" culture="Culture.aserai" gate_posX="1211.409" gate_posY="983.0261" text="{=Settlements.Settlement.text.castle_SM3}A old Brettonian castle pulverized by fallen boulders. Its foundations have made place for the Greenskins to build their own.">
     <Components>
-      <Town id="castle_comp_SM2" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_castle" gate_rotation="0.908" prosperity="620">
+      <Town id="castle_comp_SM2" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_castle" gate_rotation="0.908" prosperity="620">
         <Buildings>
           <Building id="building_castle_fortifications" level="3" />
           <Building id="building_castle_barracks" level="1" />
@@ -13666,7 +13666,7 @@
   </Settlement>
   <Settlement id="castle_village_SM2_1" name="{=Settlements.Settlement.name.castle_village_SM2_1}Bourgo" posX="1196.208" posY="978.109" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_SM2_1}A hill filled with sheep nothing much else goes on here.">
     <Components>
-      <Village id="castle_village_comp_SM2_1" village_type="VillageType.greenskin_wolf_farm" hearth="200" bound="Settlement.castle_SM2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_SM2_1" village_type="VillageType.greenskin_wolf_farm" hearth="200" bound="Settlement.castle_SM2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13679,7 +13679,7 @@
   </Settlement>
   <Settlement id="castle_village_SM2_2" name="{=Settlements.Settlement.name.castle_village_SM2_2}Stinky Shed" posX="1218.606" posY="975.483" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_SM2_2}Home to a giant river troll hag. A weird flow of magic runs around the death marshes and river trolls can be seen patrolling the area. Not much but death wood can be found in the area.">
     <Components>
-      <Village id="castle_village_comp_SM2_2" village_type="VillageType.lumberjack" hearth="200" bound="Settlement.castle_SM2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_SM2_2" village_type="VillageType.lumberjack" hearth="200" bound="Settlement.castle_SM2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13693,7 +13693,7 @@
   <!-- Deff Grinderz-->
   <Settlement id="town_DG1" name="{=Settlements.Settlement.name.town_DG1}Zerk ‘Allz" owner="Faction.deff_grindaz_clan_1" posX="1300.944" posY="876.517" culture="Culture.aserai" gate_posX="1298.391" gate_posY="874.9943" text="{=Settlements.Settlement.text.town_DG1}Gorbads destruction of Solland led to a massive amount of loot for the greenskin horde, Much of this treasure was stored in Zerk ‘Allz a underground network of tunnels digged by dwarves in the past but long forgotten, Vast amounts of Crude iron, leather and gold were stored in the vault. After the destruction of the horde the leader of the Deff grindaz tribe remembered the treasure hidden within and built his stronghold on top of it.">
     <Components>
-      <Town id="town_comp_DG1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="2150">
+      <Town id="town_comp_DG1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_city" gate_rotation="0.908" prosperity="2150">
         <Buildings>
           <Building id="building_settlement_fortifications" level="3" />
           <Building id="building_settlement_barracks" level="1" />
@@ -13729,7 +13729,7 @@
   </Settlement>
   <Settlement id="village_DG1_1" name="{=Settlements.Settlement.name.village_DG1_1}Git-Hubz" posX="1291.148" posY="896.307" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_DG1_1}A network of tunnels and halls Git-hubz was used by goblin messengers in the time of Gorbad ironclaw. rediscovered after the opening of Zerk ‘Allz the tunnels are used once more and prepared to be a gateway for a massive waaagh.">
     <Components>
-      <Village id="village_comp_DG1_1" village_type="VillageType.clay_mine" hearth="250" bound="Settlement.town_DG1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_DG1_1" village_type="VillageType.clay_mine" hearth="250" bound="Settlement.town_DG1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13742,7 +13742,7 @@
   </Settlement>
   <Settlement id="village_DG1_2" name="{=Settlements.Settlement.name.village_DG1_2}Agzo" posX="1290.817" posY="886.701" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_DG1_2}Agzo is a small goblin outpost north east of Zerks Vault. It mainly houses goblin hunters that gather wood.">
     <Components>
-      <Village id="village_comp_DG1_2" village_type="VillageType.lumberjack" hearth="250" bound="Settlement.town_DG1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_DG1_2" village_type="VillageType.lumberjack" hearth="250" bound="Settlement.town_DG1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13755,7 +13755,7 @@
   </Settlement>
   <Settlement id="town_DG2" name="{=Settlements.Settlement.name.town_DG2}Iron Tower" owner="Faction.deff_grindaz_clan_1" posX="1310.974" posY="891.026" culture="Culture.aserai" gate_posX="1312.688" gate_posY="892.5488" text="{=Settlements.Settlement.text.town_DG2}North west of Gitgirt stands the old watch of Iron Tower. Today it serves as a totem to Mork boosting the morale of the greenskins.">
     <Components>
-      <Town id="town_comp_DG2" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="1830">
+      <Town id="town_comp_DG2" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_city" gate_rotation="0.908" prosperity="1830">
         <Buildings>
           <Building id="building_settlement_fortifications" level="1" />
           <Building id="building_settlement_barracks" level="0" />
@@ -13791,7 +13791,7 @@
   </Settlement>
   <Settlement id="village_DG2_1" name="{=Settlements.Settlement.name.village_DG2_1}Grubstop" posX="1330.955" posY="876.873" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_DG2_1}Serving as an engine workshop for the greenskins Grubstop fills the tribe's arsenal of warmachines. ">
     <Components>
-      <Village id="village_comp_DG2_1" village_type="VillageType.lumberjack" hearth="250" bound="Settlement.town_DG2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_DG2_1" village_type="VillageType.lumberjack" hearth="250" bound="Settlement.town_DG2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13804,7 +13804,7 @@
   </Settlement>
   <Settlement id="village_DG2_2" name="{=Settlements.Settlement.name.village_DG2_2}Gitgirt" posX="1322.306" posY="888.2841" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_DG2_2}Like an ant colony Gitgirt is covered in small holes in the mountain side giving way to the hundreds of goblins residing in the mountains to attack from all sides. This enormous stronghold is tried to be taken out by the dwarves numerous times but by sieging the hold creating more holes in the process.">
     <Components>
-      <Village id="village_comp_DG2_2" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_DG2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_DG2_2" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_DG2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13817,7 +13817,7 @@
   </Settlement>
   <Settlement id="castle_DG1" name="{=Settlements.Settlement.name.castle_DG1}Menogoth Hill" owner="Faction.deff_grindaz_clan_1" posX="1297.958" posY="912.8051" culture="Culture.aserai" gate_posX="1294.135" gate_posY="912.5214" text="{=Settlements.Settlement.text.castle_DG1}The Menogoths were an ancient war-like tribe of Human barbarians populating the lands of what was once the province of Solland, and as such the Menogoths are the direct ancestors of that former province's people. Menogoths Hill houses a mass of ancient graves. First conquered by an unnamed vampire in the time of the vampire wars, The hill was later reclaimed by Solland only to be taken away by the orks of the grey mountains the year after.">
     <Components>
-      <Town id="castle_comp_DG1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_castle" gate_rotation="0.908" prosperity="560">
+      <Town id="castle_comp_DG1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_castle" gate_rotation="0.908" prosperity="560">
         <Buildings>
           <Building id="building_castle_fortifications" level="3" />
           <Building id="building_castle_barracks" level="1" />
@@ -13841,7 +13841,7 @@
   </Settlement>
   <Settlement id="castle_village_DG1_1" name="{=Settlements.Settlement.name.castle_village_DG1_1}Boyz Wuz ‘Ere" posX="1288.335" posY="907.5" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_DG1_1}A now ruined village of Hohenburg was built on the foundations of an ancient castle. Protecting against the threats of Athel Loren, the villagers didn’t expect a Greenskin attack from the mountainside for Dwarfs had always resided in that region. The location now serves as a raiding camp from which wolf riders attack the forest.">
     <Components>
-      <Village id="castle_village_comp_DG1_1" village_type="VillageType.trapper" hearth="200" bound="Settlement.castle_DG1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_DG1_1" village_type="VillageType.trapper" hearth="200" bound="Settlement.castle_DG1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13854,7 +13854,7 @@
   </Settlement>
   <Settlement id="castle_village_DG1_2" name="{=Settlements.Settlement.name.castle_village_DG1_2}Rat Hole" posX="1283.397" posY="920.898" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_DG1_2}Known as Rathoff in the past, Rat Hole was one of the villages that survived the big Waaagh! of Gorbad Ironclaw, but due to a plague that killed off their crops and much of the population, the Sollanders fled, and left the area abandoned.">
     <Components>
-      <Village id="castle_village_comp_DG1_2" village_type="VillageType.clay_mine" hearth="200" bound="Settlement.castle_DG1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_DG1_2" village_type="VillageType.clay_mine" hearth="200" bound="Settlement.castle_DG1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -13867,7 +13867,7 @@
   </Settlement>
   <Settlement id="castle_DG2" name="{=Settlements.Settlement.name.castle_DG2}Grey Temple of Söll" owner="Faction.deff_grindaz_clan_1" posX="1313.385" posY="906.056" culture="Culture.aserai" gate_posX="1315.574" gate_posY="909.6622" text="{=Settlements.Settlement.text.castle_DG2}Söll is the god of the sun in the Old World Pantheon who is particularly adored in Wissenland. In ancient times the tribe of the Menogoth praised him as the god of vengeance. As such, some scholars say he could be an aspect of Solkan. The ancient and religious structure was captured by the greenskins in the destruction of Solland; the Temple hasn’t been reclaimed ever since.">
     <Components>
-      <Town id="castle_comp_DG2" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_castle" gate_rotation="0.908" prosperity="680">
+      <Town id="castle_comp_DG2" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_castle" gate_rotation="0.908" prosperity="680">
         <Buildings>
           <Building id="building_castle_fortifications" level="3" />
           <Building id="building_castle_barracks" level="1" />
@@ -13891,7 +13891,7 @@
   </Settlement>
   <Settlement id="castle_village_DG2_1" name="{=Settlements.Settlement.name.castle_village_DG2_1}Crudemold" posX="1316.727" posY="918.303" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_DG2_1}Filled with  crude iron this old dwarven mine is now owned by the greenskins that use the iron for their cruel ends.">
     <Components>
-      <Village id="castle_village_comp_DG2_1" village_type="VillageType.iron_mine" hearth="200" bound="Settlement.castle_DG2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_DG2_1" village_type="VillageType.iron_mine" hearth="200" bound="Settlement.castle_DG2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_004" />
@@ -13904,7 +13904,7 @@
   </Settlement>
   <Settlement id="castle_village_DG2_2" name="{=Settlements.Settlement.name.castle_village_DG2_2}Orc Cliff" posX="1310.509" posY="932.014" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_DG2_2}Once celebrated as the village that stood firm against the greenskins from the grey mountains only for the greenskins to come with double the number and turn it into a pulp.">
     <Components>
-      <Village id="castle_village_comp_DG2_2" village_type="VillageType.greenskin_wolf_farm" hearth="200" bound="Settlement.castle_DG2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_DG2_2" village_type="VillageType.greenskin_wolf_farm" hearth="200" bound="Settlement.castle_DG2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -13918,7 +13918,7 @@
   <!-- Neck Snappers-->
   <Settlement id="town_NS1" name="{=Settlements.Settlement.name.town_NS1}Morglum Rest" owner="Faction.neck_snappers_clan_1" posX="1280.611" posY="706.678" culture="Culture.aserai" gate_posX="1276.885" gate_posY="704.1616" text="{=Settlements.Settlement.text.town_NS1}Morglum, leader of the Necksnappers tribe, chose this location to set up his camp because of the proximity of fresh water sources that flow from the mountains, the altitude that the mountain gives him to watch the roads and its proximity to the roads so that he can enclose the caravans he attacks so they cannot escape or react. It is a very cleverly thought-out location, so it probably wasn't his idea.">
     <Components>
-      <Town id="town_comp_NS1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="2200">
+      <Town id="town_comp_NS1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_city" gate_rotation="0.908" prosperity="2200">
         <Buildings>
           <Building id="building_settlement_fortifications" level="3" />
           <Building id="building_settlement_barracks" level="1" />
@@ -13954,7 +13954,7 @@
   </Settlement>
   <Settlement id="village_NS1_1" name="{=Settlements.Settlement.name.village_NS1_1}Khazad Hefaz" posX="1263.813" posY="703.989" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_NS1_1}Khazad Hefaz is an ancient dwarven mine of small dimensions, whose minerals were exhausted several centuries ago. However, the caverns that the dwarves dug are perfect for housing other disgusting beings.">
     <Components>
-      <Village id="village_comp_NS1_1" village_type="VillageType.iron_mine" hearth="250" bound="Settlement.town_NS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_NS1_1" village_type="VillageType.iron_mine" hearth="250" bound="Settlement.town_NS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_004" />
@@ -13967,7 +13967,7 @@
   </Settlement>
   <Settlement id="village_NS1_2" name="{=Settlements.Settlement.name.village_NS1_2}Winter Fang" posX="1270.19" posY="689.488" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_NS1_2}Along Winter's Teeth Pass is a rocky outcrop that is not too high, but has a shape that is a gentle climb on one side and a long drop on the other. It was named Winter Fang because of its sharp resemblance. It is often used by travelers or bandits to camp here because it is small and easy to defend.">
     <Components>
-      <Village id="village_comp_NS1_2" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_NS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_NS1_2" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_NS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -13980,7 +13980,7 @@
   </Settlement>
   <Settlement id="castle_NS1" name="{=Settlements.Settlement.name.castle_NS1}Grung Byrn" owner="Faction.neck_snappers_clan_1" posX="1268.766" posY="732.002" culture="Culture.aserai" gate_posX="1271.812" gate_posY="734.3293" text="{=Settlements.Settlement.text.castle_NS1}Grung Byrn is an outpost in the mountains of the Montdidier Pass, which links southern Wissenland to Bretonnia, bordering southern Athel Loren. Like so many strategic locations, there was once a sentry post here, now occupied by a group of orcs from the Necksnappers clan.">
     <Components>
-      <Town id="castle_comp_NS1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_castle" gate_rotation="0.908" prosperity="590">
+      <Town id="castle_comp_NS1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_castle" gate_rotation="0.908" prosperity="590">
         <Buildings>
           <Building id="building_castle_fortifications" level="3" />
           <Building id="building_castle_barracks" level="1" />
@@ -14004,7 +14004,7 @@
   </Settlement>
   <Settlement id="castle_village_NS1_1" name="{=Settlements.Settlement.name.castle_village_NS1_1}Montdidier Crossroads" posX="1283.807" posY="733" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_NS1_1}On the border between the southwestern part of the empire and the southeastern part of Bretonnia, in the middle of the mountains, there is the Mondidier Pass, which runs along the Athel Loren forest. It is at this point that the road forks and the path called Brenhein Pass begins, which crosses the Vaults Mountains until reaching Campogrotta, in Tilea. This path was once full of riches due to the dwarven mines. Today it is an abandoned path that not even the most insane would dare to cross.">
     <Components>
-      <Village id="castle_village_comp_NS1_1" village_type="VillageType.trapper" hearth="200" bound="Settlement.castle_NS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_NS1_1" village_type="VillageType.trapper" hearth="200" bound="Settlement.castle_NS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -14018,7 +14018,7 @@
   <!-- Crooked Eye-->
   <Settlement id="town_CE1" name="{=Settlements.Settlement.name.town_CE1}Cragmere" owner="Faction.crooked_eye_clan_1" posX="1593.048" posY="850.088" culture="Culture.aserai" gate_posX="1595.274" gate_posY="852.059" text="{=Settlements.Settlement.text.town_CE1}Karak Varn was a Dwarf fortress whose name means 'Flooded Rock', though humans know it as Cragmere. Once, Karak Varn was the richest and most prosperous Dwarfen settlement in Karaz Ankor. The Dwarfs dug ever deeper, eager for the countless veins of Gromril. But earthquakes during the Time of Woes caused rifts that let Blackwater Lake leak into its tunnels, flooding its mines, halls, and treasuries. It was also a source of invasion by vile creatures such as Orcs and Goblins. The Dwarf clans endured for a time but eventually abandoned the fortress or perished at the hands of invading forces. The Greenskins stumbled upon the deserted fortress, and even though they are the current rulers of Cragmere, most will only remain on the upper levels – The lower chambers are considered cursed. The few less superstitious Orcs who venture deeper are never seen again.">
     <Components>
-      <Town id="town_comp_CE1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="2650">
+      <Town id="town_comp_CE1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_city" gate_rotation="0.908" prosperity="2650">
         <Buildings>
           <Building id="building_settlement_fortifications" level="3" />
           <Building id="building_settlement_barracks" level="1" />
@@ -14054,7 +14054,7 @@
   </Settlement>
   <Settlement id="village_CE1_1" name="{=Settlements.Settlement.name.village_CE1_1}Black Harbour" posX="1620.615" posY="854.75" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_CE1_1}Used by the dwarves of Karak Varn to transport their goods Zhufbar back in the day, The old port is now in decay. Dwarf High King Alrik was killed not far from the harbour. The water is filled with a strange sort of fish.">
     <Components>
-      <Village id="village_comp_CE1_1" village_type="VillageType.fisherman" hearth="250" bound="Settlement.town_CE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_CE1_1" village_type="VillageType.fisherman" hearth="250" bound="Settlement.town_CE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_004" />
@@ -14067,7 +14067,7 @@
   </Settlement>
   <Settlement id="village_CE1_2" name="{=Settlements.Settlement.name.village_CE1_2}Drung Duk" posX="1612.958" posY="865.3391" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_CE1_2}A Destroyed passage entrance now in hands of the greenskins. Its surroundings are rich in clay and was used back in the day as a clay quarry.">
     <Components>
-      <Village id="village_comp_CE1_2" village_type="VillageType.clay_mine" hearth="250" bound="Settlement.town_CE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_CE1_2" village_type="VillageType.clay_mine" hearth="250" bound="Settlement.town_CE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -14080,7 +14080,7 @@
   </Settlement>
   <Settlement id="village_CE1_3" name="{=Settlements.Settlement.name.village_CE1_3}Elgram Grung" posX="1598.86" posY="857.4821" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_CE1_3} An old mining site, Crude iron veins are still in the mines but not in great numbers anymore.">
     <Components>
-      <Village id="village_comp_CE1_3" village_type="VillageType.iron_mine" hearth="250" bound="Settlement.town_CE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_CE1_3" village_type="VillageType.iron_mine" hearth="250" bound="Settlement.town_CE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_004" />
@@ -14093,7 +14093,7 @@
   </Settlement>
   <Settlement id="town_CE2" name="{=Settlements.Settlement.name.town_CE2}Fang Island" owner="Faction.crooked_eye_clan_1" posX="1595.598" posY="937.91" culture="Culture.aserai" gate_posX="1598.355" gate_posY="939.0233" text="{=Settlements.Settlement.text.town_CE2}Fang island is a stronghold island inside the ghoul forest. The place was once invested with Undead but has been driven out and destroyed by the greenskins. Fang island is home to the Crooked eye tribe.">
     <Components>
-      <Town id="town_comp_CE2" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="2000">
+      <Town id="town_comp_CE2" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_city" gate_rotation="0.908" prosperity="2000">
         <Buildings>
           <Building id="building_settlement_fortifications" level="3" />
           <Building id="building_settlement_barracks" level="1" />
@@ -14129,7 +14129,7 @@
   </Settlement>
   <Settlement id="village_CE2_1" name="{=Settlements.Settlement.name.village_CE2_1}Ghoul Wood" posX="1584.154" posY="956.587" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_CE2_1} The Ghoul wood was a forest filled with ghoulish creatures a mighty strigoi king once made his home here. Most have been wiped out but some still linger in the dark shadows of the forest.">
     <Components>
-      <Village id="village_comp_CE2_1" village_type="VillageType.lumberjack" hearth="250" bound="Settlement.town_CE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_CE2_1" village_type="VillageType.lumberjack" hearth="250" bound="Settlement.town_CE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -14142,7 +14142,7 @@
   </Settlement>
   <Settlement id="village_CE2_2" name="{=Settlements.Settlement.name.village_CE2_2}Fennon Hugel" posX="1584.574" posY="940.462" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_CE2_2}The hills of Fennon Hugel give a good advantage to incoming enemies; the area is also rich in forest and animals.">
     <Components>
-      <Village id="village_comp_CE2_2" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_CE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_CE2_2" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_CE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -14155,7 +14155,7 @@
   </Settlement>
   <Settlement id="village_CE2_3" name="{=Settlements.Settlement.name.village_CE2_3}Nasnas" posX="1607.492" posY="921.213" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_CE2_3}An old village said to be haunted by a spirit. Not many dare to enter it. The area is still rich with wood and animals; an orcish camp is set closeby the village.">
     <Components>
-      <Village id="village_comp_CE2_3" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_CE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_CE2_3" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_CE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -14168,7 +14168,7 @@
   </Settlement>
   <Settlement id="castle_CE1" name="{=Settlements.Settlement.name.castle_CE1}Kolaz Ungor" owner="Faction.crooked_eye_clan_1" posX="1617.907" posY="881.934" culture="Culture.aserai" gate_posX="1621.616" gate_posY="880.9653" text="{=Settlements.Settlement.text.castle_CE1}A deep cave said to contain an gromril axe in a hidden treasury that can only be found by dwarves. The old stronghold mine had fallen when Karak Varn fell. Dwarf High King Alrik Fell before the gates in a battle with Goblin Warlord Gorkil Eyegouger.">
     <Components>
-      <Town id="castle_comp_CE1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_castle" gate_rotation="0.908" prosperity="700">
+      <Town id="castle_comp_CE1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_castle" gate_rotation="0.908" prosperity="700">
         <Buildings>
           <Building id="building_castle_fortifications" level="3" />
           <Building id="building_castle_barracks" level="1" />
@@ -14192,7 +14192,7 @@
   </Settlement>
   <Settlement id="castle_village_CE1_1" name="{=Settlements.Settlement.name.castle_village_CE1_1}Nokdom" posX="1627.058" posY="887.489" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_CE1_1}A feeble shed built by goblins. Not much goes on in the area, a small salt lake can be found in the vicinity.">
     <Components>
-      <Village id="castle_village_comp_CE1_1" village_type="VillageType.salt_mine" hearth="200" bound="Settlement.castle_CE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_CE1_1" village_type="VillageType.salt_mine" hearth="200" bound="Settlement.castle_CE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -14205,7 +14205,7 @@
   </Settlement>
   <Settlement id="castle_CE2" name="{=Settlements.Settlement.name.castle_CE2}Temple of Skaranoak" owner="Faction.crooked_eye_clan_1" posX="1553.506" posY="836.79" culture="Culture.aserai" gate_posX="1555.324" gate_posY="840.1643" text="{=Settlements.Settlement.text.castle_CE2}When mortal, Sigmar was said to have formed an alliance with the Brigundian tribe by slaying Skaranorak, one of the first-born Dragon Ogres. The temple is maintained by the High Capitular Marobaudes' chapter of dedicated priests. Pilgrims line the Zhufbar Road to Schramleben every year, there to head up the Blue Reach to Sigmaringen, the site of the Skaranorak Temple. Sigmarites believe Siggurdheim, the lost capital of the ancient Brigundians, once stood there, and the temple marks the beginning of the pilgrimage proper. From Sigmaringen, the devout make their way overland into the mountains, following a well-beaten path leading towards the peaks, the last of which is said to be the very spot where Sigmar killed the Dragon Ogre. Inside, the temple guards an eight-foot-tall rock that local priests claim is one of the creature's claws, and thus is blessed by Sigmar's holy blood.">
     <Components>
-      <Town id="castle_comp_CE2" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_castle" gate_rotation="0.908" prosperity="670">
+      <Town id="castle_comp_CE2" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_castle" gate_rotation="0.908" prosperity="670">
         <Buildings>
           <Building id="building_castle_fortifications" level="3" />
           <Building id="building_castle_barracks" level="1" />
@@ -14229,7 +14229,7 @@
   </Settlement>
   <Settlement id="castle_village_CE2_1" name="{=Settlements.Settlement.name.castle_village_CE2_1}Khazid Aldum" posX="1564.95" posY="845.216" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_CE2_1}The lost Mine of Khazid Aldum is a forgotten mine still rich with treasures. A lot of Silver and Iron can be found.">
     <Components>
-      <Village id="castle_village_comp_CE2_1" village_type="VillageType.silver_mine" hearth="200" bound="Settlement.castle_CE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_CE2_1" village_type="VillageType.silver_mine" hearth="200" bound="Settlement.castle_CE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_004" />
@@ -14242,7 +14242,7 @@
   </Settlement>
   <Settlement id="castle_village_CE2_2" name="{=Settlements.Settlement.name.castle_village_CE2_2}Idols of da Godz" posX="1576.903" posY="856.329" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_CE2_2}An orcish camp set up to hunt surrounding animals for their hide and to ambush caravans.">
     <Components>
-      <Village id="castle_village_comp_CE2_2" village_type="VillageType.trapper" hearth="200" bound="Settlement.castle_CE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_CE2_2" village_type="VillageType.trapper" hearth="200" bound="Settlement.castle_CE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -14256,7 +14256,7 @@
   <!-- Bloody Spears-->
   <Settlement id="town_BS1" name="{=Settlements.Settlement.name.town_BS1}Grom Peak" owner="Faction.bloody_spearz_clan_1" posX="1781.496" posY="981.829" culture="Culture.aserai" gate_posX="1781.048" gate_posY="984.7679" text="{=Settlements.Settlement.text.town_BS1}Once a dwarven stronghold, famed for its enormous statue of the dwarven god Grungni, this was the land of the Dwarves. However, when the WAAAGH of Grom the Paunch swept through these lands, they entered these hallowed halls, desecrated the tombs of their ancestors, and replaced the glorious statue of Grungni with a larger, more rotund one of Grom himself. The dwarves, angered, went to battle to remedy this grudge, but despite their efforts they have yet to succeed.">
     <Components>
-      <Town id="town_comp_BS1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="3000">
+      <Town id="town_comp_BS1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_city" gate_rotation="0.908" prosperity="3000">
         <Buildings>
           <Building id="building_settlement_fortifications" level="3" />
           <Building id="building_settlement_barracks" level="1" />
@@ -14292,7 +14292,7 @@
   </Settlement>
   <Settlement id="village_BS1_1" name="{=Settlements.Settlement.name.village_BS1_1}Iron Gate" posX="1776.092" posY="987.5161" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_BS1_1}In the year 2410 IC, when Grom the Paunch's WAAAGH was ravaging the dwarven lands, King Bragarik of the dwarves faced the mighty, rotund goblin and his hosts here. After 3 days of relentless fighting, there was no clear winner, and both armies retreated. To the dwarves, it was considered a defeat. They were unable to repair the grudge, and they wrote the name of the human emperor, Dieter IV, on it, speaking of his cowardice for not agreeing to fight alongside them. But with the support of the empire, the outcome could have been different.">
     <Components>
-      <Village id="village_comp_BS1_1" village_type="VillageType.iron_mine" hearth="250" bound="Settlement.town_BS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BS1_1" village_type="VillageType.iron_mine" hearth="250" bound="Settlement.town_BS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_004" />
@@ -14305,7 +14305,7 @@
   </Settlement>
   <Settlement id="village_BS1_2" name="{=Settlements.Settlement.name.village_BS1_2}Rib Peak" posX="1789.504" posY="1006.37" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_BS1_2}Rib Peak is a valley in the central area of ​​the World Edge Mountains that connects the Empire with the Wolf Lands. In this region there were many dwarven strongholds that were sacked and desecrated by Grom the Paunch, causing the Wrath of the dwarves. A wrath that has not been sated to this day.">
     <Components>
-      <Village id="village_comp_BS1_2" village_type="VillageType.iron_mine" hearth="250" bound="Settlement.town_BS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BS1_2" village_type="VillageType.iron_mine" hearth="250" bound="Settlement.town_BS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_004" />
@@ -14318,7 +14318,7 @@
   </Settlement>
   <Settlement id="town_BS2" name="{=Settlements.Settlement.name.town_BS2}Fallen King Mountain" owner="Faction.bloody_spearz_clan_1" posX="1718.67" posY="938.389" culture="Culture.aserai" gate_posX="1715.96" gate_posY="939.611" text="{=Settlements.Settlement.text.town_BS2}Once one of the many dwarven fortresses that dominated the typical landscape of the World's Edge Mountains, however, since this part of the mountains was taken over by goblins, and with it the dwarven fortresses, much of the history associated with them has been lost forever.">
     <Components>
-      <Town id="town_comp_BS2" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="1900">
+      <Town id="town_comp_BS2" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_city" gate_rotation="0.908" prosperity="1900">
         <Buildings>
           <Building id="building_settlement_fortifications" level="1" />
           <Building id="building_settlement_barracks" level="0" />
@@ -14354,7 +14354,7 @@
   </Settlement>
   <Settlement id="village_BS2_1" name="{=Settlements.Settlement.name.village_BS2_1}Proppa Top" posX="1699.23" posY="933.188" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_BS2_1}-">
     <Components>
-      <Village id="village_comp_BS2_1" village_type="VillageType.greenskin_wolf_farm" hearth="250" bound="Settlement.town_BS2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BS2_1" village_type="VillageType.greenskin_wolf_farm" hearth="250" bound="Settlement.town_BS2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -14367,7 +14367,7 @@
   </Settlement>
   <Settlement id="village_BS2_2" name="{=Settlements.Settlement.name.village_BS2_2}Looted Stuntie Pitz" posX="1707.275" posY="946.368" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_BS2_2} In the past, it was not uncommon for Imperial and Dawi traders to meet at this outpost. The Dawi traded weapons, technology, and minerals in exchange for food and supplies that the Imperials obtained from other parts of the world. Since the Greenskins ravaged these lands a century ago, this place is abandoned, but its structures still stand and it is a good meeting point for goblin raiders.">
     <Components>
-      <Village id="village_comp_BS2_2" village_type="VillageType.trapper" hearth="250" bound="Settlement.town_BS2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_BS2_2" village_type="VillageType.trapper" hearth="250" bound="Settlement.town_BS2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_004" />
@@ -14380,7 +14380,7 @@
   </Settlement>
   <Settlement id="castle_BS1" name="{=Settlements.Settlement.name.castle_BS1}Mount Gunbad" owner="Faction.bloody_spearz_clan_1" posX="1812.772" posY="993.199" culture="Culture.aserai" gate_posX="1815.357" gate_posY="996.0289" text="{=Settlements.Settlement.text.castle_BS1}Located on the eastern slopes of the World Edge Mountains, Gunbad was once the second richest mine in all the Dwarven kingdoms. Its gold was so important that Gunbad was exempt from providing troops in any war, just to ensure that its production did not decline. But with the great invasion of the Greenskins, it eventually perished. Two hundred years ago, Logazor Brightaxe succeeded in reclaiming the mines for the dwarves. But he left Mount Gunbad isolated and surrounded by tribes of greenskins. The dwarves hold key areas of the fortress, but they do not have the strength to operate the mine or to reclaim the mines to the east and north of the World Edge Mountains.">
     <Components>
-      <Town id="castle_comp_BS1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_castle" gate_rotation="0.908" prosperity="700">
+      <Town id="castle_comp_BS1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_castle" gate_rotation="0.908" prosperity="700">
         <Buildings>
           <Building id="building_castle_fortifications" level="3" />
           <Building id="building_castle_barracks" level="1" />
@@ -14404,7 +14404,7 @@
   </Settlement>
   <Settlement id="castle_village_BS1_1" name="{=Settlements.Settlement.name.castle_village_BS1_1}Gnashrak Lair" posX="1813.938" posY="1011.695" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_BS1_1}The Gnashrak Lair is an ancient dwarven fortress now inhabited by all manner of greenskins. It sits on the eastern slope of the World Edge Mountains, watching over Peak Pass from the Wolves Lands side. But it's not just Greenskins who inhabit it. Deep within it are said to be skaven mining and transporting Warpstone. In the year 1715 IC, a paladin of Khorne named Kastragar achieved daemonhood by personally exterminating all the goblins that then inhabited this fortress.">
     <Components>
-      <Village id="castle_village_comp_BS1_1" village_type="VillageType.trapper" hearth="200" bound="Settlement.castle_BS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BS1_1" village_type="VillageType.trapper" hearth="200" bound="Settlement.castle_BS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_004" />
@@ -14417,7 +14417,7 @@
   </Settlement>
   <Settlement id="castle_village_BS1_2" name="{=Settlements.Settlement.name.castle_village_BS1_2}Slave Rock" posX="1822.757" posY="1019.479" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_BS3_1}This infamous place is a death sentence even for the hardiest prisoners. Greenskins have taken to working them to death for nothing of value except mining the rocks, and instead find value in feeding the corpses to their wolves. Fleeing prisoners are also a great way to keep the beasts in good shape.">
     <Components>
-      <Village id="castle_village_comp_BS1_2" village_type="VillageType.greenskin_wolf_farm" hearth="200" bound="Settlement.castle_BS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BS1_2" village_type="VillageType.greenskin_wolf_farm" hearth="200" bound="Settlement.castle_BS1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -14430,7 +14430,7 @@
   </Settlement>
   <Settlement id="castle_BS2" name="{=Settlements.Settlement.name.castle_BS2}Broken Fist" owner="Faction.bloody_spearz_clan_1" posX="1752.976" posY="973.242" culture="Culture.aserai" gate_posX="1749.382" gate_posY="974.574" text="{=Settlements.Settlement.text.castle_BS2}">
     <Components>
-      <Town id="castle_comp_BS2" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_castle" gate_rotation="0.908" prosperity="800">
+      <Town id="castle_comp_BS2" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_castle" gate_rotation="0.908" prosperity="800">
         <Buildings>
           <Building id="building_castle_fortifications" level="3" />
           <Building id="building_castle_barracks" level="2" />
@@ -14454,7 +14454,7 @@
   </Settlement>
   <Settlement id="castle_village_BS2_1" name="{=Settlements.Settlement.name.castle_village_BS2_1}Valley of Teef" posX="1739.254" posY="977.244" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_BS2_1}Gorssel is a large salt mining settlement owned by the BSsteland Import-Export Exchange in Marienburg. All of the people who live here are ‘Change employees. Salt mining is extremely dangerous, as such the men who work in the mines are very haggard, many have burns on their arms from working with the salt. Gorssel is one of the only salt mines in the old world to not rely on peasant or slave labour for its production. While the miners here may complain about their pays, they are receiving a relatively handsome one. ">
     <Components>
-      <Village id="castle_village_comp_BS2_1" village_type="VillageType.greenskin_swine_farm" hearth="200" bound="Settlement.castle_BS2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BS2_1" village_type="VillageType.greenskin_swine_farm" hearth="200" bound="Settlement.castle_BS2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -14467,7 +14467,7 @@
   </Settlement>
   <Settlement id="castle_village_BS2_2" name="{=Settlements.Settlement.name.castle_village_BS2_2}Peak Pass" posX="1742.255" posY="995.246" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_BS2_2}One of the few places where you can cross the Peak Pass towards the Wolf Lands and the lands beyond. It was once a safe passage and the dwarves benefited from the constant caravan traffic. Now, fewer and fewer caravans are seen. And the few that dare are heavily escorted for fear of greenskin raids.">
     <Components>
-      <Village id="castle_village_comp_BS2_2" village_type="VillageType.trapper" hearth="200" bound="Settlement.castle_BS2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BS2_2" village_type="VillageType.trapper" hearth="200" bound="Settlement.castle_BS2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -14480,7 +14480,7 @@
   </Settlement>
   <Settlement id="castle_BS3" name="{=Settlements.Settlement.name.castle_BS3}Da Hornz Mountain" owner="Faction.bloody_spearz_clan_1" posX="1726.558" posY="956.405" culture="Culture.aserai" gate_posX="1722.799" gate_posY="957.155" text="{=Settlements.Settlement.text.castle_BS3}">
     <Components>
-      <Town id="castle_comp_BS3" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_castle" gate_rotation="0.908" prosperity="650">
+      <Town id="castle_comp_BS3" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_castle" gate_rotation="0.908" prosperity="650">
         <Buildings>
           <Building id="building_castle_fortifications" level="3" />
           <Building id="building_castle_barracks" level="1" />
@@ -14504,7 +14504,7 @@
   </Settlement>
   <Settlement id="castle_village_BS3_1" name="{=Settlements.Settlement.name.castle_village_BS3_1}Skrap Tower" posX="1710.505" posY="958.806" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_BS3_1}">
     <Components>
-      <Village id="castle_village_comp_BS3_1" village_type="VillageType.greenskin_wolf_farm" hearth="200" bound="Settlement.castle_BS3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BS3_1" village_type="VillageType.greenskin_wolf_farm" hearth="200" bound="Settlement.castle_BS3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -14517,7 +14517,7 @@
   </Settlement>
   <Settlement id="castle_village_BS3_2" name="{=Settlements.Settlement.name.castle_village_BS3_2}Tusk Pit" posX="1710.863" posY="974.243" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_BS3_2}-">
     <Components>
-      <Village id="castle_village_comp_BS3_2" village_type="VillageType.trapper" hearth="200" bound="Settlement.castle_BS3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_BS3_2" village_type="VillageType.trapper" hearth="200" bound="Settlement.castle_BS3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -14531,7 +14531,7 @@
   <!-- Red Eyes-->
   <Settlement id="town_RE1" name="{=Settlements.Settlement.name.town_RE1}Red Eye Mountain" owner="Faction.red_eye_clan_1" posX="1813.687" posY="1123.666" culture="Culture.aserai" gate_posX="1810.826" gate_posY="1124.475" text="{=Settlements.Settlement.text.town_RE1}The great mountain of the Red Eye (formerly called Karak Ungor) was a vast dwarven fortress city, at its peak one of the deepest and most prosperous mines in the dwarven kingdom. As soon as the mines were exhausted, they abandoned the old underground tunnels. This they should never have done, for over the years earthquakes caused fissures in these old mines, through which hordes of Greenskins slipped and attacked the fortress from within, driving out its owners. Long after that, there have been several dwarven attempts to retake their ancient halls. But all were in vain.">
     <Components>
-      <Town id="town_comp_RE1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="2300">
+      <Town id="town_comp_RE1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_city" gate_rotation="0.908" prosperity="2300">
         <Buildings>
           <Building id="building_settlement_fortifications" level="3" />
           <Building id="building_settlement_barracks" level="1" />
@@ -14567,7 +14567,7 @@
   </Settlement>
   <Settlement id="village_RE1_1" name="{=Settlements.Settlement.name.village_RE1_1}Karak Ungor Pass" posX="1809.773" posY="1137.309" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_RE1_1}One of the entrances to the ancient dwarven fortress of Karak Ungor. The majesty of what was once one of the dwarves' most important mines now lies abandoned and defiled by the greenskins who have taken it from its original owners. In the past, a dwarven reconquest force led by the dwarven king Skorri Morgrimson advanced to retake this gate. But this was as far as they would go, as they were defeated upon entering their former home.">
     <Components>
-      <Village id="village_comp_RE1_1" village_type="VillageType.iron_mine" hearth="250" bound="Settlement.town_RE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_RE1_1" village_type="VillageType.iron_mine" hearth="250" bound="Settlement.town_RE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_004" />
@@ -14580,7 +14580,7 @@
   </Settlement>
   <Settlement id="village_RE1_2" name="{=Settlements.Settlement.name.village_RE1_2}Grimgor’s Lair" posX="1800.296" posY="1136.276" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_RE1_2}When Grimgor and his horde aren't doing a WAAAGH and pillaging somewhere in the world, it's customary for him to come here, to this part of Red Eye Mountain, to rest and count his loot. Here he finds a place to leave all his loot, and if he's in the mood for a fight, head down into the depths to kill some skaven. Although he hasn't been seen around here for a while.">
     <Components>
-      <Village id="village_comp_RE1_2" village_type="VillageType.trapper" hearth="250" bound="Settlement.town_RE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_RE1_2" village_type="VillageType.trapper" hearth="250" bound="Settlement.town_RE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -14593,7 +14593,7 @@
   </Settlement>
   <Settlement id="village_RE1_3" name="{=Settlements.Settlement.name.village_RE1_3}Ornery Camp" posX="1790.024" posY="1123.304" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_RE1_3}The dwarves constantly have small patrol groups crossing the World Edge Mountains. Watching and waiting for the opportune moment to occupy their ancestral home. Ornery  Backslider built this encampment as a response to those incursions. This encampment always has a garrison ready to repel any threat, human or beard-thing.">
     <Components>
-      <Village id="village_comp_RE1_3" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_RE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_RE1_3" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_RE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -14606,7 +14606,7 @@
   </Settlement>
   <Settlement id="town_RE2" name="{=Settlements.Settlement.name.town_RE2}The Thousand Woes" owner="Faction.red_eye_clan_1" posX="1792.953" posY="1084.462" culture="Culture.aserai" gate_posX="1792.532" gate_posY="1087.405" text="{=Settlements.Settlement.text.town_RE2}The Thousand Woes is a fertile valley near Red Eye Mountain. It was here long ago that the Dwarf King Skorri Morgrimson fought a great battle against the Greenskins in order to take Karak Ungor and retake his ancestral home. The Dwarf King was able to defeat the Greenskins armies, conquer the valley and take the southern gate. But he was defeated when he tried to penetrate the mountain, so the valley and the surrounding lands fell once again to the Greenskins.">
     <Components>
-      <Town id="town_comp_RE2" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="1800">
+      <Town id="town_comp_RE2" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_city" gate_rotation="0.908" prosperity="1800">
         <Buildings>
           <Building id="building_settlement_fortifications" level="1" />
           <Building id="building_settlement_barracks" level="0" />
@@ -14642,7 +14642,7 @@
   </Settlement>
   <Settlement id="village_RE2_1" name="{=Settlements.Settlement.name.village_RE2_1}Thousand Woes Forest" posX="1805.028" posY="1113.317" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_RE2_1}The forest in the Valley of the Thousand Woes is used by the Greenskins to search for food and especially to obtain wood with which to build their rustic and precarious constructions.">
     <Components>
-      <Village id="village_comp_RE2_1" village_type="VillageType.lumberjack" hearth="250" bound="Settlement.town_RE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_RE2_1" village_type="VillageType.lumberjack" hearth="250" bound="Settlement.town_RE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -14655,7 +14655,7 @@
   </Settlement>
   <Settlement id="village_RE2_2" name="{=Settlements.Settlement.name.village_RE2_2}Thousand Woes Valley" posX="1788.745" posY="1102.886" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_RE2_2}Once upon a time, this place was part of the Thousand Woes Forest. But since the goblins deforested it, it has now become a valley where only grass grows, making it ideal for wild animals to graze and feed on.">
     <Components>
-      <Village id="village_comp_RE2_2" village_type="VillageType.greenskin_wolf_farm" hearth="250" bound="Settlement.town_RE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_RE2_2" village_type="VillageType.greenskin_wolf_farm" hearth="250" bound="Settlement.town_RE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -14668,7 +14668,7 @@
   </Settlement>
   <Settlement id="castle_RE1" name="{=Settlements.Settlement.name.castle_RE1}The Veldt" owner="Faction.red_eye_clan_1" posX="1761.354" posY="1093.177" culture="Culture.aserai" gate_posX="1759.065" gate_posY="1096.252" text="{=Settlements.Settlement.text.castle_RE1}The Veldt is a large plain that stretches between the Brunwasser River and the Talabec River, at the foot of the World's Edge Mountains. It is a troubled area, where the Greenskins of Red Eye Mountain have built this location as a starting point for their raids on Ostenmark and Talabec lands.">
     <Components>
-      <Town id="castle_comp_RE1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_castle" gate_rotation="0.908" prosperity="670">
+      <Town id="castle_comp_RE1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_castle" gate_rotation="0.908" prosperity="670">
         <Buildings>
           <Building id="building_castle_fortifications" level="3" />
           <Building id="building_castle_barracks" level="1" />
@@ -14692,7 +14692,7 @@
   </Settlement>
   <Settlement id="castle_village_RE1_1" name="{=Settlements.Settlement.name.castle_village_RE1_1}Veldt Village" posX="1760.374" posY="1115.561" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_RE1_1}Veldt is an old village in Ostenmark whose original name has been lost. It was abandoned due to constant raids by Greenskins coming from the mountain. It serves as a reference point on the map and as a temporary resting place for hunting parties. But no one dares to spend the night here.">
     <Components>
-      <Village id="castle_village_comp_RE1_1" village_type="VillageType.greenskin_wolf_farm" hearth="200" bound="Settlement.castle_RE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_RE1_1" village_type="VillageType.greenskin_wolf_farm" hearth="200" bound="Settlement.castle_RE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -14705,7 +14705,7 @@
   </Settlement>
   <Settlement id="castle_village_RE1_2" name="{=Settlements.Settlement.name.castle_village_RE1_2}Talabec Spring" posX="1732.761" posY="1126.017" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_RE1_2}An old, abandoned imperial fishing village near to the river Talabec Spring, now occupied by goblin patrols seeking supplies for their hungry clan. Its cold, crystal-clear waters are a constant supply of fish and a trap for travelers who pause along the way to rest near these waters.">
     <Components>
-      <Village id="castle_village_comp_RE1_2" village_type="VillageType.fisherman" hearth="200" bound="Settlement.castle_RE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_RE1_2" village_type="VillageType.fisherman" hearth="200" bound="Settlement.castle_RE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -14718,7 +14718,7 @@
   </Settlement>
   <Settlement id="castle_village_RE1_3" name="{=Settlements.Settlement.name.castle_village_RE1_3}Grabbaz Watch" posX="1741.644" posY="1090.133" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_RE1_3}The ruins of an ancient, dilapidated watchtower. But the Goblins are so swift and agile that they can climb it without falling or collapsing the structure. This helps them spot caravans or large groups to ambush.">
     <Components>
-      <Village id="castle_village_comp_RE1_3" village_type="VillageType.salt_mine" hearth="200" bound="Settlement.castle_RE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_RE1_3" village_type="VillageType.salt_mine" hearth="200" bound="Settlement.castle_RE1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -14732,7 +14732,7 @@
   <!-- Iron Tribe-->
   <Settlement id="town_IT1" name="{=Settlements.Settlement.name.town_IT1}Irrana Peakz" owner="Faction.iron_tribe_clan_1" posX="1100.247" posY="728.0551" culture="Culture.aserai" gate_posX="1103.001" gate_posY="726.9353" text="{=Settlements.Settlement.text.town_IT1}A Greenskin encampment built in a barren, mountainous area. There aren’t humans settled in the surrounding areas, so the orcs don't have to worry about being disturbed. But they prey on those foolish enough to cross this pass between Bretonnia and Tilea.">
     <Components>
-      <Town id="town_comp_IT1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="2150">
+      <Town id="town_comp_IT1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_city" gate_rotation="0.908" prosperity="2150">
         <Buildings>
           <Building id="building_settlement_fortifications" level="3" />
           <Building id="building_settlement_barracks" level="1" />
@@ -14768,7 +14768,7 @@
   </Settlement>
   <Settlement id="village_IT1_1" name="{=Settlements.Settlement.name.village_IT1_1}Snotling Burrows" posX="1121.707" posY="717.938" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_IT1_1}The largest concentration of Snotlings in this part of the world can be found here, although normal humans are unable to distinguish them from regular goblins. Both are despicable and expendable creatures, especially to the Greenskins.">
     <Components>
-      <Village id="village_comp_IT1_1" village_type="VillageType.trapper" hearth="250" bound="Settlement.town_IT1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_IT1_1" village_type="VillageType.trapper" hearth="250" bound="Settlement.town_IT1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -14781,7 +14781,7 @@
   </Settlement>
   <Settlement id="village_IT1_2" name="{=Settlements.Settlement.name.village_IT1_2}Lootaz Camp" posX="1117.245" posY="727.165" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_IT1_2}A small gathering place from where the orc tribes raid the caravans crossing the Novalone Pass.">
     <Components>
-      <Village id="village_comp_IT1_2" village_type="VillageType.silver_mine" hearth="250" bound="Settlement.town_IT1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_IT1_2" village_type="VillageType.silver_mine" hearth="250" bound="Settlement.town_IT1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -14794,7 +14794,7 @@
   </Settlement>
   <Settlement id="town_IT2" name="{=Settlements.Settlement.name.town_IT2}Humies End" owner="Faction.iron_tribe_clan_1" posX="1025.66" posY="764.045" culture="Culture.aserai" gate_posX="1022.758" gate_posY="764.6898" text="{=Settlements.Settlement.text.town_IT2}A large orc encampment that hosts a large number of Greenskins. Its main attraction is that there are live humans inside, but they won't be there for long. They are usually farmers, caravaners, or defeated soldiers whom the orcs drag here for mere entertainment. Forcing them to fight to the death, torturing and dismembering them in full view of everyone, or leaving them at the mercy of wild boars, wolves, squigs or Hagranyms to feed on are some of the tragic fates the orcs have in store for them.">
     <Components>
-      <Town id="town_comp_IT2" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="1740">
+      <Town id="town_comp_IT2" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_city" gate_rotation="0.908" prosperity="1740">
         <Buildings>
           <Building id="building_settlement_fortifications" level="1" />
           <Building id="building_settlement_barracks" level="0" />
@@ -14830,7 +14830,7 @@
   </Settlement>
   <Settlement id="village_IT2_1" name="{=Settlements.Settlement.name.village_IT2_1}Smelly Pit" posX="1009.211" posY="761.5131" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_IT2_1}A deep cavern filled with smelly mushrooms and rotting sheep.">
     <Components>
-      <Village id="village_comp_IT2_1" village_type="VillageType.greenskin_wolf_farm" hearth="250" bound="Settlement.town_IT2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_IT2_1" village_type="VillageType.greenskin_wolf_farm" hearth="250" bound="Settlement.town_IT2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_003" />
@@ -14843,7 +14843,7 @@
   </Settlement>
   <Settlement id="village_IT2_2" name="{=Settlements.Settlement.name.village_IT2_2}Brawlin' Fieldz" posX="1016.221" posY="770.697" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_IT2_2}Orcs believe only in the meaning of brute force, so they frequently quarrel. In this place, fights have a special meaning, because in case of disputes over loot, they start to smack each other around here. This prevents other orcs in the fortress from claiming what the warband has plundered.">
     <Components>
-      <Village id="village_comp_IT2_2" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_IT2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_IT2_2" village_type="VillageType.greenskin_swine_farm" hearth="250" bound="Settlement.town_IT2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -14856,7 +14856,7 @@
   </Settlement>
   <Settlement id="town_IT3" name="{=Settlements.Settlement.name.town_IT3}Da Iron Idolz" owner="Faction.iron_tribe_clan_1" posX="880.83" posY="774.001" culture="Culture.aserai" gate_posX="881.3094" gate_posY="776.9349" text="{=Settlements.Settlement.text.town_IT3}A large orc camp, with the peculiarity that the orcs here have decided to erect Gork (or Mork?) totems made from the loot they took from the Bretonnians they raid. From scraps of armour to tools for working the fields. The landscape for ‘umies is desolate from a distance.">
     <Components>
-      <Town id="town_comp_IT3" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="1800">
+      <Town id="town_comp_IT3" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_city" gate_rotation="0.908" prosperity="1800">
         <Buildings>
           <Building id="building_settlement_fortifications" level="1" />
           <Building id="building_settlement_barracks" level="0" />
@@ -14892,7 +14892,7 @@
   </Settlement>
   <Settlement id="village_IT3_1" name="{=Settlements.Settlement.name.village_IT3_1}Boney Face" posX="870.84" posY="795.5391" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_IT3_1}A huge skull carved into a rock that the Orcs believe was blessed by Mork himself. Well, they believe he spat on it.">
     <Components>
-      <Village id="village_comp_IT3_1" village_type="VillageType.fisherman" hearth="250" bound="Settlement.town_IT3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_IT3_1" village_type="VillageType.fisherman" hearth="250" bound="Settlement.town_IT3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -14905,7 +14905,7 @@
   </Settlement>
   <Settlement id="village_IT3_2" name="{=Settlements.Settlement.name.village_IT3_2}Shiny Rock Tunnels" posX="890.229" posY="786.772" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_IT3_2}An old mine with shiny minerals visible on the walls. In reality, these minerals are crystal ore, useless and fragile. The valuable minerals were extracted long ago.">
     <Components>
-      <Village id="village_comp_IT3_2" village_type="VillageType.fisherman" hearth="250" bound="Settlement.town_IT3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_IT3_2" village_type="VillageType.fisherman" hearth="250" bound="Settlement.town_IT3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_004" />
@@ -14918,7 +14918,7 @@
   </Settlement>
   <Settlement id="castle_IT1" name="{=Settlements.Settlement.name.castle_IT1}Stuntie Top" owner="Faction.iron_tribe_clan_1" posX="1045.258" posY="767.778" culture="Culture.aserai" gate_posX="1049.082" gate_posY="768.0442" text="{=Settlements.Settlement.text.castle_IT1}A disgraced Dwarven statue stands in the opening of this once great valley of Dwarven prosperity. A sight of red skulls, feces, and pikes now covers the valley. The foundation of the Dwarf watchtower still stands, and its walls or what's left of them still serve its purpose">
     <Components>
-      <Town id="castle_comp_IT1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_castle" gate_rotation="0.908" prosperity="580">
+      <Town id="castle_comp_IT1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_castle" gate_rotation="0.908" prosperity="580">
         <Buildings>
           <Building id="building_castle_fortifications" level="3" />
           <Building id="building_castle_barracks" level="1" />
@@ -14942,7 +14942,7 @@
   </Settlement>
   <Settlement id="castle_village_IT1_1" name="{=Settlements.Settlement.name.castle_village_IT1_1}Scrap Smeltaz" posX="1055.586" posY="767.485" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_IT1_1}In the middle of a wide cave hall deep in the ground stands an ancient Dwarf smelter. The tool now serves as a smelter for the greenskins. Although they have no experience with remaking looted armors, weapons, and tools, they do know that if you heat them to just the right temperature, they will connect to another piece making it some proper makeshift armor for the boyz.">
     <Components>
-      <Village id="castle_village_comp_IT1_1" village_type="VillageType.iron_mine" hearth="200" bound="Settlement.castle_IT1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_IT1_1" village_type="VillageType.iron_mine" hearth="200" bound="Settlement.castle_IT1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_005" />
@@ -14955,7 +14955,7 @@
   </Settlement>
   <Settlement id="castle_IT2" name="{=Settlements.Settlement.name.castle_IT2}Wyvern Kliffz" owner="Faction.iron_tribe_clan_1" posX="962.236" posY="763.1901" culture="Culture.aserai" gate_posX="958.6805" gate_posY="764.6222" text="{=Settlements.Settlement.text.castle_IT2}An orc fortress built on the edge of a cliff, next to a series of natural caves. On windy days, it generates a reverberation whose sound is reminiscent of a wounded wyvern. Hence its name.">
     <Components>
-      <Town id="castle_comp_IT2" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_castle" gate_rotation="0.908" prosperity="600">
+      <Town id="castle_comp_IT2" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_castle" gate_rotation="0.908" prosperity="600">
         <Buildings>
           <Building id="building_castle_fortifications" level="3" />
           <Building id="building_castle_barracks" level="1" />
@@ -14979,7 +14979,7 @@
   </Settlement>
   <Settlement id="castle_village_IT2_1" name="{=Settlements.Settlement.name.castle_village_IT2_1}Nasty Caves" posX="951.849" posY="762.288" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_IT2_1}Filled with feces and corpses this cave hallway serves as a nasty surprise and first line of defence for adventurous brave enough to even go deeper.">
     <Components>
-      <Village id="castle_village_comp_IT2_1" village_type="VillageType.salt_mine" hearth="200" bound="Settlement.castle_IT2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_IT2_1" village_type="VillageType.salt_mine" hearth="200" bound="Settlement.castle_IT2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_005" />
@@ -14992,7 +14992,7 @@
   </Settlement>
   <Settlement id="castle_village_IT2_2" name="{=Settlements.Settlement.name.castle_village_IT2_2}Giant Wolf Hillz" posX="953.828" posY="778.975" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_IT2_2}A rugged terrain of forests and hills where the howls of wolves can be heard every night. In times of scarcity, the most foolish goblins wander here in search of new mounts.">
     <Components>
-      <Village id="castle_village_comp_IT2_2" village_type="VillageType.greenskin_swine_farm" hearth="200" bound="Settlement.castle_IT2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_IT2_2" village_type="VillageType.greenskin_swine_farm" hearth="200" bound="Settlement.castle_IT2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="greenskin_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_greenskin_village_002" />
@@ -15006,7 +15006,7 @@
   <!--Black Pit-->
   <Settlement id="castle_BP1" name="{=Settlements.Settlement.name.castle_BP1}The Black Pit" owner="Faction.black_pit_clan_1" posX="1240.198" posY="1249.955" culture="Culture.aserai" gate_posX="1237.691" gate_posY="1251.55" text="{=Settlements.Settlement.text.castle_BP1}Hidden from prying eyes, in a cove by the Sea of ​​Claws, lies the lair of the night goblins of Clan Reavaz. From this base of operations, the goblins set out to raid the entire coast of the Sea of ​​Claws from Wrecker's Point to Manann Teeth, causing trouble for the Imperial states of Nordland and Marienburg, as well as the Eonir.">
     <Components>
-      <Town id="castle_comp_BP1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_castle" gate_rotation="0.908" prosperity="1000">
+      <Town id="castle_comp_BP1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_castle" gate_rotation="0.908" prosperity="1000">
         <Buildings>
           <Building id="building_castle_fortifications" level="3" />
           <Building id="building_castle_barracks" level="2" />
@@ -15030,7 +15030,7 @@
   </Settlement>
   <Settlement id="castle_RZ1" name="{=Settlements.Settlement.name.castle_RZ1}Reavaz Keep" owner="Faction.reavaz_clan_1" posX="1212.704" posY="1383.405" culture="Culture.aserai" gate_posX="1213.867" gate_posY="1386.141" text="{=Settlements.Settlement.text.castle_RZ1}Fort Solace is a fortified lighthouse across the Manannspoort Sea from Reaver’s point. It is owned and operated by the ITsteland Import-Export exchange in Marienburg, who maintain a governor and private garrison here. Fort Solace is a relatively new settlement, constructed in response to Almshoven’s abandonment and the destruction of its lighthouse. Most ships will stop here if arriving too late in the evening to make it into Marienburg, few will stop here with the intention of bypassing Marienburg all together on their ITy to Norsca or Kislev.">
     <Components>
-      <Town id="castle_comp_RZ1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_castle" gate_rotation="0.908" prosperity="1000">
+      <Town id="castle_comp_RZ1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="greenskin_castle" gate_rotation="0.908" prosperity="1000">
         <Buildings>
           <Building id="building_castle_fortifications" level="3" />
           <Building id="building_castle_barracks" level="2" />
