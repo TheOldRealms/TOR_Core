@@ -267,13 +267,14 @@ namespace TOR_Core.HarmonyPatches
                 || ServeAsAHirelingCampaignBehavior.TryFinalizeTrackedHirelingVictoryFromCaptureHeroes()
                 || ServeAsAHirelingCampaignBehavior.TryFinalizeCurrentWinningFieldHirelingBattle();
 
-            if (!finalizedHirelingVictory)
+            if (finalizedHirelingVictory)
             {
-                return true;
+                PlayerEncounterStateHandledField.SetValue(__instance, true);
+                return false;
             }
 
-            PlayerEncounterStateHandledField.SetValue(__instance, true);
-            return false;
+            PreparePrisonerLootBeforePlayerCapture(__instance);
+            return true;
         }
 
         [HarmonyPrefix]
@@ -317,54 +318,58 @@ namespace TOR_Core.HarmonyPatches
             ServeAsAHirelingCampaignBehavior.ClearCurrentHirelingLoot();
         }
 
-        // TODO: These methods were removed in 1.4. The loot system now uses MapEventParty.RosterToReceiveLootMembers
-        // and RosterToReceiveLootPrisoners properties instead. Need to find new hook points if this functionality is still needed.
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(PlayerEncounter), "DoFreeOrCapturePrisonerHeroes")]
+        public static void DoFreeOrCapturePrisonerHeroesPrefix(PlayerEncounter __instance)
+        {
+            PrepareMemberLootBeforePlayerPrisonerChoice(__instance);
+        }
 
-        // [HarmonyPostfix]
-        // [HarmonyPatch(typeof(MapEvent), "GetMemberRosterReceivingLootShare")]
-        // public static void GetMemberRosterPostfix(MapEvent __instance, TroopRoster __result)
-        // {
-        //     if (__result == null)
-        //     {
-        //         return;
-        //     }
-        //
-        //     if (ServeAsAHirelingCampaignBehavior.ShouldSuppressTrackedHirelingBattleLoot(__instance))
-        //     {
-        //         ClearRoster(__result);
-        //         PendingLootedTroopManager.ResetAllPendingState();
-        //         return;
-        //     }
-        //
-        //     if (PendingLootedTroopManager.HasPendingModifications)
-        //     {
-        //         PendingLootedTroopManager.ApplyMemberModifications(__result);
-        //         PendingLootedTroopManager.ConsumeMemberModifications();
-        //     }
-        // }
-        //
-        // [HarmonyPostfix]
-        // [HarmonyPatch(typeof(MapEvent), "GetPrisonerRosterReceivingLootShare")]
-        // public static void GetPrisonerRosterPostfix(MapEvent __instance, TroopRoster __result)
-        // {
-        //     if (__result == null)
-        //     {
-        //         return;
-        //     }
-        //
-        //     if (ServeAsAHirelingCampaignBehavior.ShouldSuppressTrackedHirelingBattleLoot(__instance))
-        //     {
-        //         ClearRoster(__result);
-        //         PendingLootedTroopManager.ResetAllPendingState();
-        //         return;
-        //     }
-        //
-        //     if (PendingLootedTroopManager.HasPendingModifications)
-        //     {
-        //         PendingLootedTroopManager.ApplyPrisonerModifications(__result);
-        //         PendingLootedTroopManager.ConsumePrisonerModifications();
-        //     }
-        // }
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(PlayerEncounter), "DoLootMembersAndPrisonersOfParty")]
+        public static void DoLootMembersAndPrisonersOfPartyPrefix(PlayerEncounter __instance)
+        {
+            PrepareMemberLootBeforePlayerPrisonerChoice(__instance);
+            PreparePrisonerLootBeforePlayerCapture(__instance);
+        }
+
+        private static void PrepareMemberLootBeforePlayerPrisonerChoice(PlayerEncounter encounter)
+        {
+            var mapEvent = PlayerEncounter.Battle;
+            if (ServeAsAHirelingCampaignBehavior.ShouldSuppressTrackedHirelingBattleLoot(mapEvent))
+            {
+                ClearRoster(encounter.RosterToReceiveLootMembers);
+                ClearRoster(encounter.RosterToReceiveLootPrisoners);
+                encounter.RosterToReceiveLootItems.Clear();
+                PendingLootedTroopManager.ResetAllPendingState();
+                return;
+            }
+
+            if (PendingLootedTroopManager.HasPendingModifications)
+            {
+                PendingLootedTroopManager.ApplyMemberModifications(encounter.RosterToReceiveLootMembers);
+                PendingLootedTroopManager.ConsumeMemberModifications();
+            }
+        }
+
+        private static void PreparePrisonerLootBeforePlayerCapture(PlayerEncounter encounter)
+        {
+            var mapEvent = PlayerEncounter.Battle;
+            if (ServeAsAHirelingCampaignBehavior.ShouldSuppressTrackedHirelingBattleLoot(mapEvent))
+            {
+                ClearRoster(encounter.RosterToReceiveLootMembers);
+                ClearRoster(encounter.RosterToReceiveLootPrisoners);
+                encounter.RosterToReceiveLootItems.Clear();
+                PendingLootedTroopManager.ResetAllPendingState();
+                return;
+            }
+
+            if (PendingLootedTroopManager.HasPendingModifications)
+            {
+                PendingLootedTroopManager.ApplyPrisonerModifications(encounter.RosterToReceiveLootPrisoners);
+                PendingLootedTroopManager.ConsumePrisonerModifications();
+            }
+        }
     }
     
     [HarmonyPatch]

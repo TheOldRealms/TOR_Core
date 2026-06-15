@@ -6,8 +6,7 @@ namespace TOR_Core.CampaignMechanics.PostBattleLoot
 {
     /// <summary>
     /// Central manager for pending loot modifications.
-    /// Modifications are applied via Harmony postfixes on MapEvent.GetMemberRosterReceivingLootShare
-    /// and MapEvent.GetPrisonerRosterReceivingLootShare.
+    /// as of 1.4 pending loot modifications are applied to the PlayerEncounter loot rosters before the post battle loot screens.
     /// </summary>
     public static class PendingLootedTroopManager
     {
