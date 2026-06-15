@@ -1,10 +1,13 @@
 ﻿using HarmonyLib;
 using SandBox.View.Map;
 using System.Collections.Generic;
+using System.Reflection;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.MountAndBlade.View;
+using TaleWorlds.MountAndBlade.View.Tableaus;
 using TaleWorlds.MountAndBlade.View.Tableaus.Thumbnails;
+using TOR_Core.Items;
 using FaceGen = TaleWorlds.Core.FaceGen;
 
 namespace TOR_Core.HarmonyPatches
@@ -12,6 +15,54 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public static class TableauRenderPatches
     {
+        private const int ITEM_THUMBNAIL_CACHE_CAPACITY = 300;
+
+        private static readonly FieldInfo ThumbnailCachesField =
+            AccessTools.Field(typeof(ThumbnailCacheManager), "_thumbnailCaches");
+
+        private static readonly FieldInfo ItemThumbnailCacheCapacityField =
+            AccessTools.Field(typeof(ThumbnailCache<ItemThumbnailCreationData>), "_capacity");
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(ViewSubModule), "OnBeforeInitialModuleScreenSetAsRoot")]
+        public static void IncreaseItemThumbnailCacheCapacity()
+        {
+            var thumbnailCaches = ThumbnailCachesField.GetValue(ThumbnailCacheManager.Current) as IEnumerable<IThumbnailCache>;
+
+            foreach (var thumbnailCache in thumbnailCaches)
+            {
+                if (thumbnailCache is ItemThumbnailCache)
+                {
+                    var currentCapacity = (int)ItemThumbnailCacheCapacityField.GetValue(thumbnailCache);
+                    if (currentCapacity < ITEM_THUMBNAIL_CACHE_CAPACITY)
+                    {
+                        ItemThumbnailCacheCapacityField.SetValue(thumbnailCache, ITEM_THUMBNAIL_CACHE_CAPACITY);
+                    }
+
+                    return;
+                }
+            }
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(ItemThumbnailCache), "GetRenderIdToUse")]
+        public static bool UseOriginalThumbnailForTorDuplicatedItems(ItemThumbnailCreationData thumbnailCreationData, ref string __result)
+        {
+            var item = thumbnailCreationData.ItemObject;
+            var renderItemId = item.StringId;
+
+            if (ExtendedItemObjectManager.TryGetRuntimeDuplicateSourceItemId(item, out var sourceItemId))
+            {
+                renderItemId = sourceItemId;
+            }
+
+            __result = item.Type == ItemObject.ItemTypeEnum.Shield
+                ? renderItemId + "_" + thumbnailCreationData.AdditionalArgs
+                : renderItemId;
+
+            return false;
+        }
+
         [HarmonyPostfix]
         [HarmonyPatch(typeof(MapConversationTableau), "FirstTimeInit")]
         public static void PostfixMapConversationRender(ref Camera ____continuousRenderCamera, List<AgentVisuals> ____agentVisuals)

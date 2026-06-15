@@ -18,6 +18,8 @@ namespace TOR_Core.Items
         private static Dictionary<string, ExtendedItemObjectProperties> _itemToInfoMap = [];
         private static string XMLPath = TORPaths.TORCoreModuleExtendedDataPath + "tor_extendeditemproperties.xml";
         private static HashSet<string> _runtimeDuplicatedItemIds = [];
+        private static Dictionary<string, string> _runtimeDuplicatedItemSourceIds = [];
+        private static Dictionary<string, bool> _magicItemIdCache = [];
         private static List<string> _humanCompatibleRaces = new()
         {
             "human",
@@ -44,6 +46,23 @@ namespace TOR_Core.Items
 
         public static bool HasMagicItemId(string uiStringID)
         {
+            if (string.IsNullOrWhiteSpace(uiStringID))
+            {
+                return false;
+            }
+
+            if (_magicItemIdCache.TryGetValue(uiStringID, out var isMagicItem))
+            {
+                return isMagicItem;
+            }
+
+            isMagicItem = CalculateMagicItemId(uiStringID);
+            _magicItemIdCache[uiStringID] = isMagicItem;
+            return isMagicItem;
+        }
+
+        private static bool CalculateMagicItemId(string uiStringID)
+        {
             var modifier = MBObjectManager.Instance.GetObjectTypeList<ItemModifier>().FirstOrDefaultQ(x => uiStringID.EndsWith(x.StringId));
 
             if (modifier == null)
@@ -66,13 +85,21 @@ namespace TOR_Core.Items
             return item != null && _runtimeDuplicatedItemIds.Contains(item.StringId);
         }
 
+        public static bool TryGetRuntimeDuplicateSourceItemId(ItemObject item, out string sourceItemId)
+        {
+            sourceItemId = null;
+            return item != null && _runtimeDuplicatedItemSourceIds.TryGetValue(item.StringId, out sourceItemId);
+        }
+
         public static void AddCraftedItem(string oldId, string newId, List<string> traits)
         {
             _runtimeDuplicatedItemIds.Add(newId);
+            _runtimeDuplicatedItemSourceIds[newId] = oldId;
 
             if (_itemToInfoMap.ContainsKey(newId))
             {
                 _itemToInfoMap[newId].ItemTraits = traits ?? new List<string>();
+                ClearInventoryItemCaches();
                 return;
             }
             if (_itemToInfoMap.TryGetValue(oldId, out ExtendedItemObjectProperties info))
@@ -91,6 +118,26 @@ namespace TOR_Core.Items
                 newInfo.ItemTraits = traits ?? new List<string>();
                 _itemToInfoMap.Add(newId, newInfo);
             }
+
+            ClearInventoryItemCaches();
+        }
+
+        public static void RemoveRuntimeDuplicatedItem(ItemObject item)
+        {
+            if (item == null)
+            {
+                return;
+            }
+
+            _runtimeDuplicatedItemIds.Remove(item.StringId);
+            _runtimeDuplicatedItemSourceIds.Remove(item.StringId);
+            _itemToInfoMap.Remove(item.StringId);
+            ClearInventoryItemCaches();
+        }
+
+        internal static void ClearInventoryItemCaches()
+        {
+            _magicItemIdCache.Clear();
         }
 
         public static bool CanCharacterUseItem(ItemObject item, CharacterObject character)
@@ -131,6 +178,7 @@ namespace TOR_Core.Items
                 TORCommon.Log("ExtendedItemObjectManager : item object manager clearExistingMapping = true.\nFile path of caller : " + filePath, NLog.LogLevel.Info);
                 _itemToInfoMap.Clear();
                 _runtimeDuplicatedItemIds.Clear();
+                _runtimeDuplicatedItemSourceIds.Clear();
             }
 
             if (string.IsNullOrEmpty(filePath) == true)
@@ -158,6 +206,8 @@ namespace TOR_Core.Items
             {
                 TORCommon.Log("ExtendedItemObjectManager : No extended item info xml found at : " + filePath, LogLevel.Warn);
             }
+
+            ClearInventoryItemCaches();
         }
     }
 }

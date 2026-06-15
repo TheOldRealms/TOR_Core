@@ -213,6 +213,7 @@ public class LootCampaignBehavior : CampaignBehaviorBase
                 }
             }
 
+            TORArtisanDistrictCampaignBehavior.Instance?.ForgetDuplicatedItem(item);
             MBObjectManager.Instance.UnregisterObject(item);
         }
     }

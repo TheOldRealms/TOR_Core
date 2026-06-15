@@ -145,22 +145,51 @@ namespace TOR_Core.CampaignMechanics.Crafting
 
         public void InitializeSavedCraftedItems()
         {
+            var missingSourceItems = new List<ItemObject>();
+
             foreach (var element in _customCraftedItems)
             {
                 var duplicateItem = element.Key;
-                var copyFrom = MBObjectManager.Instance.GetObject<ItemObject>(element.Value.OriginalItemStringId);
-                if (copyFrom == null) continue;
+                var duplicatedItemData = element.Value;
+                var copyFrom = MBObjectManager.Instance.GetObject<ItemObject>(duplicatedItemData.OriginalItemStringId);
+
+                if (copyFrom == null)
+                {
+                    missingSourceItems.Add(duplicateItem);
+                    continue;
+                }
+
                 duplicateItem.CopyPropertiesFrom(copyFrom);
-                AccessTools.Property(typeof(ItemObject), "Name").SetValue(duplicateItem, new TextObject(element.Value.NewItemName));
+                AccessTools.Property(typeof(ItemObject), "Name").SetValue(duplicateItem, new TextObject(duplicatedItemData.NewItemName));
                 duplicateItem.Initialize();
-                if (element.Value.IsPlayerCrafted)
+
+                if (duplicatedItemData.IsPlayerCrafted)
                 {
                     ItemObject.InitAsPlayerCraftedItem(ref duplicateItem);
                 }
+
                 duplicateItem.DetermineItemCategoryForItem();
-                duplicateItem.IsReady = true;
-                ExtendedItemObjectManager.AddCraftedItem(element.Value.OriginalItemStringId, duplicateItem.StringId, element.Value.ItemTraits);
+                MBObjectManager.Instance.RegisterObject(duplicateItem);
+                duplicateItem.AfterInitialized();
+
+                ExtendedItemObjectManager.AddCraftedItem(duplicatedItemData.OriginalItemStringId, duplicateItem.StringId, duplicatedItemData.ItemTraits);
             }
+
+            foreach (var missingSourceItem in missingSourceItems)
+            {
+                ForgetDuplicatedItem(missingSourceItem);
+            }
+        }
+
+        public void ForgetDuplicatedItem(ItemObject item)
+        {
+            if (item == null)
+            {
+                return;
+            }
+
+            _customCraftedItems.Remove(item);
+            ExtendedItemObjectManager.RemoveRuntimeDuplicatedItem(item);
         }
 
         public override void SyncData(IDataStore dataStore)
