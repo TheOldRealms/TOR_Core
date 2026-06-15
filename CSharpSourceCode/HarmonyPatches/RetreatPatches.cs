@@ -809,9 +809,9 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
         }
 
         private static void RegisterPendingFugitivePartySpawn(
-    MapEvent mapEvent,
-    Hero fugitiveHero,
-    Dictionary<CharacterObject, int> escapedTroops)
+            MapEvent mapEvent,
+            Hero fugitiveHero,
+            Dictionary<CharacterObject, int> escapedTroops)
         {
             if (mapEvent == null || fugitiveHero == null || escapedTroops == null || escapedTroops.Count <= 0)
                 return;
@@ -920,9 +920,8 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
         // }
 
         // wounded in battle always goes to winner
-        // LootDefeatedPartyMembers was renamed to LootDefeatedPartyCasualties in 1.4
-        [HarmonyPatch(typeof(MapEvent), "LootDefeatedPartyCasualties")]
-        private static class MapEvent_LootDefeatedPartyMembers_Patch
+        [HarmonyPatch(typeof(MapEvent), "CaptureDefeatedPartyMembers")]
+        private static class MapEvent_CaptureDefeatedPartyMembers_Patch
         {
             private static void Postfix(
                 MapEvent __instance,
@@ -933,6 +932,8 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
                     return;
                 if (__instance.EventType != MapEvent.BattleTypes.FieldBattle && __instance.MapEventSettlement?.SiegeEvent == null)
                     return;
+
+                CaptureRetreatingWoundedTroops(__instance, winnerParties, defeatedParties);
 
                 for (var i = 0; i < defeatedParties.Count; i++)
                 {
@@ -977,6 +978,86 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
 
                     EscapedTroopsByParty.Remove(partyBase);
                 }
+            }
+
+            private static void CaptureRetreatingWoundedTroops(
+                MapEvent mapEvent,
+                MBReadOnlyList<MapEventParty> winnerParties,
+                MBReadOnlyList<MapEventParty> defeatedParties)
+            {
+                if (mapEvent.RetreatingSide == BattleSideEnum.None)
+                    return;
+
+                Campaign.Current.Models.BattleRewardModel.GetCaptureMemberChancesForWinnerParties(
+                    mapEvent,
+                    winnerParties,
+                    out var woundedMemberChances,
+                    out var healthyMemberChances);
+
+                if (woundedMemberChances.Count <= 0)
+                    return;
+
+                for (var partyIndex = 0; partyIndex < defeatedParties.Count; partyIndex++)
+                {
+                    var partyBase = defeatedParties[partyIndex].Party;
+                    if (partyBase == null || !partyBase.IsMobile)
+                        continue;
+
+                    if (!ShouldUsePostRetreatCustom(mapEvent, partyBase.MapEventSide))
+                        continue;
+
+                    for (var rosterIndex = partyBase.MemberRoster.Count - 1; rosterIndex >= 0; rosterIndex--)
+                    {
+                        var rosterElement = partyBase.MemberRoster.GetElementCopyAtIndex(rosterIndex);
+                        var woundedCount = rosterElement.WoundedNumber;
+                        if (woundedCount <= 0)
+                            continue;
+
+                        var character = rosterElement.Character;
+                        if (character.IsHero || !Campaign.Current.Models.BattleRewardModel.CanTroopBeTakenPrisoner(character))
+                            continue;
+
+                        var capturedWoundedCount = 0;
+                        for (var woundedIndex = 0; woundedIndex < woundedCount; woundedIndex++)
+                        {
+                            var winnerParty = SelectWinnerPartyForLoot(woundedMemberChances);
+                            var prisonerRoster = winnerParty?.RosterToReceiveLootPrisoners;
+                            if (prisonerRoster == null)
+                                continue;
+
+                            prisonerRoster.AddToCounts(character, 1, insertAtFront: false, woundedCount: 1);
+                            capturedWoundedCount++;
+                        }
+
+                        if (capturedWoundedCount > 0)
+                        {
+                            partyBase.MemberRoster.AddToCountsAtIndex(
+                                rosterIndex,
+                                -capturedWoundedCount,
+                                -capturedWoundedCount,
+                                0,
+                                removeDepleted: false);
+                        }
+                    }
+
+                    partyBase.MemberRoster.RemoveZeroCounts();
+                }
+            }
+
+            private static MapEventParty SelectWinnerPartyForLoot(
+                MBReadOnlyList<KeyValuePair<MapEventParty, float>> winnerPartiesLootChances)
+            {
+                var roll = MBRandom.RandomFloat;
+                foreach (var winnerPartyLootChance in winnerPartiesLootChances)
+                {
+                    roll -= winnerPartyLootChance.Value;
+                    if (roll <= 0f)
+                    {
+                        return winnerPartyLootChance.Key;
+                    }
+                }
+
+                return null;
             }
         }
 

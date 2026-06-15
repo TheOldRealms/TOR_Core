@@ -126,6 +126,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 && trackedBattle != null
                 && trackedBattle.IsPlayerMapEvent
                 && !trackedBattle.IsSiegeAssault
+                && !trackedBattle.IsSiegeOutside
                 && trackedBattle.HasWinner
                 && trackedBattle.PlayerSide == trackedBattle.WinningSide;
         }
@@ -139,6 +140,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 && !_hirelingLordIsFightingWithoutPlayer
                 && trackedBattle != null
                 && !trackedBattle.IsSiegeAssault
+                && !trackedBattle.IsSiegeOutside
                 && trackedBattle.HasWinner
                 && currentEncounter != null
                 && PlayerEncounter.EncounterSettlement == null
@@ -207,6 +209,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 && PlayerEncounter.EncounterSettlement == null
                 && currentBattle.IsPlayerMapEvent
                 && !currentBattle.IsSiegeAssault
+                && !currentBattle.IsSiegeOutside
                 && currentBattle.HasWinner
                 && currentBattle.PlayerSide == currentBattle.WinningSide
                 && GetEnlistingLordIsInMapEvent(currentBattle);
@@ -818,6 +821,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 && PlayerEncounter.EncounterSettlement == null
                 && currentBattle == _joinedHirelingCleanupBattle
                 && !currentBattle.IsSiegeAssault
+                && !currentBattle.IsSiegeOutside
                 && currentBattle.HasWinner
                 && currentBattle.PlayerSide == currentBattle.WinningSide
                 && currentEncounter.EncounterState == PlayerEncounterState.End;
@@ -832,7 +836,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 && behavior._joinedHirelingCleanupBattle != null
                 && mapEvent == behavior._joinedHirelingCleanupBattle
                 && mapEvent.IsPlayerMapEvent
-                && !mapEvent.IsSiegeAssault;
+                && !mapEvent.IsSiegeAssault
+                && !mapEvent.IsSiegeOutside;
         }
 
         internal static bool CleanupTrackedDeadHirelingResultEncounter()
