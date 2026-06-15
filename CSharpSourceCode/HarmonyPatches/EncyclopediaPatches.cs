@@ -178,23 +178,23 @@ namespace TOR_Core.HarmonyPatches
             switch (attribute)
             {
                 case "TheHunger":
-                    return "darkenergy_icon_45"; // test
+                    return "attribute_icon_the_hunger"; 
                 case "Frenzy":
-                    return "";
+                    return "attribute_icon_frenzy";
                 case "WightKing":
-                    return "";
+                    return "attribute_icon_wight_king";
                 case "UndeadSlayer":
-                    return "";
+                    return "attribute_icon_undead_slayer";
                 case "Immortality":
-                    return "";
+                    return "attribute_icon_immortality";
                 case "Deadeye":
-                    return "";
+                    return "attribute_icon_deadeye";
                 case "Ethereal":
-                    return "";
+                    return "attribute_icon_ethereal";
                 case "KillingBlow":
-                    return "";
+                    return "attribute_icon_killing_blow";
                 case "MonsterSlayer":
-                    return "";
+                    return "attribute_icon_monster_slayer";
                 default:
                     return null;
             }
