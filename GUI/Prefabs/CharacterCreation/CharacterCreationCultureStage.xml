@@ -39,7 +39,7 @@
 
             <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Stage.Title.Text" Text="@SelectionText" IsHidden="@AnyItemSelected"/>
 
-            <ListPanel DataSource="{CurrentSelectedCulture}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="20" StackLayout.LayoutMethod="VerticalBottomToTop">
+            <ListPanel DataSource="{CurrentSelectedCulture}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="20" StackLayout.LayoutMethod="VerticalTopToBottom">
               <Children>
                 <ParallaxItemBrushWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom"  OneDirectionDuration="!ParallaxDuration" OneDirectionDistance="15" InitialDirection="Right" IsEaseInOutEnabled="true">
                   <Children>

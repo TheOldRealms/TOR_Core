@@ -39,7 +39,7 @@
 
                     <!--<RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy ="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Encyclopedia.SubPage.Hero.Deceased.Text" Text="@DeceasedText" IsVisible="@IsDead"/>-->
 
-                    <ListPanel HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" StackLayout.LayoutMethod = "VerticalBottomToTop" MarginLeft="20" MarginRight="20">
+                    <ListPanel HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" StackLayout.LayoutMethod = "VerticalTopToBottom" MarginLeft="20" MarginRight="20">
                       <Children>
 
                         <!--Hero Name-->
@@ -66,7 +66,7 @@
                       </Children>
                     </ListPanel>
 
-                    <ListPanel WidthSizePolicy = "StretchToParent" HeightSizePolicy = "CoverChildren" VerticalAlignment="Bottom" MarginLeft="10" StackLayout.LayoutMethod="VerticalBottomToTop">
+                    <ListPanel WidthSizePolicy = "StretchToParent" HeightSizePolicy = "CoverChildren" VerticalAlignment="Bottom" MarginLeft="10" StackLayout.LayoutMethod="VerticalTopToBottom">
                       <Children>
 
                         <!--<TextWidget HeightSizePolicy="CoverChildren" WidthSizePolicy="StretchToParent" Text="@TraitsText" HorizontalAlignment="Center"/>-->
@@ -118,7 +118,7 @@
                                 <Widget HeightSizePolicy ="CoverChildren" WidthSizePolicy="Fixed" SuggestedWidth="739" DoNotAcceptEvents="true">
                                   <Children>
 
-                                    <ListPanel HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" StackLayout.LayoutMethod = "VerticalBottomToTop"  DoNotAcceptEvents="true">
+                                    <ListPanel HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" StackLayout.LayoutMethod = "VerticalTopToBottom"  DoNotAcceptEvents="true">
                                       <Children>
 
                                         <!--Hero Info Text-->
@@ -150,7 +150,7 @@
                                               </ItemTemplate>
                                             </GridWidget>
 
-                                            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" HorizontalAlignment="Right" VerticalAlignment="Center" IsHidden="@HasNeutralClan">
+                                            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" HorizontalAlignment="Right" VerticalAlignment="Center" IsHidden="@HasNeutralClan">
                                               <Children>
                                                 <TextWidget WidthSizePolicy = "CoverChildren" HeightSizePolicy = "CoverChildren" Text="@ClanText" Brush="Encyclopedia.Skill.Text" Brush.FontSize="20" HorizontalAlignment="Center" ClipContents="false"/>
 
@@ -218,7 +218,7 @@
                                 <Widget HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" >
                                   <Children>
 
-                                    <ListPanel HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" StackLayout.LayoutMethod = "VerticalBottomToTop" MarginTop="34" MarginLeft="30">
+                                    <ListPanel HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" StackLayout.LayoutMethod = "VerticalTopToBottom" MarginTop="34" MarginLeft="30">
                                       <Children>
 
                                         <!--Last Seen Text-->
@@ -228,7 +228,7 @@
                                         <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="4" HorizontalFlip="true" Sprite="Encyclopedia\list_filters_divider" />
 
                                         <!--History List-->
-                                        <ListPanel DataSource="{History}" HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" PositionXOffset="-15" StackLayout.LayoutMethod = "VerticalBottomToTop">
+                                        <ListPanel DataSource="{History}" HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" PositionXOffset="-15" StackLayout.LayoutMethod = "VerticalTopToBottom">
                                           <ItemTemplate>
                                             <EncyclopediaSubPageHistoryElement/>
                                           </ItemTemplate>

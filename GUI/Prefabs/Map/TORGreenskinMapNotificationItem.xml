@@ -5,7 +5,7 @@
 
         <Widget Id="NotificationExtensionWidget" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="226" SuggestedHeight="99" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="226" Sprite="SPGeneral\MapNotification\notification_ring_extension">
           <Children>
-            <ListPanel Id="NotificationTextContainerWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop">
+            <ListPanel Id="NotificationTextContainerWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" StackLayout.LayoutMethod="VerticalTopToBottom">
               <Children>
                 <RichTextWidget Id="NotificationDescriptionText" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" MarginLeft="20" MarginRight="30" Brush="Map.Notification.Description.Text" Text="@DescriptionText" />
               </Children>

@@ -71,7 +71,7 @@
 
                 <!--Traits-->
                 <NavigationScopeTargeter ScopeID="TraitsScope" ScopeParent="..\Traits" ScopeMovements="Horizontal" LeftNavigationScope="SkillTabControlsScope" DownNavigationScope="None" />
-                <ListPanel Id="Traits" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="75" HorizontalAlignment="Center" MarginTop="130" MarginRight="30" StackLayout.LayoutMethod="VerticalBottomToTop">
+                <ListPanel Id="Traits" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="75" HorizontalAlignment="Center" MarginTop="130" MarginRight="30" StackLayout.LayoutMethod="VerticalTopToBottom">
                   <Children>
 
                     <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" Brush="CharacterDeveloper.MainSkill.Name.Text" Brush.FontSize="28" Text="@TraitsText" />
@@ -90,7 +90,7 @@
 
                 <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginRight="30" MarginBottom="150" Brush="CharacterDeveloper.MainSkill.Name.Text" Brush.FontSize="28" Text="@PartyRoleText" />
 
-                <ListPanel DataSource="{CurrentCharacter\CharacterStats}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginRight="30" MarginBottom="125" StackLayout.LayoutMethod="VerticalBottomToTop" IsEnabled="false">
+                <ListPanel DataSource="{CurrentCharacter\CharacterStats}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginRight="30" MarginBottom="125" StackLayout.LayoutMethod="VerticalTopToBottom" IsEnabled="false">
                   <ItemTemplate>
 
                     <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="3">
@@ -115,7 +115,7 @@
             <Widget VisualDefinition="RightPanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" PositionXOffset="1400">
               <Children>
 
-                <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginLeft="20" MarginTop="150" StackLayout.LayoutMethod="VerticalBottomToTop">
+                <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginLeft="20" MarginTop="150" StackLayout.LayoutMethod="VerticalTopToBottom">
                   <Children>
 
                     <ListPanel DataSource="{CurrentCharacter}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren">
@@ -128,7 +128,7 @@
                           </Children>
                         </Widget>
 
-                        <ListPanel Id="SkillPropertiesList" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginLeft="10" StackLayout.LayoutMethod="VerticalBottomToTop">
+                        <ListPanel Id="SkillPropertiesList" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginLeft="10" StackLayout.LayoutMethod="VerticalTopToBottom">
                           <Children>
 
                             <!--Skill Name Text-->
@@ -139,10 +139,10 @@
                               </Children>
                             </ListPanel>
 
-                            <ListPanel Id="SkillDescriptionAndEffects" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginBottom="5" StackLayout.LayoutMethod="VerticalBottomToTop">
+                            <ListPanel Id="SkillDescriptionAndEffects" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginBottom="5" StackLayout.LayoutMethod="VerticalTopToBottom">
                               <Children>
                                 <!--Skill Effect List-->
-                                <ListPanel DataSource="{CurrentSkill\SkillEffects}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                                <ListPanel DataSource="{CurrentSkill\SkillEffects}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                                   <ItemTemplate>
                                     <RichTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginRight="10" Brush="CharacterDeveloper.Skill.Stats.Text" Text="@Item" />
                                   </ItemTemplate>
@@ -150,7 +150,7 @@
                               </Children>
                             </ListPanel>
 
-                            <ListPanel Id="SkillHowToLearn" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginBottom="5" StackLayout.LayoutMethod="VerticalBottomToTop" IsVisible="false">
+                            <ListPanel Id="SkillHowToLearn" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginBottom="5" StackLayout.LayoutMethod="VerticalTopToBottom" IsVisible="false">
                               <Children>
                                 <!--Skill Description Text-->
                                 <RichTextWidget DataSource="{CurrentSkill}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" Brush="CharacterDeveloper.Skill.Stats.Text" Text="@DescriptionText" />
@@ -166,7 +166,7 @@
 
                         <!--Skill Tab Control-->
                         <NavigationScopeTargeter ScopeID="SkillTabControlsScope" ScopeParent="..\TabControlsParent" ScopeMovements="Vertical" RightNavigationScope="TraitsScope" />
-                        <DoubleTabControlListPanel Id="TabControlsParent" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Top" MarginLeft="12" MarginTop="20" FirstList="..\SkillPropertiesList\SkillHowToLearn" FirstListButton="CharacterListButton" StackLayout.LayoutMethod="VerticalBottomToTop" SecondList="..\SkillPropertiesList\SkillDescriptionAndEffects" SecondListButton="PartyListButton">
+                        <DoubleTabControlListPanel Id="TabControlsParent" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Top" MarginLeft="12" MarginTop="20" FirstList="..\SkillPropertiesList\SkillHowToLearn" FirstListButton="CharacterListButton" StackLayout.LayoutMethod="VerticalTopToBottom" SecondList="..\SkillPropertiesList\SkillDescriptionAndEffects" SecondListButton="PartyListButton">
                           <Children>
                             <ButtonWidget Id="CharacterListButton" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="50" VerticalAlignment="Bottom" Brush="HowToLearnButtonToggleBrush" ButtonType="Radio" GamepadNavigationIndex="0">
                               <Children>
@@ -220,7 +220,7 @@
                           </Children>
                         </Widget>
 
-                        <ListPanel Id="PercentageIndicatorWidget" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" PositionYOffset="-97" IsEnabled="false" StackLayout.LayoutMethod="VerticalBottomToTop">
+                        <ListPanel Id="PercentageIndicatorWidget" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" PositionYOffset="-97" IsEnabled="false" StackLayout.LayoutMethod="VerticalTopToBottom">
                           <Children>
                             <!--Perk Level Text-->
                             <TextWidget Id="PercentageIndicatorTextWidget" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" PositionYOffset="10" Brush="CharacterDeveloper.CurrentSkill.Value.Text" IntText="@Level" IsEnabled="@CanLearnSkill"/>
@@ -440,7 +440,7 @@
                                 <Widget Id="ClipRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" ClipContents="true" MaxHeight="355">
                                   <Children>
 
-                                    <ListPanel Id="PrimaryUsageSelectorList" DataSource="{ItemList}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop">
+                                    <ListPanel Id="PrimaryUsageSelectorList" DataSource="{ItemList}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalTopToBottom">
 
                                       <ItemTemplate>
                                         <ButtonWidget Id="DropdownItemButton" DoNotUseCustomScale="true" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="29" MarginLeft="15" MarginRight="15" HorizontalAlignment="Center" VerticalAlignment="Bottom" ButtonType="Radio" UpdateChildrenStates="true" Brush="Standard.DropdownItem.SoundBrush">
@@ -582,12 +582,12 @@
         <NavigationScopeTargeter ScopeID="PerkSelectionPopupScope" ScopeParent="..\PerkSelectionContainer\PerksContainerListPanel" ScopeMovements="Vertical" HasCircularMovement="true" />
         <CharacterDeveloperPerkSelectionWidget Id="PerkSelectionContainer" DataSource="{CurrentCharacter\PerkSelection}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsActive="@IsActive" Command.Deactivate="ExecuteDeactivate" PerksContainerListPanel="PerksContainerListPanel">
           <Children>
-            <NavigatableListPanel Id="PerksContainerListPanel" DataSource="{AvailablePerks}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+            <NavigatableListPanel Id="PerksContainerListPanel" DataSource="{AvailablePerks}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
               <ItemTemplate>
                 <CharacterDeveloperPerkSelectionItemButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="250" SuggestedHeight="340" Command.Click="ExecuteSelection" Brush="CharacterDeveloper.PerkSelection.Button" MarginTop="0" MarginBottom="0" DoNotPassEventsToChildren="true" UpdateChildrenStates="true" PerkSelectionIndicatorWidget="PerkSelectionIndicatorWidget">
                   <Children>
                     <BrushWidget Id="PerkSelectionIndicatorWidget" WidthSizePolich="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="65" SuggestedHeight="72" HorizontalAlignment="Left" VerticalAlignment="Bottom" PositionXOffset="-81" MarginBottom="3" Brush="CharacterDeveloper.PerkSelection.Indicator" MarginTop="5"/>
-                    <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalBottomToTop" MarginTop="5" MarginBottom="5" MarginRight="10" MarginLeft="10">
+                    <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalTopToBottom" MarginTop="5" MarginBottom="5" MarginRight="10" MarginLeft="10">
                       <Children>
                         <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" Brush="CharacterDeveloper.PerkSelection.Pick.Text" MarginTop="15" Text="@PickText"/>
                         <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" Brush="CharacterDeveloper.PerkSelection.PerkName.Text" MarginTop="5" Text="@PerkName"/>

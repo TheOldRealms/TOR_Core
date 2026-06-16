@@ -34,7 +34,7 @@
       <!--Brush="TutorialHighlightBrush"-->
       <Children>
         
-        <ListPanel Id="NotificationListPanel" DataSource="{SettlementNotifications\Notifications}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginBottom="8" StackLayout.LayoutMethod="VerticalBottomToTop">
+        <ListPanel Id="NotificationListPanel" DataSource="{SettlementNotifications\Notifications}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginBottom="8" StackLayout.LayoutMethod="VerticalTopToBottom">
           <ItemTemplate>
             <NameplateNotificationListPanel WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="50" VerticalAlignment="Center" Command.OnRemove="ExecuteRemove" FadeTime="0.4" RelationType="@RelationType" RelationVisualWidget="NotificationBaseWidget\RelationVisualWidget" StayAmount="3">
               <Children>
