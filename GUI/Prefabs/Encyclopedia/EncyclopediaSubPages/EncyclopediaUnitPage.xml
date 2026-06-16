@@ -31,7 +31,7 @@
                       </Children>
                     </Widget>
 
-                    <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="10" StackLayout.LayoutMethod="VerticalBottomToTop">
+                    <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="10" StackLayout.LayoutMethod="VerticalTopToBottom">
                       <Children>
 
                         <!--Unit Name-->
@@ -59,7 +59,7 @@
                             
                             <!-- Left Equipment List (Armors & Horse) -->
                             <NavigationScopeTargeter ScopeID="EncyclopediaUnitLeftEquipmentListScope" ScopeParent="..\LeftEquipmentList" ScopeMovements="Vertical" />
-                            <NavigatableListPanel Id="LeftEquipmentList" DataSource="{LeftEquipmentList}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                            <NavigatableListPanel Id="LeftEquipmentList" DataSource="{LeftEquipmentList}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                               <ItemTemplate>
                                 <EquipmentTypeVisualBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="35" SuggestedHeight="35" HorizontalAlignment="Left" MarginLeft="15" MarginBottom="5" Brush="EquipmentType.Image" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsVisible="@HasItem" Type="@Type" />
                               </ItemTemplate>
@@ -67,7 +67,7 @@
                             
                             <!-- Right Equipment List (Weapons) -->
                             <NavigationScopeTargeter ScopeID="EncyclopediaUnitRightEquipmentListScope" ScopeParent="..\RightEquipmentList" ScopeMovements="Vertical" />
-                            <NavigatableListPanel Id="RightEquipmentList" DataSource="{RightEquipmentList}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                            <NavigatableListPanel Id="RightEquipmentList" DataSource="{RightEquipmentList}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                               <ItemTemplate>
                                 <EquipmentTypeVisualBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="35" SuggestedHeight="35" HorizontalAlignment="Right" MarginRight="15" MarginBottom="5" Brush="EquipmentType.Image" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsVisible="@HasItem" Type="@Type" />
                               </ItemTemplate>

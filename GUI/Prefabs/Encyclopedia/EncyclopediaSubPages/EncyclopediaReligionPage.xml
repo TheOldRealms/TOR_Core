@@ -38,7 +38,7 @@
                           </Children>
                         </ButtonWidget>
 
-                        <ListPanel Id="RightSideList" HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true" MarginTop="15" MarginRight="10" MarginBottom="10" StackLayout.LayoutMethod="VerticalBottomToTop">
+                        <ListPanel Id="RightSideList" HeightSizePolicy ="CoverChildren" WidthSizePolicy="StretchToParent" DoNotAcceptEvents="true" MarginTop="15" MarginRight="10" MarginBottom="10" StackLayout.LayoutMethod="VerticalTopToBottom">
                           <Children>
 
                             <!--Religion Main-->

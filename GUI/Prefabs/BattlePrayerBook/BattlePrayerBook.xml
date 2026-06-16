@@ -35,7 +35,7 @@
         <CharacterTableauWidget VisualDefinition="RightPanel" DataSource="{CurrentCharacter}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="550" SuggestedHeight="1000" HorizontalAlignment="Right" VerticalAlignment="Center" BannerCodeText="@BannerCodeText" BodyProperties="@BodyProperties" CharStringId="@CharStringId" EquipmentCode="@EquipmentCode" IsFemale="@IsFemale" MountCreationKey="@MountCreationKey" Race="@Race" StanceIndex="@StanceIndex" ArmorColor1="@ArmorColor1" ArmorColor2="@ArmorColor2" IsEnabled="false" DoNotUseCustomScale="true"/>
 
         <!--Left Panel-->
-        <ListPanel VisualDefinition="LeftPanel" WidthSizePolicy="Fixed" SuggestedWidth="1200" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalBottomToTop" HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="30">
+        <ListPanel VisualDefinition="LeftPanel" WidthSizePolicy="Fixed" SuggestedWidth="1200" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalTopToBottom" HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="30">
           <Children>
 
             <!--Spellcasting stats-->
@@ -46,7 +46,7 @@
                     <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="5" Brush="Quest.CenterPanel.Title.Text" Brush.FontSize="24" Text="Priest Stats" />
                   </Children>
                 </ListPanel>
-                <ListPanel DataSource="{StatItems}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ListPanel DataSource="{StatItems}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" HorizontalAlignment="Center" VerticalAlignment="Center">
                   <ItemTemplate>
                     <Listpanel WidthSizePolicy="Fixed" SuggestedWidth="400" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="HorizontalRightToLeft" HorizontalAlignment="Center" VerticalAlignment="Top">
                       <Children>
@@ -66,7 +66,7 @@
                 <!--Lore Selector bookmarks-->
                 <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="76" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="spellbook_leftside">
                   <Children>
-                    <ListPanel DataSource="{LoreObjects}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalBottomToTop" HorizontalAlignment="Right" VerticalAlignment="Center" MarginTop="40">
+                    <ListPanel DataSource="{LoreObjects}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalTopToBottom" HorizontalAlignment="Right" VerticalAlignment="Center" MarginTop="40">
                       <ItemTemplate>
                         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="60" SuggestedWidth="60" MarginTop="10">
                           <Children>
@@ -107,7 +107,7 @@
                                   <Children>
                                     <Widget DataSource="{..}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="100" SuggestedWidth="380" MarginLeft="10" MarginTop="20" HorizontalAlignment="Right" VerticalAlignment="Center">
                                       <Children>
-                                        <ListPanel DataSource="{AbilityStatItems}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalBottomToTop" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <ListPanel DataSource="{AbilityStatItems}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalTopToBottom" HorizontalAlignment="Center" VerticalAlignment="Center">
                                           <ItemTemplate>
                                             <Listpanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="HorizontalRightToLeft" HorizontalAlignment="Center" VerticalAlignment="Top">
                                               <Children>

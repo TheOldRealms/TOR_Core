@@ -18,7 +18,7 @@
                 <!--Top Bar-->
                 <DimensionSyncWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="42" HorizontalAlignment="Center" DimensionToSync="Horizontal" IsEnabled="false" WidgetToCopyHeightFrom="..\Explanations\Lines" PaddingAmount="0">
                   <Children>
-                    <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalTopToBottom">
+                    <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalBottomToTop">
                       <Children>
 
                         <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="horizontal_gradient_divider" ExtendTop="11" Color="#492406ff">

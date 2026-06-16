@@ -44,10 +44,10 @@
                     <Widget Id="MyClipRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ClipContents="true" HorizontalAlignment="Center">
                       <Children>
 
-                        <ListPanel Id="InnerPanelParent" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                        <ListPanel Id="InnerPanelParent" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                           <Children>
 
-                            <InventoryListPanel Id="InnerPanel" DataSource="{Items}" StackLayout.LayoutMethod="VerticalBottomToTop" WidthSizePolicy="StretchToParent" MarginLeft="20" HeightSizePolicy="CoverChildren" StepSize="10" EmptyNavigationWidget="..\..\..\MyClipRect">
+                            <InventoryListPanel Id="InnerPanel" DataSource="{Items}" StackLayout.LayoutMethod="VerticalTopToBottom" WidthSizePolicy="StretchToParent" MarginLeft="20" HeightSizePolicy="CoverChildren" StepSize="10" EmptyNavigationWidget="..\..\..\MyClipRect">
                               <ItemTemplate>
                                 <ButtonWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="50" Brush="TorEnchantingItemBrush" MarginBottom="2" Command.Click="ExecuteSelectItem" IsSelected="@IsSelected">
                                   <Children>
@@ -109,10 +109,10 @@
                     <Widget Id="MyCenterClipRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ClipContents="true" HorizontalAlignment="Center">
                       <Children>
 
-                        <ListPanel Id="CenterInnerPanelParent" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                        <ListPanel Id="CenterInnerPanelParent" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                           <Children>
 
-                            <InventoryListPanel Id="CenterInnerPanel" DataSource="{Traits}" StackLayout.LayoutMethod="VerticalBottomToTop" WidthSizePolicy="StretchToParent" MarginLeft="20" HeightSizePolicy="CoverChildren" StepSize="10" EmptyNavigationWidget="..\..\..\MyCenterClipRect">
+                            <InventoryListPanel Id="CenterInnerPanel" DataSource="{Traits}" StackLayout.LayoutMethod="VerticalTopToBottom" WidthSizePolicy="StretchToParent" MarginLeft="20" HeightSizePolicy="CoverChildren" StepSize="10" EmptyNavigationWidget="..\..\..\MyCenterClipRect">
                               <ItemTemplate>
                                 <ButtonWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="50" Brush="TorEnchantingItemBrush" MarginBottom="2" Command.Click="ExecuteSelectTrait" IsSelected="@IsSelected">
                                   <Children>
@@ -152,7 +152,7 @@
             </Widget>
             <Widget Id="LowerRightPanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="320" MarginRight="20" IsVisible="@IsPreviewEnabled" VerticalAlignment="Bottom" HorizontalAligment="Center">
               <Children>
-                <ListPanel DataSource="{SelectedTraits}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" HorizontalAligment="Center" DoNotAcceptEvents="true" MarginLeft="60" MarginRight="60">
+                <ListPanel DataSource="{SelectedTraits}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" HorizontalAligment="Center" DoNotAcceptEvents="true" MarginLeft="60" MarginRight="60">
                   <ItemTemplate>
                     <RichTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" Text="@ItemTraitDescription" Brush="TorEnchantingFontBrush" HorizontalAligment="Center" DoNotAcceptEvents="true" MarginBottom="10"/>
                   </ItemTemplate>
@@ -168,7 +168,7 @@
                     <Widget WidthSizePolicy="Fixed" SuggestedWidth="80" HeightSizePolicy="StretchToParent" VerticalAlignment="Center" MarginTop="5" MarginLeft="5" MarginRight="5">
                       <Children>
                         <HintWidget DataSource="{IngredientTooltip}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
-                        <ListPanel DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalBottomToTop" HorizontalAligment="Center">
+                        <ListPanel DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalTopToBottom" HorizontalAligment="Center">
                           <Children>
                             <EnchantingIngredientWidget Text="@PendingAmountText" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="40" VerticalAlignment="Center" MarginTop="5" MarginLeft="5" MarginRight="5" />
                             <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="40" VerticalAlignment="Center" MarginTop="5" MarginLeft="5" MarginRight="5">
