@@ -27,16 +27,16 @@ namespace TOR_Core.Models
 			return new ExplainedNumber(-(float)troopCount / (float)base.NumberOfMenOnMapToEatOneFood, includeDescription, null);
         }
 
-        public override ExplainedNumber CalculateDailyFoodConsumptionf(MobileParty party, ExplainedNumber consumption)
+        public override ExplainedNumber CalculateDailyFoodConsumptionf(MobileParty party, ExplainedNumber baseConsumption)
 		{
             if (!Campaign.Current.Models.MobilePartyFoodConsumptionModel.DoesPartyConsumeFood(party))
             {
-                return consumption;//in case this gets hit for parties that don't need this value, it will skip heavier calculations
+                return baseConsumption;//in case this gets hit for parties that don't need this value, it will skip heavier calculations
             }
 
-            base.CalculateDailyFoodConsumptionf (party, consumption);
+            var consumption = base.CalculateDailyFoodConsumptionf (party, baseConsumption);
 
-			var partyCulture = party.Party.MobileParty?.ActualClan?.Culture ?? party.Party.MapFaction?.Culture;
+			var partyCulture = party?.ActualClan?.Culture ?? party.Party.MapFaction?.Culture;
             if (partyCulture == null) return consumption;
 
             if (partyCulture.StringId == TORConstants.Cultures.SYLVANIA || partyCulture.StringId == TORConstants.Cultures.MOUSILLON)

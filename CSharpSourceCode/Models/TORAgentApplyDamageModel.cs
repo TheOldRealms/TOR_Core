@@ -169,7 +169,7 @@ namespace TOR_Core.Models
 
             if (isFatalHit && attacker.IsMainAgent)
             {
-                if (Hero.MainHero.HasCareer(TORCareers.KnightOldWorld) && attacker.HasAttribute("KnightlyStrike") && Hero.MainHero.HasCareerChoice("PathOfViliganceKeystone"))
+                if (Hero.MainHero.HasCareer(TORCareers.KnightOldWorld) && attacker.HasAttribute("KnightlyStrike") && Hero.MainHero.HasCareerChoice("PathOfVigilanceKeystone"))
                 {
                     attacker.ApplyStatusEffect("knightly_strike", attacker, 30, false, false, true);
                 }
@@ -942,7 +942,8 @@ namespace TOR_Core.Models
                     damageAmplifications[(int)property.AmplifiedDamageType] += property.DamageAmplifier;
                 }
                 //add temporary effects like buffs to attack bonuses on items
-                List<ItemTrait> dynamicTraits = agent.GetComponent<ItemTraitAgentComponent>()?.GetDynamicTraits(agent.WieldedWeapon.Item);
+                var itemTraitAgentComponent = agent.GetComponent<ItemTraitAgentComponent>();
+                List<ItemTrait> dynamicTraits = itemTraitAgentComponent?.GetDynamicTraits(agent.WieldedWeapon.Item) ?? new List<ItemTrait>();
 
                 foreach (var dynamicTrait in dynamicTraits)
                 {
@@ -979,7 +980,8 @@ namespace TOR_Core.Models
                 }
 
                 //add temporary effects like buffs to defense bonuses
-                List<ItemTrait> dynamicTraits = agent.GetComponent<ItemTraitAgentComponent>()?.GetDynamicTraits(agent.WieldedWeapon.Item);
+                var itemTraitAgentComponent = agent.GetComponent<ItemTraitAgentComponent>();
+                List<ItemTrait> dynamicTraits = itemTraitAgentComponent?.GetDynamicTraits(agent.WieldedWeapon.Item) ?? new List<ItemTrait>();
 
                 foreach (var dynamicTrait in dynamicTraits)
                 {
