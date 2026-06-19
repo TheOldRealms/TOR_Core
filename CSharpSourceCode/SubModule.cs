@@ -60,6 +60,7 @@ using TOR_Core.Quests;
 using TOR_Core.Utilities;
 using TOR_Core.BattleMechanics.Voice;
 using TOR_Core.Extensions;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 
 namespace TOR_Core
 {

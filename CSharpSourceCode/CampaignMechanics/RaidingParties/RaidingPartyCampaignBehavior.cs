@@ -7,6 +7,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.LinQuick;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.RaidingParties

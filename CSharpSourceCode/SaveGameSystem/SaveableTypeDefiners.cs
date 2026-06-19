@@ -13,6 +13,7 @@ using TOR_Core.CampaignMechanics.Diplomacy;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items.InventoryUseScripts;
 using TOR_Core.Quests;
