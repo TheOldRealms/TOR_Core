@@ -137,9 +137,31 @@ namespace TOR_Core.CampaignMechanics
             //override TradePenaltyReduction description once effects are initialized
             TOR_Core.Models.TORTradeItemPriceFactorModel.ApplyTradePenaltyReductionDescriptionOverride();
 
-            PartyBase.MainParty.MemberRoster.UpdateVersion();//Forces the main party's size to be recalculated due to version mismatch on next value refresh for UI so it performs a full calculation after the CharacterAttributes have been loaded so detection of specific attibutes like Undead
+            ForceRefreshPlayerClanPartySize();
 
             TORPartyWageModel.ClearCharacterWageCache();//Initial wage calculations are performed during campaign loading before the extended info manager is initialized which is needed to detect troops with wage exceptions, eg. undead and tree spirits.
+        }
+
+        /// <summary>
+        /// Forces the player clan's party sizes to be recalculated due to version mismatch on next value refresh for UI so it performs a full calculation after save load.
+        /// </summary>
+        /// <remarks>
+        /// The player is most apt to notice the issue, but garrison miscalculations will occur for any settlement receiving bonuses from the PartySizeModel leading to a small number of desertions before the value is updated.
+        /// CharacterAttributes haven't been loaded when the size is first calculated so detection of extended attributes aren't available for party weight calculations, perk effects, etc...
+        /// </remarks>
+        private void ForceRefreshPlayerClanPartySize()
+        {
+            //after the CharacterAttributes have been loaded so detection of specific attibutes like Undead are applied.
+            foreach (var party in Clan.PlayerClan.WarPartyComponents)
+            {
+                party.MobileParty.MemberRoster.UpdateVersion();
+            }
+
+            //Forces the same recalculation for garrisons.
+            foreach (var fief in Clan.PlayerClan.Fiefs)
+            {
+                fief.GarrisonParty.MemberRoster.UpdateVersion();
+            }
         }
     }
 }

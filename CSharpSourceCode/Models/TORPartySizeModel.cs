@@ -51,7 +51,7 @@ namespace TOR_Core.Models
                         num.Add(300, TORTextHelper.GetTextObject("tor_party_size_desc", "SettlementVampireCounts", "Settlement of Vampire Counts"));
                     }
                 }
-                else if (party.IsMobile)
+                else if (party.IsMobile)//Sly : garrison parties are Mobile, as are war parties for clans. This only excludes bandits due to the culture check.
                 {
                     num.Add(100, TORTextHelper.GetTextObject("tor_party_size_desc", "VampireLord", "Vampire lord"));
                 }
@@ -132,6 +132,7 @@ namespace TOR_Core.Models
 
             return compositeNum;
         }
+
         private static CultureObject GetPartyCultureForPartySize(PartyBase party)
         {
             if (party.IsMobile)
@@ -146,6 +147,7 @@ namespace TOR_Core.Models
             }
             return party.Settlement?.Culture ?? party.MapFaction?.Culture;
         }
+        
         public override TroopRoster FindAppropriateInitialRosterForMobileParty(MobileParty party, PartyTemplateObject partyTemplate)
         {
             if (!party.IsRaidingParty()) return base.FindAppropriateInitialRosterForMobileParty(party, partyTemplate);

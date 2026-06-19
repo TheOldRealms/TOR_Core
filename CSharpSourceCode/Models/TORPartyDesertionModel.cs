@@ -11,6 +11,7 @@ namespace TOR_Core.Models
     {
         public override TroopRoster GetTroopsToDesert(MobileParty mobileParty)
         {
+            //Sly : this is not what happens in practice.
             // For Greenskin player party: if they have Teef AND food AND are within party size limit, no desertion
             if (mobileParty.IsMainParty &&
                 Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
