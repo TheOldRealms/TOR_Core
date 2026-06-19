@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <SkillSets>
-	<!--Wanderer-->
 	<SkillSet id="tor_skills_wanderer_engineer">
 		<skill id="Athletics"
 		       value="0" />
@@ -35,9 +34,8 @@
 		<skill id="Faith"
 		       value="0" />
 		<skill id="Spellcraft"
-	           value="0" />
+		       value="0" />
 	</SkillSet>
-
 	<SkillSet id="tor_skills_wanderer_wizard">
 		<skill id="Athletics"
 		       value="0" />
@@ -80,7 +78,6 @@
 		<skill id="Spellcraft"
 		       value="100" />
 	</SkillSet>
-
 	<SkillSet id="tor_skills_wanderer_priest">
 		<skill id="Athletics"
 		       value="50" />
@@ -123,7 +120,6 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_wanderer_shallya">
 		<skill id="Athletics"
 		       value="0" />
@@ -166,7 +162,6 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-
 	<SkillSet id="tor_skills_wanderer_witch_hunter">
 		<skill id="Athletics"
 		       value="50" />
@@ -209,7 +204,6 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-
 	<SkillSet id="tor_skills_wanderer_huntsman">
 		<skill id="Athletics"
 		       value="50" />
@@ -252,7 +246,6 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-
 	<SkillSet id="tor_skills_wanderer_merchant">
 		<skill id="Athletics"
 		       value="50" />
@@ -295,7 +288,6 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_wanderer_warrior">
 		<skill id="Athletics"
 		       value="30" />
@@ -338,8 +330,7 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-
-<SkillSet id="tor_skills_wanderer_commander">
+	<SkillSet id="tor_skills_wanderer_commander">
 		<skill id="Athletics"
 		       value="0" />
 		<skill id="Riding"
@@ -381,8 +372,6 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-
-
 	<SkillSet id="tor_skills_wanderer_rogue">
 		<skill id="Athletics"
 		       value="0" />
@@ -425,7 +414,6 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-
 	<SkillSet id="tor_skills_wanderer_knight">
 		<skill id="Athletics"
 		       value="50" />
@@ -468,7 +456,6 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_wanderer_damsel">
 		<skill id="Athletics"
 		       value="0" />
@@ -511,7 +498,6 @@
 		<skill id="Spellcraft"
 		       value="100" />
 	</SkillSet>
-
 	<SkillSet id="tor_skills_wanderer_vampire">
 		<skill id="Athletics"
 		       value="100" />
@@ -554,9 +540,8 @@
 		<skill id="Spellcraft"
 		       value="80" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_wanderer_lahmian">
-        <skill id="Athletics"
+		<skill id="Athletics"
 		       value="100" />
 		<skill id="Riding"
 		       value="0" />
@@ -597,7 +582,6 @@
 		<skill id="Spellcraft"
 		       value="80" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_wanderer_wightking">
 		<skill id="Athletics"
 		       value="100" />
@@ -640,7 +624,6 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_wanderer_hedgewitch">
 		<skill id="Athletics"
 		       value="0" />
@@ -683,7 +666,6 @@
 		<skill id="Spellcraft"
 		       value="50" />
 	</SkillSet>
-
 	<SkillSet id="tor_skills_wanderer_runesmith">
 		<skill id="Athletics"
 		       value="0" />
@@ -728,7 +710,6 @@
 		<skill id="Spellcraft"
 		       value="75" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_wanderer_thane">
 		<skill id="Athletics"
 		       value="0" />
@@ -773,7 +754,6 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_wanderer_dwarf_engineer">
 		<skill id="Athletics"
 		       value="0" />
@@ -808,9 +788,8 @@
 		<skill id="Faith"
 		       value="0" />
 		<skill id="Spellcraft"
-	           value="0" />
+		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_wanderer_bossorc">
 		<skill id="Athletics"
 		       value="100" />
@@ -852,9 +831,8 @@
 		       value="0" />
 		<skill id="Spellcraft"
 		       value="0" />
-		</SkillSet>	   
-		
-		<SkillSet id="tor_skills_wanderer_bullyorc">
+	</SkillSet>
+	<SkillSet id="tor_skills_wanderer_bullyorc">
 		<skill id="Athletics"
 		       value="70" />
 		<skill id="Riding"
@@ -896,7 +874,6 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_wanderer_goblinthinkerer">
 		<skill id="Athletics"
 		       value="0" />
@@ -939,7 +916,6 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_wanderer_waywatcher">
 		<skill id="Athletics"
 		       value="120" />
@@ -982,7 +958,6 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_wanderer_gladecaptain">
 		<skill id="Athletics"
 		       value="100" />
@@ -1025,7 +1000,6 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_wanderer_guardianmage">
 		<skill id="Athletics"
 		       value="0" />
@@ -1068,38 +1042,34 @@
 		<skill id="Spellcraft"
 		       value="200" />
 	</SkillSet>
-	
-	<!--Duelist-->
 	<SkillSet id="tor_skills_duelist">
 		<skill id="Athletics"
-			   value="330" />
+		       value="330" />
 		<skill id="Riding"
-			   value="300" />
+		       value="300" />
 		<skill id="OneHanded"
-			   value="330" />
+		       value="330" />
 		<skill id="TwoHanded"
-			   value="300" />
+		       value="300" />
 		<skill id="Polearm"
-			   value="300" />
+		       value="300" />
 		<skill id="Bow"
-			   value="200" />
+		       value="200" />
 		<skill id="Crossbow"
-			   value="200" />
+		       value="200" />
 		<skill id="Gunpowder"
-			   value="200" />
+		       value="200" />
 		<skill id="Throwing"
-			   value="90" />
+		       value="90" />
 		<skill id="Steward"
-			   value="260" />
+		       value="260" />
 		<skill id="Tactics"
-			   value="280" />
+		       value="280" />
 		<skill id="Faith"
-			   value="200" />
+		       value="200" />
 		<skill id="Spellcraft"
-			   value="10" />
+		       value="10" />
 	</SkillSet>
-	
-	<!--Warrior Lords-->
 	<SkillSet id="tor_skills_warrior_lord">
 		<skill id="Athletics"
 		       value="250" />
@@ -1144,7 +1114,6 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_commander_lord">
 		<skill id="Athletics"
 		       value="150" />
@@ -1187,9 +1156,8 @@
 		<skill id="Faith"
 		       value="75" />
 		<skill id="Spellcraft"
-		       value="0" />	 
+		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_knight_lord">
 		<skill id="Athletics"
 		       value="250" />
@@ -1232,10 +1200,9 @@
 		<skill id="Faith"
 		       value="250" />
 		<skill id="Spellcraft"
-		       value="0" />	 
+		       value="0" />
 	</SkillSet>
-	
-		<SkillSet id="tor_skills_berserker_lord">
+	<SkillSet id="tor_skills_berserker_lord">
 		<skill id="Athletics"
 		       value="300" />
 		<skill id="Riding"
@@ -1277,9 +1244,8 @@
 		<skill id="Faith"
 		       value="200" />
 		<skill id="Spellcraft"
-		       value="0" />	 
+		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_archer_lord">
 		<skill id="Athletics"
 		       value="200" />
@@ -1322,10 +1288,8 @@
 		<skill id="Faith"
 		       value="50" />
 		<skill id="Spellcraft"
-		       value="0" />	 
+		       value="0" />
 	</SkillSet>
-	
-	<!--Caster Lords-->
 	<SkillSet id="tor_skills_caster_lord">
 		<skill id="Athletics"
 		       value="150" />
@@ -1370,7 +1334,6 @@
 		<skill id="Spellcraft"
 		       value="300" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_necromancer_lord">
 		<skill id="Athletics"
 		       value="150" />
@@ -1415,8 +1378,6 @@
 		<skill id="Spellcraft"
 		       value="300" />
 	</SkillSet>
-	
-	<!--Vampire Lords-->
 	<SkillSet id="tor_skills_vampire_lord">
 		<skill id="Athletics"
 		       value="300" />
@@ -1461,8 +1422,7 @@
 		<skill id="Spellcraft"
 		       value="200" />
 	</SkillSet>
-	
-		<SkillSet id="tor_skills_necrarch_lord">
+	<SkillSet id="tor_skills_necrarch_lord">
 		<skill id="Athletics"
 		       value="150" />
 		<skill id="Riding"
@@ -1506,7 +1466,6 @@
 		<skill id="Spellcraft"
 		       value="350" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_bloodknight_lord">
 		<skill id="Athletics"
 		       value="300" />
@@ -1551,7 +1510,6 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_lahmian_lord">
 		<skill id="Athletics"
 		       value="300" />
@@ -1596,9 +1554,6 @@
 		<skill id="Spellcraft"
 		       value="200" />
 	</SkillSet>
-	
-	<!--Elf Lords-->
-	
 	<SkillSet id="tor_skills_elfmage_lord">
 		<skill id="Athletics"
 		       value="200" />
@@ -1643,7 +1598,6 @@
 		<skill id="Spellcraft"
 		       value="300" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_elf_lord">
 		<skill id="Athletics"
 		       value="300" />
@@ -1688,9 +1642,6 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-	
-	<!--Dwarf Lords-->
-	
 	<SkillSet id="tor_skills_dwarf_lord">
 		<skill id="Athletics"
 		       value="120" />
@@ -1733,9 +1684,8 @@
 		<skill id="Faith"
 		       value="200" />
 		<skill id="Spellcraft"
-		       value="0" />	 
+		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_dwarf_slayer_lord">
 		<skill id="Athletics"
 		       value="180" />
@@ -1778,9 +1728,8 @@
 		<skill id="Faith"
 		       value="400" />
 		<skill id="Spellcraft"
-		       value="0" />	 
+		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_dwarfrune_lord">
 		<skill id="Athletics"
 		       value="120" />
@@ -1823,9 +1772,8 @@
 		<skill id="Faith"
 		       value="300" />
 		<skill id="Spellcraft"
-		       value="0" />	 
+		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_dwarfengineer_lord">
 		<skill id="Athletics"
 		       value="120" />
@@ -1868,11 +1816,8 @@
 		<skill id="Faith"
 		       value="100" />
 		<skill id="Spellcraft"
-		       value="0" />	 
+		       value="0" />
 	</SkillSet>
-	
-	<!--Orc Lords-->
-	
 	<SkillSet id="tor_skills_orc_lord">
 		<skill id="Athletics"
 		       value="260" />
@@ -1915,9 +1860,8 @@
 		<skill id="Faith"
 		       value="250" />
 		<skill id="Spellcraft"
-		       value="0" />	 
+		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_blackorc_lord">
 		<skill id="Athletics"
 		       value="270" />
@@ -1960,9 +1904,8 @@
 		<skill id="Faith"
 		       value="260" />
 		<skill id="Spellcraft"
-		       value="0" />	 
+		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_orcshaman_lord">
 		<skill id="Athletics"
 		       value="220" />
@@ -2005,9 +1948,8 @@
 		<skill id="Faith"
 		       value="300" />
 		<skill id="Spellcraft"
-		       value="250" />	 
+		       value="250" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_orcarrer_lord">
 		<skill id="Athletics"
 		       value="220" />
@@ -2051,11 +1993,8 @@
 		       value="250" />
 		<skill id="Spellcraft"
 		       value="0" />
-      </SkillSet>
-	
-	<!--Legendary Lords-->
-		
-		<SkillSet id="tor_skills_karlfranz">
+	</SkillSet>
+	<SkillSet id="tor_skills_karlfranz">
 		<skill id="Athletics"
 		       value="300" />
 		<skill id="Riding"
@@ -2099,7 +2038,6 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_louenleoncoeur">
 		<skill id="Athletics"
 		       value="300" />
@@ -2144,8 +2082,7 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-	
-		<SkillSet id="tor_skills_mannfredvoncarstein">
+	<SkillSet id="tor_skills_mannfredvoncarstein">
 		<skill id="Athletics"
 		       value="330" />
 		<skill id="Riding"
@@ -2189,8 +2126,7 @@
 		<skill id="Spellcraft"
 		       value="300" />
 	</SkillSet>
-	
-			<SkillSet id="tor_skills_walachharkon">
+	<SkillSet id="tor_skills_walachharkon">
 		<skill id="Athletics"
 		       value="330" />
 		<skill id="Riding"
@@ -2234,7 +2170,6 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_queenmarrisith">
 		<skill id="Athletics"
 		       value="300" />
@@ -2279,7 +2214,6 @@
 		<skill id="Spellcraft"
 		       value="310" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_serpent">
 		<skill id="Athletics"
 		       value="300" />
@@ -2324,7 +2258,6 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_ungrimironfist">
 		<skill id="Athletics"
 		       value="300" />
@@ -2369,7 +2302,6 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_twilight">
 		<skill id="Athletics"
 		       value="320" />
@@ -2414,7 +2346,6 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_araloth">
 		<skill id="Athletics"
 		       value="330" />
@@ -2459,7 +2390,6 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_daith">
 		<skill id="Athletics"
 		       value="330" />
@@ -2504,8 +2434,7 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-	
-		<SkillSet id="tor_skills_gelt">
+	<SkillSet id="tor_skills_gelt">
 		<skill id="Athletics"
 		       value="300" />
 		<skill id="Riding"
@@ -2549,768 +2478,1072 @@
 		<skill id="Spellcraft"
 		       value="400" />
 	</SkillSet>
-	
-	<!--Custom Battle Generic Lords-->
 	<SkillSet id="tor_custombattle_generic">
 		<skill id="Athletics"
-			   value="300" />
+		       value="300" />
 		<skill id="Riding"
-			   value="220" />
+		       value="220" />
 		<skill id="OneHanded"
-			   value="300" />
+		       value="300" />
 		<skill id="TwoHanded"
-			   value="300" />
+		       value="300" />
 		<skill id="Polearm"
-			   value="300" />
+		       value="300" />
 		<skill id="Bow"
-			   value="200" />
+		       value="200" />
 		<skill id="Crossbow"
-			   value="200" />
+		       value="200" />
 		<skill id="Gunpowder"
-			   value="200" />
+		       value="200" />
 		<skill id="Throwing"
-			   value="90" />
+		       value="90" />
 		<skill id="Steward"
-			   value="160" />
+		       value="160" />
 		<skill id="Medicine"
-			   value="200" />
+		       value="200" />
 		<skill id="Engineering"
-			   value="260" />
+		       value="260" />
 		<skill id="Tactics"
-			   value="280" />
+		       value="280" />
 		<skill id="Faith"
-			   value="200" />
+		       value="200" />
 		<skill id="Spellcraft"
-			   value="200" />
+		       value="200" />
 	</SkillSet>
-	<!--Tier 0-->
 	<SkillSet id="tor_skills_level1">
 		<skill id="Athletics"
-			   value="20" />
+		       value="20" />
 		<skill id="Riding"
-			   value="20" />
+		       value="20" />
 		<skill id="OneHanded"
-			   value="20" />
+		       value="20" />
 		<skill id="TwoHanded"
-			   value="20" />
+		       value="20" />
 		<skill id="Polearm"
-			   value="20" />
+		       value="20" />
 		<skill id="Bow"
-			   value="20" />
+		       value="20" />
 		<skill id="Crossbow"
-			   value="20" />
+		       value="20" />
 		<skill id="Gunpowder"
-			   value="20" />
+		       value="20" />
 		<skill id="Throwing"
-			   value="20" />
+		       value="20" />
 	</SkillSet>
-	<!--Tier 1-->
 	<SkillSet id="tor_skills_level6">
 		<skill id="Athletics"
-			   value="30" />
+		       value="30" />
 		<skill id="Riding"
-			   value="30" />
+		       value="30" />
 		<skill id="OneHanded"
-			   value="30" />
+		       value="30" />
 		<skill id="TwoHanded"
-			   value="30" />
+		       value="30" />
 		<skill id="Polearm"
-			   value="30" />
+		       value="30" />
 		<skill id="Bow"
-			   value="30" />
+		       value="30" />
 		<skill id="Crossbow"
-			   value="30" />
+		       value="30" />
 		<skill id="Gunpowder"
-			   value="30" />
+		       value="30" />
 		<skill id="Throwing"
-			   value="30" />
+		       value="30" />
 	</SkillSet>
-	<!--Tier 2-->
 	<SkillSet id="tor_skills_level11">
 		<skill id="Athletics"
-			   value="60" />
+		       value="60" />
 		<skill id="Riding"
-			   value="60" />
+		       value="60" />
 		<skill id="OneHanded"
-			   value="60" />
+		       value="60" />
 		<skill id="TwoHanded"
-			   value="60" />
+		       value="60" />
 		<skill id="Polearm"
-			   value="60" />
+		       value="60" />
 		<skill id="Bow"
-			   value="60" />
+		       value="60" />
 		<skill id="Crossbow"
-			   value="60" />
+		       value="60" />
 		<skill id="Gunpowder"
-			   value="60" />
+		       value="60" />
 		<skill id="Throwing"
-			   value="60" />
+		       value="60" />
 	</SkillSet>
-	<!--Tier 3-->
 	<SkillSet id="tor_skills_level16">
 		<skill id="Athletics"
-			   value="90" />
+		       value="90" />
 		<skill id="Riding"
-			   value="90" />
+		       value="90" />
 		<skill id="OneHanded"
-			   value="90" />
+		       value="90" />
 		<skill id="TwoHanded"
-			   value="90" />
+		       value="90" />
 		<skill id="Polearm"
-			   value="90" />
+		       value="90" />
 		<skill id="Bow"
-			   value="90" />
+		       value="90" />
 		<skill id="Crossbow"
-			   value="90" />
+		       value="90" />
 		<skill id="Gunpowder"
-			   value="90" />
+		       value="90" />
 		<skill id="Throwing"
-			   value="90" />
+		       value="90" />
 	</SkillSet>
-	<!--Tier 4-->
 	<SkillSet id="tor_skills_level21">
 		<skill id="Athletics"
-			   value="120" />
+		       value="120" />
 		<skill id="Riding"
-			   value="120" />
+		       value="120" />
 		<skill id="OneHanded"
-			   value="120" />
+		       value="120" />
 		<skill id="TwoHanded"
-			   value="120" />
+		       value="120" />
 		<skill id="Polearm"
-			   value="120" />
+		       value="120" />
 		<skill id="Bow"
-			   value="120" />
+		       value="120" />
 		<skill id="Crossbow"
-			   value="120" />
+		       value="120" />
 		<skill id="Gunpowder"
-			   value="120" />
+		       value="120" />
 		<skill id="Throwing"
-			   value="120" />
+		       value="120" />
 	</SkillSet>
-	<!--Tier 5-->
 	<SkillSet id="tor_skills_level26">
 		<skill id="Athletics"
-			   value="150" />
+		       value="150" />
 		<skill id="Riding"
-			   value="150" />
+		       value="150" />
 		<skill id="OneHanded"
-			   value="150" />
+		       value="150" />
 		<skill id="TwoHanded"
-			   value="150" />
+		       value="150" />
 		<skill id="Polearm"
-			   value="150" />
+		       value="150" />
 		<skill id="Bow"
-			   value="150" />
+		       value="150" />
 		<skill id="Crossbow"
-			   value="150" />
+		       value="150" />
 		<skill id="Gunpowder"
-			   value="150" />
+		       value="150" />
 		<skill id="Throwing"
-			   value="150" />
+		       value="150" />
 	</SkillSet>
-	<!--Tier 6-->
 	<SkillSet id="tor_skills_level31">
 		<skill id="Athletics"
-			   value="180" />
+		       value="180" />
 		<skill id="Riding"
-			   value="180" />
+		       value="180" />
 		<skill id="OneHanded"
-			   value="180" />
+		       value="180" />
 		<skill id="TwoHanded"
-			   value="180" />
+		       value="180" />
 		<skill id="Polearm"
-			   value="180" />
+		       value="180" />
 		<skill id="Bow"
-			   value="180" />
+		       value="180" />
 		<skill id="Crossbow"
-			   value="180" />
+		       value="180" />
 		<skill id="Gunpowder"
-			   value="180" />
+		       value="180" />
 		<skill id="Throwing"
-			   value="180" />
+		       value="180" />
 	</SkillSet>
-	<!--Tier 7-->
 	<SkillSet id="tor_skills_level36">
 		<skill id="Athletics"
-			   value="210" />
+		       value="210" />
 		<skill id="Riding"
-			   value="210" />
+		       value="210" />
 		<skill id="OneHanded"
-			   value="210" />
+		       value="210" />
 		<skill id="TwoHanded"
-			   value="210" />
+		       value="210" />
 		<skill id="Polearm"
-			   value="210" />
+		       value="210" />
 		<skill id="Bow"
-			   value="210" />
+		       value="210" />
 		<skill id="Crossbow"
-			   value="210" />
+		       value="210" />
 		<skill id="Gunpowder"
-			   value="210" />
+		       value="210" />
 		<skill id="Throwing"
-			   value="210" />
+		       value="210" />
 	</SkillSet>
-	<!--Tier 8-->
 	<SkillSet id="tor_skills_level41">
 		<skill id="Athletics"
-			   value="240" />
+		       value="240" />
 		<skill id="Riding"
-			   value="240" />
+		       value="240" />
 		<skill id="OneHanded"
-			   value="240" />
+		       value="240" />
 		<skill id="TwoHanded"
-			   value="240" />
+		       value="240" />
 		<skill id="Polearm"
-			   value="240" />
+		       value="240" />
 		<skill id="Bow"
-			   value="240" />
+		       value="240" />
 		<skill id="Crossbow"
-			   value="240" />
+		       value="240" />
 		<skill id="Gunpowder"
-			   value="240" />
+		       value="240" />
 		<skill id="Throwing"
-			   value="240" />
+		       value="240" />
 	</SkillSet>
-	<!--Tier 9-->
 	<SkillSet id="tor_skills_level46">
 		<skill id="Athletics"
-			   value="270" />
+		       value="270" />
 		<skill id="Riding"
-			   value="270" />
+		       value="270" />
 		<skill id="OneHanded"
-			   value="270" />
+		       value="270" />
 		<skill id="TwoHanded"
-			   value="270" />
+		       value="270" />
 		<skill id="Polearm"
-			   value="270" />
+		       value="270" />
 		<skill id="Bow"
-			   value="270" />
+		       value="270" />
 		<skill id="Crossbow"
-			   value="270" />
+		       value="270" />
 		<skill id="Gunpowder"
-			   value="270" />
+		       value="270" />
 		<skill id="Throwing"
-			   value="270" />
+		       value="270" />
 	</SkillSet>
-	
-	<SkillSet id="tor_skills_treeman">
-		<skill id="Athletics"
-			   value="5" />
-		<skill id="Riding"
-			   value="300" />
-		<skill id="OneHanded"
-			   value="300" />
-		<skill id="TwoHanded"
-			   value="300" />
-		<skill id="Polearm"
-			   value="300" />
-		<skill id="Bow"
-			   value="300" />
-		<skill id="Crossbow"
-			   value="300" />
-		<skill id="Gunpowder"
-			   value="300" />
-		<skill id="Throwing"
-			   value="300" />
-	</SkillSet>
-	
-	<!--Dwarf Skill sets-->
-	<!--Tier 0-->
 	<SkillSet id="tor_skills_dwarf_commoner">
 		<skill id="Athletics"
-			   value="30" />
+		       value="30" />
 		<skill id="OneHanded"
-			   value="50" />
+		       value="50" />
 		<skill id="TwoHanded"
-			   value="50" />
+		       value="50" />
 	</SkillSet>
-	
-	<!--Tier 1-->
 	<SkillSet id="tor_skills_dwarf_dawi">
 		<skill id="Athletics"
-			   value="40" />
+		       value="40" />
 		<skill id="OneHanded"
-			   value="60" />
+		       value="60" />
 		<skill id="TwoHanded"
-			   value="60" />
+		       value="60" />
 	</SkillSet>
-	
-	<!--Tier 2-->
 	<SkillSet id="tor_skills_dwarf_militia">
 		<skill id="Athletics"
-			   value="50" />
+		       value="50" />
 		<skill id="OneHanded"
-			   value="100" />
+		       value="100" />
 		<skill id="TwoHanded"
-			   value="100" />
+		       value="100" />
 	</SkillSet>
-	
-	<!--Tier 3-->
 	<SkillSet id="tor_skills_dwarf_miner">
 		<skill id="Athletics"
-			   value="70" />
+		       value="70" />
 		<skill id="OneHanded"
-			   value="100" />
+		       value="100" />
 		<skill id="TwoHanded"
-			   value="140" />
+		       value="140" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_dwarf_scout">
 		<skill id="Athletics"
-			   value="70" />
+		       value="70" />
 		<skill id="OneHanded"
-			   value="115" />
+		       value="115" />
 		<skill id="TwoHanded"
-			   value="115" />
+		       value="115" />
 		<skill id="Crossbow"
-			   value="140" />
+		       value="140" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_dwarf_slayer">
 		<skill id="Athletics"
-			   value="135" />
+		       value="135" />
 		<skill id="OneHanded"
-			   value="190" />
+		       value="190" />
 		<skill id="TwoHanded"
-			   value="190" />
+		       value="190" />
 	</SkillSet>
-	
-	<!--Tier 4-->
 	<SkillSet id="tor_skills_dwarf_prospector">
 		<skill id="Athletics"
-			   value="90" />
+		       value="90" />
 		<skill id="OneHanded"
-			   value="100" />
+		       value="100" />
 		<skill id="TwoHanded"
-			   value="140" />
+		       value="140" />
 		<skill id="Throwing"
-			   value="160" />
+		       value="160" />
 	</SkillSet>
-			   
 	<SkillSet id="tor_skills_dwarf_warrior">
 		<skill id="Athletics"
-			   value="90" />
+		       value="90" />
 		<skill id="OneHanded"
-			   value="160" />
+		       value="160" />
 		<skill id="TwoHanded"
-			   value="160" />
+		       value="160" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_dwarf_quarreller">
 		<skill id="Athletics"
-			   value="80" />
+		       value="80" />
 		<skill id="OneHanded"
-			   value="90" />
+		       value="90" />
 		<skill id="TwoHanded"
-			   value="90" />
+		       value="90" />
 		<skill id="Crossbow"
-			   value="150" />
+		       value="150" />
 	</SkillSet>
-			   
 	<SkillSet id="tor_skills_dwarf_thunderer">
 		<skill id="Athletics"
-			   value="80" />
+		       value="80" />
 		<skill id="OneHanded"
-			   value="90" />
+		       value="90" />
 		<skill id="TwoHanded"
-			   value="90" />
+		       value="90" />
 		<skill id="Gunpowder"
-			   value="180" />
+		       value="180" />
 	</SkillSet>
-
-	<!--Tier 5-->
 	<SkillSet id="tor_skills_dwarf_veteran_quarreller">
 		<skill id="Athletics"
-			   value="100" />
+		       value="100" />
 		<skill id="OneHanded"
-			   value="120" />
+		       value="120" />
 		<skill id="TwoHanded"
-			   value="120" />
+		       value="120" />
 		<skill id="Crossbow"
-			   value="225" />
+		       value="225" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_dwarf_sharpshooter">
 		<skill id="Athletics"
-			   value="100" />
+		       value="100" />
 		<skill id="OneHanded"
-			   value="150" />
+		       value="150" />
 		<skill id="TwoHanded"
-			   value="150" />
+		       value="150" />
 		<skill id="Gunpowder"
-			   value="225" />
+		       value="225" />
 	</SkillSet>
-
 	<SkillSet id="tor_skills_dwarf_ranger">
 		<skill id="Athletics"
-			   value="150" />
+		       value="150" />
 		<skill id="OneHanded"
-			   value="155" />
+		       value="155" />
 		<skill id="TwoHanded"
-			   value="155" />
+		       value="155" />
 		<skill id="Crossbow"
-			   value="225" />
+		       value="225" />
 		<skill id="Throwing"
-			   value="180" />
+		       value="180" />
 	</SkillSet>
-
 	<SkillSet id="tor_skills_dwarf_oldguard">
 		<skill id="Athletics"
-			   value="120" />
+		       value="120" />
 		<skill id="OneHanded"
-			   value="180" />
+		       value="180" />
 		<skill id="TwoHanded"
-			   value="180" />
+		       value="180" />
 	</SkillSet>
-	
-	<!--Tier 6-->
 	<SkillSet id="tor_skills_dwarf_longbeard">
 		<skill id="Athletics"
-			   value="110" />
+		       value="110" />
 		<skill id="OneHanded"
-			   value="225" />
+		       value="225" />
 		<skill id="TwoHanded"
-			   value="225" />
+		       value="225" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_dwarf_troll_slayer">
 		<skill id="Athletics"
-			   value="175" />
+		       value="175" />
 		<skill id="OneHanded"
-			   value="260" />
+		       value="260" />
 		<skill id="TwoHanded"
-			   value="260" />
-	</SkillSet> 
+		       value="260" />
+	</SkillSet>
 	<SkillSet id="tor_skills_dwarf_giant_slayer">
 		<skill id="Athletics"
-			   value="175" />
+		       value="175" />
 		<skill id="OneHanded"
-			   value="280" />
+		       value="280" />
 		<skill id="TwoHanded"
-			   value="280" />
+		       value="280" />
 	</SkillSet>
-
 	<SkillSet id="tor_skills_dwarf_ol_deadeye">
 		<skill id="Athletics"
-			   value="165" />
+		       value="165" />
 		<skill id="OneHanded"
-			   value="155" />
+		       value="155" />
 		<skill id="TwoHanded"
-			   value="155" />
+		       value="155" />
 		<skill id="Crossbow"
-			   value="250" />
+		       value="250" />
 		<skill id="Throwing"
-			   value="250" />
+		       value="250" />
 	</SkillSet>
-	
-	<!--Tier 7-->
-	
-	<!--Tier 8-->
 	<SkillSet id="tor_skills_dwarf_ironbreaker">
 		<skill id="Athletics"
-			   value="125" />
+		       value="125" />
 		<skill id="OneHanded"
-			   value="280" />
+		       value="280" />
 		<skill id="TwoHanded"
-			   value="225" />
+		       value="225" />
 		<skill id="Throwing"
-			   value="280" />
+		       value="280" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_dwarf_hammerer">
 		<skill id="Athletics"
-			   value="125" />
+		       value="125" />
 		<skill id="OneHanded"
-			   value="225" />
+		       value="225" />
 		<skill id="TwoHanded"
-			   value="280" />
+		       value="280" />
 	</SkillSet>
-	
-	<!--Tier 9-->
 	<SkillSet id="tor_skills_dwarf_ironbeard">
 		<skill id="Athletics"
-			   value="125" />
+		       value="125" />
 		<skill id="OneHanded"
-			   value="300" />
+		       value="300" />
 		<skill id="TwoHanded"
-			   value="225" />
+		       value="225" />
 		<skill id="Gunpowder"
-			   value="300" />
+		       value="300" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_dwarf_irondrake">
 		<skill id="Athletics"
-			   value="125" />
+		       value="125" />
 		<skill id="OneHanded"
-			   value="175" />
+		       value="175" />
 		<skill id="TwoHanded"
-			   value="150" />
+		       value="150" />
 		<skill id="Gunpowder"
-			   value="300" />
+		       value="300" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_dwarf_irondrake_trollhammer">
 		<skill id="Athletics"
-			   value="125" />
+		       value="125" />
 		<skill id="OneHanded"
-			   value="175" />
+		       value="175" />
 		<skill id="TwoHanded"
-			   value="150" />
+		       value="150" />
 		<skill id="Gunpowder"
-			   value="300" />
+		       value="300" />
 	</SkillSet>
-	
 	<SkillSet id="tor_skills_dwarf_gatekeeper">
 		<skill id="Athletics"
-			   value="125" />
+		       value="125" />
 		<skill id="OneHanded"
-			   value="225" />
+		       value="225" />
 		<skill id="TwoHanded"
-			   value="300" />
+		       value="300" />
 	</SkillSet>
-
-	<!--Tier 0-->
 	<SkillSet id="tor_skills_orc">
 		<skill id="Athletics"
-			   value="40" />
+		       value="40" />
 		<skill id="OneHanded"
-			   value="30" />
+		       value="30" />
 		<skill id="TwoHanded"
-			   value="30" />
+		       value="30" />
 	</SkillSet>
-	<!--Tier 1-->
 	<SkillSet id="tor_skills_orc_boy">
 		<skill id="Athletics"
-			   value="60" />
+		       value="60" />
 		<skill id="OneHanded"
-			   value="60" />
+		       value="60" />
 		<skill id="TwoHanded"
-			   value="50" />
+		       value="50" />
 		<skill id="Polearm"
-			   value="20" />
+		       value="20" />
 	</SkillSet>
-
 	<SkillSet id="tor_skills_goblin">
 		<skill id="Athletics"
-			   value="20" />
+		       value="20" />
 		<skill id="OneHanded"
-			   value="15" />
+		       value="15" />
 		<skill id="Polearm"
-			   value="20" />
+		       value="20" />
 	</SkillSet>
-	<!--Tier 2-->
-	<!--Tier 3-->
 	<SkillSet id="tor_skills_orc_boar_boy">
 		<skill id="Athletics"
-			   value="80" />
+		       value="80" />
 		<skill id="Riding"
-			   value="110" />
+		       value="110" />
 		<skill id="OneHanded"
-			   value="90" />
+		       value="90" />
 		<skill id="TwoHanded"
-			   value="80" />
+		       value="80" />
 		<skill id="Polearm"
-			   value="100" />
+		       value="100" />
 	</SkillSet>
-
 	<SkillSet id="tor_skills_orc_choppa">
 		<skill id="Athletics"
-			   value="100" />
+		       value="100" />
 		<skill id="OneHanded"
-			   value="100" />
+		       value="100" />
 		<skill id="TwoHanded"
-			   value="100" />
+		       value="100" />
 		<skill id="Polearm"
-			   value="50" />
+		       value="50" />
 	</SkillSet>
-
 	<SkillSet id="tor_skills_arrer_boy">
 		<skill id="Athletics"
-			   value="80" />
+		       value="80" />
 		<skill id="OneHanded"
-			   value="50" />
+		       value="50" />
 		<skill id="TwoHanded"
-			   value="20" />
+		       value="20" />
 		<skill id="Polearm"
-			   value="50" />
+		       value="50" />
 		<skill id="Bow"
-			   value="100" />
+		       value="100" />
 	</SkillSet>
 	<SkillSet id="tor_skills_goblin_wolf_rida">
 		<skill id="Athletics"
-			   value="40" />
+		       value="40" />
 		<skill id="Riding"
-			   value="70" />
+		       value="70" />
 		<skill id="OneHanded"
-			   value="20" />
+		       value="20" />
 		<skill id="Polearm"
-			   value="70" />
+		       value="70" />
 	</SkillSet>
 	<SkillSet id="tor_skills_goblin_stikka">
 		<skill id="Athletics"
-			   value="40" />
+		       value="40" />
 		<skill id="OneHanded"
-			   value="35" />
+		       value="35" />
 		<skill id="Polearm"
-			   value="50" />
+		       value="50" />
 	</SkillSet>
 	<SkillSet id="tor_skills_goblin_wolf_rida_archer">
 		<skill id="Athletics"
-			   value="50" />
+		       value="50" />
 		<skill id="Riding"
-			   value="80" />
+		       value="80" />
 		<skill id="OneHanded"
-			   value="30" />
+		       value="30" />
 		<skill id="Polearm"
-			   value="60" />
+		       value="60" />
 		<skill id="Bow"
-			   value="75" />
+		       value="75" />
 	</SkillSet>
-
 	<SkillSet id="tor_skills_goblin_nasty_skulker">
 		<skill id="Athletics"
-			   value="90" />
+		       value="90" />
 		<skill id="OneHanded"
-			   value="60" />
+		       value="60" />
 		<skill id="Polearm"
-			   value="70" />
+		       value="70" />
 	</SkillSet>
 	<SkillSet id="tor_skills_goblin_archer">
 		<skill id="Athletics"
-			   value="35" />
+		       value="35" />
 		<skill id="OneHanded"
-			   value="30" />
+		       value="30" />
 		<skill id="Polearm"
-			   value="40" />
+		       value="40" />
 		<skill id="Bow"
-			   value="60" />
+		       value="60" />
 	</SkillSet>
-	<!--Tier 4-->
 	<SkillSet id="tor_skills_arrer_boy_boss">
 		<skill id="Athletics"
-			   value="110" />
+		       value="110" />
 		<skill id="OneHanded"
-			   value="80" />
+		       value="80" />
 		<skill id="TwoHanded"
-			   value="50" />
+		       value="50" />
 		<skill id="Polearm"
-			   value="50" />
+		       value="50" />
 		<skill id="Bow"
-			   value="130" />
+		       value="130" />
 	</SkillSet>
-
 	<SkillSet id="tor_skills_goblin_wolf_rida_boss">
 		<skill id="Athletics"
-			   value="70" />
+		       value="70" />
 		<skill id="Riding"
-			   value="120" />
+		       value="120" />
 		<skill id="OneHanded"
-			   value="80" />
+		       value="80" />
 		<skill id="Polearm"
-			   value="90" />
+		       value="90" />
 	</SkillSet>
-
 	<SkillSet id="tor_skills_goblin_boss">
 		<skill id="Athletics"
-			   value="110" />
+		       value="110" />
 		<skill id="OneHanded"
-			   value="90" />
+		       value="90" />
 		<skill id="Polearm"
-			   value="90" />
+		       value="90" />
 	</SkillSet>
-
-	<!--Tier 5-->
 	<SkillSet id="tor_skills_orc_boar_boy_big">
 		<skill id="Athletics"
-			   value="130" />
+		       value="130" />
 		<skill id="Riding"
-			   value="170" />
+		       value="170" />
 		<skill id="OneHanded"
-			   value="150" />
+		       value="150" />
 		<skill id="TwoHanded"
-			   value="140" />
+		       value="140" />
 		<skill id="Polearm"
-			   value="170" />
+		       value="170" />
 	</SkillSet>
-
 	<SkillSet id="tor_skills_orc_big_un">
 		<skill id="Athletics"
-			   value="150" />
+		       value="150" />
 		<skill id="OneHanded"
-			   value="165" />
+		       value="165" />
 		<skill id="TwoHanded"
-			   value="150" />
+		       value="150" />
 		<skill id="Polearm"
-			   value="50" />
+		       value="50" />
 	</SkillSet>
-	<!--Tier 6-->
 	<SkillSet id="tor_skills_orc_boss">
 		<skill id="Athletics"
-			   value="180" />
+		       value="180" />
 		<skill id="OneHanded"
-			   value="195" />
+		       value="195" />
 		<skill id="TwoHanded"
-			   value="195" />
+		       value="195" />
 		<skill id="Polearm"
-			   value="50" />
+		       value="50" />
 	</SkillSet>
-
 	<SkillSet id="tor_skills_black_orc">
 		<skill id="Athletics"
-			   value="190" />
+		       value="190" />
 		<skill id="OneHanded"
-			   value="200" />
+		       value="200" />
 		<skill id="TwoHanded"
-			   value="200" />
+		       value="200" />
 		<skill id="Polearm"
-			   value="170" />
+		       value="170" />
 	</SkillSet>
-
-	<!--Tier 7-->
 	<SkillSet id="tor_skills_black_orc_brute">
 		<skill id="Athletics"
-			   value="210" />
+		       value="210" />
 		<skill id="OneHanded"
-			   value="250" />
+		       value="250" />
 		<skill id="TwoHanded"
-			   value="220" />
+		       value="220" />
 		<skill id="Polearm"
-			   value="200" />
+		       value="200" />
 	</SkillSet>
-
-	<!--Tier 8-->
-
-	<!--Tier 9-->
 	<SkillSet id="tor_skills_black_orc_boss">
 		<skill id="Athletics"
-			   value="270" />
+		       value="270" />
 		<skill id="OneHanded"
-			   value="290" />
+		       value="290" />
 		<skill id="TwoHanded"
-			   value="270" />
+		       value="270" />
 		<skill id="Polearm"
-			   value="250" />
+		       value="250" />
 	</SkillSet>
-
 	<SkillSet id="tor_skills_black_orc_berzerka">
 		<skill id="Athletics"
-			   value="270" />
+		       value="270" />
 		<skill id="OneHanded"
-			   value="270" />
+		       value="270" />
 		<skill id="TwoHanded"
-			   value="290" />
+		       value="290" />
 		<skill id="Polearm"
-			   value="250" />
+		       value="250" />
 	</SkillSet>
 	<SkillSet id="tor_skills_troll">
 		<skill id="Athletics"
-			   value="270" />
+		       value="270" />
 		<skill id="OneHanded"
-			   value="270" />
+		       value="270" />
 		<skill id="TwoHanded"
-			   value="280" />
+		       value="280" />
 		<skill id="Polearm"
-			   value="90" />
+		       value="90" />
+	</SkillSet>
+	<SkillSet id="tor_skills_asrai_servant">
+		<skill id="OneHanded"
+		       value="30" />
+		<skill id="TwoHanded"
+		       value="20" />
+		<skill id="Polearm"
+		       value="30" />
+		<skill id="Bow"
+		       value="30" />
+		<skill id="Throwing"
+		       value="30" />
+		<skill id="Riding"
+		       value="15" />
+		<skill id="Athletics"
+		       value="40" />
+		<skill id="Crossbow"
+		       value="0" />
+	</SkillSet>
+	<SkillSet id="tor_skills_asrai_hall_servant">
+		<skill id="OneHanded"
+		       value="50" />
+		<skill id="TwoHanded"
+		       value="30" />
+		<skill id="Polearm"
+		       value="50" />
+		<skill id="Bow"
+		       value="35" />
+		<skill id="Throwing"
+		       value="50" />
+		<skill id="Riding"
+		       value="20" />
+		<skill id="Athletics"
+		       value="60" />
+		<skill id="Crossbow"
+		       value="0" />
+	</SkillSet>
+	<SkillSet id="tor_skills_asrai_glade_guard">
+		<skill id="OneHanded"
+		       value="75" />
+		<skill id="TwoHanded"
+		       value="45" />
+		<skill id="Polearm"
+		       value="45" />
+		<skill id="Bow"
+		       value="120" />
+		<skill id="Throwing"
+		       value="45" />
+		<skill id="Riding"
+		       value="25" />
+		<skill id="Athletics"
+		       value="100" />
+		<skill id="Crossbow"
+		       value="0" />
+	</SkillSet>
+	<SkillSet id="tor_skills_asrai_kings_bowman">
+		<skill id="OneHanded"
+		       value="95" />
+		<skill id="TwoHanded"
+		       value="55" />
+		<skill id="Polearm"
+		       value="55" />
+		<skill id="Bow"
+		       value="155" />
+		<skill id="Throwing"
+		       value="55" />
+		<skill id="Riding"
+		       value="30" />
+		<skill id="Athletics"
+		       value="125" />
+		<skill id="Crossbow"
+		       value="0" />
+	</SkillSet>
+	<SkillSet id="tor_skills_asrai_eternal_guard">
+		<skill id="OneHanded"
+		       value="75" />
+		<skill id="TwoHanded"
+		       value="75" />
+		<skill id="Polearm"
+		       value="100" />
+		<skill id="Bow"
+		       value="65" />
+		<skill id="Throwing"
+		       value="75" />
+		<skill id="Riding"
+		       value="25" />
+		<skill id="Athletics"
+		       value="100" />
+		<skill id="Crossbow"
+		       value="0" />
+	</SkillSet>
+	<SkillSet id="tor_skills_asrai_eternal_warden">
+		<skill id="OneHanded"
+		       value="95" />
+		<skill id="TwoHanded"
+		       value="95" />
+		<skill id="Polearm"
+		       value="135" />
+		<skill id="Bow"
+		       value="75" />
+		<skill id="Throwing"
+		       value="95" />
+		<skill id="Riding"
+		       value="30" />
+		<skill id="Athletics"
+		       value="125" />
+		<skill id="Crossbow"
+		       value="0" />
+	</SkillSet>
+	<SkillSet id="tor_skills_asrai_glade_rider">
+		<skill id="OneHanded"
+		       value="75" />
+		<skill id="TwoHanded"
+		       value="45" />
+		<skill id="Polearm"
+		       value="45" />
+		<skill id="Bow"
+		       value="115" />
+		<skill id="Throwing"
+		       value="75" />
+		<skill id="Riding"
+		       value="105" />
+		<skill id="Athletics"
+		       value="85" />
+		<skill id="Crossbow"
+		       value="0" />
+	</SkillSet>
+	<SkillSet id="tor_skills_asrai_glade_knight">
+		<skill id="OneHanded"
+		       value="95" />
+		<skill id="TwoHanded"
+		       value="55" />
+		<skill id="Polearm"
+		       value="55" />
+		<skill id="Bow"
+		       value="145" />
+		<skill id="Throwing"
+		       value="95" />
+		<skill id="Riding"
+		       value="140" />
+		<skill id="Athletics"
+		       value="105" />
+		<skill id="Crossbow"
+		       value="0" />
+	</SkillSet>
+	<SkillSet id="tor_skills_asrai_ranger">
+		<skill id="OneHanded"
+		       value="50" />
+		<skill id="TwoHanded"
+		       value="30" />
+		<skill id="Polearm"
+		       value="30" />
+		<skill id="Bow"
+		       value="85" />
+		<skill id="Throwing"
+		       value="30" />
+		<skill id="Riding"
+		       value="35" />
+		<skill id="Athletics"
+		       value="70" />
+		<skill id="Crossbow"
+		       value="0" />
+	</SkillSet>
+	<SkillSet id="tor_skills_asrai_deepwood_scout">
+		<skill id="OneHanded"
+		       value="75" />
+		<skill id="TwoHanded"
+		       value="45" />
+		<skill id="Polearm"
+		       value="45" />
+		<skill id="Bow"
+		       value="120" />
+		<skill id="Throwing"
+		       value="45" />
+		<skill id="Riding"
+		       value="25" />
+		<skill id="Athletics"
+		       value="100" />
+		<skill id="Crossbow"
+		       value="0" />
+	</SkillSet>
+	<SkillSet id="tor_skills_asrai_master_scout">
+		<skill id="OneHanded"
+		       value="120" />
+		<skill id="TwoHanded"
+		       value="70" />
+		<skill id="Polearm"
+		       value="70" />
+		<skill id="Bow"
+		       value="185" />
+		<skill id="Throwing"
+		       value="70" />
+		<skill id="Riding"
+		       value="35" />
+		<skill id="Athletics"
+		       value="155" />
+		<skill id="Crossbow"
+		       value="0" />
+	</SkillSet>
+	<SkillSet id="tor_skills_asrai_waywatcher">
+		<skill id="OneHanded"
+		       value="140" />
+		<skill id="TwoHanded"
+		       value="80" />
+		<skill id="Polearm"
+		       value="80" />
+		<skill id="Bow"
+		       value="215" />
+		<skill id="Throwing"
+		       value="80" />
+		<skill id="Riding"
+		       value="40" />
+		<skill id="Athletics"
+		       value="180" />
+		<skill id="Crossbow"
+		       value="0" />
+	</SkillSet>
+	<SkillSet id="tor_skills_asrai_waywatcher_sentinel">
+		<skill id="OneHanded"
+		       value="165" />
+		<skill id="TwoHanded"
+		       value="95" />
+		<skill id="Polearm"
+		       value="95" />
+		<skill id="Bow"
+		       value="245" />
+		<skill id="Throwing"
+		       value="95" />
+		<skill id="Riding"
+		       value="45" />
+		<skill id="Athletics"
+		       value="205" />
+		<skill id="Crossbow"
+		       value="0" />
+	</SkillSet>
+	<SkillSet id="tor_skills_asrai_wardancer">
+		<skill id="OneHanded"
+		       value="90" />
+		<skill id="TwoHanded"
+		       value="95" />
+		<skill id="Polearm"
+		       value="75" />
+		<skill id="Bow"
+		       value="40" />
+		<skill id="Throwing"
+		       value="90" />
+		<skill id="Riding"
+		       value="25" />
+		<skill id="Athletics"
+		       value="105" />
+		<skill id="Crossbow"
+		       value="0" />
+	</SkillSet>
+	<SkillSet id="tor_skills_asrai_bladesinger">
+		<skill id="OneHanded"
+		       value="145" />
+		<skill id="TwoHanded"
+		       value="155" />
+		<skill id="Polearm"
+		       value="120" />
+		<skill id="Bow"
+		       value="50" />
+		<skill id="Throwing"
+		       value="145" />
+		<skill id="Riding"
+		       value="35" />
+		<skill id="Athletics"
+		       value="165" />
+		<skill id="Crossbow"
+		       value="0" />
+	</SkillSet>
+	<SkillSet id="tor_skills_asrai_wildwood_ranger">
+		<skill id="OneHanded"
+		       value="165" />
+		<skill id="TwoHanded"
+		       value="165" />
+		<skill id="Polearm"
+		       value="165" />
+		<skill id="Bow"
+		       value="90" />
+		<skill id="Throwing"
+		       value="120" />
+		<skill id="Riding"
+		       value="75" />
+		<skill id="Athletics"
+		       value="165" />
+		<skill id="Crossbow"
+		       value="0" />
+	</SkillSet>
+	<SkillSet id="tor_skills_asrai_wildwood_warden">
+		<skill id="OneHanded"
+		       value="225" />
+		<skill id="TwoHanded"
+		       value="225" />
+		<skill id="Polearm"
+		       value="225" />
+		<skill id="Bow"
+		       value="115" />
+		<skill id="Throwing"
+		       value="165" />
+		<skill id="Riding"
+		       value="100" />
+		<skill id="Athletics"
+		       value="220" />
+		<skill id="Crossbow"
+		       value="0" />
+	</SkillSet>
+	<SkillSet id="tor_skills_asrai_wild_rider">
+		<skill id="OneHanded"
+		       value="175" />
+		<skill id="TwoHanded"
+		       value="140" />
+		<skill id="Polearm"
+		       value="195" />
+		<skill id="Bow"
+		       value="100" />
+		<skill id="Throwing"
+		       value="140" />
+		<skill id="Riding"
+		       value="185" />
+		<skill id="Athletics"
+		       value="150" />
+		<skill id="Crossbow"
+		       value="0" />
+	</SkillSet>
+	<SkillSet id="tor_skills_asrai_stag_knight">
+		<skill id="OneHanded"
+		       value="210" />
+		<skill id="TwoHanded"
+		       value="165" />
+		<skill id="Polearm"
+		       value="225" />
+		<skill id="Bow"
+		       value="115" />
+		<skill id="Throwing"
+		       value="165" />
+		<skill id="Riding"
+		       value="230" />
+		<skill id="Athletics"
+		       value="175" />
+		<skill id="Crossbow"
+		       value="0" />
+	</SkillSet>
+	<SkillSet id="tor_skills_asrai_dryad">
+		<skill id="OneHanded"
+		       value="135" />
+		<skill id="TwoHanded"
+		       value="120" />
+		<skill id="Polearm"
+		       value="90" />
+		<skill id="Bow"
+		       value="0" />
+		<skill id="Throwing"
+		       value="90" />
+		<skill id="Athletics"
+		       value="125" />
+		<skill id="Crossbow"
+		       value="0" />
+		<skill id="Riding"
+		       value="0" />
+	</SkillSet>
+	<SkillSet id="tor_skills_asrai_treeman">
+		<skill id="OneHanded"
+		       value="255" />
+		<skill id="TwoHanded"
+		       value="235" />
+		<skill id="Polearm"
+		       value="180" />
+		<skill id="Throwing"
+		       value="180" />
+		<skill id="Athletics"
+		       value="270" />
+		<skill id="Bow"
+		       value="0" />
+		<skill id="Crossbow"
+		       value="0" />
+		<skill id="Riding"
+		       value="0" />
+	</SkillSet>
+	<SkillSet id="tor_skills_asrai_ancient_treeman">
+		<skill id="OneHanded"
+		       value="290" />
+		<skill id="TwoHanded"
+		       value="265" />
+		<skill id="Polearm"
+		       value="205" />
+		<skill id="Throwing"
+		       value="205" />
+		<skill id="Athletics"
+		       value="300" />
+		<skill id="Bow"
+		       value="0" />
+		<skill id="Crossbow"
+		       value="0" />
+		<skill id="Riding"
+		       value="0" />
 	</SkillSet>
 </SkillSets>

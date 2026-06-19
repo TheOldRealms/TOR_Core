@@ -1110,7 +1110,7 @@
       <EquipmentSet id="tor_m_manatarms_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_servant" default_group="infantry" level="6" name="{=str_tor_we_servant}Asrai Servant" occupation="Villager" culture="Culture.battania" skill_template="SkillSet.tor_skills_level6" race="elf">
+  <NPCCharacter id="tor_we_servant" default_group="infantry" level="6" name="{=str_tor_we_servant}Asrai Servant" occupation="Villager" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_servant" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1128,7 +1128,7 @@
       <EquipmentSet id="tor_we_servant_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_militia" default_group="infantry" level="11" name="{=str_tor_we_militia}Asrai Hall Servant" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true" race="elf">
+  <NPCCharacter id="tor_we_militia" default_group="infantry" level="11" name="{=str_tor_we_militia}Asrai Hall Servant" occupation="Soldier" culture="Culture.battania" is_basic_troop="true" race="elf" skill_template="SkillSet.tor_skills_asrai_hall_servant">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1147,7 +1147,7 @@
       <EquipmentSet id="tor_we_militia_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_glade_guard" default_group="ranged" level="16" name="{=str_tor_we_glade_guard}Asrai Glade Guard" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level16" race="elf">
+  <NPCCharacter id="tor_we_glade_guard" default_group="ranged" level="16" name="{=str_tor_we_glade_guard}Asrai Glade Guard" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_glade_guard" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1166,7 +1166,7 @@
       <EquipmentSet id="tor_we_glade_guard_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_kings_bowman" default_group="ranged" level="21" name="{=str_tor_we_kings_bowman}Asrai Kings Bowman" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" race="elf">
+  <NPCCharacter id="tor_we_kings_bowman" default_group="ranged" level="21" name="{=str_tor_we_kings_bowman}Asrai Kings Bowman" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_kings_bowman" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1182,7 +1182,7 @@
       <EquipmentSet id="tor_we_glade_guard_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_eternal_guard" default_group="infantry" level="16" name="{=str_tor_we_eternal_guard}Asrai Eternal Guard" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level16" race="elf">
+  <NPCCharacter id="tor_we_eternal_guard" default_group="infantry" level="16" name="{=str_tor_we_eternal_guard}Asrai Eternal Guard" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_eternal_guard" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1200,7 +1200,7 @@
       <EquipmentSet id="tor_we_eternal_guard_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_eternal_warden" default_group="infantry" level="21" name="{=str_tor_we_eternal_warden}Asrai Eternal Warden" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" race="elf">
+  <NPCCharacter id="tor_we_eternal_warden" default_group="infantry" level="21" name="{=str_tor_we_eternal_warden}Asrai Eternal Warden" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_eternal_warden" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1216,7 +1216,7 @@
       <EquipmentSet id="tor_we_eternal_warden_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_glade_rider" default_group="horsearcher" level="21" name="{=str_tor_we_glade_rider}Asrai Glade Rider" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" race="elf">
+  <NPCCharacter id="tor_we_glade_rider" default_group="horsearcher" level="21" name="{=str_tor_we_glade_rider}Asrai Glade Rider" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_glade_rider" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1234,7 +1234,7 @@
       <EquipmentSet id="tor_we_glade_rider_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_glade_knight" default_group="cavalry" level="26" name="{=str_tor_we_glade_knight}Asrai Glade Knight" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level26" race="elf">
+  <NPCCharacter id="tor_we_glade_knight" default_group="cavalry" level="26" name="{=str_tor_we_glade_knight}Asrai Glade Knight" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_glade_knight" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1250,7 +1250,7 @@
       <EquipmentSet id="tor_we_glade_knight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_scout" default_group="ranged" level="11" name="{=str_tor_we_scout}Asrai Ranger" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true" race="elf">
+  <NPCCharacter id="tor_we_scout" default_group="ranged" level="11" name="{=str_tor_we_scout}Asrai Ranger" occupation="Soldier" culture="Culture.battania" is_basic_troop="true" race="elf" skill_template="SkillSet.tor_skills_asrai_ranger">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1269,7 +1269,7 @@
       <EquipmentSet id="tor_we_scout_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_deepwood_scout" default_group="ranged" level="16" name="{=str_tor_we_deepwood_scout}Asrai Deepwood Scout" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level16" race="elf">
+  <NPCCharacter id="tor_we_deepwood_scout" default_group="ranged" level="16" name="{=str_tor_we_deepwood_scout}Asrai Deepwood Scout" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_deepwood_scout" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1287,7 +1287,7 @@
       <EquipmentSet id="tor_we_deepwood_scout_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_master_scout" default_group="ranged" level="26" name="{=str_tor_we_master_scout}Asrai Master Scout" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level26" race="elf">
+  <NPCCharacter id="tor_we_master_scout" default_group="ranged" level="26" name="{=str_tor_we_master_scout}Asrai Master Scout" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_master_scout" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1305,7 +1305,7 @@
       <EquipmentSet id="tor_we_master_scout_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_waywatcher" default_group="ranged" level="31" name="{=str_tor_we_waywatcher}Asrai Waywatcher" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level31" race="elf">
+  <NPCCharacter id="tor_we_waywatcher" default_group="ranged" level="31" name="{=str_tor_we_waywatcher}Asrai Waywatcher" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_waywatcher" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1323,7 +1323,7 @@
       <EquipmentSet id="tor_we_waywatcher_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_waywatcher_sentinel" default_group="ranged" level="36" name="{=str_tor_we_waywatcher_sentinel}Asrai Waywatcher Sentinel" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level36" race="elf">
+  <NPCCharacter id="tor_we_waywatcher_sentinel" default_group="ranged" level="36" name="{=str_tor_we_waywatcher_sentinel}Asrai Waywatcher Sentinel" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_waywatcher_sentinel" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1339,7 +1339,7 @@
       <EquipmentSet id="tor_we_waywatcher_sentinel_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_wardancer" default_group="infantry" level="16" name="{=str_tor_we_wardancer}Asrai Wardancer" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true" is_female="true" race="elf">
+  <NPCCharacter id="tor_we_wardancer" default_group="infantry" level="16" name="{=str_tor_we_wardancer}Asrai Wardancer" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_wardancer" is_basic_troop="true" is_female="true" race="elf">
     <face>
       <face_key_template value="BodyProperty.wardancer" />
       <hair_tags>
@@ -1369,7 +1369,7 @@
       <EquipmentSet id="tor_we_shadowdancer_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_bladesinger" default_group="infantry" level="26" name="{=str_tor_we_bladesinger}Asrai Bladesinger" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level26" is_female="true" race="elf">
+  <NPCCharacter id="tor_we_bladesinger" default_group="infantry" level="26" name="{=str_tor_we_bladesinger}Asrai Bladesinger" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_bladesinger" is_female="true" race="elf">
     <face>
       <face_key_template value="BodyProperty.wardancer" />
       <hair_tags>
@@ -1382,7 +1382,7 @@
       <EquipmentSet id="tor_we_bladesinger_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_wildwood_ranger" default_group="infantry" level="26" name="{=str_tor_we_wildwood_ranger}Cythrali Wildwood Ranger" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level26" race="elf">
+  <NPCCharacter id="tor_we_wildwood_ranger" default_group="infantry" level="26" name="{=str_tor_we_wildwood_ranger}Wildwood Ranger" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_wildwood_ranger" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1400,7 +1400,7 @@
       <EquipmentSet id="tor_we_wildwood_ranger_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_wildwood_warden" default_group="infantry" level="36" name="{=str_tor_we_wildwood_warden}Cythrali Wildwood Warden" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level36" race="elf">
+  <NPCCharacter id="tor_we_wildwood_warden" default_group="infantry" level="36" name="{=str_tor_we_wildwood_warden}Wildwood Warden" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_wildwood_warden" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1416,7 +1416,7 @@
       <EquipmentSet id="tor_we_wildwood_warden_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_wild_rider" default_group="cavalry" level="31" name="{=str_tor_we_wild_rider}Wild Rider" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level31" is_basic_troop="true" race="elf">
+  <NPCCharacter id="tor_we_wild_rider" default_group="cavalry" level="31" name="{=str_tor_we_wild_rider}Wild Rider" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_wild_rider" is_basic_troop="true" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1434,7 +1434,7 @@
       <EquipmentSet id="tor_we_wild_rider_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_great_stag_knight" default_group="cavalry" level="36" name="{=str_tor_we_great_stag_knight}Great Stag Knight" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level36" race="elf">
+  <NPCCharacter id="tor_we_great_stag_knight" default_group="cavalry" level="36" name="{=str_tor_we_great_stag_knight}Great Stag Knight" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_stag_knight" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1450,7 +1450,7 @@
       <EquipmentSet id="tor_we_great_stag_knight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_dryad" default_group="infantry" level="21" name="{=str_tor_we_dryad}Dryad" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true">
+  <NPCCharacter id="tor_we_dryad" default_group="infantry" level="21" name="{=str_tor_we_dryad}Dryad" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_dryad" is_basic_troop="true">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
       <hair_tags>
@@ -1466,7 +1466,7 @@
       <EquipmentSet id="tor_we_dryad_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_treeman" default_group="infantry" level="41" name="{=str_tor_we_treeman}Treeman" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_treeman" is_basic_troop="true" race="large_humanoid_monster">
+  <NPCCharacter id="tor_we_treeman" default_group="infantry" level="41" name="{=str_tor_we_treeman}Treeman" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_treeman" is_basic_troop="true" race="large_humanoid_monster">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
       <hair_tags>
@@ -1484,7 +1484,7 @@
       <EquipmentSet id="tor_we_treeman_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_ancient_treeman" default_group="infantry" level="46" name="{=str_tor_we_ancient_treeman}Ancient Treeman" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_treeman" race="large_humanoid_monster">
+  <NPCCharacter id="tor_we_ancient_treeman" default_group="infantry" level="46" name="{=str_tor_we_ancient_treeman}Ancient Treeman" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_ancient_treeman" race="large_humanoid_monster">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
       <hair_tags>
@@ -1500,7 +1500,7 @@
       <EquipmentSet id="tor_we_ancient_treeman_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_caravan_guard" default_group="infantry" level="21" name="{=str_tor_we_caravan_guard}Asrai Trader" occupation="CaravanGuard" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" race="elf">
+  <NPCCharacter id="tor_we_caravan_guard" default_group="infantry" level="21" name="{=str_tor_we_caravan_guard}Asrai Trader" occupation="CaravanGuard" culture="Culture.battania" race="elf" skill_template="SkillSet.tor_skills_asrai_servant">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1518,7 +1518,7 @@
       <EquipmentSet id="tor_we_caravan_guard_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_caravan_ranged" default_group="ranged" level="21" name="{=str_tor_we_caravan_ranged}Asrai Trader Guard" occupation="CaravanGuard" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" race="elf">
+  <NPCCharacter id="tor_we_caravan_ranged" default_group="ranged" level="21" name="{=str_tor_we_caravan_ranged}Asrai Trader Guard" occupation="CaravanGuard" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_servant" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1536,7 +1536,7 @@
       <EquipmentSet id="tor_we_caravan_ranged_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_caravan_elite_ranged" default_group="ranged" level="26" name="{=str_tor_we_caravan_elite_ranged}Asrai Elite Trader Guard" occupation="CaravanGuard" culture="Culture.battania" skill_template="SkillSet.tor_skills_level26" race="elf">
+  <NPCCharacter id="tor_we_caravan_elite_ranged" default_group="ranged" level="26" name="{=str_tor_we_caravan_elite_ranged}Asrai Elite Trader Guard" occupation="CaravanGuard" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_hall_servant" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1552,7 +1552,7 @@
       <EquipmentSet id="tor_we_caravan_ranged_elite_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_caravan_captain" default_group="infantry" level="26" name="{=str_tor_we_caravan_captain}Asrai Master Trader" occupation="CaravanGuard" culture="Culture.battania" skill_template="SkillSet.tor_skills_level26" race="elf">
+  <NPCCharacter id="tor_we_caravan_captain" default_group="infantry" level="26" name="{=str_tor_we_caravan_captain}Asrai Master Trader" occupation="CaravanGuard" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_hall_servant" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -3839,7 +3839,7 @@
       <EquipmentSet id="tor_beast_gor_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_beast_gor_foerender" default_group="infantry" level="31" name="{=str_tor_beast_gor_foerender}Gor Foe-render" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level31" race="gor">
+  <NPCCharacter id="tor_beast_gor_foerender" default_group="infantry" level="31" name="{=str_tor_beast_gor_foerender}Gor Foe-Render" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level31" race="gor">
     <face>
       <face_key_template value="BodyProperty.gor" />
     </face>
@@ -3851,17 +3851,27 @@
       <EquipmentSet id="tor_beast_gor_foerender_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_beast_gor_manripper" default_group="infantry" level="36" name="{=str_tor_beast_gor_manripper}Gor Manripper" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level36" race="gor">
+  <NPCCharacter id="tor_beast_gor_manripper" default_group="infantry" level="36" name="{=str_tor_beast_gor_manripper}Bestigor" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level36" race="gor">
     <face>
       <face_key_template value="BodyProperty.gor" />
     </face>
-    <upgrade_targets />
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_beast_gor_gougehorn" />
+    </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_beast_gor_manripper_template" />
       <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_beast_minotaur" default_group="infantry" level="31" name="{=str_tor_beast_minotaur}Minotaur" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_troll" is_basic_troop="true" race="minotaur">
+  <NPCCharacter id="tor_beast_gor_gougehorn" name="Bestigor Gouge-Horn" level="41" default_group="infantry" culture="Culture.steppe_bandits" occupation="Bandit" skill_template="SkillSet.tor_skills_level41" race="gor">
+    <face>
+      <face_key_template value="BodyProperty.gor" />
+    </face>
+    <Equipments>
+      <EquipmentSet id="tor_beast_gor_manripper_template" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beast_minotaur" default_group="infantry" level="36" name="{=str_tor_beast_minotaur}Minotaur" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_troll" is_basic_troop="true" race="minotaur">
     <face>
       <face_key_template value="BodyProperty.minotaur" />
     </face>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfCharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_villager">
     <Abilities />
@@ -913,7 +913,7 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
-    <CharacterExtendedInfo id="tor_m_yeoman">
+  <CharacterExtendedInfo id="tor_m_yeoman">
     <Abilities />
     <Attributes />
     <Resistances />
@@ -931,7 +931,7 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
-   <CharacterExtendedInfo id="tor_m_illfated_squire">
+  <CharacterExtendedInfo id="tor_m_illfated_squire">
     <Abilities />
     <Attributes />
     <Resistances />
@@ -11115,4 +11115,9 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
-</ArrayOfCharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beast_gor_gougehorn">
+    <Attributes>
+      <string>MonsterAttack</string>
+    </Attributes>
+  <DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></CharacterExtendedInfo>
+<CharacterExtendedInfo id="new_entry_1"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></CharacterExtendedInfo></ArrayOfCharacterExtendedInfo>
