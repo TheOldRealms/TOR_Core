@@ -330,12 +330,10 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
         {
             explanation = TextObject.GetEmpty();
 
-            var hero = Hero.OneToOneConversationHero;
-
             // Check companion limit
             if (Clan.PlayerClan.CompanionLimit <= Clan.PlayerClan.Companions.Count)
             {
-                explanation = new TextObject("{=tor_companion_limit}You have reached your companion limit.");
+                explanation = TORTextHelper.GetTextObject("tor_generic_companionLimitReached", "{=str_tor_generic_companionLimitReached}Clan companion limit reached", true);
                 return false;
             }
 

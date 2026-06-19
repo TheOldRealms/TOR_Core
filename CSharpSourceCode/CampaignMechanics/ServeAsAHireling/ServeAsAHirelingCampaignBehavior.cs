@@ -23,7 +23,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
     public class ServeAsAHirelingCampaignBehavior : CampaignBehaviorBase
     {
         private ServeAsAHirelingActivities _activities;
-        private const float MinimumServeDays = 25;
+        private const int MinimumServeDays = 25;
         private const float RatioPartyAgainstEnemyStrength = 3f;
 
         private float _durationInDays;
@@ -1231,7 +1231,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             var explainText = new TextObject("{HIRELING_EXPLAIN_TEXT}");
             var positiveDecisionText = new TextObject("{HIRELING_DECISION_TEXT}");
 
-            campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword_quit_sure", TORTextHelper.GetText("tor_hireling_quit_service_text", "I would like to quit my service."), QuitCondition, null);
+            campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword_quit_sure", TORTextHelper.GetText("tor_hireling_quit_service_text", "I would like to quit my service."), QuitCondition, null, 100, RestrictLeavingService);
             campaignGameStarter.AddDialogLine("payedsword_quit_sure", "payedsword_quit_sure", "payedsword_quit_choice", TORTextHelper.GetText("tor_hireling_are_you_sure_text", "Are you sure?"), null, null);
             campaignGameStarter.AddPlayerLine("payedsword_quit_choice", "payedsword_quit_choice", "payedsword_quit", TORTextHelper.GetText("tor_hireling_yes_leave_text", "Yes i want to leave"), null, null);
             campaignGameStarter.AddPlayerLine("payedsword_quit_choice", "payedsword_quit_choice", "lord_pretalk", TORTextHelper.GetText("tor_hireling_think_about_it_text", "I have to think about this."), null, null);
@@ -1269,7 +1269,23 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                     GameTexts.SetVariable("HIRELING_QUIT_TEXT", defaultText.Value);
                 }
             }
-            return IsEnlisted() && _durationInDays > MinimumServeDays;
+
+            return IsEnlisted();
+        }
+
+        private bool RestrictLeavingService(out TextObject explanation)
+        {
+            explanation = TextObject.GetEmpty();
+
+            //Service minimum enforced
+            if (_durationInDays < MinimumServeDays)
+            {
+                explanation = TORTextHelper.GetTextObject("tor_hirelinglordquit_serviceDuration", "{=str_tor_hirelinglordquit_serviceDuration}Minimum service is {MINIMUM_SERVICE_TIME} days.", true);
+                explanation.SetTextVariable("MINIMUM_SERVICE_TIME", MinimumServeDays);
+                return false;
+            }
+
+            return true;
         }
 
         private void DisplayPrompt(Action enlistPlayer)
@@ -1418,13 +1434,13 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
             campaignGameStarter.AddGameMenuOption("hireling_menu", "party_wait_leave", TORTextHelper.GetText("tor_hireling_desert_text", "Desert"), args =>
             {
-                var infoText = TORTextHelper.GetTextObject("tor_hireling_desert_warning", "This will damage your reputation with the {FACTION}. Serve for {MINIMUMSERVEDAYS} days, and speak to your enlisting Lord to avoid consequences.");
+                var infoText = TORTextHelper.GetTextObject("tor_hireling_desert_warning", "This will damage your reputation with the {FACTION}. Serve for {MINIMUM_SERVICE_TIME} days, and speak to your enlisting Lord to avoid consequences.");
                 var factionName = _hirelingEnlistingLord != null
                     ? _hirelingEnlistingLord.MapFaction.Name.ToString()
                     : "DATA CORRUPTION ERROR";
 
                 infoText.SetTextVariable("FACTION", factionName);
-                infoText.SetTextVariable("MINIMUMSERVEDAYS", MinimumServeDays);
+                infoText.SetTextVariable("MINIMUM_SERVICE_TIME", MinimumServeDays);
 
                 args.Tooltip = infoText;
                 args.optionLeaveType = GameMenuOption.LeaveType.Escape;
