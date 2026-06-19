@@ -245,8 +245,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             obj.AddPlayerLine("trainer_spellsinger_spellweaver", "choices_spellsinger", "spellweaver_choice_dialog", TORTextHelper.GetText("tor_spelltrainer_spellweaver", "I want to become a spellweaver."), () => Hero.MainHero.HasCareer(TORCareers.Spellsinger) && spellsingerCondition() && SpellweaverCondition(), null, 200, null);
             obj.AddPlayerLine("trainer_spellsinger_spellweaver", "choices_spellsinger", "spellweaver_companion_choice_dialog",
                 TORTextHelper.GetText("tor_spelltrainer_spellweaver_companion", "My companion is ready to become a spellweaver."),
-                () => Hero.MainHero.HasCareer(TORCareers.Spellsinger) && MobileParty.MainParty.HasSpellCasterMember() && spellsingerCondition() &&
-                      (Hero.MainHero.HasKnownLore("HighMagic") || Hero.MainHero.HasKnownLore("DarkMagic")) && MobileParty.MainParty.GetMemberHeroes()
+                () => MobileParty.MainParty.HasSpellCasterMember() && spellsingerCondition() && MobileParty.MainParty.GetMemberHeroes()
                           .AnyQ(x => x.IsSpellCaster() && x.CharacterObject.IsElf() && x != Hero.MainHero && !(x.HasKnownLore("DarkMagic") || x.HasKnownLore("HighMagic"))) &&
                 Hero.MainHero.HasUnlockedCareerChoiceTier(3), null, 200, null);
 
@@ -359,7 +358,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             void spellweaverCompanionPrompt()
             {
                 List<InquiryElement> list = new List<InquiryElement>();
-                var heroes = (from hero in Hero.MainHero.PartyBelongedTo.GetMemberHeroes() where hero != Hero.MainHero where hero.IsSpellCaster() where hero.CharacterObject.IsElf() select hero).ToList();
+                var heroes = (from hero in Hero.MainHero.PartyBelongedTo.GetMemberHeroes() where hero != Hero.MainHero where hero.IsSpellCaster() where hero.CharacterObject.IsElf() where !(hero.HasKnownLore("DarkMagic") || hero.HasKnownLore("HighMagic")) select hero).ToList();
 
                 foreach (var hero in heroes)
                 {

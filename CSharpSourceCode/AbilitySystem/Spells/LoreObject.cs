@@ -13,13 +13,13 @@ namespace TOR_Core.AbilitySystem.Spells
         public bool IsRestrictedToVampires { get; private set; }
         public List<string> DisabledForCultures { get; private set; } = new List<string>();
 
-        private LoreObject(string id, string name, string spritename, List<string> cultureIds, bool restricted = false)
+        private LoreObject(string id, string name, string spritename, List<string> disabledCultureIds, bool restrictedToVampires = false)
         {
             ID = id;
             Name = name;
             SpriteName = spritename;
-            IsRestrictedToVampires = restricted;
-            foreach (string cultureId in cultureIds)
+            IsRestrictedToVampires = restrictedToVampires;//Sly : why is this useful? Is this always used appropriately?
+            foreach (string cultureId in disabledCultureIds)
             {
                 if (cultureId != "none" || cultureId != string.Empty)
                 {
