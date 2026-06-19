@@ -62,13 +62,17 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(WorkshopsCampaignBehavior), "GetRandomItemAux")]
         public static bool OnlyProduceCultureMatchingItems(ref EquipmentElement __result, ItemCategory itemGroupBase, Town townComponent, Dictionary<ItemCategory, List<ItemObject>> ____itemsInCategory)
         {
+            if (itemGroupBase.IsTradeGood) return true;
+
+            if (townComponent == null) return true;
+
             if (____itemsInCategory.TryGetValue(itemGroupBase, out var allItemsInGroup))
             {
                 var weightedItems = new List<(ItemObject Item, float Weight)>();
 
                 foreach (ItemObject item in allItemsInGroup)
                 {
-                    if (townComponent != null && item.Culture == townComponent.Culture && item.ItemCategory == itemGroupBase)
+                    if (item.ItemCategory == itemGroupBase && (item.Culture == null || item.Culture == townComponent.Culture))
                     {
                         weightedItems.Add((item, GetWorkshopProductionWeight(item)));
                     }
