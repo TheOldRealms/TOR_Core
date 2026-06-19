@@ -38,6 +38,8 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
     [SaveableField(5)] private Dictionary<string, int> _lastPrayerTime = [];
     [SaveableField(6)] private Dictionary<string, int> _lastPrayerTroopRewardTime = [];
 
+
+    //TODO: Randy - Expose to appropriate xml.
     public static int DEVOTION_FOLLOWER_TROOPS_MIN = 3;
     public static int DEVOTION_FOLLOWER_TROOPS_MAX = 7;
     public static int DEVOTION_DEVOTED_TROOPS_MIN = 7;
