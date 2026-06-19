@@ -10638,9 +10638,9 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL2_1" name="{=Settlements.Settlement.name.village_AL2_1}Tal Jul-Finel" posX="1274.928" posY="822.517" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL2_1}The inhabitants of Tal Jul-Finel are all combat experienced warriors for the've fought countless enemies coming from the grey mountains. The hall of Tal Jul-Finel lies on the foot of the grey mountains. They are having numerous attacks on the forest from Dwarfs and Greenskins whom try to lay waste to their beloved forest.">
+  <Settlement id="village_AL2_1" name="{=Settlements.Settlement.name.village_AL2_1}Tal Jul-Finel" posX="1274.928" posY="822.517" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL2_1}The hall of Tal Jul-Finel lies at the foot of the grey mountains. They suffer numerous attacks from Dwarfs and Greenskins whom try to lay waste to their beloved forest. Their countless enemies make experienced warriors of its inhabitants.">
     <Components>
-      <Village id="village_comp_AL2_1" village_type="VillageType.silver_mine" hearth="250" bound="Settlement.town_AL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_AL2_1" village_type="VillageType.trapper" hearth="250" bound="Settlement.town_AL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_wood_elf_village_01" />
@@ -10651,7 +10651,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL2_2" name="{=Settlements.Settlement.name.village_AL2_2}Tal Varigan" posX="1273.769" posY="875.15" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL2_2}Tal Varigan is more often then not protecting it self from Dwarfen attacks. Dwarfs try to destroy their forest and the inhabitants of Tal Varigan put every resource they have into killing the invading Dwarfs. Tal Varigan's main product is silver spoils of war they've got from the Dwarfen caravans and mines.">
+  <Settlement id="village_AL2_2" name="{=Settlements.Settlement.name.village_AL2_2}Tal Varigan" posX="1273.769" posY="875.15" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL2_2}Tal Varigan is more often then not protecting itself from Dwarfen attacks. Dwarfs try to destroy their forest and the inhabitants of Tal Varigan put every resource they have into killing the invading Dwarfs. Tal Varigan's main product is silver spoils of war they've got from the Dwarfen caravans and mines.">
     <Components>
       <Village id="village_comp_AL2_2" village_type="VillageType.silver_mine" hearth="250" bound="Settlement.town_AL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
