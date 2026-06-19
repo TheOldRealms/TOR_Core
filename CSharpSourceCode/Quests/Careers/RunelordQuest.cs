@@ -42,6 +42,7 @@ public class RunelordQuest : QuestBase
     private void InitializeQuest()
     {
         var currentKnownRunes = Hero.MainHero.GetExtendedInfo().KnownEnchantmentBlueprints.Count;//Sly : the requirement of learning all of the "current" dwarf enchantments is set to the maximum and the player's already known runes are counted as normal so the player sees in the quest description, eg "7/22" instead of "0/15" when starting the quest.
+        //Sly : this produces an unexpected behaviour because if a companion learned an enchantment, it is removed from the menu for selection and therefore the player requires more runes from raid rewards in order to make up for the hidden rune unless the companion is removed from the party.
 
         var dwarfBehavior = Campaign.Current.GetCampaignBehavior<OathGoldBehavior>();
 

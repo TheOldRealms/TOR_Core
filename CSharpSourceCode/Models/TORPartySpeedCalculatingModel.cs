@@ -62,15 +62,30 @@ namespace TOR_Core.Models
 
             AddCareerPassivesForPartySpeed(mobileParty, ref result);
 
-            var heroes = mobileParty.GetMemberHeroes();
-            var partySpeedTraits = heroes.SelectQ(hero => hero.CharacterObject.GetCharacterEquipment())
-                .SelectMany(equipment => equipment.SelectQ(item => item.GetTraits())
-                    .SelectMany(traits => traits.WhereQ(trait => trait != null && trait.StatsTuple?.StatType == ItemTraitStatType.PartySpeed)));
 
-            var maxPartySpeedTrait = partySpeedTraits.OrderByDescending(t => t.StatsTuple.Value).FirstOrDefault();
-            if (maxPartySpeedTrait != null)
+            var scoutHero = mobileParty.EffectiveScout;
+
+            var scoutEquipment = scoutHero.CharacterObject.GetCharacterEquipment();
+            var speedItems = scoutEquipment?.WhereQ(item => item.GetTraits().WhereQ(trait => trait?.StatsTuple?.StatType == ItemTraitStatType.PartySpeed).Any());
+
+            var totalSpeedTraitBonus = 0f;
+            foreach (var item in speedItems)
             {
-                result.AddFactor(maxPartySpeedTrait.StatsTuple.Value / 100f, GameTexts.FindText("tor_generic_enchantedEquipment"));
+                var highest = 0f;
+                foreach (var trait in item.GetTraits())
+                {
+                    if (trait.StatsTuple.Value > highest)
+                    {
+                        highest = trait.StatsTuple.Value;
+                    }
+                }
+
+                totalSpeedTraitBonus += highest;
+            }
+
+            if (speedItems.Any())
+            {
+                result.AddFactor(totalSpeedTraitBonus / 100f, GameTexts.FindText("tor_generic_enchantedEquipment"));
             }
 
             if (leaderHero.HasCareer(TORCareers.KnightOldWorld))

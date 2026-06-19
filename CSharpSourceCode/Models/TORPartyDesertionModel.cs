@@ -26,7 +26,7 @@ namespace TOR_Core.Models
                 }
             }
 
-            return base.GetTroopsToDesert(mobileParty);
+            return base.GetTroopsToDesert(mobileParty);//Sly : the default model has no way to account for custom resources. Only starvation (morale) and wage desertion can be passed to it; custom resource desertion must be handled by us.
         }
     }
 }
