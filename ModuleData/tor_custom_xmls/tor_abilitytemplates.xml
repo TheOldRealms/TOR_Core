@@ -2846,7 +2846,7 @@
         <TriggeredEffect>aerial_shield</TriggeredEffect>
     </AbilityTemplate>
     <AbilityTemplate StringID="DwellersBelow"
-                     Name="{=dwellers_below_label_str}Dwelllers Below"
+                     Name="{=dwellers_below_label_str}Dwellers Below"
                      SpriteName="dwellersbelow_icon"
                      CoolDown="70"
                      WindsOfMagicCost="35"
