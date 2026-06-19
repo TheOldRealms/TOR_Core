@@ -224,10 +224,8 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _legacyOfGrungniPassive1.Initialize(CareerID, "Runesmith Guild provides more 'Oathgold' from delivered steel.", "LegacyOfGrungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true));
         _legacyOfGrungniPassive2.Initialize(CareerID, "Ironsmelters within Karaks provide +2 'Oathgold' daily.", "LegacyOfGrungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
         _legacyOfGrungniPassive3.Initialize(CareerID, "-33% cost to apply a 'Rune' to troops.", "LegacyOfGrungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
-        _legacyOfGrungniPassive4.Initialize(CareerID, "Smithing levels increase personal range/radius of 'Rune' abilities by 0.005%.", "LegacyOfGrungni", false,
-            ChoiceType.Passive, new List<CareerChoiceObject.MutationObject>()
-            {
-            }, null);
+        _legacyOfGrungniPassive4.Initialize(CareerID, "Smithing levels increase personal range/radius of 'Rune' abilities by 0.05%.", "LegacyOfGrungni", false,
+            ChoiceType.Passive, new List<CareerChoiceObject.MutationObject>(){}, null);
 
         _anvilOfDoomPassive1.Initialize(CareerID, "+15% personal 'Magic' damage.", "AnvilOfDoom", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 15), AttackTypeMask.Spell));
         _anvilOfDoomPassive2.Initialize(CareerID, "+5 'Oathgold' daily when an 'Anvil of Doom' is present.", "AnvilOfDoom", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CustomResourceGain, false, x => x.HeroObject is { PartyBelongedTo: not null } && x.HeroObject.PartyBelongedTo.HasAnvilOfDoom()));
