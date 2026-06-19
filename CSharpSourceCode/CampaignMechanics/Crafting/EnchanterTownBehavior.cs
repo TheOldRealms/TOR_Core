@@ -586,10 +586,10 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                         return "tor_book_learn_enchanting";
                     case TORConstants.Cultures.DAWI:
                         return "tor_book_learn_runecraft";
+                    default:
+                        TORCommon.Log("ENCHANTMENT: could not find manual item for" + Hero.MainHero.Culture.StringId, LogLevel.Warn);
+                        return "tor_book_learn_enchanting";
                 }
-                
-                TORCommon.Log("ENCHANTMENT: could not find manual item for" + Hero.MainHero.Culture.StringId, LogLevel.Warn);
-                return "";
             }
 
 
