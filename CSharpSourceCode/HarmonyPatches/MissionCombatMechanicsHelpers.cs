@@ -12,7 +12,7 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public static class MissionCombatMechanicsHelpers
     {
-        private const float OrcAiMeleeInitialEnergyMultiplier = 2.0f;
+        private const float OrcAiMeleeInitialEnergyMultiplier = 1.2f;
 
         [ThreadStatic]
         private static Agent _currentCombatStatAttackerAgent;
