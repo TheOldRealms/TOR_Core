@@ -7,13 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.CharacterCreation
 {
     public static class FaceGenHelper
     {
-        private static readonly string SkinFilePath = TORPaths.TORArmoryModuleDataPath + "tor_skins.xml";
         private static XmlDocument SkinDocument;
 
 
@@ -95,15 +95,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         private static void LoadSkinsXML()
         {
-            if (File.Exists(SkinFilePath))
-            {
-                var settings = new XmlReaderSettings();
-                settings.IgnoreComments = true;
-                var reader = XmlReader.Create(SkinFilePath, settings);
-
-                SkinDocument = new XmlDocument();
-                SkinDocument.Load(reader);
-            }
+            SkinDocument = MBObjectManager.GetMergedXmlForNative("soln_skins", out _);
         }
     }
 }
