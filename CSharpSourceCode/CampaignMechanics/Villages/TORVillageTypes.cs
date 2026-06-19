@@ -109,7 +109,7 @@ namespace TOR_Core.CampaignMechanics
             {
                 if (villageType.PrimaryProduction.StringId == "grain") continue;
 
-                AddVillageProductions(villageType, [("grain", 10f)]);
+                AddVillageProductions(villageType, [("grain", 5f)]);
             }
         }
 
