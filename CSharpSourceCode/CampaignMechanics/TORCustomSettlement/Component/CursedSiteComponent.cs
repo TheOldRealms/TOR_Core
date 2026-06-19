@@ -2,23 +2,15 @@
 using SandBox.View.Map;
 using System;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
-using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
-using TaleWorlds.ObjectSystem;
 using TaleWorlds.ScreenSystem;
-using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 
 public class CursedSiteComponent : TORBaseSettlementComponent, IDisposable
 {
-
-    public static int MIN_TROOP_COUNT = 1;
-    public static int MAX_TROOP_COUNT = 4;
     private int _wardHours = 0;
     private bool _isMarkerShown = false;
     private GameEntity _markerEntity;
@@ -90,27 +82,6 @@ public class CursedSiteComponent : TORBaseSettlementComponent, IDisposable
             mapScene.Scene.AddDecalInstance(_markerDecal, "editor_set", false);
             _markerEntity.AddComponent(_markerDecal);
         }
-    }
-    
-    public override void OnPartyEntered(MobileParty party)
-    {
-
-        if (party == null || party.LeaderHero == null || party == MobileParty.MainParty) return;
-        var leaderHero = party.LeaderHero;
-
-        if (!leaderHero.IsNecromancer() && !leaderHero.IsVampire()) return;
-
-        var freeSlots = party.Party.PartySizeLimit - party.MemberRoster.TotalManCount;
-        if (freeSlots <= 0) return;
-
-        var troop = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_spirit_host");
-        int raisePower = Math.Max(1, (int)leaderHero.GetExtendedInfo().SpellCastingLevel);
-        var count = MBRandom.RandomInt(MIN_TROOP_COUNT, MAX_TROOP_COUNT);
-        count *= raisePower;
-        if (freeSlots < count) count = freeSlots;
-        party.MemberRoster.AddToCounts(troop, count);
-        CampaignEventDispatcher.Instance.OnTroopRecruited(leaderHero, Settlement, null, troop, count);
-        Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().SetLastGhostRecruitmentTime(leaderHero, (int)CampaignTime.Now.ToDays);
     }
 
     public void Dispose()
