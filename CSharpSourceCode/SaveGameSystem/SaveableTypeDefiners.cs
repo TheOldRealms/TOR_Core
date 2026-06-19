@@ -31,7 +31,7 @@ namespace TOR_Core.SaveGameSystem
         protected override void DefineClassTypes()
         {
             //General definitions between 0-99
-            //Sly : I thought about more organization within the first hundred between settlements, info, etc... nut then I decided not to.
+            //Sly : I thought about more organization within the first hundred between settlements, info, etc... but then I decided not to.
             AddClassDefinition(typeof(HeroExtendedInfo), 0);
             AddClassDefinition(typeof(MobilePartyExtendedInfo), 1);
             AddClassDefinition(typeof(TORBaseSettlementComponent), 2);
