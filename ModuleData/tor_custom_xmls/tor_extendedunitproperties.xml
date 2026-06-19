@@ -10216,7 +10216,7 @@
   <CharacterExtendedInfo id="tor_wanderer_vampire_3">
     <Abilities>
       <string>StrengthOfCombat</string>
-      <string>Chillwind</string>
+      <string>AshesAndDust</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>
