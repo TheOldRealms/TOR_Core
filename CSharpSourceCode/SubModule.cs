@@ -61,6 +61,7 @@ using TOR_Core.Utilities;
 using TOR_Core.BattleMechanics.Voice;
 using TOR_Core.Extensions;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
+using TaleWorlds.ModuleManager;
 
 namespace TOR_Core
 {
@@ -74,6 +75,7 @@ namespace TOR_Core
         protected override void OnBeforeInitialModuleScreenSetAsRoot()
         {
             TORCommon.Say("TOR Core loaded.");
+            MBDebug.Print("TOR Core version loaded : " + ModuleHelper.GetModuleInfo("TOR_Core").Version.ToString());
         }
 
         protected override void OnSubModuleLoad()
