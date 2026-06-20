@@ -23,6 +23,7 @@ namespace TOR_Core.Utilities
             starter.RemoveBehaviors<IncidentsCampaignBehaviour>();
             starter.RemoveBehaviors<SallyOutsCampaignBehavior>();
             starter.RemoveBehaviors<CompanionsCampaignBehavior>();
+            starter.RemoveBehaviors<BarberCampaignBehavior>();//causes filtering of hair and beard styles based on culture
 
             var issues = starter.CampaignBehaviors.Where(x => x.GetType().FullName.Contains("Issue")).ToList();
             foreach (var issue in issues)
