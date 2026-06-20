@@ -237,14 +237,14 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                     .Where(i => i.IsTorItem()) // no vanilla
                     .Where(i => i.Culture == heroCulture)
                     .Where(i => (i.IsWeapon() || i.IsArmor() || i.ItemType == ItemObject.ItemTypeEnum.Shield))
-                    .Where(i => !i.IsCraftedByPlayer)
+                    .Where(i => !(i.IsCraftedByPlayer || i.HasAnyLootTraits()))
                     .Where(i => !artifactIds.Contains(i.StringId))
                     .GroupBy(i => i.StringId)
                     .Select(g => g.First())
                     .ToList();
 
                 var highTierCultureItems = cultureItems
-                    .Where(i => i.Tier >= ItemObject.ItemTiers.Tier3)
+                    .Where(i => i.Tier >= ItemObject.ItemTiers.Tier4)
                     .ToList();
 
                 var cultureWeaponOrArmorItems = cultureItems
@@ -308,12 +308,11 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
 
                     if (cultureCandidates.Count > 0)
                     {
-                        var tier3 = cultureCandidates.Where(i => i.Tier == ItemObject.ItemTiers.Tier3).ToList();
                         var tier4 = cultureCandidates.Where(i => i.Tier == ItemObject.ItemTiers.Tier4).ToList();
                         var tier5 = cultureCandidates.Where(i => i.Tier == ItemObject.ItemTiers.Tier5).ToList();
                         var tier6 = cultureCandidates.Where(i => i.Tier == ItemObject.ItemTiers.Tier6).ToList();
 
-                        var weightedTiers = new List<(float Weight, List<ItemObject> Items)>{(40f, tier3),(30f, tier4),(20f, tier5),(10f, tier6),}
+                        var weightedTiers = new List<(float Weight, List<ItemObject> Items)>{(30f, tier4),(20f, tier5),(10f, tier6),}
                         .Where(t => t.Items.Count > 0)
                         .ToList();
 
@@ -374,6 +373,9 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
 
                 foreach (var item in items)
                 {
+                    unmodifiedItems.Add(item);
+                        continue;
+
                     var isEquipmentItem =
                         item.IsWeapon() ||
                         item.IsArmor() ||

@@ -370,7 +370,7 @@ public class TeefBehavior : CampaignBehaviorBase
             value = 100000;
             var option = new TextObject("{GOLD_COST}{GOLD_ICON}");
             option.SetTextVariable("GOLD_COST", value);
-            option.SetTextVariable("OATHGOLD_SYMBOL", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText());
+            //option.SetTextVariable("TEEF_ICON", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText());//Sly : why is this here? where is the gold_icon variable set that it is never handled locally?
 
             GameTexts.SetVariable("GOLD_COST", value);
             var hint = TORTextHelper.GetTextObject("tor_gs_spend_gold_hint_text", "Spend {GOLD_COST} Gold");

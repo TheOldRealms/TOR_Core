@@ -56,9 +56,10 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             return _toolTipFunction != null ? _toolTipFunction.Invoke() : [];
         }
 
-        public string GetCustomResourceIconAsText(bool useLarge = false)
+        public string GetCustomResourceIconAsText(bool useLarge = false, int extendValue = 0)
         {
-            return string.Format("<img src=\"{0}\"/>", useLarge ? LargeIconName : SmallIconName);
+            var extendString = (extendValue == 0) ? "" : string.Format(" extend=\"{0}\"", extendValue);
+            return string.Format("<img src=\"{0}\"{1}>", (useLarge ? LargeIconName : SmallIconName), extendString);
         }
 
 

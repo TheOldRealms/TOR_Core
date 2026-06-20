@@ -17,6 +17,8 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ImageIdentifiers;
+using TaleWorlds.Engine;
+using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
@@ -47,7 +49,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
     private const int SteelGain = 10;
     private const int FineSteelGain = 50;
     private const int GromrilGain = 150;
-    private const int WheatToOathGoldGain = 2;
+    private const int GrainValueToOathGoldRatio = 50;
     private const int ArtilleryCrewOathGoldCost = 50;
     private const int ArtilleryCrewGoldCost = 500;
     private const int RangerOathGoldCost = 20;
@@ -261,6 +263,9 @@ public class OathGoldBehavior : CampaignBehaviorBase
         MBTextManager.SetTextVariable("MINERS_GUILD_ICON", "<img src=\"miners_icon\" extend=\"8\">");
         MBTextManager.SetTextVariable("BREWERS_GUILD_ICON", "<img src=\"brewers_icon\" extend=\"8\">");
         MBTextManager.SetTextVariable("WARRIORS_GUILD_ICON", "<img src=\"warriors_icon\" extend=\"8\">");
+
+        GameTexts.SetVariable("OATHGOLD_ICON", CustomResourceManager.GetResourceObject("OathGold").GetCustomResourceIconAsText(false, 7));
+        GameTexts.SetVariable("WHEAT_ICON", "<img src=\"General\\Icons\\Production\\wheat\" extend=\"6\">");//wheat comes out as white. Need to look at if it's the brush that needs to have the colour, or if handled in code. Would prefer to avoid any hardcoding.
 
         AddRuneSmithDialogue(campaignGameStarter);
         AddEngineerDialogue(campaignGameStarter);
@@ -505,7 +510,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
             }
 
 
-            items.WhereQ(x => (!x.IsCraftedByPlayer || x.HasAnyLootTraits()) && !excludedItems.Contains(x.StringId))
+            items.WhereQ(x => !(x.IsCraftedByPlayer || x.HasAnyLootTraits()) && !excludedItems.Contains(x.StringId))
                 .ToMBList().ForEach(x => roster.Add(new ItemRosterElement(x, MBRandom.RandomInt(1, 2))));
 
             InventoryScreenHelper.OpenScreenAsTrade(roster, Settlement.CurrentSettlement.Town);
@@ -604,7 +609,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
     {
         if (currentAmount < threshold) return;
 
-        var option = new TextObject("{OATHGOLD_COST}{OATHGOLD_SYMBOL}");
+        var option = new TextObject("{OATHGOLD_COST}{OATHGOLD_ICON}");
         option.SetTextVariable("OATHGOLD_COST", threshold);
         var hint = TORTextHelper.GetTextObject("tor_dw_spend_oath_gold_hint_text", "Spend {OATHGOLD_COST} Oath Gold on this guild");
         hint.SetTextVariable("OATHGOLD_COST", threshold);
@@ -615,12 +620,16 @@ public class OathGoldBehavior : CampaignBehaviorBase
     {
         if (currentAmount < threshold) return;
 
-        var gainedOathGold = threshold / WheatToOathGoldGain;
-        var itemTitle = TORTextHelper.GetText("tor_dw_brewers_deliverWheat_item_title", "wheat", "Grain", true);
-        var hint = TORTextHelper.GetTextObject("tor_dw_brewers_deliverWheat_item_hint", "wheat", "Deliver {WHEAT_COUNT} grain for {OATH_GOLD_GAIN_WHEAT} Oath Gold.", true);
-        hint.SetTextVariable("WHEAT_COUNT", threshold);
-        hint.SetTextVariable("OATH_GOLD_GAIN_WHEAT", gainedOathGold);
-        options.Add(new InquiryElement(threshold.ToString(), itemTitle, new ItemImageIdentifier(grainItem), true, hint.ToString()));
+        var gainedOathGold = CalculateOathGoldFromGrain(Hero.MainHero.CurrentSettlement.Town, threshold);
+        var itemTitle = TORTextHelper.GetTextObject("tor_dw_brewers_deliverWheat_item_title", "wheat", "{WHEAT_COUNT} {WHEAT_ICON} for {OATH_GOLD_GAIN_WHEAT} {OATHGOLD_ICON}", true);
+        itemTitle.SetTextVariable("WHEAT_COUNT", threshold);
+        itemTitle.SetTextVariable("OATH_GOLD_GAIN_WHEAT", gainedOathGold);
+
+        //no hint, just show the values directly on the option.
+        //var hint = TORTextHelper.GetTextObject("tor_dw_brewers_deliverWheat_item_hint", "wheat", "Deliver {WHEAT_COUNT} grain for {OATH_GOLD_GAIN_WHEAT} Oath Gold.", true);
+        //hint.SetTextVariable("WHEAT_COUNT", threshold);
+        //hint.SetTextVariable("OATH_GOLD_GAIN_WHEAT", gainedOathGold);
+        options.Add(new InquiryElement(threshold.ToString(), itemTitle.ToString(), new ItemImageIdentifier(grainItem)));
     }
 
     private void AddSteelDeliveryOption(List<InquiryElement> options, ItemObject steelItem, int currentAmount, int requiredAmount, int oathGoldGain, string variation)
@@ -1303,27 +1312,42 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
                 if (item == DefaultItems.Grain)
                 {
-                    AddWheatDonationOption(selectable, 30, element.Amount, item);
-                    AddWheatDonationOption(selectable, 50, element.Amount, item);
-                    AddWheatDonationOption(selectable, 100, element.Amount, item);
+                    int[] optionAmounts = [30, 50, 100, 250, 500, 1000, 2000, 5000];
+                    for (int i = 0; i < optionAmounts.Length; i++)
+                    {
+                        if (element.Amount > optionAmounts[i])
+                        {
+                            AddWheatDonationOption(selectable, optionAmounts[i], element.Amount, item);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
                 }
             }
             var title = TORTextHelper.GetText("tor_dw_brewers_deliverWheat_prompt_title", "Deliver Grain");
             var description = TORTextHelper.GetText("tor_dw_brewers_deliverWheat_prompt_description", "Select how much grain you wish to deliver to the guild.");
 
+            //Sly : a slider is probably a better visualisation for the player and gives more fine-tuned control with a single entry into the selection.
             var inquirydata = new MultiSelectionInquiryData(title, description, selectable, true, 1, 1, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
                 AddOathGoldForGrain, null);
 
             void AddOathGoldForGrain(List<InquiryElement> inquiryElements)
             {
-                var amout = int.Parse(inquiryElements.FirstOrDefault().Identifier as string);
+                var amount = int.Parse(inquiryElements.FirstOrDefault().Identifier as string);
                 var grain = DefaultItems.Grain;
 
+                Hero.MainHero.PartyBelongedTo.ItemRoster.AddToCounts(grain, -amount);
+                
+                var currentSettlement = Hero.MainHero.CurrentSettlement;
+                var oathGoldToReceive = CalculateOathGoldFromGrain(currentSettlement.Town, amount);
 
-                Hero.MainHero.PartyBelongedTo.ItemRoster.AddToCounts(grain, -amout);
-
-
-                Hero.MainHero.AddCultureSpecificCustomResource(amout / WheatToOathGoldGain);
+                Hero.MainHero.AddCultureSpecificCustomResource(oathGoldToReceive);
+                
+                //add the grain to the settlement and update category data to adjust for a subsequent donation within the same conversation
+                currentSettlement.ItemRoster.AddToCounts(grain, amount);
+                currentSettlement.Town.MarketData.UpdateStores();
             }
 
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
@@ -1529,6 +1553,21 @@ public class OathGoldBehavior : CampaignBehaviorBase
         return hero;
     }
 
+    private int CalculateOathGoldFromGrain(Town town, int grainAmount)
+    {
+        var grain = DefaultItems.Grain;
+                
+        //use the town's current grain price to determine value to the guild
+        //passing the party allows the player's trade skill value to apply its trade penalty reduction increasing the oath gold gained
+        var grainValue = town.MarketData.GetPrice(grain, Hero.MainHero.PartyBelongedTo, true, null) - 1;
+        grainValue = Math.Max(grainValue, 1);//precautionary
+        grainValue *= grainAmount;
+
+        //resource proportional to context value
+        int oathGoldEquivalent = grainValue / GrainValueToOathGoldRatio;
+
+        return oathGoldEquivalent;
+    }
 
     public override void SyncData(IDataStore dataStore)
     {
