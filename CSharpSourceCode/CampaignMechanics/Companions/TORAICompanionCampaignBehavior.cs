@@ -53,7 +53,7 @@ namespace TOR_Core.CampaignMechanics.Companions
         {
             if (heroCandidate.IsSpecial)
             {
-                isAllowed = false;//AI companions, and troops turned to companions are set as special. These 
+                isAllowed = false;//AI companions, and troops turned to companions are occupation=Special.
             }
         }
 

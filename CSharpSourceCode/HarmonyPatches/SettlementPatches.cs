@@ -24,6 +24,7 @@ using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
+using static SandBox.ViewModelCollection.Nameplate.SettlementNameplateEventItemVM;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -199,7 +200,7 @@ namespace TOR_Core.HarmonyPatches
         {
             if (settlement.IsVillage)
             {
-                if (__instance.EventsList.AnyQ(x => x.Type == 6))
+                if (__instance.EventsList.AnyQ(x => x.Type == ((int)SettlementEventType.Production)))
                 {
 			        string text = "";
                     if (settlement.Village.VillageType == TORVillageTypes.GreenskinSwineFarm)
