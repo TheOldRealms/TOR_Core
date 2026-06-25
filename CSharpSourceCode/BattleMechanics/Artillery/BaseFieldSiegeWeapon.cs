@@ -5,6 +5,7 @@ using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.AI.CommonAIFunctions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.Artillery
 {
@@ -114,6 +115,39 @@ namespace TOR_Core.BattleMechanics.Artillery
                     if (!sp.IsDeactivated) sp.SetIsDeactivatedSynched(true);
                 }
             }
+        }
+        
+        protected override Mission.Missile ShootProjectileAux(ItemObject missileItem, bool randomizeMissileSpeed)
+        {
+            //code copied and adjusted from hun's previous harmony patch from TOR 1.2.11 and earlier.
+            if(LastShooterAgent != null && LastShooterAgent.IsAIControlled)
+            {
+                if (Target == null) return base.ShootProjectileAux(missileItem, randomizeMissileSpeed);
+                Vec3 launchVec = Vec3.Zero;
+                float angle = GetTargetReleaseAngle(Target.SelectedWorldPosition, out launchVec);
+                if (angle == float.NegativeInfinity)
+                {
+                    TORCommon.Log("BaseFieldSiegeWeapon : Tried to shoot field siege weapon without a valid ballistics solution, using base implementation.", NLog.LogLevel.Error);
+
+                    return base.ShootProjectileAux(missileItem, randomizeMissileSpeed);
+                }
+
+                Mat3 identity = Mat3.Identity;
+                identity.f = launchVec;
+                identity.Orthonormalize();
+
+				return Mission.Current.AddCustomMissile(LastShooterAgent, 
+                    new MissionWeapon(missileItem, null, null, 1), 
+                    ProjectileEntityCurrentGlobalPosition, 
+                    identity.f, 
+                    identity, 
+                    8f, 
+                    ProjectileVelocity, 
+                    addRigidBody: false, 
+                    this);
+            }
+
+            return base.ShootProjectileAux(missileItem, randomizeMissileSpeed);
         }
     }
 }
