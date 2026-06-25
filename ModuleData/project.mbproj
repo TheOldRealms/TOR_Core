@@ -3,6 +3,5 @@
 	<outputDirectory>../MBModule/MBModule/</outputDirectory>
 	<XMLDirectory>../WOTS/Modules/TOR_Core/</XMLDirectory>
 	<ModuleAssemblyDirectory>../WOTS/bin/</ModuleAssemblyDirectory>
-	<file id="soln_module_sound" name="ModuleData/tor_sounds.xml" type="module_sound" />
 	<file id="soln_soundtrack" name="Music/soundtrack.xml" type="soundtrack" />
 </base>
