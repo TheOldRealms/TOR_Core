@@ -667,16 +667,11 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
             var leaderReligion = party.LeaderHero.GetDominantReligion();
             if (leaderReligion != null)
             {
-                var shrineSettlement = TORCommon.FindSettlementsAroundPosition(
-                    party.Position.ToVec2(),
-                    30,
-                    x => x.SettlementComponent is ShrineComponent shrineComponent && shrineComponent.Religion == leaderReligion)
-                    .OrderBy(x => x.Position.DistanceSquared(party.Position))
-                    .FirstOrDefault();
+                var shrineSettlement = TORCommon.FindNearestSettlement(party, 20f, x => x.SettlementComponent is ShrineComponent shrineComponent && shrineComponent.Religion == leaderReligion);
                 if (shrineSettlement != null)
                 {
-                    party.SetMoveGoToSettlement(shrineSettlement, MobileParty.NavigationType.Default, false);
-                    party.Ai.SetDoNotMakeNewDecisions(true);
+                    SetPartyAiAction.GetActionForVisitingSettlement(party, shrineSettlement, MobileParty.NavigationType.Default, false, false);
+                    //party.Ai.SetDoNotMakeNewDecisions(true);
                 }
             }
         }
@@ -685,11 +680,11 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         {
             if (!_lastGhostRecruitmentTime.ContainsKey(party.LeaderHero.StringId) || _lastGhostRecruitmentTime[party.LeaderHero.StringId] + CursedSiteMenuLogic.MinimumDaysBetweenRaisingGhosts < (int)CampaignTime.Now.ToDays)
             {
-                var settlements = TORCommon.FindSettlementsAroundPosition(party.Position.ToVec2(), 20, x => x.SettlementComponent is CursedSiteComponent);
-                if (settlements.Count > 0)
+                var cursedSite = TORCommon.FindNearestSettlement(party, 20f, x => x.SettlementComponent is CursedSiteComponent);
+                if (cursedSite != null)
                 {
-                    party.SetMoveGoToSettlement(settlements.First(), MobileParty.NavigationType.Default, false);
-                    party.Ai.SetDoNotMakeNewDecisions(true);
+                    SetPartyAiAction.GetActionForVisitingSettlement(party, cursedSite, MobileParty.NavigationType.Default, false, false);
+                    //party.Ai.SetDoNotMakeNewDecisions(true);
                 }
             }
         }
