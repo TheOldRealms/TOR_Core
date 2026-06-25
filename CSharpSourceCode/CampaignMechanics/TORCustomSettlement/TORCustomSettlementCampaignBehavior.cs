@@ -740,8 +740,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
             var site = settlement.SettlementComponent as CursedSiteComponent;
             if (site.IsActive)
             {
-
-                var affectedParties = TORCommon.FindPartiesAroundPosition(settlement.Position.ToVec2(), TORConstants.DEFAULT_CURSE_RADIUS, x => (x.IsLordParty && x.LeaderHero != null && x.LeaderHero.GetDominantReligion() != site.Religion) && (x.IsLordParty && x.LeaderHero != null && x.LeaderHero.Culture.StringId != "mousillon"));
+                var affectedParties = TORCommon.FindPartiesAroundPosition(settlement.Position.ToVec2(), TORConstants.DEFAULT_CURSE_RADIUS, x => (x.IsLordParty && x.LeaderHero != null && x.LeaderHero.GetDominantReligion() != site.Religion && x.LeaderHero.Culture.StringId != TORConstants.Cultures.MOUSILLON));
 
                 if (affectedParties.Contains(MobileParty.MainParty))
                 {
