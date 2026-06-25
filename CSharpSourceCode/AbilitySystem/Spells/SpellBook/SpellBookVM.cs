@@ -83,21 +83,29 @@ namespace TOR_Core.AbilitySystem.SpellBook
                 {
                     LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero, _isTrainerMode));
                 }
-                else if (_isTrainerMode && Hero.MainHero.HasCareer(TORCareers.GrailDamsel) && Hero.MainHero.HasKnownLore(lore.ID) && CharacterObject.OneToOneConversationCharacter != null && _trainerCulture == TORConstants.Cultures.BRETONNIA)
+                //permitting damsels to see LoreOfHeavens
+                else if (_isTrainerMode && CharacterObject.OneToOneConversationCharacter != null && _trainerCulture == TORConstants.Cultures.BRETONNIA && _currentHero.HasAttribute("PriestLady") && _currentHero.HasKnownLore(lore.ID))
                 {
                     LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero, _isTrainerMode));
                 }
-                else if (_isTrainerMode && Hero.MainHero.HasCareer(TORCareers.Necrarch) && Hero.MainHero.HasKnownLore(lore.ID) && CharacterObject.OneToOneConversationCharacter != null)
+
+                //necrarchs can't access trainers who know all the lores they can learn, so they can learn spells from irrelevant trainers as long as the player has learned the lore
+                //only the player necrarch benefits, other companions must be trained through an appropriate trainer
+                else if (_isTrainerMode && Hero.MainHero.HasCareer(TORCareers.Necrarch) && _currentHero == Hero.MainHero && Hero.MainHero.HasKnownLore(lore.ID) && CharacterObject.OneToOneConversationCharacter != null)
                 {
                     LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero, _isTrainerMode));
                 }
-                else if (_isTrainerMode && Hero.MainHero.HasCareer(TORCareers.Spellsinger) && Hero.MainHero.HasKnownLore(lore.ID) &&
-                         CharacterObject.OneToOneConversationCharacter != null)
+
+                //permitting spellsingers to see HighMagic and DarkMagic lores
+                else if (_isTrainerMode && CharacterObject.OneToOneConversationCharacter != null  && _trainerCulture == TORConstants.Cultures.ASRAI && _currentHero.Culture.StringId == TORConstants.Cultures.ASRAI && _currentHero.CharacterObject.IsElf() && _currentHero.HasKnownLore(lore.ID))
                 {
                     LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero, _isTrainerMode));
                 }
             }
-            CurrentLore = LoreObjects[0];
+            if (CurrentLore == null || !LoreObjects.Contains(CurrentLore))
+            {
+                CurrentLore = LoreObjects[0];
+            }
         }
 
         public override void RefreshValues()

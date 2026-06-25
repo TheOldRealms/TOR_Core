@@ -87,21 +87,27 @@ namespace TOR_Core.CampaignMechanics
         {
             if (_independentClans.ContainsKey(clan.StringId))
             {
-                if (!clan.Heroes.WhereQ(x => x.IsLord).Any())//if someone has executed all of the nobles, just delete it instead of an empty clan joining kingdoms
+                if (!clan.Heroes.WhereQ(x => x.IsLord).Any())//if someone has executed all of the nobles, just delete it instead of an empty clan joining kingdoms. AI companions are insufficient for keeping a clan alive, the game has expectations about the Occupation of heroes for party lead selection, etc...
                 {
                     DiscontinueClan(clan);
                     return;
                 }
-                if (MBRandom.RandomFloat > 0.7f)
+
+                if (MBRandom.RandomFloat < 0.3f)
                 {
                     var candidateKingdoms = GetCandidateKingdomsForJoiningClan(clan);
                     if (candidateKingdoms != null && candidateKingdoms.Count() > 0)
                     {
-                        var targetKingdom = candidateKingdoms.MinBy(x => x.CurrentTotalStrength);
+                        var targetKingdom = candidateKingdoms.MinBy(x => x.Heroes.Count);
                         if (targetKingdom != null)
                         {
-                            ChangeKingdomAction.ApplyByJoinToKingdom(clan, targetKingdom);
-                            return;
+                            var chance = 10 / (targetKingdom.Heroes.Count * 2);
+
+                            if (MBRandom.RandomFloat < chance)
+                            {
+                                ChangeKingdomAction.ApplyByJoinToKingdom(clan, targetKingdom);
+                                return;
+                            }
                         }
                     }
                 }

@@ -108,7 +108,7 @@ namespace TOR_Core.Models
                 xp += session.AgentsAffectedByStatusEffectsCount * 10;
             }
 
-            // Single-target spells get 2x XP to balance against AoE spells
+            // Single-target spells get increased XP to balance against AoE spells
             if (session.AbilityTemplate != null && IsSingleTargetAbility(session.AbilityTemplate))
             {
                 xp *= 5;
@@ -259,13 +259,13 @@ namespace TOR_Core.Models
                         {
                             explainedNumber.AddFactor(0.2f);
                             var smithingValue = playerHero.GetSkillValue(DefaultSkills.Crafting);
-                            explainedNumber.AddFactor(0.005f * smithingValue);
+                            explainedNumber.AddFactor(0.05f * smithingValue);
                         }
 
                         if (playerHero.HasCareerChoice("LegacyOfGrungniPassive4"))
                         {
                             var smithingValue = playerHero.GetSkillValue(DefaultSkills.Crafting);
-                            explainedNumber.AddFactor(0.005f * smithingValue);
+                            explainedNumber.AddFactor(0.05f * smithingValue);
                         }
                     }
                 }

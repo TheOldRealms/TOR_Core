@@ -166,7 +166,7 @@ namespace TOR_Core.Items
         /// <summary>
         /// Loads an xml containing the extended ItemObject properties to be added or overwritten.
         /// </summary>
-        /// <param name="filePath">A file path including the file type extension of the target xml.</param>
+        /// <param name="filePath">A file path including the file type extension of the target xml. Empty string loads TOR's xml.</param>
         /// <param name="clearExistingMapping">Clears all prior keys from the dictionary; default is false.</param>
         /// <remarks>
         /// Loading an empty entry from xml for a given id will clear the prior properties.

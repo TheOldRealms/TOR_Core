@@ -7,6 +7,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 using TOR_Core.CampaignMechanics.UniqueSpawns;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;

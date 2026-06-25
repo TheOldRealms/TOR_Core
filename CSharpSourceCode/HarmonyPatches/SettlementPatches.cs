@@ -20,9 +20,11 @@ using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
+using static SandBox.ViewModelCollection.Nameplate.SettlementNameplateEventItemVM;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -83,11 +85,14 @@ namespace TOR_Core.HarmonyPatches
             __result = 3;
         }
 
+        /// <summary>
+        /// Restricts asrai caravans to only trading with asrai towns.
+        /// </summary>
         [HarmonyPrefix]
         [HarmonyPatch(typeof(CaravansCampaignBehavior), "GetTradeScoreForTown")]
         public static bool NoValueForRestrictedSettlement(ref float __result, MobileParty caravanParty, Town town)
         {
-            if (caravanParty.Owner?.Culture?.StringId != town.Owner?.Culture?.StringId && town.Owner?.Culture?.StringId == TORConstants.Cultures.ASRAI)
+            if (caravanParty.Owner?.Culture?.StringId == TORConstants.Cultures.ASRAI && town.Culture.StringId != TORConstants.Cultures.ASRAI)
             {
                 __result = 0;
                 return false;
@@ -195,7 +200,7 @@ namespace TOR_Core.HarmonyPatches
         {
             if (settlement.IsVillage)
             {
-                if (__instance.EventsList.AnyQ(x => x.Type == 6))
+                if (__instance.EventsList.AnyQ(x => x.Type == ((int)SettlementEventType.Production)))
                 {
 			        string text = "";
                     if (settlement.Village.VillageType == TORVillageTypes.GreenskinSwineFarm)

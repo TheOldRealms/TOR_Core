@@ -41,10 +41,10 @@ namespace TOR_Core.CampaignMechanics.Chaos
         {
             if (CampaignTime.Now.ToDays > _lastUprisingTime + _minimumElapsedDaysBetweenUprisings && !_hasTriggered)
             {
-                var allEligibleKingdoms = Kingdom.All.WhereQ(x => (x.Culture.StringId == TORConstants.Cultures.EMPIRE || x.Culture.StringId == TORConstants.Cultures.BRETONNIA) && x.Fiefs.WhereQ(f => f.IsTown).AnyQ());
+                var allEligibleKingdoms = Kingdom.All.WhereQ(x => (x.Culture.StringId == TORConstants.Cultures.EMPIRE || x.Culture.StringId == TORConstants.Cultures.BRETONNIA) && x.Fiefs.WhereQ(f => f.IsTown).Count() > 1);//the last city can't fall to a chaos rebellion. This needs to be investigated in more detail as it can trigger faction discontinuation or other unknown outcomes.
                 if (!allEligibleKingdoms.AnyQ()) return;
                 var mostPowerfulKingdom = allEligibleKingdoms.MaxBy(x => x.CurrentTotalStrength);
-
+                
                 var eligibleSettlements = mostPowerfulKingdom.Fiefs.WhereQ(x =>
                 x.IsTown &&
                 !x.IsUnderSiege &&

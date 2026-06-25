@@ -4049,7 +4049,7 @@
   <string id="tor_careerchoice_description.LegacyOfGrungniPassive1" text="{=str_tor_careerchoice_description_LegacyOfGrungniPassive1}Runesmith Guild provides more 'Oathgold' from delivered steel." />
   <string id="tor_careerchoice_description.LegacyOfGrungniPassive2" text="{=str_tor_careerchoice_description_LegacyOfGrungniPassive2}Ironsmelters within Karaks provide +2 'Oathgold' daily." />
   <string id="tor_careerchoice_description.LegacyOfGrungniPassive3" text="{=str_tor_careerchoice_description_LegacyOfGrungniPassive3}-33% cost to apply a 'Rune' to troops." />
-  <string id="tor_careerchoice_description.LegacyOfGrungniPassive4" text="{=str_tor_careerchoice_description_LegacyOfGrungniPassive4}Smithing levels increase personal range/radius of 'Rune' abilities by 0.005%." />
+  <string id="tor_careerchoice_description.LegacyOfGrungniPassive4" text="{=str_tor_careerchoice_description_LegacyOfGrungniPassive4}Smithing levels increase personal range/radius of 'Rune' abilities by 0.05%." />
   <string id="tor_careerchoice_description.AnvilOfDoomKeystone" text="{=str_tor_careerchoice_description_AnvilOfDoomKeystone}The 'Rune' Wrath and Ruin's damage increased by 0.05% per point in Spellcraft." />
   <string id="tor_careerchoice_description.AnvilOfDoomPassive1" text="{=str_tor_careerchoice_description_AnvilOfDoomPassive1}+15% personal 'Magic' damage." />
   <string id="tor_careerchoice_description.AnvilOfDoomPassive2" text="{=str_tor_careerchoice_description_AnvilOfDoomPassive2}+5 'Oathgold' daily when an 'Anvil of Doom' is present." />
@@ -4557,8 +4557,8 @@
   <!-- Spend Grain -->
   <string id="tor_dw_brewers_deliverWheat_prompt_title.wheat" text="{=str_tor_dw_brewers_deliverwheat_prompt_title}Deliver sacks of grain" />
   <string id="tor_dw_brewers_deliverWheat_prompt_description.wheat" text="{=str_tor_dw_brewers_deliverwheat_prompt_description}The Brewers need grain to brew ale. Donate sacks of grain, and receive Oathgold in return." />
-  <string id="tor_dw_brewers_deliverWheat_item_title.wheat" text="{=str_tor_dw_brewers_deliverwheat_item_tittle_wheat}Deliver grain" />
-  <string id="tor_dw_brewers_deliverWheat_item_hint.wheat" text="{=str_tor_dw_brewers_deliverwheat_item_hint_wheat}Deliver {WHEAT_COUNT} grain, receive {OATH_GOLD_GAIN_WHEAT} Oathgold" />
+  <string id="tor_dw_brewers_deliverWheat_item_title.wheat" text="{=str_tor_dw_brewers_deliverwheat_item_tittle_wheat}{WHEAT_COUNT}  {WHEAT_ICON} for {OATH_GOLD_GAIN_WHEAT} {OATHGOLD_ICON}" />
+  <string id="tor_dw_brewers_deliverWheat_item_hint.wheat" text="{=str_tor_dw_brewers_deliverwheat_item_hint_wheat} UNUSED - Deliver {WHEAT_COUNT} grain, receive {OATH_GOLD_GAIN_WHEAT} Oathgold" />
 
   <!-- Spend Steel -->
   <string id="tor_dw_rune_smith_deliverSteel_prompt_title" text="{=str_tor_dw_rune_smith_deliversteel_prompt_title}Deliver steel" />
@@ -4668,7 +4668,8 @@
   <string id="tor_inky_Duel.STR_DuelEnd" text="{=!}" />
 
   <!-- Serve as a Hireling -->
-  <string id="tor_hirelinglordquit.default" text="{=str_tor_hirelinglordquit_default}If this is your wish. fine." />
+  <string id="tor_hirelinglordquit.default" text="{=str_tor_hirelinglordquit_default}If this is your wish. Fine." />
+  <string id="tor_hirelinglordquit_serviceDuration" text="{=str_tor_hirelinglordquit_serviceDuration}Minimum service is {MINIMUM_SERVICE_TIME} days." />
   <string id="tor_hirelinglordexplain.default" text="{=str_tor_hirelinglordexplain_default}A hireling? Surely I have use for you. Just note that I am not accepting any additional troops." />
   <string id="tor_hirelinglordexplain.empire" text="{=str_tor_hirelinglordexplain_empire}The Empire needs fresh blood, surely I have use for you. Just note that I am not accepting any additional troops." />
   <string id="tor_hirelinglordexplain.vlandia" text="{=str_tor_hirelinglordexplain_vlandia}Serving the country in the knightly Service is the highest duty among Bretones. Just note that I am not accepting any additional troops." />
@@ -4680,7 +4681,7 @@
   <string id="tor_hirelinglordresult.khuzait" text="{=str_tor_hirelinglordresult_khuzait}Get out of my sight there is work to do!" />
   <string id="tor_hirelinglordresult.mousillon" text="{=str_tor_hirelinglordresult_mousillon}Get out of my sight there is work to do!" />
   <string id="tor_hireling.prompttitle" text="{=str_tor_hireling_prompttitle}Serve as a Hireling." />
-  <string id="tor_hireling.prompttext" text="{=str_tor_hireling_prompttext}You are about to serve as a Hireling, following a Lord instead of leading your own warband. All your troops will be removed (your companions stay). Do you want to continue?" />
+  <string id="tor_hireling.prompttext" text="{=str_tor_hireling_prompttext}You are about to serve as a Hireling, following a Lord instead of leading your own warband. All of your troops will be removed, your companions stay. Minimum service time is {MINIMUM_SERVICE_TIME} days. {newline}Do you want to continue?" />
   <string id="tor_hireling.maintext" text="{=str_tor_hireling_maintext} You are enlisted by {ENLISTING_LORD} {new_line}  You are serving  for {ENLISTING_DURATION} days. You fought so far in {HIRELING_BATTLE_COUNT} battles. {ENLISTING_ARMY}" />
   <string id="tor_hireling.talktolord" text="{=str_tor_hireling_talktolord}Talk to the Lord" />
   <string id="tor_hireling.pausetime" text="{=str_tor_hireling_pausetime}Pause on entering the next settlement: {PAUSE_ONOFF}" />
@@ -4692,6 +4693,7 @@
   <string id="tor_hireling_raiding_text" text="{=str_tor_hireling_raiding_text}Raiding {VILLAGE_NAME}" />
 
   <!-- Hireling Battle Menu -->
+  <string id="tor_hireling_desert_warning" text="{=str_tor_hireling_desert_warning}This will damage your reputation with the {FACTION}. Serve for {MINIMUM_SERVICE_TIME} days, and speak to your enlisting Lord to avoid consequences." />
   <string id="tor_hireling_battle_fallback" text="{=str_tor_hireling_battle_fallback}Your Lord engages in a battle." />
   <string id="tor_hireling_battle_type_battle" text="{=str_tor_hireling_battle_type_battle}Battle" />
   <string id="tor_hireling_battle_type_siege_assault" text="{=str_tor_hireling_battle_type_siege_assault}Siege Assault" />
@@ -5312,7 +5314,6 @@
   <string id="tor_graveyard_leave" text="{=str_tor_graveyard_leave}Leave" />
   <string id="tor_graveyard_caught_title" text="{=str_tor_graveyard_caught_title}Caught in the act" />
   <string id="tor_graveyard_surrender" text="{=str_tor_graveyard_surrender}Surrender" />
-  <string id="tor_hireling_desert_warning" text="{=str_tor_hireling_desert_warning}This will damage your reputation with the {FACTION}. Serve for {MINIMUMSERVEDAYS} days, and speak to your enlisting Lord to avoid consequences." />
 
   <!-- Greenskin Spell Trainer Dialogs -->
   <string id="tor_spelltrainer_greenskin_start_str" text="{=str_tor_spelltrainer_greenskin_start_str}You come to look into da fire?" />

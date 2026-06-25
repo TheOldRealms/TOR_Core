@@ -642,6 +642,7 @@ namespace TOR_Core.Models
         // Resource value tiers for missing resource bonus
         private static readonly Dictionary<string, float> ResourceValues = new()
         {
+            //Sly : this should be rethought as it requires each new village type to be added manually from TORVillageTypes.
             // Strategic (high value)
             { "iron_mine", 1500f },
             { "silver_mine", 1500f },

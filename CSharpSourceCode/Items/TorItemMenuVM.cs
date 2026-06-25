@@ -180,7 +180,7 @@ namespace TOR_Core.Items
             IsMagicItem = false;
             _lastSetItem = item.ItemRosterElement.EquipmentElement.Item;
             var info = _lastSetItem.GetTorSpecificDataReadOnly();
-            ItemDescription = info?.Description ?? "";
+            ItemDescription = new TextObject(info?.Description ?? "").ToString();
             HasDescription = !ItemDescription.IsEmpty();
             item.UpdateCanBeSlaughtered();
 
