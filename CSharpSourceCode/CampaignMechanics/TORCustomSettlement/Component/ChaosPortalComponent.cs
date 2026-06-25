@@ -85,7 +85,7 @@ public class ChaosPortalComponent : BaseRaiderSpawnerComponent
         var chaosRaidingParty = RaidingPartyComponent.CreateRaidingParty("chaos_clan_1_party_" + RaidingPartyCount + 1, Settlement, TORTextHelper.GetText("tor_chaos_raiders", "Chaos Raiders"), template, chaosClan, targetPartySize);
         if (find != null)
         {
-            SetPartyAiAction.GetActionForRaidingSettlement(chaosRaidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false);
+            SetPartyAiAction.GetActionForRaidingSettlement(chaosRaidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false, false);
             ((RaidingPartyComponent)chaosRaidingParty.PartyComponent).Target = initialTarget ?? find;
         }
         else //a target will be attempted after spawn via RaidingPartyComponent.HourlyTickAI

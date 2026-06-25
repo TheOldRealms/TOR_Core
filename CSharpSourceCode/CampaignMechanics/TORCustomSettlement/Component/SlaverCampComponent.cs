@@ -52,7 +52,7 @@ public class SlaverCampComponent : BaseRaiderSpawnerComponent
         var raidingParty = RaidingPartyComponent.CreateRaidingParty("druchii_clan_1_party_" + RaidingPartyCount + 1, Settlement, TORTextHelper.GetText("tor_dark_elf_slavers", "Druchii Slavers"), template, clan, MBRandom.RandomInt(75, 99));
         if (find != null)
         {
-            SetPartyAiAction.GetActionForRaidingSettlement(raidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false);
+            SetPartyAiAction.GetActionForRaidingSettlement(raidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false, false);
             ((RaidingPartyComponent)raidingParty.PartyComponent).Target = initialTarget ?? find;
         }
         else //a target will be attempted after spawn via RaidingPartyComponent.HourlyTickAI

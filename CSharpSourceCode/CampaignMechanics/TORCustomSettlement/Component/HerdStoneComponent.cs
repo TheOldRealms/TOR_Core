@@ -55,7 +55,7 @@ public class HerdStoneComponent : BaseRaiderSpawnerComponent
         var raidingParty = RaidingPartyComponent.CreateRaidingParty("beastmen_clan_1_party_" + RaidingPartyCount + 1, Settlement, TORTextHelper.GetText("tor_beastmen_raiders", "Beastmen Raiders"), template, beastmenClan, MBRandom.RandomInt(75, 99));
         if (find != null)
         {
-            SetPartyAiAction.GetActionForRaidingSettlement(raidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false);
+            SetPartyAiAction.GetActionForRaidingSettlement(raidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false, false);
             ((RaidingPartyComponent)raidingParty.PartyComponent).Target = initialTarget ?? find;
         }
         else //a target will be attempted after spawn via RaidingPartyComponent.HourlyTickAI

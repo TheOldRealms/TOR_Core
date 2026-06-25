@@ -46,7 +46,7 @@ public class TrollCaveComponent : BaseRaiderSpawnerComponent
         var trollRaidingParty = RaidingPartyComponent.CreateRaidingParty("troll_clan_1_party_" + RaidingPartyCount + 1, Settlement, "Troll Raiders", template, trollClan, MBRandom.RandomInt(7, 15));
         if (find != null)
         {
-            SetPartyAiAction.GetActionForRaidingSettlement(trollRaidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false);
+            SetPartyAiAction.GetActionForRaidingSettlement(trollRaidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false, false);
             ((RaidingPartyComponent)trollRaidingParty.PartyComponent).Target = initialTarget ?? find;
         }
         else
