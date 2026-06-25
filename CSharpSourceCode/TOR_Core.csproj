@@ -555,20 +555,19 @@
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\TORMapNotificationView.cs" />
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghMeterVM.cs" />
     <Compile Include="CampaignMechanics\TORCampaignMusicHandler.cs" />
-<<<<<<< HEAD
     <Compile Include="CampaignMechanics\UniqueSpawns\OrionCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\UniqueSpawns\UniqueSpawnCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\UniqueSpawns\UniqueSpawnPartyComponent.cs" />
-=======
+    <Compile Include="CampaignMechanics\TORCustomSettlement\Component\TORBaseSettlementComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\Component\BaseRaiderSpawnerComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\Component\ChaosPortalComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\Component\OakOfAgesComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\Component\CursedSiteComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\Component\ShrineComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\Component\SlaverCampComponent.cs" />
+    <Compile Include="CampaignMechanics\TORCustomSettlement\Component\HerdStoneComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\Component\TrollCaveComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\Component\WorldRootsComponent.cs" />
->>>>>>> development
     <Compile Include="CampaignMechanics\Villages\TORTownManagementVillageItemVM.cs" />
     <Compile Include="CampaignMechanics\Villages\TORVillageTypes.cs" />
     <Compile Include="Extensions\UI\PartyVMExtension.cs" />
@@ -606,11 +605,9 @@
     <Compile Include="CampaignMechanics\TORCustomSettlement\CustomSettlementMenus\TrollCaveMenuLogic.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\GoblinRecruitmentBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\GreenskinBrawlBehavior.cs" />
-    <Compile Include="CampaignMechanics\TORCustomSettlement\Component\TORBaseSettlementComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TrollCaveCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TrollCaveDefenderPartyComponent.cs" />
-    <Compile Include="CampaignMechanics\TORCustomSettlement\Component\HerdStoneComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORSettlementMenuHelpers.cs" />
     <Compile Include="CampaignMechanics\TORFactionDiscontinuationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\TORAllianceWarBehavior.cs" />
