@@ -26,7 +26,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
             _trait = trait;
             _onSelected = onSelected;
             IsSelected = false;
-            TraitName = trait.ItemTraitName;
+            TraitName = new TextObject(trait.ItemTraitName).ToString();
             IconName = trait.IconName;
             ItemTraitDescriptionHint = new BasicTooltipViewModel(GetHintText);
             ItemTraitDescription = new TextObject(trait.ItemTraitDescription).ToString();
