@@ -230,7 +230,7 @@ public class ServeAsAHirelingActivities
             if (!_activitySets.ContainsKey(career))
             {
                 TORCommon.Log("ServeAsAHirelingActivities : Zerca, you forgot hireling activities for :" + career.StringId, NLog.LogLevel.Error);
-                TORCommon.Say("Add the fooking hireling activites for " + career.Id + ", ya nincompooop.");
+                TORCommon.Say("Add the fooking hireling activites for " + career.StringId + ", ya nincompooop.");
             }
         }
     }
