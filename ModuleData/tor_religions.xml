@@ -284,7 +284,7 @@
             <HostileReligion id="Religion.cult_of_mork" />
         </HostileReligions>
         <Followers>
-            <FollowerClan stringId="brasskeep_clan_1" />|
+            <FollowerClan stringId="brasskeep_clan_1" />
 		    <FollowerClan stringId="chs_cult_3" />
         </Followers>
         <ReligiousTroops>
