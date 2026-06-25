@@ -8,7 +8,6 @@
 		<DependedModule Id="Native" DependentVersion="v1.3.15" />
 		<DependedModule Id="SandBoxCore" DependentVersion="v1.3.15" />
 		<DependedModule Id="Sandbox" DependentVersion="v1.3.15" />
-		<DependedModule Id="StoryMode" DependentVersion="v1.3.15" />
 		<DependedModule Id="TOR_Armory" DependentVersion="v1.3.15" />
 		<DependedModule Id="TOR_Environment" DependentVersion="v1.3.15" />
 	</DependedModules>
