@@ -527,9 +527,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
                 if (Hero.MainHero.HasCareerChoice("AncientScrollsPassive4"))
                 {
-
                     var lores = PowerstoneHelper.GetPartyLores(Hero.MainHero.PartyBelongedTo.GetMemberHeroes());
-                    factor -= lores.Count * 0.05f;
+                    var choiceEnchantment = TORCareerChoices.GetChoice("ImperialEnchantmentPassive4");
+                    factor -= lores.Count * choiceEnchantment.GetPassiveValue();
                 }
 
                 upkeep = factor * upkeep;
