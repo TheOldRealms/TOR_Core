@@ -1,25 +1,14 @@
 using Helpers;
-using Ink.Parsed;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.ViewModelCollection.Party;
 using TaleWorlds.Core;
-using TaleWorlds.Library;
 using TaleWorlds.Localization;
-using TaleWorlds.MountAndBlade;
-using TaleWorlds.ObjectSystem;
-using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem.Spells;
-using TOR_Core.BattleMechanics.StatusEffect;
-using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
-using TOR_Core.Extensions.UI;
-using TOR_Core.Utilities;
 using static Helpers.PartyScreenHelper;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
@@ -347,18 +336,17 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
             foreach (var stone in displayedStones)
             {
-
-                var upkeep = stone.Upkeep;
-                var price = stone.Price;
-                var emptyspace = "\n";
                 var icon = GetStoneIcon(stone.LoreId);
-                var enabled = MaximumWinds > upkeep;
+                var enabled = MaximumWinds > stone.Upkeep;
                 var hintText = stone.HintText.ToString();
-                if (!enabled) hintText = TORTextHelper.GetText("tor_powerstone_not_enough_winds_text", "You don't have enough Winds");
-                var text =
-                    $"{{{icon}}}{stone.StoneName}{emptyspace}{price}{{PRESTIGE_ICON}} Reserved Winds: {upkeep}{{WINDS_ICON}}";
+                if (!enabled) hintText = TORTextHelper.GetText("tor_powerstone_not_enough_winds", "You don't have enough Winds");
+                var text = TORTextHelper.GetTextObject("tor_powerstone_inquiry_description", "{STONE_ICON}{STONE_NAME} {STONE_PRICE}{PRESTIGE_ICON} Reserved Winds : {STONE_UPKEEP}{WINDS_ICON}", true);
+                text.SetTextVariable("STONE_ICON", icon);//Sly : this is a double substitution.
+                text.SetTextVariable("STONE_NAME", stone.StoneName);
+                text.SetTextVariable("STONE_PRICE", stone.Price);
+                text.SetTextVariable("STONE_UPKEEP", stone.Upkeep);
 
-                list.Add(new InquiryElement(stone, new TextObject(text).ToString(), null, enabled, hintText));
+                list.Add(new InquiryElement(stone, text.ToString(), null, enabled, hintText));
             }
 
 
@@ -369,8 +357,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
             var isSearchable = list.Count > 9;
 
-            var inquirydata = new MultiSelectionInquiryData(TORTextHelper.GetText("tor_powerstone_choose_title_text", "Choose Power stone"),
-                TORTextHelper.GetText("tor_powerstone_choose_description_text", "Empower your troop with a permanent magical effect of a Power stone. The effect will reduce your total amount of Winds while the stone is active."),
+            var inquirydata = new MultiSelectionInquiryData(TORTextHelper.GetText("tor_powerstone_choose_title", "Choose Powerstone", true),
+                TORTextHelper.GetText("tor_powerstone_choose_description", "Empower your troop with the persisting magical effect of a Powerstone. The effect will reduce the maximum Winds of all magisters sharing the stone's lore while it is active.", true),
                 list, true, 1, 1, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"), OnSelectedOption, OnCancel, "", isSearchable);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata);
         }
@@ -439,9 +427,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
             if (!characterObject.IsHero && characterObject.Level < 16)
             {
-                displayText = TORTextHelper.GetTextObject("tor_powerstone_not_experienced_enough_text", "troop is not expierenced enough (tier 4 and above)");
+                displayText = TORTextHelper.GetTextObject("tor_powerstone_not_experienced_enough", "Troop is too inexperienced. Requires Tier 4+");
                 return false;
             }
+
             var powerstones = AllPowerStones;
 
             var powerstone = GetPowerstone(characterObject);
@@ -452,20 +441,20 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
             if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < lowestPrice && powerstone == null)
             {
-                displayText = TORTextHelper.GetTextObject("tor_powerstone_not_enough_prestige_text", "You do not have enough prestige to create power stones");
+                displayText = TORTextHelper.GetTextObject("tor_powerstone_not_enough_prestige", "You do not have enough prestige to create Powerstones");
                 return false;
             }
 
             if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < lowestPrice && powerstone != null)
             {
-                displayText = TORTextHelper.GetTextObject("tor_powerstone_remove_text", "Remove Powerstone");
+                displayText = TORTextHelper.GetTextObject("tor_powerstone_remove", "Remove Powerstone");
                 return true;
             }
 
             if (powerstone != null)
                 displayText = new TextObject(powerstone.HintText.ToString());
             else
-                displayText = TORTextHelper.GetTextObject("tor_powerstone_create_text", "Create Powerstone empowering your troop or character");
+                displayText = TORTextHelper.GetTextObject("tor_powerstone_apply_tooltip", "Empower troop with a Powerstone");
 
             return true;
         }
@@ -543,7 +532,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             get
             {
                 var reduction = 0.4f;
-                if (Hero.MainHero.HasCareerChoice("AncientScrollsPassive3")) reduction += 0.8f;
+                if (Hero.MainHero.HasCareerChoice("AncientScrollsPassive3")) reduction = 0.8f;
 
                 return Price * reduction;
             }

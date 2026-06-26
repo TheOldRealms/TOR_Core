@@ -327,17 +327,17 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _teclisTeachingsPassive1.Initialize(CareerID, "+5% personal 'Fire' spell damage.", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 5), AttackTypeMask.Spell));
             _teclisTeachingsPassive2.Initialize(CareerID, "+5% personal 'Lightning' spell damage.", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Lightning, 5), AttackTypeMask.Spell));
             _teclisTeachingsPassive3.Initialize(CareerID, "+3 personal max 'Winds of Magic' capacity.", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.WindsOfMagic));
-            _teclisTeachingsPassive4.Initialize(CareerID, "'Power Stones' cost -35% less 'Prestige'.", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+            _teclisTeachingsPassive4.Initialize(CareerID, "'Powerstones' cost -35% less 'Prestige'.", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
 
             _imperialEnchantmentPassive1.Initialize(CareerID, "Every week, gain up to 2 Arcane Scrolls per Imperial Wizard in your party.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special));
             _imperialEnchantmentPassive2.Initialize(CareerID, "-30% friendly damage done by spells.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-30, PassiveEffectType.Special, true));
             _imperialEnchantmentPassive3.Initialize(CareerID, "-25% cost for enchantments.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.EnchantmentCostReduction, true));
-            _imperialEnchantmentPassive4.Initialize(CareerID, "-25% 'Winds of Magic' cost for 'Power Stones'.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true));
+            _imperialEnchantmentPassive4.Initialize(CareerID, "-25% 'Winds of Magic' cost for 'Powerstones'.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true));
 
             _collegeOrdersPassive1.Initialize(CareerID, "+5 Companion limit.", "CollegeOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
             _collegeOrdersPassive2.Initialize(CareerID, "+10 max 'Winds of Magic' for Imperial Wizard Companions.", "CollegeOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special));
             _collegeOrdersPassive3.Initialize(CareerID, "+10% more 'Prestige' from battles per different type of Imperial Wizard Companion.", "CollegeOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
-            _collegeOrdersPassive4.Initialize(CareerID, "Gain access to the 'Power Stones' of other Imperial College Orders.", "CollegeOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+            _collegeOrdersPassive4.Initialize(CareerID, "Gain access to the 'Powerstones' of other Imperial College Orders.", "CollegeOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
 
             _magicCombatTrainingPassive1.Initialize(CareerID, "+5 personal max 'Winds of Magic' capacity.", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
             _magicCombatTrainingPassive2.Initialize(CareerID, "+25% spell cooldown reduction.", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.WindsCooldownReduction, true));
@@ -348,8 +348,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             _ancientScrollsPassive1.Initialize(CareerID, "+25% duration increase for 'Hex' spells.", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25f, PassiveEffectType.DebuffDuration, true));
             _ancientScrollsPassive2.Initialize(CareerID, "'Winds of Magic' regeneration increased by +1.", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.WindsRegeneration));
-            _ancientScrollsPassive3.Initialize(CareerID, "80% 'Prestige' is recovered from used 'Power Stones'.", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
-            _ancientScrollsPassive4.Initialize(CareerID, "-5% 'Power Stone' upkeep per unique Imperial Wizard they gain +20% spell damage.", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special, true));
+            _ancientScrollsPassive3.Initialize(CareerID, "80% 'Prestige' is recovered from used 'Powerstones'.", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
+            _ancientScrollsPassive4.Initialize(CareerID, "-5% 'Powerstone' upkeep per unique Imperial Wizard. They gain +20% spell damage.", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special, true));
 
 
             _arcaneKnowledgePassive1.Initialize(CareerID, "+10% spell damage of Imperial Wizard Companions.", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));

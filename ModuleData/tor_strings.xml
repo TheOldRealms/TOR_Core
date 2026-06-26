@@ -5358,6 +5358,17 @@
   <string id="tor_powerstone_death_res_30_debuff_name" text="{=str_tor_powerstone_death_res_30_debuff_name}Lesser Deadening Endstone" />
   <string id="tor_powerstone_death_res_30_debuff_desc" text="{=str_tor_powerstone_death_res_30_debuff_desc}+25% physical resistance, 20% reduced swing-speed" />
 
+  <!-- Powerstone Texts - General -->
+	<string id="tor_powerstone_choose_title" text="{=str_tor_powerstone_choose_title_text}Choose Powerstone" />
+	<string id="tor_powerstone_choose_description" text="{=str_tor_powerstone_choose_description}Empower your troop with the persisting magical effect of a Powerstone. The effect will reduce the maximum Winds of all magisters sharing the stone's lore while it is active." />
+	<string id="tor_powerstone_inquiry_description" text="{=str_tor_powerstone_inquiry_description}{STONE_ICON}{STONE_NAME} {STONE_PRICE}{PRESTIGE_ICON} Reserved Winds : {STONE_UPKEEP}{WINDS_ICON}" />
+	<string id="tor_powerstone_remove_hint" text="{=str_tor_powerstone_remove_hint}Remove powerstone and recover some prestige." />
+	<string id="tor_powerstone_not_enough_winds" text="{=str_tor_powerstone_not_enough_winds}You don't have enough Winds" />
+	<string id="tor_powerstone_not_experienced_enough" text="{=str_tor_powerstone_not_experienced_enough}Troop is too inexperienced. Requires Tier 4+" />
+	<string id="tor_powerstone_not_enough_prestige" text="{=str_tor_powerstone_not_enough_prestige}You do not have enough prestige to create Powerstones" />
+	<string id="tor_powerstone_remove" text="{=str_tor_powerstone_remove}Remove Powerstone" />
+	<string id="tor_powerstone_apply_tooltip" text="{=str_tor_powerstone_apply_tooltip}Empower troop with a Powerstone" />
+	
   <!-- Powerstone Texts - Greater -->
   <string id="tor_powerstone_fire_dmg_35_name" text="{=str_tor_powerstone_fire_dmg_35_name}Greater Enlightening Fire Ruby" />
   <string id="tor_powerstone_fire_dmg_35_desc" text="{=str_tor_powerstone_fire_dmg_35_desc}+50% Fire amplification, 15% Fire damage+30%" />
