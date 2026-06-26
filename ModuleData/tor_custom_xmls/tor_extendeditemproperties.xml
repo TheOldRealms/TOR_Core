@@ -5996,39 +5996,39 @@
     <ItemTraits>
       <ItemTrait>learn_engineering</ItemTrait>
     </ItemTraits>
-    <Description>"I have learned, over long years of study, not to judge the exterior of any object without knowing the full details of its interior. The grandest building may conceal a rotten core, and the meanest-looking pistol may hide the finest rifling workmanship within it. That seems to me a good maxim for any engineer. We have often discovered that the way a device looks is no guarantee of its quality. In fact, though I hesitate to make the comparison directly, the same may too be said of men. Some of us who seem most fearful by reputation may turn out, on closer examination, to be nothing but weaklings and cowards. Conversely, even those who have sunk low, almost to the point of becoming nothing, may carry within them the smouldering spark of greatness, ready at any moment to leap once more into flame…"</Description>
+    <Description>"{=str_tor_books_engineering_001_desc}I have learned, over long years of study, not to judge the exterior of any object without knowing the full details of its interior. The grandest building may conceal a rotten core, and the meanest-looking pistol may hide the finest rifling workmanship within it. That seems to me a good maxim for any engineer. We have often discovered that the way a device looks is no guarantee of its quality. In fact, though I hesitate to make the comparison directly, the same may too be said of men. Some of us who seem most fearful by reputation may turn out, on closer examination, to be nothing but weaklings and cowards. Conversely, even those who have sunk low, almost to the point of becoming nothing, may carry within them the smouldering spark of greatness, ready at any moment to leap once more into flame…"</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_books_charm_001">
     <ItemTraits>
       <ItemTrait>learn_charm</ItemTrait>
     </ItemTraits>
-    <Description>This collection of chansons and ballads tell the stories of the Lady of the Lake and Gilles le Breton. Success with the weeping ladies after a perfomance in the local tavern on a moody night is guaranteed.</Description>
+    <Description>{=str_tor_books_charm_001_desc}This collection of chansons and ballads tell the stories of the Lady of the Lake and Gilles le Breton. Success with the weeping ladies after a perfomance in the local tavern on a moody night is guaranteed.</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_books_charm_002">
     <ItemTraits>
       <ItemTrait>learn_charm</ItemTrait>
     </ItemTraits>
-    <Description>"While some ambassadors are chosen for their exquisite tastes and ability to spoil rivals and allies alike with carefully chosen words and gifts, others may be selected for their sharp wits,  intelligence networks, or undeniable charisma. However, all ambassadors must be masters of negotiation and other social interactions…"</Description>
+    <Description>{=str_tor_books_charm_002_desc}"While some ambassadors are chosen for their exquisite tastes and ability to spoil rivals and allies alike with carefully chosen words and gifts, others may be selected for their sharp wits,  intelligence networks, or undeniable charisma. However, all ambassadors must be masters of negotiation and other social interactions…"</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_rougery_001">
     <ItemTraits>
       <ItemTrait>learn_roguery</ItemTrait>
       <ItemTrait>learn_crossbow_s</ItemTrait>
     </ItemTraits>
-    <Description>"To sail with a Black Ark is one of the greatest honours that any Druchii could ever aspire to. I trained long and hard to earn my berth upon the Wind of Damnation, slaying several undeserving rivals to the post along the way. It is a worthy life. I get to regularly practice my skills upon our many enemies and one tenth of the plunder that I seize is mine to keep. Slaves, gold, and fame, these too can be yours if you are bold…"</Description>
+    <Description>{=str_tor_book_rougery_001_desc}"To sail with a Black Ark is one of the greatest honours that any Druchii could ever aspire to. I trained long and hard to earn my berth upon the Wind of Damnation, slaying several undeserving rivals to the post along the way. It is a worthy life. I get to regularly practice my skills upon our many enemies and one tenth of the plunder that I seize is mine to keep. Slaves, gold, and fame, these too can be yours if you are bold…"</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_tactics_001">
     <ItemTraits>
       <ItemTrait>learn_tactics</ItemTrait>
     </ItemTraits>
-    <Description>"I can see in your eyes that you fear this enemy. I can see in your eyes that you wonder how we can fight such terrible monsters. Men of the Empire, I have the answer: We fight them with our steel, we fight them with our courage, but above all we fight them with our faith in Sigmar…"</Description>
+    <Description>{=str_tor_book_tactics_001_desc}"I can see in your eyes that you fear this enemy. I can see in your eyes that you wonder how we can fight such terrible monsters. Men of the Empire, I have the answer: We fight them with our steel, we fight them with our courage, but above all we fight them with our faith in Sigmar…"</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_range_001">
     <ItemTraits>
       <ItemTrait>learn_scouting</ItemTrait>
       <ItemTrait>learn_bow</ItemTrait>
     </ItemTraits>
-    <Description>"I had the immense pleasure of accompanying our esteemed Huntsmarshal on several of his journeys and expeditions. acting as his unofficial scribe and documentor. In this book I will share with you all of his knowledge about hunting, beasts and nature itself. I first met the Huntsmarshal when I came across his camp in the Drakwald. He had heard me coming. Instead of a greeting, the first thing he said to me was: “Don't clomp about as if you’re a drunkard in Marienburg's slums, boy! Feel your way around. Let the forest talk to you. She'll tell you everything you need to know...if you're quiet enough to listen. Such things a forest can tell you...more than most city-folk’d dream”"</Description>
+    <Description>{=str_tor_book_range_001_desc}"I had the immense pleasure of accompanying our esteemed Huntsmarshal on several of his journeys and expeditions. acting as his unofficial scribe and documentor. In this book I will share with you all of his knowledge about hunting, beasts and nature itself. I first met the Huntsmarshal when I came across his camp in the Drakwald. He had heard me coming. Instead of a greeting, the first thing he said to me was: “Don't clomp about as if you’re a drunkard in Marienburg's slums, boy! Feel your way around. Let the forest talk to you. She'll tell you everything you need to know...if you're quiet enough to listen. Such things a forest can tell you...more than most city-folk’d dream”"</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_range_002">
     <ItemTraits>
@@ -6036,73 +6036,73 @@
       <ItemTrait>learn_crossbow</ItemTrait>
       <ItemTrait>learn_gunpowder</ItemTrait>
     </ItemTraits>
-    <Description>"… Kroxigors are roughly 9 feet high, and weigh around as much as two Reikland cows, they have sharp teeth and a yaw with at least one hundred teeth. Their footprint is roughly 6-8 times bigger than that of a grown man. Their skin is thick and it’s near-impossible to cut through with most common weapons. A wise Hunter would always keep their distance from these beasts. Hunt them in pairs, try to use traps and use Steel Arrowheads or Crossbow Bolts. Better yet a Handgun, despite the noise it will create, should be able to pierce a Kroxigor’s hide. [Below a sketch of a Kroxigore]"</Description>
+    <Description>{=str_tor_book_range_002_desc}"… Kroxigors are roughly 9 feet high, and weigh around as much as two Reikland cows, they have sharp teeth and a yaw with at least one hundred teeth. Their footprint is roughly 6-8 times bigger than that of a grown man. Their skin is thick and it’s near-impossible to cut through with most common weapons. A wise Hunter would always keep their distance from these beasts. Hunt them in pairs, try to use traps and use Steel Arrowheads or Crossbow Bolts. Better yet a Handgun, despite the noise it will create, should be able to pierce a Kroxigor’s hide. [Below a sketch of a Kroxigore]"</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_crafting_001">
     <ItemTraits>
       <ItemTrait>learn_crafting</ItemTrait>
     </ItemTraits>
-    <Description>"Seek the mountain's heart. Take it on the third moon's last day. Stoke the furnace at midnight. When the ore glows red, hammer it before dawn. Seven times bend the white hot metal upon itself. Seven times sing the forging song. Quench in dragon's blood. Slake red hot in Karak Ungol's quicksilver. Do this in Haki the ancestor's name. Temper in Varn's water. Hone the blade upon a dragon's horn. On winter's third moon, carve the slaying rune. Anoint with blood of Troll, slain on Grungni's day. Bind the hilt with dragon's hide, with hornside inside. Haft the hilt with Azgal's gold, bind with Azul-metal. Mark the Orc's fang pommel with Grimnir's sign. Make the naming rite with ale upon Valaya's altar. The slaying of a Troll by night will make the rune glow for a thousand years…"</Description>
+    <Description>{=str_tor_book_crafting_001_desc}"Seek the mountain's heart. Take it on the third moon's last day. Stoke the furnace at midnight. When the ore glows red, hammer it before dawn. Seven times bend the white hot metal upon itself. Seven times sing the forging song. Quench in dragon's blood. Slake red hot in Karak Ungol's quicksilver. Do this in Haki the ancestor's name. Temper in Varn's water. Hone the blade upon a dragon's horn. On winter's third moon, carve the slaying rune. Anoint with blood of Troll, slain on Grungni's day. Bind the hilt with dragon's hide, with hornside inside. Haft the hilt with Azgal's gold, bind with Azul-metal. Mark the Orc's fang pommel with Grimnir's sign. Make the naming rite with ale upon Valaya's altar. The slaying of a Troll by night will make the rune glow for a thousand years…"</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_riding_001">
     <ItemTraits>
       <ItemTrait>learn_riding</ItemTrait>
     </ItemTraits>
-    <Description>"No steed of the Empire, nor of Estalia or Tilea, could match the strength and power of a pure-bred Bretonnian horse. None of them were the equal in sheer speed, and the Bretonnians were rightly proud of them. Protected in thick layers of plate barding beneath their flowing cloth caparisons, and carrying the weight of a fully armoured knight, the noble steeds could outpace any horse in the Old World…"</Description>
+    <Description>{=str_tor_book_riding_001_desc}"No steed of the Empire, nor of Estalia or Tilea, could match the strength and power of a pure-bred Bretonnian horse. None of them were the equal in sheer speed, and the Bretonnians were rightly proud of them. Protected in thick layers of plate barding beneath their flowing cloth caparisons, and carrying the weight of a fully armoured knight, the noble steeds could outpace any horse in the Old World…"</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_onehanded_001">
     <ItemTraits>
       <ItemTrait>learn_onehanded</ItemTrait>
     </ItemTraits>
-    <Description>"Step 1 Introductions: Duelists consider it poor form to cross swords without first introducing oneself. In a tournament, the fighter who draws steel before exchanging formalities is disqualified. This is an appropriate time to comment on reputations and parentage. Step 2 Methodology: Amid the opening thrusts and parries of combat, a Duelist explains how he will win, in technical or even mathematical terms. Tournament discourse follows a strict code, allowing either party to question the other's calculations. Street fights are somewhat less orderly, sounding more like shouting contests. Step 3 Criticism: After several blows have been traded, Duelists vocally analyse the other’s technique. Individual personalities set the tenor of this analysis, but usually the goal is to demoralise the enemy. In theory, tournaments enforce polite conduct, but in practice this only encourages veiled insults and false platitudes. Step 4 Victory run: The winner customarily salutes his fallen opponent with a dazzling flourish. If the opponent is still alive, a verbal summary of the fight may follow. Tournament fighters must yield the last word to the victor."</Description>
+    <Description>{=str_tor_book_onehanded_001_desc}"Step 1 Introductions: Duelists consider it poor form to cross swords without first introducing oneself. In a tournament, the fighter who draws steel before exchanging formalities is disqualified. This is an appropriate time to comment on reputations and parentage. Step 2 Methodology: Amid the opening thrusts and parries of combat, a Duelist explains how he will win, in technical or even mathematical terms. Tournament discourse follows a strict code, allowing either party to question the other's calculations. Street fights are somewhat less orderly, sounding more like shouting contests. Step 3 Criticism: After several blows have been traded, Duelists vocally analyse the other’s technique. Individual personalities set the tenor of this analysis, but usually the goal is to demoralise the enemy. In theory, tournaments enforce polite conduct, but in practice this only encourages veiled insults and false platitudes. Step 4 Victory run: The winner customarily salutes his fallen opponent with a dazzling flourish. If the opponent is still alive, a verbal summary of the fight may follow. Tournament fighters must yield the last word to the victor."</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_twohanded_001">
     <ItemTraits>
       <ItemTrait>learn_twohanded</ItemTrait>
     </ItemTraits>
-    <Description>"In one smooth motion, the swordmaster draws their weapon and holds the blade before them. Their legs uncoil and in the blink of an eye they stand with sword raised high above them. The blade spins in their hands and their grip is reversed, the sword slashing in an intricate series of manoeuvres nearly too fast for the naked eye to follow. Their feet are in constant motion as they lunge, parry, and thrust at imaginary opponents. One by one the wielder performs the thirty basic exercises of the Swordmasters before moving on to more advanced techniques. Once more, the enormous sword is brought upwards and held before the bearer's face…"</Description>
+    <Description>{=str_tor_book_twohanded_001_desc}"In one smooth motion, the swordmaster draws their weapon and holds the blade before them. Their legs uncoil and in the blink of an eye they stand with sword raised high above them. The blade spins in their hands and their grip is reversed, the sword slashing in an intricate series of manoeuvres nearly too fast for the naked eye to follow. Their feet are in constant motion as they lunge, parry, and thrust at imaginary opponents. One by one the wielder performs the thirty basic exercises of the Swordmasters before moving on to more advanced techniques. Once more, the enormous sword is brought upwards and held before the bearer's face…"</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_trade_001">
     <ItemTraits>
       <ItemTrait>learn_trade</ItemTrait>
     </ItemTraits>
-    <Description>"How did I become a magnate? Well, when I was a maid with only a pfennig to my name, I went to the local farmer and bought an apple. Then I walked to the market and sold the apple for two pfennigs. The next day I bought two apples from the farmer and walked to the market again and sold the apples for four pfennigs. And so it went on, every day; I walked to the farm, bought some apples, and then walked to the market to sell them at a profit. And by the time I was twenty-five years old, my grandfather died and left me several thousand guilders…"</Description>
+    <Description>{=str_tor_book_trade_001_desc}"How did I become a magnate? Well, when I was a maid with only a pfennig to my name, I went to the local farmer and bought an apple. Then I walked to the market and sold the apple for two pfennigs. The next day I bought two apples from the farmer and walked to the market again and sold the apples for four pfennigs. And so it went on, every day; I walked to the farm, bought some apples, and then walked to the market to sell them at a profit. And by the time I was twenty-five years old, my grandfather died and left me several thousand guilders…"</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_bow_001">
     <ItemTraits>
       <ItemTrait>learn_bow</ItemTrait>
     </ItemTraits>
-    <Description>"The Bow consists of a single piece of flexible wood. Though somewhat expensive and difficult to make, they can be deadly in the hands of hunters and soldiers alike. Fashioned from wood, horn, and sinew, bows offer a decent range while dealing a respectable level of damage, though it often takes several shots from a bow to drop a tough opponent. Bows vary in quality, based on pull and construction. A bow that is too flexible lacks the force to propel arrows with any great effect. Likewise, a bow with too little flexibility is difficult to pull and may reduce accuracy…"</Description>
+    <Description>{=str_tor_book_bow_001_desc}"The Bow consists of a single piece of flexible wood. Though somewhat expensive and difficult to make, they can be deadly in the hands of hunters and soldiers alike. Fashioned from wood, horn, and sinew, bows offer a decent range while dealing a respectable level of damage, though it often takes several shots from a bow to drop a tough opponent. Bows vary in quality, based on pull and construction. A bow that is too flexible lacks the force to propel arrows with any great effect. Likewise, a bow with too little flexibility is difficult to pull and may reduce accuracy…"</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_crossbow_001">
     <ItemTraits>
       <ItemTrait>learn_crossbow</ItemTrait>
     </ItemTraits>
-    <Description>"With the invention of the crossbow, throughout the Empire, from Nordland to Averland, a most effective ranged infantry unit emerged and stood out to be one of the prominent pillars of the empire military. Crossbows may lack the penetrative power of handguns, or the rate of fire of standard bows but they are just as viable in the hands of an expert. Crossbows have a range longer than that of bows but shorter than that of guns. Their main advantages lie in the fact that they are easily produced and their use is easily learned…"</Description>
+    <Description>{=str_tor_book_crossbow_001_desc}"With the invention of the crossbow, throughout the Empire, from Nordland to Averland, a most effective ranged infantry unit emerged and stood out to be one of the prominent pillars of the empire military. Crossbows may lack the penetrative power of handguns, or the rate of fire of standard bows but they are just as viable in the hands of an expert. Crossbows have a range longer than that of bows but shorter than that of guns. Their main advantages lie in the fact that they are easily produced and their use is easily learned…"</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_leadership_001">
     <ItemTraits>
       <ItemTrait>learn_leadership</ItemTrait>
     </ItemTraits>
-    <Description>"To command an army requires the courage to send men to their deaths without doubt or hesitation. The armies of the Empire are led by those warriors, usually members of the Imperial nobility or even, in rare cases, Emperor Karl Franz himself, trained to direct their forces as a swordsman wields his blade. As with all men, however, these commanders can differ in their levels of skill and courage, with some, like the extraordinarily fierce Elector Count of Middenheim, Boris Todbringer, embodying the unwavering valour of the people of Sigmar Heldenhammer. Others are little more than highborn fops, yet still possess the right to command men in battle because of an accident of birth…"</Description>
+    <Description>{=str_tor_book_leadership_001_desc}"To command an army requires the courage to send men to their deaths without doubt or hesitation. The armies of the Empire are led by those warriors, usually members of the Imperial nobility or even, in rare cases, Emperor Karl Franz himself, trained to direct their forces as a swordsman wields his blade. As with all men, however, these commanders can differ in their levels of skill and courage, with some, like the extraordinarily fierce Elector Count of Middenheim, Boris Todbringer, embodying the unwavering valour of the people of Sigmar Heldenhammer. Others are little more than highborn fops, yet still possess the right to command men in battle because of an accident of birth…"</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_polearm_001">
     <ItemTraits>
       <ItemTrait>learn_polearm</ItemTrait>
     </ItemTraits>
-    <Description>"The spear is a weapon older than mankind. It is easy to use and requires little training, but is an effective weapon nonetheless. Cheap to produce, easy to use, and especially lethal in large numbers, it is no surprise that Empire Spearmen are a common sight among imperial armies. Yet only one state can claim to have mastered them."</Description>
+    <Description>{=str_tor_book_polearm_001_desc}"The spear is a weapon older than mankind. It is easy to use and requires little training, but is an effective weapon nonetheless. Cheap to produce, easy to use, and especially lethal in large numbers, it is no surprise that Empire Spearmen are a common sight among imperial armies. Yet only one state can claim to have mastered them."</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_throwing_001">
     <ItemTraits>
       <ItemTrait>learn_throwing</ItemTrait>
     </ItemTraits>
-    <Description>"Since whaling is an important trade for Norsca, Whalers are respected even among the warriors due to the extreme dangers of the waters surrounding Norsca. Swimming through the dark currents of the Sea of Claws are massive whales, many of which bear strange markings, and odd colouration, twisted and warped as they are by the power of Chaos. These monsters can capsize ships and swallow hundreds of men in a single gulp. Thus, Whalers must be made of sterner stuff than ordinary fishermen…"</Description>
+    <Description>{=str_tor_book_throwing_001_desc}"Since whaling is an important trade for Norsca, Whalers are respected even among the warriors due to the extreme dangers of the waters surrounding Norsca. Swimming through the dark currents of the Sea of Claws are massive whales, many of which bear strange markings, and odd colouration, twisted and warped as they are by the power of Chaos. These monsters can capsize ships and swallow hundreds of men in a single gulp. Thus, Whalers must be made of sterner stuff than ordinary fishermen…"</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_athletics_001">
     <ItemTraits>
       <ItemTrait>learn_athletics</ItemTrait>
     </ItemTraits>
-    <Description>"To a Wardancer, even other Elves appear to be moving painfully slowly, for every move made by one of the kin of Loec flows into the next, and the next one after that without conscious thought or guidance. Forgoing armour, the Wardancers decorate themselves with swirling designs and dye their hair in bright colours, taking on the roles of mythical figures and ferocious warriors, their form of movement, and even their fighting style, paying homage to the one who inspires their dance…"</Description>
+    <Description>{=str_tor_book_athletics_001_desc}"To a Wardancer, even other Elves appear to be moving painfully slowly, for every move made by one of the kin of Loec flows into the next, and the next one after that without conscious thought or guidance. Forgoing armour, the Wardancers decorate themselves with swirling designs and dye their hair in bright colours, taking on the roles of mythical figures and ferocious warriors, their form of movement, and even their fighting style, paying homage to the one who inspires their dance…"</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_hybrid_001">
     <ItemTraits>
@@ -6110,51 +6110,51 @@
       <ItemTrait>learn_bow</ItemTrait>
       <ItemTrait>learn_trade_s</ItemTrait>
     </ItemTraits>
-    <Description>"The Asur are holding trading relations all over the world, from the Coast of Nordland, to the far Colonies of the Elves, at the peak of the southlands, from the Turtle islands to the shores of Cathay. Arabian Diamonds for Lothern Silk, Lustrian fruits for Yverrian marble. Ship routes convey goods, and those goods need protection. The Seaguard, elite marines of the High Elves, are well trained in versatile combat. They know to fight with spears against large monsters, and similarly take their bows for long distance fights against the Druchii. At Sea or land, there is a reason that these soldiers are the foundation of the military of the Asur."</Description>
+    <Description>{=str_tor_book_hybrid_001_desc}"The Asur are holding trading relations all over the world, from the Coast of Nordland, to the far Colonies of the Elves, at the peak of the southlands, from the Turtle islands to the shores of Cathay. Arabian Diamonds for Lothern Silk, Lustrian fruits for Yverrian marble. Ship routes convey goods, and those goods need protection. The Seaguard, elite marines of the High Elves, are well trained in versatile combat. They know to fight with spears against large monsters, and similarly take their bows for long distance fights against the Druchii. At Sea or land, there is a reason that these soldiers are the foundation of the military of the Asur."</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_books_engineering_002">
     <ItemTraits>
       <ItemTrait>learn_engineering</ItemTrait>
       <ItemTrait>learn_trade</ItemTrait>
     </ItemTraits>
-    <Description>"There were countless disasters at the prototype stage and the whole project became known as the 'coffin filler' by the young apprentices attached to it in dread. Steam boilers such as they could construct couldn't be made small enough and retain the necessary power without becoming dangerously unstable, hull mounted ordinance proved just as likely to smash the machine to pieces when fired, and the whole thing had a tendency to fall apart when the smallest change in direction was attempted. It was then that one of the more unstable of the Gunnery School Engineers, a man named Hezekiah Guttmann (known less than affectionately as the 'burnt scarecrow' to his fellows), had an epiphany. If they could not construct a small, powerful boiler such as the Steam Tank had, why bother? Why not use a larger, cruder one instead and the machine could be scaled up accordingly, and conversely the cannon could be made smaller…"</Description>
+    <Description>{=str_tor_books_engineering_002_desc}"There were countless disasters at the prototype stage and the whole project became known as the 'coffin filler' by the young apprentices attached to it in dread. Steam boilers such as they could construct couldn't be made small enough and retain the necessary power without becoming dangerously unstable, hull mounted ordinance proved just as likely to smash the machine to pieces when fired, and the whole thing had a tendency to fall apart when the smallest change in direction was attempted. It was then that one of the more unstable of the Gunnery School Engineers, a man named Hezekiah Guttmann (known less than affectionately as the 'burnt scarecrow' to his fellows), had an epiphany. If they could not construct a small, powerful boiler such as the Steam Tank had, why bother? Why not use a larger, cruder one instead and the machine could be scaled up accordingly, and conversely the cannon could be made smaller…"</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_books_gunpowder_001">
     <ItemTraits>
       <ItemTrait>learn_gunpowder</ItemTrait>
     </ItemTraits>
-    <Description>"The handgunn is a truly devastating weapon, able to kill some of the most well armoured foes in one well aimed shot. Despite this, these weapons require the care and respect that such power implies. A Handgunner must keep his powder supply and the inside of his arm dry, wet powder does not ignite. Past this, the barrel of the handgunn must be regularly cleaned; dirt and powder can build up and create misfires, inaccuracy or failures for the lead ball to leave the barrel upon ignition of the powder. Finally, the lock on the rear of the barrel must be maintained; after some use the hammer can deform and no longer align with its flashpan. Keep this maintenance in mind and practise your marksmanship, and one will be well on their way to proficiency."</Description>
+    <Description>{=str_tor_books_gunpowder_001_desc}"The handgunn is a truly devastating weapon, able to kill some of the most well armoured foes in one well aimed shot. Despite this, these weapons require the care and respect that such power implies. A Handgunner must keep his powder supply and the inside of his arm dry, wet powder does not ignite. Past this, the barrel of the handgunn must be regularly cleaned; dirt and powder can build up and create misfires, inaccuracy or failures for the lead ball to leave the barrel upon ignition of the powder. Finally, the lock on the rear of the barrel must be maintained; after some use the hammer can deform and no longer align with its flashpan. Keep this maintenance in mind and practise your marksmanship, and one will be well on their way to proficiency."</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_books_gunpowder_002">
     <ItemTraits>
       <ItemTrait>learn_gunpowder</ItemTrait>
     </ItemTraits>
-    <Description>"As the handgun fires, the force of the lead ball leaving the end of the barrel causes the rotation witnessed by the observer. The rotation is halted by the gearlock on the rear of the handgun, which does not activate until the next barrel has aligned with the striking mechanism. What is this force and how do we describe the lock’s ability to halt it? The force is clearly caused by the ignition of the black powder in the rear of the barrel, which both propels the ball forward while undoing the hold of the lock on the Cavalcade. Is it also the same force which brings the lock’s hold back around the Cavalcade, stopping it from spinning endlessly and allowing the user to take aim again? In my experiments..."</Description>
+    <Description>{=str_tor_books_gunpowder_002_desc}"As the handgun fires, the force of the lead ball leaving the end of the barrel causes the rotation witnessed by the observer. The rotation is halted by the gearlock on the rear of the handgun, which does not activate until the next barrel has aligned with the striking mechanism. What is this force and how do we describe the lock’s ability to halt it? The force is clearly caused by the ignition of the black powder in the rear of the barrel, which both propels the ball forward while undoing the hold of the lock on the Cavalcade. Is it also the same force which brings the lock’s hold back around the Cavalcade, stopping it from spinning endlessly and allowing the user to take aim again? In my experiments..."</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_spellcraft_001">
     <ItemTraits>
       <ItemTrait>learn_spellcraft</ItemTrait>
     </ItemTraits>
-    <Description>"Most believe the Cult of the Mother died out long ago. They are wrong. Not only do the Great Families of my Order continue Her traditions, but the sickle is born by others, which most of whom hide far from prying eyes. Before he formed our Order, Teclis came to our great groves. By channelling Ghyran he activated the Waystones we believed had been raised by our ancestors, and showed us what our ""Oghams"" truly were: a creation of the Elder Race, the Asur, the Elves. We watched wide-eyed as Teclis explained the nature of belief, magic, and of Hoeth, the god he especially revered. Not all of us accepted his foreign ways. Indeed, a full third of the Druidic Families stubbornly spurned Teclis, refusing to believe his ""truth,"" and fled into the dark forests, just like the prehistoric tribes of old. But those who remained, listened, and then eventually understood…"</Description>
+    <Description>{=str_tor_book_spellcraft_001_desc}"Most believe the Cult of the Mother died out long ago. They are wrong. Not only do the Great Families of my Order continue Her traditions, but the sickle is born by others, which most of whom hide far from prying eyes. Before he formed our Order, Teclis came to our great groves. By channelling Ghyran he activated the Waystones we believed had been raised by our ancestors, and showed us what our ""Oghams"" truly were: a creation of the Elder Race, the Asur, the Elves. We watched wide-eyed as Teclis explained the nature of belief, magic, and of Hoeth, the god he especially revered. Not all of us accepted his foreign ways. Indeed, a full third of the Druidic Families stubbornly spurned Teclis, refusing to believe his ""truth,"" and fled into the dark forests, just like the prehistoric tribes of old. But those who remained, listened, and then eventually understood…"</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_spellcraft_002">
     <ItemTraits>
       <ItemTrait>learn_spellcraft</ItemTrait>
     </ItemTraits>
-    <Description>"…Even though this might be true, I do not believe that we, the Magisters of the Imperial Colleges of Magic, should follow their example and choose for ourselves Gods to wholly dedicate ourselves to and beg favours from, to use in conjunction with our own arcane spellcraft. Nothing in this life or the next is free, and whilst I am willing to trust in my own abilities and limitations, and accept any errors I make while weaving my spells, I do not wish to trust the continued benevolence of a deity whose need for my faith and dedication might far outweigh my own need for His or Her aid..."</Description>
+    <Description>{=str_tor_book_spellcraft_002_desc}"…Even though this might be true, I do not believe that we, the Magisters of the Imperial Colleges of Magic, should follow their example and choose for ourselves Gods to wholly dedicate ourselves to and beg favours from, to use in conjunction with our own arcane spellcraft. Nothing in this life or the next is free, and whilst I am willing to trust in my own abilities and limitations, and accept any errors I make while weaving my spells, I do not wish to trust the continued benevolence of a deity whose need for my faith and dedication might far outweigh my own need for His or Her aid..."</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_spellcraft_003">
     <ItemTraits>
       <ItemTrait>learn_spellcraft</ItemTrait>
     </ItemTraits>
-    <Description>"The seventh wind of the Aethyr. Wherever there is passion, argument, or excitement, there is Ashqy. While the devastating power of this wind resides in the control over fire and flames: Fireballs, Flame storms or the Carnage of a burning head are only depicting a fraction of its might. But fire is not only for destruction. Purification of wounds, or even our everyday meal is better served cooked and therefore requires a flame. Fire is what allows for human inspiration, boldness and heroism. Whether it be brashness or courage, fire is the everpresent companion of mankind. All of these aspects are incorporated in the wind, and are studied by the bright wizard order. The magisters of the first magic order ever found by Teclis, use their knowledge over the flaming spells for protection of the empire."</Description>
+    <Description>{=str_tor_book_spellcraft_003_desc}"The seventh wind of the Aethyr. Wherever there is passion, argument, or excitement, there is Ashqy. While the devastating power of this wind resides in the control over fire and flames: Fireballs, Flame storms or the Carnage of a burning head are only depicting a fraction of its might. But fire is not only for destruction. Purification of wounds, or even our everyday meal is better served cooked and therefore requires a flame. Fire is what allows for human inspiration, boldness and heroism. Whether it be brashness or courage, fire is the everpresent companion of mankind. All of these aspects are incorporated in the wind, and are studied by the bright wizard order. The magisters of the first magic order ever found by Teclis, use their knowledge over the flaming spells for protection of the empire."</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_hybrid_002">
     <ItemTraits>
       <ItemTrait>learn_spellcraft</ItemTrait>
       <ItemTrait>learn_crafting_s</ItemTrait>
     </ItemTraits>
-    <Description>When asked: What is the name of the stone that burns? Thou shalt respond: Sulphur to be mixed with mercury. When asked: What is the name of the universal solvent? Thou shalt respond: Al-kahest.  When asked: What is the name of the remedy for all maladies Thou shalt respond: Panacea Universalis.  When asked: What is the name of the acme of the Art? Thou shalt respond: The Elixir of Life. When asked: What is the name of the noblest of metals? Thou shalt respond: Gold</Description>
+    <Description>{=str_tor_book_hybrid_002_desc}When asked: What is the name of the stone that burns? Thou shalt respond: Sulphur to be mixed with mercury. When asked: What is the name of the universal solvent? Thou shalt respond: Al-kahest.  When asked: What is the name of the remedy for all maladies Thou shalt respond: Panacea Universalis.  When asked: What is the name of the acme of the Art? Thou shalt respond: The Elixir of Life. When asked: What is the name of the noblest of metals? Thou shalt respond: Gold</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_hybrid_003">
     <ItemTraits>
@@ -6162,31 +6162,31 @@
       <ItemTrait>learn_gunpowder</ItemTrait>
       <ItemTrait>learn_roguery_s</ItemTrait>
     </ItemTraits>
-    <Description>"Even the far coasts of Lustria seem not to be spared of the taint of vampires. Legends say, a single mad Vampire, Luthor Harkon, established his own Colony. Legends say his mind is shattered since plundering a temple of the lizardmen that cursed him and his body. Many different personalities are fighting in his soul for control, some might call a curse or blessing. Crazy or not, he managed to conquer, and recruit many of the pirates in his undead army. Vampires, either looking for adventure or hunted in  Sylvania, search for a new life far from their former habitat, and they become captains and his first mates, to haunt the shores. May Sigmar protect any living sailor that has the misfortune to come across them."</Description>
+    <Description>{=str_tor_book_hybrid_003_desc}"Even the far coasts of Lustria seem not to be spared of the taint of vampires. Legends say, a single mad Vampire, Luthor Harkon, established his own Colony. Legends say his mind is shattered since plundering a temple of the lizardmen that cursed him and his body. Many different personalities are fighting in his soul for control, some might call a curse or blessing. Crazy or not, he managed to conquer, and recruit many of the pirates in his undead army. Vampires, either looking for adventure or hunted in  Sylvania, search for a new life far from their former habitat, and they become captains and his first mates, to haunt the shores. May Sigmar protect any living sailor that has the misfortune to come across them."</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_learn_blessing">
     <ItemTraits>
       <ItemTrait>use_ink_manual_blessing</ItemTrait>
     </ItemTraits>
-    <Description>Learn about the intricacies of blessings</Description>
+    <Description>{=str_tor_book_learn_blessing_desc}Learn about the intricacies of blessings</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_learn_enchanting">
     <ItemTraits>
       <ItemTrait>use_ink_manual_enchanting</ItemTrait>
     </ItemTraits>
-    <Description>Learn about the intricacies of enchanting</Description>
+    <Description>{=str_tor_book_learn_enchanting_desc}Learn about the intricacies of enchanting</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_learn_runecraft">
     <ItemTraits>
       <ItemTrait>use_ink_manual_runecraft</ItemTrait>
     </ItemTraits>
-    <Description>Learn about the intricacies of runecraft</Description>
+    <Description>{=str_tor_book_learn_runecraft_desc}Learn about the intricacies of runecraft</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_book_gs_learn_enchant">
     <ItemTraits>
       <ItemTrait>use_ink_manual_greenskin</ItemTrait>
     </ItemTraits>
-    <Description>Learn about da magic fings from da piktures on da rok</Description>
+    <Description>{=str_tor_book_gs_learn_enchant_desc}Learn about da magic fings from da piktures on da rok</Description>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_emp_enchant_ghur_wildform">
     <ItemTraits>
