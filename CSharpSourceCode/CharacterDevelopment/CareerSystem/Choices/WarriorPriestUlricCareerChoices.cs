@@ -150,7 +150,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
-                    {
+                    {//Sly : if the triggeredEffect is changed by a different mutation, does this mutation stop working?
                         MutationTargetType = typeof(TriggeredEffectTemplate),
                         MutationTargetOriginalId = "ulric_smash",
                         PropertyName = "Radius",
