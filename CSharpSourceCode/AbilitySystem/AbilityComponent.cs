@@ -194,21 +194,17 @@ namespace TOR_Core.AbilitySystem
             }
 
             // Add Anvil of Doom spawner for Runelords
-            if (agent.HasPartyAnvilOfDoom())
+            if (agent.IsHero && agent.GetHero() == Hero.MainHero)
             {
-                var hero = agent.GetHero();
-                if (hero != null)
+                if (agent.GetHero().HasCareer(TORCareers.Runelord) && agent.HasPartyAnvilOfDoom())
                 {
-                    if ( hero.HasCareer(TORCareers.Runelord))
+                    var anvilAbility = (ItemBoundAbility)AbilityFactory.CreateNew("AnvilOfDoomSpawner", agent);
+                    if (anvilAbility != null)
                     {
-                        var anvilAbility = (ItemBoundAbility)AbilityFactory.CreateNew("AnvilOfDoomSpawner", agent);
-                        if (anvilAbility != null)
-                        {
-                            anvilAbility.OnCastStart += OnCastStart;
-                            anvilAbility.OnCastComplete += OnCastComplete;
-                            anvilAbility.SetChargeNum(1);
-                            _knownAbilitySystem.Add(anvilAbility);
-                        }
+                        anvilAbility.OnCastStart += OnCastStart;
+                        anvilAbility.OnCastComplete += OnCastComplete;
+                        anvilAbility.SetChargeNum(1);
+                        _knownAbilitySystem.Add(anvilAbility);
                     }
                 }
             }
