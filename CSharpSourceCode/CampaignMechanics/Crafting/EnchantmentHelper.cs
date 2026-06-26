@@ -130,7 +130,7 @@ public static class EnchantmentHelper
             if (restriction != null)
             {
                 var info = hero.GetExtendedInfo();
-                var knowsRequiredLore = info != null && info.KnownLores.Any(lore => lore != null && lore.ID == restriction);
+                var knowsRequiredLore = info != null && info.KnownLores.Any(lore => lore != null && lore.StringId == restriction);
 
                 if (!knowsRequiredLore && !hero.HasAttribute(restriction))
                 {
@@ -242,7 +242,7 @@ public static class EnchantmentHelper
 
             if (!string.IsNullOrEmpty(restriction))
             {
-                var lore = LoreObject.GetAll().FirstOrDefault(x => x.ID == restriction);
+                var lore = LoreObject.GetAll().FirstOrDefault(x => x.StringId == restriction);
                 if (lore != null)
                 {
                     requirementPrefix = "This enchantment is bound to the Lore of " + lore.Name + ". ";

@@ -745,11 +745,16 @@ namespace TOR_Core.Models
                     var stoneBehavior =
                         CareerButtons.Instance.GetCareerButton(TORCareers.ImperialMagister) as
                             ImperialMagisterCareerButtonBehavior;
+                    
+                    var powerstones = stoneBehavior.GetAllAppliedPowerstones();
+                    var knownLores = hero.GetExtendedInfo().KnownLores;
 
-                    var powerstone = stoneBehavior?.GetPowerstone(baseCharacter);
-                    if (powerstone != null)
+                    foreach (var powerstone in powerstones)
                     {
-                        explainedNumber.Add(-powerstone.Upkeep);
+                        if (knownLores.WhereQ(x => x.StringId == powerstone.LoreId).AnyQ())
+                        {
+                            explainedNumber.Add(-powerstone.Upkeep);
+                        }
                     }
                 }
             }
@@ -780,10 +785,10 @@ namespace TOR_Core.Models
             {
                 // Necrarch can only learn these specific lores
                 var allowedLores = new[] { "Necromancy", "LoreOfDeath", "LoreOfHeavens", "LoreOfMetal", "LoreOfFire", "LoreOfBeasts", "DarkMagic" };
-                if (!allowedLores.Contains(loreObject.ID)) return false;
+                if (!allowedLores.Contains(loreObject.StringId)) return false;
 
                 // DarkMagic is only available at tier 2+
-                if (loreObject.ID == "DarkMagic" && !hero.HasUnlockedCareerChoiceTier(2))
+                if (loreObject.StringId == "DarkMagic" && !hero.HasUnlockedCareerChoiceTier(2))
                     return false;
 
                 return true;
@@ -793,10 +798,10 @@ namespace TOR_Core.Models
             {
                 // MinorVampire can only learn Necromancy and one of DarkMagic/LoreOfDeath at tier 2
                 var allowedLores = new[] { "Necromancy", "DarkMagic", "LoreOfDeath" };
-                if (!allowedLores.Contains(loreObject.ID)) return false;
+                if (!allowedLores.Contains(loreObject.StringId)) return false;
 
                 // DarkMagic and LoreOfDeath only available at tier 2+
-                if ((loreObject.ID == "DarkMagic" || loreObject.ID == "LoreOfDeath") && !hero.HasUnlockedCareerChoiceTier(2))
+                if ((loreObject.StringId == "DarkMagic" || loreObject.StringId == "LoreOfDeath") && !hero.HasUnlockedCareerChoiceTier(2))
                     return false;
 
                 return true;

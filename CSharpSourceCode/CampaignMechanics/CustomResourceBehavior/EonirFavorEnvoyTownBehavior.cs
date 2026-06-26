@@ -386,7 +386,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             var lores = LoreObject.GetAll();
 
             // Filter to only base lores that the hero doesn't already know
-            lores = lores.WhereQ(x => _baseLores.Contains(x.ID) && !Hero.MainHero.HasKnownLore(x.ID)).ToList();
+            lores = lores.WhereQ(x => _baseLores.Contains(x.StringId) && !Hero.MainHero.HasKnownLore(x.StringId)).ToList();
 
             foreach (var lore in lores)
             {
@@ -400,7 +400,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             {
                 var newlore = (LoreObject)inquiryElements[0].Identifier;
 
-                Hero.MainHero.AddKnownLore(newlore.ID);
+                Hero.MainHero.AddKnownLore(newlore.StringId);
                 Hero.MainHero.AddCultureSpecificCustomResource(-_baseLoreCost);
             }
         }
@@ -424,7 +424,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             var lores = LoreObject.GetAll();
 
             // Filter to only base lores
-            lores = lores.WhereQ(x => _baseLores.Contains(x.ID)).ToList();
+            lores = lores.WhereQ(x => _baseLores.Contains(x.StringId)).ToList();
 
             foreach (var lore in lores)
             {
@@ -444,7 +444,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             {
                 var newlore = (LoreObject)inquiryElements[0].Identifier;
 
-                Hero.MainHero.AddKnownLore(newlore.ID);
+                Hero.MainHero.AddKnownLore(newlore.StringId);
                 Hero.MainHero.AddCultureSpecificCustomResource(-_mercenaryLoreCost);
 
                 // Grant SpellCaster attribute and entry spellcasting level

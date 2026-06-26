@@ -53,7 +53,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             }
         }
 
-        public List<PowerStone> GetAllPowerstones()
+        public List<PowerStone> GetAllAppliedPowerstones()
         {
             var list = new List<PowerStone>();
             if (Hero.MainHero.PartyBelongedTo == null) return new List<PowerStone>();
@@ -312,7 +312,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 var lores = PowerstoneHelper.GetPartyLores(Hero.MainHero.PartyBelongedTo.GetMemberHeroes());
                 foreach (var lore in lores)
                 {
-                    fittingStones.AddRange(stones.Where(x => x.LoreId == lore.ID && x.Price <= availablePrestige));
+                    fittingStones.AddRange(stones.Where(x => x.LoreId == lore.StringId && x.Price <= availablePrestige));
                 }
 
                 fittingStones = fittingStones.Distinct().ToList();
@@ -328,7 +328,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             if (Hero.MainHero.HasUnlockedCareerChoiceTier(3))
                 displayedStones.AddRange(fittingStones.Where(x => x.StoneLevel == PowerSize.Mighty).ToList());
 
-            var getAllStones = GetAllPowerstones();
+            var getAllStones = GetAllAppliedPowerstones();
 
             foreach (var alreadyTakenStone in
                      getAllStones.Select(stone =>
@@ -487,7 +487,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
                 var lores = LoreObject.GetAll();
 
-                foreach (var lore in lores.Where(lore => hero.HasKnownLore(lore.ID)).Where(lore => !result.Contains(lore)))
+                foreach (var lore in lores.Where(lore => hero.HasKnownLore(lore.StringId)).Where(lore => !result.Contains(lore)))
                 {
                     result.Add(lore);
                 }

@@ -221,7 +221,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
         private void SpellsingerDialogs(CampaignGameStarter obj)
         {
-            List<LoreObject> SpellweaverLores = LoreObject.GetAll().Where(x => x.ID == "HighMagic" || x.ID == "DarkMagic").ToList();
+            List<LoreObject> SpellweaverLores = LoreObject.GetAll().Where(x => x.StringId == "HighMagic" || x.StringId == "DarkMagic").ToList();
 
             obj.AddDialogLine("trainer_spellsinger_start", "start", "choices_spellsinger",TORTextHelper.GetText("tor_spelltrainer_spellsinger_start","I welcome you, child of Athel Loren."), isSpellsingerTrainer, null, 200, null);
             obj.AddDialogLine("trainer_spellsinger_start", "hub_spellsinger", "choices_spellsinger", TORTextHelper.GetText("tor_spelltrainer_spellsinger_reintro","Is there more you seek? Speak your desires."), isSpellsingerTrainer, null, 200, null);
@@ -317,13 +317,13 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
                 var additionalLores = lores.WhereQ(x => !x.DisabledForCultures.Contains(TORConstants.Cultures.ASRAI)).ToList();
 
-                additionalLores = additionalLores.WhereQ(x => x.ID != "DarkMagic" && x.ID != "HighMagic").ToList();
+                additionalLores = additionalLores.WhereQ(x => x.StringId != "DarkMagic" && x.StringId != "HighMagic").ToList();
 
                 var model = Campaign.Current.Models.GetAbilityModel();
                 foreach (var item in additionalLores)
                 {
 
-                    if (Hero.MainHero.HasKnownLore(item.ID))
+                    if (Hero.MainHero.HasKnownLore(item.StringId))
                         continue;
 
                     list.Add(new InquiryElement(item, item.Name, null));
@@ -392,7 +392,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             void OnChooseCompanionLore(Hero hero, List<InquiryElement> obj)
             {
                 var lore = (LoreObject)obj[0].Identifier;
-                hero.AddKnownLore(lore.ID);
+                hero.AddKnownLore(lore.StringId);
                 InformationManager.HideInquiry();
             }
 
@@ -552,8 +552,8 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
                 foreach (var item in lores)
                 {
-                    if (item.ID != "DarkMagic" && item.ID != "LoreOfDeath") continue;
-                    if (Hero.MainHero.GetExtendedInfo().HasKnownLore(item.ID)) continue;
+                    if (item.StringId != "DarkMagic" && item.StringId != "LoreOfDeath") continue;
+                    if (Hero.MainHero.GetExtendedInfo().HasKnownLore(item.StringId)) continue;
 
                     list.Add(new InquiryElement(item, item.Name, null));
                 }
@@ -576,7 +576,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
                 foreach (var item in lores)
                 {
-                    if (item.ID == "MinorMagic" || Hero.MainHero.GetExtendedInfo().HasKnownLore(item.ID)) continue;
+                    if (item.StringId == "MinorMagic" || Hero.MainHero.GetExtendedInfo().HasKnownLore(item.StringId)) continue;
                     if (!model.IsValidLoreForCharacter(Hero.MainHero, item)) continue;
 
                     list.Add(new InquiryElement(item, item.Name, null));
@@ -1027,15 +1027,15 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             var possibleLores = new List<LoreObject>();
             foreach (var item in LoreObject.GetAll())
             {
-                if (item.ID != "MinorMagic" &&
+                if (item.StringId != "MinorMagic" &&
                     !item.DisabledForCultures.Contains(partnerCulture) &&
-                    !info.HasKnownLore(item.ID) &&
+                    !info.HasKnownLore(item.StringId) &&
                     !(item.IsRestrictedToVampires && !Hero.MainHero.IsVampire())) possibleLores.Add(item);
             }
             bool flag = false;
             if (quest != null && possibleLores.Count > 0)
             {
-                flag = info.KnownLores.Count == 1 && info.KnownLores[0].ID == "MinorMagic" && quest.Task1Complete;
+                flag = info.KnownLores.Count == 1 && info.KnownLores[0].StringId == "MinorMagic" && quest.Task1Complete;
                 if (!flag && Hero.MainHero.IsVampire() && quest.Task1Complete) flag = true;
             }
             else if (Hero.MainHero.IsVampire() && possibleLores.Count > 0 && info.SpellCastingLevel == SpellCastingLevel.Master) flag = true;
@@ -1102,7 +1102,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             var model = Campaign.Current.Models.GetAbilityModel();
             foreach (var item in lores)
             {
-                if (item.ID == "MinorMagic" || Hero.MainHero.GetExtendedInfo().HasKnownLore(item.ID)) continue;
+                if (item.StringId == "MinorMagic" || Hero.MainHero.GetExtendedInfo().HasKnownLore(item.StringId)) continue;
 
                 if (!model.IsValidLoreForCharacter(Hero.MainHero, item)) continue;
 
@@ -1118,7 +1118,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             var info = Hero.MainHero.GetExtendedInfo();
             if (choice != null)
             {
-                Hero.MainHero.AddKnownLore(choice.ID);
+                Hero.MainHero.AddKnownLore(choice.StringId);
                 var choiceText = new TextObject(choice.Name);
                 if (info.SpellCastingLevel < SpellCastingLevel.Entry) Hero.MainHero.SetSpellCastingLevel(SpellCastingLevel.Entry);
                 MBInformationManager.AddQuickInformation(new TextObject(TORTextHelper.GetText("tor_magic_lore_prompt_notification", "Successfully learned lore: ") + choiceText));
