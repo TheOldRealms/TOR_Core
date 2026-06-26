@@ -577,7 +577,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 foreach (var item in lores)
                 {
                     if (item.StringId == "MinorMagic" || Hero.MainHero.GetExtendedInfo().HasKnownLore(item.StringId)) continue;
-                    if (!model.IsValidLoreForCharacter(Hero.MainHero, item)) continue;
+                    if (!model.IsValidLoreForHero(Hero.MainHero, item)) continue;
 
                     list.Add(new InquiryElement(item, item.Name, null));
                 }
@@ -1104,7 +1104,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             {
                 if (item.StringId == "MinorMagic" || Hero.MainHero.GetExtendedInfo().HasKnownLore(item.StringId)) continue;
 
-                if (!model.IsValidLoreForCharacter(Hero.MainHero, item)) continue;
+                if (!model.IsValidLoreForHero(Hero.MainHero, item)) continue;
 
                 list.Add(new InquiryElement(item, item.Name, null));
             }
