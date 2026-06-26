@@ -285,7 +285,7 @@
   <string id="tor_ui_no_devotion" text="{=str_tor_ui_no_devotion}No devotion" />
   <string id="tor_ui_active_blessing" text="{=str_tor_ui_active_blessing}Active Blessing" />
   <string id="tor_ui_no_blessing" text="{=str_tor_ui_no_blessing}No active blessing" />
-  <string id="tor_ui_winds_of_magic_title" text="{=str_tor_ui_winds_of_magic_title}Winds of Magic" />
+  <string id="tor_ui_winds_of_magic_title" text="{=str_tor_ui_winds_of_magic_title}Winds of Magic:" />
   <string id="tor_ui_winds_of_magic_maximum" text="{=str_tor_ui_winds_of_magic_maximum}Maximum:" />
   <string id="tor_ui_winds_of_magic_recharge_rate" text="{=str_tor_ui_winds_of_magic_recharge_rate}Recharge Rate:" />
   <string id="tor_menu_enter_game" text="{=str_tor_menu_enter_game}Enter the Old World" />
@@ -361,7 +361,7 @@
   <string id="tor_generic_isLooted" text="{=str_tor_generic_isLooted}{SETTLEMENT} is destroyed" />
   <string id="tor_generic_isCaptured" text="{=str_tor_generic_isCaptured}{SETTLEMENT} is captured" />
   <string id="tor_generic_companionLimitReached" text="{=str_tor_generic_companionLimitReached}Clan companion limit reached" />
-  <string id="tor_generic_customResourceCost" text="{=str_tor_generic_customResourceCost}Requires {AMOUNT} {RESOURCE_ICON}" />
+  <string id="tor_generic_equipmentWeight" text="{=str_tor_generic_equipmentWeight}Equipment weight" />
 
   <!-- Generic UI Messages -->
   <string id="tor_inquiry_ok_text" text="{=str_tor_inquiry_ok_text}OK" />
@@ -429,6 +429,8 @@
   <string id="tor_greenskin_teef_tribute_text" text="{=str_tor_greenskin_teef_tribute_text}Teef Tribute" />
   <string id="tor_hideout_greenskin_no_sneak" text="{=str_tor_hideout_greenskin_no_sneak}You are too clumsy to sneak in undetected." />
   <string id="tor_hideout_greenskin_no_wait" text="{=str_tor_hideout_greenskin_no_wait}You are too clumsy to sneak in undetected. Why even wait?" />
+  <string id="tor_greenskin_shaman_player" text="{=str_tor_greenskin_shaman_player}Greenskin shaman" />
+  <string id="tor_greenskin_shaman_companion" text="{=str_tor_greenskin_shaman_companion}Greenskin shaman companionn" />
 
   <!-- Character Stats Bonuses -->
   <string id="tor_stats_minotaur_bonus_text" text="{=str_tor_stats_minotaur_bonus_text}Minotaur bonus" />
@@ -1124,6 +1126,7 @@
   <string id="str_culture_rich_name.chaos_culture" text="{=str_tor_culture_rich_name_chaos_culture}Chaos" />
   <string id="str_culture_rich_name.sturgia" text="{=str_tor_culture_rich_name_sturgia}Dawi" />
   <string id="str_culture_rich_name.aserai" text="{=str_tor_culture_rich_name_aserai}Greenskins" />
+	
   <string id="str_culture_description.khuzait" text="{=str_tor_culture_description_khuzait}The Vampire Counts are fiends without equal. They seek to topple the civilisations of the living and supplant them with an Undead empire. Each Vampire is a unique and majestic figure with his own personality, drive and ambition. In contrast, their minions are mindlessly obedient - rank after rank of ragged and dirt-encrusted cadavers forced back to life by their masters' necromantic power." />
   <string id="str_culture_description.empire" text="{=str_tor_culture_description_empire}The Empire of Man, the sprawling nation of humans dominating the Old World, faces a daily struggle for survival. Guided by their Emperor, Karl Franz, its armies stand as a testament to unwavering discipline and unmatched martial skills. In a world teeming with brutal savages and bloodthirsty monsters, the Empire endures thanks to the renowned discipline of its armies, honed through rigorous training and fortified by their unyielding faith in Sigmar. A beacon of human resilience, the Empire's soldiers exemplify the indomitable spirit of man that prevails amidst its endless list of foes." />
   <string id="str_culture_description.vlandia" text="{=str_tor_culture_description_vlandia}The Kingdom of Bretonnia is a land renowned for powerful Knights and their strong sense of Chivalry. Guided by the Fey Enchantress and the Damsels of the Lady, the peasants toil while their noble lords protect them from the many dangers threating their survival. In times of war the whole kingdom can join together, led in a crusade against their enemies by King Louen Leoncoeur, against which no foe has known victory." />
@@ -1133,6 +1136,7 @@
   <string id="str_culture_description.sturgia" text="{=str_tor_culture_description_sturgia}The Dwarfs, or the Dawi in their tongue, are one of the oldest and proudest races of the world. The Everlasting Realm of the Dwarfs was at its peak when human nations were nothing more than bands of warring barbarian tribes. Hardy, stout hearts combined with, at times, excessive pride result in a harsh and durable folk – one that is utterly incapable of forgiveness. And so the Dawi record each and every single wrong suffered at the hands of other races, with hopes of avenging said grudges in the future. Alas, this merciless and stubborn attitude led the Dwarfs into a number of conflicts that eventually pushed their civilization into decline. Out of 22 major Dwarfen Holds, or Karaks, only 12 remain under Dawi control – with the remaining ones fallen into the hands of their Ancestral Foes: Skaven and Greenskins." />
   <string id="str_culture_description.chaos_culture" text="{=str_tor_culture_description_chaos_culture}No one truly knows the origin of Chaos in the mortal world. Even the long-lived scholars of the High Elves can only speculate as to where the forces of Chaos first originated. War, famine, natural disaster and the destroyer known as time have eroded away nearly all indications of the roots of Chaos." />
   <string id="str_culture_description.aserai" text="{=str_tor_culture_description_aserai}Orcs and Goblins have been a thorn in the side of every major and minor power for as long as anyone can remember. Caring nothing for history or legacy, in olden days the Greenskins were largely confined to the Southlands, where they waged savage wars amongst themselves, indifferent to the wider world. Yet this brutal isolation did not last. Earthquakes and volcanic activity drove them northwards in vast, rampaging hordes called Waaaghs!, looting and burning all in their path. The Dwarfs, weakened by the long and bitter War of Vengeance against the Elves, stood little chance against the green tide that washed over their homes, and many holds were lost. Ever since, Orcs and Goblins can be found in great numbers all over the planet, being outnumbered only by the Skaven, with whom they often wage wars deep underground." />
+	
   <string id="str_faction_official.empire" text="{=str_tor_faction_official_empire}a count" />
   <string id="str_faction_official.empire_f" text="{=str_tor_faction_official_empire_f}a countess" />
   <string id="str_faction_ruler.empire" text="{=str_tor_faction_ruler_empire}elector count" />
@@ -1528,6 +1532,7 @@
   <string id="tor_player_accept_vassalage.sturgia" text="{=str_tor_player_accept_vassalage_sturgia}Your oath is heard and hammered into the annals. Stand proud, for your kin shall weigh your deeds in stone." />
   <string id="tor_player_accept_vassalage.aserai" text="{=str_tor_player_accept_vassalage_aserai}You'z part uv me mob now! Go an' get to smashin' before I stab ya. WAAAAAAAGH!!!" />
   <string id="tor_player_accept_vassalage.chaos_culture" text="{=str_tor_player_accept_vassalage_chaos_culture}May Nurgle gift you with his blessings." />
+	
   <string id="str_liege_title.empire" text="{=str_tor_liege_title_empire}Elector Count of one of the Provinces of the Empire">
     <tags>
       <tag tag_name="EmpireTag" />
@@ -4505,6 +4510,8 @@
   <string id="tor_careerchoice_basic.Ammo" text="{=str_tor_careerchoice_basic_ammo}{EFFECT_VALUE} extra ammunition" />
 
   <!-- Custom Resource -->
+  <string id="tor_custom_resource_cost" text="{=str_tor_custom_resource_cost}Requires {AMOUNT} {RESOURCE_ICON}" />
+	
   <string id="tor_custom_resource_name.Prestige" text="{=str_tor_custom_resource_name_prestige}Prestige" />
   <string id="tor_custom_resource_name.Chivalry" text="{=str_tor_custom_resource_name_chivalry}Chivalry" />
   <string id="tor_custom_resource_name.DarkEnergy" text="{=str_tor_custom_resource_name_darkenergy}Dark Energy" />
@@ -4515,6 +4522,7 @@
   <string id="tor_custom_resource_name.Meat" text="{=str_tor_custom_resource_name_meat}Meat" />
   <string id="tor_custom_resource_name.Waaagh" text="{=str_tor_custom_resource_name_waaagh}Fightiness" />
   <string id="tor_custom_resource_name.WindsOfMagic" text="{=str_tor_custom_resource_name_windsofmagic}Winds of Magic" />
+	
   <string id="tor_custom_resource_description.Prestige" text="{=str_tor_custom_resource_description_prestige}Prestige is a sign of respect within the Empire. A symbolic currency that allows upgrading Imperial troops and striking special deals with influential individuals." />
   <string id="tor_custom_resource_description.Chivalry" text="{=str_tor_custom_resource_description_chivalry}A representation of the chivalrous code of conduct driving the people of the fair land of Bretonnia. Higher Chivalry allows for greater recruitment of special troops and utilization of unique mechanics." />
   <string id="tor_custom_resource_description.DarkEnergy" text="{=str_tor_custom_resource_description_darkenergy}Dark Energy is used by practitioners of necromancy to raise and support their undead minions." />

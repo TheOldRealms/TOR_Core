@@ -101,7 +101,17 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             {
                 if (Game.Current.GameType is not Campaign) return 50;
                 TORAbilityModel model = Campaign.Current.Models.GetAbilityModel();
-                return model.GetMaximumWindsOfMagic(this.BaseCharacter);
+                return model.GetMaximumWindsOfMagic(BaseCharacter, false).ResultNumber;
+            }
+        }
+
+        public ExplainedNumber MaxWindsOfMagicExplained
+        {
+            get
+            {
+                if (Game.Current.GameType is not Campaign) return new ExplainedNumber(50);
+                TORAbilityModel model = Campaign.Current.Models.GetAbilityModel();
+                return model.GetMaximumWindsOfMagic(BaseCharacter, true);
             }
         }
 
@@ -111,7 +121,17 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             {
                 if (Game.Current.GameType is not Campaign) return 0.2f;
                 TORAbilityModel model = Campaign.Current.Models.GetAbilityModel();
-                return model.GetWindsRechargeRate(this.BaseCharacter);
+                return model.GetWindsRechargeRate(BaseCharacter, false).ResultNumber;
+            }
+        }
+
+        public ExplainedNumber WindsOfMagicRechargeRateExplained
+        {
+            get
+            {
+                if (Game.Current.GameType is not Campaign) return new ExplainedNumber(0.2f);
+                TORAbilityModel model = Campaign.Current.Models.GetAbilityModel();
+                return model.GetWindsRechargeRate(BaseCharacter, true);
             }
         }
 

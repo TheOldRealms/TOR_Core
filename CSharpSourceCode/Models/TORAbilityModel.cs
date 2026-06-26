@@ -480,32 +480,48 @@ namespace TOR_Core.Models
             return (int)cost.ResultNumber;
         }
 
-        //Sly : we could make this take a bool for including descriptions if we want the UI to be able to display a detailed breakdown in the future
-        public float GetWindsRechargeRate(CharacterObject baseCharacter)
+        public virtual ExplainedNumber GetWindsRechargeRate(CharacterObject character, bool withDescriptions = false)
         {
-            var hero = baseCharacter?.HeroObject;
-            if (hero == null || !hero.IsSpellCaster()) return 0f;
-            if (baseCharacter.Culture.StringId == TORConstants.Cultures.DAWI) return 0;
+            var hero = character?.HeroObject;
+            if (hero == null || !hero.IsSpellCaster()) return new ExplainedNumber(0, withDescriptions);
+            if (character.Culture.StringId == TORConstants.Cultures.DAWI) return new ExplainedNumber(0, withDescriptions);
 
             if (hero.PartyBelongedTo != MobileParty.MainParty)
             {
-                if (hero.IsHumanPlayerCharacter) return 0.1f;//player taken prisoner
+                if (hero.IsHumanPlayerCharacter) return new ExplainedNumber(0.1f, withDescriptions);//player taken prisoner
 
                 // AI Greenskin shamans get 50% of normal AI regen
-                if (baseCharacter.Culture.StringId == TORConstants.Cultures.GREENSKIN)
+                if (character.Culture.StringId == TORConstants.Cultures.GREENSKIN)
                 {
-                    return 1f;
+                    return new ExplainedNumber(1f, withDescriptions);
                 }
-                return 2f;//equiv to 267 spellcraft
+                return new ExplainedNumber(2f, withDescriptions);//equiv to 267 spellcraft
             }
 
-            ExplainedNumber explainedNumber = new(1f, false, null);
-            SkillHelper.AddSkillBonusForCharacter(TORSkillEffects.WindsRechargeRate, baseCharacter, ref explainedNumber);
+            ExplainedNumber explainedNumber = new(1f, withDescriptions, TORTextHelper.GetTextObject("tor_windsOfMagic_base", "Base", true));
 
-            //PartyBelongedTo is necessarily not null here due to the "!= MobileParty.MainParty" condition. If a hero is a prisoner, sitting in a town alone, etc..., they use the default npc value above.
+            
+            if (character.Culture.StringId == TORConstants.Cultures.GREENSKIN)
+            {
+                if(hero != Hero.MainHero)
+                {
+                    // Player companion Greenskin shamans get 50% regen
+                    explainedNumber.AddFactor(-0.5f, TORTextHelper.GetTextObject("tor_greenskin_shaman_companion", "Greenskin shaman companion", false));
+                }
+                else
+                {
+                    return new ExplainedNumber(0, withDescriptions, TORTextHelper.GetTextObject("tor_greenskin_shaman_player", "Greenskin shaman", false)); // Player main hero Greenskin uses Waaagh system instead 
+                } 
+                
+            }
+
+            SkillHelper.AddSkillBonusForCharacter(TORSkillEffects.WindsRechargeRate, character, ref explainedNumber);
+
+            //PartyBelongedTo is necessarily not null here due to the "!= MobileParty.MainParty" condition. If a hero is a prisoner, sitting in a town alone, etc..., they use the default npc value above except for the exception for player prisoner.
+
             if (MobileParty.MainParty.HasBlessing("cult_of_isha"))
             {
-                explainedNumber.AddFactor(0.25f);
+                explainedNumber.AddFactor(0.25f, TORTextHelper.GetTextObject("tor_religion_blessing_name", "cult_of_isha", "Blessing of Isha", true));
             }
 
             if (hero == Hero.MainHero)
@@ -529,7 +545,7 @@ namespace TOR_Core.Models
                         if (spellcasterCount > 0)
                         {
                             var choice = TORCareerChoices.GetChoice("WellspringOfDharPassive4");
-                            explainedNumber.Add(choice.GetPassiveValue() * spellcasterCount);
+                            explainedNumber.Add(choice.GetPassiveValue() * spellcasterCount, choice.BelongsToGroup.Name);
                         }
                     }
                 }
@@ -546,24 +562,23 @@ namespace TOR_Core.Models
             }
             else
             {
-                var effectiveWeight = new ExplainedNumber(baseCharacter.Equipment.GetTotalWeightOfArmor(true));
-                PerkHelper.AddPerkBonusForCharacter(DefaultPerks.Athletics.FormFittingArmor, baseCharacter, true, ref effectiveWeight);
-                //only waywatcher uses the PassiveEffectType EquipmentWeightReduction and the career doesn't have access to WoM as a non-caster so career perks are ignored
+                var effectiveWeight = new ExplainedNumber(character.Equipment.GetTotalWeightOfArmor(true));
+                PerkHelper.AddPerkBonusForCharacter(DefaultPerks.Athletics.FormFittingArmor, character, true, ref effectiveWeight);
+                //only waywatcher uses the PassiveEffectType EquipmentWeightReduction and the career doesn't have access to WoM as a non-caster so career perks are ignored for the moment.
 
                 //first 5 wt unpenalized, mage robes ish
                 //faster scaling penalties up to 20 wt, then negatives are possible
                 var weightmalus = (effectiveWeight.ResultNumber - 5) / 15;
                 weightmalus = Mathf.Max(weightmalus, 0f);
 
-                explainedNumber.AddFactor(-weightmalus);
+                explainedNumber.AddFactor(-weightmalus, TORTextHelper.GetTextObject("tor_generic_equipmentWeight", "Equipment weight", true));
             }
-            //WoM regen an explained number and being able to add the armour penalty would go a long way to making the effect of armour in particular more accessible to players.
 
 
             var WoMRegenFromEquipment = hero.GetAggregatedStatEffectFromEquipment(ItemTraitStatType.WindsOfMagicRegen);
             if (WoMRegenFromEquipment > 0)
             {
-                explainedNumber.Add(WoMRegenFromEquipment, GameTexts.FindText("tor_generic_enchantedEquipment"));
+                explainedNumber.Add(WoMRegenFromEquipment, TORTextHelper.GetTextObject("tor_generic_enchantedEquipment", "Equipped Enchanted Items", true));
             }
 
             //debuffs are for asrai player campaigns, not any asrai-cultured wanderer regardless of the player's culture
@@ -597,44 +612,30 @@ namespace TOR_Core.Models
                 }
             }
             
-            if (baseCharacter.Culture.StringId == TORConstants.Cultures.GREENSKIN)
-            {
-                if(hero != Hero.MainHero)
-                {
-                    // Player companion Greenskin shamans get 50% regen
-                    explainedNumber.AddFactor(-0.5f);
-                }
-                else
-                {
-                    return 0; // Player main hero Greenskin uses Waaagh system instead 
-                } 
-                
-            }
-
-            return explainedNumber.ResultNumber;
+            return explainedNumber;
         }
 
-        public float GetMaximumWindsOfMagic(CharacterObject baseCharacter)
+        public virtual ExplainedNumber GetMaximumWindsOfMagic(CharacterObject character, bool withDescriptions = false)
         {
-            var hero = baseCharacter?.HeroObject;
-            if (hero == null || !hero.IsSpellCaster()) return 0f;
-            if (hero.Culture.StringId == TORConstants.Cultures.DAWI) return 0;
+            var hero = character?.HeroObject;
+            if (hero == null || !hero.IsSpellCaster()) return new ExplainedNumber(0, withDescriptions);
+            if (hero.Culture.StringId == TORConstants.Cultures.DAWI) return new ExplainedNumber(0, withDescriptions);
             if (hero.PartyBelongedTo != MobileParty.MainParty && !hero.IsHumanPlayerCharacter)//ai casters only; if the player is a prisoner they will pass through the normal calculations despite PartyBelongedTo being null
             {
-                return 100f;//equiv to 333 spellcraft --  Sly : leaving this at 100 for the moment because the AI is dumb and wastes half of it anyways
+                return new ExplainedNumber(100, withDescriptions);//equiv to 333 spellcraft --  Sly : leaving this at 100 for the moment because the AI is dumb and wastes half of it anyways
             }
 
-            ExplainedNumber explainedNumber = new(10f, false, null);
-            SkillHelper.AddSkillBonusForCharacter(TORSkillEffects.MaxWinds, baseCharacter, ref explainedNumber);
+            ExplainedNumber explainedNumber = new(10f, withDescriptions, TORTextHelper.GetTextObject("tor_windsOfMagic_base", "Base", true));
+            SkillHelper.AddSkillBonusForCharacter(TORSkillEffects.MaxWinds, character, ref explainedNumber);
 
 
             var WoMFromEquipment = hero.GetAggregatedStatEffectFromEquipment(ItemTraitStatType.WindsOfMagicMax);
             if (WoMFromEquipment > 0)
             {
-                explainedNumber.Add(WoMFromEquipment, GameTexts.FindText("tor_generic_enchantedEquipment"));
+                explainedNumber.Add(WoMFromEquipment, TORTextHelper.GetTextObject("tor_generic_enchantedEquipment", "Equipped Enchanted Items", true));
             }
 
-            if (Hero.MainHero == null) return explainedNumber.ResultNumber;
+            if (Hero.MainHero == null) return explainedNumber;
             if (Hero.MainHero.HasAnyCareer())
             {
                 var careerChoices = Hero.MainHero.GetAllCareerChoices();
@@ -645,12 +646,12 @@ namespace TOR_Core.Models
                     {
                         var spellCount = Hero.MainHero.GetExtendedInfo().AcquiredAbilities.Count; //does acquired abilities include ones known at game start?
                         var choice = TORCareerChoices.GetChoice("DarkVisionPassive4");
-                        explainedNumber.Add(choice.GetPassiveValue() * spellCount);
+                        explainedNumber.Add(choice.GetPassiveValue() * spellCount, choice.BelongsToGroup.Name);
                     }
 
                     if (careerChoices.Contains("DiscipleOfAccursedPassive4"))
                     {
-                        var characterEquipment = baseCharacter.GetCharacterEquipment();
+                        var characterEquipment = character.GetCharacterEquipment();
                         var choice = TORCareerChoices.GetChoice("DiscipleOfAccursedPassive4");
                         var traitCount = 0;
                         foreach (var item in characterEquipment)
@@ -659,7 +660,7 @@ namespace TOR_Core.Models
                         }
                         if (traitCount > 0)
                         {
-                            explainedNumber.Add(choice.GetPassiveValue() * traitCount);
+                            explainedNumber.Add(choice.GetPassiveValue() * traitCount, choice.BelongsToGroup.Name);
                         }
                     }
 
@@ -673,7 +674,7 @@ namespace TOR_Core.Models
                         {
                             if (member.IsImperialMagister())
                             {
-                                explainedNumber.Add(choice.GetPassiveValue());
+                                explainedNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
                             }
                         }
                     }
@@ -695,7 +696,7 @@ namespace TOR_Core.Models
                             if (treeSpiritCount > 0)
                             {
                                 var choice = TORCareerChoices.GetChoice("HeartOfTheTreePassive4");
-                                explainedNumber.Add(choice.GetPassiveValue() * treeSpiritCount);
+                                explainedNumber.Add(choice.GetPassiveValue() * treeSpiritCount, choice.BelongsToGroup.Name);
                             }
                         }
                     }
@@ -705,38 +706,38 @@ namespace TOR_Core.Models
                     if (careerChoices.Contains("EnvoyOfTheLadyPassive3") && hero.HasAttribute("PriestLady"))
                     {
                         var choice = TORCareerChoices.GetChoice("EnvoyOfTheLadyPassive3");
-                        explainedNumber.Add(choice.GetPassiveValue());
+                        explainedNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
                     }
 
                     if (careerChoices.Contains("LieOfLadyPassive2") && hero.IsNecromancer())//this applies to vamp companions as well because IsNecro also looks for the lore
                     {
                         var choice = TORCareerChoices.GetChoice("LieOfLadyPassive2");
-                        explainedNumber.Add(choice.GetPassiveValue());
+                        explainedNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
                     }
 
                     if (careerChoices.Contains("CollegeOrdersPassive2") && hero.IsImperialMagister())
                     {
                         var choice = TORCareerChoices.GetChoice("CollegeOrdersPassive2");
-                        explainedNumber.Add(choice.GetPassiveValue());
+                        explainedNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
                     }
 
                     if (careerChoices.Contains("WellspringOfDharPassive3") && hero.IsNecromancer())
                     {
                         var choice = TORCareerChoices.GetChoice("WellspringOfDharPassive3");
-                        explainedNumber.Add(choice.GetPassiveValue());
+                        explainedNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
                     }
 
                     if (careerChoices.Contains("WardenOfArgwylonPassive4") && hero.IsSpellSinger()) //wardens can't be spellsingers so no need to check player
                     {
                         var choice = TORCareerChoices.GetChoice("WardenOfArgwylonPassive4");
-                        explainedNumber.Add(choice.GetPassiveValue());
+                        explainedNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
                     }
 
                     // Orc Shaman: +30 WoM for Shaman companion
                     if (careerChoices.Contains("PowerUvDaWaaaghPassive2") && hero.HasAttribute("ShamanBoss"))
                     {
                         var choice = TORCareerChoices.GetChoice("PowerUvDaWaaaghPassive2");
-                        explainedNumber.Add(choice.GetPassiveValue());
+                        explainedNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
                     }
                 }
 
@@ -753,7 +754,7 @@ namespace TOR_Core.Models
                     {
                         if (knownLores.WhereQ(x => x.StringId == powerstone.LoreId).AnyQ())
                         {
-                            explainedNumber.Add(-powerstone.Upkeep);
+                            explainedNumber.Add(-powerstone.Upkeep, powerstone.StoneName);
                         }
                     }
                 }
@@ -774,10 +775,10 @@ namespace TOR_Core.Models
                 }
             }
 
-            return explainedNumber.ResultNumber;
+            return explainedNumber;
         }
 
-        public bool IsValidLoreForCharacter(Hero hero, LoreObject loreObject)
+        public bool IsValidLoreForHero(Hero hero, LoreObject loreObject)
         {
             if (!hero.IsVampire() && loreObject.IsRestrictedToVampires) return false;
 
