@@ -68,7 +68,10 @@ namespace TOR_Core.AbilitySystem
                     || Hero.MainHero.HasCareerChoice("GiantSlayerKeystone")
                     || Hero.MainHero.HasCareerChoice("WardenOfCythralKeystone")
                     || Hero.MainHero.HasCareerChoice("BonesAnFirepitzKeystone"))
+                {
                     _currentCharge = _maxCharge;
+                    SetCoolDown(0);
+                }
                 else
                     SetCoolDown(Template.CoolDown);
 
