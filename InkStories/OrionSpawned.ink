@@ -1,7 +1,7 @@
 # title: Orion's Wild Hunt
 # frequency: Unique
 # development: false
-# illustration: meadow
+# illustration: orion_wild_hunt
 
 INCLUDE include.ink
 
