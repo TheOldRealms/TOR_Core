@@ -197,7 +197,7 @@ namespace TOR_Core.AbilitySystem
             if (Hero.MainHero.HasCareer(TORCareers.Waywatcher))
             {
                 var weapon = casterAgent.WieldedWeapon;
-                if (weapon.IsEmpty || weapon.CurrentUsageItem == null || !weapon.CurrentUsageItem.IsRangedWeapon || weapon.CurrentUsageItem.WeaponClass == WeaponClass.Crossbow)
+                if (weapon.IsEmpty || weapon.CurrentUsageItem == null || !weapon.CurrentUsageItem.IsRangedWeapon || weapon.CurrentUsageItem.WeaponClass != WeaponClass.Bow)
                 {
                     failureReason = new TextObject("{=tor_ability_requires_bow}You must wield a bow to use this ability");
                     return false;
