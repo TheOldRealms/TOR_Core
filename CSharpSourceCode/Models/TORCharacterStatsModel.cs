@@ -28,11 +28,11 @@ namespace TOR_Core.Models
         public override ExplainedNumber MaxHitpoints(CharacterObject character, bool includeDescriptions = false)
         {
             var number = base.MaxHitpoints(character, includeDescriptions);
-            number = CalculateHitPoints(number, character);
+            number = CalculateHitPoints(ref number, character);
             return number;
         }
 
-        private ExplainedNumber CalculateHitPoints(ExplainedNumber number, CharacterObject character)
+        private ExplainedNumber CalculateHitPoints(ref ExplainedNumber number, CharacterObject character)
         {
             if (character.IsMinotaur())
             {
@@ -42,25 +42,25 @@ namespace TOR_Core.Models
             {
                 number.Add(450f, TORTextHelper.GetTextObject("tor_stats_troll_bonus_text", "Troll bonus"));
             }
-            if (character.IsTreeSpirit() && character.Race != FaceGen.GetRaceOrDefault("large_humanoid_monster"))
-            {
-                number.Add(100f, TORTextHelper.GetTextObject("tor_stats_dryad_bonus_text", "Dryad bonus"));
-            }
-            if (character.Race == FaceGen.GetRaceOrDefault("large_humanoid_monster"))
+            if (character.IsTreeman())
             {
                 number.Add(1000f, TORTextHelper.GetTextObject("tor_stats_large_monster_text", "Large Monster"));
             }
+            else if (character.IsTreeSpirit())
+            {
+                number.Add(100f, TORTextHelper.GetTextObject("tor_stats_dryad_bonus_text", "Dryad bonus"));
+            }
             if (character.IsHero)
             {
-                return CalculateHeroHealth(number, character.HeroObject);
+                return CalculateHeroHealth(ref number, character.HeroObject);
             }
             else
             {
-                return CalculateTroopHealth(number, character);
+                return CalculateTroopHealth(ref number, character);
             }
         }
 
-        private ExplainedNumber CalculateTroopHealth(ExplainedNumber number, CharacterObject character)
+        private ExplainedNumber CalculateTroopHealth(ref ExplainedNumber number, CharacterObject character)
         {
             switch (character.Tier)
             {
@@ -116,7 +116,7 @@ namespace TOR_Core.Models
             return number;
         }
 
-        private ExplainedNumber CalculateHeroHealth(ExplainedNumber number, Hero hero)
+        private ExplainedNumber CalculateHeroHealth(ref ExplainedNumber number, Hero hero)
         {
             var info = hero.GetExtendedInfo();
             if (info != null)
