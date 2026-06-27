@@ -1265,6 +1265,16 @@ namespace TOR_Core.Models
 
             return passedExtra;
         }
+        
+        public override bool DecideAgentKnockedDownByBlow(Agent attackerAgent, Agent victimAgent, in AttackCollisionData collisionData, WeaponComponentData attackerWeapon, in Blow blow)
+        {
+            if (collisionData.IsHorseCharge && collisionData.ChargeVelocity > attackerAgent.Monster.RelativeSpeedLimitForCharge)
+            {
+                return true;
+            }
+
+            return base.DecideAgentKnockedDownByBlow(attackerAgent, victimAgent, in collisionData, attackerWeapon, in blow);
+        }
 
         public override void DecideWeaponCollisionReaction(in Blow registeredBlow, in AttackCollisionData collisionData, Agent attacker, Agent defender, in MissionWeapon attackerWeapon, bool isFatalHit, bool isShruggedOff, float momentumRemaining, out MeleeCollisionReaction colReaction)
         {

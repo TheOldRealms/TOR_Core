@@ -194,7 +194,7 @@ namespace TOR_Core.AbilitySystem
             }
 
             // Add Anvil of Doom spawner for Runelords
-            if (agent.IsHero && agent.GetHero() == Hero.MainHero)
+            if (agent.IsHero && agent.GetHero() != null)
             {
                 if (agent.GetHero().HasCareer(TORCareers.Runelord) && agent.HasPartyAnvilOfDoom())
                 {

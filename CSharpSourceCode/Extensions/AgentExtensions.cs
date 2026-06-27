@@ -233,6 +233,13 @@ namespace TOR_Core.Extensions
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Heroes only exist in the context of campaign games.
+        /// Custom battles will receive null from this.
+        /// </remarks>
         public static Hero GetHero(this Agent agent)
         {
             if (agent == null) return null;
@@ -262,12 +269,11 @@ namespace TOR_Core.Extensions
 
             if (!agent.IsHero) return count;
 
-            var hero = agent.GetHero();
-            if (!hero.IsArtilleryHero()) return count;
-
-
             if (Game.Current.GameType is Campaign)
             {
+                var hero = agent.GetHero();
+                if (!hero.IsArtilleryHero()) return count;
+
                 count = hero.GetPlaceableArtilleryCount();
                 TORCommon.Log("AgentExtensions : artillery count for campaign battle derived from an agent; use the MobileParty extension instead.", LogLevel.Error);
             }
