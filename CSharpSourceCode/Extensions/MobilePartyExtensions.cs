@@ -82,25 +82,29 @@ namespace TOR_Core.Extensions
             return list;
         }
 
+        /// <summary>
+        /// Uses the party's engineer role hero to calculate fieldable artillery if the hero is an Engineer or is tagged as capable of placing it.
+        /// </summary>
         public static int GetMaxNumberOfArtillery(this MobileParty party)
         {
+            if (!party.IsLordParty) return 0;
+
             if (party == MobileParty.MainParty)
             {
-                if (party.LeaderHero != null && !Hero.MainHero.IsPrisoner) //a game save occurring after the player is taken prisoner may end up with LeaderHero not yet being null, but no heroes will be in the party so MaxBy finds an empty enumerable
-                {
-                    var engineers = party.GetMemberHeroes();
+                //a game save occurring after the player is taken prisoner may end up with LeaderHero not yet being null, but no heroes will be in the party so MaxBy finds an empty enumerable
+                if (party.LeaderHero == null || Hero.MainHero.IsPrisoner) return 0;
 
-                    var highestEngineer = engineers.MaxBy(x => x.GetSkillValue(DefaultSkills.Engineering));
-                    var engineering = highestEngineer.GetSkillValue(DefaultSkills.Engineering);
-                    return (int)Math.Truncate((decimal)engineering / 50);
-                }
-                else return 0;
+
+                var engineer = party.EffectiveEngineer;
+                if (!engineer.IsArtilleryHero()) return 0;
+
+                var engineering = party.EffectiveEngineer.GetSkillValue(DefaultSkills.Engineering);
+                return (int)(engineering / 50);
             }
-            else if (party.IsLordParty)
+            else
             {
                 return 3;
             }
-            else return 0;
         }
 
         public static List<Hero> GetMemberHeroes(this MobileParty party)

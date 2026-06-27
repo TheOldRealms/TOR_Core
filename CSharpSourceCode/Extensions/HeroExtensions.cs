@@ -277,16 +277,28 @@ namespace TOR_Core.Extensions
             return result;
         }
 
+        /// <summary>
+        /// Hero-specific maximum artillery count.
+        /// Only exists as a backup for the Agent extension.
+        /// </summary>
+        /// <remarks>
+        /// This will likely be removed in the future.
+        /// </remarks>
         public static int GetPlaceableArtilleryCount(this Hero hero)
         {
             int count = 0;
-            if (hero.CanPlaceArtillery() || hero.HasAttribute("EngineerCompanion") && Hero.MainHero.CanPlaceArtillery())
+            if (hero.IsArtilleryHero())
             {
                 var engineering = hero.GetSkillValue(DefaultSkills.Engineering);
-                count = (int)Math.Truncate((decimal)engineering / 50);
-                if (hero != Hero.MainHero && count == 0) count = 1; //Ensure AI lords can place at least 1 piece.
+                count = (int)(engineering / 50);
+                if (hero.Clan != Clan.PlayerClan && count == 0) count = 1; //Ensure AI lords can place at least 1 piece.
             }
             return count;
+        }
+
+        public static bool IsArtilleryHero(this Hero hero)
+        {
+            return hero.HasAttribute("CanPlaceArtillery") || hero.HasAttribute("EngineerCompanion");
         }
 
         public static bool CanPlaceArtillery(this Hero hero)

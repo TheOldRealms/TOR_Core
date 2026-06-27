@@ -338,6 +338,7 @@ namespace TOR_Core.AbilitySystem
                     frame.origin = Agent.Main.GetWorldPosition().GetGroundVec3MT();
                     break;
                 case AbilityEffectType.ArtilleryPlacement:
+                case AbilityEffectType.ItemPlacement:
                 case AbilityEffectType.Summoning:
                     frame.origin =
                         Mission.Current.GetRandomPositionAroundPoint(Agent.Main.GetWorldPosition().GetGroundVec3MT(), 3, 6, false);
@@ -471,6 +472,7 @@ namespace TOR_Core.AbilitySystem
                         break;
                     }
                 case AbilityEffectType.ArtilleryPlacement:
+                case AbilityEffectType.ItemPlacement:
                 case AbilityEffectType.Hex:
                 case AbilityEffectType.Augment:
                 case AbilityEffectType.TacticalReposition:
@@ -529,6 +531,7 @@ namespace TOR_Core.AbilitySystem
                         break;
                     }
                 case AbilityEffectType.ArtilleryPlacement:
+                case AbilityEffectType.ItemPlacement:
                     {
                         frame = new MatrixFrame(Mat3.Identity, target.GetPositionPrioritizeCalculated());
                         target.SelectedWorldPosition = Vec3.Zero;
@@ -647,6 +650,7 @@ namespace TOR_Core.AbilitySystem
                     AddExactBehaviour<BombardmentScript>(ref entity, casterAgent);
                     break;
                 case AbilityEffectType.ArtilleryPlacement:
+                case AbilityEffectType.ItemPlacement:
                     AddExactBehaviour<ArtilleryPlacementScript>(ref entity, casterAgent);
                     break;
                 case AbilityEffectType.TimeWarpEffect:

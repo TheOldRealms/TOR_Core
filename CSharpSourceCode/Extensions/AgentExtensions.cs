@@ -253,19 +253,27 @@ namespace TOR_Core.Extensions
             return agent.Origin != null && agent.Origin.GetType() == typeof(SummonedAgentOrigin);
         }
 
+        /// <summary>
+        /// A backup used for finding artillery count in custom battles. Campaign missions find artillery count via the party origin.
+        /// </summary>
         public static int GetPlaceableArtilleryCount(this Agent agent)
         {
             int count = 0;
-            if (agent.CanPlaceArtillery() || agent.HasAttribute("EngineerCompanion"))
+
+            if (!agent.IsHero) return count;
+
+            var hero = agent.GetHero();
+            if (!hero.IsArtilleryHero()) return count;
+
+
+            if (Game.Current.GameType is Campaign)
             {
-                if (Game.Current.GameType is Campaign && agent.GetHero() != null)
-                {
-                    count = agent.GetHero().GetPlaceableArtilleryCount();
-                }
-                else if (Game.Current.GameType is CustomGame)
-                {
-                    count = 5;
-                }
+                count = hero.GetPlaceableArtilleryCount();
+                TORCommon.Log("AgentExtensions : artillery count for campaign battle derived from an agent; use the MobileParty extension instead.", LogLevel.Error);
+            }
+            else if (Game.Current.GameType is CustomGame)
+            {
+                count = 3;
             }
             return count;
         }

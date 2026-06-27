@@ -4026,7 +4026,7 @@
                      Duration="1"
                      Radius="2"
                      AbilityType="ItemBound"
-                     AbilityEffectType="ArtilleryPlacement"
+                     AbilityEffectType="ItemPlacement"
                      BaseMovementSpeed="0"
                      TickInterval="0.2"
                      TriggerType="TickOnce"

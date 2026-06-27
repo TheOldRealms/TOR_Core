@@ -66,6 +66,9 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI
 
                 //  {AbilityEffectType.AgentMoving, (agent, abilityIndex, abilityTemplate) => new MovementCastingBehavior(agent, abilityTemplate, abilityIndex)},
                 {AbilityEffectType.ArtilleryPlacement, (agent, abilityIndex, abilityTemplate) => new ArtilleryPlacementCastingBehavior(agent, abilityTemplate, abilityIndex)},
+
+                //Placeholder as a reminder of its existence. No non-player ability exists with this type so it doesn't have a behavior to assign for the AI.
+                //{AbilityEffectType.ItemPlacement, (agent, abilityIndex, abilityTemplate) => new ArtilleryPlacementCastingBehavior(agent, abilityTemplate, abilityIndex)},
             };
 
         [SecurityCritical]

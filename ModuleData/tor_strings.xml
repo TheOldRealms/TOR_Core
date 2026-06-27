@@ -254,6 +254,7 @@
   <string id="tor_ability_effect_type.Bombardment" text="{=str_tor_ability_effect_type_bombardment}Bombardment" />
   <string id="tor_ability_effect_type.Blast" text="{=str_tor_ability_effect_type_blast}Blast" />
   <string id="tor_ability_effect_type.ArtilleryPlacement" text="{=str_tor_ability_effect_type_artillery_placement}Artillery Placement" />
+  <string id="tor_ability_effect_type.ItemPlacement" text="{=str_tor_ability_effect_type_item_placement}Item Placement" />
   <string id="tor_ability_effect_type.TimeWarpEffect" text="{=str_tor_ability_effect_type_time_warp}Time Warp" />
   <string id="tor_ability_effect_type.CareerAbilityEffect" text="{=str_tor_ability_effect_type_career_ability}Career Ability" />
   <string id="tor_ability_effect_type.TacticalReposition" text="{=str_tor_ability_effect_type_tactical_reposition}Tactical Reposition" />

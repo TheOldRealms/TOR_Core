@@ -364,9 +364,8 @@ namespace TOR_Core.AbilitySystem
 
         internal void OnCastComplete(Ability ability, Agent agent)
         {
-            // Decrement artillery slots for regular artillery, but not for Anvil of Doom
-            if (ability is ItemBoundAbility && ability.Template.AbilityEffectType == AbilityEffectType.ArtilleryPlacement
-                && ability.Template.StringID != "AnvilOfDoomSpawner")
+            // Decrement artillery slots
+            if (ability.Template.AbilityEffectType == AbilityEffectType.ArtilleryPlacement)
             {
                 if (_artillerySlots.ContainsKey(agent.Team))
                 {
@@ -642,21 +641,17 @@ namespace TOR_Core.AbilitySystem
 
         private void RefreshMaxArtilleryCountForTeam(Team team)
         {
+            var artillerySlots = team.GeneralAgent.GetOriginMobileParty()?.GetMaxNumberOfArtillery() ?? team.GeneralAgent.GetPlaceableArtilleryCount();
+            //The backup agent lookup is to handle the custom battle case where a team is not derived from a party origin.
+
+
             if (_artillerySlots.ContainsKey(team))
             {
-                _artillerySlots[team] = 0;
-                foreach (var agent in team.TeamAgents)
-                {
-                    if (agent.CanPlaceArtillery() || agent.IsHero && agent.HasAttribute("EngineerCompanion"))
-                    {
-                        _artillerySlots[team] += agent.GetPlaceableArtilleryCount();
-                    }
-                }
+                _artillerySlots[team] = artillerySlots;
             }
             else
             {
-                _artillerySlots.Add(team, 0);
-                RefreshMaxArtilleryCountForTeam(team);
+                _artillerySlots.Add(team, artillerySlots);
             }
         }
 
