@@ -19,18 +19,29 @@ namespace TOR_Core.BattleMechanics.AI.CommonAIFunctions
             set => ThreatValue = value;
         }
 
+        /// <remarks>
+        /// Returns positions with the following priority order :
+        /// Midpoint of TargetableObject box
+        /// Agent collision capsule center
+        /// Formation median agent
+        /// SelectedWorldPosition
+        /// TacticalPosition at valid Z (no consideration for within scene boundaries)
+        /// Vec3.Invalid
+        /// </remarks>>
         public Vec3 GetPosition()
         {
             try
             {
                 if (TargetableObject != null)
                     return (TargetableObject.GetTargetEntity().GlobalBoxMax + TargetableObject.GetTargetEntity().GlobalBoxMin) * 0.5f;
+
                 if (Agent != null)
                     return Agent.CollisionCapsuleCenter;
+
                 if (Formation != null)
                 {
-                    var formationAgent = Formation.GetMedianAgent(false, false, Formation.GetAveragePositionOfUnits(false, false));
-                    // this can somehow be null... I'm guessing the formation gets wiped out?
+                    var formationAgent = Formation.GetMedianAgent(true, false, Formation.GetAveragePositionOfUnits(true, false));
+                    // this can be null, f.e. the formation is empty but still exists to receive reinforcements, etc.
                     if (formationAgent != null)
                         return formationAgent.Position;
                     if (formationAgent == null)
@@ -41,12 +52,14 @@ namespace TOR_Core.BattleMechanics.AI.CommonAIFunctions
                         TORCommon.Log("Null agent in TOR_Core.BattleMechanics.AI.Decision.Target.GetPosition(). ", NLog.LogLevel.Warn);
                         return Vec3.Invalid;
                     }
-                    // else just go on to the next few decisions
                 }
+
                 if (SelectedWorldPosition != Vec3.Zero)
                     return SelectedWorldPosition;
+
                 if (TacticalPosition != null)
                     return TacticalPosition.Position.GetGroundVec3MT();
+
                 return Vec3.Invalid;   // no valid position available for this target
             }
             catch (NullReferenceException)
