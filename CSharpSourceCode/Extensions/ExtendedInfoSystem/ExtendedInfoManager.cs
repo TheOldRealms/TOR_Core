@@ -402,11 +402,15 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 //OnPerkPicked occurs before hero info is created so we verify manually after its creation
                 if (hero.IsSpellCaster())
                 {
-                    if (!info.KnownLores.Contains(LoreObject.GetLore("MinorMagic"))) hero.AddKnownLore("MinorMagic");
+                    if (!LoreObject.GetLore("MinorMagic").DisabledForCultures.Contains(hero.Culture.StringId))
+                    {
+                        hero.AddKnownLore("MinorMagic");
+                    }
+
                     if (hero.GetPerkValue(TORPerks.Spellcraft.MasterSpells)) castingLevel = 4;
                     else if (hero.GetPerkValue(TORPerks.Spellcraft.AdeptSpells)) castingLevel = 3;
                     else if (hero.GetPerkValue(TORPerks.Spellcraft.EntrySpells)) castingLevel = 2;
-                    else if (castingLevel < 1) castingLevel = 1; //minimally Minor since they're getting the lore
+                    else if (castingLevel < 1) castingLevel = 1; //minimally Minor as otherwise they aren't a spellcaster
                 }
                 if (hero.IsPriest())
                 {
