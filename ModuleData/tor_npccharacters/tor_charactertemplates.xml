@@ -292,7 +292,7 @@
       <EquipmentSet id="tor_prophetess_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_bretonnia_2" default_group="infantry" name="{=str_tor_wanderer_bretonnia_2}{FIRSTNAME} the Yeoman" occupation="Wanderer" culture="Culture.vlandia" voice="softspoken" age="56" skill_template="SkillSet.tor_skills_wanderer_huntsman" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_bretonnia_2" default_group="infantry" name="{=str_tor_wanderer_bretonnia_2}{FIRSTNAME} the Yeoman" occupation="Wanderer" culture="Culture.vlandia" voice="softspoken" age="56" skill_template="SkillSet.tor_skills_wanderer_yeoman" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
       <beard_tags>
