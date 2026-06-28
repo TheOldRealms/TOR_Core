@@ -23,6 +23,11 @@ namespace TOR_Core.Extensions.UI
         private InitialState _initialState;
         private InitialMenuVM _dataSource;
         private GauntletLayer _gauntletLayer;
+        private TORMainMenuLinksVM _mainMenuLinksDataSource;
+        private GauntletMovieIdentifier _mainMenuLinksMovie;
+        private TORWelcomePopupVM _welcomePopupDataSource;
+        private GauntletLayer _welcomePopupLayer;
+        private GauntletMovieIdentifier _welcomePopupMovie;
         private GauntletLayer _gauntletBrightnessLayer;
         private GauntletLayer _gauntletExposureLayer;
         private BrightnessOptionVM _brightnessOptionDataSource;
@@ -33,6 +38,8 @@ namespace TOR_Core.Extensions.UI
         private Camera _camera;
         private Scene _scene;
         private const int _maxMainMenuSceneIndex = 7; //TODO: need to change if we have scenes with at least 2 digits
+        private const int WelcomePopupLayerOrder = 4;
+        private static bool _welcomePopupShownThisSession;
 
         public TORInitialScreen(InitialState initialState)
         {
@@ -57,6 +64,7 @@ namespace TOR_Core.Extensions.UI
             ScreenManager.TrySetFocus(_gauntletLayer);
 
             SetupScene();
+            OpenMainMenuLinks();
 
             _gauntletLayer.Input.RegisterHotKeyCategory(HotKeyManager.GetCategory("GenericPanelGameKeyCategory"));
             _scenelayer.Input.RegisterHotKeyCategory(HotKeyManager.GetCategory("GenericPanelGameKeyCategory"));
@@ -75,6 +83,7 @@ namespace TOR_Core.Extensions.UI
 
             InformationManager.ClearAllMessages();
             SetGainNavigationAfterFrames(3);
+            TryOpenWelcomePopup();
         }
 
         private void SetupScene()
@@ -134,6 +143,7 @@ namespace TOR_Core.Extensions.UI
 
             if(_dataSource != null) _dataSource.RefreshMenuOptions();
             SetGainNavigationAfterFrames(3);
+            TryOpenWelcomePopup();
         }
 
         protected override void OnDeactivate()
@@ -151,6 +161,8 @@ namespace TOR_Core.Extensions.UI
         protected override void OnFinalize()
         {
             base.OnFinalize();
+            CloseWelcomePopup(false);
+            CloseMainMenuLinks();
             if (_gauntletLayer != null)
             {
                 RemoveLayer(_gauntletLayer);
@@ -198,6 +210,12 @@ namespace TOR_Core.Extensions.UI
             {
                 MouseManager.ShowCursor(false);
                 MouseManager.ShowCursor(true);
+            }
+            if (_welcomePopupLayer != null && _welcomePopupLayer.Input.IsHotKeyReleased("Exit"))
+            {
+                UISoundsHelper.PlayUISound("event:/ui/default");
+                CloseWelcomePopup();
+                return;
             }
             if (_gauntletLayer.Input.IsHotKeyReleased("Exit"))
             {
@@ -259,12 +277,99 @@ namespace TOR_Core.Extensions.UI
             _exposureOptionDataSource = null;
             _gauntletExposureLayer = null;
             NativeOptions.SaveConfig();
+            TryOpenWelcomePopup();
+        }
+
+        private void OpenMainMenuLinks()
+        {
+            if (_mainMenuLinksDataSource != null || _gauntletLayer == null)
+            {
+                return;
+            }
+
+            _mainMenuLinksDataSource = new TORMainMenuLinksVM();
+            _mainMenuLinksMovie = _gauntletLayer.LoadMovie("TORMainMenuLinks", _mainMenuLinksDataSource);
+        }
+
+        private void CloseMainMenuLinks()
+        {
+            if (_mainMenuLinksDataSource == null)
+            {
+                return;
+            }
+
+            if (_gauntletLayer != null)
+            {
+                _gauntletLayer.ReleaseMovie(_mainMenuLinksMovie);
+            }
+
+            _mainMenuLinksDataSource.OnFinalize();
+            _mainMenuLinksDataSource = null;
+        }
+
+        private void TryOpenWelcomePopup()
+        {
+            if (_welcomePopupShownThisSession || _welcomePopupLayer != null || _gauntletLayer == null || TORWelcomePopupVM.IsWelcomePopupDisabled())
+            {
+                return;
+            }
+
+            if ((_brightnessOptionDataSource != null && _brightnessOptionDataSource.Visible) ||
+                (_exposureOptionDataSource != null && _exposureOptionDataSource.Visible))
+            {
+                return;
+            }
+
+            _welcomePopupShownThisSession = true;
+            _welcomePopupDataSource = new TORWelcomePopupVM(CloseWelcomePopup);
+            _welcomePopupLayer = new GauntletLayer("TORWelcomePopup", WelcomePopupLayerOrder, true);
+            _welcomePopupLayer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);
+            _welcomePopupLayer.Input.RegisterHotKeyCategory(HotKeyManager.GetCategory("GenericPanelGameKeyCategory"));
+            _welcomePopupMovie = _welcomePopupLayer.LoadMovie("TORWelcomePopup", _welcomePopupDataSource);
+            AddLayer(_welcomePopupLayer);
+            _welcomePopupLayer.IsFocusLayer = true;
+            ScreenManager.TrySetFocus(_welcomePopupLayer);
+        }
+
+        private void CloseWelcomePopup()
+        {
+            CloseWelcomePopup(true);
+        }
+
+        private void CloseWelcomePopup(bool restoreNavigation)
+        {
+            if (_welcomePopupLayer == null)
+            {
+                return;
+            }
+
+            ScreenManager.TryLoseFocus(_welcomePopupLayer);
+            _welcomePopupLayer.IsFocusLayer = false;
+            _welcomePopupLayer.ReleaseMovie(_welcomePopupMovie);
+            RemoveLayer(_welcomePopupLayer);
+            _welcomePopupLayer = null;
+
+            if (_welcomePopupDataSource != null)
+            {
+                _welcomePopupDataSource.OnFinalize();
+            }
+            _welcomePopupDataSource = null;
+
+            if (restoreNavigation && _gauntletLayer != null)
+            {
+                ScreenManager.TrySetFocus(_gauntletLayer);
+                SetGainNavigationAfterFrames(1);
+            }
         }
 
         private void SetGainNavigationAfterFrames(int frameCount)
         {
             _gauntletLayer.UIContext.GamepadNavigation.GainNavigationAfterFrames(frameCount, delegate
             {
+                if (_welcomePopupLayer != null)
+                {
+                    return false;
+                }
                 BrightnessOptionVM brightnessOptionDataSource = _brightnessOptionDataSource;
                 if (brightnessOptionDataSource == null || !brightnessOptionDataSource.Visible)
                 {

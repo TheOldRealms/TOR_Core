@@ -47,6 +47,13 @@
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="1"
 		type="HealthOverTime"/>
+	<StatusEffectTemplate
+		id="mistwalk_healing_group"
+		particle_id="mistform_heal"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="1"
+		type="HealthOverTime"/>
 	<StatusEffectTemplate 
 		id="mistwalk_wom" 
 		particle_id="mistform_magic"
@@ -1522,6 +1529,16 @@
 		type="DamageAmplification">
 	</StatusEffectTemplate>
 	<!-- unit runes -->
+
+	<StatusEffectTemplate
+		id="spell_breaking_rune"
+		particle_id=""
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.0"
+		applies_for_attack_type="All"
+		type="TemporaryAttributeOnly"
+		damage_type="Magical">
+	</StatusEffectTemplate>
 	
 	
 	<StatusEffectTemplate 
@@ -1555,6 +1572,16 @@
 	</StatusEffectTemplate>
 	
 	<StatusEffectTemplate 
+		id="unit_rune_retribution"
+		particle_id="general_fire_buff"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.35"
+		applies_for_attack_type="All"
+		type="DamageAmplification"
+		damage_type="Fire">
+	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
 		id="unit_rune_retribution_2"
 		particle_id=""
 		do_not_attach_to_agent_skeleton="true"

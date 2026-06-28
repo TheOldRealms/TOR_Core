@@ -1,0 +1,57 @@
+<Prefab>
+  <Window>
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare_9" Color="#000000CC">
+      <Children>
+        <DimensionSyncWidget Id="TORWelcomePopupParent" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="860" HorizontalAlignment="Center" VerticalAlignment="Center" PositionYOffset="-20" DimensionToSync="Vertical" WidgetToCopyHeightFrom="TORWelcomeContentList">
+          <Children>
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="860" ClipContents="true">
+              <Children>
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="860" SuggestedHeight="660" HorizontalAlignment="Center" VerticalAlignment="Top" Sprite="StdAssets\Popup\canvas" />
+              </Children>
+            </Widget>
+            <ListPanel Id="TORWelcomeContentList" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="860" StackLayout.LayoutMethod="VerticalTopToBottom">
+              <Children>
+                <AutoHideRichTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MinHeight="72" MarginLeft="170" MarginRight="170" MarginTop="16" Brush="TorWelcomePopupTitleBrush" Text="@TitleText" WidgetToHideIfEmpty="..\." />
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="23" Sprite="StdAssets\Popup\divider" />
+                <ImageWidget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="440" SuggestedHeight="121" HorizontalAlignment="Center" MarginTop="18" Brush="TorWelcomePopupLogoBrush" />
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginLeft="95" MarginRight="95" MarginTop="18">
+                  <Children>
+                    <RichTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MinHeight="210" HorizontalAlignment="Center" Brush="TorWelcomePopupDescriptionBrush" Brush.TextHorizontalAlignment="Center" Brush.TextVerticalAlignment="Center" Text="@DescriptionText" />
+                  </Children>
+                </Widget>
+                <NavigationForcedScopeCollectionTargeter CollectionParent="..\." />
+                <NavigationScopeTargeter ScopeID="TORWelcomePopupButtonsScope" ScopeParent="..\TORWelcomeButtons" ScopeMovements="Horizontal" HasCircularMovement="true" />
+                <ListPanel Id="TORWelcomeButtons" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="76" HorizontalAlignment="Center" MarginTop="22" MarginBottom="20" StackLayout.LayoutMethod="HorizontalLeftToRight">
+                  <Children>
+                    <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="190" SuggestedHeight="64" Brush="Popup.Done.Button" Command.Click="ExecuteOpenManual" GamepadNavigationIndex="0">
+                      <Children>
+                        <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="35" VerticalAlignment="Center" MarginLeft="25" MarginRight="25" Brush="TorWelcomePopupButtonTextBrush" Text="@ManualButtonText" />
+                      </Children>
+                    </ButtonWidget>
+                    <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="190" SuggestedHeight="64" MarginLeft="10" Brush="Popup.Done.Button" Command.Click="ExecuteOpenDiscord" GamepadNavigationIndex="1">
+                      <Children>
+                        <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="35" VerticalAlignment="Center" MarginLeft="25" MarginRight="25" Brush="TorWelcomePopupButtonTextBrush" Text="@DiscordButtonText" />
+                      </Children>
+                    </ButtonWidget>
+                    <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="190" SuggestedHeight="64" MarginLeft="10" Brush="Popup.Done.Button" Command.Click="ExecuteClose" GamepadNavigationIndex="2">
+                      <Children>
+                        <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="35" VerticalAlignment="Center" MarginLeft="25" MarginRight="25" Brush="TorWelcomePopupButtonTextBrush" Text="@CloseButtonText" />
+                      </Children>
+                    </ButtonWidget>
+                    <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="190" SuggestedHeight="64" MarginLeft="10" Brush="Popup.Cancel.Button" Command.Click="ExecuteDisableWelcomePopup" GamepadNavigationIndex="3">
+                      <Children>
+                        <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="35" VerticalAlignment="Center" MarginLeft="20" MarginRight="20" Brush="TorWelcomePopupButtonTextBrush" Text="@DisableButtonText" />
+                      </Children>
+                    </ButtonWidget>
+                  </Children>
+                </ListPanel>
+              </Children>
+            </ListPanel>
+            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="StdAssets\Popup\canvas_gradient" IsEnabled="false" />
+            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="frame_9" ExtendLeft="18" ExtendTop="18" ExtendRight="18" ExtendBottom="18" IsEnabled="false" />
+          </Children>
+        </DimensionSyncWidget>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

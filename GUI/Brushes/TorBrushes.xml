@@ -311,7 +311,7 @@
             </EventSounds>
         </SoundProperties>
     </Brush>
-    <Brush Name="TorMapBar.Right.Icons">
+  <Brush Name="TorMapBar.Right.Icons">
     <Layers>
       <BrushLayer Name="gold" Sprite="General\Icons\Coin@2x" />
       <BrushLayer Name="influence" Sprite="General\Icons\Influence@2x" />
@@ -331,4 +331,27 @@
       <BrushLayer Name="blessing" Sprite="blessing_icon_45" ExtendTop="-3" ExtendBottom="-3" />
     </Layers>
   </Brush>
+    <Brush Name="TorWelcomePopupTitleBrush" Font="CasablancaAntique" TextHorizontalAlignment="Center">
+        <Styles>
+            <Style Name="Default" FontColor="#F4E1C4FF" TextGlowColor="#000000CC" TextGlowRadius="0.15" FontSize="50" />
+        </Styles>
+    </Brush>
+    <Brush Name="TorWelcomePopupDescriptionBrush" Font="CasablancaAntique" TextHorizontalAlignment="Center">
+        <Styles>
+            <Style Name="Default" FontColor="#E7D6BCFF" TextGlowColor="#000000CC" TextGlowRadius="0.08" FontSize="24" />
+        </Styles>
+    </Brush>
+    <Brush Name="TorWelcomePopupButtonTextBrush" Font="CasablancaAntique" TextHorizontalAlignment="Center">
+        <Styles>
+            <Style Name="Default" FontColor="#F4E1C4FF" TextGlowColor="#00000099" TextGlowRadius="0.08" FontSize="26" />
+        </Styles>
+    </Brush>
+    <Brush Name="TorWelcomePopupLogoBrush">
+        <Layers>
+            <BrushLayer Name="Default" Sprite="General\InitialMenu\main_menu_logo" />
+        </Layers>
+        <Styles>
+            <Style Name="Default" />
+        </Styles>
+    </Brush>
 </Brushes>

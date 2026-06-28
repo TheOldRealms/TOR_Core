@@ -1,0 +1,22 @@
+<Prefab>
+  <Window>
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" DoNotAcceptEvents="true">
+      <Children>
+        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="76" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="12" StackLayout.LayoutMethod="HorizontalLeftToRight">
+          <Children>
+            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="190" SuggestedHeight="64" Brush="InitialMenuButtonBrush" Command.Click="ExecuteOpenManual">
+              <Children>
+                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="35" VerticalAlignment="Center" MarginLeft="25" MarginRight="25" Brush="TorInitialMenuButtonBrush" Text="@ManualButtonText" />
+              </Children>
+            </ButtonWidget>
+            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="190" SuggestedHeight="64" MarginLeft="12" Brush="InitialMenuButtonBrush" Command.Click="ExecuteOpenDiscord">
+              <Children>
+                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="35" VerticalAlignment="Center" MarginLeft="25" MarginRight="25" Brush="TorInitialMenuButtonBrush" Text="@DiscordButtonText" />
+              </Children>
+            </ButtonWidget>
+          </Children>
+        </ListPanel>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

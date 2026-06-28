@@ -616,6 +616,7 @@
     <Compile Include="CampaignMechanics\TorMapBarSpriteWidget.cs" />
     <Compile Include="Extensions\UI\SPItemVMExtension.cs" />
     <Compile Include="Extensions\UI\TORInitialScreen.cs" />
+    <Compile Include="Extensions\UI\TORWelcomePopupVM.cs" />
     <Compile Include="Extensions\UI\TORMapInfoVMExtension.cs" />
     <Compile Include="CampaignMechanics\TORPartyUpgraderCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TorRecruitmentHelpers.cs" />

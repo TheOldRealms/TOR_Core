@@ -570,9 +570,7 @@
                              TargetType="Enemy"
                              DamageVariance="0"
                              ImbuedStatusEffectDuration="2"
-                             ScriptNameToTrigger="none">
-        <ImbuedStatusEffect />
-    </TriggeredEffectTemplate>
+                             ScriptNameToTrigger="none" />
 	    <TriggeredEffectTemplate StringID="shield_of_thorns"
                              BurstParticleEffectPrefab="none"
                              SoundEffectId="none"
@@ -774,9 +772,7 @@
                              DamageVariance="0"
                              ImbuedStatusEffectDuration="1"
                              TroopIdToSummon="tor_vc_harbinger_champion"
-                             NumberToSummon="1">
-        <ImbuedStatusEffect>greater_harbinger_debuff</ImbuedStatusEffect>
-    </TriggeredEffectTemplate>
+                             NumberToSummon="1" />
     <TriggeredEffectTemplate StringID="summon_dryads"
                              BurstParticleEffectPrefab="none"
                              SoundEffectId="none"
@@ -1154,7 +1150,7 @@
                              TargetType="Friendly"
                              ImbuedStatusEffectDuration="20"
                              DamageVariance="0"
-                             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyKnightlyStrikeTraitScript" />
+                             ScriptNameToTrigger="none" />
 							 
 	<TriggeredEffectTemplate StringID="apply_doom_seeking"
                              BurstParticleEffectPrefab="none"
@@ -1926,7 +1922,6 @@
                              DamageVariance="0.0"
                              ImbuedStatusEffectDuration="20"
                              ScriptNameToTrigger="none">
-        <ImbuedStatusEffect>ghyran_tendrils_enchant</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
 
 	<TriggeredEffectTemplate StringID="aqshy_firebreath_enchant"
@@ -2106,6 +2101,20 @@
 		 <ImbuedStatusEffect>shallya_pacifism</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
 	
+	<TriggeredEffectTemplate StringID="shallya_compassion_enchant"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Holy"
+                             DamageAmount="-500"
+                             Radius="3"
+                             HasShockWave="false"
+                             TargetType="Friendly"
+                             DamageVariance="0.0"
+                             ImbuedStatusEffectDuration="0"
+                             ScriptNameToTrigger="">
+    </TriggeredEffectTemplate>
+
 	<TriggeredEffectTemplate StringID="shallya_martyrdom_enchant"
                              BurstParticleEffectPrefab="none"
                              SoundEffectId="none"
@@ -2232,7 +2241,7 @@
                              DamageAmount="0"
                              Radius="7"
                              HasShockWave="false"
-                             TargetType="Enemy"
+                             TargetType="Self"
                              DamageVariance="0.0"
                              ImbuedStatusEffectDuration="20"
                              ScriptNameToTrigger="">
@@ -3048,7 +3057,7 @@
                              HasShockWave="false"
                              TargetType="Friendly"
                              ImbuedStatusEffectDuration="8"
-                             ScriptNameToTrigger="ApplyLesserFlamingItemTraitScript">
+                             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyLesserFlamingItemTraitScript">
         <ImbuedStatusEffect>powerstone_fire_amp3</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
     <TriggeredEffectTemplate StringID="powerstone_light_res"
@@ -3536,7 +3545,7 @@
                              TargetType="Friendly"
                              ImbuedStatusEffectDuration="8"
                              ScriptNameToTrigger="none">
-		 <ImbuedStatusEffect>powerstone_de_survivor</ImbuedStatusEffect>
+		 <ImbuedStatusEffect>powerstone_de_undead_survivor</ImbuedStatusEffect>
 	</TriggeredEffectTemplate>
 
 	<!-- Armed to da Teef Triggered Effects -->
