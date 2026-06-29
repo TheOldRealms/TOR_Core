@@ -36,14 +36,15 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentTacticalBehavior
 
         public override void Tick()
         {
-            if (CommonAIStateFunctions.CanAgentMoveFreely(Agent))
-            {
-                var target = CastingBehavior.CurrentTarget;
-                CastingPosition = target.Formation != null ? CalculateCastingPosition(target.Formation) : Agent.Position;
-                CastingPosition = CastingPosition != Vec3.Zero ? CastingPosition : Agent.Position;
-                var castingWorldPosition = new WorldPosition(Mission.Current.Scene, CastingPosition);
-                Agent.SetScriptedPosition(ref castingWorldPosition, false);
-            }
+            //Sly : current form has casters running off alone from their formation and dying uselessly, turned off until this is rewritten.
+            //if (CommonAIStateFunctions.CanAgentMoveFreely(Agent))
+            //{
+            //    var target = CastingBehavior.CurrentTarget;
+            //    CastingPosition = target.Formation != null ? CalculateCastingPosition(target.Formation) : Agent.Position;
+            //    CastingPosition = CastingPosition != Vec3.Zero ? CastingPosition : Agent.Position;
+            //    var castingWorldPosition = new WorldPosition(Mission.Current.Scene, CastingPosition);
+            //    Agent.SetScriptedPosition(ref castingWorldPosition, false);
+            //}
         }
 
         public override void SetCurrentTarget(Target target)
