@@ -60,14 +60,14 @@ namespace TOR_Core.Extensions
             return characterObject.GetAttributes().Contains(attributeName);
         }
 
+        public static bool IsMonstrous(this BasicCharacterObject characterObject)
+        {
+            return characterObject != null && characterObject.HasAttribute("Monstrous");
+        }
+
         public static bool CanClimbLadders(this BasicCharacterObject characterObject)
         {
-            if (characterObject == null)
-            {
-                return true;
-            }
-
-            return !characterObject.HasAttribute("CannotClimbLadders");
+            return !characterObject.IsMonstrous();
         }
 
         public static List<ResistanceTuple> GetDefenseProperties(this BasicCharacterObject characterObject)
@@ -190,7 +190,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsLargeTarget(this CharacterObject characterObject)
         {
-            return characterObject.IsMounted || characterObject.IsTroll() || characterObject.IsMinotaur();
+            return characterObject != null && (characterObject.IsMounted || characterObject.IsMonstrous());
         }
 
         public static bool IsHuman(this CharacterObject characterObject)

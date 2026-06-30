@@ -241,7 +241,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsMonstrous(this Agent agent)
         {
-            return agent.Character != null && !agent.Character.CanClimbLadders(); // monster, for now
+            return agent.Character != null && agent.Character.IsMonstrous();
         }
 
         public static bool ShouldNotBleed(this Agent agent)

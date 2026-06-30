@@ -319,7 +319,7 @@ public class BeastSlayingScript(string[] arguments) : BaseWeaponHitScript(argume
 {
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData collisionData)
     {
-        if (!(attackedAgent.IsMount || attackedAgent.Character.IsMinotaur()))
+        if (!(attackedAgent.IsMount || attackedAgent.IsMonstrous()))
         {
             return;
         }

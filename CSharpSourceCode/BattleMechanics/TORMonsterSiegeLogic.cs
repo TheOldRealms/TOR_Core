@@ -580,7 +580,7 @@ namespace TOR_Core.BattleMechanics
             return agent != null &&
                    agent.IsActive() &&
                    IsRelevantSiege(agent.Mission) &&
-                   agent.Character?.CanClimbLadders() == false;
+                   agent.IsMonstrous();
         }
 
         internal static bool ShouldUseMonsterSiegeBehavior(Agent agent)
@@ -589,7 +589,7 @@ namespace TOR_Core.BattleMechanics
                    agent.IsActive() &&
                    IsRelevantSiege(agent.Mission) &&
                    agent.Team?.Side == BattleSideEnum.Attacker &&
-                   agent.Character?.CanClimbLadders() == false;
+                   agent.IsMonstrous();
         }
 
         internal static bool IsClosedGate(DestructableComponent destructableComponent)

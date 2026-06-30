@@ -1275,7 +1275,7 @@
       <string>Unstoppable</string>
       <string>HasAnimationTriggeredEffects</string>
       <string>TreeSpirit</string>
-      <string>CannotClimbLadders</string>
+      <string>Monstrous</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
@@ -1294,7 +1294,7 @@
       <string>Unstoppable</string>
       <string>HasAnimationTriggeredEffects</string>
       <string>TreeSpirit</string>
-      <string>CannotClimbLadders</string>
+      <string>Monstrous</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
@@ -2184,7 +2184,7 @@
       <string>Unstoppable</string>
       <string>TrollRegeneration</string>
       <string>HasAnimationTriggeredEffects</string>
-      <string>CannotClimbLadders</string>
+      <string>Monstrous</string>
       <string>Brute</string>
     </Attributes>
     <Resistances>
@@ -3546,7 +3546,7 @@
       <string>Unstoppable</string>
       <string>Frenzy</string>
       <string>MonsterAttack</string>
-      <string>CannotClimbLadders</string>
+      <string>Monstrous</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers>
