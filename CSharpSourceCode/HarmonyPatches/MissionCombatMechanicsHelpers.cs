@@ -12,7 +12,7 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public static class MissionCombatMechanicsHelpers
     {
-        private const float OrcAiMeleeInitialEnergyMultiplier = 1.2f;
+        private const float BruteAiMeleeInitialEnergyMultiplier = 1.2f;
 
         [ThreadStatic]
         private static Agent _currentCombatStatAttackerAgent;
@@ -32,15 +32,14 @@ namespace TOR_Core.HarmonyPatches
             _currentCombatStatAttackerUsageItem = null;
         }
 
-        private static bool ShouldApplyOrcAiInitialEnergyBonus(Agent attackerAgent, WeaponComponentData attackerUsageItem)
+        private static bool ShouldApplyBruteAiInitialEnergyBonus(Agent attackerAgent, WeaponComponentData attackerUsageItem)
         {
             if (attackerAgent == null || !attackerAgent.IsHuman || !attackerAgent.IsAIControlled)
             {
                 return false;
             }
 
-            CharacterObject character = attackerAgent.Character as CharacterObject;
-            if (character == null || !character.IsOrc())
+            if (!attackerAgent.HasBrute())
             {
                 return false;
             }
@@ -53,15 +52,14 @@ namespace TOR_Core.HarmonyPatches
             return true;
         }
 
-        private static float ApplyOrcAiInitialEnergyBonus(float baseMagnitude)
+        private static float ApplyBruteAiInitialEnergyBonus(float baseMagnitude)
         {
-            if (!ShouldApplyOrcAiInitialEnergyBonus(_currentCombatStatAttackerAgent, _currentCombatStatAttackerUsageItem))
+            if (!ShouldApplyBruteAiInitialEnergyBonus(_currentCombatStatAttackerAgent, _currentCombatStatAttackerUsageItem))
             {
                 return baseMagnitude;
             }
 
-            float adjustedMagnitude = baseMagnitude * OrcAiMeleeInitialEnergyMultiplier;
-            return adjustedMagnitude;
+            return baseMagnitude * BruteAiMeleeInitialEnergyMultiplier;
         }
         [HarmonyPrefix]
         [HarmonyPatch(typeof(MissionCombatMechanicsHelper), "CalculateBaseMeleeBlowMagnitude")]
@@ -83,7 +81,7 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(MissionCombatMechanicsHelper), "CalculateBaseMeleeBlowMagnitude")]
         private static void CalculateBaseMeleeBlowMagnitudePostfix(ref float __result)
         {
-            __result = ApplyOrcAiInitialEnergyBonus(__result);
+            __result = ApplyBruteAiInitialEnergyBonus(__result);
         }
 
     }

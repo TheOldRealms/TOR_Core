@@ -1238,15 +1238,14 @@ namespace TOR_Core.Models
             float energyFactor = (totalAttackEnergy - threshold) / fullEffectMargin;
             return MBMath.ClampFloat(energyFactor, 0f, 1f);
         }
-        private static bool IsOrcAiMeleeCtbAttack(Agent attackerAgent, WeaponComponentData attackerUsageItem)
+        private static bool IsBruteAiMeleeCtbAttack(Agent attackerAgent, WeaponComponentData attackerUsageItem)
         {
             if (attackerAgent == null || !attackerAgent.IsHuman || !attackerAgent.IsAIControlled)
             {
                 return false;
             }
 
-            CharacterObject attackerCharacter = attackerAgent.Character as CharacterObject;
-            if (attackerCharacter == null || !attackerCharacter.IsOrc())
+            if (!attackerAgent.HasBrute())
             {
                 return false;
             }
@@ -1301,9 +1300,9 @@ namespace TOR_Core.Models
                 ? attackerAgent.Equipment[equipmentIndexNonMonster].CurrentUsageItem
                 : null;
 
-            bool isOrcAiMeleeCtbAttack = IsOrcAiMeleeCtbAttack(attackerAgent, attackerUsageItem);
+            bool bruteAiMeleeCtbAttack = IsBruteAiMeleeCtbAttack(attackerAgent, attackerUsageItem);
 
-            if (defendItem != null && defendItem.IsShield && !isOrcAiMeleeCtbAttack)
+            if (defendItem != null && defendItem.IsShield && !bruteAiMeleeCtbAttack)
             {
                 return false;
             }
@@ -1312,7 +1311,7 @@ namespace TOR_Core.Models
             if (attackerUsageItem != null
                 && !isPassiveUsage
                 && strikeType == 0
-                && ((attackDirection == 0 || attackerAgent.HasCrushThrough()) || isOrcAiMeleeCtbAttack)
+                && ((attackDirection == 0 || attackerAgent.HasCrushThrough()) || bruteAiMeleeCtbAttack)
                 && totalAttackEnergy > 58f)
             {
             #if TOR_CTB_LOG
@@ -1371,7 +1370,7 @@ namespace TOR_Core.Models
 
             float chance = overheadChanceFromSkill * energyFactor;
 
-            if (attackDirection != 0 && !isOrcAiMeleeCtbAttack)
+            if (attackDirection != 0 && !bruteAiMeleeCtbAttack)
             {
                 chance *= EXTRA_CTB_NON_OVERHEAD_CHANCE_MULTIPLIER;
             }

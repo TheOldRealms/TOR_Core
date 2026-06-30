@@ -35,7 +35,7 @@ namespace TOR_Core.Models
         private float vampireDaySpeedModificator = 1.1f;
         private float vampireNightSpeedModificator = 1.2f;
         private CustomCrosshairMissionBehavior _crosshairBehavior;
-        private const float OrcHandlingMultiplier = 2.0f; // will result in more or less 4 times the energy for interrupted swings combined with orc energy bonus
+        private const float BruteHandlingMultiplier = 2.0f; // will result in more or less 4 times the energy for interrupted swings combined with orc energy bonus
 
         private bool _checkedMissionType = false;
         private bool _isDuelMission = false;
@@ -511,7 +511,7 @@ namespace TOR_Core.Models
             }
 
             UpdateDynamicAgentDrivenProperties(agent, agentDrivenProperties);
-            ApplyOrcMeleeHandlingBoost(agent, agentDrivenProperties);
+            ApplyBruteMeleeHandlingBoost(agent, agentDrivenProperties);
         }
         private static void ApplyDeadeye(Agent agent, AgentDrivenProperties agentDrivenProperties)
         {
@@ -533,28 +533,22 @@ namespace TOR_Core.Models
             agentDrivenProperties.WeaponMaxMovementAccuracyPenalty = 0f; // no running accuracy penalty
         }
 
-        private static void ApplyOrcMeleeHandlingBoost(Agent agent, AgentDrivenProperties agentDrivenProperties)
+        private static void ApplyBruteMeleeHandlingBoost(Agent agent, AgentDrivenProperties agentDrivenProperties)
         {
             MissionWeapon activeMeleeWeapon;
-            if (!TryGetActiveOrcMeleeWeapon(agent, out activeMeleeWeapon))
+            if (!TryGetActiveBruteMeleeWeapon(agent, out activeMeleeWeapon))
             {
                 return;
             }
 
-            agentDrivenProperties.HandlingMultiplier *= OrcHandlingMultiplier;
+            agentDrivenProperties.HandlingMultiplier *= BruteHandlingMultiplier;
         }
 
-        private static bool TryGetActiveOrcMeleeWeapon(Agent agent, out MissionWeapon activeMeleeWeapon)
+        private static bool TryGetActiveBruteMeleeWeapon(Agent agent, out MissionWeapon activeMeleeWeapon)
         {
             activeMeleeWeapon = default(MissionWeapon);
 
-            if (agent == null || !agent.IsHuman)
-            {
-                return false;
-            }
-
-            CharacterObject character = agent.Character as CharacterObject;
-            if (character == null || !character.IsOrc())
+            if (agent == null || !agent.IsHuman || !agent.HasBrute())
             {
                 return false;
             }

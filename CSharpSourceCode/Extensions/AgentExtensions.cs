@@ -189,6 +189,10 @@ namespace TOR_Core.Extensions
         {
             return agent.GetAttributes().Contains("CrushThrough");
         }
+        public static bool HasBrute(this Agent agent)
+        {
+            return agent.GetAttributes().Contains("Brute");
+        }
 
         public static bool HasTheHunger(this Agent agent)
         {

@@ -1856,6 +1856,7 @@
     <Abilities />
     <Attributes>
       <string>Expendable</string>
+      <string>Brute</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -1865,7 +1866,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_orc_boy">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Brute</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -1875,7 +1878,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_orc_boar_boy">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Brute</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -1885,7 +1890,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_orc_choppa">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Brute</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -1895,7 +1902,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_orc_arrer_boy">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Brute</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -1905,7 +1914,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_orc_arrer_boy_boss">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Brute</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -1915,7 +1926,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_orc_boar_boy_bigun">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Brute</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -1925,7 +1938,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_orc_bigun">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Brute</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -1935,7 +1950,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_orc_boss">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Brute</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -1945,7 +1962,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_black_orc">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Brute</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
@@ -1957,7 +1976,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_black_orc_brute">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Brute</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
@@ -1969,7 +1990,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_black_orc_boss">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Brute</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.30" />
@@ -1983,6 +2006,7 @@
     <Abilities />
     <Attributes>
       <string>Frenzy</string>
+      <string>Brute</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers>
@@ -2131,7 +2155,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_orc_bully">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Brute</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -2141,7 +2167,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_orc_bully_bigun">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Brute</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -2157,6 +2185,7 @@
       <string>TrollRegeneration</string>
       <string>HasAnimationTriggeredEffects</string>
       <string>CannotClimbLadders</string>
+      <string>Brute</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.50" />
@@ -5067,7 +5096,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_bandit_raider">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Brute</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -5076,7 +5107,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_bandit_raider_arrer">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Brute</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -5085,7 +5118,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_bandit_raider_boss">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Brute</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
