@@ -15,9 +15,9 @@ namespace TOR_Core.Quests.Careers
         // Quest requirements constants
         private const int RequiredWeaponSkillLevels = 125;
         private const int RequiredBattlesWon = 50;
-        private const int RequiredTournamentWins = 15;
+        private const int RequiredTournamentWins = 5;
         private const int RequiredTeefTransferred = 150000;
-        private const int RequiredBrawlsWon = 25;
+        private const int RequiredBrawlsWon = 5;
 
         [SaveableField(1)]
         private JournalLog _taskOneHandedSkill = null;
