@@ -17,7 +17,7 @@ namespace TOR_Core.Utilities
         {
             if (characterObject == null) return new List<TooltipProperty>();
 
-            var text = "Unit Attributes";
+            var text = "Unit Statistics";
             var model = Campaign.Current.Models.CharacterStatsModel;
             var hitpoints = model.MaxHitpoints(characterObject).ResultNumber;
 
@@ -33,7 +33,6 @@ namespace TOR_Core.Utilities
             list.AddRange(GenerateDamageDisplay(characterObject, info));
             list.AddRange(GenerateAmplifierDisplay(info));
             list.AddRange(GenerateResistanceDisplay(info));
-            list.AddRange(GenerateAttributeDisplay(info));
 
 
             if (!list.IsEmpty())
@@ -42,28 +41,6 @@ namespace TOR_Core.Utilities
             }
 
             return list;
-        }
-
-        private static List<TooltipProperty> GenerateAttributeDisplay(CharacterExtendedInfo info)
-        {
-            var attributeTexts = new List<TooltipProperty>();
-            if (!info.CharacterAttributes.Any()) return attributeTexts;
-
-            foreach (var attribute in info.CharacterAttributes)
-            {
-                if (GameTexts.TryGetText("tor_extendedInfo", out TextObject text, attribute))
-                {
-                    attributeTexts.Add(new TooltipProperty("", text.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.MultiLine));
-                }
-            }
-
-            if (attributeTexts.Any())
-            {
-                attributeTexts.Insert(0,
-                    new TooltipProperty("-", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
-            }
-
-            return attributeTexts;
         }
 
         private static List<TooltipProperty> GenerateResistanceDisplay(CharacterExtendedInfo info)
