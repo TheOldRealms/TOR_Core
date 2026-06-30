@@ -79,14 +79,26 @@ namespace TOR_Core.Models.CustomBattleModels
 
             if (agent.IsHuman)
             {
-                if (agent.Character.IsTreeSpirit())
+                if (agent.Character.IsMonstrous() || agent.Character.IsTreeSpirit())
                 {
-                    agent.SetAgentFlags(agent.GetAgentFlags() & ~AgentFlag.CanDefend);
-                    agent.Defensiveness = 0.001f;
+                    DisableDefensiveAi(agent, agentDrivenProperties);
                 }
             }
 
             UpdateDynamicAgentDrivenProperties(agent, agentDrivenProperties);
+        }
+
+        private static void DisableDefensiveAi(Agent agent, AgentDrivenProperties agentDrivenProperties)
+        {
+            agent.SetAgentFlags(agent.GetAgentFlags() & ~AgentFlag.CanDefend);
+            agent.Defensiveness = 0.001f;
+
+            agentDrivenProperties.AIBlockOnDecideAbility = 0f;
+            agentDrivenProperties.AIParryOnDecideAbility = 0f;
+            agentDrivenProperties.AIParryOnAttackAbility = 0f;
+            agentDrivenProperties.AIParryOnAttackingContinueAbility = 0f;
+            agentDrivenProperties.AIDecideOnRealizeEnemyBlockingAttackAbility = 0f;
+            agentDrivenProperties.AIRealizeBlockingFromIncorrectSideAbility = 0f;
         }
 
         private void UpdateDynamicAgentDrivenProperties(Agent agent, AgentDrivenProperties agentDrivenProperties)

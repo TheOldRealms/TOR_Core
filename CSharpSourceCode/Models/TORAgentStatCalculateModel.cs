@@ -403,23 +403,14 @@ namespace TOR_Core.Models
                         agentDrivenProperties.CombatMaxSpeedMultiplier *= modificator;
                     }
 
+                    if (character.IsMonstrous() || character.IsTreeSpirit())
+                    {
+                        DisableDefensiveAi(agent, agentDrivenProperties);
+                    }
+
                     if (character.IsMinotaur())
                     {
-                        agent.SetAgentFlags(agent.GetAgentFlags() & ~AgentFlag.CanDefend);
-                        agent.Defensiveness = 0.001f;
                         agentDrivenProperties.SwingSpeedMultiplier *= 1.5f;
-                    }
-
-                    if (character.IsTreeSpirit())
-                    {
-                        agent.SetAgentFlags(agent.GetAgentFlags() & ~AgentFlag.CanDefend);
-                        agent.Defensiveness = 0.001f;
-                    }
-
-                    if (character.IsTroll())
-                    {
-                        agent.SetAgentFlags(agent.GetAgentFlags() & ~AgentFlag.CanDefend);//Sly : I set to false directly in their monster entry which applies to both custom battles and sandbox. Wasn't that causing a crash due to missing human component in custom battles and it was supposed to have been put back to true in the xml and set to false here?
-                        agent.Defensiveness = 0.001f;
                     }
 
                     if (character.IsDwarf())
@@ -513,6 +504,20 @@ namespace TOR_Core.Models
             UpdateDynamicAgentDrivenProperties(agent, agentDrivenProperties);
             ApplyBruteMeleeHandlingBoost(agent, agentDrivenProperties);
         }
+
+        private static void DisableDefensiveAi(Agent agent, AgentDrivenProperties agentDrivenProperties)
+        {
+            agent.SetAgentFlags(agent.GetAgentFlags() & ~AgentFlag.CanDefend);
+            agent.Defensiveness = 0.001f;
+
+            agentDrivenProperties.AIBlockOnDecideAbility = 0f;
+            agentDrivenProperties.AIParryOnDecideAbility = 0f;
+            agentDrivenProperties.AIParryOnAttackAbility = 0f;
+            agentDrivenProperties.AIParryOnAttackingContinueAbility = 0f;
+            agentDrivenProperties.AIDecideOnRealizeEnemyBlockingAttackAbility = 0f;
+            agentDrivenProperties.AIRealizeBlockingFromIncorrectSideAbility = 0f;
+        }
+
         private static void ApplyDeadeye(Agent agent, AgentDrivenProperties agentDrivenProperties)
         {
             if (!agent.HasDeadeye())
