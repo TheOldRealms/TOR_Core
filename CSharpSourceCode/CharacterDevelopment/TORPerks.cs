@@ -168,8 +168,8 @@ namespace TOR_Core.CharacterDevelopment
                 PartyRole.PartyLeader, 1f, EffectIncrementType.Add, TroopUsageFlags.None, TroopUsageFlags.None);
 
             _piercingShots.Initialize("{=str_tor_perk_piercing_shots_label}Piercing Shots", TORSkills.GunPowder, 300, null,
-                "{=str_tor_perk_piercing_shots_1}Your shots ignore 50% of enemy armor and penetrate shields.",
-                PartyRole.Personal, -0.5f, EffectIncrementType.AddFactor, "{=str_tor_perk_piercing_shots_2}Gunpowder troops in your party pierce shields.", PartyRole.PartyLeader, 0, EffectIncrementType.Invalid);
+                "{=str_tor_perk_piercing_shots_1}Your shots ignore 50% of enemy armor and can penetrate shields.",
+                PartyRole.Personal, -0.5f, EffectIncrementType.AddFactor, "{=str_tor_perk_piercing_shots_2}Gunpowder troops in your party can pierce shields.", PartyRole.PartyLeader, 0, EffectIncrementType.Invalid);
 
             _entrySpells.Initialize("{=str_tor_perk_novice_spellcaster_label}Novice Spellcaster", TORSkills.Spellcraft, 25, null,
                 "{=str_tor_perk_novice_spellcaster_1}Gain access to entry level spells.", PartyRole.Personal, 0, EffectIncrementType.Invalid);

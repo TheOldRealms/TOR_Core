@@ -119,8 +119,8 @@
   <string id="tor_perk_steel_terror_1" text="{=str_tor_perk_steel_terror_1}Artillery and explosive weapons in your party deal +10% morale damage in battle." />
   <string id="tor_perk_steel_terror_2" text="{=str_tor_perk_steel_terror_2}Artillery crews and engineers in your party become unbreakable due to morale loss." />
   <string id="tor_perk_piercing_shots_label" text="{=str_tor_perk_piercing_shots_label}Piercing Shots" />
-  <string id="tor_perk_piercing_shots_1" text="{=str_tor_perk_piercing_shots_1}Your shots ignore 50% of enemy armor and penetrate shields." />
-  <string id="tor_perk_piercing_shots_2" text="{=str_tor_perk_piercing_shots_2}Gunpowder troops in your party pierce shields." />
+  <string id="tor_perk_piercing_shots_1" text="{=str_tor_perk_piercing_shots_1}Your shots ignore 50% of enemy armor and can penetrate shields." />
+  <string id="tor_perk_piercing_shots_2" text="{=str_tor_perk_piercing_shots_2}Gunpowder troops in your party can pierce shields." />
 
   <!-- Skill perks - Spellcraft -->
   <string id="tor_perk_novice_spellcaster_label" text="{=str_tor_perk_novice_spellcaster_label}Novice Spellcaster" />
