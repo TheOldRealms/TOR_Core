@@ -294,6 +294,7 @@
   <string id="tor_item_hint_use" text="{=str_tor_item_hint_use}Use Item" />
   <string id="tor_religion_follower_none" text="{=str_tor_religion_follower_none}Not a follower of any religion" />
   <string id="tor_bloodkiss_player_notification" text="{=str_tor_bloodkiss_player_notification}Player recieves the Blood Kiss." />
+  <string id="tor_windsOfMagic_base" text="{=str_tor_windsOfMagic_base}Base" />
 
   <!-- Ink Stories -->
   <string id="tor_ink_end" text="{=str_tor_ink_end}End" />
