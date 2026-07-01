@@ -193,6 +193,39 @@ namespace TOR_Core.HarmonyPatches
             ____oldAgentVisuals.Refresh(false, newdata, false);
         }
 
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(CharacterTableau), "AdjustCharacterForStanceIndex")]
+        public static void AdjustCharacterTableauCameraForRaces(int ____race, ref MatrixFrame ____camPos)
+        {
+            var raceName = FaceGen.GetRaceNames()[____race];
+
+            if (raceName == "goblin")
+            {
+                ____camPos.Advance(-0.35f);
+                return;
+            }
+
+            if (raceName == "large_humanoid_monster")
+            {
+                ____camPos.Elevate(1.45f);
+                ____camPos.Advance(2.4f);
+                return;
+            }
+
+            if (raceName == "minotaur") // proper look 
+            {
+                ____camPos.Elevate(0.9f);
+                ____camPos.Advance(0.9f); 
+                return;
+            }
+
+            if (raceName == "troll") // ^ a more monstrous look 
+            {
+                ____camPos.Elevate(0.4f);
+                ____camPos.Advance(1.20f);
+            }
+        }
+
         // marks the character thumbnail render path
         [HarmonyPrefix]
         [HarmonyPatch(typeof(CharacterThumbnailCache), "OnCreateTexture")]

@@ -81,18 +81,26 @@ namespace TOR_Core.HarmonyPatches
         public static void PostFixCreateCharacter(CharacterCode characterCode, Scene scene, ref Camera camera, bool isBig)
         {
             //do we need a depth offset to be added for orcs or other troops that are wide and can be out of shot?
-            if (FaceGen.GetRaceNames()[characterCode.Race] == "dwarf")
+            var raceName = FaceGen.GetRaceNames()[characterCode.Race];
+            if (raceName == "dwarf")
             {
                 var cameraFrame = camera.Frame;
                 cameraFrame.origin.z -= 0.22f;
                 camera.Frame = cameraFrame;
             }
-            if (FaceGen.GetRaceNames()[characterCode.Race] == "goblin") //troop cards are a good height, but the preview on the left for them is still only shoulders+head
+            if (raceName == "goblin") //troop cards are a good height, but the preview on the left for them is still only shoulders+head
             {
                 var cameraFrame = camera.Frame;
                 cameraFrame.origin.z -= 0.5f;
                 camera.Frame = cameraFrame;
             }
+            if (raceName == "troll")
+            {
+                var cameraFrame = camera.Frame;
+                cameraFrame.origin.z += 1.75f;
+                camera.Frame = cameraFrame;
+            }
+
             //Sly : an exception will need to be looked into for wolves as the camera for mounts assumes horse height
         }
     }
