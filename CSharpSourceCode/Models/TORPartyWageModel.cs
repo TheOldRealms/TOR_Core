@@ -141,10 +141,9 @@ namespace TOR_Core.Models
                 return value;
             }
 
-            if (mobileParty.GetUniqueSpawnComponent()?.UniqueSpawnId == OrionCampaignBehavior.OrionSpawnId)
+            if (mobileParty.GetUniqueSpawnComponent() != null)
             {
-
-                var orionWage = new ExplainedNumber(0, includeDescriptions);
+                var uniqueSpawnWage = new ExplainedNumber(0, includeDescriptions);
 
                 foreach (var troop in troopRoster.GetTroopRoster())
                 {
@@ -153,10 +152,10 @@ namespace TOR_Core.Models
                         continue;
                     }
 
-                    orionWage.Add(troop.Number * OrionCampaignBehavior.OrionTroopWage);
+                    uniqueSpawnWage.Add(troop.Number * UniqueSpawnCampaignBehavior.UniqueSpawnTroopWage);
                 }
 
-                return orionWage;
+                return uniqueSpawnWage;
             }
             void StoreCacheIfPossible()
             {

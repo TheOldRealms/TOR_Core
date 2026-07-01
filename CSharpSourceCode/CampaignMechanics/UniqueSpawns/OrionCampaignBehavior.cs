@@ -24,22 +24,15 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
         public const float OrionAthelLorenSpeedBonus = 4.0f;
         public const float OrionOutsideAthelLorenSpeedBonus = 2.4f;
         public const float OrionRetreatSpeedBonus = 5f;
-        public const int OrionTroopWage = 1;
 
         private const string OrionClanId = "wildhunt_clan_1";
         private const string OakOfAgesSettlementId = "oak_of_ages";
         private const string OrionSpawnedStoryId = "OrionSpawned";
         private const string OrionPlayerDefeatedStoryId = "OrionDefeatedByPlayer";
 
-        private const int OrionPartySize = 900;
-        private const int OrionStartingFoodPerType = 200;
+        private const int OrionPartySize = 1010;
         private const int OrionCampaignStartDiplomacyRepairTicks = 12;
         private const int OrionDefeatedCooldownYears = 3;
-
-        private const string OrionSpawnedMessageText = "{=str_tor_unique_orion_spawned_message}orion spawns";
-        private const string OrionReturnedMessageText = "{=str_tor_unique_orion_returned_message}orion returns";
-        private const string OrionRetreatMessageText = "{=str_tor_unique_orion_retreat_started_message}Winter cold orion back";
-        private const string OrionDefeatedMessageText = "{=str_tor_unique_orion_defeated_message}Orion gone 3 year";
 
         [SaveableField(0)]
         private UniqueSpawnState _orionState = UniqueSpawnState.Inactive;
@@ -514,9 +507,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
                 orionClan.Name,
                 orionClan.DefaultPartyTemplate,
                 orionClan,
-                OrionPartySize,
-                false,
-                OrionStartingFoodPerType);
+                OrionPartySize);
 
             _orionPartyId = orionParty.StringId;
             _orionState = UniqueSpawnState.Active;
@@ -530,6 +521,8 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
 
         private void CallOrionBackToOak()
         {
+            const string retreatMessageText = "{=str_tor_unique_orion_retreat_started_message}Winter cold orion back";
+
             if (_orionState != UniqueSpawnState.Active)
             {
                 return;
@@ -545,7 +538,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             _orionWarPlanDaysLeft = 0;
             PointOrionAtOak(orionParty);
 
-            ShowOrionHudMessage(new TextObject(OrionRetreatMessageText), RetreatHudMessageColor);
+            ShowOrionHudMessage(new TextObject(retreatMessageText), RetreatHudMessageColor);
         }
 
         private void KeepOrionOnOakRoad()
@@ -694,6 +687,8 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
 
         private void PutOrionOnDefeatedCooldown(bool playerHelpedDefeatOrion)
         {
+            const string defeatedMessageText = "{=str_tor_unique_orion_defeated_message}Orion gone 3 year";
+
             _orionPartyId = null;
             _orionState = UniqueSpawnState.DefeatedCooldown;
             _orionNextEligibleYear = CampaignTime.Now.GetYear + OrionDefeatedCooldownYears;
@@ -704,7 +699,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
                 QueueOrionInkStory(OrionPlayerDefeatedStoryId);
                 return;
             }
-            ShowOrionHudMessage(new TextObject(OrionDefeatedMessageText), DefeatHudMessageColor);
+            ShowOrionHudMessage(new TextObject(defeatedMessageText), DefeatHudMessageColor);
         }
 
         private MobileParty CurrentOrionParty()
@@ -1041,9 +1036,12 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
 
         private void ReportOrionSpawn(bool returningFromOak)
         {
+            const string spawnedMessageText = "{=str_tor_unique_orion_spawned_message}orion spawns";
+            const string returnedMessageText = "{=str_tor_unique_orion_returned_message}orion returns";
+
             var message = returningFromOak
-                ? new TextObject(OrionReturnedMessageText)
-                : new TextObject(OrionSpawnedMessageText);
+                ? new TextObject(returnedMessageText)
+                : new TextObject(spawnedMessageText);
 
             if (PlayerShouldSeeOrionInkStory())
             {

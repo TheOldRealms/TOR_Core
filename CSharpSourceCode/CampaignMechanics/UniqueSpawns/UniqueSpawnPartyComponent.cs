@@ -36,6 +36,9 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
         [SaveableField(8)]
         private int _startingFoodPerType;
 
+        [SaveableField(9)]
+        private int _initialRegularTroopCount;
+
         public override Hero Leader => _partyOwner;
         public override Hero PartyOwner => _partyOwner;
         public override Settlement HomeSettlement => _spawnSettlement;
@@ -44,6 +47,10 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
         public int TargetPartySize => _targetPartySize;
         public string UniqueSpawnId => _uniqueSpawnId;
         public bool ConsumesFood => _consumesFood;
+        public PartyTemplateObject SpawnTemplate => _spawnTemplate;
+        public int InitialRegularTroopCount => _initialRegularTroopCount > 0
+            ? _initialRegularTroopCount
+            : _spawnTemplate.Stacks.Sum(stack => stack.MaxValue);
 
         private UniqueSpawnPartyComponent(
             string uniqueSpawnId,
@@ -73,6 +80,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
         private void BuildSpawnParty()
         {
             MobileParty.InitializeMobilePartyAroundPosition(_spawnTemplate, _spawnSettlement.GatePosition, 10f);
+            _initialRegularTroopCount = MobileParty.MemberRoster.TotalManCount;
 
             // party spawns managed by unique spawn behaviors won't have the owner hero added by the party template because their spawns had to be conditional. skipping native party creation
             MobileParty.AddElementToMemberRoster(_partyOwner.CharacterObject, 1, true);
@@ -108,8 +116,8 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             PartyTemplateObject spawnTemplate,
             Clan ownerClan,
             int targetPartySize,
-            bool consumesFood,
-            int startingFoodPerType = 0)
+            bool consumesFood = false,
+            int startingFoodPerType = UniqueSpawnCampaignBehavior.UniqueSpawnStartingFoodPerType)
         {
             return MobileParty.CreateParty(
                 stringId,

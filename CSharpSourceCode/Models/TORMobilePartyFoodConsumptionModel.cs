@@ -133,7 +133,7 @@ namespace TOR_Core.Models
                 return false;
             }
 
-            if (mobileParty.GetUniqueSpawnComponent() is { ConsumesFood: false })
+            if (mobileParty.GetUniqueSpawnComponent() != null)
             {
                 return false;
             }

@@ -1386,7 +1386,7 @@
              tier="6"
              is_minor_faction="true"
              is_clan_type_mercenary="false"
-             default_party_template="PartyTemplate.we_leaderparty_template"
+             default_party_template="PartyTemplate.we_orion_wild_hunt_party_template"
              settlement_banner_mesh="encounter_flag_f"
              text="{=str_tor_wildhunt_clan_1_desc}The Wild Hunt" />
     <Faction id="empire_deserter_clan_1"

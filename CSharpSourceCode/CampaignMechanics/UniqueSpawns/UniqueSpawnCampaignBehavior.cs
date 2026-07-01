@@ -29,14 +29,28 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
         public const int WarPlanHomeSiegePatrol = 3;
 
         public const float UniqueSpawnHealingFactor = 9f;
+        public const int UniqueSpawnStartingFoodPerType = 100;
+        public const int UniqueSpawnTroopWage = 1;
+
+        private const float TemplateRefillStartThreshold = 0.90f; // naber: only after writing this i realized this is a terrible way to refill troops. open to suggestions that are not about home factions current strength. 
+        private const float DailyTemplateRefillRate = 0.02f;
 
         public override void RegisterEvents()
         {
             CampaignEvents.AiHourlyTickEvent.AddNonSerializedListener(this, AiHourlyTick);
+            CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, DailyTick);
         }
 
         public override void SyncData(IDataStore dataStore)
         {
+        }
+
+        private void DailyTick()
+        {
+            foreach (var uniqueSpawnParty in MobileParty.All.Where(party => party.IsActive && party.IsUniqueSpawn()).ToList())
+            {
+                RefillUniqueSpawnFromTemplate(uniqueSpawnParty);
+            }
         }
 
         private void AiHourlyTick(MobileParty party, PartyThinkParams thinkParams)
@@ -83,6 +97,85 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             }
 
             thinkParams.AddBehaviorScore(new ValueTuple<AIBehaviorData, float>(behavior, score));
+        }
+
+        private void RefillUniqueSpawnFromTemplate(MobileParty uniqueSpawnParty)
+        {
+            var uniqueSpawnComponent = uniqueSpawnParty.GetUniqueSpawnComponent();
+            var initialRegularCount = uniqueSpawnComponent.InitialRegularTroopCount;
+            var currentRegularCount = RegularTroopCount(uniqueSpawnParty);
+
+            if (currentRegularCount >= initialRegularCount * TemplateRefillStartThreshold)
+            {
+                return;
+            }
+
+            var dailyTroopsToRestore = Math.Min(
+                (int)Math.Ceiling(initialRegularCount * DailyTemplateRefillRate),
+                initialRegularCount - currentRegularCount);
+
+            if (dailyTroopsToRestore <= 0)
+            {
+                return;
+            }
+
+            RestoreMissingTemplateTroops(uniqueSpawnParty, uniqueSpawnComponent, dailyTroopsToRestore);
+        }
+
+        private void RestoreMissingTemplateTroops(
+            MobileParty uniqueSpawnParty,
+            UniqueSpawnPartyComponent uniqueSpawnComponent,
+            int troopsToRestore)
+        {
+            var desiredTemplateCounts = DesiredTemplateCounts(uniqueSpawnComponent);
+
+            foreach (var templateTroop in desiredTemplateCounts
+                         .OrderByDescending(pair => pair.Value - uniqueSpawnParty.MemberRoster.GetTroopCount(pair.Key)))
+            {
+                if (troopsToRestore <= 0)
+                {
+                    return;
+                }
+
+                var missingFromTemplate = templateTroop.Value - uniqueSpawnParty.MemberRoster.GetTroopCount(templateTroop.Key);
+                if (missingFromTemplate <= 0)
+                {
+                    continue;
+                }
+
+                var countToRestore = Math.Min(missingFromTemplate, troopsToRestore);
+
+                // missing from the template assigned
+                uniqueSpawnParty.MemberRoster.AddToCounts(templateTroop.Key, countToRestore);
+                troopsToRestore -= countToRestore;
+            }
+        }
+
+        private Dictionary<CharacterObject, int> DesiredTemplateCounts(UniqueSpawnPartyComponent uniqueSpawnComponent)
+        {
+            var desiredTemplateCounts = new Dictionary<CharacterObject, int>();
+            var templateMaxCount = uniqueSpawnComponent.SpawnTemplate.Stacks.Sum(stack => stack.MaxValue);
+
+            foreach (var templateStack in uniqueSpawnComponent.SpawnTemplate.Stacks)
+            {
+                var desiredCount = Math.Max(1, (int)Math.Round(uniqueSpawnComponent.InitialRegularTroopCount * (double)templateStack.MaxValue / templateMaxCount));
+
+                if (!desiredTemplateCounts.ContainsKey(templateStack.Character))
+                {
+                    desiredTemplateCounts[templateStack.Character] = 0;
+                }
+
+                desiredTemplateCounts[templateStack.Character] += desiredCount;
+            }
+
+            return desiredTemplateCounts;
+        }
+
+        private int RegularTroopCount(MobileParty uniqueSpawnParty)
+        {
+            return uniqueSpawnParty.MemberRoster.GetTroopRoster()
+                .Where(rosterElement => !rosterElement.Character.IsHero)
+                .Sum(rosterElement => rosterElement.Number);
         }
 
         public static int PickWarPlanMode(
