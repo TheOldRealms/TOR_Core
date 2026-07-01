@@ -673,7 +673,10 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                     x => x.SettlementComponent is ShrineComponent shrineComponent && shrineComponent.Religion == leaderReligion);
                 if (shrineSettlement != null)
                 {
-                    SetPartyAiAction.GetActionForVisitingSettlement(party, shrineSettlement, MobileParty.NavigationType.Default, false, false);
+                    if (party.ShortTermTargetSettlement != shrineSettlement || party.DefaultBehavior != AiBehavior.GoToPoint)
+                    {
+                        party.SetMoveGoToInteractablePoint(shrineSettlement.Party, MobileParty.NavigationType.Default);
+                    }
                 }
             }
         }
@@ -685,7 +688,10 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                 var cursedSite = TORCommon.FindNearestSettlement(party, 20f, x => x.SettlementComponent is CursedSiteComponent);
                 if (cursedSite != null)
                 {
-                    SetPartyAiAction.GetActionForVisitingSettlement(party, cursedSite, MobileParty.NavigationType.Default, false, false);
+                    if (party.ShortTermTargetSettlement != cursedSite || party.DefaultBehavior != AiBehavior.GoToPoint)
+                    {
+                        party.SetMoveGoToInteractablePoint(cursedSite.Party, MobileParty.NavigationType.Default);
+                    }
                 }
             }
         }
