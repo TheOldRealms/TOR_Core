@@ -267,6 +267,8 @@ namespace TOR_Core.Extensions
         {
             int count = 0;
 
+            if (agent == null) return count;//leaderless parties pass null agents in.
+
             if (!agent.IsHero) return count;
 
             if (Game.Current.GameType is Campaign)
