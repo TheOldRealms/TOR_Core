@@ -572,7 +572,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
             case CursedSiteComponent:
                 CursedSiteAIRecruitment(party, settlement);
                 break;
-            case null:
+            default:
                 return;
         };
 
