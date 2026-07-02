@@ -92,7 +92,7 @@ public class EnchantmentIngredientLootCampaignBehavior : CampaignBehaviorBase
             }
         }
 
-        PlayerEncounter.Current.GetBattleRewards(out _, out _, out _, out var playerLootShare, out _);
+        PlayerEncounter.Current.GetBattleRewards(out _, out _, out _, out var playerEarnedLootRate, out _);
 
         var lootRoster = PlayerEncounter.Current?.RosterToReceiveLootItems;
         var usedLootFallback = lootRoster == null;
@@ -102,7 +102,7 @@ public class EnchantmentIngredientLootCampaignBehavior : CampaignBehaviorBase
         foreach (var ingredientType in ingredientKeys)
         {
             var factorSum = _goodsFactors[ingredientType];
-            var amount = model.CalculateResultAmount(factorSum, ingredientType, playerLootShare);
+            var amount = model.CalculateResultAmount(factorSum, ingredientType, playerEarnedLootRate);
             if (amount <= 0) continue;
 
             var item = TorEnchantingIngredients.GetItemObjectForIngredient(ingredientType);

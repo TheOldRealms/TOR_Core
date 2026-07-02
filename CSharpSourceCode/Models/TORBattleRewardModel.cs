@@ -111,9 +111,9 @@ namespace TOR_Core.Models
         }
 
 
-        public float DropChanceForMagicalItemsLoot(CharacterObject troop, int count, float lootPercentage)
+        public float DropChanceForMagicalItemsLoot(CharacterObject troop, int count, float playerEarnedLootRate)
         {
-            var value = (GetDropChanceForTroop(troop) * count) * (lootPercentage / 100);
+            var value = (GetDropChanceForTroop(troop) * count) * playerEarnedLootRate;
             return value;
         }
 
@@ -200,7 +200,7 @@ namespace TOR_Core.Models
             return !opposingSideHasHeroParty;
         }
 
-        public int GetTraitCountForTroops(CharacterObject character, int count, float playerEarnedLootPercentage)
+        public int GetTraitCountForTroops(CharacterObject character, int count, float playerEarnedLootRate)
         {
             var t = GetDropChanceForMagicalItemTrait(character);
             var traits = 0;
@@ -216,7 +216,7 @@ namespace TOR_Core.Models
                 return traits;
             }
 
-            var amount = (int)(count * (playerEarnedLootPercentage / 100f)); // convert percent to ratio to avoid massively inflating the roll count
+            var amount = (int)(count * playerEarnedLootRate);
 
             for (var i = 0; i < amount; i++)
             {

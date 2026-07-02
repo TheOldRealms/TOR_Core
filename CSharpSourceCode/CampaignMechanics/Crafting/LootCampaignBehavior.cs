@@ -243,7 +243,7 @@ public class LootCampaignBehavior : CampaignBehaviorBase
         {
             if (mapEvent.PlayerSide != mapEvent.WinningSide) return; //player dying and their troops retreating triggers a PlayerBattleEndEvent with no winner; no point in calculating this for losses
 
-            PlayerEncounter.Current.GetBattleRewards(out _, out _, out _, out float playerEarnedLootPercentage, out _);
+            PlayerEncounter.Current.GetBattleRewards(out _, out _, out _, out var playerEarnedLootRate, out _);
 
             var itemRosterToReceive = PlayerEncounter.Current.RosterToReceiveLootItems;
             var model = (TORBattleRewardModel)Campaign.Current.Models.BattleRewardModel;
@@ -251,7 +251,7 @@ public class LootCampaignBehavior : CampaignBehaviorBase
         foreach (var element in _initialEnemyArmy)
         {
             var character = element.Key;
-            var chance = model.DropChanceForMagicalItemsLoot(character, element.Value, playerEarnedLootPercentage);
+            var chance = model.DropChanceForMagicalItemsLoot(character, element.Value, playerEarnedLootRate);
             if (MBRandom.RandomFloatRanged(0, 1) > chance)
             {
                 continue;
@@ -262,7 +262,7 @@ public class LootCampaignBehavior : CampaignBehaviorBase
                 continue; //TODO check in Unit Catalog that all Legendary Lord have this attribute.
 
 
-            var traitCount = model.GetTraitCountForTroops(character, element.Value, playerEarnedLootPercentage);
+            var traitCount = model.GetTraitCountForTroops(character, element.Value, playerEarnedLootRate);
 
             if (traitCount <= 0)
                 continue;
