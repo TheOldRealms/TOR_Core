@@ -630,7 +630,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             return false;
         }
 
-        return party.IsLordParty && !party.IsEngaging && party.IsActive && !party.IsDisbanding && !party.IsCurrentlyUsedByAQuest && party.CurrentSettlement == null && party.MapEvent == null && !party.Ai.IsDisabled && party.Army == null && !party.HasAnyActiveBlessing();
+        return party.IsLordParty && !party.IsEngaging && party.IsActive && !party.IsDisbanding && !party.IsCurrentlyUsedByAQuest && party.CurrentSettlement == null && !party.IsCurrentlyAtSea && party.MapEvent == null && !party.Ai.IsDisabled && party.Army == null && !party.HasAnyActiveBlessing();
     }
 
     private void PrayResultInit(MenuCallbackArgs args)

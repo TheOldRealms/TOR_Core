@@ -218,7 +218,7 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
                 (attacker, victim, mask) => attacker.Character.HasAttribute("Knightly") && attacker.BelongsToMainParty() && mask == AttackTypeMask.Melee && Hero.MainHero.HasAnyReligion() && Hero.MainHero.GetDominantReligion().ReligiousTroops.Contains((CharacterObject)attacker.Character)));
         _templarOrdersPassive4.Initialize(CareerID, "+20% personal 'Physical' melee damage against the forces of 'Undead'.", "TemplarOrders", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.All,
-                (attacker, victim, mask) => victim.IsUndead() && attacker.IsMainAgent && mask == AttackTypeMask.Melee));
+                (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Melee && victim.IsUndead()));
 
         _pathOfVigilancePassive1.Initialize(CareerID, "+50% personal mount Hitpoints.", "PathOfVigilance", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseHealth, true));
         _pathOfVigilancePassive2.Initialize(CareerID, "+6% personal 'Physical Resistance'.", "PathOfVigilance", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 6), AttackTypeMask.Ranged | AttackTypeMask.Melee));
@@ -228,7 +228,7 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
                 (attacker, victim, mask) => victim.IsMainAgent && victim.WieldedOffhandWeapon.IsShield()));
 
         _wrathAgainstChaosPassive1.Initialize(CareerID, "Your party deals increased 'Holy' damage when facing the forces of 'Chaos'.", "WrathAgainstChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Holy, 15), AttackTypeMask.All,
-            (attacker, victim, mask) => victim.Character.Race != 0));
+            (attacker, victim, mask) => victim.Character.IsBeastman() || victim.Character.IsChaos()));
         _wrathAgainstChaosPassive2.Initialize(CareerID, "+15% personal 'Magic Resistance'.", "WrathAgainstChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 15), AttackTypeMask.Spell));
         _wrathAgainstChaosPassive3.Initialize(CareerID, "+10% personal weapon swing speed.", "WrathAgainstChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10f, PassiveEffectType.SwingSpeed, true));
         _wrathAgainstChaosPassive4.Initialize(CareerID, "+10% personal 'Armour Penetration' of melee attacks.", "WrathAgainstChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-10, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));

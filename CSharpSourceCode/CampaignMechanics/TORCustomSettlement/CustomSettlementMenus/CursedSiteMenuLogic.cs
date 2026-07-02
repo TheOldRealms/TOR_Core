@@ -400,7 +400,7 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
     public static bool CanPartyRecruitGhosts(MobileParty party)
     {
         return party.IsLordParty &&
-                !party.IsEngaging &&
+                !party.IsEngaging && !party.IsCurrentlyAtSea &&
                 party.IsActive &&
                 party.Army == null &&
                 !party.IsDisbanding &&

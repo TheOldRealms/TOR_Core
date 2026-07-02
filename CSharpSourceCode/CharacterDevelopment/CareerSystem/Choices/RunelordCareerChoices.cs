@@ -200,7 +200,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _teachingsOfThungniPassive4.Initialize(CareerID, "+25% party carrying capacity.", "TeachingsOfThungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.InventoryCapacity, true));
 
         _chiselAndHammerPassive1.Initialize(CareerID, "+15% 'Physical' damage for troops affected by a 'Rune'.", "ChiselAndHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.All,
-            (attacker, victim, mask) => attacker.Character.HasUnitRune() && victim.Character.Race != 0));
+            (attacker, victim, mask) => attacker.Character.HasUnitRune()));
         _chiselAndHammerPassive2.Initialize(CareerID, "Kills made with 'Rune' weapons provide Spellcraft experience.", "ChiselAndHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
         _chiselAndHammerPassive3.Initialize(CareerID, "+20% personal 'Rune' ability affect radius.", "ChiselAndHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20f, PassiveEffectType.SpellRadius, true));
         _chiselAndHammerPassive4.Initialize(CareerID, "-25% 'Oathgold' cost to upgrade 'Elite' troops.", "ChiselAndHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpgradeCostModifier, true,

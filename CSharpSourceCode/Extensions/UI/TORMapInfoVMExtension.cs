@@ -1,14 +1,16 @@
+using Ink.Runtime;
 using System;
-using System.Diagnostics;
-using System.Globalization;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.ViewModelCollection.Map.MapBar;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
+using TaleWorlds.CampaignSystem.ViewModelCollection.Map.MapBar;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
@@ -23,8 +25,8 @@ namespace TOR_Core.Extensions.UI
     public class TORMapInfoVMExtension : BaseViewModelExtension
     {
         private int _windsOfMagic = 0;
-        private float _windRechargeRate = 0f;
-        private int _maxWinds = 0;
+        private ExplainedNumber _windRechargeRate = new();
+        private ExplainedNumber _maxWinds = new();
         private int _maxArtillery = 0;
         private int _currentArtilleryItems = 0;
         private string _remainingBlessingTime;
@@ -103,16 +105,40 @@ namespace TOR_Core.Extensions.UI
 
         private List<TooltipProperty> GetWindsHintText()
         {
-            string womTitle = TORTextHelper.GetText("tor_ui_winds_of_magic_title", "Winds of Magic");
+            string womTitle = TORTextHelper.GetText("tor_ui_winds_of_magic_title", "Winds of Magic:");
             string womMaximum = TORTextHelper.GetText("tor_ui_winds_of_magic_maximum", "Maximum:");
             string womRechargeRate = TORTextHelper.GetText("tor_ui_winds_of_magic_recharge_rate", "Recharge Rate:");
 
             var list = new List<TooltipProperty>
             {
-                new(womTitle, _windsOfMagic.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.Title),
-                new(womMaximum, _maxWinds.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None),
-                new(womRechargeRate, string.Format("{0:0.00}", _windRechargeRate), 0, false, TooltipProperty.TooltipPropertyFlags.None)
+                new(womTitle, _windsOfMagic.ToString("0"), 0, false, TooltipProperty.TooltipPropertyFlags.Title),
+                new(womMaximum, _maxWinds.ResultNumber.ToString("0"), 0, false, TooltipProperty.TooltipPropertyFlags.RundownResult),
+                new("", "", 0, false, TooltipProperty.TooltipPropertyFlags.RundownSeperator),
             };
+
+            foreach (var elem in _maxWinds.GetLines())
+            {
+                if (!elem.number.ApproximatelyEqualsTo(0.0f))
+                {
+                    list.Add(new TooltipProperty(elem.name, elem.number.ToString("+#; 0"), 0, false, TooltipProperty.TooltipPropertyFlags.None));
+                }
+            }
+            
+            list.Add(new("", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+            list.Add(new("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
+
+
+            list.Add(new(womRechargeRate, _windRechargeRate.ResultNumber.ToString("0.00"), 0, false, TooltipProperty.TooltipPropertyFlags.RundownResult));
+            list.Add(new("", "", 0, false, TooltipProperty.TooltipPropertyFlags.RundownSeperator));
+            
+            foreach (var elem in _windRechargeRate.GetLines())
+            {
+                if (!elem.number.ApproximatelyEqualsTo(0.0f))
+                {
+                    list.Add(new TooltipProperty(elem.name, elem.number.ToString("+#.00;-0.00"), 0, false, TooltipProperty.TooltipPropertyFlags.None));
+                }
+            }
+
             return list;
         }
 
@@ -296,8 +322,8 @@ namespace TOR_Core.Extensions.UI
 
             var heroInfo = Hero.MainHero.GetExtendedInfo();
             _windsOfMagic = (int)heroInfo.GetCustomResourceValue("WindsOfMagic");
-            _maxWinds = (int)heroInfo.MaxWindsOfMagic;
-            _windRechargeRate = heroInfo.WindsOfMagicRechargeRate;
+            _maxWinds = heroInfo.MaxWindsOfMagicExplained;
+            _windRechargeRate = heroInfo.WindsOfMagicRechargeRateExplained;
             _windsInfo.HasWarning = _windsOfMagic < 0;
             _windsInfo.Value = _windsOfMagic.ToString();
             _windsInfo.IntValue = _windsOfMagic;

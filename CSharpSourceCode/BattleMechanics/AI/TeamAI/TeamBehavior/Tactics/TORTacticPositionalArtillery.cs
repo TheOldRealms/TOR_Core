@@ -37,8 +37,12 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
         {
             _artilleryFormation = new Formation(this.Team, (int)TORFormationClass.Artillery);
             this.Team.FormationsIncludingSpecialAndEmpty.Add(_artilleryFormation);
+            //if (Team.IsPlayerTeam) _artilleryFormation.PlayerOwner = Mission.Current.MainAgent;
+
+
             _guardFormation = new Formation(this.Team, (int)TORFormationClass.ArtilleryGuard);
             this.Team.FormationsIncludingSpecialAndEmpty.Add(_guardFormation);
+            //if (Team.IsPlayerTeam) _guardFormation.PlayerOwner = Mission.Current.MainAgent;
 
             //Sly : do we need to set the player as owner for the player team's formations after they're created?
             //Formation constructor calls Formation.Reset which initializes Formation.PlayerOwner = null.
@@ -54,66 +58,33 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
 
         protected override float GetTacticWeight()
         {
-            // Break down conditions for easier debugging
-            bool hasGeneralAgent = Team.GeneralAgent != null;
-            bool generalIsAbilityUser = hasGeneralAgent && Team.GeneralAgent.IsAbilityUser();
-            bool generalHasArtilleryAbility = generalIsAbilityUser && Team.GeneralAgent.GetComponent<AbilityComponent>().GetKnownAbilityTemplates().Exists(item => item.AbilityEffectType == AbilityEffectType.ArtilleryPlacement);
-            int artilleryCrewCount = Team.ActiveAgents.Count(agent => agent.HasAttribute("ArtilleryCrew")); // FIXED: Use Count() with predicate, not Select().Count()
-            bool hasEnoughArtilleryCrew = artilleryCrewCount >= 2;
+            var generalAgent = Team.GeneralAgent;
 
-            // CRITICAL: Check if general can still place artillery
-            int artillerySlotsLeft = Mission.Current.GetArtillerySlotsLeftForTeam(Team);
-            bool hasArtillerySlots = artillerySlotsLeft > 0;
+            if (generalAgent == null) return 0f;
 
-            bool hasAbilityCharges = false;
-            if (generalHasArtilleryAbility)
-            {
-                var artilleryAbility = Team.GeneralAgent.GetComponent<AbilityComponent>()
-                    .GetKnownAbilityTemplates()
-                    .FirstOrDefault(item => item.AbilityEffectType == AbilityEffectType.ArtilleryPlacement);
-                if (artilleryAbility != null)
-                {
-                    var abilities = Team.GeneralAgent?.GetComponent<AbilityComponent>().KnownAbilitySystem;
+            if (Mission.Current.GetArtillerySlotsLeftForTeam(Team) <= 0) return 0f;
 
-                    if (abilities == null)
-                        return 0.0f;
+            if (!generalAgent.IsAbilityUser() || !generalAgent.CanPlaceArtillery()) return 0f;
 
-                    foreach (var ability in abilities)
-                    {
-                        if (ability is not ItemBoundAbility boundAbility)
-                        {
-                            continue;
-                        }
 
-                        // Only count actual artillery placement abilities, not Anvil of Doom
-                        if (boundAbility.Template.AbilityEffectType != AbilityEffectType.ArtilleryPlacement ||
-                            boundAbility.Template.StringID == "AnvilOfDoomSpawner")
-                        {
-                            continue;
-                        }
 
-                        if (boundAbility.GetRemainingCharges() <= 0)
-                        {
-                            continue;
-                        }
+            var selectedAbilities = generalAgent.GetComponent<AbilityComponent>()?.KnownAbilitySystem;
+            if (selectedAbilities == null) return 0f;
+            if (selectedAbilities.Count <= 0) return 0f;//if this is 0, an issue has occurred upstream when adding abilities to the agent.
 
-                        hasAbilityCharges = true;
-                        break;
-                    }
+            int remainingAbilityUses = selectedAbilities.Where(ability => ability.AbilityEffectType == AbilityEffectType.ArtilleryPlacement).Sum(artilleryAbility => ((ItemBoundAbility)artilleryAbility).GetRemainingCharges());
+            if (remainingAbilityUses <= 0) return 0f;
 
-                }
-            }
 
-            // If general can't place artillery anymore, this tactic has NO weight
-            // This allows the army to switch to offensive tactics after artillery is placed
-            if (!hasGeneralAgent || !generalIsAbilityUser || !generalHasArtilleryAbility ||
-                !hasEnoughArtilleryCrew || !hasArtillerySlots || !hasAbilityCharges)
-            {
-                
-                return 0.0f;
-            }
-       
+            int maximumArtilleryCharges = selectedAbilities.Where(ability => ability.AbilityEffectType == AbilityEffectType.ArtilleryPlacement).Sum(artilleryAbility => ((ItemBoundAbility)artilleryAbility).GetMaximumCharges());
 
+            int artilleryCrewCount = Team.ActiveAgents.Count(agent => agent.HasAttribute("ArtilleryCrew"));
+            if (artilleryCrewCount <= 0) return 0f;
+
+            int requiredCrewForNextArtillery = (maximumArtilleryCharges - remainingAbilityUses + 1) * 2;
+            if (artilleryCrewCount < requiredCrewForNextArtillery) return 0f;//Possibility to place artillery elsewhere if prior ones are destroyed and gunners are still alive.
+
+            //Sly : remnant from old code, can likely be removed.
             // if (!Team.TeamAI.IsDefenseApplicable || !CheckAndDetermineFormation(ref _mainInfantry, f => f.QuerySystem.IsInfantryFormation))
             //     return 0.0f;
 
@@ -238,7 +209,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
                     _positionScoring = null;
                 }
             }
-
+            //can this choose a position besides where the player has placed artillery and the ai controlled parties will run off to an unwanted location?
             if (_chosenArtilleryPosition == null || !IsArtilleryAtPosition(_chosenArtilleryPosition.TacticalPosition))
             {
                 // DEBUG: Break down for easier debugging
@@ -537,7 +508,9 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
 
                 // CRITICAL FIX: Lower Defend weight (5f instead of 15f) so formation spreads out naturally
                 // Higher weight makes everyone crowd the exact defense point
+                //can this choose a defend position that is not near the rest of the formations and cause them to run elsewhere?
                 _artilleryFormation.AI.SetBehaviorWeight<BehaviorDefend>(5f).DefensePosition = defendPosition;
+                //are these activating for melee crewman formations and cause them to run across the battlefield to their death?
                 _artilleryFormation.AI.SetBehaviorWeight<BehaviorSkirmishLine>(3f);  // Increased weight to encourage spreading
                 _artilleryFormation.AI.SetBehaviorWeight<BehaviorScreenedSkirmish>(1f);
             }

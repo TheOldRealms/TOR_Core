@@ -350,10 +350,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             foreach (var lore in LoreObject.GetAll())
             {
-                if (allowedLores.Contains(lore.ID))
+                if (allowedLores.Contains(lore.StringId))
                     continue;
 
-                Hero.MainHero.GetExtendedInfo().RemoveKnownLore(lore.ID);
+                Hero.MainHero.GetExtendedInfo().RemoveKnownLore(lore.StringId);
             }
 
             Hero.MainHero.GetExtendedInfo().RemoveAllSpells();

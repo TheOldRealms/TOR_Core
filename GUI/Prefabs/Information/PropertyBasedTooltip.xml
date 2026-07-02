@@ -17,7 +17,7 @@
 
                 <DimensionSyncWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="220" SuggestedHeight="12" HorizontalAlignment="Center" PositionYOffset="5" DimensionToSync="Horizontal" IsEnabled="false" PaddingAmount="20" WidgetToCopyHeightFrom="..\PropertyListBackground\PropertyList" Sprite="General\TooltipHint\tooltip_frame" ExtendLeft="4" ExtendRight="4"/>
 
-                <Widget Id="PropertyListBackground" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" Sprite="BlankWhiteSquare_9">
+                <Widget Id="PropertyListBackground" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" Sprite="BlankWhiteSquare_9" >
                   <Children>
 
                     <ListPanel Id="PropertyList" DataSource="{TooltipPropertyList}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="5" MarginBottom="5" StackLayout.LayoutMethod="VerticalTopToBottom" >
@@ -29,9 +29,9 @@
                               <!--  Sprite="BlankWhiteSquare_9" Color="#0000FFCC" Blue-->
                               <Children>
 
-                                <ListPanel Id="ValueBackgroundSpriteWidget" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlginment="Center">
+                                <ListPanel Id="ValueBackgroundSpriteWidget" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center">
                                   <Children>
-                                    <Widget Id="DefinitionLabelContainer" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" >
+                                    <Widget Id="DefinitionLabelContainer" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Top" MarginLeft="12">
                                       <!--  Sprite="BlankWhiteSquare_9" Color="#FFFF00CC" Yellow-->
                                       <Children>
                                         <RichTextWidget Id="DefinitionLabel" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" Brush="Tooltip.Text" VerticalAlignment="Center" />
@@ -39,10 +39,10 @@
                                       </Children>
                                     </Widget>
 
-                                    <Widget Id="ValueLabelContainer" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlginment="Center" >
+                                    <Widget Id="ValueLabelContainer" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Top" PositionYOffset="-3">
                                       <!--  Sprite="BlankWhiteSquare_9" Color="#FF00FFCC" Purple-->
                                       <Children>
-                                        <RichTextWidget Id="ValueLabel" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" Brush="Tooltip.Text" PositionYOffset="-2" VerticalAlignment="Center" />
+                                        <RichTextWidget Id="ValueLabel" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" Brush="Tooltip.Text" VerticalAlignment="Center" />
                                         <!-- Sprite="BlankWhiteSquare_9" Color="#FF0000CC" Red-->
                                       </Children>
                                     </Widget>

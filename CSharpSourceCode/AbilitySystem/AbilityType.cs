@@ -23,6 +23,7 @@ namespace TOR_Core.AbilitySystem
         Bombardment,
         Blast,
         ArtilleryPlacement,
+        ItemPlacement,
         TimeWarpEffect,
         CareerAbilityEffect,
         TacticalReposition

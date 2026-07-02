@@ -5,7 +5,7 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.Models
 {
-    class TORClanTierModel : DefaultClanTierModel
+    public class TORClanTierModel : DefaultClanTierModel
     {
         
         public override int MercenaryEligibleTier => 0;

@@ -21,7 +21,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
             _parent = parent;
             _lore = lore;
             _spells = new MBBindingList<SpellItemVM>();
-            var spells = AbilityFactory.GetAllTemplates().Where(x => x.AbilityType == AbilityType.Spell && x.BelongsToLoreID == _lore.ID).OrderBy(x => (int)x.SpellTier);
+            var spells = AbilityFactory.GetAllTemplates().Where(x => x.AbilityType == AbilityType.Spell && x.BelongsToLoreID == _lore.StringId).OrderBy(x => (int)x.SpellTier);
             foreach (var spell in spells)
             {
                 _spells.Add(new SpellItemVM(spell, _currentHero, isTrainerMode));
