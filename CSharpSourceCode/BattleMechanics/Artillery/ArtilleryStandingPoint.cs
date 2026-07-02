@@ -15,7 +15,7 @@ namespace TOR_Core.BattleMechanics.Artillery
     {
         public override bool IsDisabledForAgent(Agent agent)
         {
-            return agent.IsPlayerControlled ? true : base.IsDisabledForAgent(agent);
+            return agent.IsPlayerControlled ? false : base.IsDisabledForAgent(agent);
         }
     }
 
