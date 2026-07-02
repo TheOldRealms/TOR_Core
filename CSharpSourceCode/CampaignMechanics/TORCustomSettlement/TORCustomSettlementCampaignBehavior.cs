@@ -673,10 +673,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                     x => x.SettlementComponent is ShrineComponent shrineComponent && shrineComponent.Religion == leaderReligion);
                 if (shrineSettlement != null)
                 {
-                    if (party.ShortTermTargetSettlement != shrineSettlement || party.DefaultBehavior != AiBehavior.GoToPoint)
-                    {
-                        party.SetMoveGoToInteractablePoint(shrineSettlement.Party, MobileParty.NavigationType.Default);
-                    }
+                    MoveToCustomSettlement(party, shrineSettlement);
                 }
             }
         }
@@ -688,12 +685,25 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                 var cursedSite = TORCommon.FindNearestSettlement(party, 20f, x => x.SettlementComponent is CursedSiteComponent);
                 if (cursedSite != null)
                 {
-                    if (party.ShortTermTargetSettlement != cursedSite || party.DefaultBehavior != AiBehavior.GoToPoint)
-                    {
-                        party.SetMoveGoToInteractablePoint(cursedSite.Party, MobileParty.NavigationType.Default);
-                    }
+                    MoveToCustomSettlement(party, cursedSite);
                 }
             }
+        }
+    }
+    private static void MoveToCustomSettlement(MobileParty party, Settlement settlement)
+    {
+        var gatePosition = settlement.GatePosition;
+        var encounterDistance = Campaign.Current.Models.EncounterModel.NeededMaximumDistanceForEncounteringVillage;
+
+        if (party.Position.DistanceSquared(gatePosition) <= encounterDistance * encounterDistance)
+        {
+            EnterSettlementAction.ApplyForParty(party, settlement);
+            return;
+        }
+
+        if (party.DefaultBehavior != AiBehavior.GoToPoint || party.TargetPosition.DistanceSquared(gatePosition) > 0.01f)
+        {
+            party.SetMoveGoToPoint(gatePosition, MobileParty.NavigationType.Default);
         }
     }
 
