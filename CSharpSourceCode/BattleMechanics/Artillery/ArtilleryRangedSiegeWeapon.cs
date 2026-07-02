@@ -119,8 +119,16 @@ namespace TOR_Core.BattleMechanics.Artillery
         }
 
         protected override void OnTick(float dt)
-        {
+        {//Sly : I just have so many questions
             CheckNullReloaderOriginalPoint();
+            //if (Target == null)
+            //{
+            //    var infantryFormation = Team.GetEnemyTeams().FirstOrDefault()?.GetFormations().FirstOrDefault();
+            //    if (infantryFormation != null)
+            //    {
+            //        this.SetTarget()
+            //    }
+            //}
             if (Target != null)
             {
                 base.OnTick(dt);
@@ -273,13 +281,14 @@ namespace TOR_Core.BattleMechanics.Artillery
                                 MissionWeapon missionWeapon = new MissionWeapon(LoadedMissileItem, null, null, 1);
                                 user.EquipWeaponToExtraSlotAndWield(ref missionWeapon);
                                 user.StopUsingGameObject(true, Agent.StopUsingGameObjectFlags.None);
+                                ConsumeAmmo();
                                 if (user.IsAIControlled)
                                 {
-                                    if (!LoadAmmoStandingPoint.HasUser && !LoadAmmoStandingPoint.IsDeactivated)
+                                    if (!LoadAmmoStandingPoint.HasUser && !LoadAmmoStandingPoint.IsDeactivated && LoadAmmoStandingPoint.FavoredUser == user)//the FavoredUser==user check seems to prevent multiple agents from being assigned to grab ammo and load the guns. Hypothesis is that agents are getting assigned to the ammo pile while the loader is in the wait position which blocks the loader from accessing the point. Still need to figure out why it's not the favored user that's sent to the ammo pile. It's also unclear why the activated/deactivated state of the points is played with so often. I wonder if the activation of the point has the game look for any nearby agent to go use it with disregard for an existing, alive, and nearby FavoredUser.
                                     {
                                         user.AIMoveToGameObjectEnable(LoadAmmoStandingPoint, this, Agent.AIScriptedFrameFlags.NoAttack);
                                     }
-                                    else if (ReloaderAgentOriginalPoint != null && !ReloaderAgentOriginalPoint.HasUser && !ReloaderAgentOriginalPoint.HasAIMovingTo)
+                                    else if (ReloaderAgentOriginalPoint != null && !ReloaderAgentOriginalPoint.HasUser && !ReloaderAgentOriginalPoint.HasAIMovingTo)//reloader agent is null because nothing has the tags to be a reloader point and therefore to have an agent using it.
                                     {
                                         user.AIMoveToGameObjectEnable(ReloaderAgentOriginalPoint, this, Agent.AIScriptedFrameFlags.NoAttack);
                                     }
@@ -291,7 +300,8 @@ namespace TOR_Core.BattleMechanics.Artillery
                                             : (ReloaderAgentOriginalPoint.HasUser
                                                 ? $"OriginalPoint has user '{ReloaderAgentOriginalPoint.UserAgent?.Name}'"
                                                 : $"OriginalPoint has AI moving to it");
-
+                                        
+                                        //ReloaderAgent is always null because there is no ReloadPoint for them to be assigned from.
                                         Agent reloaderAgent = ReloaderAgent;
                                         if (reloaderAgent != null)
                                         {
@@ -301,7 +311,7 @@ namespace TOR_Core.BattleMechanics.Artillery
                                                 formation.AttachUnit(ReloaderAgent);
                                             }
                                         }
-                                        ReloaderAgent = null;
+                                        ReloaderAgent = null;//Sly : why wouldn't this by in the conditional after having moved the reloader back to a different formation?
                                         
                                     }
                                 }
