@@ -37,12 +37,12 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
         {
             _artilleryFormation = new Formation(this.Team, (int)TORFormationClass.Artillery);
             this.Team.FormationsIncludingSpecialAndEmpty.Add(_artilleryFormation);
-            if (Team.IsPlayerTeam) _artilleryFormation.PlayerOwner = Mission.Current.MainAgent;
+            //if (Team.IsPlayerTeam) _artilleryFormation.PlayerOwner = Mission.Current.MainAgent;
 
 
             _guardFormation = new Formation(this.Team, (int)TORFormationClass.ArtilleryGuard);
             this.Team.FormationsIncludingSpecialAndEmpty.Add(_guardFormation);
-            if (Team.IsPlayerTeam) _guardFormation.PlayerOwner = Mission.Current.MainAgent;
+            //if (Team.IsPlayerTeam) _guardFormation.PlayerOwner = Mission.Current.MainAgent;
 
             //Sly : do we need to set the player as owner for the player team's formations after they're created?
             //Formation constructor calls Formation.Reset which initializes Formation.PlayerOwner = null.
@@ -209,7 +209,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
                     _positionScoring = null;
                 }
             }
-
+            //can this choose a position besides where the player has placed artillery and the ai controlled parties will run off to an unwanted location?
             if (_chosenArtilleryPosition == null || !IsArtilleryAtPosition(_chosenArtilleryPosition.TacticalPosition))
             {
                 // DEBUG: Break down for easier debugging
@@ -508,7 +508,9 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
 
                 // CRITICAL FIX: Lower Defend weight (5f instead of 15f) so formation spreads out naturally
                 // Higher weight makes everyone crowd the exact defense point
+                //can this choose a defend position that is not near the rest of the formations and cause them to run elsewhere?
                 _artilleryFormation.AI.SetBehaviorWeight<BehaviorDefend>(5f).DefensePosition = defendPosition;
+                //are these activating for melee crewman formations and cause them to run across the battlefield to their death?
                 _artilleryFormation.AI.SetBehaviorWeight<BehaviorSkirmishLine>(3f);  // Increased weight to encourage spreading
                 _artilleryFormation.AI.SetBehaviorWeight<BehaviorScreenedSkirmish>(1f);
             }
