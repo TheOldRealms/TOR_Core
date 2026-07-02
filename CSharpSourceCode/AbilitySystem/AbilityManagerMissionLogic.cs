@@ -611,8 +611,12 @@ namespace TOR_Core.AbilitySystem
 
         public int GetArtillerySlotsLeftForTeam(Team team)
         {
-            _artillerySlots.TryGetValue(team, out int slotsLeft);
-            return slotsLeft;
+            if (_artillerySlots.TryGetValue(team, out int slotsLeft))
+            {
+                return slotsLeft;
+            }
+            
+            return 0;
         }
 
         public override void OnTeamDeployed(Team team)
@@ -641,9 +645,12 @@ namespace TOR_Core.AbilitySystem
 
         private void RefreshMaxArtilleryCountForTeam(Team team)
         {
+            if (team.GeneralAgent == null) return;
             var artillerySlots = team.GeneralAgent.GetOriginMobileParty()?.GetMaxNumberOfArtillery() ?? team.GeneralAgent.GetPlaceableArtilleryCount();
             //The backup agent lookup is to handle the custom battle case where a team is not derived from a party origin.
 
+
+            if (artillerySlots <= 0) return;
 
             if (_artillerySlots.ContainsKey(team))
             {
