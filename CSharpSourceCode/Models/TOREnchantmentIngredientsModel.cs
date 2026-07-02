@@ -49,7 +49,7 @@ public class TOREnchantmentIngredientsModel : GameModel
 
 
 
-    public int CalculateResultAmount(float dropscore, TorTradeGoodType ingredient, float percentageOfLoot = 1)
+    public int CalculateResultAmount(float dropscore, TorTradeGoodType ingredient, float playerEarnedLootRate = 1f)
     {
         float careerBonus = 1f;
 
@@ -63,7 +63,7 @@ public class TOREnchantmentIngredientsModel : GameModel
             }
         }
 
-        return (int)(dropscore * GetDropAmplitude(ingredient) * RandomMultiplier(ingredient) * (percentageOfLoot / 100) * careerBonus);
+        return (int)(dropscore * GetDropAmplitude(ingredient) * RandomMultiplier(ingredient) * playerEarnedLootRate * careerBonus);
     }
 
 
