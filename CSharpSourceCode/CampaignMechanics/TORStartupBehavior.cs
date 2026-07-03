@@ -154,13 +154,13 @@ namespace TOR_Core.CampaignMechanics
             //after the CharacterAttributes have been loaded so detection of specific attibutes like Undead are applied.
             foreach (var party in Clan.PlayerClan.WarPartyComponents)
             {
-                party.MobileParty.MemberRoster.UpdateVersion();
+                party.MobileParty?.MemberRoster?.UpdateVersion();
             }
 
             //Forces the same recalculation for garrisons.
             foreach (var fief in Clan.PlayerClan.Fiefs)
             {
-                fief.GarrisonParty.MemberRoster.UpdateVersion();
+                fief.GarrisonParty?.MemberRoster?.UpdateVersion();
             }
         }
     }
