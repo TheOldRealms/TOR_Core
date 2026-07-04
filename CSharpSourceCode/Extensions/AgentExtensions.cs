@@ -331,6 +331,13 @@ namespace TOR_Core.Extensions
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Heroes only exist in the context of campaign games.
+        /// Custom battles will receive null from this.
+        /// </remarks>
         public static Hero GetHero(this Agent agent)
         {
             if (agent == null) return null;
@@ -351,19 +358,28 @@ namespace TOR_Core.Extensions
             return agent.Origin != null && agent.Origin.GetType() == typeof(SummonedAgentOrigin);
         }
 
+        /// <summary>
+        /// A backup used for finding artillery count in custom battles. Campaign missions find artillery count via the party origin.
+        /// </summary>
         public static int GetPlaceableArtilleryCount(this Agent agent)
         {
             int count = 0;
-            if (agent.CanPlaceArtillery() || agent.HasAttribute("EngineerCompanion"))
+
+            if (agent == null) return count;//leaderless parties pass null agents in.
+
+            if (!agent.IsHero) return count;
+
+            if (Game.Current.GameType is Campaign)
             {
-                if (Game.Current.GameType is Campaign && agent.GetHero() != null)
-                {
-                    count = agent.GetHero().GetPlaceableArtilleryCount();
-                }
-                else if (Game.Current.GameType is CustomGame)
-                {
-                    count = 5;
-                }
+                var hero = agent.GetHero();
+                if (!hero.IsArtilleryHero()) return count;
+
+                count = hero.GetPlaceableArtilleryCount();
+                TORCommon.Log("AgentExtensions : artillery count for campaign battle derived from an agent; use the MobileParty extension instead.", LogLevel.Error);
+            }
+            else if (Game.Current.GameType is CustomGame)
+            {
+                count = 3;
             }
             return count;
         }

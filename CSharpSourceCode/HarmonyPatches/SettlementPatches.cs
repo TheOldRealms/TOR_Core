@@ -102,7 +102,7 @@ namespace TOR_Core.HarmonyPatches
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(PropertyBasedTooltipVM), "Refresh")]
-        public static void AddExtrasToSettlementInfo(PropertyBasedTooltipVM __instance, Type ____invokedType, object[] ____invokedArgs)
+        public static void AddExtrasToMapInteractableTooltip(PropertyBasedTooltipVM __instance, Type ____invokedType, object[] ____invokedArgs)
         {
             if (____invokedType == typeof(Settlement))
             {
@@ -113,7 +113,7 @@ namespace TOR_Core.HarmonyPatches
                     if (shrine.Religion != null)
                     {
                         var copy = __instance.TooltipPropertyList.Where(x => !string.IsNullOrWhiteSpace(x.ValueLabel)).ToList();
-                        copy.Insert(copy.Count - 1, new TooltipProperty("Affiliation", shrine.Religion.Name.ToString(), 0));
+                        copy.Insert(copy.Count - 1, new TooltipProperty(TORTextHelper.GetTextObject("tor_religion_affiliation", "Affiliation", true).ToString(), shrine.Religion.Name.ToString(), 0));
                         __instance.TooltipPropertyList.Clear();
                         foreach (var item in copy) __instance.TooltipPropertyList.Add(item);
                     }
@@ -265,12 +265,12 @@ namespace TOR_Core.HarmonyPatches
             string text = settlement.OwnerClan.Leader.MapFaction.Culture.StringId;
             if (settlement.OwnerClan.Leader.IsFemale)
             {
-                text += "_f";
+                text += "_f";//native strings store variants by culture + gender
             }
             if (settlement.OwnerClan.Leader == Hero.MainHero && !Hero.MainHero.MapFaction.IsKingdomFaction)
             {
                 textObject.SetTextVariable("FACTION_TERM", Hero.MainHero.Clan.EncyclopediaLinkWithName);
-                textObject.SetTextVariable("FACTION_OFFICIAL", TORTextHelper.GetTextObject("tor_faction_leader", "leader"));
+                textObject.SetTextVariable("FACTION_OFFICIAL", TORTextHelper.GetTextObject("tor_faction_leader", "leader"));//Sly : this text variable never appears in the strings used for the player clan.
             }
             else
             {
@@ -306,19 +306,15 @@ namespace TOR_Core.HarmonyPatches
             {
                 if (!LocationComplex.Current.GetLocationWithId("lordshall").GetCharacterList().Any((LocationCharacter x) => x.Character.IsHero))
                 {
-                    textObject.SetTextVariable("KEEP_INFO", "{=OgkSLkFi}There is nobody in the lord's hall.");
+                    textObject.SetTextVariable("KEEP_INFO", GameTexts.FindText("{=OgkSLkFi}There is nobody in the lord's hall."));
                 }
             }
-            if (settlement.IsRoRSettlement())
+            if (settlement.GetRoRTemplate() is RORSettlementTemplate template)
             {
-                var template = settlement.GetRoRTemplate();
-                if (template != null)
-                {
-                    textObject.SetTextVariable("ROR_INFO", "{newline} " + "{newline}" + template.MenuHeaderText);
-                    MBTextManager.SetTextVariable("newline", "\n", false);
-                }
+                var textBuild = new TextObject("{newline}{newline}" + new TextObject(template.MenuHeaderText).ToString());
+                textObject.SetTextVariable("ROR_INFO", textBuild);
             }
-            MBTextManager.SetTextVariable("SETTLEMENT_INFO", textObject, false);
+            MBTextManager.SetTextVariable("SETTLEMENT_INFO", textObject);
             return false;
         }
 

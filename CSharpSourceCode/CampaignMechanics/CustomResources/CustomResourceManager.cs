@@ -328,16 +328,20 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
                 if (playerHero.HasCareerChoice("HolyPurgePassive2"))
                 {
+                    var evilCultures = new[] { TORConstants.Cultures.CHAOS, TORConstants.Cultures.BEASTMEN, TORConstants.Cultures.SYLVANIA, TORConstants.Cultures.MOUSILLON, TORConstants.Cultures.CHAOS_CULTIST};
+
                     foreach (var party in defeatedSide.Parties)
-                        if (party.Party.LeaderHero != null && (party.Party.LeaderHero.IsChaos() || party.Party.LeaderHero.IsVampire()))
+                     {
+                        var partyCulture = party.Party.MobileParty?.ActualClan?.Culture ?? party.Party.MapFaction?.Culture;
+                        if (partyCulture == null) continue;
+                        if (evilCultures.Contains(partyCulture.StringId))
                         {
                             var choice = TORCareerChoices.GetChoice("HolyPurgePassive2");
-                            var value = choice.Passive.EffectMagnitude;
-                            if (choice.Passive.InterpretAsPercentage) value /= 100;
-                            renownChange *= value;
-
+                            var value = choice.GetPassiveValue();
+                            renownChange *= (1 + value);
                             break;
                         }
+                     }
                 }
 
                 if (playerHero.HasCareerChoice("HuntTheWickedPassive2"))

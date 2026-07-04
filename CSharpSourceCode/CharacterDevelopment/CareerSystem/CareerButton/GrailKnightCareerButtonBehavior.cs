@@ -88,7 +88,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             
             if (Hero.MainHero.GetCultureSpecificCustomResourceValue() <= GRAILKNIGHTCOMPANIONPROMOTIONCOST)
             {
-                displayText = TORTextHelper.GetTextObject("tor_generic_customResourceCost", "Requires {AMOUNT} {RESOURCE_ICON}", true);
+                displayText = TORTextHelper.GetTextObject("tor_custom_resource_cost", "Requires {AMOUNT} {RESOURCE_ICON}", true);
                 displayText.SetTextVariable("AMOUNT", GRAILKNIGHTCOMPANIONPROMOTIONCOST);
                 displayText.SetTextVariable("RESOURCE_ICON", icon);
                 return false;

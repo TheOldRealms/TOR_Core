@@ -148,6 +148,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
             }
 
             // Calculate perpendicular vector for flanking (90 degrees from formation direction)
+            //left flank of the enemy formation, their shielded side
             var rightVector = new Vec2(-formationDirection.y, formationDirection.x);
 
             // Calculate formation half-width for positioning
@@ -179,7 +180,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
                 Mission.Current.Scene.GetHeightAtPoint(candidatePos2D,
                     BodyFlags.CommonCollisionExcludeFlagsForCombat,
                     ref groundHeight);
-
+                //Sly : what are the differences in found heights if BodyFlags.CommonCollisionExcludeFlagsForAgent was used instead?
                 var candidatePos3D = new Vec3(candidatePos2D.x, candidatePos2D.y, groundHeight);
 
                 // Validate position: not too far, has valid ground, good tactical value

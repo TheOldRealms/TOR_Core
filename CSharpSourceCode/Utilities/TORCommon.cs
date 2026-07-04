@@ -76,6 +76,9 @@ namespace TOR_Core.Utilities
         /// </summary>
         public static Settlement FindNearestSettlement(MobileParty party, float radius, Func<Settlement, bool> condition = null)
         {
+            //Sly : for larger radii, this will accumulate a large number settlements even though the closest one via our unstated condition has already been found.
+            //There's likely a logic that can be used to break out and return the desired settlement without iterating through the entire radius to then Minimize by distance.
+
             LocatableSearchData<Settlement> locatableSearchData = Settlement.StartFindingLocatablesAroundPosition(party.Position.ToVec2(), radius);
             List<Settlement> nearbySettlements = new List<Settlement>();
             for (Settlement settlement = Settlement.FindNextLocatable(ref locatableSearchData); settlement != null; settlement = Settlement.FindNextLocatable(ref locatableSearchData))
@@ -97,11 +100,16 @@ namespace TOR_Core.Utilities
         {
             MBList<Settlement> settlements = new MBList<Settlement>();
             LocatableSearchData<Settlement> locatableSearchData = Settlement.StartFindingLocatablesAroundPosition(position, radius);
+            var campaignVec = new CampaignVec2(position, true);
 
             for (Settlement settlement = Settlement.FindNextLocatable(ref locatableSearchData); settlement != null; settlement = Settlement.FindNextLocatable(ref locatableSearchData))
             {
                 if (condition == null || condition(settlement))
                 {
+                    //Sly : The radius condition is arbitrary and may need adjustment. It allows a party to travel further than the inputted distance based on geography which may cause parties to path around valleys, mountains, etc...  to get to something they pass next to by bird's eye distance. It is greater than the radius to give some permissivity for going around small obstacles on the map.
+                    if (Campaign.Current.Models.MapDistanceModel.GetDistance(settlement, in campaignVec, false, MobileParty.NavigationType.Default) > 1.3 * radius) continue;
+
+
                     settlements.Add(settlement);
                 }
             }

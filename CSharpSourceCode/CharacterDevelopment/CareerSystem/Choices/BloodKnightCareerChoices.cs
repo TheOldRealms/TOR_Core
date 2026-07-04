@@ -452,7 +452,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             foreach (var lore in LoreObject.GetAll())
             {
-                playerHero.GetExtendedInfo().RemoveKnownLore(lore.ID);
+                playerHero.GetExtendedInfo().RemoveKnownLore(lore.StringId);
             }
 
             playerHero.GetExtendedInfo().RemoveAllSpells();

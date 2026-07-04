@@ -119,8 +119,8 @@
   <string id="tor_perk_steel_terror_1" text="{=str_tor_perk_steel_terror_1}Artillery and explosive weapons in your party deal +10% morale damage in battle." />
   <string id="tor_perk_steel_terror_2" text="{=str_tor_perk_steel_terror_2}Artillery crews and engineers in your party become unbreakable due to morale loss." />
   <string id="tor_perk_piercing_shots_label" text="{=str_tor_perk_piercing_shots_label}Piercing Shots" />
-  <string id="tor_perk_piercing_shots_1" text="{=str_tor_perk_piercing_shots_1}Your shots ignore 50% of enemy armor and penetrate shields." />
-  <string id="tor_perk_piercing_shots_2" text="{=str_tor_perk_piercing_shots_2}Gunpowder troops in your party pierce shields." />
+  <string id="tor_perk_piercing_shots_1" text="{=str_tor_perk_piercing_shots_1}Your shots ignore 50% of enemy armor and can penetrate shields." />
+  <string id="tor_perk_piercing_shots_2" text="{=str_tor_perk_piercing_shots_2}Gunpowder troops in your party can pierce shields." />
 
   <!-- Skill perks - Spellcraft -->
   <string id="tor_perk_novice_spellcaster_label" text="{=str_tor_perk_novice_spellcaster_label}Novice Spellcaster" />
@@ -254,6 +254,7 @@
   <string id="tor_ability_effect_type.Bombardment" text="{=str_tor_ability_effect_type_bombardment}Bombardment" />
   <string id="tor_ability_effect_type.Blast" text="{=str_tor_ability_effect_type_blast}Blast" />
   <string id="tor_ability_effect_type.ArtilleryPlacement" text="{=str_tor_ability_effect_type_artillery_placement}Artillery Placement" />
+  <string id="tor_ability_effect_type.ItemPlacement" text="{=str_tor_ability_effect_type_item_placement}Item Placement" />
   <string id="tor_ability_effect_type.TimeWarpEffect" text="{=str_tor_ability_effect_type_time_warp}Time Warp" />
   <string id="tor_ability_effect_type.CareerAbilityEffect" text="{=str_tor_ability_effect_type_career_ability}Career Ability" />
   <string id="tor_ability_effect_type.TacticalReposition" text="{=str_tor_ability_effect_type_tactical_reposition}Tactical Reposition" />
@@ -285,7 +286,7 @@
   <string id="tor_ui_no_devotion" text="{=str_tor_ui_no_devotion}No devotion" />
   <string id="tor_ui_active_blessing" text="{=str_tor_ui_active_blessing}Active Blessing" />
   <string id="tor_ui_no_blessing" text="{=str_tor_ui_no_blessing}No active blessing" />
-  <string id="tor_ui_winds_of_magic_title" text="{=str_tor_ui_winds_of_magic_title}Winds of Magic" />
+  <string id="tor_ui_winds_of_magic_title" text="{=str_tor_ui_winds_of_magic_title}Winds of Magic:" />
   <string id="tor_ui_winds_of_magic_maximum" text="{=str_tor_ui_winds_of_magic_maximum}Maximum:" />
   <string id="tor_ui_winds_of_magic_recharge_rate" text="{=str_tor_ui_winds_of_magic_recharge_rate}Recharge Rate:" />
   <string id="tor_menu_enter_game" text="{=str_tor_menu_enter_game}Enter the Old World" />
@@ -293,6 +294,7 @@
   <string id="tor_item_hint_use" text="{=str_tor_item_hint_use}Use Item" />
   <string id="tor_religion_follower_none" text="{=str_tor_religion_follower_none}Not a follower of any religion" />
   <string id="tor_bloodkiss_player_notification" text="{=str_tor_bloodkiss_player_notification}Player recieves the Blood Kiss." />
+  <string id="tor_windsOfMagic_base" text="{=str_tor_windsOfMagic_base}Base" />
 
   <!-- Ink Stories -->
   <string id="tor_ink_end" text="{=str_tor_ink_end}End" />
@@ -365,7 +367,7 @@
   <string id="tor_generic_isLooted" text="{=str_tor_generic_isLooted}{SETTLEMENT} is destroyed" />
   <string id="tor_generic_isCaptured" text="{=str_tor_generic_isCaptured}{SETTLEMENT} is captured" />
   <string id="tor_generic_companionLimitReached" text="{=str_tor_generic_companionLimitReached}Clan companion limit reached" />
-  <string id="tor_generic_customResourceCost" text="{=str_tor_generic_customResourceCost}Requires {AMOUNT} {RESOURCE_ICON}" />
+  <string id="tor_generic_equipmentWeight" text="{=str_tor_generic_equipmentWeight}Equipment weight" />
 
   <!-- Generic UI Messages -->
   <string id="tor_inquiry_ok_text" text="{=str_tor_inquiry_ok_text}OK" />
@@ -433,6 +435,8 @@
   <string id="tor_greenskin_teef_tribute_text" text="{=str_tor_greenskin_teef_tribute_text}Teef Tribute" />
   <string id="tor_hideout_greenskin_no_sneak" text="{=str_tor_hideout_greenskin_no_sneak}You are too clumsy to sneak in undetected." />
   <string id="tor_hideout_greenskin_no_wait" text="{=str_tor_hideout_greenskin_no_wait}You are too clumsy to sneak in undetected. Why even wait?" />
+  <string id="tor_greenskin_shaman_player" text="{=str_tor_greenskin_shaman_player}Greenskin shaman" />
+  <string id="tor_greenskin_shaman_companion" text="{=str_tor_greenskin_shaman_companion}Greenskin shaman companionn" />
 
   <!-- Character Stats Bonuses -->
   <string id="tor_stats_minotaur_bonus_text" text="{=str_tor_stats_minotaur_bonus_text}Minotaur bonus" />
@@ -1128,6 +1132,7 @@
   <string id="str_culture_rich_name.chaos_culture" text="{=str_tor_culture_rich_name_chaos_culture}Chaos" />
   <string id="str_culture_rich_name.sturgia" text="{=str_tor_culture_rich_name_sturgia}Dawi" />
   <string id="str_culture_rich_name.aserai" text="{=str_tor_culture_rich_name_aserai}Greenskins" />
+	
   <string id="str_culture_description.khuzait" text="{=str_tor_culture_description_khuzait}The Vampire Counts are fiends without equal. They seek to topple the civilisations of the living and supplant them with an Undead empire. Each Vampire is a unique and majestic figure with his own personality, drive and ambition. In contrast, their minions are mindlessly obedient - rank after rank of ragged and dirt-encrusted cadavers forced back to life by their masters' necromantic power." />
   <string id="str_culture_description.empire" text="{=str_tor_culture_description_empire}The Empire of Man, the sprawling nation of humans dominating the Old World, faces a daily struggle for survival. Guided by their Emperor, Karl Franz, its armies stand as a testament to unwavering discipline and unmatched martial skills. In a world teeming with brutal savages and bloodthirsty monsters, the Empire endures thanks to the renowned discipline of its armies, honed through rigorous training and fortified by their unyielding faith in Sigmar. A beacon of human resilience, the Empire's soldiers exemplify the indomitable spirit of man that prevails amidst its endless list of foes." />
   <string id="str_culture_description.vlandia" text="{=str_tor_culture_description_vlandia}The Kingdom of Bretonnia is a land renowned for powerful Knights and their strong sense of Chivalry. Guided by the Fey Enchantress and the Damsels of the Lady, the peasants toil while their noble lords protect them from the many dangers threating their survival. In times of war the whole kingdom can join together, led in a crusade against their enemies by King Louen Leoncoeur, against which no foe has known victory." />
@@ -1137,6 +1142,7 @@
   <string id="str_culture_description.sturgia" text="{=str_tor_culture_description_sturgia}The Dwarfs, or the Dawi in their tongue, are one of the oldest and proudest races of the world. The Everlasting Realm of the Dwarfs was at its peak when human nations were nothing more than bands of warring barbarian tribes. Hardy, stout hearts combined with, at times, excessive pride result in a harsh and durable folk – one that is utterly incapable of forgiveness. And so the Dawi record each and every single wrong suffered at the hands of other races, with hopes of avenging said grudges in the future. Alas, this merciless and stubborn attitude led the Dwarfs into a number of conflicts that eventually pushed their civilization into decline. Out of 22 major Dwarfen Holds, or Karaks, only 12 remain under Dawi control – with the remaining ones fallen into the hands of their Ancestral Foes: Skaven and Greenskins." />
   <string id="str_culture_description.chaos_culture" text="{=str_tor_culture_description_chaos_culture}No one truly knows the origin of Chaos in the mortal world. Even the long-lived scholars of the High Elves can only speculate as to where the forces of Chaos first originated. War, famine, natural disaster and the destroyer known as time have eroded away nearly all indications of the roots of Chaos." />
   <string id="str_culture_description.aserai" text="{=str_tor_culture_description_aserai}Orcs and Goblins have been a thorn in the side of every major and minor power for as long as anyone can remember. Caring nothing for history or legacy, in olden days the Greenskins were largely confined to the Southlands, where they waged savage wars amongst themselves, indifferent to the wider world. Yet this brutal isolation did not last. Earthquakes and volcanic activity drove them northwards in vast, rampaging hordes called Waaaghs!, looting and burning all in their path. The Dwarfs, weakened by the long and bitter War of Vengeance against the Elves, stood little chance against the green tide that washed over their homes, and many holds were lost. Ever since, Orcs and Goblins can be found in great numbers all over the planet, being outnumbered only by the Skaven, with whom they often wage wars deep underground." />
+	
   <string id="str_faction_official.empire" text="{=str_tor_faction_official_empire}a count" />
   <string id="str_faction_official.empire_f" text="{=str_tor_faction_official_empire_f}a countess" />
   <string id="str_faction_ruler.empire" text="{=str_tor_faction_ruler_empire}elector count" />
@@ -1532,6 +1538,7 @@
   <string id="tor_player_accept_vassalage.sturgia" text="{=str_tor_player_accept_vassalage_sturgia}Your oath is heard and hammered into the annals. Stand proud, for your kin shall weigh your deeds in stone." />
   <string id="tor_player_accept_vassalage.aserai" text="{=str_tor_player_accept_vassalage_aserai}You'z part uv me mob now! Go an' get to smashin' before I stab ya. WAAAAAAAGH!!!" />
   <string id="tor_player_accept_vassalage.chaos_culture" text="{=str_tor_player_accept_vassalage_chaos_culture}May Nurgle gift you with his blessings." />
+	
   <string id="str_liege_title.empire" text="{=str_tor_liege_title_empire}Elector Count of one of the Provinces of the Empire">
     <tags>
       <tag tag_name="EmpireTag" />
@@ -2897,6 +2904,9 @@
   <string id="tor_religion_devotionlevel.Follower" text="{=str_tor_religion_devotionlevel_Follower}Follower" />
   <string id="tor_religion_devotionlevel.Devoted" text="{=str_tor_religion_devotionlevel_Devoted}Devoted" />
   <string id="tor_religion_devotionlevel.Fanatic" text="{=str_tor_religion_devotionlevel_Fanatic}Fanatic" />
+  <string id="tor_religion_affiliation" text="{=str_tor_religion_affiliation}Affiliation" />
+	
+	<!-- Religion - Cult descriptions -->
   <string id="tor_religion_description.cult_of_sigmar" text="{=str_tor_religion_description_cult_of_sigmar}The Cult of Sigmar, also sometimes called the Church of Sigmar, the Holy Temple of Sigmar, the Clergy of Sigmar or simply the Sigmarite Cult, is the state church of the Empire that administrates the worship of that realm's patron god, Sigmar Heldenhammer. The Cult of Sigmar was founded by the wild-eyed friar Johann Helstrum in the year 73 IC, when he appeared before the masses to relate a vision that he experienced of Sigmar kneeling before Ulric, the god of war and winter, who placed the crown of godhood upon his brow as Sigmar took his place amongst the deities of the Old World Pantheon. As of today, the Cult of Sigmar has become an essential part of Imperial society. Nearly every city, town or village within the Empire has dedicated a portion of their wealth and land to the creation and maintenance of a Sigmarite temple, from which a priest of the Cult of Sigmar will attend to the spiritual well-being of its citizenry, whether it be through holy words of prayer or through heroic actions and trials by combat." />
   <string id="tor_religion_description.cult_of_taal" text="{=str_tor_religion_description_cult_of_taal}The Cult of Taal and Rhya is among the most ancient and pervasive in the Old World, tracing a direct line to the primal gods from the deepest of history. The cult grew organically, as early Humans tried to explain natural phenomenon, such as thunder, the turning of the seasons, and the rise and ebb of the seas. Over time, the Gods Taal and Rhya came into being, beginning as a single entity, known as Ishnernos. This split occurred many thousands of years ago, and the Cult of Ishnernos faded into distant memory. Taal rules nature and is considered King of the Gods. He claims the wild places as his domain and is primarily worshipped by hardy woodsmen, trackers, and rangers. Rhya's worshippers are found in the cultivated fields and orchards of the Empire, as well as among farmers, fishermen, and young lovers everywhere. The Cult of Taal and Rhya is the sanctioned cult of Talabecland, and is wildly popular in the eastern and northern parts of the Empire. Of the two, Taal receives most recognition, and Rhya's role is much diminished. The grand city of Talabheim is particularly fervent in its worship of both Taal and Rhya. However, in other cities, although Rhya's name is commonly known, her worship is rare, leading many urbanites to conclude that her cult is on the decline." />
   <string id="tor_religion_description.cult_of_ulric" text="{=str_tor_religion_description_cult_of_ulric}The Ulrican cult, Church of Ulric or simply the Cult of Ulric is the state approved religious organisation that administrates the worship of the god of war, winter, and wolves. It is second in power and influence to the Cult of Sigmar, but is amongst the most ancient religions of the Empire of Man and dates back before the Empire was created by Sigmar. As a god of war, it is through battle and bloodshed that Ulric is worshipped, any who dare oppose him are merely awaiting the ferocious bite of his priests. {newline}   {newline}   Ulric give me the fangs of the wolf,   {newline}   Ulric give me the claws of the wolf,   {newline}   Ulric give me the coat of the wolf,   {newline}   And I will show your enemies the mercy of the wolf." />
@@ -2921,6 +2931,8 @@
   <string id="tor_religion_description.cult_of_grungni" text="{=str_tor_religion_description_cult_of_grungni}In elder days, when the Ancestor Gods walked amongst the Dwarfs, foremost among them was Grungni, master of smithing and lord of the forge. Grungni foresaw the coming of Chaos and guided his people beneath the earth and into the safety of the mountains. There he taught them to shape metal into weapons and armour of peerless craft, preparing them for the darkness that was to come. When the hordes of Chaos descended upon the world, Grungni led his kin forth to war. Yet Chaos was not so easily cast down, and in time the Dwarfs were driven back to their mountain holds. Only Grimnir, brother to Grungni, dared to venture beyond the mountains to combat the enemy. Grungni remained behind, forging artefacts of immense power to aid his people. Among these was the Throne of Power, upon which was set the Rune of Azamar, the Eternity Rune, a rune so powerful only one has ever existed, and can never be replicated. It was Grungni’s only work where he felt satisfied upon its completion, and with the rune came a promise, for as long as the rune endures, the Karaz Ankor shall never fall. After the great war, the surviving Ancestor Gods withdrew deep into the mountains, awaiting the hour when their children would have need of them once more." />
   <string id="tor_religion_description.cult_of_gork" text="{=str_tor_religion_description_cult_of_gork}Little is known about the major greenskin gods, and for outsiders they are hard to differentiate. Gork and Mork, the twin gods, both share the attributes of being brutal and cunning, but for the greenskins, it is clear who to worship for which boons. Gork is the brutally cunning part of the twins, a god of raw strength and might. As such, his main worshippers are the orcs, who value strength above all. Shamans that beseech Gork will sometimes succeed in summoning the god himself, or at least part of him. If they should succeed, they can summon enormous grasping hands to pluck their enemies apart or gigantic feet to stomp the enemy forces. Such is the raw power of Gork." />
   <string id="tor_religion_description.cult_of_mork" text="{=str_tor_religion_description_cult_of_mork}Little is known about the major greenskin gods, and for outsiders they are hard to differentiate. Gork and Mork, the twin gods, both share the attributes of being brutal and cunning, but for the greenskins it is clear who to worship for which boons. Mork is the cunningly brutal of the two twins and is primarily worshipped by goblins and other smarter varieties of greenskin. While the way of Gork is simply punching someone in the face, the way of Mork is much more refined: a worshipper of Mork would try to distract their foe and then punch them in the back of their head. Shamans that invoke the power of Mork do so not only to still damage their foes but also to protect their own. They can petition their god to hold his protecting hands over other greenskins or to manifest the piercing gaze of the god himself in the shaman’s own eyes, obliterating everything in his line of sight with deadly rays of energy." />
+	
+	<!-- Religion - God Names -->
   <string id="tor_religion_name_of_god.cult_of_sigmar" text="{=str_tor_religion_name_of_god_cult_of_sigmar}Sigmar" />
   <string id="tor_religion_name_of_god.cult_of_taal" text="{=str_tor_religion_name_of_god_cult_of_taal}Taal" />
   <string id="tor_religion_name_of_god.cult_of_ulric" text="{=str_tor_religion_name_of_god_cult_of_ulric}Ulric" />
@@ -2945,6 +2957,8 @@
   <string id="tor_religion_name_of_god.cult_of_tzeentch" text="{=str_tor_religion_name_of_god_cult_of_tzeentch}Tzeentch" />
   <string id="tor_religion_name_of_god.cult_of_gork" text="{=str_tor_religion_name_of_god_cult_of_gork}Gork" />
   <string id="tor_religion_name_of_god.cult_of_mork" text="{=str_tor_religion_name_of_god_cult_of_mork}Mork" />
+	
+	<!-- Religion - Blessing effects -->
   <string id="tor_religion_blessing_effect_description.cult_of_sigmar" text="{=str_tor_religion_blessing_effect_description_cult_of_sigmar}Earn 20% more prestige." />
   <string id="tor_religion_blessing_effect_description.cult_of_shallya" text="{=str_tor_religion_blessing_effect_description_cult_of_shallya}Your party members heal their wounds 20% faster." />
   <string id="tor_religion_blessing_effect_description.cult_of_taal" text="{=str_tor_religion_blessing_effect_description_cult_of_taal}Increase your party's movement speed in forests by 20%." />
@@ -2963,6 +2977,8 @@
   <string id="tor_religion_blessing_effect_description.cult_of_grimnir" text="{=str_tor_religion_blessing_effect_description_cult_of_grimnir}All troops in your party deal an extra 15% physical damage." />
   <string id="tor_religion_blessing_effect_description.cult_of_valaya" text="{=str_tor_religion_blessing_effect_description_cult_of_valaya}All troops in your party gain 5% ward save." />
   <string id="tor_religion_blessing_effect_description.cult_of_grungni" text="{=str_tor_religion_blessing_effect_description_cult_of_grungni}Gain 25% bonus crafting stamina." />
+	
+	<!-- Religion - Blessing names -->
   <string id="tor_religion_blessing_name.cult_of_sigmar" text="{=str_tor_religion_blessing_name_cult_of_sigmar}Blessing of Sigmar" />
   <string id="tor_religion_blessing_name.cult_of_shallya" text="{=str_tor_religion_blessing_name_cult_of_shallya}Blessing of Shallya" />
   <string id="tor_religion_blessing_name.cult_of_taal" text="{=str_tor_religion_blessing_name_cult_of_taal}Blessing of Taal" />
@@ -4511,6 +4527,8 @@
   <string id="tor_careerchoice_basic.Ammo" text="{=str_tor_careerchoice_basic_ammo}{EFFECT_VALUE} extra ammunition" />
 
   <!-- Custom Resource -->
+  <string id="tor_custom_resource_cost" text="{=str_tor_custom_resource_cost}Requires {AMOUNT} {RESOURCE_ICON}" />
+	
   <string id="tor_custom_resource_name.Prestige" text="{=str_tor_custom_resource_name_prestige}Prestige" />
   <string id="tor_custom_resource_name.Chivalry" text="{=str_tor_custom_resource_name_chivalry}Chivalry" />
   <string id="tor_custom_resource_name.DarkEnergy" text="{=str_tor_custom_resource_name_darkenergy}Dark Energy" />
@@ -4521,6 +4539,7 @@
   <string id="tor_custom_resource_name.Meat" text="{=str_tor_custom_resource_name_meat}Meat" />
   <string id="tor_custom_resource_name.Waaagh" text="{=str_tor_custom_resource_name_waaagh}Fightiness" />
   <string id="tor_custom_resource_name.WindsOfMagic" text="{=str_tor_custom_resource_name_windsofmagic}Winds of Magic" />
+	
   <string id="tor_custom_resource_description.Prestige" text="{=str_tor_custom_resource_description_prestige}Prestige is a sign of respect within the Empire. A symbolic currency that allows upgrading Imperial troops and striking special deals with influential individuals." />
   <string id="tor_custom_resource_description.Chivalry" text="{=str_tor_custom_resource_description_chivalry}A representation of the chivalrous code of conduct driving the people of the fair land of Bretonnia. Higher Chivalry allows for greater recruitment of special troops and utilization of unique mechanics." />
   <string id="tor_custom_resource_description.DarkEnergy" text="{=str_tor_custom_resource_description_darkenergy}Dark Energy is used by practitioners of necromancy to raise and support their undead minions." />
@@ -5373,6 +5392,17 @@
   <string id="tor_powerstone_death_res_30_debuff_name" text="{=str_tor_powerstone_death_res_30_debuff_name}Lesser Deadening Endstone" />
   <string id="tor_powerstone_death_res_30_debuff_desc" text="{=str_tor_powerstone_death_res_30_debuff_desc}+25% physical resistance, 20% reduced swing-speed" />
 
+  <!-- Powerstone Texts - General -->
+	<string id="tor_powerstone_choose_title" text="{=str_tor_powerstone_choose_title_text}Choose Powerstone" />
+	<string id="tor_powerstone_choose_description" text="{=str_tor_powerstone_choose_description}Empower your troop with the persisting magical effect of a Powerstone. The effect will reduce the maximum Winds of all magisters sharing the stone's lore while it is active." />
+	<string id="tor_powerstone_inquiry_description" text="{=str_tor_powerstone_inquiry_description}{STONE_ICON}{STONE_NAME} {STONE_PRICE}{PRESTIGE_ICON} Reserved Winds : {STONE_UPKEEP}{WINDS_ICON}" />
+	<string id="tor_powerstone_remove_hint" text="{=str_tor_powerstone_remove_hint}Remove powerstone and recover some prestige." />
+	<string id="tor_powerstone_not_enough_winds" text="{=str_tor_powerstone_not_enough_winds}You don't have enough Winds" />
+	<string id="tor_powerstone_not_experienced_enough" text="{=str_tor_powerstone_not_experienced_enough}Troop is too inexperienced. Requires Tier 4+" />
+	<string id="tor_powerstone_not_enough_prestige" text="{=str_tor_powerstone_not_enough_prestige}You do not have enough prestige to create Powerstones" />
+	<string id="tor_powerstone_remove" text="{=str_tor_powerstone_remove}Remove Powerstone" />
+	<string id="tor_powerstone_apply_tooltip" text="{=str_tor_powerstone_apply_tooltip}Empower troop with a Powerstone" />
+	
   <!-- Powerstone Texts - Greater -->
   <string id="tor_powerstone_fire_dmg_35_name" text="{=str_tor_powerstone_fire_dmg_35_name}Greater Enlightening Fire Ruby" />
   <string id="tor_powerstone_fire_dmg_35_desc" text="{=str_tor_powerstone_fire_dmg_35_desc}+50% Fire amplification, 15% Fire damage+30%" />

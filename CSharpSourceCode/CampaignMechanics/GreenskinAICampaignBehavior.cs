@@ -8,6 +8,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.ObjectSystem;
+using TaleWorlds.SaveSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Models;
 using TOR_Core.Utilities;
@@ -35,6 +36,9 @@ namespace TOR_Core.CampaignMechanics
         private const int SETTLEMENT_FOOD_THRESHOLD = 300;
         private const int GARRISON_FOOD_INJECTION = 50;
         private const int SETTLEMENT_FOOD_INJECTION = 75;
+
+        //[SaveableField(0)]
+        //private Dictionary<string, CampaignTime> _waaaghCooldownDictionary;
 
         private List<CharacterObject> _greenskinTroops; // Cached list of all greenskin troops
 
@@ -70,7 +74,7 @@ namespace TOR_Core.CampaignMechanics
             // Only process greenskin-owned settlements
             if (settlement.OwnerClan?.Culture?.StringId != TORConstants.Cultures.GREENSKIN) return;
             
-            if(!IsTribeInDefensiveWaaagh(settlement.Owner.Clan.Kingdom))
+            if(!IsTribeDefensiveWaaaghOnCooldown(settlement.Owner.Clan.Kingdom))
                 return;
 
             ProcessGreenskinFoodInjection(settlement);
@@ -110,31 +114,69 @@ namespace TOR_Core.CampaignMechanics
 
         private void OnDailyTick()
         {
-            // Process all greenskin AI parties
-            foreach (var mobileParty in MobileParty.AllLordParties)
+            foreach (var kingdom in Kingdom.All)
             {
-                // Skip player party and non-greenskin parties
-                if (mobileParty.IsMainParty) continue;
-                if (mobileParty.Party?.Culture?.StringId != TORConstants.Cultures.GREENSKIN) continue;
-                
-                if(!IsTribeInDefensiveWaaagh(mobileParty.ActualClan.Kingdom))
-                    continue;
+                if (kingdom.IsEliminated) continue;
+                if (kingdom.AliveLords.Count <= 0) continue;
+                if (kingdom.Culture?.StringId != TORConstants.Cultures.GREENSKIN) continue;
+                if (kingdom.Fiefs.Count <= 0) continue;
 
-                // Check for settlement occupation bonus
-                ProcessOccupationBonus(mobileParty);
+                if(IsTribeDefensiveWaaaghOnCooldown(kingdom)) continue;
 
-                // Check for defensive Waaagh
-                ProcessDefensiveWaaagh(mobileParty);
+                foreach (var clan in kingdom.Clans)
+                {
+                    if (clan.IsEliminated) continue;
+                    if (clan.AliveLords.Count <= 0) continue;
+                    if (clan.Culture?.StringId != TORConstants.Cultures.GREENSKIN) continue;
+                    
+                    foreach (var party in clan.WarPartyComponents)
+                    {
+                        var mobileParty = party.MobileParty;
+                        if (mobileParty.IsMainParty) continue;
+
+                        // Check for settlement occupation bonus
+                        ProcessOccupationBonus(mobileParty);
+
+                        // Check for defensive Waaagh
+                        ProcessDefensiveWaaagh(mobileParty);
+                    }
+                }
             }
+
+            //// Process all greenskin AI parties
+            //foreach (var mobileParty in MobileParty.AllLordParties)
+            //{
+            //    // Skip player party and non-greenskin parties
+            //    if (mobileParty.IsMainParty) continue;
+            //    if (mobileParty.Party?.Culture?.StringId != TORConstants.Cultures.GREENSKIN) continue;
+                
+            //    if(!IsTribeDefensiveWaaaghOnCooldown(mobileParty.ActualClan.Kingdom))
+            //        continue;
+
+            //    // Check for settlement occupation bonus
+            //    ProcessOccupationBonus(mobileParty);
+
+            //    // Check for defensive Waaagh
+            //    ProcessDefensiveWaaagh(mobileParty);
+            //}
         }
 
         /// <summary>
         /// Checks if a greenskin clan is in a desperate state and should trigger defensive Waaagh.
         /// Desperate state: clan owns fewer than 2 castles OR fewer than 1 town.
         /// </summary>
-        private bool IsTribeInDefensiveWaaagh(Kingdom kingdom)
+        private bool IsTribeDefensiveWaaaghOnCooldown(Kingdom kingdom)
         {
             if (kingdom == null) return false;
+
+            //if (_waaaghCooldownDictionary.TryGetValue(kingdom.StringId, out CampaignTime lastCooldownStarted))
+            //{
+            //    if (lastCooldownStarted.ToDays + 84f > CampaignTime.Now.ToDays) return false;
+            //}
+            //else
+            //{
+            //    return false;
+            //}
 
             var castleCount = kingdom.Fiefs.Count(s => s.IsCastle);
             var townCount = kingdom.Fiefs.Count(s => s.IsTown);
@@ -150,7 +192,7 @@ namespace TOR_Core.CampaignMechanics
         private void ProcessOccupationBonus(MobileParty mobileParty)
         {
             // Only applies to parties currently at a settlement
-            if (mobileParty.CurrentSettlement == null) return;
+            if (mobileParty.CurrentSettlement == null || mobileParty.CurrentSettlement.IsUnderSiege) return;
 
             // Settlement must be greenskin-owned
             if (mobileParty.CurrentSettlement.OwnerClan?.Culture?.StringId != TORConstants.Cultures.GREENSKIN) return;
@@ -185,6 +227,7 @@ namespace TOR_Core.CampaignMechanics
             // Only applies to lord parties
             if (!mobileParty.IsLordParty) return;
             if (mobileParty.LeaderHero == null) return;
+            if (mobileParty.CurrentSettlement?.IsUnderSiege == true) return;
 
             var clan = mobileParty.LeaderHero.Clan;
             if (clan == null) return;

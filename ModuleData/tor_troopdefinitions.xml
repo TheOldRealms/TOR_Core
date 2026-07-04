@@ -1234,7 +1234,7 @@
       <EquipmentSet id="tor_we_glade_rider_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_glade_knight" default_group="cavalry" level="26" name="{=str_tor_we_glade_knight}Asrai Glade Knight" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_glade_knight" race="elf">
+  <NPCCharacter id="tor_we_glade_knight" default_group="horsearcher" level="26" name="{=str_tor_we_glade_knight}Asrai Glade Knight" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_asrai_glade_knight" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>

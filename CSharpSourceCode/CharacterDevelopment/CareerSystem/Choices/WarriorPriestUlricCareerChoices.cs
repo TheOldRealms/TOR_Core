@@ -118,14 +118,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetOriginalId = "ulric_smash",
                         PropertyName = "DamageAmount",
                         PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.TwoHanded,DefaultSkills.OneHanded,DefaultSkills.Polearm }, 0.001f,true),
-                        MutationType = OperationType.Add
+                        MutationType = OperationType.Multiply
                     },
                 });
             _crusherOfTheWeakKeystone.Initialize(CareerID, "Axe of Ulric knocks foes down.", "CrusherOfTheWeak", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
-                    {
+                    {//Sly : this shouldn't be changing the triggered effect, this should be adding on the property value for knockdown to the original effect, ie. HasShockwave=true.
                         MutationTargetType = typeof(AbilityTemplate),
                         MutationTargetOriginalId = "AxeOfUlric",
                         PropertyName = "TriggeredEffects",
@@ -143,14 +143,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetOriginalId = "ulric_smash",
                         PropertyName = "DamageAmount",
                         PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Leadership }, 0.001f),
-                        MutationType = OperationType.Add
+                        MutationType = OperationType.Multiply
                     },
                 });
             _teachingsOfTheWinterFatherKeystone.Initialize(CareerID, "Axe of Ulric also scales with Faith, and has its radius increased by 1 meter.", "TeachingsOfTheWinterFather", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
-                    {
+                    {//Sly : if the triggeredEffect is changed by a different mutation, does this mutation stop working?
                         MutationTargetType = typeof(TriggeredEffectTemplate),
                         MutationTargetOriginalId = "ulric_smash",
                         PropertyName = "Radius",
@@ -163,7 +163,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetOriginalId = "ulric_smash",
                         PropertyName = "DamageAmount",
                         PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.001f),
-                        MutationType = OperationType.Add
+                        MutationType = OperationType.Multiply
                     },
                 });
             _frostsBiteKeystone.Initialize(CareerID, "Axe of Ulric now deals 'Frost' damage, and enemies are slowed for 6s when hit.", "FrostsBite", false,

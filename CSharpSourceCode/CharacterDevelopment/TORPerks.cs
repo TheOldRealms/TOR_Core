@@ -168,8 +168,8 @@ namespace TOR_Core.CharacterDevelopment
                 PartyRole.PartyLeader, 1f, EffectIncrementType.Add, TroopUsageFlags.None, TroopUsageFlags.None);
 
             _piercingShots.Initialize("{=str_tor_perk_piercing_shots_label}Piercing Shots", TORSkills.GunPowder, 300, null,
-                "{=str_tor_perk_piercing_shots_1}Your shots ignore 50% of enemy armor and penetrate shields.",
-                PartyRole.Personal, -0.5f, EffectIncrementType.AddFactor, "{=str_tor_perk_piercing_shots_2}Gunpowder troops in your party pierce shields.", PartyRole.PartyLeader, 0, EffectIncrementType.Invalid);
+                "{=str_tor_perk_piercing_shots_1}Your shots ignore 50% of enemy armor and can penetrate shields.",
+                PartyRole.Personal, -0.5f, EffectIncrementType.AddFactor, "{=str_tor_perk_piercing_shots_2}Gunpowder troops in your party can pierce shields.", PartyRole.PartyLeader, 0, EffectIncrementType.Invalid);
 
             _entrySpells.Initialize("{=str_tor_perk_novice_spellcaster_label}Novice Spellcaster", TORSkills.Spellcraft, 25, null,
                 "{=str_tor_perk_novice_spellcaster_1}Gain access to entry level spells.", PartyRole.Personal, 0, EffectIncrementType.Invalid);
@@ -201,15 +201,15 @@ namespace TOR_Core.CharacterDevelopment
                 PartyRole.PartyLeader, 5f, EffectIncrementType.Add, TroopUsageFlags.None, TroopUsageFlags.None);
 
             _overCaster.Initialize("{=str_tor_perk_overcaster_label}Overcaster", TORSkills.Spellcraft, 150, _efficientSpellCaster,
-                "{=str_tor_perk_overcaster_1}Your instant damaging and healing spells are 20% more effective but cost 30% more winds of magic.",
+                "{=str_tor_perk_overcaster_1}Your damaging and healing spells are 20% more effective but cost 30% more winds of magic.",
                 PartyRole.Personal, 0.2f, EffectIncrementType.AddFactor,
                 string.Empty,
-                PartyRole.None, 0.15f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                PartyRole.None, 0.3f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
             _efficientSpellCaster.Initialize("{=str_tor_perk_effective_spellcaster_label}Efficient Spellcaster", TORSkills.Spellcraft, 150, _overCaster,
-                "{=str_tor_perk_effective_spellcaster_1}Your instant damaging and healing spells are 20% less effective, but cost 30% less winds of magic.",
+                "{=str_tor_perk_effective_spellcaster_1}Your damaging and healing spells are 20% less effective, but cost 30% less winds of magic.",
                 PartyRole.Personal, -0.2f, EffectIncrementType.AddFactor,
                 string.Empty,
-                PartyRole.None, -0.15f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                PartyRole.None, -0.3f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
 
             _improvision.Initialize("{=str_tor_perk_improvision_label}Improvision", TORSkills.Spellcraft, 225, _catalyst,
                 "{=str_tor_perk_improvision_1}Your Winds of Magic is set to 25 if you have less than that at the beginning of the battle.",

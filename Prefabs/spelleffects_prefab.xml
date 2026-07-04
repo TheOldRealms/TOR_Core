@@ -607,7 +607,7 @@
 			<script name="TORFaceArmy">
 				<variables>
 					<variable name="faceAllied" value="false"/>
-					<variable name="CultureId" value="empire"/>
+					<variable name="CultureId" value="vlandia"/>
 				</variables>
 			</script>
 		</scripts>

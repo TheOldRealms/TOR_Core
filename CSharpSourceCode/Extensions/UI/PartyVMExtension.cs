@@ -26,7 +26,7 @@ namespace TOR_Core.Extensions.UI
             var partyVm = vm as PartyVM;
             ViewModelInstance = partyVm;
 
-            _hintViewModel = new HintViewModel(TORTextHelper.GetTextObject("tor_upkeep", "Upkeep"));
+            _hintViewModel = new HintViewModel(TORTextHelper.GetTextObject("tor_generic_upkeep", "Upkeep"));
             _pendingResourceCosts = new MBBindingList<PendingResourceCostVM>();
         }
 

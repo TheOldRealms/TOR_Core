@@ -25,7 +25,7 @@ namespace TOR_Core.AbilitySystem
         public delegate void CurrentAbilityChangedHandler(AbilityCrosshair crosshair);
         public event CurrentAbilityChangedHandler CurrentAbilityChanged;
         public CareerAbility CareerAbility { get; private set; }
-        public List<Ability> KnownAbilitySystem { get => _knownAbilitySystem; }
+        public List<Ability> KnownAbilitySystem { get => _knownAbilitySystem; }//Sly : unfortunate name as these are the selected abilities available to them in the current mission, but the name overlaps with their actual known abilities list in hero extended info.
 
         // Anvil of Doom position for Runelord proximity check
         public  Vec3 AnvilOfDoomPosition { get; set; } = Vec3.Invalid;
@@ -94,7 +94,7 @@ namespace TOR_Core.AbilitySystem
                                 {
                                     ability.OnCastStart += OnCastStart;
                                     ability.OnCastComplete += OnCastComplete;
-                                    ability.SetChargeNum(artillery.Amount);
+                                    ability.SetChargeNum(artillery.Amount, true);
                                     _knownAbilitySystem.Add(ability);
                                 }
                             }
@@ -107,7 +107,7 @@ namespace TOR_Core.AbilitySystem
                         {
                             ability1.OnCastStart += OnCastStart;
                             ability1.OnCastComplete += OnCastComplete;
-                            ability1.SetChargeNum(1);
+                            ability1.SetChargeNum(1, true);
                             _knownAbilitySystem.Add(ability1);
                         }
 
@@ -116,7 +116,7 @@ namespace TOR_Core.AbilitySystem
                         {
                             ability2.OnCastStart += OnCastStart;
                             ability2.OnCastComplete += OnCastComplete;
-                            ability2.SetChargeNum(2);
+                            ability2.SetChargeNum(2, true);
                             _knownAbilitySystem.Add(ability2);
                         }
                     }
@@ -127,7 +127,7 @@ namespace TOR_Core.AbilitySystem
                         {
                             ability3.OnCastStart += OnCastStart;
                             ability3.OnCastComplete += OnCastComplete;
-                            ability3.SetChargeNum(2);
+                            ability3.SetChargeNum(2, true);
                             _knownAbilitySystem.Add(ability3);
                         }
                     }
@@ -138,7 +138,7 @@ namespace TOR_Core.AbilitySystem
                         {
                             ability4.OnCastStart += OnCastStart;
                             ability4.OnCastComplete += OnCastComplete;
-                            ability4.SetChargeNum(1);
+                            ability4.SetChargeNum(1, true);
                             _knownAbilitySystem.Add(ability4);
                         }
                     }
@@ -155,7 +155,7 @@ namespace TOR_Core.AbilitySystem
                         {
                             ability1.OnCastStart += OnCastStart;
                             ability1.OnCastComplete += OnCastComplete;
-                            ability1.SetChargeNum(1);
+                            ability1.SetChargeNum(1, true);
                             _knownAbilitySystem.Add(ability1);
                         }
 
@@ -164,7 +164,7 @@ namespace TOR_Core.AbilitySystem
                         {
                             ability2.OnCastStart += OnCastStart;
                             ability2.OnCastComplete += OnCastComplete;
-                            ability2.SetChargeNum(2);
+                            ability2.SetChargeNum(2, true);
                             _knownAbilitySystem.Add(ability2);
                         }
                     }
@@ -175,7 +175,7 @@ namespace TOR_Core.AbilitySystem
                         {
                             ability3.OnCastStart += OnCastStart;
                             ability3.OnCastComplete += OnCastComplete;
-                            ability3.SetChargeNum(2);
+                            ability3.SetChargeNum(2, true);
                             _knownAbilitySystem.Add(ability3);
                         }
                     }
@@ -186,7 +186,7 @@ namespace TOR_Core.AbilitySystem
                         {
                             ability4.OnCastStart += OnCastStart;
                             ability4.OnCastComplete += OnCastComplete;
-                            ability4.SetChargeNum(1);
+                            ability4.SetChargeNum(1, true);
                             _knownAbilitySystem.Add(ability4);
                         }
                     }
@@ -194,21 +194,17 @@ namespace TOR_Core.AbilitySystem
             }
 
             // Add Anvil of Doom spawner for Runelords
-            if (agent.HasPartyAnvilOfDoom())
+            if (agent.IsHero && agent.GetHero() != null)
             {
-                var hero = agent.GetHero();
-                if (hero != null)
+                if (agent.GetHero().HasCareer(TORCareers.Runelord) && agent.HasPartyAnvilOfDoom())
                 {
-                    if ( hero.HasCareer(TORCareers.Runelord))
+                    var anvilAbility = (ItemBoundAbility)AbilityFactory.CreateNew("AnvilOfDoomSpawner", agent);
+                    if (anvilAbility != null)
                     {
-                        var anvilAbility = (ItemBoundAbility)AbilityFactory.CreateNew("AnvilOfDoomSpawner", agent);
-                        if (anvilAbility != null)
-                        {
-                            anvilAbility.OnCastStart += OnCastStart;
-                            anvilAbility.OnCastComplete += OnCastComplete;
-                            anvilAbility.SetChargeNum(1);
-                            _knownAbilitySystem.Add(anvilAbility);
-                        }
+                        anvilAbility.OnCastStart += OnCastStart;
+                        anvilAbility.OnCastComplete += OnCastComplete;
+                        anvilAbility.SetChargeNum(1, true);
+                        _knownAbilitySystem.Add(anvilAbility);
                     }
                 }
             }

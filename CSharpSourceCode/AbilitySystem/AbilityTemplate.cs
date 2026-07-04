@@ -151,6 +151,7 @@ namespace TOR_Core.AbilitySystem
             return AbilityEffectType == AbilityEffectType.Wind ||
                    AbilityEffectType == AbilityEffectType.Summoning ||
                    AbilityEffectType == AbilityEffectType.ArtilleryPlacement ||
+                   AbilityEffectType == AbilityEffectType.ItemPlacement ||
                    AbilityEffectType == AbilityEffectType.TimeWarpEffect ||
                    AbilityEffectType == AbilityEffectType.CareerAbilityEffect ||
                    AbilityEffectType == AbilityEffectType.TacticalReposition;

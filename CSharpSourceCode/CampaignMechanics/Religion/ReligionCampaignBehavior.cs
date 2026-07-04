@@ -36,27 +36,23 @@ namespace TOR_Core.CampaignMechanics.Religion
             CampaignEvents.OnItemsDiscardedByPlayerEvent.AddNonSerializedListener(this, OnItemsDiscarded);
             CampaignEvents.HourlyTickSettlementEvent.AddNonSerializedListener(this, SettlementHourlyReligionTick);
             CampaignEvents.MapEventEnded.AddNonSerializedListener(this, MapEventEnded);
-            CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, PlayerBattleEnded);
+            CampaignEvents.OnCollectLootsItemsEvent.AddNonSerializedListener(this, PlayerLootCollected);
             TORCampaignEvents.Instance.DevotionLevelChanged += OnDevotionLevelChanged;
             TORCampaignEvents.Instance.HeroExtendedInfoCreated += OnHeroExtendedInfoCreated;
         }
 
-        private void PlayerBattleEnded(MapEvent mapEvent)
+        private void PlayerLootCollected(PartyBase winnerParty, ItemRoster gainedLoots)
         {
-            if (mapEvent.IsPlayerMapEvent && mapEvent.PlayerSide == mapEvent.WinningSide && Hero.MainHero.PartyBelongedTo.HasBlessing("cult_of_anath_raema"))
+            if (winnerParty != PartyBase.MainParty) return;
+            if (!Hero.MainHero.PartyBelongedTo.HasBlessing("cult_of_anath_raema")) return;
+            if (gainedLoots.Count <= 0) return;
+
+            var randomIndex = MBRandom.RandomInt(gainedLoots.Count);
+            var item = gainedLoots[randomIndex].EquipmentElement;
+
+            if (!item.IsEmpty)
             {
-                var roster = PlayerEncounter.Current.RosterToReceiveLootItems;
-                if (roster != null && roster.Count > 0)
-                {
-                    var randomIndex = MBRandom.RandomInt(0, roster.Count - 1);
-
-                    var item = roster[randomIndex].EquipmentElement;
-
-                    if (!item.IsEmpty)
-                    {
-                        roster.AddToCounts(item, 7);
-                    }
-                }
+                gainedLoots.AddToCounts(item, 7);
             }
         }
 

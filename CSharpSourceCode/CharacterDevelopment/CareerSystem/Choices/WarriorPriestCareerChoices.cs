@@ -1,6 +1,7 @@
 using Helpers;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
@@ -321,7 +322,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             _holyPurgePassive1.Initialize(CareerID, "+5% personal 'Holy' melee damage.", "HolyPurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy, 5), AttackTypeMask.Melee));
             _holyPurgePassive2.Initialize(CareerID, "Earn +20% more 'Prestige' when facing the forces of 'Chaos' or 'Undead'.", "HolyPurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special));
-            _holyPurgePassive3.Initialize(CareerID, "+10% melee damage for all troops when facing 'Non-Human' enemies.", "HolyPurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee, HolyPurgePassive3));
+            _holyPurgePassive3.Initialize(CareerID, "+10% melee damage for all troops when facing 'Non-Human' enemies.", "HolyPurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee, (attacker, victim, mask) => mask == AttackTypeMask.Melee && !victim.Character.IsHuman()));
             _holyPurgePassive4.Initialize(CareerID, "+10% 'Holy' damage for 'Sigmarite' troops.", "HolyPurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Holy, 10), AttackTypeMask.Melee, HolyPurgePassive4));
 
             _archLectorPassive1.Initialize(CareerID, "All prayers begin charged on battle start.", "ArchLector", false, ChoiceType.Passive, null);
@@ -353,7 +354,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         private static bool HolyPurgePassive3(Agent attacker, Agent victim, AttackTypeMask mask)
         {
-            return victim.Character.Race != 0;
+            return !victim.Character.IsHuman();
         }
 
         private static bool HolyPurgePassive4(Agent attacker, Agent victim, AttackTypeMask mask)

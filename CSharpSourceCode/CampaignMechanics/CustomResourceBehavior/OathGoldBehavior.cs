@@ -1559,8 +1559,8 @@ public class OathGoldBehavior : CampaignBehaviorBase
                 
         //use the town's current grain price to determine value to the guild
         //passing the party allows the player's trade skill value to apply its trade penalty reduction increasing the oath gold gained
-        var grainValue = town.MarketData.GetPrice(grain, Hero.MainHero.PartyBelongedTo, true, null) - 1;
-        grainValue = Math.Max(grainValue, 1);//precautionary
+        var grainValue = town.MarketData.GetPrice(grain, Hero.MainHero.PartyBelongedTo, true, null) - 3;//2 is approximately the lowest value grain can reach when in heavy oversupply. The effective price is reduced to favour supplying grain to karaks that are in-need.
+        grainValue = Math.Max(grainValue, 0);//avoid costing the player oathgold
         grainValue *= grainAmount;
 
         //resource proportional to context value

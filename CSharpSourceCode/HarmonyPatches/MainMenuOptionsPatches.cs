@@ -23,7 +23,7 @@ namespace TOR_Core.HarmonyPatches
             List<InitialStateOption> newlist = new List<InitialStateOption>();
             newlist = __result.Where(x => x.Id != "StoryModeNewGame" && x.Id != "SandBoxNewGame").ToList();
             // Low OrderIndex to appear at top (UI changed from BottomToTop to TopToBottom in 1.4)
-            var torOption = new InitialStateOption("TORNewgame", new TextObject("{=str_tor_menu_enter_game}Enter the Old World"), 1, OnCLick, IsDisabledAndReason);
+            var torOption = new InitialStateOption("TORNewgame", new TextObject("{=str_tor_menu_enter_game}Enter the Old World"), 1, OnClick, IsDisabledAndReason);
             var torOption2 = new InitialStateOption("TORForceLoad", new TextObject("{=str_tor_menu_shader_cache}Build Shader Cache"), 2, OnForceClick, IsDisabledAndReason);
             newlist.Add(torOption);
             newlist.Add(torOption2);
@@ -38,20 +38,20 @@ namespace TOR_Core.HarmonyPatches
 
         private static void DisplayWindow()
         {
-            var text = new TextObject("{=tor_menu_shader_cache_popup_message}This will load a scene with all the unique troops and NPCs present in our mod. The purpose of this is to compile the local shader cache on your PC.\n" +
-                       "When you see the deployment phase, the process is complete!\n \n" +
-                       "THIS WILL TAKE A LONG TIME!!!\n" +
-                       "Our users report anything between 20 and 70 minutes.\n \n" +
-                       "This ensures that you won't need to compile the shaders individually during normal gameplay, as it can cause issues with stability.\n" +
+            var text = new TextObject("{=str_tor_menu_shader_cache_popup_message}This will load a scene with all the unique troops and NPCs present in our mod. The purpose of this is to compile the local shader cache on your PC.{newline}" +
+                       "When you see the deployment phase, the process is complete!{newline}{newline}" +
+                       "THIS WILL TAKE A LONG TIME!!!{newline}" +
+                       "Our users report anything between 20 and 70 minutes.{newline}{newline}" +
+                       "This ensures that you won't need to compile the shaders individually during normal gameplay as it can cause issues with stability.{newline}" +
                        "This is meant to reduce the number of UI portrait generation crashes and also eliminate the long battle loading times during normal gameplay.").ToString();
 
             var data = new InquiryData(
-                new TextObject("{=tor_menu_shader_cache_popup_title}Important warning").ToString(),
+                new TextObject("{=str_tor_menu_shader_cache_popup_title}Important warning").ToString(),
                 text,
                 true,
                 true,
-                new TextObject("{=tor_menu_shader_cache_popup_confirm}Do it").ToString(),
-                new TextObject("{=tor_menu_shader_cache_popup_reject}Not now").ToString(),
+                new TextObject("{=str_tor_menu_shader_cache_popup_confirm}Do it").ToString(),
+                new TextObject("{=str_tor_menu_shader_cache_popup_reject}Not now").ToString(),
                 BuildShaderCache,
                 HideWindow
                 );
@@ -68,7 +68,7 @@ namespace TOR_Core.HarmonyPatches
             MBGameManager.StartNewGame(new TORShaderGameManager());
         }
 
-        private static void OnCLick()
+        private static void OnClick()
         {
             // Campaign creator delegate that creates a new Campaign in Campaign mode
             MBGameManager.StartNewGame(new TorCampaignGameManager(() => new Campaign(CampaignGameMode.Campaign)));
@@ -76,7 +76,7 @@ namespace TOR_Core.HarmonyPatches
 
         private static (bool, TextObject) IsDisabledAndReason()
         {
-            TextObject coreContentDisabledReason = new TextObject("{=tor_disabled_during_installation}Disabled during installation.");
+            TextObject coreContentDisabledReason = new TextObject("{=str_tor_disabled_during_installation}Disabled during installation.");
             return new ValueTuple<bool, TextObject>(Module.CurrentModule.IsOnlyCoreContentEnabled, coreContentDisabledReason);
         }
     }

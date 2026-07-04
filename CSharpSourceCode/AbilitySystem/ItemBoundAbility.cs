@@ -13,23 +13,28 @@ namespace TOR_Core.AbilitySystem
     public class ItemBoundAbility : Ability
     {
         private int _chargeNum = 0;
+        private int _chargeMaximum = 0;
 
         public ItemBoundAbility(AbilityTemplate template) : base(template) { }
 
-        public void SetChargeNum(int amount)
+        public void SetChargeNum(int amount, bool affectMaximum = false)
         {
             _chargeNum = amount;
+            
+            if (affectMaximum) _chargeMaximum = amount;
+
+            if (_chargeNum > _chargeMaximum && !affectMaximum) _chargeNum = _chargeMaximum;//being granted additional charges during the mission doesn't increase past the max set during AbilityComponent creation.
         }
 
         public override bool IsDisabled(Agent casterAgent, out TextObject disabledReason)
         {
             if (_chargeNum <= 0)
             {
-                disabledReason = TORTextHelper.GetTextObject("tor_no_artillery_inventory", "No more artillery pieces in inventory");
+                disabledReason = TORTextHelper.GetTextObject("tor_no_artillery_inventory", "No more artillery pieces in inventory");//TODO : needs to be updated for a generic string as artillery is no longer the only itembound ability
                 return true;
             }
             // Anvil of Doom doesn't use artillery slots
-            if (Template.StringID != "AnvilOfDoomSpawner" && Mission.Current.GetArtillerySlotsLeftForTeam(casterAgent.Team) <= 0)
+            if (Template.AbilityEffectType == AbilityEffectType.ArtilleryPlacement && Mission.Current.GetArtillerySlotsLeftForTeam(casterAgent.Team) <= 0)
             {
                 disabledReason = TORTextHelper.GetTextObject("tor_no_artillery_slots", "Party cannot field more artillery pieces");
                 return true;
@@ -46,6 +51,11 @@ namespace TOR_Core.AbilitySystem
         public int GetRemainingCharges()
         {
             return _chargeNum;
+        }
+
+        public int GetMaximumCharges()
+        {
+            return _chargeMaximum;
         }
     }
 }
