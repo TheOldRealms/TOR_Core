@@ -89,6 +89,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
 
         public override void RegisterEvents()
         {
+            CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, DailyTick);
             CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, HourlyTick);
@@ -250,6 +251,11 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             return GetOrionDebugStatus();
         }
 
+        private void OnNewGameCreated(CampaignGameStarter starter)
+        {
+            DisableOrionSpawn();
+        }
+
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
 
@@ -260,6 +266,12 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             _lastCheckedYear = CampaignTime.Now.GetYear;
 
             _campaignStartDiplomacyRepairTicksLeft = OrionCampaignStartDiplomacyRepairTicks;
+
+            if (CurrentOrionParty() == null)
+            {
+                DisableOrionSpawn();
+            }
+
             KeepOrionClanIndependent();
             RepairOrionDiplomacyAgainstAthelLoren();
         }
@@ -496,6 +508,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
 
             var oakOfAges = OakOfAges();
             var orionClan = Clan.FindFirst(clan => clan.StringId == OrionClanId);
+            PrepareOrionForUniqueSpawning(orionClan.Leader);
 
             _orionSpawnSerial++;
             var orionPartyId = $"{OrionSpawnId}_party_{_orionSpawnSerial}";
@@ -583,6 +596,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             _orionWarPlanDaysLeft = 0;
 
             RemoveOrionWithoutDefeatLogic(orionParty);
+            DisableOrionSpawn();
         }
 
         private void RemoveOrionWithoutDefeatLogic(MobileParty orionParty)
@@ -656,13 +670,12 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             }
 
             var orionParty = CurrentOrionParty();
-
-            PutOrionOnDefeatedCooldown(playerHelpedDefeatOrion);
-
             if (orionParty != null && orionParty.IsActive)
             {
                 RemoveOrionWithoutDefeatLogic(orionParty);
             }
+
+            PutOrionOnDefeatedCooldown(playerHelpedDefeatOrion);
         }
 
         private void OnMobilePartyDestroyed(MobileParty destroyedParty, PartyBase destroyerParty)
@@ -694,6 +707,8 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             _orionNextEligibleYear = CampaignTime.Now.GetYear + OrionDefeatedCooldownYears;
             _orionWarPlanDaysLeft = 0;
 
+            DisableOrionSpawn();
+
             if (playerHelpedDefeatOrion)
             {
                 QueueOrionInkStory(OrionPlayerDefeatedStoryId);
@@ -716,6 +731,23 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             return MobileParty.All.FirstOrDefault(party =>
                 party.IsActive &&
                 party.GetUniqueSpawnComponent()?.UniqueSpawnId == OrionSpawnId);
+        }
+
+        private void PrepareOrionForUniqueSpawning(Hero orionLeader)
+        {
+            orionLeader.ChangeState(Hero.CharacterStates.Active);
+        }
+
+        private void DisableOrionSpawn()
+        {
+            var orionLeader = Clan.FindFirst(clan => clan.StringId == OrionClanId).Leader;
+
+            if (orionLeader.PartyBelongedTo?.GetUniqueSpawnComponent()?.UniqueSpawnId == OrionSpawnId)
+            {
+                return;
+            }
+
+            DisableHeroAction.Apply(orionLeader);
         }
 
         private void RepairOrionDiplomacyAgainstAthelLoren()
