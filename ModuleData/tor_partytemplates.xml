@@ -1666,7 +1666,6 @@
 			<PartyTemplateStack min_value="1" max_value="2" troop="NPCCharacter.tor_we_wildwood_ranger" />
 			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_we_wildwood_warden" />
 			<PartyTemplateStack min_value="2" max_value="2" troop="NPCCharacter.tor_we_wild_rider" />
-			<PartyTemplateStack min_value="2" max_value="2" troop="NPCCharacter.tor_we_great_stag_knight" />
 		</stacks>
 	</MBPartyTemplate>
 	<MBPartyTemplate id="we_orion_wild_hunt_party_template" >
@@ -1701,7 +1700,6 @@
 			<PartyTemplateStack min_value="1" max_value="2" troop="NPCCharacter.tor_we_wildwood_ranger" />
 			<PartyTemplateStack min_value="1" max_value="2" troop="NPCCharacter.tor_we_wildwood_warden" />
 			<PartyTemplateStack min_value="1" max_value="1" troop="NPCCharacter.tor_we_wild_rider" />
-			<PartyTemplateStack min_value="1" max_value="1" troop="NPCCharacter.tor_we_great_stag_knight" />
 		</stacks>
 	</MBPartyTemplate>
 	<MBPartyTemplate id="greenskins_lordparty_template" >

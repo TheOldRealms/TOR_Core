@@ -1426,9 +1426,7 @@
         <beard_tag name="Cleanshaven" />
       </beard_tags>
     </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_we_great_stag_knight" />
-    </upgrade_targets>
+    <upgrade_targets />
     <Equipments>
       <EquipmentSet id="tor_we_wild_rider_template" />
       <EquipmentSet id="tor_we_wild_rider_template" equipmentType="Civilian" />

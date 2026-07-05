@@ -482,6 +482,12 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
                 return;
             }
 
+            if (AthelLorenIsGone())
+            {
+                DisableOrionSpawn();
+                return;
+            }
+
             var existingOrionParty = CurrentOrionParty();
             if (existingOrionParty != null)
             {
@@ -505,6 +511,11 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
 
         private void SpawnOrionAtOak(bool returningFromOak)
         {
+            if (AthelLorenIsGone())
+            {
+                DisableOrionSpawn();
+                return;
+            }
 
             var oakOfAges = OakOfAges();
             var orionClan = Clan.FindFirst(clan => clan.StringId == OrionClanId);
@@ -1049,6 +1060,12 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             _orionWarSecondarySettlementId = null;
             _orionWarPlanDaysLeft = 0;
             _orionWarPlanMode = UniqueSpawnCampaignBehavior.WarPlanOwnVillagePatrol;
+        }
+
+        private bool AthelLorenIsGone()
+        {
+            var athelLoren = AthelLoren();
+            return athelLoren.IsEliminated || athelLoren.Settlements.Count == 0;
         }
 
         private Kingdom AthelLoren()

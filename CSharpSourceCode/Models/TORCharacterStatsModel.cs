@@ -146,6 +146,11 @@ namespace TOR_Core.Models
                     number.Add(2000);
                 }
 
+                if (hero.HasAttribute("Orion"))
+                {
+                    number.Add(3000);
+                }
+
                 if (hero.IsDwarf())
                 {
                     number.Add(20);

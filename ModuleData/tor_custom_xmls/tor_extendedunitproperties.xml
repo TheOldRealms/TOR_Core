@@ -1239,9 +1239,11 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_great_stag_knight">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Unbreakable</string>
+    </Attributes>
     <Resistances>
-      <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
+      <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.35" />
     </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
@@ -11121,9 +11123,30 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_we_orion_spellsinger_1">
+    <Abilities>
+      <string>DwellersBelow</string>
+    </Abilities>
+    <Attributes>
+      <string>AICompanion</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_we_orion_spellsinger_2">
+    <Abilities>
+      <string>DwellersBelow</string>
+    </Abilities>
+    <Attributes>
+      <string>AICompanion</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_orion_factionleader">
     <Attributes>
       <string>Legendary</string>
+      <string>Orion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_convict">
