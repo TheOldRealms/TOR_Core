@@ -31,21 +31,25 @@ namespace TOR_Core.Models
 
             if (mobileParty.GetUniqueSpawnComponent() is { UniqueSpawnId: OrionCampaignBehavior.OrionSpawnId })
             {
-
-                if (mobileParty.InAthelLoren())
-                {
-                    result.Add(OrionCampaignBehavior.OrionAthelLorenSpeedBonus);
-                }
-                else
-                {
-                    result.Add(OrionCampaignBehavior.OrionOutsideAthelLorenSpeedBonus);
-                }
+                var orionBaseSpeed = mobileParty.InAthelLoren()
+                    ? OrionCampaignBehavior.OrionAthelLorenSpeed
+                    : OrionCampaignBehavior.OrionOutsideAthelLorenSpeed;
 
                 var uniqueSpawnBehavior = Campaign.Current.GetCampaignBehavior<OrionCampaignBehavior>();
                 if (uniqueSpawnBehavior != null && uniqueSpawnBehavior.IsOrionRetreating(mobileParty))
                 {
-                    result.Add(OrionCampaignBehavior.OrionRetreatSpeedBonus);
+                    orionBaseSpeed += OrionCampaignBehavior.OrionRetreatSpeedBonus;
                 }
+
+                var orionSpeed = new ExplainedNumber(orionBaseSpeed, result.IncludeDescriptions, null);
+
+                if (mobileParty.IsDisorganized)
+                {
+                    orionSpeed.AddFactor(-0.4f);
+                }
+
+                orionSpeed.LimitMin(MinimumSpeed);
+                return orionSpeed;
             }
 
             if (!mobileParty.IsLordParty) return result;

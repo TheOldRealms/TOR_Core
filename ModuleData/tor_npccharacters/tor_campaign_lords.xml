@@ -13248,7 +13248,7 @@
       <EquipmentSet id="tor_generic_druchii_lord_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_orion_factionleader" name="Orion, Master of the Wild Hunt" default_group="infantry" occupation="Lord" culture="Culture.battania" voice="curt" age="25" race="orion" is_hero="true" skill_template="SkillSet.tor_skills_karlfranz" ext_Attributes="Legendary">
+  <NPCCharacter id="tor_we_orion_factionleader" name="Orion, Master of the Wild Hunt" default_group="infantry" occupation="Special" culture="Culture.battania" voice="curt" age="25" race="orion" is_hero="true" skill_template="SkillSet.tor_skills_karlfranz" ext_Attributes="Legendary">
     <face>
       <BodyProperties age="25" weight="0.2608" build="0.3997" key="0000AC0FC0B40000B97634CE6774B835537D86629511323BDCB177278A840203010646130048B49500000000000000000000000000000000000000003E040000" />
     </face>

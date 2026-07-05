@@ -21,8 +21,8 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
     public class OrionCampaignBehavior : CampaignBehaviorBase
     {
         public const string OrionSpawnId = "tor_unique_orion";
-        public const float OrionAthelLorenSpeedBonus = 4.0f;
-        public const float OrionOutsideAthelLorenSpeedBonus = 2.4f;
+        public const float OrionAthelLorenSpeed = 4.0f;
+        public const float OrionOutsideAthelLorenSpeed = 2.4f;
         public const float OrionRetreatSpeedBonus = 5f;
 
         private const string OrionClanId = "wildhunt_clan_1";
@@ -742,6 +742,33 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             return MobileParty.All.FirstOrDefault(party =>
                 party.IsActive &&
                 party.GetUniqueSpawnComponent()?.UniqueSpawnId == OrionSpawnId);
+        }
+
+        public static void RemoveOrionFromDefeatedPartyRosters(MapEvent mapEvent, MBReadOnlyList<MapEventParty> defeatedParties)
+        {
+            if (mapEvent.RetreatingSide != BattleSideEnum.None)
+            {
+                return;
+            }
+
+            var orionCharacter = Clan.FindFirst(clan => clan.StringId == OrionClanId).Leader.CharacterObject;
+
+            foreach (var mapEventParty in defeatedParties)
+            {
+                if (!mapEventParty.Party.IsMobile ||
+                    mapEventParty.Party.MobileParty.GetUniqueSpawnComponent()?.UniqueSpawnId != OrionSpawnId)
+                {
+                    continue;
+                }
+
+                var orionCount = mapEventParty.Party.MemberRoster.GetTroopCount(orionCharacter);
+                if (orionCount <= 0)
+                {
+                    continue;
+                }
+
+                mapEventParty.Party.MemberRoster.RemoveTroop(orionCharacter, orionCount);
+            }
         }
 
         private void PrepareOrionForUniqueSpawning(Hero orionLeader)
