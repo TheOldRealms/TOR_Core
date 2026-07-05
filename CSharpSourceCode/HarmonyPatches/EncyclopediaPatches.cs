@@ -164,6 +164,14 @@ namespace TOR_Core.HarmonyPatches
                     continue;
                 }
 
+                for (var propertyIndex = __instance.PropertiesList.Count - 1; propertyIndex >= 0; propertyIndex--)
+                {
+                    if (__instance.PropertiesList[propertyIndex].Text == iconPath)
+                    {
+                        __instance.PropertiesList.RemoveAt(propertyIndex);
+                    }
+                }
+
                 if (!GameTexts.TryGetText("tor_extendedInfo", out TextObject hintText, attribute))
                 {
                     continue;

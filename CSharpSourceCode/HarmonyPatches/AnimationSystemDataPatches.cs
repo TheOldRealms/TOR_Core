@@ -68,6 +68,24 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(AnimationSystemData), "GetHardcodedAnimationSystemDataForHumanSkeleton")]
         public static void UnHardingTheCode(ref AnimationSystemData __result)
         {
+            var isSaveLoadPreviewRequest = false;
+
+            foreach (var stackFrame in new System.Diagnostics.StackTrace(false).GetFrames())
+            {
+                var declaringType = stackFrame.GetMethod()?.DeclaringType;
+
+                if (declaringType == typeof(SaveLoadVM) || declaringType == typeof(SavedGameVM))
+                {
+                    isSaveLoadPreviewRequest = true;
+                    break;
+                }
+            }
+
+            if (!isSaveLoadPreviewRequest)
+            {
+                return;
+            }
+
             MBActionSet actionSetWithIndex = MBActionSet.GetActionSet(ActionSetName);
 
             AnimationSystemData result = default(AnimationSystemData);
