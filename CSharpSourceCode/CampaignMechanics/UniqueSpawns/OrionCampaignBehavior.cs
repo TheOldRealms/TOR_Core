@@ -30,7 +30,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
         private const string OrionSpawnedStoryId = "OrionSpawned";
         private const string OrionPlayerDefeatedStoryId = "OrionDefeatedByPlayer";
 
-        private const int OrionPartySize = 1010;
+        private const int OrionPartySize = 800;
         private const int OrionCampaignStartDiplomacyRepairTicks = 12;
         private const int OrionDefeatedCooldownYears = 3;
 
