@@ -314,6 +314,10 @@ namespace TOR_Core.Ink
             {
                 _story.BindExternalFunction<string, int>("GiveItem", GiveItem, false);
             }
+            if (!_story.TryGetExternalFunction("LearnEnchantmentBlueprint", out _))
+            {
+                _story.BindExternalFunction<string>("LearnEnchantmentBlueprint", LearnEnchantmentBlueprint, false);
+            }
             if (!_story.TryGetExternalFunction("ChangeRelations", out _))
             {
                 _story.BindExternalFunction<string, int>("ChangeRelations", ChangeRelations, false);
@@ -667,6 +671,17 @@ namespace TOR_Core.Ink
             {
                 MobileParty.MainParty.Party.ItemRoster.AddToCounts(item, amount);
             }
+        }
+
+        private void LearnEnchantmentBlueprint(string blueprintId)
+        {
+            if (string.IsNullOrWhiteSpace(blueprintId) || ItemTrait.All.All(trait => trait.ItemTraitStringId != blueprintId))
+            {
+                TORCommon.Say(string.Format("ERROR, enchantment with ID: {0} does not exist!", blueprintId));
+                return;
+            }
+
+            Hero.MainHero.AddEnchantmentBlueprint(blueprintId, true);
         }
 
         private void ChangePartyTroopCount(string troopId, int count)

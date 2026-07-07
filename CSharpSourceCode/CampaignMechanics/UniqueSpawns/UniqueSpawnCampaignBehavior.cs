@@ -27,6 +27,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
         public const int WarPlanEnemyDeepPatrol = 1;
         public const int WarPlanEnemyVillageRaid = 2;
         public const int WarPlanHomeSiegePatrol = 3;
+        public const int WarPlanLordHunt = 4;
 
         public const float UniqueSpawnHealingFactor = 9f;
         public const int UniqueSpawnStartingFoodPerType = 100;

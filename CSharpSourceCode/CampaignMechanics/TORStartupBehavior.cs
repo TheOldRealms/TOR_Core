@@ -45,6 +45,7 @@ namespace TOR_Core.CampaignMechanics
             foreach (Clan clan in Campaign.Current.Clans)
             {
                 if (clan.StringId == "troll_clan_1") continue;//prevents troll clan parties with leader heroes from spawning with hundreds of trolls
+                if (clan.StringId == "wildhunt_clan_1") continue;
                 considerSpawningLordPartiesMethod.Invoke(heroSpawnCampaignBehaviorInstance, new object[] { clan, true });
             }
 

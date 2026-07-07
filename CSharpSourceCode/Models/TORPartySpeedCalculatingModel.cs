@@ -29,7 +29,7 @@ namespace TOR_Core.Models
         {
             var result = base.CalculateFinalSpeed(mobileParty, finalSpeed);
 
-            if (mobileParty.GetUniqueSpawnComponent() is { UniqueSpawnId: OrionCampaignBehavior.OrionSpawnId })
+            if (mobileParty.GetUniqueSpawnComponent() is { UniqueSpawnId: "tor_unique_orion" })
             {
                 var orionBaseSpeed = mobileParty.InAthelLoren()
                     ? OrionCampaignBehavior.OrionAthelLorenSpeed

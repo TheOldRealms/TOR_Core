@@ -212,6 +212,13 @@ namespace TOR_Core.HarmonyPatches
                 return;
             }
 
+            if (raceName == "orion")
+            {
+                ____camPos.Elevate(0.9f);
+                ____camPos.Advance(0.9f);
+                return;
+            }
+
             if (raceName == "minotaur") // proper look 
             {
                 ____camPos.Elevate(0.9f);

@@ -106,6 +106,9 @@ EXTERNAL SetPartyAttributeChance(attributeName, attributeLevelForCertainty)
     ~ return ""
     
 
+EXTERNAL LearnEnchantmentBlueprint(blueprintId)
+===function LearnEnchantmentBlueprint(blueprintId)===
+    ~ return ""
 
 //Gets the current skill value of the player
 //Takes the skill's name as argument

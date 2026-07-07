@@ -311,6 +311,13 @@
   <string id="tor_unique_orion_returned_message" text="{=str_tor_unique_orion_returned_message}orion returns" />
   <string id="tor_unique_orion_retreat_started_message" text="{=str_tor_unique_orion_retreat_started_message}Winter cold orion back" />
   <string id="tor_unique_orion_defeated_message" text="{=str_tor_unique_orion_defeated_message}Orion gone 3 year" />
+  <string id="tor_unique_orion_behavior_hunting" text="{=str_tor_unique_orion_behavior_hunting}Hunting for {TARGET_HERO}." />
+  <string id="tor_unique_orion_behavior_protecting" text="{=str_tor_unique_orion_behavior_protecting}Protecting {TARGET_SETTLEMENT}." />
+  <string id="tor_unique_orion_behavior_keeping_watch" text="{=str_tor_unique_orion_behavior_keeping_watch}Keeping watch of {TARGET_SETTLEMENT}." />
+  <string id="tor_unique_orion_behavior_ravaging" text="{=str_tor_unique_orion_behavior_ravaging}Ravaging {TARGET_SETTLEMENT}." /> <!--patrolling near enemy settlements -->
+  <string id="tor_unique_orion_behavior_raiding" text="{=str_tor_unique_orion_behavior_raiding}Raiding {TARGET_SETTLEMENT}." />
+  <string id="tor_unique_orion_hunt_player" text="{=str_tor_unique_orion_hunt_player}Your scouts report the God-King of the forest is following your trail, seeking vengeance for his slain kin." />
+  <string id="tor_unique_orion_to_player_land" text="{=str_tor_unique_orion_to_player_land}Your scouts report The God-King of the Forest is coming towards your lands" />
 
   <!-- Combat Messages -->
   <string id="tor_stealth_attack_text" text="{=str_tor_stealth_attack_text}Stealth Attack!" />
@@ -4686,6 +4693,13 @@
   <string id="tor_inky_Duel.STR_PlayerLost1" text="{=!}" />
   <string id="tor_inky_Duel.STR_PlayerLost2" text="{=!}" />
   <string id="tor_inky_Duel.STR_DuelEnd" text="{=!}" />
+  
+  <!-- Orion defeat reward -->
+  <string id="tor_inky_OrionDefeatedByPlayer.Title" text="{=str_tor_inky_orion_defeated_title}Orion Defeated" />
+  <string id="tor_inky_OrionDefeatedByPlayer.STR_Start1" text="{=str_tor_inky_orion_defeated_start1}You defeated Orion." />
+  <string id="tor_inky_OrionDefeatedByPlayer.STR_Start2" text="{=str_tor_inky_orion_defeated_start2}Wild Hunt has been broken." />
+  <string id="tor_inky_OrionDefeatedByPlayer.STR_Start3" text="{=str_tor_inky_orion_defeated_start3}Among the spoils left in his wake there lies an unusal something (rewrite pls)." />
+  <string id="tor_inky_OrionDefeatedByPlayer.STR_Start4" text="{=str_tor_inky_orion_defeated_start4}Pick your reward." />
 
   <!-- Serve as a Hireling -->
   <string id="tor_hirelinglordquit.default" text="{=str_tor_hirelinglordquit_default}If this is your wish. Fine." />

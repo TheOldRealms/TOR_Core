@@ -1670,8 +1670,8 @@
 	</MBPartyTemplate>
 	<MBPartyTemplate id="we_orion_wild_hunt_party_template" >
 		<stacks>
-			<PartyTemplateStack min_value="4" max_value="4" troop="NPCCharacter.tor_we_ancient_treeman" />
-			<PartyTemplateStack min_value="15" max_value="15" troop="NPCCharacter.tor_we_treeman" />
+			<PartyTemplateStack min_value="5" max_value="5" troop="NPCCharacter.tor_we_ancient_treeman" />
+			<PartyTemplateStack min_value="12" max_value="12" troop="NPCCharacter.tor_we_treeman" />
 			<PartyTemplateStack min_value="480" max_value="480" troop="NPCCharacter.tor_we_great_stag_knight" />
 			<PartyTemplateStack min_value="120" max_value="120" troop="NPCCharacter.tor_we_wild_rider" />
 			<PartyTemplateStack min_value="60" max_value="60" troop="NPCCharacter.tor_we_glade_guard" />

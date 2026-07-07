@@ -1493,6 +1493,13 @@
     <AdditionalDamageTuple DamageType="Magical" Percent="0.30" />
     <StatsTuple StatType="MissileSpeed" Value="50" />
   </ItemTrait>
+  <ItemTrait ItemTraitStringId="asrai_enchant_bane_beastkin" ItemTraitName="Bane of the Beastkin" IsCraftable="true" IconName="harmony_icon_100">
+    <ValidItemType>Armor</ValidItemType>
+    <IngredientItem>AmberCrystal</IngredientItem>
+    <IngredientAmount>100</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_asrai_enchant_bane_beastkin}"Nearby Beastkin suffer constant magical damage."</ItemTraitDescription>
+    <WeaponParticlePreset ParticlePrefab="general_light_buff" IsUniqueSingleCopy="false" />
+  </ItemTrait>
   <ItemTrait ItemTraitStringId="eo_enchant_wisdom_hoeth" ItemTraitName="Wisdom of Hoeth" IsCraftable="true" IconName="favor_icon_100">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>

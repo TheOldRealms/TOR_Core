@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.Engine;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
@@ -13,27 +14,28 @@ namespace TOR_Core.Items
     {
         private readonly List<Tuple<MissionWeapon, ItemTrait, float>> _dynamicTraits = new List<Tuple<MissionWeapon, ItemTrait, float>>();
         private readonly List<Tuple<ItemTrait, float>> _wieldedSlotTraits = new List<Tuple<ItemTrait, float>>();
-        private readonly List<WeaponParticlePresetState> _currentPresets = new List<WeaponParticlePresetState>();
+        private readonly List<TraitParticlePresetState> _currentPresets = new List<TraitParticlePresetState>();
 
         //weapon swaps can keep the old particle offsets so rebuild it
         private const float WeaponLengthRebuildThreshold = 0.01f;
-        private sealed class WeaponParticlePresetState
+        private sealed class TraitParticlePresetState
         {
             public WeaponParticlePreset Preset { get; }
             public List<ParticleSystem> Particles { get; }
             public List<GameEntity> ChildEntities { get; }
-
+            public bool UsesWeaponGeometry { get; }
             public bool IsEnabled { get; set; }
 
             public float CachedWeaponLength { get; }
             public WeaponClass CachedWeaponClass { get; }
 
-            public WeaponParticlePresetState(
+            public TraitParticlePresetState(
                 WeaponParticlePreset preset,
                 List<ParticleSystem> particles,
                 List<GameEntity> childEntities,
                 float cachedWeaponLength,
                 WeaponClass cachedWeaponClass,
+                bool usesWeaponGeometry,
                 bool isEnabled)
             {
                 Preset = preset;
@@ -41,12 +43,15 @@ namespace TOR_Core.Items
                 ChildEntities = childEntities;
                 CachedWeaponLength = cachedWeaponLength;
                 CachedWeaponClass = cachedWeaponClass;
+                UsesWeaponGeometry = usesWeaponGeometry;
                 IsEnabled = isEnabled;
             }
         }
 
         private readonly BasicMissionTimer _missionTimer = new BasicMissionTimer();
         private readonly float _tickInterval = 1f;
+        private bool _needsInitialPresetUpdate = true;
+        private GameEntity _armorParticleAnchor;
 
         public ItemTraitAgentComponent(Agent agent) : base(agent) { }
 
@@ -62,6 +67,17 @@ namespace TOR_Core.Items
 
         private void UpdateLifeTime(float dt)
         {
+            if (_armorParticleAnchor != null && Agent.IsActive() && !Agent.IsFadingOut())
+            {
+                _armorParticleAnchor.SetGlobalFrame(new MatrixFrame(Mat3.Identity, Agent.GetChestGlobalPosition()));
+            }
+
+            if (_needsInitialPresetUpdate)
+            {
+                _needsInitialPresetUpdate = false;
+                UpdatePresets();
+            }
+
             if (_missionTimer.ElapsedTime > _tickInterval)
             {
                 _missionTimer.Reset();
@@ -127,8 +143,47 @@ namespace TOR_Core.Items
             }
         }
 
-        private void CreatePresetVisuals(WeaponParticlePreset preset, MissionWeapon weapon, out List<ParticleSystem> particles, out List<GameEntity> childEntities)
+        private void CreatePresetVisuals(WeaponParticlePreset preset, MissionWeapon weapon, bool usesWeaponGeometry, out List<ParticleSystem> particles, out List<GameEntity> childEntities)
         {
+            if (!usesWeaponGeometry)
+            {
+                particles = new List<ParticleSystem>();
+                childEntities = new List<GameEntity>();
+
+                if (!Agent.HasUsableVisuals() || Mission.Current?.Scene == null)
+                {
+                    return;
+                }
+
+                if (_armorParticleAnchor == null)
+                {
+                    _armorParticleAnchor = GameEntity.CreateEmpty(Mission.Current.Scene, false);
+                    _armorParticleAnchor.Name = "_traitParticleAnchor_" + Agent.Index;
+                }
+
+                _armorParticleAnchor.SetGlobalFrame(new MatrixFrame(Mat3.Identity, Agent.GetChestGlobalPosition()));
+
+                var effectEntity = GameEntity.CreateEmpty(Mission.Current.Scene, false);
+                effectEntity.Name = "_traitParticleEntity_" + Agent.Index + "_" + preset.ParticlePrefab;
+
+                var entityFrame = MatrixFrame.Identity;
+                effectEntity.SetFrame(ref entityFrame);
+                _armorParticleAnchor.AddChild(effectEntity);
+
+                var particleFrame = MatrixFrame.Identity;
+                var particle = ParticleSystem.CreateParticleSystemAttachedToEntity(preset.ParticlePrefab, effectEntity, ref particleFrame);
+                if (particle == null)
+                {
+                    effectEntity.Remove(0);
+                    return;
+                }
+
+                particle.SetEnable(false);
+                particles.Add(particle);
+                childEntities.Add(effectEntity);
+                return;
+            }
+
             particles = new List<ParticleSystem>();
             childEntities = new List<GameEntity>();
 
@@ -167,12 +222,22 @@ namespace TOR_Core.Items
             }
         }
 
-        private void RemovePresetVisuals(WeaponParticlePresetState presetState)
+        private void RemovePresetVisuals(TraitParticlePresetState presetState)
         {
-            //no invis entities
-            foreach (var particle in presetState.Particles)
+            if (presetState.UsesWeaponGeometry)
             {
-                TORParticleSystem.RemoveParticleFromAgentBone(Agent, particle);
+                foreach (var particle in presetState.Particles)
+                {
+                    TORParticleSystem.RemoveParticleFromAgentBone(Agent, particle);
+                }
+            }
+            else
+            {
+                foreach (var particle in presetState.Particles)
+                {
+                    particle?.SetRuntimeEmissionRateMultiplier(0f);
+                    particle?.SetEnable(false);
+                }
             }
 
             foreach (var entity in presetState.ChildEntities)
@@ -182,13 +247,20 @@ namespace TOR_Core.Items
                     continue;
                 }
 
-                entity.FadeOut(1, true);
                 entity.RemoveAllParticleSystems();
-                Agent.TryRemoveChildEntity(entity);
+
+                if (presetState.UsesWeaponGeometry)
+                {
+                    entity.FadeOut(1, true);
+                    Agent.TryRemoveChildEntity(entity);
+                    continue;
+                }
+
+                entity.Remove(0);
             }
         }
 
-        private void SetPresetEnabled(WeaponParticlePresetState presetState, bool enable)
+        private void SetPresetEnabled(TraitParticlePresetState presetState, bool enable)
         {
             presetState.IsEnabled = enable;
             foreach (var particle in presetState.Particles)
@@ -204,16 +276,26 @@ namespace TOR_Core.Items
             }
 
             _currentPresets.Clear();
+
+            _armorParticleAnchor?.RemoveAllChildren();
+            _armorParticleAnchor?.Remove(0);
+            _armorParticleAnchor = null;
         }
 
-        public void ApplyParticlePreset(WeaponParticlePreset preset, MissionWeapon weapon)
+        public void ApplyParticlePreset(WeaponParticlePreset preset, MissionWeapon weapon, bool usesWeaponGeometry)
         {
-            float weaponLength = weapon.CurrentUsageItem.GetRealWeaponLength();
-            WeaponClass weaponClass = weapon.CurrentUsageItem.WeaponClass;
-
-            var existing = _currentPresets.FirstOrDefault(x => x.Preset == preset);
+            var existing = _currentPresets.FirstOrDefault(x => x.Preset == preset && x.UsesWeaponGeometry == usesWeaponGeometry);
             if (existing != null)
             {
+                if (!usesWeaponGeometry)
+                {
+                    SetPresetEnabled(existing, true);
+                    return;
+                }
+
+                float weaponLength = weapon.CurrentUsageItem.GetRealWeaponLength();
+                WeaponClass weaponClass = weapon.CurrentUsageItem.WeaponClass;
+
                 bool weaponSignatureChanged =
                     existing.CachedWeaponClass != weaponClass ||
                     Math.Abs(existing.CachedWeaponLength - weaponLength) > WeaponLengthRebuildThreshold;
@@ -223,24 +305,36 @@ namespace TOR_Core.Items
                     SetPresetEnabled(existing, true);
                     return;
                 }
-                CreatePresetVisuals(preset, weapon, out var newParticles, out var newChildEntities);
 
+                CreatePresetVisuals(preset, weapon, true, out var newParticles, out var newChildEntities);
                 RemovePresetVisuals(existing);
 
-                var rebuiltState = new WeaponParticlePresetState(preset, newParticles, newChildEntities, weaponLength, weaponClass, true);
+                var rebuiltState = new TraitParticlePresetState(preset, newParticles, newChildEntities, weaponLength, weaponClass, true, true);
                 _currentPresets.Remove(existing);
                 _currentPresets.Add(rebuiltState);
 
                 SetPresetEnabled(rebuiltState, true);
                 return;
-
             }
 
-            CreatePresetVisuals(preset, weapon, out var particles, out var childEntities);
-            var presetState = new WeaponParticlePresetState(preset, particles, childEntities, weaponLength, weaponClass, true);
-            _currentPresets.Add(presetState);
+            if (usesWeaponGeometry)
+            {
+                float weaponLength = weapon.CurrentUsageItem.GetRealWeaponLength();
+                WeaponClass weaponClass = weapon.CurrentUsageItem.WeaponClass;
 
-            SetPresetEnabled(presetState, true);
+                CreatePresetVisuals(preset, weapon, true, out var particles, out var childEntities);
+                var presetState = new TraitParticlePresetState(preset, particles, childEntities, weaponLength, weaponClass, true, true);
+                _currentPresets.Add(presetState);
+
+                SetPresetEnabled(presetState, true);
+                return;
+            }
+
+            CreatePresetVisuals(preset, default(MissionWeapon), false, out var armorParticles, out var armorChildEntities);
+            var armorPresetState = new TraitParticlePresetState(preset, armorParticles, armorChildEntities, 0f, default(WeaponClass), false, true);
+            _currentPresets.Add(armorPresetState);
+
+            SetPresetEnabled(armorPresetState, true);
         }
 
         public void AddTraitToWeapon(MissionWeapon weapon, ItemTrait trait, float duration)
@@ -313,32 +407,45 @@ namespace TOR_Core.Items
 
         private void UpdatePresets()
         {
-            var index = Agent.GetPrimaryWieldedItemIndex();
-            if (index == EquipmentIndex.None)
-            {
-                for (int i = 0; i < _currentPresets.Count; i++)
-                {
-                    SetPresetEnabled(_currentPresets[i], false);
-                }
-                return;
-            }
             for (int i = 0; i < _currentPresets.Count; i++)
             {
                 _currentPresets[i].IsEnabled = false;
             }
-            var weapon = Agent.WieldedWeapon;
-            if (weapon.Item != null && weapon.Item.HasAnyTrait(Agent) && !weapon.CurrentUsageItem.IsRangedWeapon)
+
+            var index = Agent.GetPrimaryWieldedItemIndex();
+            if (index != EquipmentIndex.None)
             {
-                var traits = weapon.Item.GetTraits(Agent);
-                if (traits.Count > 0)
+                var weapon = Agent.WieldedWeapon;
+                if (weapon.Item != null && weapon.Item.HasAnyTrait(Agent) && !weapon.CurrentUsageItem.IsRangedWeapon)
                 {
-                    var traitsWithParticles = traits.FindAll(x => x.WeaponParticlePreset != null && x.WeaponParticlePreset.ParticlePrefab != "invalid" && x.WeaponParticlePreset.ParticlePrefab != "none" && !string.IsNullOrEmpty(x.WeaponParticlePreset.ParticlePrefab));
-                    foreach (var trait in traitsWithParticles)
+                    var traits = weapon.Item.GetTraits(Agent);
+                    if (traits.Count > 0)
                     {
-                        ApplyParticlePreset(trait.WeaponParticlePreset, weapon);
+                        var traitsWithParticles = traits.FindAll(x => x.WeaponParticlePreset != null && x.WeaponParticlePreset.ParticlePrefab != "invalid" && x.WeaponParticlePreset.ParticlePrefab != "none" && !string.IsNullOrEmpty(x.WeaponParticlePreset.ParticlePrefab));
+                        foreach (var trait in traitsWithParticles)
+                        {
+                            ApplyParticlePreset(trait.WeaponParticlePreset, weapon, true);
+                        }
                     }
                 }
             }
+
+            foreach (var armorItem in Agent.Character.GetCharacterEquipment(EquipmentIndex.ArmorItemBeginSlot, EquipmentIndex.ArmorItemEndSlot))
+            {
+                if (!armorItem.HasAnyTrait(Agent))
+                {
+                    continue;
+                }
+
+                var traitsWithParticles = armorItem.GetTraits(Agent)
+                    .FindAll(x => x.WeaponParticlePreset != null && x.WeaponParticlePreset.ParticlePrefab != "invalid" && x.WeaponParticlePreset.ParticlePrefab != "none" && !string.IsNullOrEmpty(x.WeaponParticlePreset.ParticlePrefab));
+
+                foreach (var trait in traitsWithParticles)
+                {
+                    ApplyParticlePreset(trait.WeaponParticlePreset, default(MissionWeapon), false);
+                }
+            }
+
             RefreshVisuals();
         }
 
