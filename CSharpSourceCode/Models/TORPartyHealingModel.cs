@@ -201,8 +201,9 @@ namespace TOR_Core.Models
             {
                 return base.GetDailyHealingHpForHeroes(party, isPrisoners, includeDescriptions);
             }
+            var mobileParty = party.MobileParty;
 
-            if (party.MobileParty.GetUniqueSpawnComponent() != null)
+            if (mobileParty.GetUniqueSpawnComponent() != null)
             {
                 var uniqueSpawnHeroHealing = base.GetDailyHealingHpForHeroes(party, isPrisoners, includeDescriptions);
 
@@ -210,30 +211,30 @@ namespace TOR_Core.Models
                 return uniqueSpawnHeroHealing;
             }
 
-            if (!party.MobileParty.IsLordParty)
+            if (!mobileParty.IsLordParty)
             {
                 return base.GetDailyHealingHpForHeroes(party, isPrisoners, includeDescriptions);
             }
 
-            if (party.MobileParty.IsAffectedByCurse())
+            if (mobileParty.IsAffectedByCurse() && mobileParty.CurrentSettlement == null && mobileParty.BesiegedSettlement == null)
             {
                 return new ExplainedNumber(0, true, GameTexts.FindText("tor_customSettlement_generic_inCursedRegion"));
             }
 
             var result = base.GetDailyHealingHpForHeroes(party, isPrisoners, includeDescriptions);
 
-            if (party.MobileParty != MobileParty.MainParty && party.LeaderHero != null && party.LeaderHero.IsVampire())
+            if (mobileParty != MobileParty.MainParty && party.LeaderHero != null && party.LeaderHero.IsVampire())
             {
                 result.AddFactor(0.2f);
             }
 
-            if (!party.MobileParty.IsMainParty)
+            if (!mobileParty.IsMainParty)
                 return result;
 
-            if (party.MobileParty.HasBlessing("cult_of_shallya"))
+            if (mobileParty.HasBlessing("cult_of_shallya"))
                 result.AddFactor(0.2f, GameTexts.FindText("tor_religion_blessing_name", "cult_of_shallya"));
 
-            AddCareerPassivesForHeroRegeneration(party.MobileParty, ref result);
+            AddCareerPassivesForHeroRegeneration(mobileParty, ref result);
 
             //requires me to add the strings for forest harmony levels
             if (party.LeaderHero?.Culture?.StringId == TORConstants.Cultures.ASRAI)
