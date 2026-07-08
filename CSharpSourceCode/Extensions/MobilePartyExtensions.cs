@@ -79,6 +79,8 @@ namespace TOR_Core.Extensions
             if (settlementFound == null) return false;
 
             if (settlementFound.SettlementComponent is not CursedSiteComponent cursedSite) return false;
+            
+            if (!cursedSite.IsActive) return false;
 
             if (party.LeaderHero?.GetDominantReligion() == cursedSite.Religion) return false;
 
