@@ -267,7 +267,6 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
         args.MenuContext.OpenTroopSelection(
             MobileParty.MainParty.MemberRoster,
             preSelectedTroops,
-            null,
             CanSelectTroopForCaveMission,
             OnClearTroopSelectionDone,
             MaxTroopsForRaid,
@@ -450,7 +449,6 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
         args.MenuContext.OpenTroopSelection(
             MobileParty.MainParty.MemberRoster,
             preSelectedTroops,
-            null,
             CanSelectTroopForCaveMission,
             OnTroopSelectionDone,
             MaxTroopsForRaid,
