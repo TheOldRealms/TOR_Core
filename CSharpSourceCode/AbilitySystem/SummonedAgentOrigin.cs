@@ -104,7 +104,7 @@ namespace TOR_Core.AbilitySystem
         public bool IsUnderPlayersCommand(BattleSideEnum playerSide)
         {
             //TODO figure out how we are affected by this , necromancer for example
-            return false;
+            return Side == playerSide && General.IsPlayerCharacter;//not sure what happens with summoned troops assigned to a formation the player is the sergeant of.
         }
 
         public TextObject Name { get; private set; }
@@ -135,5 +135,13 @@ namespace TOR_Core.AbilitySystem
         }
 
         public int GetTacticsSkillAmount() => 30;
+
+        public int GetNumberOfMissionReadyTroops()
+        {
+            //TODO : there's no property that holds the necessary information. Custom battle stores a character list that it can count. Campaign battle combattants count the party members.
+            //This shouldn't matter because this is used when spawning teams for parties with battle-ready troops at mission start before any summoned combattants can exist.
+            //To keep an eye on.
+            return 0;
+        }
     }
 }
