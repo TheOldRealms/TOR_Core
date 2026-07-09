@@ -1828,7 +1828,11 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_breastplate_skeleton_001" RaceLock="skeleton">
+   <ExtendedItemObjectProperties ItemStringId="tor_vc_body_breastplate_skeleton_001" RaceLock="skeleton">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties> 
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_loincloth_ghoul_001" RaceLock="ghoul">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>

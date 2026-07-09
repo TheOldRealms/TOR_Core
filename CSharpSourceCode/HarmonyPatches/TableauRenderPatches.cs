@@ -97,8 +97,16 @@ namespace TOR_Core.HarmonyPatches
             if (raceName == "troll")
             {
                 var cameraFrame = camera.Frame;
-                cameraFrame.origin.z += 1.75f;
+                cameraFrame.origin.z += 1.65f;
                 camera.Frame = cameraFrame;
+                camera.SetFovVertical(camera.GetFovVertical() * 1.50f, camera.GetAspectRatio(), camera.Near, camera.Far);
+            }
+            if (raceName == "orion")
+            {
+                var cameraFrame = camera.Frame;
+                cameraFrame.origin.z += 1.65f;
+                camera.Frame = cameraFrame;
+                camera.SetFovVertical(camera.GetFovVertical() * 1.50f, camera.GetAspectRatio(), camera.Near, camera.Far);
             }
 
             //Sly : an exception will need to be looked into for wolves as the camera for mounts assumes horse height

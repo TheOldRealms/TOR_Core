@@ -653,6 +653,37 @@ namespace TOR_Core.Utilities
             return uniqueSpawnBehavior.TestResetOrion();
         }
 
+        [CommandLineFunctionality.CommandLineArgumentFunction("orion_plan", "tor")]
+        public static string ForceOrionPlan(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+            {
+                return CampaignCheats.ErrorType;
+            }
+
+            if (arguments == null || arguments.Count == 0 || CampaignCheats.CheckHelp(arguments))
+            {
+                return "usage: tor.orion_plan own|deep|raid|siege|hunt";
+            }
+
+            var uniqueSpawnBehavior = Campaign.Current.GetCampaignBehavior<OrionCampaignBehavior>();
+
+            return uniqueSpawnBehavior.TestSetOrionPlan(arguments[0]);
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("orion_plan_weights", "tor")]
+        public static string OrionPlanWeights(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+            {
+                return CampaignCheats.ErrorType;
+            }
+
+            var uniqueSpawnBehavior = Campaign.Current.GetCampaignBehavior<OrionCampaignBehavior>();
+
+            return uniqueSpawnBehavior.GetOrionPlanWeightDebug();
+        }
+
         [CommandLineFunctionality.CommandLineArgumentFunction("reload_config", "tor")]
         public static string ReloadTorConfig(List<string> arguments)
         {

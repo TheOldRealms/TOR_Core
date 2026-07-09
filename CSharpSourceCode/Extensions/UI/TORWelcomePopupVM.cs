@@ -1,7 +1,9 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using TaleWorlds.Engine.Options;
 using TaleWorlds.Library;
+using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.Extensions.UI
 {
@@ -104,11 +106,22 @@ namespace TOR_Core.Extensions.UI
 
     public class TORMainMenuLinksVM : ViewModel
     {
+        private const float TextureBudgetVeryHigh = 3f;
+        private const float TesselationDisabled = 0f;
+        private const float TerrainQualityMedium = 1f;
+        private const float ShadowmapTypeStaticOnly = 1f;
+        private const float FrameLimiter120 = 120f;
+        private const float NumberOfRagDolls10 = 4f;
+        private const float NumberOfCorpsesVeryHigh = 4f;
+
         [DataSourceProperty]
         public string ManualButtonText => "Read Manual";
 
         [DataSourceProperty]
         public string DiscordButtonText => "Join Discord";
+
+        [DataSourceProperty]
+        public string RecommendedSettingsButtonText => "Recommended settings";
 
         public void ExecuteOpenManual()
         {
@@ -118,6 +131,30 @@ namespace TOR_Core.Extensions.UI
         public void ExecuteOpenDiscord()
         {
             TORWelcomePopupVM.OpenUrl("https://discord.gg/AFC4pTQVB");
+        }
+
+        public void ExecuteApplyRecommendedSettings()
+        {
+            try
+            {
+                NativeOptions.SetConfig(NativeOptions.NativeOptionsType.TextureBudget, TextureBudgetVeryHigh);
+                NativeOptions.SetConfig(NativeOptions.NativeOptionsType.Tesselation, TesselationDisabled);
+                NativeOptions.SetConfig(NativeOptions.NativeOptionsType.TerrainQuality, TerrainQualityMedium);
+                NativeOptions.SetConfig(NativeOptions.NativeOptionsType.ShadowmapType, ShadowmapTypeStaticOnly);
+                NativeOptions.SetConfig(NativeOptions.NativeOptionsType.FrameLimiter, FrameLimiter120);
+                NativeOptions.SetConfig(NativeOptions.NativeOptionsType.NumberOfRagDolls, NumberOfRagDolls10);
+                ManagedOptions.SetConfig(ManagedOptions.ManagedOptionsType.NumberOfCorpses, NumberOfCorpsesVeryHigh);
+
+                NativeOptions.ApplyConfigChanges(false);
+                NativeOptions.SaveConfig();
+                ManagedOptions.SaveConfig();
+
+                InformationManager.DisplayMessage(new InformationMessage("Recommended settings applied."));
+            }
+            catch (Exception ex)
+            {
+                InformationManager.DisplayMessage(new InformationMessage("Could not apply recommended settings: " + ex.Message));
+            }
         }
     }
 }

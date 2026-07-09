@@ -46,6 +46,7 @@ namespace TOR_Core.Items
 
             _deltaTime = 0f;
 
+            TickBaneOfTheBeastkin();
             if (!_traitCoolDownMap.AnyQ())
             {
                 return;
@@ -77,6 +78,62 @@ namespace TOR_Core.Items
             base.OnBattleEnded();
             _traitCoolDownMap.Clear();
             _deltaTime = 0f;
+        }
+
+        private void TickBaneOfTheBeastkin()
+        {
+            var bearers = Mission.Current.Agents
+                .Where(agent =>
+                    agent.IsHuman &&
+                    agent.IsActive() &&
+                    agent.Health > 0f &&
+                    !agent.IsFadingOut() &&
+                    agent.Character
+                        .GetCharacterEquipment(EquipmentIndex.ArmorItemBeginSlot, EquipmentIndex.ArmorItemEndSlot)
+                        .Any(item => item.GetTraits(agent).Any(trait => trait.ItemTraitStringId == "asrai_enchant_bane_beastkin")))
+                .ToList();
+
+            if (bearers.Count == 0)
+            {
+                return;
+            }
+
+            var beastmen = Mission.Current.Agents
+                .Where(agent =>
+                    agent.IsHuman &&
+                    agent.IsActive() &&
+                    agent.Health > 0f &&
+                    !agent.IsFadingOut() &&
+                    agent.Character?.Culture?.StringId == TORConstants.Cultures.BEASTMEN)
+                .ToList();
+
+            if (beastmen.Count == 0)
+            {
+                return;
+            }
+
+            var damagedThisPulse = new HashSet<int>();
+
+            foreach (var bearer in bearers)
+            {
+                foreach (var beastman in beastmen)
+                {
+                    if (damagedThisPulse.Count >= 25)
+                    {
+                        return;
+                    }
+
+                    if (beastman == bearer ||
+                        damagedThisPulse.Contains(beastman.Index) ||
+                        bearer.Position.DistanceSquared(beastman.Position) > 25f)
+                    {
+                        continue;
+                    }
+
+                    beastman.ApplyDamage(3, beastman.Position, bearer, doBlow: false, hasShockWave: false, originatesFromAbility: false);
+                    damagedThisPulse.Add(beastman.Index);
+                }
+            }
         }
 
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)

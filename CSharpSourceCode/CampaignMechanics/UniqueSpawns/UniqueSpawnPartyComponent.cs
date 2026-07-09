@@ -31,7 +31,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
         private string _uniqueSpawnId;
 
         [SaveableField(7)]
-        private bool _consumesFood;
+        private bool _consumesFood; // old saves
 
         [SaveableField(8)]
         private int _startingFoodPerType;
@@ -46,7 +46,6 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
 
         public int TargetPartySize => _targetPartySize;
         public string UniqueSpawnId => _uniqueSpawnId;
-        public bool ConsumesFood => _consumesFood;
         public PartyTemplateObject SpawnTemplate => _spawnTemplate;
         public int InitialRegularTroopCount => _initialRegularTroopCount > 0
             ? _initialRegularTroopCount
@@ -59,7 +58,6 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             PartyTemplateObject spawnTemplate,
             Clan ownerClan,
             int targetPartySize,
-            bool consumesFood,
             int startingFoodPerType)
         {
             _uniqueSpawnId = uniqueSpawnId;
@@ -68,7 +66,6 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             _spawnTemplate = spawnTemplate;
             _partyOwner = ownerClan.Leader;
             _targetPartySize = targetPartySize;
-            _consumesFood = consumesFood;
             _startingFoodPerType = startingFoodPerType;
         }
 
@@ -116,7 +113,6 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             PartyTemplateObject spawnTemplate,
             Clan ownerClan,
             int targetPartySize,
-            bool consumesFood = false,
             int startingFoodPerType = UniqueSpawnCampaignBehavior.UniqueSpawnStartingFoodPerType)
         {
             return MobileParty.CreateParty(
@@ -128,7 +124,6 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
                     spawnTemplate,
                     ownerClan,
                     targetPartySize,
-                    consumesFood,
                     startingFoodPerType));
         }
     }

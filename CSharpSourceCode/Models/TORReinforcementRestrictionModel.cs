@@ -52,7 +52,7 @@ namespace TOR_Core.Models
         }
         protected virtual string GetReinforcementCultureId(PartyBase party)
         {
-            if (party?.MobileParty?.GetUniqueSpawnComponent()?.UniqueSpawnId == OrionCampaignBehavior.OrionSpawnId)
+            if (party?.MobileParty?.GetUniqueSpawnComponent()?.UniqueSpawnId == "tor_unique_orion")
             {
                 return TORConstants.Cultures.ASRAI;
             }

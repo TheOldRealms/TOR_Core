@@ -753,4 +753,6 @@
   <Hero id="tor_dog_clan_hero_ricco" faction="Faction.dog_clan_6" text="{=str_encyclopedia_tor_dog_clan_hero_ricco}No, they didn't look dangerous, more like a bunch of rich kids out to show off in their new armour. Very flashy they were, all gems and silk. We'll have a bit of fun, we thought. Easy pickings, we thought. Well anyone can make a mistake. Poor old captain Malvino, last mistake he ever made..." />
   <Hero id="tor_dog_clan_hero_muktar" faction="Faction.dog_clan_7" text="{=str_encyclopedia_tor_dog_clan_hero_muktar}Al-Muktar!!" />
   <Hero id="tor_we_orion_factionleader" text="The king of the woods" faction="Faction.wildhunt_clan_1" />
+  <Hero id="tor_we_orion_spellsinger_1" faction="Faction.wildhunt_clan_1" />
+  <Hero id="tor_we_orion_spellsinger_2" faction="Faction.wildhunt_clan_1" />
 </Heroes>

@@ -1,5 +1,4 @@
 ﻿using SandBox.View.Map;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -20,19 +19,21 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
 {
     public class OrionCampaignBehavior : CampaignBehaviorBase
     {
-        public const string OrionSpawnId = "tor_unique_orion";
-        public const float OrionAthelLorenSpeedBonus = 4.0f;
-        public const float OrionOutsideAthelLorenSpeedBonus = 2.4f;
+        public const float OrionAthelLorenSpeed = 3.8f;
+        public const float OrionOutsideAthelLorenSpeed = 2.4f;
         public const float OrionRetreatSpeedBonus = 5f;
+        private const int OrionPartySize = 800;
+        private const int OrionDefeatedCooldownYears = 4; // after being defeated orion only respawns after 4 respawn cycles have passed
+        private const int OrionWarPlanStayDurationDays = 3; // after orion is OrionWarPlanArrivalDistance meters close to the target settlement, time duration to keep that behavior assuming it is not overriden by WarPlanHomeSiegePatrol or WarPlanLordHunt 
+        private const float OrionWarPlanArrivalDistance = 40f;
+        private const int OrionWarPlanTravelLimitDays = 10;
+        private const int OrionHuntPrisonerLordThreshold = 3; // amount of athel loren lords an enemy lord should be holding prisoner at once for orion to start hunting them
 
-        private const string OrionClanId = "wildhunt_clan_1";
-        private const string OakOfAgesSettlementId = "oak_of_ages";
-        private const string OrionSpawnedStoryId = "OrionSpawned";
-        private const string OrionPlayerDefeatedStoryId = "OrionDefeatedByPlayer";
+        // the minimum and maximum days passed since the detection for orion to start hunting a lord
+        private const float OrionHuntCaptureRevengeMinAgeDays = 3f;
+        private const float OrionHuntCaptureRevengeMaxAgeDays = 15f;
 
-        private const int OrionPartySize = 1010;
-        private const int OrionCampaignStartDiplomacyRepairTicks = 12;
-        private const int OrionDefeatedCooldownYears = 3;
+        private const float OrionHuntArmySizeSoftSkip = 1500f; // party size to postpone orion's hunt in case they are still in an army
 
         [SaveableField(0)]
         private UniqueSpawnState _orionState = UniqueSpawnState.Inactive;
@@ -79,6 +80,24 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
         [SaveableField(14)]
         private int _orionWarTargetSwapIndex;
 
+        [SaveableField(15)]
+        private Dictionary<string, float> _orionFiefCaptureDayHeroID = [];
+
+        [SaveableField(16)]
+        private string _orionHuntTargetHeroId;
+
+        [SaveableField(17)]
+        private bool _orionWarPlanTimerStarted;
+
+        [SaveableField(18)]
+        private int _orionLastPickedWarPlanMode = -1;
+
+        [SaveableField(19)]
+        private int _orionWarPlanTravelDaysLeft;
+
+        [SaveableField(20)]
+        private Dictionary<string, float> _orionLastFiefCaptureDayHeroID = [];
+
         private bool _removingOrionByScript;
         private bool _repairingOrionDiplomacy;
         private bool _removingOrionMercenaryContract;
@@ -86,9 +105,11 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
         private static readonly Color SpawnHudMessageColor = new Color(0.0f, 0.78f, 0.47f);
         private static readonly Color RetreatHudMessageColor = new Color(0.35f, 0.70f, 1.0f);
         private static readonly Color DefeatHudMessageColor = new Color(0.65f, 0.02f, 0.02f);
+        private static readonly Color ThreatHudMessageColor = new Color(0.65f, 0.02f, 0.02f);
 
         public override void RegisterEvents()
         {
+            CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, DailyTick);
             CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, HourlyTick);
@@ -98,6 +119,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             CampaignEvents.WarDeclared.AddNonSerializedListener(this, OnWarDeclared);
             CampaignEvents.MakePeace.AddNonSerializedListener(this, OnPeaceMade);
             CampaignEvents.OnClanChangedKingdomEvent.AddNonSerializedListener(this, OnClanChangedKingdom);
+            CampaignEvents.OnSettlementOwnerChangedEvent.AddNonSerializedListener(this, OnSettlementOwnerChanged);
         }
 
         public override void SyncData(IDataStore dataStore)
@@ -117,6 +139,12 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             dataStore.SyncData("_orionWarPlanMode", ref _orionWarPlanMode);
             dataStore.SyncData("_orionWarPlanDaysLeft", ref _orionWarPlanDaysLeft);
             dataStore.SyncData("_orionWarTargetSwapIndex", ref _orionWarTargetSwapIndex);
+            dataStore.SyncData("_orionFiefCaptureDayHeroID", ref _orionFiefCaptureDayHeroID);
+            dataStore.SyncData("_orionHuntTargetHeroId", ref _orionHuntTargetHeroId);
+            dataStore.SyncData("_orionWarPlanTimerStarted", ref _orionWarPlanTimerStarted);
+            dataStore.SyncData("_orionLastPickedWarPlanMode", ref _orionLastPickedWarPlanMode);
+            dataStore.SyncData("_orionWarPlanTravelDaysLeft", ref _orionWarPlanTravelDaysLeft);
+            dataStore.SyncData("_orionLastFiefCaptureDayHeroID", ref _orionLastFiefCaptureDayHeroID);
         }
 
         public bool IsOrionRetreating(MobileParty party)
@@ -130,11 +158,11 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
         {
             const string noPartyText = "none";
             const string partyStatusText = "{PARTY_ID}, active: {IS_ACTIVE}, position: {POSITION}, count: {COUNT}";
-            const string debugStatusText = "orion state: {STATE}, next eligible year: {NEXT_ELIGIBLE_YEAR}, current year: {CURRENT_YEAR}, season: {SEASON}, party: {PARTY_STATUS}, queued InkStory: {QUEUED_InkStoryS}, war target: {WAR_TARGET}, plan: {PLAN}, target a: {TARGET_A}, target b: {TARGET_B}";
+            const string debugStatusText = "orion state: {STATE}, next eligible year: {NEXT_ELIGIBLE_YEAR}, current year: {CURRENT_YEAR}, season: {SEASON}, party: {PARTY_STATUS}, queued InkStory: {QUEUED_InkStoryS}, war target: {WAR_TARGET}, plan: {PLAN}, target a: {TARGET_A}, target b: {TARGET_B}, hunt target: {HUNT_TARGET}, timer started: {TIMER_STARTED}, travel days left: {TRAVEL_DAYS_LEFT}, days left: {DAYS_LEFT}";
 
             _queuedOrionInkStorys ??= [];
 
-            var orionParty = CurrentOrionParty();
+            var orionParty = CurrentParty();
             var partyStatus = new TextObject(noPartyText);
 
             if (orionParty != null)
@@ -161,23 +189,27 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             debugStatus.SetTextVariable("PLAN", _orionWarPlanMode.ToString());
             debugStatus.SetTextVariable("TARGET_A", _orionWarPrimarySettlementId ?? noPartyText);
             debugStatus.SetTextVariable("TARGET_B", _orionWarSecondarySettlementId ?? noPartyText);
+            debugStatus.SetTextVariable("HUNT_TARGET", _orionHuntTargetHeroId ?? noPartyText);
+            debugStatus.SetTextVariable("TIMER_STARTED", _orionWarPlanTimerStarted.ToString());
+            debugStatus.SetTextVariable("TRAVEL_DAYS_LEFT", _orionWarPlanTravelDaysLeft.ToString());
+            debugStatus.SetTextVariable("DAYS_LEFT", _orionWarPlanDaysLeft.ToString());
 
             return debugStatus.ToString();
         }
 
         public string TestSpawnOrion()
         {
-            var existingParty = CurrentOrionParty();
+            var existingParty = CurrentParty();
             if (existingParty != null && existingParty.IsActive)
             {
-                RemoveOrionWithoutDefeatLogic(existingParty);
+                RemoveParty(existingParty);
             }
 
             _orionPartyId = null;
             _orionState = UniqueSpawnState.Inactive;
             _orionNextEligibleYear = -1;
 
-            SpawnOrionAtOak(false);
+            SpawnAtOak(false);
 
             return GetOrionDebugStatus();
         }
@@ -186,14 +218,14 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
         {
             const string orionNotActiveText = "orion is not active.";
 
-            var orionParty = CurrentOrionParty();
+            var orionParty = CurrentParty();
             if (orionParty == null)
             {
                 return new TextObject(orionNotActiveText).ToString();
             }
 
             _orionState = UniqueSpawnState.Active;
-            CallOrionBackToOak();
+            CallBackToOak();
 
             return GetOrionDebugStatus();
         }
@@ -202,14 +234,14 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
         {
             const string orionNotActiveText = "orion is not active.";
 
-            var orionParty = CurrentOrionParty();
+            var orionParty = CurrentParty();
             if (orionParty == null)
             {
                 return new TextObject(orionNotActiveText).ToString();
             }
 
             _orionState = UniqueSpawnState.RetreatingToHome;
-            PutOrionBackIntoOak(orionParty);
+            PutBackIntoOak(orionParty);
 
             return GetOrionDebugStatus();
         }
@@ -218,23 +250,23 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
         {
             const string orionNotActiveText = "orion is not active.";
 
-            var orionParty = CurrentOrionParty();
+            var orionParty = CurrentParty();
             if (orionParty == null)
             {
                 return new TextObject(orionNotActiveText).ToString();
             }
 
-            DefeatOrionAndClearParty(false);
+            DefeatAndClearParty(false);
 
             return GetOrionDebugStatus();
         }
 
         public string TestResetOrion()
         {
-            var orionParty = CurrentOrionParty();
+            var orionParty = CurrentParty();
             if (orionParty != null && orionParty.IsActive)
             {
-                RemoveOrionWithoutDefeatLogic(orionParty);
+                RemoveParty(orionParty);
             }
 
             _orionPartyId = null;
@@ -244,44 +276,111 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             _orionWarTargetFactionId = null;
             _orionWarPrimarySettlementId = null;
             _orionWarSecondarySettlementId = null;
+            _orionHuntTargetHeroId = null;
+            _orionWarPlanTimerStarted = false;
+            _orionWarPlanTravelDaysLeft = 0;
             _queuedOrionInkStorys ??= [];
             _queuedOrionInkStorys.Clear();
 
             return GetOrionDebugStatus();
         }
 
+        private void OnNewGameCreated(CampaignGameStarter starter)
+        {
+            DisableSpawn();
+        }
+
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
-
             _queuedOrionInkStorys ??= [];
             _orionWarPressureByFaction ??= [];
+            _orionFiefCaptureDayHeroID ??= [];
+            _orionLastFiefCaptureDayHeroID ??= [];
 
-            _lastCheckedSeasonIndex = (int)CampaignTime.Now.GetSeasonOfYear;
-            _lastCheckedYear = CampaignTime.Now.GetYear;
+            SyncSeasonAfterLoad();
+            _campaignStartDiplomacyRepairTicksLeft = 12;
 
-            _campaignStartDiplomacyRepairTicksLeft = OrionCampaignStartDiplomacyRepairTicks;
-            KeepOrionClanIndependent();
-            RepairOrionDiplomacyAgainstAthelLoren();
+            var orionParty = CurrentParty();
+            if (orionParty == null)
+            {
+                DisableSpawn();
+            }
+            else
+            {
+                RepairSpellsingers(orionParty);
+            }
+
+            KeepClanIndependent();
+            RepairDiplomacy();
+        }
+
+        private void SyncSeasonAfterLoad()
+        {
+            var currentSeasonIndex = (int)CampaignTime.Now.GetSeasonOfYear;
+            var currentYear = CampaignTime.Now.GetYear;
+
+            if (_lastCheckedSeasonIndex < 0 || _lastCheckedYear < 0)
+            {
+                _lastCheckedSeasonIndex = currentSeasonIndex;
+                _lastCheckedYear = currentYear;
+                return;
+            }
+
+            CheckSeasonTick();
+            FixMissingParty();
+
+            if (_orionWarPlanDaysLeft > 0 && !_orionWarPlanTimerStarted && _orionWarPlanTravelDaysLeft <= 0)
+            {
+                _orionWarPlanTravelDaysLeft = OrionWarPlanTravelLimitDays;
+            }
+
+            if (IsOakSeason() && _orionState == UniqueSpawnState.Active && CurrentParty() != null)
+            {
+                CallBackToOak();
+            }
+        }
+
+        private void FixMissingParty()
+        {
+            if (CurrentParty() != null || (_orionState != UniqueSpawnState.Active && _orionState != UniqueSpawnState.RetreatingToHome))
+            {
+                return;
+            }
+
+            _orionPartyId = null;
+            _orionWarPlanDaysLeft = 0;
+            _orionState = IsOakSeason()
+                ? UniqueSpawnState.RetreatedToHome
+                : UniqueSpawnState.Inactive;
+        }
+
+        private bool IsOakSeason()
+        {
+            var currentSeason = CampaignTime.Now.GetSeasonOfYear;
+            return currentSeason == CampaignTime.Seasons.Autumn ||
+                   currentSeason == CampaignTime.Seasons.Winter;
         }
 
         private void DailyTick()
         {
-            CheckOrionSeasonTick();
-            KeepOrionClanIndependent();
-            RepairOrionDiplomacyAgainstAthelLoren();
-            DecayOrionWarPressure();
-            TickOrionMacroPlan();
-            OpenQueuedOrionInkStoryOnMap();
+            CheckSeasonTick();
+            KeepClanIndependent();
+            RepairDiplomacy();
+            DecayWarPressure();
+            ForgetOldCaptureRevenges();
+            TickMacroPlan();
+            OpenQueuedInkStoryOnMap();
         }
 
         private void HourlyTick()
         {
-            RepairOrionDiplomacyAfterCampaignStart();
-            KeepOrionOnOakRoad();
-            OpenQueuedOrionInkStoryOnMap();
+            RepairDiplomacyAfterCampaignStart();
+            KeepOnOakRoad();
+            KeepOnHuntTrail();
+            OpenQueuedInkStoryOnMap();
         }
 
-        private void RepairOrionDiplomacyAfterCampaignStart()
+        private void RepairDiplomacyAfterCampaignStart()
         {
             if (_campaignStartDiplomacyRepairTicksLeft <= 0)
             {
@@ -289,20 +388,20 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             }
 
             _campaignStartDiplomacyRepairTicksLeft--;
-            KeepOrionClanIndependent();
-            RepairOrionDiplomacyAgainstAthelLoren();
+            KeepClanIndependent();
+            RepairDiplomacy();
         }
 
         private void AiHourlyTick(MobileParty party, PartyThinkParams thinkParams)
         {
-            if (party.GetUniqueSpawnComponent()?.UniqueSpawnId != OrionSpawnId)
+            if (party.GetUniqueSpawnComponent()?.UniqueSpawnId != "tor_unique_orion")
             {
                 return;
             }
 
             if (IsOrionRetreating(party))
             {
-                PointOrionAtOak(party);
+                PointAtOak(party);
 
                 var oakOfAges = OakOfAges();
                 var goToOakBehavior = new AIBehaviorData(
@@ -324,35 +423,32 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
                 return;
             }
 
-            AddOrionMacroPlanScore(thinkParams);
+            AddMacroPlanScore(thinkParams);
         }
 
-        private void AddOrionMacroPlanScore(PartyThinkParams thinkParams)
+        private void AddMacroPlanScore(PartyThinkParams thinkParams)
         {
-            const float patrolPlanScore = 650f;
+            const float patrolPlanScore = 650f; //
             const float raidPlanScore = 900f;
 
-            TryPickOrionHomeSiegePlan();
-
-            if (!OrionMacroPlanStillValid())
+            if (_orionWarPlanMode == UniqueSpawnCampaignBehavior.WarPlanLordHunt)
             {
-                PickNewOrionMacroPlan();
+                return;
             }
 
-            var target = CurrentOrionWarTarget();
+            var target = CurrentWarTarget();
             if (target == null)
             {
                 return;
             }
 
-            if (_orionWarPlanMode == UniqueSpawnCampaignBehavior.WarPlanEnemyVillageRaid && VillageCanStillBeRaidedByOrion(target))
+            if (_orionWarPlanMode == UniqueSpawnCampaignBehavior.WarPlanEnemyVillageRaid && VillageCanBeRaided(target))
             {
                 var raidBehavior = new AIBehaviorData(target, AiBehavior.RaidSettlement, MobileParty.NavigationType.Default, false, false, false);
                 UniqueSpawnCampaignBehavior.AddOrUpdateBehaviorScore(thinkParams, raidBehavior, raidPlanScore);
                 return;
             }
 
-            // TBD. macro behaviors are not forced
             var patrolBehavior = new AIBehaviorData(target, AiBehavior.PatrolAroundPoint, MobileParty.NavigationType.Default, false, false, false);
             UniqueSpawnCampaignBehavior.AddOrUpdateBehaviorScore(thinkParams, patrolBehavior, patrolPlanScore);
         }
@@ -364,23 +460,23 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             ChangeKingdomAction.ChangeKingdomActionDetail detail,
             bool showNotification)
         {
-            if (clan.StringId != OrionClanId || newKingdom == null)
+            if (clan.StringId != "wildhunt_clan_1" || newKingdom == null)
             {
                 return;
             }
 
-            KeepOrionClanIndependent();
-            RepairOrionDiplomacyAgainstAthelLoren();
+            KeepClanIndependent();
+            RepairDiplomacy();
         }
 
-        private void KeepOrionClanIndependent()
+        private void KeepClanIndependent()
         {
             if (_removingOrionMercenaryContract)
             {
                 return;
             }
 
-            var orionClan = Clan.FindFirst(clan => clan.StringId == OrionClanId);
+            var orionClan = Clan.FindFirst(clan => clan.StringId == "wildhunt_clan_1");
             if (orionClan.Kingdom == null)
             {
                 return;
@@ -404,11 +500,12 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             }
         }
 
-        private void PullAthelLorenIntoOrionFight(IFaction faction1, IFaction faction2)
+        private void AthelLorenJoinsOrion(IFaction faction1, IFaction faction2)
         {
-            var orionClan = Clan.FindFirst(clan => clan.StringId == OrionClanId);
+            var orionClan = Clan.FindFirst(clan => clan.StringId == "wildhunt_clan_1");
             var athelLoren = AthelLoren();
             var playerFaction = Hero.MainHero.MapFaction;
+            var playerClan = Hero.MainHero.Clan;
 
             if (playerFaction == athelLoren)
             {
@@ -416,8 +513,8 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             }
 
             var playerDeclaredOnOrion =
-                (faction1 == orionClan && faction2 == playerFaction) ||
-                (faction2 == orionClan && faction1 == playerFaction);
+                (faction1 == orionClan && (faction2 == playerFaction || faction2 == playerClan)) ||
+                (faction2 == orionClan && (faction1 == playerFaction || faction1 == playerClan));
 
             if (!playerDeclaredOnOrion || athelLoren.IsAtWarWith(playerFaction))
             {
@@ -425,21 +522,59 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             }
 
             // orion will mimic athel loren diplomacy before it can register a war with player faction
-            FactionManager.DeclareWar(athelLoren, playerFaction);
+            DeclareWarAction.ApplyByDefault(athelLoren, playerFaction);
         }
 
         private void OnWarDeclared(IFaction faction1, IFaction faction2, DeclareWarAction.DeclareWarDetail detail)
         {
-            PullAthelLorenIntoOrionFight(faction1, faction2);
-            RepairOrionDiplomacyAgainstAthelLoren();
+            AthelLorenJoinsOrion(faction1, faction2);
+            RepairDiplomacy();
         }
 
         private void OnPeaceMade(IFaction side1Faction, IFaction side2Faction, MakePeaceAction.MakePeaceDetail detail)
         {
-            RepairOrionDiplomacyAgainstAthelLoren();
+            RepairDiplomacy();
+
+            if (_orionWarPlanMode == UniqueSpawnCampaignBehavior.WarPlanLordHunt && !HuntTargetStillValid())
+            {
+                RetryHunt();
+            }
         }
 
-        private void CheckOrionSeasonTick()
+        private void OnSettlementOwnerChanged(
+            Settlement settlement,
+            bool openToClaim,
+            Hero newOwner,
+            Hero oldOwner,
+            Hero capturerHero,
+            ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail detail)
+        {
+            if (detail != ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail.BySiege ||
+                settlement == null ||
+                (!settlement.IsTown && !settlement.IsCastle) ||
+                oldOwner?.MapFaction != AthelLoren() ||
+                capturerHero == null ||
+                !CanHeroBeHuntedAfterCapture(capturerHero))
+            {
+                return;
+            }
+
+            _orionFiefCaptureDayHeroID ??= [];
+            _orionLastFiefCaptureDayHeroID ??= [];
+
+            var currentDay = (float)CampaignTime.Now.ToDays;
+            var hasOldRevenge = _orionLastFiefCaptureDayHeroID.TryGetValue(capturerHero.StringId, out var latestRevengeDay) ||
+                                _orionFiefCaptureDayHeroID.TryGetValue(capturerHero.StringId, out latestRevengeDay);
+
+            if (!hasOldRevenge || currentDay - latestRevengeDay > OrionHuntCaptureRevengeMaxAgeDays)
+            {
+                _orionFiefCaptureDayHeroID[capturerHero.StringId] = currentDay;
+            }
+
+            _orionLastFiefCaptureDayHeroID[capturerHero.StringId] = currentDay;
+        }
+
+        private void CheckSeasonTick()
         {
             var currentSeason = CampaignTime.Now.GetSeasonOfYear;
             var currentSeasonIndex = (int)currentSeason;
@@ -455,22 +590,28 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
 
             if (currentSeason == CampaignTime.Seasons.Spring)
             {
-                SpringOrionCheck();
+                SpringCheck();
             }
             else if (currentSeason == CampaignTime.Seasons.Autumn)
             {
-                CallOrionBackToOak();
+                CallBackToOak();
             }
         }
 
-        private void SpringOrionCheck()
+        private void SpringCheck()
         {
             if (CampaignTime.Now.GetSeasonOfYear != CampaignTime.Seasons.Spring)
             {
                 return;
             }
 
-            var existingOrionParty = CurrentOrionParty();
+            if (AthelLorenIsGone())
+            {
+                DisableSpawn();
+                return;
+            }
+
+            var existingOrionParty = CurrentParty();
             if (existingOrionParty != null)
             {
                 if (_orionState != UniqueSpawnState.RetreatingToHome)
@@ -488,23 +629,30 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             }
 
             var returningFromOak = _orionState == UniqueSpawnState.RetreatedToHome;
-            SpawnOrionAtOak(returningFromOak);
+            SpawnAtOak(returningFromOak);
         }
 
-        private void SpawnOrionAtOak(bool returningFromOak)
+        private void SpawnAtOak(bool returningFromOak)
         {
+            if (AthelLorenIsGone())
+            {
+                DisableSpawn();
+                return;
+            }
 
             var oakOfAges = OakOfAges();
-            var orionClan = Clan.FindFirst(clan => clan.StringId == OrionClanId);
+            var orionClan = Clan.FindFirst(clan => clan.StringId == "wildhunt_clan_1");
+            PrepareForUniqueSpawning(orionClan.Leader);
+            PrepareSpellsingersForUniqueSpawning();
 
             _orionSpawnSerial++;
-            var orionPartyId = $"{OrionSpawnId}_party_{_orionSpawnSerial}";
+            var orionPartyId = $"{"tor_unique_orion"}_party_{_orionSpawnSerial}";
 
             var orionParty = UniqueSpawnPartyComponent.CreateUniqueSpawnParty(
                 orionPartyId,
-                OrionSpawnId,
+                "tor_unique_orion",
                 oakOfAges,
-                orionClan.Name,
+                orionClan.Leader.Name,
                 orionClan.DefaultPartyTemplate,
                 orionClan,
                 OrionPartySize);
@@ -512,14 +660,18 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             _orionPartyId = orionParty.StringId;
             _orionState = UniqueSpawnState.Active;
             _orionWarPlanDaysLeft = 0;
+            _orionHuntTargetHeroId = null;
+            _orionWarPlanTimerStarted = false;
+            _orionWarPlanTravelDaysLeft = 0;
 
+            RepairSpellsingers(orionParty);
             orionParty.Ai.SetDoNotMakeNewDecisions(false);
-            PickNewOrionMacroPlan();
+            PickNewMacroPlan();
 
-            ReportOrionSpawn(returningFromOak);
+            ReportSpawn(returningFromOak);
         }
 
-        private void CallOrionBackToOak()
+        private void CallBackToOak()
         {
             const string retreatMessageText = "{=str_tor_unique_orion_retreat_started_message}Winter cold orion back";
 
@@ -528,7 +680,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
                 return;
             }
 
-            var orionParty = CurrentOrionParty();
+            var orionParty = CurrentParty();
             if (orionParty == null)
             {
                 return;
@@ -536,12 +688,14 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
 
             _orionState = UniqueSpawnState.RetreatingToHome;
             _orionWarPlanDaysLeft = 0;
-            PointOrionAtOak(orionParty);
+            _orionWarPlanTravelDaysLeft = 0;
+            ClearHunt();
+            PointAtOak(orionParty);
 
-            ShowOrionHudMessage(new TextObject(retreatMessageText), RetreatHudMessageColor);
+            ShowHudMessage(new TextObject(retreatMessageText), RetreatHudMessageColor);
         }
 
-        private void KeepOrionOnOakRoad()
+        private void KeepOnOakRoad()
         {
             const float retreatCompletionDistance = 5f;
 
@@ -550,24 +704,24 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
                 return;
             }
 
-            var orionParty = CurrentOrionParty();
+            var orionParty = CurrentParty();
             if (orionParty == null || orionParty.MapEvent != null)
             {
                 return;
             }
 
             var oakOfAges = OakOfAges();
-            PointOrionAtOak(orionParty);
+            PointAtOak(orionParty);
 
             if (orionParty.Position.DistanceSquared(oakOfAges.GatePosition) > retreatCompletionDistance * retreatCompletionDistance)
             {
                 return;
             }
 
-            PutOrionBackIntoOak(orionParty);
+            PutBackIntoOak(orionParty);
         }
 
-        private void PointOrionAtOak(MobileParty orionParty)
+        private void PointAtOak(MobileParty orionParty)
         {
             var oakOfAges = OakOfAges();
 
@@ -576,16 +730,19 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             orionParty.SetMoveGoToPoint(oakOfAges.GatePosition, MobileParty.NavigationType.Default);
         }
 
-        private void PutOrionBackIntoOak(MobileParty orionParty)
+        private void PutBackIntoOak(MobileParty orionParty)
         {
             _orionState = UniqueSpawnState.RetreatedToHome;
             _orionPartyId = null;
             _orionWarPlanDaysLeft = 0;
+            _orionWarPlanTravelDaysLeft = 0;
+            ClearHunt();
 
-            RemoveOrionWithoutDefeatLogic(orionParty);
+            RemoveParty(orionParty);
+            DisableSpawn();
         }
 
-        private void RemoveOrionWithoutDefeatLogic(MobileParty orionParty)
+        private void RemoveParty(MobileParty orionParty)
         {
             if (orionParty == null || !orionParty.IsActive)
             {
@@ -606,6 +763,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
         private void OnMapEventEnded(MapEvent mapEvent)
         {
             UniqueSpawnCampaignBehavior.RegisterWarPressureForHomeFaction(mapEvent, AthelLoren(), _orionWarPressureByFaction);
+            DropHuntAfterTargetDefeat(mapEvent);
 
             if (_orionState == UniqueSpawnState.DefeatedCooldown || _orionState == UniqueSpawnState.RetreatedToHome)
             {
@@ -617,7 +775,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
                 return;
             }
 
-            DefeatOrionAndClearParty(PlayerHelpedDefeatOrion(mapEvent));
+            DefeatAndClearParty(PlayerHelpedDefeatOrion(mapEvent));
         }
 
         private bool MapEventHasOrionOnSide(MapEvent mapEvent, BattleSideEnum side)
@@ -628,7 +786,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             }
 
             return mapEvent.GetMapEventSide(side).Parties.Any(mapEventParty =>
-                mapEventParty.Party?.MobileParty?.GetUniqueSpawnComponent()?.UniqueSpawnId == OrionSpawnId);
+                mapEventParty.Party?.MobileParty?.GetUniqueSpawnComponent()?.UniqueSpawnId == "tor_unique_orion");
         }
 
         private bool PlayerHelpedDefeatOrion(MapEvent mapEvent)
@@ -648,26 +806,25 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
                 mapEventParty.Party?.MobileParty == MobileParty.MainParty);
         }
 
-        private void DefeatOrionAndClearParty(bool playerHelpedDefeatOrion)
+        private void DefeatAndClearParty(bool playerHelpedDefeatOrion)
         {
             if (_orionState == UniqueSpawnState.DefeatedCooldown)
             {
                 return;
             }
 
-            var orionParty = CurrentOrionParty();
-
-            PutOrionOnDefeatedCooldown(playerHelpedDefeatOrion);
-
+            var orionParty = CurrentParty();
             if (orionParty != null && orionParty.IsActive)
             {
-                RemoveOrionWithoutDefeatLogic(orionParty);
+                RemoveParty(orionParty);
             }
+
+            PutOnDefeatedCooldown(playerHelpedDefeatOrion);
         }
 
         private void OnMobilePartyDestroyed(MobileParty destroyedParty, PartyBase destroyerParty)
         {
-            if (destroyedParty?.GetUniqueSpawnComponent()?.UniqueSpawnId != OrionSpawnId)
+            if (destroyedParty?.GetUniqueSpawnComponent()?.UniqueSpawnId != "tor_unique_orion")
             {
                 return;
             }
@@ -682,10 +839,10 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
                 return;
             }
 
-            PutOrionOnDefeatedCooldown(false);
+            PutOnDefeatedCooldown(false);
         }
 
-        private void PutOrionOnDefeatedCooldown(bool playerHelpedDefeatOrion)
+        private void PutOnDefeatedCooldown(bool playerHelpedDefeatOrion)
         {
             const string defeatedMessageText = "{=str_tor_unique_orion_defeated_message}Orion gone 3 year";
 
@@ -693,16 +850,20 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             _orionState = UniqueSpawnState.DefeatedCooldown;
             _orionNextEligibleYear = CampaignTime.Now.GetYear + OrionDefeatedCooldownYears;
             _orionWarPlanDaysLeft = 0;
+            _orionWarPlanTravelDaysLeft = 0;
+            ClearHunt();
+
+            DisableSpawn();
 
             if (playerHelpedDefeatOrion)
             {
-                QueueOrionInkStory(OrionPlayerDefeatedStoryId);
+                QueueInkStory("OrionDefeatedByPlayer");
                 return;
             }
-            ShowOrionHudMessage(new TextObject(defeatedMessageText), DefeatHudMessageColor);
+            ShowHudMessage(new TextObject(defeatedMessageText), DefeatHudMessageColor);
         }
 
-        private MobileParty CurrentOrionParty()
+        private MobileParty CurrentParty()
         {
             if (!string.IsNullOrWhiteSpace(_orionPartyId))
             {
@@ -715,10 +876,118 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
 
             return MobileParty.All.FirstOrDefault(party =>
                 party.IsActive &&
-                party.GetUniqueSpawnComponent()?.UniqueSpawnId == OrionSpawnId);
+                party.GetUniqueSpawnComponent()?.UniqueSpawnId == "tor_unique_orion");
         }
 
-        private void RepairOrionDiplomacyAgainstAthelLoren()
+        public static void RemoveOrionFromDefeatedPartyRosters(MapEvent mapEvent, MBReadOnlyList<MapEventParty> defeatedParties)
+        {
+            if (mapEvent.RetreatingSide != BattleSideEnum.None)
+            {
+                return;
+            }
+
+            foreach (var mapEventParty in defeatedParties)
+            {
+                if (!mapEventParty.Party.IsMobile ||
+                    mapEventParty.Party.MobileParty.GetUniqueSpawnComponent()?.UniqueSpawnId != "tor_unique_orion")
+                {
+                    continue;
+                }
+
+                foreach (var orionHero in BattleHeroes())
+                {
+                    var orionCount = mapEventParty.Party.MemberRoster.GetTroopCount(orionHero.CharacterObject);
+                    if (orionCount <= 0)
+                    {
+                        continue;
+                    }
+
+                    mapEventParty.Party.MemberRoster.RemoveTroop(orionHero.CharacterObject, orionCount);
+                }
+            }
+        }
+
+        private void PrepareForUniqueSpawning(Hero orionLeader)
+        {
+            PrepareHeroForParty(orionLeader);
+        }
+
+        private void PrepareHeroForParty(Hero hero)
+        {
+            DisableHeroAction.Apply(hero);
+            hero.ChangeState(Hero.CharacterStates.Active);
+            hero.HitPoints = hero.MaxHitPoints;
+        }
+
+        private void PrepareSpellsingersForUniqueSpawning()
+        {
+            foreach (var spellsingerHero in SpellsingerHeroes())
+            {
+                PrepareHeroForParty(spellsingerHero);
+            }
+        }
+
+        private void RepairSpellsingers(MobileParty orionParty)
+        {
+            foreach (var spellsingerHero in SpellsingerHeroes())
+            {
+                if (spellsingerHero.PartyBelongedTo == orionParty &&
+                    orionParty.MemberRoster.GetTroopCount(spellsingerHero.CharacterObject) > 0)
+                {
+                    spellsingerHero.ChangeState(Hero.CharacterStates.Active);
+                    continue;
+                }
+
+                var ghostRosterCount = orionParty.MemberRoster.GetTroopCount(spellsingerHero.CharacterObject);
+                if (ghostRosterCount > 0)
+                {
+                    orionParty.MemberRoster.RemoveTroop(spellsingerHero.CharacterObject, ghostRosterCount);
+                }
+
+                PrepareHeroForParty(spellsingerHero);
+                AddHeroToPartyAction.Apply(spellsingerHero, orionParty, false);
+            }
+        }
+
+        private static IEnumerable<Hero> BattleHeroes()
+        {
+            yield return Clan.FindFirst(clan => clan.StringId == "wildhunt_clan_1").Leader;
+
+            foreach (var spellsingerHero in SpellsingerHeroes())
+            {
+                yield return spellsingerHero;
+            }
+        }
+
+        private static IEnumerable<Hero> SpellsingerHeroes()
+        {
+            var firstSpellsinger = Hero.Find("tor_we_orion_spellsinger_1");
+            if (firstSpellsinger != null)
+            {
+                yield return firstSpellsinger;
+            }
+
+            var secondSpellsinger = Hero.Find("tor_we_orion_spellsinger_2");
+            if (secondSpellsinger != null)
+            {
+                yield return secondSpellsinger;
+            }
+        }
+
+        private void DisableSpawn()
+        {
+            foreach (var orionHero in BattleHeroes())
+            {
+                if (orionHero.PartyBelongedTo?.GetUniqueSpawnComponent()?.UniqueSpawnId == "tor_unique_orion")
+                {
+                    continue;
+                }
+
+                DisableHeroAction.Apply(orionHero);
+            }
+        }
+
+        private void RepairDiplomacy()
         {
             // mirrored diplomacy calls will between wild hunt and athel loren will stuck in a loop
             if (_repairingOrionDiplomacy)
@@ -729,7 +998,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             _repairingOrionDiplomacy = true;
             try
             {
-                var orionClan = Clan.FindFirst(clan => clan.StringId == OrionClanId);
+                var orionClan = Clan.FindFirst(clan => clan.StringId == "wildhunt_clan_1");
                 var athelLoren = AthelLoren();
 
                 if (orionClan.IsAtWarWith(athelLoren))
@@ -758,7 +1027,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             }
         }
 
-        private void DecayOrionWarPressure()
+        private void DecayWarPressure()
         {
             const float dailyPressureDecay = 0.97f;
             const float forgottenPressureThreshold = 1f;
@@ -769,61 +1038,112 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
                 forgottenPressureThreshold);
         }
 
-        private void TickOrionMacroPlan()
+        private void TickMacroPlan()
         {
-            if (_orionState != UniqueSpawnState.Active || CurrentOrionParty() == null)
+            var orionParty = CurrentParty();
+            if (_orionState != UniqueSpawnState.Active || orionParty == null)
             {
                 return;
             }
 
-            if (TryPickOrionHomeSiegePlan())
+            if (TryKeepOrStartHunt(orionParty))
             {
                 return;
             }
 
-            if (_orionWarPlanDaysLeft > 0)
+            if (_orionWarPlanMode != UniqueSpawnCampaignBehavior.WarPlanHomeSiegePatrol && TryPickHomeSiegePlan())
             {
-                _orionWarPlanDaysLeft--;
+                return;
             }
 
-            if (_orionWarPlanDaysLeft <= 0 || !OrionMacroPlanStillValid())
+            if (!MacroPlanStillValid())
             {
-                PickNewOrionMacroPlan();
+                PickNewMacroPlan();
+                return;
+            }
+
+            TickWarPlanClock(orionParty);
+
+            if (_orionWarPlanDaysLeft <= 0)
+            {
+                PickNewMacroPlan();
             }
         }
-        private bool OrionMacroPlanStillValid()
+
+        private bool MacroPlanStillValid()
         {
-            var primaryTarget = CurrentOrionWarTarget();
+            if (_orionWarPlanMode == UniqueSpawnCampaignBehavior.WarPlanLordHunt)
+            {
+                return HuntTargetStillValid();
+            }
+
+            if (_orionWarPlanDaysLeft <= 0)
+            {
+                return false;
+            }
+
+            var primaryTarget = CurrentWarTarget();
 
             if (_orionWarPlanMode == UniqueSpawnCampaignBehavior.WarPlanHomeSiegePatrol)
             {
-                return _orionWarPlanDaysLeft > 0 &&
-                       UniqueSpawnCampaignBehavior.IsOwnedOriginalHomeFief(
-                           primaryTarget,
-                           AthelLoren(),
-                           IsOriginalAthelLorenFief);
+                return UniqueSpawnCampaignBehavior.IsBesiegedOwnedOriginalHomeFief(
+                    primaryTarget,
+                    AthelLoren(),
+                    IsOriginalAthelLorenFief);
             }
 
-            var targetFaction = OrionWarTargetFaction();
-            if (targetFaction == null)
+            var targetFaction = WarTargetFaction();
+            if (targetFaction == null || !AthelLoren().IsAtWarWith(targetFaction))
             {
                 return false;
             }
 
             if (_orionWarPlanMode == UniqueSpawnCampaignBehavior.WarPlanEnemyVillageRaid)
             {
-                return primaryTarget != null && VillageCanStillBeRaidedByOrion(primaryTarget);
+                return primaryTarget != null && VillageCanBeRaided(primaryTarget);
             }
 
             return primaryTarget != null;
         }
-        private void PickNewOrionMacroPlan()
-        {
-            const int ownVillagePatrolDurationDays = 3;
-            const int deepPatrolDurationDays = 3;
-            const int raidDurationDays = 2;
 
-            if (TryPickOrionHomeSiegePlan())
+        private void TickWarPlanClock(MobileParty orionParty)
+        {
+            var target = CurrentWarTarget();
+            if (target == null)
+            {
+                _orionWarPlanDaysLeft = 0;
+                return;
+            }
+
+            if (!_orionWarPlanTimerStarted)
+            {
+                if (orionParty.Position.DistanceSquared(target.Position) <= OrionWarPlanArrivalDistance * OrionWarPlanArrivalDistance)
+                {
+                    _orionWarPlanTimerStarted = true;
+                    _orionWarPlanDaysLeft = OrionWarPlanStayDurationDays;
+                    return;
+                }
+
+                _orionWarPlanTravelDaysLeft--;
+                if (_orionWarPlanTravelDaysLeft <= 0)
+                {
+                    _orionWarPlanDaysLeft = 0;
+                }
+
+                return;
+            }
+
+            _orionWarPlanDaysLeft--;
+        }
+
+        private void PickNewMacroPlan()
+        {
+            if (TryKeepOrStartHunt(CurrentParty()))
+            {
+                return;
+            }
+
+            if (TryPickHomeSiegePlan())
             {
                 return;
             }
@@ -831,49 +1151,103 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             var targetFaction = PickFactionThatHurtAthelLorenMost();
             if (targetFaction == null)
             {
-                ClearOrionWarPlan();
+                ClearWarPlan();
                 return;
             }
-
-            _orionWarTargetFactionId = targetFaction.StringId;
 
             var lootableVillages = EnemyLootableVillages(targetFaction).ToList();
-            var plan = PickOrionPlanMode(AthelLoren().CurrentTotalStrength, lootableVillages.Count);
+            var planWeights = WarPlanWeights(AthelLoren().CurrentTotalStrength, lootableVillages.Count, true);
+            var rolledPlan = PickPlanMode(planWeights);
 
-            if (plan == UniqueSpawnCampaignBehavior.WarPlanEnemyVillageRaid && lootableVillages.Count == 0)
+            foreach (var plan in PlanFallbackOrder(rolledPlan, planWeights))
             {
-                plan = UniqueSpawnCampaignBehavior.WarPlanEnemyDeepPatrol;
+                if (TryAssignWarPlan(plan, targetFaction, lootableVillages))
+                {
+                    return;
+                }
             }
 
-            _orionWarPlanMode = plan;
-            _orionWarTargetSwapIndex++;
+            ClearWarPlan();
+        }
 
-            if (_orionWarPlanMode == UniqueSpawnCampaignBehavior.WarPlanEnemyVillageRaid)
+        private IEnumerable<int> PlanFallbackOrder(int rolledPlan, Dictionary<int, int> planWeights)
+        {
+            var yieldedPlans = new HashSet<int>();
+
+            if (planWeights.TryGetValue(rolledPlan, out var rolledWeight) && rolledWeight > 0)
+            {
+                yieldedPlans.Add(rolledPlan);
+                yield return rolledPlan;
+            }
+
+            foreach (var planWeight in planWeights
+                         .Where(pair => pair.Value > 0 && yieldedPlans.Add(pair.Key))
+                         .OrderByDescending(pair => pair.Value))
+            {
+                yield return planWeight.Key;
+            }
+        }
+
+        private bool TryAssignWarPlan(int plan, IFaction targetFaction, List<Settlement> lootableVillages)
+        {
+            if (plan == UniqueSpawnCampaignBehavior.WarPlanEnemyVillageRaid)
             {
                 var raidTarget = UniqueSpawnCampaignBehavior.ClosestSettlementToAffiliatedBorder(lootableVillages, DistanceToAthelLorenBorder);
-                _orionWarPrimarySettlementId = raidTarget?.StringId;
-                _orionWarSecondarySettlementId = null;
-                _orionWarPlanDaysLeft = raidDurationDays;
-                return;
+                if (raidTarget == null)
+                {
+                    return false;
+                }
+
+                AssignWarPlan(plan, targetFaction.StringId, raidTarget, null);
+                return true;
             }
 
-            if (_orionWarPlanMode == UniqueSpawnCampaignBehavior.WarPlanOwnVillagePatrol)
+            if (plan == UniqueSpawnCampaignBehavior.WarPlanOwnVillagePatrol)
             {
                 var ownVillages = AthelLorenBorderVillagesFacing(targetFaction).Take(2).ToList();
-                _orionWarPrimarySettlementId = ownVillages.ElementAtOrDefault(0)?.StringId;
-                _orionWarSecondarySettlementId = ownVillages.ElementAtOrDefault(1)?.StringId;
-                _orionWarPlanDaysLeft = ownVillagePatrolDurationDays;
-                return;
+                if (ownVillages.Count == 0)
+                {
+                    return false;
+                }
+
+                AssignWarPlan(
+                    plan,
+                    targetFaction.StringId,
+                    ownVillages.ElementAtOrDefault(0),
+                    ownVillages.ElementAtOrDefault(1));
+                return true;
             }
 
-            var enemySettlements = EnemyDeepPatrolSettlements(targetFaction).Take(2).ToList();
-            _orionWarPrimarySettlementId = enemySettlements.ElementAtOrDefault(0)?.StringId;
-            _orionWarSecondarySettlementId = enemySettlements.ElementAtOrDefault(1)?.StringId;
-            _orionWarPlanDaysLeft = deepPatrolDurationDays;
+            if (plan == UniqueSpawnCampaignBehavior.WarPlanEnemyDeepPatrol)
+            {
+                var enemySettlements = EnemyDeepPatrolSettlements(targetFaction).Take(2).ToList();
+                if (enemySettlements.Count == 0)
+                {
+                    return false;
+                }
+
+                AssignWarPlan(
+                    plan,
+                    targetFaction.StringId,
+                    enemySettlements.ElementAtOrDefault(0),
+                    enemySettlements.ElementAtOrDefault(1));
+                return true;
+            }
+
+            return false;
         }
-        private bool TryPickOrionHomeSiegePlan()
+
+        private bool TryPickHomeSiegePlan()
         {
-            const int homeSiegePatrolDurationDays = 2;
+            if (_orionWarPlanMode == UniqueSpawnCampaignBehavior.WarPlanLordHunt)
+            {
+                return HuntTargetStillValid();
+            }
+
+            if (_orionWarPlanMode == UniqueSpawnCampaignBehavior.WarPlanHomeSiegePatrol && MacroPlanStillValid())
+            {
+                return true;
+            }
 
             var besiegedAthelLorenFief = UniqueSpawnCampaignBehavior.BesiegedOwnedOriginalHomeFief(
                 AthelLoren(),
@@ -885,54 +1259,651 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
                 return false;
             }
 
-            // athel loren under siege overrides any macro plan
-            _orionWarPlanMode = UniqueSpawnCampaignBehavior.WarPlanHomeSiegePatrol;
-            _orionWarPrimarySettlementId = besiegedAthelLorenFief.StringId;
-            _orionWarSecondarySettlementId = null;
-            _orionWarTargetFactionId = null;
-            _orionWarPlanDaysLeft = homeSiegePatrolDurationDays;
+            AssignWarPlan(
+                UniqueSpawnCampaignBehavior.WarPlanHomeSiegePatrol,
+                null,
+                besiegedAthelLorenFief,
+                null);
 
             return true;
         }
-        private int PickOrionPlanMode(float athelLorenStrength, int lootableVillageCount)
+
+        private void AssignWarPlan(int plan, string targetFactionId, Settlement primaryTarget, Settlement secondaryTarget)
         {
-            const int weakAthelLorenStrengthThreshold = 5000;
-            const int manyLootableVillagesThreshold = 10;
+            _orionWarPlanMode = plan;
+            _orionWarTargetFactionId = targetFactionId;
+            _orionWarPrimarySettlementId = primaryTarget?.StringId;
+            _orionWarSecondarySettlementId = secondaryTarget?.StringId;
+            _orionWarPlanDaysLeft = OrionWarPlanStayDurationDays;
+            _orionWarPlanTimerStarted = false;
+            _orionWarPlanTravelDaysLeft = OrionWarPlanTravelLimitDays;
+            _orionWarTargetSwapIndex++;
 
-            const int weakOwnVillagePatrolWeight = 60;
-            const int weakEnemyDeepPatrolWeight = 20;
-            const int weakEnemyRaidWeight = 10;
+            if (plan != UniqueSpawnCampaignBehavior.WarPlanHomeSiegePatrol)
+            {
+                _orionLastPickedWarPlanMode = plan;
+            }
 
-            const int strongManyVillagesOwnVillagePatrolWeight = 35;
-            const int strongManyVillagesEnemyDeepPatrolWeight = 35;
-            const int strongManyVillagesEnemyRaidWeight = 30;
+            ClearHuntTargetOnly();
 
-            const int strongFewVillagesOwnVillagePatrolWeight = 20;
-            const int strongFewVillagesEnemyDeepPatrolWeight = 70;
-            const int strongFewVillagesEnemyRaidWeight = 10;
+            var orionParty = CurrentParty();
+            if (orionParty != null)
+            {
+                orionParty.Aggressiveness = 1f;
+                orionParty.Ai.SetDoNotMakeNewDecisions(false);
+            }
 
-            return UniqueSpawnCampaignBehavior.PickWarPlanMode(
-                athelLorenStrength,
-                lootableVillageCount,
-                weakAthelLorenStrengthThreshold,
-                manyLootableVillagesThreshold,
-                weakOwnVillagePatrolWeight,
-                weakEnemyDeepPatrolWeight,
-                weakEnemyRaidWeight,
-                strongManyVillagesOwnVillagePatrolWeight,
-                strongManyVillagesEnemyDeepPatrolWeight,
-                strongManyVillagesEnemyRaidWeight,
-                strongFewVillagesOwnVillagePatrolWeight,
-                strongFewVillagesEnemyDeepPatrolWeight,
-                strongFewVillagesEnemyRaidWeight);
+            ReportMovingToPlayerland(plan, primaryTarget);
+        }
+
+        private int PickPlanMode(Dictionary<int, int> planWeights)
+        {
+            var totalWeight = planWeights.Values.Sum();
+            if (totalWeight <= 0)
+            {
+                return UniqueSpawnCampaignBehavior.WarPlanEnemyDeepPatrol;
+            }
+
+            var roll = MBRandom.RandomInt(totalWeight);
+
+            foreach (var planWeight in planWeights)
+            {
+                if (roll < planWeight.Value)
+                {
+                    return planWeight.Key;
+                }
+
+                roll -= planWeight.Value;
+            }
+
+            return UniqueSpawnCampaignBehavior.WarPlanEnemyDeepPatrol;
+        }
+
+        private Dictionary<int, int> WarPlanWeights(float athelLorenStrength, int lootableVillageCount, bool avoidLastPlan)
+        {
+            const int weakAthelLorenStrengthThreshold = 5500; // can be changed to a dynamic value depending on eonir clans migrating to athel loren
+            const int manyLootableVillagesThreshold = 20; // can be changed to a dynamic value depending on the fronts open against athel loren
+
+            var planWeights = new Dictionary<int, int>
+            {
+                [UniqueSpawnCampaignBehavior.WarPlanOwnVillagePatrol] = 20,
+                [UniqueSpawnCampaignBehavior.WarPlanEnemyDeepPatrol] = 70,
+                [UniqueSpawnCampaignBehavior.WarPlanEnemyVillageRaid] = 10
+            };
+
+            if (athelLorenStrength < weakAthelLorenStrengthThreshold)
+            {
+                planWeights[UniqueSpawnCampaignBehavior.WarPlanOwnVillagePatrol] = 60;
+                planWeights[UniqueSpawnCampaignBehavior.WarPlanEnemyDeepPatrol] = 20;
+                planWeights[UniqueSpawnCampaignBehavior.WarPlanEnemyVillageRaid] = 10;
+            }
+            else if (lootableVillageCount >= manyLootableVillagesThreshold)
+            {
+                planWeights[UniqueSpawnCampaignBehavior.WarPlanOwnVillagePatrol] = 35;
+                planWeights[UniqueSpawnCampaignBehavior.WarPlanEnemyDeepPatrol] = 35;
+                planWeights[UniqueSpawnCampaignBehavior.WarPlanEnemyVillageRaid] = 30;
+            }
+
+            if (lootableVillageCount <= 0)
+            {
+                planWeights[UniqueSpawnCampaignBehavior.WarPlanEnemyDeepPatrol] += planWeights[UniqueSpawnCampaignBehavior.WarPlanEnemyVillageRaid];
+                planWeights[UniqueSpawnCampaignBehavior.WarPlanEnemyVillageRaid] = 0;
+            }
+
+            if (avoidLastPlan && planWeights.ContainsKey(_orionLastPickedWarPlanMode))
+            {
+                var otherWeight = planWeights
+                    .Where(pair => pair.Key != _orionLastPickedWarPlanMode)
+                    .Sum(pair => pair.Value);
+
+                if (otherWeight > 0)
+                {
+                    planWeights[_orionLastPickedWarPlanMode] = 0;
+                }
+            }
+
+            return planWeights;
+        }
+
+        public string GetOrionPlanWeightDebug()
+        {
+            const string noTargetText = "no valid war faction.";
+
+            var targetFaction = PickFactionThatHurtAthelLorenMost();
+            if (targetFaction == null)
+            {
+                return noTargetText;
+            }
+
+            var lootableVillageCount = EnemyLootableVillages(targetFaction).Count();
+            var rawWeights = WarPlanWeights(AthelLoren().CurrentTotalStrength, lootableVillageCount, false);
+            var effectiveWeights = WarPlanWeights(AthelLoren().CurrentTotalStrength, lootableVillageCount, true);
+
+            return "target faction: " + targetFaction.Name +
+                   "\nathel loren strength: " + AthelLoren().CurrentTotalStrength.ToString("0") +
+                   "\nlootable villages: " + lootableVillageCount +
+                   "\nlast picked: " + WarPlanName(_orionLastPickedWarPlanMode) +
+                   "\nraw weights: " + PlanWeightText(rawWeights) +
+                   "\neffective weights: " + PlanWeightText(effectiveWeights) +
+                   "\nactive hunt candidates: " + HuntCandidates().Count();
+        }
+
+        private string PlanWeightText(Dictionary<int, int> weights)
+        {
+            return "own=" + weights[UniqueSpawnCampaignBehavior.WarPlanOwnVillagePatrol] +
+                   ", deep=" + weights[UniqueSpawnCampaignBehavior.WarPlanEnemyDeepPatrol] +
+                   ", raid=" + weights[UniqueSpawnCampaignBehavior.WarPlanEnemyVillageRaid];
+        }
+
+        private string WarPlanName(int plan)
+        {
+            if (plan == UniqueSpawnCampaignBehavior.WarPlanOwnVillagePatrol)
+            {
+                return "own village patrol";
+            }
+
+            if (plan == UniqueSpawnCampaignBehavior.WarPlanEnemyDeepPatrol)
+            {
+                return "enemy deep patrol";
+            }
+
+            if (plan == UniqueSpawnCampaignBehavior.WarPlanEnemyVillageRaid)
+            {
+                return "enemy village raid";
+            }
+
+            if (plan == UniqueSpawnCampaignBehavior.WarPlanHomeSiegePatrol)
+            {
+                return "home siege patrol";
+            }
+
+            if (plan == UniqueSpawnCampaignBehavior.WarPlanLordHunt)
+            {
+                return "lord hunt";
+            }
+
+            return "none";
+        }
+
+        public string TestSetOrionPlan(string planName)
+        {
+            const string orionNotActiveText = "orion is not active.";
+            const string noTargetText = "no suitable target found.";
+
+            var orionParty = CurrentParty();
+            if (_orionState != UniqueSpawnState.Active || orionParty == null)
+            {
+                return new TextObject(orionNotActiveText).ToString();
+            }
+
+            var normalizedPlanName = planName?.Trim().ToLowerInvariant();
+            if (normalizedPlanName == "hunt")
+            {
+                if (!CanStartHuntFor(Hero.MainHero))
+                {
+                    return "check CanStartHuntFor for player.";
+                }
+
+                StartHunt(Hero.MainHero, true);
+                KeepOnHuntTrail(orionParty);
+                return GetOrionDebugStatus();
+            }
+
+            if (normalizedPlanName == "siege")
+            {
+                var siegeTarget = UniqueSpawnCampaignBehavior.BesiegedOwnedOriginalHomeFief(
+                                      AthelLoren(),
+                                      IsOriginalAthelLorenFief,
+                                      DistanceToAthelLorenBorder) ??
+                                  Settlement.All
+                                      .Where(settlement => UniqueSpawnCampaignBehavior.IsOwnedOriginalHomeFief(settlement, AthelLoren(), IsOriginalAthelLorenFief))
+                                      .OrderBy(DistanceToAthelLorenBorder)
+                                      .FirstOrDefault();
+
+                if (siegeTarget == null)
+                {
+                    return noTargetText;
+                }
+
+                AssignWarPlan(UniqueSpawnCampaignBehavior.WarPlanHomeSiegePatrol, null, siegeTarget, null);
+                return GetOrionDebugStatus();
+            }
+
+            var targetFaction = PickFactionThatHurtAthelLorenMost();
+            if (targetFaction == null)
+            {
+                return noTargetText;
+            }
+
+            if (normalizedPlanName == "own")
+            {
+                var ownVillages = AthelLorenBorderVillagesFacing(targetFaction).Take(2).ToList();
+                if (ownVillages.Count == 0)
+                {
+                    return noTargetText;
+                }
+
+                AssignWarPlan(
+                    UniqueSpawnCampaignBehavior.WarPlanOwnVillagePatrol,
+                    targetFaction.StringId,
+                    ownVillages.ElementAtOrDefault(0),
+                    ownVillages.ElementAtOrDefault(1));
+                return GetOrionDebugStatus();
+            }
+
+            if (normalizedPlanName == "deep")
+            {
+                var enemySettlements = EnemyDeepPatrolSettlements(targetFaction).Take(2).ToList();
+                if (enemySettlements.Count == 0)
+                {
+                    return noTargetText;
+                }
+
+                AssignWarPlan(
+                    UniqueSpawnCampaignBehavior.WarPlanEnemyDeepPatrol,
+                    targetFaction.StringId,
+                    enemySettlements.ElementAtOrDefault(0),
+                    enemySettlements.ElementAtOrDefault(1));
+                return GetOrionDebugStatus();
+            }
+
+            if (normalizedPlanName == "raid")
+            {
+                var raidTarget = UniqueSpawnCampaignBehavior.ClosestSettlementToAffiliatedBorder(
+                    EnemyLootableVillages(targetFaction),
+                    DistanceToAthelLorenBorder);
+
+                if (raidTarget == null)
+                {
+                    return noTargetText;
+                }
+
+                AssignWarPlan(
+                    UniqueSpawnCampaignBehavior.WarPlanEnemyVillageRaid,
+                    targetFaction.StringId,
+                    raidTarget,
+                    null);
+                return GetOrionDebugStatus();
+            }
+
+            return "usage: tor.orion_plan own|deep|raid|siege|hunt";
+        }
+
+        private bool TryKeepOrStartHunt(MobileParty orionParty)
+        {
+            if (_orionWarPlanMode == UniqueSpawnCampaignBehavior.WarPlanLordHunt)
+            {
+                if (HuntTargetStillValid())
+                {
+                    KeepOnHuntTrail(orionParty);
+                    return true;
+                }
+
+                ClearHunt();
+            }
+
+            return TryPickHuntTarget(orionParty);
+        }
+
+        private bool TryPickHuntTarget(MobileParty orionParty)
+        {
+            if (orionParty == null)
+            {
+                return false;
+            }
+
+            foreach (var candidate in HuntCandidates())
+            {
+                if (!CanStartHuntFor(candidate))
+                {
+                    continue;
+                }
+
+                StartHunt(candidate, candidate == Hero.MainHero);
+                KeepOnHuntTrail(orionParty);
+                return true;
+            }
+
+            return false;
+        }
+
+        private IEnumerable<Hero> HuntCandidates()
+        {
+            _orionFiefCaptureDayHeroID ??= [];
+            _orionLastFiefCaptureDayHeroID ??= [];
+
+            var yieldedHeroIds = new HashSet<string>();
+            var currentDay = (float)CampaignTime.Now.ToDays;
+
+            foreach (var Revenge in _orionFiefCaptureDayHeroID
+                         .Where(pair => currentDay - pair.Value >= OrionHuntCaptureRevengeMinAgeDays && currentDay - LatestCaptureRevengeDay(pair.Key, pair.Value) <= OrionHuntCaptureRevengeMaxAgeDays)
+                         .OrderByDescending(pair => LatestCaptureRevengeDay(pair.Key, pair.Value)))
+            {
+                var hero = Hero.Find(Revenge.Key);
+                if (hero != null && yieldedHeroIds.Add(hero.StringId))
+                {
+                    yield return hero;
+                }
+            }
+
+            foreach (var party in MobileParty.All.Where(party => party.IsActive && party.LeaderHero != null))
+            {
+                if (CapturedAsraiLordCount(party) < OrionHuntPrisonerLordThreshold)
+                {
+                    continue;
+                }
+
+                if (yieldedHeroIds.Add(party.LeaderHero.StringId))
+                {
+                    yield return party.LeaderHero;
+                }
+            }
+        }
+
+        private void ForgetOldCaptureRevenges()
+        {
+            _orionFiefCaptureDayHeroID ??= [];
+            _orionLastFiefCaptureDayHeroID ??= [];
+
+            var currentDay = (float)CampaignTime.Now.ToDays;
+            foreach (var heroId in _orionFiefCaptureDayHeroID.Keys.ToList())
+            {
+                if (currentDay - LatestCaptureRevengeDay(heroId, _orionFiefCaptureDayHeroID[heroId]) > OrionHuntCaptureRevengeMaxAgeDays)
+                {
+                    _orionFiefCaptureDayHeroID.Remove(heroId);
+                    _orionLastFiefCaptureDayHeroID.Remove(heroId);
+                }
+            }
+        }
+
+        private float LatestCaptureRevengeDay(string heroId, float fallbackDay)
+        {
+            _orionLastFiefCaptureDayHeroID ??= [];
+            return _orionLastFiefCaptureDayHeroID.TryGetValue(heroId, out var latestRevengeDay)
+                ? latestRevengeDay
+                : fallbackDay;
+        }
+
+        private int CapturedAsraiLordCount(MobileParty party)
+        {
+            return party.PrisonRoster.GetTroopRoster()
+                .Select(rosterElement => rosterElement.Character?.HeroObject)
+                .Count(hero => hero != null && hero.IsLord && hero.MapFaction == AthelLoren());
+        }
+
+        private bool CanHeroBeHuntedAfterCapture(Hero hero)
+        {
+            var party = hero.PartyBelongedTo;
+            if (party == null)
+            {
+                return false;
+            }
+
+            if (party.Army != null)
+            {
+                return party.Army.LeaderParty == party && party.LeaderHero == hero;
+            }
+
+            return party.LeaderHero == hero;
+        }
+
+        private bool CanStartHuntFor(Hero hero)
+        {
+            if (!HuntTargetHeroIsValid(hero) || hero.MapFaction == null || !hero.MapFaction.IsAtWarWith(AthelLoren()))
+            {
+                return false;
+            }
+
+            var party = HuntTargetParty(hero);
+            return party != null && HuntTargetManCount(party) <= OrionHuntArmySizeSoftSkip;
+        }
+
+        private bool HuntTargetStillValid()
+        {
+            var targetHero = CurrentHuntTargetHero();
+            if (!HuntTargetHeroIsValid(targetHero) || targetHero.MapFaction == null || !targetHero.MapFaction.IsAtWarWith(AthelLoren()))
+            {
+                return false;
+            }
+
+            return HuntTargetParty(targetHero) != null;
+        }
+
+        private bool HuntTargetHeroIsValid(Hero hero)
+        {
+            return hero != null &&
+                   !hero.IsDead &&
+                   !hero.IsDisabled &&
+                   !hero.IsPrisoner;
+        }
+
+        private MobileParty HuntTargetParty(Hero hero)
+        {
+            var party = hero == Hero.MainHero
+                ? MobileParty.MainParty
+                : hero?.PartyBelongedTo;
+
+            if (party == null || !party.IsActive || party.IsDisbanding)
+            {
+                return null;
+            }
+
+            return party;
+        }
+
+        private int HuntTargetManCount(MobileParty party)
+        {
+            if (party.Army != null)
+            {
+                return party.Army.TotalManCount;
+            }
+
+            return party.MemberRoster.TotalManCount;
+        }
+
+        private Hero CurrentHuntTargetHero()
+        {
+            return string.IsNullOrWhiteSpace(_orionHuntTargetHeroId)
+                ? null
+                : Hero.Find(_orionHuntTargetHeroId);
+        }
+
+        private void StartHunt(Hero targetHero, bool showPlayerWarning)
+        {
+            _orionWarPlanMode = UniqueSpawnCampaignBehavior.WarPlanLordHunt;
+            _orionHuntTargetHeroId = targetHero.StringId;
+            _orionWarTargetFactionId = targetHero.MapFaction?.StringId;
+            _orionWarPrimarySettlementId = null;
+            _orionWarSecondarySettlementId = null;
+            _orionWarPlanDaysLeft = OrionWarPlanStayDurationDays;
+            _orionWarPlanTimerStarted = true;
+            _orionWarPlanTravelDaysLeft = 0;
+
+            if (showPlayerWarning)
+            {
+                const string playerHuntMessageText = "{=str_tor_unique_orion_hunt_player}Your scouts report the God-King of the forest is following your trail, seeking vengeance for his slain kin.";
+                ShowHudMessage(new TextObject(playerHuntMessageText), ThreatHudMessageColor);
+            }
+        }
+
+        private void KeepOnHuntTrail()
+        {
+            KeepOnHuntTrail(CurrentParty());
+        }
+
+        private void KeepOnHuntTrail(MobileParty orionParty)
+        {
+            if (_orionState != UniqueSpawnState.Active ||
+                _orionWarPlanMode != UniqueSpawnCampaignBehavior.WarPlanLordHunt ||
+                orionParty == null ||
+                orionParty.MapEvent != null)
+            {
+                return;
+            }
+
+            if (!HuntTargetStillValid())
+            {
+                RetryHunt();
+                return;
+            }
+
+            var targetParty = HuntTargetParty(CurrentHuntTargetHero());
+            if (targetParty == null || targetParty == orionParty)
+            {
+                RetryHunt();
+                return;
+            }
+
+            orionParty.Aggressiveness = 1f;
+            orionParty.Ai.SetDoNotMakeNewDecisions(true);
+
+            if (orionParty.DefaultBehavior != AiBehavior.EngageParty || orionParty.TargetParty != targetParty)
+            {
+                orionParty.SetMoveEngageParty(targetParty, MobileParty.NavigationType.Default);
+            }
+        }
+
+        private void DropHuntAfterTargetDefeat(MapEvent mapEvent)
+        {
+            if (_orionWarPlanMode != UniqueSpawnCampaignBehavior.WarPlanLordHunt || mapEvent.DefeatedSide == BattleSideEnum.None)
+            {
+                return;
+            }
+
+            var targetHero = CurrentHuntTargetHero();
+            if (targetHero == null || !MapEventHasHeroOnSide(mapEvent, mapEvent.DefeatedSide, targetHero))
+            {
+                return;
+            }
+
+            RetryHunt();
+        }
+
+        private bool MapEventHasHeroOnSide(MapEvent mapEvent, BattleSideEnum side, Hero hero)
+        {
+            return mapEvent.GetMapEventSide(side).Parties.Any(mapEventParty =>
+                (hero == Hero.MainHero && mapEventParty.Party == PartyBase.MainParty) ||
+                (mapEventParty.Party != null && mapEventParty.Party.MemberRoster.GetTroopCount(hero.CharacterObject) > 0));
+        }
+
+        private void RetryHunt()
+        {
+            ClearHunt();
+
+            var orionParty = CurrentParty();
+            if (_orionState == UniqueSpawnState.Active && orionParty != null)
+            {
+                TryPickHuntTarget(orionParty);
+            }
+        }
+
+        private void ClearHunt()
+        {
+            ClearHuntTargetOnly();
+
+            if (_orionWarPlanMode == UniqueSpawnCampaignBehavior.WarPlanLordHunt)
+            {
+                _orionWarPlanMode = UniqueSpawnCampaignBehavior.WarPlanOwnVillagePatrol;
+                _orionWarPlanDaysLeft = 0;
+                _orionWarPlanTimerStarted = false;
+                _orionWarPlanTravelDaysLeft = 0;
+            }
+
+            var orionParty = CurrentParty();
+            if (_orionState == UniqueSpawnState.Active && orionParty != null)
+            {
+                orionParty.Aggressiveness = 1f;
+                orionParty.Ai.SetDoNotMakeNewDecisions(false);
+            }
+        }
+
+        private void ClearHuntTargetOnly()
+        {
+            _orionHuntTargetHeroId = null;
+        }
+
+        public TextObject GetOrionBehaviorText(MobileParty party)
+        {
+            var target = CurrentWarTarget();
+
+            if (_orionWarPlanMode == UniqueSpawnCampaignBehavior.WarPlanLordHunt)
+            {
+                var targetHero = CurrentHuntTargetHero();
+                if (targetHero == null)
+                {
+                    return TextObject.GetEmpty();
+                }
+
+                var huntingText = new TextObject("{=str_tor_unique_orion_behavior_hunting}Hunting for {TARGET_HERO}.");
+                huntingText.SetTextVariable("TARGET_HERO", targetHero.Name);
+                return huntingText;
+            }
+
+            if (party != null && (party.ShortTermBehavior == AiBehavior.EngageParty || MobileParty.IsFleeBehavior(party.ShortTermBehavior)))
+            {
+                return TextObject.GetEmpty();
+            }
+
+            if (target == null)
+            {
+                return TextObject.GetEmpty();
+            }
+
+            if (_orionWarPlanMode == UniqueSpawnCampaignBehavior.WarPlanHomeSiegePatrol)
+            {
+                var protectingText = new TextObject("{=str_tor_unique_orion_behavior_protecting}Protecting {TARGET_SETTLEMENT}."); // protecting an under attack settlement of athel loren
+                protectingText.SetTextVariable("TARGET_SETTLEMENT", target.Name);
+                return protectingText;
+            }
+
+            if (_orionWarPlanMode == UniqueSpawnCampaignBehavior.WarPlanOwnVillagePatrol)
+            {
+                var watchingText = new TextObject("{=str_tor_unique_orion_behavior_keeping_watch}Keeping watch of {TARGET_SETTLEMENT}."); // patrolling athel loren village
+                watchingText.SetTextVariable("TARGET_SETTLEMENT", target.Name);
+                return watchingText;
+            }
+
+            if (_orionWarPlanMode == UniqueSpawnCampaignBehavior.WarPlanEnemyDeepPatrol)
+            {
+                var ravagingText = new TextObject("{=str_tor_unique_orion_behavior_ravaging}Ravaging {TARGET_SETTLEMENT}."); // looking for enemies in enemy territory
+                ravagingText.SetTextVariable("TARGET_SETTLEMENT", target.Name);
+                return ravagingText;
+            }
+
+            if (_orionWarPlanMode == UniqueSpawnCampaignBehavior.WarPlanEnemyVillageRaid)
+            {
+                var raidingText = new TextObject("{=str_tor_unique_orion_behavior_raiding}Raiding {TARGET_SETTLEMENT}."); // Raiding enemy villages
+                raidingText.SetTextVariable("TARGET_SETTLEMENT", target.Name);
+                return raidingText;
+            }
+
+            return TextObject.GetEmpty();
+        }
+
+        private void ReportMovingToPlayerland(int plan, Settlement target)
+        {
+            if ((plan != UniqueSpawnCampaignBehavior.WarPlanOwnVillagePatrol && plan != UniqueSpawnCampaignBehavior.WarPlanEnemyDeepPatrol) ||
+                target == null ||
+                target.MapFaction == null)
+            {
+                return;
+            }
+
+            var playerFaction = Hero.MainHero.MapFaction;
+            if (target.OwnerClan != Clan.PlayerClan && target.MapFaction != playerFaction)
+            {
+                return;
+            }
+
+            const string playerLandsMessageText = "{=str_tor_unique_orion_to_player_land}Your scouts report The God-King of the Forest is coming towards your lands";
+            ShowHudMessage(new TextObject(playerLandsMessageText), ThreatHudMessageColor);
         }
 
         private IFaction PickFactionThatHurtAthelLorenMost()
         {
             var athelLoren = AthelLoren();
-            var orionClan = Clan.FindFirst(clan => clan.StringId == OrionClanId);
+            var orionClan = Clan.FindFirst(clan => clan.StringId == "wildhunt_clan_1");
 
-            // grudges can outlive wars. only current enemies are allowed. TBD
             var validWarFactions = UniqueSpawnCampaignBehavior.WarMirrorTargets(orionClan, athelLoren)
                 .Where(faction => athelLoren.IsAtWarWith(faction) && !faction.IsEliminated);
 
@@ -956,15 +1927,16 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
         private IEnumerable<Settlement> EnemyDeepPatrolSettlements(IFaction targetFaction)
         {
             return UniqueSpawnCampaignBehavior.EnemyDeepPatrolSettlements(
-                targetFaction,
-                DistanceToAthelLorenBorder);
+                    targetFaction,
+                    DistanceToAthelLorenBorder)
+                .Where(settlement => settlement.StringId != "castle_BK2");
         }
 
         private IEnumerable<Settlement> EnemyLootableVillages(IFaction targetFaction)
         {
             return UniqueSpawnCampaignBehavior.EnemyLootableVillages(
                 targetFaction,
-                VillageCanStillBeRaidedByOrion,
+                VillageCanBeRaided,
                 DistanceToAthelLorenBorder);
         }
 
@@ -976,17 +1948,17 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
                 settlement);
         }
 
-        private bool VillageCanStillBeRaidedByOrion(Settlement settlement)
+        private bool VillageCanBeRaided(Settlement settlement)
         {
             return settlement != null &&
                    settlement.IsVillage &&
                    !settlement.IsRaided &&
-                   (!settlement.IsUnderRaid || settlement.LastAttackerParty == CurrentOrionParty()) &&
+                   (!settlement.IsUnderRaid || settlement.LastAttackerParty == CurrentParty()) &&
                    settlement.MapFaction != null &&
-                   Clan.FindFirst(clan => clan.StringId == OrionClanId).IsAtWarWith(settlement.MapFaction);
+                   Clan.FindFirst(clan => clan.StringId == "wildhunt_clan_1").IsAtWarWith(settlement.MapFaction);
         }
 
-        private Settlement CurrentOrionWarTarget()
+        private Settlement CurrentWarTarget()
         {
             return UniqueSpawnCampaignBehavior.CurrentWarTarget(
                 _orionWarPrimarySettlementId,
@@ -994,7 +1966,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
                 _orionWarTargetSwapIndex);
         }
 
-        private IFaction OrionWarTargetFaction()
+        private IFaction WarTargetFaction()
         {
             if (string.IsNullOrWhiteSpace(_orionWarTargetFactionId))
             {
@@ -1010,13 +1982,22 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             return Clan.All.FirstOrDefault(clan => clan.StringId == _orionWarTargetFactionId);
         }
 
-        private void ClearOrionWarPlan()
+        private void ClearWarPlan()
         {
             _orionWarTargetFactionId = null;
             _orionWarPrimarySettlementId = null;
             _orionWarSecondarySettlementId = null;
+            _orionHuntTargetHeroId = null;
             _orionWarPlanDaysLeft = 0;
+            _orionWarPlanTimerStarted = false;
+            _orionWarPlanTravelDaysLeft = 0;
             _orionWarPlanMode = UniqueSpawnCampaignBehavior.WarPlanOwnVillagePatrol;
+        }
+
+        private bool AthelLorenIsGone()
+        {
+            var athelLoren = AthelLoren();
+            return athelLoren.IsEliminated || athelLoren.Settlements.Count == 0;
         }
 
         private Kingdom AthelLoren()
@@ -1031,10 +2012,10 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
 
         private Settlement OakOfAges()
         {
-            return Settlement.Find(OakOfAgesSettlementId);
+            return Settlement.Find("oak_of_ages");
         }
 
-        private void ReportOrionSpawn(bool returningFromOak)
+        private void ReportSpawn(bool returningFromOak)
         {
             const string spawnedMessageText = "{=str_tor_unique_orion_spawned_message}orion spawns";
             const string returnedMessageText = "{=str_tor_unique_orion_returned_message}orion returns";
@@ -1043,16 +2024,16 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
                 ? new TextObject(returnedMessageText)
                 : new TextObject(spawnedMessageText);
 
-            if (PlayerShouldSeeOrionInkStory())
+            if (PlayerShouldSeeInkStory())
             {
-                QueueOrionInkStory(OrionSpawnedStoryId);
+                QueueInkStory("OrionSpawned");
                 return;
             }
 
-            ShowOrionHudMessage(message, SpawnHudMessageColor);
+            ShowHudMessage(message, SpawnHudMessageColor);
         }
 
-        private bool PlayerShouldSeeOrionInkStory()
+        private bool PlayerShouldSeeInkStory()
         {
             var athelLoren = AthelLoren();
             var playerFaction = Hero.MainHero.MapFaction;
@@ -1062,12 +2043,12 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
                    playerFaction.IsAtWarWith(athelLoren);
         }
 
-        private void ShowOrionHudMessage(TextObject message, Color color)
+        private void ShowHudMessage(TextObject message, Color color)
         {
             InformationManager.DisplayMessage(new InformationMessage(message.ToString(), color));
         }
 
-        private void QueueOrionInkStory(string storyId)
+        private void QueueInkStory(string storyId)
         {
             _queuedOrionInkStorys ??= [];
 
@@ -1079,7 +2060,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             _queuedOrionInkStorys.Add(storyId);
         }
 
-        private void OpenQueuedOrionInkStoryOnMap()
+        private void OpenQueuedInkStoryOnMap()
         {
             _queuedOrionInkStorys ??= [];
 
