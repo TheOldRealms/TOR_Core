@@ -43,7 +43,7 @@ namespace TOR_Core.HarmonyPatches
                        "THIS WILL TAKE A LONG TIME!!!{newline}" +
                        "Our users report anything between 20 and 70 minutes.{newline}{newline}" +
                        "This ensures that you won't need to compile the shaders individually during normal gameplay as it can cause issues with stability.{newline}" +
-                       "This is meant to reduce the number of UI portrait generation crashes and also eliminate the long battle loading times during normal gameplay.").ToString();
+                       "This is meant to reduce the number of UI portrait generation crashes and also eliminate the long battle loading times during normal gameplay.").SetTextVariable("newline", "\n").ToString();
 
             var data = new InquiryData(
                 new TextObject("{=str_tor_menu_shader_cache_popup_title}Important warning").ToString(),
