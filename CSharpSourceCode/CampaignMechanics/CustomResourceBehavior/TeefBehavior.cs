@@ -24,7 +24,7 @@ namespace TOR_Core.CampaignMechanics.CustomResourceBehavior;
 public class TeefBehavior : CampaignBehaviorBase
 {
     private const int ItemExchange = 400; // item of price of X gets X/400 of teef in return
-    private const int GoldExchange = 100;
+    private const int GoldToTeefExchangeRate = 100;
     private const string QuartermasterId = "tor_kwartamasta_greenskins_0";
 
     public override void RegisterEvents()
@@ -413,7 +413,7 @@ public class TeefBehavior : CampaignBehaviorBase
     {
         var gold = (int)(inquiryElements[0].Identifier);
 
-        var goldExchange = GoldExchange;
+        var goldExchange = GoldToTeefExchangeRate;
 
 
 
