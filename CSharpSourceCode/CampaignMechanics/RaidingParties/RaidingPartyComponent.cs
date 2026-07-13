@@ -108,6 +108,7 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
         private void FindNewTarget()
         {
             Target = TORCommon.FindSettlementsAroundPosition(Party.Position.ToVec2(), 100, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
+            Target ??= TORCommon.FindSettlementsAroundPosition(Party.Position.ToVec2(), 150, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
         }
     }
 }
