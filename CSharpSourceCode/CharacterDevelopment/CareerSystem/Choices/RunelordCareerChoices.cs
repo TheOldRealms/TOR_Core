@@ -138,7 +138,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                     MutationTargetType = typeof(AbilityTemplate),
                     MutationTargetOriginalId = "WisdomOfThungni",
                     PropertyName = "ScaleVariable1",
-                    PropertyValue = (choice, originalValue, agent) =>  CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.009f),
+                    PropertyValue = (choice, originalValue, agent) =>  CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.1f),
                     MutationType = OperationType.Add
                 },
             });
