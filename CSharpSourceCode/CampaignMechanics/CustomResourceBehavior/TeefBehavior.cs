@@ -167,9 +167,9 @@ public class TeefBehavior : CampaignBehaviorBase
 
         starter.AddDialogLine("gw_quartermaster_playertown", "start", "gw_quartermaster_owner_hub", TORTextHelper.GetText("tor_gs_quartermaster_owner_intro_text", "Oi, Boss, youz got sum loot fer da pile?"), () => IsQuarterMaster() && PlayerOwnsTown(), null, 200);
         starter.AddDialogLine("gw_quartermaster_playertown_reintro", "gw_quartermaster_playertown_reintro", "gw_quartermaster_owner_hub", TORTextHelper.GetText("tor_gs_quartermaster_owner_anything_else_text", "Iz dere more, Boss?"), null, null, 200);
-        starter.AddPlayerLine("gw_quartermaster_hub_playertown_shinies_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", TORTextHelper.GetText("tor_gs_quartermaster_shinies_option_text", "Shinies"), () => Hero.MainHero.Gold >= 5000, () => SpendGold(true));
+        starter.AddPlayerLine("gw_quartermaster_hub_playertown_shinies_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", TORTextHelper.GetText("tor_gs_quartermaster_shinies_option_text", "Shinies"), () => Hero.MainHero.Gold >= 5000, () => SpendGold(CurrentSettlementIsGreenskinCamp()));//Shiny piles only apply effects in greenskin original settlements; therefore, trading for gold_piles is gated behind the same set of checks. Player ownership is verified earlier in the dialogue tree.
         starter.AddPlayerLine("gw_quartermaster_hub_playertown_teef_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", TORTextHelper.GetText("tor_gs_quartermaster_make_teefbags_option_text", "Make Teefbags"), () => Hero.MainHero.GetCultureSpecificCustomResourceValue() >= 1000, MakeTeefBags);
-        starter.AddPlayerLine("gw_quartermaster_hub_playertown_loot_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", TORTextHelper.GetText("tor_gs_quartermaster_loot_option_text", "Loot"), null, OpenForCreatingLootPiles);
+        starter.AddPlayerLine("gw_quartermaster_hub_playertown_loot_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", TORTextHelper.GetText("tor_gs_quartermaster_loot_option_text", "Loot"), CurrentSettlementIsGreenskinCamp, OpenForCreatingLootPiles);//Loot piles only apply effects in greenskin original settlements; therefore, trading for loot_piles is gated behind the same set of checks. Player ownership is verified earlier in the dialogue tree.
         starter.AddPlayerLine("gw_quartermaster_hub_playertown_leave_p", "gw_quartermaster_owner_hub", "close_window", TORTextHelper.GetText("tor_gs_quartermaster_leave_option_text", "Iz outta 'ere!"), null, null);
 
         bool IsQuarterMaster()
@@ -183,6 +183,11 @@ public class TeefBehavior : CampaignBehaviorBase
         bool PlayerOwnsTown()
         {
             return Hero.MainHero.CurrentSettlement.Owner == Hero.MainHero;
+        }
+
+        bool CurrentSettlementIsGreenskinCamp()
+        {
+            return Hero.MainHero.CurrentSettlement.IsGreenskinCamp();
         }
 
         void MakeTeefBags()
