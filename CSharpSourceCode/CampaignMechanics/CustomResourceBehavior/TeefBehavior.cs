@@ -389,7 +389,7 @@ public class TeefBehavior : CampaignBehaviorBase
             selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, hint.ToString()));
         }
 
-        Action<List<InquiryElement>> action = forPiles ? CreateShinyPiles : AddGoldForTeef;
+        Action<List<InquiryElement>> action = forPiles ? CreateShinyPiles : TradeGoldForTeef;
 
         var inquirydata = new MultiSelectionInquiryData(title.ToString(), description.ToString(), selectableOptions, true, 1, 1, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
             action, null);
@@ -409,7 +409,7 @@ public class TeefBehavior : CampaignBehaviorBase
         Hero.MainHero.ChangeHeroGold(-gold);
     }
 
-    private void AddGoldForTeef(List<InquiryElement> inquiryElements)
+    private void TradeGoldForTeef(List<InquiryElement> inquiryElements)
     {
         var gold = (int)(inquiryElements[0].Identifier);
 
