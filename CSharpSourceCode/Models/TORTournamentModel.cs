@@ -151,6 +151,9 @@ namespace TOR_Core.Models
         /// Gets practice weapons for non-human races.
         /// Called by ArenaPracticePatch to replace native weapon assignment.
         /// </summary>
+        /// <remarks>
+        /// This will need to receive an argument for the participant count in order to make use of the one and two participant sets as it is unable to differentiate between the contexts currently.
+        /// </remarks>
         public Equipment GetParticipantWeapons(CharacterObject participant)
         {
             string[] weaponRosterIds = null;
