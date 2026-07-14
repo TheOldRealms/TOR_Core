@@ -72,7 +72,7 @@ public class SpellbreakerRuneScript : ITriggeredScript
             if (agent.Team.IsPlayerAlly)
             {
                 var component = agent.GetComponent<StatusEffectComponent>();
-                component.RemoveStatusEffect("", StatusEffectComponent.EffectFlag.Enemy);
+                component.RemoveStatusEffect("", StatusEffectComponent.EffectFlag.Enemy);//Sly : why is an empty status effect attempting to be removed? This will do nothing because status effects with empty ids will be filtered out before attempting addition to a component.
             }
 
             if (!agent.IsSpellCaster()) continue;
