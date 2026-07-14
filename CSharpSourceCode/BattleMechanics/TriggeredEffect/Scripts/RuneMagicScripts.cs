@@ -87,8 +87,7 @@ public class SpellbreakerRuneScript : ITriggeredScript
             foreach (var agent in agents)
             {
                 var component = agent.GetComponent<AbilityComponent>();
-                if (component == null)
-                    return;
+                if (component == null) continue;
 
                 foreach (var ability in component.KnownAbilitySystem) ability.SetCoolDown(ability.Template.CoolDown);
             }
