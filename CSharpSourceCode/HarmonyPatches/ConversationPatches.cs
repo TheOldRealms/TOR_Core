@@ -8,12 +8,16 @@ using TaleWorlds.CampaignSystem.ViewModelCollection.GameMenu.Overlay;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {
     [HarmonyPatch]
     public static class ConversationPatches
     {
+        /// <summary>
+        /// Removes the option to speak with an npc with a generic background scene instead of visiting the npc and speaking at their location in the settlement.
+        /// </summary>
         [HarmonyPostfix]
         [HarmonyPatch(typeof(SettlementMenuOverlayVM), "ExecuteOnSetAsActiveContextMenuItem")]
         public static void RemoveQuickTalk(SettlementMenuOverlayVM __instance)
@@ -81,7 +85,7 @@ namespace TOR_Core.HarmonyPatches
         public static void ChaosCultistBanditTextAndVoiceOverride()
         {
             var culture = CharacterObject.OneToOneConversationCharacter.Culture;
-            if (culture.StringId == "forest_bandits")
+            if (culture.StringId == TORConstants.Cultures.CHAOS_CULTIST)
             {
                 var text = TORTextHelper.GetTextObject("ccultist_robbery", "Your gold or your life!");
                 MBTextManager.SetTextVariable("ROBBERY_THREAT", text, false);
