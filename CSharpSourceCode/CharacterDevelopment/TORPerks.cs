@@ -252,8 +252,8 @@ namespace TOR_Core.CharacterDevelopment
             _divineMission.Initialize("{=str_tor_perk_divine_mission_label}Divine Mission", TORSkills.Faith, 50, _devotee,
                 "{=str_tor_perk_divine_mission_1}You gain 1 focus point in Medicine.",
                 PartyRole.Personal, 1f, EffectIncrementType.Add,
-                "{=str_tor_perk_divine_mission_2}5% increased militia growth in settlements owned by your clan.",
-                PartyRole.ClanLeader, 0.05f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                "{=str_tor_perk_divine_mission_2}+1 militia growth in settlements owned by your clan.",
+                PartyRole.ClanLeader, 1f, EffectIncrementType.Add, TroopUsageFlags.None, TroopUsageFlags.None);
 
             _imperturbable.Initialize("{=str_tor_perk_imperturbable_label}Imperturbable", TORSkills.Faith, 100, _superstitious,
                 "{=str_tor_perk_imperturbable_1}Gain 500 Faith skill experience every day while waiting in a town.",
