@@ -1523,7 +1523,7 @@
 		id="thungni_stone_and_steel_buff" 
 		particle_id="psys_energy_sphere"
 		particle_intensity="Low"
-		base_effect_value="0.25"
+		base_effect_value="0.5"
 		damage_type="Magical"
 		applies_for_attack_type="All"
 		type="DamageAmplification">
