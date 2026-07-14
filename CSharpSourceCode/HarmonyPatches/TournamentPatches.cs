@@ -17,7 +17,7 @@ namespace TOR_Core.HarmonyPatches
     public class TournamentFightMissionController_Patch
     {
         /// <summary>
-        /// After tournament match equipment is prepared, swap orc equipment for goblin equipment if participant is a goblin.
+        /// After tournament match equipment is prepared, swap equipment for any non-human ratio race to equipment relevant for their race, eg. goblin, orc, dwarf.
         /// This is analogous to ArenaPracticePatch.AddRandomWeapons_Prefix for practice fights.
         /// </summary>
         [HarmonyPostfix]
@@ -41,16 +41,16 @@ namespace TOR_Core.HarmonyPatches
                 {
                     if (participant.Character == null) continue;
 
-                    // If this is a goblin, replace their equipment with goblin-specific tournament equipment
+                    //Races with racelocked gear have equipment swapped to prevent visual incongruities.
                     if (participant.Character.IsGoblin() || participant.Character.IsOrc() || participant.Character.IsDwarf())
                     {
-                        Equipment goblinWeapons = tournamentModel.GetParticipantWeapons(participant.Character);
-                        if (goblinWeapons != null)
+                        Equipment racialWeapons = tournamentModel.GetParticipantWeapons(participant.Character);
+                        if (racialWeapons != null)
                         {
-                            // Replace weapon slots (0-4) with goblin weapons
+                            // Replace weapon slots 0-4 with a racial alternative. No consideration for replacement with a similar type of equipment, eg gun replaces a bow.
                             for (int i = 0; i <= 4; i++)
                             {
-                                EquipmentElement weaponSlot = goblinWeapons.GetEquipmentFromSlot((EquipmentIndex)i);
+                                EquipmentElement weaponSlot = racialWeapons.GetEquipmentFromSlot((EquipmentIndex)i);
                                 if (weaponSlot.Item != null)
                                 {
                                     participant.MatchEquipment.AddEquipmentToSlotWithoutAgent((EquipmentIndex)i, weaponSlot);

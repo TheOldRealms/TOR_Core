@@ -158,31 +158,16 @@ namespace TOR_Core.Models
             // Check for Greenskin races (Orcs/Goblins)
             if (participant.IsOrc())
             {
-                weaponRosterIds = new string[]
-                {
-                    "tor_gs_tournament_template_one_participant_v1",
-                    "tor_gs_tournament_template_two_participant_v1",
-                    "tor_gs_tournament_template_four_participant_v1"
-                };
+                weaponRosterIds = ["tor_gs_tournament_template_four_participant_v1"];
             }
             else if (participant.IsGoblin())
             {
-                weaponRosterIds = new string[]
-                {
-                    "tor_gs_goblin_tournament_template_one_participant_v1",
-                    "tor_gs_goblin_tournament_template_two_participant_v1",
-                    "tor_gs_goblin_tournament_template_four_participant_v1"
-                };
+                weaponRosterIds = ["tor_gs_goblin_tournament_template_four_participant_v1"];
             }
             // Check for Dwarf race
             else if (participant.IsDwarf())
             {
-                weaponRosterIds = new string[]
-                {
-                    "tor_dw_tournament_template_one_participant_v1",
-                    "tor_dw_tournament_template_two_participant_v1",
-                    "tor_dw_tournament_template_four_participant_v1"
-                };
+                weaponRosterIds = ["tor_dw_tournament_template_four_participant_v1"];
             }
 
             // If we have roster IDs for weapons, return random weapon equipment
