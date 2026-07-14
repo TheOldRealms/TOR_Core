@@ -46,12 +46,11 @@ public class WisdomOfThungniScript : CareerAbilityScript
 
             element.SetCoolDown(left - value);
 
-            if (Hero.MainHero.HasAttribute("StoneAndSteelPassive4"))
-                if (!element.IsOnCooldown())
-                {
-                    var choice = TORCareerChoices.GetChoice("StoneAndSteelPassive4");
-                    Agent.Main.ApplyStatusEffect("thungni_stone_and_steel_buff", Agent.Main, choice.GetPassiveValue());
-                }
+            if (Hero.MainHero.HasAttribute("StoneAndSteelPassive4") && !element.IsOnCooldown())
+            {
+                var choice = TORCareerChoices.GetChoice("StoneAndSteelPassive4");
+                Agent.Main.ApplyStatusEffect("thungni_stone_and_steel_buff", Agent.Main, choice.GetPassiveValue());
+            }
 
             if (!secondRound && Hero.MainHero.HasCareerChoice("ForgefireBurningKeystone"))
             {
