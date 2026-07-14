@@ -28,10 +28,12 @@ public class WisdomOfThungniScript : CareerAbilityScript
 
 
         var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "magical_weapon_10");
-        if (trait == null) return;
+        if (trait != null)
+        {
+            var comp = agent.GetComponent<ItemTraitAgentComponent>();
+            if (comp != null) comp.AddTraitToWieldedWeapon(trait, ability.Template.Duration);
+        }
 
-        var comp = agent.GetComponent<ItemTraitAgentComponent>();
-        if (comp != null) comp.AddTraitToWieldedWeapon(trait, ability.Template.Duration);
 
         foreach (var element in abilityComponent.KnownAbilitySystem)
         {
