@@ -172,7 +172,7 @@
   <string id="tor_perk_devotee_2" text="{=str_tor_perk_devotee_2}Praying at a shrine grants 50% increased devotion towards your chosen religion." />
   <string id="tor_perk_divine_mission_label" text="{=str_tor_perk_divine_mission_label}Divine Mission" />
   <string id="tor_perk_divine_mission_1" text="{=str_tor_perk_divine_mission_1}You gain 1 focus point in Medicine." />
-  <string id="tor_perk_divine_mission_2" text="{=str_tor_perk_divine_mission_2}5% increased militia growth in settlements owned by your clan." />
+  <string id="tor_perk_divine_mission_2" text="{=str_tor_perk_divine_mission_2}+1 militia growth in settlements owned by your clan." />
   <string id="tor_perk_imperturbable_label" text="{=str_tor_perk_imperturbable_label}Imperturbable" />
   <string id="tor_perk_imperturbable_1" text="{=str_tor_perk_imperturbable_1}Gain 500 Faith skill experience every day while waiting in a town." />
   <string id="tor_perk_imperturbable_2" text="{=str_tor_perk_imperturbable_2}Religious units in your party gain 10% physical resistance." />
