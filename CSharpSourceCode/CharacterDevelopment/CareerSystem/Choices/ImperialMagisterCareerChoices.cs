@@ -355,7 +355,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _arcaneKnowledgePassive1.Initialize(CareerID, "+10% spell damage of Imperial Wizard Companions.", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
             _arcaneKnowledgePassive2.Initialize(CareerID, "+10% personal spell effect radius.", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10f, PassiveEffectType.SpellRadius, true));
             _arcaneKnowledgePassive3.Initialize(CareerID, "+10% spell power if armour weight does not exceed 11.", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.SpellEffectiveness, true,
-                (characterObject => characterObject.IsHero && characterObject.HeroObject == Hero.MainHero && CareerChoicesHelper.ArmorWeightCheck(Agent.Main, 11))));
+                (characterObject => characterObject.GetEffectiveArmorWeight(true) <= 11)));
             _arcaneKnowledgePassive4.Initialize(CareerID, "+2 personal max 'Winds of Magic' per Imperial Wizard Companion.", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special));
         }
 

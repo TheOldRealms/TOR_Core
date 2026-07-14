@@ -1,3 +1,4 @@
+using Helpers;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -5,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.ObjectSystem;
@@ -486,6 +488,26 @@ namespace TOR_Core.Extensions
                 }
             }
             return CharacterEquipmentItems;
+        }
+
+        /// <summary>
+        /// Adjusts armour weight for Athletics perk and career passives.
+        /// </summary>
+        /// <param name="character"></param>
+        /// <param name="forHuman">True for the 5 humanoid armour slots. False for mount armour.</param>
+        /// <returns></returns>
+        public static float GetEffectiveArmorWeight(this CharacterObject character, bool forHuman)
+        {
+            var effectiveWeight = new ExplainedNumber(character.FirstBattleEquipment.GetTotalWeightOfArmor(forHuman));
+            
+            PerkHelper.AddPerkBonusForCharacter(DefaultPerks.Athletics.FormFittingArmor, character, true, ref effectiveWeight);
+
+            if (CharacterObject.PlayerCharacter != null && character == CharacterObject.PlayerCharacter)
+            {
+                CareerHelper.ApplyBasicCareerPassives(character.HeroObject, ref effectiveWeight, PassiveEffectType.EquipmentWeightReduction, true);
+            }
+
+            return effectiveWeight.ResultNumber;
         }
     }
 }
