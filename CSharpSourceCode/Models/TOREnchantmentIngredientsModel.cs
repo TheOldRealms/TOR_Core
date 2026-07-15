@@ -207,7 +207,7 @@ public class TOREnchantmentIngredientsModel : GameModel
                 }
                 break;
             case TorTradeGoodType.GemStone:
-                if (character.Culture.StringId == TORConstants.Cultures.DAWI || character.Culture.StringId == TORConstants.Cultures.GREENSKIN || character.Culture.StringId == TORConstants.Cultures.GREENSKIN_BANDIT)
+                if (character.Culture.StringId == TORConstants.Cultures.DAWI || character.Culture.StringId == TORConstants.Cultures.GREENSKIN || character.Culture.StringId == TORConstants.Cultures.GREENSKIN_BANDIT)//character.IsGreenskin || character.IsTroll is more reliable detection than hardcoding the cultures. Dawi as well can be changed to IsDwarf.
                 {
                     result += 1;
 
