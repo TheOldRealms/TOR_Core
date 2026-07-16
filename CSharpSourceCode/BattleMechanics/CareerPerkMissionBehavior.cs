@@ -298,14 +298,14 @@ namespace TOR_Core.BattleMechanics
                         var value = ((int)blow.InflictedDamage * multiplier) / 10;
                         Hero.MainHero.AddSkillXp(DefaultSkills.Roguery, value);
                     }
-                    if (choices.Contains("ChiselAndHammerPassive2"))
+                }
+                
+                if (choices.Contains("ChiselAndHammerPassive2"))
+                {
+                    var value = ((int)blow.InflictedDamage) / 10; //Not sure if this is too much can be adjusted
+                    if (affectorAgent.WieldedWeapon.Item.HasAnyTrait())
                     {
-                        var value = ((int)blow.InflictedDamage) / 10; //Not sure if this is too much can be adjusted
-                        if (affectorAgent.WieldedWeapon.Item.HasAnyTrait())
-                        {
-                            Hero.MainHero.AddSkillXp(TORSkills.Spellcraft, value);
-                        }
-
+                        Hero.MainHero.AddSkillXp(TORSkills.Spellcraft, value);
                     }
                 }
 
