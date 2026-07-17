@@ -1,0 +1,46 @@
+<Prefab>
+  <Window>
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare_9" Color="#000000CC">
+      <Children>
+        <DimensionSyncWidget Id="TORRecommendedSettingsWarningParent" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center" PositionYOffset="-20" DimensionToSync="Vertical" WidgetToCopyHeightFrom="TORRecommendedSettingsWarningContentList">
+          <Children>
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="720" ClipContents="true">
+              <Children>
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="720" SuggestedHeight="390" HorizontalAlignment="Center" VerticalAlignment="Top" Sprite="StdAssets\Popup\canvas" />
+              </Children>
+            </Widget>
+            <ListPanel Id="TORRecommendedSettingsWarningContentList" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="720" StackLayout.LayoutMethod="VerticalTopToBottom">
+              <Children>
+                <AutoHideRichTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MinHeight="72" MarginLeft="110" MarginRight="110" MarginTop="16" Brush="TorWelcomePopupTitleBrush" Text="@TitleText" WidgetToHideIfEmpty="..\." />
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="23" Sprite="StdAssets\Popup\divider" />
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginLeft="82" MarginRight="82" MarginTop="22">
+                  <Children>
+                    <RichTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MinHeight="138" HorizontalAlignment="Center" Brush="TorWelcomePopupDescriptionBrush" Brush.TextHorizontalAlignment="Center" Brush.TextVerticalAlignment="Center" Text="@DescriptionText" />
+                  </Children>
+                </Widget>
+                <NavigationForcedScopeCollectionTargeter CollectionParent="..\." />
+                <NavigationScopeTargeter ScopeID="TORRecommendedSettingsWarningButtonsScope" ScopeParent="..\TORRecommendedSettingsWarningButtons" ScopeMovements="Horizontal" HasCircularMovement="true" />
+                <ListPanel Id="TORRecommendedSettingsWarningButtons" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="76" HorizontalAlignment="Center" MarginTop="20" MarginBottom="20" StackLayout.LayoutMethod="HorizontalLeftToRight">
+                  <Children>
+                    <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="190" SuggestedHeight="64" Brush="Popup.Done.Button" Command.Click="ExecuteConfirm" GamepadNavigationIndex="0">
+                      <Children>
+                        <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="35" VerticalAlignment="Center" MarginLeft="25" MarginRight="25" Brush="TorWelcomePopupButtonTextBrush" Text="@ConfirmButtonText" />
+                      </Children>
+                    </ButtonWidget>
+                    <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="190" SuggestedHeight="64" MarginLeft="10" Brush="Popup.Cancel.Button" Command.Click="ExecuteCancel" GamepadNavigationIndex="1">
+                      <Children>
+                        <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="35" VerticalAlignment="Center" MarginLeft="25" MarginRight="25" Brush="TorWelcomePopupButtonTextBrush" Text="@CancelButtonText" />
+                      </Children>
+                    </ButtonWidget>
+                  </Children>
+                </ListPanel>
+              </Children>
+            </ListPanel>
+            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="StdAssets\Popup\canvas_gradient" IsEnabled="false" />
+            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="frame_9" ExtendLeft="18" ExtendTop="18" ExtendRight="18" ExtendBottom="18" IsEnabled="false" />
+          </Children>
+        </DimensionSyncWidget>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

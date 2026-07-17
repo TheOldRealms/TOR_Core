@@ -14,6 +14,7 @@ using TaleWorlds.MountAndBlade.View.Screens;
 using TaleWorlds.MountAndBlade.ViewModelCollection.GameOptions;
 using TaleWorlds.MountAndBlade.ViewModelCollection.InitialMenu;
 using TaleWorlds.ScreenSystem;
+using TOR_Core.Extensions.UI.MainMenu;
 
 namespace TOR_Core.Extensions.UI
 {
@@ -28,6 +29,9 @@ namespace TOR_Core.Extensions.UI
         private TORWelcomePopupVM _welcomePopupDataSource;
         private GauntletLayer _welcomePopupLayer;
         private GauntletMovieIdentifier _welcomePopupMovie;
+        private TORRecommendedSettingsWarningVM _recommendedSettingsWarningDataSource;
+        private GauntletLayer _recommendedSettingsWarningLayer;
+        private GauntletMovieIdentifier _recommendedSettingsWarningMovie;
         private GauntletLayer _gauntletBrightnessLayer;
         private GauntletLayer _gauntletExposureLayer;
         private BrightnessOptionVM _brightnessOptionDataSource;
@@ -39,6 +43,7 @@ namespace TOR_Core.Extensions.UI
         private Scene _scene;
         private const int _maxMainMenuSceneIndex = 7; //TODO: need to change if we have scenes with at least 2 digits
         private const int WelcomePopupLayerOrder = 4;
+        private const int RecommendedSettingsWarningLayerOrder = 5;
         private static bool _welcomePopupShownThisSession;
 
         public TORInitialScreen(InitialState initialState)
@@ -161,6 +166,7 @@ namespace TOR_Core.Extensions.UI
         protected override void OnFinalize()
         {
             base.OnFinalize();
+            CloseRecommendedSettingsWarning(false);
             CloseWelcomePopup(false);
             CloseMainMenuLinks();
             if (_gauntletLayer != null)
@@ -215,6 +221,12 @@ namespace TOR_Core.Extensions.UI
             {
                 UISoundsHelper.PlayUISound("event:/ui/default");
                 CloseWelcomePopup();
+                return;
+            }
+            if (_recommendedSettingsWarningLayer != null && _recommendedSettingsWarningLayer.Input.IsHotKeyReleased("Exit"))
+            {
+                UISoundsHelper.PlayUISound("event:/ui/default");
+                CloseRecommendedSettingsWarning();
                 return;
             }
             if (_gauntletLayer.Input.IsHotKeyReleased("Exit"))
@@ -287,7 +299,7 @@ namespace TOR_Core.Extensions.UI
                 return;
             }
 
-            _mainMenuLinksDataSource = new TORMainMenuLinksVM();
+            _mainMenuLinksDataSource = new TORMainMenuLinksVM(OpenRecommendedSettingsWarning);
             _mainMenuLinksMovie = _gauntletLayer.LoadMovie("TORMainMenuLinks", _mainMenuLinksDataSource);
         }
 
@@ -362,11 +374,94 @@ namespace TOR_Core.Extensions.UI
             }
         }
 
+        private void OpenRecommendedSettingsWarning()
+        {
+            if (_recommendedSettingsWarningLayer != null || _gauntletLayer == null)
+            {
+                return;
+            }
+
+            _recommendedSettingsWarningDataSource = new TORRecommendedSettingsWarningVM(ConfirmRecommendedSettingsWarning, CloseRecommendedSettingsWarning);
+            _recommendedSettingsWarningLayer = new GauntletLayer("TORRecommendedSettingsWarning", RecommendedSettingsWarningLayerOrder, true);
+            _recommendedSettingsWarningLayer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);
+            _recommendedSettingsWarningLayer.Input.RegisterHotKeyCategory(HotKeyManager.GetCategory("GenericPanelGameKeyCategory"));
+            _recommendedSettingsWarningMovie = _recommendedSettingsWarningLayer.LoadMovie("TORRecommendedSettingsWarning", _recommendedSettingsWarningDataSource);
+            AddLayer(_recommendedSettingsWarningLayer);
+            _recommendedSettingsWarningLayer.IsFocusLayer = true;
+            ScreenManager.TrySetFocus(_recommendedSettingsWarningLayer);
+        }
+
+        private void ConfirmRecommendedSettingsWarning()
+        {
+            CloseRecommendedSettingsWarning();
+            DisplayRecommendedSettingsResult(TORRecommendedSettingsService.ApplyAndVerify());
+        }
+
+        private static void DisplayRecommendedSettingsResult(TORRecommendedSettingsApplyResult result)
+        {
+            TextObject message;
+            switch (result.Status)
+            {
+                case TORRecommendedSettingsApplyStatus.Success:
+                    message = new TextObject("{=str_tor_main_menu_recommended_settings_applied}Recommended settings applied.");
+                    break;
+                case TORRecommendedSettingsApplyStatus.SaveFailed:
+                    message = new TextObject("{=str_tor_main_menu_recommended_settings_save_failed}Recommended settings were applied, but could not be saved: {ERROR}");
+                    message.SetTextVariable("ERROR", result.Details);
+                    break;
+                case TORRecommendedSettingsApplyStatus.VerificationFailed:
+                    message = new TextObject("{=str_tor_main_menu_recommended_settings_verification_failed}Some recommended settings were not applied correctly: {SETTINGS}");
+                    message.SetTextVariable("SETTINGS", result.Details);
+                    break;
+                default:
+                    message = new TextObject("{=str_tor_main_menu_recommended_settings_apply_failed}Could not apply recommended settings: {ERROR}");
+                    message.SetTextVariable("ERROR", result.Details);
+                    break;
+            }
+
+            InformationManager.DisplayMessage(new InformationMessage(message.ToString()));
+        }
+
+        private void CloseRecommendedSettingsWarning()
+        {
+            CloseRecommendedSettingsWarning(true);
+        }
+
+        private void CloseRecommendedSettingsWarning(bool restoreNavigation)
+        {
+            if (_recommendedSettingsWarningLayer == null)
+            {
+                return;
+            }
+
+            ScreenManager.TryLoseFocus(_recommendedSettingsWarningLayer);
+            _recommendedSettingsWarningLayer.IsFocusLayer = false;
+            _recommendedSettingsWarningLayer.ReleaseMovie(_recommendedSettingsWarningMovie);
+            RemoveLayer(_recommendedSettingsWarningLayer);
+            _recommendedSettingsWarningLayer = null;
+
+            if (_recommendedSettingsWarningDataSource != null)
+            {
+                _recommendedSettingsWarningDataSource.OnFinalize();
+            }
+            _recommendedSettingsWarningDataSource = null;
+
+            if (restoreNavigation && _gauntletLayer != null)
+            {
+                ScreenManager.TrySetFocus(_gauntletLayer);
+                SetGainNavigationAfterFrames(1);
+            }
+        }
+
         private void SetGainNavigationAfterFrames(int frameCount)
         {
             _gauntletLayer.UIContext.GamepadNavigation.GainNavigationAfterFrames(frameCount, delegate
             {
                 if (_welcomePopupLayer != null)
+                {
+                    return false;
+                }
+                if (_recommendedSettingsWarningLayer != null)
                 {
                     return false;
                 }
