@@ -8,7 +8,7 @@ namespace TOR_Core.Extensions.UI.MainMenu
     internal static class TORMainMenuLinkLauncher
     {
         private const string ManualUrl = "https://docs.google.com/document/d/1CzK7T661DsFGVLyxDF5Gk3piXT9DbiaGW2BTv667fTA/edit?usp=drive_link";
-        private const string DiscordUrl = "https://discord.gg/AFC4pTQVB";
+        private const string DiscordUrl = "https://discord.gg/U6fqhPx38";
 
         internal static void OpenManual()
         {
