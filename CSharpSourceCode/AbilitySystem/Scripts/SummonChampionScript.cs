@@ -40,7 +40,7 @@ namespace TOR_Core.AbilitySystem.Scripts
                 var abilityManagerLogic = Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>();
                 if (abilityManagerLogic != null)
                 {
-                    abilityManagerLogic.OnInitHideOutBossFight += OnHideOutMissionStateChanged;
+                    abilityManagerLogic.OnInitHideOutBossFight += OnHideOutMissionStateChanged;//Sly : is this why a bug was reported with the player controlling a harbinger, triggering the fight, then their camera getting stuck watching the main character get beaten to death by the bandit boss? ie. harbinger deleted, but control never returned to the necromancer main agent?
                 }
                 _isHideOutMission = true;
             }
@@ -155,7 +155,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             if (_isHideOutMission)
             {
                 CasterAgent.Team.PlayerOrderController.SelectAllFormations();
-                CasterAgent.Team.PlayerOrderController.SetOrder(OrderType.Charge);
+                CasterAgent.Team.PlayerOrderController.SetOrder(OrderType.Charge);//Sly : why would shifting control back to the necromancer have everything charge?
             }
 
             if (CasterAgent.Health > 0)
