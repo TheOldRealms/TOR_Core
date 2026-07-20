@@ -78,7 +78,7 @@ namespace TOR_Core.HarmonyPatches
         public static bool GetDefendMovementFlagPatch(Agent __instance, ref Agent.MovementControlFlag __result)
         {
 
-            if (!ShouldSuppressStaffJavelinBlock(__instance))
+            if (!ShouldSuppressStaffBlock(__instance))
             {
                 return true;
             }
@@ -97,7 +97,7 @@ namespace TOR_Core.HarmonyPatches
                 return;
             }
 
-            if (!ShouldSuppressStaffJavelinBlock(__instance))
+            if (!ShouldSuppressStaffBlock(__instance))
             {
                 return;
             }
@@ -105,11 +105,10 @@ namespace TOR_Core.HarmonyPatches
             value &= ~Agent.MovementControlFlag.DefendMask;
         }
 
-        private static bool ShouldSuppressStaffJavelinBlock(Agent agent)
+        private static bool ShouldSuppressStaffBlock(Agent agent)
         {
             var mainHandWeapon = agent.WieldedWeapon;
-            if (mainHandWeapon.IsEmpty ||
-                mainHandWeapon.CurrentUsageItem.WeaponClass != WeaponClass.Javelin)
+            if (mainHandWeapon.IsEmpty || mainHandWeapon.CurrentUsageItem.IsMeleeWeapon)
             {
                 return false;
             }
