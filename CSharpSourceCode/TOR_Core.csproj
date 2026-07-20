@@ -616,7 +616,12 @@
     <Compile Include="CampaignMechanics\TorMapBarSpriteWidget.cs" />
     <Compile Include="Extensions\UI\SPItemVMExtension.cs" />
     <Compile Include="Extensions\UI\TORInitialScreen.cs" />
-    <Compile Include="Extensions\UI\TORWelcomePopupVM.cs" />
+    <Compile Include="Extensions\UI\MainMenu\TORMainMenuLinkLauncher.cs" />
+    <Compile Include="Extensions\UI\MainMenu\TORMainMenuLinksVM.cs" />
+    <Compile Include="Extensions\UI\MainMenu\TORRecommendedSettingsService.cs" />
+    <Compile Include="Extensions\UI\MainMenu\TORRecommendedSettingsWarningVM.cs" />
+    <Compile Include="Extensions\UI\MainMenu\TORShaderCacheWarning.cs" />
+    <Compile Include="Extensions\UI\MainMenu\TORWelcomePopupVM.cs" />
     <Compile Include="Extensions\UI\TORMapInfoVMExtension.cs" />
     <Compile Include="CampaignMechanics\TORPartyUpgraderCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TorRecruitmentHelpers.cs" />

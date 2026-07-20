@@ -26,16 +26,19 @@ namespace TOR_Core.HarmonyPatches
 
             CharacterObject character = null;
 
+            //Agents are spawned into a fight in the background when the player speaks to the arena master and therefore the 0 index is not necessarily the player.
+            var playerPracticingOffset = __instance.IsPlayerPracticing ? 1 : 0;
+
             // Determine which character this is
-            if (spawnIndex == 0)
+            if (__instance.IsPlayerPracticing && spawnIndex == 0)
             {
                 // Player character
                 character = CharacterObject.PlayerCharacter;
             }
-            else if (participantCharacters != null && spawnIndex > 0 && spawnIndex <= participantCharacters.Count)
+            else if (participantCharacters != null && spawnIndex >= playerPracticingOffset && spawnIndex < participantCharacters.Count)
             {
                 // AI opponent
-                character = participantCharacters[spawnIndex - 1];
+                character = participantCharacters[spawnIndex];
             }
 
             // Check if this is a non-human race
@@ -85,7 +88,7 @@ namespace TOR_Core.HarmonyPatches
 
             // Verify player is still alive and active
             if (Mission.Current?.MainAgent == null || !Mission.Current.MainAgent.IsActive()) return;
-
+            
             // Trigger the TOR event for winning a practice fight
             TORCampaignEvents.Instance?.OnPracticeFightWon(Hero.MainHero, __instance.OpponentCountBeatenByPlayer);
         }

@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -7,65 +6,33 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.Extensions.UI.MainMenu;
 using TOR_Core.GameManagers;
 
 namespace TOR_Core.HarmonyPatches
 {
-    // Note: We cannot use TORTextHelper here because the GameTextManager is not yet instantiated
-    // at the point when this code runs. We must use hardcoded localization strings instead.
+    // TORTextHelper is unavailable at this startup stage because GameTextManager is not initialized.
+    // Tagged TextObject fallbacks keep these options startup-safe and localizable.
     [HarmonyPatch]
     public class MainMenuOptionsPatches
     {
         [HarmonyPostfix]
         [HarmonyPatch(typeof(Module), "GetInitialStateOptions")]
-        public static void MainMenuSkipStoryMode(ref IEnumerable<InitialStateOption> __result)
+        public static void ReplaceVanillaNewGameOptions(ref IEnumerable<InitialStateOption> __result)
         {
-            List<InitialStateOption> newlist = new List<InitialStateOption>();
-            newlist = __result.Where(x => x.Id != "StoryModeNewGame" && x.Id != "SandBoxNewGame").ToList();
+            var options = __result.Where(x => x.Id != "StoryModeNewGame" && x.Id != "SandBoxNewGame").ToList();
             // Low OrderIndex to appear at top (UI changed from BottomToTop to TopToBottom in 1.4)
-            var torOption = new InitialStateOption("TORNewgame", new TextObject("{=str_tor_menu_enter_game}Enter the Old World"), 1, OnClick, IsDisabledAndReason);
-            var torOption2 = new InitialStateOption("TORForceLoad", new TextObject("{=str_tor_menu_shader_cache}Build Shader Cache"), 2, OnForceClick, IsDisabledAndReason);
-            newlist.Add(torOption);
-            newlist.Add(torOption2);
-            newlist.Sort((x, y) => x.OrderIndex.CompareTo(y.OrderIndex));
-            __result = newlist;
+            var enterOldWorldOption = new InitialStateOption("TORNewgame", new TextObject("{=str_tor_menu_enter_game}Enter the Old World"), 1, OnClick, IsDisabledAndReason);
+            var buildShaderCacheOption = new InitialStateOption("TORForceLoad", new TextObject("{=str_tor_menu_shader_cache}Build Shader Cache"), 2, OnForceClick, IsDisabledAndReason);
+            options.Add(enterOldWorldOption);
+            options.Add(buildShaderCacheOption);
+            options.Sort((x, y) => x.OrderIndex.CompareTo(y.OrderIndex));
+            __result = options;
         }
 
         private static void OnForceClick()
         {
-            DisplayWindow();
-        }
-
-        private static void DisplayWindow()
-        {
-            var text = new TextObject("{=str_tor_menu_shader_cache_popup_message}This will load a scene with all the unique troops and NPCs present in our mod. The purpose of this is to compile the local shader cache on your PC.{newline}" +
-                       "When you see the deployment phase, the process is complete!{newline}{newline}" +
-                       "THIS WILL TAKE A LONG TIME!!!{newline}" +
-                       "Our users report anything between 20 and 70 minutes.{newline}{newline}" +
-                       "This ensures that you won't need to compile the shaders individually during normal gameplay as it can cause issues with stability.{newline}" +
-                       "This is meant to reduce the number of UI portrait generation crashes and also eliminate the long battle loading times during normal gameplay.").ToString();
-
-            var data = new InquiryData(
-                new TextObject("{=str_tor_menu_shader_cache_popup_title}Important warning").ToString(),
-                text,
-                true,
-                true,
-                new TextObject("{=str_tor_menu_shader_cache_popup_confirm}Do it").ToString(),
-                new TextObject("{=str_tor_menu_shader_cache_popup_reject}Not now").ToString(),
-                BuildShaderCache,
-                HideWindow
-                );
-            InformationManager.ShowInquiry(data);
-        }
-
-        private static void HideWindow()
-        {
-            InformationManager.HideInquiry();
-        }
-
-        private static void BuildShaderCache()
-        {
-            MBGameManager.StartNewGame(new TORShaderGameManager());
+            TORShaderCacheWarning.Show();
         }
 
         private static void OnClick()
@@ -77,7 +44,7 @@ namespace TOR_Core.HarmonyPatches
         private static (bool, TextObject) IsDisabledAndReason()
         {
             TextObject coreContentDisabledReason = new TextObject("{=str_tor_disabled_during_installation}Disabled during installation.");
-            return new ValueTuple<bool, TextObject>(Module.CurrentModule.IsOnlyCoreContentEnabled, coreContentDisabledReason);
+            return (Module.CurrentModule.IsOnlyCoreContentEnabled, coreContentDisabledReason);
         }
     }
 }

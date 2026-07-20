@@ -189,6 +189,12 @@ namespace TOR_Core.AbilitySystem
             _cooldownEndTime = Mission.Current.CurrentTime + _coolDownLeft + 0.8f; // Adjustment was needed for natural tick on UI
         }
 
+        public void ReduceCooldownBy(int reductionSeconds)
+        {
+            _coolDownLeft -= reductionSeconds;
+            _cooldownEndTime = Mission.Current.CurrentTime + _coolDownLeft + 0.8f; // Adjustment copied for natural tick on UI
+        }
+
         internal void TickCastingState()
         {
             if (!IsCasting || IsActivationPending || Template.CastType != CastType.WindUp)

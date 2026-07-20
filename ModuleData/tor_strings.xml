@@ -172,7 +172,7 @@
   <string id="tor_perk_devotee_2" text="{=str_tor_perk_devotee_2}Praying at a shrine grants 50% increased devotion towards your chosen religion." />
   <string id="tor_perk_divine_mission_label" text="{=str_tor_perk_divine_mission_label}Divine Mission" />
   <string id="tor_perk_divine_mission_1" text="{=str_tor_perk_divine_mission_1}You gain 1 focus point in Medicine." />
-  <string id="tor_perk_divine_mission_2" text="{=str_tor_perk_divine_mission_2}5% increased militia growth in settlements owned by your clan." />
+  <string id="tor_perk_divine_mission_2" text="{=str_tor_perk_divine_mission_2}+1 militia growth in settlements owned by your clan." />
   <string id="tor_perk_imperturbable_label" text="{=str_tor_perk_imperturbable_label}Imperturbable" />
   <string id="tor_perk_imperturbable_1" text="{=str_tor_perk_imperturbable_1}Gain 500 Faith skill experience every day while waiting in a town." />
   <string id="tor_perk_imperturbable_2" text="{=str_tor_perk_imperturbable_2}Religious units in your party gain 10% physical resistance." />
@@ -291,10 +291,34 @@
   <string id="tor_ui_winds_of_magic_recharge_rate" text="{=str_tor_ui_winds_of_magic_recharge_rate}Recharge Rate:" />
   <string id="tor_menu_enter_game" text="{=str_tor_menu_enter_game}Enter the Old World" />
   <string id="tor_menu_shader_cache" text="{=str_tor_menu_shader_cache}Build Shader Cache" />
+  <string id="tor_menu_disabled_during_installation" text="{=str_tor_disabled_during_installation}Disabled during installation." />
   <string id="tor_item_hint_use" text="{=str_tor_item_hint_use}Use Item" />
   <string id="tor_religion_follower_none" text="{=str_tor_religion_follower_none}Not a follower of any religion" />
   <string id="tor_bloodkiss_player_notification" text="{=str_tor_bloodkiss_player_notification}Player recieves the Blood Kiss." />
   <string id="tor_windsOfMagic_base" text="{=str_tor_windsOfMagic_base}Base" />
+
+  <!-- Main Menu Popups -->
+  <string id="tor_main_menu_welcome_title" text="{=str_tor_main_menu_welcome_title}Welcome to The Old Realms!" />
+  <string id="tor_main_menu_welcome_description" text="{=str_tor_main_menu_welcome_description}This is a total conversion mod for Mount and Blade II: Bannerlord. We have put a lot of work and new features into this mod for you to enjoy, so much that we needed a manual to let you know about it all. Don't hesitate to reach out to our discord if you have issues installing or running the mod." />
+  <string id="tor_main_menu_manual_button" text="{=str_tor_main_menu_manual_button}Read Manual" />
+  <string id="tor_main_menu_discord_button" text="{=str_tor_main_menu_discord_button}Join Discord" />
+  <string id="tor_main_menu_welcome_continue_button" text="{=str_tor_main_menu_welcome_continue_button}Continue" />
+  <string id="tor_main_menu_welcome_disable_button" text="{=str_tor_main_menu_welcome_disable_button}Don't Show Again" />
+  <string id="tor_main_menu_welcome_preference_save_failed" text="{=str_tor_main_menu_welcome_preference_save_failed}Could not save the welcome popup preference: {ERROR}" />
+  <string id="tor_main_menu_link_open_failed" text="{=str_tor_main_menu_link_open_failed}Could not open link: {ERROR}" />
+  <string id="tor_main_menu_recommended_settings_button" text="{=str_tor_main_menu_recommended_settings_button}Recommended settings" />
+  <string id="tor_main_menu_recommended_settings_applied" text="{=str_tor_main_menu_recommended_settings_applied}Recommended settings applied." />
+  <string id="tor_main_menu_recommended_settings_apply_failed" text="{=str_tor_main_menu_recommended_settings_apply_failed}Could not apply recommended settings: {ERROR}" />
+  <string id="tor_main_menu_recommended_settings_save_failed" text="{=str_tor_main_menu_recommended_settings_save_failed}Recommended settings were applied, but could not be saved: {ERROR}" />
+  <string id="tor_main_menu_recommended_settings_verification_failed" text="{=str_tor_main_menu_recommended_settings_verification_failed}Some recommended settings were not applied correctly: {SETTINGS}" />
+  <string id="tor_main_menu_recommended_settings_title" text="{=str_tor_main_menu_recommended_settings_title}Recommended Settings" />
+  <string id="tor_main_menu_recommended_settings_description" text="{=str_tor_main_menu_recommended_settings_description}Applying these settings may cause Bannerlord to rebuild shaders. Performance can be lower or uneven until shaders finish rebuilding, or until you rebuild shaders manually. Apply recommended settings now?" />
+  <string id="tor_main_menu_recommended_settings_apply_button" text="{=str_tor_main_menu_recommended_settings_apply_button}Apply" />
+  <string id="tor_main_menu_recommended_settings_cancel_button" text="{=str_tor_main_menu_recommended_settings_cancel_button}Cancel" />
+  <string id="tor_menu_shader_cache_popup_message" text="{=str_tor_menu_shader_cache_popup_message}This will load a scene with all the unique troops and NPCs present in our mod. The purpose of this is to compile the local shader cache on your PC.{newline}When you see the deployment phase, the process is complete!{newline}{newline}THIS WILL TAKE A LONG TIME!!!{newline}Our users report anything between 20 and 70 minutes.{newline}{newline}This ensures that you won't need to compile the shaders individually during normal gameplay as it can cause issues with stability.{newline}This is meant to reduce the number of UI portrait generation crashes and also eliminate the long battle loading times during normal gameplay." />
+  <string id="tor_menu_shader_cache_popup_title" text="{=str_tor_menu_shader_cache_popup_title}Important warning" />
+  <string id="tor_menu_shader_cache_popup_confirm" text="{=str_tor_menu_shader_cache_popup_confirm}Do it" />
+  <string id="tor_menu_shader_cache_popup_reject" text="{=str_tor_menu_shader_cache_popup_reject}Not now" />
 
   <!-- Ink Stories -->
   <string id="tor_ink_end" text="{=str_tor_ink_end}End" />

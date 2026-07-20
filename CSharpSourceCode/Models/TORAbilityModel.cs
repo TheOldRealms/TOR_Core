@@ -562,13 +562,11 @@ namespace TOR_Core.Models
             }
             else
             {
-                var effectiveWeight = new ExplainedNumber(character.Equipment.GetTotalWeightOfArmor(true));
-                PerkHelper.AddPerkBonusForCharacter(DefaultPerks.Athletics.FormFittingArmor, character, true, ref effectiveWeight);
-                //only waywatcher uses the PassiveEffectType EquipmentWeightReduction and the career doesn't have access to WoM as a non-caster so career perks are ignored for the moment.
+                var effectiveWeight = character.GetEffectiveArmorWeight(true);
 
                 //first 5 wt unpenalized, mage robes ish
                 //faster scaling penalties up to 20 wt, then negatives are possible
-                var weightmalus = (effectiveWeight.ResultNumber - 5) / 15;
+                var weightmalus = (effectiveWeight - 5) / 15;
                 weightmalus = Mathf.Max(weightmalus, 0f);
 
                 explainedNumber.AddFactor(-weightmalus, TORTextHelper.GetTextObject("tor_generic_equipmentWeight", "Equipment weight", true));

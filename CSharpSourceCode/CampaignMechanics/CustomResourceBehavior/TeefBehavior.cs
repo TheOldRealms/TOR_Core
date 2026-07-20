@@ -24,7 +24,7 @@ namespace TOR_Core.CampaignMechanics.CustomResourceBehavior;
 public class TeefBehavior : CampaignBehaviorBase
 {
     private const int ItemExchange = 400; // item of price of X gets X/400 of teef in return
-    private const int GoldExchange = 100;
+    private const int GoldToTeefExchangeRate = 100;
     private const string QuartermasterId = "tor_kwartamasta_greenskins_0";
 
     public override void RegisterEvents()
@@ -167,9 +167,9 @@ public class TeefBehavior : CampaignBehaviorBase
 
         starter.AddDialogLine("gw_quartermaster_playertown", "start", "gw_quartermaster_owner_hub", TORTextHelper.GetText("tor_gs_quartermaster_owner_intro_text", "Oi, Boss, youz got sum loot fer da pile?"), () => IsQuarterMaster() && PlayerOwnsTown(), null, 200);
         starter.AddDialogLine("gw_quartermaster_playertown_reintro", "gw_quartermaster_playertown_reintro", "gw_quartermaster_owner_hub", TORTextHelper.GetText("tor_gs_quartermaster_owner_anything_else_text", "Iz dere more, Boss?"), null, null, 200);
-        starter.AddPlayerLine("gw_quartermaster_hub_playertown_shinies_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", TORTextHelper.GetText("tor_gs_quartermaster_shinies_option_text", "Shinies"), () => Hero.MainHero.Gold >= 5000, () => SpendGold(true));
+        starter.AddPlayerLine("gw_quartermaster_hub_playertown_shinies_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", TORTextHelper.GetText("tor_gs_quartermaster_shinies_option_text", "Shinies"), () => Hero.MainHero.Gold >= 5000, () => SpendGold(CurrentSettlementIsGreenskinCamp()));//Shiny piles only apply effects in greenskin original settlements; therefore, trading for gold_piles is gated behind the same set of checks. Player ownership is verified earlier in the dialogue tree.
         starter.AddPlayerLine("gw_quartermaster_hub_playertown_teef_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", TORTextHelper.GetText("tor_gs_quartermaster_make_teefbags_option_text", "Make Teefbags"), () => Hero.MainHero.GetCultureSpecificCustomResourceValue() >= 1000, MakeTeefBags);
-        starter.AddPlayerLine("gw_quartermaster_hub_playertown_loot_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", TORTextHelper.GetText("tor_gs_quartermaster_loot_option_text", "Loot"), null, OpenForCreatingLootPiles);
+        starter.AddPlayerLine("gw_quartermaster_hub_playertown_loot_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", TORTextHelper.GetText("tor_gs_quartermaster_loot_option_text", "Loot"), CurrentSettlementIsGreenskinCamp, OpenForCreatingLootPiles);//Loot piles only apply effects in greenskin original settlements; therefore, trading for loot_piles is gated behind the same set of checks. Player ownership is verified earlier in the dialogue tree.
         starter.AddPlayerLine("gw_quartermaster_hub_playertown_leave_p", "gw_quartermaster_owner_hub", "close_window", TORTextHelper.GetText("tor_gs_quartermaster_leave_option_text", "Iz outta 'ere!"), null, null);
 
         bool IsQuarterMaster()
@@ -183,6 +183,11 @@ public class TeefBehavior : CampaignBehaviorBase
         bool PlayerOwnsTown()
         {
             return Hero.MainHero.CurrentSettlement.Owner == Hero.MainHero;
+        }
+
+        bool CurrentSettlementIsGreenskinCamp()
+        {
+            return Hero.MainHero.CurrentSettlement.IsGreenskinCamp();
         }
 
         void MakeTeefBags()
@@ -370,7 +375,6 @@ public class TeefBehavior : CampaignBehaviorBase
             value = 100000;
             var option = new TextObject("{GOLD_COST}{GOLD_ICON}");
             option.SetTextVariable("GOLD_COST", value);
-            //option.SetTextVariable("TEEF_ICON", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText());//Sly : why is this here? where is the gold_icon variable set that it is never handled locally?
 
             GameTexts.SetVariable("GOLD_COST", value);
             var hint = TORTextHelper.GetTextObject("tor_gs_spend_gold_hint_text", "Spend {GOLD_COST} Gold");
@@ -390,7 +394,7 @@ public class TeefBehavior : CampaignBehaviorBase
             selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, hint.ToString()));
         }
 
-        Action<List<InquiryElement>> action = forPiles ? CreateShinyPiles : AddGoldForTeef;
+        Action<List<InquiryElement>> action = forPiles ? CreateShinyPiles : TradeGoldForTeef;
 
         var inquirydata = new MultiSelectionInquiryData(title.ToString(), description.ToString(), selectableOptions, true, 1, 1, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
             action, null);
@@ -410,11 +414,11 @@ public class TeefBehavior : CampaignBehaviorBase
         Hero.MainHero.ChangeHeroGold(-gold);
     }
 
-    private void AddGoldForTeef(List<InquiryElement> inquiryElements)
+    private void TradeGoldForTeef(List<InquiryElement> inquiryElements)
     {
         var gold = (int)(inquiryElements[0].Identifier);
 
-        var goldExchange = GoldExchange;
+        var goldExchange = GoldToTeefExchangeRate;
 
 
 

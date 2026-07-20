@@ -33,6 +33,7 @@ using TOR_Core.Items;
 using TOR_Core.Missions;
 using TOR_Core.Quests;
 using FaceGen = TaleWorlds.Core.FaceGen;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Utilities
 {
@@ -1061,16 +1062,11 @@ namespace TOR_Core.Utilities
         }
         private static bool HasHostilePartyCheatHeroRole(Hero hero)
         {
-            const string spellCasterAttribute = "SpellCaster";
-            const string runesmithAttribute = "Runesmith";
-            const string artilleryAttribute = "CanPlaceArtillery";
-            const string engineerCompanionAttribute = "EngineerCompanion";
-
             if (hero.IsSpellCaster() ||
-                hero.HasAttribute(spellCasterAttribute) ||
-                hero.HasAttribute(runesmithAttribute) ||
-                hero.HasAttribute(artilleryAttribute) ||
-                hero.HasAttribute(engineerCompanionAttribute))
+                hero.HasAttribute(Attributes.SPELLCASTER) ||
+                hero.HasAttribute(Attributes.RUNESMITH) ||
+                hero.HasAttribute(Attributes.CAN_PLACE_ARTILLERY) ||
+                hero.HasAttribute(Attributes.ENGINEER_COMPANION))
             {
                 return true;
             }

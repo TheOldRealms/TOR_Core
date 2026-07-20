@@ -6,6 +6,7 @@ using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -36,9 +37,9 @@ public class EnchantmentIngredientLootCampaignBehavior : CampaignBehaviorBase
 
     public override void RegisterEvents()
     {
-        CampaignEvents.OnPlayerBattleEndEvent.ClearListeners(this);
+        CampaignEvents.OnCollectLootsItemsEvent.ClearListeners(this);
         CampaignEvents.DailyTickSettlementEvent.ClearListeners(this);
-        CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, SetLootedIngredients);
+        CampaignEvents.OnCollectLootsItemsEvent.AddNonSerializedListener(this, SetLootedIngredients);
         CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, SettlementDailyTickEvent);
     }
 
@@ -60,16 +61,19 @@ public class EnchantmentIngredientLootCampaignBehavior : CampaignBehaviorBase
 
     }
 
-    private void SetLootedIngredients(MapEvent mapEvent)
+    private void SetLootedIngredients(PartyBase winnerParty, ItemRoster gainedLoots)
     {
+        if (winnerParty != PartyBase.MainParty) return;
+
+        var mapEvent = winnerParty.MapEventSide.MapEvent;
+
         if (mapEvent == null) return;
         if (Hero.MainHero.IsEnlisted()) return;
         if (!mapEvent.HasWinner) return;
         if (mapEvent.PlayerSide != mapEvent.WinningSide) return;
 
         var ingredientKeys = _goodsFactors.Keys.ToList();
-        foreach (var key in ingredientKeys)
-            _goodsFactors[key] = 0f;
+        foreach (var key in ingredientKeys) _goodsFactors[key] = 0f;
 
         var enemySideEnum = mapEvent.PlayerSide == BattleSideEnum.Attacker
             ? BattleSideEnum.Defender
@@ -94,11 +98,6 @@ public class EnchantmentIngredientLootCampaignBehavior : CampaignBehaviorBase
 
         PlayerEncounter.Current.GetBattleRewards(out _, out _, out _, out var playerEarnedLootRate, out _);
 
-        var lootRoster = PlayerEncounter.Current?.RosterToReceiveLootItems;
-        var usedLootFallback = lootRoster == null;
-        var targetRoster = lootRoster ?? PartyBase.MainParty.ItemRoster;
-        var anyIngredientAdded = false;
-
         foreach (var ingredientType in ingredientKeys)
         {
             var factorSum = _goodsFactors[ingredientType];
@@ -106,38 +105,10 @@ public class EnchantmentIngredientLootCampaignBehavior : CampaignBehaviorBase
             if (amount <= 0) continue;
 
             var item = TorEnchantingIngredients.GetItemObjectForIngredient(ingredientType);
-            anyIngredientAdded = true;
-            targetRoster.Add(new ItemRosterElement(item, amount));
-        }
-        if (usedLootFallback && anyIngredientAdded)
-        {
-            InformationManager.DisplayMessage(new InformationMessage(
-                TORTextHelper.GetText("tor_crafting_ingredient_loot_fallback", "Looted enchantment ingredients were added directly to your party inventory.")));
+            gainedLoots.Add(new ItemRosterElement(item, amount));
         }
 
         // clear value for next battle
-        foreach (var key in ingredientKeys)
-            _goodsFactors[key] = 0f;
-    }
-
-
-    private void CalculatePotentialLootedEnchantmentResources(IMission obj)
-    {
-        var playerEvent = Campaign.Current.MainParty.MapEvent;
-
-        var enemySide = BattleSideEnum.Attacker;
-        if (playerEvent == null)
-            return;
-        if (playerEvent.PlayerSide == BattleSideEnum.Attacker) enemySide = BattleSideEnum.Defender;
-
-        var side = playerEvent.GetMapEventSide(enemySide);
-
-        var model = Campaign.Current.Models.GetEnchantmentIngredientModel();
-
-        foreach (var characterObject in from enemyParties in side.Parties from troop in enemyParties.Troops select troop.Troop)
-        {
-            var keys = _goodsFactors.Keys.ToList();
-            foreach (var key in keys) _goodsFactors[key] += model.GetIngredientDropFactorForCharacter(characterObject, key, playerEvent);
-        }
+        foreach (var key in ingredientKeys) _goodsFactors[key] = 0f;
     }
 }

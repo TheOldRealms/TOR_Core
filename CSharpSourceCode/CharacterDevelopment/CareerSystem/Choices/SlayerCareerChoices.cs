@@ -228,12 +228,12 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _giantSlayerPassive4.Initialize(CareerID, "You can no longer be staggered by damage.", "GiantSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1000, PassiveEffectType.ShruggedOff));
 
         _baneOfChaosPassive1.Initialize(CareerID, "If armour weight is less than 9, gain +20% 'Spell Resistance'.", "BaneOfChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 20), AttackTypeMask.Melee,
-            (attacker, victim, mask) => mask == AttackTypeMask.Spell && victim.IsMainAgent && CareerChoicesHelper.ArmorWeightCheck(victim, 9)));
+            (attacker, victim, mask) => mask == AttackTypeMask.Spell && victim.IsMainAgent && CareerChoicesHelper.ArmorWeightCheck(victim, 9)));//these attack masks are mutually exclusive; is one of these ignored, or this is impossible to be true?
 
         _baneOfChaosPassive2.Initialize(CareerID, "+2 personal healing rate.", "BaneOfChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.HealthRegeneration));
         _baneOfChaosPassive3.Initialize(CareerID, "+25% personal 'Armor Penetration' for melee attacks.", "BaneOfChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
         _baneOfChaosPassive4.Initialize(CareerID, "If armour weight is less than 9, gain +20% personal melee damage against the forces of Chaos.", "BaneOfChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Melee,
-            (attacker, victim, mask) => mask == AttackTypeMask.Melee && attacker.IsMainAgent && CareerChoicesHelper.ArmorWeightCheck(attacker, 9f) && (victim.Character.Culture.StringId == TORConstants.Cultures.CHAOS || victim.Character.Culture.StringId == TORConstants.Cultures.BEASTMEN)));
+            (attacker, victim, mask) => mask == AttackTypeMask.Melee && attacker.IsMainAgent && CareerChoicesHelper.ArmorWeightCheck(attacker, 9f) && (victim.Character.IsChaos() || victim.Character.IsBeastman())));
 
         _theLastJourneyPassive1.Initialize(CareerID, "+15 personal Hitpoints.", "LastJourney", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
         _theLastJourneyPassive2.Initialize(CareerID, "If armour weight is less than 9, gain +25% personal melee 'Physical Resistance'.", "LastJourney", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 25), AttackTypeMask.Melee,

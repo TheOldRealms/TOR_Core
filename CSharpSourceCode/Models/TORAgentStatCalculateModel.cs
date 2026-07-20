@@ -5,6 +5,7 @@ using SandBox.Missions.MissionLogics.Hideout;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -769,18 +770,21 @@ namespace TOR_Core.Models
         }
 
         //The moment you realize they forget to add an override statement. if they do it needs to be moved on the EffectiveArmorEncumbrance
-        public float GetTOREffectiveEquipmentEncumbrance(Agent agent, float value)
+        public float GetTOREffectiveEquipmentEncumbrance(Agent agent, float agentWeaponEncumbrance)//why is the agent driven property called weapon encumbrance?
         {
             if (agent == null) return 0;
             if (agent.IsMount) return 0;
-            var number = new ExplainedNumber(value);
+            var encumbrance = new ExplainedNumber(agentWeaponEncumbrance);
+
+            PerkHelper.AddPerkBonusForCharacter(DefaultPerks.Athletics.FormFittingArmor, (CharacterObject)agent.Character, true, ref encumbrance);
+
             if (agent.GetHero() == Hero.MainHero)
             {
-                CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref number, PassiveEffectType.EquipmentWeightReduction);
+                CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref encumbrance, PassiveEffectType.EquipmentWeightReduction);
             }
 
 
-            return number.ResultNumber;
+            return encumbrance.ResultNumber;
         }
     }
 }

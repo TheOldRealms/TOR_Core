@@ -245,7 +245,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _witchSightPassive2.Initialize(CareerID, "+5% personal 'Spell' damage.", "WitchSight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 5), AttackTypeMask.Spell));
             _witchSightPassive3.Initialize(CareerID, "+25% personal 'Spell Resistance'.", "WitchSight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 25), AttackTypeMask.Spell));
             _witchSightPassive4.Initialize(CareerID, "+20 personal 'Winds of Magic' if armour weight does not exceed 11.", "WitchSight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.WindsOfMagic, false,
-                (characterObject => Hero.MainHero.BattleEquipment.GetTotalWeightOfArmor(true) < 11f)));
+                (characterObject => characterObject.GetEffectiveArmorWeight(true) <= 11f)));
 
             _darkVisionPassive1.Initialize(CareerID, "+10 personal 'Winds of Magic' capacity.", "DarkVision", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
             _darkVisionPassive2.Initialize(CareerID, "-35% 'Dark Energy' upkeep for 'Spectral' troops.", "DarkVision", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-35, PassiveEffectType.CustomResourceUpkeepModifier, true,
@@ -256,7 +256,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _unhallowedSoulPassive1.Initialize(CareerID, "+20% duration for 'Augment' spells.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.20f, PassiveEffectType.BuffDuration, true));
             _unhallowedSoulPassive2.Initialize(CareerID, "Defiling a shrine yields increased 'Dark Energy', and can summon 'Spectral' troops.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
             _unhallowedSoulPassive3.Initialize(CareerID, "+15% personal 'Spell Power' if armour weight does not exceed 11.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.SpellEffectiveness, true,
-                (characterObject => Hero.MainHero.BattleEquipment.GetTotalWeightOfArmor(true) < 11f)));
+                (characterObject => characterObject.GetEffectiveArmorWeight(true) <= 11f)));
             _unhallowedSoulPassive4.Initialize(CareerID, "+5% personal 'Lighting' spell damage.", "UnhallowedSoul", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Lightning, 5), AttackTypeMask.Spell));
 
             _hungerForKnowledgePassive1.Initialize(CareerID, "+20% duration of 'Hex' spells.", "HungerForKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.20f, PassiveEffectType.DebuffDuration, true));
@@ -354,15 +354,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             var becameNecrarchText = TORTextHelper.GetTextObject("tor_became_necrarch_text", "{HERO_NAME} became a Necrarch");
             becameNecrarchText.SetTextVariable("HERO_NAME", Hero.MainHero.Name);
             MBInformationManager.AddQuickInformation(becameNecrarchText, 0, CharacterObject.PlayerCharacter);
-        }
-
-
-        private static bool HeroArmorWeightUndershootCheck(Agent agent)
-        {
-            if (!agent.BelongsToMainParty()) return false;
-            if (!agent.IsMainAgent) return false;
-            var weight = agent.Character.Equipment.GetTotalWeightOfArmor(true);
-            return weight <= 11;
         }
     }
 }

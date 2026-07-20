@@ -7,7 +7,7 @@ namespace TOR_Core.Utilities
     public static class TORConstants
     {
         public const int TotalNumberOfUniqueLoadingScreenImages = 12;
-        public const int MIRACLE_CHANCE = 5;
+        public const int MIRACLE_CHANCE = 5;//Sly : currently ignored
         public const int MAXIMUM_DEVOTION_LEVEL = 100;
         public const int DEVOTED_TRESHOLD = 50;
         public const int FANATIC_TRESHOLD = 75;
@@ -186,6 +186,14 @@ namespace TOR_Core.Utilities
                 NECK_SNAPPERS, RED_EYE, SKULL_SMASHERZ, REAVAZ
  
             ];
+        }
+
+        public readonly struct Attributes
+        {
+            public const string SPELLCASTER = "SpellCaster";
+            public const string RUNESMITH = "Runesmith";
+            public const string CAN_PLACE_ARTILLERY = "CanPlaceArtillery";
+            public const string ENGINEER_COMPANION = "EngineerCompanion";
         }
 
         /// <summary>

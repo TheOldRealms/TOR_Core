@@ -1,6 +1,7 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Conversation;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 
 namespace TOR_Core.Extensions.UI;
 
@@ -34,6 +35,11 @@ public class ConversationItemVMExtension : BaseViewModelExtension
         var matchingText = Campaign.Current.ConversationManager.FindMatchingTextOrNull(stringID, character);
         if (matchingText != null)
         {
+            if (option.Text.Attributes?.Count > 0)
+            {
+                var attributeTransferText = new TextObject(matchingText.Value, option.Text.Attributes);
+                matchingText = attributeTransferText;//Sly : why do TextObjects not have anything for transferring the attributes? You can copy a text object which transfers them, but not just assigning the attributes directly.
+            }
             conversationItemVM.ItemText = matchingText.ToString();
         }
     }

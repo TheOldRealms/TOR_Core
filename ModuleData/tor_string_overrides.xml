@@ -6636,7 +6636,7 @@
       <tag tag_name="IsOrcTag" />
     </tags>
   </string>
-  <string id="BvytaDUJ.villager_warn_player_to_take_prisoner_2_dwarf" text="{=str_tor_villager_warn_player_to_take_prisoner_2_dwarf}You're going to regret this! Grimir protect us...">
+  <string id="BvytaDUJ.villager_warn_player_to_take_prisoner_2_dwarf" text="{=str_tor_villager_warn_player_to_take_prisoner_2_dwarf}You're going to regret this! Grimnir protect us...">
     <tags>
       <tag tag_name="IsDwarfTag" />
     </tags>

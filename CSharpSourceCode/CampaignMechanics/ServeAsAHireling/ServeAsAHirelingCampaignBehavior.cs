@@ -361,10 +361,12 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
         {
             //Sly : this doesn't work as expected, I still see parties attempting to target the player party
             //the main party does use this tick as it's used to perform healing ticks, so is a party being flagged as "Ignored" not doing what it seems that it should?
+            //A mobParty being set to ignore should cause MobilePartyAiModel.ShouldConsiderAttacking to return false, and therefore CalculateInitiativeScoresForEnemy to give an attackScore of 0.
+            //So is there a logic issue elsewhere, or a score of 0 is still sufficient to chase the main party?
             if (MobileParty.MainParty == mobileParty && _hirelingEnlisted)
             {
                 //the moment at which this runs can be between 5-7 hours apart, therefore using 8 to cover all possibilties
-                //despite being set to ignore, I still see parties targeting me; what does this imply?
+                //despite being set to ignore, I still see parties targeting me; what does this imply? 
                 MobileParty.MainParty.IgnoreForHours(8f);
             }
         }

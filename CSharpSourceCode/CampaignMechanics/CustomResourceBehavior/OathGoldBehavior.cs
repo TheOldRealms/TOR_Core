@@ -1197,7 +1197,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
             if (traitCount > 0)
             {
-                var item = EnchantmentHelper.CreateEnchantedItem(foundItem, traitIds, nameModifier);
+                var item = EnchantmentHelper.CreateEnchantedItem(foundItem, traitIds, nameModifier + foundItem.Name.ToString());
                 return item;
             }
 

@@ -151,6 +151,9 @@ namespace TOR_Core.Models
         /// Gets practice weapons for non-human races.
         /// Called by ArenaPracticePatch to replace native weapon assignment.
         /// </summary>
+        /// <remarks>
+        /// This will need to receive an argument for the participant count in order to make use of the one and two participant sets as it is unable to differentiate between the contexts currently.
+        /// </remarks>
         public Equipment GetParticipantWeapons(CharacterObject participant)
         {
             string[] weaponRosterIds = null;
@@ -158,31 +161,16 @@ namespace TOR_Core.Models
             // Check for Greenskin races (Orcs/Goblins)
             if (participant.IsOrc())
             {
-                weaponRosterIds = new string[]
-                {
-                    "tor_gs_tournament_template_one_participant_v1",
-                    "tor_gs_tournament_template_two_participant_v1",
-                    "tor_gs_tournament_template_four_participant_v1"
-                };
+                weaponRosterIds = ["tor_gs_tournament_template_four_participant_v1"];
             }
             else if (participant.IsGoblin())
             {
-                weaponRosterIds = new string[]
-                {
-                    "tor_gs_goblin_tournament_template_one_participant_v1",
-                    "tor_gs_goblin_tournament_template_two_participant_v1",
-                    "tor_gs_goblin_tournament_template_four_participant_v1"
-                };
+                weaponRosterIds = ["tor_gs_goblin_tournament_template_four_participant_v1"];
             }
             // Check for Dwarf race
             else if (participant.IsDwarf())
             {
-                weaponRosterIds = new string[]
-                {
-                    "tor_dw_tournament_template_one_participant_v1",
-                    "tor_dw_tournament_template_two_participant_v1",
-                    "tor_dw_tournament_template_four_participant_v1"
-                };
+                weaponRosterIds = ["tor_dw_tournament_template_four_participant_v1"];
             }
 
             // If we have roster IDs for weapons, return random weapon equipment

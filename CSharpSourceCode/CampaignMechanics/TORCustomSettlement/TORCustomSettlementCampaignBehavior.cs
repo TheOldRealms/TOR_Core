@@ -658,7 +658,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         };
     }
 
-
+    //Sly : could this instead replicate AiVisitSettlementBehavior.AiHourlyTick which evalutes the necessary conditions, but then adds an AIBehaviorData and score to the party which then lets the game's party ai handling manage the actions to visit the shrine.
     private void OnAiTick(MobileParty party)
     {
         if (!party.IsLordParty || party.LeaderHero == null || party == MobileParty.MainParty) return;
