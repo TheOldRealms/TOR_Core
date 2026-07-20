@@ -169,10 +169,6 @@ namespace TOR_Core.HarmonyPatches
 
             var monsterId = monster.StringId;
             
-            if (monster.ActionSetCode == null)
-            {
-                int i = 0;
-            }
             //Sly : monster ids may contain underscores that must be kept to find the base monster, eg. large_humanoid_monster must be retrievable from large_humanoid_monster_settlement_slow. Similarly, large_humanoid_monster_child should remain untouched as its base is human_child.
             //This could possibly be done differently with recursion by following the base_monster reference chain to look for an action set.
             if (monsterId.Contains("_"))
