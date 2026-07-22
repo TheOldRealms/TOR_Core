@@ -3559,7 +3559,7 @@
   <string id="tor_careerchoice_description.PaymasterPassive1" text="{=str_tor_careerchoice_description_PaymasterPassive1}Wounded troops heal faster." />
   <string id="tor_careerchoice_description.PaymasterPassive2" text="{=str_tor_careerchoice_description_PaymasterPassive2}+40% chance to recruit 2 troops instead of 1." />
   <string id="tor_careerchoice_description.PaymasterPassive3" text="{=str_tor_careerchoice_description_PaymasterPassive3}-10% Gold upkeep for tier 4+ troops." />
-  <string id="tor_careerchoice_description.PaymasterPassive4" text="{=str_tor_careerchoice_description_PaymasterPassive4}Promote 'Basic' troops of your culture into Companions." />
+  <string id="tor_careerchoice_description.PaymasterPassive4" text="{=str_tor_careerchoice_description_PaymasterPassive4}Promote 'certain' troops of your culture into Companions." />
   <string id="tor_careerchoice_description.MercenaryLordKeystone" text="{=str_tor_careerchoice_description_MercenaryLordKeystone}Let Them Have It! has its cooldown reduced by 15%" />
   <string id="tor_careerchoice_description.MercenaryLordPassive1" text="{=str_tor_careerchoice_description_MercenaryLordPassive1}+3 extra ammo per pouch of Grenades or Buckshot." />
   <string id="tor_careerchoice_description.MercenaryLordPassive2" text="{=str_tor_careerchoice_description_MercenaryLordPassive2}+10% 'Physical' damage for ranged troops." />
