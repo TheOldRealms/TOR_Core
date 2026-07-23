@@ -56,6 +56,12 @@ namespace TOR_Core.HarmonyPatches
             {
                 return false;
             }
+
+            if (victim.IsMount && victim.Monster.StringId == "spider")
+            {
+                return false;
+            }
+
             return true;
         }
 

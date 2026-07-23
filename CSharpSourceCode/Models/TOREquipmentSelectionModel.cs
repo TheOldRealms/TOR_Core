@@ -20,5 +20,29 @@ namespace TOR_Core.Models
                 : companionHero.BattleEquipment);
             return equipment;
         }
+
+        // 1.4 replaces ruler gear through culture templates for new rulers. they will not change in tor but missing ruler equipment sets will return null upon a chaos uprising.
+        public override (Equipment, Equipment) GetEquipmentsForChangingRuler(Hero newRuler, Hero oldRuler, Equipment.EquipmentType equipmentType)
+        {
+            var newRulerEquipment = newRuler == Hero.MainHero 
+                ? null : new Equipment(equipmentType);
+
+            if (newRulerEquipment != null)
+            {
+                newRulerEquipment.FillFrom(equipmentType == Equipment.EquipmentType.Civilian
+                    ? newRuler.CivilianEquipment : newRuler.BattleEquipment);
+            }
+
+            var oldRulerEquipment = oldRuler == null || !oldRuler.IsActive || oldRuler == Hero.MainHero
+                ? null : new Equipment(equipmentType);
+
+            if (oldRulerEquipment != null)
+            {
+                oldRulerEquipment.FillFrom(equipmentType == Equipment.EquipmentType.Civilian
+                    ? oldRuler.CivilianEquipment : oldRuler.BattleEquipment);
+            }
+
+            return (newRulerEquipment, oldRulerEquipment);
+        }
     }
 }

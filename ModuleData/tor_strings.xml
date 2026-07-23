@@ -986,9 +986,9 @@
   <string id="tor_dw_guildmaster_brewer_hub_spend_food_end" text="{=str_tor_dw_guildmaster_brewer_hub_spend_food_end}Thank ye for yer contribution." />
   <string id="tor_dw_brewer_recruit_rangers_text" text="{=str_tor_dw_brewer_recruit_rangers_text}I need some rangers for scouting" />
   <string id="tor_dw_brewer_recruit_rangers_offer_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_text}Aye, we have some skilled rangers eager to serve. It'll cost ye {RANGER_GOLD_PRICE}{GOLD_ICON} and {RANGER_OATHGOLD_PRICE} Oathgold." />
-  <string id="tor_dw_brewer_recruit_rangers_accept_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_text}They'll serve the holds well." />
+  <string id="tor_dw_brewer_recruit_rangers_accept_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_accept_p}They'll serve the holds well." />
   <string id="tor_dw_brewer_recruit_rangers_no_funds_text" text="{=str_tor_dw_brewer_recruit_rangers_no_funds_text}I don't have enough coin or Oathgold right now." />
-  <string id="tor_dw_brewer_recruit_rangers_decline_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_text}Maybe another time" />
+  <string id="tor_dw_brewer_recruit_rangers_decline_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_decline_p}Maybe another time" />
 
   <!-- Warrior Guild -->
   <string id="tor_dw_guildmaster_warrior_hub_spend_troops_p" text="{=str_tor_dw_guildmaster_warrior_hub_spend_troops_p}Can I leave some Dawi to help defend our Holds?" />
@@ -3559,7 +3559,7 @@
   <string id="tor_careerchoice_description.PaymasterPassive1" text="{=str_tor_careerchoice_description_PaymasterPassive1}Wounded troops heal faster." />
   <string id="tor_careerchoice_description.PaymasterPassive2" text="{=str_tor_careerchoice_description_PaymasterPassive2}+40% chance to recruit 2 troops instead of 1." />
   <string id="tor_careerchoice_description.PaymasterPassive3" text="{=str_tor_careerchoice_description_PaymasterPassive3}-10% Gold upkeep for tier 4+ troops." />
-  <string id="tor_careerchoice_description.PaymasterPassive4" text="{=str_tor_careerchoice_description_PaymasterPassive4}Promote 'Basic' troops of your culture into Companions." />
+  <string id="tor_careerchoice_description.PaymasterPassive4" text="{=str_tor_careerchoice_description_PaymasterPassive4}Promote 'certain' troops of your culture into Companions." />
   <string id="tor_careerchoice_description.MercenaryLordKeystone" text="{=str_tor_careerchoice_description_MercenaryLordKeystone}Let Them Have It! has its cooldown reduced by 15%" />
   <string id="tor_careerchoice_description.MercenaryLordPassive1" text="{=str_tor_careerchoice_description_MercenaryLordPassive1}+3 extra ammo per pouch of Grenades or Buckshot." />
   <string id="tor_careerchoice_description.MercenaryLordPassive2" text="{=str_tor_careerchoice_description_MercenaryLordPassive2}+10% 'Physical' damage for ranged troops." />

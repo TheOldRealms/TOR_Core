@@ -42,19 +42,17 @@ namespace TOR_Core.Models
         private bool _isDuelMission = false;
         private bool _isJoustMission = false;
 
-        public override void InitializeAgentStats(Agent agent, Equipment spawnEquipment, AgentDrivenProperties agentDrivenProperties, AgentBuildData agentBuildData)
-        {
-            base.InitializeAgentStats(agent, spawnEquipment, agentDrivenProperties, agentBuildData);
-
-            var equipmentEncumbrance = GetTOREffectiveEquipmentEncumbrance(agent, agentDrivenProperties.WeaponsEncumbrance);
-            agentDrivenProperties.WeaponsEncumbrance = equipmentEncumbrance;
-
-            UpdateAgentDrivenProperties(agent, agentDrivenProperties);
-        }
-
         public override void UpdateAgentStats(Agent agent, AgentDrivenProperties agentDrivenProperties)
         {
             base.UpdateAgentStats(agent, agentDrivenProperties);
+
+            if (agent.GetHero() is Hero hero && hero == Hero.MainHero)
+            {
+                var weaponEncumbrance = new ExplainedNumber(agentDrivenProperties.WeaponsEncumbrance);
+                CareerHelper.ApplyBasicCareerPassives(hero, ref weaponEncumbrance, PassiveEffectType.EquipmentWeightReduction);
+                agentDrivenProperties.WeaponsEncumbrance = weaponEncumbrance.ResultNumber;
+            }
+
             UpdateAgentDrivenProperties(agent, agentDrivenProperties);
         }
         
@@ -769,22 +767,21 @@ namespace TOR_Core.Models
             return bonus.ResultNumber;
         }
 
-        //The moment you realize they forget to add an override statement. if they do it needs to be moved on the EffectiveArmorEncumbrance
-        public float GetTOREffectiveEquipmentEncumbrance(Agent agent, float agentWeaponEncumbrance)//why is the agent driven property called weapon encumbrance?
+        public override float GetEffectiveArmorEncumbrance(Agent agent, Equipment equipment)
         {
-            if (agent == null) return 0;
-            if (agent.IsMount) return 0;
-            var encumbrance = new ExplainedNumber(agentWeaponEncumbrance);
+            var armorEncumbrance = new ExplainedNumber(equipment.GetTotalWeightOfArmor(agent.IsHuman));
 
-            PerkHelper.AddPerkBonusForCharacter(DefaultPerks.Athletics.FormFittingArmor, (CharacterObject)agent.Character, true, ref encumbrance);
-
-            if (agent.GetHero() == Hero.MainHero)
+            if (agent.Character is CharacterObject character)
             {
-                CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref encumbrance, PassiveEffectType.EquipmentWeightReduction);
+                PerkHelper.AddPerkBonusForCharacter(DefaultPerks.Athletics.FormFittingArmor, character, true, ref armorEncumbrance);
+
+                if (character.IsHero && character.HeroObject == Hero.MainHero)
+                {
+                    CareerHelper.ApplyBasicCareerPassives(character.HeroObject, ref armorEncumbrance, PassiveEffectType.EquipmentWeightReduction);
+                }
             }
 
-
-            return encumbrance.ResultNumber;
+            return MathF.Max(0f, armorEncumbrance.ResultNumber);
         }
     }
 }

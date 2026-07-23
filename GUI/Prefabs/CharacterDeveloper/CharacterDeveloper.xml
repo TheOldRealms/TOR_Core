@@ -418,8 +418,7 @@
               <Children>
 
                 <!--Character Selection-->
-                <OptionsDropdownWidget Id="DropdownParent" DataSource="{CharacterList}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="434" SuggestedHeight="47" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="10" Button="DropdownButton" CurrentSelectedIndex="@SelectedIndex" ListPanel="DropdownClipWidget\DropdownContainerWidget\ScrollablePanel\ClipRect\PrimaryUsageSelectorList" DropdownContainerWidget="DropdownClipWidget\DropdownContainerWidget" DropdownClipWidget="DropdownClipWidget">
-                  <Children>
+                <AnimatedDropdownWidget Id="DropdownParent" DataSource="{CharacterList}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="434" SuggestedHeight="47" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="10" Button="DropdownButton" CurrentSelectedIndex="@SelectedIndex" ListPanel="DropdownClipWidget\DropdownContainerWidget\ScrollablePanel\ClipRect\PrimaryUsageSelectorList" DropdownContainerWidget="DropdownClipWidget\DropdownContainerWidget" DropdownClipWidget="DropdownClipWidget">                  <Children>
 
                     <ButtonWidget Id="DropdownButton" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Character.Selection.Button" IsDisabled="@HasSingleItem">
                       <Children>
@@ -470,7 +469,7 @@
                       </Children>
                     </Widget>
                   </Children>
-                </OptionsDropdownWidget>
+                </AnimatedDropdownWidget>
               </Children>
             </Widget>
 
