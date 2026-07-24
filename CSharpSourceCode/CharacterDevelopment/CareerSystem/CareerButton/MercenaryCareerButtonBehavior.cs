@@ -75,12 +75,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
         {
             if (PartyScreenHelper.GetActivePartyState().PartyScreenMode != PartyScreenMode.Normal) return false;
 
-            //Elite + Ranged allows empire mercs to recruit outriders as companions but not the rest of the tree
             return Hero.MainHero.HasCareerChoice("PaymasterPassive4") &&
                 !characterObject.IsHero &&
-                !isPrisoner &&
-                (!characterObject.IsEliteTroop() ||
-                    (characterObject.IsEliteTroop() && characterObject.IsRanged));
+                !isPrisoner;
         }
 
         public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner = false)

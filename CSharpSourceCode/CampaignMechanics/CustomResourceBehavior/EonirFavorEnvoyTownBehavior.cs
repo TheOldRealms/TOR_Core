@@ -370,10 +370,17 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             }
 
             // Can only learn if they don't already know any base lore
+            if (Hero.MainHero.HasKnownLore("HighMagic"))
+            {
+                return false;
+            }
+
             foreach (var loreId in _baseLores)
             {
                 if (Hero.MainHero.HasKnownLore(loreId))
+                {
                     return false;
+                }
             }
 
             return true;
@@ -423,8 +430,8 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
             var lores = LoreObject.GetAll();
 
-            // Filter to only base lores
-            lores = lores.WhereQ(x => _baseLores.Contains(x.StringId)).ToList();
+            // Filter to only base lores except for High Magic, which is also available to Eonir Mercenaries
+            lores = lores.WhereQ(x => _baseLores.Contains(x.StringId) || x.StringId == "HighMagic").ToList();
 
             foreach (var lore in lores)
             {
