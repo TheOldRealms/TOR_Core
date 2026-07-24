@@ -1909,6 +1909,7 @@
   <string id="str_crafting_template.tor_large_monster_weapon_template" text="{=str_tor_crafting_template_TORLargeMonsterWeapon}TOR-Large Monster Weapon (Hidden)" />
   <string id="str_crafting_template.tor_dual_wield_mainhand" text="{=str_tor_crafting_template_TORDualWieldMainhand}TOR-Dual-Wield Mainhand (Hidden)" />
   <string id="str_crafting_template.tor_axe_template" text="{=str_tor_crafting_template_TORAxes}TOR-Axes" />
+  <string id="str_crafting_template.tor_kotww_axe_template" text="Knight of the White Wolf Axe" />
   <string id="str_crafting_template.tor_twohandedaxe" text="{=str_tor_crafting_template_TORGreataxes}TOR-Greataxes" />
   <string id="str_crafting_template.tor_mace_template" text="{=str_tor_crafting_template_TORMaces}TOR-Maces" />
   <string id="str_crafting_template.tor_orc_mace_template" text="{=str_tor_crafting_template_TOROrcMaces}TOR-Orc Maces" />
