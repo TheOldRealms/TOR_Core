@@ -173,7 +173,11 @@ public class TORHiringCompatibilityModel : GameModel
                     playerCulture == TORConstants.Cultures.BRETONNIA &&
                     sellerCulture == TORConstants.Cultures.MOUSILLON;
 
-                if (!isMousillonCastleException && !isBretonniaCastleException)
+                bool isAsraiEonirException =
+                    (playerCulture == TORConstants.Cultures.ASRAI && sellerCulture == TORConstants.Cultures.EONIR) ||
+                    (playerCulture == TORConstants.Cultures.EONIR && sellerCulture == TORConstants.Cultures.ASRAI);
+
+                if (!isMousillonCastleException && !isBretonniaCastleException && !isAsraiEonirException)
                 {
                     return false;
                 }
