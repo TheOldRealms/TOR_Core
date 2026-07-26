@@ -31,6 +31,8 @@ namespace TOR_Core.BattleMechanics
 
         private float _elapsedSinceLastTick;
 
+        private readonly MBList<Agent> _nearbyEnemyAgents = new();
+
         private bool _fixedHirelingSpawn;
 
         public override void OnMissionTick(float dt)
@@ -98,7 +100,6 @@ namespace TOR_Core.BattleMechanics
                 }
 
                 EvaluateLocalThreats(agent,
-                    missionAgentsSnapshot,
                     out bool hasCloseFootEnemy,
                     out bool hasIncomingMountedCharge,
                     out bool isIncomingMountedChargeTooCloseToSwapToLance);
@@ -249,6 +250,11 @@ namespace TOR_Core.BattleMechanics
                 return false;
             }
 
+            if (agent.Team == null)
+            {
+                return false;
+            }
+
             if (agent == Agent.Main)
             {
                 return false;
@@ -342,7 +348,6 @@ namespace TOR_Core.BattleMechanics
 
         private void EvaluateLocalThreats(
             Agent agent,
-            Agent[] missionAgentsSnapshot,
             out bool hasCloseFootEnemy,
             out bool hasIncomingMountedCharge,
             out bool isIncomingMountedChargeTooCloseToSwapToLance)
@@ -353,6 +358,12 @@ namespace TOR_Core.BattleMechanics
 
             Vec2 agentPosition = agent.Position.AsVec2;
 
+            Mission.GetNearbyEnemyAgents(
+                agentPosition,
+                CAVALRY_CHARGE_THREAT_DISTANCE,
+                agent.Team,
+                _nearbyEnemyAgents);
+
             float closeFootEnemyDistanceSq = CLOSE_MELEE_DISTANCE_TO_FORCE_SIDEARM * CLOSE_MELEE_DISTANCE_TO_FORCE_SIDEARM;
             float chargeThreatDistanceSq = CAVALRY_CHARGE_THREAT_DISTANCE * CAVALRY_CHARGE_THREAT_DISTANCE;
             float minChargeDistanceSq = MIN_CAVALRY_DISTANCE_FOR_CHARGE_THREAT * MIN_CAVALRY_DISTANCE_FOR_CHARGE_THREAT;
@@ -360,7 +371,7 @@ namespace TOR_Core.BattleMechanics
             float minCavalrySpeedSq = MIN_CAVALRY_SPEED_TO_ALLOW_LANCE * MIN_CAVALRY_SPEED_TO_ALLOW_LANCE;
             float approachDotThresholdSq = CAVALRY_APPROACH_DOT_THRESHOLD * CAVALRY_APPROACH_DOT_THRESHOLD;
 
-            foreach (var otherAgent in missionAgentsSnapshot)
+            foreach (var otherAgent in _nearbyEnemyAgents)
             {
                 if (!otherAgent.IsActive() || !otherAgent.IsHuman)
                 {

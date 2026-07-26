@@ -69,6 +69,53 @@ namespace TOR_Core.HarmonyPatches
             return true;
         }
 
+        // skips custom races (invalidated for reuse) before consuming engine face cache budget
+        [HarmonyTranspiler]
+        [HarmonyPatch(typeof(MissionFaceCacheView), "GetRandomBodyPropertyForTroop")]
+        public static IEnumerable<CodeInstruction> SkipUnusedCustomRaceFaceParameterExtraction(IEnumerable<CodeInstruction> instructions)
+        {
+            var getParamsFromKey = AccessTools.Method(
+                typeof(MBBodyProperties),
+                nameof(MBBodyProperties.GetParamsFromKey));
+
+            var getMissionFaceParamsForCache = AccessTools.Method(
+                typeof(RaceFixPatches),
+                nameof(GetMissionFaceParamsForCache));
+
+            foreach (var instruction in instructions)
+            {
+                if (instruction.Calls(getParamsFromKey))
+                {
+                    // 0 = view, 1 = build data, 2 = character
+                    yield return new CodeInstruction(OpCodes.Ldarg_2);
+                    instruction.operand = getMissionFaceParamsForCache;
+                }
+
+                yield return instruction;
+            }
+        }
+
+        private static void GetMissionFaceParamsForCache(
+            ref FaceGenerationParams faceGenerationParams,
+            BodyProperties bodyProperties,
+            bool earsAreHidden,
+            bool mouthIsHidden,
+            BasicCharacterObject characterObject)
+        {
+            if (IsSafeMissionFaceCacheRace(characterObject.Race))
+            {
+                MBBodyProperties.GetParamsFromKey(
+                    ref faceGenerationParams,
+                    bodyProperties,
+                    earsAreHidden,
+                    mouthIsHidden);
+                return;
+            }
+
+            faceGenerationParams = FaceGenerationParams.Create();
+            faceGenerationParams.CurrentRace = characterObject.Race;
+        }
+
         private static bool CanReuseMissionFaceCache(FaceGenerationParams firstFace, FaceGenerationParams secondFace)
         {
             if (firstFace.CurrentRace == secondFace.CurrentRace)
@@ -84,18 +131,20 @@ namespace TOR_Core.HarmonyPatches
             return (firstRaceName == "human" && secondRaceName == "bretonnian") || (firstRaceName == "bretonnian" && secondRaceName == "human");
         }
 
-        [HarmonyPostfix]
+        [HarmonyPrefix]
         [HarmonyPatch(typeof(MissionFaceCacheView), "ComputeSimilarityOfFace")]
-        public static void BlockCrossRaceMissionFaceReuse(
+        public static bool BlockCrossRaceMissionFaceReuseBeforeSimilarity(
             FaceGenerationParams f0,
             FaceGenerationParams f1,
             ref float __result)
         {
-            // block other cross race spawns
-            if (!CanReuseMissionFaceCache(f0, f1))
+            if (CanReuseMissionFaceCache(f0, f1))
             {
-                __result = 1000000000f;
+                return true;
             }
+
+            __result = 1000000000f;
+            return false;
         }
 
         [HarmonyPrefix]
