@@ -2,6 +2,7 @@
 using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.CampaignBehaviors.BarterBehaviors;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
@@ -89,6 +90,13 @@ public static class MobilePartyPatches
 
         __result = preferredSettlement;
         return false;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(DiplomaticBartersBehavior), "DailyTickClan")]
+    public static bool KeepUniqueSpawnClansOutOfVanillaDiplomacy(Clan clan)
+    {
+        return UniqueSpawnCampaignBehavior.ShouldRunVanillaDiplomacy(clan);
     }
 
     // post calculation mobile party attack and avoidance decisions

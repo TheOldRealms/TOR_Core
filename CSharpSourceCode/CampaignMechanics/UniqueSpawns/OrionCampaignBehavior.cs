@@ -874,9 +874,16 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
                 }
             }
 
-            return MobileParty.All.FirstOrDefault(party =>
+            var recoveredParty = MobileParty.All.FirstOrDefault(party =>
                 party.IsActive &&
                 party.GetUniqueSpawnComponent()?.UniqueSpawnId == "tor_unique_orion");
+
+            if (recoveredParty != null)
+            {
+                _orionPartyId = recoveredParty.StringId;
+            }
+
+            return recoveredParty;
         }
 
         public static void RemoveOrionFromDefeatedPartyRosters(MapEvent mapEvent, MBReadOnlyList<MapEventParty> defeatedParties)

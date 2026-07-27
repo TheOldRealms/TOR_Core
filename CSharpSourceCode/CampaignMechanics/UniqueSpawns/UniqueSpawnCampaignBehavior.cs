@@ -46,6 +46,11 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
         {
         }
 
+        internal static bool ShouldRunVanillaDiplomacy(Clan clan)
+        {
+            return !clan.IsMinorFaction || clan.WarPartyComponents.All(warParty => warParty is not UniqueSpawnPartyComponent);
+        }
+
         private void DailyTick()
         {
             foreach (var uniqueSpawnParty in MobileParty.All.Where(party => party.IsActive && party.IsUniqueSpawn()).ToList())
