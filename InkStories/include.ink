@@ -110,6 +110,10 @@ EXTERNAL LearnEnchantmentBlueprint(blueprintId)
 ===function LearnEnchantmentBlueprint(blueprintId)===
     ~ return ""
 
+EXTERNAL LearnRandomUnknownOrionEnchantment()
+===function LearnRandomUnknownOrionEnchantment()===
+    ~ return ""
+
 //Gets the current skill value of the player
 //Takes the skill's name as argument
 //The skillname is case sensitive string

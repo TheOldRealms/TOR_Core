@@ -2,12 +2,15 @@
 using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.UniqueSpawns;
 using TOR_Core.Extensions;
+using TOR_Core.Models;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches;
@@ -87,6 +90,33 @@ public static class MobilePartyPatches
         __result = preferredSettlement;
         return false;
     }
+
+    // post calculation mobile party attack and avoidance decisions
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(DefaultMobilePartyAIModel), "CalculateInitiativeScoresForEnemy")]
+    private static void PostProcessEnemyInitiativeScores(
+        DefaultMobilePartyAIModel __instance,
+        MobileParty mobileParty,
+        MobileParty enemyParty,
+        float localAdvantage,
+        float maxAggressiveness,
+        ref float avoidScore,
+        ref float attackScore)
+    {
+        if (__instance is not TORMobilePartyAIModel torMobilePartyAIModel)
+        {
+            return;
+        }
+
+        torMobilePartyAIModel.AdjustEnemyInitiativeScores(
+            mobileParty,
+            enemyParty,
+            localAdvantage,
+            maxAggressiveness,
+            ref avoidScore,
+            ref attackScore);
+    }
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(MobileParty), "GetBehaviorText")]
     public static void UseOrionWarPlanBehaviorText(MobileParty __instance, ref TextObject __result)

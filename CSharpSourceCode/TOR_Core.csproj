@@ -861,6 +861,7 @@
     <Compile Include="Models\TORMapVisibilityModel.cs" />
     <Compile Include="Models\TORMarriageModel.cs" />
     <Compile Include="Models\TORMobilePartyFoodConsumptionModel.cs" />
+    <Compile Include="Models\TORMobilePartyAIModel.cs" />
     <Compile Include="Models\TORPartyHealingModel.cs" />
     <Compile Include="Models\TORPartyMoraleModel.cs" />
     <Compile Include="Models\TORPartyDesertionModel.cs" />
