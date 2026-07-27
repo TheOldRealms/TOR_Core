@@ -4437,18 +4437,22 @@
   <string id="tor_extendedInfo.ArtilleryCrew" text="{=str_tor_extendedinfo_artillerycrew}Artillery Crew - required to operate most artillery pieces."/>
   <string id="tor_extendedInfo.Unbreakable" text="{=str_tor_extendedinfo_unbreakable}Unbreakable - shall never flee due to low morale."/>
   <string id="tor_extendedInfo.Unstoppable" text="{=str_tor_extendedinfo_unstoppable}Unstoppable - does not stagger upon receiving damage."/>
-  <string id="tor_extendedInfo.TrollRegeneration" text="{=str_tor_extendedinfo_troll_regeneration}Regeneration - regenerates health over time."/>
-  <string id="tor_extendedInfo.Brute" text="{=str_tor_extendedinfo_brute}Brute - htis better."/>
-  <string id="tor_extendedInfo.Piercing" text="{=str_tor_extendedinfo_piercing}Piercing - Unit deals 40% Armor piercing damage."/>
-  <string id="tor_extendedInfo.TheHunger" text="{=str_tor_extendedinfo_the_hunger}The Hunger - restores health after killing an enemy."/>
-  <string id="tor_extendedInfo.Frenzy" text="{=str_tor_extendedinfo_frenzy}Frenzy - gains increased attack and movement speed upon killing an enemy"/>
-  <string id="tor_extendedInfo.UndeadSlayer" text="{=str_tor_extendedinfo_undead_slayer}Undead Slayer - deals increased damage against undead units."/>
-  <string id="tor_extendedInfo.Immortality" text="{=str_tor_extendedinfo_immortality}Immortality - Cannot be killed."/>
-  <string id="tor_extendedInfo.Deadeye" text="{=str_tor_extendedinfo_deadeye}Deadeye - suffers no ranged accuracy penalty while moving."/>
-  <string id="tor_extendedInfo.Ethereal" text="{=str_tor_extendedinfo_ethereal}Ethereal - has a chance to ignore non magical weapon hits."/>
-  <string id="tor_extendedInfo.KillingBlow" text="{=str_tor_extendedinfo_killing_blow}Killing Blow - has a chance to instantly kill enemy units."/>
-  <string id="tor_extendedInfo.WightKing" text="{=str_tor_extendedinfo_wight_king}Wight King - has an increased chance to instantly kill enemy units"/>
-  <string id="tor_extendedInfo.MonsterSlayer" text="{=str_tor_extendedinfo_monster_slayer}Monster Slayer - deals increased damage against monstrous units."/>
+  <string id="tor_extendedInfo.TrollRegeneration" text="{=str_tor_extendedinfo_troll_regeneration}Troll - regenerates health over time(...)"/>
+  <string id="tor_extendedInfo.Brute" text="{=str_tor_extendedinfo_brute}Brute - htis better(...)"/>
+  <string id="tor_extendedInfo.Piercing" text="{=str_tor_extendedinfo_piercing}Piercing - {VALUE}% Armor Penetration(...)"/>
+  <string id="tor_extendedInfo.Bulwark" text="{=str_tor_extendedinfo_bulwark}Bulwark - {VALUE}% Ranged Damage Reduction(...)"/>
+  <string id="tor_extendedInfo.Swift" text="{=str_tor_extendedinfo_swift}Swift - {VALUE}% Movement Speed Bonus(...)"/>
+  <string id="tor_extendedInfo.Poisonous" text="{=str_tor_extendedinfo_poisonous}Poisonous - {CHANCE}% Chance on Hit to Poison the Target {DURATION} {DAMAGE}(...)"/>
+  <string id="tor_extendedInfo.TheHunger" text="{=str_tor_extendedinfo_the_hunger}The Hunger - Restores {VALUE}% Maximum Health after Killing an enemy(...)"/>
+  <string id="tor_extendedInfo.Frenzy" text="{=str_tor_extendedinfo_frenzy}Frenzy - Kill Grants {VALUE}% Movement Speed {VALUE}% Attack Speed for {DURATION} (...)"/>
+  <string id="tor_extendedInfo.UndeadSlayer" text="{=str_tor_extendedinfo_undead_slayer}Undead Slayer - +{VALUE}% Damage against Undead Units (...)"/>
+  <string id="tor_extendedInfo.Immortality" text="{=str_tor_extendedinfo_immortality}Immortality - Cannot be killed (...)"/>
+  <string id="tor_extendedInfo.Deadeye" text="{=str_tor_extendedinfo_deadeye}Deadeye - suffers no ranged accuracy penalty while moving(...)"/>
+  <string id="tor_extendedInfo.Ethereal" text="{=str_tor_extendedinfo_ethereal}Ethereal - {VALUE}% Chance to Ignore Purely Physical Hits(...)"/>
+  <string id="tor_extendedInfo.KillingBlow" text="{=str_tor_extendedinfo_killing_blow}Killing Blow - has a chance to instantly kill enemy units(...)"/>
+  <string id="tor_extendedInfo.WightKing" text="{=str_tor_extendedinfo_wight_king}Wight King - Has an Increased Chance to Instantly Kill Enemy Units(...)"/>
+  <string id="tor_extendedInfo.MonsterSlayer" text="{=str_tor_extendedinfo_monster_slayer}Monster Slayer - +{VALUE}% Damage against Monstrous Units(...)"/>
+  
   <string id="tor_damagetype.Invalid" text="{=str_tor_damagetype_invalid}Invalid" />
   <string id="tor_damagetype.Physical" text="{=str_tor_damagetype_physical}Physical" />
   <string id="tor_damagetype.Magical" text="{=str_tor_damagetype_magical}Magical" />

@@ -2228,12 +2228,22 @@
 		base_effect_value="3"
 		type="HealthOverTime">
 	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
+		id="trait_poisonous_dot"
+		particle_id="hagbane_debuff"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="2"
+		type="DamageOverTime"
+		damage_type="Physical">
+	</StatusEffectTemplate>
 	
 	<StatusEffectTemplate
     		id="trait_frenzy_movement_speed"
     		particle_id=""
    		 do_not_attach_to_agent_skeleton="true"
-   		 base_effect_value="0.03"
+   		 base_effect_value="0.20"
     		applies_for_attack_type="All"
     		type="MovementManipulation"
    		 damage_type="Physical">
@@ -2243,7 +2253,7 @@
    		 id="trait_frenzy_attack_speed"
   		  particle_id=""
   		  do_not_attach_to_agent_skeleton="true"
-  		  base_effect_value="0.03"
+  		  base_effect_value="0.20"
    		 applies_for_attack_type="All"
    		 type="AttackSpeedManipulation"
   		  damage_type="Physical">

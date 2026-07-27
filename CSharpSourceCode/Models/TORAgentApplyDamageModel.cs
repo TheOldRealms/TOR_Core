@@ -141,7 +141,8 @@ namespace TOR_Core.Models
                 return false;
             }
 
-            if (!victimAgent.IsEthereal())
+            var etherealIgnoreChance = victimAgent.GetEtherealIgnoreChance();
+            if (etherealIgnoreChance <= 0f)
             {
                 return false;
             }
@@ -151,8 +152,7 @@ namespace TOR_Core.Models
                 return false;
             }
 
-            var dodgeChance = 0.35f; // chance to dodge pure physical hits
-            if (MBRandom.RandomFloat >= dodgeChance)
+            if (MBRandom.RandomFloat >= etherealIgnoreChance)
             {
                 return false;
             }
@@ -366,6 +366,29 @@ namespace TOR_Core.Models
             return value;
         }
 
+        public override float ApplyDamageReductions(
+            in AttackInformation attackInformation,
+            in AttackCollisionData collisionData,
+            float baseDamage)
+        {
+            var reducedDamage = base.ApplyDamageReductions(attackInformation, collisionData, baseDamage);
+            if (!collisionData.IsMissile)
+            {
+                return reducedDamage;
+            }
+
+            var victimAgent = attackInformation.VictimAgent;
+            if (victimAgent == null || !victimAgent.IsHuman)
+            {
+                return reducedDamage;
+            }
+
+            var rangedDamageReduction = victimAgent.GetBulwarkRangedDamageReduction();
+            return rangedDamageReduction > 0f
+                ? reducedDamage * (1f - rangedDamageReduction)
+                : reducedDamage;
+        }
+
         /// <summary>
         /// Applies TOR's damage type system (proportions, amplifications, resistances, ward save).
         /// Called last in the CalculateDamage chain, after all vanilla modifiers.
@@ -457,14 +480,16 @@ namespace TOR_Core.Models
         }
         private static float ApplySlayerAttributes(Agent attackerAgent, Agent victimAgent, float damage)
         {
-            if (attackerAgent.HasUndeadSlayer() && victimAgent.IsUndead())
+            var undeadSlayerDamageBonus = attackerAgent.GetUndeadSlayerDamageBonus();
+            if (undeadSlayerDamageBonus > 0f && victimAgent.IsUndead())
             {
-                damage *= 1.25f; // undead slayer damage bonus
+                damage *= 1f + undeadSlayerDamageBonus;
             }
 
-            if (attackerAgent.HasMonsterSlayer() && victimAgent.IsMonstrous())
+            var monsterSlayerDamageBonus = attackerAgent.GetMonsterSlayerDamageBonus();
+            if (monsterSlayerDamageBonus > 0f && victimAgent.IsMonstrous())
             {
-                damage *= 1.50f; // monster slayer damage bonus
+                damage *= 1f + monsterSlayerDamageBonus;
             }
 
             return damage;
@@ -491,15 +516,14 @@ namespace TOR_Core.Models
                 return resultDamage;
             }
 
-            if (!attackerAgent.HasKillingBlow() && !attackerAgent.HasWightKingTrait())
+            var isWightKing = attackerAgent.HasWightKingTrait();
+            if (!attackerAgent.HasKillingBlow() && !isWightKing)
             {
                 return resultDamage;
             }
 
             var victimCharacter = victimAgent.Character as CharacterObject;
             var targetTier = victimCharacter?.Tier ?? 1;
-
-            var isWightKing = attackerAgent.HasWightKingTrait();
 
             var tierOneChance = isWightKing ? 0.40f : 0.20f; // chance against tier 1
             var chanceLostPerTier = isWightKing ? 0.025f : 0.040f; // lower chance vs higher tier

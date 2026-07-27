@@ -85,7 +85,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 return;
             }
 
-            var healPercentOfMaxHealth = 0.05f; // heal per kill
+            var healPercentOfMaxHealth = 0.15f;
             killerAgent.Heal(killerAgent.HealthLimit * healPercentOfMaxHealth);
         }
 
@@ -104,8 +104,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
             var frenzyMovementEffectId = "trait_frenzy_movement_speed";
             var frenzyAttackSpeedEffectId = "trait_frenzy_attack_speed";
-            var maxFrenzyStacks = 5; // max kill stacks 
-            var frenzyStackDuration = 30f; // 30 seconds 
+            var maxFrenzyStacks = 5;
+            var frenzyStackDuration = 40f;
 
             if (statusEffectComponent.GetActiveEffectCount(frenzyAttackSpeedEffectId) >= maxFrenzyStacks)
             {

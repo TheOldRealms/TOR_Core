@@ -5243,15 +5243,23 @@
   <CharacterExtendedInfo id="tor_test_subject">
     <Abilities />
     <Attributes>
+      <string>Bulwark3</string>
+      <string>Swift3</string>
+      <string>Poisonous2</string>
+      <string>Piercing2</string>
+      <string>Brute</string>
+      <string>Unbreakable</string>
+      <string>Unstoppable</string>
+      <string>TrollRegeneration</string>
       <string>TheHunger</string>
       <string>Frenzy</string>
-      <string>WightKing</string>
-      <string>UndeadSlayer</string>
-      <string>Immortality</string>
       <string>Deadeye</string>
-      <string>Ethereal</string>
+      <string>Ethereal2</string>
       <string>KillingBlow</string>
-      <string>MonsterSlayer</string>
+      <string>MonsterSlayer2</string>
+      <string>UndeadSlayer2</string>
+      <string>Immortality</string>
+      <string>Undead</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers>
@@ -10394,6 +10402,7 @@
     <Abilities />
     <Attributes>
       <string>Undead</string>
+      <string>WightKing</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wanderer_vampire_3">

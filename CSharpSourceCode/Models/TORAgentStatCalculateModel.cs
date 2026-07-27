@@ -500,6 +500,15 @@ namespace TOR_Core.Models
                 }
             }
 
+            if (agent.IsHuman)
+            {
+                var swiftMovementSpeedBonus = agent.GetSwiftMovementSpeedBonus();
+                if (swiftMovementSpeedBonus > 0f)
+                {
+                    agentDrivenProperties.MaxSpeedMultiplier *= 1f + swiftMovementSpeedBonus;
+                }
+            }
+
             UpdateDynamicAgentDrivenProperties(agent, agentDrivenProperties);
             ApplyBruteMeleeHandlingBoost(agent, agentDrivenProperties);
         }

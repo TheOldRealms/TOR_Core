@@ -136,9 +136,10 @@ namespace TOR_Core.Models
                     resultArmor.AddFactor(-0.8f);
                 }
 
-                if (attackerAgent.HasPiercing())
+                var piercingArmorReduction = attackerAgent.GetPiercingArmorReduction();
+                if (piercingArmorReduction > 0f)
                 {
-                    resultArmor.AddFactor(-0.4f);
+                    resultArmor.AddFactor(-piercingArmorReduction);
                 }
 
             }

@@ -94,9 +94,9 @@ public static class MobilePartyPatches
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(DiplomaticBartersBehavior), "DailyTickClan")]
-    public static bool KeepUniqueSpawnClansOutOfVanillaDiplomacy(Clan clan)
+    public static bool KeepNonMercenaryMinorClansOutOfVanillaDiplomacy(Clan clan)
     {
-        return UniqueSpawnCampaignBehavior.ShouldRunVanillaDiplomacy(clan);
+        return !clan.IsMinorFaction || clan.IsClanTypeMercenary;
     }
 
     // post calculation mobile party attack and avoidance decisions

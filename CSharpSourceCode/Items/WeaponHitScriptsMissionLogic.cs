@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
@@ -134,6 +135,23 @@ namespace TOR_Core.Items
                     damagedThisPulse.Add(beastman.Index);
                 }
             }
+        }
+
+        public override void OnRegisterBlow(Agent attacker, Agent victim, WeakGameEntity realHitEntity, Blow blow, ref AttackCollisionData collisionData, in MissionWeapon attackerWeapon) // melee & ranged hits
+        {
+            if (attacker == null || victim == null || attacker == victim || !attacker.IsActive() || attacker.IsFadingOut() || !victim.IsHuman || !victim.IsActive() || victim.Health <= 0f || victim.IsFadingOut() || !collisionData.IsColliderAgent || collisionData.AttackBlockedWithShield || collisionData.MissileBlockedWithWeapon || collisionData.CollidedWithShieldOnBack || blow.BaseMagnitude <= 0f || TORSpellBlowHelper.IsSpellBlow(blow))
+            {
+                return;
+            }
+
+            var poisonChance = attacker.GetPoisonousHitChance();
+            if (poisonChance <= 0f || MBRandom.RandomFloat > poisonChance)
+            {
+                return;
+            }
+
+            var poisonDuration = 9f; // first second is consumed before the damage tick
+            ApplyWeaponStatusEffect(victim, "trait_poisonous_dot", attacker, poisonDuration, false);
         }
 
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)

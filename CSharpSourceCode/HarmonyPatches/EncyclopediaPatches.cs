@@ -3,6 +3,7 @@ using SandBox.GauntletUI.Encyclopedia;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Encyclopedia;
 using TaleWorlds.CampaignSystem.Encyclopedia.Pages;
@@ -10,9 +11,11 @@ using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia.Pages;
 using TaleWorlds.Core.ViewModelCollection.Generic;
 using TaleWorlds.Core.ViewModelCollection.Information;
+using TaleWorlds.GauntletUI;
 using TaleWorlds.Library;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade.GauntletUI.Widgets.Information;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -142,10 +145,58 @@ namespace TOR_Core.HarmonyPatches
         }
     }
 
+    [HarmonyPatch(typeof(HintViewModel), nameof(HintViewModel.ExecuteBeginHint))]
+    public static class EncyclopediaUnitPropertyHintPatch
+    {
+        [HarmonyPrefix]
+        private static bool ShowUnitAttributeTooltip(HintViewModel __instance)
+        {
+            return !EncyclopediaUnitPropertyPatches.TryShowUnitPropertyTooltip(__instance);
+        }
+    }
+
+    [HarmonyPatch(typeof(TooltipPropertyWidget), "RefreshText")]
+    public static class EncyclopediaUnitTooltipTextHeightPatch
+    {
+        [HarmonyPostfix]
+        private static void ApplyUnitTooltipTextLayout(TooltipPropertyWidget __instance)
+        {
+            var isTitle = (__instance.PropertyModifierAsFlag & TooltipPropertyWidget.TooltipPropertyFlags.Title) != 0;
+            if (isTitle && __instance.TextHeight == 26)
+            {
+                __instance.DefinitionLabel.Brush.FontSize = __instance.TextHeight;
+                __instance.ValueLabel.Brush.FontSize = __instance.TextHeight;
+            }
+
+            if (__instance.IsMultiLine && __instance.TextHeight == 26)
+            {
+                var attributeDescriptionWidth = 192f;
+                __instance.ValueLabel.Brush.FontSize = __instance.TextHeight;
+                __instance.ValueLabel.WidthSizePolicy = SizePolicy.Fixed;
+                __instance.ValueLabelContainer.WidthSizePolicy = SizePolicy.Fixed;
+                __instance.ValueLabel.SuggestedWidth = attributeDescriptionWidth;
+                __instance.ValueLabelContainer.SuggestedWidth = attributeDescriptionWidth;
+            }
+        }
+    }
+
     [HarmonyPatch]
     [HarmonyPatchCategory("LatePatches")]
-    public static class EncyclopediaUnitAttributeIconPatches
+    public static class EncyclopediaUnitPropertyPatches
     {
+        private static readonly ConditionalWeakTable<HintViewModel, List<TooltipProperty>> UnitPropertyTooltips = new();
+
+        internal static bool TryShowUnitPropertyTooltip(HintViewModel hint)
+        {
+            if (!UnitPropertyTooltips.TryGetValue(hint, out var tooltipProperties))
+            {
+                return false;
+            }
+
+            InformationManager.ShowTooltip(typeof(List<TooltipProperty>), tooltipProperties);
+            return true;
+        }
+
         [HarmonyPostfix]
         [HarmonyPatch(typeof(EncyclopediaUnitPageVM), nameof(EncyclopediaUnitPageVM.RefreshValues))]
         private static void AddUnitAttributeIcons(EncyclopediaUnitPageVM __instance)
@@ -156,9 +207,28 @@ namespace TOR_Core.HarmonyPatches
                 return;
             }
 
-            foreach (var attribute in character.GetAttributes())
+            for (var propertyIndex = 0; propertyIndex < Math.Min(2, __instance.PropertiesList.Count); propertyIndex++)
             {
-                var iconPath = GetUnitAttributeIconPath(attribute);
+                var unitProperty = __instance.PropertiesList[propertyIndex];
+                if (TextObject.IsNullOrEmpty(unitProperty.Hint.HintText))
+                {
+                    continue;
+                }
+
+                UnitPropertyTooltips.Add(unitProperty.Hint, new List<TooltipProperty>
+                {
+                    new TooltipProperty(unitProperty.Hint.HintText.ToString(), string.Empty, 24, false, TooltipProperty.TooltipPropertyFlags.Title)
+                });
+            }
+
+            var displayedAttributes = character.GetAttributes()
+                .GroupBy(GetUnitAttributeLocalizationId)
+                .Select(group => group.OrderByDescending(GetUnitAttributeTier).First());
+
+            foreach (var attribute in displayedAttributes)
+            {
+                var localizationId = GetUnitAttributeLocalizationId(attribute);
+                var iconPath = GetUnitAttributeIconPath(localizationId);
                 if (string.IsNullOrEmpty(iconPath))
                 {
                     continue;
@@ -172,12 +242,142 @@ namespace TOR_Core.HarmonyPatches
                     }
                 }
 
-                if (!GameTexts.TryGetText("tor_extendedInfo", out TextObject hintText, attribute))
+                if (!GameTexts.TryGetText("tor_extendedInfo", out TextObject descriptionText, localizationId))
                 {
                     continue;
                 }
 
-                __instance.PropertiesList.Add(new StringItemWithHintVM(iconPath, hintText));
+                var tier = GetUnitAttributeTier(attribute);
+                SetUnitAttributeTextVariables(descriptionText, localizationId, tier);
+
+                var attributeItem = new StringItemWithHintVM(iconPath, TextObject.GetEmpty());
+                UnitPropertyTooltips.Add(attributeItem.Hint, CreateUnitAttributeTooltip(descriptionText, localizationId, tier));
+                __instance.PropertiesList.Add(attributeItem);
+            }
+        }
+
+        private static List<TooltipProperty> CreateUnitAttributeTooltip(TextObject attributeText, string attribute, int tier)
+        {
+            var localizedText = attributeText.ToString();
+            var descriptionSeparatorIndex = localizedText.IndexOf(" - ", StringComparison.Ordinal);
+            var attributeName = descriptionSeparatorIndex >= 0
+                ? localizedText.Substring(0, descriptionSeparatorIndex)
+                : attribute;
+            var description = descriptionSeparatorIndex >= 0
+                ? localizedText.Substring(descriptionSeparatorIndex + 3)
+                : localizedText;
+
+            if (IsTieredUnitAttribute(attribute))
+            {
+                var romanTier = tier switch
+                {
+                    3 => "III",
+                    2 => "II",
+                    _ => "I"
+                };
+
+                attributeName += " " + romanTier;
+            }
+
+            return new List<TooltipProperty>
+            {
+                new TooltipProperty(attributeName, string.Empty, 0, false, TooltipProperty.TooltipPropertyFlags.Title),
+                new TooltipProperty(string.Empty, string.Empty, 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator),
+                new TooltipProperty(string.Empty, description, 26, false, TooltipProperty.TooltipPropertyFlags.MultiLine)
+            };
+        }
+
+        private static string GetUnitAttributeLocalizationId(string attribute)
+        {
+            switch (attribute)
+            {
+                case "Bulwark2":
+                case "Bulwark3":
+                    return "Bulwark";
+                case "Swift2":
+                case "Swift3":
+                    return "Swift";
+                case "Poisonous2":
+                    return "Poisonous";
+                case "Piercing2":
+                    return "Piercing";
+                case "Ethereal2":
+                    return "Ethereal";
+                case "MonsterSlayer2":
+                    return "MonsterSlayer";
+                case "UndeadSlayer2":
+                    return "UndeadSlayer";
+                default:
+                    return attribute;
+            }
+        }
+
+        private static int GetUnitAttributeTier(string attribute)
+        {
+            switch (attribute)
+            {
+                case "Bulwark3":
+                case "Swift3":
+                    return 3;
+                case "Bulwark2":
+                case "Swift2":
+                case "Poisonous2":
+                case "Piercing2":
+                case "Ethereal2":
+                case "MonsterSlayer2":
+                case "UndeadSlayer2":
+                    return 2;
+                default:
+                    return 1;
+            }
+        }
+
+        private static bool IsTieredUnitAttribute(string attribute)
+        {
+            return attribute == "Bulwark" ||
+                   attribute == "Swift" ||
+                   attribute == "Poisonous" ||
+                   attribute == "Piercing" ||
+                   attribute == "Ethereal" ||
+                   attribute == "MonsterSlayer" ||
+                   attribute == "UndeadSlayer";
+        }
+
+        private static void SetUnitAttributeTextVariables(TextObject text, string attribute, int tier)
+        {
+            switch (attribute)
+            {
+                case "Bulwark":
+                    text.SetTextVariable("VALUE", tier == 3 ? 60 : tier == 2 ? 40 : 20);
+                    break;
+                case "Swift":
+                    text.SetTextVariable("VALUE", tier == 3 ? 40 : tier == 2 ? 30 : 20);
+                    break;
+                case "Poisonous":
+                    text.SetTextVariable("CHANCE", tier == 2 ? 35 : 20);
+                    text.SetTextVariable("DURATION", 8);
+                    text.SetTextVariable("DAMAGE", 2);
+                    break;
+                case "Piercing":
+                    text.SetTextVariable("VALUE", tier == 2 ? 40 : 30);
+                    break;
+                case "TheHunger":
+                    text.SetTextVariable("VALUE", 15);
+                    break;
+                case "Frenzy":
+                    text.SetTextVariable("VALUE", 20);
+                    text.SetTextVariable("DURATION", 40);
+                    text.SetTextVariable("STACKS", 5);
+                    break;
+                case "Ethereal":
+                    text.SetTextVariable("VALUE", tier == 2 ? 40 : 25);
+                    break;
+                case "MonsterSlayer":
+                    text.SetTextVariable("VALUE", tier == 2 ? 150 : 75);
+                    break;
+                case "UndeadSlayer":
+                    text.SetTextVariable("VALUE", tier == 2 ? 60 : 30);
+                    break;
             }
         }
 
@@ -209,6 +409,12 @@ namespace TOR_Core.HarmonyPatches
                     return "attribute_icon_monster_slayer";
                 case "Piercing":
                     return "attribute_icon_piercing";
+                case "Bulwark":
+                    return "";
+                case "Swift":
+                    return "";
+                case "Poisonous":
+                    return "";
                 case "TrollRegeneration":
                     return "attribute_icon_regeneration";
                 case "Unbreakable":
