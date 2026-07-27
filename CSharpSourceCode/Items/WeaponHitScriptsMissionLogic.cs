@@ -554,6 +554,8 @@ namespace TOR_Core.Items
                 return;
             }
 
+            // TODO: ranged hits are also evaluated in OnAgentHit using the weapon stored on the missile
+            // needs a single missile hit path that preserves the launch weapon context
             if (!HasWeaponWithTrait(attacker, out var traits))
             {
                 return;
