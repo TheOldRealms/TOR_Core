@@ -93,7 +93,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
                 }
                 if (element.Troop.IsHero)//trade heroes for council favour, but in turn they are immediately "released" by the envoy and will cycle back into the war - goal is that anything ransomed to the envoy is worthwhile and the player doesn't need to micro the action to avoid direct "losses"
                 {
-                    Hero.MainHero.AddCultureSpecificCustomResource((int)(element.Troop.HeroObject.Level/5 - 1));
+                    Hero.MainHero.AddCultureSpecificCustomResource((element.Troop.HeroObject.Level / 5 - 1) * 10);
                     EndCaptivityAction.ApplyByRansom(element.Troop.HeroObject, null);
                 }
             }
@@ -1093,12 +1093,12 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
             var skillValue = Mathf.Min(Hero.MainHero.GetSkillValue(DefaultSkills.Charm), 300);
             var finished = false;
-            var count = 3;
-            while (!finished && count < 25)
+            var count = 6;
+            while (!finished && count < 50)
             {
-                if (MBRandom.RandomFloat < ((float)skillValue - 10) / 300)
+                if (MBRandom.RandomFloat < ((float)skillValue - 10) / 290f)
                 {
-                    count++;
+                    count += 2;
                 }
                 else
                 {
@@ -1134,18 +1134,44 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
                 roster.AddToCounts(troop, 1);
             }
 
-            PartyScreenHelper.OpenScreenAsReceiveTroops(roster, TORTextHelper.GetTextObject("eonir_asur_troops_title_text", "Asur support"), OnscreenClosed);
+            var offeredTroopCount = roster.TotalManCount;
 
-            void OnscreenClosed(PartyBase leftOwnerParty, TroopRoster leftMemberRoster, TroopRoster leftPrisonRoster, PartyBase rightOwnerParty, TroopRoster rightMemberRoster, TroopRoster rightPrisonRoster, bool fromCancel)
+            Hero.MainHero.AddCultureSpecificCustomResource(-150);
+
+            PartyScreenHelper.OpenScreenWithDummyRosterWithMainParty(
+                roster,
+                TroopRoster.CreateDummyTroopRoster(),
+                TORTextHelper.GetTextObject("eonir_asur_troops_title_text", "Asur support"),
+                offeredTroopCount,
+                null,
+                OnscreenClosed,
+                IsAsurSupportTroopTransferable);
+
+            bool IsAsurSupportTroopTransferable(
+                CharacterObject character,
+                PartyScreenLogic.TroopType type,
+                PartyScreenLogic.PartyRosterSide side,
+                PartyBase leftOwnerParty)
             {
-                if (fromCancel) return;
+                return type == PartyScreenLogic.TroopType.Member &&
+                       side == PartyScreenLogic.PartyRosterSide.Left;
+            }
 
-                if (leftMemberRoster.Count < count)
+            void OnscreenClosed(
+                PartyBase leftOwnerParty,
+                TroopRoster leftMemberRoster,
+                TroopRoster leftPrisonRoster,
+                PartyBase rightOwnerParty,
+                TroopRoster rightMemberRoster,
+                TroopRoster rightPrisonRoster,
+                bool fromCancel)
+            {
+                if (fromCancel || leftMemberRoster.TotalManCount == offeredTroopCount)
                 {
-                    Hero.MainHero.AddCultureSpecificCustomResource(-150);
-
-                    Hero.MainHero.AddSkillXp(DefaultSkills.Charm, 150);
+                    return;
                 }
+
+                Hero.MainHero.AddSkillXp(DefaultSkills.Charm, 150);
             }
         }
 
