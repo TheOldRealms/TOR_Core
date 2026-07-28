@@ -787,7 +787,7 @@
       <string>Unbreakable</string>
       <string>Unstoppable</string>
       <string>MonsterAttack</string>
-      <string>TrollRegeneration</string>
+      <string>Regeneration</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.35" />
@@ -2184,7 +2184,7 @@
     <Attributes>
       <string>MonsterAttack</string>
       <string>Unstoppable</string>
-      <string>TrollRegeneration</string>
+      <string>Regeneration</string>
       <string>HasAnimationTriggeredEffects</string>
       <string>Monstrous</string>
       <string>Brute</string>
@@ -5250,7 +5250,7 @@
       <string>Brute</string>
       <string>Unbreakable</string>
       <string>Unstoppable</string>
-      <string>TrollRegeneration</string>
+      <string>Regeneration3</string>
       <string>TheHunger</string>
       <string>Frenzy</string>
       <string>Deadeye</string>
@@ -9916,7 +9916,7 @@
       <string>Tough</string>
       <string>MonsterAttack</string>
       <string>Unstoppable</string>
-      <string>TrollRegeneration</string>
+      <string>Regeneration</string>
       <string>LegendaryLord</string>
     </Attributes>
   </CharacterExtendedInfo>

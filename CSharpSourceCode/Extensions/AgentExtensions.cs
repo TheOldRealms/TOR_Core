@@ -145,9 +145,20 @@ namespace TOR_Core.Extensions
 
             return false;
         }
-        public static bool HasTrollRegeneration(this Agent agent)
+        public static int GetRegenerationTier(this Agent agent)
         {
-            return agent.GetAttributes().Contains("TrollRegeneration");
+            var attributes = agent.GetAttributes();
+            if (attributes.Contains("Regeneration3"))
+            {
+                return 3;
+            }
+
+            if (attributes.Contains("Regeneration2"))
+            {
+                return 2;
+            }
+
+            return attributes.Contains("Regeneration") ? 1 : 0;
         }
 
         public static float GetPiercingArmorReduction(this Agent agent)

@@ -307,6 +307,9 @@ namespace TOR_Core.HarmonyPatches
                     return "MonsterSlayer";
                 case "UndeadSlayer2":
                     return "UndeadSlayer";
+                case "Regeneration2":
+                case "Regeneration3":
+                    return "Regeneration";
                 default:
                     return attribute;
             }
@@ -318,6 +321,7 @@ namespace TOR_Core.HarmonyPatches
             {
                 case "Bulwark3":
                 case "Swift3":
+                case "Regeneration3":
                     return 3;
                 case "Bulwark2":
                 case "Swift2":
@@ -326,6 +330,7 @@ namespace TOR_Core.HarmonyPatches
                 case "Ethereal2":
                 case "MonsterSlayer2":
                 case "UndeadSlayer2":
+                case "Regeneration2":
                     return 2;
                 default:
                     return 1;
@@ -340,7 +345,8 @@ namespace TOR_Core.HarmonyPatches
                    attribute == "Piercing" ||
                    attribute == "Ethereal" ||
                    attribute == "MonsterSlayer" ||
-                   attribute == "UndeadSlayer";
+                   attribute == "UndeadSlayer" ||
+                   attribute == "Regeneration";
         }
 
         private static void SetUnitAttributeTextVariables(TextObject text, string attribute, int tier)
@@ -377,6 +383,9 @@ namespace TOR_Core.HarmonyPatches
                     break;
                 case "UndeadSlayer":
                     text.SetTextVariable("VALUE", tier == 2 ? 60 : 30);
+                    break;
+                case "Regeneration":
+                    text.SetTextVariable("VALUE", tier == 3 ? 12 : tier == 2 ? 5 : 2);
                     break;
             }
         }
@@ -415,7 +424,7 @@ namespace TOR_Core.HarmonyPatches
                     return "";
                 case "Poisonous":
                     return "";
-                case "TrollRegeneration":
+                case "Regeneration":
                     return "attribute_icon_regeneration";
                 case "Unbreakable":
                     return "attribute_icon_unbreakable";

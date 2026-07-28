@@ -147,18 +147,25 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         {
             if (agent?.Character == null) return;
 
+            switch (agent.GetRegenerationTier())
+            {
+                case 3:
+                    CareerHelper.AddDefaultPermanentMissionEffect(agent, "regeneration3");
+                    break;
+                case 2:
+                    CareerHelper.AddDefaultPermanentMissionEffect(agent, "regeneration2");
+                    break;
+                case 1:
+                    CareerHelper.AddDefaultPermanentMissionEffect(agent, "regeneration");
+                    break;
+            }
+
             if (agent.WieldedWeapon.IsEmpty) return;
 
             if (agent.GetOriginMobileParty()?.HasBlessing("cult_of_loec") == true)
             {
                 CareerHelper.AddDefaultPermanentMissionEffect(agent, "loec_blessing_mvs");
                 CareerHelper.AddDefaultPermanentMissionEffect(agent, "loec_blessing_ats");
-            }
-
-            // Race-based innate abilities (apply to all agents of that race)
-            if (agent.HasTrollRegeneration())
-            {
-                CareerHelper.AddDefaultPermanentMissionEffect(agent, "troll_regeneration");
             }
 
             if (!agent.BelongsToMainParty()) return;

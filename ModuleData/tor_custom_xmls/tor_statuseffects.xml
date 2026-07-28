@@ -9,9 +9,18 @@
 		damage_type="Holy"/>
 	<StatusEffectTemplate 
 		id="regeneration" 
-		particle_id="undead_crumbling"
-		particle_intensity="Low"
-		base_effect_value="3"
+		particle_id="none"
+		base_effect_value="2"
+		type="HealthOverTime"/>
+	<StatusEffectTemplate 
+		id="regeneration2" 
+		particle_id="none"
+		base_effect_value="5"
+		type="HealthOverTime"/>
+	<StatusEffectTemplate 
+		id="regeneration3" 
+		particle_id="none"
+		base_effect_value="12"
 		type="HealthOverTime"/>
 	<StatusEffectTemplate 
 		id="healing_regeneration" 
@@ -2220,13 +2229,6 @@
 		applies_for_attack_type="All"
 		type="HealthOverTime"
 		damage_type="All">
-	</StatusEffectTemplate>
-
-	<StatusEffectTemplate
-		id="troll_regeneration"
-		particle_id="none"
-		base_effect_value="3"
-		type="HealthOverTime">
 	</StatusEffectTemplate>
 
 	<StatusEffectTemplate
