@@ -5970,7 +5970,7 @@
 		</banner_bearer_replacement_weapons>
 	</Culture>
 	<Culture id="greenskin_bandit"
-		name="{=str_tor_bretonnianbanditfaction}Orc Raiders"
+		name="{=str_tor_greenskinbanditfaction}Orc Raiders"
 		bandit_chief="NPCCharacter.tor_gs_bandit_raider_boss"
 		bandit_raider="NPCCharacter.tor_gs_bandit_raider"
 		bandit_bandit="NPCCharacter.tor_gs_bandit_raider"
