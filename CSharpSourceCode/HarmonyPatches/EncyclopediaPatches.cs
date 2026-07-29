@@ -168,7 +168,7 @@ namespace TOR_Core.HarmonyPatches
                 __instance.ValueLabel.Brush.FontSize = __instance.TextHeight;
             }
 
-            if (__instance.IsMultiLine && __instance.TextHeight == 21)
+            if (__instance.IsMultiLine && __instance.TextHeight == 20)
             {
                 var attributeDescriptionWidth = 192f;
                 __instance.ValueLabel.Brush.FontSize = __instance.TextHeight;
@@ -283,7 +283,7 @@ namespace TOR_Core.HarmonyPatches
             {
                 new TooltipProperty(attributeName, string.Empty, 0, false, TooltipProperty.TooltipPropertyFlags.Title),
                 new TooltipProperty(string.Empty, string.Empty, 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator),
-                new TooltipProperty(string.Empty, description, 21, false, TooltipProperty.TooltipPropertyFlags.MultiLine)
+                new TooltipProperty(string.Empty, description, 20, false, TooltipProperty.TooltipPropertyFlags.MultiLine)
             };
         }
 

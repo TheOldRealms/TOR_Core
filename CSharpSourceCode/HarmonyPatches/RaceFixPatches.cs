@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.MountAndBlade.GauntletUI.Widgets;
 using TaleWorlds.MountAndBlade.GauntletUI.BodyGenerator;
 using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.MountAndBlade.View.Tableaus;
@@ -28,6 +30,12 @@ namespace TOR_Core.HarmonyPatches
         // thumbnail/portrait render path marker
         [ThreadStatic]
         private static int _characterThumbnailRenderDepth;
+
+        [ThreadStatic]
+        private static int _encyclopediaCharacterTableauUpdateDepth;
+
+        private static readonly ConditionalWeakTable<CharacterTableau, object>
+            _encyclopediaCharacterTableaus = new();
 
         public static MBActionSet GetActionSet(BodyGeneratorView bodyGeneratorView)
         {
@@ -238,10 +246,71 @@ namespace TOR_Core.HarmonyPatches
             ____oldAgentVisuals.Refresh(false, newdata, false);
         }
 
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(CharacterTableauWidget), "OnUpdate")]
+        public static void MarkEncyclopediaCharacterTableauUpdateStart(
+            CharacterTableauWidget __instance,
+            out bool __state)
+        {
+            __state = __instance.Context.Name == "EncyclopediaBar";
+
+            if (__state)
+            {
+                _encyclopediaCharacterTableauUpdateDepth++;
+            }
+        }
+
+        [HarmonyFinalizer]
+        [HarmonyPatch(typeof(CharacterTableauWidget), "OnUpdate")]
+        public static Exception MarkEncyclopediaCharacterTableauUpdateEnd(
+            bool __state,
+            Exception __exception)
+        {
+            if (__state)
+            {
+                _encyclopediaCharacterTableauUpdateDepth--;
+            }
+
+            return __exception;
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(CharacterTableau), MethodType.Constructor)]
+        public static void MarkEncyclopediaCharacterTableau(CharacterTableau __instance)
+        {
+            if (_encyclopediaCharacterTableauUpdateDepth > 0)
+            {
+                _encyclopediaCharacterTableaus.GetValue(__instance, _ => new object());
+            }
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(CharacterTableau), "AdjustCharacterForStanceIndex")]
+        public static void ResetEncyclopediaCharacterTableauCameraBeforeRaceOffset(
+            CharacterTableau __instance,
+            ref MatrixFrame ____camPos,
+            MatrixFrame ____camPosGatheredFromScene,
+            out bool __state)
+        {
+            __state = _encyclopediaCharacterTableaus.TryGetValue(__instance, out _);
+
+            if (__state)
+            {
+                ____camPos = ____camPosGatheredFromScene;
+            }
+        }
+
         [HarmonyPostfix]
         [HarmonyPatch(typeof(CharacterTableau), "AdjustCharacterForStanceIndex")]
-        public static void AdjustCharacterTableauCameraForRaces(int ____race, ref MatrixFrame ____camPos)
+        public static void AdjustEncyclopediaCharacterTableauCameraForRaces(
+            int ____race,
+            ref MatrixFrame ____camPos,
+            bool __state)
         {
+            if (!__state)
+            {
+                return;
+            }
             var raceName = FaceGen.GetRaceNames()[____race];
 
             if (raceName == "goblin")
