@@ -215,6 +215,7 @@ namespace TOR_Core.HarmonyPatches
                     continue;
                 }
 
+                UnitPropertyTooltips.Remove(unitProperty.Hint);
                 UnitPropertyTooltips.Add(unitProperty.Hint, new List<TooltipProperty>
                 {
                     new TooltipProperty(unitProperty.Hint.HintText.ToString(), string.Empty, 24, false, TooltipProperty.TooltipPropertyFlags.Title)
