@@ -1,6 +1,5 @@
 ﻿using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
-using TOR_Core.BattleMechanics.AI.CommonAIFunctions;
 
 namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
 {

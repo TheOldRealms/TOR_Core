@@ -1,8 +1,6 @@
 ﻿using HarmonyLib;
-using System;
-using System.Reflection;
 using System.Collections.Generic;
-using TaleWorlds.CampaignSystem.Inventory;
+using System.Reflection;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Party;

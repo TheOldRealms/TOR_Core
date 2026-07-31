@@ -4,7 +4,6 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Issues;
-using TOR_Core.CampaignMechanics.Companions;
 
 namespace TOR_Core.Utilities
 {

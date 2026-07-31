@@ -6,7 +6,6 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.TwoDimension;
 using TOR_Core.CampaignMechanics.CustomResources;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions.UI
 {

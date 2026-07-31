@@ -1,15 +1,14 @@
 ﻿using HarmonyLib;
-using System.Collections.Generic;
 using SandBox.GameComponents;
-using TaleWorlds.Core;
-using TaleWorlds.MountAndBlade;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
-using TOR_Core.Models;
+using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
+using TOR_Core.Models;
 
 namespace TOR_Core.HarmonyPatches;
 

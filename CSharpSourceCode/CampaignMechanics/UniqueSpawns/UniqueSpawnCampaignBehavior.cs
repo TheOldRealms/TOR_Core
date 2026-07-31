@@ -6,8 +6,6 @@ using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
-using TaleWorlds.Library;
-using TaleWorlds.SaveSystem;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.UniqueSpawns

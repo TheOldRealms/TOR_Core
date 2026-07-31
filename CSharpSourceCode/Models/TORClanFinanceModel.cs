@@ -1,4 +1,3 @@
-using Ink.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,9 +6,8 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
-using TaleWorlds.Localization;
-using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.LinQuick;
+using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;

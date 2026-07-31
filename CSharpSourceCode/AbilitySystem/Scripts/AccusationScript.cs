@@ -1,16 +1,10 @@
-using Ink.Parsed;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
-using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.StatusEffect;
-using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem.Scripts
 {

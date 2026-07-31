@@ -1,5 +1,4 @@
 ﻿using TaleWorlds.Engine;
-using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.AbilitySystem.Scripts
 {

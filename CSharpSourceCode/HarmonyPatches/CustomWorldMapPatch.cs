@@ -1,15 +1,12 @@
 ﻿using HarmonyLib;
-using SandBox;
 using SandBox.View.Map;
 using SandBox.ViewModelCollection.Map.Tracker;
 using System.IO;
 using System.Xml;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.Map.DistanceCache;
 using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.Library;
-using TOR_Core.Utilities;
 using TOR_Core.Quests;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {

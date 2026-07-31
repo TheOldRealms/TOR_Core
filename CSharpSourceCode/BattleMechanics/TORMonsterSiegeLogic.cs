@@ -5,7 +5,6 @@ using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.MountAndBlade.Objects.Usables;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics

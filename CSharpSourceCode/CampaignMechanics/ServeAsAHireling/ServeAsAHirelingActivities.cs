@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using TaleWorlds.Core;
 using TOR_Core.CharacterDevelopment;

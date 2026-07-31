@@ -1,5 +1,4 @@
-﻿using System;
-using TaleWorlds.SaveSystem;
+﻿using TaleWorlds.SaveSystem;
 
 namespace TOR_Core.AbilitySystem.Spells
 {

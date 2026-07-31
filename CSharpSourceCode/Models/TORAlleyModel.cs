@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.ComponentInterfaces;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
-using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.Utilities;
 
