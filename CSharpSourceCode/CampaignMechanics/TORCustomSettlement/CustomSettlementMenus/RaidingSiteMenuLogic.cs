@@ -26,7 +26,7 @@ public class RaidingSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettleme
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Leave;
             return true;
-        }, (MenuCallbackArgs args) => PlayerEncounter.Finish(true), true);
+        }, args => PlayerEncounter.Finish(true), true);
     }
 
     private void RaidingSiteMenuInit(MenuCallbackArgs args)
@@ -62,7 +62,7 @@ public class RaidingSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettleme
         ownerClan ??= Clan.FindFirst(x => x.StringId == "chaos_clan_1");
         var template = ownerClan.DefaultPartyTemplate;
         var partysize = component.BattlePartySize;
-        var party = RaidingPartyComponent.CreateRaidingParty(settlement.StringId + "_defender_party", settlement, "Defenders", template,partysize);
+        var party = RaidingPartyComponent.CreateRaidingParty(settlement.StringId + "_defender_party", settlement, "Defenders", template, partysize);
         PlayerEncounter.RestartPlayerEncounter(party.Party, PartyBase.MainParty, false);
         if (PlayerEncounter.Battle == null)
         {

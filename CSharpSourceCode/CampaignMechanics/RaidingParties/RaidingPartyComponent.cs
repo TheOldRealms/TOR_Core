@@ -15,7 +15,8 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
     {
         [SaveableProperty(1)] public Settlement Target { get; set; }
 
-        //Randy: This is by the MobileParty component to check, it cannot be null otherwise the raiding party cannot find its owner (taleworlds thing: IsSettlementSuitableForVisitingCondition)
+        //Randy: This is by the MobileParty component to check, it cannot be null otherwise the raiding
+        //party cannot find its owner (taleworlds thing: IsSettlementSuitableForVisitingCondition)
         public override Hero PartyOwner => Clan.Leader;
 
         [SaveableField(3)] private Settlement _home;
