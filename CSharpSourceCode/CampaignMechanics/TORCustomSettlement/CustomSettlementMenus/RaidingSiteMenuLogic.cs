@@ -1,18 +1,13 @@
-﻿using System.Collections.Generic;
-using TaleWorlds.CampaignSystem;
+﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
-using TaleWorlds.Library;
 using TaleWorlds.Localization;
-using TaleWorlds.MountAndBlade;
-using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
 
@@ -67,7 +62,7 @@ public class RaidingSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettleme
         ownerClan ??= Clan.FindFirst(x => x.StringId == "chaos_clan_1");
         var template = ownerClan.DefaultPartyTemplate;
         var partysize = component.BattlePartySize;
-        var party = RaidingPartyComponent.CreateRaidingParty(settlement.StringId + "_defender_party", settlement, "Defenders", template, ownerClan, partysize);
+        var party = RaidingPartyComponent.CreateRaidingParty(settlement.StringId + "_defender_party", settlement, "Defenders", template,partysize);
         PlayerEncounter.RestartPlayerEncounter(party.Party, PartyBase.MainParty, false);
         if (PlayerEncounter.Battle == null)
         {

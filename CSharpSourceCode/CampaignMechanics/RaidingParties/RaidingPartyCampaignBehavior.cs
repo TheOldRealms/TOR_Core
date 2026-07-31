@@ -40,7 +40,7 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
                 if (component is TrollCaveComponent && MBRandom.RandomFloat >= 0.10f)
                     return;
 
-                component.SpawnNewParty(out _, null);
+                component.SpawnNewParty(null);
             }
         }
 
