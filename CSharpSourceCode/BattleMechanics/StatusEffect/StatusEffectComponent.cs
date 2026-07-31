@@ -878,7 +878,9 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         public int GetActiveEffectCount(string effectId)
         {
-            return _currentEffects.Keys.Count(effect => effect.Template.StringID == effectId);
+            return _currentEffects.Keys.Count(effect =>
+                effect.Template.StringID == effectId ||
+                effect.Template.StringID.StartsWith(effectId + "*cloned*", StringComparison.Ordinal));
         }
 
         private void AddEffect(StatusEffect effect)

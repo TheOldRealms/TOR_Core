@@ -87,6 +87,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
             var healPercentOfMaxHealth = 0.15f;
             killerAgent.Heal(killerAgent.HealthLimit * healPercentOfMaxHealth);
+            killerAgent.ApplyStatusEffect("the_hunger_heal", killerAgent, 2f, false);
         }
 
         private static void ApplyFrenzyOnKill(Agent killerAgent)
@@ -102,8 +103,9 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 return;
             }
 
-            var frenzyMovementEffectId = "trait_frenzy_movement_speed";
+            var frenzyMovementEffectId = "frenzy_movement_speed";
             var frenzyAttackSpeedEffectId = "trait_frenzy_attack_speed";
+            var frenzyActiveEffectId = "trait_frenzy_active";
             var maxFrenzyStacks = 5;
             var frenzyStackDuration = 40f;
 
@@ -114,6 +116,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
             killerAgent.ApplyStatusEffect(frenzyMovementEffectId, killerAgent, frenzyStackDuration, false, false, true);
             killerAgent.ApplyStatusEffect(frenzyAttackSpeedEffectId, killerAgent, frenzyStackDuration, false, false, true);
+            killerAgent.ApplyStatusEffect(frenzyActiveEffectId, killerAgent, frenzyStackDuration, false);
         }
 
         public override void OnMissionTick(float dt)

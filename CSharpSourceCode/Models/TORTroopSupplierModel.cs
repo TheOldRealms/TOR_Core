@@ -28,7 +28,7 @@ namespace TOR_Core.Models
         {
             bool isLordParty = battleParty.Party != null && battleParty.Party.MobileParty != null && battleParty.Party.MobileParty.IsLordParty;
             bool isPlayerEvent = battleParty.Party != null && battleParty.Party.MapEvent != null && battleParty.Party.MapEvent.IsPlayerMapEvent;
-            if (forcePriorityTroops || (priorityTroops != null && priorityTroops.Count() > 0) || !isLordParty || !isPlayerEvent)
+            if (forcePriorityTroops || priorityTroops != null || !isLordParty || !isPlayerEvent)
             {
                 base.EnqueueTroopSpawnProbabilitiesAccordingToUnitSpawnPrioritization(battleParty, priorityTroops, includePlayer, sizeOfSide, forcePriorityTroops, priorityList);
                 return;
