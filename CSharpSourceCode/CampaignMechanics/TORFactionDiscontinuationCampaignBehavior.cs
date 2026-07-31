@@ -1,5 +1,4 @@
-﻿using HarmonyLib;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
@@ -7,7 +6,6 @@ using TaleWorlds.CampaignSystem.Party.PartyComponents;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.LinQuick;
-using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics
@@ -18,6 +16,16 @@ namespace TOR_Core.CampaignMechanics
         private Dictionary<string, double> _independentClans = [];
         private List<string> _kingdomsPendingDiscontinuation = [];
 
+        // Special faction pairings - these factions should merge with each other
+        private readonly Dictionary<string, string> specialPairings = new()
+        {
+            { TORConstants.Cultures.EONIR, TORConstants.Cultures.ASRAI },
+            { TORConstants.Cultures.ASRAI, TORConstants.Cultures.EONIR },
+            { TORConstants.Cultures.MOUSILLON, TORConstants.Cultures.SYLVANIA },
+            { TORConstants.Cultures.SYLVANIA, TORConstants.Cultures.MOUSILLON }
+        };
+
+
         public override void RegisterEvents()
         {
             CampaignEvents.OnSettlementOwnerChangedEvent.AddNonSerializedListener(this, OnSettlementOwnerChanged);
@@ -26,7 +34,8 @@ namespace TOR_Core.CampaignMechanics
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, DailyTick);
         }
 
-        public void OnSettlementOwnerChanged(Settlement settlement, bool openToClaim, Hero newOwner, Hero oldOwner, Hero capturerHero, ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail detail)
+        public void OnSettlementOwnerChanged(
+            Settlement settlement, bool openToClaim, Hero newOwner, Hero oldOwner, Hero capturerHero, ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail detail)
         {
             if (_independentClans.ContainsKey(newOwner.Clan.StringId))
             {
@@ -43,7 +52,8 @@ namespace TOR_Core.CampaignMechanics
             }
         }
 
-        public void OnClanChangedKingdom(Clan clan, Kingdom oldKingdom, Kingdom newKingdom, ChangeKingdomAction.ChangeKingdomActionDetail detail, bool showNotification = true)
+        public void OnClanChangedKingdom(
+            Clan clan, Kingdom oldKingdom, Kingdom newKingdom, ChangeKingdomAction.ChangeKingdomActionDetail detail, bool showNotification = true)
         {
             if (newKingdom == null)
             {
@@ -85,64 +95,65 @@ namespace TOR_Core.CampaignMechanics
 
         private void DailyTickClan(Clan clan)
         {
-            if (_independentClans.ContainsKey(clan.StringId))
+            if (!_independentClans.ContainsKey(clan.StringId))
             {
-                if (!clan.Heroes.WhereQ(x => x.IsLord).Any())//if someone has executed all of the nobles, just delete it instead of an empty clan joining kingdoms. AI companions are insufficient for keeping a clan alive, the game has expectations about the Occupation of heroes for party lead selection, etc...
-                {
-                    DiscontinueClan(clan);
-                    return;
-                }
+                return;
+            }
 
-                if (MBRandom.RandomFloat < 0.3f)
+            //If all nobles executed, remove clan.
+            if (!clan.Heroes.WhereQ(x => x.IsLord).Any())
+            {
+                DiscontinueClan(clan);
+                return;
+            }
+
+
+            //Was this intentional as well? Because it's adding a 0.3 multiplier to the chance as well (0.3 * 10% is REALLY 3%)
+            //If not we can remove this.
+            if (MBRandom.RandomFloat >= 0.3f)
+            {
+                if (_independentClans[clan.StringId] < CampaignTime.Now.ToWeeks) { DiscontinueClan(clan); }
+                return;
+            }
+
+            var candidateKingdoms = GetCandidateKingdomsForJoiningClan(clan);
+            if (candidateKingdoms.Any())
+            {
+                var targetKingdom = candidateKingdoms.MinBy(x => x.Heroes.Count);
+                if (targetKingdom != null && targetKingdom.Heroes.Count > 0)
                 {
-                    var candidateKingdoms = GetCandidateKingdomsForJoiningClan(clan);
-                    if (candidateKingdoms != null && candidateKingdoms.Count() > 0)
+                    float chance = 10f / ((float)targetKingdom.Heroes.Count * 2);
+
+                    if (MBRandom.RandomFloat < chance)
                     {
-                        var targetKingdom = candidateKingdoms.MinBy(x => x.Heroes.Count);
-                        if (targetKingdom != null)
-                        {
-                            var chance = 10 / (targetKingdom.Heroes.Count * 2);
-
-                            if (MBRandom.RandomFloat < chance)
-                            {
-                                ChangeKingdomAction.ApplyByJoinToKingdom(clan, targetKingdom);
-                                return;
-                            }
-                        }
+                        ChangeKingdomAction.ApplyByJoinToKingdom(clan, targetKingdom);
+                        return;
                     }
                 }
-                if (_independentClans[clan.StringId] < CampaignTime.Now.ToWeeks) DiscontinueClan(clan);
             }
+            if (_independentClans[clan.StringId] < CampaignTime.Now.ToWeeks) { DiscontinueClan(clan); }
         }
 
-        /// <summary>
-        /// Gets candidate kingdoms for a destroyed clan to join.
-        /// Includes special faction pairings for closely-related factions.
-        /// </summary>
         private IEnumerable<Kingdom> GetCandidateKingdomsForJoiningClan(Clan clan)
         {
             var clanCulture = clan.Culture;
 
-            // Special faction pairings - these factions should merge with each other
-            var specialPairings = new Dictionary<string, string>
-            {
-                { TORConstants.Cultures.EONIR, TORConstants.Cultures.ASRAI },
-                { TORConstants.Cultures.ASRAI, TORConstants.Cultures.EONIR },
-                { TORConstants.Cultures.MOUSILLON, TORConstants.Cultures.SYLVANIA },
-                { TORConstants.Cultures.SYLVANIA, TORConstants.Cultures.MOUSILLON }
-            };
-            
             if (specialPairings.TryGetValue(clanCulture.StringId, out string pairedCulture))
             {
-                return Kingdom.All.WhereQ(x => !x.IsEliminated && (x.Culture == clan.Culture || x.Culture.StringId == pairedCulture));//permits fragmented cultures between kingdoms as well as a player kingdom for viable candidates
+                //permits fragmented cultures between kingdoms as well as a player kingdom for viable candidates
+                return Kingdom.All.WhereQ(x => !x.IsEliminated && (x.Culture == clan.Culture || x.Culture.StringId == pairedCulture));
             }
-            
+
             return Kingdom.All.WhereQ(x => !x.IsEliminated && x.Culture == clan.Culture);
         }
 
+
+
         private bool CanKingdomBeDiscontinued(Kingdom kingdom)
         {
-            bool flag = !kingdom.IsEliminated && kingdom != Clan.PlayerClan.Kingdom && kingdom.Settlements.IsEmpty();
+            bool flag = !kingdom.IsEliminated
+                        && kingdom != Clan.PlayerClan.Kingdom
+                        && kingdom.Settlements.IsEmpty();
             if (flag)
             {
                 CampaignEventDispatcher.Instance.CanKingdomBeDiscontinued(kingdom, ref flag);
@@ -187,10 +198,12 @@ namespace TOR_Core.CampaignMechanics
             }
         }
 
-        private bool CanClanBeDiscontinued(Clan clan)
-        {
-            return clan.Kingdom == null && !clan.IsRebelClan && !clan.IsBanditFaction && !clan.IsMinorFaction && clan != Clan.PlayerClan && clan.Settlements.IsEmpty();
-        }
+        private bool CanClanBeDiscontinued(Clan clan) => clan.Kingdom == null
+                && !clan.IsRebelClan
+                && !clan.IsBanditFaction
+                && !clan.IsMinorFaction
+                && clan != Clan.PlayerClan
+                && clan.Settlements.IsEmpty();
 
         private void DiscontinueClan(Clan clan)
         {
