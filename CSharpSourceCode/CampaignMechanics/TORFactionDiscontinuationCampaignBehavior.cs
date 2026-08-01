@@ -107,9 +107,7 @@ namespace TOR_Core.CampaignMechanics
                 return;
             }
 
-
-            //Was this intentional as well? Because it's adding a 0.3 multiplier to the chance as well (0.3 * 10% is REALLY 3%)
-            //If not we can remove this.
+            //30% chance to avoid  further code.
             if (MBRandom.RandomFloat >= 0.3f)
             {
                 if (_independentClans[clan.StringId] < CampaignTime.Now.ToWeeks) { DiscontinueClan(clan); }
