@@ -11,6 +11,7 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
 using TaleWorlds.ScreenSystem;
+using TOR_Core.CampaignMechanics.MapNotifications;
 using TOR_Core.Extensions;
 using TOR_Core.Ink;
 using TOR_Core.Utilities;
@@ -1728,8 +1729,10 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
 
             if (showPlayerWarning)
             {
-                const string playerHuntMessageText = "{=str_tor_unique_orion_hunt_player}Your scouts report the God-King of the forest is following your trail, seeking vengeance for his slain kin.";
-                ShowHudMessage(new TextObject(playerHuntMessageText), ThreatHudMessageColor);
+                Campaign.Current.CampaignInformationManager.NewMapNoticeAdded(
+                    new TORMapNotification(
+                        new TextObject("{=str_tor_unique_orion_hunt_player}Your scouts report the God-King of the forest is following your trail, seeking vengeance for his slain kin."),
+                        "tor_orion_hunt"));
             }
         }
 

@@ -8,6 +8,7 @@ using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.CustomArenaModes;
 using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.Crafting;
+using TOR_Core.CampaignMechanics.MapNotifications;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
@@ -56,6 +57,7 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(TrollCaveDefenderPartyComponent), 22);
             AddClassDefinition(typeof(ScriptUseData), 23);
             AddClassDefinition(typeof(UniqueSpawnPartyComponent), 24);
+            AddClassDefinition(typeof(TORMapNotification), 25);
 
 
             //Quests and issues begin at 200 - they generally can't be expanded to cover new use cases
