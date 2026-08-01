@@ -1,11 +1,5 @@
-﻿using System.Collections.Generic;
-using TaleWorlds.CampaignSystem;
-using TaleWorlds.Core;
-using TaleWorlds.Localization;
-using TOR_Core.CharacterDevelopment;
+﻿using TaleWorlds.CampaignSystem;
 using TOR_Core.CharacterDevelopment.CareerSystem;
-using TOR_Core.CharacterDevelopment.CareerSystem.Button;
-using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.Choices

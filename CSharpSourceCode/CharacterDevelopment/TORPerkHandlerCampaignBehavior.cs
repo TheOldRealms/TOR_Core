@@ -1,14 +1,8 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
-using TaleWorlds.CampaignSystem.Extensions;
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem.Spells;
-using TOR_Core.CampaignMechanics.Choices;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 

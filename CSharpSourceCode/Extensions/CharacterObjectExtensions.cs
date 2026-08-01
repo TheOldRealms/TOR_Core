@@ -3,22 +3,17 @@ using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.ObjectSystem;
-using TaleWorlds.TwoDimension;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
-using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions.ExtendedInfoSystem;
-using TOR_Core.Extensions.UI;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions

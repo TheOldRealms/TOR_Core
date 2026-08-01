@@ -5,22 +5,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.AgentOrigins;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Map;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
-using TaleWorlds.CampaignSystem.Settlements.Locations;
-using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.InputSystem;
-using TaleWorlds.Library;
 using TaleWorlds.Localization;
-using TaleWorlds.ModuleManager;
 using TOR_Core.Extensions;
 using TOR_Core.GameManagers;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {

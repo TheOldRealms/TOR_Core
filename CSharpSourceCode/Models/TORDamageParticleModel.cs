@@ -1,6 +1,5 @@
 using System.Linq;
 using TaleWorlds.MountAndBlade;
-using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.Models

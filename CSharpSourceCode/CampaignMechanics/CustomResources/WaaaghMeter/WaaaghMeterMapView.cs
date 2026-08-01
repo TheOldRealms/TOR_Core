@@ -1,7 +1,6 @@
 using SandBox.GauntletUI.Map;
 using SandBox.View.Map;
 using TaleWorlds.Engine.GauntletUI;
-using TaleWorlds.GauntletUI.Data;
 
 namespace TOR_Core.CampaignMechanics.WaaaghMeter
 {

@@ -1,19 +1,9 @@
-using Helpers;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Settlements;
-using TaleWorlds.Core;
-using TaleWorlds.Library;
-using TaleWorlds.LinQuick;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
-using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 

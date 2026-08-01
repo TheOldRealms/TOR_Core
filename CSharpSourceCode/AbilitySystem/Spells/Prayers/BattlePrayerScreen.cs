@@ -5,7 +5,6 @@ using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade.View.Screens;
 using TaleWorlds.ScreenSystem;
-using TOR_Core.AbilitySystem.SpellBook;
 
 namespace TOR_Core.AbilitySystem.Spells.Prayers
 {

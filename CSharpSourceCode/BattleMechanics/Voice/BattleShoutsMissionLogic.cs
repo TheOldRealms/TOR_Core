@@ -1,5 +1,4 @@
 ﻿using TaleWorlds.MountAndBlade;
-using TOR_Core.Extensions;
 using static TaleWorlds.MountAndBlade.SkinVoiceManager;
 
 namespace TOR_Core.BattleMechanics.Voice

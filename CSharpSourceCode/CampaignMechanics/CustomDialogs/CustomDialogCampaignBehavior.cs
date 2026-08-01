@@ -9,7 +9,6 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Localization;
 using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 using static TaleWorlds.CampaignSystem.GameMenus.GameMenu;
 
 namespace TOR_Core.CampaignMechanics.CustomEncounterDialogs

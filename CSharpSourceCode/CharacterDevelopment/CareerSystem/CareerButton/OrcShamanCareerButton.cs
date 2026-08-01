@@ -1,8 +1,3 @@
-using TaleWorlds.CampaignSystem;
-using TaleWorlds.Core;
-using TaleWorlds.Localization;
-using TOR_Core.Utilities;
-
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 
 public class OrcShamanCareerButton(CareerObject career) : GreenskinCareerButton(career)

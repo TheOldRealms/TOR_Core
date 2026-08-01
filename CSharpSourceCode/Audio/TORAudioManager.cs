@@ -1,13 +1,5 @@
-﻿using NAudio.Mixer;
-using NAudio.Wave;
-using NAudio.Wave.SampleProviders;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaleWorlds.MountAndBlade;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Audio

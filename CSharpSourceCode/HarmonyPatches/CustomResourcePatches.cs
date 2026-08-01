@@ -1,7 +1,7 @@
 ﻿using HarmonyLib;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.Party;
@@ -12,7 +12,6 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {

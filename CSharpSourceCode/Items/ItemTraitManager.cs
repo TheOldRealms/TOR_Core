@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 using TaleWorlds.LinQuick;
-using TaleWorlds.MountAndBlade.GauntletUI.Widgets;
 using TOR_Core.Utilities;
 using LogLevel = NLog.LogLevel;
 

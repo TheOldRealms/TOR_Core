@@ -1,7 +1,6 @@
 ﻿using Helpers;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
-using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 
 namespace TOR_Core.Models

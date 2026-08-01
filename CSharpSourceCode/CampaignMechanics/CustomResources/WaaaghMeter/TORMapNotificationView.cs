@@ -1,6 +1,5 @@
-﻿using System;
-using SandBox.View;
-using SandBox.View.Map;
+﻿using SandBox.View.Map;
+using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Map;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Map.MapNotificationTypes;

@@ -1,12 +1,9 @@
 using System.Collections.Generic;
-using System.Net.Http.Headers;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.Menagery;
 using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.CustomResources;
 

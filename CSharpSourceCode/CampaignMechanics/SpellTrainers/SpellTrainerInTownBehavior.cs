@@ -1,13 +1,10 @@
-using HarmonyLib;
 using Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.AgentOrigins;
-using TaleWorlds.CampaignSystem.Conversation;
 using TaleWorlds.CampaignSystem.GameMenus;
-using TaleWorlds.CampaignSystem.Inventory;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
@@ -22,9 +19,7 @@ using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
-using TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 using TOR_Core.Extensions;
-using TOR_Core.Items;
 using TOR_Core.Quests;
 using TOR_Core.Utilities;
 

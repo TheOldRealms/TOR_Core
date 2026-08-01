@@ -1,4 +1,3 @@
-using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +8,6 @@ using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
-using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 
