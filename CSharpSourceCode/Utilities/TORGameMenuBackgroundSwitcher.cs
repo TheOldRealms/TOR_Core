@@ -129,6 +129,9 @@ namespace TOR_Core.Utilities
                 case TORConstants.Cultures.DAWI:
                     args.MenuContext.SetBackgroundMeshName("dwarf_prisoner");
                     return;
+                case TORConstants.Cultures.BEASTMEN:
+                    args.MenuContext.SetBackgroundMeshName("beastmen_captive");
+                    return;
                 default:
                     args.MenuContext.SetBackgroundMeshName("wait_captive_male");
                     return;

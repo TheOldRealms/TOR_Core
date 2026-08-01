@@ -373,22 +373,22 @@
   </Settlement>
   <Settlement id="troll_cave_01" name="{=str_tor_settlements_troll_cave}Troll Cave" owner="Faction.troll_clan_1" posX="1565.3" posY="1294.267" culture="Culture.greenskin" text="{=!}Centuries ago, the hills outside of Mousillon were used as a mass grave to bury the thousands who died of Red Pox. So many victims were there that to this day the soil covering their pits is visible from the city walls. The air here is sometimes poisonous and like the rest of the cursed land the long dead rest uneasily.">
     <Components>
-      <TrollCave id="troll_cave_01" background_crop_position="0.0" background_mesh="cursed_battlesite" battle_scene="TOR_troll_hideout_01_atmo_w_night" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <TrollCave id="troll_cave_01" background_crop_position="0.0" background_mesh="troll_cave" battle_scene="TOR_troll_hideout_01_atmo_w_night" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="troll_cave_02" name="{=str_tor_settlements_troll_cave}Troll Cave" owner="Faction.troll_clan_1" posX="1057.335" posY="998.37" culture="Culture.greenskin" text="{=!}Centuries ago, the hills outside of Mousillon were used as a mass grave to bury the thousands who died of Red Pox. So many victims were there that to this day the soil covering their pits is visible from the city walls. The air here is sometimes poisonous and like the rest of the cursed land the long dead rest uneasily.">
     <Components>
-      <TrollCave id="troll_cave_02" background_crop_position="0.0" background_mesh="cursed_battlesite" battle_scene="TOR_troll_hideout_02_atmo_w_night" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <TrollCave id="troll_cave_02" background_crop_position="0.0" background_mesh="troll_cave" battle_scene="TOR_troll_hideout_02_atmo_w_night" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="troll_cave_03" name="{=str_tor_settlements_troll_cave}Troll Cave" owner="Faction.troll_clan_1" posX="1719.524" posY="867.392" culture="Culture.greenskin" text="{=!}Centuries ago, the hills outside of Mousillon were used as a mass grave to bury the thousands who died of Red Pox. So many victims were there that to this day the soil covering their pits is visible from the city walls. The air here is sometimes poisonous and like the rest of the cursed land the long dead rest uneasily.">
     <Components>
-      <TrollCave id="troll_cave_03" background_crop_position="0.0" background_mesh="cursed_battlesite" battle_scene="TOR_troll_hideout_02_atmo_w_night" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <TrollCave id="troll_cave_03" background_crop_position="0.0" background_mesh="troll_cave" battle_scene="TOR_troll_hideout_02_atmo_w_night" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="troll_cave_04" name="{=str_tor_settlements_troll_cave}Troll Cave" owner="Faction.troll_clan_1" posX="1258.702" posY="726.793" culture="Culture.greenskin" text="{=!}Centuries ago, the hills outside of Mousillon were used as a mass grave to bury the thousands who died of Red Pox. So many victims were there that to this day the soil covering their pits is visible from the city walls. The air here is sometimes poisonous and like the rest of the cursed land the long dead rest uneasily.">
     <Components>
-      <TrollCave id="troll_cave_04" background_crop_position="0.0" background_mesh="cursed_battlesite" battle_scene="TOR_troll_hideout_01_atmo_w_night" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <TrollCave id="troll_cave_04" background_crop_position="0.0" background_mesh="troll_cave" battle_scene="TOR_troll_hideout_01_atmo_w_night" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <!-- Averland 2 Towns 11 villages 2 castles -->
