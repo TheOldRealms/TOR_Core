@@ -420,11 +420,11 @@ namespace TOR_Core.HarmonyPatches
                 case "Piercing":
                     return "attribute_icon_piercing";
                 case "Bulwark":
-                    return "";
+                    return "attribute_icon_bulwark";
                 case "Swift":
-                    return "";
+                    return "attribute_icon_swift";
                 case "Poisonous":
-                    return "";
+                    return "attribute_icon_poisonous";
                 case "Regeneration":
                     return "attribute_icon_regeneration";
                 case "Unbreakable":
