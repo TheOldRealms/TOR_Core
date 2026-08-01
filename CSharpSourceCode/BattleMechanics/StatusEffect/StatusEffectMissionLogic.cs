@@ -99,7 +99,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
             var frenzyMovementEffectId = "frenzy_movement_speed";
             var frenzyAttackSpeedEffectId = "frenzy_attack_speed";
-            var frenzyActiveEffectId = "trait_frenzy_active";
+            var frenzyActiveEffectId = "frenzy_active";
             var maxFrenzyStacks = 5;
             var frenzyStackDuration = 40f;
 
