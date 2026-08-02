@@ -16,6 +16,7 @@ using TaleWorlds.MountAndBlade.CustomBattle;
 using TaleWorlds.MountAndBlade.GauntletUI.Mission;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
+using TOR_Core.Audio;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics;
 using TOR_Core.BattleMechanics.AI.TeamAI;
@@ -360,8 +361,15 @@ namespace TOR_Core
             }
         }
 
+        public override void OnGameEnd(Game game)
+        {
+            TORAudioManager.StopAll();
+            base.OnGameEnd(game);
+        }
+
         protected override void OnApplicationTick(float dt)
         {
+            TORAudioManager.Tick(dt);
             _tick += dt;
             if (_tick > 1)
             {
