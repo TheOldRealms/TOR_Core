@@ -41,7 +41,8 @@ namespace TOR_Core.Ink
         public readonly bool IsDevelopmentVersion;
         public readonly string StringId;
         public readonly int Cooldown;
-        private CachedSoundInstance _currentAudio;
+        private TORModuleSound _currentAudio;
+        private bool _pausedCampaignMusic;
 
         public InkStory(string id, string file)
         {
@@ -78,12 +79,15 @@ namespace TOR_Core.Ink
 
         public void CleanUp()
         {
-            if (_currentAudio != null)
+            _currentAudio?.Dispose();
+            _currentAudio = null;
+
+            if (_pausedCampaignMusic)
             {
-                _currentAudio.Remove();
+                MBMusicManager.Current.UnpauseMusicManagerSystem();
+                MBMusicManager.Current.ActivateCampaignMode();
+                _pausedCampaignMusic = false;
             }
-            MBMusicManager.Current.UnpauseMusicManagerSystem();
-            MBMusicManager.Current.ActivateCampaignMode();
         }
 
         public void SetTitle()
@@ -511,12 +515,24 @@ namespace TOR_Core.Ink
 
         private void PlayMusic(string songName)
         {
-            _currentAudio = TORAudioManager.CreateSoundInstance(songName, false, 1);
-            if (_currentAudio != null)
+            _currentAudio?.Dispose();
+            _currentAudio = TORAudioManager.CreateSoundInstance(songName, false, 1f);
+
+            if (_currentAudio != null && !_pausedCampaignMusic)
             {
                 MBMusicManager.Current.DeactivateCurrentMode();
                 MBMusicManager.Current.PauseMusicManagerSystem();
-                _currentAudio.Play();
+                _pausedCampaignMusic = true;
+            }
+
+            if (_currentAudio == null || !_currentAudio.Play())
+            {
+                if (_pausedCampaignMusic)
+                {
+                    MBMusicManager.Current.UnpauseMusicManagerSystem();
+                    MBMusicManager.Current.ActivateCampaignMode();
+                    _pausedCampaignMusic = false;
+                }
             }
         }
 

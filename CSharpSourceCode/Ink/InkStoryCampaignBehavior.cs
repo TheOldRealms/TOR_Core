@@ -29,6 +29,7 @@ namespace TOR_Core.Ink
 
         public void CloseStory()
         {
+            CurrentStory.CleanUp();
             CurrentStory = null;
             _inkView.CloseStory();
             _mapScreen.RemoveMapView(_inkView);
