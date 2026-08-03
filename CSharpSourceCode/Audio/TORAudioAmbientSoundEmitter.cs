@@ -12,6 +12,7 @@ namespace TOR_Core.Audio
         public SimpleButton PlaySound;
         public SimpleButton StopSound;
         private TORModuleSound _ambientSound;
+        private bool _playbackEnabled;
 
         protected override void OnEditorInit() => SetScriptComponentToTick(GetTickRequirement());
 
@@ -20,6 +21,7 @@ namespace TOR_Core.Audio
         protected override void OnInit()
         {
             SetScriptComponentToTick(GetTickRequirement());
+            _playbackEnabled = true;
             LoadAmbientSound();
         }
 
@@ -32,15 +34,15 @@ namespace TOR_Core.Audio
 
             var soundPosition = GameEntity.GlobalPosition;
             var distance = (soundPosition - Scene.LastFinalRenderCameraPosition).Length;
-            if (distance <= Range)
+            if (_playbackEnabled && distance <= Range)
             {
                 _ambientSound.SetPosition(soundPosition, Range);
-                if (!_ambientSound.IsActive)
+                if (!_ambientSound.IsPlaybackRequested)
                 {
                     _ambientSound.Play();
                 }
             }
-            else if (_ambientSound.IsActive)
+            else if (_ambientSound.IsPlaybackRequested)
             {
                 _ambientSound.Remove();
             }
@@ -51,24 +53,30 @@ namespace TOR_Core.Audio
         protected override void OnEditorVariableChanged(string variableName)
         {
             base.OnEditorVariableChanged(variableName);
-            if (variableName == "LoadSound") LoadAmbientSound();
+            if (variableName == "LoadSound")
+            {
+                _playbackEnabled = false;
+                LoadAmbientSound();
+            }
             if (variableName == "PlaySound") PlayAmbientSound();
             if (variableName == "StopSound") StopAmbientSound();
         }
 
         protected override void OnRemoved(int removeReason)
         {
-            _ambientSound?.Dispose();
+            _ambientSound?.Remove();
             _ambientSound = null;
         }
 
         private void StopAmbientSound()
         {
+            _playbackEnabled = false;
             _ambientSound?.Remove();
         }
 
         private void PlayAmbientSound()
         {
+            _playbackEnabled = true;
             if (_ambientSound == null)
             {
                 LoadAmbientSound();
@@ -83,7 +91,7 @@ namespace TOR_Core.Audio
 
         private void LoadAmbientSound()
         {
-            _ambientSound?.Dispose();
+            _ambientSound?.Remove();
             _ambientSound = null;
 
             if (string.IsNullOrEmpty(AudioName))

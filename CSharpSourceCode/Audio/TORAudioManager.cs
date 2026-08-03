@@ -13,7 +13,7 @@ namespace TOR_Core.Audio
         private const string EXTERNAL_SOUND_EVENT = "event:/Extra/voiceover";
         private static readonly List<TORModuleSound> _activeSounds = [];
 
-        public static TORModuleSound CreateSoundInstance(string audioName, bool isLooping, float volume = 1f, Scene scene = null, bool is3D = false)
+        public static TORModuleSound CreateSoundInstance(string audioName, bool restartWhenFinished, float volume = 1f, Scene scene = null, bool is3D = false)
         {
             var moduleSoundsPath = TORPaths.TORArmoryModuleRootPath + "ModuleSounds/";
             var soundFilePath = IOPath.Combine(moduleSoundsPath, audioName);
@@ -33,7 +33,7 @@ namespace TOR_Core.Audio
                 return null;
             }
 
-            return new TORModuleSound(audioName, soundFilePath, isLooping, volume, scene, is3D);
+            return new TORModuleSound(audioName, soundFilePath, restartWhenFinished, volume, scene, is3D);
         }
 
         public static void Tick(float dt)
@@ -65,6 +65,7 @@ namespace TOR_Core.Audio
             var soundEvent = SoundEvent.CreateEventFromExternalFile(EXTERNAL_SOUND_EVENT, sound.FilePath, sound.Scene, sound.Is3D, isBlocking: false);
             if (soundEvent == null || !soundEvent.IsValid)
             {
+                TORCommon.Log($"Native audio event creation failed: {sound.AudioName} | path={sound.FilePath} | event={EXTERNAL_SOUND_EVENT} | 3d={sound.Is3D} | scene={(sound.Scene == null ? "none" : "set")}", NLog.LogLevel.Warn);
                 sound.MarkStopped();
                 return false;
             }
@@ -77,6 +78,7 @@ namespace TOR_Core.Audio
 
             if (!soundEvent.Play())
             {
+                TORCommon.Log($"Native audio playback failed: {sound.AudioName} | path={sound.FilePath} | event={EXTERNAL_SOUND_EVENT} | 3d={sound.Is3D} | scene={(sound.Scene == null ? "none" : "set")}", NLog.LogLevel.Warn);
                 sound.ReleasePlayback();
                 sound.MarkStopped();
                 return false;
@@ -99,7 +101,7 @@ namespace TOR_Core.Audio
         }
     }
 
-    public sealed class TORModuleSound : IDisposable
+    public sealed class TORModuleSound
     {
         private SoundEvent _soundEvent;
         private bool _playbackRequested;
@@ -111,15 +113,15 @@ namespace TOR_Core.Audio
         internal bool Is3D { get; }
         internal float Volume { get; }
         public string AudioName { get; }
-        public bool IsLooping { get; }
-        public bool IsActive => _playbackRequested;
+        public bool RestartsWhenFinished { get; }
+        public bool IsPlaybackRequested => _playbackRequested;
         public bool IsPlaying => _soundEvent != null && _soundEvent.IsValid && _soundEvent.IsPlaying();
 
-        internal TORModuleSound(string audioName, string filePath, bool isLooping, float volume, Scene scene, bool is3D)
+        internal TORModuleSound(string audioName, string filePath, bool restartWhenFinished, float volume, Scene scene, bool is3D)
         {
             AudioName = audioName;
             FilePath = filePath;
-            IsLooping = isLooping;
+            RestartsWhenFinished = restartWhenFinished;
             Volume = volume;
             Scene = scene;
             Is3D = is3D;
@@ -140,11 +142,6 @@ namespace TOR_Core.Audio
             _position = position;
             _range = range;
             ApplySpatialState();
-        }
-
-        public void Dispose()
-        {
-            Remove();
         }
 
         internal void AttachEvent(SoundEvent soundEvent)
@@ -175,7 +172,7 @@ namespace TOR_Core.Audio
                 return true;
             }
 
-            if (IsLooping)
+            if (RestartsWhenFinished)
             {
                 return TORAudioManager.StartSound(this);
             }

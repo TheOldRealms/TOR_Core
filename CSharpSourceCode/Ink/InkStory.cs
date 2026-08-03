@@ -79,7 +79,7 @@ namespace TOR_Core.Ink
 
         public void CleanUp()
         {
-            _currentAudio?.Dispose();
+            _currentAudio?.Remove();
             _currentAudio = null;
 
             if (_pausedCampaignMusic)
@@ -515,24 +515,22 @@ namespace TOR_Core.Ink
 
         private void PlayMusic(string songName)
         {
-            _currentAudio?.Dispose();
+            _currentAudio?.Remove();
             _currentAudio = TORAudioManager.CreateSoundInstance(songName, false, 1f);
-
-            if (_currentAudio != null && !_pausedCampaignMusic)
+            if (_currentAudio != null && _currentAudio.Play())
             {
-                MBMusicManager.Current.DeactivateCurrentMode();
-                MBMusicManager.Current.PauseMusicManagerSystem();
-                _pausedCampaignMusic = true;
-            }
-
-            if (_currentAudio == null || !_currentAudio.Play())
-            {
-                if (_pausedCampaignMusic)
+                if (!_pausedCampaignMusic)
                 {
-                    MBMusicManager.Current.UnpauseMusicManagerSystem();
-                    MBMusicManager.Current.ActivateCampaignMode();
-                    _pausedCampaignMusic = false;
+                    MBMusicManager.Current.DeactivateCurrentMode();
+                    MBMusicManager.Current.PauseMusicManagerSystem();
+                    _pausedCampaignMusic = true;
                 }
+            }
+            else if (_pausedCampaignMusic)
+            {
+                MBMusicManager.Current.UnpauseMusicManagerSystem();
+                MBMusicManager.Current.ActivateCampaignMode();
+                _pausedCampaignMusic = false;
             }
         }
 
