@@ -873,9 +873,16 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 }
             }
 
+            bool isLootScreen = activePartyState?.PartyScreenMode == PartyScreenMode.Loot;
+            bool isDiscardScreen = activePartyState?.PartyScreenMode == PartyScreenMode.Normal && partyScreenLogic?.LeftOwnerParty == null;
+            if (!isLootScreen && !isDiscardScreen)
+            {
+                RefreshPartyUpgradeResourceState(partyVm);
+                return;
+            }
+
             int sign = fromSide == PartyScreenLogic.PartyRosterSide.Left ? 1 : -1;
             var explainedNumber = new ExplainedNumber();
-            bool isLootScreen = activePartyState?.PartyScreenMode == PartyScreenMode.Loot;
 
             if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
             {
