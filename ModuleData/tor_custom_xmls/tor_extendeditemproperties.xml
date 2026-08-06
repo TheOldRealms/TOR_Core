@@ -1612,6 +1612,14 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_shoulder_shoulderpad_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_shoulder_shoulderpads_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>  
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_necklace_minotaur_001" RaceLock="minotaur">
     <ItemTraits />
     <Description />
@@ -2456,6 +2464,10 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_body_armour_gor_002" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>  
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_helm_001" RaceLock="gor2">
     <ItemTraits />
     <Description />

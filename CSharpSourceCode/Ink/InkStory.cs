@@ -318,6 +318,10 @@ namespace TOR_Core.Ink
             {
                 _story.BindExternalFunction<string>("LearnEnchantmentBlueprint", LearnEnchantmentBlueprint, false);
             }
+            if (!_story.TryGetExternalFunction("LearnRandomUnknownOrionEnchantment", out _))
+            {
+                _story.BindExternalFunction("LearnRandomUnknownOrionEnchantment", LearnRandomUnknownOrionEnchantment, false);
+            }
             if (!_story.TryGetExternalFunction("ChangeRelations", out _))
             {
                 _story.BindExternalFunction<string, int>("ChangeRelations", ChangeRelations, false);
@@ -684,6 +688,28 @@ namespace TOR_Core.Ink
             Hero.MainHero.AddEnchantmentBlueprint(blueprintId, true);
         }
 
+        private void LearnRandomUnknownOrionEnchantment()
+        {
+            var orionEnchantments = new[]
+            {
+                "asrai_enchant_bane_beastkin",
+                "asrai_enchant_deepwood_mastery",
+                "asrai_enchant_ghostwalker"
+            };
+
+            var partyHeroes = MobileParty.MainParty.GetMemberHeroes();
+            var unknownEnchantments = orionEnchantments
+                .Where(enchantmentId => partyHeroes.All(hero => !hero.HasKnownEnchantmentBlueprint(enchantmentId)))
+                .ToList();
+
+            if (unknownEnchantments.Count == 0)
+            {
+                return;
+            }
+
+            var selectedEnchantment = unknownEnchantments[MBRandom.RandomInt(unknownEnchantments.Count)];
+            Hero.MainHero.AddEnchantmentBlueprint(selectedEnchantment, true);
+        }
         private void ChangePartyTroopCount(string troopId, int count)
         {
             var troop = MBObjectManager.Instance.GetObject<CharacterObject>(troopId);

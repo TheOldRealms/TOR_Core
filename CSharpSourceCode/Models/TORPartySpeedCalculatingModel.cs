@@ -1,5 +1,3 @@
-using Helpers;
-using SandBox;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -7,11 +5,9 @@ using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.ComponentInterfaces;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.Party.PartyComponents;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
-using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CampaignMechanics.UniqueSpawns;
 using TOR_Core.CharacterDevelopment;
@@ -19,7 +15,6 @@ using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
@@ -90,13 +85,14 @@ namespace TOR_Core.Models
             var scoutHero = mobileParty.EffectiveScout;
 
             var scoutEquipment = scoutHero.CharacterObject.GetCharacterEquipment();
-            var speedItems = scoutEquipment?.WhereQ(item => item.GetTraits().WhereQ(trait => trait?.StatsTuple?.StatType == ItemTraitStatType.PartySpeed).Any());
+            var speedItems = scoutEquipment
+                .WhereQ(item => item.GetTraits().Any(trait => trait?.StatsTuple?.StatType == ItemTraitStatType.PartySpeed));
 
             var totalSpeedTraitBonus = 0f;
             foreach (var item in speedItems)
             {
                 var highest = 0f;
-                foreach (var trait in item.GetTraits())
+                foreach (var trait in item.GetTraits().WhereQ(trait => trait?.StatsTuple?.StatType == ItemTraitStatType.PartySpeed))
                 {
                     if (trait.StatsTuple.Value > highest)
                     {
@@ -110,6 +106,36 @@ namespace TOR_Core.Models
             if (speedItems.Any())
             {
                 result.AddFactor(totalSpeedTraitBonus / 100f, GameTexts.FindText("tor_generic_enchantedEquipment"));
+            }
+
+            if (faceTerrainType == TerrainType.Forest &&
+                scoutEquipment
+                    .WhereQ(item => item.IsArmor())
+                    .Any(item => item.GetTraits().Any(trait =>
+                        trait.ItemTraitStringId == "asrai_enchant_deepwood_mastery")))
+            {
+                var forestSpeedModifier = -0.3f;
+
+                if (scoutHero.GetPerkValue(DefaultPerks.Scouting.ForestKin))
+                {
+                    var infantryCount = 0;
+                    for (var index = 0; index < mobileParty.MemberRoster.Count; index++)
+                    {
+                        if (!mobileParty.MemberRoster.GetCharacterAtIndex(index).IsMounted)
+                        {
+                            infantryCount += mobileParty.MemberRoster.GetElementNumber(index);
+                        }
+                    }
+
+                    if ((float)infantryCount / mobileParty.MemberRoster.TotalManCount >= 0.75f)
+                    {
+                        forestSpeedModifier *= 0f - DefaultPerks.Scouting.ForestKin.PrimaryBonus;
+                    }
+                }
+
+                result.AddFactor(
+                    MathF.Abs(forestSpeedModifier) * 2f,
+                    GameTexts.FindText("tor_generic_enchantedEquipment"));
             }
 
             if (leaderHero.HasCareer(TORCareers.KnightOldWorld))

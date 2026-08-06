@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaleWorlds.Core;
-using TaleWorlds.GauntletUI;
-using TaleWorlds.LinQuick;
-using TaleWorlds.MountAndBlade;
+﻿using TaleWorlds.GauntletUI;
 using TaleWorlds.MountAndBlade.GauntletUI.Widgets.Inventory;
-using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
-using TOR_Core.CampaignMechanics.Crafting;
-using TOR_Core.Extensions;
 
 namespace TOR_Core.Items
 {

@@ -1,6 +1,5 @@
 using HarmonyLib;
 using Helpers;
-using NAudio.Utils;
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
@@ -13,10 +12,8 @@ using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.Extensions;
-using TOR_Core.HarmonyPatches;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
-using TOR_Core.Models;
 using static TaleWorlds.CampaignSystem.CampaignBehaviors.CraftingCampaignBehavior;
 
 namespace TOR_Core.CampaignMechanics.Crafting

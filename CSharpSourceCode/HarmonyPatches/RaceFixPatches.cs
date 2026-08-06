@@ -2,18 +2,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Reflection.Emit;
-using TaleWorlds.CampaignSystem.Settlements;
+using System.Runtime.CompilerServices;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.GauntletUI.BodyGenerator;
+using TaleWorlds.MountAndBlade.GauntletUI.Widgets;
 using TaleWorlds.MountAndBlade.View;
+using TaleWorlds.MountAndBlade.View.MissionViews;
 using TaleWorlds.MountAndBlade.View.Tableaus;
 using TaleWorlds.MountAndBlade.View.Tableaus.Thumbnails;
-using TaleWorlds.MountAndBlade.View.MissionViews;
 using FaceGen = TaleWorlds.Core.FaceGen;
 
 namespace TOR_Core.HarmonyPatches
@@ -28,6 +28,12 @@ namespace TOR_Core.HarmonyPatches
         // thumbnail/portrait render path marker
         [ThreadStatic]
         private static int _characterThumbnailRenderDepth;
+
+        [ThreadStatic]
+        private static int _encyclopediaCharacterTableauUpdateDepth;
+
+        private static readonly ConditionalWeakTable<CharacterTableau, object>
+            _encyclopediaCharacterTableaus = new();
 
         public static MBActionSet GetActionSet(BodyGeneratorView bodyGeneratorView)
         {
@@ -69,6 +75,53 @@ namespace TOR_Core.HarmonyPatches
             return true;
         }
 
+        // skips custom races (invalidated for reuse) before consuming engine face cache budget
+        [HarmonyTranspiler]
+        [HarmonyPatch(typeof(MissionFaceCacheView), "GetRandomBodyPropertyForTroop")]
+        public static IEnumerable<CodeInstruction> SkipUnusedCustomRaceFaceParameterExtraction(IEnumerable<CodeInstruction> instructions)
+        {
+            var getParamsFromKey = AccessTools.Method(
+                typeof(MBBodyProperties),
+                nameof(MBBodyProperties.GetParamsFromKey));
+
+            var getMissionFaceParamsForCache = AccessTools.Method(
+                typeof(RaceFixPatches),
+                nameof(GetMissionFaceParamsForCache));
+
+            foreach (var instruction in instructions)
+            {
+                if (instruction.Calls(getParamsFromKey))
+                {
+                    // 0 = view, 1 = build data, 2 = character
+                    yield return new CodeInstruction(OpCodes.Ldarg_2);
+                    instruction.operand = getMissionFaceParamsForCache;
+                }
+
+                yield return instruction;
+            }
+        }
+
+        private static void GetMissionFaceParamsForCache(
+            ref FaceGenerationParams faceGenerationParams,
+            BodyProperties bodyProperties,
+            bool earsAreHidden,
+            bool mouthIsHidden,
+            BasicCharacterObject characterObject)
+        {
+            if (IsSafeMissionFaceCacheRace(characterObject.Race))
+            {
+                MBBodyProperties.GetParamsFromKey(
+                    ref faceGenerationParams,
+                    bodyProperties,
+                    earsAreHidden,
+                    mouthIsHidden);
+                return;
+            }
+
+            faceGenerationParams = FaceGenerationParams.Create();
+            faceGenerationParams.CurrentRace = characterObject.Race;
+        }
+
         private static bool CanReuseMissionFaceCache(FaceGenerationParams firstFace, FaceGenerationParams secondFace)
         {
             if (firstFace.CurrentRace == secondFace.CurrentRace)
@@ -84,18 +137,20 @@ namespace TOR_Core.HarmonyPatches
             return (firstRaceName == "human" && secondRaceName == "bretonnian") || (firstRaceName == "bretonnian" && secondRaceName == "human");
         }
 
-        [HarmonyPostfix]
+        [HarmonyPrefix]
         [HarmonyPatch(typeof(MissionFaceCacheView), "ComputeSimilarityOfFace")]
-        public static void BlockCrossRaceMissionFaceReuse(
+        public static bool BlockCrossRaceMissionFaceReuseBeforeSimilarity(
             FaceGenerationParams f0,
             FaceGenerationParams f1,
             ref float __result)
         {
-            // block other cross race spawns
-            if (!CanReuseMissionFaceCache(f0, f1))
+            if (CanReuseMissionFaceCache(f0, f1))
             {
-                __result = 1000000000f;
+                return true;
             }
+
+            __result = 1000000000f;
+            return false;
         }
 
         [HarmonyPrefix]
@@ -189,10 +244,71 @@ namespace TOR_Core.HarmonyPatches
             ____oldAgentVisuals.Refresh(false, newdata, false);
         }
 
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(CharacterTableauWidget), "OnUpdate")]
+        public static void MarkEncyclopediaCharacterTableauUpdateStart(
+            CharacterTableauWidget __instance,
+            out bool __state)
+        {
+            __state = __instance.Context.Name == "EncyclopediaBar";
+
+            if (__state)
+            {
+                _encyclopediaCharacterTableauUpdateDepth++;
+            }
+        }
+
+        [HarmonyFinalizer]
+        [HarmonyPatch(typeof(CharacterTableauWidget), "OnUpdate")]
+        public static Exception MarkEncyclopediaCharacterTableauUpdateEnd(
+            bool __state,
+            Exception __exception)
+        {
+            if (__state)
+            {
+                _encyclopediaCharacterTableauUpdateDepth--;
+            }
+
+            return __exception;
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(CharacterTableau), MethodType.Constructor)]
+        public static void MarkEncyclopediaCharacterTableau(CharacterTableau __instance)
+        {
+            if (_encyclopediaCharacterTableauUpdateDepth > 0)
+            {
+                _encyclopediaCharacterTableaus.GetValue(__instance, _ => new object());
+            }
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(CharacterTableau), "AdjustCharacterForStanceIndex")]
+        public static void ResetEncyclopediaCharacterTableauCameraBeforeRaceOffset(
+            CharacterTableau __instance,
+            ref MatrixFrame ____camPos,
+            MatrixFrame ____camPosGatheredFromScene,
+            out bool __state)
+        {
+            __state = _encyclopediaCharacterTableaus.TryGetValue(__instance, out _);
+
+            if (__state)
+            {
+                ____camPos = ____camPosGatheredFromScene;
+            }
+        }
+
         [HarmonyPostfix]
         [HarmonyPatch(typeof(CharacterTableau), "AdjustCharacterForStanceIndex")]
-        public static void AdjustCharacterTableauCameraForRaces(int ____race, ref MatrixFrame ____camPos)
+        public static void AdjustEncyclopediaCharacterTableauCameraForRaces(
+            int ____race,
+            ref MatrixFrame ____camPos,
+            bool __state)
         {
+            if (!__state)
+            {
+                return;
+            }
             var raceName = FaceGen.GetRaceNames()[____race];
 
             if (raceName == "goblin")

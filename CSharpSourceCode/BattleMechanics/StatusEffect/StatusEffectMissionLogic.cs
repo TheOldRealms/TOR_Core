@@ -1,18 +1,12 @@
-using Ink.Parsed;
 using NLog;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
-using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.ObjectSystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
-using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
-using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
@@ -85,8 +79,9 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 return;
             }
 
-            var healPercentOfMaxHealth = 0.05f; // heal per kill
+            var healPercentOfMaxHealth = 0.15f;
             killerAgent.Heal(killerAgent.HealthLimit * healPercentOfMaxHealth);
+            killerAgent.ApplyStatusEffect("the_hunger_heal", killerAgent, 2f, false);
         }
 
         private static void ApplyFrenzyOnKill(Agent killerAgent)
@@ -102,10 +97,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 return;
             }
 
-            var frenzyMovementEffectId = "trait_frenzy_movement_speed";
-            var frenzyAttackSpeedEffectId = "trait_frenzy_attack_speed";
-            var maxFrenzyStacks = 5; // max kill stacks 
-            var frenzyStackDuration = 30f; // 30 seconds 
+            var frenzyMovementEffectId = "frenzy_movement_speed";
+            var frenzyAttackSpeedEffectId = "frenzy_attack_speed";
+            var frenzyActiveEffectId = "frenzy_active";
+            var maxFrenzyStacks = 5;
+            var frenzyStackDuration = 40f;
 
             if (statusEffectComponent.GetActiveEffectCount(frenzyAttackSpeedEffectId) >= maxFrenzyStacks)
             {
@@ -114,6 +110,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
             killerAgent.ApplyStatusEffect(frenzyMovementEffectId, killerAgent, frenzyStackDuration, false, false, true);
             killerAgent.ApplyStatusEffect(frenzyAttackSpeedEffectId, killerAgent, frenzyStackDuration, false, false, true);
+            killerAgent.ApplyStatusEffect(frenzyActiveEffectId, killerAgent, frenzyStackDuration, false);
         }
 
         public override void OnMissionTick(float dt)
@@ -147,18 +144,25 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         {
             if (agent?.Character == null) return;
 
+            switch (agent.GetRegenerationTier())
+            {
+                case 3:
+                    CareerHelper.AddDefaultPermanentMissionEffect(agent, "regeneration3");
+                    break;
+                case 2:
+                    CareerHelper.AddDefaultPermanentMissionEffect(agent, "regeneration2");
+                    break;
+                case 1:
+                    CareerHelper.AddDefaultPermanentMissionEffect(agent, "regeneration");
+                    break;
+            }
+
             if (agent.WieldedWeapon.IsEmpty) return;
 
             if (agent.GetOriginMobileParty()?.HasBlessing("cult_of_loec") == true)
             {
                 CareerHelper.AddDefaultPermanentMissionEffect(agent, "loec_blessing_mvs");
                 CareerHelper.AddDefaultPermanentMissionEffect(agent, "loec_blessing_ats");
-            }
-
-            // Race-based innate abilities (apply to all agents of that race)
-            if (agent.HasTrollRegeneration())
-            {
-                CareerHelper.AddDefaultPermanentMissionEffect(agent, "troll_regeneration");
             }
 
             if (!agent.BelongsToMainParty()) return;

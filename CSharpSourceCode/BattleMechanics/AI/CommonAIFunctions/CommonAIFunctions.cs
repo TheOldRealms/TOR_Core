@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Linq;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
-using TOR_Core.AbilitySystem;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.AI.CommonAIFunctions

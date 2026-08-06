@@ -1497,8 +1497,20 @@
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>100</IngredientAmount>
-    <ItemTraitDescription>{=str_tor_itemtraits_asrai_enchant_bane_beastkin}"Nearby Beastkin suffer constant magical damage."</ItemTraitDescription>
+    <ItemTraitDescription>{=str_tor_itemtraits_asrai_enchant_bane_beastkin}"Nearby Beastkin suffer constant magical damage. (...)"</ItemTraitDescription>
     <WeaponParticlePreset ParticlePrefab="general_light_buff" IsUniqueSingleCopy="false" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="asrai_enchant_deepwood_mastery" ItemTraitName="Deepwood Mastery" IsCraftable="true" IconName="harmony_icon_100">
+    <ValidItemType>Armor</ValidItemType>
+    <IngredientItem>DragonBlood</IngredientItem>
+    <IngredientAmount>60</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_asrai_enchant_deepwood_mastery}"Reverses the forest travel speed penalty. (...)"</ItemTraitDescription>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="asrai_enchant_ghostwalker" ItemTraitName="Ghostwalker" IsCraftable="true" IconName="harmony_icon_100">
+    <ValidItemType>Armor</ValidItemType>
+    <IngredientItem>DragonBlood</IngredientItem>
+    <IngredientAmount>40</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_asrai_enchant_ghostwalker}"Hostile parties detect your party at half their normal range.(...) "</ItemTraitDescription>
   </ItemTrait>
   <ItemTrait ItemTraitStringId="eo_enchant_wisdom_hoeth" ItemTraitName="Wisdom of Hoeth" IsCraftable="true" IconName="favor_icon_100">
     <ValidItemType>Armor</ValidItemType>

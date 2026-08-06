@@ -10,7 +10,6 @@ using TaleWorlds.Library;
 using TaleWorlds.TwoDimension;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {

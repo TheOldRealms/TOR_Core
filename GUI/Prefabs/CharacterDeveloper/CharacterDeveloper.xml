@@ -364,16 +364,16 @@
             <Widget DataSource="{CurrentCharacter}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="650" SuggestedHeight="76" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="74" Sprite="CharacterDeveloper\character_progress_panel">
               <Children>
 
-                <Widget WidthSizePolich="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="575" HorizontalAlignment="Center" MarginTop="13">
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="575" HorizontalAlignment="Center" MarginTop="13">
                   <Children>
 
                     <!--Level Text-->
-                    <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginRight="450" MarginBottom="25" Brush="CharacterDeveloper.GridSkillName.Text" Brush.FontSize="16" Brush.TextHorizontalAlignment="Right" Text="@HeroLevelText" />
+                    <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginRight="75" MarginBottom="22" Brush="CharacterDeveloper.GridSkillName.Text" Brush.FontSize="16" Brush.TextHorizontalAlignment="Right" Text="@HeroNextLevelText" IsVisible="false" />
 
                     <!--Level Progress Bar-->
                     <Widget Id="LevelProgressBackground" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="300" SuggestedHeight="20" HorizontalAlignment="Center" VerticalAlignment="Center" MarginBottom="20" Sprite="BlankWhiteSquare_9" Color="#000000FF" AlphaFactor="0.7">
                       <Children>
-                        <FillBarWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="321" SuggestedHeight="27" HorizontalAlignment="Center" VerticalAlignment="Center" ContainerWidget="ContainerWidget" FillWidget="FillBarParent\FillWidget" InitialAmount="@CurrentTotalSkill" MaxAmount="@SkillPointsRequiredForNextLevel">
+                        <FillBarWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="321" SuggestedHeight="27" HorizontalAlignment="Center" VerticalAlignment="Center" ContainerWidget="ContainerWidget" FillWidget="FillBarParent\FillWidget" InitialAmount="@CurrentTotalXp" MaxAmount="@XpRequiredForNextLevel">
                           <Children>
 
                             <Widget Id="FillBarParent" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="300" SuggestedHeight="14" HorizontalAlignment="Center" VerticalAlignment="Center" MarginLeft="13" MarginRight="14">
@@ -400,7 +400,7 @@
 
 
                     <!--Level Progress Text-->
-                    <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Bottom" MarginLeft="450" MarginBottom="25" Brush="CharacterDeveloper.GridSkillName.Text" Brush.FontSize="14" Brush.TextHorizontalAlignment="Left" Text="@LevelProgressText" />
+                    <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="22" Brush="CharacterDeveloper.GridSkillName.Text" Brush.FontSize="14" Brush.TextHorizontalAlignment="Left" Text="@LevelProgressText" />
                   </Children>
                 </Widget>
 
@@ -418,14 +418,24 @@
               <Children>
 
                 <!--Character Selection-->
-                <AnimatedDropdownWidget Id="DropdownParent" DataSource="{CharacterList}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="434" SuggestedHeight="47" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="10" Button="DropdownButton" CurrentSelectedIndex="@SelectedIndex" ListPanel="DropdownClipWidget\DropdownContainerWidget\ScrollablePanel\ClipRect\PrimaryUsageSelectorList" DropdownContainerWidget="DropdownClipWidget\DropdownContainerWidget" DropdownClipWidget="DropdownClipWidget">                  <Children>
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="434" SuggestedHeight="47" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="10">
+                  <Children>
+                    <AnimatedDropdownWidget Id="DropdownParent" DataSource="{CharacterList}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" Button="DropdownButton" CurrentSelectedIndex="@SelectedIndex" ListPanel="DropdownClipWidget\DropdownContainerWidget\ScrollablePanel\ClipRect\PrimaryUsageSelectorList" DropdownContainerWidget="DropdownClipWidget\DropdownContainerWidget" DropdownClipWidget="DropdownClipWidget">
+                      <Children>
 
                     <ButtonWidget Id="DropdownButton" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Character.Selection.Button" IsDisabled="@HasSingleItem">
                       <Children>
-                        <ScrollingRichTextWidget DataSource="{..}" Id="SelectedTextWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginLeft="7" MarginRight="7" Brush="CharacterDeveloper.Title.Text" IsAutoScrolling="false" ScrollOnHoverWidget="..\..\DropdownButton" Text="@CurrentCharacterNameText"/>
-                        <Widget DataSource="{..}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="25" SuggestedHeight="25" HorizontalAlignment="Right" MarginRight="40" VerticalAlignment="Center" PositionYOffset="-4" Sprite="CharacterDeveloper\UnselectedPerksIcon" IsVisible="@HasUnopenedPerksForOtherCharacters" />
+                        <ScrollingTextWidget DataSource="{..}" Id="SelectedTextWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginLeft="73" MarginRight="60" Brush="CharacterDeveloper.Title.Text" IsAutoScrolling="false" ScrollOnHoverWidget="..\..\DropdownButton" Text="@CurrentCharacterNameText" />
                       </Children>
                     </ButtonWidget>
+
+
+                    <MapBarUnreadBrushWidget DataSource="{..}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="35" SuggestedHeight="35" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="-25" Brush="CharacterDeveloper.Companion.PerkSelection" UnreadTextWidget="CharacterUnreadText" IsVisible="@HasUnopenedPerksForCurrentCharacter">
+                      <Children>
+                        <TextWidget Id="CharacterUnreadText" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" PositionXOffset="0" Brush.FontSize="18" IntText="@UnopenedPerksNumForCurrentCharacter" />
+                        <HintWidget DataSource="{UnopenedPerksHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                      </Children>
+                    </MapBarUnreadBrushWidget>
 
                     <!--Dropdown Visual-->
                     <Widget Id="DropdownClipWidget" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" ClipContents="true" WidgetToCopyHeightFrom="DropdownContainerWidget\ScrollablePanel">
@@ -445,7 +455,7 @@
                                         <ButtonWidget Id="DropdownItemButton" DoNotUseCustomScale="true" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="29" MarginLeft="15" MarginRight="15" HorizontalAlignment="Center" VerticalAlignment="Bottom" ButtonType="Radio" UpdateChildrenStates="true" Brush="Standard.DropdownItem.SoundBrush">
                                           <Children>
                                             <ImageWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="5" MarginRight="5" Brush="Standard.DropdownItem" />
-                                            <RichTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginLeft="7" MarginRight="7" Brush="SPOptions.Dropdown.Item.Text" Text="@StringItem" IsAutoScrolling="false" ScrollOnHoverWidget="..\..\DropdownItemButton" />
+                                            <ScrollingTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginLeft="30" MarginRight="30" Brush="SPOptions.Dropdown.Item.Text" Text="@StringItem" IsAutoScrolling="false" ScrollOnHoverWidget="..\..\DropdownItemButton" />
                                           </Children>
                                         </ButtonWidget>
                                       </ItemTemplate>
@@ -468,8 +478,17 @@
                         </BrushWidget>
                       </Children>
                     </Widget>
+                      </Children>
+                    </AnimatedDropdownWidget>
+                    <Widget DataSource="{CurrentCharacter}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="40" SuggestedHeight="40" HorizontalAlignment="Left" VerticalAlignment="Center">
+                      <Children>
+                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="40" SuggestedHeight="40" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="General\Icons\Level@2x" AlphaFactor="0.8" />
+                        <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="30" HorizontalAlignment="Left" MarginLeft="37" Brush="Party.Text.TroopInfo" Brush.TextHorizontalAlignment="Left" Text="@CurrentCharacterLevelLbl" />
+                        <HintWidget DataSource="{..\LevelHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                      </Children>
+                    </Widget>
                   </Children>
-                </AnimatedDropdownWidget>
+                </Widget>
               </Children>
             </Widget>
 
@@ -482,11 +501,6 @@
             <ButtonWidget Id="NextCharacterButton" DataSource="{CharacterList}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="30" SuggestedHeight="41" HorizontalAlignment="Center" VerticalAlignment="Top" PositionXOffset="250" MarginTop="11" Brush="NextCharacterButtonBrush" Command.Click="ExecuteSelectNextItem" IsDisabled="@HasSingleItem">
               <Children>
 
-                <MapBarUnreadBrushWidget DataSource="{..}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Companion.Perk.Notification.Size" SuggestedHeight="!Companion.Perk.Notification.Size" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="-55" Brush="CharacterDeveloper.Companion.PerkSelection" UnreadTextWidget="CharacterUnreadText">
-                  <Children>
-                    <TextWidget Id="CharacterUnreadText" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" PositionYOffset="0" Brush.FontSize="18" IntText="@UnopenedPerksNumForOtherChars" />
-                  </Children>
-                </MapBarUnreadBrushWidget>
 
                 <HintWidget DataSource="{..\NextCharacterHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
                 <InputKeyVisualWidget DataSource="{..\NextCharacterInputKey}" DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="60" SuggestedHeight="60" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="55" KeyID="@KeyID" IsVisible="@IsVisible"/>

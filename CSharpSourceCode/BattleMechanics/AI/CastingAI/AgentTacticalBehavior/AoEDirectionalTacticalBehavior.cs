@@ -1,5 +1,4 @@
-﻿using TaleWorlds.Engine;
-using TaleWorlds.Library;
+﻿using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior;
 using TOR_Core.BattleMechanics.AI.CommonAIFunctions;

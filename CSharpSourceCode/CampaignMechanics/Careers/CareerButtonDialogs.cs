@@ -1,10 +1,8 @@
 ﻿using TaleWorlds.CampaignSystem;
-using TaleWorlds.Localization;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem.Button;
 using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Careers;
 

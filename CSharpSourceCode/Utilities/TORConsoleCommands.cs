@@ -9,14 +9,12 @@ using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.GameState;
 using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.Encyclopedia;
 using TaleWorlds.CampaignSystem.Party.PartyComponents;
 using TaleWorlds.CampaignSystem.Roster;
-using TaleWorlds.CampaignSystem.Settlements;
-using TaleWorlds.Localization;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View.Screens;
 using TaleWorlds.ObjectSystem;
@@ -32,8 +30,8 @@ using TOR_Core.Ink;
 using TOR_Core.Items;
 using TOR_Core.Missions;
 using TOR_Core.Quests;
-using FaceGen = TaleWorlds.Core.FaceGen;
 using static TOR_Core.Utilities.TORConstants;
+using FaceGen = TaleWorlds.Core.FaceGen;
 
 namespace TOR_Core.Utilities
 {

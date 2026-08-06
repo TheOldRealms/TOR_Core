@@ -1,15 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
-using TOR_Core.AbilitySystem;
-using TOR_Core.BattleMechanics.DamageSystem;
-using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
-using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 
 namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts

@@ -2560,19 +2560,44 @@
         <ImbuedStatusEffect>arcane_conduit_res_debuff</ImbuedStatusEffect>
         <ImbuedStatusEffect>arcane_conduit_winds_reg</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
-	<TriggeredEffectTemplate StringID="troll_regeneration"
+	<TriggeredEffectTemplate StringID="regeneration"
                              BurstParticleEffectPrefab="none"
                              SoundEffectId="none"
                              SoundEffectLength="0"
                              DamageType="Invalid"
                              DamageAmount="0"
-                             Radius="3"
                              HasShockWave="false"
                              TargetType="Self"
                              ImbuedStatusEffectDuration="2.1"
                              DamageVariance="0.0"
                              ScriptNameToTrigger="none">
-        <ImbuedStatusEffect>troll_regeneration</ImbuedStatusEffect>
+        <ImbuedStatusEffect>regeneration</ImbuedStatusEffect>
+    </TriggeredEffectTemplate>
+	<TriggeredEffectTemplate StringID="regeneration2"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             HasShockWave="false"
+                             TargetType="Self"
+                             ImbuedStatusEffectDuration="2.1"
+                             DamageVariance="0.0"
+                             ScriptNameToTrigger="none">
+        <ImbuedStatusEffect>regeneration2</ImbuedStatusEffect>
+    </TriggeredEffectTemplate>
+	<TriggeredEffectTemplate StringID="regeneration3"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             HasShockWave="false"
+                             TargetType="Self"
+                             ImbuedStatusEffectDuration="2.1"
+                             DamageVariance="0.0"
+                             ScriptNameToTrigger="none">
+        <ImbuedStatusEffect>regeneration3</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
     <TriggeredEffectTemplate StringID="apply_knightly_charge"
                              BurstParticleEffectPrefab="none"

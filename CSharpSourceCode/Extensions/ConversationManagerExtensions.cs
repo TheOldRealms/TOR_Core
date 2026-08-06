@@ -2,9 +2,7 @@ using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Conversation;
-using TaleWorlds.Library;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions

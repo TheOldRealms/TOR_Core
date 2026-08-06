@@ -552,10 +552,11 @@
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghHelper.cs" />
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghMeterMapView.cs" />
-    <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\TORMapNotificationView.cs" />
+    <Compile Include="CampaignMechanics\MapNotifications\TORMapNotificationView.cs" />
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghMeterVM.cs" />
     <Compile Include="CampaignMechanics\TORCampaignMusicHandler.cs" />
     <Compile Include="CampaignMechanics\UniqueSpawns\OrionCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\MapNotifications\TORMapNotification.cs" />
     <Compile Include="CampaignMechanics\UniqueSpawns\UniqueSpawnCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\UniqueSpawns\UniqueSpawnPartyComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\Component\TORBaseSettlementComponent.cs" />
@@ -861,6 +862,7 @@
     <Compile Include="Models\TORMapVisibilityModel.cs" />
     <Compile Include="Models\TORMarriageModel.cs" />
     <Compile Include="Models\TORMobilePartyFoodConsumptionModel.cs" />
+    <Compile Include="Models\TORMobilePartyAIModel.cs" />
     <Compile Include="Models\TORPartyHealingModel.cs" />
     <Compile Include="Models\TORPartyMoraleModel.cs" />
     <Compile Include="Models\TORPartyDesertionModel.cs" />

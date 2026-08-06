@@ -1909,6 +1909,7 @@
   <string id="str_crafting_template.tor_large_monster_weapon_template" text="{=str_tor_crafting_template_TORLargeMonsterWeapon}TOR-Large Monster Weapon (Hidden)" />
   <string id="str_crafting_template.tor_dual_wield_mainhand" text="{=str_tor_crafting_template_TORDualWieldMainhand}TOR-Dual-Wield Mainhand (Hidden)" />
   <string id="str_crafting_template.tor_axe_template" text="{=str_tor_crafting_template_TORAxes}TOR-Axes" />
+  <string id="str_crafting_template.tor_kotww_axe_template" text="Knight of the White Wolf Axe" />
   <string id="str_crafting_template.tor_twohandedaxe" text="{=str_tor_crafting_template_TORGreataxes}TOR-Greataxes" />
   <string id="str_crafting_template.tor_mace_template" text="{=str_tor_crafting_template_TORMaces}TOR-Maces" />
   <string id="str_crafting_template.tor_orc_mace_template" text="{=str_tor_crafting_template_TOROrcMaces}TOR-Orc Maces" />
@@ -2318,7 +2319,7 @@
   <!-- Empire 10 - Beast Wizard -->
   <string id="tor_hire_companion_begone.tor_wanderer_empire_10" text="{=str_tor_hire_companion_begone_tor_wanderer_empire_10}Begone, your kind is not welcome here!" />
   <string id="tor_introduction.tor_wanderer_empire_10" text="{=str_tor_introduction_tor_wanderer_empire_10}Greetings, what can a member of the Amber College do for you?" />
-  <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_10" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_10}}They call me {PLAYER.NAME}. Tell me about yourself." />
+  <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_10" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_10}They call me {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_empire_10" text="{=str_tor_hire_companion_skip_p_tor_wanderer_empire_10}My name is {PLAYER.NAME}. Let us skip the pleasantries and get right to business." />
   <string id="tor_prebackstory.tor_wanderer_empire_10" text="{=str_tor_prebackstory_tor_wanderer_empire_10}You wish to know my story? Very well." />
   <string id="tor_backstory_a.tor_wanderer_empire_10" text="{=str_tor_backstory_a_tor_wanderer_empire_10}When I was young, I felt a strong connection with all kinds of woodland creatures. And soon I learned to converse with them." />
@@ -4436,18 +4437,22 @@
   <string id="tor_extendedInfo.ArtilleryCrew" text="{=str_tor_extendedinfo_artillerycrew}Artillery Crew - required to operate most artillery pieces."/>
   <string id="tor_extendedInfo.Unbreakable" text="{=str_tor_extendedinfo_unbreakable}Unbreakable - shall never flee due to low morale."/>
   <string id="tor_extendedInfo.Unstoppable" text="{=str_tor_extendedinfo_unstoppable}Unstoppable - does not stagger upon receiving damage."/>
-  <string id="tor_extendedInfo.TrollRegeneration" text="{=str_tor_extendedinfo_troll_regeneration}Regeneration - regenerates health over time."/>
-  <string id="tor_extendedInfo.Brute" text="{=str_tor_extendedinfo_brute}Brute - htis better."/>
-  <string id="tor_extendedInfo.Piercing" text="{=str_tor_extendedinfo_piercing}Piercing - Unit deals 40% Armor piercing damage."/>
-  <string id="tor_extendedInfo.TheHunger" text="{=str_tor_extendedinfo_the_hunger}The Hunger - restores health after killing an enemy."/>
-  <string id="tor_extendedInfo.Frenzy" text="{=str_tor_extendedinfo_frenzy}Frenzy - gains increased attack and movement speed upon killing an enemy"/>
-  <string id="tor_extendedInfo.UndeadSlayer" text="{=str_tor_extendedinfo_undead_slayer}Undead Slayer - deals increased damage against undead units."/>
-  <string id="tor_extendedInfo.Immortality" text="{=str_tor_extendedinfo_immortality}Immortality - Cannot be killed."/>
-  <string id="tor_extendedInfo.Deadeye" text="{=str_tor_extendedinfo_deadeye}Deadeye - suffers no ranged accuracy penalty while moving."/>
-  <string id="tor_extendedInfo.Ethereal" text="{=str_tor_extendedinfo_ethereal}Ethereal - has a chance to ignore non magical weapon hits."/>
-  <string id="tor_extendedInfo.KillingBlow" text="{=str_tor_extendedinfo_killing_blow}Killing Blow - has a chance to instantly kill enemy units."/>
-  <string id="tor_extendedInfo.WightKing" text="{=str_tor_extendedinfo_wight_king}Wight King - has an increased chance to instantly kill enemy units"/>
-  <string id="tor_extendedInfo.MonsterSlayer" text="{=str_tor_extendedinfo_monster_slayer}Monster Slayer - deals increased damage against monstrous units."/>
+  <string id="tor_extendedInfo.Regeneration" text="{=str_tor_extendedinfo_regeneration}Regeneration - restores {VALUE} health per second.(...)"/>
+  <string id="tor_extendedInfo.Brute" text="{=str_tor_extendedinfo_brute}Brute - htis better(...)"/>
+  <string id="tor_extendedInfo.Piercing" text="{=str_tor_extendedinfo_piercing}Piercing - {VALUE}% Armor Penetration(...)"/>
+  <string id="tor_extendedInfo.Bulwark" text="{=str_tor_extendedinfo_bulwark}Bulwark - {VALUE}% Ranged Damage Reduction(...)"/>
+  <string id="tor_extendedInfo.Swift" text="{=str_tor_extendedinfo_swift}Swift - {VALUE}% Movement Speed Bonus(...)"/>
+  <string id="tor_extendedInfo.Poisonous" text="{=str_tor_extendedinfo_poisonous}Poisonous - {CHANCE}% Chance on Hit to Poison the Target {DURATION} {DAMAGE}(...)"/>
+  <string id="tor_extendedInfo.TheHunger" text="{=str_tor_extendedinfo_the_hunger}The Hunger - Restores {VALUE}% Maximum Health after Killing an enemy(...)"/>
+  <string id="tor_extendedInfo.Frenzy" text="{=str_tor_extendedinfo_frenzy}Frenzy - Kill Grants {VALUE}% Movement Speed {VALUE}% Attack Speed for {DURATION} (...)"/>
+  <string id="tor_extendedInfo.UndeadSlayer" text="{=str_tor_extendedinfo_undead_slayer}Undead Slayer - +{VALUE}% Damage against Undead Units (...)"/>
+  <string id="tor_extendedInfo.Immortality" text="{=str_tor_extendedinfo_immortality}Immortality - Cannot be killed (...)"/>
+  <string id="tor_extendedInfo.Deadeye" text="{=str_tor_extendedinfo_deadeye}Deadeye - suffers no ranged accuracy penalty while moving(...)"/>
+  <string id="tor_extendedInfo.Ethereal" text="{=str_tor_extendedinfo_ethereal}Ethereal - {VALUE}% Chance to Ignore Purely Physical Hits(...)"/>
+  <string id="tor_extendedInfo.KillingBlow" text="{=str_tor_extendedinfo_killing_blow}Killing Blow - has a chance to instantly kill enemy units(...)"/>
+  <string id="tor_extendedInfo.WightKing" text="{=str_tor_extendedinfo_wight_king}Wight King - Has an Increased Chance to Instantly Kill Enemy Units(...)"/>
+  <string id="tor_extendedInfo.MonsterSlayer" text="{=str_tor_extendedinfo_monster_slayer}Monster Slayer - +{VALUE}% Damage against Monstrous Units(...)"/>
+  
   <string id="tor_damagetype.Invalid" text="{=str_tor_damagetype_invalid}Invalid" />
   <string id="tor_damagetype.Physical" text="{=str_tor_damagetype_physical}Physical" />
   <string id="tor_damagetype.Magical" text="{=str_tor_damagetype_magical}Magical" />
@@ -4722,8 +4727,8 @@
   <string id="tor_inky_OrionDefeatedByPlayer.Title" text="{=str_tor_inky_orion_defeated_title}Orion Defeated" />
   <string id="tor_inky_OrionDefeatedByPlayer.STR_Start1" text="{=str_tor_inky_orion_defeated_start1}You defeated Orion." />
   <string id="tor_inky_OrionDefeatedByPlayer.STR_Start2" text="{=str_tor_inky_orion_defeated_start2}Wild Hunt has been broken." />
-  <string id="tor_inky_OrionDefeatedByPlayer.STR_Start3" text="{=str_tor_inky_orion_defeated_start3}Among the spoils left in his wake there lies an unusal something (rewrite pls)." />
-  <string id="tor_inky_OrionDefeatedByPlayer.STR_Start4" text="{=str_tor_inky_orion_defeated_start4}Pick your reward." />
+  <string id="tor_inky_OrionDefeatedByPlayer.STR_Start3" text="{=str_tor_inky_orion_defeated_start3}Among the spoils left in his wake lies an enchantment (...)" />
+  <string id="tor_inky_OrionDefeatedByPlayer.STR_Start4" text="{=str_tor_inky_orion_defeated_start4}Claim your reward." />
 
   <!-- Serve as a Hireling -->
   <string id="tor_hirelinglordquit.default" text="{=str_tor_hirelinglordquit_default}If this is your wish. Fine." />

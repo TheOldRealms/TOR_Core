@@ -1,20 +1,13 @@
-using NLog;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Reflection;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.AgentOrigins;
-using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.Source.Missions;
-using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.ObjectSystem;
-using TOR_Core.AbilitySystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 using static TaleWorlds.Core.ItemObject;
@@ -130,7 +123,8 @@ namespace TOR_Core.BattleMechanics.Banners
                         {
                             if (equipment.Item.IsUsingTableau)
                             {
-                                agent.RemoveEquippedWeapon((EquipmentIndex)i);
+                                // agent.RemoveEquippedWeapon((EquipmentIndex)i);
+                                // EquipWeaponWithNewEntity already removes older entities as part of the replacement
                                 var missionWeapon = new MissionWeapon(equipment.Item, equipment.ItemModifier, banner);
                                 agent.EquipWeaponWithNewEntity((EquipmentIndex)i, ref missionWeapon);
 

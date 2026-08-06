@@ -1,10 +1,7 @@
 ﻿using HarmonyLib;
 using System;
-using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
-using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
-using TOR_Core.BattleMechanics;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.HarmonyPatches

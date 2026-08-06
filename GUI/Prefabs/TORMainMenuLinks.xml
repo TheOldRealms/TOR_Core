@@ -2,21 +2,38 @@
   <Window>
     <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" DoNotAcceptEvents="true">
       <Children>
-        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="76" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="12" StackLayout.LayoutMethod="HorizontalLeftToRight">
+        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="76" HorizontalAlignment="Center" VerticalAlignment="Bottom" PositionXOffset="8" MarginBottom="12" StackLayout.LayoutMethod="HorizontalLeftToRight">
           <Children>
-            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="190" SuggestedHeight="64" Brush="Popup.Done.Button" Command.Click="ExecuteOpenManual">
+            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="190" SuggestedHeight="47" VerticalAlignment="Center" Brush="InitialMenuButtonBrush" Command.Click="ExecuteOpenManual" UpdateChildrenStates="true">
               <Children>
-                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="35" VerticalAlignment="Center" MarginLeft="25" MarginRight="25" Brush="TorWelcomePopupButtonTextBrush" Text="@ManualButtonText" />
+                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" Brush="TorInitialMenuButtonBrush" ClipContents="false" Text="@ManualButtonText" UpdateChildrenStates="true">
+                  <Children>
+                    <ImageWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="46" SuggestedHeight="20" HorizontalAlignment="Left" VerticalAlignment="Center" PositionXOffset="-55" MarginBottom="2" Brush="HoverIndicatorBrush" />
+                    <ImageWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="46" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="55" MarginBottom="2" Brush="HoverIndicatorBrushFlipped" />
+                  </Children>
+                </TextWidget>
               </Children>
             </ButtonWidget>
-            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="190" SuggestedHeight="64" MarginLeft="12" Brush="Popup.Done.Button" Command.Click="ExecuteOpenDiscord">
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="35" SuggestedHeight="47" />
+            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="190" SuggestedHeight="47" VerticalAlignment="Center" Brush="InitialMenuButtonBrush" Command.Click="ExecuteOpenDiscord" UpdateChildrenStates="true">
               <Children>
-                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="35" VerticalAlignment="Center" MarginLeft="25" MarginRight="25" Brush="TorWelcomePopupButtonTextBrush" Text="@DiscordButtonText" />
+                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" Brush="TorInitialMenuButtonBrush" ClipContents="false" Text="@DiscordButtonText" UpdateChildrenStates="true">
+                  <Children>
+                    <ImageWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="46" SuggestedHeight="20" HorizontalAlignment="Left" VerticalAlignment="Center" PositionXOffset="-55" MarginBottom="2" Brush="HoverIndicatorBrush" />
+                    <ImageWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="46" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="55" MarginBottom="2" Brush="HoverIndicatorBrushFlipped" />
+                  </Children>
+                </TextWidget>
               </Children>
             </ButtonWidget>
-            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="250" SuggestedHeight="64" MarginLeft="12" Brush="Popup.Done.Button" Command.Click="ExecuteApplyRecommendedSettings">
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="30" SuggestedHeight="47" />
+            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="300" SuggestedHeight="47" VerticalAlignment="Center" Brush="InitialMenuButtonBrush" Command.Click="ExecuteApplyRecommendedSettings" UpdateChildrenStates="true">
               <Children>
-                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="35" VerticalAlignment="Center" MarginLeft="25" MarginRight="25" Brush="TorWelcomePopupButtonTextBrush" Text="@RecommendedSettingsButtonText" />
+                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" Brush="TorInitialMenuButtonBrush" ClipContents="false" Text="@RecommendedSettingsButtonText" UpdateChildrenStates="true">
+                  <Children>
+                    <ImageWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="46" SuggestedHeight="20" HorizontalAlignment="Left" VerticalAlignment="Center" PositionXOffset="-55" MarginBottom="2" Brush="HoverIndicatorBrush" />
+                    <ImageWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="46" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="55" MarginBottom="2" Brush="HoverIndicatorBrushFlipped" />
+                  </Children>
+                </TextWidget>
               </Children>
             </ButtonWidget>
           </Children>

@@ -1,31 +1,24 @@
-using NAudio.SoundFont;
 using NLog;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Security;
-using System.Windows.Forms;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
-using TaleWorlds.Library;
 using TaleWorlds.Engine;
-using TaleWorlds.LinQuick;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.CustomBattle;
 using TOR_Core.AbilitySystem;
-using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
-using TOR_Core.Items;
 using TOR_Core.Models;
 using TOR_Core.Utilities;
-using Debug = System.Diagnostics.Debug;
 
 namespace TOR_Core.Extensions
 {
@@ -145,14 +138,74 @@ namespace TOR_Core.Extensions
 
             return false;
         }
-        public static bool HasTrollRegeneration(this Agent agent)
+        public static int GetRegenerationTier(this Agent agent)
         {
-            return agent.GetAttributes().Contains("TrollRegeneration");
+            var attributes = agent.GetAttributes();
+            if (attributes.Contains("Regeneration3"))
+            {
+                return 3;
+            }
+
+            if (attributes.Contains("Regeneration2"))
+            {
+                return 2;
+            }
+
+            return attributes.Contains("Regeneration") ? 1 : 0;
         }
 
-        public static bool HasPiercing(this Agent agent)
+        public static float GetPiercingArmorReduction(this Agent agent)
         {
-            return agent.GetAttributes().Contains("Piercing");
+            var attributes = agent.GetAttributes();
+            if (attributes.Contains("Piercing2"))
+            {
+                return 0.40f;
+            }
+
+            return attributes.Contains("Piercing") ? 0.30f : 0f;
+        }
+
+        public static float GetBulwarkRangedDamageReduction(this Agent agent)
+        {
+            var attributes = agent.GetAttributes();
+            if (attributes.Contains("Bulwark3"))
+            {
+                return 0.60f;
+            }
+
+            if (attributes.Contains("Bulwark2"))
+            {
+                return 0.40f;
+            }
+
+            return attributes.Contains("Bulwark") ? 0.20f : 0f;
+        }
+
+        public static float GetSwiftMovementSpeedBonus(this Agent agent)
+        {
+            var attributes = agent.GetAttributes();
+            if (attributes.Contains("Swift3"))
+            {
+                return 0.40f;
+            }
+
+            if (attributes.Contains("Swift2"))
+            {
+                return 0.30f;
+            }
+
+            return attributes.Contains("Swift") ? 0.20f : 0f;
+        }
+
+        public static float GetPoisonousHitChance(this Agent agent)
+        {
+            var attributes = agent.GetAttributes();
+            if (attributes.Contains("Poisonous2"))
+            {
+                return 0.35f;
+            }
+
+            return attributes.Contains("Poisonous") ? 0.20f : 0f;
         }
 
         public static bool HasShieldPenetration(this Agent agent)
@@ -206,12 +259,19 @@ namespace TOR_Core.Extensions
 
         public static bool HasWightKingTrait(this Agent agent)
         {
-            return agent.GetAttributes().Contains("WightKing");
+            var hero = agent.GetHero();
+            return hero != null && hero.HasAttribute("WightKing");
         }
 
-        public static bool HasUndeadSlayer(this Agent agent)
+        public static float GetUndeadSlayerDamageBonus(this Agent agent)
         {
-            return agent.GetAttributes().Contains("UndeadSlayer");
+            var attributes = agent.GetAttributes();
+            if (attributes.Contains("UndeadSlayer2"))
+            {
+                return 0.60f;
+            }
+
+            return attributes.Contains("UndeadSlayer") ? 0.30f : 0f;
         }
 
         public static bool HasImmortality(this Agent agent)
@@ -224,9 +284,15 @@ namespace TOR_Core.Extensions
             return agent.GetAttributes().Contains("Deadeye");
         }
 
-        public static bool IsEthereal(this Agent agent)
+        public static float GetEtherealIgnoreChance(this Agent agent)
         {
-            return agent.GetAttributes().Contains("Ethereal");
+            var attributes = agent.GetAttributes();
+            if (attributes.Contains("Ethereal2"))
+            {
+                return 0.40f;
+            }
+
+            return attributes.Contains("Ethereal") ? 0.25f : 0f;
         }
 
         public static bool HasKillingBlow(this Agent agent)
@@ -234,9 +300,15 @@ namespace TOR_Core.Extensions
             return agent.GetAttributes().Contains("KillingBlow");
         }
 
-        public static bool HasMonsterSlayer(this Agent agent)
+        public static float GetMonsterSlayerDamageBonus(this Agent agent)
         {
-            return agent.GetAttributes().Contains("MonsterSlayer");
+            var attributes = agent.GetAttributes();
+            if (attributes.Contains("MonsterSlayer2"))
+            {
+                return 1.50f;
+            }
+
+            return attributes.Contains("MonsterSlayer") ? 0.75f : 0f;
         }
 
         public static bool IsMonstrous(this Agent agent)

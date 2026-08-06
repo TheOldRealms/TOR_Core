@@ -1,15 +1,5 @@
-﻿﻿using HarmonyLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HarmonyLib;
 using TaleWorlds.Core;
-using TaleWorlds.Engine;
-using TaleWorlds.Library;
-using TaleWorlds.MountAndBlade;
-using TOR_Core.BattleMechanics.Artillery;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {

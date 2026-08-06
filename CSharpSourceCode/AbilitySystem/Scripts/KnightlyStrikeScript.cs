@@ -2,7 +2,6 @@
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.LinQuick;
-using TaleWorlds.MountAndBlade;
 using TaleWorlds.TwoDimension;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;

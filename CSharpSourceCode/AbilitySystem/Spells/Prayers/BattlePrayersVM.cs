@@ -4,13 +4,9 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TOR_Core.AbilitySystem.SpellBook;
-using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
-using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
-using TaleWorlds.Localization;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem.Spells.Prayers
 {

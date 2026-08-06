@@ -1,17 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.Roster;
-using TaleWorlds.Library;
-using TaleWorlds.LinQuick;
-using TaleWorlds.Localization;
-using TOR_Core.CampaignMechanics.RaidingParties;
-using TOR_Core.CampaignMechanics.UniqueSpawns;
-using TOR_Core.CharacterDevelopment;
-using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 

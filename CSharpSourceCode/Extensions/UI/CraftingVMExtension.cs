@@ -1,9 +1,7 @@
 using System.Reflection;
 using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting;
-using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting.Refinement;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
-using TOR_Core.Extensions;
 
 namespace TOR_Core.Extensions.UI
 {
