@@ -105,9 +105,9 @@ namespace TOR_Core.Models
                 }
 
                 
-                if (attackerAgent.Team.TeamSide == TeamSideEnum.PlayerTeam && attackerCharacter.IsSkeleton())//Filters for lesser undead that belong to the player, or summoners in the player's party.
+                if (attackerAgent.Team.TeamSide == TeamSideEnum.PlayerTeam && attackerCharacter.IsUndead())//Filters for undead that belong to the player, or summoners in the player's party.
                 {
-                    Hero attackerPartyLeader = null;
+                    Hero attackerPartyLeader = new();
                     if (attackInformation.AttackerAgentOrigin is PartyAgentOrigin partyOrigin)
                     {
                         attackerPartyLeader = partyOrigin.Party.LeaderHero;

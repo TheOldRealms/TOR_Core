@@ -61,11 +61,15 @@ namespace TOR_Core.Models
             MBList<ItemObject> mBList2 = new MBList<ItemObject>();
             foreach (ItemObject item in Game.Current.ObjectManager.GetObjectTypeList<ItemObject>())
             {
-                if (!item.NotMerchandise && item.Tier > ItemObject.ItemTiers.Tier2 && item.Tier < ItemObject.ItemTiers.Tier5 && (item.IsCraftedWeapon || item.IsMountable || item.ArmorComponent != null) && !item.IsCraftedByPlayer && item.IsTorItem())
+                if (!item.NotMerchandise && item.Tier < ItemObject.ItemTiers.Tier5 && (item.IsCraftedWeapon || item.IsMountable || item.ArmorComponent != null) && !item.IsCraftedByPlayer && item.IsTorItem())
                 {
                     if (item.Culture == town.Culture)
                     {
                         mBList.Add(item);
+                    }
+                    else
+                    {
+                        mBList2.Add(item);
                     }
                 }
             }
@@ -74,8 +78,7 @@ namespace TOR_Core.Models
 
             if (mBList.IsEmpty())
             {
-                TORCommon.Log("TORTournamentModel : no t3 or 4 item found belonging to the " + town.Culture.StringId + " culture. They get the first item object instead.", NLog.LogLevel.Warn);
-                mBList.Add(Game.Current.ObjectManager.GetFirstObject<ItemObject>());
+                return mBList2;
             }
 
             return mBList;

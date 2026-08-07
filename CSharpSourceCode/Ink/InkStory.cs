@@ -481,8 +481,7 @@ namespace TOR_Core.Ink
                     var itemInventory = inventory.GetItemAtIndex(i);
                     if (item.StringId == itemInventory.StringId)
                     {
-                        gaveItem = true;
-                        found = true;//Sly : why would this break without setting gaveItem? This code is incredibly unclear on how it is supposed to handle multiple artifacts in the list, and initially wasn't even able to prevent duplicates with a list of 1 item.
+                        found = true;
                         break;
                     }
                 }

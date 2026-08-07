@@ -215,7 +215,7 @@
 			<string>Leadership</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Endurance</AttributeToIncrease>
-		<OptionText>{=tor_cc_option15_label_str}Initiate Knight</OptionText>
+		<OptionText>{=tor_cc_option15_label_str}Intiate Knight</OptionText>
 		<PositiveEffectText>{=tor_cc_option15_effect_str}Knight of the Old World Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option15_text_str}Most nobles of the Empire are not recruited to any standing armies, instead they aim to join one of the Empire's brotherhoods of Knightly Orders. To do so a noble must first forsake any responsibilities and rights of inheritance and then pass a severe rite of initiation. The Knightly Orders of the Empire treat their internal hierarchy quite seriously, with every novice trained in combat and the Order's code. </OptionFlavourText>
 	</CharacterCreationOption> 

@@ -89,10 +89,13 @@ namespace TOR_Core.CampaignMechanics
 
 
             //If a hero is executed in conversation after a map event when the player has the option to take them prisoner, they are marked for death. Native handles the actual killing on a DailyTickHeroEvent in AgingCampaignBehavior, which we disable, and so those heroes aren't actually executed. This replaces that missing functionality.
-            if (!hero.IsTemplate && hero.IsAlive && hero.DeathMark == KillCharacterAction.KillCharacterActionDetail.ExecutionAfterMapEvent && hero.CanDie(KillCharacterAction.KillCharacterActionDetail.ExecutionAfterMapEvent))
+            if (!hero.IsTemplate && hero.IsAlive && hero.CanDie(KillCharacterAction.KillCharacterActionDetail.ExecutionAfterMapEvent))
             {
+                if (hero.DeathMark == KillCharacterAction.KillCharacterActionDetail.ExecutionAfterMapEvent)
+                {
                     TORCommon.Log("TORCaptivityCampaignBehavior : killing a hero with a death mark of type ExecutionAfterMapEvent : " + hero.Name, NLog.LogLevel.Info);
                     KillCharacterAction.ApplyByDeathMark(hero, false);
+                }
             }
         }
 

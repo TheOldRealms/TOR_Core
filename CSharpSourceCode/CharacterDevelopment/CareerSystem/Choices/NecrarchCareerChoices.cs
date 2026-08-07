@@ -129,7 +129,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Add
                     },
                 });
-            
+
             _discipleOfAccursedKeystone.Initialize(CareerID, "Blast of Agony also scales with Roguery and, 'Lesser Undead' troops charge Blast of Agony.", "DiscipleOfAccursed", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
@@ -236,7 +236,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         {
 
 
-            _discipleOfAccursedPassive1.Initialize(CareerID, "-50% party weight of 'Lesser Undead' troops.", "DiscipleOfAccursed", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.5f, PassiveEffectType.UnitPartyWeight, false, characterObject => characterObject.IsSkeleton()));
+            _discipleOfAccursedPassive1.Initialize(CareerID, "-50% party weight of 'Lesser Undead' troops.", "DiscipleOfAccursed", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.5f, PassiveEffectType.UnitPartyWeight, false, characterObject => characterObject.IsUndead() && !characterObject.IsGhost()));
             _discipleOfAccursedPassive2.Initialize(CareerID, "-10% personal 'Winds of Magic' cost for spells.", "DiscipleOfAccursed", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-10, PassiveEffectType.WindsCostReduction, true));
             _discipleOfAccursedPassive3.Initialize(CareerID, "+7 'Dark Energy' daily.", "DiscipleOfAccursed", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(7, PassiveEffectType.CustomResourceGain));
             _discipleOfAccursedPassive4.Initialize(CareerID, "+2 personal 'Winds of Magic' capacity per equipped 'Enchantment'.", "DiscipleOfAccursed", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2));
@@ -268,7 +268,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             _wellspringOfDharPassive1.Initialize(CareerID, "+5% personal 'Fire' spell damage.", "WellspringOfDhar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 5), AttackTypeMask.Spell));
             _wellspringOfDharPassive2.Initialize(CareerID, "+20% chance tier 4+ 'Lesser Undead' troops will be wounded instead of killed.", "WellspringOfDhar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.Special, true));
-            _wellspringOfDharPassive3.Initialize(CareerID, "+15 'Winds of Magic' capacity for Necromancer Companions.", "WellspringOfDhar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special, false)); //Sly : I'm not sure if this makes sufficient the distinction between necromancers (the companion carrying that name) and Necromancer (anyone who knows the lore) as the latter is what is checked.
+            _wellspringOfDharPassive3.Initialize(CareerID, "+15 'Winds of Magic' capacity for Necromancer Companions.", "WellspringOfDhar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special, false)); //I'm not sure if this makes sufficient the distinction between necromancers (the companion carrying that name) and Necromancer (anyone who knows the lore) as the latter is what is checked.
             _wellspringOfDharPassive4.Initialize(CareerID, "+0.1 personal 'Winds of Magic' recharge rate per Companion that uses spells.", "WellspringOfDhar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.1f, PassiveEffectType.Special, false));
 
             _everlingsSecretPassive1.Initialize(CareerID, "+1 personal 'Winds of Magic' regeneration.", "EverlingsSecret", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.WindsRegeneration));

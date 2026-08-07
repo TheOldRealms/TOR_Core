@@ -197,17 +197,17 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializePassives()
         {
-            _liberNecrisPassive1.Initialize(CareerID, "-20% party weight of 'Lesser Undead' troops.", "LiberNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.2f, PassiveEffectType.UnitPartyWeight, false, characterObject => characterObject.IsSkeleton()));
+            _liberNecrisPassive1.Initialize(CareerID, "-20% party weight of 'Lesser Undead' troops.", "LiberNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.2f, PassiveEffectType.UnitPartyWeight, false, characterObject => characterObject.IsUndead()));
             _liberNecrisPassive2.Initialize(CareerID, "Harbinger kills grant Rougery experience.", "LiberNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
             _liberNecrisPassive3.Initialize(CareerID, "+10 personal Hitpoints.", "LiberNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
             _liberNecrisPassive4.Initialize(CareerID, "+10% personal 'Magic' spell damage.", "LiberNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
 
             _deArcanisKadonPassive1.Initialize(CareerID, "+10% 'Physical' melee damage for 'Lesser Undead' troops.", "DeArcanisKadon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee, DeArcanisKadonPassive1));
-            _deArcanisKadonPassive2.Initialize(CareerID, "-20% party weight of 'Lesser Undead' troops.", "DeArcanisKadon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.2f, PassiveEffectType.UnitPartyWeight, false, characterObject => characterObject.IsSkeleton()));
+            _deArcanisKadonPassive2.Initialize(CareerID, "-20% party weight of 'Lesser Undead' troops.", "DeArcanisKadon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.2f, PassiveEffectType.UnitPartyWeight, false, characterObject => characterObject.IsUndead()));
             _deArcanisKadonPassive3.Initialize(CareerID, "-15% personal 'Winds of Magic' cost for spells.", "DeArcanisKadon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.WindsCostReduction, true));
             _deArcanisKadonPassive4.Initialize(CareerID, "+5 personal 'Winds of Magic' capacity.", "DeArcanisKadon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
 
-            _codexMortificaPassive1.Initialize(CareerID, "-20% party weight of 'Lesser Undead' troops.", "CodexMortifica", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.2f, PassiveEffectType.UnitPartyWeight, false, characterObject => characterObject.IsSkeleton()));
+            _codexMortificaPassive1.Initialize(CareerID, "-20% party weight of 'Lesser Undead' troops.", "CodexMortifica", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.2f, PassiveEffectType.UnitPartyWeight, false, characterObject => characterObject.IsUndead()));
             _codexMortificaPassive2.Initialize(CareerID, "+5 personal 'Winds of Magic' capacity.", "CodexMortifica", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
             _codexMortificaPassive3.Initialize(CareerID, "Wounded troops heal faster.", "CodexMortifica", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration)); //can be more precise
             _codexMortificaPassive4.Initialize(CareerID, "+20% chance tier 4+ 'Lesser Undead' troops will be wounded instead of killed.", "CodexMortifica", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.Special, true));
@@ -250,26 +250,26 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             }
         }
 
-        private static bool IsSkeletonTroop(Agent agent)
+        private static bool isUndeadTroop(Agent agent)
         {
             if (!agent.BelongsToMainParty()) return false;
-            return !agent.IsHero && agent.Character.IsSkeleton();
+            return !agent.IsHero && agent.IsUndead();
         }
 
         private static bool DeArcanisKadonPassive1(Agent attacker, Agent victim, AttackTypeMask mask)
         {
-            return IsSkeletonTroop(attacker);
+            return isUndeadTroop(attacker);
         }
 
         private static bool LiberMortisPassive3(Agent attacker, Agent victim, AttackTypeMask mask)
         {
-            return IsSkeletonTroop(attacker);
+            return isUndeadTroop(attacker);
         }
 
 
         private static bool BookofWsoranPassive3(Agent attacker, Agent victim, AttackTypeMask mask)
         {
-            return IsSkeletonTroop(victim);
+            return isUndeadTroop(victim);
         }
 
 

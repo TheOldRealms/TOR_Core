@@ -40,9 +40,6 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
             _guardFormation = new Formation(this.Team, (int)TORFormationClass.ArtilleryGuard);
             this.Team.FormationsIncludingSpecialAndEmpty.Add(_guardFormation);
 
-            //Sly : do we need to set the player as owner for the player team's formations after they're created?
-            //Formation constructor calls Formation.Reset which initializes Formation.PlayerOwner = null.
-
             _artilleryPlacerComponents = new List<WizardAIComponent>();
 
             //TODO: Reminder, might need this if certain updates dont work.
@@ -163,8 +160,9 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
             if (infantryFormations.Count > 0)
             {
                 var count = infantryFormations.Sum(form => form.Arrangement.UnitCount) * 0.1;
-                
-                count += count < _artilleryFormation.Arrangement.UnitCount ? 10 : 0;
+                {
+                    count += count < _artilleryFormation.Arrangement.UnitCount ? 10 : 0;
+                }
                 count -= _guardFormation.Arrangement.UnitCount;
 
 
@@ -175,7 +173,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
                     {
                         if (!updatedFormations.Contains(agent.Formation))
                             updatedFormations.Add(agent.Formation);
-                        if (!updatedFormations.Contains(_guardFormation))
+                        if (!updatedFormations.Contains(_artilleryFormation))
                             updatedFormations.Add(_guardFormation);
                         agent.Formation = _guardFormation;
                     }
@@ -684,7 +682,6 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
         {
             _usingMachines = false;
             StopUsingAllMachines();
-            //Sly : is this throwing all artillery crew into archers and guards into infantry? Why?
             _artilleryFormation.Arrangement.GetAllUnits()
                 .Select(unit => (Agent)unit)
                 .ToList()
