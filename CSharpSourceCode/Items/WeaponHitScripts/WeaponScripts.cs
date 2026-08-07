@@ -131,7 +131,7 @@ public class BonusDOTDamageEffectScript(string[] arguments) : BaseWeaponHitScrip
         var damageOverTimeAggregate = component.GetDamageOverTimeAggregate();
         if (damageOverTimeAggregate > 0)
         {
-            attackedAgent.ApplyDamage((int)(blow.InflictedDamage * (percent / 100f)), attackedAgent.Position, attackingAgent, true, false, false);
+            ApplyWeaponTraitDamage(attackedAgent, (int)(blow.InflictedDamage * (percent / 100f)), attackedAgent.Position, attackingAgent);
         }
 
     }
@@ -177,7 +177,7 @@ public class BonusDamageOnUndeadEffectScript(string[] arguments) : BaseWeaponHit
             return;
         }
 
-        attackedAgent.ApplyDamage((int)(blow.InflictedDamage * (percent / 100f)), attackedAgent.Position, attackingAgent, true, false, false);
+        ApplyWeaponTraitDamage(attackedAgent, (int)(blow.InflictedDamage * (percent / 100f)), attackedAgent.Position, attackingAgent);
     }
 }
 
@@ -313,7 +313,7 @@ public class StealthAttackScript(string[] arguments) : BaseWeaponHitScript(argum
         if (isStealthAttack || !attackedAgent.AIStateFlags.HasFlag(Agent.AIStateFlag.Alarmed))
         {
             InformationManager.DisplayMessage(new InformationMessage(TORTextHelper.GetText("tor_stealth_attack_text", "Stealth Attack!"), new TaleWorlds.Library.Color(255, 165, 85)));
-            attackedAgent.ApplyDamage((int)(collisionData.InflictedDamage * percent), attackedAgent.Position);
+            ApplyWeaponTraitDamage(attackedAgent, (int)(collisionData.InflictedDamage * percent), attackedAgent.Position, originatesFromAbility: true);
         }
     }
 }
@@ -348,7 +348,7 @@ public class BeastSlayingScript(string[] arguments) : BaseWeaponHitScript(argume
             return;
         }
 
-        attackedAgent.ApplyDamage(bonusDamage, attackedAgent.Position, attackingAgent, true, false, false);
+        ApplyWeaponTraitDamage(attackedAgent, bonusDamage, attackedAgent.Position, attackingAgent);
     }
 }
 
@@ -382,7 +382,7 @@ public class ExtraHeadshotDamageScript(string[] arguments) : BaseWeaponHitScript
             return;
         }
 
-        attackedAgent.ApplyDamage(bonusDamage, attackedAgent.Position, attackingAgent, true, false, false);
+        ApplyWeaponTraitDamage(attackedAgent, bonusDamage, attackedAgent.Position, attackingAgent);
     }
 }
 
@@ -429,7 +429,7 @@ public class BloodLettingTriggerScript(string[] arguments) : WeaponTriggerEffect
 
         if (int.TryParse(_arguments[5], out var damageValue))
         {
-            attackingAgent.ApplyDamage(damageValue, attackedAgent.Position);
+            ApplyWeaponTraitDamage(attackingAgent, damageValue, attackedAgent.Position, originatesFromAbility: true);
         }
 
     }

@@ -974,7 +974,8 @@ namespace TOR_Core.Models
             TriggeredEffectTemplate triggeredEffectTemplate,
             bool hasShockWave,
             Vec3 impactPosition,
-            int castId = -1)
+            int castId = -1,
+            int resolutionId = -1)
         {
             if (agents == null || caster == null) return;
 
@@ -1023,7 +1024,8 @@ namespace TOR_Core.Models
                             abilityTemplate,
                             triggeredEffectTemplate,
                             hasShockWave,
-                            castId);
+                            castId,
+                            resolutionId);
                     }
                     else
                     {
@@ -1045,7 +1047,8 @@ namespace TOR_Core.Models
             int maxHeal,
             Agent healer,
             AbilityTemplate abilityTemplate,
-            int castId = -1)
+            int castId = -1,
+            int resolutionId = -1)
         {
             if (agents == null) return;
 
@@ -1079,7 +1082,7 @@ namespace TOR_Core.Models
                 {
                     if (logic != null)
                     {
-                        logic.ApplySpellHealinginBudget(agent, finalHealing, healer, abilityTemplate, castId);
+                        logic.ApplySpellHealinginBudget(agent, finalHealing, healer, abilityTemplate, castId, resolutionId);
                     }
                     else
                     {
