@@ -173,7 +173,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     {
                         abilityLogic.QueueStatusHealing(Agent, healingValue);
 
-                        if (Agent.HasMount && Agent.HasHorseLink())
+                        if (Agent.HasMount && Agent.HasAttribute("HorseLink"))
                         {
                             abilityLogic.QueueStatusHealing(Agent.MountAgent, healingValue);
                         }
@@ -182,7 +182,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     {
                         Agent.Heal(healingValue);
 
-                        if (Agent.HasMount && Agent.HasHorseLink())
+                        if (Agent.HasMount && Agent.HasAttribute("HorseLink"))
                         {
                             Agent.MountAgent.Heal(healingValue);
                         }
