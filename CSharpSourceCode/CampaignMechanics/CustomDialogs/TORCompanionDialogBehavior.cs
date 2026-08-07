@@ -154,7 +154,7 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             // Uses character-specific tor_hire_decline_p.{characterStringId}
             campaignGameStarter.AddPlayerLine("tor_player_companion_hire_response_2", "tor_player_companion_hire_response", "lord_pretalk",
                 "{=!}{TOR_HIRE_DECLINE_TEXT}",
-                TORCompanionHireOnCondition, null, 100, null, null);
+                () => TORCompanionHireOnCondition() || IsDefaultResponse(), null, 100, null, null);
 
             // Wanderer leave dialog (when player leaves without hiring - overrides vanilla with priority 200)
             campaignGameStarter.AddDialogLine("tor_wanderer_leave", "hero_leave", "close_window",
@@ -402,6 +402,11 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             // Check if player can afford AND hasn't reached companion limit
             bool tooManyCompanions = Clan.PlayerClan.Companions.Count >= Clan.PlayerClan.CompanionLimit;
             return Hero.MainHero.Gold >= hirePrice && !tooManyCompanions;
+        }
+
+        private bool IsDefaultResponse()
+        {
+            return true;
         }
 
         /// <summary>

@@ -232,7 +232,12 @@ namespace TOR_Core.CampaignMechanics
 
         private bool BanditPerkAndItemCheck(PartyBase party, CharacterObject troopCharacter, CharacterObject upgradeTargetCharacter, PartyTroopUpgradeModel partyTroopUpgradeModel)
         {
-            return (((party.MapFaction?.Culture)?.IsBandit == true) || upgradeTargetCharacter.Culture.IsBandit) && (troopCharacter.Occupation != Occupation.Bandit || partyTroopUpgradeModel.CanPartyUpgradeTroopToTarget(party, troopCharacter, upgradeTargetCharacter));
+            if (upgradeTargetCharacter.Occupation == Occupation.Bandit)
+            {
+                return party?.Culture?.IsBandit == true;
+            }
+
+            return partyTroopUpgradeModel.CanPartyUpgradeTroopToTarget(party, troopCharacter, upgradeTargetCharacter);
         }
 
         private List<TORTroopUpgradeArgs> GetPossibleUpgradeTargets(PartyBase party, TroopRosterElement rosterElement)
