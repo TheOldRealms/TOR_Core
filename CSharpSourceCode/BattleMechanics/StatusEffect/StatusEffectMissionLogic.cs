@@ -147,13 +147,13 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             switch (agent.GetRegenerationTier())
             {
                 case 3:
-                    CareerHelper.AddDefaultPermanentMissionEffect(agent, "regeneration3");
+                    agent.ApplyStatusEffect("regeneration3", agent, 99999);
                     break;
                 case 2:
-                    CareerHelper.AddDefaultPermanentMissionEffect(agent, "regeneration2");
+                    agent.ApplyStatusEffect("regeneration2", agent, 99999);
                     break;
                 case 1:
-                    CareerHelper.AddDefaultPermanentMissionEffect(agent, "regeneration");
+                    agent.ApplyStatusEffect("regeneration", agent, 99999);
                     break;
             }
 

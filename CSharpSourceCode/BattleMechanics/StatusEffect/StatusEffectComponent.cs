@@ -141,6 +141,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 }
 
 
+                var abilityLogic = Mission.Current?.GetMissionBehavior<AbilityManagerMissionLogic>();
                 if (_effectAggregate.DamageOverTime > 0)
                 {
                     var damageValue = (int)_effectAggregate.DamageOverTime;
@@ -151,10 +152,9 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
                     // Career ability charge is now applied once per session in FinalizeSession, not every tick
 
-                    var logic = Mission.Current?.GetMissionBehavior<AbilityManagerMissionLogic>();
-                    if (logic != null)
+                    if (abilityLogic != null)
                     {
-                        logic.QueueStatusDotDamage(
+                        abilityLogic.QueueStatusDotDamage(
                             Agent,
                             damageValue,
                             Agent.Position,
@@ -169,11 +169,23 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 else if (_effectAggregate.HealthOverTime > 0)
                 {
                     var healingValue = (int)_effectAggregate.HealthOverTime;
-                    Agent.Heal(healingValue);
-
-                    if (Agent.HasMount && Agent.HasHorseLink())
+                    if (abilityLogic != null)
                     {
-                        Agent.MountAgent.Heal(healingValue);
+                        abilityLogic.QueueStatusHealing(Agent, healingValue);
+
+                        if (Agent.HasMount && Agent.HasHorseLink())
+                        {
+                            abilityLogic.QueueStatusHealing(Agent.MountAgent, healingValue);
+                        }
+                    }
+                    else
+                    {
+                        Agent.Heal(healingValue);
+
+                        if (Agent.HasMount && Agent.HasHorseLink())
+                        {
+                            Agent.MountAgent.Heal(healingValue);
+                        }
                     }
 
                     // Career ability charge is now applied once per session in FinalizeSession, not every tick

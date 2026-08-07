@@ -74,9 +74,14 @@ namespace TOR_Core.AbilitySystem
         private readonly Dictionary<int, int> _queuedSpellHealingCountByCastId = new();
         private readonly Queue<QueuedStatusDotDamage> _queuedStatusDotDamage = new();
         private readonly Dictionary<int, int> _queuedStatusDotDamageCountByCastId = new();
-        private readonly Queue<TriggeredEffectQueueItem> _TriggeredEffectQueueItem = new();
-        private readonly Dictionary<int, int> _TriggeredEffectQueueItemCountByCastId = new();
+        private readonly Queue<QueuedStatusHealing> _queuedStatusHealing = new();
+        private readonly Queue<TriggeredEffectQueueItem> _queuedTriggeredStatusEffects = new();
+        private readonly Dictionary<int, List<TriggeredEffectQueueItem>> _triggeredStatusEffectsWaitingForPrimaryHit = new();
+        private readonly Dictionary<int, int> _queuedTriggeredStatusEffectCountByCastId = new();
+        private readonly Queue<TriggeredEffectQueueItem> _queuedTriggeredCosmetics = new();
+        private readonly Dictionary<int, int> _pendingTriggeredEffectPrimaryWork = new();
         private int _nextCastId = 1;
+        private int _nextTriggeredEffectResolutionId = 1;
         private int _spellBlowsAppliedThisTick;
         private int _largestQueuedSpellDamageCount;
         private const int ABILITY_WORK_BUDGET_PER_TICK = 12; // for spells, statuses, triggered effects
@@ -713,8 +718,12 @@ namespace TOR_Core.AbilitySystem
             _queuedSpellHealingCountByCastId.Clear();
             _queuedStatusDotDamage.Clear();
             _queuedStatusDotDamageCountByCastId.Clear();
-            _TriggeredEffectQueueItem.Clear();
-            _TriggeredEffectQueueItemCountByCastId.Clear();
+            _queuedStatusHealing.Clear();
+            _queuedTriggeredStatusEffects.Clear();
+            _triggeredStatusEffectsWaitingForPrimaryHit.Clear();
+            _queuedTriggeredStatusEffectCountByCastId.Clear();
+            _queuedTriggeredCosmetics.Clear();
+            _pendingTriggeredEffectPrimaryWork.Clear();
 
             // Reset Anvil of Doom position for Runelord rune magic
             TriggeredEffect.ClearPendingDisposals(Mission.Current.CurrentTime);
@@ -1070,17 +1079,24 @@ namespace TOR_Core.AbilitySystem
             var pendingSession = _pendingCollectSessions.Find(s => s.CastID == castId);
             pendingSession?.BookDamage(victim, damageDealt, damageAbsorbed, damageType);
         }
-        private static bool IsLiveMissionAgent(Agent agent, bool requireHuman = false)
+        private static bool IsMissionAgentReferenceCurrent(Agent agent)
         {
-            if (Mission.Current == null ||
-                Mission.Current.MissionEnded ||
-                Mission.Current.IsMissionEnding ||
-                Mission.Current.MissionIsEnding)
+            var mission = Mission.Current;
+            if (mission == null ||
+                mission.MissionEnded ||
+                mission.IsMissionEnding ||
+                mission.MissionIsEnding ||
+                agent == null)
             {
                 return false;
             }
 
-            if (agent == null)
+            return mission.FindAgentWithIndex(agent.Index) == agent;
+        }
+
+        private static bool IsLiveMissionAgent(Agent agent, bool requireHuman = false)
+        {
+            if (!IsMissionAgentReferenceCurrent(agent))
             {
                 return false;
             }
@@ -1090,12 +1106,7 @@ namespace TOR_Core.AbilitySystem
                 return false;
             }
 
-            if (!agent.IsActive() || agent.Health < 1f || agent.IsFadingOut())
-            {
-                return false;
-            }
-
-            return Mission.Current.FindAgentWithIndex(agent.Index) == agent;
+            return agent.IsActive() && agent.Health >= 1f && !agent.IsFadingOut();
         }
 
         private static bool CanQueueTriggeredStatusTarget(Agent target, Agent applierAgent)
@@ -1105,13 +1116,12 @@ namespace TOR_Core.AbilitySystem
                 return false;
             }
 
-            if (applierAgent != null &&
-                Mission.Current.FindAgentWithIndex(applierAgent.Index) != applierAgent)
-            {
-                return false;
-            }
+            return applierAgent == null || IsMissionAgentReferenceCurrent(applierAgent);
+        }
 
-            return true;
+        public int BeginTriggeredEffectResolution()
+        {
+            return _nextTriggeredEffectResolutionId++;
         }
 
         public void QueueTriggeredEffectSound(string effectId, string soundEffectId, Vec3 position, int castId)
@@ -1123,7 +1133,7 @@ namespace TOR_Core.AbilitySystem
                 return;
             }
 
-            QueueTriggeredEffectWork(TriggeredEffectQueueItem.ForSound(effectId, soundEffectId, position, castId));
+            _queuedTriggeredCosmetics.Enqueue(TriggeredEffectQueueItem.ForSound(effectId, soundEffectId, position, castId));
         }
 
         public void QueueTriggeredEffectVisual(string effectId, string burstPrefab, float fadeOutTime, Vec3 position, Vec3 normal, int castId)
@@ -1135,21 +1145,21 @@ namespace TOR_Core.AbilitySystem
                 return;
             }
 
-            QueueTriggeredEffectWork(TriggeredEffectQueueItem.ForVisual(effectId, burstPrefab, fadeOutTime, position, normal, castId));
+            _queuedTriggeredCosmetics.Enqueue(TriggeredEffectQueueItem.ForVisual(effectId, burstPrefab, fadeOutTime, position, normal, castId));
         }
 
-        public void QueueTriggeredStatusEffect(Agent target, StatusEffectTemplate statusEffectTemplate, Agent applierAgent, float duration, bool append, bool isMutated, int castId)
+        public void QueueTriggeredStatusEffect(Agent target, StatusEffectTemplate statusEffectTemplate, Agent applierAgent, float duration, bool append, bool isMutated, int castId, int resolutionId = -1)
         {
             if (statusEffectTemplate == null || !CanQueueTriggeredStatusTarget(target, applierAgent))
             {
                 return;
             }
 
-            QueueTriggeredEffectWork(
-                TriggeredEffectQueueItem.ForStatus(target, statusEffectTemplate, applierAgent, duration, append, isMutated, stackStatusEffect: false, castId));
+            QueueTriggeredStatusEffect(
+                TriggeredEffectQueueItem.ForStatus(target, statusEffectTemplate, applierAgent, duration, append, isMutated, stackStatusEffect: false, castId, resolutionId));
         }
 
-        public void QueueTriggeredStatusEffect(Agent target, string effectId, Agent applierAgent, float duration, bool append, bool isMutated, bool stackStatusEffect = false, int castId = -1)
+        public void QueueTriggeredStatusEffect(Agent target, string effectId, Agent applierAgent, float duration, bool append, bool isMutated, bool stackStatusEffect = false, int castId = -1, int resolutionId = -1)
         {
             effectId = effectId?.Trim();
             if (string.IsNullOrWhiteSpace(effectId) || !CanQueueTriggeredStatusTarget(target, applierAgent))
@@ -1157,15 +1167,28 @@ namespace TOR_Core.AbilitySystem
                 return;
             }
 
-            QueueTriggeredEffectWork(
-                TriggeredEffectQueueItem.ForStatus(target, effectId, applierAgent, duration, append, isMutated, stackStatusEffect, castId));
+            QueueTriggeredStatusEffect(
+                TriggeredEffectQueueItem.ForStatus(target, effectId, applierAgent, duration, append, isMutated, stackStatusEffect, castId, resolutionId));
         }
 
-
-        private void QueueTriggeredEffectWork(TriggeredEffectQueueItem work)
+        private void QueueTriggeredStatusEffect(TriggeredEffectQueueItem work)
         {
-            _TriggeredEffectQueueItem.Enqueue(work);
-            TrackTriggeredEffectQueueItem(work.CastId);
+            TrackTriggeredStatusEffect(work.CastId);
+
+            // status work is processed before damage and heal queues; keep associated status pending until all priority work for this effect is completed
+            if (IsTriggeredEffectPrimaryWorkPending(work.ResolutionId))
+            {
+                if (!_triggeredStatusEffectsWaitingForPrimaryHit.TryGetValue(work.ResolutionId, out var waitingStatusEffects))
+                {
+                    waitingStatusEffects = new List<TriggeredEffectQueueItem>();
+                    _triggeredStatusEffectsWaitingForPrimaryHit.Add(work.ResolutionId, waitingStatusEffects);
+                }
+
+                waitingStatusEffects.Add(work);
+                return;
+            }
+
+            _queuedTriggeredStatusEffects.Enqueue(work);
         }
 
         public void QueueStatusDotDamage(Agent target, int damage, Vec3 impactPosition, Agent applier, int castId)
@@ -1175,8 +1198,7 @@ namespace TOR_Core.AbilitySystem
                 return;
             }
 
-            if (applier != null &&
-                Mission.Current.FindAgentWithIndex(applier.Index) != applier)
+            if (applier != null && !IsMissionAgentReferenceCurrent(applier))
             {
                 return;
             }
@@ -1187,83 +1209,117 @@ namespace TOR_Core.AbilitySystem
             TrackQueuedStatusDotDamage(statusDotDamage.CastId);
         }
 
-
-        public void ApplySpellHealinginBudget( Agent target, int healing, Agent healer, AbilityTemplate abilityTemplate, int castId)
+        public void QueueStatusHealing(Agent target, int healing)
         {
-            var spellHealing = new QueuedSpellHealing( target, healing, healer, abilityTemplate, castId);
-
-            if (HasQueuedAbilityWork() ||
-                _spellBlowsAppliedThisTick >= ABILITY_WORK_BUDGET_PER_TICK)
+            if (healing <= 0 || !IsLiveMissionAgent(target))
             {
-                _queuedSpellHealing.Enqueue(spellHealing);
-                TrackQueuedSpellHealing(spellHealing.CastId);
                 return;
             }
-            ApplyResolvedSpellHealing(spellHealing);
+
+            _queuedStatusHealing.Enqueue(new QueuedStatusHealing(target, healing));
         }
 
-        public void ApplySpellDamageinBudget(Agent target, int damage, Vec3 impactPosition, Agent caster, DamageType damageType, AbilityTemplate abilityTemplate, TriggeredEffectTemplate triggeredEffectTemplate, bool hasShockWave, int castId)
+        public void ApplySpellHealinginBudget(Agent target, int healing, Agent healer, AbilityTemplate abilityTemplate, int castId, int resolutionId = -1)
+        {
+            if (healing <= 0)
+            {
+                return;
+            }
+
+            var spellHealing = new QueuedSpellHealing(target, healing, healer, abilityTemplate, castId, resolutionId);
+            if (!CanApplyResolvedSpellHealing(spellHealing))
+            {
+                return;
+            }
+
+            EnqueueSpellHealing(spellHealing);
+        }
+
+        public void ApplySpellDamageinBudget(Agent target, int damage, Vec3 impactPosition, Agent caster, DamageType damageType, AbilityTemplate abilityTemplate, TriggeredEffectTemplate triggeredEffectTemplate, bool hasShockWave, int castId, int resolutionId = -1, bool bookSpellResult = true)
         {
             if (damage <= 0 ||
                 !IsLiveMissionAgent(target, requireHuman: true) ||
                 caster == null ||
-                Mission.Current.FindAgentWithIndex(caster.Index) != caster)
+                !IsMissionAgentReferenceCurrent(caster))
             {
                 return;
             }
 
-            var spellDamage = new QueuedSpellDamage(target, damage, impactPosition, caster, damageType, abilityTemplate, triggeredEffectTemplate?.StringID, hasShockWave, castId);
+            EnqueueSpellDamage(new QueuedSpellDamage(target, damage, impactPosition, caster, damageType, abilityTemplate, triggeredEffectTemplate?.StringID, hasShockWave, abilityTemplate != null, castId, resolutionId, bookSpellResult));
+        }
 
-
-            bool canApplyNow =
-                !ShouldDelaySpellBlow(abilityTemplate, triggeredEffectTemplate) &&
-                !HasQueuedAbilityWork() &&
-                _spellBlowsAppliedThisTick < ABILITY_WORK_BUDGET_PER_TICK;
-
-            if (canApplyNow)
+        public void QueueOnHitSecondaryDamage(Agent target, int damage, Vec3 impactPosition, Agent source = null, bool originatesFromAbility = false)
+        {
+            if (damage <= 0 || !IsLiveMissionAgent(target, requireHuman: true))
             {
-                ApplyResolvedSpellDamage(spellDamage);
                 return;
             }
-            EnqueueSpellDamage(spellDamage);
+
+            if (source != null && !IsMissionAgentReferenceCurrent(source))
+            {
+                return;
+            }
+
+            EnqueueSpellDamage(new QueuedSpellDamage(target, damage, impactPosition, source, DamageType.Physical, null, null, hasShockWave: false, originatesFromAbility: originatesFromAbility, castId: -1, resolutionId: -1, bookSpellResult: false));
         }
 
         private void ProcessQueuedAbilityWork()
         {
+            // each queued call fully returns through the engine before the next hit or health change begins (inherited from the native kill all implementation; whether this is a good approach remains to be seen)
+            if (!HasQueuedGameplayWork())
+            {
+                while (_spellBlowsAppliedThisTick < ABILITY_WORK_BUDGET_PER_TICK && TryProcessTriggeredEffectCosmetic())
+                {
+                }
+
+                return;
+            }
+
+            if (_queuedTriggeredCosmetics.Count > 0)
+            {
+                TryProcessTriggeredEffectCosmetic();
+            }
+
             bool processedWork;
             do
             {
                 processedWork = false;
-                processedWork |= TryProcessTriggeredEffectQueueItem();
+                processedWork |= TryProcessTriggeredStatusEffect();
                 processedWork |= TryProcessQueuedSpellDamage();
                 processedWork |= TryProcessQueuedSpellHealing();
                 processedWork |= TryProcessQueuedStatusDotDamage();
+                processedWork |= TryProcessQueuedStatusHealing();
             }
             while (processedWork && _spellBlowsAppliedThisTick < ABILITY_WORK_BUDGET_PER_TICK);
+
+            if (!HasQueuedGameplayWork())
+            {
+                while (_spellBlowsAppliedThisTick < ABILITY_WORK_BUDGET_PER_TICK && TryProcessTriggeredEffectCosmetic())
+                {
+                }
+            }
         }
 
-        private bool TryProcessTriggeredEffectQueueItem()
+        private bool TryProcessTriggeredStatusEffect()
         {
-            if (_TriggeredEffectQueueItem.Count == 0 ||
+            if (_queuedTriggeredStatusEffects.Count == 0 ||
                 _spellBlowsAppliedThisTick >= ABILITY_WORK_BUDGET_PER_TICK)
             {
                 return false;
             }
 
-            while (_TriggeredEffectQueueItem.Count > 0)
+            while (_queuedTriggeredStatusEffects.Count > 0)
             {
-                var budgetBeforeWork = _spellBlowsAppliedThisTick;
-                var work = _TriggeredEffectQueueItem.Dequeue();
-
-                if (work.Kind == TriggeredEffectQueueItemKind.Status &&
-                    !CanQueueTriggeredStatusTarget(work.Target, work.ApplierAgent))
+                var work = _queuedTriggeredStatusEffects.Dequeue();
+                if (!CanQueueTriggeredStatusTarget(work.Target, work.ApplierAgent))
                 {
-                    CompleteTriggeredEffectQueueItem(work.CastId);
+                    CompleteTriggeredStatusEffect(work.CastId);
                     continue;
                 }
 
-                ApplyResolvedTriggeredEffectWork(work);
-                CompleteTriggeredEffectQueueItem(work.CastId);
+                var budgetBeforeWork = _spellBlowsAppliedThisTick;
+                ApplyResolvedTriggeredStatusEffect(work);
+                CompleteTriggeredStatusEffect(work.CastId);
                 ConsumeQueuedWorkBudgetIfNothingResolved(budgetBeforeWork);
                 return true;
             }
@@ -1271,6 +1327,19 @@ namespace TOR_Core.AbilitySystem
             return false;
         }
 
+        private bool TryProcessTriggeredEffectCosmetic()
+        {
+            if (_queuedTriggeredCosmetics.Count == 0 ||
+                _spellBlowsAppliedThisTick >= ABILITY_WORK_BUDGET_PER_TICK)
+            {
+                return false;
+            }
+
+            var budgetBeforeWork = _spellBlowsAppliedThisTick;
+            ApplyResolvedTriggeredEffectWork(_queuedTriggeredCosmetics.Dequeue());
+            ConsumeQueuedWorkBudgetIfNothingResolved(budgetBeforeWork);
+            return true;
+        }
 
         private bool TryProcessQueuedSpellDamage()
         {
@@ -1282,17 +1351,19 @@ namespace TOR_Core.AbilitySystem
 
             while (_queuedSpellDamage.Count > 0)
             {
-                var budgetBeforeWork = _spellBlowsAppliedThisTick;
                 var spellDamage = _queuedSpellDamage.Dequeue();
 
                 if (!CanApplyResolvedSpellDamage(spellDamage))
                 {
                     CompleteQueuedSpellDamage(spellDamage.CastId);
+                    CompleteTriggeredEffectPrimaryWork(spellDamage.ResolutionId);
                     continue;
                 }
 
+                var budgetBeforeWork = _spellBlowsAppliedThisTick;
                 ApplyResolvedSpellDamage(spellDamage);
                 CompleteQueuedSpellDamage(spellDamage.CastId);
+                CompleteTriggeredEffectPrimaryWork(spellDamage.ResolutionId);
                 ConsumeQueuedWorkBudgetIfNothingResolved(budgetBeforeWork);
                 return true;
             }
@@ -1309,14 +1380,25 @@ namespace TOR_Core.AbilitySystem
                 return false;
             }
 
-            var budgetBeforeWork = _spellBlowsAppliedThisTick;
-            var spellHealing = _queuedSpellHealing.Dequeue();
+            while (_queuedSpellHealing.Count > 0)
+            {
+                var spellHealing = _queuedSpellHealing.Dequeue();
+                if (!CanApplyResolvedSpellHealing(spellHealing))
+                {
+                    CompleteQueuedSpellHealing(spellHealing.CastId);
+                    CompleteTriggeredEffectPrimaryWork(spellHealing.ResolutionId);
+                    continue;
+                }
 
-            ApplyResolvedSpellHealing(spellHealing);
-            CompleteQueuedSpellHealing(spellHealing.CastId);
-            ConsumeQueuedWorkBudgetIfNothingResolved(budgetBeforeWork);
+                var budgetBeforeWork = _spellBlowsAppliedThisTick;
+                ApplyResolvedSpellHealing(spellHealing);
+                CompleteQueuedSpellHealing(spellHealing.CastId);
+                CompleteTriggeredEffectPrimaryWork(spellHealing.ResolutionId);
+                ConsumeQueuedWorkBudgetIfNothingResolved(budgetBeforeWork);
+                return true;
+            }
 
-            return true;
+            return false;
         }
 
         private bool TryProcessQueuedStatusDotDamage()
@@ -1329,7 +1411,6 @@ namespace TOR_Core.AbilitySystem
 
             while (_queuedStatusDotDamage.Count > 0)
             {
-                var budgetBeforeWork = _spellBlowsAppliedThisTick;
                 var statusDotDamage = _queuedStatusDotDamage.Dequeue();
 
                 if (!CanApplyResolvedStatusDotDamage(statusDotDamage))
@@ -1338,6 +1419,7 @@ namespace TOR_Core.AbilitySystem
                     continue;
                 }
 
+                var budgetBeforeWork = _spellBlowsAppliedThisTick;
                 ApplyResolvedStatusDotDamage(statusDotDamage);
                 CompleteQueuedStatusDotDamage(statusDotDamage.CastId);
                 ConsumeQueuedWorkBudgetIfNothingResolved(budgetBeforeWork);
@@ -1347,6 +1429,30 @@ namespace TOR_Core.AbilitySystem
             return false;
         }
 
+        private bool TryProcessQueuedStatusHealing()
+        {
+            if (_queuedStatusHealing.Count == 0 ||
+                _spellBlowsAppliedThisTick >= ABILITY_WORK_BUDGET_PER_TICK)
+            {
+                return false;
+            }
+
+            while (_queuedStatusHealing.Count > 0)
+            {
+                var statusHealing = _queuedStatusHealing.Dequeue();
+                if (!CanApplyResolvedStatusHealing(statusHealing))
+                {
+                    continue;
+                }
+
+                var budgetBeforeWork = _spellBlowsAppliedThisTick;
+                ApplyResolvedStatusHealing(statusHealing);
+                ConsumeQueuedWorkBudgetIfNothingResolved(budgetBeforeWork);
+                return true;
+            }
+
+            return false;
+        }
 
         private void ConsumeQueuedWorkBudgetIfNothingResolved(int budgetBeforeWork)
         {
@@ -1369,11 +1475,11 @@ namespace TOR_Core.AbilitySystem
                 spellDamage.Caster,
                 doBlow: true,
                 hasShockWave: spellDamage.HasShockWave,
-                originatesFromAbility: spellDamage.AbilityTemplate != null);
+                originatesFromAbility: spellDamage.OriginatesFromAbility);
 
             _spellBlowsAppliedThisTick++;
 
-            if (spellDamage.CastId < 0)
+            if (!spellDamage.BookSpellResult || spellDamage.CastId < 0)
             {
                 return;
             }
@@ -1410,8 +1516,8 @@ namespace TOR_Core.AbilitySystem
             {
                 return;
             }
-            statusDotDamage.Target.ApplyDamage( statusDotDamage.Damage, statusDotDamage.ImpactPosition, statusDotDamage.Applier, doBlow: false, hasShockWave: false);
 
+            statusDotDamage.Target.ApplyDamage(statusDotDamage.Damage, statusDotDamage.ImpactPosition, statusDotDamage.Applier, doBlow: false, hasShockWave: false);
             _spellBlowsAppliedThisTick++;
 
             if (statusDotDamage.CastId < 0)
@@ -1425,6 +1531,17 @@ namespace TOR_Core.AbilitySystem
             {
                 BookSpellKill(statusDotDamage.CastId, statusDotDamage.Target);
             }
+        }
+
+        private void ApplyResolvedStatusHealing(QueuedStatusHealing statusHealing)
+        {
+            if (!CanApplyResolvedStatusHealing(statusHealing))
+            {
+                return;
+            }
+
+            statusHealing.Target.Heal(statusHealing.Healing);
+            _spellBlowsAppliedThisTick++;
         }
 
         private void ApplyResolvedTriggeredEffectWork(TriggeredEffectQueueItem work)
@@ -1442,9 +1559,6 @@ namespace TOR_Core.AbilitySystem
                 case TriggeredEffectQueueItemKind.Visual:
                     ApplyResolvedTriggeredVisual(work);
                     break;
-                case TriggeredEffectQueueItemKind.Status:
-                    ApplyResolvedTriggeredStatusEffect(work);
-                    break;
             }
         }
 
@@ -1459,8 +1573,8 @@ namespace TOR_Core.AbilitySystem
 
                 return;
             }
-            Mission.Current.MakeSound(soundIndex, work.Position, soundCanBePredicted: false, isReliable: false, relatedAgent1: -1, relatedAgent2: -1);
 
+            Mission.Current.MakeSound(soundIndex, work.Position, soundCanBePredicted: false, isReliable: false, relatedAgent1: -1, relatedAgent2: -1);
             _spellBlowsAppliedThisTick++;
         }
 
@@ -1484,14 +1598,12 @@ namespace TOR_Core.AbilitySystem
 
         private void ApplyResolvedTriggeredStatusEffect(TriggeredEffectQueueItem work)
         {
-            if (work.Target == null ||
-                work.ApplierAgent != null && Mission.Current.FindAgentWithIndex(work.ApplierAgent.Index) != work.ApplierAgent)
+            if (!CanQueueTriggeredStatusTarget(work.Target, work.ApplierAgent))
             {
                 return;
             }
 
-            bool applied = TORMissionHelper.ApplyStatusEffectToAgent(work.Target, work.StatusEffectId, work.ApplierAgent, work.StatusEffectDuration, work.AppendStatusEffect, work.IsMutatedStatusEffect, work.StackStatusEffect,  work.CastId);
-
+            bool applied = TORMissionHelper.ApplyStatusEffectToAgent(work.Target, work.StatusEffectId, work.ApplierAgent, work.StatusEffectDuration, work.AppendStatusEffect, work.IsMutatedStatusEffect, work.StackStatusEffect, work.CastId);
             if (!applied)
             {
                 return;
@@ -1527,13 +1639,12 @@ namespace TOR_Core.AbilitySystem
 
         private static bool CanApplyResolvedSpellDamage(QueuedSpellDamage spellDamage)
         {
-            if (!IsLiveMissionAgent(spellDamage.Target, requireHuman: true) ||
-                spellDamage.Caster == null)
+            if (!IsLiveMissionAgent(spellDamage.Target, requireHuman: true))
             {
                 return false;
             }
 
-            return Mission.Current.FindAgentWithIndex(spellDamage.Caster.Index) == spellDamage.Caster;
+            return spellDamage.Caster == null || IsMissionAgentReferenceCurrent(spellDamage.Caster);
         }
 
         private static bool CanApplyResolvedSpellHealing(QueuedSpellHealing spellHealing)
@@ -1543,8 +1654,7 @@ namespace TOR_Core.AbilitySystem
                 return false;
             }
 
-            return spellHealing.Healer == null ||
-                   Mission.Current.FindAgentWithIndex(spellHealing.Healer.Index) == spellHealing.Healer;
+            return spellHealing.Healer == null || IsMissionAgentReferenceCurrent(spellHealing.Healer);
         }
 
         private static bool CanApplyResolvedStatusDotDamage(QueuedStatusDotDamage statusDotDamage)
@@ -1554,65 +1664,51 @@ namespace TOR_Core.AbilitySystem
                 return false;
             }
 
-            return statusDotDamage.Applier == null ||
-                   Mission.Current.FindAgentWithIndex(statusDotDamage.Applier.Index) == statusDotDamage.Applier;
+            return statusDotDamage.Applier == null || IsMissionAgentReferenceCurrent(statusDotDamage.Applier);
+        }
+
+        private static bool CanApplyResolvedStatusHealing(QueuedStatusHealing statusHealing)
+        {
+            return IsLiveMissionAgent(statusHealing.Target);
         }
 
         private void EnqueueSpellDamage(QueuedSpellDamage spellDamage)
         {
             _queuedSpellDamage.Enqueue(spellDamage);
+            TrackQueuedSpellDamage(spellDamage.CastId);
+            TrackTriggeredEffectPrimaryWork(spellDamage.ResolutionId);
 
-            if (spellDamage.CastId >= 0)
+            if (spellDamage.AbilityTemplate != null || !string.IsNullOrWhiteSpace(spellDamage.TriggeredEffectId))
             {
-                _queuedSpellDamageCountByCastId.TryGetValue(spellDamage.CastId, out var count);
-                _queuedSpellDamageCountByCastId[spellDamage.CastId] = count + 1;
+                LogSpellDamageQueueSpike(spellDamage);
             }
-
-            LogSpellDamageQueueSpike(spellDamage);
         }
 
-        private static bool ShouldDelaySpellBlow(AbilityTemplate abilityTemplate, TriggeredEffectTemplate triggeredEffectTemplate)
+        private void EnqueueSpellHealing(QueuedSpellHealing spellHealing)
         {
-            if (triggeredEffectTemplate == null)
-            {
-                return false;
-            }
-
-            if (triggeredEffectTemplate.DamageAmount <= 0)
-            {
-                return false;
-            }
-
-            bool affectsMultipleEnemies =
-                triggeredEffectTemplate.TargetType == TargetType.All ||
-                triggeredEffectTemplate.TargetType == TargetType.Enemy;
-
-            if (!affectsMultipleEnemies)
-            {
-                return false;
-            }
-
-            bool isWeaponTriggeredEffect = abilityTemplate == null;
-            if (isWeaponTriggeredEffect)
-            {
-                return triggeredEffectTemplate.Radius >= 3f;
-            }
-
-            // status damage relying on trigger order
-            if (triggeredEffectTemplate.AssociatedStatusEffects?.Count > 0)
-            {
-                return false;
-            }
-
-            return triggeredEffectTemplate.Radius >= 4f;
+            _queuedSpellHealing.Enqueue(spellHealing);
+            TrackQueuedSpellHealing(spellHealing.CastId);
+            TrackTriggeredEffectPrimaryWork(spellHealing.ResolutionId);
         }
 
-        private bool HasQueuedAbilityWork()
+        private bool HasQueuedGameplayWork()
         {
-            return _TriggeredEffectQueueItem.Count > 0 ||
+            return _queuedTriggeredStatusEffects.Count > 0 ||
                    _queuedSpellDamage.Count > 0 ||
                    _queuedSpellHealing.Count > 0 ||
-                   _queuedStatusDotDamage.Count > 0;
+                   _queuedStatusDotDamage.Count > 0 ||
+                   _queuedStatusHealing.Count > 0;
+        }
+
+        private void TrackQueuedSpellDamage(int castId)
+        {
+            if (castId < 0)
+            {
+                return;
+            }
+
+            _queuedSpellDamageCountByCastId.TryGetValue(castId, out var count);
+            _queuedSpellDamageCountByCastId[castId] = count + 1;
         }
 
         private void TrackQueuedSpellHealing(int castId)
@@ -1669,31 +1765,31 @@ namespace TOR_Core.AbilitySystem
             _queuedStatusDotDamageCountByCastId[castId] = count - 1;
         }
 
-        private void TrackTriggeredEffectQueueItem(int castId)
+        private void TrackTriggeredStatusEffect(int castId)
         {
             if (castId < 0)
             {
                 return;
             }
 
-            _TriggeredEffectQueueItemCountByCastId.TryGetValue(castId, out var count);
-            _TriggeredEffectQueueItemCountByCastId[castId] = count + 1;
+            _queuedTriggeredStatusEffectCountByCastId.TryGetValue(castId, out var count);
+            _queuedTriggeredStatusEffectCountByCastId[castId] = count + 1;
         }
 
-        private void CompleteTriggeredEffectQueueItem(int castId)
+        private void CompleteTriggeredStatusEffect(int castId)
         {
-            if (castId < 0 || !_TriggeredEffectQueueItemCountByCastId.TryGetValue(castId, out var count))
+            if (castId < 0 || !_queuedTriggeredStatusEffectCountByCastId.TryGetValue(castId, out var count))
             {
                 return;
             }
 
             if (count <= 1)
             {
-                _TriggeredEffectQueueItemCountByCastId.Remove(castId);
+                _queuedTriggeredStatusEffectCountByCastId.Remove(castId);
                 return;
             }
 
-            _TriggeredEffectQueueItemCountByCastId[castId] = count - 1;
+            _queuedTriggeredStatusEffectCountByCastId[castId] = count - 1;
         }
 
         private void CompleteQueuedSpellDamage(int castId)
@@ -1712,6 +1808,51 @@ namespace TOR_Core.AbilitySystem
             _queuedSpellDamageCountByCastId[castId] = count - 1;
         }
 
+        private void TrackTriggeredEffectPrimaryWork(int resolutionId)
+        {
+            if (resolutionId < 0)
+            {
+                return;
+            }
+
+            _pendingTriggeredEffectPrimaryWork.TryGetValue(resolutionId, out var count);
+            _pendingTriggeredEffectPrimaryWork[resolutionId] = count + 1;
+        }
+
+        private void CompleteTriggeredEffectPrimaryWork(int resolutionId)
+        {
+            if (resolutionId < 0 || !_pendingTriggeredEffectPrimaryWork.TryGetValue(resolutionId, out var count))
+            {
+                return;
+            }
+
+            if (count <= 1)
+            {
+                _pendingTriggeredEffectPrimaryWork.Remove(resolutionId);
+
+                if (_triggeredStatusEffectsWaitingForPrimaryHit.TryGetValue(resolutionId, out var waitingStatusEffects))
+                {
+                    foreach (var statusEffect in waitingStatusEffects)
+                    {
+                        _queuedTriggeredStatusEffects.Enqueue(statusEffect);
+                    }
+
+                    _triggeredStatusEffectsWaitingForPrimaryHit.Remove(resolutionId);
+                }
+
+                return;
+            }
+
+            _pendingTriggeredEffectPrimaryWork[resolutionId] = count - 1;
+        }
+
+        private bool IsTriggeredEffectPrimaryWorkPending(int resolutionId)
+        {
+            return resolutionId >= 0 &&
+                   _pendingTriggeredEffectPrimaryWork.TryGetValue(resolutionId, out var count) &&
+                   count > 0;
+        }
+
         private bool HasQueuedAbilityCast(int castId)
         {
             if (castId < 0)
@@ -1722,27 +1863,21 @@ namespace TOR_Core.AbilitySystem
             return _queuedSpellDamageCountByCastId.TryGetValue(castId, out var spellDamageCount) && spellDamageCount > 0 ||
                    _queuedSpellHealingCountByCastId.TryGetValue(castId, out var spellHealingCount) && spellHealingCount > 0 ||
                    _queuedStatusDotDamageCountByCastId.TryGetValue(castId, out var statusDotDamageCount) && statusDotDamageCount > 0 ||
-                   _TriggeredEffectQueueItemCountByCastId.TryGetValue(castId, out var triggeredWorkCount) && triggeredWorkCount > 0;
-        }
-
-        private bool HasQueuedSpellDamage(int castId)
-        {
-            return castId >= 0 &&
-                   _queuedSpellDamageCountByCastId.TryGetValue(castId, out var count) &&
-                   count > 0;
+                   _queuedTriggeredStatusEffectCountByCastId.TryGetValue(castId, out var triggeredStatusCount) && triggeredStatusCount > 0;
         }
 
         private enum TriggeredEffectQueueItemKind { Sound, Visual, Status }
 
         private readonly struct QueuedSpellHealing
         {
-            public QueuedSpellHealing(Agent target, int healing, Agent healer, AbilityTemplate abilityTemplate, int castId)
+            public QueuedSpellHealing(Agent target, int healing, Agent healer, AbilityTemplate abilityTemplate, int castId, int resolutionId)
             {
                 Target = target;
                 Healing = healing;
                 Healer = healer;
                 AbilityTemplate = abilityTemplate;
                 CastId = castId;
+                ResolutionId = resolutionId;
             }
 
             public Agent Target { get; }
@@ -1750,6 +1885,7 @@ namespace TOR_Core.AbilitySystem
             public Agent Healer { get; }
             public AbilityTemplate AbilityTemplate { get; }
             public int CastId { get; }
+            public int ResolutionId { get; }
         }
 
         private readonly struct QueuedStatusDotDamage
@@ -1770,11 +1906,23 @@ namespace TOR_Core.AbilitySystem
             public int CastId { get; }
         }
 
+        private readonly struct QueuedStatusHealing
+        {
+            public QueuedStatusHealing(Agent target, int healing)
+            {
+                Target = target;
+                Healing = healing;
+            }
+
+            public Agent Target { get; }
+            public int Healing { get; }
+        }
+
         private readonly struct TriggeredEffectQueueItem
         {
             private TriggeredEffectQueueItem(TriggeredEffectQueueItemKind kind, string effectId, string soundEffectId, string burstParticleEffectPrefab,
                 Vec3 position, Vec3 normal, float fadeOutTime, Agent target, string statusEffectId, StatusEffectTemplate statusEffectTemplate, Agent applierAgent, float statusEffectDuration,
-                bool appendStatusEffect, bool isMutatedStatusEffect, bool stackStatusEffect, int castId)
+                bool appendStatusEffect, bool isMutatedStatusEffect, bool stackStatusEffect, int castId, int resolutionId)
             {
                 Kind = kind;
                 EffectId = effectId;
@@ -1792,6 +1940,7 @@ namespace TOR_Core.AbilitySystem
                 IsMutatedStatusEffect = isMutatedStatusEffect;
                 StackStatusEffect = stackStatusEffect;
                 CastId = castId;
+                ResolutionId = resolutionId;
             }
 
             public TriggeredEffectQueueItemKind Kind { get; }
@@ -1810,33 +1959,34 @@ namespace TOR_Core.AbilitySystem
             public bool IsMutatedStatusEffect { get; }
             public bool StackStatusEffect { get; }
             public int CastId { get; }
+            public int ResolutionId { get; }
 
             public static TriggeredEffectQueueItem ForSound(string effectId, string soundEffectId, Vec3 position, int castId)
             {
                 return new TriggeredEffectQueueItem(TriggeredEffectQueueItemKind.Sound, effectId, soundEffectId, null,
-                    position, Vec3.Zero, 0f, null, null, null, null, 0f, false, false, false, castId);
+                    position, Vec3.Zero, 0f, null, null, null, null, 0f, false, false, false, castId, -1);
             }
 
             public static TriggeredEffectQueueItem ForVisual(string effectId, string burstParticleEffectPrefab, float fadeOutTime, Vec3 position, Vec3 normal, int castId)
             {
                 return new TriggeredEffectQueueItem(
                     TriggeredEffectQueueItemKind.Visual, effectId, null, burstParticleEffectPrefab, position, normal, fadeOutTime,
-                    null, null, null, null, 0f, false, false, false, castId);
+                    null, null, null, null, 0f, false, false, false, castId, -1);
             }
 
             public static TriggeredEffectQueueItem ForStatus(Agent target, StatusEffectTemplate statusEffectTemplate, Agent applierAgent,
-                float duration, bool append, bool isMutated, bool stackStatusEffect, int castId)
+                float duration, bool append, bool isMutated, bool stackStatusEffect, int castId, int resolutionId)
             {
                 return new TriggeredEffectQueueItem(TriggeredEffectQueueItemKind.Status,
                     null, null, null, Vec3.Zero, Vec3.Zero, 0f,
-                    target, statusEffectTemplate.StringID, statusEffectTemplate, applierAgent,duration, append, isMutated, stackStatusEffect, castId);
+                    target, statusEffectTemplate.StringID, statusEffectTemplate, applierAgent, duration, append, isMutated, stackStatusEffect, castId, resolutionId);
             }
 
             public static TriggeredEffectQueueItem ForStatus(Agent target, string statusEffectId, Agent applierAgent,
-                float duration, bool append, bool isMutated, bool stackStatusEffect, int castId)
+                float duration, bool append, bool isMutated, bool stackStatusEffect, int castId, int resolutionId)
             {
                 return new TriggeredEffectQueueItem(TriggeredEffectQueueItemKind.Status, null, null, null, Vec3.Zero, Vec3.Zero, 0f,
-                    target, statusEffectId, null, applierAgent, duration, append, isMutated, stackStatusEffect, castId);
+                    target, statusEffectId, null, applierAgent, duration, append, isMutated, stackStatusEffect, castId, resolutionId);
             }
         }
         private void LogSpellDamageQueueSpike(QueuedSpellDamage spellDamage)
@@ -1866,7 +2016,7 @@ namespace TOR_Core.AbilitySystem
         private readonly struct QueuedSpellDamage
         {
             public QueuedSpellDamage(Agent target, int damage, Vec3 impactPosition, Agent caster, DamageType damageType, AbilityTemplate abilityTemplate,
-                string triggeredEffectId, bool hasShockWave, int castId)
+                string triggeredEffectId, bool hasShockWave, bool originatesFromAbility, int castId, int resolutionId, bool bookSpellResult)
             {
                 Target = target;
                 Damage = damage;
@@ -1876,7 +2026,10 @@ namespace TOR_Core.AbilitySystem
                 AbilityTemplate = abilityTemplate;
                 TriggeredEffectId = triggeredEffectId;
                 HasShockWave = hasShockWave;
+                OriginatesFromAbility = originatesFromAbility;
                 CastId = castId;
+                ResolutionId = resolutionId;
+                BookSpellResult = bookSpellResult;
             }
 
             public Agent Target { get; }
@@ -1887,7 +2040,10 @@ namespace TOR_Core.AbilitySystem
             public AbilityTemplate AbilityTemplate { get; }
             public string TriggeredEffectId { get; }
             public bool HasShockWave { get; }
+            public bool OriginatesFromAbility { get; }
             public int CastId { get; }
+            public int ResolutionId { get; }
+            public bool BookSpellResult { get; }
         }
 
         public void BookSpellHealing(int castId, Agent target, int healingDone)
@@ -2012,8 +2168,12 @@ namespace TOR_Core.AbilitySystem
             _queuedSpellHealingCountByCastId.Clear();
             _queuedStatusDotDamage.Clear();
             _queuedStatusDotDamageCountByCastId.Clear();
-            _TriggeredEffectQueueItem.Clear();
-            _TriggeredEffectQueueItemCountByCastId.Clear();
+            _queuedStatusHealing.Clear();
+            _queuedTriggeredStatusEffects.Clear();
+            _triggeredStatusEffectsWaitingForPrimaryHit.Clear();
+            _queuedTriggeredStatusEffectCountByCastId.Clear();
+            _queuedTriggeredCosmetics.Clear();
+            _pendingTriggeredEffectPrimaryWork.Clear();
 
             // Finalize all active sessions
             foreach (var session in _activeSpellSessions.Values)
