@@ -251,7 +251,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 foreach (var abilityID in AllAbilities)
                 {
                     var ability = AbilityFactory.GetTemplate(abilityID);
-                    if (ability.BelongsToLoreID != loreId) continue;
+                    if (ability?.BelongsToLoreID != loreId) continue;
                     _selectedAbilities.Remove(abilityID);
                 }
                 _knownLores.Remove(loreId);
@@ -289,7 +289,19 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             foreach (var abilityId in AllAbilities)
             {
                 var ability = AbilityFactory.GetTemplate(abilityId);
-                if (ability != null && ability.IsSpell) list.Add(ability);
+                if (ability != null && ability.IsSpell)
+                {
+                    list.Add(ability);
+                    continue;
+                }
+
+                if (ability == null)
+                {
+                    TORCommon.Log(
+                        "HeroExtendedInfo.EnsureKnownLores : removing missing ability template with id " + abilityId,
+                        NLog.LogLevel.Error);
+                    RemoveAbility(abilityId);
+                }
             }
             foreach (var item in list)
             {
