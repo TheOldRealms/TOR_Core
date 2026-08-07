@@ -941,7 +941,8 @@ namespace TOR_Core.Models
                     damageAmplifications[(int)property.AmplifiedDamageType] += property.DamageAmplifier;
                 }
                 //add temporary effects like buffs to attack bonuses on items
-                List<ItemTrait> dynamicTraits = agent.GetComponent<ItemTraitAgentComponent>()?.GetDynamicTraits(agent.WieldedWeapon.Item);
+                var itemTraitAgentComponent = agent.GetComponent<ItemTraitAgentComponent>();
+                List<ItemTrait> dynamicTraits = itemTraitAgentComponent?.GetDynamicTraits(agent.WieldedWeapon.Item) ?? new List<ItemTrait>();
 
                 foreach (var dynamicTrait in dynamicTraits)
                 {
@@ -978,7 +979,8 @@ namespace TOR_Core.Models
                 }
 
                 //add temporary effects like buffs to defense bonuses
-                List<ItemTrait> dynamicTraits = agent.GetComponent<ItemTraitAgentComponent>()?.GetDynamicTraits(agent.WieldedWeapon.Item);
+                var itemTraitAgentComponent = agent.GetComponent<ItemTraitAgentComponent>();
+                List<ItemTrait> dynamicTraits = itemTraitAgentComponent?.GetDynamicTraits(agent.WieldedWeapon.Item) ?? new List<ItemTrait>();
 
                 foreach (var dynamicTrait in dynamicTraits)
                 {
