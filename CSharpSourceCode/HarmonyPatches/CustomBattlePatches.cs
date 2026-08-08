@@ -16,34 +16,17 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(CustomBattleData), "Characters", MethodType.Getter)]
         public static bool GetCustomBattleCommanders(ref IEnumerable<BasicCharacterObject> __result)
         {
-            var list = new List<BasicCharacterObject>();
+            IEnumerable<BasicCharacterObject> list = [];
             try
             {
-                //Ideally this should not be hardcoded. 
-                list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_emp_lord"));
-                list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_vc_lord"));
-                list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_bw_lord"));
-                list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_lw_lord"));
-                list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_cw_lord"));
-                list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_mw_lord"));
-                list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_necromancer_lord"));
-                list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_prophetess_lw"));
-                list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_prophetess_bw"));
-                list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_glade_lord"));
-                list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_hm_lord"));
-                list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_dw_lord"));
-                list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_bret_lord"));
-                list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_dwarf_lord"));
-                list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_slayer_lord"));
-                list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_shaman_lord"));
-                list.Add(Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_warboss_lord"));
+                list = Game.Current.ObjectManager.GetObjects<BasicCharacterObject>(character => character.IsHero && character.StringId.StartsWith("tor"));
             }
             catch (Exception e)
             {
                 TORCommon.Log(e.Message, NLog.LogLevel.Error);
                 return true;
             }
-            if (list.Count > 1) __result = list;
+            if (!list.IsEmpty()) __result = list;
             else return true;
             return false;
         }
@@ -56,12 +39,15 @@ namespace TOR_Core.HarmonyPatches
             var list = new List<BasicCultureObject>();
             try
             {
+                //Sly : any culture can be added as long as it has both colours assigned so they can be used on the banner, including bandit cultures, eg. druchii.
                 list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>(TORConstants.Cultures.EMPIRE));
                 list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>(TORConstants.Cultures.SYLVANIA));
                 list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>(TORConstants.Cultures.BRETONNIA));
                 list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>(TORConstants.Cultures.ASRAI));
                 list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>(TORConstants.Cultures.DAWI));
                 list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>(TORConstants.Cultures.GREENSKIN));
+                list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>(TORConstants.Cultures.EONIR));
+                list.Add(Game.Current.ObjectManager.GetObject<BasicCultureObject>(TORConstants.Cultures.CHAOS));
             }
             catch (Exception e)
             {
@@ -74,6 +60,7 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(CustomBattleHelper), "GetDefaultTroopOfFormationForFaction")]
         public static void Postfix(ref BasicCharacterObject __result, BasicCultureObject culture)
         {
+            //Sly : if a default troop is missing, the game includes a fallback to take all troops of that culture for the formation category and assign the first one as the default. This is only needed for renamed cultures that may have other existing CharacterObject entries which could be taken first, or if we want to choose a specific default troop.
             __result = culture.StringId.ToLower() switch
             {
                 TORConstants.Cultures.EMPIRE => Game.Current.ObjectManager.GetObject<BasicCharacterObject>("tor_empire_recruit"),
