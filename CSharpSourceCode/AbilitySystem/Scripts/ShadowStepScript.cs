@@ -17,6 +17,8 @@ namespace TOR_Core.AbilitySystem.Scripts
         private float _effectTickInterval;
         private float _previousCameraAddedDistance = 0;
         private PlayerFlyableObjectScript _playerFlyableObjectScript;
+        private Agent.MortalityState _previousMortalityState;
+        private bool _mistFormStateApplied;
 
         public override void Initialize(Ability ability, ref GameEntity entity)
         {
@@ -68,6 +70,12 @@ namespace TOR_Core.AbilitySystem.Scripts
         {
             if (CasterAgent == null || CasterAgent.State != AgentState.Active || CasterAgent.Health <= 0)
             {
+                if (_playerFlyableObjectScript == null)
+                {
+                    Stop();
+                    return;
+                }
+
                 if (_playerFlyableObjectScript.IsReady())
                 {
                     //eventually triggers removal of the script and the chair game entity is removed with OnBeforeRemoved
@@ -77,8 +85,10 @@ namespace TOR_Core.AbilitySystem.Scripts
             }
             if (!HasTickedOnce)
             {
+                _previousMortalityState = CasterAgent.CurrentMortalityState;
                 CasterAgent.Disappear();
-                CasterAgent.ToggleInvulnerable();
+                CasterAgent.SetMortalityState(Agent.MortalityState.Invulnerable);
+                _mistFormStateApplied = true;
                 if (CasterAgent.IsPlayerControlled) DisbindKeyBindings();
                 var frame = CasterAgent.Frame.Elevate(3f);
                 Agent.Main.TeleportToPosition(frame.origin);
@@ -134,17 +144,25 @@ namespace TOR_Core.AbilitySystem.Scripts
         protected override void OnBeforeRemoved(int removeReason)
         {
             RestoreKeyBindings();
-            if (CasterAgent.State == AgentState.Unconscious || CasterAgent.State == AgentState.Killed) //unsure if this can throw a NRE if the player dies during mistform
+            // crashes reported with engine removing the ability before it begins ticking. mist form state should only be restored if it was actually applied
+            if (_mistFormStateApplied)
             {
-                //var lookDirection = CasterAgent.LookDirection;
-                CasterAgent.AgentVisuals.GetEntity().ActivateRagdoll();
-                //continuous memory lock errors when trying to touch the player's corpse entity after it's dead regardless of where in the script process I try to touch it; ragdolling works, adding (extra?) physics isn't an issue, but specifically an impulse throws the error. Doesn't matter if the impulse is applied before or after ragdoll. Don't really want to hide the original entity and create a duplicate to work with, but it looks like I need to to prevent a possible issue of momentum being lost when transitioning out of mist form to dead body
-                //entity.ApplyLocalImpulseToDynamicBody(entity.CenterOfMass, new Vec3(lookDirection.x, lookDirection.y, lookDirection.z) * 50);
+                if (CasterAgent.State == AgentState.Unconscious || CasterAgent.State == AgentState.Killed) //unsure if this can throw a NRE if the player dies during mistform
+                {
+                    //var lookDirection = CasterAgent.LookDirection;
+                    CasterAgent.AgentVisuals.GetEntity().ActivateRagdoll();
+                    //continuous memory lock errors when trying to touch the player's corpse entity after it's dead regardless of where in the script process I try to touch it; ragdolling works, adding (extra?) physics isn't an issue, but specifically an impulse throws the error. Doesn't matter if the impulse is applied before or after ragdoll. Don't really want to hide the original entity and create a duplicate to work with, but it looks like I need to to prevent a possible issue of momentum being lost when transitioning out of mist form to dead body
+                    //entity.ApplyLocalImpulseToDynamicBody(entity.CenterOfMass, new Vec3(lookDirection.x, lookDirection.y, lookDirection.z) * 50);
+                }
+                CasterAgent.Appear();
+                CasterAgent.SetMortalityState(_previousMortalityState);
             }
-            CasterAgent.Appear();
-            CasterAgent.ToggleInvulnerable();
-            _playerFlyableObjectScript.DeactivateFlying();
-            _playerFlyableObjectScript.GameEntity.Remove(0);
+
+            if (_playerFlyableObjectScript != null)
+            {
+                _playerFlyableObjectScript.DeactivateFlying();
+                _playerFlyableObjectScript.GameEntity.Remove(0);
+            }
             Mission.CameraAddedDistance = _previousCameraAddedDistance;
         }
     }
