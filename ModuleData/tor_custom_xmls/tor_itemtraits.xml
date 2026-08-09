@@ -931,6 +931,21 @@
     <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.05" />
     <StatsTuple StatType="Skill" SkillId="TwoHanded" Value="20" />
   </ItemTrait>
+  <ItemTrait ItemTraitStringId="emp_blessing_ulric_white_wolf_helmet" ItemTraitName="Mastery of the White Wolf" IsCraftable="false" IconName="whitewolf_icon">
+    <ValidItemType>Armor</ValidItemType>
+    <IngredientItem>BlessedWater</IngredientItem>
+    <IngredientAmount>1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_ulric_white_wolf_helmet}"50 bonus skillpoints to Two Handed"</ItemTraitDescription>
+    <StatsTuple StatType="Skill" SkillId="TwoHanded" Value="50" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="emp_blessing_ulric_white_wolf_axe" ItemTraitName="Blessing of the White Wolf" IsCraftable="false" IconName="whitewolf_icon">
+    <ValidItemType>Melee</ValidItemType>
+    <IngredientItem>BlessedWater</IngredientItem>
+    <IngredientAmount>1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_ulric_white_wolf_axe}"20% extra swing speed and 50% extra damage done as frost"</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Frost" Percent="0.50" />
+    <StatsTuple StatType="SwingSpeed" Value="20" />
+  </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_blessing_shallya_mercy" ItemTraitName="Mercy of Shallya" IsCraftable="true" IconName="shallya_dove_icon">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
