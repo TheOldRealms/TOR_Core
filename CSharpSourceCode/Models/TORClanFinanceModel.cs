@@ -138,7 +138,7 @@ namespace TOR_Core.Models
             if (playerHero.HasAnyCareer())
             {
                 var choices = playerHero.GetAllCareerChoices();
-                if (choices.Contains("MercenaryLordPassive3"))
+                if (choices.Contains("MercenaryLordPassive3") && clan.IsUnderMercenaryService)
                 {
                     var choice = TORCareerChoices.GetChoice("MercenaryLordPassive3");
                     int mercenaryAward = MathF.Ceiling(clan.Influence * (1f / Campaign.Current.Models.ClanFinanceModel.RevenueSmoothenFraction())) * clan.MercenaryAwardMultiplier; //stolen vanilla calculation, it got too messy to redirect the income.
