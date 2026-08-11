@@ -141,6 +141,7 @@ public class LootCampaignBehavior : CampaignBehaviorBase
     private void RemovedUnusedLootItems()
     {
         var objects = MBObjectManager.Instance.GetObjectTypeList<ItemObject>().Where(x => x.HasAnyLootTraits()).ToMBList();
+        if (objects.Count <= 0) return;
 
         var toRemove = new List<ItemObject>();
 
@@ -161,6 +162,7 @@ public class LootCampaignBehavior : CampaignBehaviorBase
             settlements.Add(workshop.Settlement);
         }
 
+        if (settlements.Count <= 0) return;
         settlements = settlements.Distinct().ToMBList();
 
         foreach (var item in objects)
