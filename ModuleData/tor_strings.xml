@@ -1007,6 +1007,14 @@
   <string id="tor_dw_guildmaster_engineer_hub_buy_weapons_shop_p" text="{=str_tor_dw_guildmaster_engineer_hub_buy_weapons_shop_p}Can the Guild share some of its inventions?" />
   <string id="tor_dw_guildmaster_engineer_buy_weapons_shop" text="{=str_tor_dw_guildmaster_engineer_buy_weapons_shop}Very well. Here is what we were recently working on." />
   <string id="tor_dw_oathgold.time_since_visit" text="{=str_tor_dw_oathgold_time_since_visit}Time since last benefits provided" />
+  <string id="tor_dw_oathgold.time_days_value" text="{=str_tor_dw_oathgold_time_days_value}{EFFECT_VALUE} days" />
+  <string id="tor_dw_oathgold.time_value" text="{=str_tor_dw_oathgold_time_value}&gt;{EFFECT_VALUE} weeks ago" />
+  <string id="tor_dw_guild_relationship.unknown" text="{=str_tor_dw_guild_relationship_unknown}Unknown" />
+  <string id="tor_dw_guild_relationship.trustworthy" text="{=str_tor_dw_guild_relationship_trustworthy}Trustworthy" />
+  <string id="tor_dw_guild_relationship.reliable" text="{=str_tor_dw_guild_relationship_reliable}Reliable" />
+  <string id="tor_dw_guild_relationship.respected" text="{=str_tor_dw_guild_relationship_respected}Respected" />
+  <string id="tor_dw_oath_gold_spending_title_text" text="{=str_tor_dw_guild_donate_oathgold_label}Spend Oath Gold" />
+  <string id="tor_dw_oath_gold_spending_description_text" text="{=str_tor_dw_guild_donate_oathgold_description}Select how much Oath Gold you want to spend" />
   <string id="tor_dw_engineer_benefit.title" text="{=str_tor_dw_engineer_benefit_title}Engineers" />
   <string id="tor_dw_engineer_benefit.description" text="{=str_tor_dw_engineer_benefit_description}Access to ranged weapons and artillery, reduce gunmen and Irondrake upgrade costs." />
   <string id="tor_dw_engineer_benefit.arsenal" text="{=str_tor_dw_engineer_benefit_arsenal}Entire arsenal" />
@@ -5522,6 +5530,7 @@
   <string id="tor_gs_quartermaster_owner_intro_text" text="{=str_tor_gs_quartermaster_owner_intro_text}Oi, Boss, youz got sum loot fer da pile?" />
   <string id="tor_gs_quartermaster_owner_anything_else_text" text="{=str_tor_gs_quartermaster_owner_anything_else_text}Iz dere more, Boss?" />
   <string id="tor_gs_quartermaster_make_teefbags_option_text" text="{=str_tor_gs_quartermaster_make_teefbags_option_text}Make Teefbags" />
+  <string id="tor_gs_give_items_to_boss_text" text="{=str_tor_gs_quartermaster_inventory_menu}Give Items to the Big Boss" />
   <string id="tor_dw_shop_show_goods_text" text="{=str_tor_dw_shop_show_goods_text}Very well, take a look at our inventions." />
   <string id="tor_dw_engineer_buy_weapons_text" text="{=str_tor_dw_engineer_buy_weapons_text}I need better gear, Master Engineer." />
   <string id="tor_dw_quit_text" text="{=str_tor_dw_quit_text}That will be all." />
