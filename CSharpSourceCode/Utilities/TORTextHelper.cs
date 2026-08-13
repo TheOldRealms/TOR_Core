@@ -45,6 +45,26 @@ namespace TOR_Core.Extensions
             return text.ToString();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Conversations (DialogLine and PlayerLine) take strings in for their text which are then placed into a TextObject during ConversationSentence construction which is the point at which localization is performed. If the string representation of the original text is passed as a string into the constructor, the variables are effectively stripped because Conversations are built during campaign load when their values have not yet been set. Setting of the variables occurs on Line condition evaluation and so the raw variable text must be kept intact in the string when the argument is passed into the constructor.
+        /// Menus similarly pass a string into a text object and have the same issue.
+        /// </remarks>
+        /// <returns>The value of the TextObject to be passed into a Conversation being created.</returns>
+        public static string GetTextForNative(string id, string variation, string defaultText, bool skipValidation = false)
+        {
+            var text = GetTextObject(id, variation, defaultText, skipValidation);
+            return text.Value;
+        }
+
+        public static string GetTextForNative(string id, string defaultText, bool skipValidation = false)
+        {
+            var text = GetTextObject(id, defaultText, skipValidation);
+            return text.Value;
+        }
+
 
         public static TextObject GetTextObject(string id, string defaultText, bool skipValidation = false)
         {
