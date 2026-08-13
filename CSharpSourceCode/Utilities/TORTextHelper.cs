@@ -36,13 +36,13 @@ namespace TOR_Core.Extensions
         public static string GetText(string id, string defaultText, bool skipValidation = false)
         {
             var text = GetTextObject(id, defaultText, skipValidation);
-            return text.GetNativeTextWithoutTag();
+            return text.ToString();
         }
 
         public static string GetText(string id, string variation, string defaultText, bool skipValidation = false)
         {
             var text = GetTextObject(id, variation, defaultText, skipValidation);
-            return text.GetNativeTextWithoutTag();
+            return text.ToString();
         }
 
 
