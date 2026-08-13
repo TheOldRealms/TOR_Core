@@ -262,7 +262,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
         AddBrewerDialogue(campaignGameStarter);
         AddWarriorDialogue(campaignGameStarter);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_decline", "start", "close_window", TORTextHelper.GetText("tor_dw_guildmaster_reject_non_dwarf", "You dont belong here. begone"),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_decline", "start", "close_window", TORTextHelper.GetText("tor_dw_guildmaster_reject_non_dwarf", "You don't belong here. begone"),
             () => IsGuildMaster() && Hero.MainHero.Culture.StringId != TORConstants.Cultures.DAWI, null, 200);
 
     }
