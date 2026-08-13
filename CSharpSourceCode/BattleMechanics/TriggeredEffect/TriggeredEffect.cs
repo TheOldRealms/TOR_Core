@@ -248,15 +248,17 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
 
             foreach (var candidate in rawTargets)
             {
-                if (candidate == null ||
-                    !candidate.IsActive() ||
-                    candidate.Health < 1f ||
-                    candidate.IsFadingOut())
+                if (candidate == null || candidate.Health < 1f)
                 {
                     continue;
                 }
 
                 if (mission != null && mission.FindAgentWithIndex(candidate.Index) != candidate)
+                {
+                    continue;
+                }
+
+                if (!candidate.IsActive() || candidate.IsFadingOut())
                 {
                     continue;
                 }

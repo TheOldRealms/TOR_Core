@@ -984,12 +984,17 @@ namespace TOR_Core.Models
 
             foreach (var agent in agents)
             {
-                if (agent == null || !agent.IsHuman || !agent.IsActive() || agent.Health < 1f || agent.IsFadingOut())
+                if (agent == null || agent.Health < 1f)
                 {
                     continue;
                 }
 
                 if (mission != null && mission.FindAgentWithIndex(agent.Index) != agent)
+                {
+                    continue;
+                }
+
+                if (!agent.IsHuman || !agent.IsActive() || agent.IsFadingOut())
                 {
                     continue;
                 }
