@@ -670,6 +670,7 @@
   <string id="tor_learned_enchantment_text" text="{=str_tor_learned_enchantment_text}{HERO_NAME} learned the enchantment {ENCHANTMENT_NAME}" />
   <string id="tor_enchant_prompt_donate_items.title" text="{=str_tor_enchant_prompt_donate_items_title}Donate items" />
   <string id="tor_enchant_prompt_donate_items.text" text="{=str_tor_enchant_prompt_donate_items_text}Select the items you want to donate. You will obtain {CUSTOMRESOURCE_ICON} from this action. " />
+  <string id="tor_enchant_no_description" text="{=str_tor_enchant_no_description}No description available." />
 
   <!-- EMPIRE (empire) - Imperial Alchemist dialogs -->
   <string id="tor_enchanter_start_p.empire" text="{=str_tor_enchanter_start_p_empire}I wish to learn about enchantment." />
