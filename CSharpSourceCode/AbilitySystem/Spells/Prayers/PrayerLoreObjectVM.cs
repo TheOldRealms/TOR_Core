@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
-using TOR_Core.AbilitySystem.SpellBook;
 
 namespace TOR_Core.AbilitySystem.Spells.Prayers
 {

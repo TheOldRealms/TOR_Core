@@ -6,7 +6,6 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View.Screens;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem.CrossHairs;
-using TOR_Core.BattleMechanics.Crosshairs;
 
 namespace TOR_Core.AbilitySystem.Crosshairs
 {

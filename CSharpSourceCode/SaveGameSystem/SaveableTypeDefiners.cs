@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Election;
 using TaleWorlds.CampaignSystem.Settlements;
@@ -9,7 +8,6 @@ using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.CustomArenaModes;
 using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.Crafting;
-using TOR_Core.CampaignMechanics.Diplomacy;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;

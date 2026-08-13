@@ -1,4 +1,3 @@
-using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.BattleMechanics.DamageSystem;

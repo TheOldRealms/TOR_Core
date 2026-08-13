@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.Party.PartyComponents;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
-using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Chaos

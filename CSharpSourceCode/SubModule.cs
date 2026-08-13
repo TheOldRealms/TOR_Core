@@ -26,12 +26,13 @@ using TOR_Core.BattleMechanics.Firearms;
 using TOR_Core.BattleMechanics.Morale;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
+using TOR_Core.BattleMechanics.Voice;
 using TOR_Core.CampaignMechanics;
-using TOR_Core.CampaignMechanics.Companions;
 using TOR_Core.CampaignMechanics.Assimilation;
 using TOR_Core.CampaignMechanics.BountyMaster;
 using TOR_Core.CampaignMechanics.Careers;
 using TOR_Core.CampaignMechanics.Chaos;
+using TOR_Core.CampaignMechanics.Companions;
 using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.CustomDialogs;
 using TOR_Core.CampaignMechanics.CustomEncounterDialogs;
@@ -50,6 +51,7 @@ using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignSupport.TownBehaviours;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Extensions.UI;
 using TOR_Core.GameManagers;
@@ -59,8 +61,6 @@ using TOR_Core.Models;
 using TOR_Core.Models.CustomBattleModels;
 using TOR_Core.Quests;
 using TOR_Core.Utilities;
-using TOR_Core.BattleMechanics.Voice;
-using TOR_Core.Extensions;
 
 namespace TOR_Core
 {

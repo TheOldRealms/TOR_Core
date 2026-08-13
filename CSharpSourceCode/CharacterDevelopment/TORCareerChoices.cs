@@ -1,16 +1,7 @@
-using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.Core;
-using TaleWorlds.Library;
-using TaleWorlds.Localization;
-using TaleWorlds.ObjectSystem;
-using TOR_Core.AbilitySystem;
-using TOR_Core.BattleMechanics.StatusEffect;
-using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Choices;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.CharacterDevelopment.CareerSystem.Choices;

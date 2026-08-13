@@ -1,14 +1,11 @@
 using System;
-using SandBox.GauntletUI;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting;
 using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting.Refinement;
-using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade.View;
-using TOR_Core.Extensions;
 
 namespace TOR_Core.Extensions.UI
 {

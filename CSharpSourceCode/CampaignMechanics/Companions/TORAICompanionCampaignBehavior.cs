@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -7,13 +6,10 @@ using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.AgentOrigins;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.Settlements.Locations;
 using TaleWorlds.Core;
-using TaleWorlds.InputSystem;
 using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Companions
 {

@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
@@ -8,11 +6,9 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.AbilitySystem.Scripts;
-using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
-using TOR_Core.HarmonyPatches;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem

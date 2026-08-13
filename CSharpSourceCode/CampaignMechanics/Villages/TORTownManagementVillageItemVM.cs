@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaleWorlds.CampaignSystem.Settlements;
-using TaleWorlds.CampaignSystem.ViewModelCollection.GameMenu.TownManagement;
-using static TOR_Core.CampaignMechanics.TORVillageTypes;
-using static TOR_Core.Utilities.TORConstants;
-
-namespace TOR_Core.CampaignMechanics.Villages
+﻿namespace TOR_Core.CampaignMechanics.Villages
 {
     //currently useless, may be related to map visuals related to town productions
     //also see VillageTypeVisualIconBrushWidget

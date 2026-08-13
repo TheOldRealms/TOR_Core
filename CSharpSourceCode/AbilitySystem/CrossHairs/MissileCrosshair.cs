@@ -1,6 +1,5 @@
 ﻿using TaleWorlds.Core;
 using TaleWorlds.Engine.GauntletUI;
-using TaleWorlds.GauntletUI.Data;
 
 namespace TOR_Core.AbilitySystem.Crosshairs
 {

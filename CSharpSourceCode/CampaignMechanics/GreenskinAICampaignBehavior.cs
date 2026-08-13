@@ -5,7 +5,6 @@ using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
-using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.Extensions;

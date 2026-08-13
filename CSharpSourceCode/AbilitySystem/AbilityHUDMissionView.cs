@@ -1,5 +1,4 @@
-﻿using System;
-using TaleWorlds.Core;
+﻿using TaleWorlds.Core;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View;

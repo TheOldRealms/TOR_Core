@@ -1,7 +1,5 @@
 ﻿using HarmonyLib;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;

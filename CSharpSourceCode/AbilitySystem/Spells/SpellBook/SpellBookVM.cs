@@ -9,7 +9,6 @@ using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
-using TaleWorlds.Localization;
 
 namespace TOR_Core.AbilitySystem.SpellBook
 {

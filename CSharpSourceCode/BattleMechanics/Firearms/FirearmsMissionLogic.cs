@@ -8,7 +8,6 @@ using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.MountAndBlade.View.Screens;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;

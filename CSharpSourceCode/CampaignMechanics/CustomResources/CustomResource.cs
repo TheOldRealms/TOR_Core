@@ -1,13 +1,8 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Localization;
-using TaleWorlds.ObjectSystem;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.CustomResources

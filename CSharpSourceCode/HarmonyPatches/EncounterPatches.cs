@@ -1,27 +1,20 @@
 ﻿using HarmonyLib;
-using Helpers;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Windows.Forms;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Encounters;
-using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
-using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.PostBattleLoot;
 using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {

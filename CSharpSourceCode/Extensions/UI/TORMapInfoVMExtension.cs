@@ -1,21 +1,16 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Windows;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Map.MapBar;
-using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
-using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.Religion;
-using TOR_Core.Extensions.ExtendedInfoSystem;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions.UI
 {

@@ -1,10 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.Core;
-using TaleWorlds.Localization;
-using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;

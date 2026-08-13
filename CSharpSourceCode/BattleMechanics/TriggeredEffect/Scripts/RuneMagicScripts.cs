@@ -5,7 +5,6 @@ using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.StatusEffect;
-using TOR_Core.BattleMechanics.TriggeredEffect.Scripts;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
 

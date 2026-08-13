@@ -1,5 +1,5 @@
-﻿using System;
-using SandBox;
+﻿using SandBox;
+using System;
 using TaleWorlds.CampaignSystem.CharacterCreationContent;
 using TaleWorlds.Core;
 using TaleWorlds.SaveSystem.Load;

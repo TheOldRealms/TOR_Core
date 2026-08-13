@@ -1,6 +1,6 @@
 ﻿#if TOR_CTB_LOG
-using System;
 using NLog;
+using System;
 using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.Utilities

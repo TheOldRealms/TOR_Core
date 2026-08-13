@@ -1,10 +1,8 @@
-﻿using HarmonyLib;
-using Helpers;
+﻿using Helpers;
 using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.ViewModelCollection.CharacterDeveloper;
 using TaleWorlds.Core;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;

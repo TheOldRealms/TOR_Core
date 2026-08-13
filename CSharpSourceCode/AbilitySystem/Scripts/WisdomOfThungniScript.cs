@@ -3,8 +3,6 @@ using TaleWorlds.Engine;
 using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.CharacterDevelopment;
-using TOR_Core.CharacterDevelopment.CareerSystem;
-using TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
 

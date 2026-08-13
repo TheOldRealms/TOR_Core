@@ -1,15 +1,10 @@
 using System;
-using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.MapEvents;
-using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
-using TaleWorlds.LinQuick;
-using TaleWorlds.TwoDimension;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
-using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Crafting;

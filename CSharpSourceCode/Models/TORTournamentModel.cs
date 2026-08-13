@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
@@ -11,7 +8,6 @@ using TaleWorlds.CampaignSystem.TournamentGames;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
-using TaleWorlds.ObjectSystem;
 using TOR_Core.BattleMechanics.CustomArenaModes;
 using TOR_Core.CampaignMechanics.Assimilation;
 using TOR_Core.Extensions;

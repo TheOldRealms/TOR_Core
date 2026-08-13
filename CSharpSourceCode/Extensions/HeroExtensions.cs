@@ -4,7 +4,6 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.LinQuick;
-using TaleWorlds.Localization;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;

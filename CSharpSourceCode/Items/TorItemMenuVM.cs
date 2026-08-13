@@ -4,19 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem.Inventory;
-using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Inventory;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Core.ViewModelCollection.Information;
-using TOR_Core.Utilities;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.Extensions;
-using TOR_Core.Items.InventoryUseScripts;
-using static Helpers.InventoryScreenHelper;
 
 namespace TOR_Core.Items
 {

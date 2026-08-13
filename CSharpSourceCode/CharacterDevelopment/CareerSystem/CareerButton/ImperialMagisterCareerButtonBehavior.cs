@@ -1,25 +1,14 @@
 using Helpers;
-using Ink.Parsed;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.ViewModelCollection.Party;
 using TaleWorlds.Core;
-using TaleWorlds.Library;
 using TaleWorlds.Localization;
-using TaleWorlds.MountAndBlade;
-using TaleWorlds.ObjectSystem;
-using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem.Spells;
-using TOR_Core.BattleMechanics.StatusEffect;
-using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
-using TOR_Core.Extensions.UI;
-using TOR_Core.Utilities;
 using static Helpers.PartyScreenHelper;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton

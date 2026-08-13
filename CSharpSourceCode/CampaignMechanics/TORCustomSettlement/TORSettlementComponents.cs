@@ -1,6 +1,5 @@
 using SandBox;
 using SandBox.View.Map;
-using SandBox.View.Map.Managers;
 using System;
 using System.Collections.Generic;
 using System.Xml;
@@ -11,7 +10,6 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
-using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.CampaignMechanics.RaidingParties;

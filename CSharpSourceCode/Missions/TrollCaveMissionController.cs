@@ -1,8 +1,7 @@
 using SandBox;
-using System;
+using SandBox.Missions.AgentBehaviors;
 using System.Collections.Generic;
 using System.Linq;
-using SandBox.Missions.AgentBehaviors;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.AgentOrigins;
 using TaleWorlds.CampaignSystem.Encounters;
@@ -10,15 +9,11 @@ using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
-using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
-using TOR_Core.CampaignMechanics.TORCustomSettlement;
-using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.Missions
 {

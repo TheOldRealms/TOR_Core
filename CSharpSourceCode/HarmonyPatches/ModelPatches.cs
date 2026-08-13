@@ -1,14 +1,10 @@
 ﻿using HarmonyLib;
-using SandBox.GameComponents;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
-using TaleWorlds.Core;
-using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
-using TOR_Core.Models;
 
 namespace TOR_Core.HarmonyPatches;
 
@@ -43,15 +39,13 @@ public static class ModelPatches
         amount = -clan.Influence;
     }
 
-    // removes auto recruitment hard cap for player garrisons
+    // removes auto recruitment hard cap
     [HarmonyPrefix]
     [HarmonyPatch(typeof(DefaultSettlementGarrisonModel), nameof(DefaultSettlementGarrisonModel.GetMaximumDailyAutoRecruitmentCount))]
-    private static bool Prefix_UncapDailyGarrisonAutoRecruitment(Town town, ref int __result)
+    private static bool Prefix_UncapDailyGarrisonAutoRecruitment(ref int __result)
     {
-        if (town.OwnerClan != Clan.PlayerClan) return true;
-
-        __result = int.MaxValue;
-        return false;
+        __result = int.MaxValue; 
+        return false; 
     }
 
     // prevent ai armies from leaving more troops in a garrison than the settlements garrison capacity

@@ -167,7 +167,7 @@ namespace TOR_Core.Audio
                 return false;
             }
 
-            if (_soundEvent != null && _soundEvent.IsValid && !_soundEvent.IsStopped())
+            if (_soundEvent != null && _soundEvent.IsValid && _soundEvent.IsPlaying())
             {
                 return true;
             }

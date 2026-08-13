@@ -1,18 +1,11 @@
-using Ink.Parsed;
 using NLog;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.Core;
-using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.ObjectSystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
-using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
-using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.StatusEffect

@@ -1,10 +1,5 @@
 ﻿using Ink;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Ink

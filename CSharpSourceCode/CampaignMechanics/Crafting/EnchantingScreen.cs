@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.Core;
+﻿using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.InputSystem;
@@ -13,7 +6,6 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade.View.Screens;
 using TaleWorlds.ScreenSystem;
 using TaleWorlds.TwoDimension;
-using TOR_Core.AbilitySystem.SpellBook;
 
 namespace TOR_Core.CampaignMechanics.Crafting
 {

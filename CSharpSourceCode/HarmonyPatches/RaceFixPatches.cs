@@ -2,18 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Reflection.Emit;
-using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.GauntletUI.BodyGenerator;
 using TaleWorlds.MountAndBlade.View;
+using TaleWorlds.MountAndBlade.View.MissionViews;
 using TaleWorlds.MountAndBlade.View.Tableaus;
 using TaleWorlds.MountAndBlade.View.Tableaus.Thumbnails;
-using TaleWorlds.MountAndBlade.View.MissionViews;
 using FaceGen = TaleWorlds.Core.FaceGen;
 
 namespace TOR_Core.HarmonyPatches

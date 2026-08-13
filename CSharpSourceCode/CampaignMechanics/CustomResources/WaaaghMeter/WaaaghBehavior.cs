@@ -1,20 +1,16 @@
+using SandBox.View.Map;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SandBox.View.Map;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
-using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
-using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.ScreenSystem;
-using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.WaaaghMeter;
 using TOR_Core.Extensions;
-using TOR_Core.Extensions.UI;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.CustomResourceBehavior;

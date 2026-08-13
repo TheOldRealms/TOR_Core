@@ -7,7 +7,6 @@ using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 using static Helpers.PartyScreenHelper;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
