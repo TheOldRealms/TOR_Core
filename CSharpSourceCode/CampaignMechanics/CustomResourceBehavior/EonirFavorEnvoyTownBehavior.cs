@@ -482,7 +482,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         //why are you here
 
         campaignGameStarter.AddDialogLine("spellsinger_envoy_whyareyouhere", "spellsinger_envoy_whyareyouhere", "envoy_spellsinger_wayh_reaction",
-            TORTextHelper.GetText("eonir_spellsinger_why_here_intro_text", "I am representing a coven of Spellsingers dedicated to the defense of Laurelorn. While the Council is busy with politics, the Faniour, the forest born elves, are endagered by all the threads of the forest."), () => IsSpellsingerEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_spellsinger_why_here_intro_text", "I am representing a coven of Spellsingers dedicated to the defense of Laurelorn. While the Council is busy with politics, the Faniour, the forest born elves, are endangered by all the threads of the forest."), () => IsSpellsingerEnvoy(), null, 200);
         campaignGameStarter.AddPlayerLine("envoy_spellsinger_wayh_reaction_displeased", "envoy_spellsinger_wayh_reaction", "spellsinger_envoy_whyareyouhere_2",
             TORTextHelper.GetText("eonir_spellsinger_why_here_displeased_text", "The forest is beset by destructive beasts and men alike, what then, are you protecting?"), () => IsSpellsingerEnvoy(), null, 200);
         campaignGameStarter.AddPlayerLine("envoy_spellsinger_wayh_reaction_undecided", "envoy_spellsinger_wayh_reaction", "spellsinger_envoy_whyareyouhere_2",
