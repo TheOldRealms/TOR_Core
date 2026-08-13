@@ -318,7 +318,8 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         private void opengunshopconsequence()
         {
             var engineerItems = MBObjectManager.Instance.GetObjectTypeList<ItemObject>().Where(x =>
-                x.IsTorItem() && x.Culture != null && x.Culture.StringId == "empire" &&
+                x.Culture != null && x.Culture.StringId == "empire" && x.IsTorItem() &&
+                !(x.IsCraftedByPlayer || x.HasAnyLootTraits()) &&
                 (x.StringId.Contains("gun") ||
                  x.StringId.Contains("artillery")));
 
