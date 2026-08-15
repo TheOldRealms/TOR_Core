@@ -1608,6 +1608,10 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_bestigor_shoulderpads_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>  
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_shoulder_necklace_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
@@ -2460,6 +2464,10 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_body_armour_bestigor_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>  
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_body_armour_gor_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
@@ -2468,6 +2476,10 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>  
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_bestigor_facemask_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>   
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_helm_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
@@ -2882,6 +2894,10 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_arm_bracers_bestigor_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>  
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_arm_bracers_gor_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
@@ -3524,6 +3540,10 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_legs_bestigor_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>  
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_legs_gor_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
