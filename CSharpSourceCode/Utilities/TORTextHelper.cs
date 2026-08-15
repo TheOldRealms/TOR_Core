@@ -30,17 +30,19 @@ namespace TOR_Core.Extensions
             return attributes.FirstOrDefault(attribute => AttributeId == attribute.StringId)?.Name;
         }
 
-
+        /// <remarks>
+        /// Conversation strings are stored during game load when their variables are still unknown. TextObject.ToString can't be used because it writes the empty value into the variable token and the string will be missing important information. TextObject.Value.ToString likewise can't be used because it would keep the localization id in the string which is only needed when fetching a TextObject language variant and has already occurred before the return.
+        /// </remarks>
         public static string GetText(string id, string defaultText, bool skipValidation = false)
         {
             var text = GetTextObject(id, defaultText, skipValidation);
-            return text.ToString();
+            return text.GetNativeTextWithoutTag();
         }
 
         public static string GetText(string id, string variation, string defaultText, bool skipValidation = false)
         {
             var text = GetTextObject(id, variation, defaultText, skipValidation);
-            return text.ToString();
+            return text.GetNativeTextWithoutTag();
         }
 
 

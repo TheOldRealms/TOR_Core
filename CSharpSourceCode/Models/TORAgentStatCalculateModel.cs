@@ -730,6 +730,8 @@ namespace TOR_Core.Models
         {
             _crosshairBehavior ??= Mission.Current.GetMissionBehavior<CustomCrosshairMissionBehavior>();
 
+            if (_crosshairBehavior.IsFinalized) _crosshairBehavior = Mission.Current.GetMissionBehavior<CustomCrosshairMissionBehavior>();//detect stale behavior reference and refresh.
+
             if (_crosshairBehavior != null && _crosshairBehavior.CurrentCrosshair is SniperScope && _crosshairBehavior.CurrentCrosshair.IsVisible)
             {
                 return 3;

@@ -130,6 +130,13 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_head_helm_kotww_miracle_001" RaceLock="human">
+    <ItemTraits>
+      <ItemTrait>phys_res_20</ItemTrait>
+      <ItemTrait>emp_blessing_ulric_white_wolf_helmet</ItemTrait>
+    </ItemTraits>
+    <Description />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_head_helm_lion_001" RaceLock="human">
     <ItemTraits />
     <Description />
@@ -3999,6 +4006,14 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_rapier_005">
     <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_axe_kotww_miracle_001">
+    <ItemTraits>
+      <ItemTrait>emp_blessing_ulric_white_wolf_axe</ItemTrait>
+    </ItemTraits>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>

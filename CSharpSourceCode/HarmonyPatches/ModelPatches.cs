@@ -99,13 +99,15 @@ public static class ModelPatches
         return true;
     }
 
-    // removes auto recruitment hard cap
+    // removes auto recruitment hard cap for player garrisons
     [HarmonyPrefix]
     [HarmonyPatch(typeof(DefaultSettlementGarrisonModel), nameof(DefaultSettlementGarrisonModel.GetMaximumDailyAutoRecruitmentCount))]
-    private static bool Prefix_UncapDailyGarrisonAutoRecruitment(ref int __result)
+    private static bool Prefix_UncapDailyGarrisonAutoRecruitment(Town town, ref int __result)
     {
-        __result = int.MaxValue; 
-        return false; 
+        if (town.OwnerClan != Clan.PlayerClan) return true;
+
+        __result = int.MaxValue;
+        return false;
     }
 
     // prevent ai armies from leaving more troops in a garrison than the settlements garrison capacity
