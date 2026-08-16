@@ -36,14 +36,14 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
         MBTextManager.SetTextVariable("DARKENERGYICON", CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText());
         starter.AddGameMenu("cursedsite_menu", "{LOCATION_DESCRIPTION}", CursedSiteMenuInit);
         starter.AddGameMenuOption("cursedsite_menu", "purify", "{PURIFY_TEXT}", PurifyCondition, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu_purifying"));
-        starter.AddGameMenuOption("cursedsite_menu", "ghosts", TORTextHelper.GetText("tor_custom_settlement_menu_cursed_site_ghost", "Tap into the congealed essence of Dark Magic and bind some wraiths to your will."), GhostsCondition, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu_ghosts"));
-        starter.AddGameMenuOption("cursedsite_menu", "ghosts", TORTextHelper.GetText("tor_custom_settlement_menu_cursed_site_empower", "Empower your undead minions using Dark Energy (100{DARKENERGYICON})."), EmpoweringUndeadCondition, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu_empower_minions"));
-        starter.AddGameMenuOption("cursedsite_menu", "leave", TORTextHelper.GetText("tor_custom_settlement_menu_leave", "Leave..."), delegate (MenuCallbackArgs args)
+        starter.AddGameMenuOption("cursedsite_menu", "ghosts", TORTextHelper.GetTextForNative("tor_custom_settlement_menu_cursed_site_ghost", "Tap into the congealed essence of Dark Magic and bind some wraiths to your will."), GhostsCondition, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu_ghosts"));
+        starter.AddGameMenuOption("cursedsite_menu", "ghosts", TORTextHelper.GetTextForNative("tor_custom_settlement_menu_cursed_site_empower", "Empower your undead minions using Dark Energy (100{DARKENERGYICON})."), EmpoweringUndeadCondition, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu_empower_minions"));
+        starter.AddGameMenuOption("cursedsite_menu", "leave", TORTextHelper.GetTextForNative("tor_custom_settlement_menu_leave", "Leave..."), delegate (MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Leave;
             return true;
         }, (MenuCallbackArgs args) => PlayerEncounter.Finish(true), true);
-        starter.AddWaitGameMenu("cursedsite_menu_purifying", TORTextHelper.GetText("tor_custom_settlement_cursed_site_purify_progress", "Performing purification ritual..."),
+        starter.AddWaitGameMenu("cursedsite_menu_purifying", TORTextHelper.GetTextForNative("tor_custom_settlement_cursed_site_purify_progress", "Performing purification ritual..."),
             delegate (MenuCallbackArgs args)
             {
                 _startWaitTime = CampaignTime.Now;
@@ -53,7 +53,7 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
             }, null, PurificationConsequence,
             PurifyingTick,
             GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameMenu.MenuOverlayType.None, 4f, GameMenu.MenuFlags.None, null);
-        starter.AddWaitGameMenu("cursedsite_menu_ghosts", TORTextHelper.GetText("tor_custom_settlement_cursed_site_ghosts_progress", "Performing binding ritual..."),
+        starter.AddWaitGameMenu("cursedsite_menu_ghosts", TORTextHelper.GetTextForNative("tor_custom_settlement_cursed_site_ghosts_progress", "Performing binding ritual..."),
             delegate (MenuCallbackArgs args)
             {
                 _startWaitTime = CampaignTime.Now;
@@ -63,7 +63,7 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
             }, null, GhostConsequence,
             BindingTick,
             GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameMenu.MenuOverlayType.None, 4f, GameMenu.MenuFlags.None, null);
-        starter.AddWaitGameMenu("cursedsite_menu_empower_minions", TORTextHelper.GetText("tor_custom_settlement_cursed_site_empower_progress", "Empowering your minions..."),
+        starter.AddWaitGameMenu("cursedsite_menu_empower_minions", TORTextHelper.GetTextForNative("tor_custom_settlement_cursed_site_empower_progress", "Empowering your minions..."),
             delegate (MenuCallbackArgs args)
             {
                 _startWaitTime = CampaignTime.Now;
@@ -75,18 +75,18 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
         starter.AddGameMenu("purification_result", "{PURIFICATION_RESULT} {NEWLINE} {WOUNDED_RESULT}", PurificationResultInit);
         starter.AddGameMenu("ghost_result", "{GHOST_RESULT}", GhostResultInit);
         starter.AddGameMenu("empowering_result", "{EMPOWERING_RESULT} \n{EMPOWERING_LIST}", EmpoweringResultInit);
-        starter.AddGameMenuOption("purification_result", "return_to_root", TORTextHelper.GetText("tor_custom_settlement_menu_continue", "Continue"), delegate (MenuCallbackArgs args)
+        starter.AddGameMenuOption("purification_result", "return_to_root", TORTextHelper.GetTextForNative("tor_custom_settlement_menu_continue", "Continue"), delegate (MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Continue;
             return true;
         }, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu"), true);
-        starter.AddGameMenuOption("ghost_result", "return_to_root", TORTextHelper.GetText("tor_custom_settlement_menu_continue", "Continue"), delegate (MenuCallbackArgs args)
+        starter.AddGameMenuOption("ghost_result", "return_to_root", TORTextHelper.GetTextForNative("tor_custom_settlement_menu_continue", "Continue"), delegate (MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Continue;
             return true;
         }, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu"), true);
 
-        starter.AddGameMenuOption("empowering_result", "return_to_root", TORTextHelper.GetText("tor_custom_settlement_menu_continue", "Continue"), delegate (MenuCallbackArgs args)
+        starter.AddGameMenuOption("empowering_result", "return_to_root", TORTextHelper.GetTextForNative("tor_custom_settlement_menu_continue", "Continue"), delegate (MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Continue;
             return true;

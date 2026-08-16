@@ -256,6 +256,9 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
         }
     }
 
+    /// <remarks>
+    /// Menu.RunOnInit runs once when the mission ends, and again when exiting the mission to go back to the map. Calculations can be fine if they run twice, but actions like granting gold shouldn't be performed to prevent duplication.
+    /// </remarks>>
     private void CalculateWinResult(MenuCallbackArgs args)
     {
         var text = GameTexts.FindText("tor_greenskin_brawl_victory_desc");

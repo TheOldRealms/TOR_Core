@@ -307,7 +307,7 @@ public class StealthAttackScript(string[] arguments) : BaseWeaponHitScript(argum
 
         if (isStealthAttack || !attackedAgent.AIStateFlags.HasFlag(Agent.AIStateFlag.Alarmed))
         {
-            InformationManager.DisplayMessage(new InformationMessage(TORTextHelper.GetText("tor_stealth_attack_text", "Stealth Attack!"), new TaleWorlds.Library.Color(255, 165, 85)));
+            InformationManager.DisplayMessage(new InformationMessage(TORTextHelper.GetTextForNative("tor_stealth_attack_text", "Stealth Attack!"), new TaleWorlds.Library.Color(255, 165, 85)));
             ApplyWeaponTraitDamage(attackedAgent, (int)(collisionData.InflictedDamage * percent), attackedAgent.Position, originatesFromAbility: true);
         }
     }

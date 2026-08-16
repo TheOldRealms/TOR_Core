@@ -88,7 +88,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
 
         private void Initialize(CampaignGameStarter obj)
         {
-            obj.AddGameMenuOption("town", "graveyard", TORTextHelper.GetText("tor_graveyard_go_to", "Go to the graveyard"),
+            obj.AddGameMenuOption("town", "graveyard", TORTextHelper.GetTextForNative("tor_graveyard_go_to", "Go to the graveyard"),
                  graveyardaccesscondition,
                 delegate (MenuCallbackArgs args)
                 {
@@ -106,7 +106,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 },
                 GameMenu.MenuOverlayType.SettlementWithBoth, GameMenu.MenuFlags.None, null);
 
-            obj.AddGameMenuOption("graveyard", "raise_dead_attempt", TORTextHelper.GetText("tor_settlement_graveyard_raise_dead_action", "Raise dead from the corpses in the ground (wait 8 hours)."),
+            obj.AddGameMenuOption("graveyard", "raise_dead_attempt", TORTextHelper.GetTextForNative("tor_settlement_graveyard_raise_dead_action", "Raise dead from the corpses in the ground (wait 8 hours)."),
                 raisedeadattemptcondition,
                 delegate (MenuCallbackArgs args)
                 {
@@ -114,7 +114,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 }
                 , false, -1, false);
 
-            obj.AddGameMenuOption("graveyard", "graveyard_leave", TORTextHelper.GetText("tor_graveyard_leave", "Leave"),
+            obj.AddGameMenuOption("graveyard", "graveyard_leave", TORTextHelper.GetTextForNative("tor_graveyard_leave", "Leave"),
                 delegate (MenuCallbackArgs args)
                 {
                     args.optionLeaveType = GameMenuOption.LeaveType.Leave;
@@ -125,7 +125,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                     GameMenu.SwitchToMenu("town");
                 }, true, -1, false);
 
-            obj.AddWaitGameMenu("raising_dead", TORTextHelper.GetText("tor_settlement_graveyard_raise_dead_begin_text", "The common folk's graves are ripe for the taking! You spend time to raise corpses from the ground. Morr is going to be furious tonight!"),
+            obj.AddWaitGameMenu("raising_dead", TORTextHelper.GetTextForNative("tor_settlement_graveyard_raise_dead_begin_text", "The common folk's graves are ripe for the taking! You spend time to raise corpses from the ground. Morr is going to be furious tonight!"),
                 delegate (MenuCallbackArgs args)
                 {
                     _startWaitTime = CampaignTime.Now;
@@ -137,7 +137,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 raisingdeadtick,
                 GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameMenu.MenuOverlayType.SettlementWithBoth, 8f, GameMenu.MenuFlags.None, null);
 
-            obj.AddGameMenuOption("raising_dead", "raising_dead_leave", TORTextHelper.GetText("tor_graveyard_leave", "Leave"),
+            obj.AddGameMenuOption("raising_dead", "raising_dead_leave", TORTextHelper.GetTextForNative("tor_graveyard_leave", "Leave"),
                 delegate (MenuCallbackArgs args)
                 {
                     args.optionLeaveType = GameMenuOption.LeaveType.Leave;
@@ -159,7 +159,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 },
                 GameMenu.MenuOverlayType.SettlementWithBoth, GameMenu.MenuFlags.None, null);
 
-            obj.AddGameMenuOption("graveyard_interrupt", "interrupt_battle", TORTextHelper.GetText("tor_settlement_graveyard_raise_dead_interrupt_action", "Defend yourself"),
+            obj.AddGameMenuOption("graveyard_interrupt", "interrupt_battle", TORTextHelper.GetTextForNative("tor_settlement_graveyard_raise_dead_interrupt_action", "Defend yourself"),
                 delegate (MenuCallbackArgs args)
                 {
                     if (!Hero.MainHero.IsWounded)
@@ -171,7 +171,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 },
                 (MenuCallbackArgs args) => SetupBattle(), false, -1, false);
 
-            obj.AddGameMenuOption("graveyard_interrupt", "interrupt_surrender", TORTextHelper.GetText("tor_graveyard_surrender", "Surrender"),
+            obj.AddGameMenuOption("graveyard_interrupt", "interrupt_surrender", TORTextHelper.GetTextForNative("tor_graveyard_surrender", "Surrender"),
                 delegate (MenuCallbackArgs args)
                 {
                     args.optionLeaveType = GameMenuOption.LeaveType.LeaveTroopsAndFlee;
