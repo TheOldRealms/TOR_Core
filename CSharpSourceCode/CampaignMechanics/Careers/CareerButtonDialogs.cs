@@ -17,11 +17,9 @@ public static class CareerButtonDialogs
     private static void GrailKnightButtonDialog(CampaignGameStarter starter)
     {
         starter.AddDialogLine("grailKnightCompanionHonoring_start1", "start", "grailKnightCompanionHonoring_vow1", TORTextHelper.GetText("tor_grail_companion_vow_start", "Greetings my lord, how may I be of service?"), () => buttonDialogCondition() && Hero.MainHero.HasCareer(TORCareers.GrailKnight), DeactivateDialog, 200, null);
-        starter.AddPlayerLine("grailKnightCompanionHonoring_vow1", "grailKnightCompanionHonoring_vow1", "grailKnightCompanionHonoring_vow2", TORTextHelper.GetText("tor_grail_companion_vow_1", "It has been some time since you have come into my service, you have repeatedly proven to be a most capable and chivalrous Knight."), null, null, 200,
-            null);
+        starter.AddPlayerLine("grailKnightCompanionHonoring_vow1", "grailKnightCompanionHonoring_vow1", "grailKnightCompanionHonoring_vow2", TORTextHelper.GetText("tor_grail_companion_vow_1", "It has been some time since you have come into my service, you have repeatedly proven to be a most capable and chivalrous Knight."), null, null, 200, null);
 
-        starter.AddDialogLine("grailKnightCompanionHonoring_vow2", "grailKnightCompanionHonoring_vow2", "grailKnightCompanionHonoring_vow3", TORTextHelper.GetText("tor_grail_companion_vow_2", "You honour me with your words my lord, it is my pride and pleasure to serve and fight alongside you."), null, null, 200,
-            null);
+        starter.AddDialogLine("grailKnightCompanionHonoring_vow2", "grailKnightCompanionHonoring_vow2", "grailKnightCompanionHonoring_vow3", TORTextHelper.GetText("tor_grail_companion_vow_2", "You honour me with your words my lord, it is my pride and pleasure to serve and fight alongside you."), null, null, 200, null);
         starter.AddPlayerLine("grailKnightCompanionHonoring_vow3", "grailKnightCompanionHonoring_vow3", "grailKnightCompanionHonoring_vow4",
             TORTextHelper.GetText("tor_grail_companion_vow_3", "I wish to bring you into my inner circle, to make you a leader and a trusted companion amongst my men; more than just a Knight in my service. What say you?"), null, null, 200, null);
         starter.AddPlayerLine("grailKnightCompanionHonoring_vow3_end", "grailKnightCompanionHonoring_vow3", "close_window", TORTextHelper.GetText("tor_grail_companion_vow_3_end", "I look forward to our future battles together."), null, null, 200, null);
