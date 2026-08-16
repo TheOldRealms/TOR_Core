@@ -186,6 +186,7 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
             playerRoster.AddToCounts(hero.CharacterObject, 1);
             enemyPartySize += 5;
         }
+        //Sly : why is this pulling from the militia party when the condition to start a brawl checks the garrison party?
         var completeRoster = Settlement.CurrentSettlement.MilitiaPartyComponent.MobileParty.MemberRoster;
         var enemyRoster = TroopRoster.CreateDummyTroopRoster();
 
@@ -226,7 +227,7 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
             }
         }
 
-        TroopRoster playerSideTroops = playerRoster;
+        TroopRoster playerSideTroops = playerRoster;//Sly : why is this passed then not used and the list is rebuilt?
         TroopRoster rivalSideTroops = enemyRoster;
 
         _lastTroopRoster = rivalSideTroops;
