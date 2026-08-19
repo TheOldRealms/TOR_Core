@@ -7,6 +7,7 @@ using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
+using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TOR_Core.Extensions;
 using static TaleWorlds.CampaignSystem.GameMenus.GameMenu;
@@ -22,6 +23,15 @@ namespace TOR_Core.CampaignMechanics.CustomEncounterDialogs
 
         private void Start(CampaignGameStarter obj)
         {
+            obj.AddPlayerLine("tor_cheat_inspect_party", "hero_main_options", "lord_pretalk", "{=!}[CHEAT] Let me inspect your party",
+                () => Game.Current.CheatMode && Hero.OneToOneConversationHero?.PartyBelongedTo != null,
+                () => PartyScreenHelper.OpenScreenAsManageTroopsAndPrisoners(
+                    Hero.OneToOneConversationHero.PartyBelongedTo,
+                    delegate
+                    {
+                        Campaign.Current.ConversationManager.ContinueConversation();
+                    }));
+
             obj.AddDialogLine("chaos_greeting", "start", "close_window", TORTextHelper.GetText("tor_chaos_greeting", "You will die drowning in a pool of your own blood!"), () => EncounteredPartyMatch("chaos_clan_1") && !HeroIsWounded(), null, 199);
             obj.AddDialogLine("chaos_die", "start", "close_window", TORTextHelper.GetText("tor_chaos_wounded_dialog_text", "I will return!"), () => EncounteredPartyMatch("chaos_clan_1") && HeroIsWounded(), null, 199);
 

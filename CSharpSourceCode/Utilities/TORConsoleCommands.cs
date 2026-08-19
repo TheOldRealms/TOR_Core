@@ -600,6 +600,12 @@ namespace TOR_Core.Utilities
             return uniqueSpawnBehavior.GetOrionDebugStatus();
         }
 
+        [CommandLineFunctionality.CommandLineArgumentFunction("locate_orion", "tor")]
+        public static string LocateOrion(List<string> arguments)
+        {
+            return Campaign.Current.GetCampaignBehavior<OrionCampaignBehavior>().GetOrionLocation();
+        }
+
         [CommandLineFunctionality.CommandLineArgumentFunction("spawn_orion", "tor")]
         public static string SpawnOrion(List<string> arguments)
         {

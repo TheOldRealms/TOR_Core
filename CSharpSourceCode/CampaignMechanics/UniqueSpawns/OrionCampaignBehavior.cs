@@ -1,4 +1,5 @@
-﻿using SandBox.View.Map;
+﻿using Helpers;
+using SandBox.View.Map;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -196,6 +197,21 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             debugStatus.SetTextVariable("DAYS_LEFT", _orionWarPlanDaysLeft.ToString());
 
             return debugStatus.ToString();
+        }
+
+        public string GetOrionLocation()
+        {
+            var orionParty = CurrentParty();
+            if (orionParty == null)
+            {
+                return "orion is not active";
+            }
+
+            var nearestSettlement = SettlementHelper.FindNearestSettlementToPoint(
+                orionParty.Position,
+                settlement => settlement.IsTown || settlement.IsCastle || settlement.IsVillage);
+
+            return $"orion: {orionParty.Position.X:0.00}, {orionParty.Position.Y:0.00}, nearest settlement: {nearestSettlement.Name}";
         }
 
         public string TestSpawnOrion()
