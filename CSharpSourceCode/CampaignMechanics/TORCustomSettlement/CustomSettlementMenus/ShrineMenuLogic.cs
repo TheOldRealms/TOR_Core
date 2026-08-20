@@ -441,6 +441,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
 
         var devotion = Hero.MainHero.GetDevotionLevelForReligion(heroReligion);
         if ((int)devotion < (int)DevotionLevel.Devoted) return;
+        bool isFanatic = devotion == DevotionLevel.Fanatic;
 
         var troop = component.Religion.ReligiousTroops.FirstOrDefault(x => x.IsBasicTroop && x.Occupation == Occupation.Soldier);
         if (troop == null) return;
@@ -457,6 +458,8 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             if (freeSlots < 1) break;
 
             var count = MBRandom.RandomInt(1, 4);
+
+            if (isFanatic) count *= 2;
 
             if (Hero.MainHero.HasCareerChoice("AxeOfGrimnirPassive4"))
             {
