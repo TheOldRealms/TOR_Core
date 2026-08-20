@@ -33,13 +33,13 @@ namespace TOR_Core.Extensions
         /// <remarks>
         /// Conversation strings are stored during game load when their variables are still unknown. TextObject.ToString can't be used because it writes the empty value into the variable token and the string will be missing important information. TextObject.Value.ToString likewise can't be used because it would keep the localization id in the string which is only needed when fetching a TextObject language variant and has already occurred before the return.
         /// </remarks>
-        public static string GetText(string id, string defaultText, bool skipValidation = false)
+        public static string GetText(string id, string defaultText, bool skipValidation = true)
         {
             var text = GetTextObject(id, defaultText, skipValidation);
             return text.ToString();
         }
 
-        public static string GetText(string id, string variation, string defaultText, bool skipValidation = false)
+        public static string GetText(string id, string variation, string defaultText, bool skipValidation = true)
         {
             var text = GetTextObject(id, variation, defaultText, skipValidation);
             return text.ToString();
@@ -53,20 +53,20 @@ namespace TOR_Core.Extensions
         /// Menus similarly pass a string into a text object and have the same issue.
         /// </remarks>
         /// <returns>The value of the TextObject to be passed into a Conversation being created.</returns>
-        public static string GetTextForNative(string id, string variation, string defaultText, bool skipValidation = false)
+        public static string GetTextForNative(string id, string variation, string defaultText, bool skipValidation = true)
         {
             var text = GetTextObject(id, variation, defaultText, skipValidation);
             return text.Value;
         }
 
-        public static string GetTextForNative(string id, string defaultText, bool skipValidation = false)
+        public static string GetTextForNative(string id, string defaultText, bool skipValidation = true)
         {
             var text = GetTextObject(id, defaultText, skipValidation);
             return text.Value;
         }
 
 
-        public static TextObject GetTextObject(string id, string defaultText, bool skipValidation = false)
+        public static TextObject GetTextObject(string id, string defaultText, bool skipValidation = true)
         {
             if (GameTexts.TryGetText(id, out var textObject))
             {
@@ -90,7 +90,7 @@ namespace TOR_Core.Extensions
             return new TextObject(defaultText);
         }
 
-        public static TextObject GetTextObject(string id, string variation, string defaultText, bool skipValidation = false)
+        public static TextObject GetTextObject(string id, string variation, string defaultText, bool skipValidation = true)
         {
             if (GameTexts.TryGetText(id, out var textObject, variation))
             {
