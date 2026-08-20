@@ -35,6 +35,9 @@
   <string id="tor_cc_growth.aserai" text="{=str_tor_cc_growth_aserai}After joining a tribe your biggest achievement was…" />
   <string id="tor_cc_profession.aserai" text="{=str_tor_cc_profession_aserai}Before leaving the tribe, you were one of the…" />
 
+  <!-- Cheats -->
+  <string id="tor_cheat_party_inspect" text="{=str_tor_cheat_party_inspect}[CHEAT] Let me inspect your party" />
+
   <!-- UI -->
   <string id="str_career_screen.title" text="{=str_tor_career_screen_title}Career" />
   <string id="str_career_screen.ability_title" text="{=str_tor_career_ability_title}Career Ability" />
