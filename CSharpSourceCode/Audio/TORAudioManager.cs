@@ -1,53 +1,201 @@
 ﻿using System.Collections.Generic;
+using System;
 using System.IO;
+using IOPath = System.IO.Path;
+using TaleWorlds.Engine;
+using TaleWorlds.Library;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Audio
 {
-    public class TORAudioManager
+    public static class TORAudioManager
     {
-        public static readonly TORAudioManager Instance = new TORAudioManager();
-        private readonly Dictionary<string, CachedSound> _registeredSounds = new Dictionary<string, CachedSound>();
+        private const string EXTERNAL_SOUND_EVENT = "event:/Extra/voiceover";
+        private static readonly List<TORModuleSound> _activeSounds = [];
 
-        public bool RegisterSound(string filePath, string audioName)
+        public static TORModuleSound CreateSoundInstance(string audioName, bool restartWhenFinished, float volume = 1f, Scene scene = null, bool is3D = false)
         {
-            var info = new FileInfo(filePath);
-            if (info.Exists)
+            var moduleSoundsPath = TORPaths.TORArmoryModuleRootPath + "ModuleSounds/";
+            var soundFilePath = IOPath.Combine(moduleSoundsPath, audioName);
+            if (!IOPath.HasExtension(soundFilePath))
             {
-                if (info.Extension == ".ogg")
-                {
-                    if (!_registeredSounds.ContainsKey(info.Name))
-                    {
-                        _registeredSounds.Add(audioName, new CachedSound(filePath, audioName));
-                        return true;
-                    }
-                    return false;
-                }
-                else
-                {
-                    TORCommon.Log(string.Format("Sound file at path: {0} is not in the Ogg Vorbis file format.", filePath), NLog.LogLevel.Warn);
-                    return false;
-                }
+                soundFilePath += ".ogg";
             }
-            else
+
+            if (!File.Exists(soundFilePath) && IOPath.GetExtension(soundFilePath).Equals(".ogg", StringComparison.OrdinalIgnoreCase))
             {
-                TORCommon.Log(string.Format("Sound file at path: {0} not found.", filePath), NLog.LogLevel.Warn);
-                return false;
+                soundFilePath = IOPath.ChangeExtension(soundFilePath, ".wav");
+            }
+
+            if (!File.Exists(soundFilePath))
+            {
+                TORCommon.Log($"Sound file not found: {soundFilePath}", NLog.LogLevel.Warn);
+                return null;
+            }
+
+            return new TORModuleSound(audioName, soundFilePath, restartWhenFinished, volume, scene, is3D);
+        }
+
+        public static void Tick(float dt)
+        {
+            // managed audio wrappers missing completion callback
+            for (var index = _activeSounds.Count - 1; index >= 0; index--)
+            {
+                if (!_activeSounds[index].UpdatePlayback())
+                {
+                    _activeSounds.RemoveAt(index);
+                }
             }
         }
 
-        public static CachedSoundInstance CreateSoundInstance(string audioName, bool isLooping, float startingVolume)
+        public static void StopAll()
         {
-            var file = TORPaths.TORArmoryModuleRootPath + "ModuleSounds/" + audioName + ".ogg";
-            if (Instance._registeredSounds.ContainsKey(audioName))
+            var activeSounds = _activeSounds.ToArray();
+            foreach (var sound in activeSounds)
             {
-                return new CachedSoundInstance(Instance._registeredSounds[audioName], isLooping, startingVolume);
+                sound.Remove();
             }
-            if (Instance.RegisterSound(file, audioName))
+            _activeSounds.Clear();
+        }
+
+        internal static bool StartSound(TORModuleSound sound)
+        {
+            sound.ReleasePlayback();
+
+            var soundEvent = SoundEvent.CreateEventFromExternalFile(EXTERNAL_SOUND_EVENT, sound.FilePath, sound.Scene, sound.Is3D, isBlocking: false);
+            if (soundEvent == null || !soundEvent.IsValid)
             {
-                return new CachedSoundInstance(Instance._registeredSounds[audioName], isLooping, startingVolume);
+                TORCommon.Log($"Native audio event creation failed: {sound.AudioName} | path={sound.FilePath} | event={EXTERNAL_SOUND_EVENT} | 3d={sound.Is3D} | scene={(sound.Scene == null ? "none" : "set")}", NLog.LogLevel.Warn);
+                sound.MarkStopped();
+                return false;
             }
-            return null;
+
+            sound.AttachEvent(soundEvent);
+            if (sound.Is3D)
+            {
+                sound.ApplySpatialState();
+            }
+
+            if (!soundEvent.Play())
+            {
+                TORCommon.Log($"Native audio playback failed: {sound.AudioName} | path={sound.FilePath} | event={EXTERNAL_SOUND_EVENT} | 3d={sound.Is3D} | scene={(sound.Scene == null ? "none" : "set")}", NLog.LogLevel.Warn);
+                sound.ReleasePlayback();
+                sound.MarkStopped();
+                return false;
+            }
+
+            sound.MarkStarted();
+            if (!_activeSounds.Contains(sound))
+            {
+                _activeSounds.Add(sound);
+            }
+
+            return true;
+        }
+
+        internal static void StopSound(TORModuleSound sound)
+        {
+            sound.ReleasePlayback();
+            sound.MarkStopped();
+            _activeSounds.Remove(sound);
+        }
+    }
+
+    public sealed class TORModuleSound
+    {
+        private SoundEvent _soundEvent;
+        private bool _playbackRequested;
+        private Vec3 _position;
+        private float _range = 25f;
+
+        internal string FilePath { get; }
+        internal Scene Scene { get; }
+        internal bool Is3D { get; }
+        internal float Volume { get; }
+        public string AudioName { get; }
+        public bool RestartsWhenFinished { get; }
+        public bool IsPlaybackRequested => _playbackRequested;
+        public bool IsPlaying => _soundEvent != null && _soundEvent.IsValid && _soundEvent.IsPlaying();
+
+        internal TORModuleSound(string audioName, string filePath, bool restartWhenFinished, float volume, Scene scene, bool is3D)
+        {
+            AudioName = audioName;
+            FilePath = filePath;
+            RestartsWhenFinished = restartWhenFinished;
+            Volume = volume;
+            Scene = scene;
+            Is3D = is3D;
+        }
+
+        public bool Play()
+        {
+            return TORAudioManager.StartSound(this);
+        }
+
+        public void Remove()
+        {
+            TORAudioManager.StopSound(this);
+        }
+
+        public void SetPosition(Vec3 position, float range)
+        {
+            _position = position;
+            _range = range;
+            ApplySpatialState();
+        }
+
+        internal void AttachEvent(SoundEvent soundEvent)
+        {
+            _soundEvent = soundEvent;
+        }
+
+        internal void ApplySpatialState()
+        {
+            if (_soundEvent == null || !_soundEvent.IsValid)
+            {
+                return;
+            }
+
+            _soundEvent.SetPosition(_position);
+            _soundEvent.SetEventMinMaxDistance(new Vec3(1f, _range, 0f));
+        }
+
+        internal bool UpdatePlayback()
+        {
+            if (!_playbackRequested)
+            {
+                return false;
+            }
+
+            if (_soundEvent != null && _soundEvent.IsValid && !_soundEvent.IsStopped())
+            {
+                return true;
+            }
+
+            if (RestartsWhenFinished)
+            {
+                return TORAudioManager.StartSound(this);
+            }
+
+            ReleasePlayback();
+            MarkStopped();
+            return false;
+        }
+
+        internal void ReleasePlayback()
+        {
+            _soundEvent?.Release();
+            _soundEvent = null;
+        }
+
+        internal void MarkStarted()
+        {
+            _playbackRequested = true;
+        }
+
+        internal void MarkStopped()
+        {
+            _playbackRequested = false;
         }
     }
 }

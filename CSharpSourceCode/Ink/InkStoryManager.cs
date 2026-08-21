@@ -73,7 +73,6 @@ namespace TOR_Core.Ink
                 if (behavior != null)
                 {
                     var currentStory = behavior.CurrentStory;
-                    currentStory.CleanUp();
                     behavior.CloseStory();
                     if (_instance._action != null) _instance._action(currentStory);
                 }
