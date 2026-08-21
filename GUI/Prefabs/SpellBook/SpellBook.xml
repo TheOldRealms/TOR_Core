@@ -27,7 +27,7 @@
         <!--Top Panel-->
         <Widget VisualDefinition="TopPanel" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="755" SuggestedHeight="182" HorizontalAlignment="Center" PositionXOffset="60" PositionYOffset="-182" Sprite="StdAssets\tabbar_standart" ValueFactor="-30">
           <Children>
-            <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="18" Brush="Quest.CenterPanel.Title.Text" Brush.FontSize="45" Text="SpellBook" />
+            <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="18" Brush="Quest.CenterPanel.Title.Text" Brush.FontSize="45" Text="@SpellBookTitle" />
           </Children>
         </Widget>
 
@@ -44,7 +44,7 @@
                 <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" StackLayout.LayoutMethod="HorizontalRightToLeft">
                   <Children>
                     <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="30" SuggestedHeight="41" HorizontalAlignment="Left" VerticalAlignment="Top" Brush="NextCharacterButtonBrush" Command.Click="ExecuteSelectPreviousHero" />
-                    <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="5" Brush="Quest.CenterPanel.Title.Text" Brush.FontSize="24" Text="Spellcasting Stats" />
+                    <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="5" Brush="Quest.CenterPanel.Title.Text" Brush.FontSize="24" Text="@SpellcastingStats" />
                     <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="30" SuggestedHeight="41" HorizontalAlignment="Right" VerticalAlignment="Top" Brush="PreviousCharacterButtonBrush" Command.Click="ExecuteSelectNextHero" />
                   </Children>
                 </ListPanel>
@@ -146,7 +146,7 @@
         </ListPanel>
 
         <!--Close Screen Button-->
-        <Standard.DialogCloseButtons VisualDefinition="BottomMenu" HorizontalAlignment="Center" VerticalAlignment="Bottom" PositionYOffset="100" Parameter.DoneButtonAction="ExecuteClose" Parameter.DoneButtonText="Done" Parameter.ShowCancel="false" />
+        <Standard.DialogCloseButtons VisualDefinition="BottomMenu" HorizontalAlignment="Center" VerticalAlignment="Bottom" PositionYOffset="100" Parameter.DoneButtonAction="ExecuteClose" Parameter.DoneButtonText="@DoneLbl" Parameter.ShowCancel="false" />
 
       </Children>
     </Widget>

@@ -24,6 +24,9 @@ namespace TOR_Core.AbilitySystem.SpellBook
         private int _currentHeroIndex = 0;
         private bool _isTrainerMode;
         private string _trainerCulture;
+        private string _spellBookTitle;
+        private string _spellcastingStats;
+        private string _doneLbl;
 
         public SpellBookVM(Action closeAction, List<Hero> heroes, bool isTrainerMode, string trainerCulture)
         {
@@ -109,6 +112,9 @@ namespace TOR_Core.AbilitySystem.SpellBook
 
         public override void RefreshValues()
         {
+            SpellBookTitle = TORTextHelper.GetText("tor_spellbook_title", "SpellBook");
+            SpellcastingStats = TORTextHelper.GetText("tor_spellcasting_stat", "Spellcasting Stats");
+            DoneLbl = TORTextHelper.GetText("tor_spellbook_button", "Done");
             base.RefreshValues();
         }
 
@@ -147,6 +153,57 @@ namespace TOR_Core.AbilitySystem.SpellBook
         {
             CurrentLore.IsSelected = false;
             CurrentLore = loreObjectVM;
+        }
+
+        [DataSourceProperty]
+        public string SpellBookTitle
+        {
+            get
+            {
+                return _spellBookTitle;
+            }
+            set
+            {
+                if (value != _spellBookTitle)
+                {
+                    _spellBookTitle = value;
+                    base.OnPropertyChangedWithValue(value, "SpellBookTitle");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public string SpellcastingStats
+        {
+            get
+            {
+                return _spellcastingStats;
+            }
+            set
+            {
+                if (value != _spellcastingStats)
+                {
+                    _spellcastingStats = value;
+                    base.OnPropertyChangedWithValue(value, "SpellcastingStats");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public string DoneLbl
+        {
+            get
+            {
+                return _doneLbl;
+            }
+            set
+            {
+                if (value != _doneLbl)
+                {
+                    _doneLbl = value;
+                    base.OnPropertyChangedWithValue(value, "DoneLbl");
+                }
+            }
         }
 
         [DataSourceProperty]

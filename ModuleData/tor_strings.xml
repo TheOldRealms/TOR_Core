@@ -263,6 +263,26 @@
   <string id="tor_ability_effect_type.TacticalReposition" text="{=str_tor_ability_effect_type_tactical_reposition}Tactical Reposition" />
 
   <!-- SpellBook UI -->
+  <string id="tor_spellbook_title" text="{=str_tor_spellbook_title}SpellBook" />
+  <string id="tor_spellcasting_stat" text="{=str_tor_spellcasting_stat}Spellcasting Stats" />
+  <string id="tor_spell_stat_unfamiliar" text="{=str_tor_spell_stat_unfamiliar}Unfamiliar Lore" />
+  <string id="tor_spellbook_button" text="{=str_tor_spellbook_button}Done" />
+  <string id="tor_spell_learn_label" text="{=str_tor_spell_learn_label}Choose Lore" />
+  <string id="tor_spell_learn_descr" text="{=str_tor_spell_learn_descr}Choose a lore to specialize in." />
+  <string id="tor_choose_companion_spellcaster_label" text="{=str_tor_choose_companion_spellcaster_label}Choose Companion" />
+  <string id="tor_choose_companion_spellcaster_descr" text="{=str_tor_choose_companion_spellcaster_descr}Which companion should become a Spellcaster?" />
+  <string id="tor_spell_stat_name_fire" text="{=str_tor_spell_stat_name_fire}Lore of Fire" />
+  <string id="tor_spell_stat_name_light" text="{=str_tor_spell_stat_name_light}Lore of Light" />
+  <string id="tor_spell_stat_name_minor" text="{=str_tor_spell_stat_name_minor}Minor Magic" />
+  <string id="tor_spell_stat_name_beasts" text="{=str_tor_spell_stat_name_beasts}Lore of Beasts" />
+  <string id="tor_spell_stat_name_death" text="{=str_tor_spell_stat_name_death}Lore of Death" />
+  <string id="tor_spell_stat_name_heavens" text="{=str_tor_spell_stat_name_heavens}Lore of Heavens" />
+  <string id="tor_spell_stat_name_life" text="{=str_tor_spell_stat_name_life}Lore of Life" />
+  <string id="tor_spell_stat_name_metal" text="{=str_tor_spell_stat_name_metal}Lore of Metal" />
+  <string id="tor_spell_stat_name_necromancy" text="{=str_tor_spell_stat_name_necromancy}Necromancy" />
+  <string id="tor_spell_stat_name_high" text="{=str_tor_spell_stat_name_high}High Magic" />
+  <string id="tor_spell_stat_name_dark" text="{=str_tor_spell_stat_name_dark}Dark Magic" />
+  <string id="tor_spell_stat_name_big_waaagh" text="{=str_tor_spell_stat_name_big_waaagh}Da Big WAAAGH!" />
   <string id="tor_spellbook_hero_name" text="{=str_tor_spellbook_hero_name}Hero name: " />
   <string id="tor_spellbook_casting_level" text="{=str_tor_spellbook_casting_level}Spell casting level: " />
   <string id="tor_spellbook_max_wom" text="{=str_tor_spellbook_max_wom}Maximum Winds of Magic: " />
@@ -3143,6 +3163,8 @@
   <string id="tor_career_button_mercenary_not_tier5" text="{=str_tor_career_button_mercenary_not_tier5}Troop needs to reach tier 5 or higher." />
   <string id="tor_career_button_mercenary_wrong_culture" text="{=str_tor_career_button_mercenary_wrong_culture}Troop must be of your culture." />
   <string id="tor_waywatcher_select_arrows_text" text="{=str_tor_waywatcher_select_arrows_text}select magical arrows for this unit" />
+  <string id="tor_waywatcher_arrow_label" text="{=str_tor_waywatcher_arrow_label}Choose special arrows." />
+  <string id="tor_waywatcher_arrow_descr" text="{=str_tor_waywatcher_arrow_descr}Empower your ranged unit with a permanent magical effect." />
   <string id="tor_waywatcher_arrow_name.Swiftshiver" text="{=str_tor_waywatcher_arrow_name_swiftshiver}Swiftshiver Shards" />
   <string id="tor_waywatcher_arrow_name.Hagbane" text="{=str_tor_waywatcher_arrow_name_hagbane}Hagbane Tipps" />
   <string id="tor_waywatcher_arrow_name.Starfire" text="{=str_tor_waywatcher_arrow_name_starfire}Starfire Shafts" />
