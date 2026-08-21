@@ -60,7 +60,7 @@ namespace TOR_Core.Missions
         public override void OnMissionTick(float dt)
         {
             if (!IsConversationMission() || _missionConversationLogic == null) return;
-            if (!_conversationFired && !_battleStarted)
+            if (!_conversationFired && !_battleStarted)//Sly : if you hit the guy while out of sight, do you trigger _battleStarted = true and softlock the expected mission progression?
             {
                 foreach (Agent agent in Mission.Agents.Where(x => x.IsHuman && x != Agent.Main))
                 {

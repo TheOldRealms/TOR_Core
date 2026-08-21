@@ -192,6 +192,7 @@ namespace TOR_Core.Missions
         public static Mission OpenBrawlFightMission(Location location, TroopRoster playerSideTroops,
             TroopRoster enemyPartyRoster, int enemyPartySize, Action<BrawlMissionResult> onMissionEnd = null)
         {
+            //Sly : scene levels specify "civilian" so that the siege layer is not also loaded leading to conflicting states for objects like gates.
             return MissionState.OpenNew("BrawlFight", SandBoxMissions.CreateSandBoxMissionInitializerRecord(location.GetSceneName(3), "level_3 civilian", false, DecalAtlasGroup.All),
             (Mission mission) =>
                 [

@@ -37,13 +37,13 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         starter.AddGameMenuOption("shrine_menu", "pray", "{PRAY_TEXT}", PrayCondition, (args) => GameMenu.SwitchToMenu("shrine_menu_praying"));
         starter.AddGameMenuOption("shrine_menu", "defile", "{DEFILE_TEXT}", DefileCondition, (args) => GameMenu.SwitchToMenu("shrine_menu_defiling"));
         starter.AddGameMenuOption("shrine_menu", "loot", "{LOOT_TEXT}", LootCondition, (args) => GameMenu.SwitchToMenu("shrine_menu_looting"));
-        starter.AddGameMenuOption("shrine_menu", "donate", TORTextHelper.GetText("tor_custom_settlement_shrine_offering_label", "Give items as an offering"), DonationCondition, (args) => InventoryScreenHelper.OpenScreenAsInventory());//the xp calculation is performed in ReligionCampaignBehavior.OnItemsDiscarded
-        starter.AddGameMenuOption("shrine_menu", "leave", TORTextHelper.GetText("tor_custom_settlement_menu_leave", "Leave..."), delegate (MenuCallbackArgs args)
+        starter.AddGameMenuOption("shrine_menu", "donate", TORTextHelper.GetTextForNative("tor_custom_settlement_shrine_offering_label", "Give items as an offering"), DonationCondition, (args) => InventoryScreenHelper.OpenScreenAsInventory());//the xp calculation is performed in ReligionCampaignBehavior.OnItemsDiscarded
+        starter.AddGameMenuOption("shrine_menu", "leave", TORTextHelper.GetTextForNative("tor_custom_settlement_menu_leave", "Leave..."), delegate (MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Leave;
             return true;
         }, (MenuCallbackArgs args) => PlayerEncounter.Finish(true), true);
-        starter.AddWaitGameMenu("shrine_menu_praying", TORTextHelper.GetText("tor_shrine_praying_progress", "Praying..."), delegate (MenuCallbackArgs args)
+        starter.AddWaitGameMenu("shrine_menu_praying", TORTextHelper.GetTextForNative("tor_shrine_praying_progress", "Praying..."), delegate (MenuCallbackArgs args)
         {
             _startWaitTime = CampaignTime.Now;
             numberOfTroopsFromInteraction = 0;
@@ -51,7 +51,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             args.MenuContext.GameMenu.StartWait();
         }, null, PrayConsequence, PrayingTick, GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameMenu.MenuOverlayType.None, TORConstants.SHRINE_PRAYING_DURATION, GameMenu.MenuFlags.None, null);
         starter.AddGameMenu("shrine_menu_pray_result", "{PRAY_RESULT} {NEWLINE} {FOLLOWERS_RESULT}", PrayResultInit);
-        starter.AddGameMenuOption("shrine_menu_pray_result", "return_to_root", TORTextHelper.GetText("tor_shrine_continue", "Continue"), args =>
+        starter.AddGameMenuOption("shrine_menu_pray_result", "return_to_root", TORTextHelper.GetTextForNative("tor_shrine_continue", "Continue"), args =>
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Continue;
             return true;
@@ -78,14 +78,14 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             GameMenu.SwitchToMenu("shrine_menu");
 
         }, true);
-        starter.AddWaitGameMenu("shrine_menu_defiling", TORTextHelper.GetText("tor_shrine_defiling_progress", "Defiling the shrine..."), delegate (MenuCallbackArgs args)
+        starter.AddWaitGameMenu("shrine_menu_defiling", TORTextHelper.GetTextForNative("tor_shrine_defiling_progress", "Defiling the shrine..."), delegate (MenuCallbackArgs args)
         {
             _startWaitTime = CampaignTime.Now;
             PlayerEncounter.Current.IsPlayerWaiting = true;
             args.MenuContext.GameMenu.StartWait();
         }, null, DefileConsequence, DefilingTick, GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameMenu.MenuOverlayType.None, 4f, GameMenu.MenuFlags.None, null);
-        starter.AddGameMenu("shrine_menu_defile_result", TORTextHelper.GetText("tor_shrine_defile_result", "{DEFILE_RESULT_TEXT}"), DefileResultInit);
-        starter.AddGameMenuOption("shrine_menu_defile_result", "return_to_root", TORTextHelper.GetText("tor_shrine_continue", "Continue"), args =>
+        starter.AddGameMenu("shrine_menu_defile_result", TORTextHelper.GetTextForNative("tor_shrine_defile_result", "{DEFILE_RESULT_TEXT}"), DefileResultInit);
+        starter.AddGameMenuOption("shrine_menu_defile_result", "return_to_root", TORTextHelper.GetTextForNative("tor_shrine_continue", "Continue"), args =>
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Continue;
             return true;
@@ -94,14 +94,14 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             DefileResultConsequence();
             GameMenu.SwitchToMenu("shrine_menu");
         }, true);
-        starter.AddWaitGameMenu("shrine_menu_looting", TORTextHelper.GetText("tor_shrine_looting_progress", "Looting the shrine..."), delegate (MenuCallbackArgs args)
+        starter.AddWaitGameMenu("shrine_menu_looting", TORTextHelper.GetTextForNative("tor_shrine_looting_progress", "Looting the shrine..."), delegate (MenuCallbackArgs args)
         {
             _startWaitTime = CampaignTime.Now;
             PlayerEncounter.Current.IsPlayerWaiting = true;
             args.MenuContext.GameMenu.StartWait();
         }, null, LootConsequence, LootingTick, GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameMenu.MenuOverlayType.None, 4f, GameMenu.MenuFlags.None, null);
         starter.AddGameMenu("shrine_menu_loot_result", "{LOOT_RESULT_TEXT}", LootResultInit);
-        starter.AddGameMenuOption("shrine_menu_loot_result", "return_to_root", TORTextHelper.GetText("tor_shrine_continue", "Continue"), args =>
+        starter.AddGameMenuOption("shrine_menu_loot_result", "return_to_root", TORTextHelper.GetTextForNative("tor_shrine_continue", "Continue"), args =>
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Continue;
             return true;
@@ -441,6 +441,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
 
         var devotion = Hero.MainHero.GetDevotionLevelForReligion(heroReligion);
         if ((int)devotion < (int)DevotionLevel.Devoted) return;
+        bool isFanatic = devotion == DevotionLevel.Fanatic;
 
         var troop = component.Religion.ReligiousTroops.FirstOrDefault(x => x.IsBasicTroop && x.Occupation == Occupation.Soldier);
         if (troop == null) return;
@@ -457,6 +458,8 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             if (freeSlots < 1) break;
 
             var count = MBRandom.RandomInt(1, 4);
+
+            if (isFanatic) count *= 2;
 
             if (Hero.MainHero.HasCareerChoice("AxeOfGrimnirPassive4"))
             {

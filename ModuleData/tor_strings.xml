@@ -35,6 +35,9 @@
   <string id="tor_cc_growth.aserai" text="{=str_tor_cc_growth_aserai}After joining a tribe your biggest achievement was…" />
   <string id="tor_cc_profession.aserai" text="{=str_tor_cc_profession_aserai}Before leaving the tribe, you were one of the…" />
 
+  <!-- Cheats -->
+  <string id="tor_cheat_party_inspect" text="{=str_tor_cheat_party_inspect}[CHEAT] Let me inspect your party" />
+
   <!-- UI -->
   <string id="str_career_screen.title" text="{=str_tor_career_screen_title}Career" />
   <string id="str_career_screen.ability_title" text="{=str_tor_career_ability_title}Career Ability" />
@@ -260,6 +263,26 @@
   <string id="tor_ability_effect_type.TacticalReposition" text="{=str_tor_ability_effect_type_tactical_reposition}Tactical Reposition" />
 
   <!-- SpellBook UI -->
+  <string id="tor_spellbook_title" text="{=str_tor_spellbook_title}SpellBook" />
+  <string id="tor_spellcasting_stat" text="{=str_tor_spellcasting_stat}Spellcasting Stats" />
+  <string id="tor_spell_stat_unfamiliar" text="{=str_tor_spell_stat_unfamiliar}Unfamiliar Lore" />
+  <string id="tor_spellbook_button" text="{=str_tor_spellbook_button}Done" />
+  <string id="tor_spell_learn_label" text="{=str_tor_spell_learn_label}Choose Lore" />
+  <string id="tor_spell_learn_descr" text="{=str_tor_spell_learn_descr}Choose a lore to specialize in." />
+  <string id="tor_choose_companion_spellcaster_label" text="{=str_tor_choose_companion_spellcaster_label}Choose Companion" />
+  <string id="tor_choose_companion_spellcaster_descr" text="{=str_tor_choose_companion_spellcaster_descr}Which companion should become a Spellcaster?" />
+  <string id="tor_spell_stat_name_fire" text="{=str_tor_spell_stat_name_fire}Lore of Fire" />
+  <string id="tor_spell_stat_name_light" text="{=str_tor_spell_stat_name_light}Lore of Light" />
+  <string id="tor_spell_stat_name_minor" text="{=str_tor_spell_stat_name_minor}Minor Magic" />
+  <string id="tor_spell_stat_name_beasts" text="{=str_tor_spell_stat_name_beasts}Lore of Beasts" />
+  <string id="tor_spell_stat_name_death" text="{=str_tor_spell_stat_name_death}Lore of Death" />
+  <string id="tor_spell_stat_name_heavens" text="{=str_tor_spell_stat_name_heavens}Lore of Heavens" />
+  <string id="tor_spell_stat_name_life" text="{=str_tor_spell_stat_name_life}Lore of Life" />
+  <string id="tor_spell_stat_name_metal" text="{=str_tor_spell_stat_name_metal}Lore of Metal" />
+  <string id="tor_spell_stat_name_necromancy" text="{=str_tor_spell_stat_name_necromancy}Necromancy" />
+  <string id="tor_spell_stat_name_high" text="{=str_tor_spell_stat_name_high}High Magic" />
+  <string id="tor_spell_stat_name_dark" text="{=str_tor_spell_stat_name_dark}Dark Magic" />
+  <string id="tor_spell_stat_name_big_waaagh" text="{=str_tor_spell_stat_name_big_waaagh}Da Big WAAAGH!" />
   <string id="tor_spellbook_hero_name" text="{=str_tor_spellbook_hero_name}Hero name: " />
   <string id="tor_spellbook_casting_level" text="{=str_tor_spellbook_casting_level}Spell casting level: " />
   <string id="tor_spellbook_max_wom" text="{=str_tor_spellbook_max_wom}Maximum Winds of Magic: " />
@@ -670,6 +693,7 @@
   <string id="tor_learned_enchantment_text" text="{=str_tor_learned_enchantment_text}{HERO_NAME} learned the enchantment {ENCHANTMENT_NAME}" />
   <string id="tor_enchant_prompt_donate_items.title" text="{=str_tor_enchant_prompt_donate_items_title}Donate items" />
   <string id="tor_enchant_prompt_donate_items.text" text="{=str_tor_enchant_prompt_donate_items_text}Select the items you want to donate. You will obtain {CUSTOMRESOURCE_ICON} from this action. " />
+  <string id="tor_enchant_no_description" text="{=str_tor_enchant_no_description}No description available." />
 
   <!-- EMPIRE (empire) - Imperial Alchemist dialogs -->
   <string id="tor_enchanter_start_p.empire" text="{=str_tor_enchanter_start_p_empire}I wish to learn about enchantment." />
@@ -1007,6 +1031,14 @@
   <string id="tor_dw_guildmaster_engineer_hub_buy_weapons_shop_p" text="{=str_tor_dw_guildmaster_engineer_hub_buy_weapons_shop_p}Can the Guild share some of its inventions?" />
   <string id="tor_dw_guildmaster_engineer_buy_weapons_shop" text="{=str_tor_dw_guildmaster_engineer_buy_weapons_shop}Very well. Here is what we were recently working on." />
   <string id="tor_dw_oathgold.time_since_visit" text="{=str_tor_dw_oathgold_time_since_visit}Time since last benefits provided" />
+  <string id="tor_dw_oathgold.time_days_value" text="{=str_tor_dw_oathgold_time_days_value}{EFFECT_VALUE} days" />
+  <string id="tor_dw_oathgold.time_value" text="{=str_tor_dw_oathgold_time_value}&gt;{EFFECT_VALUE} weeks ago" />
+  <string id="tor_dw_guild_relationship.unknown" text="{=str_tor_dw_guild_relationship_unknown}Unknown" />
+  <string id="tor_dw_guild_relationship.trustworthy" text="{=str_tor_dw_guild_relationship_trustworthy}Trustworthy" />
+  <string id="tor_dw_guild_relationship.reliable" text="{=str_tor_dw_guild_relationship_reliable}Reliable" />
+  <string id="tor_dw_guild_relationship.respected" text="{=str_tor_dw_guild_relationship_respected}Respected" />
+  <string id="tor_dw_oath_gold_spending_title_text" text="{=str_tor_dw_guild_donate_oathgold_label}Spend Oath Gold" />
+  <string id="tor_dw_oath_gold_spending_description_text" text="{=str_tor_dw_guild_donate_oathgold_description}Select how much Oath Gold you want to spend" />
   <string id="tor_dw_engineer_benefit.title" text="{=str_tor_dw_engineer_benefit_title}Engineers" />
   <string id="tor_dw_engineer_benefit.description" text="{=str_tor_dw_engineer_benefit_description}Access to ranged weapons and artillery, reduce gunmen and Irondrake upgrade costs." />
   <string id="tor_dw_engineer_benefit.arsenal" text="{=str_tor_dw_engineer_benefit_arsenal}Entire arsenal" />
@@ -3131,6 +3163,8 @@
   <string id="tor_career_button_mercenary_not_tier5" text="{=str_tor_career_button_mercenary_not_tier5}Troop needs to reach tier 5 or higher." />
   <string id="tor_career_button_mercenary_wrong_culture" text="{=str_tor_career_button_mercenary_wrong_culture}Troop must be of your culture." />
   <string id="tor_waywatcher_select_arrows_text" text="{=str_tor_waywatcher_select_arrows_text}select magical arrows for this unit" />
+  <string id="tor_waywatcher_arrow_label" text="{=str_tor_waywatcher_arrow_label}Choose special arrows." />
+  <string id="tor_waywatcher_arrow_descr" text="{=str_tor_waywatcher_arrow_descr}Empower your ranged unit with a permanent magical effect." />
   <string id="tor_waywatcher_arrow_name.Swiftshiver" text="{=str_tor_waywatcher_arrow_name_swiftshiver}Swiftshiver Shards" />
   <string id="tor_waywatcher_arrow_name.Hagbane" text="{=str_tor_waywatcher_arrow_name_hagbane}Hagbane Tipps" />
   <string id="tor_waywatcher_arrow_name.Starfire" text="{=str_tor_waywatcher_arrow_name_starfire}Starfire Shafts" />
@@ -5522,6 +5556,7 @@
   <string id="tor_gs_quartermaster_owner_intro_text" text="{=str_tor_gs_quartermaster_owner_intro_text}Oi, Boss, youz got sum loot fer da pile?" />
   <string id="tor_gs_quartermaster_owner_anything_else_text" text="{=str_tor_gs_quartermaster_owner_anything_else_text}Iz dere more, Boss?" />
   <string id="tor_gs_quartermaster_make_teefbags_option_text" text="{=str_tor_gs_quartermaster_make_teefbags_option_text}Make Teefbags" />
+  <string id="tor_gs_give_items_to_boss_text" text="{=str_tor_gs_quartermaster_inventory_menu}Give Items to the Big Boss" />
   <string id="tor_dw_shop_show_goods_text" text="{=str_tor_dw_shop_show_goods_text}Very well, take a look at our inventions." />
   <string id="tor_dw_engineer_buy_weapons_text" text="{=str_tor_dw_engineer_buy_weapons_text}I need better gear, Master Engineer." />
   <string id="tor_dw_quit_text" text="{=str_tor_dw_quit_text}That will be all." />

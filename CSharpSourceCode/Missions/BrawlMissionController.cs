@@ -58,7 +58,7 @@ public class BrawlMissionController : MissionLogic, IMissionAgentSpawnLogic
         
         Mission.SetMissionMode(MissionMode.StartUp, true);
         Mission.IsInventoryAccessible = false;
-        Mission.IsQuestScreenAccessible = true;
+        Mission.IsQuestScreenAccessible = false;
         Mission.DoesMissionRequireCivilianEquipment = false;
 
         CollectSpawnFrames();
@@ -321,6 +321,7 @@ public class BrawlMissionController : MissionLogic, IMissionAgentSpawnLogic
 
     public override bool MissionEnded(ref MissionResult missionResult)
     {
+        //Sly : if the player goes down and their companions win the brawl, they are considered as losing?
         if (Agent.Main == null || !Agent.Main.IsActive())
         {
             missionResult = MissionResult.CreateDefeated(Mission);

@@ -28,6 +28,27 @@ namespace TOR_Core.HarmonyPatches
             return orderOwner != null && orderOwner.CurrentSettlement != null && orderOwner.Occupation != Occupation.Special && !orderOwner.IsAICompanion();
         }
 
+        // vanilla needs at least 4 lords in a clan to generate quests, locking small clans like eonir out of this.
+        [HarmonyTranspiler]
+        [HarmonyPatch(typeof(IssuesCampaignBehavior), "DailyTickClan")]
+        public static IEnumerable<CodeInstruction> AllowClanIssuesForSmallClans(IEnumerable<CodeInstruction> instructions)
+        {
+            var codes = new List<CodeInstruction>(instructions);
+            var floorMethod = AccessTools.Method(typeof(TaleWorlds.Library.MathF), nameof(TaleWorlds.Library.MathF.Floor), new[] { typeof(float) });
+            var floorIndex = codes.FindIndex(x => x.Calls(floorMethod));
+
+            codes[floorIndex].operand = AccessTools.Method(typeof(BaseGameDebugPatches), nameof(GetMaxClanNobleIssueCount));
+
+            return codes.AsEnumerable();
+        }
+
+        private static int GetMaxClanNobleIssueCount(float maxIssueCount)
+        {
+            var issueCount = TaleWorlds.Library.MathF.Floor(maxIssueCount);
+
+            return issueCount == 0 && maxIssueCount > 0f ? 1 : issueCount;
+        }
+
         [HarmonyPrefix]
         [HarmonyPatch(typeof(TroopRoster), "EnsureLength")]
         public static bool EnsureLengthProper(int length, ref TroopRosterElement[] ___data, int ____count)

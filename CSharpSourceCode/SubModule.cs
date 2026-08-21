@@ -329,6 +329,12 @@ namespace TOR_Core
             if (Game.Current.GameType is Campaign)
             {
                 mission.AddMissionBehavior(new CareerPerkMissionBehavior());
+
+                if (mission.GetMissionBehavior<CampaignSiegeStateHandler>()?.IsSiege == true)
+                {
+                    mission.AddMissionBehavior(new SiegeEarlyVictoryMissionLogic());
+                }
+
                 if (mission.GetMissionBehavior<BattleAgentLogic>() != null)
                 {
                     mission.RemoveMissionBehavior(mission.GetMissionBehavior<BattleAgentLogic>());

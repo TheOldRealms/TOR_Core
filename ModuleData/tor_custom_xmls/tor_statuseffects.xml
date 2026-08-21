@@ -1688,6 +1688,16 @@
 	</StatusEffectTemplate>
 
 	<StatusEffectTemplate
+		id="eonir_toriour_grace_enchant_ats"
+		particle_id="courage_of_aenarion"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.04"
+		applies_for_attack_type="All"
+		type="AttackSpeedManipulation"
+		damage_type="Magical">
+	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
 		id="beast_crow_enchant_debuff"
 		particle_id="flock_of_doom"
 		do_not_attach_to_agent_skeleton="true"

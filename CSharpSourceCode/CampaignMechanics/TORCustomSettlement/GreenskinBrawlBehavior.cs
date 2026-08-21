@@ -186,6 +186,7 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
             playerRoster.AddToCounts(hero.CharacterObject, 1);
             enemyPartySize += 5;
         }
+        //Sly : why is this pulling from the militia party when the condition to start a brawl checks the garrison party?
         var completeRoster = Settlement.CurrentSettlement.MilitiaPartyComponent.MobileParty.MemberRoster;
         var enemyRoster = TroopRoster.CreateDummyTroopRoster();
 
@@ -226,7 +227,7 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
             }
         }
 
-        TroopRoster playerSideTroops = playerRoster;
+        TroopRoster playerSideTroops = playerRoster;//Sly : why is this passed then not used and the list is rebuilt?
         TroopRoster rivalSideTroops = enemyRoster;
 
         _lastTroopRoster = rivalSideTroops;
@@ -255,6 +256,9 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
         }
     }
 
+    /// <remarks>
+    /// Menu.RunOnInit runs once when the mission ends, and again when exiting the mission to go back to the map. Calculations can be fine if they run twice, but actions like granting gold shouldn't be performed to prevent duplication.
+    /// </remarks>>
     private void CalculateWinResult(MenuCallbackArgs args)
     {
         var text = GameTexts.FindText("tor_greenskin_brawl_victory_desc");

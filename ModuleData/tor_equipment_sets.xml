@@ -38375,285 +38375,507 @@
       <Equipment slot="Item0" id="Item.battania_axe_2_t4" />
       <Equipment slot="Item1" id="Item.northern_round_shield" />
       <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.battanian_leather_shoulder_a" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpad_001" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_bracers_marauder_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.battania_axe_2_t4" />
       <Equipment slot="Item1" id="Item.northern_round_shield" />
       <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.battanian_leather_shoulder_a" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpad_001" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_bracers_marauder_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.battania_axe_2_t4" />
       <Equipment slot="Item1" id="Item.northern_round_shield" />
       <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.battanian_leather_shoulder_a" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpad_001" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_bracers_marauder_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.battania_axe_2_t4" />
       <Equipment slot="Item1" id="Item.northern_round_shield" />
       <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.battanian_leather_shoulder_a" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpad_001" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_bracers_marauder_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
+      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_002" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_necklace_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
+      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_002" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_necklace_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
+    </EquipmentSet>
+    <EquipmentSet equipmentType="Civilian">
+      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
+      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_002" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_necklace_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
+    </EquipmentSet>
+    <EquipmentSet equipmentType="Civilian" civilian="true">
+      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
+      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_002" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_necklace_001" />
       <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
-      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.stitched_leather_shoulders" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
+      <Equipment slot="Item0" id="Item.battania_axe_2_t4" />
+      <Equipment slot="Item1" id="Item.northern_round_shield" />
+      <Equipment slot="Body" id="Item.tor_chaos_body_armor_marauder_001" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_fur_marauder_001" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_bracers_marauder_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
-      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.stitched_leather_shoulders" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
+      <Equipment slot="Item0" id="Item.battania_axe_2_t4" />
+      <Equipment slot="Item1" id="Item.northern_round_shield" />
+      <Equipment slot="Body" id="Item.tor_chaos_body_armor_marauder_001" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_fur_marauder_001" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_bracers_marauder_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
-      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
-      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.stitched_leather_shoulders" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
+      <Equipment slot="Item0" id="Item.battania_axe_2_t4" />
+      <Equipment slot="Item1" id="Item.northern_round_shield" />
+      <Equipment slot="Body" id="Item.tor_chaos_body_armor_marauder_001" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_fur_marauder_001" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_bracers_marauder_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
-      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
-      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.stitched_leather_shoulders" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.bone_crusher_mace_t3" />
-      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.bone_crusher_mace_t3" />
-      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
-    </EquipmentSet>
-    <EquipmentSet equipmentType="Civilian">
-      <Equipment slot="Item0" id="Item.bone_crusher_mace_t3" />
-      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
-    </EquipmentSet>
-    <EquipmentSet equipmentType="Civilian" civilian="true">
-      <Equipment slot="Item0" id="Item.bone_crusher_mace_t3" />
-      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
+      <Equipment slot="Item0" id="Item.battania_axe_2_t4" />
+      <Equipment slot="Item1" id="Item.northern_round_shield" />
+      <Equipment slot="Body" id="Item.tor_chaos_body_armor_marauder_001" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_fur_marauder_001" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_bracers_marauder_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_beast_gor_foerender_template" culture="Culture.steppe_bandits">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
-      <Equipment slot="Item1" id="Item.strapped_round_shield" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_necklace_001" />
+      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
+      <Equipment slot="Item1" id="Item.northern_round_shield" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_helm_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_002" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpad_001" />
       <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
-      <Equipment slot="Item1" id="Item.strapped_round_shield" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_necklace_001" />
+      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
+      <Equipment slot="Item1" id="Item.northern_round_shield" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_helm_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_002" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpad_001" />
       <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
-      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
-      <Equipment slot="Item1" id="Item.strapped_round_shield" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_necklace_001" />
+      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
+      <Equipment slot="Item1" id="Item.northern_round_shield" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_helm_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_002" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpad_001" />
       <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
-      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
-      <Equipment slot="Item1" id="Item.strapped_round_shield" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_necklace_001" />
+      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
+      <Equipment slot="Item1" id="Item.northern_round_shield" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_helm_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_002" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpad_001" />
       <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.battania_axe_2_t4" />
-      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.battanian_leather_shoulder_a" />
+      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
+      <Equipment slot="Item1" id="Item.strapped_round_shield" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_002" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpad_001" />
       <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.battania_axe_2_t4" />
-      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.battanian_leather_shoulder_a" />
+      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
+      <Equipment slot="Item1" id="Item.strapped_round_shield" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_002" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpad_001" />
       <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
-      <Equipment slot="Item0" id="Item.battania_axe_2_t4" />
-      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.battanian_leather_shoulder_a" />
+      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
+      <Equipment slot="Item1" id="Item.strapped_round_shield" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_002" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpad_001" />
       <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
-      <Equipment slot="Item0" id="Item.battania_axe_2_t4" />
-      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.battanian_leather_shoulder_a" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
-      <Equipment slot="Item1" id="Item.northern_round_shield" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.stitched_leather_shoulders" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
-      <Equipment slot="Item1" id="Item.northern_round_shield" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.stitched_leather_shoulders" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
-    </EquipmentSet>
-    <EquipmentSet equipmentType="Civilian">
-      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
-      <Equipment slot="Item1" id="Item.northern_round_shield" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.stitched_leather_shoulders" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
-    </EquipmentSet>
-    <EquipmentSet equipmentType="Civilian" civilian="true">
-      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
-      <Equipment slot="Item1" id="Item.northern_round_shield" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.stitched_leather_shoulders" />
+      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
+      <Equipment slot="Item1" id="Item.strapped_round_shield" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_002" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpad_001" />
       <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.bone_crusher_mace_t3" />
       <Equipment slot="Item1" id="Item.strapped_round_shield" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_helm_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_002" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpad_001" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_bracers_marauder_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.bone_crusher_mace_t3" />
       <Equipment slot="Item1" id="Item.strapped_round_shield" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_helm_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_002" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpad_001" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_bracers_marauder_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.bone_crusher_mace_t3" />
       <Equipment slot="Item1" id="Item.strapped_round_shield" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_helm_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_002" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpad_001" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_bracers_marauder_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.bone_crusher_mace_t3" />
       <Equipment slot="Item1" id="Item.strapped_round_shield" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_helm_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_002" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpad_001" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_bracers_marauder_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.battania_axe_2_t4" />
+      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_002" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_fur_marauder_001" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_bracers_marauder_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.battania_axe_2_t4" />
+      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_002" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_fur_marauder_001" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_bracers_marauder_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
+    </EquipmentSet>
+    <EquipmentSet equipmentType="Civilian">
+      <Equipment slot="Item0" id="Item.battania_axe_2_t4" />
+      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_002" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_fur_marauder_001" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_bracers_marauder_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
+    </EquipmentSet>
+    <EquipmentSet equipmentType="Civilian" civilian="true">
+      <Equipment slot="Item0" id="Item.battania_axe_2_t4" />
+      <Equipment slot="Item1" id="Item.sturgia_old_shield_b" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_002" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_fur_marauder_001" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_bracers_marauder_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_beast_gor_manripper_template" culture="Culture.steppe_bandits">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.sturgia_2haxe_2_t5" />
-      <Equipment slot="Head" id="Item.tor_chaos_head_hat_chaos_cultist_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_fur_marauder_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.sturgia_2haxe_2_t5" />
-      <Equipment slot="Head" id="Item.tor_chaos_head_hat_chaos_cultist_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_fur_marauder_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.sturgia_2haxe_2_t5" />
-      <Equipment slot="Head" id="Item.tor_chaos_head_hat_chaos_cultist_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_fur_marauder_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.sturgia_2haxe_2_t5" />
-      <Equipment slot="Head" id="Item.tor_chaos_head_hat_chaos_cultist_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_fur_marauder_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
+      <Equipment slot="Item1" id="Item.northern_round_shield" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
+      <Equipment slot="Item1" id="Item.northern_round_shield" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
+    </EquipmentSet>
+    <EquipmentSet equipmentType="Civilian">
+      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
+      <Equipment slot="Item1" id="Item.northern_round_shield" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
+    </EquipmentSet>
+    <EquipmentSet equipmentType="Civilian" civilian="true">
+      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
+      <Equipment slot="Item1" id="Item.northern_round_shield" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.sturgia_2haxe_2_t5" />
-      <Equipment slot="Head" id="Item.tor_chaos_head_hat_chaos_cultist_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_fur_marauder_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_helm_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.sturgia_2haxe_2_t5" />
-      <Equipment slot="Head" id="Item.tor_chaos_head_hat_chaos_cultist_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_fur_marauder_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_helm_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.sturgia_2haxe_2_t5" />
-      <Equipment slot="Head" id="Item.tor_chaos_head_hat_chaos_cultist_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_fur_marauder_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_helm_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.sturgia_2haxe_2_t5" />
-      <Equipment slot="Head" id="Item.tor_chaos_head_hat_chaos_cultist_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
-      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_fur_marauder_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_helm_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
+      <Equipment slot="Item1" id="Item.strapped_round_shield" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_fur_marauder_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
+      <Equipment slot="Item1" id="Item.strapped_round_shield" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_fur_marauder_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
+    </EquipmentSet>
+    <EquipmentSet equipmentType="Civilian">
+      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
+      <Equipment slot="Item1" id="Item.strapped_round_shield" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_fur_marauder_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
+    </EquipmentSet>
+    <EquipmentSet equipmentType="Civilian" civilian="true">
+      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
+      <Equipment slot="Item1" id="Item.strapped_round_shield" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_fur_marauder_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_beast_gor_gougehorn_template" culture="Culture.steppe_bandits">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
+    </EquipmentSet>
+    <EquipmentSet equipmentType="Civilian">
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
+    </EquipmentSet>
+    <EquipmentSet equipmentType="Civilian" civilian="true">
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
+    </EquipmentSet>
+    <EquipmentSet equipmentType="Civilian">
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
+    </EquipmentSet>
+    <EquipmentSet equipmentType="Civilian" civilian="true">
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_chaos_weapon_sword_001" />
+      <Equipment slot="Item1" id="Item.northern_round_shield" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_chaos_weapon_sword_001" />
+      <Equipment slot="Item1" id="Item.northern_round_shield" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
+    </EquipmentSet>
+    <EquipmentSet equipmentType="Civilian">
+      <Equipment slot="Item0" id="Item.tor_chaos_weapon_sword_001" />
+      <Equipment slot="Item1" id="Item.northern_round_shield" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
+    </EquipmentSet>
+    <EquipmentSet equipmentType="Civilian" civilian="true">
+      <Equipment slot="Item0" id="Item.tor_chaos_weapon_sword_001" />
+      <Equipment slot="Item1" id="Item.northern_round_shield" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
+    </EquipmentSet>
+    <EquipmentSet equipmentType="Civilian">
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
+    </EquipmentSet>
+    <EquipmentSet equipmentType="Civilian" civilian="true">
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_beast_minotaur_template" culture="Culture.steppe_bandits">

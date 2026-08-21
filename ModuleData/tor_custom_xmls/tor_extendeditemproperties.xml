@@ -130,6 +130,13 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_head_helm_kotww_miracle_001" RaceLock="human">
+    <ItemTraits>
+      <ItemTrait>phys_res_20</ItemTrait>
+      <ItemTrait>emp_blessing_ulric_white_wolf_helmet</ItemTrait>
+    </ItemTraits>
+    <Description />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_head_helm_lion_001" RaceLock="human">
     <ItemTraits />
     <Description />
@@ -1608,10 +1615,22 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_bestigor_shoulderpads_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>  
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_shoulder_necklace_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_shoulder_shoulderpad_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_shoulder_shoulderpads_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>  
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_necklace_minotaur_001" RaceLock="minotaur">
     <ItemTraits />
     <Description />
@@ -2452,10 +2471,22 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_body_armour_bestigor_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>  
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_body_armour_gor_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_body_armour_gor_002" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>  
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_bestigor_facemask_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>   
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_helm_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
@@ -2870,6 +2901,10 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_arm_bracers_bestigor_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>  
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_arm_bracers_gor_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
@@ -3512,6 +3547,10 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_legs_bestigor_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>  
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_legs_gor_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
@@ -3967,6 +4006,14 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_rapier_005">
     <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_axe_kotww_miracle_001">
+    <ItemTraits>
+      <ItemTrait>emp_blessing_ulric_white_wolf_axe</ItemTrait>
+    </ItemTraits>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -6901,6 +6948,60 @@
   <ExtendedItemObjectProperties ItemStringId="tor_learn_eo_enchant_sanctuary_saphery">
     <ItemTraits>
       <ItemTrait>learn_eo_enchant_sanctuary_saphery</ItemTrait>
+    </ItemTraits>
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_learn_eo_enchant_sarriel_whisper">
+    <ItemTraits>
+      <ItemTrait>learn_eo_enchant_sarriel_whisper</ItemTrait>
+    </ItemTraits>
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_learn_eo_enchant_anvil_vaul">
+    <ItemTraits>
+      <ItemTrait>learn_eo_enchant_anvil_vaul</ItemTrait>
+    </ItemTraits>
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_learn_eo_enchant_veil_ladrielle">
+    <ItemTraits>
+      <ItemTrait>learn_eo_enchant_veil_ladrielle</ItemTrait>
+    </ItemTraits>
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_learn_eo_enchant_daroir_soulgem">
+    <ItemTraits>
+      <ItemTrait>learn_eo_enchant_daroir_soulgem</ItemTrait>
+    </ItemTraits>
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_learn_eo_enchant_silver_tower_eyes">
+    <ItemTraits>
+      <ItemTrait>learn_eo_enchant_silver_tower_eyes</ItemTrait>
+    </ItemTraits>
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_learn_eo_enchant_soulbound_shafts">
+    <ItemTraits>
+      <ItemTrait>learn_eo_enchant_soulbound_shafts</ItemTrait>
+    </ItemTraits>
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_learn_eo_enchant_blood_aenarion">
+    <ItemTraits>
+      <ItemTrait>learn_eo_enchant_blood_aenarion</ItemTrait>
+    </ItemTraits>
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_learn_eo_enchant_blood_aenarion_melee">
+    <ItemTraits>
+      <ItemTrait>learn_eo_enchant_blood_aenarion_melee</ItemTrait>
+    </ItemTraits>
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_learn_eo_enchant_grace_toriour">
+    <ItemTraits>
+      <ItemTrait>learn_eo_enchant_grace_toriour</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
