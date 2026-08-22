@@ -5896,7 +5896,7 @@
       <tag tag_name="IsOrcTag" />
     </tags>
   </string>
-  <string id="gfmU4wiM.tavernkeeper_companion_info_tavernkeeper_found_answer_companion_is_outside_1_orc" text="{=str_tor_tavernkeeper_companion_info_tavernkeeper_found_answer_companion_is_outside_1_orc}Oi, I know dat! Dat git ova there iz INQUIRY_COMPANION.LINK}, dey soundz like 'oo ya want!">
+  <string id="gfmU4wiM.tavernkeeper_companion_info_tavernkeeper_found_answer_companion_is_outside_1_orc" text="{=str_tor_tavernkeeper_companion_info_tavernkeeper_found_answer_companion_is_outside_1_orc}Oi, I know dat! Dat git ova there iz {INQUIRY_COMPANION.LINK}, dey soundz like 'oo ya want!">
     <tags>
       <tag tag_name="IsOrcTag" />
     </tags>
