@@ -435,6 +435,7 @@
     <Compile Include="BattleMechanics\AI\TeamAI\FormationBehavior\TORFormationClass.cs" />
     <Compile Include="BattleMechanics\AI\TeamAI\TeamBehavior\Tactics\TORTacticPositionalArtillery.cs" />
     <Compile Include="BattleMechanics\AI\TeamAI\TeamBehavior\TORTeamAIGeneral.cs" />
+    <Compile Include="BattleMechanics\AI\AIKickAgentComponent.cs" />
     <Compile Include="BattleMechanics\AI\TeamAI\TORMissionCombatantsLogic.cs" />
     <Compile Include="BattleMechanics\Artillery\ArtilleryRangedSiegeWeapon.cs" />
     <Compile Include="BattleMechanics\Artillery\ArtilleryStandingPoint.cs" />
@@ -460,7 +461,7 @@
     <Compile Include="BattleMechanics\TORMonsterSiegeLogic.cs" />
     <Compile Include="BattleMechanics\Voice\AgentVoiceComponent.cs" />
     <Compile Include="BattleMechanics\Voice\BattleShoutsMissionLogic.cs" />
-    <Compile Include="BattleMechanics\Morale\AddAgentComponentsMissionLogic.cs" />
+    <Compile Include="BattleMechanics\AddAgentComponentsMissionLogic.cs" />
     <Compile Include="BattleMechanics\Morale\UndeadMoraleAgentComponent.cs" />
     <Compile Include="BattleMechanics\SFX\PlayerFlyableObjectScript.cs" />
     <Compile Include="BattleMechanics\SFX\TORFaceEnemy.cs" />
