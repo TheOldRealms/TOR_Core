@@ -5367,7 +5367,7 @@
       <tag tag_name="PlayerIsOrcTag" />
     </tags>
   </string>
-  <string id="nMn63bV1.prison_break_player_meet_dwarf" text="{=str_tor_prison_break_player_meet_dwarf}I'm {PLAYER.NAME]} and you ought to remember the debt you owe me now. {newline}Tell me, what's yer plan, now?">
+  <string id="nMn63bV1.prison_break_player_meet_dwarf" text="{=str_tor_prison_break_player_meet_dwarf}I'm {PLAYER.NAME} and you ought to remember the debt you owe me now. {newline}Tell me, what's yer plan, now?">
     <tags>
       <tag tag_name="PlayerIsDwarfTag" />
     </tags>
