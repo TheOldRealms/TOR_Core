@@ -1,18 +1,12 @@
-using Ink.Parsed;
 using NLog;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
-using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.ObjectSystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
-using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
-using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
@@ -105,7 +99,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
             var frenzyMovementEffectId = "frenzy_movement_speed";
             var frenzyAttackSpeedEffectId = "frenzy_attack_speed";
-            var frenzyActiveEffectId = "trait_frenzy_active";
+            var frenzyActiveEffectId = "frenzy_active";
             var maxFrenzyStacks = 5;
             var frenzyStackDuration = 40f;
 
@@ -153,13 +147,13 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             switch (agent.GetRegenerationTier())
             {
                 case 3:
-                    CareerHelper.AddDefaultPermanentMissionEffect(agent, "regeneration3");
+                    agent.ApplyStatusEffect("regeneration3", agent, 99999);
                     break;
                 case 2:
-                    CareerHelper.AddDefaultPermanentMissionEffect(agent, "regeneration2");
+                    agent.ApplyStatusEffect("regeneration2", agent, 99999);
                     break;
                 case 1:
-                    CareerHelper.AddDefaultPermanentMissionEffect(agent, "regeneration");
+                    agent.ApplyStatusEffect("regeneration", agent, 99999);
                     break;
             }
 

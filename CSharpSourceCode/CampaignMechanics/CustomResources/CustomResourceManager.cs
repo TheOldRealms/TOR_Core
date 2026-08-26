@@ -1,15 +1,10 @@
 using Helpers;
-using SandBox;
 using SandBox.GauntletUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.CampaignSystem.CampaignBehaviors;
-using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.Issues;
 using TaleWorlds.CampaignSystem.MapEvents;
@@ -21,11 +16,8 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
-using TaleWorlds.MountAndBlade;
 using TaleWorlds.ScreenSystem;
-using TaleWorlds.TwoDimension;
 using TOR_Core.CharacterDevelopment;
-using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.UI;
@@ -881,9 +873,16 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 }
             }
 
+            bool isLootScreen = activePartyState?.PartyScreenMode == PartyScreenMode.Loot;
+            bool isDiscardScreen = activePartyState?.PartyScreenMode == PartyScreenMode.Normal && partyScreenLogic?.LeftOwnerParty == null;
+            if (!isLootScreen && !isDiscardScreen)
+            {
+                RefreshPartyUpgradeResourceState(partyVm);
+                return;
+            }
+
             int sign = fromSide == PartyScreenLogic.PartyRosterSide.Left ? 1 : -1;
             var explainedNumber = new ExplainedNumber();
-            bool isLootScreen = activePartyState?.PartyScreenMode == PartyScreenMode.Loot;
 
             if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
             {

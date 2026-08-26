@@ -3,20 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
-using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.SpellCasting;
 using TOR_Core.AbilitySystem.Spells;
-using TOR_Core.BattleMechanics;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.CustomResources;
@@ -978,7 +973,8 @@ namespace TOR_Core.Models
             TriggeredEffectTemplate triggeredEffectTemplate,
             bool hasShockWave,
             Vec3 impactPosition,
-            int castId = -1)
+            int castId = -1,
+            int resolutionId = -1)
         {
             if (agents == null || caster == null) return;
 
@@ -987,12 +983,17 @@ namespace TOR_Core.Models
 
             foreach (var agent in agents)
             {
-                if (agent == null || !agent.IsHuman || !agent.IsActive() || agent.Health < 1f || agent.IsFadingOut())
+                if (agent == null || agent.Health < 1f)
                 {
                     continue;
                 }
 
                 if (mission != null && mission.FindAgentWithIndex(agent.Index) != agent)
+                {
+                    continue;
+                }
+
+                if (!agent.IsHuman || !agent.IsActive() || agent.IsFadingOut())
                 {
                     continue;
                 }
@@ -1027,7 +1028,8 @@ namespace TOR_Core.Models
                             abilityTemplate,
                             triggeredEffectTemplate,
                             hasShockWave,
-                            castId);
+                            castId,
+                            resolutionId);
                     }
                     else
                     {
@@ -1049,7 +1051,8 @@ namespace TOR_Core.Models
             int maxHeal,
             Agent healer,
             AbilityTemplate abilityTemplate,
-            int castId = -1)
+            int castId = -1,
+            int resolutionId = -1)
         {
             if (agents == null) return;
 
@@ -1083,7 +1086,7 @@ namespace TOR_Core.Models
                 {
                     if (logic != null)
                     {
-                        logic.ApplySpellHealinginBudget(agent, finalHealing, healer, abilityTemplate, castId);
+                        logic.ApplySpellHealinginBudget(agent, finalHealing, healer, abilityTemplate, castId, resolutionId);
                     }
                     else
                     {

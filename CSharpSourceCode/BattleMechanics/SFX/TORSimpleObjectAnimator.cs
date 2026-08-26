@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using TaleWorlds.Engine;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Utilities;

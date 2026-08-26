@@ -1,14 +1,11 @@
 using HarmonyLib;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
-using TaleWorlds.Library.NewsManager;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.Items;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions
 {

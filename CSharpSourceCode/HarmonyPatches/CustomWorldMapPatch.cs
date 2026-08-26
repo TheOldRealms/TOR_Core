@@ -1,21 +1,22 @@
 ﻿using HarmonyLib;
-using SandBox;
 using SandBox.View.Map;
 using SandBox.ViewModelCollection.Map.Tracker;
 using System.IO;
 using System.Xml;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.Map.DistanceCache;
 using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.Library;
-using TOR_Core.Utilities;
 using TOR_Core.Quests;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {
     [HarmonyPatch]
     public static class CustomWorldMapPatch
     {
+        /// <remarks>
+        /// Sly : this prevents any submod from adding additional scenes for battle maps. It should instead look at clearing out prior scenes, then adding normally via a LoadSPBattleScenes call to not interfere with other mods loaded after which may intentionally add scenes compatible with TOR.
+        /// Alternatively, see Campaign.InitializeScenes for how the game automatically loads them based on name and folder depth.
+        /// </remarks>
         [HarmonyPrefix]
         [HarmonyPatch(typeof(GameSceneDataManager), "LoadSPBattleScenes", argumentTypes: typeof(XmlDocument))]
         public static void LoadSinglePlayerBattleScenes(GameSceneDataManager __instance, ref XmlDocument doc)

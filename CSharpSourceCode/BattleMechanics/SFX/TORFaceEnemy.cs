@@ -1,14 +1,8 @@
-﻿using NLog;
-using System;
-using System.Diagnostics;
-using System.Linq;
-using TaleWorlds.CampaignSystem;
+﻿using System.Linq;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
-using TOR_Core.AbilitySystem;
 using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.SFX
 {

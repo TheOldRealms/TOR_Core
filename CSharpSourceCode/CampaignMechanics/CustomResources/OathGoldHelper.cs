@@ -1,12 +1,9 @@
 using System.Collections.Generic;
-using System.Net.Http.Headers;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.Menagery;
 using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.CustomResources;
 
@@ -23,20 +20,20 @@ public class OathGoldHelper
         var lastVisitToTown = behavior.LastVisitAtTown;
         var expeditionMaximum = behavior.ExpeditionMaximum;
         var expeditionCount = behavior.CurrentExpeditions;
-        var engineerRank = GetOathGoldForGuildRespect(behavior.EngineerGuildReputation);
-        var warriorsRank = GetOathGoldForGuildRespect(behavior.WarriorsGuildReputation);
-        var runeSmithRank = GetOathGoldForGuildRespect(behavior.RuneSmithReputation);
-        var gemcutterRank = GetOathGoldForGuildRespect(behavior.GemcuttersAndMinersReputation);
-        var brewersRank = GetOathGoldForGuildRespect(behavior.BrewersGuildReputation);
+        var engineerRank = GetOathGoldGuildRespectText(behavior.EngineerGuildReputation);
+        var warriorsRank = GetOathGoldGuildRespectText(behavior.WarriorsGuildReputation);
+        var runeSmithRank = GetOathGoldGuildRespectText(behavior.RuneSmithReputation);
+        var gemcutterRank = GetOathGoldGuildRespectText(behavior.GemcuttersAndMinersReputation);
+        var brewersRank = GetOathGoldGuildRespectText(behavior.BrewersGuildReputation);
 
 
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
-        string time = ((int)lastVisitToTown).ToString() + " days";
+        var time = TORTextHelper.GetTextObject("tor_dw_oathgold", "time_days_value", "{EFFECT_VALUE} days").SetTextVariable("EFFECT_VALUE", (int)lastVisitToTown);
         if (lastVisitToTown / CampaignTime.DaysInWeek > 2)
         {
-            time = ">2 weeks ago";
+            time = TORTextHelper.GetTextObject("tor_dw_oathgold", "time_value", ">{EFFECT_VALUE} weeks ago").SetTextVariable("EFFECT_VALUE", 2);
         }
-        list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_oathgold","time_since_visit","Time since last benefits provided"), time, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_oathgold","time_since_visit","Time since last benefits provided"), time.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
 
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
 
@@ -218,6 +215,17 @@ public class OathGoldHelper
             >= 1000 => OathRespectLevel.Reliable,
             >= 500 => OathRespectLevel.Trustworthy,
             < 500 => OathRespectLevel.Unknown
+        };
+    }
+
+    private static TextObject GetOathGoldGuildRespectText(int respect)
+    {
+        return GetOathGoldForGuildRespect(respect) switch
+        {
+            OathRespectLevel.Respected => TORTextHelper.GetTextObject("tor_dw_guild_relationship", "respected", "Respected"),
+            OathRespectLevel.Reliable => TORTextHelper.GetTextObject("tor_dw_guild_relationship", "reliable", "Reliable"),
+            OathRespectLevel.Trustworthy => TORTextHelper.GetTextObject("tor_dw_guild_relationship", "trustworthy", "Trustworthy"),
+            OathRespectLevel.Unknown => TORTextHelper.GetTextObject("tor_dw_guild_relationship", "unknown", "Unknown")
         };
     }
 }

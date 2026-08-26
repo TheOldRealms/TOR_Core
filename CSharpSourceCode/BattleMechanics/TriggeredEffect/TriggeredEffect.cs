@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
-using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect.Scripts;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
@@ -156,6 +154,13 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             }
 
             var logic = Mission.Current?.GetMissionBehavior<AbilityManagerMissionLogic>();
+            // trigger returning before queued damage is applied requires associated status to stay pending until the matching damage resolves to preserve their intended order
+            var resolutionId = logic != null &&
+                               _template.DamageAmount != 0 &&
+                               _template.AssociatedStatusEffects?.Count > 0
+                ? logic.BeginTriggeredEffectResolution()
+                : -1;
+
             if (logic != null)
             {
                 logic.QueueTriggeredEffectSound(_template.StringID, _template.SoundEffectId, effectPosition, castId);
@@ -167,11 +172,11 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             //Cause Damage
             if (_template.DamageAmount > 0)
             {
-                TORMissionHelper.DamageAgents(targets, (int)(_template.DamageAmount * (1 - _template.DamageVariance) * damageMultiplier), (int)(_template.DamageAmount * (1 + _template.DamageVariance)), triggererAgent, _template.TargetType, _template, _template.DamageType, _template.HasShockWave, position, originAbilityTemplate, castId);
+                TORMissionHelper.DamageAgents(targets, (int)(_template.DamageAmount * (1 - _template.DamageVariance) * damageMultiplier), (int)(_template.DamageAmount * (1 + _template.DamageVariance)), triggererAgent, _template.TargetType, _template, _template.DamageType, _template.HasShockWave, position, originAbilityTemplate, castId, resolutionId);
             }
             else if (_template.DamageAmount < 0)
             {
-                TORMissionHelper.HealAgents(targets, (int)(-_template.DamageAmount * (1 - _template.DamageVariance) * damageMultiplier), (int)(-_template.DamageAmount * (1 + _template.DamageVariance)), triggererAgent, _template.TargetType, originAbilityTemplate, castId);
+                TORMissionHelper.HealAgents(targets, (int)(-_template.DamageAmount * (1 - _template.DamageVariance) * damageMultiplier), (int)(-_template.DamageAmount * (1 + _template.DamageVariance)), triggererAgent, _template.TargetType, originAbilityTemplate, castId, resolutionId);
             }
             //Apply status effects
             if (_template.AssociatedStatusEffects != null && _template.AssociatedStatusEffects.Count > 0)
@@ -208,7 +213,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                     {
                         if (logic != null)
                         {
-                            logic.QueueTriggeredStatusEffect( target, effect, triggererAgent,statusEffectDuration, true, _isTemplateMutated, castId);
+                            logic.QueueTriggeredStatusEffect(target, effect, triggererAgent, statusEffectDuration, true, _isTemplateMutated, castId, resolutionId);
                         }
                         else
                         {
@@ -241,15 +246,17 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
 
             foreach (var candidate in rawTargets)
             {
-                if (candidate == null ||
-                    !candidate.IsActive() ||
-                    candidate.Health < 1f ||
-                    candidate.IsFadingOut())
+                if (candidate == null || candidate.Health < 1f)
                 {
                     continue;
                 }
 
                 if (mission != null && mission.FindAgentWithIndex(candidate.Index) != candidate)
+                {
+                    continue;
+                }
+
+                if (!candidate.IsActive() || candidate.IsFadingOut())
                 {
                     continue;
                 }

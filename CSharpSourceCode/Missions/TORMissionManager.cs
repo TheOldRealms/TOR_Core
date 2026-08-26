@@ -5,6 +5,7 @@ using SandBox.Missions.MissionLogics.Arena;
 using SandBox.View;
 using SandBox.View.Missions;
 using SandBox.View.Missions.Sound.Components;
+using SandBox.ViewModelCollection;
 using System;
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
@@ -25,8 +26,6 @@ using TaleWorlds.MountAndBlade.Source.Missions.Handlers.Logic;
 using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.MountAndBlade.View.MissionViews;
 using TaleWorlds.MountAndBlade.View.MissionViews.Order;
-using TaleWorlds.MountAndBlade.ViewModelCollection.OrderOfBattle;
-using SandBox.ViewModelCollection;
 using TOR_Core.BattleMechanics.CustomArenaModes;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using static TaleWorlds.MountAndBlade.Mission;
@@ -193,6 +192,7 @@ namespace TOR_Core.Missions
         public static Mission OpenBrawlFightMission(Location location, TroopRoster playerSideTroops,
             TroopRoster enemyPartyRoster, int enemyPartySize, Action<BrawlMissionResult> onMissionEnd = null)
         {
+            //Sly : scene levels specify "civilian" so that the siege layer is not also loaded leading to conflicting states for objects like gates.
             return MissionState.OpenNew("BrawlFight", SandBoxMissions.CreateSandBoxMissionInitializerRecord(location.GetSceneName(3), "level_3 civilian", false, DecalAtlasGroup.All),
             (Mission mission) =>
                 [

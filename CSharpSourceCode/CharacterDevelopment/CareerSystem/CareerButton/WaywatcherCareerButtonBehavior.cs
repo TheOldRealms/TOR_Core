@@ -4,8 +4,6 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
-using TOR_Core.AbilitySystem.Spells;
-using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Extensions.UI;
@@ -98,7 +96,8 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
 
         if (arrowType != null) list.Add(new InquiryElement("remove", $"Remove {arrowType.Name}", null));
 
-        var inquirydata = new MultiSelectionInquiryData("Choose special arrows.", "Empower your ranged Unit with a permanent magical effect.", list,
+        var inquirydata = new MultiSelectionInquiryData(TORTextHelper.GetText("tor_waywatcher_arrow_label", "Choose special arrows."),
+            TORTextHelper.GetText("tor_waywatcher_arrow_descr", "Empower your ranged unit with a permanent magical effect."), list,
             true, 1, 1, "Accept", "Cancel", OnSelectedOption, OnCancel, "", false);
         MBInformationManager.ShowMultiSelectionInquiry(inquirydata);
     }

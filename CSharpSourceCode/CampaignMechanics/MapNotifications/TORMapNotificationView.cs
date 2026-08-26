@@ -6,12 +6,13 @@ using TaleWorlds.CampaignSystem.ViewModelCollection.Map;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Map.MapNotificationTypes;
 using TaleWorlds.Engine;
 using TaleWorlds.Engine.GauntletUI;
+using TaleWorlds.GauntletUI;
 using TaleWorlds.InputSystem;
 using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.Utilities;
 
-namespace TOR_Core.CampaignMechanics.WaaaghMeter
+namespace TOR_Core.CampaignMechanics.MapNotifications
 {
     [OverrideView(typeof(MapNotificationView))]
     public class TORMapNotificationView : MapNotificationView
@@ -32,12 +33,37 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
 
             _mapNavigationHandler = MapScreen.NavigationHandler;
             _dataSource = new MapNotificationVM(_mapNavigationHandler, MapScreen.FastMoveCameraToPosition);
+            _dataSource.RegisterMapNotificationType(typeof(TORMapNotification), typeof(MapNotificationItemBaseVM));
             _dataSource.ReceiveNewNotification += OnReceiveNewNotification;
             _dataSource.SetRemoveInputKey(
                 HotKeyManager.GetCategory("MapNotificationHotKeyCategory").GetHotKey("RemoveNotification"));
 
             Layer = new GauntletLayer("MapNotification", 100);
             _layerAsGauntletLayer = Layer as GauntletLayer;
+
+            var notificationIconBrush = _layerAsGauntletLayer.UIContext.GetBrush("Map.Notification.Type.Circle.Image");
+            if (notificationIconBrush.GetStyle("tor_orion_hunt") == null)
+            {
+                notificationIconBrush.AddLayer(new BrushLayer
+                {
+                    Name = "tor_orion_hunt",
+                    Sprite = _layerAsGauntletLayer.UIContext.SpriteData.GetSprite("notification_icon_orion"),
+                    IsHidden = true
+                });
+
+                var orionHuntStyle = new Style(notificationIconBrush.Layers)
+                {
+                    Name = "tor_orion_hunt",
+                    DefaultStyle = notificationIconBrush.DefaultStyle
+                };
+
+                foreach (var layer in orionHuntStyle.GetLayers())
+                {
+                    layer.IsHidden = layer.Name != "tor_orion_hunt";
+                }
+
+                notificationIconBrush.AddStyle(orionHuntStyle);
+            }
 
             Layer.Input.RegisterHotKeyCategory(HotKeyManager.GetCategory("MapNotificationHotKeyCategory"));
             Layer.InputRestrictions.SetInputRestrictions(isMouseVisible: false);
@@ -102,6 +128,11 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
 
         private void OnReceiveNewNotification(MapNotificationItemBaseVM newNotification)
         {
+            if (newNotification.Data is TORMapNotification torNotification)
+            {
+                newNotification.NotificationIdentifier = torNotification.NotificationIdentifier;
+            }
+
             if (!string.IsNullOrEmpty(newNotification.SoundId))
             {
                 SoundEvent.PlaySound2D(newNotification.SoundId);

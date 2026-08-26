@@ -1,16 +1,12 @@
 using Helpers;
 using SandBox.GameComponents;
-using SandBox.Missions.MissionLogics;
 using SandBox.Missions.MissionLogics.Hideout;
-using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
-using TaleWorlds.LinQuick;
-using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
@@ -23,7 +19,6 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
-using TOR_Core.Missions;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
@@ -734,6 +729,8 @@ namespace TOR_Core.Models
         public override float GetMaxCameraZoom(Agent agent)
         {
             _crosshairBehavior ??= Mission.Current.GetMissionBehavior<CustomCrosshairMissionBehavior>();
+
+            if (_crosshairBehavior.IsFinalized) _crosshairBehavior = Mission.Current.GetMissionBehavior<CustomCrosshairMissionBehavior>();//detect stale behavior reference and refresh.
 
             if (_crosshairBehavior != null && _crosshairBehavior.CurrentCrosshair is SniperScope && _crosshairBehavior.CurrentCrosshair.IsVisible)
             {

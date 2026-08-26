@@ -1,14 +1,12 @@
 using Helpers;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ImageIdentifiers;
 using TaleWorlds.Localization;
-using TaleWorlds.Localization.TextProcessor;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
@@ -55,10 +53,10 @@ namespace TOR_Core.CampaignMechanics.Menagery
             void AddPrestigeNobleDialogLines(CampaignGameStarter cgs)
             {
                 //not empire culture
-                cgs.AddDialogLine("noble_foreign", "start", "close_window", TORTextHelper.GetText("tor_empire_prestigenoble_wrongculture", "You do not serve the Empire, stranger, begone."),
+                cgs.AddDialogLine("noble_foreign", "start", "close_window", TORTextHelper.GetTextForNative("tor_empire_prestigenoble_wrongculture", "You do not serve the Empire, stranger, begone."),
                     () => EmpirePrestigeNobleStartCondition() && !IsEmpireCulture(), null, 200);
                 // not clan level 2+
-                cgs.AddDialogLine("noble_missRank", "start", "close_window", TORTextHelper.GetText("tor_empire_prestigenoble_lowclanlevel", "I do not do business with nobodies, stranger, and I do not know you. Now begone. (Low Clan Tier)."),
+                cgs.AddDialogLine("noble_missRank", "start", "close_window", TORTextHelper.GetTextForNative("tor_empire_prestigenoble_lowclanlevel", "I do not do business with nobodies, stranger, and I do not know you. Now begone. (Low Clan Tier)."),
                     () => EmpirePrestigeNobleStartCondition() && !ClanLevel2(), null, 200);
 
                 //never met player
@@ -72,14 +70,14 @@ namespace TOR_Core.CampaignMechanics.Menagery
                     () => !_knowsPlayer, () => _knowsPlayer = true, 200);
 
                 //knows player, hub start
-                cgs.AddDialogLine("noble_hub_intro", "start", "prestige_noble_main_hub", TORTextHelper.GetText("tor_empire_prestigenoble_hubintro", "There are a number of projects that could be of interest to you. What should we consider?"),
+                cgs.AddDialogLine("noble_hub_intro", "start", "prestige_noble_main_hub", TORTextHelper.GetTextForNative("tor_empire_prestigenoble_hubintro", "There are a number of projects that could be of interest to you. What should we consider?"),
                     () => EmpirePrestigeNobleStartCondition() && _knowsPlayer, null, 200);
 
                 //return here when completing a branch
-                cgs.AddDialogLine("noble_hub_intro_repeat", "noble_hub_intro_repeat", "prestige_noble_main_hub", TORTextHelper.GetText("tor_empire_prestigenoble_hubintrorepeat", "Is there something else what I can do for you?"),
+                cgs.AddDialogLine("noble_hub_intro_repeat", "noble_hub_intro_repeat", "prestige_noble_main_hub", TORTextHelper.GetTextForNative("tor_empire_prestigenoble_hubintrorepeat", "Is there something else what I can do for you?"),
                     () => EmpirePrestigeNobleStartCondition() && _knowsPlayer, null, 200);
 
-                cgs.AddPlayerLine("prestige_items", "prestige_noble_main_hub", "noble_prestige_items_intro", TORTextHelper.GetText("tor_empire_prestigenoble_itemsask_p", "Are there any items of interest you might have for me?"),
+                cgs.AddPlayerLine("prestige_items", "prestige_noble_main_hub", "noble_prestige_items_intro", TORTextHelper.GetTextForNative("tor_empire_prestigenoble_itemsask_p", "Are there any items of interest you might have for me?"),
                     null, null, 200);
 
                 InitPrestigeItemDialog();
@@ -90,12 +88,12 @@ namespace TOR_Core.CampaignMechanics.Menagery
 
                 InitInfrastructureProjectsDialog();
 
-                cgs.AddPlayerLine("influence_projects_ask", "prestige_noble_main_hub", "noble_prestige_political_power_hub", TORTextHelper.GetText("tor_empire_prestigenoble_influenceask_p", "I have an interest in the many organisations of the Empire, are there any who I could aid?"),
+                cgs.AddPlayerLine("influence_projects_ask", "prestige_noble_main_hub", "noble_prestige_political_power_hub", TORTextHelper.GetTextForNative("tor_empire_prestigenoble_influenceask_p", "I have an interest in the many organisations of the Empire, are there any who I could aid?"),
                     null, null, 200);
 
                 InitPoliticalPowerProjects();
 
-                cgs.AddPlayerLine("noble_hub_exit", "prestige_noble_main_hub", "close_window", TORTextHelper.GetText("tor_empire_prestigenoble_exitconvo_p", "Thanks, I will come back to you."),
+                cgs.AddPlayerLine("noble_hub_exit", "prestige_noble_main_hub", "close_window", TORTextHelper.GetTextForNative("tor_empire_prestigenoble_exitconvo_p", "Thanks, I will come back to you."),
                     null, null, 200);
 
                 //prestige items : eg. demigrpyh

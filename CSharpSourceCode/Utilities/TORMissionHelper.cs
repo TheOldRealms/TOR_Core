@@ -1,25 +1,23 @@
+using SandBox;
 using System.Collections.Generic;
 using System.Linq;
-using SandBox;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
-using TOR_Core.BattleMechanics;
 using TOR_Core.BattleMechanics.AI.CivilianMissionAI;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
-using TOR_Core.Models;
 
 namespace TOR_Core.Utilities
 {
     public static class TORMissionHelper
     {
-        public static void DamageAgents(IEnumerable<Agent> agents, int minDamage, int maxDamage = -1, Agent damager = null, TargetType targetType = TargetType.All, TriggeredEffectTemplate triggeredeffectTemplate = null, DamageType damageType = DamageType.Physical, bool hasShockWave = false, Vec3 impactPosition = default, AbilityTemplate originSpellTemplate = null, int castId = -1)
+        public static void DamageAgents(IEnumerable<Agent> agents, int minDamage, int maxDamage = -1, Agent damager = null, TargetType targetType = TargetType.All, TriggeredEffectTemplate triggeredeffectTemplate = null, DamageType damageType = DamageType.Physical, bool hasShockWave = false, Vec3 impactPosition = default, AbilityTemplate originSpellTemplate = null, int castId = -1, int resolutionId = -1)
         {
             if (agents == null || !agents.Any() || damager == null) return;
 
@@ -39,12 +37,14 @@ namespace TOR_Core.Utilities
                         triggeredeffectTemplate,
                         hasShockWave,
                         impactPosition,
-                        castId);
+                        castId,
+                        resolutionId);
                     return;
                 }
             }
 
             // Fallback for non-campaign mode
+            var logic = Mission.Current?.GetMissionBehavior<AbilityManagerMissionLogic>();
             var mission = Mission.Current;
 
             foreach (var agent in agents)
@@ -68,11 +68,18 @@ namespace TOR_Core.Utilities
                     baseDamage = (int)((triggeredeffectTemplate.Radius - distance) / triggeredeffectTemplate.Radius * baseDamage);
                 }
 
-                agent.ApplyDamage(baseDamage, impactPosition, damager, doBlow: true, hasShockWave: hasShockWave, originatesFromAbility: originSpellTemplate != null);
+                if (logic != null)
+                {
+                    logic.ApplySpellDamageinBudget(agent, baseDamage, impactPosition, damager, damageType, originSpellTemplate, triggeredeffectTemplate, hasShockWave, castId, resolutionId, bookSpellResult: false);
+                }
+                else
+                {
+                    agent.ApplyDamage(baseDamage, impactPosition, damager, doBlow: true, hasShockWave: hasShockWave, originatesFromAbility: originSpellTemplate != null);
+                }
             }
         }
 
-        public static void HealAgents(IEnumerable<Agent> agents, int minHeal, int maxHeal = -1, Agent healer = null, TargetType targetType = TargetType.Friendly, AbilityTemplate originSpellTemplate = null, int castId = -1)
+        public static void HealAgents(IEnumerable<Agent> agents, int minHeal, int maxHeal = -1, Agent healer = null, TargetType targetType = TargetType.Friendly, AbilityTemplate originSpellTemplate = null, int castId = -1, int resolutionId = -1)
         {
             if (agents == null) return;
 
@@ -88,7 +95,8 @@ namespace TOR_Core.Utilities
                         maxHeal,
                         healer,
                         originSpellTemplate,
-                        castId);
+                        castId,
+                        resolutionId);
                     return;
                 }
             }
@@ -109,21 +117,14 @@ namespace TOR_Core.Utilities
                 {
                     continue;
                 }
-                var amount = minHeal;
-                if (maxHeal < minHeal)
+                var amount = maxHeal < minHeal ? minHeal : MBRandom.RandomInt(minHeal, maxHeal);
+                if (logic != null)
                 {
-                    agent.Heal(minHeal);
+                    logic.ApplySpellHealinginBudget(agent, amount, healer, originSpellTemplate, castId, resolutionId);
                 }
                 else
                 {
-                    amount = MBRandom.RandomInt(minHeal, maxHeal);
                     agent.Heal(amount);
-                }
-
-                // Book healing to session if we have a valid castId
-                if (castId >= 0 && logic != null)
-                {
-                    logic.BookSpellHealing(castId, agent, amount);
                 }
 
                 if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(healer, agent))

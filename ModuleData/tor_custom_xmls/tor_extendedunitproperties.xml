@@ -11154,7 +11154,7 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_orion_factionleader">
     <Attributes>
-      <string>Legendary</string>
+      <string>LegendaryLord</string>
       <string>Orion</string>
     </Attributes>
   </CharacterExtendedInfo>

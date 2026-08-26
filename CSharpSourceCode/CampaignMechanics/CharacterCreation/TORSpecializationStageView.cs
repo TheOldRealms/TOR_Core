@@ -1,10 +1,8 @@
+using SandBox.View.CharacterCreation;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using SandBox.View.CharacterCreation;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterCreationContent;
-using TaleWorlds.CampaignSystem.Extensions;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Engine.GauntletUI;

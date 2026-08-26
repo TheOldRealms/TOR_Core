@@ -5,7 +5,6 @@ using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TOR_Core.Extensions;
-using TOR_Core.Quests.Careers;
 
 namespace TOR_Core.Quests
 {

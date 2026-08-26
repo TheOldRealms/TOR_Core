@@ -1,5 +1,4 @@
-﻿using System;
-using TaleWorlds.Core;
+﻿using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.AI.TeamAI.FormationBehavior;
 using TOR_Core.Utilities;
