@@ -9,14 +9,12 @@ using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.GameState;
 using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.Encyclopedia;
 using TaleWorlds.CampaignSystem.Party.PartyComponents;
 using TaleWorlds.CampaignSystem.Roster;
-using TaleWorlds.CampaignSystem.Settlements;
-using TaleWorlds.Localization;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View.Screens;
 using TaleWorlds.ObjectSystem;
@@ -32,19 +30,14 @@ using TOR_Core.Ink;
 using TOR_Core.Items;
 using TOR_Core.Missions;
 using TOR_Core.Quests;
-using FaceGen = TaleWorlds.Core.FaceGen;
 using static TOR_Core.Utilities.TORConstants;
+using FaceGen = TaleWorlds.Core.FaceGen;
 
 namespace TOR_Core.Utilities
 {
     public class TORConsoleCommands
     {
         private static List<string> torSpellNames = AbilityFactory.GetAllSpellNamesAsList();
-        private const string HostilePartyCheatClanId = "forest_bandits";
-        private const int HostilePartyCheatTroopStackCount = 500;
-        private const int HostilePartyCheatHeroStackCount = 1;
-        private const int HostilePartyCheatPartySizeLimit = 2000;
-        private const float HostilePartyCheatSpawnRadius = 2f;
 
         //TODO currently disabled due to missing Engineer Quest
         [CommandLineFunctionality.CommandLineArgumentFunction("whereisgoswin", "tor")]
@@ -387,6 +380,44 @@ namespace TOR_Core.Utilities
             return FormatAddedSpellsOutput(matchedArguments, knownSpells, newSpells);
         }
 
+        [CommandLineFunctionality.CommandLineArgumentFunction("add_random_spellcasters", "tor")]
+        public static string AddRandomSpellcasters(List<string> arguments)
+        {
+            var companionTemplates = MBObjectManager.Instance.GetObjectTypeList<CharacterObject>()
+                .Where(character => character.IsTemplate && character.Occupation == Occupation.Wanderer)
+                .ToList();
+
+            for (var i = 0; i < 5; i++)
+            {
+                var hero = HeroCreator.CreateSpecialHero(
+                    companionTemplates.GetRandomElementInefficiently(),
+                    MobileParty.MainParty.CurrentSettlement,
+                    null,
+                    null,
+                    40);
+
+                AddCompanionAction.Apply(Clan.PlayerClan, hero);
+                AddHeroToPartyAction.Apply(hero, MobileParty.MainParty);
+
+                hero.AddAttribute("SpellCaster");
+                hero.AddAttribute("AbilityUser");
+                hero.SetSpellCastingLevel(TOR_Core.AbilitySystem.Spells.SpellCastingLevel.Master);
+
+                foreach (var spellId in torSpellNames)
+                {
+                    hero.AddAbility(spellId);
+                }
+
+                var heroInfo = hero.GetExtendedInfo();
+                heroInfo.AddCustomResource(
+                    "WindsOfMagic",
+                    500f - heroInfo.GetCustomResourceValue("WindsOfMagic"),
+                    true);
+            }
+
+            return "5 random spellcasters added";
+        }
+
         private static string FormatAddedSpellsOutput(List<string> matchedArguments, List<string> knownSpells,
             List<string> newSpells) =>
             AggregateOutput("Matched spells:", matchedArguments) +
@@ -567,6 +598,12 @@ namespace TOR_Core.Utilities
             }
 
             return uniqueSpawnBehavior.GetOrionDebugStatus();
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("locate_orion", "tor")]
+        public static string LocateOrion(List<string> arguments)
+        {
+            return Campaign.Current.GetCampaignBehavior<OrionCampaignBehavior>().GetOrionLocation();
         }
 
         [CommandLineFunctionality.CommandLineArgumentFunction("spawn_orion", "tor")]
@@ -969,6 +1006,8 @@ namespace TOR_Core.Utilities
 
         private static void OpenHostilePartySpawnScreen()
         {
+            const int hostilePartyCheatPartySizeLimit = 5000;
+
             var availableTroopsRoster = GetRosterWithAllGameTroopsForHostilePartyCheat();
             var selectedTroopsRoster = TroopRoster.CreateDummyTroopRoster();
 
@@ -985,7 +1024,7 @@ namespace TOR_Core.Utilities
                 RightLeaderHero = null,
                 LeftPartyMembersSizeLimit = availableTroopsRoster.TotalManCount,
                 LeftPartyPrisonersSizeLimit = 0,
-                RightPartyMembersSizeLimit = HostilePartyCheatPartySizeLimit,
+                RightPartyMembersSizeLimit = hostilePartyCheatPartySizeLimit,
                 RightPartyPrisonersSizeLimit = 0,
                 LeftPartyName = new TextObject("{=!}Available troops"),
                 RightPartyName = new TextObject("{=!}Hostile party"),
@@ -1019,6 +1058,9 @@ namespace TOR_Core.Utilities
 
         private static TroopRoster GetRosterWithAllGameTroopsForHostilePartyCheat()
         {
+            const int hostilePartyCheatTroopStackCount = 500;
+            const int hostilePartyCheatHeroStackCount = 1;
+
             var troopRoster = TroopRoster.CreateDummyTroopRoster();
 
             var normalTroops = CharacterObject.All
@@ -1028,7 +1070,7 @@ namespace TOR_Core.Utilities
 
             foreach (var character in normalTroops)
             {
-                troopRoster.AddToCounts(character, HostilePartyCheatTroopStackCount);
+                troopRoster.AddToCounts(character, hostilePartyCheatTroopStackCount);
             }
 
             var heroes = Hero.AllAliveHeroes
@@ -1037,7 +1079,7 @@ namespace TOR_Core.Utilities
 
             foreach (var hero in heroes)
             {
-                troopRoster.AddToCounts(hero.CharacterObject, HostilePartyCheatHeroStackCount);
+                troopRoster.AddToCounts(hero.CharacterObject, hostilePartyCheatHeroStackCount);
             }
 
             return troopRoster;
@@ -1151,10 +1193,12 @@ namespace TOR_Core.Utilities
             PartyBase leftParty = null,
             PartyBase rightParty = null)
         {
-            var cultistClan = Clan.All.FirstOrDefault(clan => clan.StringId == HostilePartyCheatClanId);
+            const string hostilePartyCheatClanId = "forest_bandits";
+
+            var cultistClan = Clan.All.FirstOrDefault(clan => clan.StringId == hostilePartyCheatClanId);
             if (cultistClan == null)
             {
-                ShowHostilePartyCheatMessage("hostile party clan not found: " + HostilePartyCheatClanId);
+                ShowHostilePartyCheatMessage("hostile party clan not found: " + hostilePartyCheatClanId);
                 return false;
             }
 
@@ -1233,10 +1277,12 @@ namespace TOR_Core.Utilities
 
         private static MobileParty CreateHostilePartyNearPlayer(Clan cultistClan, TroopRoster normalTroopRoster)
         {
+            const float hostilePartyCheatSpawnRadius = 2f;
+
             var spawnPosition = NavigationHelper.FindReachablePointAroundPosition(
                 MobileParty.MainParty.Position,
                 MobileParty.NavigationType.Default,
-                HostilePartyCheatSpawnRadius);
+                hostilePartyCheatSpawnRadius);
 
             var nearestSettlement = SettlementHelper.FindNearestSettlementToMobileParty(
                 MobileParty.MainParty,

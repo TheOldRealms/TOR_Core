@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TOR_Core.Extensions;
 using TOR_Core.Items;
 
 namespace TOR_Core.CampaignMechanics.Crafting
@@ -28,11 +25,17 @@ namespace TOR_Core.CampaignMechanics.Crafting
             IsSelected = false;
             TraitName = new TextObject(trait.ItemTraitName).ToString();
             IconName = trait.IconName;
-            ItemTraitDescriptionHint = new BasicTooltipViewModel(GetHintText);
+            //Text on the right side of the screen that appears under the weapon preview and above the enchantment ingredients.
             ItemTraitDescription = new TextObject(trait.ItemTraitDescription).ToString();
+            //Tooltip shown on hover of an enchantment in the vertical list in the middle.
+            ItemTraitDescriptionHint = new BasicTooltipViewModel(GetHintText);
         }
 
-        private string GetHintText() => string.IsNullOrEmpty(_trait.ItemTraitDescription) ? "No description available." : _trait.ItemTraitDescription;
+        private string GetHintText()
+        {
+            var text = string.IsNullOrEmpty(ItemTraitDescription) ? TORTextHelper.GetText("tor_enchant_no_description", "No description available.") : ItemTraitDescription;
+            return text;
+        }
 
         private void ExecuteSelectTrait()
         {

@@ -1,29 +1,23 @@
 ﻿using HarmonyLib;
-using Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Windows.Forms;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Encounters;
-using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
-using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
-using TaleWorlds.Localization;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.PostBattleLoot;
 using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.CampaignMechanics.UniqueSpawns;
 using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -313,6 +307,42 @@ namespace TOR_Core.HarmonyPatches
         public static void CaptureDefeatedPartyMembersPrefix(MapEvent __instance, MBReadOnlyList<MapEventParty> defeatedParties)
         {
             OrionCampaignBehavior.RemoveOrionFromDefeatedPartyRosters(__instance, defeatedParties);
+        }
+
+        [HarmonyTranspiler]
+        [HarmonyPatch(typeof(MapEvent), "CaptureDefeatedPartyMembers")]
+        public static IEnumerable<CodeInstruction> CaptureDefeatedPartyMembersTranspiler(IEnumerable<CodeInstruction> instructions)
+        {
+            var codes = instructions.ToList();
+            var makeHeroFugitive = AccessTools.Method(
+                typeof(MakeHeroFugitiveAction),
+                nameof(MakeHeroFugitiveAction.Apply),
+                new[] { typeof(Hero), typeof(bool) });
+
+            var fugitiveCalls = codes.Where(instruction => instruction.Calls(makeHeroFugitive)).ToList();
+            if (fugitiveCalls.Count != 1)
+            {
+                throw new ArgumentException("couldnt find defeated hero fugitive call.");
+            }
+
+            fugitiveCalls[0].operand = AccessTools.Method(
+                typeof(EncounterPatches),
+                nameof(MakeDefeatedHeroFugitive),
+                new[] { typeof(Hero), typeof(bool) });
+
+            return codes;
+        }
+
+        private static void MakeDefeatedHeroFugitive(Hero hero, bool showNotification)
+        {
+            // 1.4 moved this past a special hero check. any companions converted by the mercenary career will now
+            // become fugitives on defeat and won't be able to respawn, leaving them stuck in regrouping
+            if (hero.IsPlayerCompanion && hero.IsSpecial && !hero.IsAICompanion())
+            {
+                return;
+            }
+
+            MakeHeroFugitiveAction.Apply(hero, showNotification);
         }
 
         [HarmonyPostfix]

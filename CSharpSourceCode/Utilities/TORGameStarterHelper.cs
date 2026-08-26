@@ -4,7 +4,6 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Issues;
-using TOR_Core.CampaignMechanics.Companions;
 
 namespace TOR_Core.Utilities
 {
@@ -23,7 +22,7 @@ namespace TOR_Core.Utilities
             starter.RemoveBehaviors<IncidentsCampaignBehaviour>();
             starter.RemoveBehaviors<SallyOutsCampaignBehavior>();
             starter.RemoveBehaviors<CompanionsCampaignBehavior>();
-            starter.RemoveBehaviors<BarberCampaignBehavior>();//causes filtering of hair and beard styles based on culture
+            starter.RemoveBehaviors<BarberCampaignBehavior>();//causes filtering of hair and beard styles based on culture which removes most styles from the UI for non-empire cultures when changing appearance.
 
             var issues = starter.CampaignBehaviors.Where(x => x.GetType().FullName.Contains("Issue")).ToList();
             foreach (var issue in issues)

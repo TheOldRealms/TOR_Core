@@ -1,4 +1,3 @@
-using Ink.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,9 +6,8 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
-using TaleWorlds.Localization;
-using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.LinQuick;
+using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
@@ -140,7 +138,7 @@ namespace TOR_Core.Models
             if (playerHero.HasAnyCareer())
             {
                 var choices = playerHero.GetAllCareerChoices();
-                if (choices.Contains("MercenaryLordPassive3"))
+                if (choices.Contains("MercenaryLordPassive3") && clan.IsUnderMercenaryService)
                 {
                     var choice = TORCareerChoices.GetChoice("MercenaryLordPassive3");
                     int mercenaryAward = MathF.Ceiling(clan.Influence * (1f / Campaign.Current.Models.ClanFinanceModel.RevenueSmoothenFraction())) * clan.MercenaryAwardMultiplier; //stolen vanilla calculation, it got too messy to redirect the income.

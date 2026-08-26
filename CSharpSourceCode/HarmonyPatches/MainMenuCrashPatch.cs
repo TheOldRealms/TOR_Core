@@ -3,9 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Threading;
-using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.MountAndBlade.View.Screens;
 using TaleWorlds.ScreenSystem;
 using TWModule = TaleWorlds.MountAndBlade.Module;
 

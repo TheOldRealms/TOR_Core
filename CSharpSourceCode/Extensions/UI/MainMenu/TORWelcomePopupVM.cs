@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
-using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.Extensions.UI.MainMenu
 {

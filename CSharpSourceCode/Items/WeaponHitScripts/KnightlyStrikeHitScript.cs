@@ -1,12 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Schema;
-using TaleWorlds.CampaignSystem;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.StatusEffect;
-using TOR_Core.Extensions;
-using TOR_Core.Items;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.Items.WeaponHitScripts;
 

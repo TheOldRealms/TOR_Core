@@ -1,6 +1,4 @@
-﻿using TaleWorlds.Engine;
-using TaleWorlds.Library;
-using TaleWorlds.MountAndBlade;
+﻿using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.BattleMechanics.AI.TeamAI.FormationBehavior
 {

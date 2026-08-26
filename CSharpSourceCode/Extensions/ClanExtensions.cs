@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using TaleWorlds.CampaignSystem;
-using TaleWorlds.LinQuick;
+﻿using TaleWorlds.CampaignSystem;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions;

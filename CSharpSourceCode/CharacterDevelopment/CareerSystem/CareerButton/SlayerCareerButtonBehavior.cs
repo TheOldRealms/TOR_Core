@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using Helpers;
+﻿using Helpers;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;

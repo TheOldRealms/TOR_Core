@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.Engine;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.Audio
 {
@@ -16,7 +11,8 @@ namespace TOR_Core.Audio
         public SimpleButton LoadSound;
         public SimpleButton PlaySound;
         public SimpleButton StopSound;
-        private CachedSoundInstance _cachedSound;
+        private TORModuleSound _ambientSound;
+        private bool _playbackEnabled;
 
         protected override void OnEditorInit() => SetScriptComponentToTick(GetTickRequirement());
 
@@ -25,30 +21,30 @@ namespace TOR_Core.Audio
         protected override void OnInit()
         {
             SetScriptComponentToTick(GetTickRequirement());
-            if (!string.IsNullOrEmpty(AudioName))
-            {
-                _cachedSound = TORAudioManager.CreateSoundInstance(AudioName, true, 0);
-                if (_cachedSound != null) _cachedSound.Play();
-            }
+            _playbackEnabled = true;
+            LoadAmbientSound();
         }
 
         protected override void OnTick(float dt)
         {
-            if (_cachedSound != null && _cachedSound.IsLoaded)
+            if (_ambientSound == null)
             {
-                var cameraPos = Scene.LastFinalRenderCameraPosition;
-                var soundPos = GameEntity.GlobalPosition;
+                return;
+            }
 
-                var distance = (soundPos - cameraPos).Length;
-                if (distance <= Range)
+            var soundPosition = GameEntity.GlobalPosition;
+            var distance = (soundPosition - Scene.LastFinalRenderCameraPosition).Length;
+            if (_playbackEnabled && distance <= Range)
+            {
+                _ambientSound.SetPosition(soundPosition, Range);
+                if (!_ambientSound.IsPlaybackRequested)
                 {
-                    //linear attenuation for now
-                    var volume = distance / Range;
-                    volume = 1 - volume;
-                    volume = Math.Max(0, volume);
-                    _cachedSound.CurrentVolume = volume * (MaxVolumePercent / 100);
+                    _ambientSound.Play();
                 }
-                else _cachedSound.CurrentVolume = 0;
+            }
+            else if (_ambientSound.IsPlaybackRequested)
+            {
+                _ambientSound.Remove();
             }
         }
 
@@ -57,27 +53,53 @@ namespace TOR_Core.Audio
         protected override void OnEditorVariableChanged(string variableName)
         {
             base.OnEditorVariableChanged(variableName);
-            if (variableName == "LoadSound") DoLoadSound();
-            if (variableName == "PlaySound") DoPlaySound();
-            if (variableName == "StopSound") DoStopSound();
+            if (variableName == "LoadSound")
+            {
+                _playbackEnabled = false;
+                LoadAmbientSound();
+            }
+            if (variableName == "PlaySound") PlayAmbientSound();
+            if (variableName == "StopSound") StopAmbientSound();
         }
 
-        protected override void OnRemoved(int removeReason) => DoStopSound();
-
-        private void DoStopSound()
+        protected override void OnRemoved(int removeReason)
         {
-            if (_cachedSound != null && _cachedSound.IsPlaying) _cachedSound.Remove();
+            _ambientSound?.Remove();
+            _ambientSound = null;
         }
 
-        private void DoPlaySound()
+        private void StopAmbientSound()
         {
-            if (_cachedSound != null && _cachedSound.IsLoaded) _cachedSound.Play();
+            _playbackEnabled = false;
+            _ambientSound?.Remove();
         }
 
-        private void DoLoadSound()
+        private void PlayAmbientSound()
         {
-            DoStopSound();
-            _cachedSound = TORAudioManager.CreateSoundInstance(AudioName, true, 0);
+            _playbackEnabled = true;
+            if (_ambientSound == null)
+            {
+                LoadAmbientSound();
+            }
+
+            if (_ambientSound != null)
+            {
+                _ambientSound.SetPosition(GameEntity.GlobalPosition, Range);
+                _ambientSound.Play();
+            }
+        }
+
+        private void LoadAmbientSound()
+        {
+            _ambientSound?.Remove();
+            _ambientSound = null;
+
+            if (string.IsNullOrEmpty(AudioName))
+            {
+                return;
+            }
+
+            _ambientSound = TORAudioManager.CreateSoundInstance(AudioName, true, scene: Scene, is3D: true);
         }
     }
 }

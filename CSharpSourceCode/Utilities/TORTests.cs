@@ -3,9 +3,6 @@ using System.Diagnostics;
 using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
 using System.Security;
-using System.Windows.Forms;
-using TaleWorlds.Core;
-using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.Utilities
 {

@@ -1,18 +1,12 @@
 ﻿using SandBox.Conversation.MissionLogics;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
-using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.Missions
 {
@@ -66,7 +60,7 @@ namespace TOR_Core.Missions
         public override void OnMissionTick(float dt)
         {
             if (!IsConversationMission() || _missionConversationLogic == null) return;
-            if (!_conversationFired && !_battleStarted)
+            if (!_conversationFired && !_battleStarted)//Sly : if you hit the guy while out of sight, do you trigger _battleStarted = true and softlock the expected mission progression?
             {
                 foreach (Agent agent in Mission.Agents.Where(x => x.IsHuman && x != Agent.Main))
                 {

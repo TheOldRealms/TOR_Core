@@ -1,8 +1,5 @@
-﻿using TaleWorlds.Core;
-using TaleWorlds.Engine;
-using TaleWorlds.MountAndBlade;
+﻿using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.AI.CommonAIFunctions;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentTacticalBehavior
 {

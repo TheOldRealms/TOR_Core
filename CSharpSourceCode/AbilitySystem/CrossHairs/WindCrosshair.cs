@@ -1,7 +1,6 @@
 ﻿using System;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
-using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.AbilitySystem.Crosshairs
 {

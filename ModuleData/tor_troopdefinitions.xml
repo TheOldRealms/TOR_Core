@@ -3825,7 +3825,7 @@
       <EquipmentSet id="tor_beast_ungor_chief_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_beast_gor" default_group="infantry" level="26" name="{=str_tor_beast_gor}Gor" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level26" is_basic_troop="true" race="gor">
+  <NPCCharacter id="tor_beast_gor" default_group="infantry" level="26" name="{=str_tor_beast_gor}Gor" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level26" is_basic_troop="true" race="gor2">
     <face>
       <face_key_template value="BodyProperty.gor" />
     </face>
@@ -3837,7 +3837,7 @@
       <EquipmentSet id="tor_beast_gor_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_beast_gor_foerender" default_group="infantry" level="31" name="{=str_tor_beast_gor_foerender}Gor Foe-Render" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level31" race="gor">
+  <NPCCharacter id="tor_beast_gor_foerender" default_group="infantry" level="31" name="{=str_tor_beast_gor_foerender}Gor Foe-Render" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level31" race="gor2">
     <face>
       <face_key_template value="BodyProperty.gor" />
     </face>
@@ -3849,7 +3849,7 @@
       <EquipmentSet id="tor_beast_gor_foerender_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_beast_gor_manripper" default_group="infantry" level="36" name="{=str_tor_beast_gor_manripper}Bestigor" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level36" race="gor">
+  <NPCCharacter id="tor_beast_gor_manripper" default_group="infantry" level="36" name="{=str_tor_beast_gor_manripper}Bestigor" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level36" race="gor2">
     <face>
       <face_key_template value="BodyProperty.gor" />
     </face>
@@ -3861,12 +3861,13 @@
       <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_beast_gor_gougehorn" name="Bestigor Gouge-Horn" level="41" default_group="infantry" culture="Culture.steppe_bandits" occupation="Bandit" skill_template="SkillSet.tor_skills_level41" race="gor">
+  <NPCCharacter id="tor_beast_gor_gougehorn" name="{=str_tor_beast_gor_gougehorn}Bestigor Gouge-Horn" level="41" default_group="infantry" culture="Culture.steppe_bandits" occupation="Bandit" skill_template="SkillSet.tor_skills_level41" race="gor2">
     <face>
       <face_key_template value="BodyProperty.gor" />
     </face>
     <Equipments>
-      <EquipmentSet id="tor_beast_gor_manripper_template" />
+      <EquipmentSet id="tor_beast_gor_gougehorn_template" />
+      <EquipmentSet id="tor_beast_gor_gougehorn_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beast_minotaur" default_group="infantry" level="36" name="{=str_tor_beast_minotaur}Minotaur" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_troll" is_basic_troop="true" race="minotaur">

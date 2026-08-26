@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Inventory;
-using TaleWorlds.CampaignSystem.ViewModelCollection.Party;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
-using TaleWorlds.Localization;
 using TOR_Core.Items.InventoryUseScripts;
-using TOR_Core.Utilities;
 using static Helpers.InventoryScreenHelper;
 
 namespace TOR_Core.Extensions.UI

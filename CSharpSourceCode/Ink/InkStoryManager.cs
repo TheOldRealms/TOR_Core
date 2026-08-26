@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TOR_Core.Utilities;
@@ -75,7 +73,6 @@ namespace TOR_Core.Ink
                 if (behavior != null)
                 {
                     var currentStory = behavior.CurrentStory;
-                    currentStory.CleanUp();
                     behavior.CloseStory();
                     if (_instance._action != null) _instance._action(currentStory);
                 }

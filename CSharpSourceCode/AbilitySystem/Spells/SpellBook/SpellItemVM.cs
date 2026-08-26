@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
-using TaleWorlds.Core.ViewModelCollection;
-using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem.SpellBook
 {
@@ -79,7 +72,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
                 CanLearn = _isTrainerMode && Template.SpellTier <= (int)info.SpellCastingLevel && Hero.HasKnownLore(Template.BelongsToLoreID);
                 if (!info.KnownLores.Any(x => x.StringId == Template.BelongsToLoreID))
                 {
-                    DisabledReason = TORTextHelper.GetText("tor_learnSpellDisabled_lore", "Unfamiliar lore");
+                    DisabledReason = TORTextHelper.GetText("tor_spell_stat_unfamiliar", "Unfamiliar Lore");
                 }
                 else if (Template.SpellTier > (int)info.SpellCastingLevel)
                 {

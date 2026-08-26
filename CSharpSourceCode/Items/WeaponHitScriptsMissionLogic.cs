@@ -151,7 +151,7 @@ namespace TOR_Core.Items
             }
 
             var poisonDuration = 9f; // first second is consumed before the damage tick
-            ApplyWeaponStatusEffect(victim, "trait_poisonous_dot", attacker, poisonDuration, false);
+            ApplyWeaponStatusEffect(victim, "poisonous_dot", attacker, poisonDuration, false);
         }
 
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)

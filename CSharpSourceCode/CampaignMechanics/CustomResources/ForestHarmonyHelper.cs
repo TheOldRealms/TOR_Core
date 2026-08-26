@@ -3,7 +3,6 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Localization;
-using TaleWorlds.TwoDimension;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.CustomResources;

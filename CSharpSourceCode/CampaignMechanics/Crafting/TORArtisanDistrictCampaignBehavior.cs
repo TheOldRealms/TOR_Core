@@ -1,6 +1,5 @@
 using HarmonyLib;
 using Helpers;
-using NAudio.Utils;
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
@@ -13,10 +12,8 @@ using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.Extensions;
-using TOR_Core.HarmonyPatches;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
-using TOR_Core.Models;
 using static TaleWorlds.CampaignSystem.CampaignBehaviors.CraftingCampaignBehavior;
 
 namespace TOR_Core.CampaignMechanics.Crafting
@@ -69,7 +66,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
 
         private void AddTownMenu(CampaignGameStarter starter)
         {
-            starter.AddGameMenuOption("town", "town_artisan", TORTextHelper.GetText("tor_artisan_district_menu_option_text", "Go to the artisan district"),
+            starter.AddGameMenuOption("town", "town_artisan", TORTextHelper.GetTextForNative("tor_artisan_district_menu_option_text", "Go to the artisan district"),
                 args =>
                 {
                     args.optionLeaveType = GameMenuOption.LeaveType.Submenu;
@@ -91,7 +88,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
                 },
                 GameMenu.MenuOverlayType.SettlementWithBoth, GameMenu.MenuFlags.None, null);
 
-            starter.AddGameMenuOption("town_artisan", "town_artisan_smithy", TORTextHelper.GetText("tor_artisan_weaponsmith_option_text", "Visit the weaponsmith"),
+            starter.AddGameMenuOption("town_artisan", "town_artisan_smithy", TORTextHelper.GetTextForNative("tor_artisan_weaponsmith_option_text", "Visit the weaponsmith"),
                 game_menu_craft_weapon_on_condition,
                 args =>
                 {
@@ -99,7 +96,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
                 },
                 false, -1, false, null);
 
-            starter.AddGameMenuOption("town_artisan", "town_artisan_enchanting", TORTextHelper.GetText("tor_artisan_enchanter_option_text", "Visit the enchanter"),
+            starter.AddGameMenuOption("town_artisan", "town_artisan_enchanting", TORTextHelper.GetTextForNative("tor_artisan_enchanter_option_text", "Visit the enchanter"),
                 game_menu_enchant_weapon_on_condition,
                 args =>
                 {
@@ -107,7 +104,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
                 },
                 false, -1, false, null);
 
-            starter.AddGameMenuOption("town_artisan", "town_artisan_leave", TORTextHelper.GetText("tor_artisan_leave_option_text", "Leave"),
+            starter.AddGameMenuOption("town_artisan", "town_artisan_leave", TORTextHelper.GetTextForNative("tor_artisan_leave_option_text", "Leave"),
                 args =>
                 {
                     args.optionLeaveType = GameMenuOption.LeaveType.Leave;

@@ -11,7 +11,6 @@ using TaleWorlds.MountAndBlade;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.UI;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {

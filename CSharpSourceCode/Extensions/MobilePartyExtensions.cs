@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -6,7 +5,6 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TOR_Core.CampaignMechanics.RaidingParties;
-using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 using TOR_Core.CampaignMechanics.UniqueSpawns;
 using TOR_Core.Extensions.ExtendedInfoSystem;

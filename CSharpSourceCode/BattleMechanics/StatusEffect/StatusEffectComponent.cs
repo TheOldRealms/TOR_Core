@@ -1,17 +1,13 @@
-using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.SFX;
-using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
@@ -145,6 +141,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 }
 
 
+                var abilityLogic = Mission.Current?.GetMissionBehavior<AbilityManagerMissionLogic>();
                 if (_effectAggregate.DamageOverTime > 0)
                 {
                     var damageValue = (int)_effectAggregate.DamageOverTime;
@@ -155,10 +152,9 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
                     // Career ability charge is now applied once per session in FinalizeSession, not every tick
 
-                    var logic = Mission.Current?.GetMissionBehavior<AbilityManagerMissionLogic>();
-                    if (logic != null)
+                    if (abilityLogic != null)
                     {
-                        logic.QueueStatusDotDamage(
+                        abilityLogic.QueueStatusDotDamage(
                             Agent,
                             damageValue,
                             Agent.Position,
@@ -173,11 +169,23 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 else if (_effectAggregate.HealthOverTime > 0)
                 {
                     var healingValue = (int)_effectAggregate.HealthOverTime;
-                    Agent.Heal(healingValue);
-
-                    if (Agent.HasMount && Agent.HasHorseLink())
+                    if (abilityLogic != null)
                     {
-                        Agent.MountAgent.Heal(healingValue);
+                        abilityLogic.QueueStatusHealing(Agent, healingValue);
+
+                        if (Agent.HasMount && Agent.HasHorseLink())
+                        {
+                            abilityLogic.QueueStatusHealing(Agent.MountAgent, healingValue);
+                        }
+                    }
+                    else
+                    {
+                        Agent.Heal(healingValue);
+
+                        if (Agent.HasMount && Agent.HasHorseLink())
+                        {
+                            Agent.MountAgent.Heal(healingValue);
+                        }
                     }
 
                     // Career ability charge is now applied once per session in FinalizeSession, not every tick
@@ -878,7 +886,9 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         public int GetActiveEffectCount(string effectId)
         {
-            return _currentEffects.Keys.Count(effect => effect.Template.StringID == effectId);
+            return _currentEffects.Keys.Count(effect =>
+                effect.Template.StringID == effectId ||
+                effect.Template.StringID.StartsWith(effectId + "*cloned*", StringComparison.Ordinal));
         }
 
         private void AddEffect(StatusEffect effect)

@@ -931,6 +931,21 @@
     <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.05" />
     <StatsTuple StatType="Skill" SkillId="TwoHanded" Value="20" />
   </ItemTrait>
+  <ItemTrait ItemTraitStringId="emp_blessing_ulric_white_wolf_helmet" ItemTraitName="Mastery of the White Wolf" IsCraftable="false" IconName="whitewolf_icon">
+    <ValidItemType>Armor</ValidItemType>
+    <IngredientItem>BlessedWater</IngredientItem>
+    <IngredientAmount>1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_ulric_white_wolf_helmet}"50 bonus skillpoints to Two Handed"</ItemTraitDescription>
+    <StatsTuple StatType="Skill" SkillId="TwoHanded" Value="50" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="emp_blessing_ulric_white_wolf_axe" ItemTraitName="Blessing of the White Wolf" IsCraftable="false" IconName="whitewolf_icon">
+    <ValidItemType>Melee</ValidItemType>
+    <IngredientItem>BlessedWater</IngredientItem>
+    <IngredientAmount>1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_ulric_white_wolf_axe}"20% extra swing speed and 50% extra damage done as frost"</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Frost" Percent="0.50" />
+    <StatsTuple StatType="SwingSpeed" Value="20" />
+  </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_blessing_shallya_mercy" ItemTraitName="Mercy of Shallya" IsCraftable="true" IconName="shallya_dove_icon">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
@@ -1571,6 +1586,88 @@
         <WeaponScriptArgument>ranged</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="eo_enchant_sarriel_whisper" ItemTraitName="Whisper of Sarriel" IsCraftable="true" ImbuedStatusEffectId="shyish_withering_debuff" ImbuedEffectChance="0.20" IconName="favor_icon_100">
+    <ValidItemType>Weapon</ValidItemType>
+    <IngredientItem>ArcaneScroll</IngredientItem>
+    <IngredientAmount>18</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_sarriel_whisper}"15% extra damage done as magical, 20% chance to reduce movement speed of the struck enemy by 25% for 5 seconds"</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Magical" Percent="0.15" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="eo_enchant_anvil_vaul" ItemTraitName="Anvil of Vaul" IsCraftable="true" IconName="favor_icon_100">
+    <ValidItemType>Melee</ValidItemType>
+    <IngredientItem>DragonBlood</IngredientItem>
+    <IngredientAmount>12</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_anvil_vaul}"25% extra damage done as magical, ignores 75% of the target's armour"</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Magical" Percent="0.25" />
+    <StatsTuple StatType="ArmorPenetration" Value="75" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="eo_enchant_veil_ladrielle" ItemTraitName="Veil of Ladrielle" IsCraftable="true" IconName="favor_icon_100">
+    <ValidItemType>Armor</ValidItemType>
+    <IngredientItem>AmberCrystal</IngredientItem>
+    <IngredientAmount>16</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_veil_ladrielle}"5% physical resistance, 3% extra party travel speed"</ItemTraitDescription>
+    <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.05" />
+    <StatsTuple StatType="PartySpeed" Value="3" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="eo_enchant_daroir_soulgem" ItemTraitName="Daroir Soulgem" IsCraftable="true" IconName="favor_icon_100">
+    <ValidItemType>Armor</ValidItemType>
+    <IngredientItem>GemStone</IngredientItem>
+    <IngredientAmount>30</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_daroir_soulgem}"4% Ward Save, 5 extra HP"</ItemTraitDescription>
+    <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.04" />
+    <StatsTuple StatType="HealthMax" Value="5" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="eo_enchant_silver_tower_eyes" ItemTraitName="Eyes of the Silver Tower" IsCraftable="true" ImbuedEffectChance="1.00" IconName="favor_icon_100">
+    <ValidItemType>Ranged</ValidItemType>
+    <IngredientItem>GemStone</IngredientItem>
+    <IngredientAmount>30</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_silver_tower_eyes}"15% extra missile speed, 200% extra headshot damage"</ItemTraitDescription>
+    <StatsTuple StatType="MissileSpeed" Value="15" />
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.ExtraHeadshotDamageScript">
+      <WeaponScriptArguments>
+        <WeaponScriptArgument>200</WeaponScriptArgument>
+      </WeaponScriptArguments>
+    </OnWeaponHitScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="eo_enchant_soulbound_shafts" ItemTraitName="Soulbound Shafts" IsCraftable="true" IconName="favor_icon_100">
+    <ValidItemType>Ammo</ValidItemType>
+    <IngredientItem>GemStone</IngredientItem>
+    <IngredientAmount>50</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_soulbound_shafts}"25% extra damage done as magical, projectiles penetrate targets"</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Magical" Percent="0.25" />
+    <StatsTuple StatType="MultiPenetration" Value="1" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="eo_enchant_blood_aenarion" ItemTraitName="Grace of the Toriour" IsCraftable="true" ImbuedEffectChance="0.25" IconName="favor_icon_100">
+    <ValidItemType>Armor</ValidItemType>
+    <IngredientItem>DragonBlood</IngredientItem>
+    <IngredientAmount>12</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_blood_aenarion}"5% extra movement speed, 5% physical resistance, 25% chance upon taking damage to receive a fleeting 4% attack speed bonus for 20 seconds. Stacks up to 5 times"</ItemTraitDescription>
+    <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.05" />
+    <StatsTuple StatType="MovementSpeed" Value="5" />
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseStackBuffScript">
+      <WeaponScriptArguments>
+        <WeaponScriptArgument>eonir_toriour_grace_enchant_ats</WeaponScriptArgument>
+        <WeaponScriptArgument>5</WeaponScriptArgument>
+        <WeaponScriptArgument>20</WeaponScriptArgument>
+      </WeaponScriptArguments>
+    </OnWeaponHitScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="eo_enchant_blood_aenarion_melee" ItemTraitName="Blood of Aenarion" IsCraftable="true" IconName="favor_icon_100">
+    <ValidItemType>Melee</ValidItemType>
+    <IngredientItem>DragonBlood</IngredientItem>
+    <IngredientAmount>12</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_blood_aenarion_melee}"40% extra swing speed, 15% extra damage done as physical"</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Physical" Percent="0.15" />
+    <StatsTuple StatType="SwingSpeed" Value="40" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="eo_enchant_grace_toriour" ItemTraitName="High Court's Blessing" IsCraftable="true" IconName="favor_icon_100">
+    <ValidItemType>Armor</ValidItemType>
+    <IngredientItem>AmberCrystal</IngredientItem>
+    <IngredientAmount>20</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_grace_toriour}"5% extra movement speed, 5% physical resistance"</ItemTraitDescription>
+    <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.05" />
+    <StatsTuple StatType="MovementSpeed" Value="5" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="gs_enchant_brutality_gork" ItemTraitName="Brutality uv Gork" IsCraftable="true" IconName="gork_icon">
     <ValidItemType>Melee</ValidItemType>
@@ -3892,6 +3989,132 @@
         <InventoryScriptArgument>eo_enchant_sanctuary_saphery</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
         <InventoryScriptArgument>250</InventoryScriptArgument>
+        <InventoryScriptArgument>HighMagic</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_eo_enchant_sarriel_whisper" ItemTraitName="Whisper of Sarriel" IsCraftable="false" IconName="favor_icon_100">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_sarriel_whisper}"15% extra damage done as magical, 20% chance to reduce movement speed of the struck enemy by 25% for 5 seconds"</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>eo_enchant_sarriel_whisper</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>125</InventoryScriptArgument>
+        <InventoryScriptArgument>HighMagic</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_eo_enchant_anvil_vaul" ItemTraitName="Anvil of Vaul" IsCraftable="false" IconName="favor_icon_100">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_anvil_vaul}"25% extra damage done as magical, ignores 75% of the target's armour"</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>eo_enchant_anvil_vaul</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>250</InventoryScriptArgument>
+        <InventoryScriptArgument>HighMagic</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_eo_enchant_veil_ladrielle" ItemTraitName="Veil of Ladrielle" IsCraftable="false" IconName="favor_icon_100">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_veil_ladrielle}"5% physical resistance, 15% extra party travel speed"</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>eo_enchant_veil_ladrielle</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>100</InventoryScriptArgument>
+        <InventoryScriptArgument>HighMagic</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_eo_enchant_daroir_soulgem" ItemTraitName="Daroir Soulgem" IsCraftable="false" IconName="favor_icon_100">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_daroir_soulgem}"4% Ward Save, 5 extra HP"</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>eo_enchant_daroir_soulgem</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>200</InventoryScriptArgument>
+        <InventoryScriptArgument>HighMagic</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_eo_enchant_silver_tower_eyes" ItemTraitName="Eyes of the Silver Tower" IsCraftable="false" IconName="favor_icon_100">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_silver_tower_eyes}"15% extra missile speed, 200% extra headshot damage"</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>eo_enchant_silver_tower_eyes</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>200</InventoryScriptArgument>
+        <InventoryScriptArgument>HighMagic</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_eo_enchant_soulbound_shafts" ItemTraitName="Soulbound Shafts" IsCraftable="false" IconName="favor_icon_100">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_soulbound_shafts}"25% extra damage done as magical, projectiles penetrate targets"</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>eo_enchant_soulbound_shafts</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>225</InventoryScriptArgument>
+        <InventoryScriptArgument>HighMagic</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_eo_enchant_blood_aenarion" ItemTraitName="Grace of the Toriour" IsCraftable="false" IconName="favor_icon_100">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_blood_aenarion}"5% extra movement speed, 5% physical resistance, 25% chance upon taking damage to receive a fleeting 4% attack speed bonus for 20 seconds. Stacks up to 5 times"</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>eo_enchant_blood_aenarion</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>250</InventoryScriptArgument>
+        <InventoryScriptArgument>HighMagic</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_eo_enchant_blood_aenarion_melee" ItemTraitName="Blood of Aenarion" IsCraftable="false" IconName="favor_icon_100">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_blood_aenarion_melee}"40% extra swing speed, 15% extra damage done as physical"</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>eo_enchant_blood_aenarion_melee</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>250</InventoryScriptArgument>
+        <InventoryScriptArgument>HighMagic</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_eo_enchant_grace_toriour" ItemTraitName="High Court's Blessing" IsCraftable="false" IconName="favor_icon_100">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_grace_toriour}"5% extra movement speed, 5% physical resistance"</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>eo_enchant_grace_toriour</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>150</InventoryScriptArgument>
         <InventoryScriptArgument>HighMagic</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>

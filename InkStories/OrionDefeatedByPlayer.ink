@@ -1,7 +1,7 @@
 # title: Orion Defeated
 # frequency: Unique
 # development: false
-# illustration: meadow
+# illustration: orion_wild_hunt_defeat
 
 INCLUDE include.ink
 

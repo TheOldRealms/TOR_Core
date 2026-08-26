@@ -13,7 +13,6 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics
 {
@@ -132,7 +131,16 @@ namespace TOR_Core.BattleMechanics
 
             if (affectedAgent.HasAttribute("Thorns"))
             {
-                affectorAgent.ApplyDamage((int)(blow.InflictedDamage * 0.25f), affectedAgent.Position);
+                var thornsDamage = (int)(blow.InflictedDamage * 0.25f);
+                var abilityLogic = Mission.Current?.GetMissionBehavior<AbilityManagerMissionLogic>();
+                if (abilityLogic != null)
+                {
+                    abilityLogic.QueueOnHitSecondaryDamage(affectorAgent, thornsDamage, affectedAgent.Position, originatesFromAbility: true);
+                }
+                else
+                {
+                    affectorAgent.ApplyDamage(thornsDamage, affectedAgent.Position);
+                }
             }
         }
 

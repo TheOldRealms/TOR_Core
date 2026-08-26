@@ -87,7 +87,8 @@
             <EliteUnit id="NPCCharacter.tor_empire_teutogen_guard" />
         </EliteUnits>
         <ReligiousArtifacts>
-		<ArtifactItem id="Item.tor_empire_head_helm_kotww_001" />
+		<ArtifactItem id="Item.tor_empire_head_helm_kotww_miracle_001" />
+		<ArtifactItem id="Item.tor_empire_weapon_axe_kotww_miracle_001" />
         </ReligiousArtifacts>
     </Religion>
     <Religion id="cult_of_shallya" Name="{=tor_religion_cult_name_cult_of_shallya_str}Cult of Shallya" Culture="Culture.empire" Pantheon="Human" DeityName="Shallya">
