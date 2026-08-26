@@ -867,8 +867,8 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
                         if (MBRandom.RandomFloat < 0.25f)
                         {
-                            slaverBaySettlementComponent.SpawnNewParty(out var druchiiParty1, settlement);
-                            slaverBaySettlementComponent.SpawnNewParty(out var druchiiParty2, settlement);
+                            var druchiiParty1 = slaverBaySettlementComponent.SpawnNewParty(settlement);
+                            var druchiiParty2 = slaverBaySettlementComponent.SpawnNewParty(settlement);
                             var ta = druchiiParty1.MemberRoster.CloneRosterData();
 
                             druchiiParty1.Position = NavigationHelper.FindReachablePointAroundPosition(settlement.GatePosition, MobileParty.NavigationType.Default, 20);
@@ -879,7 +879,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
                             partiesSpawned += 2;
                             continue;
                         }
-                        slaverBaySettlementComponent.SpawnNewParty(out var druchiiParty, settlement);
+                        var druchiiParty = slaverBaySettlementComponent.SpawnNewParty(settlement);
                         partiesSpawned++;
                         druchiiParty.Position = NavigationHelper.FindReachablePointAroundPosition(settlement.GatePosition, MobileParty.NavigationType.Default, 20);
                         var memberRosterCopy = druchiiParty.MemberRoster.CloneRosterData();

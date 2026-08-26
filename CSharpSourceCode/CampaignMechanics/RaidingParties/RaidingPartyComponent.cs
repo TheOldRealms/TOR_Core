@@ -15,9 +15,9 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
     {
         [SaveableProperty(1)] public Settlement Target { get; set; }
 
-        [SaveableField(2)] private Hero _owner;
-        public override Hero PartyOwner => _owner;
-        //Sly : these can instead have a clan assigned to MobileParty.ActualClan which can hold the template definition and a hero owner would no longer be necessary
+        //Randy: This is by the MobileParty component to check, it cannot be null otherwise the raiding
+        //party cannot find its owner (taleworlds thing: IsSettlementSuitableForVisitingCondition)
+        public override Hero PartyOwner => Clan.Leader;
 
         [SaveableField(3)] private Settlement _home;
         public override Settlement HomeSettlement => _home;
@@ -26,11 +26,10 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
         [SaveableField(5)] private PartyTemplateObject _template;
         [SaveableField(6)] public int _partySize; //accessible to TORPartySizeModel which needs it to scale the troop counts up because native now only supports ratios up to 1.0 compared to the party template used
 
-        private RaidingPartyComponent(Settlement home, string name, Clan ownerClan, PartyTemplateObject template, int partySize)
+        private RaidingPartyComponent(Settlement home, string name, PartyTemplateObject template, int partySize)
         {
             _home = home;
             _name = name;
-            _owner = ownerClan.Leader;
             _template = template;
             _partySize = partySize;
         }
@@ -42,11 +41,11 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
 
         private void InitializeRaidingParty()
         {
-            if (_owner.Clan != null && _template != null)
+            if (_home.OwnerClan != null && _template != null)
             {
                 //party size adjustment handled in TORPartySizeModel.FindAppropriateInitialRosterForMobileParty
                 MobileParty.InitializeMobilePartyAroundPosition(_template, HomeSettlement.Position, 20);
-                MobileParty.ActualClan = _owner.Clan;
+                MobileParty.ActualClan = _home.OwnerClan;
                 MobileParty.Aggressiveness = 2.0f;
                 MobileParty.Party.SetVisualAsDirty();
                 MobileParty.ItemRoster.Add(new ItemRosterElement(DefaultItems.Meat, MBRandom.RandomInt(_partySize, _partySize * 2)));
@@ -57,9 +56,9 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
             }
         }
 
-        public static MobileParty CreateRaidingParty(string stringId, Settlement home, string name, PartyTemplateObject template, Clan owner, int partySize)
+        public static MobileParty CreateRaidingParty(string stringId, Settlement home, string name, PartyTemplateObject template, int partySize)
         {
-            return MobileParty.CreateParty(stringId, new RaidingPartyComponent(home, name, owner, template, partySize));
+            return MobileParty.CreateParty(stringId, new RaidingPartyComponent(home, name, template, partySize));
         }
 
         public override TextObject Name => new(_name);

@@ -13,5 +13,5 @@ public abstract class BaseRaiderSpawnerComponent : TORBaseSettlementComponent
     public abstract string BattleSceneName { get; }
     public bool IsBattleUnderway { get; set; }
     public abstract List<string> RewardItemIds { get; }
-    public abstract void SpawnNewParty(out MobileParty party, Settlement initialTarget);
+    public abstract MobileParty SpawnNewParty(Settlement initialTarget);
 }
