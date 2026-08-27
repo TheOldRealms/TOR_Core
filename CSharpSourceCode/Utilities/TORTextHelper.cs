@@ -1,6 +1,7 @@
 using NLog;
 using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.CampaignSystem.Extensions;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TOR_Core.CharacterDevelopment;
@@ -11,28 +12,26 @@ namespace TOR_Core.Extensions
     public static class TORTextHelper
     {
         private static readonly HashSet<string> _missingTextsLogged = new();
-        public static TextObject GetTextObjectOfSkillId(string SkillId)
+
+        public static TextObject GetTextObjectOfSkillId(string skillId)
         {
             List<SkillObject> skills = Game.Current.DefaultSkills.GetDefaultSkills();
 
             skills.AddRange(TORSkills.Instance.GetTorSkills());
 
-            return skills.FirstOrDefault(skill => SkillId == skill.StringId)?.Name;
+            return skills.FirstOrDefault(skill => skillId == skill.StringId)?.Name;
         }
 
-        public static TextObject GetTextObjectOfAttribute(string AttributeId)
+        public static TextObject GetTextObjectOfAttribute(string attributeId)
         {
-            AttributeId = AttributeId.ToLower();
+            attributeId = attributeId.ToLower();
             List<CharacterAttribute> attributes = Game.Current.DefaultCharacterAttributes.GetCharacterAttributes();
-
+            
             attributes.Add(TORAttributes.Discipline);
 
-            return attributes.FirstOrDefault(attribute => AttributeId == attribute.StringId)?.Name;
+            return attributes.FirstOrDefault(attribute => attributeId == attribute.StringId)?.Name;
         }
 
-        /// <remarks>
-        /// Conversation strings are stored during game load when their variables are still unknown. TextObject.ToString can't be used because it writes the empty value into the variable token and the string will be missing important information. TextObject.Value.ToString likewise can't be used because it would keep the localization id in the string which is only needed when fetching a TextObject language variant and has already occurred before the return.
-        /// </remarks>
         public static string GetText(string id, string defaultText, bool skipValidation = true)
         {
             var text = GetTextObject(id, defaultText, skipValidation);
@@ -46,13 +45,20 @@ namespace TOR_Core.Extensions
         }
 
         /// <summary>
-        /// 
+        /// Intended for fetching text that will be passed into a native data structure that is initialized during load when variables are not yet available for setting.
         /// </summary>
         /// <remarks>
-        /// Conversations (DialogLine and PlayerLine) take strings in for their text which are then placed into a TextObject during ConversationSentence construction which is the point at which localization is performed. If the string representation of the original text is passed as a string into the constructor, the variables are effectively stripped because Conversations are built during campaign load when their values have not yet been set. Setting of the variables occurs on Line condition evaluation and so the raw variable text must be kept intact in the string when the argument is passed into the constructor.
-        /// Menus similarly pass a string into a text object and have the same issue.
+        /// <para>
+        /// This differs from GetText in that it still contains the localization id as the TextObject the string is placed in will then have it tokenized permitting fetching of the local language equivalent.
+        /// </para>
+        /// <para>
+        /// Native code, eg. AddDialogLine (also  AddPlayerLine, AddWaitGameMenu, AddGameMenuOption, CreateDialogFlow, NpcLine, DisplayMessage, AddGameMenu, PlayerLine, etc.), takes strings in for its text which are then placed into a TextObject during ConversationSentence construction which is the point at which localization is performed.
+        /// </para>
+        /// <para>
+        /// When the string representation of the TextObject fetched by TORTextHelper.GetTextObject is passed into the constructor, the variables are stripped because Conversations are built during campaign load and the 0 length value at that moment replaces the variable's token. Setting of the variables occurs on condition evaluation and so the raw variable text must be kept intact in the string when the argument is passed into the constructor.
+        /// </para>
         /// </remarks>
-        /// <returns>The value of the TextObject to be passed into a Conversation being created.</returns>
+        /// <returns>A string with its localization id and variables present.</returns>
         public static string GetTextForNative(string id, string variation, string defaultText, bool skipValidation = true)
         {
             var text = GetTextObject(id, variation, defaultText, skipValidation);
@@ -84,7 +90,7 @@ namespace TOR_Core.Extensions
 
             if (_missingTextsLogged.Add(id))
             {
-                TORCommon.Log(string.Format("[TEXT]Couldn't find text with id: {0}.  switch to default: {1}", id, defaultText), LogLevel.Error);
+                TORCommon.Log(string.Format("[TEXT]Couldn't find text with id: {0}. Substituting default: {1}", id, defaultText), LogLevel.Error);
             }
 
             return new TextObject(defaultText);
@@ -99,17 +105,18 @@ namespace TOR_Core.Extensions
                     var pureText = textObject.GetNativeTextWithoutTag();
                     if (pureText != defaultText)
                     {
-                        TORCommon.Log(string.Format("[TEXT]Code text mismatches TOR XML text.{0}.{1}, \n XML : {2} \n CODE: {3}", id,variation,pureText,defaultText), LogLevel.Warn);
+                        TORCommon.Log(string.Format("[TEXT]Code text mismatches TOR XML text.{0}.{1}, \n XML : {2} \n CODE: {3}", id, variation, pureText, defaultText), LogLevel.Warn);
                     }
                 }
 
                 return textObject;
                 
             }
+
             var key = $"{id}::{variation}";
             if (_missingTextsLogged.Add(key))
             {
-                TORCommon.Log(string.Format("[TEXT]Couldn't find text with id: {0} {1}.  switch to default.", id, variation), LogLevel.Error);
+                TORCommon.Log(string.Format("[TEXT]Couldn't find text with id: {0} {1}. Substituting default.", id, variation), LogLevel.Error);
             }
 
             return new TextObject(defaultText);
