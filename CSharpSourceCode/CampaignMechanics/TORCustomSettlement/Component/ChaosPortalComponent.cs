@@ -71,7 +71,7 @@ public class ChaosPortalComponent : BaseRaiderSpawnerComponent
 
     public override IFaction MapFaction => Settlement.Owner.Clan;
 
-    public override void SpawnNewParty(out MobileParty party, Settlement initialTarget)
+    public override MobileParty SpawnNewParty(Settlement initialTarget)
     {
         PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_lordparty_template");
         Clan chaosClan = Clan.FindFirst(x => x.StringId == "chaos_clan_1");
@@ -82,7 +82,7 @@ public class ChaosPortalComponent : BaseRaiderSpawnerComponent
             targetPartySize *= 2;//20% chance for doubled party size
         }
 
-        var chaosRaidingParty = RaidingPartyComponent.CreateRaidingParty("chaos_clan_1_party_" + RaidingPartyCount + 1, Settlement, TORTextHelper.GetText("tor_chaos_raiders", "Chaos Raiders"), template, chaosClan, targetPartySize);
+        var chaosRaidingParty = RaidingPartyComponent.CreateRaidingParty("chaos_clan_1_party_" + RaidingPartyCount + 1, Settlement, TORTextHelper.GetText("tor_chaos_raiders", "Chaos Raiders"), template, targetPartySize);
         if (find != null)
         {
             SetPartyAiAction.GetActionForRaidingSettlement(chaosRaidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false, false);
@@ -93,6 +93,6 @@ public class ChaosPortalComponent : BaseRaiderSpawnerComponent
             ((RaidingPartyComponent)chaosRaidingParty.PartyComponent).Target = null;
         }
 
-        party = chaosRaidingParty;
+        return chaosRaidingParty;
     }
 }

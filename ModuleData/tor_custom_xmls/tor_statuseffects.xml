@@ -3025,4 +3025,97 @@
 		base_effect_value="0.30"
 		type="AttackSpeedManipulation">
 	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
+		id="myrmidia_wisdom_attack_speed_debuff"
+		particle_id=""
+		particle_intensity="Low"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="-0.25"
+		type="AttackSpeedManipulation"
+		damage_type="Physical">
+	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
+		id="myrmidia_wisdom_physical_resistance_debuff"
+		particle_id="accusation_mark"
+		particle_intensity="Low"
+		apply_particle_to_root_bone_only="true"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="-0.25"
+		type="Resistance"
+		damage_type="Physical">
+	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
+		id="mork_kunningly_brutal_movement_debuff"
+		particle_id="waaagh_energy"
+		particle_intensity="Low"
+		apply_particle_to_root_bone_only="true"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="-0.30"
+		type="MovementManipulation"
+		damage_type="Magical">
+	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
+		id="mork_kunningly_brutal_dot"
+		particle_id=""
+		particle_intensity="Low"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="4"
+		type="DamageOverTime"
+		damage_type="Magical">
+	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
+		id="grimnir_slayers_oath_attack_speed"
+		particle_id=""
+		particle_intensity="Low"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.35"
+		type="AttackSpeedManipulation"
+		damage_type="Physical">
+	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
+		id="grungni_drongrundum_spirit_attack_speed"
+		particle_id=""
+		particle_intensity="Low"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.25"
+		type="AttackSpeedManipulation"
+		damage_type="Lightning">
+	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
+		id="valaya_ancestor_queen_salve_heal"
+		particle_id="general_life_buff"
+		particle_intensity="Low"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="2"
+		type="HealthOverTime"
+		damage_type="Physical">
+	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
+		id="loec_tricksters_dance_movement"
+		particle_id=""
+		particle_intensity="Low"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.25"
+		type="MovementManipulation"
+		damage_type="Physical">
+	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
+		id="gork_brutal_kunnin_attack_speed"
+		particle_id="waaagh_energy"
+		particle_intensity="Low"
+		apply_particle_to_root_bone_only="true"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.25"
+		type="AttackSpeedManipulation"
+		damage_type="Physical">
+	</StatusEffectTemplate>
 </StatusEffects>

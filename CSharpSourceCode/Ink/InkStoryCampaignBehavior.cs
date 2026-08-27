@@ -22,13 +22,14 @@ namespace TOR_Core.Ink
                 _cachedSpeed = Campaign.Current.TimeControlMode;
                 Campaign.Current.TimeControlMode = CampaignTimeControlMode.Stop;
                 _inkView = (InkBookMapView)_mapScreen.AddMapView<InkBookMapView>();
-                if (_inkView != null) _inkView.OpenStory(story);
                 CurrentStory = story;
+                if (_inkView != null) _inkView.OpenStory(story);
             }
         }
 
         public void CloseStory()
         {
+            CurrentStory.CleanUp();
             CurrentStory = null;
             _inkView.CloseStory();
             _mapScreen.RemoveMapView(_inkView);

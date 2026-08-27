@@ -5367,7 +5367,7 @@
       <tag tag_name="PlayerIsOrcTag" />
     </tags>
   </string>
-  <string id="nMn63bV1.prison_break_player_meet_dwarf" text="{=str_tor_prison_break_player_meet_dwarf}I'm {PLAYER.NAME]} and you ought to remember the debt you owe me now. {newline}Tell me, what's yer plan, now?">
+  <string id="nMn63bV1.prison_break_player_meet_dwarf" text="{=str_tor_prison_break_player_meet_dwarf}I'm {PLAYER.NAME} and you ought to remember the debt you owe me now. {newline}Tell me, what's yer plan, now?">
     <tags>
       <tag tag_name="PlayerIsDwarfTag" />
     </tags>
@@ -5896,7 +5896,7 @@
       <tag tag_name="IsOrcTag" />
     </tags>
   </string>
-  <string id="gfmU4wiM.tavernkeeper_companion_info_tavernkeeper_found_answer_companion_is_outside_1_orc" text="{=str_tor_tavernkeeper_companion_info_tavernkeeper_found_answer_companion_is_outside_1_orc}Oi, I know dat! Dat git ova there iz INQUIRY_COMPANION.LINK}, dey soundz like 'oo ya want!">
+  <string id="gfmU4wiM.tavernkeeper_companion_info_tavernkeeper_found_answer_companion_is_outside_1_orc" text="{=str_tor_tavernkeeper_companion_info_tavernkeeper_found_answer_companion_is_outside_1_orc}Oi, I know dat! Dat git ova there iz {INQUIRY_COMPANION.LINK}, dey soundz like 'oo ya want!">
     <tags>
       <tag tag_name="IsOrcTag" />
     </tags>

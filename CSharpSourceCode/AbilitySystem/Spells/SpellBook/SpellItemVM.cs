@@ -72,7 +72,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
                 CanLearn = _isTrainerMode && Template.SpellTier <= (int)info.SpellCastingLevel && Hero.HasKnownLore(Template.BelongsToLoreID);
                 if (!info.KnownLores.Any(x => x.StringId == Template.BelongsToLoreID))
                 {
-                    DisabledReason = TORTextHelper.GetText("tor_learnSpellDisabled_lore", "Unfamiliar lore");
+                    DisabledReason = TORTextHelper.GetText("tor_spell_stat_unfamiliar", "Unfamiliar Lore");
                 }
                 else if (Template.SpellTier > (int)info.SpellCastingLevel)
                 {
