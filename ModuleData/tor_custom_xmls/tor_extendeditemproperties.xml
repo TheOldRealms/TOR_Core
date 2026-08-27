@@ -3926,7 +3926,7 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_thsword_de_lyonesse">
     <ItemTraits>
-      <ItemTrait>holy_amp_10</ItemTrait>
+      <ItemTrait>bret_miracle_sword_de_lyonesse</ItemTrait>
     </ItemTraits>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -4170,7 +4170,7 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_thaxe_taal">
     <ItemTraits>
-      <ItemTrait>holy_add_10</ItemTrait>
+      <ItemTrait>emp_miracle_taal_stoneaxe</ItemTrait>
     </ItemTraits>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -4352,12 +4352,10 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_comet_flail">
     <ItemTraits>
-      <ItemTrait>holy_amp_10</ItemTrait>
+      <ItemTrait>emp_miracle_sigmar_comet_flail</ItemTrait>
     </ItemTraits>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.40" />
-      <DamageProportionTuple DamageType="Holy" Percent="0.40" />
-      <DamageProportionTuple DamageType="Fire" Percent="0.40" />
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_warrior_priest_001">
@@ -4511,11 +4509,10 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_holy_hammer">
     <ItemTraits>
-      <ItemTrait>holy_amp_10</ItemTrait>
+      <ItemTrait>emp_miracle_sigmar_holy_silver_hammer</ItemTrait>
     </ItemTraits>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.20" />
-      <DamageProportionTuple DamageType="Holy" Percent="0.80" />
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_flagellant_002">
@@ -4661,11 +4658,10 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_trident_001">
     <ItemTraits>
-      <ItemTrait>lightning_res_amp_10</ItemTrait>
+      <ItemTrait>emp_miracle_manann_trident</ItemTrait>
     </ItemTraits>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.25" />
-      <DamageProportionTuple DamageType="Lightning" Percent="0.75" />
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_spear_001">
@@ -5241,7 +5237,9 @@
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_weapon_bow_legendary">
-    <ItemTraits />
+    <ItemTraits>
+      <ItemTrait>asrai_miracle_anath_raema_prey_seeker</ItemTrait>
+    </ItemTraits>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="0.50" />
       <DamageProportionTuple DamageType="Magical" Percent="0.50" />
@@ -5683,6 +5681,11 @@
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_luthor">
     <ItemTraits>
       <ItemTrait>phys_res_20</ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_suffering_of_man" RaceLock="human">
+    <ItemTraits>
+      <ItemTrait>emp_miracle_shallya_suffering_of_man</ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_warrior_priest_001">
@@ -7251,4 +7254,59 @@
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
-<ExtendedItemObjectProperties ItemStringId="tor_beastmen_weapn_axe_gor_001"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties></ArrayOfExtendedItemObjectProperties>
+<ExtendedItemObjectProperties ItemStringId="tor_beastmen_weapn_axe_gor_001"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_learn_emp_enchant_myrmidia_wisdom">
+    <ItemTraits>
+      <ItemTrait>learn_emp_enchant_myrmidia_wisdom</ItemTrait>
+    </ItemTraits>
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_learn_gs_enchant_mork_kunningly_brutal">
+    <ItemTraits>
+      <ItemTrait>learn_gs_enchant_mork_kunningly_brutal</ItemTrait>
+    </ItemTraits>
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_learn_dw_rune_grimnir_slayers_oath">
+    <ItemTraits>
+      <ItemTrait>learn_dw_rune_grimnir_slayers_oath</ItemTrait>
+    </ItemTraits>
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_learn_dw_rune_grungni_drongrundum_spirit">
+    <ItemTraits>
+      <ItemTrait>learn_dw_rune_grungni_drongrundum_spirit</ItemTrait>
+    </ItemTraits>
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_learn_dw_rune_valaya_ancestor_queen_salve">
+    <ItemTraits>
+      <ItemTrait>learn_dw_rune_valaya_ancestor_queen_salve</ItemTrait>
+    </ItemTraits>
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_learn_asrai_enchant_vaul_draugnir_breath">
+    <ItemTraits>
+      <ItemTrait>learn_asrai_enchant_vaul_draugnir_breath</ItemTrait>
+    </ItemTraits>
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_learn_eo_enchant_asuryan_phoenix_eternal">
+    <ItemTraits>
+      <ItemTrait>learn_eo_enchant_asuryan_phoenix_eternal</ItemTrait>
+    </ItemTraits>
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_learn_asrai_enchant_loec_tricksters_dance">
+    <ItemTraits>
+      <ItemTrait>learn_asrai_enchant_loec_tricksters_dance</ItemTrait>
+    </ItemTraits>
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_learn_gs_enchant_gork_brutal_kunnin">
+    <ItemTraits>
+      <ItemTrait>learn_gs_enchant_gork_brutal_kunnin</ItemTrait>
+    </ItemTraits>
+    <Description />
+  </ExtendedItemObjectProperties>
+</ArrayOfExtendedItemObjectProperties>

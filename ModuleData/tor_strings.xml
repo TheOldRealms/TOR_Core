@@ -1944,6 +1944,7 @@
   <string id="str_crafting_template.tor_kotww_axe_template" text="Knight of the White Wolf Axe" />
   <string id="str_crafting_template.tor_twohandedaxe" text="{=str_tor_crafting_template_TORGreataxes}TOR-Greataxes" />
   <string id="str_crafting_template.tor_mace_template" text="{=str_tor_crafting_template_TORMaces}TOR-Maces" />
+  <string id="str_crafting_template.tor_mace_knight_template" text="{=str_tor_crafting_template_TORKnightlyMaces}TOR-Knightly Maces" />
   <string id="str_crafting_template.tor_orc_mace_template" text="{=str_tor_crafting_template_TOROrcMaces}TOR-Orc Maces" />
   <string id="str_crafting_template.tor_orc_axe_template" text="{=str_tor_crafting_template_TorOrcOneHandedAxe}TOR-Orc Axes" />
   <string id="str_crafting_template.tor_orc_sword_template" text="{=str_tor_crafting_template_TorOrcOneHandedSword}TOR-Orc Swords" />

@@ -3755,4 +3755,126 @@
         <ImbuedStatusEffect>arrow_of_kurnous_debuff_res</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
 
+	<TriggeredEffectTemplate StringID="myrmidia_wisdom_exposure"
+                             BurstParticleEffectPrefab="yellow_particle_explosion"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             Radius="5"
+                             HasShockWave="false"
+                             TargetType="Enemy"
+                             ImbuedStatusEffectDuration="8"
+                             DamageVariance="0.0"
+                             ScriptNameToTrigger="none">
+        <ImbuedStatusEffect>myrmidia_wisdom_attack_speed_debuff</ImbuedStatusEffect>
+        <ImbuedStatusEffect>myrmidia_wisdom_physical_resistance_debuff</ImbuedStatusEffect>
+    </TriggeredEffectTemplate>
+
+	<TriggeredEffectTemplate StringID="mork_kunningly_brutal_miasma"
+                             BurstParticleEffectPrefab="gazeofmork_explosion"
+                             SoundEffectId="fireball_explosion"
+                             SoundEffectLength="2.5"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             Radius="5"
+                             HasShockWave="false"
+                             TargetType="Enemy"
+                             ImbuedStatusEffectDuration="8"
+                             DamageVariance="0.0"
+                             ScriptNameToTrigger="none">
+        <ImbuedStatusEffect>mork_kunningly_brutal_movement_debuff</ImbuedStatusEffect>
+        <ImbuedStatusEffect>mork_kunningly_brutal_dot</ImbuedStatusEffect>
+    </TriggeredEffectTemplate>
+
+	<TriggeredEffectTemplate StringID="grimnir_slayers_oath_fury"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             Radius="0"
+                             HasShockWave="false"
+                             TargetType="Self"
+                             ImbuedStatusEffectDuration="5"
+                             DamageVariance="0.0"
+                             ScriptNameToTrigger="none">
+        <ImbuedStatusEffect>grimnir_slayers_oath_attack_speed</ImbuedStatusEffect>
+    </TriggeredEffectTemplate>
+
+	<TriggeredEffectTemplate StringID="grungni_drongrundum_spirit_fury"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             Radius="0"
+                             HasShockWave="false"
+                             TargetType="Self"
+                             ImbuedStatusEffectDuration="5"
+                             DamageVariance="0.0"
+                             ScriptNameToTrigger="none">
+        <ImbuedStatusEffect>grungni_drongrundum_spirit_attack_speed</ImbuedStatusEffect>
+    </TriggeredEffectTemplate>
+
+	<TriggeredEffectTemplate StringID="valaya_ancestor_queen_salve"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             Radius="3"
+                             HasShockWave="false"
+                             TargetType="Friendly"
+                             ImbuedStatusEffectDuration="15"
+                             DamageVariance="0.0"
+                             ScriptNameToTrigger="none">
+        <ImbuedStatusEffect>valaya_ancestor_queen_salve_heal</ImbuedStatusEffect>
+    </TriggeredEffectTemplate>
+
+	<TriggeredEffectTemplate StringID="asuryan_phoenix_eternal_burst"
+                             BurstParticleEffectPrefab="psys_fireball_explosion_1"
+                             SoundEffectId="fireball_explosion"
+                             SoundEffectLength="2.5"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             Radius="3"
+                             HasShockWave="false"
+                             TargetType="Enemy"
+                             ImbuedStatusEffectDuration="12"
+                             DamageVariance="0.0"
+                             ScriptNameToTrigger="none">
+        <ImbuedStatusEffect>fireball_dot</ImbuedStatusEffect>
+    </TriggeredEffectTemplate>
+
+	<TriggeredEffectTemplate StringID="loec_tricksters_dance_movement"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             Radius="0"
+                             HasShockWave="false"
+                             TargetType="Self"
+                             ImbuedStatusEffectDuration="5"
+                             DamageVariance="0.0"
+                             ScriptNameToTrigger="none">
+        <ImbuedStatusEffect>loec_tricksters_dance_movement</ImbuedStatusEffect>
+    </TriggeredEffectTemplate>
+
+	<TriggeredEffectTemplate StringID="gork_brutal_kunnin_attack_speed"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             Radius="0"
+                             HasShockWave="false"
+                             TargetType="Self"
+                             ImbuedStatusEffectDuration="5"
+                             DamageVariance="0.0"
+                             ScriptNameToTrigger="none">
+        <ImbuedStatusEffect>gork_brutal_kunnin_attack_speed</ImbuedStatusEffect>
+    </TriggeredEffectTemplate>
+
 </TriggeredEffectTemplates>

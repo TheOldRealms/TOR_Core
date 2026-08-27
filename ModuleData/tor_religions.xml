@@ -112,7 +112,7 @@
         <ReligiousTroops>
         </ReligiousTroops>
         <ReligiousArtifacts>
-            <ArtifactItem id="Item.tor_learn_emp_blessing_shallya_compassion" />
+            <ArtifactItem id="Item.tor_empire_weapon_shield_suffering_of_man" />
         </ReligiousArtifacts>
     </Religion>
     <Religion id="cult_of_manaan" Name="{=tor_religion_cult_name_cult_of_manaan_str}Cult of Manann" Culture="Culture.empire" Pantheon="Human" DeityName="Manann">
@@ -164,6 +164,7 @@
             <EliteUnit id="NPCCharacter.tor_ror_blazing_sun_demigryph_innercircle" />
         </EliteUnits>
         <ReligiousArtifacts>
+            <ArtifactItem id="Item.tor_learn_emp_enchant_myrmidia_wisdom" />
         </ReligiousArtifacts>
     </Religion>
     <!-- bretonnia religions -->
@@ -376,6 +377,9 @@
         <ReligiousTroops>
 			<ReligiousTroop id="NPCCharacter.tor_we_wild_rider" />
         </ReligiousTroops>
+        <ReligiousArtifacts>
+            <ArtifactItem id="Item.tor_we_mount_great_stag_kurnous" />
+        </ReligiousArtifacts>
     </Religion>
     <Religion id="cult_of_vaul" Name="{=tor_religion_cult_name_cult_of_vaul_str}Cult of Vaul" Culture="Culture.battania" Pantheon="Elven" DeityName="Vaul">
         <HostileReligions>
@@ -393,6 +397,9 @@
         </Followers>
         <ReligiousTroops>
         </ReligiousTroops>
+        <ReligiousArtifacts>
+            <ArtifactItem id="Item.tor_learn_asrai_enchant_vaul_draugnir_breath" />
+        </ReligiousArtifacts>
     </Religion>
     <Religion id="cult_of_anath_raema" Name="{=tor_religion_cult_name_cult_of_anath_raema_str}Cult of Anath Raema" Culture="Culture.battania" Pantheon="Elven" DeityName="Anath Raema">
         <HostileReligions>
@@ -430,6 +437,9 @@
         </Followers>
         <ReligiousTroops>
         </ReligiousTroops>
+        <ReligiousArtifacts>
+            <ArtifactItem id="Item.tor_learn_eo_enchant_asuryan_phoenix_eternal" />
+        </ReligiousArtifacts>
     </Religion>
     <Religion id="cult_of_loec" Name="{=tor_religion_cult_name_cult_of_loec_str}Cult of Loec" Culture="Culture.battania" Pantheon="Elven" DeityName="Loec">
         <HostileReligions>
@@ -448,6 +458,9 @@
         <ReligiousTroops>
 		   <ReligiousTroop id="NPCCharacter.tor_we_wardancer" />
         </ReligiousTroops>
+        <ReligiousArtifacts>
+            <ArtifactItem id="Item.tor_learn_asrai_enchant_loec_tricksters_dance" />
+        </ReligiousArtifacts>
     </Religion>
 	<Religion id="cult_of_grimnir" Name="{=tor_religion_cult_name_cult_of_grimnir_str}Cult of Grimnir" Culture="Culture.sturgia" Pantheon="Dwarven" DeityName="Grimnir">
         <HostileReligions>
@@ -465,6 +478,9 @@
 		<ReligiousTroops>
             <ReligiousTroop id="NPCCharacter.tor_dw_slayer" />
         </ReligiousTroops>
+        <ReligiousArtifacts>
+            <ArtifactItem id="Item.tor_learn_dw_rune_grimnir_slayers_oath" />
+        </ReligiousArtifacts>
     </Religion>
 	<Religion id="cult_of_valaya" Name="{=tor_religion_cult_name_cult_of_valaya_str}Cult of Valaya" Culture="Culture.sturgia" Pantheon="Dwarven" DeityName="Valaya">
         <HostileReligions>
@@ -481,6 +497,9 @@
         </Followers>
         <ReligiousTroops>
         </ReligiousTroops>
+        <ReligiousArtifacts>
+            <ArtifactItem id="Item.tor_learn_dw_rune_valaya_ancestor_queen_salve" />
+        </ReligiousArtifacts>
     </Religion>
 	<Religion id="cult_of_grungni" Name="{=tor_religion_cult_name_cult_of_grungni_str}Cult of Grungni" Culture="Culture.sturgia" Pantheon="Dwarven" DeityName="Grungni">
         <HostileReligions>
@@ -497,6 +516,9 @@
         </Followers>
         <ReligiousTroops>
         </ReligiousTroops>
+        <ReligiousArtifacts>
+            <ArtifactItem id="Item.tor_learn_dw_rune_grungni_drongrundum_spirit" />
+        </ReligiousArtifacts>
     </Religion>
 	<!-- greenskin religions -->
 	<Religion id="cult_of_gork" Name="{=tor_religion_cult_name_cult_of_gork_str}Cult of Gork" Culture="Culture.aserai" Pantheon="Greenskin" DeityName="Gork">
@@ -528,6 +550,7 @@
 		<ReligiousTroops>
 		</ReligiousTroops>
 		<ReligiousArtifacts>
+			<ArtifactItem id="Item.tor_learn_gs_enchant_gork_brutal_kunnin" />
 		</ReligiousArtifacts>
 	</Religion>
 	<Religion id="cult_of_mork" Name="{=tor_religion_cult_name_cult_of_mork_str}Cult of Mork" Culture="Culture.aserai" Pantheon="Greenskin" DeityName="Mork">
@@ -559,6 +582,7 @@
 		<ReligiousTroops>
 		</ReligiousTroops>
 		<ReligiousArtifacts>
+			<ArtifactItem id="Item.tor_learn_gs_enchant_mork_kunningly_brutal" />
 		</ReligiousArtifacts>
 	</Religion>
 </Religions>
