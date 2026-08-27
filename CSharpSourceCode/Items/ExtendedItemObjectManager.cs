@@ -152,7 +152,7 @@ namespace TOR_Core.Items
 
         public static bool CanCharacterUseItemBasedOnRace(ItemObject item, BasicCharacterObject character)
         {
-            if (TORConfig._freeRaceSelectionEnabled) return true;
+            if (TORConfig.AllowFreeRaceSelection) return true;
 
             if (!item.HasArmorComponent || item.ItemType == ItemObject.ItemTypeEnum.HorseHarness) return true; //non-armor items can be used by anyone
             var info = item.GetTorSpecificData();
