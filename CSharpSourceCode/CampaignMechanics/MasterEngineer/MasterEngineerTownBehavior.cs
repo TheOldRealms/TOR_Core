@@ -300,8 +300,8 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             var xp = 250f;
             SkillObject skill = TORSkills.GunPowder;
             Hero.MainHero.AddSkillXp(skill, xp);
-            if (!Hero.MainHero.HasAttribute("AbilityUser")) Hero.MainHero.AddAttribute("AbilityUser");
-            if (!Hero.MainHero.HasAttribute("CanPlaceArtillery")) Hero.MainHero.AddAttribute("CanPlaceArtillery");
+            if (!Hero.MainHero.HasAttribute(Attributes.ABILITY_USER)) Hero.MainHero.AddAttribute(Attributes.ABILITY_USER);
+            if (!Hero.MainHero.HasAttribute(Attributes.CAN_PLACE_ARTILLERY)) Hero.MainHero.AddAttribute(Attributes.CAN_PLACE_ARTILLERY);
         }
 
         private bool ReturnSuccessfullCultistQuest()

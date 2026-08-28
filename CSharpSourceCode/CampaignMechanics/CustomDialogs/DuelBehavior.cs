@@ -134,7 +134,7 @@ public class DuelBehavior : CampaignBehaviorBase
             if (Hero.MainHero.HasCareer(TORCareers.OrcBoss) && Hero.MainHero.HasCareerChoice("GetToDaChoppasPassive4"))
             {
                 // Check if target is a Warboss (clan leader or has warboss attribute)
-                if (_currentDuelTarget.IsClanLeader || _currentDuelTarget.HasAttribute("Warboss"))
+                if (_currentDuelTarget.IsClanLeader || _currentDuelTarget.HasAttribute(Attributes.WARBOSS))
                 {
                     var choice = TORCareerChoices.GetChoice("GetToDaChoppasPassive4");
                     if (choice != null)

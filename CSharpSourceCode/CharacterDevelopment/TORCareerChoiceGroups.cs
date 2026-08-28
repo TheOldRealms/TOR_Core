@@ -1233,7 +1233,7 @@ namespace TOR_Core.CharacterDevelopment
             });
             _teachingsOfThungni.Initialize("Teachings of Thungni", TORCareers.Runelord, 2, (Hero hero, out string text) =>
             {
-                var hasUnlocked = hero.HasAttribute("PlayerRunesmith");
+                var hasUnlocked = hero.HasAttribute(Attributes.PLAYER_RUNESMITH);
                 text = "";
                 if (!hasUnlocked)
                 {
@@ -1249,22 +1249,22 @@ namespace TOR_Core.CharacterDevelopment
             _chiselAndHammer.Initialize("Chisel and Hammer", TORCareers.Runelord, 2, (Hero hero, out string text) =>
             {
                 text = TORTextHelper.GetText("tor_careerunlock_level_2", "Runelord", "Ask the Runesmiths Guild to unlock");
-                return hero.HasAttribute("PlayerRunesmith");
+                return hero.HasAttribute(Attributes.PLAYER_RUNESMITH);
             });
             _forHearthAndHome.Initialize("For Hearth and Home", TORCareers.Runelord, 2, (Hero hero, out string text) =>
             {
                 text = TORTextHelper.GetText("tor_careerunlock_level_2", "Runelord", "Ask the Runesmiths Guild to unlock");
-                return hero.HasAttribute("PlayerRunesmith");
+                return hero.HasAttribute(Attributes.PLAYER_RUNESMITH);
             });
             _stoneAndSteel.Initialize("Stone and Steel", TORCareers.Runelord, 3, (Hero hero, out string text) =>
             {
                 text = TORTextHelper.GetText("tor_careerunlock_level_3", "Runelord", "Ask the Runesmiths Guild to unlock");
-                return hero.HasAttribute("PlayerRunesmith") && hero.HasAttribute("PlayerRunelord");
+                return hero.HasAttribute(Attributes.PLAYER_RUNESMITH) && hero.HasAttribute(Attributes.PLAYER_RUNELORD);
             });
 
             _legacyOfGrungni.Initialize("Legacy of Grungni", TORCareers.Runelord, 3, (Hero hero, out string text) =>
             {
-                var hasUnlocked = hero.HasAttribute("PlayerRunesmith") && hero.HasAttribute("PlayerRunelord");
+                var hasUnlocked = hero.HasAttribute(Attributes.PLAYER_RUNESMITH) && hero.HasAttribute(Attributes.PLAYER_RUNELORD);
                 text = "";
                 if (!hasUnlocked)
                 {
@@ -1276,7 +1276,7 @@ namespace TOR_Core.CharacterDevelopment
             _anvilOfDoom.Initialize("Anvil of Doom", TORCareers.Runelord, 3, (Hero hero, out string text) =>
             {
                 text = TORTextHelper.GetText("tor_careerunlock_level_3", "Runelord", "Ask the Runesmiths Guild to unlock");
-                return hero.HasAttribute("PlayerRunesmith") && hero.HasAttribute("PlayerRunelord");
+                return hero.HasAttribute(Attributes.PLAYER_RUNESMITH) && hero.HasAttribute(Attributes.PLAYER_RUNELORD);
             });
 
 

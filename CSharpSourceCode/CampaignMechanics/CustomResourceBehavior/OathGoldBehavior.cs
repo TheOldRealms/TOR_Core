@@ -296,16 +296,16 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_learn_rune_magic_p", hub, reintro,
             TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_hub_learn_rune_magic_p", "I wish to learn more of Rune Magic and the Anvils of Doom."),
-    () => Hero.MainHero.HasAttribute("PlayerRunesmith") || Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.HasAttribute("Runesmith")) && Hero.MainHero.PartyBelongedTo.HasAnvilOfDoom(), openbookconsequence, 200);
+    () => Hero.MainHero.HasAttribute(Attributes.PLAYER_RUNESMITH) || Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.HasAttribute(Attributes.RUNESMITH)) && Hero.MainHero.PartyBelongedTo.HasAnvilOfDoom(), openbookconsequence, 200);
 
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_1_p", hub, "tor_dw_guildmaster_rune_smith_hub_rune_lord_career",
             TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_1_p", "Rhunrik, I wish to prove myself to the Burudin and raise my position within the guild."),
-            () => !Hero.MainHero.HasAttribute("PlayerRunesmith") && Hero.MainHero.HasCareer(TORCareers.Runelord), () => FinalizeCareerQuest("runelord_quest_1", 3, "PlayerRunesmith"), 200);
+            () => !Hero.MainHero.HasAttribute(Attributes.PLAYER_RUNESMITH) && Hero.MainHero.HasCareer(TORCareers.Runelord), () => FinalizeCareerQuest("runelord_quest_1", 3, "PlayerRunesmith"), 200);
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2_p", hub, "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord",
             TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2_p", "Rhunrik, I wish to further raise my position within the guild."),
-            () => Hero.MainHero.HasCareer(TORCareers.Runelord) && Hero.MainHero.HasAttribute("PlayerRunesmith") && !Hero.MainHero.HasAttribute("PlayerRunelord"), () => FinalizeCareerQuest("runelord_quest_2", 5, "PlayerRunelord"), 200);
+            () => Hero.MainHero.HasCareer(TORCareers.Runelord) && Hero.MainHero.HasAttribute(Attributes.PLAYER_RUNESMITH) && !Hero.MainHero.HasAttribute(Attributes.PLAYER_RUNELORD), () => FinalizeCareerQuest("runelord_quest_2", 5, "PlayerRunelord"), 200);
 
         //HUB
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_buy_equipment_p", hub, "tor_dw_guildmaster_rune_smith_buy_equipment", TORTextHelper.GetTextForNative("tor_dw_guildmaster_rune_smith_hub_buy_equipment_p", "Can I order gear produced by your Guild?"),
@@ -342,7 +342,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
             var anvilOfDoom = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_anvil_of_doom");
             Hero.MainHero.PartyBelongedTo.ItemRoster.AddToCounts(anvilOfDoom, 1);
 
-            Hero.MainHero.AddAttribute("SpellCaster");
+            Hero.MainHero.AddAttribute(Attributes.SPELLCASTER);
             Hero.MainHero.AddAbility("HearthAndHome");
 
             Hero.MainHero.AddSkillXp(TORSkills.Spellcraft, 5000);
@@ -352,7 +352,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
         //Runelord Career real talk
         campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_0", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career", reintro,
             TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_0", "Such respect is not easily given, prove yourself under Grungni's stern gaze and we'll see if you are worthy."),
-            () => !Hero.MainHero.HasAttribute("PlayerRunesmith") && Hero.MainHero.HasCareer(TORCareers.Runelord), () =>
+            () => !Hero.MainHero.HasAttribute(Attributes.PLAYER_RUNESMITH) && Hero.MainHero.HasCareer(TORCareers.Runelord), () =>
             {
                 var quest = TORQuestHelper.GetCurrentQuest<RunesmithQuest>("runelord_quest_1", true, IsRunelordInFront, out var existent);
 
@@ -365,7 +365,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
 
         campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2", TORTextHelper.GetTextForNative("tor_dw_guildmaster_rune_smith_hub_rune_lord_career", "By Grungni's beard! It has been a long time indeed since I have seen someone with such potential."),
-            () => Hero.MainHero.HasAttribute("PlayerRunesmith") && Hero.MainHero.HasCareer(TORCareers.Runelord), null);
+            () => Hero.MainHero.HasAttribute(Attributes.PLAYER_RUNESMITH) && Hero.MainHero.HasCareer(TORCareers.Runelord), null);
 
         campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_3", TORTextHelper.GetTextForNative("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2", "In the name of the Burudin, I hereby declare you part of the Rhunki. Take pride in your achievements, lad. Although I fear the celebrations will need to be postponed as desperate times call for desperate measures. And dark clouds are hanging above the Karaz Ankor."),
             null, null, 200);
@@ -378,7 +378,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         // Chapter 2
         campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord_0", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord", reintro, TORTextHelper.GetTextForNative("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord_0", "You get ahead of yourself, Rhunki. Not a long time ago we were still discussing the fundamentals, and now you think you derserve the title of a Runelord? Travel the Karaz Ankor, help our kin in need. Prove yourself worthy of this great honour."),
-            () => !Hero.MainHero.HasAttribute("PlayerRunelord"), () =>
+            () => !Hero.MainHero.HasAttribute(Attributes.PLAYER_RUNELORD), () =>
             {
                 var quest = TORQuestHelper.GetCurrentQuest<RunelordQuest>("runelord_quest_2", true, IsRunelordInFront, out var existent);
 
@@ -391,7 +391,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
 
         campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord2", TORTextHelper.GetTextForNative("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord", "Not since the times of Thorek or even Kragg has a Rhunki displayed such skill in the arts of the runes!"),
-            () => Hero.MainHero.HasAttribute("PlayerRunelord"), null);
+            () => Hero.MainHero.HasAttribute(Attributes.PLAYER_RUNELORD), null);
 
         campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord2", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord2", reintro, TORTextHelper.GetTextForNative("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord2", "As Thungni is my witness, henceforth you shall be known as a Rhunriki; may you walk with pride amongst the forges of our Ancestors. Now, let us discuss the secrets of the Third Rune…"), null, null);
 

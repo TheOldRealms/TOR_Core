@@ -399,8 +399,8 @@ namespace TOR_Core.Utilities
                 AddCompanionAction.Apply(Clan.PlayerClan, hero);
                 AddHeroToPartyAction.Apply(hero, MobileParty.MainParty);
 
-                hero.AddAttribute("SpellCaster");
-                hero.AddAttribute("AbilityUser");
+                hero.AddAttribute(Attributes.SPELLCASTER);
+                hero.AddAttribute(Attributes.ABILITY_USER);
                 hero.SetSpellCastingLevel(TOR_Core.AbilitySystem.Spells.SpellCastingLevel.Master);
 
                 foreach (var spellId in torSpellNames)
@@ -432,7 +432,7 @@ namespace TOR_Core.Utilities
                 return CampaignCheats.ErrorType;
 
             if (!Hero.MainHero.IsNecromancer())
-                Hero.MainHero.AddAttribute("Necromancer");
+                Hero.MainHero.AddAttribute(Attributes.NECROMANCER);
 
             return MakePlayerSpellCaster(null) + "Player is necromancer now.\n ";
         }
@@ -444,10 +444,10 @@ namespace TOR_Core.Utilities
                 return CampaignCheats.ErrorType;
 
             if (!Hero.MainHero.IsSpellCaster())
-                Hero.MainHero.AddAttribute("SpellCaster");
+                Hero.MainHero.AddAttribute(Attributes.SPELLCASTER);
 
             if (!Hero.MainHero.IsAbilityUser())
-                Hero.MainHero.AddAttribute("AbilityUser");
+                Hero.MainHero.AddAttribute(Attributes.ABILITY_USER);
 
             return "Player is spell caster now. \n";
         }

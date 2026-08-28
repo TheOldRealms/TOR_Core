@@ -238,7 +238,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 
     protected override void UnlockCareerBenefitsTier2()
     {
-        Hero.MainHero.AddAttribute("Spellcaster");
+        Hero.MainHero.AddAttribute(Attributes.SPELLCASTER);
     }
 
     protected override void UnlockCareerBenefitsTier3()

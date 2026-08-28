@@ -696,7 +696,7 @@ namespace TOR_Core.Models
                 }
                 else
                 {
-                    if (careerChoices.Contains("EnvoyOfTheLadyPassive3") && hero.HasAttribute("PriestLady"))
+                    if (careerChoices.Contains("EnvoyOfTheLadyPassive3") && hero.HasAttribute(Attributes.PRIEST_LADY))
                     {
                         var choice = TORCareerChoices.GetChoice("EnvoyOfTheLadyPassive3");
                         explainedNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);

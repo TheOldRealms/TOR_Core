@@ -297,12 +297,12 @@ namespace TOR_Core.Extensions
 
         public static bool IsArtilleryHero(this Hero hero)
         {
-            return hero.HasAttribute("CanPlaceArtillery") || hero.HasAttribute("EngineerCompanion");
+            return hero.HasAttribute(Attributes.CAN_PLACE_ARTILLERY) || hero.HasAttribute(Attributes.ENGINEER_COMPANION);
         }
 
         public static bool CanPlaceArtillery(this Hero hero)
         {
-            return hero.HasAttribute("CanPlaceArtillery");
+            return hero.HasAttribute(Attributes.CAN_PLACE_ARTILLERY);
         }
 
         public static void AddAbility(this Hero hero, string ability)
@@ -436,22 +436,22 @@ namespace TOR_Core.Extensions
 
         public static bool IsSpellCaster(this Hero hero)
         {
-            return hero.HasAttribute("SpellCaster");
+            return hero.HasAttribute(Attributes.SPELLCASTER);
         }
 
         public static bool IsAbilityUser(this Hero hero)
         {
-            return hero.HasAttribute("AbilityUser");
+            return hero.HasAttribute(Attributes.ABILITY_USER);
         }
 
         public static bool IsNecromancer(this Hero hero)
         {
-            return hero.HasAttribute("Necromancer") || hero.HasKnownLore("Necromancy");
+            return hero.HasAttribute(Attributes.NECROMANCER) || hero.HasKnownLore("Necromancy");
         }
 
         public static bool IsSpellSinger(this Hero hero)
         {
-            return hero.Culture.StringId == TORConstants.Cultures.ASRAI && hero.HasAttribute("SpellCaster");
+            return hero.Culture.StringId == TORConstants.Cultures.ASRAI && hero.HasAttribute(Attributes.SPELLCASTER);
         }
 
         public static bool IsUndead(this Hero hero)

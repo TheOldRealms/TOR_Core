@@ -310,7 +310,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             playerHero.HeroDeveloper.UnspentFocusPoints += toRemoveFaith;
 
-            if (playerHero.HasAttribute("Priest"))//only sigmar/ulric priests have this attribute, but they also have a Priest(God) attribute that isn't removed here and will still return IsPriest() == true
+            if (playerHero.HasAttribute(Attributes.PRIEST))//only sigmar/ulric priests have this attribute, but they also have a Priest(God) attribute that isn't removed here and will still return IsPriest() == true
             {
                 CareerHelper.RemovePriestAttributes(playerHero);
                 playerHero.GetExtendedInfo().RemoveAllPrayers();
@@ -367,8 +367,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             Hero.MainHero.AddKnownLore("MinorMagic");
             Hero.MainHero.AddAbility("Dart");
 
-            Hero.MainHero.AddAttribute("Necromancer");
-            Hero.MainHero.AddAttribute("SpellCaster");
+            Hero.MainHero.AddAttribute(Attributes.NECROMANCER);
+            Hero.MainHero.AddAttribute(Attributes.SPELLCASTER);
 
 
             var becameVampireText = TORTextHelper.GetTextObject("tor_became_vampire_text", "{HERO_NAME} became a Vampire");

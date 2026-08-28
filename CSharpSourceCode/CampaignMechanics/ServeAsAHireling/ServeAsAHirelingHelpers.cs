@@ -132,7 +132,7 @@ public static class ServeAsAHirelingHelpers
         {
             var career = Hero.MainHero.GetCareer();
             //vampires and necromancers both have the "Necromancer" attribute
-            if (Hero.MainHero.HasAttribute("Necromancer") || career == TORCareers.BlackGrailKnight)
+            if (Hero.MainHero.HasAttribute(Attributes.NECROMANCER) || career == TORCareers.BlackGrailKnight)
                 return false;
 
             return true;

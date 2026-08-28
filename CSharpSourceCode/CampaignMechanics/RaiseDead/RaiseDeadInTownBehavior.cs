@@ -81,7 +81,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             {
                 if (hero.Culture.StringId == TORConstants.Cultures.SYLVANIA && !hero.IsNecromancer() && (hero.IsLord || hero.IsWanderer) && hero != Hero.MainHero)
                 {
-                    hero.AddAttribute("Necromancer");
+                    hero.AddAttribute(Attributes.NECROMANCER);
                 }
             }
         }

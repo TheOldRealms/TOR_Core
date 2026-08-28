@@ -76,7 +76,7 @@ public class PriestBehavior : CampaignBehaviorBase
         hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == religionId), 100);
         HeroHelper.SpawnHeroForTheFirstTime(hero, settlement);
 
-        if (ExtendedInfoManager.Instance != null) hero.AddAttribute("PriestTrainer"); //if present in the extended xml, the hero creation will copy the attributes attached to the template character onto the hero
+        if (ExtendedInfoManager.Instance != null) hero.AddAttribute(Attributes.PRIEST_TRAINER); //if present in the extended xml, the hero creation will copy the attributes attached to the template character onto the hero
 
         if (_settlementToPriestMap.TryGetValue(settlement.StringId, out var values))
         {
@@ -89,7 +89,7 @@ public class PriestBehavior : CampaignBehaviorBase
             _settlementToPriestMap.Add(settlement.StringId, new List<string> { hero.StringId });
         }
 
-        var t = hero.HasAttribute("PriestTrainer");
+        var t = hero.HasAttribute(Attributes.PRIEST_TRAINER);
     }
 
     private void SpawnPriestIfNeeded()
@@ -184,7 +184,7 @@ public class PriestBehavior : CampaignBehaviorBase
 
                 if (!priests.Contains(partner.StringId)) return false;
 
-                if (!partner.HeroObject.HasAttribute("PriestTrainer")) return false;
+                if (!partner.HeroObject.HasAttribute(Attributes.PRIEST_TRAINER)) return false;
 
                 if (partner.HeroObject.GetDominantReligion().StringId == cult) return true;
 

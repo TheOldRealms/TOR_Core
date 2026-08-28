@@ -43,7 +43,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
             if (_state.IsTrainerMode && _state.TrainerCulture == TORConstants.Cultures.DAWI)
             {
                 heroes = MobileParty.MainParty.GetMemberHeroes()
-                    .Where(x => x.IsSpellCaster() || x.HasAttribute("Runesmith"))
+                    .Where(x => x.IsSpellCaster() || x.HasAttribute(Attributes.RUNESMITH))
                     .ToList();
             }
 

@@ -86,7 +86,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
                     LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero, _isTrainerMode));
                 }
                 //permitting damsels to see LoreOfHeavens
-                else if (_isTrainerMode && CharacterObject.OneToOneConversationCharacter != null && _trainerCulture == TORConstants.Cultures.BRETONNIA && _currentHero.HasAttribute("PriestLady") && _currentHero.HasKnownLore(lore.StringId))
+                else if (_isTrainerMode && CharacterObject.OneToOneConversationCharacter != null && _trainerCulture == TORConstants.Cultures.BRETONNIA && _currentHero.HasAttribute(Attributes.PRIEST_LADY) && _currentHero.HasKnownLore(lore.StringId))
                 {
                     LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero, _isTrainerMode));
                 }

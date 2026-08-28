@@ -333,7 +333,7 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                     return true;
                 }
 
-                return HasMatchingEnchanterCompanion(x => x.HasAttribute("Runesmith"));
+                return HasMatchingEnchanterCompanion(x => x.HasAttribute(Attributes.RUNESMITH));
 
             case TORConstants.Cultures.GREENSKIN:
                 if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)

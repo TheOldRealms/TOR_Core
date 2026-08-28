@@ -378,7 +378,7 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
     {
         _setCharacter = characterObject;
         
-        if (!Hero.MainHero.HasAttribute("PlayerRunesmith"))
+        if (!Hero.MainHero.HasAttribute(Attributes.PLAYER_RUNESMITH))
         {
             return false;
         }

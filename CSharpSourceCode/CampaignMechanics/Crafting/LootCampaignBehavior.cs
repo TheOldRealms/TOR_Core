@@ -254,7 +254,7 @@ public class LootCampaignBehavior : CampaignBehaviorBase
             }
 
             if (character.HeroObject != null &&
-                character.HeroObject.HasAttribute("LegendaryLord"))
+                character.HeroObject.HasAttribute(Attributes.LEGENDARY_LORD))
                 continue; //TODO check in Unit Catalog that all Legendary Lord have this attribute.
 
 

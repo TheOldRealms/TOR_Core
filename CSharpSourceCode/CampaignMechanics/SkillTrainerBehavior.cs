@@ -249,7 +249,7 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
         {
             var partner = CharacterObject.OneToOneConversationCharacter;
 
-            if (!partner.HeroObject.HasAttribute("SkillTrainer"))
+            if (!partner.HeroObject.HasAttribute(Attributes.SKILL_TRAINER))
             {
                 return false;
             }

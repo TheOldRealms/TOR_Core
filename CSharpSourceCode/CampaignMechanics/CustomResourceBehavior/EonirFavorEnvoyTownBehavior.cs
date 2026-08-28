@@ -450,7 +450,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
                 // Grant SpellCaster attribute and entry spellcasting level
                 if (!Hero.MainHero.IsSpellCaster())
                 {
-                    Hero.MainHero.AddAttribute("SpellCaster");
+                    Hero.MainHero.AddAttribute(Attributes.SPELLCASTER);
                 }
                 Hero.MainHero.SetSpellCastingLevel(SpellCastingLevel.Entry);
             }

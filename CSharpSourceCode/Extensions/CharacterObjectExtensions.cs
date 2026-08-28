@@ -228,7 +228,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsRunesmith(this CharacterObject characterObject)
         {
-            return characterObject.IsHero && characterObject.HasAttribute("Runesmith");
+            return characterObject.IsHero && characterObject.HasAttribute(Attributes.RUNESMITH);
         }
 
         public static bool HasUnitRune(this BasicCharacterObject characterObject)

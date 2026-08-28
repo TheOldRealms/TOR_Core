@@ -45,7 +45,7 @@ namespace TOR_Core.CharacterDevelopment
                 var info = hero.GetExtendedInfo();
                 if (info != null)
                 {
-                    if (hero.IsSpellCaster() || hero.HasAttribute("Runesmith"))
+                    if (hero.IsSpellCaster() || hero.HasAttribute(Attributes.RUNESMITH))
                     {
                         if (perk == TORPerks.Spellcraft.EntrySpells)
                         {
