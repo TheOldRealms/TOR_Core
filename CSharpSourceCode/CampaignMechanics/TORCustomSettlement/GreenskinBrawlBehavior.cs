@@ -58,14 +58,14 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
     {
         var menu = Campaign.Current.GameMenuManager.GetGameMenu("town");
         TORSettlementMenuHelpers.RearrangeTownMenus(menu, "town_greenskin_brawl", "recruit_volunteers");
+        
+        var customResourceIcon = Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText();
+        GameTexts.SetVariable("CR_ICON", customResourceIcon);
     }
 
     private void OnSessionStart(CampaignGameStarter starter)
     {
         AddTownMenuButton(starter);
-        
-        var customResourceIcon = Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText();
-        GameTexts.SetVariable("CR_ICON", customResourceIcon);
     }
 
 
@@ -140,7 +140,7 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
     private void AddBrawlResultMenus(CampaignGameStarter starter)
     {
         var text = GameTexts.FindText("tor_greenskin_brawl_intro");
-        starter.AddGameMenu("brawl_victory", "{BRAWL_WIN_DESCRIPTION}", CalculateWinResult, GameMenu.MenuOverlayType.None);
+        starter.AddGameMenu("brawl_victory", "{BRAWL_WIN_DESCRIPTION}", null, GameMenu.MenuOverlayType.None);
         starter.AddGameMenuOption("brawl_victory", "brawl_victory_accept", TORTextHelper.GetTextForNative("tor_greenskin_brawl_victory_accept", "Claim your prize"),
             args =>
             {
@@ -152,9 +152,12 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
                 GameMenu.SwitchToMenu("town");
             });
 
-        starter.AddGameMenu("brawl_defeat", "{BRAWL_DEFEAT_DESCRIPTION}", SetDefeat, GameMenu.MenuOverlayType.None);
+        starter.AddGameMenu("brawl_defeat", "{BRAWL_DEFEAT_DESCRIPTION}", null, GameMenu.MenuOverlayType.None);
         starter.AddGameMenuOption("brawl_defeat", "brawl_defeat_accept", GameTexts.FindText("tor_greenskin_brawl_defeat_accept").ToString(),
-            args => MenuHelper.SetOptionProperties(args, true, true, TextObject.GetEmpty()),
+            args =>
+            {
+                return MenuHelper.SetOptionProperties(args, true, true, TextObject.GetEmpty());
+            },
             args =>
             {
                 GrantRewardsAndResetFields();
@@ -167,7 +170,7 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
     /// Sets the fields back to their defaults in expectation of the next brawl.
     /// </summary>
     /// <remarks>
-    /// Rewards are in the consequences because the menu init was being called twice.
+    /// Rewards are in the consequences because the menu init can run multiple times when the screen layer changes and the menu is rebuilt.
     /// </remarks>
     private void GrantRewardsAndResetFields()
     {
@@ -274,6 +277,10 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
         mission.DoesMissionRequireCivilianEquipment = false;
     }
 
+    /// <remarks>
+    /// Menu.RunOnInit runs once when the mission ends, and again when exiting the mission to go back to the map. This is likely due to the screen layer changes occuring.
+    /// Determination of rewards shouldn't occur in the menu initialization or option conditions because those are rerun whenever the screen layer changes back to the menu, eg. opening and closing clan screen.
+    /// </remarks>
     private void OnBrawlMissionEnd(BrawlMissionResult result)
     {
         _isMissionStarted = false;
@@ -283,19 +290,18 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
 
         if (victory)
         {
+            CalculateWinResult();
             TORCampaignEvents.Instance.OnBrawlWon(Hero.MainHero);
             GameMenu.SwitchToMenu("brawl_victory");
         }
         else
         {
+            SetDefeat();
             GameMenu.SwitchToMenu("brawl_defeat");
         }
     }
 
-    /// <remarks>
-    /// Menu.RunOnInit runs once when the mission ends, and again when exiting the mission to go back to the map. Calculations can be fine if they run twice as they write to the same field, but actions like granting gold shouldn't be performed to prevent duplication.
-    /// </remarks>>
-    private void CalculateWinResult(MenuCallbackArgs args)
+    private void CalculateWinResult()
     {
         var text = GameTexts.FindText("tor_greenskin_brawl_victory_desc");
         var resultScore = 0f;
@@ -393,7 +399,7 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
         MBTextManager.SetTextVariable("BRAWL_WIN_DESCRIPTION", text);
     }
 
-    private void SetDefeat(MenuCallbackArgs args)
+    private void SetDefeat()
     {
         var enemyCount = _lastTroopRoster.TotalManCount;
 

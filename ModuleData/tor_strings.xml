@@ -5048,7 +5048,7 @@
   <string id="tor_greenskin_brawl_intro" text="{=str_tor_greenskin_brawl_intro}Time to prove who's da biggest an' strongest! You ready for a proper scrap?" />
   <string id="tor_greenskin_brawl_victory_desc" text="{=str_tor_greenskin_brawl_victory_desc}You have won the brawl! The crowd cheers your victory. {newline} {BRAWL_RESULT}" />
   <string id="tor_greenskin_brawl_victory_reward" text="{=str_tor_greenskin_brawl_victory_reward}You earned {GOLD_REWARD} shinies, {RENOWN_REWARD} renown, and {TEEF_REWARD}{CR_ICON} from your brawl!{TROOP_REWARD}" />
-  <string id="tor_greenskin_brawl_victory_troops" text="{=str_tor_greenskin_brawl_victory_troops}Some of the Greenskins were quite impressed. They join you.{POUCHED_TROOPS}" />
+  <string id="tor_greenskin_brawl_victory_troops" text="{=str_tor_greenskin_brawl_victory_troops}{newline}Some of the Greenskins were quite impressed. They join you.{POUCHED_TROOPS}" />
   <string id="tor_greenskin_brawl_victory_accept" text="{=str_tor_greenskin_brawl_victory_accept}Claim your prize" />
   <string id="tor_greenskin_brawl_defeat_desc" text="{=str_tor_greenskin_brawl_defeat_desc}You lost {GOLD_LOSS} shinies and {TEEF_LOSS}{CR_ICON} due to your defeat." />
   <string id="tor_greenskin_brawl_defeat_accept" text="{=str_tor_greenskin_brawl_defeat_accept}Accept your defeat" />
