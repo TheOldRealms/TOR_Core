@@ -43,17 +43,17 @@ public class OathGoldHelper
         //could use textObject variables to only add "Reduced gun troop upkeep." when bonus > 0
         list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_engineer_benefit","description","Access to ranged weapons and artillery, reduce gunmen and Irondrake upgrade costs."), "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
         var gunTroopUpkeepReduction = 0; //can this find the amount elsewhere?
-        if (Hero.MainHero.HasAttribute("DwarfEngineersIII"))
+        if (Hero.MainHero.HasAttribute("GuildEngineersIII"))
         {
             list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_engineer_benefit","arsenal","Entire arsenal"), " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
             gunTroopUpkeepReduction = 25;
         }
-        else if (Hero.MainHero.HasAttribute("DwarfEngineersII"))
+        else if (Hero.MainHero.HasAttribute("GuildEngineersII"))
         {
             list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_engineer_benefit","artillery","Guns and artillery"), " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
             gunTroopUpkeepReduction = 15;
         }
-        else if (Hero.MainHero.HasAttribute("DwarfEngineersI"))
+        else if (Hero.MainHero.HasAttribute("GuildEngineersI"))
         {
             list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_engineer_benefit","guns","Guns"), " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
         }
@@ -94,15 +94,15 @@ public class OathGoldHelper
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
         list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_miners_benefit","description","Receive raw materials, increase mining production, launch expeditions."), "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
         var oreVillageBoost = 0;
-        if (Hero.MainHero.HasAttribute("DwarfMinersIII"))
+        if (Hero.MainHero.HasAttribute("GuildMinersIII"))
         {
             oreVillageBoost = 25;
         }
-        else if (Hero.MainHero.HasAttribute("DwarfMinersII"))
+        else if (Hero.MainHero.HasAttribute("GuildMinersII"))
         {
             oreVillageBoost = 10;
         }
-        else if (Hero.MainHero.HasAttribute("DwarfMinersI"))
+        else if (Hero.MainHero.HasAttribute("GuildMinersI"))
         {
         }
         if (expeditionMaximum > 0)
@@ -125,21 +125,21 @@ public class OathGoldHelper
         var dawiFoodBoost = 0;
         var dawiSightBonus = 0;
         string carePackageSize = "";
-        if (Hero.MainHero.HasAttribute("DwarfBrewersIII"))
+        if (Hero.MainHero.HasAttribute("GuildBrewersIII"))
         {
             carePackageSize = "Medium";
             dawiSightBonus = 30;
             dawiFoodBoost = 50;
             dawiLoyaltyBoost = 2;
         }
-        else if (Hero.MainHero.HasAttribute("DwarfBrewersII"))
+        else if (Hero.MainHero.HasAttribute("GuildBrewersII"))
         {
             carePackageSize = "Medium";
             dawiSightBonus = 20;
             dawiFoodBoost = 25;
             dawiLoyaltyBoost = 1;
         }
-        else if (Hero.MainHero.HasAttribute("DwarfBrewersI"))
+        else if (Hero.MainHero.HasAttribute("GuildBrewersI"))
         {
             carePackageSize = "Small";
             dawiSightBonus = 10;
@@ -171,19 +171,19 @@ public class OathGoldHelper
         var warriorUpgradeReduction = 0;
         var oathGoldBonus = 0f;
         var militiaBonus = 0;
-        if (Hero.MainHero.HasAttribute("DwarfWarriorIII"))
+        if (Hero.MainHero.HasAttribute("GuildWarriorsIII"))
         {
             warriorUpgradeReduction = 30;
             oathGoldBonus = 3f;
             militiaBonus = 4;
         }
-        else if (Hero.MainHero.HasAttribute("DwarfWarriorII"))
+        else if (Hero.MainHero.HasAttribute("GuildWarriorsII"))
         {
             warriorUpgradeReduction = 20;
             oathGoldBonus = 2f;
             militiaBonus = 2;
         }
-        else if (Hero.MainHero.HasAttribute("DwarfWarriorI"))
+        else if (Hero.MainHero.HasAttribute("GuildWarriorsI"))
         {
             warriorUpgradeReduction = 10;
             oathGoldBonus = 1.5f;

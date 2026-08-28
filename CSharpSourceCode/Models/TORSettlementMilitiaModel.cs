@@ -78,11 +78,11 @@ namespace TOR_Core.Models
 
             if (settlement.Culture.StringId == TORConstants.Cultures.DAWI && settlement.IsDwarfKarak())
             {
-                if (Hero.MainHero.HasAttribute("DwarfWarriorIII"))
+                if (Hero.MainHero.HasAttribute("GuildWarriorsIII"))
                 {
                     result.Add(4, new TextObject("Warriors Guild"));
                 }
-                else if (Hero.MainHero.HasAttribute("DwarfWarriorII"))
+                else if (Hero.MainHero.HasAttribute("GuildWarriorsII"))
                 {
                     result.Add(2, new TextObject("Warriors Guild"));
                 }

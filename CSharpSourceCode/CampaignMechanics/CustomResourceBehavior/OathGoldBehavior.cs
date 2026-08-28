@@ -105,10 +105,10 @@ public class OathGoldBehavior : CampaignBehaviorBase
         _guildValues[_currentGuild] = newValue;
         Hero.MainHero.AddCultureSpecificCustomResource(-resultCost);
 
-        AddGuildBenefits(_templateGemcutters.guild, "DwarfMinersI", "DwarfMinersII", "DwarfMinersIII");
-        AddGuildBenefits(_templateBrewer.guild, "DwarfBrewersI", "DwarfBrewersII", "DwarfBrewersIII");
-        AddGuildBenefits(_templateEngineer.guild, "DwarfEngineersI", "DwarfEngineersII", "DwarfEngineersIII");
-        AddGuildBenefits(_templateWarrior.guild, "DwarfWarriorI", "DwarfWarriorII", "DwarfWarriorIII");
+        AddGuildBenefits(_templateGemcutters.guild, "GuildMinersI", "GuildMinersII", "GuildMinersIII");
+        AddGuildBenefits(_templateBrewer.guild, "GuildBrewersI", "GuildBrewersII", "GuildBrewersIII");
+        AddGuildBenefits(_templateEngineer.guild, "GuildEngineersI", "GuildEngineersII", "GuildEngineersIII");
+        AddGuildBenefits(_templateWarrior.guild, "GuildWarriorsI", "GuildWarriorsII", "GuildWarriorsIII");
         AddGuildBenefits(_templateRuneSmith.guild, "RuneSmithI", "RuneSmithII", "RuneSmithIII");
     }
 
@@ -134,7 +134,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
     private void AddMinersBenefits()
     {
-        if (!Hero.MainHero.HasAttribute("DwarfMinersI")) return;
+        if (!Hero.MainHero.HasAttribute("GuildMinersI")) return;
 
         var items = new List<ItemObject>();
         items.Add(DefaultItems.Charcoal);
@@ -143,11 +143,11 @@ public class OathGoldBehavior : CampaignBehaviorBase
         foreach (var item in items)
         {
             var random = MBRandom.RandomInt(5, 10);
-            if (Hero.MainHero.HasAttribute("DwarfMinersIII"))
+            if (Hero.MainHero.HasAttribute("GuildMinersIII"))
             {
                 random = MBRandom.RandomInt(10, 15);
             }
-            else if (Hero.MainHero.HasAttribute("DwarfMinersII"))
+            else if (Hero.MainHero.HasAttribute("GuildMinersII"))
             {
                 random = MBRandom.RandomInt(8, 12);
             }
@@ -163,7 +163,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
     private void AddCarePackage()
     {
-        if (!Hero.MainHero.HasAttribute("DwarfBrewersI")) return;
+        if (!Hero.MainHero.HasAttribute("GuildBrewersI")) return;
 
         var items = TaleWorlds.CampaignSystem.Extensions.Items.AllTradeGoods.WhereQ(x =>
             x.ItemCategory == DefaultItemCategories.Beer
@@ -174,11 +174,11 @@ public class OathGoldBehavior : CampaignBehaviorBase
         foreach (var item in items)
         {
             var random = MBRandom.RandomInt(5, 15);
-            if (Hero.MainHero.HasAttribute("DwarfBrewersII"))
+            if (Hero.MainHero.HasAttribute("GuildBrewersII"))
             {
                 random = MBRandom.RandomInt(15, 25);
             }
-            else if (Hero.MainHero.HasAttribute("DwarfBrewersIII"))
+            else if (Hero.MainHero.HasAttribute("GuildBrewersIII"))
             {
                 random = MBRandom.RandomInt(25, 30);
             }
@@ -761,7 +761,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
             null, null, 200);
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_recruit_crew_p", hub, "tor_dw_guildmaster_engineer_recruit_crew", TORTextHelper.GetTextForNative("tor_dw_engineer_recruit_crew_text", "I require reliable crewmen to operate my artillery."),
-            () => Hero.MainHero.HasAttribute("DwarfEngineersI"), null, 200);
+            () => Hero.MainHero.HasAttribute("GuildEngineersI"), null, 200);
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_quit_p", hub, "close_window", TORTextHelper.GetTextForNative("tor_dw_quit_text", "That will be all."),
             null, null, 200);
@@ -805,7 +805,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
             items.Add(MBObjectManager.Instance.GetObject<ItemObject>("tor_neutral_weapon_ammo_musket_ball"));
             items.Add(MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_ammo_musket_ball"));
             items.Add(MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_gun_beardling_handgun"));
-            if (Hero.MainHero.HasAttribute("DwarfEngineersI"))
+            if (Hero.MainHero.HasAttribute("GuildEngineersI"))
             {
                 //Add blasting charges
                 var blastingCharges = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_blasting_charges");
@@ -844,7 +844,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
                     if (item != null) items.Add(item);
                 }
             }
-            if (Hero.MainHero.HasAttribute("DwarfEngineersII"))
+            if (Hero.MainHero.HasAttribute("GuildEngineersII"))
             {
                 items.AppendList(MBObjectManager.Instance.GetObjectTypeList<ItemObject>().WhereQ(x =>
                     x.Culture?.StringId == TORConstants.Cultures.DAWI && x.IsTorItem() &&
@@ -891,7 +891,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
                     if (item != null) items.Add(item);
                 }
             }
-            if (Hero.MainHero.HasAttribute("DwarfEngineersIII"))
+            if (Hero.MainHero.HasAttribute("GuildEngineersIII"))
             {
                 var drakegun = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_gun_drakegun");
                 if (drakegun != null) items.Add(drakegun);
@@ -1088,15 +1088,15 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         void CalculateMaximumExpeditions()
         {//Sly : default value is 0 when the field is initialized I think
-            if (Hero.MainHero.HasAttribute("DwarfMinersIII"))
+            if (Hero.MainHero.HasAttribute("GuildMinersIII"))
             {
                 _expeditionMaximum = 3;
             }
-            else if (Hero.MainHero.HasAttribute("DwarfMinersII"))
+            else if (Hero.MainHero.HasAttribute("GuildMinersII"))
             {
                 _expeditionMaximum = 2;
             }
-            else if (Hero.MainHero.HasAttribute("DwarfMinersI"))
+            else if (Hero.MainHero.HasAttribute("GuildMinersI"))
             {
                 _expeditionMaximum = 1;
             }
@@ -1166,15 +1166,15 @@ public class OathGoldBehavior : CampaignBehaviorBase
             var model = (TORBattleRewardModel)Campaign.Current.Models.BattleRewardModel;
 
             var unlocks = 0;
-            if (Hero.MainHero.HasAttribute("DwarfMinersIII"))
+            if (Hero.MainHero.HasAttribute("GuildMinersIII"))
             {
                 unlocks = 3;
             }
-            else if (Hero.MainHero.HasAttribute("DwarfMinersII"))
+            else if (Hero.MainHero.HasAttribute("GuildMinersII"))
             {
                 unlocks = 2;
             }
-            else if (Hero.MainHero.HasAttribute("DwarfMinersI"))
+            else if (Hero.MainHero.HasAttribute("GuildMinersI"))
             {
                 unlocks = 1;
             }
@@ -1242,7 +1242,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
             null, null, 200);
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_brewer_hub_recruit_rangers_p", hub, "tor_dw_guildmaster_brewer_recruit_rangers", TORTextHelper.GetTextForNative("tor_dw_brewer_recruit_rangers_text", "I need some rangers for scouting."),
-            () => Hero.MainHero.HasAttribute("DwarfBrewersI"), null, 200);
+            () => Hero.MainHero.HasAttribute("GuildBrewersI"), null, 200);
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_brewer_hub_quit_p", hub, "close_window", TORTextHelper.GetTextForNative("tor_dw_guildmaster_brewer_hub_quit_p", "That will be all, Master Brewer."),
             null, null, 200);
@@ -1369,7 +1369,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
             for (int i = 0; i < 4; i++)
             {
                 // Level II and III have 30% chance for veteran rangers and 15% for bugman rangers
-                if (Hero.MainHero.HasAttribute("DwarfBrewersII") || Hero.MainHero.HasAttribute("DwarfBrewersIII"))
+                if (Hero.MainHero.HasAttribute("GuildBrewersII") || Hero.MainHero.HasAttribute("GuildBrewersIII"))
                 {
                     var roll = MBRandom.RandomFloat;
                     var ranger = basicRanger;

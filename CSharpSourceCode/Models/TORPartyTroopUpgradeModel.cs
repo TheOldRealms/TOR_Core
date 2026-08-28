@@ -28,11 +28,11 @@ namespace TOR_Core.Models
                 {
                     if (characterObject.HasAttribute("DwarfGun") || upgradeTarget.HasAttribute("DwarfGun"))
                     {
-                        if (Hero.MainHero.HasAttribute("DwarfEngineersII"))
+                        if (Hero.MainHero.HasAttribute("GuildEngineersII"))
                         {
                             explainedNumber.AddFactor(-0.25f);
                         }
-                        else if (Hero.MainHero.HasAttribute("DwarfEngineersI"))
+                        else if (Hero.MainHero.HasAttribute("GuildEngineersI"))
                         {
                             explainedNumber.AddFactor(-0.15f);
                         }
@@ -40,15 +40,15 @@ namespace TOR_Core.Models
 
                     if (characterObject.HasAttribute("DwarfWarrior"))
                     {
-                        if (Hero.MainHero.HasAttribute("DwarfWarriorIII"))
+                        if (Hero.MainHero.HasAttribute("GuildWarriorsIII"))
                         {
                             explainedNumber.AddFactor(-0.30f);
                         }
-                        else if (Hero.MainHero.HasAttribute("DwarfWarriorII"))
+                        else if (Hero.MainHero.HasAttribute("GuildWarriorsII"))
                         {
                             explainedNumber.AddFactor(-0.20f);
                         }
-                        else if (Hero.MainHero.HasAttribute("DwarfWarriorI"))
+                        else if (Hero.MainHero.HasAttribute("GuildWarriorsI"))
                         {
                             explainedNumber.AddFactor(-0.10f);
                         }

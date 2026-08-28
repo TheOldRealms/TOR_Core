@@ -35,15 +35,15 @@ namespace TOR_Core.Models
                 explainedNumber.Add(75, new TextObject("Dwarf Karak"));
                 if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI)
                 {
-                    if (Hero.MainHero.HasAttribute("DwarfBrewersIII"))
+                    if (Hero.MainHero.HasAttribute("GuildBrewersIII"))
                     {
                         explainedNumber.Add(25f, new TextObject("Brewers Guild"));
                     }
-                    else if (Hero.MainHero.HasAttribute("DwarfBrewersII"))
+                    else if (Hero.MainHero.HasAttribute("GuildBrewersII"))
                     {
                         explainedNumber.Add(15f, new TextObject("Brewers Guild"));
                     }
-                    else if (Hero.MainHero.HasAttribute("DwarfBrewersI"))
+                    else if (Hero.MainHero.HasAttribute("GuildBrewersI"))
                     {
                         explainedNumber.Add(10f, new TextObject("Brewers Guild"));
                     }

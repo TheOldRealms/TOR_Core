@@ -231,11 +231,11 @@ namespace TOR_Core.Models
                 {
                     if (elementCopyAtIndex.Character.HasAttribute("DwarfGun"))
                     {
-                        if (leaderHero.HasAttribute("DwarfEngineersIII"))
+                        if (leaderHero.HasAttribute("GuildEngineersIII"))
                         {
                             value.Add(-0.25f * troopwage, includeDescriptions ? new TextObject("Engineers Guild") : null);
                         }
-                        else if (leaderHero.HasAttribute("DwarfEngineersII"))
+                        else if (leaderHero.HasAttribute("GuildEngineersII"))
                         {
                             value.Add(-0.15f * troopwage, includeDescriptions ? new TextObject("Engineers Guild") : null);
                         }

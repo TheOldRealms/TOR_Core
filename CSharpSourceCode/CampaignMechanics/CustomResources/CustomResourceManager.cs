@@ -171,15 +171,15 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 {
                     if (settlement.Culture.StringId == TORConstants.Cultures.DAWI)
                     {
-                        if (winner.HasAttribute("DwarfWarriorIII"))
+                        if (winner.HasAttribute("GuildWarriorsIII"))
                         {
                             Hero.MainHero.AddCultureSpecificCustomResource(25);
                         }
-                        else if (winner.HasAttribute("DwarfWarriorII"))
+                        else if (winner.HasAttribute("GuildWarriorsII"))
                         {
                             Hero.MainHero.AddCultureSpecificCustomResource(20);
                         }
-                        else if (winner.HasAttribute("DwarfWarriorI"))
+                        else if (winner.HasAttribute("GuildWarriorsI"))
                         {
                             Hero.MainHero.AddCultureSpecificCustomResource(15);
                         }
@@ -483,15 +483,15 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                         renownChange *= 2;
                     }
 
-                    if (playerHero.HasAttribute("DwarfWarriorIII"))
+                    if (playerHero.HasAttribute("GuildWarriorsIII"))
                     {
                         renownChange *= 3f;
                     }
-                    else if (playerHero.HasAttribute("DwarfWarriorII"))
+                    else if (playerHero.HasAttribute("GuildWarriorsII"))
                     {
                         renownChange *= 2;
                     }
-                    else if (playerHero.HasAttribute("DwarfWarriorI"))
+                    else if (playerHero.HasAttribute("GuildWarriorsI"))
                     {
                         renownChange *= 1.5f;
                     }

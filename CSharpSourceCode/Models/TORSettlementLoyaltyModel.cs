@@ -38,11 +38,11 @@ namespace TOR_Core.Models
                 if (town.Settlement.IsDwarfKarak())
                 {
                     var description = new TextObject("Brewers Guild");
-                    if (Hero.MainHero.HasAttribute("DwarfBrewersIII"))
+                    if (Hero.MainHero.HasAttribute("GuildBrewersIII"))
                     {
                         explainedNumber.Add(2, description);
                     }
-                    else if (Hero.MainHero.HasAttribute("DwarfBrewersII"))
+                    else if (Hero.MainHero.HasAttribute("GuildBrewersII"))
                     {
                         explainedNumber.Add(1, description);
                     }

@@ -250,21 +250,21 @@ namespace TOR_Core.Utilities
             public const string UNDEAD_GRUDGE = "UndeadGrudge";
 
             //Dawi guild tiers
-            public const string DWARF_BREWERS_1 = "DwarfBrewersI";
-            public const string DWARF_BREWERS_2 = "DwarfBrewersII";
-            public const string DWARF_BREWERS_3 = "DwarfBrewersIII";
-            public const string DWARF_ENGINEERS_1 = "DwarfEngineersI";
-            public const string DWARF_ENGINEERS_2 = "DwarfEngineersII";
-            public const string DWARF_ENGINEERS_3 = "DwarfEngineersIII";
-            public const string DWARF_MINERS_1 = "DwarfMinersI";
-            public const string DWARF_MINERS_2 = "DwarfMinersII";
-            public const string DWARF_MINERS_3 = "DwarfMinersIII";
-            public const string DWARF_WARRIORS_1 = "DwarfWarriorI";
-            public const string DWARF_WARRIORS_2 = "DwarfWarriorII";
-            public const string DWARF_WARRIORS_3 = "DwarfWarriorIII";
-            public const string DWARF_RUNESMITH_1 = "DwarfRuneSmithI";//i added Dwarf to match the pattern of the others.
-            public const string DWARF_RUNESMITH_2 = "DwarfRuneSmithII";
-            public const string DWARF_RUNESMITH_3 = "DwarfRuneSmithIII";
+            public const string GUILD_BREWERS_1 = "GuildBrewersI";
+            public const string GUILD_BREWERS_2 = "GuildBrewersII";
+            public const string GUILD_BREWERS_3 = "GuildBrewersIII";
+            public const string GUILD_ENGINEERS_1 = "GuildEngineersI";
+            public const string GUILD_ENGINEERS_2 = "GuildEngineersII";
+            public const string GUILD_ENGINEERS_3 = "GuildEngineersIII";
+            public const string GUILD_MINERS_1 = "GuildMinersI";
+            public const string GUILD_MINERS_2 = "GuildMinersII";
+            public const string GUILD_MINERS_3 = "GuildMinersIII";
+            public const string GUILD_WARRIORS_1 = "GuildWarriorsI";
+            public const string GUILD_WARRIORS_2 = "GuildWarriorsII";
+            public const string GUILD_WARRIORS_3 = "GuildWarriorsIII";
+            public const string GUILD_RUNESMITH_1 = "DwarfRuneSmithI";
+            public const string GUILD_RUNESMITH_2 = "DwarfRuneSmithII";
+            public const string GUILD_RUNESMITH_3 = "DwarfRuneSmithIII";
 
             //Empire
             public const string PRESTIGE_NOBLE = "PrestigeNoble";//trades related to Prestige
