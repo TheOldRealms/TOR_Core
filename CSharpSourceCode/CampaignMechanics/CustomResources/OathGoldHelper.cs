@@ -69,17 +69,17 @@ public class OathGoldHelper
 
         list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_runesmith_benefit","description","Access to melee weapons and Runecraft, reduce Ironbreaker upgrade costs."), "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
         var ironbreakerUpgradeReduction = 0;
-        if (Hero.MainHero.HasAttribute("RuneSmithIII"))
+        if (Hero.MainHero.HasAttribute("GuildRuneSmithsIII"))
         {
             list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_runesmith_benefit","anvil","Artefact"), " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
             ironbreakerUpgradeReduction = 20;
         }
-        else if (Hero.MainHero.HasAttribute("RuneSmithII"))
+        else if (Hero.MainHero.HasAttribute("GuildRuneSmithsII"))
         {
             list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_runesmith_benefit","equipment2","Weapons and armors"), " ", 0, false, TooltipProperty.TooltipPropertyFlags.None));
             ironbreakerUpgradeReduction = 10;
         }
-        else if (Hero.MainHero.HasAttribute("RuneSmithI"))
+        else if (Hero.MainHero.HasAttribute("GuildRuneSmithsI"))
         {
             list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_runesmith_benefit","equipment1","Weapons"), " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
         }

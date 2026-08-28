@@ -109,7 +109,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
         AddGuildBenefits(_templateBrewer.guild, "GuildBrewersI", "GuildBrewersII", "GuildBrewersIII");
         AddGuildBenefits(_templateEngineer.guild, "GuildEngineersI", "GuildEngineersII", "GuildEngineersIII");
         AddGuildBenefits(_templateWarrior.guild, "GuildWarriorsI", "GuildWarriorsII", "GuildWarriorsIII");
-        AddGuildBenefits(_templateRuneSmith.guild, "RuneSmithI", "RuneSmithII", "RuneSmithIII");
+        AddGuildBenefits(_templateRuneSmith.guild, "GuildRuneSmithsI", "GuildRuneSmithsII", "GuildRuneSmithsIII");
     }
 
 
@@ -310,7 +310,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         //HUB
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_buy_equipment_p", hub, "tor_dw_guildmaster_rune_smith_buy_equipment", TORTextHelper.GetTextForNative("tor_dw_guildmaster_rune_smith_hub_buy_equipment_p", "Can I order gear produced by your Guild?"),
-            () => Hero.MainHero.HasAttribute("RuneSmithI"), null, 200);
+            () => Hero.MainHero.HasAttribute("GuildRuneSmithsI"), null, 200);
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_deliver_steel_p", hub, "tor_dw_guildmaster_rune_smith_deliver_steel", TORTextHelper.GetTextForNative("tor_dw_guildmaster_rune_smith_hub_deliver_steel_p", "Will you take these valuable metals?"),
             null, null, 200);
 
@@ -483,16 +483,16 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
             var items = new MBList<ItemObject>();
 
-            if (Hero.MainHero.HasAttribute("RuneSmithI"))
+            if (Hero.MainHero.HasAttribute("GuildRuneSmithsI"))
             {
                 items.AppendList(MBObjectManager.Instance.GetObjectTypeList<ItemObject>().WhereQ(x => x.Culture?.StringId == TORConstants.Cultures.DAWI && x.IsTorItem() && (x.IsMeleeWeapon()) && x.Tier < ItemObject.ItemTiers.Tier3).ToMBList());
             }
 
-            if (Hero.MainHero.HasAttribute("RuneSmithII"))
+            if (Hero.MainHero.HasAttribute("GuildRuneSmithsII"))
             {
                 items.AppendList(MBObjectManager.Instance.GetObjectTypeList<ItemObject>().WhereQ(x => x.Culture?.StringId == TORConstants.Cultures.DAWI && x.IsTorItem() && (x.IsMeleeWeapon() || x.IsArmor()) && x.Tier < ItemObject.ItemTiers.Tier4).ToMBList());
             }
-            if (Hero.MainHero.HasAttribute("RuneSmithIII"))
+            if (Hero.MainHero.HasAttribute("GuildRuneSmithsIII"))
             {
                 items.AppendList(MBObjectManager.Instance.GetObjectTypeList<ItemObject>().WhereQ(x => x.Culture?.StringId == TORConstants.Cultures.DAWI && x.IsTorItem() && (x.IsMeleeWeapon() || (x.IsArmor() && x.Tier > ItemObject.ItemTiers.Tier4))).ToMBList());
                 var anvilOfDoom = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_anvil_of_doom");

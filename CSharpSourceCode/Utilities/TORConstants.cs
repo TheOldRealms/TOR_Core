@@ -262,9 +262,9 @@ namespace TOR_Core.Utilities
             public const string GUILD_WARRIORS_1 = "GuildWarriorsI";
             public const string GUILD_WARRIORS_2 = "GuildWarriorsII";
             public const string GUILD_WARRIORS_3 = "GuildWarriorsIII";
-            public const string GUILD_RUNESMITH_1 = "DwarfRuneSmithI";
-            public const string GUILD_RUNESMITH_2 = "DwarfRuneSmithII";
-            public const string GUILD_RUNESMITH_3 = "DwarfRuneSmithIII";
+            public const string GUILD_RUNESMITH_1 = "GuildRuneSmithsI";
+            public const string GUILD_RUNESMITH_2 = "GuildRuneSmithsII";
+            public const string GUILD_RUNESMITH_3 = "GuildRuneSmithsIII";
 
             //Empire
             public const string PRESTIGE_NOBLE = "PrestigeNoble";//trades related to Prestige
