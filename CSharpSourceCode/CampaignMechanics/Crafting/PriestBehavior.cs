@@ -13,6 +13,7 @@ using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CampaignMechanics.Crafting;
 
@@ -76,7 +77,7 @@ public class PriestBehavior : CampaignBehaviorBase
         hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == religionId), 100);
         HeroHelper.SpawnHeroForTheFirstTime(hero, settlement);
 
-        if (ExtendedInfoManager.Instance != null) hero.AddAttribute(Attributes.PRIEST_TRAINER); //if present in the extended xml, the hero creation will copy the attributes attached to the template character onto the hero
+        if (ExtendedInfoManager.Instance != null) hero.AddAttribute(CharacterAttributes.PRIEST_TRAINER); //if present in the extended xml, the hero creation will copy the attributes attached to the template character onto the hero
 
         if (_settlementToPriestMap.TryGetValue(settlement.StringId, out var values))
         {
@@ -89,7 +90,7 @@ public class PriestBehavior : CampaignBehaviorBase
             _settlementToPriestMap.Add(settlement.StringId, new List<string> { hero.StringId });
         }
 
-        var t = hero.HasAttribute(Attributes.PRIEST_TRAINER);
+        var t = hero.HasAttribute(CharacterAttributes.PRIEST_TRAINER);
     }
 
     private void SpawnPriestIfNeeded()
@@ -184,7 +185,7 @@ public class PriestBehavior : CampaignBehaviorBase
 
                 if (!priests.Contains(partner.StringId)) return false;
 
-                if (!partner.HeroObject.HasAttribute(Attributes.PRIEST_TRAINER)) return false;
+                if (!partner.HeroObject.HasAttribute(CharacterAttributes.PRIEST_TRAINER)) return false;
 
                 if (partner.HeroObject.GetDominantReligion().StringId == cult) return true;
 

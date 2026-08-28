@@ -15,6 +15,7 @@ using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Extensions
 {
@@ -228,7 +229,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsRunesmith(this CharacterObject characterObject)
         {
-            return characterObject.IsHero && characterObject.HasAttribute(Attributes.RUNESMITH);
+            return characterObject.IsHero && characterObject.HasAttribute(CharacterAttributes.RUNESMITH);
         }
 
         public static bool HasUnitRune(this BasicCharacterObject characterObject)

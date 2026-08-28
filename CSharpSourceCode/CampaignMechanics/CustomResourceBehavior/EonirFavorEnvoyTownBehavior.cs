@@ -19,6 +19,7 @@ using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CampaignMechanics.Menagery;
 
@@ -450,7 +451,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
                 // Grant SpellCaster attribute and entry spellcasting level
                 if (!Hero.MainHero.IsSpellCaster())
                 {
-                    Hero.MainHero.AddAttribute(Attributes.SPELLCASTER);
+                    Hero.MainHero.AddAttribute(CharacterAttributes.SPELLCASTER);
                 }
                 Hero.MainHero.SetSpellCastingLevel(SpellCastingLevel.Entry);
             }

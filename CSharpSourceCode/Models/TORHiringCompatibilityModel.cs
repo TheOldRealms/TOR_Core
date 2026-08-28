@@ -3,6 +3,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models;
 
@@ -54,7 +55,7 @@ public class TORHiringCompatibilityModel : GameModel
         // Humans can hire dwarfs and eonir
         if (IsHumanCulture(playerCulture))
         {
-            if (wanderer.HasAttribute(Attributes.RUNESMITH))
+            if (wanderer.HasAttribute(CharacterAttributes.RUNESMITH))
             {
                 return false;
             }

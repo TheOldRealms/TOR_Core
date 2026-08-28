@@ -22,6 +22,7 @@ using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Quests;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CampaignMechanics.SpellTrainers
 {
@@ -266,7 +267,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             {
                 Hero.MainHero.AddKnownLore("LoreOfLife");
                 Hero.MainHero.AddCultureSpecificCustomResource(-2500);
-                Hero.MainHero.AddAttribute(Attributes.SPELLCASTER);
+                Hero.MainHero.AddAttribute(CharacterAttributes.SPELLCASTER);
                 Hero.MainHero.SetSpellCastingLevel(SpellCastingLevel.Entry);
                 if (Hero.MainHero.GetSkillValue(TORSkills.Spellcraft) < 25)
                 {
@@ -925,7 +926,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             if (!CareerHelper.IsMagicCapableCareer(Hero.MainHero.GetCareer())) return false;
 
             var flag = false;
-            flag = !Hero.MainHero.IsVampire() && !Hero.MainHero.IsSpellCaster() && !Hero.MainHero.HasAttribute(Attributes.PRIEST) && _testResult == ""; //checking IsPriest would prevent damsels from learning spells - "Priest" is specific to warrior priests
+            flag = !Hero.MainHero.IsVampire() && !Hero.MainHero.IsSpellCaster() && !Hero.MainHero.HasAttribute(CharacterAttributes.PRIEST) && _testResult == ""; //checking IsPriest would prevent damsels from learning spells - "Priest" is specific to warrior priests
             if (flag)
             {
                 string text;
@@ -990,8 +991,8 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             if (_testResult == "success")       //why is this not a simple boolean?
             {
                 result = TORTextHelper.GetText("tor_spelltrainer_magictest_result_success", "Hmm...interesting. It would seem you do have an aptitude, perhaps even potential.");
-                Hero.MainHero.AddAttribute(Attributes.ABILITY_USER);
-                Hero.MainHero.AddAttribute(Attributes.SPELLCASTER);
+                Hero.MainHero.AddAttribute(CharacterAttributes.ABILITY_USER);
+                Hero.MainHero.AddAttribute(CharacterAttributes.SPELLCASTER);
                 Hero.MainHero.AddKnownLore("MinorMagic");
                 Hero.MainHero.SetSpellCastingLevel(SpellCastingLevel.Minor);
                 var quest = TORQuestHelper.GetNewSpecializeLoreQuest(true);

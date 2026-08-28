@@ -20,6 +20,7 @@ using TOR_Core.Items;
 using TOR_Core.Utilities;
 using FaceGen = TaleWorlds.Core.FaceGen;
 using LogLevel = NLog.LogLevel;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Extensions
 {
@@ -297,12 +298,12 @@ namespace TOR_Core.Extensions
 
         public static bool IsArtilleryHero(this Hero hero)
         {
-            return hero.HasAttribute(Attributes.CAN_PLACE_ARTILLERY) || hero.HasAttribute(Attributes.ENGINEER_COMPANION);
+            return hero.HasAttribute(CharacterAttributes.CAN_PLACE_ARTILLERY) || hero.HasAttribute(CharacterAttributes.ENGINEER_COMPANION);
         }
 
         public static bool CanPlaceArtillery(this Hero hero)
         {
-            return hero.HasAttribute(Attributes.CAN_PLACE_ARTILLERY);
+            return hero.HasAttribute(CharacterAttributes.CAN_PLACE_ARTILLERY);
         }
 
         public static void AddAbility(this Hero hero, string ability)
@@ -436,22 +437,22 @@ namespace TOR_Core.Extensions
 
         public static bool IsSpellCaster(this Hero hero)
         {
-            return hero.HasAttribute(Attributes.SPELLCASTER);
+            return hero.HasAttribute(CharacterAttributes.SPELLCASTER);
         }
 
         public static bool IsAbilityUser(this Hero hero)
         {
-            return hero.HasAttribute(Attributes.ABILITY_USER);
+            return hero.HasAttribute(CharacterAttributes.ABILITY_USER);
         }
 
         public static bool IsNecromancer(this Hero hero)
         {
-            return hero.HasAttribute(Attributes.NECROMANCER) || hero.HasKnownLore("Necromancy");
+            return hero.HasAttribute(CharacterAttributes.NECROMANCER) || hero.HasKnownLore("Necromancy");
         }
 
         public static bool IsSpellSinger(this Hero hero)
         {
-            return hero.Culture.StringId == TORConstants.Cultures.ASRAI && hero.HasAttribute(Attributes.SPELLCASTER);
+            return hero.Culture.StringId == TORConstants.Cultures.ASRAI && hero.HasAttribute(CharacterAttributes.SPELLCASTER);
         }
 
         public static bool IsUndead(this Hero hero)

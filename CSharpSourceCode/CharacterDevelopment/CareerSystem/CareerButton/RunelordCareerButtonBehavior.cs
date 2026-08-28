@@ -8,6 +8,7 @@ using TaleWorlds.Localization;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 
@@ -378,7 +379,7 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
     {
         _setCharacter = characterObject;
         
-        if (!Hero.MainHero.HasAttribute(Attributes.PLAYER_RUNESMITH))
+        if (!Hero.MainHero.HasAttribute(CharacterAttributes.PLAYER_RUNESMITH))
         {
             return false;
         }

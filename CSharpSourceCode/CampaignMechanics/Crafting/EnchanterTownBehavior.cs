@@ -18,6 +18,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CampaignMechanics.SpellTrainers;
 
@@ -333,7 +334,7 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                     return true;
                 }
 
-                return HasMatchingEnchanterCompanion(x => x.HasAttribute(Attributes.RUNESMITH));
+                return HasMatchingEnchanterCompanion(x => x.HasAttribute(CharacterAttributes.RUNESMITH));
 
             case TORConstants.Cultures.GREENSKIN:
                 if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)

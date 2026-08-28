@@ -9,6 +9,7 @@ using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.AbilitySystem.SpellBook
 {
@@ -86,7 +87,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
                     LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero, _isTrainerMode));
                 }
                 //permitting damsels to see LoreOfHeavens
-                else if (_isTrainerMode && CharacterObject.OneToOneConversationCharacter != null && _trainerCulture == TORConstants.Cultures.BRETONNIA && _currentHero.HasAttribute(Attributes.PRIEST_LADY) && _currentHero.HasKnownLore(lore.StringId))
+                else if (_isTrainerMode && CharacterObject.OneToOneConversationCharacter != null && _trainerCulture == TORConstants.Cultures.BRETONNIA && _currentHero.HasAttribute(CharacterAttributes.PRIEST_LADY) && _currentHero.HasKnownLore(lore.StringId))
                 {
                     LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero, _isTrainerMode));
                 }

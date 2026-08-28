@@ -15,6 +15,7 @@ using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
 using FaceGen = TaleWorlds.Core.FaceGen;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 {
@@ -286,7 +287,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             playerHero.HeroDeveloper.UnspentFocusPoints += toRemoveFaith;
 
-            if (playerHero.HasAttribute(Attributes.PRIEST))//only sigmar/ulric priests have this attribute, but they also have a Priest(God) attribute that isn't removed here and will still return IsPriest() == true
+            if (playerHero.HasAttribute(CharacterAttributes.PRIEST))//only sigmar/ulric priests have this attribute, but they also have a Priest(God) attribute that isn't removed here and will still return IsPriest() == true
             {
                 CareerHelper.RemovePriestAttributes(playerHero);
                 playerHero.GetExtendedInfo().RemoveAllPrayers();
@@ -344,8 +345,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             Hero.MainHero.AddKnownLore("MinorMagic");
             Hero.MainHero.AddAbility("Dart");
 
-            Hero.MainHero.AddAttribute(Attributes.NECROMANCER);
-            Hero.MainHero.AddAttribute(Attributes.SPELLCASTER);
+            Hero.MainHero.AddAttribute(CharacterAttributes.NECROMANCER);
+            Hero.MainHero.AddAttribute(CharacterAttributes.SPELLCASTER);
 
 
             var becameNecrarchText = TORTextHelper.GetTextObject("tor_became_necrarch_text", "{HERO_NAME} became a Necrarch");

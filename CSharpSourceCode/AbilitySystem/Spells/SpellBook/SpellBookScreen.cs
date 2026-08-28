@@ -10,6 +10,7 @@ using TaleWorlds.MountAndBlade.View.Screens;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.AbilitySystem.SpellBook
 {
@@ -43,7 +44,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
             if (_state.IsTrainerMode && _state.TrainerCulture == TORConstants.Cultures.DAWI)
             {
                 heroes = MobileParty.MainParty.GetMemberHeroes()
-                    .Where(x => x.IsSpellCaster() || x.HasAttribute(Attributes.RUNESMITH))
+                    .Where(x => x.IsSpellCaster() || x.HasAttribute(CharacterAttributes.RUNESMITH))
                     .ToList();
             }
 

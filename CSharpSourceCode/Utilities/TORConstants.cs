@@ -187,7 +187,7 @@ namespace TOR_Core.Utilities
             ];
         }
 
-        public readonly struct Attributes
+        public readonly struct CharacterAttributes
         {
             //Comments are examples, not exhaustive lists.
 

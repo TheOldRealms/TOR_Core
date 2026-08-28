@@ -13,6 +13,7 @@ using TaleWorlds.ObjectSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Missions;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CampaignMechanics.RaiseDead
 {
@@ -81,7 +82,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             {
                 if (hero.Culture.StringId == TORConstants.Cultures.SYLVANIA && !hero.IsNecromancer() && (hero.IsLord || hero.IsWanderer) && hero != Hero.MainHero)
                 {
-                    hero.AddAttribute(Attributes.NECROMANCER);
+                    hero.AddAttribute(CharacterAttributes.NECROMANCER);
                 }
             }
         }

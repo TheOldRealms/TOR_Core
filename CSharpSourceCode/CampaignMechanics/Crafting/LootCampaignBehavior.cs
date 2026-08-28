@@ -13,6 +13,7 @@ using TaleWorlds.ObjectSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
 using TOR_Core.Models;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CampaignMechanics.Crafting;
 /// <summary>
@@ -254,7 +255,7 @@ public class LootCampaignBehavior : CampaignBehaviorBase
             }
 
             if (character.HeroObject != null &&
-                character.HeroObject.HasAttribute(Attributes.LEGENDARY_LORD))
+                character.HeroObject.HasAttribute(CharacterAttributes.LEGENDARY_LORD))
                 continue; //TODO check in Unit Catalog that all Legendary Lord have this attribute.
 
 

@@ -23,6 +23,7 @@ using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
@@ -696,7 +697,7 @@ namespace TOR_Core.Models
                 }
                 else
                 {
-                    if (careerChoices.Contains("EnvoyOfTheLadyPassive3") && hero.HasAttribute(Attributes.PRIEST_LADY))
+                    if (careerChoices.Contains("EnvoyOfTheLadyPassive3") && hero.HasAttribute(CharacterAttributes.PRIEST_LADY))
                     {
                         var choice = TORCareerChoices.GetChoice("EnvoyOfTheLadyPassive3");
                         explainedNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);

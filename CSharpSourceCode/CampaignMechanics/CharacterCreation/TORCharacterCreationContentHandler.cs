@@ -20,6 +20,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CampaignMechanics.CharacterCreation
 {
@@ -593,8 +594,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             ApplyStoredSpecializations();
 
             // Everyone gets these base attributes
-            Hero.MainHero.AddAttribute(Attributes.ABILITY_USER);
-            Hero.MainHero.AddAttribute(Attributes.CAN_PLACE_ARTILLERY);
+            Hero.MainHero.AddAttribute(CharacterAttributes.ABILITY_USER);
+            Hero.MainHero.AddAttribute(CharacterAttributes.CAN_PLACE_ARTILLERY);
             
             CultureObject culture = CharacterObject.PlayerCharacter.Culture;
             Hero.MainHero.AddCultureSpecificCustomResource(0);
@@ -735,7 +736,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             switch (professionId)
             {
                 case "option_3_empire_magister_apprentice":
-                    hero.AddAttribute(Attributes.SPELLCASTER);
+                    hero.AddAttribute(CharacterAttributes.SPELLCASTER);
                     hero.AddAbility("Dart");
                     hero.AddKnownLore("MinorMagic");
                     hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
@@ -750,8 +751,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     break;
 
                 case "option_3_bretonnia_damsel":
-                    hero.AddAttribute(Attributes.SPELLCASTER);
-                    hero.AddAttribute(Attributes.PRIEST_LADY);
+                    hero.AddAttribute(CharacterAttributes.SPELLCASTER);
+                    hero.AddAttribute(CharacterAttributes.PRIEST_LADY);
                     hero.AddAbility("Dart");
                     hero.AddAbility("AuraOfTheLady");
                     hero.AddKnownLore("MinorMagic");
@@ -775,7 +776,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     break;
 
                 case "option_3_we_spellsinger":
-                    hero.AddAttribute(Attributes.SPELLCASTER);
+                    hero.AddAttribute(CharacterAttributes.SPELLCASTER);
                     hero.AddKnownLore("LoreOfLife");
                     hero.AddKnownLore("LoreOfBeasts");
                     hero.AddAbility("SummerHeat");
@@ -788,7 +789,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     break;
 
                 case "option_3_eo_greylord_apprentice":
-                    hero.AddAttribute(Attributes.SPELLCASTER);
+                    hero.AddAttribute(CharacterAttributes.SPELLCASTER);
                     hero.AddKnownLore("LoreOfFire");
                     hero.AddAbility("BoltOfAqshy");
                     hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
@@ -799,27 +800,27 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     break;
 
                 case "option_3_empire_priest_acolyte":
-                    hero.AddAttribute(Attributes.PRIEST);
+                    hero.AddAttribute(CharacterAttributes.PRIEST);
                     // Specialization (Sigmar/Ulric) will be applied by ApplyStoredSpecializations
                     break;
 
                 case "option_3_vc_vampire":
                     hero.AddAttribute("Vampire");
-                    hero.AddAttribute(Attributes.NECROMANCER);
+                    hero.AddAttribute(CharacterAttributes.NECROMANCER);
                     hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 60);
                     break;
 
                 case "option_3_mousillon_vampire":
                     hero.AddAttribute("Vampire");
-                    hero.AddAttribute(Attributes.NECROMANCER);
+                    hero.AddAttribute(CharacterAttributes.NECROMANCER);
                     hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 60);
                     // Bloodline career will be applied by ApplyStoredSpecializations
                     _storedSpawnPosition = new CampaignVec2(new Vec2(918.8679f, 1025.561f), true); // Mousillon Vampire
                     break;
 
                 case "option_3_vc_necromancer":
-                    hero.AddAttribute(Attributes.SPELLCASTER);
-                    hero.AddAttribute(Attributes.NECROMANCER);
+                    hero.AddAttribute(CharacterAttributes.SPELLCASTER);
+                    hero.AddAttribute(CharacterAttributes.NECROMANCER);
                     hero.AddAbility("SummonSkeleton");
                     hero.AddKnownLore("MinorMagic");
                     hero.AddKnownLore("Necromancy");
@@ -832,8 +833,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     break;
 
                 case "option_3_mousillon_necromancer":
-                    hero.AddAttribute(Attributes.SPELLCASTER);
-                    hero.AddAttribute(Attributes.NECROMANCER);
+                    hero.AddAttribute(CharacterAttributes.SPELLCASTER);
+                    hero.AddAttribute(CharacterAttributes.NECROMANCER);
                     hero.AddAbility("SummonSkeleton");
                     hero.AddKnownLore("MinorMagic");
                     hero.AddKnownLore("Necromancy");
@@ -896,7 +897,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     break;
 
                 case "option_3_gs_path_of_shaman":
-                    hero.AddAttribute(Attributes.SPELLCASTER);
+                    hero.AddAttribute(CharacterAttributes.SPELLCASTER);
                     hero.AddAbility("GazeUvMork");
                     hero.AddKnownLore("BigWaaagh");
                     hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
@@ -1013,7 +1014,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 // VAMPIRE BLOODLINE OPTIONS
                 case "bloodline_von_carstein":
                     {
-                        hero.AddAttribute(Attributes.SPELLCASTER);
+                        hero.AddAttribute(CharacterAttributes.SPELLCASTER);
                         hero.AddAbility("NagashGaze");
                         hero.AddKnownLore("MinorMagic");
                         hero.AddKnownLore("Necromancy");
@@ -1039,7 +1040,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 // MOUSILLON VAMPIRE BLOODLINE OPTIONS
                 case "bloodline_von_carstein_mous":
                     {
-                        hero.AddAttribute(Attributes.SPELLCASTER);
+                        hero.AddAttribute(CharacterAttributes.SPELLCASTER);
                         hero.AddAbility("NagashGaze");
                         hero.AddKnownLore("MinorMagic");
                         hero.AddKnownLore("Necromancy");
@@ -1057,7 +1058,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     break;
                 case "bloodline_necrarch_mous":
                     {
-                        hero.AddAttribute(Attributes.SPELLCASTER);
+                        hero.AddAttribute(CharacterAttributes.SPELLCASTER);
                         hero.AddAbility("NagashGaze");
                         hero.AddKnownLore("MinorMagic");
                         hero.AddKnownLore("Necromancy");
@@ -1071,7 +1072,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     }
                 case "bloodline_necrarch":
                     {
-                        hero.AddAttribute(Attributes.SPELLCASTER);
+                        hero.AddAttribute(CharacterAttributes.SPELLCASTER);
                         hero.AddAbility("NagashGaze");
                         hero.AddKnownLore("MinorMagic");
                         hero.AddKnownLore("Necromancy");
