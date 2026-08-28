@@ -7,6 +7,7 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.Source.Missions;
 using TOR_Core.AbilitySystem;
 using TOR_Core.Extensions;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.BattleMechanics.TriggeredEffect
 {

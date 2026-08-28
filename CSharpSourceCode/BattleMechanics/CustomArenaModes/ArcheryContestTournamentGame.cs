@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem.TournamentGames;
 using TaleWorlds.Core;
 using TOR_Core.Extensions;
 using TOR_Core.Missions;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.BattleMechanics.CustomArenaModes
 {

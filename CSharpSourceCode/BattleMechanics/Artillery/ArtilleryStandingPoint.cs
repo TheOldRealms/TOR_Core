@@ -1,5 +1,6 @@
 ﻿using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.BattleMechanics.Artillery
 {

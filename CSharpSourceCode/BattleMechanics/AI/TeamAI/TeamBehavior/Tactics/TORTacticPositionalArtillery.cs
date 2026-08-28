@@ -12,6 +12,7 @@ using TOR_Core.BattleMechanics.AI.CommonAIFunctions;
 using TOR_Core.BattleMechanics.AI.TeamAI.FormationBehavior;
 using TOR_Core.BattleMechanics.Artillery;
 using TOR_Core.Extensions;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
 {

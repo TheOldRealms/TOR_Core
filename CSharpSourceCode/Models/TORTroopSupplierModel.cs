@@ -9,6 +9,7 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.LinQuick;
 using TOR_Core.Extensions;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
