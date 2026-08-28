@@ -7,7 +7,6 @@ namespace TOR_Core.Utilities
     public static class TORConstants
     {
         public const int TotalNumberOfUniqueLoadingScreenImages = 12;
-        public const int MIRACLE_CHANCE = 5;//Sly : currently ignored
         public const int MAXIMUM_DEVOTION_LEVEL = 100;
         public const int DEVOTED_TRESHOLD = 50;
         public const int FANATIC_TRESHOLD = 75;
