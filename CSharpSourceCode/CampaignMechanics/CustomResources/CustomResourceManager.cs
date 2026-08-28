@@ -24,6 +24,7 @@ using TOR_Core.Extensions.UI;
 using TOR_Core.Models;
 using TOR_Core.Utilities;
 using static Helpers.PartyScreenHelper;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CampaignMechanics.CustomResources
 {

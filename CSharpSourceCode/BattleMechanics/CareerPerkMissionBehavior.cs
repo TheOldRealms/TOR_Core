@@ -13,6 +13,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.BattleMechanics
 {

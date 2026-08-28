@@ -4,6 +4,7 @@ using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.Menagery;
 using TOR_Core.Extensions;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CampaignMechanics.CustomResources;
 
