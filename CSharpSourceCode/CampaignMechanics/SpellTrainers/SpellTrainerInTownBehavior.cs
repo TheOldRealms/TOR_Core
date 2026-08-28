@@ -87,7 +87,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             if (trainer != null && collegeloc != null)
             {
                 // Skip spellsinger envoy - they should stay in the lordshall, not the magic college
-                if (trainer.HasAttribute("SpellsingerEnvoy"))
+                if (trainer.HasAttribute(CharacterAttributes.SPELLSINGER_ENVOY))
                 {
                     return;
                 }

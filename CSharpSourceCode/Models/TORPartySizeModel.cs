@@ -117,11 +117,11 @@ namespace TOR_Core.Models
             if (party.LeaderHero == Hero.MainHero &&
                 Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
             {
-                if (Hero.MainHero.HasAttribute("Waaagh2"))
+                if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_2))
                 {
                     num.Add(60, TORTextHelper.GetTextObject("tor_party_size_desc", "EreWeGo", "'Ere We Go!"));
                 }
-                else if (Hero.MainHero.HasAttribute("Waaagh3"))
+                else if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_3))
                 {
                     num.Add(120, TORTextHelper.GetTextObject("tor_party_size_desc", "Waaagh", "WAAAGH!!!!"));
                 }

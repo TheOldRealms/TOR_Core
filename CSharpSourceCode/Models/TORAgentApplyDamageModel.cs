@@ -874,19 +874,19 @@ namespace TOR_Core.Models
             if (agentLeader != null && agentLeader.Culture.StringId == TORConstants.Cultures.GREENSKIN &&
                 (mask == PropertyMask.Attack || mask == PropertyMask.All))
             {
-                if (agentLeader.HasAttribute("Waaagh0"))
+                if (agentLeader.HasAttribute(CharacterAttributes.WAAAAGH_0))
                 {
                     damageBonuses[(int)DamageType.Physical] -= 0.2f;
                 }
-                else if (agentLeader.HasAttribute("Waaagh1"))
+                else if (agentLeader.HasAttribute(CharacterAttributes.WAAAAGH_1))
                 {
                     damageBonuses[(int)DamageType.Physical] -= 0.1f;
                 }
-                else if (agentLeader.HasAttribute("Waaagh2"))
+                else if (agentLeader.HasAttribute(CharacterAttributes.WAAAAGH_2))
                 {
                     damageBonuses[(int)DamageType.Physical] += 0.1f;
                 }
-                else if (agentLeader.HasAttribute("Waaagh3"))
+                else if (agentLeader.HasAttribute(CharacterAttributes.WAAAAGH_3))
                 {
                     damageBonuses[(int)DamageType.Physical] += 0.2f;
                 }

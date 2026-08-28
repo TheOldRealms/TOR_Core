@@ -78,7 +78,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
 
             int maximumArtilleryCharges = selectedAbilities.Where(ability => ability.AbilityEffectType == AbilityEffectType.ArtilleryPlacement).Sum(artilleryAbility => ((ItemBoundAbility)artilleryAbility).GetMaximumCharges());
 
-            int artilleryCrewCount = Team.ActiveAgents.Count(agent => agent.HasAttribute("ArtilleryCrew"));
+            int artilleryCrewCount = Team.ActiveAgents.Count(agent => agent.HasAttribute(CharacterAttributes.ARTILLERY_CREW));
             if (artilleryCrewCount <= 0) return 0f;
 
             int requiredCrewForNextArtillery = (maximumArtilleryCharges - remainingAbilityUses + 1) * 2;
@@ -115,7 +115,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
 
             allFormations.SelectMany(form => form.Arrangement.GetAllUnits()).ToList().Select(unit => (Agent)unit).ToList().ForEach(agent =>
             {
-                if (agent.HasAttribute("ArtilleryCrew"))
+                if (agent.HasAttribute(CharacterAttributes.ARTILLERY_CREW))
                 {
                     if (!updatedFormations.Contains(agent.Formation))
                         updatedFormations.Add(agent.Formation);

@@ -506,7 +506,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         bool IsSpellsingerEnvoy()
         {
             var partner = CharacterObject.OneToOneConversationCharacter;
-            if (partner != null && partner.IsHero) return partner.HeroObject.HasAttribute("SpellsingerEnvoy");
+            if (partner != null && partner.IsHero) return partner.HeroObject.HasAttribute(CharacterAttributes.SPELLSINGER_ENVOY);
 
             return false;
         }
@@ -698,7 +698,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         bool IsEmpireEnvoy()
         {
             var partner = CharacterObject.OneToOneConversationCharacter;
-            if (partner != null && partner.IsHero) return partner.HeroObject.HasAttribute("EmpireEnvoy");
+            if (partner != null && partner.IsHero) return partner.HeroObject.HasAttribute(CharacterAttributes.EMPIRE_ENVOY);
 
             return false;
         }
@@ -927,7 +927,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             _isDruchiiEnvoyTrade = false;
             setDruchiiPrices();
             var partner = CharacterObject.OneToOneConversationCharacter;
-            if (partner != null && partner.IsHero) return partner.HeroObject.HasAttribute("DruchiiEnvoy");
+            if (partner != null && partner.IsHero) return partner.HeroObject.HasAttribute(CharacterAttributes.DRUCHII_ENVOY);
 
             return false;
         }
@@ -1073,7 +1073,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         {
             SetupPrices();
             var partner = CharacterObject.OneToOneConversationCharacter;
-            if (partner != null && partner.IsHero) return partner.HeroObject.HasAttribute("AsurEnvoy");
+            if (partner != null && partner.IsHero) return partner.HeroObject.HasAttribute(CharacterAttributes.ASUR_ENVOY);
 
             return false;
         }
@@ -1226,8 +1226,8 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         var partner = CharacterObject.OneToOneConversationCharacter;
         if (partner != null && partner.IsHero)
         {
-            if (partner.HeroObject.HasAttribute("AsurEnvoy") || partner.HeroObject.HasAttribute("EmpireEnvoy") ||
-                partner.HeroObject.HasAttribute("DruchiiEnvoy") || partner.HeroObject.HasAttribute("SpellsingerEnvoy"))
+            if (partner.HeroObject.HasAttribute(CharacterAttributes.ASUR_ENVOY) || partner.HeroObject.HasAttribute(CharacterAttributes.EMPIRE_ENVOY) ||
+                partner.HeroObject.HasAttribute(CharacterAttributes.DRUCHII_ENVOY) || partner.HeroObject.HasAttribute(CharacterAttributes.SPELLSINGER_ENVOY))
             {
                 return true;
             }
@@ -1284,10 +1284,10 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         }
 
         // Find existing envoys by their attributes
-        _druchiiEnvoy = Hero.AllAliveHeroes.FirstOrDefault(x => x.HasAttribute("DruchiiEnvoy"));
-        _asurEnvoy = Hero.AllAliveHeroes.FirstOrDefault(x => x.HasAttribute("AsurEnvoy"));
-        _empireEnvoy = Hero.AllAliveHeroes.FirstOrDefault(x => x.HasAttribute("EmpireEnvoy"));
-        _spellsingerEnvoy = Hero.AllAliveHeroes.FirstOrDefault(x => x.HasAttribute("SpellsingerEnvoy"));
+        _druchiiEnvoy = Hero.AllAliveHeroes.FirstOrDefault(x => x.HasAttribute(CharacterAttributes.DRUCHII_ENVOY));
+        _asurEnvoy = Hero.AllAliveHeroes.FirstOrDefault(x => x.HasAttribute(CharacterAttributes.ASUR_ENVOY));
+        _empireEnvoy = Hero.AllAliveHeroes.FirstOrDefault(x => x.HasAttribute(CharacterAttributes.EMPIRE_ENVOY));
+        _spellsingerEnvoy = Hero.AllAliveHeroes.FirstOrDefault(x => x.HasAttribute(CharacterAttributes.SPELLSINGER_ENVOY));
 
         if (_druchiiEnvoy != null) envoys.Add(_druchiiEnvoy);
         if (_asurEnvoy != null) envoys.Add(_asurEnvoy);

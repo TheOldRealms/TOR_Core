@@ -190,18 +190,18 @@ public class WaaaghBehavior : CampaignBehaviorBase
         if (Hero.MainHero.PartyBelongedTo == null) return;
 
         // Waaagh0: Internal fighting causes wounded troops
-        if (Hero.MainHero.HasAttribute("Waaagh0"))
+        if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_0))
         {
             WoundTroopsFromInfighting(0.05f); // 5% chance per troop
         }
         // Waaagh1: Smaller chance of troops getting wounded from squabbling
-        else if (Hero.MainHero.HasAttribute("Waaagh1"))
+        else if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_1))
         {
             WoundTroopsFromInfighting(0.02f); // 2% chance per troop (smaller than Waaagh0)
         }
 
         // Waaagh2: Small chance of recruiting tier 1-3 Greenskin troops
-        if (Hero.MainHero.HasAttribute("Waaagh2"))
+        if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_2))
         {
             float recruitChance = 0.3f; // 30% chance
             if (MBRandom.RandomFloat < recruitChance)
@@ -210,7 +210,7 @@ public class WaaaghBehavior : CampaignBehaviorBase
             }
         }
         // Waaagh3: Big chance of recruiting tier 1-3 Greenskin troops
-        else if (Hero.MainHero.HasAttribute("Waaagh3"))
+        else if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_3))
         {
             float recruitChance = 0.6f; // 60% chance
             if (MBRandom.RandomFloat < recruitChance)
@@ -329,25 +329,25 @@ public class WaaaghBehavior : CampaignBehaviorBase
         _previousWaaaghLevel = currentLevel;
 
         // Remove all Wargh state attributes
-        Hero.MainHero.RemoveAttribute("Waaagh0");
-        Hero.MainHero.RemoveAttribute("Waaagh1");
-        Hero.MainHero.RemoveAttribute("Waaagh2");
-        Hero.MainHero.RemoveAttribute("Waaagh3");
+        Hero.MainHero.RemoveAttribute(CharacterAttributes.WAAAAGH_0);
+        Hero.MainHero.RemoveAttribute(CharacterAttributes.WAAAAGH_1);
+        Hero.MainHero.RemoveAttribute(CharacterAttributes.WAAAAGH_2);
+        Hero.MainHero.RemoveAttribute(CharacterAttributes.WAAAAGH_3);
 
         // Add the appropriate attribute for the current state
         switch (currentLevel)
         {
             case WaaaghLevel.InternalFightin:
-                Hero.MainHero.AddAttribute("Waaagh0");
+                Hero.MainHero.AddAttribute(CharacterAttributes.WAAAAGH_0);
                 break;
             case WaaaghLevel.PettySquabblin:
-                Hero.MainHero.AddAttribute("Waaagh1");
+                Hero.MainHero.AddAttribute(CharacterAttributes.WAAAAGH_1);
                 break;
             case WaaaghLevel.EreWeGo:
-                Hero.MainHero.AddAttribute("Waaagh2");
+                Hero.MainHero.AddAttribute(CharacterAttributes.WAAAAGH_2);
                 break;
             case WaaaghLevel.WAAAGH:
-                Hero.MainHero.AddAttribute("Waaagh3");
+                Hero.MainHero.AddAttribute(CharacterAttributes.WAAAAGH_3);
                 break;
         }
     }

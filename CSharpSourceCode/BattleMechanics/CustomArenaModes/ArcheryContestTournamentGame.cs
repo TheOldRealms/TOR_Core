@@ -21,7 +21,7 @@ namespace TOR_Core.BattleMechanics.CustomArenaModes
         public override bool CanBeAParticipant(CharacterObject character, bool considerSkills)
         {
             if (character.IsMonstrous() ||
-                character.HasAttribute("HasAnimationTriggeredEffects") ||
+                character.HasAttribute(CharacterAttributes.HAS_ANIMATION_TRIGGERED_EFFECTS) ||
                 character.Culture?.StringId == "chaos_culture")
             {
                 return false;

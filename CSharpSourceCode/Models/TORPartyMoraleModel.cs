@@ -70,7 +70,7 @@ namespace TOR_Core.Models
 
             if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
             {
-                if (Hero.MainHero.HasAttribute("Waaagh0"))
+                if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_0))
                 {
                     result.Add(-40f, TORTextHelper.GetTextObject("tor_greenskin_internal_fightin_text", "Internal Fightin'"));
                     if (Hero.MainHero.PartyBelongedTo != null &&
@@ -79,7 +79,7 @@ namespace TOR_Core.Models
                         result.Add(20f, TORTextHelper.GetTextObject("tor_greenskin_internal_fightin_bonus_low_member_text", "Small Mob Pansies"));
                     }
                 }
-                else if (Hero.MainHero.HasAttribute("Waaagh1"))
+                else if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_1))
                 {
                     result.Add(-20f, TORTextHelper.GetTextObject("tor_greenskin_petty_squabblin_text", "Petty Squabblin'"));
                 }

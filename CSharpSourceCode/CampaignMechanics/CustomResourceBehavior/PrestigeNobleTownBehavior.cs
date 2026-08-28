@@ -287,7 +287,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
                 bool IsPrestigeNoble(Hero hero)
                 {
                     if (hero != null)
-                        return hero.Occupation == Occupation.Special && hero.HasAttribute("PrestigeNoble");
+                        return hero.Occupation == Occupation.Special && hero.HasAttribute(CharacterAttributes.PRESTIGE_NOBLE);
                     return false;
                 }
             }
