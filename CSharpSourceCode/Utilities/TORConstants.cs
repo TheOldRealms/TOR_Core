@@ -187,12 +187,106 @@ namespace TOR_Core.Utilities
             ];
         }
 
+        /// <remarks>
+        /// Comments are examples, not exhaustive lists.
+        /// </remarks>
         public readonly struct Attributes
         {
+            //Player
+            public const string PLAYER_RUNESMITH = "PlayerRunesmith";//quest completed for career tier 2
+            public const string PLAYER_RUNELORD = "PlayerRunelord";//quest completed for career tier 3
+
+            //Ability system
+            public const string ABILITY_USER = "AbilityUser";
+            public const string CAN_PLACE_ARTILLERY = "CanPlaceArtillery";
+
+            //Special hero types
             public const string SPELLCASTER = "SpellCaster";
             public const string RUNESMITH = "Runesmith";
-            public const string CAN_PLACE_ARTILLERY = "CanPlaceArtillery";
+            public const string ILL_FATED = "IllFated";//moussilon knights, similar to grail knights
+            public const string LEGENDARY_LORD = "LegendaryLord";//Specific famous heroes who need plot armour
+            public const string WARBOSS = "Warboss";//greenskin mechanic
+            public const string PRIEST_TRAINER = "PriestTrainer";//Blesses player, teaches equipment blessing, etc.
+            public const string SKILL_TRAINER = "SkillTrainer";
             public const string ENGINEER_COMPANION = "EngineerCompanion";
+            public const string NECROMANCER = "Necromancer";
+
+            //Priests
+            public const string PRIEST_LADY = "PriestLady";//damsel
+            public const string PRIEST = "Priest";//generic, unclear name, old attribute, specific to warrior priests as it was used to mark the player who had that career in the past
+
+            //Careers
+            public const string CAREER_TIER_1 = "CareerTier1";//granted by fulfilling the unlock conditions
+            public const string CAREER_TIER_2 = "CareerTier2";//granted by fulfilling the unlock conditions
+            public const string CAREER_TIER_3 = "CareerTier3";//granted by fulfilling the unlock conditions
+            public const string WINDS_LINK = "WindsLink";//orc shaman, spellsinger
+            public const string WINDS_DEATH_LINK = "WindsDeathLink";//orc shaman
+            public const string ACCUSATION_MARK = "AccusationMark";//witchhunter
+            public const string FELLFANG_MARK = "FellfangMark";//greylord
+            public const string NECROMANCER_CHAMPION = "NecromancerChampion";//necromancer
+            public const string IMPENETRABLE = "Impenetrable";//ironbreaker
+            public const string DOOM_SEEKING = "DoomSeeking";//slayer
+
+            //Traits
+            public const string THORNS = "Thorns";//damage reflection
+
+            //Custom Events
+            public const string DEFEATED_VITTORIO = "DefeatedVittorio";//granted upon winning a duel
+
+            //Asrai
+            public const string WE_WANDERER_SYMBOL = "WEWandererSymbol";
+            public const string WE_ARIEL_SYMBOL = "WEArielSymbol";
+            public const string WE_DURTHU_SYMBOL = "WEDurthuSymbol";
+            public const string WE_KITHBAND_SYMBOL = "WEKithbandSymbol";
+            public const string WE_ORION_SYMBOL = "WEOrionSymbol";
+            public const string WE_TREEKIN_SYMBOL = "WETreekinSymbol";
+            public const string WE_WARDANCER_SYMBOL = "WEWardancerSymbol";
+
+            //Dawi player
+            public const string ELF_GRUDGE = "ElfGrudge";//grudges are from character creation options
+            public const string GREENSKIN_GRUDGE = "GreenskinGrudge";
+            public const string HUMAN_GRUDGE = "HumanGrudge";
+            public const string SKAVEN_GRUDGE = "SkavenGrudge";
+            public const string UNDEAD_GRUDGE = "UndeadGrudge";
+
+            //Dawi guild tiers
+            public const string DWARF_BREWERS_1 = "DwarfBrewersI";
+            public const string DWARF_BREWERS_2 = "DwarfBrewersII";
+            public const string DWARF_BREWERS_3 = "DwarfBrewersIII";
+            public const string DWARF_ENGINEERS_1 = "DwarfEngineersI";
+            public const string DWARF_ENGINEERS_2 = "DwarfEngineersII";
+            public const string DWARF_ENGINEERS_3 = "DwarfEngineersIII";
+            public const string DWARF_MINERS_1 = "DwarfMinersI";
+            public const string DWARF_MINERS_2 = "DwarfMinersII";
+            public const string DWARF_MINERS_3 = "DwarfMinersIII";
+            public const string DWARF_WARRIORS_1 = "DwarfWarriorI";
+            public const string DWARF_WARRIORS_2 = "DwarfWarriorII";
+            public const string DWARF_WARRIORS_3 = "DwarfWarriorIII";
+            public const string DWARF_RUNESMITH_1 = "DwarfRuneSmithI";//i added Dwarf to match the pattern of the others.
+            public const string DWARF_RUNESMITH_2 = "DwarfRuneSmithII";
+            public const string DWARF_RUNESMITH_3 = "DwarfRuneSmithIII";
+
+            //Empire
+            public const string PRESTIGE_NOBLE = "PrestigeNoble";//trades related to Prestige
+            
+            //Eonir
+            public const string DRUCHII_ENVOY = "DruchiiEnvoy";//druchii npc
+            public const string ASUR_ENVOY = "AsurEnvoy";//high elf npc
+            public const string EMPIRE_ENVOY = "EmpireEnvoy";//empire npc
+            public const string SPELLSINGER_ENVOY = "SpellsingerEnvoy";//spellsinger npc
+
+            //Greenskin
+            public const string WAAAAGH_0 = "Waaagh0";
+            public const string WAAAAGH_1 = "Waaagh1";
+            public const string WAAAAGH_2 = "Waaagh2";
+            public const string WAAAAGH_3 = "Waaagh3";
+            
+            //Troops
+            public const string DWARF_MINER = "DwarfMiner";
+            public const string ARTILLERY_CREW = "ArtilleryCrew";
+
+            //Other?
+            public const string HAS_ANIMATION_TRIGGERED_EFFECTS = "HasAnimationTriggeredEffects";//treemen and trolls
         }
 
         /// <summary>
