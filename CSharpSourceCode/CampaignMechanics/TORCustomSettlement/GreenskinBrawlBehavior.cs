@@ -141,7 +141,7 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
     {
         var text = GameTexts.FindText("tor_greenskin_brawl_intro");
         starter.AddGameMenu("brawl_victory", "{BRAWL_WIN_DESCRIPTION}", CalculateWinResult, GameMenu.MenuOverlayType.None);
-        starter.AddGameMenuOption("brawl_victory", "brawl_victory_accept", GameTexts.FindText("tor_greenskin_brawl_victory_accept").ToString(),
+        starter.AddGameMenuOption("brawl_victory", "brawl_victory_accept", TORTextHelper.GetTextForNative("tor_greenskin_brawl_victory_accept", "Claim your prize"),
             args =>
             {
                 return MenuHelper.SetOptionProperties(args, true, false, TextObject.GetEmpty());
