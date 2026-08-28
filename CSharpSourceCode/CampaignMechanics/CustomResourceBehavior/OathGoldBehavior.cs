@@ -297,7 +297,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_learn_rune_magic_p", hub, reintro,
             TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_hub_learn_rune_magic_p", "I wish to learn more of Rune Magic and the Anvils of Doom."),
-    () => Hero.MainHero.HasAttribute(CharacterAttributes.PLAYER_RUNESMITH) || Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.HasAttribute(CharacterAttributes.RUNESMITH)) && Hero.MainHero.PartyBelongedTo.HasAnvilOfDoom(), openbookconsequence, 200);
+    () => Hero.MainHero.HasAttribute(CharacterAttributes.PLAYER_RUNESMITH) || Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.HasAttribute(CharacterAttributes.RUNESMITH)) && Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_RUNESMITH_1), openbookconsequence, 200);
 
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_1_p", hub, "tor_dw_guildmaster_rune_smith_hub_rune_lord_career",
