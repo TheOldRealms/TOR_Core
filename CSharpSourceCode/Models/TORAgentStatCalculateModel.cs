@@ -672,7 +672,7 @@ namespace TOR_Core.Models
                                   && !agent.HasMount;
 
             bool applyMainAgentCareerPassives = agent.IsMainAgent && agent.GetHero().HasAnyCareer();
-            bool applyWardancerSymbol = agent.IsMainAgent && Hero.MainHero.HasAttribute("WEWardancerSymbol");
+            bool applyWardancerSymbol = agent.IsMainAgent && Hero.MainHero.HasAttribute(CharacterAttributes.WE_WARDANCER_SYMBOL);
 
             if (!applyRunAndGun && !applyMainAgentCareerPassives && !applyWardancerSymbol)
                 return;

@@ -80,37 +80,37 @@ public class ForestHarmonyHelper
 
 
 
-        if (Hero.MainHero.HasAttribute("WEKithbandSymbol"))
+        if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_KITHBAND_SYMBOL))
         {
             list.AddRange(GetForestSymbolText("WEKithbandSymbol"));
         }
 
-        if (Hero.MainHero.HasAttribute("WEWardancerSymbol"))
+        if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_WARDANCER_SYMBOL))
         {
             list.AddRange(GetForestSymbolText("WEWardancerSymbol"));
         }
 
-        if (Hero.MainHero.HasAttribute("WETreekinSymbol"))
+        if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_TREEKIN_SYMBOL))
         {
             list.AddRange(GetForestSymbolText("WETreekinSymbol"));
         }
 
-        if (Hero.MainHero.HasAttribute("WEOrionSymbol"))
+        if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_ORION_SYMBOL))
         {
             list.AddRange(GetForestSymbolText("WEOrionSymbol"));
         }
 
-        if (Hero.MainHero.HasAttribute("WEArielSymbol"))
+        if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_ARIEL_SYMBOL))
         {
             list.AddRange(GetForestSymbolText("WEArielSymbol"));
         }
 
-        if (Hero.MainHero.HasAttribute("WEDurthuSymbol"))
+        if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_DURTHU_SYMBOL))
         {
             list.AddRange(GetForestSymbolText("WEDurthuSymbol"));
         }
 
-        if (Hero.MainHero.HasAttribute("WEWandererSymbol"))
+        if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_WANDERER_SYMBOL))
         {
             list.AddRange(GetForestSymbolText("WEWandererSymbol"));
         }
@@ -123,7 +123,7 @@ public class ForestHarmonyHelper
         list.Add(new TooltipProperty(title, "", 0, false,
             TooltipProperty.TooltipPropertyFlags.RundownResult));
 
-        if (!Hero.MainHero.HasAttribute("WEWandererSymbol"))
+        if (!Hero.MainHero.HasAttribute(CharacterAttributes.WE_WANDERER_SYMBOL))
         {
             switch (forestBindingLevel)
             {
@@ -188,8 +188,8 @@ public class ForestHarmonyHelper
 
     public static float HarmonySymbolPenalty()
     {
-        if (Hero.MainHero.HasAttribute("WEWardancerSymbol") || Hero.MainHero.HasAttribute("WEKithbandSymbol")) return 0.25f;
-        if (Hero.MainHero.HasAttribute("WEWandererSymbol")) return 0.5f;
+        if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_WARDANCER_SYMBOL) || Hero.MainHero.HasAttribute(CharacterAttributes.WE_KITHBAND_SYMBOL)) return 0.25f;
+        if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_WANDERER_SYMBOL)) return 0.5f;
 
         return 0f;
     }

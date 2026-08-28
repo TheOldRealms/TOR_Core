@@ -101,12 +101,12 @@ namespace TOR_Core.Models
                     }
                     if (oakPartyBonus > 0) num.Add(oakPartyBonus, TORTextHelper.GetTextObject("tor_party_size_desc", "OakOfAgesOutposts", "Oak of Ages outposts"));
 
-                    if (Hero.MainHero.HasAttribute("WEKithbandSymbol"))
+                    if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_KITHBAND_SYMBOL))
                     {
                         num.AddFactor(0.25f, ForestHarmonyHelper.TreeSymbolText("WEKithbandSymbol"));
                     }
 
-                    if (Hero.MainHero.HasAttribute("WEDurthuSymbol"))
+                    if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_DURTHU_SYMBOL))
                     {
                         num.AddFactor(-0.2f, ForestHarmonyHelper.TreeSymbolText("WEDurthuSymbol"));
                     }
@@ -299,7 +299,7 @@ namespace TOR_Core.Models
             }
 
             // Treemen weight: 10 slots with WEDurthuSymbol, 25 slots otherwise
-            bool hasDurthuSymbol = party.LeaderHero.HasAttribute("WEDurthuSymbol");
+            bool hasDurthuSymbol = party.LeaderHero.HasAttribute(CharacterAttributes.WE_DURTHU_SYMBOL);
             int treemenWeight = hasDurthuSymbol ? 10 : 24;
 
             if (treemenCount > 0)

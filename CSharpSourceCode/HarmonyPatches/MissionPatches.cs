@@ -224,7 +224,7 @@ namespace TOR_Core.HarmonyPatches
             if (Hero.MainHero != null && Hero.MainHero.HasCareer(TORCareers.Necromancer))
             {
                 // Check if any agent has the NecromancerChampion attribute
-                if (__instance.Agents.AnyQ(x => x.HasAttribute("NecromancerChampion")))
+                if (__instance.Agents.AnyQ(x => x.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION)))
                 {
                     // Prevent the retreat by returning false (skips the original method)
                     InformationManager.DisplayMessage(new InformationMessage("Cannot retreat while your Champion is still active.", Colors.Red));

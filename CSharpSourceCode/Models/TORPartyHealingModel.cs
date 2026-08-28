@@ -185,7 +185,7 @@ namespace TOR_Core.Models
 
             AddCareerPassivesForTroopRegeneration(mobileParty, ref result);
 
-            if (Hero.MainHero.HasAttribute("WEWardancerSymbol"))
+            if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_WARDANCER_SYMBOL))
             {
                 result.AddFactor(-0.25f, ForestHarmonyHelper.TreeSymbolText("WEWardancerSymbol"));
             }
@@ -238,7 +238,7 @@ namespace TOR_Core.Models
             //requires me to add the strings for forest harmony levels
             if (party.LeaderHero?.Culture?.StringId == TORConstants.Cultures.ASRAI)
             {
-                if (!Hero.MainHero.HasAttribute("WEWandererSymbol"))
+                if (!Hero.MainHero.HasAttribute(CharacterAttributes.WE_WANDERER_SYMBOL))
                 {
                     var level = Hero.MainHero.GetForestHarmonyLevel();
                     switch (level)
@@ -253,7 +253,7 @@ namespace TOR_Core.Models
                     }
                 }
 
-                if (Hero.MainHero.HasAttribute("WEWardancerSymbol"))
+                if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_WARDANCER_SYMBOL))
                 {
                     result.AddFactor(0.25f, ForestHarmonyHelper.TreeSymbolText("WEWardancerSymbol"));
                 }

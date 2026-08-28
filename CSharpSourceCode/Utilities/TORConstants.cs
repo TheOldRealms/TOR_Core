@@ -242,7 +242,8 @@ namespace TOR_Core.Utilities
             public const string WE_WARDANCER_SYMBOL = "WEWardancerSymbol";
 
             //Dawi player
-            public const string ELF_GRUDGE = "ElfGrudge";//grudges are from character creation options
+            //grudges are from character creation options
+            public const string ELF_GRUDGE = "ElfGrudge";
             public const string GREENSKIN_GRUDGE = "GreenskinGrudge";
             public const string HUMAN_GRUDGE = "HumanGrudge";
             public const string SKAVEN_GRUDGE = "SkavenGrudge";

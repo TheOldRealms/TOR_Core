@@ -969,7 +969,7 @@ namespace TOR_Core.Models
                 return;
             }
 
-            if (Hero.MainHero.HasAttribute("WEDurthuSymbol"))
+            if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_DURTHU_SYMBOL))
             {
                 resistances[(int)DamageType.Fire] -= 0.2f;
             }
@@ -1032,20 +1032,20 @@ namespace TOR_Core.Models
                 }
             }
 
-            if (agent.Character.HasAttribute("NecromancerChampion"))
+            if (agent.Character.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION))
             {
                 if ((attackMask == AttackTypeMask.Melee && mask == PropertyMask.Attack))
                 {
                     if (agent.Controller == AgentControllerType.Player)
                     {
 
-                        if (mask == PropertyMask.Attack && agent.Character.HasAttribute("NecromancerChampion") && choices.Contains("LiberMortisKeystone"))
+                        if (mask == PropertyMask.Attack && agent.Character.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION) && choices.Contains("LiberMortisKeystone"))
                         {
                             var choice = TORCareerChoices.GetChoice("LiberMortisKeystone");
                             damageBonuses[(int)DamageType.Physical] += choice.GetPassiveValue();
                         }
 
-                        if (mask == PropertyMask.Attack && agent.Character.HasAttribute("NecromancerChampion") && choices.Contains("BooksOfNagashKeystone"))
+                        if (mask == PropertyMask.Attack && agent.Character.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION) && choices.Contains("BooksOfNagashKeystone"))
                         {
                             var choice = TORCareerChoices.GetChoice("BooksOfNagashKeystone");
                             damageBonuses[(int)DamageType.Magical] += choice.GetPassiveValue();

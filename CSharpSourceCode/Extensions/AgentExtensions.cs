@@ -132,7 +132,7 @@ namespace TOR_Core.Extensions
 
             if (Hero.MainHero.HasCareer(TORCareers.Necromancer))
             {
-                if (Hero.MainHero.HasCareerChoice("BookofWsoranKeystone") && agent.HasAttribute("NecromancerChampion"))
+                if (Hero.MainHero.HasCareerChoice("BookofWsoranKeystone") && agent.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION))
                     return true;
             }
 

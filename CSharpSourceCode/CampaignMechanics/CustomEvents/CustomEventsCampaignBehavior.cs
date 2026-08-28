@@ -74,7 +74,7 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             {
                 _events.Add(new CustomEvent(item.StringId, item.Frequency, item.Cooldown, StandardMovingCheck, () => InkStoryManager.OpenStory(item.StringId)));
             }
-            _events.Add(new CustomEvent("Duel", CustomEventFrequency.Uncommon, 900, () => StandardMovingCheck() && !Hero.MainHero.HasAttribute("DefeatedVittorio") && Hero.MainHero.Culture.StringId != TORConstants.Cultures.GREENSKIN, () => InkStoryManager.OpenStory("Duel")));
+            _events.Add(new CustomEvent("Duel", CustomEventFrequency.Uncommon, 900, () => StandardMovingCheck() && !Hero.MainHero.HasAttribute(CharacterAttributes.DEFEATED_VITTORIO) && Hero.MainHero.Culture.StringId != TORConstants.Cultures.GREENSKIN, () => InkStoryManager.OpenStory("Duel")));
             _events.Add(new CustomEvent("CampFireLearning", CustomEventFrequency.Abundant, 300, () => StandardMovingCheck() && CampaignTime.Now.IsNightTime, () => InkStoryManager.OpenStory("CampFireLearning")));
             if (!TORConfig.DisableMinstrelEvent)
             {

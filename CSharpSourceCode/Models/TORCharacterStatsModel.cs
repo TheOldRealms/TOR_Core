@@ -75,7 +75,7 @@ namespace TOR_Core.Models
                     number.Add(character.Tier * 10);
                     break;
             }
-            if (character.IsUndead() && !character.IsHero && !character.HasAttribute("NecromancerChampion"))
+            if (character.IsUndead() && !character.IsHero && !character.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION))
             {
                 number.Add(-25);
             }
@@ -93,7 +93,7 @@ namespace TOR_Core.Models
                 number.Add(40);
             }
 
-            if (character.HasAttribute("NecromancerChampion"))
+            if (character.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION))
             {
                 if (Mission.Current == null) return number;
                 var playerMainAgent = Mission.Current.MainAgent;
@@ -239,7 +239,7 @@ namespace TOR_Core.Models
                 if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI && hero.PartyBelongedTo != null && (hero.PartyBelongedTo.IsMainParty || hero == Hero.MainHero))
                 {
 
-                    if (!Hero.MainHero.HasAttribute("WEWandererSymbol"))
+                    if (!Hero.MainHero.HasAttribute(CharacterAttributes.WE_WANDERER_SYMBOL))
                     {
                         var level = hero.PartyBelongedTo.LeaderHero.GetForestHarmonyLevel();
                         switch (level)
@@ -262,12 +262,12 @@ namespace TOR_Core.Models
                     }
 
 
-                    if (Hero.MainHero.HasAttribute("WEWardancerSymbol"))
+                    if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_WARDANCER_SYMBOL))
                     {
                         number.AddFactor(0.25f, ForestHarmonyHelper.TreeSymbolText("WEWardancerSymbol"));
                     }
 
-                    if (hero == Hero.MainHero && Hero.MainHero.HasAttribute("WEDurthuSymbol"))
+                    if (hero == Hero.MainHero && Hero.MainHero.HasAttribute(CharacterAttributes.WE_DURTHU_SYMBOL))
                     {
                         number.AddFactor(0.10f);
                     }

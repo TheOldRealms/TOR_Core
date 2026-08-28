@@ -287,7 +287,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             }
 
             // Base lores available at Tier 1
-            if (!Hero.MainHero.HasAttribute("CareerTier1"))
+            if (!Hero.MainHero.HasAttribute(CharacterAttributes.CAREER_TIER_1))
             {
                 return false;
             }
@@ -310,7 +310,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             }
 
             // High Magic requires Tier 2
-            if (!Hero.MainHero.HasAttribute("CareerTier2"))
+            if (!Hero.MainHero.HasAttribute(CharacterAttributes.CAREER_TIER_2))
             {
                 return false;
             }
@@ -334,7 +334,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             }
 
             // Dark Magic requires Tier 2
-            if (!Hero.MainHero.HasAttribute("CareerTier2"))
+            if (!Hero.MainHero.HasAttribute(CharacterAttributes.CAREER_TIER_2))
             {
                 return false;
             }

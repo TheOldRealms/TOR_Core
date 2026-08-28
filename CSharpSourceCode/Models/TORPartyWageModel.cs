@@ -275,7 +275,7 @@ namespace TOR_Core.Models
 
                 if (leaderCulture.StringId == TORConstants.Cultures.ASRAI)
                 {
-                    if (leaderHero.HasAttribute("WEOrionSymbol"))
+                    if (leaderHero.HasAttribute(CharacterAttributes.WE_ORION_SYMBOL))
                     {
                         if (elementCopyAtIndex.Character.IsElf() && elementCopyAtIndex.Character.Culture.StringId == TORConstants.Cultures.ASRAI)
                         {
@@ -283,22 +283,22 @@ namespace TOR_Core.Models
                         }
                     }
 
-                    if (leaderHero.HasAttribute("WEArielSymbol"))
+                    if (leaderHero.HasAttribute(CharacterAttributes.WE_ARIEL_SYMBOL))
                     {
                         value.Add(0.5f * troopwage, ForestHarmonyHelper.TreeSymbolText("WEArielSymbol"));
                     }
 
-                    if (leaderHero.HasAttribute("WEWandererSymbol"))
+                    if (leaderHero.HasAttribute(CharacterAttributes.WE_WANDERER_SYMBOL))
                     {
                         value.Add(0.5f * troopwage, ForestHarmonyHelper.TreeSymbolText("WEWandererSymbol"));
                     }
 
-                    if (leaderHero.HasAttribute("WETreekinSymbol") && !elementCopyAtIndex.Character.IsTreeSpirit())
+                    if (leaderHero.HasAttribute(CharacterAttributes.WE_TREEKIN_SYMBOL) && !elementCopyAtIndex.Character.IsTreeSpirit())
                     {
                         value.Add(0.25f * troopwage, ForestHarmonyHelper.TreeSymbolText("WETreekinSymbol"));
                     }
 
-                    if (leaderHero.HasAttribute("WEKithbandSymbol"))
+                    if (leaderHero.HasAttribute(CharacterAttributes.WE_KITHBAND_SYMBOL))
                     {
                         value.Add(0.15f * troopwage, ForestHarmonyHelper.TreeSymbolText("WEKithbandSymbol"));
                     }

@@ -578,7 +578,7 @@ namespace TOR_Core.Models
             //debuffs are for asrai player campaigns, not any asrai-cultured wanderer regardless of the player's culture
             if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
             {
-                if (!Hero.MainHero.HasAttribute("WEWandererSymbol"))
+                if (!Hero.MainHero.HasAttribute(CharacterAttributes.WE_WANDERER_SYMBOL))
                 {
                     var level = Hero.MainHero.GetForestHarmonyLevel();
                     switch (level)
@@ -593,7 +593,7 @@ namespace TOR_Core.Models
                     }
                 }
 
-                if (Hero.MainHero.HasAttribute("WEArielSymbol"))
+                if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_ARIEL_SYMBOL))
                 {
                     if (hero.PartyBelongedTo.InAthelLoren())
                     {
@@ -756,7 +756,7 @@ namespace TOR_Core.Models
 
             if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
             {
-                if (Hero.MainHero.HasAttribute("WEArielSymbol"))
+                if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_ARIEL_SYMBOL))
                 {
                     if (hero.PartyBelongedTo?.InAthelLoren() == true)
                     {

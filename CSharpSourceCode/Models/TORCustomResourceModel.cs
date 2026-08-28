@@ -412,12 +412,12 @@ public class TORCustomResourceModel : GameModel
                     if (hero.Culture.StringId == TORConstants.Cultures.ASRAI)
                     {
 
-                        if (hero.HasAttribute("WETreekinSymbol") && !element.Character.IsElf() && element.Character.Culture.StringId == TORConstants.Cultures.ASRAI)
+                        if (hero.HasAttribute(CharacterAttributes.WE_TREEKIN_SYMBOL) && !element.Character.IsElf() && element.Character.Culture.StringId == TORConstants.Cultures.ASRAI)
                         {
                             unitUpkeep.AddFactor(-0.5f, ForestHarmonyHelper.TreeSymbolText("WETreekinSymbol"));
                         }
 
-                        if (hero.HasAttribute("WEOrionSymbol") && !element.Character.IsElf() && element.Character.Culture.StringId == TORConstants.Cultures.ASRAI)
+                        if (hero.HasAttribute(CharacterAttributes.WE_ORION_SYMBOL) && !element.Character.IsElf() && element.Character.Culture.StringId == TORConstants.Cultures.ASRAI)
                         {
                             unitUpkeep.AddFactor(1f, ForestHarmonyHelper.TreeSymbolText("WEOrionSymbol"));
                         }
