@@ -20,9 +20,7 @@ namespace TOR_Core.BattleMechanics.CustomArenaModes
 
         public override bool CanBeAParticipant(CharacterObject character, bool considerSkills)
         {
-            if (character.Race == FaceGen.GetRaceOrDefault("large_humanoid_monster") ||
-                character.Race == FaceGen.GetRaceOrDefault("medium_humanoid_monster") ||
-                character.IsMinotaur() ||
+            if (character.IsMonstrous() ||
                 character.HasAttribute("HasAnimationTriggeredEffects") ||
                 character.Culture?.StringId == "chaos_culture")
             {
