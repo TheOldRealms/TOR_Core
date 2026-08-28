@@ -187,11 +187,10 @@ namespace TOR_Core.Utilities
             ];
         }
 
-        /// <remarks>
-        /// Comments are examples, not exhaustive lists.
-        /// </remarks>
         public readonly struct Attributes
         {
+            //Comments are examples, not exhaustive lists.
+
             //Player
             public const string PLAYER_RUNESMITH = "PlayerRunesmith";//quest completed for career tier 2
             public const string PLAYER_RUNELORD = "PlayerRunelord";//quest completed for career tier 3
