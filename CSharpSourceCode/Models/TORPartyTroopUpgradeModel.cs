@@ -40,15 +40,15 @@ namespace TOR_Core.Models
 
                     if (characterObject.HasAttribute("DwarfWarrior"))
                     {
-                        if (Hero.MainHero.HasAttribute("GuildWarriorsIII"))
+                        if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_3))
                         {
                             explainedNumber.AddFactor(-0.30f);
                         }
-                        else if (Hero.MainHero.HasAttribute("GuildWarriorsII"))
+                        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_2))
                         {
                             explainedNumber.AddFactor(-0.20f);
                         }
-                        else if (Hero.MainHero.HasAttribute("GuildWarriorsI"))
+                        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_1))
                         {
                             explainedNumber.AddFactor(-0.10f);
                         }
@@ -57,11 +57,11 @@ namespace TOR_Core.Models
                     if (characterObject.HasAttribute("Ironbreaker"))
                     {
                         explainedNumber.AddFactor(3f);
-                        if (Hero.MainHero.HasAttribute("GuildRuneSmithsIII"))
+                        if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_RUNESMITH_3))
                         {
                             explainedNumber.AddFactor(-0.20f);
                         }
-                        else if (Hero.MainHero.HasAttribute("GuildRuneSmithsII"))
+                        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_RUNESMITH_2))
                         {
                             explainedNumber.AddFactor(-0.10f);
                         }

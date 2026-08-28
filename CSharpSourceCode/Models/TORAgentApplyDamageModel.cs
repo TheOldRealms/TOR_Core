@@ -923,7 +923,7 @@ namespace TOR_Core.Models
                     }
 
                     // Brewers Guild Level III bonus: +15% physical resistance for ranger units
-                    if (agent.BelongsToMainParty() && agentLeader != null && agentLeader.HasAttribute("GuildBrewersIII"))
+                    if (agent.BelongsToMainParty() && agentLeader != null && agentLeader.HasAttribute(CharacterAttributes.GUILD_BREWERS_3))
                     {
                         if (agentCharacter.StringId.Contains("tor_dw_ranger"))
                         {

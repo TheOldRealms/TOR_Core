@@ -231,7 +231,7 @@ namespace TOR_Core.Models
                 {
                     if (elementCopyAtIndex.Character.HasAttribute("DwarfGun"))
                     {
-                        if (leaderHero.HasAttribute("GuildEngineersIII"))
+                        if (leaderHero.HasAttribute(CharacterAttributes.GUILD_ENGINEERS_3))
                         {
                             value.Add(-0.25f * troopwage, includeDescriptions ? new TextObject("Engineers Guild") : null);
                         }

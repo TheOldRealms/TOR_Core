@@ -28,15 +28,15 @@ namespace TOR_Core.Models
             {
                 if (TORCommon.FindSettlementsAroundPosition(party.Position.ToVec2(), 30, (x) => x.Culture.StringId == TORConstants.Cultures.DAWI).Any())
                 {
-                    if (Hero.MainHero.HasAttribute("GuildBrewersIII"))
+                    if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_BREWERS_3))
                     {
                         result.AddFactor(0.30f, new TextObject("Brewers Guild"));
                     }
-                    else if (Hero.MainHero.HasAttribute("GuildBrewersII"))
+                    else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_BREWERS_2))
                     {
                         result.AddFactor(0.2f, new TextObject("Brewers Guild"));
                     }
-                    else if (Hero.MainHero.HasAttribute("GuildBrewersI"))
+                    else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_BREWERS_1))
                     {
                         result.AddFactor(0.1f, new TextObject("Brewers Guild"));
                     }

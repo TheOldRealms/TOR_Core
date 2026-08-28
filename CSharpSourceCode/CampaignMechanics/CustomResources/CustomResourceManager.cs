@@ -171,15 +171,15 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 {
                     if (settlement.Culture.StringId == TORConstants.Cultures.DAWI)
                     {
-                        if (winner.HasAttribute("GuildWarriorsIII"))
+                        if (winner.HasAttribute(CharacterAttributes.GUILD_WARRIORS_3))
                         {
                             Hero.MainHero.AddCultureSpecificCustomResource(25);
                         }
-                        else if (winner.HasAttribute("GuildWarriorsII"))
+                        else if (winner.HasAttribute(CharacterAttributes.GUILD_WARRIORS_2))
                         {
                             Hero.MainHero.AddCultureSpecificCustomResource(20);
                         }
-                        else if (winner.HasAttribute("GuildWarriorsI"))
+                        else if (winner.HasAttribute(CharacterAttributes.GUILD_WARRIORS_1))
                         {
                             Hero.MainHero.AddCultureSpecificCustomResource(15);
                         }
@@ -483,15 +483,15 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                         renownChange *= 2;
                     }
 
-                    if (playerHero.HasAttribute("GuildWarriorsIII"))
+                    if (playerHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_3))
                     {
                         renownChange *= 3f;
                     }
-                    else if (playerHero.HasAttribute("GuildWarriorsII"))
+                    else if (playerHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_2))
                     {
                         renownChange *= 2;
                     }
-                    else if (playerHero.HasAttribute("GuildWarriorsI"))
+                    else if (playerHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_1))
                     {
                         renownChange *= 1.5f;
                     }

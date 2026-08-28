@@ -19,11 +19,11 @@ public class TORVillageProductionCalculatorModel : DefaultVillageProductionCalcu
             if (item.ItemCategory == DefaultItemCategories.Iron || item.ItemCategory == DefaultItemCategories.Silver || item.ItemCategory == DefaultItemCategories.Salt)
             {
                 var bonus = 1f;
-                if (Hero.MainHero.HasAttribute("GuildMinersIII"))
+                if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_MINERS_3))
                 {
                     bonus = 1.25f;
                 }
-                else if (Hero.MainHero.HasAttribute("GuildMinersII"))
+                else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_MINERS_2))
                 {
                     bonus = 1.1f;
                 }
