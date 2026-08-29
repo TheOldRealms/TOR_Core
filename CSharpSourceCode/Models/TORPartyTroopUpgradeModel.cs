@@ -27,19 +27,19 @@ namespace TOR_Core.Models
             {
                 if (party == PartyBase.MainParty)
                 {
-                    if (characterObject.HasAttribute("DwarfGun") || upgradeTarget.HasAttribute("DwarfGun"))
+                    if (characterObject.HasAttribute(CharacterAttributes.DWARF_GUN) || upgradeTarget.HasAttribute(CharacterAttributes.DWARF_GUN))
                     {
-                        if (Hero.MainHero.HasAttribute("GuildEngineersII"))
+                        if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_ENGINEERS_2))
                         {
                             explainedNumber.AddFactor(-0.25f);
                         }
-                        else if (Hero.MainHero.HasAttribute("GuildEngineersI"))
+                        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_ENGINEERS_1))
                         {
                             explainedNumber.AddFactor(-0.15f);
                         }
                     }
 
-                    if (characterObject.HasAttribute("DwarfWarrior"))
+                    if (characterObject.HasAttribute(CharacterAttributes.DWARF_WARRIOR))
                     {
                         if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_3))
                         {
@@ -55,7 +55,7 @@ namespace TOR_Core.Models
                         }
                     }
 
-                    if (characterObject.HasAttribute("Ironbreaker"))
+                    if (characterObject.HasAttribute(CharacterAttributes.IRONBREAKER))
                     {
                         explainedNumber.AddFactor(3f);
                         if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_RUNESMITH_3))

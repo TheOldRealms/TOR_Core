@@ -230,13 +230,13 @@ namespace TOR_Core.Models
 
                 if (leaderCulture.StringId == TORConstants.Cultures.DAWI)
                 {
-                    if (elementCopyAtIndex.Character.HasAttribute("DwarfGun"))
+                    if (elementCopyAtIndex.Character.HasAttribute(CharacterAttributes.DWARF_GUN))
                     {
                         if (leaderHero.HasAttribute(CharacterAttributes.GUILD_ENGINEERS_3))
                         {
                             value.Add(-0.25f * troopwage, includeDescriptions ? new TextObject("Engineers Guild") : null);
                         }
-                        else if (leaderHero.HasAttribute("GuildEngineersII"))
+                        else if (leaderHero.HasAttribute(CharacterAttributes.GUILD_ENGINEERS_2))
                         {
                             value.Add(-0.15f * troopwage, includeDescriptions ? new TextObject("Engineers Guild") : null);
                         }

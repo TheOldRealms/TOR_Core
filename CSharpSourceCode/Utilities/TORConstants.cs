@@ -254,7 +254,7 @@ namespace TOR_Core.Utilities
             public const string GUILD_BREWERS_2 = "GuildBrewersII";
             public const string GUILD_BREWERS_3 = "GuildBrewersIII";
             public const string GUILD_ENGINEERS_1 = "GuildEngineersI";
-            public const string GUILD_ENGINEERS_2 = "GuildEngineersII";//at least this attribute has not been correctly replace in its usages. Some of the others as well, EngineersI at least.
+            public const string GUILD_ENGINEERS_2 = "GuildEngineersII";
             public const string GUILD_ENGINEERS_3 = "GuildEngineersIII";
             public const string GUILD_MINERS_1 = "GuildMinersI";
             public const string GUILD_MINERS_2 = "GuildMinersII";
@@ -262,9 +262,9 @@ namespace TOR_Core.Utilities
             public const string GUILD_WARRIORS_1 = "GuildWarriorsI";
             public const string GUILD_WARRIORS_2 = "GuildWarriorsII";
             public const string GUILD_WARRIORS_3 = "GuildWarriorsIII";
-            public const string GUILD_RUNESMITH_1 = "GuildRuneSmithsI";
-            public const string GUILD_RUNESMITH_2 = "GuildRuneSmithsII";
-            public const string GUILD_RUNESMITH_3 = "GuildRuneSmithsIII";
+            public const string GUILD_RUNESMITH_1 = "GuildRunesmithsI";
+            public const string GUILD_RUNESMITH_2 = "GuildRunesmithsII";
+            public const string GUILD_RUNESMITH_3 = "GuildRunesmithsIII";
 
             //Empire
             public const string PRESTIGE_NOBLE = "PrestigeNoble";//trades related to Prestige
@@ -283,6 +283,9 @@ namespace TOR_Core.Utilities
             
             //Troops
             public const string DWARF_MINER = "DwarfMiner";
+            public const string DWARF_GUN = "DwarfGun";
+            public const string DWARF_WARRIOR = "DwarfWarrior";
+            public const string IRONBREAKER = "Ironbreaker";
             public const string ARTILLERY_CREW = "ArtilleryCrew";
 
             //Other?
