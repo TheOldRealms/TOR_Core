@@ -53,6 +53,14 @@
   <string id="tor_race_name.wraith" text="{=str_tor_race_name_wraith}Wraith" />
   <string id="tor_race_name.spirit_host" text="{=str_tor_race_name_spirit_host}Spirit Host" />
   <string id="tor_race_name.troll" text="{=str_tor_race_name_troll}Troll" />
+	
+  <string id="tor_party_size_desc.FriendOfUndead" text="{=str_tor_party_size_desc_friendofundead}Friend of undead" />
+  <string id="tor_party_size_desc.CaravanOfDeath" text="{=str_tor_party_size_desc_caravanofdeath}Caravan of death" />
+  <string id="tor_party_size_desc.SettlementVampireCounts" text="{=str_tor_party_size_desc_settlementvampirecounts}Settlement of Vampire Counts" />
+  <string id="tor_party_size_desc.VampireLord" text="{=str_tor_party_size_desc_vampirelord}Vampire lord" />
+  <string id="tor_party_size_desc.Greenskins" text="{=str_tor_party_size_desc_greenskins}Greenskins" />
+  <string id="tor_party_size_desc.DwarfPenalty" text="{=str_tor_party_size_desc_dwarfpenalty}Dwarf cultural penalty" />
+  <string id="tor_party_size_desc.WoodelfPenalty" text="{=str_tor_party_size_desc_woodelfpenalty}Woodelf cultural penalty" />
 
   <!-- Skills - Skill labels -->
   <string id="tor_skill_faith" text="{=str_tor_skill_faith}Faith" />
@@ -980,13 +988,6 @@
   <string id="tor_dw_guildmaster_expedition_hub_found_artefacts_p" text="{=str_tor_dw_guildmaster_expedition_hub_found_artefacts_p}You find something of interest for me?" />
   <string id="tor_dw_guildmaster_expedition_hub_launch_expedition_p" text="{=str_tor_dw_guildmaster_expedition_hub_launch_expedition_p}Can I launch an expedition?" />
   <string id="tor_dw_guildmaster_gemcutter_hub_quit_p" text="{=str_tor_dw_guildmaster_gemcutter_hub_quit_p}That will be all, Master Boki." />
-  <string id="tor_party_size_desc.FriendOfUndead" text="{=str_tor_party_size_desc_friendofundead}Friend of undead" />
-  <string id="tor_party_size_desc.CaravanOfDeath" text="{=str_tor_party_size_desc_caravanofdeath}Caravan of death" />
-  <string id="tor_party_size_desc.SettlementVampireCounts" text="{=str_tor_party_size_desc_settlementvampirecounts}Settlement of Vampire Counts" />
-  <string id="tor_party_size_desc.VampireLord" text="{=str_tor_party_size_desc_vampirelord}Vampire lord" />
-  <string id="tor_party_size_desc.Greenskins" text="{=str_tor_party_size_desc_greenskins}Greenskins" />
-  <string id="tor_party_size_desc.DwarfPenalty" text="{=str_tor_party_size_desc_dwarfpenalty}Dwarf cultural penalty" />
-  <string id="tor_party_size_desc.WoodelfPenalty" text="{=str_tor_party_size_desc_woodelfpenalty}Woodelf cultural penalty" />
 
   <!-- Expeditions -->
   <string id="tor_dw_guildmaster_gemcutter_found_artefacts" text="{=str_tor_dw_guildmaster_expedition_found_artefacts}Some of the explorer teams return with treasuers or artifacts. Naturally, a portion would be shared with you." />
@@ -1037,8 +1038,8 @@
   <string id="tor_dw_guild_relationship.trustworthy" text="{=str_tor_dw_guild_relationship_trustworthy}Trustworthy" />
   <string id="tor_dw_guild_relationship.reliable" text="{=str_tor_dw_guild_relationship_reliable}Reliable" />
   <string id="tor_dw_guild_relationship.respected" text="{=str_tor_dw_guild_relationship_respected}Respected" />
-  <string id="tor_dw_oath_gold_spending_title_text" text="{=str_tor_dw_guild_donate_oathgold_label}Spend Oath Gold" />
-  <string id="tor_dw_oath_gold_spending_description_text" text="{=str_tor_dw_guild_donate_oathgold_description}Select how much Oath Gold you want to spend" />
+  <string id="tor_dw_oath_gold_spending_title_text" text="{=str_tor_dw_guild_donate_oathgold_label}Spend Oath Gold {GUILD_ICON}" />
+  <string id="tor_dw_oath_gold_spending_description_text" text="{=str_tor_dw_guild_donate_oathgold_description}Select how much Oath Gold you want to donate" />
   <string id="tor_dw_engineer_benefit.title" text="{=str_tor_dw_engineer_benefit_title}Engineers" />
   <string id="tor_dw_engineer_benefit.description" text="{=str_tor_dw_engineer_benefit_description}Access to ranged weapons and artillery, reduce gunmen and Irondrake upgrade costs." />
   <string id="tor_dw_engineer_benefit.arsenal" text="{=str_tor_dw_engineer_benefit_arsenal}Entire arsenal" />

@@ -31,7 +31,7 @@ namespace TOR_Core.CampaignMechanics.Menagery;
 
 public class OathGoldBehavior : CampaignBehaviorBase
 {
-    public const int MAXIMUMVALUE = 2000;
+    public const int MAXIMUMVALUE = 2000;//that can be donated to a guild
 
     private const int MinimumSteelAmount = 25;
     private const int MinimumFineSteelAmount = 10;
@@ -48,17 +48,30 @@ public class OathGoldBehavior : CampaignBehaviorBase
     private const int WarriorOathGoldPerTier = 7;
     private const int InfluenceOathGoldCost = 100;
     private const int InfluenceGainAmount = 125;
+    
+    public const string RunesmithGuildId = "runesmith";
+    public const string EngineerGuildId = "engineer";
+    public const string MinerGuildId = "miner";
+    public const string BrewerGuildId = "brewer";
+    public const string WarriorGuildId = "warrior";
+
+
     private Dictionary<string, int> _guildValues;
     private double _lastTimeVistedTown;
     private int _expeditionMaximum;
-    private string _currentGuild;
+    private string _currentGuild;//InquiryElements have an action applied to them which prevents passing the guildId as an argument. It's stored externally so the consequence of selection can be applied to the relevant guildId once the context is lost.
     private readonly List<InquiryElement> _currentItems = new();
-    private readonly (string template, string guild, string location) _templateRuneSmith = ("tor_dawi_runelord_trainer_0", "runesmith", "house_1");
-    private readonly (string template, string guild, string location) _templateEngineer = ("tor_dawi_engineers_guild_npc_0", "engineer", "house_2");
-    private readonly (string template, string guild, string location) _templateGemcutters = ("tor_dawi_miner_guild_npc_0", "miner", "house_2");
-    private readonly (string template, string guild, string location) _templateBrewer = ("tor_dawi_brewers_guild_npc_0", "brewer", "tavern");
-    private readonly (string template, string guild, string location) _templateWarrior = ("tor_dawi_warriors_guild_npc_0", "warrior", "lordshall");
-    private readonly List<(string template, string guild, string location)> _templates = [];
+
+    // key-value format is (guild id, template struct)
+    private readonly Dictionary<string, DawiGuildTemplate> _templates = new()
+    {
+        {RunesmithGuildId, new DawiGuildTemplate("tor_dawi_runelord_trainer_0", "house_1", CharacterAttributes.GUILD_RUNESMITH_1, CharacterAttributes.GUILD_RUNESMITH_2, CharacterAttributes.GUILD_RUNESMITH_3)},
+        {EngineerGuildId, new DawiGuildTemplate("tor_dawi_engineers_guild_npc_0", "house_2", CharacterAttributes.GUILD_ENGINEERS_1, CharacterAttributes.GUILD_ENGINEERS_2, CharacterAttributes.GUILD_ENGINEERS_3)},
+        {MinerGuildId, new DawiGuildTemplate("tor_dawi_miner_guild_npc_0", "house_2", CharacterAttributes.GUILD_MINERS_1, CharacterAttributes.GUILD_MINERS_2, CharacterAttributes.GUILD_MINERS_3)},
+        {BrewerGuildId, new DawiGuildTemplate("tor_dawi_brewers_guild_npc_0", "tavern", CharacterAttributes.GUILD_BREWERS_1, CharacterAttributes.GUILD_BREWERS_2, CharacterAttributes.GUILD_BREWERS_3)},
+        {WarriorGuildId, new DawiGuildTemplate("tor_dawi_warriors_guild_npc_0", "lordshall", CharacterAttributes.GUILD_WARRIORS_1, CharacterAttributes.GUILD_WARRIORS_2, CharacterAttributes.GUILD_WARRIORS_3)}
+    };
+
     private Dictionary<string, List<string>> _settlementToGuildmasters = new();
     private Dictionary<string, double> _guildActions = new();
     private int _craftingOrdersCompleted;
@@ -66,21 +79,24 @@ public class OathGoldBehavior : CampaignBehaviorBase
     public double LastVisitAtTown => CampaignTime.Now.ToDays - _lastTimeVistedTown;
     public int ExpeditionMaximum => _expeditionMaximum;
     public int CurrentExpeditions => _guildActions.Keys.WhereQ(x => x.Contains("expedition")).Count();
-    public int WarriorsGuildReputation => _guildValues[_templateWarrior.guild];
-    public int EngineerGuildReputation => _guildValues[_templateEngineer.guild];
-    public int BrewersGuildReputation => _guildValues[_templateBrewer.guild];
-    public int GemcuttersAndMinersReputation => _guildValues[_templateGemcutters.guild];
-    public int RuneSmithReputation => _guildValues[_templateRuneSmith.guild];
+
+    //Sly : by their name, these should be returning the enum value which represents their actual reputation, not the underlying value of donated oathgold.
+    public int RunemithGuildReputation => _guildValues["runesmith"];
+    public int EngineerGuildReputation => _guildValues["engineer"];
+    public int MinerGuildReputation => _guildValues["miner"];
+    public int BrewersGuildReputation => _guildValues["brewer"];
+    public int WarriorsGuildReputation => _guildValues["warrior"];
+
+    public DawiGuildTemplate RunesmithGuild => _templates["runesmith"];
+    public DawiGuildTemplate EngineerGuild => _templates["engineer"];
+    public DawiGuildTemplate MinerGuild => _templates["miner"];
+    public DawiGuildTemplate BrewerGuild => _templates["brewer"];
+    public DawiGuildTemplate WarriorGuild => _templates["warrior"];
+
     public int CraftingOrdersCompleted => _craftingOrdersCompleted;
 
     public override void RegisterEvents()
     {
-        _templates.Add(_templateRuneSmith);
-        _templates.Add(_templateEngineer);
-        _templates.Add(_templateGemcutters);
-        _templates.Add(_templateBrewer);
-        _templates.Add(_templateWarrior);
-
         CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameStarted);
         CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
         CampaignEvents.GameMenuOpened.AddNonSerializedListener(this, OnGameMenuOpened);
@@ -96,20 +112,12 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
     private void AddResourcesToGuild(List<InquiryElement> inquiryElements)
     {
-        var value = (int)inquiryElements[0].Identifier;
+        var donatedAmount = (int)inquiryElements[0].Identifier;
 
-        _guildValues.TryGetValue(_currentGuild, out var currentValue);
+        _guildValues[_currentGuild] += donatedAmount;
+        Hero.MainHero.AddCultureSpecificCustomResource(-donatedAmount);
 
-        var newValue = Math.Min(MAXIMUMVALUE, currentValue + value);
-        var resultCost = newValue - currentValue;
-        _guildValues[_currentGuild] = newValue;
-        Hero.MainHero.AddCultureSpecificCustomResource(-resultCost);
-
-        AddGuildBenefits(_templateGemcutters.guild, "GuildMinersI", "GuildMinersII", "GuildMinersIII");
-        AddGuildBenefits(_templateBrewer.guild, "GuildBrewersI", "GuildBrewersII", "GuildBrewersIII");
-        AddGuildBenefits(_templateEngineer.guild, "GuildEngineersI", "GuildEngineersII", "GuildEngineersIII");
-        AddGuildBenefits(_templateWarrior.guild, "GuildWarriorsI", "GuildWarriorsII", "GuildWarriorsIII");
-        AddGuildBenefits(_templateRuneSmith.guild, "GuildRuneSmithsI", "GuildRuneSmithsII", "GuildRuneSmithsIII");
+        AddGuildBenefits(_currentGuild);
     }
 
 
@@ -134,7 +142,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
     private void AddMinersBenefits()
     {
-        if (!Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_MINERS_1)) return;
+        if (!Hero.MainHero.HasAttribute(MinerGuild.AttributeBenefit1)) return;
 
         var items = new List<ItemObject>();
         items.Add(DefaultItems.Charcoal);
@@ -143,11 +151,11 @@ public class OathGoldBehavior : CampaignBehaviorBase
         foreach (var item in items)
         {
             var random = MBRandom.RandomInt(5, 10);
-            if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_MINERS_3))
+            if (Hero.MainHero.HasAttribute(MinerGuild.AttributeBenefit3))
             {
                 random = MBRandom.RandomInt(10, 15);
             }
-            else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_MINERS_2))
+            else if (Hero.MainHero.HasAttribute(MinerGuild.AttributeBenefit2))
             {
                 random = MBRandom.RandomInt(8, 12);
             }
@@ -163,7 +171,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
     private void AddCarePackage()
     {
-        if (!Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_BREWERS_1)) return;
+        if (!Hero.MainHero.HasAttribute(BrewerGuild.AttributeBenefit1)) return;
 
         var items = TaleWorlds.CampaignSystem.Extensions.Items.AllTradeGoods.WhereQ(x =>
             x.ItemCategory == DefaultItemCategories.Beer
@@ -174,11 +182,11 @@ public class OathGoldBehavior : CampaignBehaviorBase
         foreach (var item in items)
         {
             var random = MBRandom.RandomInt(5, 15);
-            if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_BREWERS_2))
+            if (Hero.MainHero.HasAttribute(BrewerGuild.AttributeBenefit2))
             {
                 random = MBRandom.RandomInt(15, 25);
             }
-            else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_BREWERS_3))
+            else if (Hero.MainHero.HasAttribute(BrewerGuild.AttributeBenefit3))
             {
                 random = MBRandom.RandomInt(25, 30);
             }
@@ -199,9 +207,9 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         if (!settlement.IsDwarfKarak()) return;
 
-        foreach (var template in _templates.Where(template => !IsGuildMasterInDesignatedLocation(settlement, template.location, template.template)))
+        foreach (var template in _templates.Where(template => !IsGuildMasterInDesignatedLocation(settlement, template.Value.Location, template.Value.CharacterTemplate)))
         {
-            SpawnGuildMaster(settlement, true, template.location, template.template);
+            SpawnGuildMaster(settlement, true, template.Value.Location, template.Value.CharacterTemplate);
         }
     }
 
@@ -247,6 +255,8 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
     private void OnSessionLaunched(CampaignGameStarter campaignGameStarter)
     {
+        GameTexts.SetVariable("PLAYER_CLAN", Clan.PlayerClan.Name);
+
         // Initialize guild icon text variables
         MBTextManager.SetTextVariable("ENGINEERS_GUILD_ICON", "<img src=\"engineers_icon\" extend=\"8\">");
         MBTextManager.SetTextVariable("RUNESMITHS_GUILD_ICON", "<img src=\"runesmiths_icon\" extend=\"8\">");
@@ -259,7 +269,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         AddRuneSmithDialogue(campaignGameStarter);
         AddEngineerDialogue(campaignGameStarter);
-        AddGemCutterDialogue(campaignGameStarter);
+        AddMinerDialogue(campaignGameStarter);
         AddBrewerDialogue(campaignGameStarter);
         AddWarriorDialogue(campaignGameStarter);
 
@@ -287,17 +297,17 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
     private void AddRuneSmithDialogue(CampaignGameStarter campaignGameStarter)
     {
+        var guildId = RunesmithGuildId;
 
-
-        AddDialogStart(campaignGameStarter, "runesmith", IsRuneLord, out string hub, out string reintro);
+        AddDialogStart(campaignGameStarter, guildId, IsRuneLord, out string hub, out string reintro);
         //add Rune crafting - Enchanting 
-        AddUnlockInfoDialogues(campaignGameStarter, "runesmith", hub, reintro);
-        AddOathGoldDialog(campaignGameStarter, "runesmith", reintro);
+        AddUnlockInfoDialogues(campaignGameStarter, guildId, hub, reintro);
+        AddOathGoldDialog(campaignGameStarter, guildId, reintro);
 
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_learn_rune_magic_p", hub, reintro,
             TORTextHelper.GetText("tor_dw_guildmaster_rune_smith_hub_learn_rune_magic_p", "I wish to learn more of Rune Magic and the Anvils of Doom."),
-    () => Hero.MainHero.HasAttribute(CharacterAttributes.PLAYER_RUNESMITH) || Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.HasAttribute(CharacterAttributes.RUNESMITH)) && Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_RUNESMITH_1), openbookconsequence, 200);
+    () => Hero.MainHero.HasAttribute(CharacterAttributes.PLAYER_RUNESMITH) || (Hero.MainHero.HasAttribute(RunesmithGuild.AttributeBenefit1) && Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.HasAttribute(CharacterAttributes.RUNESMITH))), openbookconsequence, 200);
 
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_1_p", hub, "tor_dw_guildmaster_rune_smith_hub_rune_lord_career",
@@ -310,7 +320,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         //HUB
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_buy_equipment_p", hub, "tor_dw_guildmaster_rune_smith_buy_equipment", TORTextHelper.GetTextForNative("tor_dw_guildmaster_rune_smith_hub_buy_equipment_p", "Can I order gear produced by your Guild?"),
-            () => Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_RUNESMITH_1), null, 200);
+            () => Hero.MainHero.HasAttribute(RunesmithGuild.AttributeBenefit1), null, 200);
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_rune_smith_hub_deliver_steel_p", hub, "tor_dw_guildmaster_rune_smith_deliver_steel", TORTextHelper.GetTextForNative("tor_dw_guildmaster_rune_smith_hub_deliver_steel_p", "Will you take these valuable metals?"),
             null, null, 200);
 
@@ -413,7 +423,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         bool IsRunelordInFront(Hero hero)
         {
-            if (hero == Hero.OneToOneConversationHero && hero.Template.StringId == _templateRuneSmith.template)
+            if (hero == Hero.OneToOneConversationHero && hero.Template.StringId == RunesmithGuild.CharacterTemplate)
             {
                 return true;
             }
@@ -425,7 +435,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
         {
             var partner = CharacterObject.OneToOneConversationCharacter?.HeroObject;
             if (partner == null) return false;
-            return partner.Template.StringId == _templateRuneSmith.template;
+            return partner.Template.StringId == RunesmithGuild.CharacterTemplate;
         }
 
 
@@ -483,16 +493,16 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
             var items = new MBList<ItemObject>();
 
-            if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_RUNESMITH_1))
+            if (Hero.MainHero.HasAttribute(RunesmithGuild.AttributeBenefit1))
             {
                 items.AppendList(MBObjectManager.Instance.GetObjectTypeList<ItemObject>().WhereQ(x => x.Culture?.StringId == TORConstants.Cultures.DAWI && x.IsTorItem() && (x.IsMeleeWeapon()) && x.Tier < ItemObject.ItemTiers.Tier3).ToMBList());
             }
 
-            if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_RUNESMITH_2))
+            if (Hero.MainHero.HasAttribute(RunesmithGuild.AttributeBenefit2))
             {
                 items.AppendList(MBObjectManager.Instance.GetObjectTypeList<ItemObject>().WhereQ(x => x.Culture?.StringId == TORConstants.Cultures.DAWI && x.IsTorItem() && (x.IsMeleeWeapon() || x.IsArmor()) && x.Tier < ItemObject.ItemTiers.Tier4).ToMBList());
             }
-            if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_RUNESMITH_3))
+            if (Hero.MainHero.HasAttribute(RunesmithGuild.AttributeBenefit3))
             {
                 items.AppendList(MBObjectManager.Instance.GetObjectTypeList<ItemObject>().WhereQ(x => x.Culture?.StringId == TORConstants.Cultures.DAWI && x.IsTorItem() && (x.IsMeleeWeapon() || (x.IsArmor() && x.Tier > ItemObject.ItemTiers.Tier4))).ToMBList());
                 var anvilOfDoom = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_anvil_of_doom");
@@ -580,30 +590,28 @@ public class OathGoldBehavior : CampaignBehaviorBase
         }
     }
 
-    private string GetGuildIcon(string guild)
+    private string GetGuildIcon(string guildId)
     {
-        return guild switch
+        return guildId switch
         {
-            "engineer" => "{ENGINEERS_GUILD_ICON}",
-            "runesmith" => "{RUNESMITHS_GUILD_ICON}",
-            "miner" => "{MINERS_GUILD_ICON}",
-            "brewer" => "{BREWERS_GUILD_ICON}",
-            "warrior" => "{WARRIORS_GUILD_ICON}",
+            EngineerGuildId => "{ENGINEERS_GUILD_ICON}",
+            RunesmithGuildId => "{RUNESMITHS_GUILD_ICON}",
+            MinerGuildId => "{MINERS_GUILD_ICON}",
+            BrewerGuildId => "{BREWERS_GUILD_ICON}",
+            WarriorGuildId => "{WARRIORS_GUILD_ICON}",
             _ => ""
         };
     }
 
     #region Resource Spending Helpers
 
-    private void AddOathGoldSpendingOption(List<InquiryElement> options, int threshold, float currentAmount)
+    private void AddOathGoldSpendingOption(List<InquiryElement> options, int donationOptionValue)
     {
-        if (currentAmount < threshold) return;
-
         var option = new TextObject("{OATHGOLD_COST}{OATHGOLD_ICON}");
-        option.SetTextVariable("OATHGOLD_COST", threshold);
-        var hint = TORTextHelper.GetTextObject("tor_dw_spend_oath_gold_hint_text", "Spend {OATHGOLD_COST} Oath Gold on this guild");
-        hint.SetTextVariable("OATHGOLD_COST", threshold);
-        options.Add(new InquiryElement(threshold, option.ToString(), null, true, hint.ToString()));
+        option.SetTextVariable("OATHGOLD_COST", donationOptionValue);
+        var hint = TORTextHelper.GetTextObject("tor_dw_spend_oath_gold_hint_text", "Donate {OATHGOLD_COST} Oath Gold to this guild");
+        hint.SetTextVariable("OATHGOLD_COST", donationOptionValue);
+        options.Add(new InquiryElement(donationOptionValue, option.ToString(), null, true, hint.ToString()));
     }
 
     private void AddWheatDonationOption(List<InquiryElement> options, int threshold, int currentAmount, ItemObject grainItem)
@@ -635,62 +643,62 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
     #endregion
 
-    private void SpendOathGold(string guildmaster)
+    private void SpendOathGold(string guildId)
     {
+        _currentGuild = guildId;
         var selectableOptions = new List<InquiryElement>();
-        var currentOathGold = Hero.MainHero.GetCultureSpecificCustomResourceValue();
+        int donatableOathGold = (int)Hero.MainHero.GetCultureSpecificCustomResourceValue();
 
-        GameTexts.SetVariable("OATHGOLD_SYMBOL", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText());
-        var guildIcon = GetGuildIcon(guildmaster);
+        var guildIcon = GetGuildIcon(guildId);
 
-        if (!GameTexts.TryGetText("oath_gold_spending_title", out var title, guildmaster))
+        var title = TORTextHelper.GetTextObject("tor_dw_oath_gold_spending_title_text", "Spend Oath Gold {GUILD_ICON}");
+        title.SetTextVariable("{GUILD_ICON}", guildIcon);
+
+        var description = TORTextHelper.GetTextObject("tor_dw_oath_gold_spending_description_text", "Select how much Oath Gold you want to donate");
+
+
+        List<int> donationValues = [20, 50, 100, 250, 500, 1000, MAXIMUMVALUE];
+        _guildValues.TryGetValue(guildId, out var donatedToDate);
+        var maxRemainingDonation = MAXIMUMVALUE - donatedToDate;
+        donatableOathGold = Math.Min(maxRemainingDonation, donatableOathGold);
+
+        foreach (var value in donationValues)
         {
-            title = TORTextHelper.GetTextObject("tor_dw_oath_gold_spending_title_text", "Spend Oath Gold");
+            if (value > donatableOathGold)
+            {
+                AddOathGoldSpendingOption(selectableOptions, donatableOathGold);
+                break;//final option is either the maximum possible a guild can still receive or what the player can give. Break to avoid duplicate options.
+            }
+
+            AddOathGoldSpendingOption(selectableOptions, value);
         }
 
-        // Add guild icon to title
-        title = new TextObject(title + " " + guildIcon);
-
-        if (!GameTexts.TryGetText("oath_gold_spending_description", out var description, guildmaster))
-        {
-            description = TORTextHelper.GetTextObject("tor_dw_oath_gold_spending_description_text", "Select how much Oath Gold you want to spend");
-        }
-
-        if (currentOathGold < 20)
-        {
-            return;
-        }
-
-        AddOathGoldSpendingOption(selectableOptions, 20, currentOathGold);
-        AddOathGoldSpendingOption(selectableOptions, 50, currentOathGold);
-        AddOathGoldSpendingOption(selectableOptions, 100, currentOathGold);
-        AddOathGoldSpendingOption(selectableOptions, 250, currentOathGold);
-
-        _currentGuild = guildmaster;
-
-
-
-        var inquirydata = new MultiSelectionInquiryData(title.ToString(), description.ToString(), selectableOptions, true, 1, 1, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
-            AddResourcesToGuild, null);
+        var inquirydata = new MultiSelectionInquiryData(title.ToString(), description.ToString(), selectableOptions, true, 1, 1, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"), AddResourcesToGuild, null);
         MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
     }
 
 
 
-    private void AddGuildBenefits(string guild, string benefitI, string benefitII, string benefitIII)
+    private void AddGuildBenefits(string guild)
     {
         var guildValue = _guildValues[guild];
         var level = OathGoldHelper.GetOathGoldForGuildRespect(guildValue);
         switch (level)
         {
+            //Sly : Donating oathgold is capable of reaching multiple respect tiers in a single donation.
+            //The attributes are dirtily added in batches to address skipping a tier and missing the attribute.
+            //I'm unsure if these should even make use of attributes or if the enum state for the player could be evaluated directly and the numerical representation evaluated with "greater than or equal to" logic for usages.
             case OathRespectLevel.Respected:
-                Hero.MainHero.AddAttribute(benefitIII);
+                Hero.MainHero.AddAttribute(_templates[guild].AttributeBenefit3);
+                Hero.MainHero.AddAttribute(_templates[guild].AttributeBenefit2);
+                Hero.MainHero.AddAttribute(_templates[guild].AttributeBenefit1);
                 break;
             case OathRespectLevel.Reliable:
-                Hero.MainHero.AddAttribute(benefitII);
+                Hero.MainHero.AddAttribute(_templates[guild].AttributeBenefit2);
+                Hero.MainHero.AddAttribute(_templates[guild].AttributeBenefit1);
                 break;
             case OathRespectLevel.Trustworthy:
-                Hero.MainHero.AddAttribute(benefitI);
+                Hero.MainHero.AddAttribute(_templates[guild].AttributeBenefit1);
                 break;
             case OathRespectLevel.Unknown:
                 break;
@@ -699,69 +707,73 @@ public class OathGoldBehavior : CampaignBehaviorBase
         TORCampaignEvents.Instance.OnGuildOathLevelChanged(_guildValues[guild], guild);
     }
 
-    private void AddDialogStart(CampaignGameStarter campaignGameStarter, string guild, Func<bool> onCondition, out string hub, out string reintro)
+    private void AddDialogStart(CampaignGameStarter campaignGameStarter, string guildId, Func<bool> onCondition, out string hub, out string reintro)
     {
-        hub = "tor_dw_guildmaster_" + guild + "_hub";
-        reintro = "tor_dw_guildmaster_" + guild + "_start_reintro";
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_1_start", "start", hub, TORTextHelper.GetTextForNative("tor_dw_guildmaster_1_start", guild, "Greetings, fellow Dwarf.", true),
-            () => IsGuildMaster() && onCondition() && Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI, null, 200);
+        var attributeT1 = _templates[guildId].AttributeBenefit1;
+        var attributeT2 = _templates[guildId].AttributeBenefit2;
+        var attributeT3 = _templates[guildId].AttributeBenefit3;
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_2_start", "start", hub, TORTextHelper.GetTextForNative("tor_dw_guildmaster_2_start", guild, "Ah, a visitor. What brings you here?", true),
-            () => IsGuildMaster() && onCondition() && Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI, null, 200);
+        hub = "tor_dw_guildmaster_" + guildId + "_hub";
+        reintro = "tor_dw_guildmaster_" + guildId + "_start_reintro";
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guildId + "_1_start", "start", hub, TORTextHelper.GetTextForNative("tor_dw_guildmaster_1_start", guildId, "Greetings, fellow Dwarf.", true),
+            () => IsGuildMaster() && onCondition() && Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI, null, 201);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_3_start", "start", hub, TORTextHelper.GetTextForNative("tor_dw_guildmaster_3_start", guild, "The ancestors watch over us. How may I assist?", true),
-            () => IsGuildMaster() && onCondition() && Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI, null, 200);
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guildId + "_2_start", "start", hub, TORTextHelper.GetTextForNative("tor_dw_guildmaster_2_start", guildId, "Ah, a visitor. What brings you here?", true),
+            () => IsGuildMaster() && onCondition() && Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI && Hero.MainHero.HasAttribute(attributeT1), null, 202);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_4_start", "start", hub, TORTextHelper.GetTextForNative("tor_dw_guildmaster_4_start", guild, "Welcome to the guild.", true),
-            () => IsGuildMaster() && onCondition() && Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI, null, 200);
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guildId + "_3_start", "start", hub, TORTextHelper.GetTextForNative("tor_dw_guildmaster_3_start",  guildId , "The ancestors watch over us. How may I assist?", true),
+            () => IsGuildMaster() && onCondition() && Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI && Hero.MainHero.HasAttribute(attributeT2), null, 203);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_start_reintro", reintro, "tor_dw_guildmaster_" + guild + "_hub", TORTextHelper.GetTextForNative("tor_dw_guildmaster_reintro", guild, "Is there anything else you need?", true),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guildId + "_4_start", "start", hub, TORTextHelper.GetTextForNative("tor_dw_guildmaster_4_start", guildId, "Welcome to the guild.", true),
+            () => IsGuildMaster() && onCondition() && Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI && Hero.MainHero.HasAttribute(attributeT3), null, 204);
+
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guildId + "_start_reintro", reintro, "tor_dw_guildmaster_" + guildId + "_hub", TORTextHelper.GetTextForNative("tor_dw_guildmaster_reintro", guildId, "Is there anything else you need?", true),
             () => IsGuildMaster() && onCondition() && Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI, null, 200);
     }
 
-    private void AddOathGoldDialog(CampaignGameStarter campaignGameStarter, string guild, string reintro)
+    private void AddOathGoldDialog(CampaignGameStarter campaignGameStarter, string guildId , string reintro)
     {
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_hub_oath_gold_" + guild, "tor_dw_guildmaster_" + guild + "_hub", "tor_dw_guildmaster_" + guild + "_oath_gold", TORTextHelper.GetTextForNative("tor_dw_guildmaster_hub_oath_gold", guild, "I wish to contribute Oath Gold to the guild.", true),
-            () => _guildValues[guild] < MAXIMUMVALUE, null, 200);
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_hub_oath_gold_" + guildId , "tor_dw_guildmaster_" + guildId + "_hub", "tor_dw_guildmaster_" + guildId + "_oath_gold", TORTextHelper.GetTextForNative("tor_dw_guildmaster_hub_oath_gold", guildId, "I wish to contribute Oath Gold to the guild.", true),
+            () => _guildValues[guildId] < MAXIMUMVALUE, null, 200);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_oath_gold", "tor_dw_guildmaster_" + guild + "_oath_gold", "tor_dw_guildmaster_" + guild + "_oath_gold_p", TORTextHelper.GetTextForNative("tor_dw_guildmaster_oath_gold", guild, "Your contribution will be remembered in the Book of Grudges.", true),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guildId + "_oath_gold", "tor_dw_guildmaster_" + guildId + "_oath_gold", "tor_dw_guildmaster_" + guildId + "_oath_gold_p", TORTextHelper.GetTextForNative("tor_dw_guildmaster_oath_gold", guildId, "Your contribution will be remembered in the Book of Grudges.", true),
             null, null, 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_" + guild + "_oath_gold_accept_p", "tor_dw_guildmaster_" + guild + "_oath_gold_p", "tor_dw_guildmaster_" + guild + "_oath_gold_end", TORTextHelper.GetTextForNative("tor_dw_guildmaster_oath_gold_accept_p", guild, "Here is my contribution.", true),
-            null, () => SpendOathGold(guild), 200);
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_" + guildId + "_oath_gold_accept_p", "tor_dw_guildmaster_" + guildId + "_oath_gold_p", "tor_dw_guildmaster_" + guildId + "_oath_gold_end", TORTextHelper.GetTextForNative("tor_dw_guildmaster_oath_gold_accept_p", guildId, "Here is my contribution.", true),
+            null, () => SpendOathGold(guildId), 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_" + guild + "_oath_gold_decline_p", "tor_dw_guildmaster_" + guild + "_oath_gold_p", reintro, TORTextHelper.GetTextForNative("tor_dw_guildmaster_oath_gold_decline_p", guild, "Perhaps another time.", true),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_" + guildId + "_oath_gold_decline_p", "tor_dw_guildmaster_" + guildId + "_oath_gold_p", reintro, TORTextHelper.GetTextForNative("tor_dw_guildmaster_oath_gold_decline_p", guildId, "Perhaps another time.", true),
             null, null, 200);
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_oath_gold_end", "tor_dw_guildmaster_" + guild + "_oath_gold_end", reintro, TORTextHelper.GetTextForNative("tor_dw_guildmaster_oath_gold_end", guild, "The guild thanks you. Your standing has improved.", true),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guildId + "_oath_gold_end", "tor_dw_guildmaster_" + guildId + "_oath_gold_end", reintro, TORTextHelper.GetTextForNative("tor_dw_guildmaster_oath_gold_end", guildId, "The guildId thanks you. Your standing has improved.", true),
             null, null, 200);
     }
 
-    private void AddUnlockInfoDialogues(CampaignGameStarter campaignGameStarter, string guild, string hub, string reintro)
+    private void AddUnlockInfoDialogues(CampaignGameStarter campaignGameStarter, string guildId , string hub, string reintro)
     {
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_" + guild + "_info_p", hub, "tor_dw_guildmaster_" + guild + "_unlock_info", TORTextHelper.GetTextForNative("tor_dw_guildmaster_info_p", guild, "Tell me about the guild benefits.", true),
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_" + guildId + "_info_p", hub, "tor_dw_guildmaster_" + guildId + "_unlock_info", TORTextHelper.GetTextForNative("tor_dw_guildmaster_info_p", guildId, "Tell me about the guildId benefits.", true),
             null, null, 200);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guild + "_unlock_info", "tor_dw_guildmaster_" + guild + "_unlock_info", "tor_dw_guildmaster_2" + guild + "_unlock_info", TORTextHelper.GetTextForNative("tor_dw_guildmaster_unlock_info", guild, "The guild offers various benefits as you gain standing.", true),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guildId + "_unlock_info", "tor_dw_guildmaster_" + guildId + "_unlock_info", "tor_dw_guildmaster_2" + guildId + "_unlock_info", TORTextHelper.GetTextForNative("tor_dw_guildmaster_unlock_info", guildId, "The guildId offers various benefits as you gain standing.", true),
             null, null, 200);
 
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_2" + guild + "_unlock_info", "tor_dw_guildmaster_2" + guild + "_unlock_info", reintro, TORTextHelper.GetTextForNative("tor_dw_guildmaster_unlock_info_2", guild, "Contribute Oath Gold to increase your standing.", true),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_2" + guildId + "_unlock_info", "tor_dw_guildmaster_2" + guildId + "_unlock_info", reintro, TORTextHelper.GetTextForNative("tor_dw_guildmaster_unlock_info_2", guildId, "Contribute Oath Gold to increase your standing.", true),
             null, null, 200);
     }
 
     private void AddEngineerDialogue(CampaignGameStarter campaignGameStarter)
     {
-        var guild = _templateEngineer.guild;
-        AddDialogStart(campaignGameStarter, guild, IsEngineer, out var hub, out var reintro);
+        var guildId = EngineerGuildId;
+        AddDialogStart(campaignGameStarter, guildId, IsEngineer, out var hub, out var reintro);
 
-        AddUnlockInfoDialogues(campaignGameStarter, guild, hub, reintro);
+        AddUnlockInfoDialogues(campaignGameStarter, guildId, hub, reintro);
 
-        AddOathGoldDialog(campaignGameStarter, _templateEngineer.guild, reintro);
+        AddOathGoldDialog(campaignGameStarter, guildId, reintro);
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_buy_weapons_shop_p", hub, "tor_dw_guildmaster_engineer_buy_weapons_shop", TORTextHelper.GetTextForNative("tor_dw_engineer_buy_weapons_text", "I need better gear, Master Engineer."),
             null, null, 200);
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_recruit_crew_p", hub, "tor_dw_guildmaster_engineer_recruit_crew", TORTextHelper.GetTextForNative("tor_dw_engineer_recruit_crew_text", "I require reliable crewmen to operate my artillery."),
-            () => Hero.MainHero.HasAttribute("GuildEngineersI"), null, 200);
+            () => Hero.MainHero.HasAttribute(EngineerGuild.AttributeBenefit1), null, 200);
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_quit_p", hub, "close_window", TORTextHelper.GetTextForNative("tor_dw_quit_text", "That will be all."),
             null, null, 200);
@@ -794,7 +806,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
             if (partner == null) return false;
 
-            return partner.Template.StringId == _templateEngineer.template;
+            return partner.Template.StringId == EngineerGuild.CharacterTemplate;
         }
 
         void OpenEngineerShop()
@@ -805,7 +817,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
             items.Add(MBObjectManager.Instance.GetObject<ItemObject>("tor_neutral_weapon_ammo_musket_ball"));
             items.Add(MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_ammo_musket_ball"));
             items.Add(MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_gun_beardling_handgun"));
-            if (Hero.MainHero.HasAttribute("GuildEngineersI"))
+            if (Hero.MainHero.HasAttribute(EngineerGuild.AttributeBenefit1))
             {
                 //Add blasting charges
                 var blastingCharges = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_blasting_charges");
@@ -844,7 +856,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
                     if (item != null) items.Add(item);
                 }
             }
-            if (Hero.MainHero.HasAttribute("GuildEngineersII"))
+            if (Hero.MainHero.HasAttribute(EngineerGuild.AttributeBenefit2))
             {
                 items.AppendList(MBObjectManager.Instance.GetObjectTypeList<ItemObject>().WhereQ(x =>
                     x.Culture?.StringId == TORConstants.Cultures.DAWI && x.IsTorItem() &&
@@ -891,7 +903,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
                     if (item != null) items.Add(item);
                 }
             }
-            if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_ENGINEERS_3))
+            if (Hero.MainHero.HasAttribute(EngineerGuild.AttributeBenefit3))
             {
                 var drakegun = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_gun_drakegun");
                 if (drakegun != null) items.Add(drakegun);
@@ -949,17 +961,14 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
     }
 
-
-
-
-    private void AddGemCutterDialogue(CampaignGameStarter campaignGameStarter)
+    private void AddMinerDialogue(CampaignGameStarter campaignGameStarter)
     {
-        var guild = _templateGemcutters.guild;
-        AddDialogStart(campaignGameStarter, guild, IsGemCutter, out var hub, out var reintro);
+        var guildId = MinerGuildId;
+        AddDialogStart(campaignGameStarter, guildId, IsGemCutter, out var hub, out var reintro);
 
-        AddUnlockInfoDialogues(campaignGameStarter, guild, hub, reintro);
+        AddUnlockInfoDialogues(campaignGameStarter, guildId, hub, reintro);
 
-        AddOathGoldDialog(campaignGameStarter, guild, reintro);
+        AddOathGoldDialog(campaignGameStarter, guildId, reintro);
 
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_gemcutter_hub_spend_troops_p", hub, "tor_dw_guildmaster_gemcutter_spend_troops", TORTextHelper.GetTextForNative("tor_dw_guildmaster_gemcutter_hub_spend_troops_p", "Can I provide you with troops to guard mining shafts?"),
@@ -1088,15 +1097,15 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         void CalculateMaximumExpeditions()
         {//Sly : default value is 0 when the field is initialized I think
-            if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_MINERS_3))
+            if (Hero.MainHero.HasAttribute(MinerGuild.AttributeBenefit3))
             {
                 _expeditionMaximum = 3;
             }
-            else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_MINERS_2))
+            else if (Hero.MainHero.HasAttribute(MinerGuild.AttributeBenefit2))
             {
                 _expeditionMaximum = 2;
             }
-            else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_MINERS_1))
+            else if (Hero.MainHero.HasAttribute(MinerGuild.AttributeBenefit1))
             {
                 _expeditionMaximum = 1;
             }
@@ -1166,17 +1175,17 @@ public class OathGoldBehavior : CampaignBehaviorBase
             var model = (TORBattleRewardModel)Campaign.Current.Models.BattleRewardModel;
 
             var unlocks = 0;
-            if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_MINERS_3))
+            if (Hero.MainHero.HasAttribute(MinerGuild.AttributeBenefit3))
             {
                 unlocks = 3;
             }
-            else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_MINERS_2))
+            else if (Hero.MainHero.HasAttribute(MinerGuild.AttributeBenefit2))
             {
                 unlocks = 2;
             }
-            else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_MINERS_1))
+            else if (Hero.MainHero.HasAttribute(MinerGuild.AttributeBenefit1))
             {
-                unlocks = 1;
+                unlocks = 1;//expeditions are locked behind T1 so this could be the default value and skip a conditional.
             }
             var traitCount = MBRandom.RandomInt(0, unlocks);
             var traits = ItemTrait.All.WhereQ(x => x.ItemTraitStringId.Contains("dw_rune") && ItemTrait.IsValidFor(x, foundItem.ItemType)).TakeRandom(traitCount).ToList();
@@ -1198,7 +1207,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
         {
             var partner = CharacterObject.OneToOneConversationCharacter?.HeroObject;
             if (partner == null) return false;
-            return partner.Template.StringId == _templateGemcutters.template;
+            return partner.Template.StringId == MinerGuild.CharacterTemplate;
         }
 
         void ProvideTroops()
@@ -1231,18 +1240,18 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
     private void AddBrewerDialogue(CampaignGameStarter campaignGameStarter)
     {
-        var guild = _templateBrewer.guild;
-        AddDialogStart(campaignGameStarter, guild, IsBrewer, out var hub, out var reintro);
+        var guildId = BrewerGuildId;
+        AddDialogStart(campaignGameStarter, guildId, IsBrewer, out var hub, out var reintro);
 
-        AddUnlockInfoDialogues(campaignGameStarter, guild, hub, reintro);
+        AddUnlockInfoDialogues(campaignGameStarter, guildId, hub, reintro);
 
-        AddOathGoldDialog(campaignGameStarter, guild, reintro);
+        AddOathGoldDialog(campaignGameStarter, guildId, reintro);
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_brewer_hub_spend_food_p", hub, "tor_dw_guildmaster_brewer_hub_spend_food", TORTextHelper.GetTextForNative("tor_dw_guildmaster_brewer_hub_spend_food_p", "Can I deliver you some wheat to help brew ale?"),
             null, null, 200);
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_brewer_hub_recruit_rangers_p", hub, "tor_dw_guildmaster_brewer_recruit_rangers", TORTextHelper.GetTextForNative("tor_dw_brewer_recruit_rangers_text", "I need some rangers for scouting."),
-            () => Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_BREWERS_1), null, 200);
+            () => Hero.MainHero.HasAttribute(BrewerGuild.AttributeBenefit1), null, 200);
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_brewer_hub_quit_p", hub, "close_window", TORTextHelper.GetTextForNative("tor_dw_guildmaster_brewer_hub_quit_p", "That will be all, Master Brewer."),
             null, null, 200);
@@ -1285,7 +1294,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
             if (partner == null) return false;
 
-            var value = partner.Template.StringId == _templateBrewer.template;
+            var value = partner.Template.StringId == BrewerGuild.CharacterTemplate;
             return value;
         }
 
@@ -1369,7 +1378,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
             for (int i = 0; i < 4; i++)
             {
                 // Level II and III have 30% chance for veteran rangers and 15% for bugman rangers
-                if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_BREWERS_2) || Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_BREWERS_3))
+                if (Hero.MainHero.HasAttribute(BrewerGuild.AttributeBenefit2) || Hero.MainHero.HasAttribute(BrewerGuild.AttributeBenefit3))
                 {
                     var roll = MBRandom.RandomFloat;
                     var ranger = basicRanger;
@@ -1396,12 +1405,12 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
     private void AddWarriorDialogue(CampaignGameStarter campaignGameStarter)
     {
-        var guild = _templateWarrior.guild;
-        AddDialogStart(campaignGameStarter, guild, IsWarrior, out string hub, out var reintro);
+        var guildId = WarriorGuildId;
+        AddDialogStart(campaignGameStarter, guildId, IsWarrior, out string hub, out var reintro);
 
         //oath gold
-        AddUnlockInfoDialogues(campaignGameStarter, guild, hub, reintro);
-        AddOathGoldDialog(campaignGameStarter, guild, reintro);
+        AddUnlockInfoDialogues(campaignGameStarter, guildId, hub, reintro);
+        AddOathGoldDialog(campaignGameStarter, guildId, reintro);
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_warrior_hub_spend_troops_p", hub, "tor_dw_guildmaster_warrior_spend_troops", TORTextHelper.GetTextForNative("tor_dw_guildmaster_warrior_hub_spend_troops_p", "Can I leave some Dawi to help defend our Holds?"),
             null, null, 200);
@@ -1493,7 +1502,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
             if (partner == null) return false;
 
-            return partner.Template.StringId == _templateWarrior.template;
+            return partner.Template.StringId == WarriorGuild.CharacterTemplate;
         }
     }
 
@@ -1502,7 +1511,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
         _guildValues = new Dictionary<string, int>();
         foreach (var template in _templates)
         {
-            _guildValues.Add(template.guild, 0);
+            _guildValues.Add(template.Key, 0);
         }
 
         foreach (var town in Town.AllTowns)
@@ -1520,7 +1529,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
         var guildmasters = new List<string>();
         foreach (var template in _templates)
         {
-            var hero = CreateGuildMaster(settlement, template.template);
+            var hero = CreateGuildMaster(settlement, template.Value.CharacterTemplate);
             guildmasters.Add(hero.StringId);
         }
 
@@ -1574,5 +1583,14 @@ public class OathGoldBehavior : CampaignBehaviorBase
     {
         public ItemObject rewardItem;
         public int GoldAmount;
+    }
+
+    public readonly struct DawiGuildTemplate (string charTemplate, string location, string attributeBenefit1, string attributeBenefit2, string attributeBenefit3)
+    {
+        public readonly string CharacterTemplate = charTemplate;
+        public readonly string Location = location;
+        public readonly string AttributeBenefit1 = attributeBenefit1;
+        public readonly string AttributeBenefit2 = attributeBenefit2;
+        public readonly string AttributeBenefit3 = attributeBenefit3;
     }
 }

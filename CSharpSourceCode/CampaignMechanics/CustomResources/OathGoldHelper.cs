@@ -23,8 +23,8 @@ public class OathGoldHelper
         var expeditionCount = behavior.CurrentExpeditions;
         var engineerRank = GetOathGoldGuildRespectText(behavior.EngineerGuildReputation);
         var warriorsRank = GetOathGoldGuildRespectText(behavior.WarriorsGuildReputation);
-        var runeSmithRank = GetOathGoldGuildRespectText(behavior.RuneSmithReputation);
-        var gemcutterRank = GetOathGoldGuildRespectText(behavior.GemcuttersAndMinersReputation);
+        var runeSmithRank = GetOathGoldGuildRespectText(behavior.RunemithGuildReputation);
+        var minerRank = GetOathGoldGuildRespectText(behavior.MinerGuildReputation);
         var brewersRank = GetOathGoldGuildRespectText(behavior.BrewersGuildReputation);
 
 
@@ -44,17 +44,17 @@ public class OathGoldHelper
         //could use textObject variables to only add "Reduced gun troop upkeep." when bonus > 0
         list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_engineer_benefit","description","Access to ranged weapons and artillery, reduce gunmen and Irondrake upgrade costs."), "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
         var gunTroopUpkeepReduction = 0; //can this find the amount elsewhere?
-        if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_ENGINEERS_3))
+        if (Hero.MainHero.HasAttribute(behavior.EngineerGuild.AttributeBenefit3))
         {
             list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_engineer_benefit","arsenal","Entire arsenal"), " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
             gunTroopUpkeepReduction = 25;
         }
-        else if (Hero.MainHero.HasAttribute("GuildEngineersII"))
+        else if (Hero.MainHero.HasAttribute(behavior.EngineerGuild.AttributeBenefit2))
         {
             list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_engineer_benefit","artillery","Guns and artillery"), " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
             gunTroopUpkeepReduction = 15;
         }
-        else if (Hero.MainHero.HasAttribute("GuildEngineersI"))
+        else if (Hero.MainHero.HasAttribute(behavior.EngineerGuild.AttributeBenefit1))
         {
             list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_engineer_benefit","guns","Guns"), " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
         }
@@ -70,17 +70,17 @@ public class OathGoldHelper
 
         list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_runesmith_benefit","description","Access to melee weapons and Runecraft, reduce Ironbreaker upgrade costs."), "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
         var ironbreakerUpgradeReduction = 0;
-        if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_RUNESMITH_3))
+        if (Hero.MainHero.HasAttribute(behavior.RunesmithGuild.AttributeBenefit3))
         {
             list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_runesmith_benefit","anvil","Artefact"), " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
             ironbreakerUpgradeReduction = 20;
         }
-        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_RUNESMITH_2))
+        else if (Hero.MainHero.HasAttribute(behavior.RunesmithGuild.AttributeBenefit2))
         {
             list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_runesmith_benefit","equipment2","Weapons and armors"), " ", 0, false, TooltipProperty.TooltipPropertyFlags.None));
             ironbreakerUpgradeReduction = 10;
         }
-        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_RUNESMITH_1))
+        else if (Hero.MainHero.HasAttribute(behavior.RunesmithGuild.AttributeBenefit1))
         {
             list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_runesmith_benefit","equipment1","Weapons"), " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
         }
@@ -91,19 +91,19 @@ public class OathGoldHelper
 
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
 
-        list.Add(new TooltipProperty(new TextObject("{MINERS_GUILD_ICON} " + TORTextHelper.GetText("tor_dw_miners_benefit","title","Mining and Expeditions Guild")).ToString(), gemcutterRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        list.Add(new TooltipProperty(new TextObject("{MINERS_GUILD_ICON} " + TORTextHelper.GetText("tor_dw_miners_benefit","title","Mining and Expeditions Guild")).ToString(), minerRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
         list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_miners_benefit","description","Receive raw materials, increase mining production, launch expeditions."), "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
         var oreVillageBoost = 0;
-        if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_MINERS_3))
+        if (Hero.MainHero.HasAttribute(behavior.MinerGuild.AttributeBenefit3))
         {
             oreVillageBoost = 25;
         }
-        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_MINERS_2))
+        else if (Hero.MainHero.HasAttribute(behavior.MinerGuild.AttributeBenefit2))
         {
             oreVillageBoost = 10;
         }
-        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_MINERS_1))
+        else if (Hero.MainHero.HasAttribute(behavior.MinerGuild.AttributeBenefit1))
         {
         }
         if (expeditionMaximum > 0)
@@ -126,21 +126,21 @@ public class OathGoldHelper
         var dawiFoodBoost = 0;
         var dawiSightBonus = 0;
         string carePackageSize = "";
-        if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_BREWERS_3))
+        if (Hero.MainHero.HasAttribute(behavior.BrewerGuild.AttributeBenefit3))
         {
             carePackageSize = "Medium";
             dawiSightBonus = 30;
             dawiFoodBoost = 50;
             dawiLoyaltyBoost = 2;
         }
-        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_BREWERS_2))
+        else if (Hero.MainHero.HasAttribute(behavior.BrewerGuild.AttributeBenefit2))
         {
             carePackageSize = "Medium";
             dawiSightBonus = 20;
             dawiFoodBoost = 25;
             dawiLoyaltyBoost = 1;
         }
-        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_BREWERS_1))
+        else if (Hero.MainHero.HasAttribute(behavior.BrewerGuild.AttributeBenefit1))
         {
             carePackageSize = "Small";
             dawiSightBonus = 10;
@@ -156,7 +156,7 @@ public class OathGoldHelper
         }
         if (dawiLoyaltyBoost > 0)
         {
-            list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_brewers_benefit","loyalty","Global Karak Loyality"), "+" + dawiLoyaltyBoost, 0, true, TooltipProperty.TooltipPropertyFlags.None));
+            list.Add(new TooltipProperty(TORTextHelper.GetText("tor_dw_brewers_benefit","loyalty","Global Karak Loyalty"), "+" + dawiLoyaltyBoost, 0, true, TooltipProperty.TooltipPropertyFlags.None));
         }
         if (dawiSightBonus > 0)
         {
@@ -172,19 +172,19 @@ public class OathGoldHelper
         var warriorUpgradeReduction = 0;
         var oathGoldBonus = 0f;
         var militiaBonus = 0;
-        if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_3))
+        if (Hero.MainHero.HasAttribute(behavior.WarriorGuild.AttributeBenefit3))
         {
             warriorUpgradeReduction = 30;
             oathGoldBonus = 3f;
             militiaBonus = 4;
         }
-        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_2))
+        else if (Hero.MainHero.HasAttribute(behavior.WarriorGuild.AttributeBenefit2))
         {
             warriorUpgradeReduction = 20;
             oathGoldBonus = 2f;
             militiaBonus = 2;
         }
-        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_1))
+        else if (Hero.MainHero.HasAttribute(behavior.WarriorGuild.AttributeBenefit1))
         {
             warriorUpgradeReduction = 10;
             oathGoldBonus = 1.5f;
