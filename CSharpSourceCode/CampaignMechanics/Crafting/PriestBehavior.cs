@@ -273,7 +273,7 @@ public class PriestBehavior : CampaignBehaviorBase
             {
                 var partner = CharacterObject.OneToOneConversationCharacter;
 
-                EnchantmentHelper.OpenEnchantmentRecipeShop([prefix], partner.Culture.StringId, true);
+                EnchantmentShopHelper.OpenEnchantmentRecipeShop([prefix], partner.Culture.StringId, true);
             }
 
             void BlessParty(string cultId)
