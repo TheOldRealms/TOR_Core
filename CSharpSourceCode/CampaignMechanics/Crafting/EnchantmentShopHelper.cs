@@ -5,6 +5,7 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ImageIdentifiers;
+using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.Extensions;
@@ -63,36 +64,22 @@ public static class EnchantmentShopHelper
         return list;
     }
 
-    private static List<InquiryElement> BuildInquiryElements(List<PurchasableBlueprint> blueprints)
+    private static List<InquiryElement> BuildInquiryElements(List<PurchasableBlueprint> blueprints) =>
+        blueprints.WhereQ(IsBlueprintDisplayable).SelectQ(CreateInquiryElement).ToListQ();
+
+    private static bool IsBlueprintDisplayable(PurchasableBlueprint blueprint) => TryGetUsableTrait(blueprint.Item, out _);
+
+    private static InquiryElement CreateInquiryElement(PurchasableBlueprint blueprint)
     {
-        var selectableItems = new List<InquiryElement>();
-        foreach(var blueprint in blueprints)
-        {
-            if (!TryGetUsableTrait(blueprint.Item, out var trait))
-            {
-                continue;
-            }
+        var trait = blueprint.Item.GetTraits().FirstOrDefault();
 
-            selectableItems.Add(CreateInquiryElement(blueprint, trait));
-        }
-
-        return selectableItems;
-    }
-
-    private static InquiryElement CreateInquiryElement(PurchasableBlueprint blueprint, ItemTrait trait)
-    {
-        var item = blueprint.Item;
-        var skill = blueprint.RequiredSkill;
-        var skillValue = blueprint.RequiredSkillValue;
-        var eligibleHeroes = blueprint.EligibleHeroes;
-
-        var enabled = eligibleHeroes.Any(hero => hero.GetSkillValue(skill) >= skillValue);
+        var enabled = blueprint.EligibleHeroes.Any(hero => hero.GetSkillValue(blueprint.RequiredSkill) >= blueprint.RequiredSkillValue);
 
         var hintText = new TextObject("{TRAIT_EFFECT}\n\n{REQUIREMENT_TEXT}\n\n{COMPLETE_COST}");
-        hintText.SetTextVariable("REQUIREMENT_TEXT", enabled ? "" : BuildRequirementText(eligibleHeroes, skill, skillValue, blueprint.Restriction));
+        hintText.SetTextVariable("REQUIREMENT_TEXT", enabled ? "" : BuildRequirementText(blueprint.EligibleHeroes, blueprint.RequiredSkill, blueprint.RequiredSkillValue, blueprint.Restriction));
 
-        var crCost = CalculateCustomResourceCost(skillValue);
-        var goldCost = item.Value;
+        var crCost = CalculateCustomResourceCost(blueprint.RequiredSkillValue);
+        var goldCost = blueprint.Item.Value;
         enabled = ApplyAffordabilityCheck(hintText, enabled, crCost, goldCost);
 
         SetValidItemTypeRestrictionVariable(blueprint.BlueprintId);
@@ -106,9 +93,9 @@ public static class EnchantmentShopHelper
         hintText.SetTextVariable("COMPLETE_COST", "{GOLD_VALUE}{GOLD_ICON} , {CR_VALUE}{CUSTOMRESOURCE}");
         GameTexts.SetVariable("CR_VALUE", crCost);
         GameTexts.SetVariable("CUSTOMRESOURCE", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText());
-        GameTexts.SetVariable("GOLD_VALUE", item.Value);
+        GameTexts.SetVariable("GOLD_VALUE", blueprint.Item.Value);
 
-        return new InquiryElement(new Tuple<List<Hero>, ItemObject>(eligibleHeroes, item), item.Name.ToString(), new ItemImageIdentifier(item), enabled, hintText.ToString());
+        return new InquiryElement(new Tuple<List<Hero>, ItemObject>(blueprint.EligibleHeroes, blueprint.Item), blueprint.Item.Name.ToString(), new ItemImageIdentifier(blueprint.Item), enabled, hintText.ToString());
     }
 
     private static bool TryGetUsableTrait(ItemObject item, out ItemTrait trait)
