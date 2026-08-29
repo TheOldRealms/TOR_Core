@@ -254,7 +254,7 @@ namespace TOR_Core.Utilities
             public const string GUILD_BREWERS_2 = "GuildBrewersII";
             public const string GUILD_BREWERS_3 = "GuildBrewersIII";
             public const string GUILD_ENGINEERS_1 = "GuildEngineersI";
-            public const string GUILD_ENGINEERS_2 = "GuildEngineersII";
+            public const string GUILD_ENGINEERS_2 = "GuildEngineersII";//at least this attribute has not been correctly replace in its usages. Some of the others as well, EngineersI at least.
             public const string GUILD_ENGINEERS_3 = "GuildEngineersIII";
             public const string GUILD_MINERS_1 = "GuildMinersI";
             public const string GUILD_MINERS_2 = "GuildMinersII";
