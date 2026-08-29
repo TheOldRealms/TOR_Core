@@ -31,7 +31,11 @@ namespace TOR_Core.BattleMechanics.Dismemberment
         //14*20 = 280 Game Entities are spawned. keep the pool size as reasonable small as possible.
         private GameEntity[][] _pooledDismemberedLimbs;
         private int _index;
+        // PROPOSED (CS0414, assigned once below, never read): a search of this file found no reader.
+        // RANDY - @Sly i'll let you make the call there.
+#pragma warning disable CS0414
         private bool _fullyInstantiated;
+#pragma warning restore CS0414
 
         private int _timeSpeedRequestID = 1111;
 

@@ -23,7 +23,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
     {
         private bool _knowsPlayer;
         private bool _gaveQuestOffer;
-        private bool _unlockWeaponsTier1;
+
         private bool _explained;
         private readonly string _masterEngineerId = "tor_nulnengineernpc_empire";
         private Hero _masterEngineerHero = null;

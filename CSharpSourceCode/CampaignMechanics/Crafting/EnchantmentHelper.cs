@@ -220,8 +220,6 @@ public static class EnchantmentHelper
                 continue;
             }
 
-            var included = false;
-
             var hintText = new TextObject("{TRAIT_EFFECT}\n\n{REQUIREMENT_TEXT}\n\n{COMPLETE_COST}");
 
             if (!TryGetBlueprintData(item, out var id, out var skill, out var skillValue, out var restriction))

@@ -14,7 +14,13 @@ namespace TOR_Core.BattleMechanics
         private bool _isCameraActive = false;
         private float _cameraSpeed = 5f;
         private MissionMainAgentController _agentController;
+        // PROPOSED (CS0108, should hide with `new` or `override`): `MissionView` already declares
+        // an `Input` member of the same name/type. Adding `new` would silence this without changing
+        // behavior; worth checking whether the base's `Input` is actually equivalent to
+        // `MissionScreen.InputManager` and this override could just be deleted instead.
+#pragma warning disable CS0108
         protected IInputContext Input => MissionScreen.InputManager;
+#pragma warning restore CS0108
 
         public CinematicCameraMissionView()
         {

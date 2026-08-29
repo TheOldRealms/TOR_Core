@@ -28,3 +28,11 @@ inside any mission).
 - **`TrollCaveMissionController`** — Troll Cave raid mission.
 - **`ArcheryContestMissionController`** / **`JoustFightMissionController`** — wrap the
   `BattleMechanics/CustomArenaModes` archery/joust tournament games for campaign use.
+
+## TODO
+
+- **`TrollCaveMissionController`** used to set a `_playerCanLeave` flag on victory but
+  nothing ever read it (the real "let the mission end" signal is
+  `_battleEndLogic.ChangeCanCheckForEndCondition(true)`, called right alongside it), so it
+  was removed as dead code. Restore it (see the TODO comment left at its old declaration
+  site) if a leave-mission check still needs it.

@@ -23,3 +23,13 @@ custom final "Specialization" stage (pick a starting profession/background per r
   `TORCCSpecializationStageLoadException`, `TORCCReflectionException`,
   `TORCCEquipmentUpdateException`, `TORCCInvalidOptionTypeException`) — a small exception
   hierarchy for reporting specific character-creation data/loading failures.
+
+## TODO
+
+- **`TORSpecializationStageView`** used to track an instance `_wasVisited` flag (set true
+  on affirmative action, reset false when backing out to jump to the Profession stage),
+  deliberately instance-scoped rather than static "to prevent cross-session contamination
+  when creating multiple characters" per its own comment — but nothing ever read it, so it
+  was removed as dead code (see the TODO comment left at its old declaration site). Restore
+  it if visited-state still needs tracking; likely related to the class's other in-code TODO
+  about needing a full rework for the 1.3.1 `ICharacterCreationContentHandler` pattern.

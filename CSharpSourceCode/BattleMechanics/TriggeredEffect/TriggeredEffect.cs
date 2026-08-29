@@ -16,7 +16,13 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
     public class TriggeredEffect(TriggeredEffectTemplate template, bool isTemplateMutated = false) : IDisposable
     {
         private TriggeredEffectTemplate _template = template;
+        // PROPOSED (CS0414, assigned -1 in two places below, never read): PlaySound uses its own
+        // local `soundIndex` now, so this field looks like a leftover from before sound playback
+        // moved to the queued AbilityManagerMissionLogic.QueueTriggeredEffectSound path.
+        // RANDY - @Sly i'm not familiar enough with the engine to know if this impacts anything.
+#pragma warning disable CS0414
         private int _soundIndex;
+#pragma warning restore CS0414
         private SoundEvent _sound;
         private readonly bool _isTemplateMutated = isTemplateMutated;
         private static readonly object _pendingDisposeLock = new();

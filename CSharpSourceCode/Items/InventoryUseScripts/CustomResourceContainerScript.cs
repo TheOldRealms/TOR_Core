@@ -13,15 +13,13 @@ public class CustomResourceContainerScript : BaseInventoryUseScript
 {
     public CustomResourceContainerScript(string[] arguments) : base(arguments)
     {
-        var amount = 0;
-        var cr = "";
         switch (arguments.Length)
         {
             case < 2:
                 throw new TORUseScriptArgumentException($"Invalid Script argument setup. Requires at least 2 argument.");
             case >= 2:
                 {
-                    if (!int.TryParse(arguments[0], out amount))
+                    if (!int.TryParse(arguments[0], out _))
                     {
                         throw new TORUseScriptArgumentException($"Amount is not of type int");
                     }
