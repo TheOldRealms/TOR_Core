@@ -65,9 +65,7 @@ public static class EnchantmentShopHelper
     }
 
     private static List<InquiryElement> BuildInquiryElements(List<PurchasableBlueprint> blueprints) =>
-        blueprints.WhereQ(IsBlueprintDisplayable).SelectQ(CreateInquiryElement).ToListQ();
-
-    private static bool IsBlueprintDisplayable(PurchasableBlueprint blueprint) => TryGetUsableTrait(blueprint.Item, out _);
+        blueprints.WhereQ(b  => IsUsableTrait(b.Item)).SelectQ(CreateInquiryElement).ToListQ();
 
     private static InquiryElement CreateInquiryElement(PurchasableBlueprint blueprint)
     {
@@ -98,9 +96,9 @@ public static class EnchantmentShopHelper
         return new InquiryElement(new Tuple<List<Hero>, ItemObject>(blueprint.EligibleHeroes, blueprint.Item), blueprint.Item.Name.ToString(), new ItemImageIdentifier(blueprint.Item), enabled, hintText.ToString());
     }
 
-    private static bool TryGetUsableTrait(ItemObject item, out ItemTrait trait)
+    private static bool IsUsableTrait(ItemObject item)
     {
-        trait = item.GetTraits().FirstOrDefault();
+         var trait = item.GetTraits().FirstOrDefault();
         if (trait == null)
         {
             TORCommon.Log($"Enchantment blueprint {item.StringId} has no traits. Skipping this item.", LogLevel.Error);
