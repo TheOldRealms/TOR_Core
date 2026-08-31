@@ -4338,7 +4338,7 @@
         <InventoryScriptArgument>dw_rune_shielding</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
         <InventoryScriptArgument>25</InventoryScriptArgument>
-        <InventoryScriptArgument>RuneCraft</InventoryScriptArgument>
+        <InventoryScriptArgument>RuneMagic</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -4352,7 +4352,7 @@
         <InventoryScriptArgument>dw_rune_stone</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
         <InventoryScriptArgument>75</InventoryScriptArgument>
-        <InventoryScriptArgument>RuneCraft</InventoryScriptArgument>
+        <InventoryScriptArgument>RuneMagic</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -4366,7 +4366,7 @@
         <InventoryScriptArgument>dw_rune_vigour</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
         <InventoryScriptArgument>25</InventoryScriptArgument>
-        <InventoryScriptArgument>RuneCraft</InventoryScriptArgument>
+        <InventoryScriptArgument>RuneMagic</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -4380,7 +4380,7 @@
         <InventoryScriptArgument>dw_rune_parrying</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
         <InventoryScriptArgument>75</InventoryScriptArgument>
-        <InventoryScriptArgument>RuneCraft</InventoryScriptArgument>
+        <InventoryScriptArgument>RuneMagic</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -4394,7 +4394,7 @@
         <InventoryScriptArgument>dw_rune_protection</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
         <InventoryScriptArgument>50</InventoryScriptArgument>
-        <InventoryScriptArgument>RuneCraft</InventoryScriptArgument>
+        <InventoryScriptArgument>RuneMagic</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -4548,7 +4548,7 @@
         <InventoryScriptArgument>dw_rune_striking</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
         <InventoryScriptArgument>75</InventoryScriptArgument>
-        <InventoryScriptArgument>RuneCraft</InventoryScriptArgument>
+        <InventoryScriptArgument>RuneMagic</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -4562,7 +4562,7 @@
         <InventoryScriptArgument>dw_rune_fire</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
         <InventoryScriptArgument>50</InventoryScriptArgument>
-        <InventoryScriptArgument>RuneCraft</InventoryScriptArgument>
+        <InventoryScriptArgument>RuneMagic</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -4576,7 +4576,7 @@
         <InventoryScriptArgument>dw_rune_speed</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
         <InventoryScriptArgument>75</InventoryScriptArgument>
-        <InventoryScriptArgument>RuneCraft</InventoryScriptArgument>
+        <InventoryScriptArgument>RuneMagic</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -4590,7 +4590,7 @@
         <InventoryScriptArgument>dw_rune_might</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
         <InventoryScriptArgument>25</InventoryScriptArgument>
-        <InventoryScriptArgument>RuneCraft</InventoryScriptArgument>
+        <InventoryScriptArgument>RuneMagic</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -4604,7 +4604,7 @@
         <InventoryScriptArgument>dw_rune_clear_sights</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
         <InventoryScriptArgument>25</InventoryScriptArgument>
-        <InventoryScriptArgument>RuneCraft</InventoryScriptArgument>
+        <InventoryScriptArgument>RuneMagic</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
