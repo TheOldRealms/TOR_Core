@@ -859,7 +859,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
                 case "option_3_dw_rune_smith":
                     hero.AddCareer(TORCareers.Runelord);
-                    hero.AddAttribute("RuneCraft");
                     _storedSpawnPosition = new CampaignVec2(new Vec2(1222.444f, 692.9744f), true); // Runelord forge
                     break;
 
