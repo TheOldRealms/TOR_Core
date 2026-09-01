@@ -637,8 +637,6 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
             void DonationMode(bool customResourceExchange)
             {
-                var i = 0;
-
                 var roster = Hero.MainHero.PartyBelongedTo.Party.ItemRoster.ToMBList();
 
                 if (customResourceExchange) roster = roster.FindAll(x => !x.EquipmentElement.Item.IsCraftedByPlayer).ToMBList();

@@ -55,7 +55,7 @@ public class ForestHarmonyHelper
         return harmonyLevel == hero.GetForestHarmonyLevel();
     }
 
-    private static new List<TooltipProperty> GetForestSymbolText(string ForestSymbol)
+    private static List<TooltipProperty> GetForestSymbolText(string ForestSymbol)
     {
         var list = new List<TooltipProperty>();
 
