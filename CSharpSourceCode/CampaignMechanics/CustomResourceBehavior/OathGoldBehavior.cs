@@ -713,6 +713,9 @@ public class OathGoldBehavior : CampaignBehaviorBase
         var attributeT2 = _templates[guildId].AttributeBenefit2;
         var attributeT3 = _templates[guildId].AttributeBenefit3;
 
+        //Sly : When multiple dialogs have their conditions fulfilled, the priority is compared to select the one that is shown.
+        //This is used here to have the highest tier introduction appear because the player accumulates the attributes for each tier they have reached and therefore all 4 of these dialogs will have their condition delegate return true, then fall back on their relative priorities to select the outcome for display.
+
         hub = "tor_dw_guildmaster_" + guildId + "_hub";
         reintro = "tor_dw_guildmaster_" + guildId + "_start_reintro";
         campaignGameStarter.AddDialogLine("tor_dw_guildmaster_" + guildId + "_1_start", "start", hub, TORTextHelper.GetTextForNative("tor_dw_guildmaster_1_start", guildId, "Greetings, fellow Dwarf.", true),
