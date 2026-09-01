@@ -20,6 +20,7 @@ using TOR_Core.Items;
 using TOR_Core.Utilities;
 using FaceGen = TaleWorlds.Core.FaceGen;
 using LogLevel = NLog.LogLevel;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Extensions
 {
@@ -297,12 +298,12 @@ namespace TOR_Core.Extensions
 
         public static bool IsArtilleryHero(this Hero hero)
         {
-            return hero.HasAttribute("CanPlaceArtillery") || hero.HasAttribute("EngineerCompanion");
+            return hero.HasAttribute(CharacterAttributes.CAN_PLACE_ARTILLERY) || hero.HasAttribute(CharacterAttributes.ENGINEER_COMPANION);
         }
 
         public static bool CanPlaceArtillery(this Hero hero)
         {
-            return hero.HasAttribute("CanPlaceArtillery");
+            return hero.HasAttribute(CharacterAttributes.CAN_PLACE_ARTILLERY);
         }
 
         public static void AddAbility(this Hero hero, string ability)
@@ -323,6 +324,7 @@ namespace TOR_Core.Extensions
                 info.AcquiredAttributes.Remove(attribute);
             }
         }
+
         public static void AddAttribute(this Hero hero, string attribute)
         {
             var info = hero.GetExtendedInfo();
@@ -436,48 +438,51 @@ namespace TOR_Core.Extensions
 
         public static bool IsSpellCaster(this Hero hero)
         {
-            return hero.HasAttribute("SpellCaster");
+            return hero.HasAttribute(CharacterAttributes.SPELLCASTER);
         }
 
         public static bool IsAbilityUser(this Hero hero)
         {
-            return hero.HasAttribute("AbilityUser");
+            return hero.HasAttribute(CharacterAttributes.ABILITY_USER);
         }
 
         public static bool IsNecromancer(this Hero hero)
         {
-            return hero.HasAttribute("Necromancer") || hero.HasKnownLore("Necromancy");
+            return hero.HasAttribute(CharacterAttributes.NECROMANCER) || hero.HasKnownLore("Necromancy");
         }
 
         public static bool IsSpellSinger(this Hero hero)
         {
-            return hero.Culture.StringId == TORConstants.Cultures.ASRAI && hero.HasAttribute("SpellCaster");
+            return hero.Culture.StringId == TORConstants.Cultures.ASRAI && hero.HasAttribute(CharacterAttributes.SPELLCASTER);//Sly : Glade lord players who become casters at tier 3 will be considered spellsingers
         }
 
         public static bool IsUndead(this Hero hero)
         {
-            return hero.HasAttribute("Undead");
+            return hero.HasAttribute(CharacterAttributes.UNDEAD);
         }
 
         public static bool IsTreeSpirit(this Hero hero)
         {
-            return hero.HasAttribute("TreeSpirit");
+            return hero.HasAttribute(CharacterAttributes.TREE_SPIRIT);
         }
 
         public static bool IsChaos(this Hero hero)
         {
-            if (hero.CharacterObject.IsCultist()) return true;
+            if (hero.CharacterObject.IsChaos()) return true;
             if (hero.CharacterObject.IsBeastman()) return true;
             return false;
         }
+
         public static bool IsOrc(this Hero hero)
         {
             return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("orc");
         }
+
         public static bool IsGoblin(this Hero hero)
         {
             return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("goblin");
         }
+
         public static bool IsDwarf(this Hero hero)
         {
             return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("dwarf");
@@ -485,7 +490,12 @@ namespace TOR_Core.Extensions
 
         public static bool IsVampire(this Hero hero)
         {
-            return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("vampire") || hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("necrarch");
+            return hero.CharacterObject.IsVampire();
+        }
+        
+        public static bool IsBloodDragon(this Hero hero)
+        {
+            return hero.IsVampire() && hero.HasAttribute(CharacterAttributes.BLOOD_DRAGON);
         }
 
         public static bool IsPriest(this Hero hero)
@@ -533,7 +543,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsAICompanion(this Hero hero)
         {
-            return hero.HasAttribute("AICompanion") && hero.Occupation == Occupation.Special;
+            return hero.Occupation == Occupation.Special && hero.HasAttribute(CharacterAttributes.AI_COMPANION);
         }
 
         public static bool IsBountyMaster(this Hero hero)
@@ -574,7 +584,12 @@ namespace TOR_Core.Extensions
 
         public static bool IsBretonnianKnight(this Hero hero)
         {
-            return hero.Culture.StringId == TORConstants.Cultures.BRETONNIA && hero.HasAttribute("BrettonianKnight");
+            return hero.Culture.StringId == TORConstants.Cultures.BRETONNIA && hero.HasAttribute(CharacterAttributes.BRETONNIAN_KNIGHT);
+        }
+
+        public static bool IsOrion(this Hero hero)
+        {
+            return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("orion");
         }
 
         /// <remarks>

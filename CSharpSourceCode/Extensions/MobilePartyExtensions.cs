@@ -116,6 +116,10 @@ namespace TOR_Core.Extensions
             }
         }
 
+        /// <remarks>
+        /// Fetching the troop roster causes the game to revalidate it, incrementing the version on it.
+        /// If this is called within a reference iteration which is itself moving through the TroopRoster, it's at risk of causing an error on Enumerator.MoveNextRare (or equivalent) which will verify the list's version number.
+        /// </remarks>
         public static List<Hero> GetMemberHeroes(this MobileParty party)
         {
             List<Hero> heroes = [];

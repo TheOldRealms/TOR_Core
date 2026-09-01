@@ -234,7 +234,8 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         private void HourlyTick() //I wonder if this could be done on the quarter daily tick instead and reduce the load significantly? The quarter tick is party-based, it could be performed on the main party's quarter tick, ie QuarterDailyTick above.
         {
             //fill winds of magic
-            foreach (var hero in Hero.AllAliveHeroes)
+            foreach (var hero in Hero.AllAliveHeroes)//Sly : do clanless spellcasters exist? iterate through clans then heroes instead and skip irrelevant ones?
+                //could this not just iterate _heroInfos and check spellcasters? What would this assume about how heroes are added to _heroInfos?
             {
                 if (hero.IsNotable)
                     continue;
@@ -242,7 +243,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                     continue;
                 if (!heroInfo.AllAttributes.Contains("SpellCaster"))
                     continue;
-
+                
                 var bonusRegen = 1f;
                 if (hero.GetPerkValue(TORPerks.Spellcraft.Catalyst) &&
                     hero.CurrentSettlement != null &&

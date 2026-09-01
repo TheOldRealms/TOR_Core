@@ -15,6 +15,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CampaignMechanics;
 
@@ -249,7 +250,7 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
         {
             var partner = CharacterObject.OneToOneConversationCharacter;
 
-            if (!partner.HeroObject.HasAttribute("SkillTrainer"))
+            if (!partner.HeroObject.HasAttribute(CharacterAttributes.SKILL_TRAINER))
             {
                 return false;
             }

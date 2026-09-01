@@ -27,6 +27,12 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
 
     private TroopRoster _lastTroopRoster;
     private Dictionary<string, CampaignTime> _brawlCooldowns = new();
+    private readonly CampaignTime _brawlCooldown = CampaignTime.Weeks(1);
+
+    private int _goldReward = 0;
+    private int _teefReward = 0;
+    private float _renownReward = 0f;
+    private TroopRoster _troopRewardRoster = TroopRoster.CreateDummyTroopRoster();
 
 
     public override void RegisterEvents()
@@ -52,12 +58,14 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
     {
         var menu = Campaign.Current.GameMenuManager.GetGameMenu("town");
         TORSettlementMenuHelpers.RearrangeTownMenus(menu, "town_greenskin_brawl", "recruit_volunteers");
+        
+        var customResourceIcon = Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText();
+        GameTexts.SetVariable("CR_ICON", customResourceIcon);
     }
 
     private void OnSessionStart(CampaignGameStarter starter)
     {
         AddTownMenuButton(starter);
-
     }
 
 
@@ -112,12 +120,11 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
             if (_brawlCooldowns.ContainsKey(settlementId))
             {
                 var lastBrawlTime = _brawlCooldowns[settlementId];
-                var cooldownPeriod = CampaignTime.Weeks(1); // 1 week cooldown
                 var timeSinceLastBrawl = lastBrawlTime.ElapsedHoursUntilNow;
 
-                if (timeSinceLastBrawl < cooldownPeriod.ToHours)
+                if (timeSinceLastBrawl < _brawlCooldown.ToHours)
                 {
-                    var remainingHours = cooldownPeriod.ToHours - timeSinceLastBrawl;
+                    var remainingHours = _brawlCooldown.ToHours - timeSinceLastBrawl;
                     var remainingDays = (int)Math.Ceiling(remainingHours / 24.0);
 
                     var disableText = GameTexts.FindText("tor_greenskin_brawl_disabled");
@@ -133,24 +140,56 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
     private void AddBrawlResultMenus(CampaignGameStarter starter)
     {
         var text = GameTexts.FindText("tor_greenskin_brawl_intro");
-        starter.AddGameMenu("brawl_victory", "{BRAWL_WIN_DESCRIPTION}", CalculateWinResult, GameMenu.MenuOverlayType.None);
-        starter.AddGameMenuOption("brawl_victory", "brawl_victory_accept", GameTexts.FindText("tor_greenskin_brawl_victory_accept").ToString(),
+        starter.AddGameMenu("brawl_victory", "{BRAWL_WIN_DESCRIPTION}", null, GameMenu.MenuOverlayType.None);
+        starter.AddGameMenuOption("brawl_victory", "brawl_victory_accept", TORTextHelper.GetTextForNative("tor_greenskin_brawl_victory_accept", "Claim your prize"),
             args =>
             {
                 return MenuHelper.SetOptionProperties(args, true, false, TextObject.GetEmpty());
             },
             args =>
             {
+                GrantRewardsAndResetFields();
                 GameMenu.SwitchToMenu("town");
             });
 
-        starter.AddGameMenu("brawl_defeat", "{BRAWL_DEFEAT_DESCRIPTION}", SetDefeat, GameMenu.MenuOverlayType.None);
+        starter.AddGameMenu("brawl_defeat", "{BRAWL_DEFEAT_DESCRIPTION}", null, GameMenu.MenuOverlayType.None);
         starter.AddGameMenuOption("brawl_defeat", "brawl_defeat_accept", GameTexts.FindText("tor_greenskin_brawl_defeat_accept").ToString(),
-            args => MenuHelper.SetOptionProperties(args, true, true, TextObject.GetEmpty()),
             args =>
             {
+                return MenuHelper.SetOptionProperties(args, true, true, TextObject.GetEmpty());
+            },
+            args =>
+            {
+                GrantRewardsAndResetFields();
                 GameMenu.SwitchToMenu("town");
             });
+    }
+
+    /// <summary>
+    /// Applies the rewards (or losses) from the brawl to the player via the menu selection consequences when they see a summary of the result on the campaign map.
+    /// Sets the fields back to their defaults in expectation of the next brawl.
+    /// </summary>
+    /// <remarks>
+    /// Rewards are in the consequences because the menu init can run multiple times when the screen layer changes and the menu is rebuilt.
+    /// </remarks>
+    private void GrantRewardsAndResetFields()
+    {
+        Hero.MainHero.ChangeHeroGold(_goldReward);
+        Clan.PlayerClan.AddRenown(_renownReward);
+        Hero.MainHero.AddCultureSpecificCustomResource(_teefReward);
+
+        if (_troopRewardRoster.Count > 0)
+        {
+            foreach (var troop in _troopRewardRoster.GetTroopRoster())
+            {
+                Hero.MainHero.PartyBelongedTo.MemberRoster.Add(troop);
+            }
+        }
+
+        _goldReward = 0;
+        _renownReward = 0;
+        _teefReward = 0;
+        _troopRewardRoster = TroopRoster.CreateDummyTroopRoster();
     }
 
     private bool CanStartBrawl()
@@ -238,6 +277,10 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
         mission.DoesMissionRequireCivilianEquipment = false;
     }
 
+    /// <remarks>
+    /// Menu.RunOnInit runs once when the mission ends, and again when exiting the mission to go back to the map. This is likely due to the screen layer changes occuring.
+    /// Determination of rewards shouldn't occur in the menu initialization or option conditions because those are rerun whenever the screen layer changes back to the menu, eg. opening and closing clan screen.
+    /// </remarks>
     private void OnBrawlMissionEnd(BrawlMissionResult result)
     {
         _isMissionStarted = false;
@@ -247,19 +290,18 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
 
         if (victory)
         {
+            CalculateWinResult();
             TORCampaignEvents.Instance.OnBrawlWon(Hero.MainHero);
             GameMenu.SwitchToMenu("brawl_victory");
         }
         else
         {
+            SetDefeat();
             GameMenu.SwitchToMenu("brawl_defeat");
         }
     }
 
-    /// <remarks>
-    /// Menu.RunOnInit runs once when the mission ends, and again when exiting the mission to go back to the map. Calculations can be fine if they run twice, but actions like granting gold shouldn't be performed to prevent duplication.
-    /// </remarks>>
-    private void CalculateWinResult(MenuCallbackArgs args)
+    private void CalculateWinResult()
     {
         var text = GameTexts.FindText("tor_greenskin_brawl_victory_desc");
         var resultScore = 0f;
@@ -287,8 +329,6 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
             resultScore += enemyRosterSize;
         }
 
-        var pouchedRoster = TroopRoster.CreateDummyTroopRoster();
-
         // Base troop recruitment on enemy roster size, not inflated by performance scores
         var availablePartySpace = Hero.MainHero.PartyBelongedTo.Party.PartySizeLimit - Hero.MainHero.PartyBelongedTo.MemberRoster.TotalManCount;
         var troopRecruitmentSize = Math.Min(Math.Min(enemyRosterSize, 20), availablePartySpace); // Cap at 20 troops max and available party space
@@ -299,45 +339,38 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
             {
                 var blackOrc = MBObjectManager.Instance.GetObject<CharacterObject>(_blackOrcTroopId);
 
-                pouchedRoster.AddToCounts(blackOrc, 1);
+                _troopRewardRoster.AddToCounts(blackOrc, 1);
                 continue;
             }
             if (MBRandom.RandomFloat < 0.25f)
             {
                 var orc = MBObjectManager.Instance.GetObject<CharacterObject>(_orcTroopId);
-                pouchedRoster.AddToCounts(orc, 1);
+                _troopRewardRoster.AddToCounts(orc, 1);
                 continue;
             }
             var goblin = MBObjectManager.Instance.GetObject<CharacterObject>(_goblinTroopId);
-            pouchedRoster.AddToCounts(goblin, 1);
+            _troopRewardRoster.AddToCounts(goblin, 1);
             continue;
         }
 
-        int goldReward = (int)(MBRandom.RandomInt(50 * (int)resultScore, 150 * (int)resultScore));
-        int renownReward = (int)resultScore / 3;
-        int teefWin = (int)resultScore;
+        _goldReward = MBRandom.RandomInt(50 * (int)resultScore, 150 * (int)resultScore);
+        _renownReward = resultScore / 3;
+        _teefReward = (int)resultScore;
 
-        var customResourceIcon = Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText();
 
         var description = GameTexts.FindText("tor_greenskin_brawl_victory_reward");
-        GameTexts.SetVariable("GOLD_REWARD", goldReward);
-        GameTexts.SetVariable("RENOWN_REWARD", renownReward);
-        GameTexts.SetVariable("TEEF_REWARD", teefWin);
-        GameTexts.SetVariable("CR_ICON", customResourceIcon);
+        GameTexts.SetVariable("GOLD_REWARD", _goldReward);
+        GameTexts.SetVariable("RENOWN_REWARD", _renownReward);
+        GameTexts.SetVariable("TEEF_REWARD", _teefReward);
 
-        Hero.MainHero.ChangeHeroGold(goldReward);
-        Clan.PlayerClan.AddRenown(renownReward);
-        Hero.MainHero.AddCultureSpecificCustomResource(teefWin);
-
-        if (pouchedRoster.Count > 0)
+        if (_troopRewardRoster.Count > 0)
         {
             var impressedTroopDescription = GameTexts.FindText("tor_greenskin_brawl_victory_troops");
             var pouchedTroopLines = new List<string>();
 
-            foreach (var element in pouchedRoster.GetTroopRoster())
+            foreach (var element in _troopRewardRoster.GetTroopRoster())
             {
                 pouchedTroopLines.Add("\n" + element.Character.Name + " " + element.Number);
-                Hero.MainHero.PartyBelongedTo.MemberRoster.Add(element);
             }
 
             var stringBuilder = new StringBuilder();
@@ -366,20 +399,15 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
         MBTextManager.SetTextVariable("BRAWL_WIN_DESCRIPTION", text);
     }
 
-    private void SetDefeat(MenuCallbackArgs args)
+    private void SetDefeat()
     {
         var enemyCount = _lastTroopRoster.TotalManCount;
 
-        int goldLoss = MBRandom.RandomInt(25 * enemyCount, 100 * enemyCount);
+        _goldReward = -MBRandom.RandomInt(25 * enemyCount, 100 * enemyCount);
+        _teefReward = -enemyCount;
 
-        int teef = enemyCount;
-
-        Hero.MainHero.ChangeHeroGold(-goldLoss);
-        Hero.MainHero.AddCultureSpecificCustomResource(-teef);
-
-        GameTexts.SetVariable("TEEF_LOSS", teef);
-        GameTexts.SetVariable("GOLD_LOSS", goldLoss);
-        GameTexts.SetVariable("CR_ICON", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText());
+        GameTexts.SetVariable("TEEF_LOSS", _goldReward);
+        GameTexts.SetVariable("GOLD_LOSS", _teefReward);
 
         var text = GameTexts.FindText("tor_greenskin_brawl_defeat_desc");
         MBTextManager.SetTextVariable("BRAWL_DEFEAT_DESCRIPTION", text);

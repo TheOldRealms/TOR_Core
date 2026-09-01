@@ -6,6 +6,7 @@ using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 
@@ -214,7 +215,7 @@ public class KnightOldWorldCareerButtonBehavior : CareerButtonBehaviorBase
 
         if (characterObject.IsKnightUnit() && characterObject.Culture.StringId != TORConstants.Cultures.BRETONNIA) return true;
 
-        if (characterObject.HasAttribute("Knightly"))
+        if (characterObject.HasAttribute(CharacterAttributes.KNIGHTLY))
         {
             return true;
         }

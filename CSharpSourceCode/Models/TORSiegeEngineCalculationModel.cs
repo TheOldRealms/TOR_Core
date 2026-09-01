@@ -2,6 +2,7 @@
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.ComponentInterfaces;
 using TOR_Core.Extensions;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
@@ -18,21 +19,21 @@ namespace TOR_Core.Models
             if (user == null) return cannonReloadSpeed;
             else
             {
-                if(user.HasAttribute("CrewII")) // mid tier Cannoneer troops
+                if(user.HasAttribute(CharacterAttributes.CREW_2)) // mid tier Cannoneer troops
                 {
                     explainedNumber.AddFactor(-0.15f);
                 }
-                else if(user.HasAttribute("CrewIII"))   //Elite Cannoneer units can reload very fast
+                else if(user.HasAttribute(CharacterAttributes.CREW_3))   //Elite Cannoneer units can reload very fast
                 {
                     explainedNumber.AddFactor(-0.30f);
                 }
             }
             if (reloader == null) return cannonReloadSpeed;
-            if(reloader.HasAttribute("CrewII")) // mid tier Cannoneer troops
+            if(reloader.HasAttribute(CharacterAttributes.CREW_2)) // mid tier Cannoneer troops
             {
                 explainedNumber.AddFactor(-0.20f);
             }
-            else if(reloader.HasAttribute("CrewIII"))   //Elite Cannoneer units can reload very fast
+            else if(reloader.HasAttribute(CharacterAttributes.CREW_3))   //Elite Cannoneer units can reload very fast
             {
                 explainedNumber.AddFactor(-0.35f);
             }

@@ -18,6 +18,7 @@ using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models;
 
@@ -175,7 +176,7 @@ public class TORCustomResourceModel : GameModel
                         var choice = TORCareerChoices.GetChoice("MeanestanDaBaddestPassive4");
                         if (choice != null)
                         {
-                            var companions = party.GetMemberHeroes().Where(x => x.HasAttribute("BigBoss")).Count();
+                            var companions = party.GetMemberHeroes().Where(x => x.HasAttribute(CharacterAttributes.BIG_BOSS)).Count();
                             number.Add(companions * choice.GetPassiveValue(), choice.BelongsToGroup.Name);
                         }
                     }
@@ -187,7 +188,7 @@ public class TORCustomResourceModel : GameModel
                     foreach (var attributePair in info.TroopAttributes)
                     {
                         var attributes = attributePair.Value;
-                        if (!attributes.Contains("Extorsion"))
+                        if (!attributes.Contains(CharacterAttributes.EXTORSION))
                             continue;
 
                         var element = Hero.MainHero.PartyBelongedTo.MemberRoster.GetTroopRoster().FirstOrDefault(x => x.Character.StringId == attributePair.Key);
@@ -412,12 +413,12 @@ public class TORCustomResourceModel : GameModel
                     if (hero.Culture.StringId == TORConstants.Cultures.ASRAI)
                     {
 
-                        if (hero.HasAttribute("WETreekinSymbol") && !element.Character.IsElf() && element.Character.Culture.StringId == TORConstants.Cultures.ASRAI)
+                        if (hero.HasAttribute(CharacterAttributes.WE_TREEKIN_SYMBOL) && !element.Character.IsElf() && element.Character.Culture.StringId == TORConstants.Cultures.ASRAI)
                         {
                             unitUpkeep.AddFactor(-0.5f, ForestHarmonyHelper.TreeSymbolText("WETreekinSymbol"));
                         }
 
-                        if (hero.HasAttribute("WEOrionSymbol") && !element.Character.IsElf() && element.Character.Culture.StringId == TORConstants.Cultures.ASRAI)
+                        if (hero.HasAttribute(CharacterAttributes.WE_ORION_SYMBOL) && !element.Character.IsElf() && element.Character.Culture.StringId == TORConstants.Cultures.ASRAI)
                         {
                             unitUpkeep.AddFactor(1f, ForestHarmonyHelper.TreeSymbolText("WEOrionSymbol"));
                         }

@@ -16,6 +16,7 @@ using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
@@ -26,7 +27,7 @@ namespace TOR_Core.Models
     {
         public override float GetSurvivalChance(PartyBase party, CharacterObject character, DamageTypes damageType, bool canDamageKillEvenIfBlunt, PartyBase enemyParty = null)
         {
-            if (character.IsHero || character.HasAttribute("Survivor"))
+            if (character.IsHero || character.HasAttribute(CharacterAttributes.SURVIVOR))
             {
                 return 1f;
             }
@@ -185,7 +186,7 @@ namespace TOR_Core.Models
 
             AddCareerPassivesForTroopRegeneration(mobileParty, ref result);
 
-            if (Hero.MainHero.HasAttribute("WEWardancerSymbol"))
+            if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_WARDANCER_SYMBOL))
             {
                 result.AddFactor(-0.25f, ForestHarmonyHelper.TreeSymbolText("WEWardancerSymbol"));
             }
@@ -238,7 +239,7 @@ namespace TOR_Core.Models
             //requires me to add the strings for forest harmony levels
             if (party.LeaderHero?.Culture?.StringId == TORConstants.Cultures.ASRAI)
             {
-                if (!Hero.MainHero.HasAttribute("WEWandererSymbol"))
+                if (!Hero.MainHero.HasAttribute(CharacterAttributes.WE_WANDERER_SYMBOL))
                 {
                     var level = Hero.MainHero.GetForestHarmonyLevel();
                     switch (level)
@@ -253,7 +254,7 @@ namespace TOR_Core.Models
                     }
                 }
 
-                if (Hero.MainHero.HasAttribute("WEWardancerSymbol"))
+                if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_WARDANCER_SYMBOL))
                 {
                     result.AddFactor(0.25f, ForestHarmonyHelper.TreeSymbolText("WEWardancerSymbol"));
                 }

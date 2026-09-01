@@ -171,7 +171,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 if (_baseCharacter != null)
                 {
                     list.AddRange(_baseCharacter.GetAttributes());
-                    if (list.Count <= 0 && _baseCharacter.OriginalCharacter != null && _baseCharacter.OriginalCharacter.IsTemplate)
+                    if (list.Count <= 0 && _baseCharacter.OriginalCharacter != null && _baseCharacter.OriginalCharacter.IsTemplate)//Sly : aren't the attributes from the template character copied over during hero creation and so fetching them again here is an unnecessary step?
                     {
                         list.AddRange(_baseCharacter.OriginalCharacter.GetAttributes());
                     }

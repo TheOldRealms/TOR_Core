@@ -20,6 +20,7 @@ using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
@@ -174,7 +175,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             if (!Hero.MainHero.HasAnyCareer()) return false;
             if (affectorAgent.IsMount || affectedAgent.IsMount) return false;
 
-            if (Hero.MainHero.HasCareer(TORCareers.Necromancer) && affectorAgent.HasAttribute("NecromancerChampion")) return true;
+            if (Hero.MainHero.HasCareer(TORCareers.Necromancer) && affectorAgent.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION)) return true;
 
             return affectorAgent.BelongsToMainParty() || affectedAgent.BelongsToMainParty();
         }
@@ -710,7 +711,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
             foreach (var attribute in attributes)
             {
-                if (attribute == "Extorsion")
+                if (attribute == CharacterAttributes.EXTORSION)
                 {
                     var debuff = "greenskin_extorsion_debuff";
                     AddMissionPermanentEffect(agent, debuff);

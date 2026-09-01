@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem.TournamentGames;
 using TaleWorlds.Core;
 using TOR_Core.Extensions;
 using TOR_Core.Missions;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.BattleMechanics.CustomArenaModes
 {
@@ -20,8 +21,8 @@ namespace TOR_Core.BattleMechanics.CustomArenaModes
 
         public override bool CanBeAParticipant(CharacterObject character, bool considerSkills)
         {
-            if (character.Race == FaceGen.GetRaceOrDefault("large_humanoid_monster") ||
-                character.HasAttribute("HasAnimationTriggeredEffects") ||
+            if (character.IsMonstrous() ||
+                character.HasAttribute(CharacterAttributes.HAS_ANIMATION_TRIGGERED_EFFECTS) ||
                 character.Culture?.StringId == "chaos_culture")
             {
                 return false;

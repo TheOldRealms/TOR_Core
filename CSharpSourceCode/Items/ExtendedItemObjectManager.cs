@@ -152,6 +152,8 @@ namespace TOR_Core.Items
 
         public static bool CanCharacterUseItemBasedOnRace(ItemObject item, BasicCharacterObject character)
         {
+            if (TORConfig.AllowFreeRaceSelection) return true;
+
             if (!item.HasArmorComponent || item.ItemType == ItemObject.ItemTypeEnum.HorseHarness) return true; //non-armor items can be used by anyone
             var info = item.GetTorSpecificData();
             if (info.RaceLock == "human") //special case, human lock should cover human-compatible races like elves and vampires

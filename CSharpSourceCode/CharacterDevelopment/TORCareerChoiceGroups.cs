@@ -3,6 +3,7 @@ using TaleWorlds.Core;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CharacterDevelopment
 {
@@ -1233,7 +1234,7 @@ namespace TOR_Core.CharacterDevelopment
             });
             _teachingsOfThungni.Initialize("Teachings of Thungni", TORCareers.Runelord, 2, (Hero hero, out string text) =>
             {
-                var hasUnlocked = hero.HasAttribute("PlayerRunesmith");
+                var hasUnlocked = hero.HasAttribute(CharacterAttributes.PLAYER_RUNESMITH);
                 text = "";
                 if (!hasUnlocked)
                 {
@@ -1249,22 +1250,22 @@ namespace TOR_Core.CharacterDevelopment
             _chiselAndHammer.Initialize("Chisel and Hammer", TORCareers.Runelord, 2, (Hero hero, out string text) =>
             {
                 text = TORTextHelper.GetText("tor_careerunlock_level_2", "Runelord", "Ask the Runesmiths Guild to unlock");
-                return hero.HasAttribute("PlayerRunesmith");
+                return hero.HasAttribute(CharacterAttributes.PLAYER_RUNESMITH);
             });
             _forHearthAndHome.Initialize("For Hearth and Home", TORCareers.Runelord, 2, (Hero hero, out string text) =>
             {
                 text = TORTextHelper.GetText("tor_careerunlock_level_2", "Runelord", "Ask the Runesmiths Guild to unlock");
-                return hero.HasAttribute("PlayerRunesmith");
+                return hero.HasAttribute(CharacterAttributes.PLAYER_RUNESMITH);
             });
             _stoneAndSteel.Initialize("Stone and Steel", TORCareers.Runelord, 3, (Hero hero, out string text) =>
             {
                 text = TORTextHelper.GetText("tor_careerunlock_level_3", "Runelord", "Ask the Runesmiths Guild to unlock");
-                return hero.HasAttribute("PlayerRunesmith") && hero.HasAttribute("PlayerRunelord");
+                return hero.HasAttribute(CharacterAttributes.PLAYER_RUNESMITH) && hero.HasAttribute(CharacterAttributes.PLAYER_RUNELORD);
             });
 
             _legacyOfGrungni.Initialize("Legacy of Grungni", TORCareers.Runelord, 3, (Hero hero, out string text) =>
             {
-                var hasUnlocked = hero.HasAttribute("PlayerRunesmith") && hero.HasAttribute("PlayerRunelord");
+                var hasUnlocked = hero.HasAttribute(CharacterAttributes.PLAYER_RUNESMITH) && hero.HasAttribute(CharacterAttributes.PLAYER_RUNELORD);
                 text = "";
                 if (!hasUnlocked)
                 {
@@ -1276,7 +1277,7 @@ namespace TOR_Core.CharacterDevelopment
             _anvilOfDoom.Initialize("Anvil of Doom", TORCareers.Runelord, 3, (Hero hero, out string text) =>
             {
                 text = TORTextHelper.GetText("tor_careerunlock_level_3", "Runelord", "Ask the Runesmiths Guild to unlock");
-                return hero.HasAttribute("PlayerRunesmith") && hero.HasAttribute("PlayerRunelord");
+                return hero.HasAttribute(CharacterAttributes.PLAYER_RUNESMITH) && hero.HasAttribute(CharacterAttributes.PLAYER_RUNELORD);
             });
 
 
@@ -1295,7 +1296,7 @@ namespace TOR_Core.CharacterDevelopment
 
             _goodwivBlockas.Initialize("Good wiv Blockas", TORCareers.OrcBoss, 2, (Hero hero, out string text) =>
             {
-                var hasUnlocked = hero.HasAttribute("PlayerOrcBoss");
+                var hasUnlocked = hero.HasAttribute(CharacterAttributes.PLAYER_ORC_BOSS);
                 text = "";
                 if (!hasUnlocked)
                 {
@@ -1307,18 +1308,18 @@ namespace TOR_Core.CharacterDevelopment
             _meanestanDaBaddest.Initialize("Meanest an' da Baddest", TORCareers.OrcBoss, 2, (Hero hero, out string text) =>
             {
                 text = TORTextHelper.GetText("tor_careerunlock_level_2", "OrcBoss", "Required: Orc Boss unlocked");
-                return hero.HasAttribute("PlayerOrcBoss");
+                return hero.HasAttribute(CharacterAttributes.PLAYER_ORC_BOSS);
             });
 
             _getToDaChoppas.Initialize("Get To Da Choppas", TORCareers.OrcBoss, 2, (Hero hero, out string text) =>
             {
                 text = TORTextHelper.GetText("tor_careerunlock_level_2", "OrcBoss", "Required: Orc Boss unlocked");
-                return hero.HasAttribute("PlayerOrcBoss");
+                return hero.HasAttribute(CharacterAttributes.PLAYER_ORC_BOSS);
             });
 
             _leafNuffinBehin.Initialize("Leave nuffin' behind", TORCareers.OrcBoss, 3, (Hero hero, out string text) =>
             {
-                var hasUnlocked = hero.HasAttribute("PlayerOrcBoss") && hero.HasAttribute("PlayerOrcBigBoss");
+                var hasUnlocked = hero.HasAttribute(CharacterAttributes.PLAYER_ORC_BOSS) && hero.HasAttribute(CharacterAttributes.PLAYER_ORC_BIG_BOSS);
                 text = "";
                 if (!hasUnlocked)
                 {
@@ -1330,7 +1331,7 @@ namespace TOR_Core.CharacterDevelopment
             _bestofDaBest.Initialize("Best of da Best!", TORCareers.OrcBoss, 3, (Hero hero, out string text) =>
             {
                 text = TORTextHelper.GetText("tor_careerunlock_level_3", "OrcBoss", "Required: Orc Big Boss unlocked");
-                return hero.HasAttribute("PlayerOrcBoss") && hero.HasAttribute("PlayerOrcBigBoss");
+                return hero.HasAttribute(CharacterAttributes.PLAYER_ORC_BOSS) && hero.HasAttribute(CharacterAttributes.PLAYER_ORC_BIG_BOSS);
             });
 
             // Orc Shaman
@@ -1354,7 +1355,7 @@ namespace TOR_Core.CharacterDevelopment
 
             _brutalCunnin.Initialize("Brutal Cunnin'", TORCareers.OrcShaman, 2, (Hero hero, out string text) =>
             {
-                var hasUnlocked = hero.HasAttribute("PlayerOrcShamanTier2");
+                var hasUnlocked = hero.HasAttribute(CharacterAttributes.PLAYER_ORC_SHAMAN_TIER_2);
                 text = "";
                 if (!hasUnlocked)
                 {
@@ -1366,12 +1367,12 @@ namespace TOR_Core.CharacterDevelopment
             _cunninBrutality.Initialize("Cunnin' Brutality", TORCareers.OrcShaman, 2, (Hero hero, out string text) =>
             {
                 text = TORTextHelper.GetText("tor_careerunlock_level_2", "OrcShaman", "Required: Orc Shaman Tier 2 unlocked");
-                return hero.HasAttribute("PlayerOrcShamanTier2");
+                return hero.HasAttribute(CharacterAttributes.PLAYER_ORC_SHAMAN_TIER_2);
             });
 
             _gorkAnMorkAreWatchin.Initialize("Gork an' Mork are watchin'", TORCareers.OrcShaman, 3, (Hero hero, out string text) =>
             {
-                var hasUnlocked = hero.HasAttribute("PlayerOrcShamanTier2") && hero.HasAttribute("PlayerOrcShamanTier3");
+                var hasUnlocked = hero.HasAttribute(CharacterAttributes.PLAYER_ORC_SHAMAN_TIER_2) && hero.HasAttribute(CharacterAttributes.PLAYER_ORC_SHAMAN_TIER_3);
                 text = "";
                 if (!hasUnlocked)
                 {
@@ -1383,7 +1384,7 @@ namespace TOR_Core.CharacterDevelopment
             _powerUvDaWaaagh.Initialize("Power uv da Waaagh!", TORCareers.OrcShaman, 3, (Hero hero, out string text) =>
             {
                 text = TORTextHelper.GetText("tor_careerunlock_level_3", "OrcShaman", "Required: Orc Shaman Tier 3 unlocked");
-                return hero.HasAttribute("PlayerOrcShamanTier2") && hero.HasAttribute("PlayerOrcShamanTier3");
+                return hero.HasAttribute(CharacterAttributes.PLAYER_ORC_SHAMAN_TIER_2) && hero.HasAttribute(CharacterAttributes.PLAYER_ORC_SHAMAN_TIER_3);
             });
 
         }

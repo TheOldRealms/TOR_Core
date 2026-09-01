@@ -10,6 +10,7 @@ using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.AI.ArtilleryAI;
 using TOR_Core.BattleMechanics.AI.TeamAI.FormationBehavior;
 using TOR_Core.Extensions;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.BattleMechanics.Artillery
 {
@@ -183,7 +184,7 @@ namespace TOR_Core.BattleMechanics.Artillery
             {
                 if (UserFormations.Count == 0)
                 {
-                    var form = Team.GetFormations().ToList().FirstOrDefault(formation => formation.Arrangement.GetAllUnits().FindAll(unit => ((Agent)unit).HasAttribute("ArtilleryCrew")).Count() > 2);
+                    var form = Team.GetFormations().ToList().FirstOrDefault(formation => formation.Arrangement.GetAllUnits().FindAll(unit => ((Agent)unit).HasAttribute(CharacterAttributes.ARTILLERY_CREW)).Count() > 2);
                     if (form != null) form.StartUsingMachine(this, true);
                 }
             }

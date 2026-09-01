@@ -9,6 +9,7 @@ using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
@@ -70,7 +71,7 @@ namespace TOR_Core.Models
 
             if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
             {
-                if (Hero.MainHero.HasAttribute("Waaagh0"))
+                if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_0))
                 {
                     result.Add(-40f, TORTextHelper.GetTextObject("tor_greenskin_internal_fightin_text", "Internal Fightin'"));
                     if (Hero.MainHero.PartyBelongedTo != null &&
@@ -79,7 +80,7 @@ namespace TOR_Core.Models
                         result.Add(20f, TORTextHelper.GetTextObject("tor_greenskin_internal_fightin_bonus_low_member_text", "Small Mob Pansies"));
                     }
                 }
-                else if (Hero.MainHero.HasAttribute("Waaagh1"))
+                else if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_1))
                 {
                     result.Add(-20f, TORTextHelper.GetTextObject("tor_greenskin_petty_squabblin_text", "Petty Squabblin'"));
                 }
@@ -94,7 +95,7 @@ namespace TOR_Core.Models
                         foreach (var attributePair in partyExtendedInfo.TroopAttributes)
                         {
                             var attributes = attributePair.Value;
-                            if (attributes?.Contains("Extorsion") ?? false)
+                            if (attributes?.Contains(CharacterAttributes.EXTORSION) ?? false)
                             {
                                 var troopId = attributePair.Key;
                                 var troop = MBObjectManager.Instance.GetObject<CharacterObject>(troopId);

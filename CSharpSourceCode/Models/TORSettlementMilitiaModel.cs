@@ -6,6 +6,7 @@ using TaleWorlds.Localization;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
@@ -78,11 +79,11 @@ namespace TOR_Core.Models
 
             if (settlement.Culture.StringId == TORConstants.Cultures.DAWI && settlement.IsDwarfKarak())
             {
-                if (Hero.MainHero.HasAttribute("DwarfWarriorIII"))
+                if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_3))
                 {
                     result.Add(4, new TextObject("Warriors Guild"));
                 }
-                else if (Hero.MainHero.HasAttribute("DwarfWarriorII"))
+                else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_2))
                 {
                     result.Add(2, new TextObject("Warriors Guild"));
                 }

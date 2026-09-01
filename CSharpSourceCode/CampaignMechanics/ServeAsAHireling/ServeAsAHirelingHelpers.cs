@@ -3,6 +3,7 @@ using TaleWorlds.Core;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CampaignMechanics.ServeAsAHireling;
 
@@ -132,7 +133,7 @@ public static class ServeAsAHirelingHelpers
         {
             var career = Hero.MainHero.GetCareer();
             //vampires and necromancers both have the "Necromancer" attribute
-            if (Hero.MainHero.HasAttribute("Necromancer") || career == TORCareers.BlackGrailKnight)
+            if (Hero.MainHero.HasAttribute(CharacterAttributes.NECROMANCER) || career == TORCareers.BlackGrailKnight)
                 return false;
 
             return true;

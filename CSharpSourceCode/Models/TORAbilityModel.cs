@@ -23,6 +23,7 @@ using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
@@ -577,7 +578,7 @@ namespace TOR_Core.Models
             //debuffs are for asrai player campaigns, not any asrai-cultured wanderer regardless of the player's culture
             if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
             {
-                if (!Hero.MainHero.HasAttribute("WEWandererSymbol"))
+                if (!Hero.MainHero.HasAttribute(CharacterAttributes.WE_WANDERER_SYMBOL))
                 {
                     var level = Hero.MainHero.GetForestHarmonyLevel();
                     switch (level)
@@ -592,7 +593,7 @@ namespace TOR_Core.Models
                     }
                 }
 
-                if (Hero.MainHero.HasAttribute("WEArielSymbol"))
+                if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_ARIEL_SYMBOL))
                 {
                     if (hero.PartyBelongedTo.InAthelLoren())
                     {
@@ -696,7 +697,7 @@ namespace TOR_Core.Models
                 }
                 else
                 {
-                    if (careerChoices.Contains("EnvoyOfTheLadyPassive3") && hero.HasAttribute("PriestLady"))
+                    if (careerChoices.Contains("EnvoyOfTheLadyPassive3") && hero.HasAttribute(CharacterAttributes.PRIEST_LADY))
                     {
                         var choice = TORCareerChoices.GetChoice("EnvoyOfTheLadyPassive3");
                         explainedNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
@@ -727,7 +728,7 @@ namespace TOR_Core.Models
                     }
 
                     // Orc Shaman: +30 WoM for Shaman companion
-                    if (careerChoices.Contains("PowerUvDaWaaaghPassive2") && hero.HasAttribute("ShamanBoss"))
+                    if (careerChoices.Contains("PowerUvDaWaaaghPassive2") && hero.HasAttribute(CharacterAttributes.SHAMAN_BOSS))
                     {
                         var choice = TORCareerChoices.GetChoice("PowerUvDaWaaaghPassive2");
                         explainedNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
@@ -755,7 +756,7 @@ namespace TOR_Core.Models
 
             if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
             {
-                if (Hero.MainHero.HasAttribute("WEArielSymbol"))
+                if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_ARIEL_SYMBOL))
                 {
                     if (hero.PartyBelongedTo?.InAthelLoren() == true)
                     {
@@ -925,7 +926,7 @@ namespace TOR_Core.Models
                     // Note: Using temporary attribute instead of StatusEffect DamageAmplification because
                     // the DamageAmplification system doesn't properly handle damage_type="All" - it stores
                     // the value at the "All" index but damage calculations only read specific damage type indices.
-                    if (attacker.HasAttribute("Arcane_Dmg"))
+                    if (attacker.HasAttribute(CharacterAttributes.ARCANE_DMG))
                     {
                         damageAmplifications[damageTypeIndex] += 0.3f;
                     }

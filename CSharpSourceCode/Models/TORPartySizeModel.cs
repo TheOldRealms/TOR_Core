@@ -13,6 +13,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
@@ -101,12 +102,12 @@ namespace TOR_Core.Models
                     }
                     if (oakPartyBonus > 0) num.Add(oakPartyBonus, TORTextHelper.GetTextObject("tor_party_size_desc", "OakOfAgesOutposts", "Oak of Ages outposts"));
 
-                    if (Hero.MainHero.HasAttribute("WEKithbandSymbol"))
+                    if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_KITHBAND_SYMBOL))
                     {
                         num.AddFactor(0.25f, ForestHarmonyHelper.TreeSymbolText("WEKithbandSymbol"));
                     }
 
-                    if (Hero.MainHero.HasAttribute("WEDurthuSymbol"))
+                    if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_DURTHU_SYMBOL))
                     {
                         num.AddFactor(-0.2f, ForestHarmonyHelper.TreeSymbolText("WEDurthuSymbol"));
                     }
@@ -116,11 +117,11 @@ namespace TOR_Core.Models
             if (party.LeaderHero == Hero.MainHero &&
                 Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
             {
-                if (Hero.MainHero.HasAttribute("Waaagh2"))
+                if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_2))
                 {
                     num.Add(60, TORTextHelper.GetTextObject("tor_party_size_desc", "EreWeGo", "'Ere We Go!"));
                 }
-                else if (Hero.MainHero.HasAttribute("Waaagh3"))
+                else if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_3))
                 {
                     num.Add(120, TORTextHelper.GetTextObject("tor_party_size_desc", "Waaagh", "WAAAGH!!!!"));
                 }
@@ -224,7 +225,7 @@ namespace TOR_Core.Models
                             continue;
                         }
 
-                        if (hero.HasAttribute("GladeCaptain"))
+                        if (hero.HasAttribute(CharacterAttributes.GLADE_CAPTAIN))
                         {
                             number.Add(choice.Passive.EffectMagnitude, choice.Description);
                         }
@@ -299,7 +300,7 @@ namespace TOR_Core.Models
             }
 
             // Treemen weight: 10 slots with WEDurthuSymbol, 25 slots otherwise
-            bool hasDurthuSymbol = party.LeaderHero.HasAttribute("WEDurthuSymbol");
+            bool hasDurthuSymbol = party.LeaderHero.HasAttribute(CharacterAttributes.WE_DURTHU_SYMBOL);
             int treemenWeight = hasDurthuSymbol ? 10 : 24;
 
             if (treemenCount > 0)

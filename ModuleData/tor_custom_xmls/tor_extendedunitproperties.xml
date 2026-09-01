@@ -5498,7 +5498,7 @@
   <CharacterExtendedInfo id="tor_emp_lord_stirland_first_8">
     <Abilities />
     <Attributes>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_stirland_second_1">
@@ -5585,7 +5585,7 @@
   <CharacterExtendedInfo id="tor_emp_lord_wissenland_first_8">
     <Abilities />
     <Attributes>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
       <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
     </Attributes>
@@ -5752,7 +5752,7 @@
   <CharacterExtendedInfo id="tor_emp_lord_reikland_first_3">
     <Abilities />
     <Attributes>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
       <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
     </Attributes>
@@ -5789,7 +5789,7 @@
     <Attributes>
       <string>AbilityUser</string>
       <string>SpellCaster</string>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_second_1">
@@ -5884,7 +5884,7 @@
   <CharacterExtendedInfo id="tor_emp_lord_middenland_first_8">
     <Abilities />
     <Attributes>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
       <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
     </Attributes>
@@ -5953,7 +5953,7 @@
     <Attributes>
       <string>AbilityUser</string>
       <string>SpellCaster</string>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_ostermark_factionleader">
@@ -6011,7 +6011,7 @@
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_ostermark_second_1">
@@ -6100,7 +6100,7 @@
     <Attributes>
       <string>AbilityUser</string>
       <string>SpellCaster</string>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_hochland_second_1">
@@ -6122,7 +6122,7 @@
   <CharacterExtendedInfo id="tor_emp_lord_hochland_second_5">
     <Abilities />
     <Attributes>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_hochland_third_1">
@@ -6155,7 +6155,7 @@
     <Attributes>
       <string>AbilityUser</string>
       <string>SpellCaster</string>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_nordland_factionleader">
@@ -6188,7 +6188,7 @@
   <CharacterExtendedInfo id="tor_emp_lord_nordland_first_7">
     <Abilities />
     <Attributes>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
       <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
     </Attributes>
@@ -6222,7 +6222,7 @@
     <Attributes>
       <string>AbilityUser</string>
       <string>SpellCaster</string>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_nordland_second_5">
@@ -6289,7 +6289,7 @@
   <CharacterExtendedInfo id="tor_emp_lord_ostland_first_5">
     <Abilities />
     <Attributes>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
       <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
     </Attributes>
@@ -6393,7 +6393,7 @@
   <CharacterExtendedInfo id="tor_emp_lord_wasteland_first_8">
     <Abilities />
     <Attributes>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
       <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
     </Attributes>
@@ -6986,7 +6986,7 @@
     <Attributes>
       <string>AbilityUser</string>
       <string>SpellCaster</string>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_montfort_factionleader">
@@ -7081,7 +7081,7 @@
     <Attributes>
       <string>AbilityUser</string>
       <string>SpellCaster</string>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_bordeleaux_factionleader">
@@ -7131,7 +7131,7 @@
     <Attributes>
       <string>AbilityUser</string>
       <string>SpellCaster</string>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_carcassonne_factionleader">
@@ -7188,7 +7188,7 @@
     <Attributes>
       <string>AbilityUser</string>
       <string>SpellCaster</string>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_carcassonne_second_3">
@@ -7204,7 +7204,7 @@
     <Attributes>
       <string>AbilityUser</string>
       <string>SpellCaster</string>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_brionne_factionleader">
@@ -7326,7 +7326,7 @@
     <Attributes>
       <string>AbilityUser</string>
       <string>SpellCaster</string>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_couronne_factionleader">
@@ -7386,7 +7386,7 @@
     <Attributes>
       <string>AbilityUser</string>
       <string>SpellCaster</string>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_couronne_second_1">
@@ -7501,7 +7501,7 @@
     <Attributes>
       <string>AbilityUser</string>
       <string>SpellCaster</string>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_artois_factionleader">
@@ -7579,7 +7579,7 @@
     <Attributes>
       <string>AbilityUser</string>
       <string>SpellCaster</string>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_lord_mousillon_factionleader">
@@ -7675,13 +7675,13 @@
       <string>AbilityUser</string>
       <string>SpellCaster</string>
       <string>Necromancer</string>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_lord_mousillon_first_9">
     <Abilities />
     <Attributes>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
       <string>Undead</string>
     </Attributes>
   </CharacterExtendedInfo>
@@ -7842,7 +7842,7 @@
   <CharacterExtendedInfo id="tor_we_lord_athel_loren_thirteenth_2">
     <Abilities />
     <Attributes>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
       <string>LegendaryLord</string>
     </Attributes>
   </CharacterExtendedInfo>
@@ -9929,13 +9929,13 @@
   <CharacterExtendedInfo id="tor_br_bergerac_2">
     <Abilities />
     <Attributes>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_bergerac_3">
     <Abilities />
     <Attributes>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_wainfleet_leader">
@@ -9951,7 +9951,7 @@
   <CharacterExtendedInfo id="tor_br_troubadour_2">
     <Abilities />
     <Attributes>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dog_clan_hero_braganza">
@@ -10301,7 +10301,7 @@
   <CharacterExtendedInfo id="tor_wanderer_bretonnia_0">
     <Abilities />
     <Attributes>
-      <string>BrettonianKnight</string>
+      <string>BretonnianKnight</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wanderer_bretonnia_1">
@@ -11137,7 +11137,7 @@
       <string>DwellersBelow</string>
     </Abilities>
     <Attributes>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
       <string>AbilityUser</string>
       <string>SpellCaster</string>
     </Attributes>
@@ -11147,7 +11147,7 @@
       <string>DwellersBelow</string>
     </Abilities>
     <Attributes>
-      <string>AICompanion</string>
+      <string>AiCompanion</string>
       <string>AbilityUser</string>
       <string>SpellCaster</string>
     </Attributes>

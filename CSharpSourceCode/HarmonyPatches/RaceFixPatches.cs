@@ -366,8 +366,11 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(MetaMesh), nameof(MetaMesh.UseHeadBoneFaceGenScaling))]
         public static bool ModifyHeadBoneScalingForCustomSkeletons(Skeleton skeleton, sbyte headLookDirectionBoneIndex, ref MatrixFrame frame)
         {
-            var skeletonName = skeleton.GetName();
+            //Sly : the normalization fixes goblins and orcs equally without tracking anything else. Brief testing found no issues in encyclopedia, scenes, inventory previews, etc...
+            frame.rotation.OrthonormalizeAccordingToForwardAndKeepUpAsZAxis();
+            return true;
 
+            var skeletonName = skeleton.GetName();
             if (skeletonName == "orc_skeleton2")
             {
                 frame.rotation.OrthonormalizeAccordingToForwardAndKeepUpAsZAxis();

@@ -875,6 +875,75 @@
     <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_sigmar_justice}"12% extra damage done as holy"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Holy" Percent="0.12" />
   </ItemTrait>
+  <ItemTrait ItemTraitStringId="emp_miracle_sigmar_comet_flail" ItemTraitName="Blessing of the Comet" IsCraftable="false" IconName="sigmar_comet_icon">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_emp_miracle_sigmar_comet_flail}"60% extra damage done as holy, 100 bonus skillpoints to One Handed"</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Holy" Percent="0.60" />
+    <StatsTuple StatType="Skill" SkillId="OneHanded" Value="100" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="emp_miracle_sigmar_holy_silver_hammer" ItemTraitName="Blessing of the Silver Hammer" IsCraftable="false" IconName="sigmar_comet_icon">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_emp_miracle_sigmar_holy_silver_hammer}"60% extra damage done as holy, weapon gains the Cleave trait"</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Holy" Percent="0.60" />
+    <StatsTuple StatType="Cleave" Value="1" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="emp_miracle_taal_stoneaxe" ItemTraitName="Stoneaxe of Taal" IsCraftable="false" ImbuedEffectChance="1.00" IconName="winds_icon_45">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_emp_miracle_taal_stoneaxe}"30% extra damage done as physical, 250% bonus damage against mounts and large enemies"</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Physical" Percent="0.30" />
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.BeastSlayingScript">
+      <WeaponScriptArguments>
+        <WeaponScriptArgument>250</WeaponScriptArgument>
+      </WeaponScriptArguments>
+    </OnWeaponHitScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="emp_miracle_shallya_suffering_of_man" ItemTraitName="The Suffering of Man" IsCraftable="false" IconName="shallya_dove_icon">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_emp_miracle_shallya_suffering_of_man}"30% physical resistance, 30 extra HP"</ItemTraitDescription>
+    <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.30" />
+    <StatsTuple StatType="HealthMax" Value="30" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="emp_miracle_manann_trident" ItemTraitName="Trident of Manann" IsCraftable="false" ImbuedEffectChance="0.20" IconName="winds_icon_45">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_emp_miracle_manann_trident}"25% extra damage done as lightning, 20% chance to summon a gale that deals 10 lightning damage and knocks down enemies in a 3m radius"</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Lightning" Percent="0.25" />
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
+      <WeaponScriptArguments>
+        <WeaponScriptArgument>azyr_gale_enchant</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
+      </WeaponScriptArguments>
+    </OnWeaponHitScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="bret_miracle_sword_de_lyonesse" ItemTraitName="Sword de Lyonesse" IsCraftable="false" IconName="grail">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_bret_miracle_sword_de_lyonesse}"60% extra damage done as holy, 60% magical resistance"</ItemTraitDescription>
+    <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.60" />
+    <AdditionalDamageTuple DamageType="Holy" Percent="0.60" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="asrai_miracle_anath_raema_prey_seeker" ItemTraitName="Prey Seeker" IsCraftable="false" ImbuedEffectChance="1.00" IconName="harmony_icon_100">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_asrai_miracle_anath_raema_prey_seeker}"50% faster reload speed, 100% bonus damage against mounts and large enemies"</ItemTraitDescription>
+    <StatsTuple StatType="ReloadSpeed" Value="50" />
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.BeastSlayingScript">
+      <WeaponScriptArguments>
+        <WeaponScriptArgument>100</WeaponScriptArgument>
+      </WeaponScriptArguments>
+    </OnWeaponHitScript>
+  </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_blessing_ulric_wrath" ItemTraitName="Wrath of Ulric" IsCraftable="true" ImbuedEffectChance="0.15" IconName="whitewolf_icon">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
@@ -935,8 +1004,8 @@
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>1</IngredientAmount>
-    <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_ulric_white_wolf_helmet}"50 bonus skillpoints to Two Handed"</ItemTraitDescription>
-    <StatsTuple StatType="Skill" SkillId="TwoHanded" Value="50" />
+    <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_ulric_white_wolf_helmet}"100 bonus skillpoints to Two Handed"</ItemTraitDescription>
+    <StatsTuple StatType="Skill" SkillId="TwoHanded" Value="100" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_blessing_ulric_white_wolf_axe" ItemTraitName="Blessing of the White Wolf" IsCraftable="false" IconName="whitewolf_icon">
     <ValidItemType>Melee</ValidItemType>
@@ -4269,7 +4338,7 @@
         <InventoryScriptArgument>dw_rune_shielding</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
         <InventoryScriptArgument>25</InventoryScriptArgument>
-        <InventoryScriptArgument>RuneCraft</InventoryScriptArgument>
+        <InventoryScriptArgument>RuneMagic</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -4283,7 +4352,7 @@
         <InventoryScriptArgument>dw_rune_stone</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
         <InventoryScriptArgument>75</InventoryScriptArgument>
-        <InventoryScriptArgument>RuneCraft</InventoryScriptArgument>
+        <InventoryScriptArgument>RuneMagic</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -4297,7 +4366,7 @@
         <InventoryScriptArgument>dw_rune_vigour</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
         <InventoryScriptArgument>25</InventoryScriptArgument>
-        <InventoryScriptArgument>RuneCraft</InventoryScriptArgument>
+        <InventoryScriptArgument>RuneMagic</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -4311,7 +4380,7 @@
         <InventoryScriptArgument>dw_rune_parrying</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
         <InventoryScriptArgument>75</InventoryScriptArgument>
-        <InventoryScriptArgument>RuneCraft</InventoryScriptArgument>
+        <InventoryScriptArgument>RuneMagic</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -4325,7 +4394,7 @@
         <InventoryScriptArgument>dw_rune_protection</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
         <InventoryScriptArgument>50</InventoryScriptArgument>
-        <InventoryScriptArgument>RuneCraft</InventoryScriptArgument>
+        <InventoryScriptArgument>RuneMagic</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -4479,7 +4548,7 @@
         <InventoryScriptArgument>dw_rune_striking</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
         <InventoryScriptArgument>75</InventoryScriptArgument>
-        <InventoryScriptArgument>RuneCraft</InventoryScriptArgument>
+        <InventoryScriptArgument>RuneMagic</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -4493,7 +4562,7 @@
         <InventoryScriptArgument>dw_rune_fire</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
         <InventoryScriptArgument>50</InventoryScriptArgument>
-        <InventoryScriptArgument>RuneCraft</InventoryScriptArgument>
+        <InventoryScriptArgument>RuneMagic</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -4507,7 +4576,7 @@
         <InventoryScriptArgument>dw_rune_speed</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
         <InventoryScriptArgument>75</InventoryScriptArgument>
-        <InventoryScriptArgument>RuneCraft</InventoryScriptArgument>
+        <InventoryScriptArgument>RuneMagic</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -4521,7 +4590,7 @@
         <InventoryScriptArgument>dw_rune_might</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
         <InventoryScriptArgument>25</InventoryScriptArgument>
-        <InventoryScriptArgument>RuneCraft</InventoryScriptArgument>
+        <InventoryScriptArgument>RuneMagic</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -4535,7 +4604,7 @@
         <InventoryScriptArgument>dw_rune_clear_sights</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
         <InventoryScriptArgument>25</InventoryScriptArgument>
-        <InventoryScriptArgument>RuneCraft</InventoryScriptArgument>
+        <InventoryScriptArgument>RuneMagic</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -4931,5 +5000,255 @@
         <WeaponScriptArgument>moonfire_explosion</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="emp_enchant_myrmidia_wisdom" ItemTraitName="Myrmidia's Wisdom" IsCraftable="true" ImbuedEffectChance="0.30" IconName="blazingsun_icon">
+    <ValidItemType>Armor</ValidItemType>
+    <IngredientItem>DragonBlood</IngredientItem>
+    <IngredientAmount>15</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_myrmidia_wisdom}"+100 Polearm skill and 10% Ward Save. When damaged, 30% chance to expose enemies within 5m for 8 seconds, reducing their attack speed and physical resistance by 25%"</ItemTraitDescription>
+    <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.10" />
+    <StatsTuple StatType="Skill" SkillId="Polearm" Value="100" />
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
+      <WeaponScriptArguments>
+        <WeaponScriptArgument>myrmidia_wisdom_exposure</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
+      </WeaponScriptArguments>
+    </OnWeaponHitScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_emp_enchant_myrmidia_wisdom" ItemTraitName="Myrmidia's Wisdom" IsCraftable="false" IconName="blazingsun_icon">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_myrmidia_wisdom}"+100 Polearm skill and 10% Ward Save. When damaged, 30% chance to expose enemies within 5m for 8 seconds, reducing their attack speed and physical resistance by 25%"</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>emp_enchant_myrmidia_wisdom</InventoryScriptArgument>
+        <InventoryScriptArgument>Faith</InventoryScriptArgument>
+        <InventoryScriptArgument>250</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="gs_enchant_mork_kunningly_brutal" ItemTraitName="Kunningly Brutal" IsCraftable="true" ImbuedEffectChance="0.25" IconName="mork_icon">
+    <ValidItemType>Armor</ValidItemType>
+    <IngredientItem>DragonBlood</IngredientItem>
+    <IngredientAmount>15</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_gs_enchant_mork_kunningly_brutal}"20% movement speed and 15% bonus magical damage. When damaged, 25% chance to engulf enemies within 5m in Mork's miasma for 8 seconds, reducing movement speed by 30% and dealing 4 magical damage per second"</ItemTraitDescription>
+    <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.15" />
+    <StatsTuple StatType="MovementSpeed" Value="20" />
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
+      <WeaponScriptArguments>
+        <WeaponScriptArgument>mork_kunningly_brutal_miasma</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
+      </WeaponScriptArguments>
+    </OnWeaponHitScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_gs_enchant_mork_kunningly_brutal" ItemTraitName="Kunningly Brutal" IsCraftable="false" IconName="mork_icon">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_gs_enchant_mork_kunningly_brutal}"20% movement speed and 15% bonus magical damage. When damaged, 25% chance to engulf enemies within 5m in Mork's miasma for 8 seconds, reducing movement speed by 30% and dealing 4 magical damage per second"</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>gs_enchant_mork_kunningly_brutal</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>250</InventoryScriptArgument>
+        <InventoryScriptArgument>BigWaaagh</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="dw_rune_grimnir_slayers_oath" ItemTraitName="Slayer's Oath" IsCraftable="true" ImbuedEffectChance="1.00" IconName="rune_fury">
+    <ValidItemType>Armor</ValidItemType>
+    <IngredientItem>DragonBlood</IngredientItem>
+    <IngredientAmount>15</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_grimnir_slayers_oath}"15% Ward Save and 15 extra HP. Taking damage grants 35% attack speed for 5 seconds"</ItemTraitDescription>
+    <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.15" />
+    <StatsTuple StatType="HealthMax" Value="15" />
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
+      <WeaponScriptArguments>
+        <WeaponScriptArgument>grimnir_slayers_oath_fury</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
+      </WeaponScriptArguments>
+    </OnWeaponHitScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_dw_rune_grimnir_slayers_oath" ItemTraitName="Slayer's Oath" IsCraftable="false" IconName="rune_fury">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_grimnir_slayers_oath}"15% Ward Save and 15 extra HP. Taking damage grants 35% attack speed for 5 seconds"</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>dw_rune_grimnir_slayers_oath</InventoryScriptArgument>
+        <InventoryScriptArgument>Crafting</InventoryScriptArgument>
+        <InventoryScriptArgument>250</InventoryScriptArgument>
+        <InventoryScriptArgument>RuneMagic</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="dw_rune_grungni_drongrundum_spirit" ItemTraitName="Drongrundum's Spirit" IsCraftable="true" ImbuedEffectChance="1.00" IconName="rune_striking">
+    <ValidItemType>Melee</ValidItemType>
+    <IngredientItem>DragonBlood</IngredientItem>
+    <IngredientAmount>15</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_grungni_drongrundum_spirit}"50% extra lightning damage and 30% armor penetration. Dealing damage grants 25% attack speed for 5 seconds"</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Lightning" Percent="0.50" />
+    <StatsTuple StatType="ArmorPenetration" Value="30" />
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
+      <WeaponScriptArguments>
+        <WeaponScriptArgument>grungni_drongrundum_spirit_fury</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
+      </WeaponScriptArguments>
+    </OnWeaponHitScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_dw_rune_grungni_drongrundum_spirit" ItemTraitName="Drongrundum's Spirit" IsCraftable="false" IconName="rune_striking">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_grungni_drongrundum_spirit}"50% extra lightning damage and 30% armor penetration. Dealing damage grants 25% attack speed for 5 seconds"</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>dw_rune_grungni_drongrundum_spirit</InventoryScriptArgument>
+        <InventoryScriptArgument>Crafting</InventoryScriptArgument>
+        <InventoryScriptArgument>250</InventoryScriptArgument>
+        <InventoryScriptArgument>RuneMagic</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="dw_rune_valaya_ancestor_queen_salve" ItemTraitName="Ancestor Queen's Salve" IsCraftable="true" ImbuedEffectChance="0.25" IconName="rune_fortitude">
+    <ValidItemType>Armor</ValidItemType>
+    <IngredientItem>DragonBlood</IngredientItem>
+    <IngredientAmount>15</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_valaya_ancestor_queen_salve}"25 extra HP. When damaged, 25% chance to heal friendly troops within 3m for 2 HP per second over 15 seconds"</ItemTraitDescription>
+    <StatsTuple StatType="HealthMax" Value="25" />
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
+      <WeaponScriptArguments>
+        <WeaponScriptArgument>valaya_ancestor_queen_salve</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
+      </WeaponScriptArguments>
+    </OnWeaponHitScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_dw_rune_valaya_ancestor_queen_salve" ItemTraitName="Ancestor Queen's Salve" IsCraftable="false" IconName="rune_fortitude">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_valaya_ancestor_queen_salve}"25 extra HP. When damaged, 25% chance to heal friendly troops within 3m for 2 HP per second over 15 seconds"</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>dw_rune_valaya_ancestor_queen_salve</InventoryScriptArgument>
+        <InventoryScriptArgument>Crafting</InventoryScriptArgument>
+        <InventoryScriptArgument>250</InventoryScriptArgument>
+        <InventoryScriptArgument>RuneMagic</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="asrai_enchant_vaul_draugnir_breath" ItemTraitName="Draugnir's Breath" IsCraftable="true" IconName="favor_icon_100">
+    <ValidItemType>Armor</ValidItemType>
+    <IngredientItem>DragonBlood</IngredientItem>
+    <IngredientAmount>15</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_asrai_enchant_vaul_draugnir_breath}"20% Ward Save and 20% movement speed"</ItemTraitDescription>
+    <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.20" />
+    <StatsTuple StatType="MovementSpeed" Value="20" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_asrai_enchant_vaul_draugnir_breath" ItemTraitName="Draugnir's Breath" IsCraftable="false" IconName="favor_icon_100">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_asrai_enchant_vaul_draugnir_breath}"20% Ward Save and 20% movement speed"</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>asrai_enchant_vaul_draugnir_breath</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>250</InventoryScriptArgument>
+        <InventoryScriptArgument>SpellCaster</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="eo_enchant_asuryan_phoenix_eternal" ItemTraitName="The Phoenix Eternal" IsCraftable="true" ImbuedEffectChance="0.30" IconName="favor_icon_100">
+    <ValidItemType>Weapon</ValidItemType>
+    <IngredientItem>DragonBlood</IngredientItem>
+    <IngredientAmount>15</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_asuryan_phoenix_eternal}"30% extra fire damage. Hits have a 30% chance to ignite enemies within 3m for 4 fire damage per second over 12 seconds"</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Fire" Percent="0.30" />
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
+      <WeaponScriptArguments>
+        <WeaponScriptArgument>asuryan_phoenix_eternal_burst</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
+      </WeaponScriptArguments>
+    </OnWeaponHitScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_eo_enchant_asuryan_phoenix_eternal" ItemTraitName="The Phoenix Eternal" IsCraftable="false" IconName="favor_icon_100">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_asuryan_phoenix_eternal}"30% extra fire damage. Hits have a 30% chance to ignite enemies within 3m for 4 fire damage per second over 12 seconds"</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>eo_enchant_asuryan_phoenix_eternal</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>250</InventoryScriptArgument>
+        <InventoryScriptArgument>SpellCaster</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="asrai_enchant_loec_tricksters_dance" ItemTraitName="A Trickster's Dance" IsCraftable="true" ImbuedEffectChance="1.00" IconName="harmony_icon_100">
+    <ValidItemType>Melee</ValidItemType>
+    <IngredientItem>DragonBlood</IngredientItem>
+    <IngredientAmount>15</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_asrai_enchant_loec_tricksters_dance}"20% swing speed. Dealing damage grants 25% movement speed for 5 seconds"</ItemTraitDescription>
+    <StatsTuple StatType="SwingSpeed" Value="20" />
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
+      <WeaponScriptArguments>
+        <WeaponScriptArgument>loec_tricksters_dance_movement</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
+      </WeaponScriptArguments>
+    </OnWeaponHitScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_asrai_enchant_loec_tricksters_dance" ItemTraitName="A Trickster's Dance" IsCraftable="false" IconName="harmony_icon_100">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_asrai_enchant_loec_tricksters_dance}"20% swing speed. Dealing damage grants 25% movement speed for 5 seconds"</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>asrai_enchant_loec_tricksters_dance</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>250</InventoryScriptArgument>
+        <InventoryScriptArgument>SpellCaster</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="gs_enchant_gork_brutal_kunnin" ItemTraitName="Brutal Kunnin'" IsCraftable="true" ImbuedEffectChance="1.00" IconName="gork_icon">
+    <ValidItemType>Melee</ValidItemType>
+    <IngredientItem>DragonBlood</IngredientItem>
+    <IngredientAmount>15</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_gs_enchant_gork_brutal_kunnin}"Cleave and 20% extra physical damage. Dealing damage grants 25% attack speed for 5 seconds"</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Physical" Percent="0.20" />
+    <StatsTuple StatType="Cleave" Value="1" />
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
+      <WeaponScriptArguments>
+        <WeaponScriptArgument>gork_brutal_kunnin_attack_speed</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
+      </WeaponScriptArguments>
+    </OnWeaponHitScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_gs_enchant_gork_brutal_kunnin" ItemTraitName="Brutal Kunnin'" IsCraftable="false" IconName="gork_icon">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_gs_enchant_gork_brutal_kunnin}"Cleave and 20% extra physical damage. Dealing damage grants 25% attack speed for 5 seconds"</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>gs_enchant_gork_brutal_kunnin</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>250</InventoryScriptArgument>
+        <InventoryScriptArgument>BigWaaagh</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
   </ItemTrait>
 </ItemTraits>

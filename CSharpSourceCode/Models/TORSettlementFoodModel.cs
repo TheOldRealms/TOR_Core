@@ -5,6 +5,7 @@ using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
@@ -35,15 +36,15 @@ namespace TOR_Core.Models
                 explainedNumber.Add(75, new TextObject("Dwarf Karak"));
                 if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI)
                 {
-                    if (Hero.MainHero.HasAttribute("DwarfBrewersIII"))
+                    if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_BREWERS_3))
                     {
                         explainedNumber.Add(25f, new TextObject("Brewers Guild"));
                     }
-                    else if (Hero.MainHero.HasAttribute("DwarfBrewersII"))
+                    else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_BREWERS_2))
                     {
                         explainedNumber.Add(15f, new TextObject("Brewers Guild"));
                     }
-                    else if (Hero.MainHero.HasAttribute("DwarfBrewersI"))
+                    else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_BREWERS_1))
                     {
                         explainedNumber.Add(10f, new TextObject("Brewers Guild"));
                     }

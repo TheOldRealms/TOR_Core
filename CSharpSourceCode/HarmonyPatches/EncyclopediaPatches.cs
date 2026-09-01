@@ -18,6 +18,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade.GauntletUI.Widgets.Information;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -291,25 +292,25 @@ namespace TOR_Core.HarmonyPatches
         {
             switch (attribute)
             {
-                case "Bulwark2":
-                case "Bulwark3":
-                    return "Bulwark";
-                case "Swift2":
-                case "Swift3":
-                    return "Swift";
-                case "Poisonous2":
-                    return "Poisonous";
-                case "Piercing2":
-                    return "Piercing";
-                case "Ethereal2":
-                    return "Ethereal";
-                case "MonsterSlayer2":
-                    return "MonsterSlayer";
-                case "UndeadSlayer2":
-                    return "UndeadSlayer";
-                case "Regeneration2":
-                case "Regeneration3":
-                    return "Regeneration";
+                case CharacterAttributes.BULWARK_2:
+                case CharacterAttributes.BULWARK_3:
+                    return CharacterAttributes.BULWARK;
+                case CharacterAttributes.SWIFT_2:
+                case CharacterAttributes.SWIFT_3:
+                    return CharacterAttributes.SWIFT;
+                case CharacterAttributes.POISONOUS_2:
+                    return CharacterAttributes.POISONOUS;
+                case CharacterAttributes.PIERCING_2:
+                    return CharacterAttributes.PIERCING;
+                case CharacterAttributes.ETHEREAL_2:
+                    return CharacterAttributes.ETHEREAL;
+                case CharacterAttributes.MONSTER_SLAYER_2:
+                    return CharacterAttributes.MONSTER_SLAYER;
+                case CharacterAttributes.UNDEAD_SLAYER_2:
+                    return CharacterAttributes.UNDEAD_SLAYER;
+                case CharacterAttributes.REGENERATION_2:
+                case CharacterAttributes.REGENERATION_3:
+                    return CharacterAttributes.REGENERATION;
                 default:
                     return attribute;
             }
@@ -319,18 +320,18 @@ namespace TOR_Core.HarmonyPatches
         {
             switch (attribute)
             {
-                case "Bulwark3":
-                case "Swift3":
-                case "Regeneration3":
+                case CharacterAttributes.BULWARK_3:
+                case CharacterAttributes.SWIFT_3:
+                case CharacterAttributes.REGENERATION_3:
                     return 3;
-                case "Bulwark2":
-                case "Swift2":
-                case "Poisonous2":
-                case "Piercing2":
-                case "Ethereal2":
-                case "MonsterSlayer2":
-                case "UndeadSlayer2":
-                case "Regeneration2":
+                case CharacterAttributes.BULWARK_2:
+                case CharacterAttributes.SWIFT_2:
+                case CharacterAttributes.POISONOUS_2:
+                case CharacterAttributes.PIERCING_2:
+                case CharacterAttributes.ETHEREAL_2:
+                case CharacterAttributes.MONSTER_SLAYER_2:
+                case CharacterAttributes.UNDEAD_SLAYER_2:
+                case CharacterAttributes.REGENERATION_2:
                     return 2;
                 default:
                     return 1;
@@ -339,52 +340,52 @@ namespace TOR_Core.HarmonyPatches
 
         private static bool IsTieredUnitAttribute(string attribute)
         {
-            return attribute == "Bulwark" ||
-                   attribute == "Swift" ||
-                   attribute == "Poisonous" ||
-                   attribute == "Piercing" ||
-                   attribute == "Ethereal" ||
-                   attribute == "MonsterSlayer" ||
-                   attribute == "UndeadSlayer" ||
-                   attribute == "Regeneration";
+            return attribute == CharacterAttributes.BULWARK ||
+                   attribute == CharacterAttributes.SWIFT ||
+                   attribute == CharacterAttributes.POISONOUS ||
+                   attribute == CharacterAttributes.PIERCING ||
+                   attribute == CharacterAttributes.ETHEREAL ||
+                   attribute == CharacterAttributes.MONSTER_SLAYER ||
+                   attribute == CharacterAttributes.UNDEAD_SLAYER ||
+                   attribute == CharacterAttributes.REGENERATION;
         }
 
         private static void SetUnitAttributeTextVariables(TextObject text, string attribute, int tier)
         {
             switch (attribute)
             {
-                case "Bulwark":
+                case CharacterAttributes.BULWARK:
                     text.SetTextVariable("VALUE", tier == 3 ? 60 : tier == 2 ? 40 : 20);
                     break;
-                case "Swift":
+                case CharacterAttributes.SWIFT:
                     text.SetTextVariable("VALUE", tier == 3 ? 40 : tier == 2 ? 30 : 20);
                     break;
-                case "Poisonous":
+                case CharacterAttributes.POISONOUS:
                     text.SetTextVariable("CHANCE", tier == 2 ? 35 : 20);
                     text.SetTextVariable("DURATION", 8);
                     text.SetTextVariable("DAMAGE", 2);
                     break;
-                case "Piercing":
+                case CharacterAttributes.PIERCING:
                     text.SetTextVariable("VALUE", tier == 2 ? 40 : 30);
                     break;
-                case "TheHunger":
+                case CharacterAttributes.THE_HUNGER:
                     text.SetTextVariable("VALUE", 15);
                     break;
-                case "Frenzy":
+                case CharacterAttributes.FRENZY:
                     text.SetTextVariable("VALUE", 20);
                     text.SetTextVariable("DURATION", 40);
                     text.SetTextVariable("STACKS", 5);
                     break;
-                case "Ethereal":
+                case CharacterAttributes.ETHEREAL:
                     text.SetTextVariable("VALUE", tier == 2 ? 40 : 25);
                     break;
-                case "MonsterSlayer":
+                case CharacterAttributes.MONSTER_SLAYER:
                     text.SetTextVariable("VALUE", tier == 2 ? 150 : 75);
                     break;
-                case "UndeadSlayer":
+                case CharacterAttributes.UNDEAD_SLAYER:
                     text.SetTextVariable("VALUE", tier == 2 ? 60 : 30);
                     break;
-                case "Regeneration":
+                case CharacterAttributes.REGENERATION:
                     text.SetTextVariable("VALUE", tier == 3 ? 12 : tier == 2 ? 5 : 2);
                     break;
             }
@@ -394,41 +395,41 @@ namespace TOR_Core.HarmonyPatches
         {
             switch (attribute)
             {
-                case "Undead":
+                case CharacterAttributes.UNDEAD:
                     return "attribute_icon_undead";
-                case "Ethereal":
+                case CharacterAttributes.ETHEREAL:
                     return "attribute_icon_ethereal";
-                case "WightKing":
+                case CharacterAttributes.WIGHT_KING:
                     return "attribute_icon_wight_king";
-                case "Brute":
+                case CharacterAttributes.BRUTE:
                     return "attribute_icon_orc";
-                case "TheHunger":
+                case CharacterAttributes.THE_HUNGER:
                     return "attribute_icon_the_hunger"; 
-                case "Frenzy":
+                case CharacterAttributes.FRENZY:
                     return "attribute_icon_frenzy";
-                case "UndeadSlayer":
+                case CharacterAttributes.UNDEAD_SLAYER:
                     return "attribute_icon_undead_slayer";
-                case "Immortality":
+                case CharacterAttributes.IMMORTALITY:
                     return "attribute_icon_immortality";
-                case "Deadeye":
+                case CharacterAttributes.DEADEYE:
                     return "attribute_icon_deadeye";
-                case "KillingBlow":
+                case CharacterAttributes.KILLING_BLOW:
                     return "attribute_icon_killing_blow";
-                case "MonsterSlayer":
+                case CharacterAttributes.MONSTER_SLAYER:
                     return "attribute_icon_monster_slayer";
-                case "Piercing":
+                case CharacterAttributes.PIERCING:
                     return "attribute_icon_piercing";
-                case "Bulwark":
+                case CharacterAttributes.BULWARK:
                     return "attribute_icon_bulwark";
-                case "Swift":
+                case CharacterAttributes.SWIFT:
                     return "attribute_icon_swift";
-                case "Poisonous":
+                case CharacterAttributes.POISONOUS:
                     return "attribute_icon_poisonous";
-                case "Regeneration":
+                case CharacterAttributes.REGENERATION:
                     return "attribute_icon_regeneration";
-                case "Unbreakable":
+                case CharacterAttributes.UNBREAKABLE:
                     return "attribute_icon_unbreakable";
-                case "Unstoppable":
+                case CharacterAttributes.UNSTOPPABLE:
                     return "attribute_icon_unstoppable";
                 default:
                     return null;

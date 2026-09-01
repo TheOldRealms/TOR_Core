@@ -4,6 +4,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
@@ -26,42 +27,42 @@ namespace TOR_Core.Models
             {
                 if (party == PartyBase.MainParty)
                 {
-                    if (characterObject.HasAttribute("DwarfGun") || upgradeTarget.HasAttribute("DwarfGun"))
+                    if (characterObject.HasAttribute(CharacterAttributes.DWARF_GUN) || upgradeTarget.HasAttribute(CharacterAttributes.DWARF_GUN))
                     {
-                        if (Hero.MainHero.HasAttribute("DwarfEngineersII"))
+                        if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_ENGINEERS_2))
                         {
                             explainedNumber.AddFactor(-0.25f);
                         }
-                        else if (Hero.MainHero.HasAttribute("DwarfEngineersI"))
+                        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_ENGINEERS_1))
                         {
                             explainedNumber.AddFactor(-0.15f);
                         }
                     }
 
-                    if (characterObject.HasAttribute("DwarfWarrior"))
+                    if (characterObject.HasAttribute(CharacterAttributes.DWARF_WARRIOR))
                     {
-                        if (Hero.MainHero.HasAttribute("DwarfWarriorIII"))
+                        if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_3))
                         {
                             explainedNumber.AddFactor(-0.30f);
                         }
-                        else if (Hero.MainHero.HasAttribute("DwarfWarriorII"))
+                        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_2))
                         {
                             explainedNumber.AddFactor(-0.20f);
                         }
-                        else if (Hero.MainHero.HasAttribute("DwarfWarriorI"))
+                        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_1))
                         {
                             explainedNumber.AddFactor(-0.10f);
                         }
                     }
 
-                    if (characterObject.HasAttribute("Ironbreaker"))
+                    if (characterObject.HasAttribute(CharacterAttributes.IRONBREAKER))
                     {
                         explainedNumber.AddFactor(3f);
-                        if (Hero.MainHero.HasAttribute("RuneSmithIII"))
+                        if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_RUNESMITH_3))
                         {
                             explainedNumber.AddFactor(-0.20f);
                         }
-                        else if (Hero.MainHero.HasAttribute("RuneSmithII"))
+                        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_RUNESMITH_2))
                         {
                             explainedNumber.AddFactor(-0.10f);
                         }

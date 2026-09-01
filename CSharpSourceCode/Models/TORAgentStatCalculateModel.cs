@@ -20,6 +20,7 @@ using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
@@ -87,7 +88,7 @@ namespace TOR_Core.Models
 
         public override float GetKnockDownResistance(Agent agent, StrikeType strikeType)
         {
-            if (agent.HasAttribute("Tubthumping"))
+            if (agent.HasAttribute(CharacterAttributes.TUBTHUMPING))
             {
                 return 1;
             }
@@ -672,7 +673,7 @@ namespace TOR_Core.Models
                                   && !agent.HasMount;
 
             bool applyMainAgentCareerPassives = agent.IsMainAgent && agent.GetHero().HasAnyCareer();
-            bool applyWardancerSymbol = agent.IsMainAgent && Hero.MainHero.HasAttribute("WEWardancerSymbol");
+            bool applyWardancerSymbol = agent.IsMainAgent && Hero.MainHero.HasAttribute(CharacterAttributes.WE_WARDANCER_SYMBOL);
 
             if (!applyRunAndGun && !applyMainAgentCareerPassives && !applyWardancerSymbol)
                 return;

@@ -11,6 +11,7 @@ using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CampaignMechanics.Menagery
 {
@@ -287,7 +288,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
                 bool IsPrestigeNoble(Hero hero)
                 {
                     if (hero != null)
-                        return hero.Occupation == Occupation.Special && hero.HasAttribute("PrestigeNoble");
+                        return hero.Occupation == Occupation.Special && hero.HasAttribute(CharacterAttributes.PRESTIGE_NOBLE);
                     return false;
                 }
             }

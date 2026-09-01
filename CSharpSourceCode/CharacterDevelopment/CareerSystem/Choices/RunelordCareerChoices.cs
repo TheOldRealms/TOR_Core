@@ -7,6 +7,7 @@ using TOR_Core.CampaignMechanics.Choices;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 
@@ -238,7 +239,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 
     protected override void UnlockCareerBenefitsTier2()
     {
-        Hero.MainHero.AddAttribute("Spellcaster");
+        Hero.MainHero.AddAttribute(CharacterAttributes.SPELLCASTER);
     }
 
     protected override void UnlockCareerBenefitsTier3()
