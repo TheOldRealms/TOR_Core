@@ -728,7 +728,7 @@ namespace TOR_Core.Models
                     }
 
                     // Orc Shaman: +30 WoM for Shaman companion
-                    if (careerChoices.Contains("PowerUvDaWaaaghPassive2") && hero.HasAttribute("ShamanBoss"))
+                    if (careerChoices.Contains("PowerUvDaWaaaghPassive2") && hero.HasAttribute(CharacterAttributes.SHAMAN_BOSS))
                     {
                         var choice = TORCareerChoices.GetChoice("PowerUvDaWaaaghPassive2");
                         explainedNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
@@ -926,7 +926,7 @@ namespace TOR_Core.Models
                     // Note: Using temporary attribute instead of StatusEffect DamageAmplification because
                     // the DamageAmplification system doesn't properly handle damage_type="All" - it stores
                     // the value at the "All" index but damage calculations only read specific damage type indices.
-                    if (attacker.HasAttribute("Arcane_Dmg"))
+                    if (attacker.HasAttribute(CharacterAttributes.ARCANE_DMG))
                     {
                         damageAmplifications[damageTypeIndex] += 0.3f;
                     }

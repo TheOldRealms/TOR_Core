@@ -191,15 +191,21 @@ namespace TOR_Core.Utilities
         {
             //Comments are examples, not exhaustive lists.
 
-            //Player
+            //Player specific
             public const string PLAYER_RUNESMITH = "PlayerRunesmith";//quest completed for career tier 2
             public const string PLAYER_RUNELORD = "PlayerRunelord";//quest completed for career tier 3
+            //These are quest related attributes. If the career tier is locked behind completing the quest, are these not fancy names for their CareerTier equivalents?
+            public const string PLAYER_ORC_BOSS = "PlayerOrcBoss";
+            public const string PLAYER_ORC_BIG_BOSS = "PlayerOrcBigBoss";
+            public const string PLAYER_ORC_SHAMAN_TIER_2 = "PlayerOrcShamanTier2";
+            public const string PLAYER_ORC_SHAMAN_TIER_3 = "PlayerOrcShamanTier3";
+            public const string GIFT_OF_NURGLE = "GiftOfNurgle";
 
             //Ability system
             public const string ABILITY_USER = "AbilityUser";
             public const string CAN_PLACE_ARTILLERY = "CanPlaceArtillery";
 
-            //Special hero types
+            //Special hero types - generally used for detecting specific types of npc heroes
             public const string SPELLCASTER = "SpellCaster";
             public const string RUNESMITH = "Runesmith";
             public const string ILL_FATED = "IllFated";//moussilon knights, similar to grail knights
@@ -209,12 +215,71 @@ namespace TOR_Core.Utilities
             public const string SKILL_TRAINER = "SkillTrainer";
             public const string ENGINEER_COMPANION = "EngineerCompanion";
             public const string NECROMANCER = "Necromancer";
+            public const string VAMPIRE = "Vampire";//what is this actually doing?
+            public const string WIGHT_KING = "WightKing";
+            public const string BRETONNIAN_KNIGHT = "BretonnianKnight";
+            public const string AI_COMPANION = "AiCompanion";//is this still a thing?
+            public const string SHAMAN_BOSS = "ShamanBoss";
+            public const string GLADE_CAPTAIN = "GladeCaptain";
+            public const string BIG_BOSS = "BigBoss";
+            public const string EVERCHOSEN = "Everchosen";//chaos archaon
+            public const string BLOOD_DRAGON = "BloodDragon";//they are a subtype of vampire that can't be differentiated by race
+            public const string SLAYER_LORD = "SlayerLord";
+            public const string BERGERAC = "Bergerac";//bretonnian minor clan, but why does this pass through an attribute rather than making use of native code that handles recruitment for minor clans who are supposed to pull from their special troops?
+            public const string PEASANT_KNIGHT = "PeasantKnight";//same as bergerac
+            public const string BRASS_KEEP = "BrassKeep";
+
+            //Agent-relevant
+            public const string TOUGH = "Tough";
+            public const string BULWARK = "Bulwark";
+            public const string BULWARK_2 = "Bulwark2";
+            public const string BULWARK_3 = "Bulwark3";
+            public const string ETHEREAL = "Ethereal";
+            public const string ETHEREAL_2 = "Ethereal2";
+            public const string MONSTER_SLAYER = "MonsterSlayer";
+            public const string MONSTER_SLAYER_2 = "MonsterSlayer2";
+            public const string PIERCING = "Piercing";
+            public const string PIERCING_2 = "Piercing2";
+            public const string POISONOUS = "Poisonous";
+            public const string POISONOUS_2 = "Poisonous2";
+            public const string REGENERATION = "Regeneration";
+            public const string REGENERATION_2 = "Regeneration2";
+            public const string REGENERATION_3 = "Regeneration3";
+            public const string SWIFT = "Swift";
+            public const string SWIFT_2 = "Swift2";
+            public const string SWIFT_3 = "Swift3";
+            public const string UNDEAD_SLAYER = "UndeadSlayer";
+            public const string UNDEAD_SLAYER_2 = "UndeadSlayer2";
+            public const string UNBREAKABLE = "Unbreakable";
+            public const string TUBTHUMPING = "Tubthumping";
+            public const string SURVIVOR = "Survivor";
+            public const string UNSTOPPABLE = "Unstoppable";
+            public const string HORSE_STEADY = "HorseSteady";
+            public const string HORSE_LINK = "HorseLink";
+            public const string SHIELD_PENETRATION = "ShieldPenetration";
+            public const string THE_HUNGER = "TheHunger";
+            public const string SLICE = "Slice";
+            public const string MONSTER_ATTACK = "MonsterAttack";
+            public const string EXPENDABLE = "Expendable";
+            public const string FRENZY = "Frenzy";
+            public const string DEADEYE = "Deadeye";
+            public const string CRUSH_THROUGH = "CrushThrough";
+            public const string BRUTE = "Brute";
+            public const string CLEAR_BLOOD_BURST = "ClearBloodBurst";
+            public const string IMMORTALITY = "Immortality";
+            public const string KILLING_BLOW = "KillingBlow";
 
             //Priests
-            public const string PRIEST_LADY = "PriestLady";//damsel
+            //These attributes may be applied to both player and npc. They are used to track prayer-using followers 
+            public const string PRIEST_LADY = "PriestLady";//damsels
             public const string PRIEST = "Priest";//generic, unclear name, old attribute, specific to warrior priests as it was used to mark the player who had that career in the past
+            public const string PRIEST_SIGMAR = "PriestSigmar";
+            public const string PRIEST_ULRIC = "PriestUlric";
 
             //Careers
+            //Seals and other troop-applied career modifiers are not present here.
+            //Attributes specific to a single career perk are not currently here.
+
             public const string CAREER_TIER_1 = "CareerTier1";//granted by fulfilling the unlock conditions
             public const string CAREER_TIER_2 = "CareerTier2";//granted by fulfilling the unlock conditions
             public const string CAREER_TIER_3 = "CareerTier3";//granted by fulfilling the unlock conditions
@@ -225,6 +290,9 @@ namespace TOR_Core.Utilities
             public const string NECROMANCER_CHAMPION = "NecromancerChampion";//necromancer
             public const string IMPENETRABLE = "Impenetrable";//ironbreaker
             public const string DOOM_SEEKING = "DoomSeeking";//slayer
+            public const string ARCANE_DMG = "Arcane_Dmg";//Magister, update for nomenclature
+            public const string KNIGHTLY_STRIKE = "KnightlyStrike";
+            public const string EXTORSION = "Extorsion";
 
             //Traits
             public const string THORNS = "Thorns";//damage reflection
@@ -281,12 +349,18 @@ namespace TOR_Core.Utilities
             public const string WAAAAGH_2 = "Waaagh2";
             public const string WAAAAGH_3 = "Waaagh3";
             
-            //Troops
+            //Characters? generic?
             public const string DWARF_MINER = "DwarfMiner";
             public const string DWARF_GUN = "DwarfGun";
             public const string DWARF_WARRIOR = "DwarfWarrior";
             public const string IRONBREAKER = "Ironbreaker";
             public const string ARTILLERY_CREW = "ArtilleryCrew";
+            public const string CREW_2 = "CrewII";
+            public const string CREW_3 = "CrewIII";
+            public const string KNIGHTLY = "Knightly";
+            public const string MONSTROUS = "Monstrous";
+            public const string TREE_SPIRIT = "TreeSpirit";//this detection should instead move to the race and LHM gets cleaned up to be specific to a single type, but dryads would be unaccounted for which is why it remains for the moment. I don't think keeping all of the giant races on a single race entry is saving us enough memory to be worth other headaches.
+            public const string UNDEAD = "Undead";//is race detection faster than attribute lookup? It should be, particularly if we change to caching the race mapping and just performing integer comparisons. This is used for so many other things that there are hidden risks with a straight swap.
 
             //Other?
             public const string HAS_ANIMATION_TRIGGERED_EFFECTS = "HasAnimationTriggeredEffects";//treemen and trolls

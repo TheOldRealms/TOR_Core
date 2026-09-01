@@ -745,7 +745,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             if (Hero.MainHero.HasCareer(TORCareers.GrailDamsel) && !damselCompanion.HasKnownLore("LoreOfBeasts"))
             {
                 GameTexts.SetVariable("DAMSELNAME", damselCompanion.Name);
-                return Hero.MainHero.HasAttribute("SecondLoreForDamselCompanions");
+                return Hero.MainHero.HasAttribute(CharacterAttributes.CAREER_TIER_3);
             }
             return false;
         }

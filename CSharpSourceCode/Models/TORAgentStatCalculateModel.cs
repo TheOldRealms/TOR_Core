@@ -88,7 +88,7 @@ namespace TOR_Core.Models
 
         public override float GetKnockDownResistance(Agent agent, StrikeType strikeType)
         {
-            if (agent.HasAttribute("Tubthumping"))
+            if (agent.HasAttribute(CharacterAttributes.TUBTHUMPING))
             {
                 return 1;
             }

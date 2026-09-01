@@ -283,7 +283,7 @@ namespace TOR_Core.Quests.Careers
         protected override void OnCompleteWithSuccess()
         {
             // Award the PlayerOrcBigBoss attribute
-            Hero.MainHero.AddAttribute("PlayerOrcBigBoss");
+            Hero.MainHero.AddAttribute(CharacterAttributes.PLAYER_ORC_BIG_BOSS);
 
             // TODO: Unlock the third layer of the Orc Boss career if it exists
         }

@@ -225,7 +225,7 @@ namespace TOR_Core.Models
                             continue;
                         }
 
-                        if (hero.HasAttribute("GladeCaptain"))
+                        if (hero.HasAttribute(CharacterAttributes.GLADE_CAPTAIN))
                         {
                             number.Add(choice.Passive.EffectMagnitude, choice.Description);
                         }

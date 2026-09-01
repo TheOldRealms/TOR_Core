@@ -9,6 +9,7 @@ using TOR_Core.CampaignMechanics.Choices;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 {
@@ -237,7 +238,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         protected override void UnlockCareerBenefitsTier3()
         {
             Hero.MainHero.AddKnownLore("LoreOfHeavens");
-            Hero.MainHero.AddAttribute("SecondLoreForDamselCompanions");
+            Hero.MainHero.AddAttribute(CharacterAttributes.CAREER_TIER_3);
         }
     }
 }

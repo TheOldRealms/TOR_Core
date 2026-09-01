@@ -324,6 +324,7 @@ namespace TOR_Core.Extensions
                 info.AcquiredAttributes.Remove(attribute);
             }
         }
+
         public static void AddAttribute(this Hero hero, string attribute)
         {
             var info = hero.GetExtendedInfo();
@@ -452,33 +453,36 @@ namespace TOR_Core.Extensions
 
         public static bool IsSpellSinger(this Hero hero)
         {
-            return hero.Culture.StringId == TORConstants.Cultures.ASRAI && hero.HasAttribute(CharacterAttributes.SPELLCASTER);
+            return hero.Culture.StringId == TORConstants.Cultures.ASRAI && hero.HasAttribute(CharacterAttributes.SPELLCASTER);//Sly : Glade lord players who become casters at tier 3 will be considered spellsingers
         }
 
         public static bool IsUndead(this Hero hero)
         {
-            return hero.HasAttribute("Undead");
+            return hero.HasAttribute(CharacterAttributes.UNDEAD);
         }
 
         public static bool IsTreeSpirit(this Hero hero)
         {
-            return hero.HasAttribute("TreeSpirit");
+            return hero.HasAttribute(CharacterAttributes.TREE_SPIRIT);
         }
 
         public static bool IsChaos(this Hero hero)
         {
-            if (hero.CharacterObject.IsCultist()) return true;
+            if (hero.CharacterObject.IsChaos()) return true;
             if (hero.CharacterObject.IsBeastman()) return true;
             return false;
         }
+
         public static bool IsOrc(this Hero hero)
         {
             return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("orc");
         }
+
         public static bool IsGoblin(this Hero hero)
         {
             return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("goblin");
         }
+
         public static bool IsDwarf(this Hero hero)
         {
             return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("dwarf");
@@ -486,7 +490,12 @@ namespace TOR_Core.Extensions
 
         public static bool IsVampire(this Hero hero)
         {
-            return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("vampire") || hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("necrarch");
+            return hero.CharacterObject.IsVampire();
+        }
+        
+        public static bool IsBloodDragon(this Hero hero)
+        {
+            return hero.IsVampire() && hero.HasAttribute(CharacterAttributes.BLOOD_DRAGON);
         }
 
         public static bool IsPriest(this Hero hero)
@@ -534,7 +543,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsAICompanion(this Hero hero)
         {
-            return hero.HasAttribute("AICompanion") && hero.Occupation == Occupation.Special;
+            return hero.Occupation == Occupation.Special && hero.HasAttribute(CharacterAttributes.AI_COMPANION);
         }
 
         public static bool IsBountyMaster(this Hero hero)
@@ -575,7 +584,12 @@ namespace TOR_Core.Extensions
 
         public static bool IsBretonnianKnight(this Hero hero)
         {
-            return hero.Culture.StringId == TORConstants.Cultures.BRETONNIA && hero.HasAttribute("BrettonianKnight");
+            return hero.Culture.StringId == TORConstants.Cultures.BRETONNIA && hero.HasAttribute(CharacterAttributes.BRETONNIAN_KNIGHT);
+        }
+
+        public static bool IsOrion(this Hero hero)
+        {
+            return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("orion");
         }
 
         /// <remarks>

@@ -81,7 +81,7 @@ public class OrcBossCareerButton(CareerObject career) : GreenskinCareerButton(ca
     private void RemoveExtorsion(CharacterObject characterObject)
     {
         var partyExtendedInfo = ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
-        partyExtendedInfo.RemoveTroopAttribute(characterObject.StringId, "Extorsion");
+        partyExtendedInfo.RemoveTroopAttribute(characterObject.StringId, CharacterAttributes.EXTORSION);
 
         ExtendedInfoManager.Instance.ValidatePartyInfos(MobileParty.MainParty);
 
@@ -94,7 +94,7 @@ public class OrcBossCareerButton(CareerObject career) : GreenskinCareerButton(ca
     private void AddExtorsion(CharacterObject characterObject)
     {
         var partyExtendedInfo = ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
-        partyExtendedInfo.AddTroopAttribute(characterObject, "Extorsion");
+        partyExtendedInfo.AddTroopAttribute(characterObject, CharacterAttributes.EXTORSION);
 
         ExtendedInfoManager.Instance.ValidatePartyInfos(MobileParty.MainParty);
 
@@ -108,7 +108,7 @@ public class OrcBossCareerButton(CareerObject career) : GreenskinCareerButton(ca
     {
         var partyExtendedInfo = ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
         var attributes = partyExtendedInfo.TroopAttributes.FirstOrDefault(x => x.Key == characterObject.StringId).Value;
-        return attributes?.Contains("Extorsion") ?? false;
+        return attributes?.Contains(CharacterAttributes.EXTORSION) ?? false;
     }
 
 }

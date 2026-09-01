@@ -255,7 +255,7 @@ namespace TOR_Core.Quests
                         currentStory.SetVariable("MadeDealWithCultists", true);
                     }
                 }
-                Hero.MainHero.AddAttribute("GiftOfNurgle");
+                Hero.MainHero.AddAttribute(CharacterAttributes.GIFT_OF_NURGLE);
             }
 
             private void TurnHostile()

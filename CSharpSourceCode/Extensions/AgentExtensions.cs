@@ -71,17 +71,17 @@ namespace TOR_Core.Extensions
 
         public static bool IsExpendable(this Agent agent)
         {
-            return agent.GetAttributes().Contains("Expendable");
+            return agent.HasAttribute(CharacterAttributes.EXPENDABLE);
         }
 
         public static bool IsUnbreakable(this Agent agent)
         {
-            return agent.GetAttributes().Contains("Unbreakable");
+            return agent.HasAttribute(CharacterAttributes.UNBREAKABLE);
         }
 
         public static bool IsUndead(this Agent agent)
         {
-            return agent.GetAttributes().Contains("Undead");
+            return agent.HasAttribute(CharacterAttributes.UNDEAD);
         }
 
         public static bool IsTreeSpirit(this Agent agent)
@@ -142,174 +142,174 @@ namespace TOR_Core.Extensions
         public static int GetRegenerationTier(this Agent agent)
         {
             var attributes = agent.GetAttributes();
-            if (attributes.Contains("Regeneration3"))
+            if (attributes.Contains(CharacterAttributes.REGENERATION_3))
             {
                 return 3;
             }
 
-            if (attributes.Contains("Regeneration2"))
+            if (attributes.Contains(CharacterAttributes.REGENERATION_2))
             {
                 return 2;
             }
 
-            return attributes.Contains("Regeneration") ? 1 : 0;
+            return attributes.Contains(CharacterAttributes.REGENERATION) ? 1 : 0;
         }
 
         public static float GetPiercingArmorReduction(this Agent agent)
         {
             var attributes = agent.GetAttributes();
-            if (attributes.Contains("Piercing2"))
+            if (attributes.Contains(CharacterAttributes.PIERCING_2))
             {
                 return 0.40f;
             }
 
-            return attributes.Contains("Piercing") ? 0.30f : 0f;
+            return attributes.Contains(CharacterAttributes.PIERCING) ? 0.30f : 0f;
         }
 
         public static float GetBulwarkRangedDamageReduction(this Agent agent)
         {
             var attributes = agent.GetAttributes();
-            if (attributes.Contains("Bulwark3"))
+            if (attributes.Contains(CharacterAttributes.BULWARK_3))
             {
                 return 0.60f;
             }
 
-            if (attributes.Contains("Bulwark2"))
+            if (attributes.Contains(CharacterAttributes.BULWARK_2))
             {
                 return 0.40f;
             }
 
-            return attributes.Contains("Bulwark") ? 0.20f : 0f;
+            return attributes.Contains(CharacterAttributes.BULWARK) ? 0.20f : 0f;
         }
 
         public static float GetSwiftMovementSpeedBonus(this Agent agent)
         {
             var attributes = agent.GetAttributes();
-            if (attributes.Contains("Swift3"))
+            if (attributes.Contains(CharacterAttributes.SWIFT_3))
             {
                 return 0.40f;
             }
 
-            if (attributes.Contains("Swift2"))
+            if (attributes.Contains(CharacterAttributes.SWIFT_2))
             {
                 return 0.30f;
             }
 
-            return attributes.Contains("Swift") ? 0.20f : 0f;
+            return attributes.Contains(CharacterAttributes.SWIFT) ? 0.20f : 0f;
         }
 
         public static float GetPoisonousHitChance(this Agent agent)
         {
             var attributes = agent.GetAttributes();
-            if (attributes.Contains("Poisonous2"))
+            if (attributes.Contains(CharacterAttributes.POISONOUS_2))
             {
                 return 0.35f;
             }
 
-            return attributes.Contains("Poisonous") ? 0.20f : 0f;
+            return attributes.Contains(CharacterAttributes.POISONOUS) ? 0.20f : 0f;
         }
 
         public static bool HasShieldPenetration(this Agent agent)
         {
-            return agent.GetAttributes().Contains("ShieldPenetration");
+            return agent.HasAttribute(CharacterAttributes.SHIELD_PENETRATION);
         }
 
         public static bool HasHorseLink(this Agent agent)
         {
-            return agent.GetAttributes().Contains("HorseLink");
+            return agent.HasAttribute(CharacterAttributes.HORSE_LINK);
         }
 
         public static bool HasHorseSteady(this Agent agent)
         {
-            return agent.GetAttributes().Contains("HorseSteady");
+            return agent.HasAttribute(CharacterAttributes.HORSE_STEADY);
         }
 
         public static bool IsUnstoppable(this Agent agent)
         {
-            return agent.GetAttributes().Contains("Unstoppable");
+            return agent.HasAttribute(CharacterAttributes.UNSTOPPABLE);
         }
 
         public static bool HasSlice(this Agent agent)
         {
-            return agent.GetAttributes().Contains("Slice");
+            return agent.HasAttribute(CharacterAttributes.SLICE);
         }
 
         public static bool HasMonsterAttack(this Agent agent)
         {
-            return agent.GetAttributes().Contains("MonsterAttack");
+            return agent.HasAttribute(CharacterAttributes.MONSTER_ATTACK);
         }
 
         public static bool HasCrushThrough(this Agent agent)
         {
-            return agent.GetAttributes().Contains("CrushThrough");
+            return agent.HasAttribute(CharacterAttributes.CRUSH_THROUGH);
         }
         public static bool HasBrute(this Agent agent)
         {
-            return agent.GetAttributes().Contains("Brute");
+            return agent.HasAttribute(CharacterAttributes.BRUTE);
         }
 
         public static bool HasTheHunger(this Agent agent)
         {
-            return agent.GetAttributes().Contains("TheHunger");
+            return agent.HasAttribute(CharacterAttributes.THE_HUNGER);
         }
 
         public static bool HasFrenzy(this Agent agent)
         {
-            return agent.GetAttributes().Contains("Frenzy");
+            return agent.HasAttribute(CharacterAttributes.FRENZY);
         }
 
         public static bool HasWightKingTrait(this Agent agent)
         {
             var hero = agent.GetHero();
-            return hero != null && hero.HasAttribute("WightKing");
+            return hero != null && hero.HasAttribute(CharacterAttributes.WIGHT_KING);
         }
 
         public static float GetUndeadSlayerDamageBonus(this Agent agent)
         {
             var attributes = agent.GetAttributes();
-            if (attributes.Contains("UndeadSlayer2"))
+            if (attributes.Contains(CharacterAttributes.UNDEAD_SLAYER_2))
             {
                 return 0.60f;
             }
 
-            return attributes.Contains("UndeadSlayer") ? 0.30f : 0f;
+            return attributes.Contains(CharacterAttributes.UNDEAD_SLAYER) ? 0.30f : 0f;
         }
 
         public static bool HasImmortality(this Agent agent)
         {
-            return agent.GetAttributes().Contains("Immortality");
+            return agent.HasAttribute(CharacterAttributes.IMMORTALITY);
         }
 
         public static bool HasDeadeye(this Agent agent)
         {
-            return agent.GetAttributes().Contains("Deadeye");
+            return agent.HasAttribute(CharacterAttributes.DEADEYE);
         }
 
         public static float GetEtherealIgnoreChance(this Agent agent)
         {
             var attributes = agent.GetAttributes();
-            if (attributes.Contains("Ethereal2"))
+            if (attributes.Contains(CharacterAttributes.ETHEREAL_2))
             {
                 return 0.40f;
             }
 
-            return attributes.Contains("Ethereal") ? 0.25f : 0f;
+            return attributes.Contains(CharacterAttributes.ETHEREAL) ? 0.25f : 0f;
         }
 
         public static bool HasKillingBlow(this Agent agent)
         {
-            return agent.GetAttributes().Contains("KillingBlow");
+            return agent.HasAttribute(CharacterAttributes.KILLING_BLOW);
         }
 
         public static float GetMonsterSlayerDamageBonus(this Agent agent)
         {
             var attributes = agent.GetAttributes();
-            if (attributes.Contains("MonsterSlayer2"))
+            if (attributes.Contains(CharacterAttributes.MONSTER_SLAYER_2))
             {
                 return 1.50f;
             }
 
-            return attributes.Contains("MonsterSlayer") ? 0.75f : 0f;
+            return attributes.Contains(CharacterAttributes.MONSTER_SLAYER) ? 0.75f : 0f;
         }
 
         public static bool IsMonstrous(this Agent agent)
@@ -319,7 +319,7 @@ namespace TOR_Core.Extensions
 
         public static bool ShouldNotBleed(this Agent agent)
         {
-            return agent.GetAttributes().Contains("ClearBloodBurst");
+            return agent.HasAttribute(CharacterAttributes.CLEAR_BLOOD_BURST);
         }
 
         public static bool IsVampire(this Agent agent)
@@ -329,17 +329,17 @@ namespace TOR_Core.Extensions
 
         public static bool IsAbilityUser(this Agent agent)
         {
-            return agent.GetAttributes().Contains("AbilityUser");
+            return agent.HasAttribute(CharacterAttributes.ABILITY_USER);
         }
 
         public static bool IsSpellCaster(this Agent agent)
         {
-            return agent.GetAttributes().Contains("SpellCaster");
+            return agent.HasAttribute(CharacterAttributes.SPELLCASTER);
         }
 
         public static bool CanPlaceArtillery(this Agent agent)
         {
-            return agent.GetAttributes().Contains("CanPlaceArtillery");
+            return agent.HasAttribute(CharacterAttributes.CAN_PLACE_ARTILLERY);
         }
         public static bool HasPartyAnvilOfDoom(this Agent agent)
         {

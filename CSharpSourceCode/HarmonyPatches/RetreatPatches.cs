@@ -630,7 +630,7 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
                     if (troop == null || troop.IsHero)
                         continue;
 
-                    if (troop.HasAttribute("Unbreakable"))
+                    if (troop.HasAttribute(CharacterAttributes.UNBREAKABLE))
                         continue;
 
                     var formationValue = GetRetreatFormationValue(troop.GetFormationClass());

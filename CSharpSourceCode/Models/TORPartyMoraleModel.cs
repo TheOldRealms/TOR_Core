@@ -95,7 +95,7 @@ namespace TOR_Core.Models
                         foreach (var attributePair in partyExtendedInfo.TroopAttributes)
                         {
                             var attributes = attributePair.Value;
-                            if (attributes?.Contains("Extorsion") ?? false)
+                            if (attributes?.Contains(CharacterAttributes.EXTORSION) ?? false)
                             {
                                 var troopId = attributePair.Key;
                                 var troop = MBObjectManager.Instance.GetObject<CharacterObject>(troopId);

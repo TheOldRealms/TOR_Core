@@ -27,7 +27,7 @@ namespace TOR_Core.Models
     {
         public override float GetSurvivalChance(PartyBase party, CharacterObject character, DamageTypes damageType, bool canDamageKillEvenIfBlunt, PartyBase enemyParty = null)
         {
-            if (character.IsHero || character.HasAttribute("Survivor"))
+            if (character.IsHero || character.HasAttribute(CharacterAttributes.SURVIVOR))
             {
                 return 1f;
             }

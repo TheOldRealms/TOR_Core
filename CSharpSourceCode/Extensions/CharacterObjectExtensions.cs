@@ -60,7 +60,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsMonstrous(this BasicCharacterObject characterObject)
         {
-            return characterObject != null && characterObject.HasAttribute("Monstrous");
+            return characterObject != null && characterObject.HasAttribute(CharacterAttributes.MONSTROUS);
         }
 
         public static bool CanClimbLadders(this BasicCharacterObject characterObject)
@@ -113,21 +113,17 @@ namespace TOR_Core.Extensions
             {
                 return characterObject.HeroObject.IsUndead();
             }
-            return characterObject.GetAttributes().Contains("Undead");
+            return characterObject.HasAttribute(CharacterAttributes.UNDEAD);
         }
-
-        public static bool IsGhost(this CharacterObject characterObject)
-        {
-            return characterObject.StringId.Contains("spirit_host") || characterObject.StringId.Contains("wraith");
-        }
-
+                
         public static bool IsVampire(this CharacterObject characterObject)
         {
-            if (characterObject.IsHero)
-            {
-                return characterObject.HeroObject.IsVampire();
-            }
             return characterObject.Race == FaceGen.GetRaceOrDefault("vampire") || characterObject.Race == FaceGen.GetRaceOrDefault("necrarch");
+        }
+
+        public static bool IsNecrarch(this BasicCharacterObject basicCharacterObject)
+        {
+            return basicCharacterObject.Race == FaceGen.GetRaceOrDefault("necrarch");
         }
         
         public static bool IsDwarf(this BasicCharacterObject characterObject)
@@ -137,27 +133,15 @@ namespace TOR_Core.Extensions
 
         public static bool IsDwarf(this CharacterObject characterObject)
         {
-            if (characterObject.IsHero)
-            {
-                return characterObject.HeroObject.IsDwarf();
-            }
             return characterObject.Race == FaceGen.GetRaceOrDefault("dwarf");
         }
 
         public static bool IsOrc(this CharacterObject characterObject)
         {
-            if (characterObject.IsHero)
-            {
-                return characterObject.HeroObject.IsOrc();
-            }
             return characterObject.Race == FaceGen.GetRaceOrDefault("orc");
         }
         public static bool IsGoblin(this CharacterObject characterObject)
         {
-            if (characterObject.IsHero)
-            {
-                return characterObject.HeroObject.IsGoblin();
-            }
             return characterObject.Race == FaceGen.GetRaceOrDefault("goblin");
         }
 
@@ -176,9 +160,9 @@ namespace TOR_Core.Extensions
             return characterObject.Race == FaceGen.GetRaceOrDefault("troll");
         }
 
-        public static bool IsMinotaur(this BasicCharacterObject characterObject)
+        public static bool IsMinotaur(this BasicCharacterObject basicCharacterObject)
         {
-            return characterObject.Race == FaceGen.GetRaceOrDefault("minotaur");
+            return basicCharacterObject.Race == FaceGen.GetRaceOrDefault("minotaur");
         }
 
         public static bool IsTreeman(this BasicCharacterObject basicCharacterObject)
@@ -214,17 +198,17 @@ namespace TOR_Core.Extensions
         public static bool IsTreeSpirit(this CharacterObject characterObject)
         {
             if (characterObject.IsHero) return characterObject.HeroObject.IsTreeSpirit();
-            else return characterObject.GetAttributes().Contains("TreeSpirit");
+            else return characterObject.HasAttribute(CharacterAttributes.TREE_SPIRIT);
         }
 
         public static bool IsTreeSpirit(this BasicCharacterObject characterObject)
         {
-            return characterObject.GetAttributes().Contains("TreeSpirit");
+            return characterObject.HasAttribute(CharacterAttributes.TREE_SPIRIT);
         }
 
         public static bool IsKnightUnit(this CharacterObject characterObject)
         {
-            return !characterObject.IsHero && characterObject.IsMounted && (IsEliteTroop(characterObject) || characterObject.HasAttribute("Knightly"));
+            return !characterObject.IsHero && characterObject.IsMounted && (IsEliteTroop(characterObject) || characterObject.HasAttribute(CharacterAttributes.KNIGHTLY));
         }
 
         public static bool IsRunesmith(this CharacterObject characterObject)
@@ -313,7 +297,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsUndead(this BasicCharacterObject characterObject)
         {
-            return characterObject.GetAttributes().Contains("Undead");
+            return characterObject.HasAttribute(CharacterAttributes.UNDEAD);
         }
 
         public static bool IsSkeleton(this BasicCharacterObject characterObject)
@@ -321,14 +305,19 @@ namespace TOR_Core.Extensions
             return characterObject.Race == FaceGen.GetRaceOrDefault("skeleton");
         }
 
-        public static bool IsGhost(this BasicCharacterObject characterObject)
+        public static bool IsGhost(this CharacterObject characterObject)
         {
-            return characterObject.StringId.Contains("spirit_host") || characterObject.StringId.Contains("wraith");
+            return characterObject.Race == FaceGen.GetRaceOrDefault("spirit_host") || characterObject.Race == FaceGen.GetRaceOrDefault("wraith");
+        }
+
+        public static bool IsGhost(this BasicCharacterObject basicCharacterObject)
+        {
+            return basicCharacterObject.Race == FaceGen.GetRaceOrDefault("spirit_host") || basicCharacterObject.Race == FaceGen.GetRaceOrDefault("wraith");
         }
 
         public static bool IsIronbreakerUnit(this BasicCharacterObject characterObject)
         {
-            return characterObject.IsSoldier && characterObject.Culture.StringId == TORConstants.Cultures.DAWI && characterObject.StringId.Contains("iron");
+            return characterObject.IsSoldier && characterObject.Culture.StringId == TORConstants.Cultures.DAWI && characterObject.HasAttribute(CharacterAttributes.IRONBREAKER);
         }
 
         public static bool IsVampire(this BasicCharacterObject characterObject)
@@ -353,12 +342,12 @@ namespace TOR_Core.Extensions
 
         public static bool IsBloodDragon(this BasicCharacterObject characterObject)
         {
-            return characterObject.GetAttributes().Contains("BloodDragon");
+            return characterObject.IsVampire() && characterObject.HasAttribute(CharacterAttributes.BLOOD_DRAGON);
         }
 
         public static bool IsBrassKeepLord(this BasicCharacterObject characterObject)
         {
-            return characterObject.GetAttributes().Contains("BrassKeep");
+            return characterObject.HasAttribute(CharacterAttributes.BRASS_KEEP);
         }
 
         public static bool IsReligiousUnit(this CharacterObject characterObject)
@@ -433,19 +422,20 @@ namespace TOR_Core.Extensions
                     var explainedNumber = new ExplainedNumber(cost);
                     CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref explainedNumber, PassiveEffectType.CustomResourceUpgradeCostModifier, true, character);
 
-                    // Waaagh3 and Waaagh4 (Wargh3/Wargh4): Teef upgrade penalty for Greenskins
+                    
+                    
+                    
+                    
+                    // Waaagh3 and Waaagh4 : Teef upgrade penalty for Greenskins
                     if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN &&
-                        info.ResourceCost.ResourceType == "Teef")
+                        info.ResourceCost.ResourceType == "Teef")//resource type check is redundant because upgrades should be disabled prior to this for other culture troops who would cost a different resource.
+                        //Perhaps this would change if goblins had a different currency, but atm not relevant.
                     {
-                        if (Hero.MainHero.HasAttribute("Wargh4"))
+                        if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_3))//Sly : these are spelled wrong and need to point at the Waaagh attributes
                             explainedNumber.AddFactor(1.0f);
-                        else if (Hero.MainHero.HasAttribute("Wargh3"))
-                            explainedNumber.AddFactor(0.5f);
+                        else if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_2))cost = Math.Max((int)explainedNumber.ResultNumber, 1);
+                }           explainedNumber.AddFactor(0.5f);
                     }
-
-                    cost = Math.Max((int)explainedNumber.ResultNumber, 1);
-                }
-
                 return new Tuple<CustomResource, int>(CustomResourceManager.GetResourceObject(info.ResourceCost.ResourceType), cost);
             }
             return null;

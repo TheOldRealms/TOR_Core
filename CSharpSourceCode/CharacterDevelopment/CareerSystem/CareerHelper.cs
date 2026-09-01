@@ -711,7 +711,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
             foreach (var attribute in attributes)
             {
-                if (attribute == "Extorsion")
+                if (attribute == CharacterAttributes.EXTORSION)
                 {
                     var debuff = "greenskin_extorsion_debuff";
                     AddMissionPermanentEffect(agent, debuff);

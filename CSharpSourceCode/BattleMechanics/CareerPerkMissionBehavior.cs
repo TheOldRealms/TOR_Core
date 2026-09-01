@@ -155,7 +155,7 @@ namespace TOR_Core.BattleMechanics
             var comp = affectedAgent.GetComponent<StatusEffectComponent>();
             if (comp == null) return;
             var temporaryEffects = comp.GetTemporaryAttributes();
-            if (!temporaryEffects.Contains("AccusationMark")) return;
+            if (!temporaryEffects.Contains(CharacterAttributes.ACCUSATION_MARK)) return;
 
             var choices = Hero.MainHero.GetAllCareerChoices();
 

@@ -176,7 +176,7 @@ public class TORCustomResourceModel : GameModel
                         var choice = TORCareerChoices.GetChoice("MeanestanDaBaddestPassive4");
                         if (choice != null)
                         {
-                            var companions = party.GetMemberHeroes().Where(x => x.HasAttribute("BigBoss")).Count();
+                            var companions = party.GetMemberHeroes().Where(x => x.HasAttribute(CharacterAttributes.BIG_BOSS)).Count();
                             number.Add(companions * choice.GetPassiveValue(), choice.BelongsToGroup.Name);
                         }
                     }
@@ -188,7 +188,7 @@ public class TORCustomResourceModel : GameModel
                     foreach (var attributePair in info.TroopAttributes)
                     {
                         var attributes = attributePair.Value;
-                        if (!attributes.Contains("Extorsion"))
+                        if (!attributes.Contains(CharacterAttributes.EXTORSION))
                             continue;
 
                         var element = Hero.MainHero.PartyBelongedTo.MemberRoster.GetTroopRoster().FirstOrDefault(x => x.Character.StringId == attributePair.Key);

@@ -805,13 +805,13 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     break;
 
                 case "option_3_vc_vampire":
-                    hero.AddAttribute("Vampire");
+                    hero.AddAttribute(CharacterAttributes.VAMPIRE);
                     hero.AddAttribute(CharacterAttributes.NECROMANCER);
                     hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 60);
                     break;
 
                 case "option_3_mousillon_vampire":
-                    hero.AddAttribute("Vampire");
+                    hero.AddAttribute(CharacterAttributes.VAMPIRE);
                     hero.AddAttribute(CharacterAttributes.NECROMANCER);
                     hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 60);
                     // Bloodline career will be applied by ApplyStoredSpecializations
@@ -979,7 +979,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     {
                         hero.AddCareer(TORCareers.WarriorPriest);
                         hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar"), 60);
-                        hero.AddAttribute("PriestSigmar");
+                        hero.AddAttribute(CharacterAttributes.PRIEST_SIGMAR);
                         var skill = hero.GetSkillValue(TORSkills.Faith);
                         hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
                         hero.HeroDeveloper.AddPerk(TORPerks.Faith.NovicePrayers);
@@ -997,7 +997,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     {
                         hero.AddCareer(TORCareers.WarriorPriestUlric);
                         hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_ulric"), 60);
-                        hero.AddAttribute("PriestUlric");
+                        hero.AddAttribute(CharacterAttributes.PRIEST_ULRIC);
                         var skill = hero.GetSkillValue(TORSkills.Faith);
                         hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
                         hero.HeroDeveloper.AddPerk(TORPerks.Faith.NovicePrayers);

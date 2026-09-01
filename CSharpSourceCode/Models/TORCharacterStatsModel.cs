@@ -140,12 +140,12 @@ namespace TOR_Core.Models
                     number.Add(100, TORTextHelper.GetTextObject("tor_stats_vampire_body_text", "Vampire body"));
                 }
 
-                if (hero.HasAttribute("Everchosen"))
+                if (hero.HasAttribute(CharacterAttributes.EVERCHOSEN))
                 {
                     number.Add(2000);
                 }
 
-                if (hero.HasAttribute("Orion"))
+                if (hero.IsOrion())
                 {
                     number.Add(3000);
                 }
@@ -163,7 +163,7 @@ namespace TOR_Core.Models
                     number.Add(40);
                 }
 
-                if (hero.HasAttribute("Tough"))
+                if (hero.HasAttribute(CharacterAttributes.TOUGH))
                 {
                     number.Add(100);
                 }
@@ -218,7 +218,7 @@ namespace TOR_Core.Models
                     // BestofDaBestPassive4: Orc Big Bosses gain 100 health
                     if (Hero.MainHero.HasCareerChoice("BestofDaBestPassive4"))
                     {
-                        if (hero.HasAttribute("BigBoss"))
+                        if (hero.HasAttribute(CharacterAttributes.BIG_BOSS))
                         {
                             var choice = TORCareerChoices.GetChoice("BestofDaBestPassive4");
                             number.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
@@ -228,7 +228,7 @@ namespace TOR_Core.Models
                     // Orc Shaman: +70 HP for Shaman Boss companion
                     if (Hero.MainHero.HasCareerChoice("GorkAnMorkAreWatchinPassive4"))
                     {
-                        if (hero.HasAttribute("ShamanBoss"))
+                        if (hero.HasAttribute(CharacterAttributes.SHAMAN_BOSS))
                         {
                             var choice = TORCareerChoices.GetChoice("GorkAnMorkAreWatchinPassive4");
                             number.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
@@ -276,7 +276,7 @@ namespace TOR_Core.Models
                 }
 
 
-                if (hero.HasAttribute("GiftOfNurgle")) number.Add(20, new TextObject("Gift of Nurgle"));
+                if (hero.HasAttribute(CharacterAttributes.GIFT_OF_NURGLE)) number.Add(20, new TextObject("Gift of Nurgle"));
             }
             if (hero.GetPerkValue(TORPerks.Faith.Devotee))
             {
