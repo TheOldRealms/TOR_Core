@@ -350,3 +350,5 @@ EmAssetPackages/
 Tools/TranslationTool/translation_issues_report_*
 .claude
 tmpclaude-*
+CLAUDE.md
+INDEX.md
