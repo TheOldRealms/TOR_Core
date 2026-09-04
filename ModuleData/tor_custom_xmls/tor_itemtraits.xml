@@ -5016,7 +5016,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_emp_enchant_myrmidia_wisdom" ItemTraitName="Myrmidia's Wisdom" IsCraftable="false" IconName="blazingsun_icon">
+  <ItemTrait ItemTraitStringId="learn_miracle_myrmidia_wisdom" ItemTraitName="Myrmidia's Wisdom" IsCraftable="false" IconName="blazingsun_icon">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -5044,7 +5044,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_gs_enchant_mork_kunningly_brutal" ItemTraitName="Kunningly Brutal" IsCraftable="false" IconName="mork_icon">
+  <ItemTrait ItemTraitStringId="learn_miracle_mork_kunningly_brutal" ItemTraitName="Kunningly Brutal" IsCraftable="false" IconName="mork_icon">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -5073,7 +5073,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_dw_rune_grimnir_slayers_oath" ItemTraitName="Slayer's Oath" IsCraftable="false" IconName="rune_fury">
+  <ItemTrait ItemTraitStringId="learn_miracle_grimnir_slayers_oath" ItemTraitName="Slayer's Oath" IsCraftable="false" IconName="rune_fury">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -5102,7 +5102,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_dw_rune_grungni_drongrundum_spirit" ItemTraitName="Drongrundum's Spirit" IsCraftable="false" IconName="rune_striking">
+  <ItemTrait ItemTraitStringId="learn_miracle_grungni_drongrundum_spirit" ItemTraitName="Drongrundum's Spirit" IsCraftable="false" IconName="rune_striking">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -5130,7 +5130,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_dw_rune_valaya_ancestor_queen_salve" ItemTraitName="Ancestor Queen's Salve" IsCraftable="false" IconName="rune_fortitude">
+  <ItemTrait ItemTraitStringId="learn_miracle_valaya_ancestor_queen_salve" ItemTraitName="Ancestor Queen's Salve" IsCraftable="false" IconName="rune_fortitude">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -5152,7 +5152,7 @@
     <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.20" />
     <StatsTuple StatType="MovementSpeed" Value="20" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_asrai_enchant_vaul_draugnir_breath" ItemTraitName="Draugnir's Breath" IsCraftable="false" IconName="favor_icon_100">
+  <ItemTrait ItemTraitStringId="learn_miracle_vaul_draugnir_breath" ItemTraitName="Draugnir's Breath" IsCraftable="false" IconName="favor_icon_100">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -5180,7 +5180,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_eo_enchant_asuryan_phoenix_eternal" ItemTraitName="The Phoenix Eternal" IsCraftable="false" IconName="favor_icon_100">
+  <ItemTrait ItemTraitStringId="learn_miracle_asuryan_phoenix_eternal" ItemTraitName="The Phoenix Eternal" IsCraftable="false" IconName="favor_icon_100">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -5208,7 +5208,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_asrai_enchant_loec_tricksters_dance" ItemTraitName="A Trickster's Dance" IsCraftable="false" IconName="harmony_icon_100">
+  <ItemTrait ItemTraitStringId="learn_miracle_loec_tricksters_dance" ItemTraitName="A Trickster's Dance" IsCraftable="false" IconName="harmony_icon_100">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -5237,7 +5237,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_gs_enchant_gork_brutal_kunnin" ItemTraitName="Brutal Kunnin'" IsCraftable="false" IconName="gork_icon">
+  <ItemTrait ItemTraitStringId="learn_miracle_gork_brutal_kunnin" ItemTraitName="Brutal Kunnin'" IsCraftable="false" IconName="gork_icon">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
