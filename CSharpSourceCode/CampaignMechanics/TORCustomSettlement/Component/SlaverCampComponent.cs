@@ -46,10 +46,9 @@ public class SlaverCampComponent : BaseRaiderSpawnerComponent
 
     public override MobileParty SpawnNewParty(Settlement initialTarget)
     {
-        PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("druchii_slaver_party");
         Clan clan = Clan.FindFirst(x => x.StringId == "druchii_clan_1");
         var find = TORCommon.FindSettlementsAroundPosition(Settlement.Position.ToVec2(), 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
-        var raidingParty = RaidingPartyComponent.CreateRaidingParty("druchii_clan_1_party_" + RaidingPartyCount + 1, Settlement, TORTextHelper.GetText("tor_dark_elf_slavers", "Druchii Slavers"), template, MBRandom.RandomInt(75, 99));
+        var raidingParty = RaidingPartyComponent.CreateRaidingParty("druchii_clan_1_party_" + RaidingPartyCount + 1, Settlement, TORTextHelper.GetText("tor_dark_elf_slavers", "Druchii Slavers"), MBRandom.RandomInt(75, 99));
         if (find != null)
         {
             SetPartyAiAction.GetActionForRaidingSettlement(raidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false, false);

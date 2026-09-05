@@ -80,6 +80,7 @@ public class ChaosPortalComponent : BaseRaiderSpawnerComponent
             targetPartySize *= 2;//20% chance for doubled party size
         }
 
+        //var chaosClan = Clan.FindFirst(x => x.StringId == "chaos_clan_1");
         var chaosRaidingParty = RaidingPartyComponent.CreateRaidingParty("chaos_raider_clan_1_party_" + RaidingPartyCount + 1, Settlement, TORTextHelper.GetText("tor_chaos_raiders", "Chaos Raiders"), targetPartySize);
         if (find != null)
         {
