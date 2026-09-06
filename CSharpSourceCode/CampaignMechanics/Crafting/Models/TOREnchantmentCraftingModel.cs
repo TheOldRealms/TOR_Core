@@ -4,11 +4,9 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
-using TOR_Core.Extensions;
 using TOR_Core.Framework;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
-using TOR_Core.CampaignMechanics.Crafting;
 
 namespace TOR_Core.CampaignMechanics.Crafting.Models;
 
@@ -49,28 +47,29 @@ public class TOREnchantmentCraftingModel : GameModel
 
 
 
-    public int GetEffectiveIngredientAmount(List<Hero> heroes, ItemTrait itemTrait, TorTradeGoodType ingerdient)
+    /// <summary>
+    /// Ingredient cost after career discounts.
+    /// </summary>
+    public int GetEffectiveIngredientAmount(ItemTrait itemTrait, TorTradeGoodType ingredient)
     {
         var explainedNumber = new ExplainedNumber(itemTrait.IngredientAmount);
+        var hero = Hero.MainHero;
 
-        foreach (var hero in heroes)
+        if (hero != null && EnchantmentBlueprints.IsKnown(itemTrait.ItemTraitStringId))
         {
-            if (hero.HasKnownEnchantmentBlueprint(itemTrait.ItemTraitStringId))
-            {
-                // Note: this call is a different kind of coupling than the module-specific
-                // hooks below - PassiveEffectType is a generic, career-agnostic dispatch
-                // mechanism (CareerHelper doesn't know "Grail Damsel"/"Necrarch"/"Runelord" by
-                // name, it just applies every choice tagged EnchantmentCostReduction), it's
-                // just currently misplaced under CharacterDevelopment/CareerSystem alongside
-                // genuinely Careers-specific content. Left as-is; properly fixing it means
-                // relocating CareerHelper/PassiveEffectType to Framework, a separate, larger
-                // move with a much bigger blast radius (CareerHelper is used everywhere).
-                CharacterDevelopment.CareerSystem.CareerHelper.ApplyBasicCareerPassives(hero, ref explainedNumber, PassiveEffectType.EnchantmentCostReduction, true);
+            // Note: this call is a different kind of coupling than the module-specific
+            // hooks below - PassiveEffectType is a generic, career-agnostic dispatch
+            // mechanism (CareerHelper doesn't know "Grail Damsel"/"Necrarch"/"Runelord" by
+            // name, it just applies every choice tagged EnchantmentCostReduction), it's
+            // just currently misplaced under CharacterDevelopment/CareerSystem alongside
+            // genuinely Careers-specific content. Left as-is; properly fixing it means
+            // relocating CareerHelper/PassiveEffectType to Framework, a separate, larger
+            // move with a much bigger blast radius (CareerHelper is used everywhere).
+            CharacterDevelopment.CareerSystem.CareerHelper.ApplyBasicCareerPassives(hero, ref explainedNumber, PassiveEffectType.EnchantmentCostReduction, true);
 
-                foreach (var factor in CraftingCareerHooks.EnchantmentCostReductionFactors)
-                {
-                    explainedNumber.AddFactor(factor(hero));
-                }
+            foreach (var factor in CraftingCareerHooks.EnchantmentCostReductionFactors)
+            {
+                explainedNumber.AddFactor(factor(hero));
             }
         }
 

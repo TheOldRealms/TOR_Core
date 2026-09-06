@@ -700,7 +700,7 @@ namespace TOR_Core.Ink
                 return;
             }
 
-            Hero.MainHero.AddEnchantmentBlueprint(blueprintId, true);
+            EnchantmentBlueprints.Learn(blueprintId, Hero.MainHero, true);
         }
 
         private void LearnRandomUnknownOrionEnchantment()
@@ -722,7 +722,7 @@ namespace TOR_Core.Ink
             }
 
             var selectedEnchantment = unknownEnchantments[MBRandom.RandomInt(unknownEnchantments.Count)];
-            Hero.MainHero.AddEnchantmentBlueprint(selectedEnchantment, true);
+            EnchantmentBlueprints.Learn(selectedEnchantment, Hero.MainHero, true);
         }
         private void ChangePartyTroopCount(string troopId, int count)
         {

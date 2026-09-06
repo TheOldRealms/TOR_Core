@@ -324,7 +324,7 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
         // First check for unknown runes
         foreach (var itemTrait in itemTraits)
         {
-            bool notKnown = !Hero.MainHero.HasKnownEnchantmentBlueprint(itemTrait.ItemTraitStringId);
+            bool notKnown = !EnchantmentBlueprints.IsKnown(itemTrait.ItemTraitStringId);
             if (notKnown)
             {
                 var cost = GetIngredientCost(itemTrait);
@@ -409,9 +409,7 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
             );
         }
 
-        var extendedInfo = Hero.MainHero.GetExtendedInfo();
-
-        if (!extendedInfo.KnownEnchantmentBlueprints.AnyQ())
+        if (!EnchantmentBlueprints.GetKnown().AnyQ())
         {
             displayText = TORTextHelper.GetTextObject("tor_unit_rune_no_runes_known_text", "Hero doesn't know any Runes yet");
             return false;

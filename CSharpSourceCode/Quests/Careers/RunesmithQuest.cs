@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
+using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.Menagery;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -30,7 +31,7 @@ public class RunesmithQuest : QuestBase
 
     private void InitializeQuest()
     {
-        var currentKnownRunes = Hero.MainHero.GetExtendedInfo().KnownEnchantmentBlueprints.Count;
+        var currentKnownRunes = EnchantmentBlueprints.GetKnown().Count;
 
         var dwarfBehavior = Campaign.Current.GetCampaignBehavior<OathGoldBehavior>();
         var completed = 0;

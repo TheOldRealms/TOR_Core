@@ -276,43 +276,27 @@ namespace TOR_Core.Utilities
             return result;
         }
 
+        /// <summary>
+        /// Blueprints are campaign-wide, so there is no hero to add one to - the old
+        /// "[Hero Name] | [TraitId]" form is gone. The learned event still carries a hero,
+        /// but nothing reads it, so this reports the main hero as the learner.
+        /// </summary>
         [CommandLineFunctionality.CommandLineArgumentFunction("add_enchantment_blueprint", "tor")]
         public static string AddEnchantmentBlueprint(List<string> arguments)
         {
             if (Campaign.Current == null) return "Function only available when playing in campaign mode.";
-            var trait = "";
-            var hero = Hero.MainHero;
-            if (arguments.Count >= 3)
-            {
-                return "either use 1 or 2 arguments. Just 1 argument : Main hero learns blueprint. 2 Arguments : hero with the name learns blueprint";
-            }
-            if (arguments.Count == 1)
-            {
-                trait = arguments[0];
-            }
-            if (arguments.Count == 2)
-            {
-                var potentialHeroes = Campaign.Current.AliveHeroes.Where(x => x.Name.ToString() == arguments[0]).ToList();
 
-                if (!potentialHeroes.Any())
-                {
-                    return "no Hero with the given Name could be found";
-                }
+            string usage = "tor.add_enchantment_blueprint [TraitId]\n" +
+                           "Blueprints are known campaign-wide, so no hero is named.";
 
-                // Prefer someone in the player's party, then fall back to the player's clan or
-                // kingdom. The candidates were already filtered by name above, so the name
-                // comparisons that used to live here were always true.
-                hero = potentialHeroes.FirstOrDefault(x => x.PartyBelongedTo == MobileParty.MainParty)
-                       ?? potentialHeroes.FirstOrDefault(x => x.Clan == Clan.PlayerClan
-                                                             || x.Clan?.Kingdom == Hero.MainHero.Clan?.Kingdom);
+            if (CampaignCheats.CheckHelp(arguments)) return usage;
 
-                trait = arguments[1];
-            }
+            // Trait ids never contain spaces, so anything past the first token is a mistake -
+            // most likely the retired "[Hero Name] | [TraitId]" form.
+            if (arguments.Count != 1) return usage;
 
-            if (hero == null)
-            {
-                return "no Hero with the given Name could be found in Clan or Kingdom";
-            }
+            var trait = arguments[0].Trim();
+            if (string.IsNullOrEmpty(trait)) return usage;
 
             var obj = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == trait);
             if (obj == null)
@@ -320,46 +304,48 @@ namespace TOR_Core.Utilities
                 return ("There exists no trait with the id " + trait);
             }
 
-            hero.AddEnchantmentBlueprint(trait);
+            if (!EnchantmentBlueprints.Learn(trait))
+            {
+                return "Blueprint " + trait + " is already known.";
+            }
 
-
-            return "Blueprint added: " + trait + "to " + hero.Name;
+            return "Blueprint added: " + trait;
         }
 
         /// <summary>
-        /// Phase 1 verification for docs/enchantment-blueprint-storage-proposal.md: compares
-        /// the campaign-scoped blueprint store against the per-hero party union it will
-        /// eventually replace. They should agree; any divergence is printed both ways.
+        /// Reports what the party knows and, for anything it cannot currently enchant with,
+        /// why. Blueprint knowledge is campaign-wide and permanent, so the only interesting
+        /// question left is whether the crafting-time requirements are met.
         /// </summary>
-        [CommandLineFunctionality.CommandLineArgumentFunction("check_enchantment_blueprint_store", "tor")]
-        public static string CheckEnchantmentBlueprintStore(List<string> arguments)
+        [CommandLineFunctionality.CommandLineArgumentFunction("check_enchantment_blueprints", "tor")]
+        public static string CheckEnchantmentBlueprints(List<string> arguments)
         {
             if (Campaign.Current == null) return "Function only available when playing in campaign mode.";
 
-            var behavior = EnchantmentBlueprintBehavior.Instance;
-            if (behavior == null) return "EnchantmentBlueprintBehavior is not registered.";
+            var store = EnchantmentBlueprintBehavior.Instance;
+            if (store == null) return "EnchantmentBlueprintBehavior is not registered.";
 
-            var stored = new HashSet<string>(behavior.Known);
-            var partyUnion = EnchantmentBlueprints.GetKnown();
+            var known = EnchantmentBlueprints.GetKnown().OrderBy(x => x).ToList();
+            if (known.Count == 0) return "No enchantment blueprints known.";
 
-            var missingFromStore = partyUnion.Except(stored).OrderBy(x => x).ToList();
-            var notInParty = stored.Except(partyUnion).OrderBy(x => x).ToList();
+            var requirements = EnchantmentHelper.GetBlueprintRequirements();
+            var craftable = new List<string>();
+            var blocked = new List<string>();
 
-            var result = $"store: {stored.Count}, party union: {partyUnion.Count}\n";
-            result += missingFromStore.Count == 0 && notInParty.Count == 0
-                ? "MATCH - store agrees with the party union."
-                : "DIVERGED";
-
-            if (missingFromStore.Count > 0)
+            foreach (var blueprintId in known)
             {
-                result += "\n  known by party but absent from store (unexpected):\n    " + string.Join("\n    ", missingFromStore);
+                var unmet = requirements.TryGetValue(blueprintId, out var requirement)
+                    ? EnchantmentHelper.GetUnmetRequirement(blueprintId, requirement)
+                    : null;
+
+                if (unmet == null) craftable.Add(blueprintId);
+                else blocked.Add(blueprintId + " - " + unmet);
             }
 
-            if (notInParty.Count > 0)
-            {
-                result += "\n  in store but not known by any current party hero\n" +
-                          "  (expected if a companion who knew one has since left):\n    " + string.Join("\n    ", notInParty);
-            }
+            var result = $"known: {known.Count} (craftable now: {craftable.Count}, blocked: {blocked.Count})";
+
+            if (craftable.Count > 0) result += "\n  craftable:\n    " + string.Join("\n    ", craftable);
+            if (blocked.Count > 0) result += "\n  known but not craftable right now:\n    " + string.Join("\n    ", blocked);
 
             return result;
         }

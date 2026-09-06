@@ -16,13 +16,24 @@ namespace TOR_Core.CampaignMechanics.Crafting
         private string _itemTraitDescription;
         private Action<EnchantableTraitVM, bool> _onSelected;
         private string _iconName;
+        private bool _isEnabled;
+        private string _unmetRequirement;
         public ItemTrait ItemTrait => _trait;
 
-        public EnchantableTraitVM(ItemTrait trait, Action<EnchantableTraitVM, bool> onSelected)
+        /// <summary>
+        /// Why this enchantment cannot be applied right now, or null if it can. A known
+        /// blueprint with an unmet requirement is shown greyed with the reason rather than
+        /// hidden, so the player can see what to work toward.
+        /// </summary>
+        public string UnmetRequirement => _unmetRequirement;
+
+        public EnchantableTraitVM(ItemTrait trait, Action<EnchantableTraitVM, bool> onSelected, string unmetRequirement = null)
         {
             _trait = trait;
             _onSelected = onSelected;
+            _unmetRequirement = unmetRequirement;
             IsSelected = false;
+            IsEnabled = unmetRequirement == null;
             TraitName = new TextObject(trait.ItemTraitName).ToString();
             IconName = trait.IconName;
             //Text on the right side of the screen that appears under the weapon preview and above the enchantment ingredients.
@@ -34,11 +45,22 @@ namespace TOR_Core.CampaignMechanics.Crafting
         private string GetHintText()
         {
             var text = string.IsNullOrEmpty(ItemTraitDescription) ? TORTextHelper.GetText("tor_enchant_no_description", "No description available.") : ItemTraitDescription;
+
+            if (!string.IsNullOrEmpty(_unmetRequirement))
+            {
+                text += "\n\n" + _unmetRequirement;
+            }
+
             return text;
         }
 
         private void ExecuteSelectTrait()
         {
+            // The prefab greys the row out, but a disabled ButtonWidget can still route a
+            // click in some navigation paths, so refuse it here too rather than trusting the
+            // view to be the only gate.
+            if (!IsEnabled) return;
+
             IsSelected = !IsSelected;
             _onSelected?.Invoke(this, IsSelected);
         }
@@ -65,6 +87,20 @@ namespace TOR_Core.CampaignMechanics.Crafting
                 {
                     _isSelected = value;
                     OnPropertyChangedWithValue(value, "IsSelected");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public bool IsEnabled
+        {
+            get => _isEnabled;
+            set
+            {
+                if (_isEnabled != value)
+                {
+                    _isEnabled = value;
+                    OnPropertyChangedWithValue(value, "IsEnabled");
                 }
             }
         }

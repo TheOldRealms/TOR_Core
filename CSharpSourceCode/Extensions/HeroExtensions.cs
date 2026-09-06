@@ -8,6 +8,7 @@ using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.BountyMaster;
+using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CampaignMechanics.ServeAsAHireling;
@@ -18,10 +19,8 @@ using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
-using FaceGen = TaleWorlds.Core.FaceGen;
-using LogLevel = NLog.LogLevel;
 using static TOR_Core.Utilities.TORConstants;
-using TOR_Core.CampaignMechanics.Crafting;
+using FaceGen = TaleWorlds.Core.FaceGen;
 
 namespace TOR_Core.Extensions
 {
@@ -335,31 +334,6 @@ namespace TOR_Core.Extensions
             }
         }
 
-        public static void AddEnchantmentBlueprint(this Hero hero, string bluePrint, bool showNotification = false)
-        {
-            var info = hero.GetExtendedInfo();
-            if (info != null && !info.HasKnownEnchantmentBlueprint(bluePrint))
-            {
-                info.AddKnownEnchantmentBlueprint(bluePrint);
-                if (showNotification)
-                {
-                    var itemTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == bluePrint);
-                    if (itemTrait != null)
-                    {
-                        var learnedEnchantmentText = TORTextHelper.GetTextObject("tor_learned_enchantment_text", "{HERO_NAME} learned the enchantment {ENCHANTMENT_NAME}");
-                        learnedEnchantmentText.SetTextVariable("HERO_NAME", hero.Name);
-                        learnedEnchantmentText.SetTextVariable("ENCHANTMENT_NAME", itemTrait!.ItemTraitName);
-                        MBInformationManager.AddQuickInformation(learnedEnchantmentText, 0, hero.CharacterObject);
-                    }
-                    else
-                    {
-                        TORCommon.Log("ENCHANTMENT ERROR:  recipe "+ bluePrint +" doesnt exist", LogLevel.Error);
-                    }
-
-                }
-            }
-        }
-
         public static bool HasAttribute(this Hero hero, string attribute)
         {
             if (hero.GetExtendedInfo() != null)
@@ -406,16 +380,6 @@ namespace TOR_Core.Extensions
         public static void AddKnownLore(this Hero hero, string loreID)
         {
             hero.GetExtendedInfo()?.AddKnownLore(loreID);
-        }
-
-        public static void AddKnownEnchantmentBlueprint(this Hero hero, string enchantmentID)
-        {
-            hero.GetExtendedInfo()?.AddKnownEnchantmentBlueprint(enchantmentID);
-        }
-
-        public static bool HasKnownEnchantmentBlueprint(this Hero hero, string enchantmentID)
-        {
-            return hero.GetExtendedInfo() != null && hero.GetExtendedInfo().HasKnownEnchantmentBlueprint(enchantmentID);
         }
 
         public static bool HasKnownLore(this Hero hero, string loreID)

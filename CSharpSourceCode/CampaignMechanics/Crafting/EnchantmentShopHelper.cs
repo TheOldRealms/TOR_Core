@@ -7,7 +7,6 @@ using TaleWorlds.Core;
 using TaleWorlds.Core.ImageIdentifiers;
 using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
-using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
@@ -54,7 +53,7 @@ public static class EnchantmentShopHelper
                 continue;
             }
 
-            var eligibleHeroes = EnchantmentHelper.GetEligibleHeroesForBlueprint(blueprintId, requiredSkill, requiredSkillValue, restriction, false);
+            var eligibleHeroes = EnchantmentHelper.GetEligibleHeroesForBlueprint(blueprintId, restriction);
             if (eligibleHeroes.Any())
             {
                 list.Add(new PurchasableBlueprint(item, blueprintId, requiredSkill, requiredSkillValue, restriction, eligibleHeroes));
@@ -71,29 +70,65 @@ public static class EnchantmentShopHelper
     {
         var trait = blueprint.Item.GetTraits().FirstOrDefault();
 
-        var enabled = blueprint.EligibleHeroes.Any(hero => hero.GetSkillValue(blueprint.RequiredSkill) >= blueprint.RequiredSkillValue);
-
-        var hintText = new TextObject("{TRAIT_EFFECT}\n\n{REQUIREMENT_TEXT}\n\n{COMPLETE_COST}");
-        hintText.SetTextVariable("REQUIREMENT_TEXT", enabled ? "" : BuildRequirementText(blueprint.EligibleHeroes, blueprint.RequiredSkill, blueprint.RequiredSkillValue, blueprint.Restriction));
-
         var crCost = CalculateCustomResourceCost(blueprint.RequiredSkillValue);
         var goldCost = blueprint.Item.Value;
-        enabled = ApplyAffordabilityCheck(hintText, enabled, crCost, goldCost);
+
+        var unaffordable = BuildUnaffordableText(crCost, goldCost);
+        var enabled = unaffordable == null;
 
         SetValidItemTypeRestrictionVariable(blueprint.BlueprintId);
-
-        if (enabled)
-        {
-            hintText = new TextObject(trait.ItemTraitDescription + "\n {GOLD_VALUE}{GOLD_ICON} , {CR_VALUE}{CUSTOMRESOURCE},\n {VALIDTYPE_RESTRICTION}");
-        }
-
-        hintText.SetTextVariable("TRAIT_EFFECT", trait.ItemTraitDescription);
-        hintText.SetTextVariable("COMPLETE_COST", "{GOLD_VALUE}{GOLD_ICON} , {CR_VALUE}{CUSTOMRESOURCE}");
         GameTexts.SetVariable("CR_VALUE", crCost);
         GameTexts.SetVariable("CUSTOMRESOURCE", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText());
-        GameTexts.SetVariable("GOLD_VALUE", blueprint.Item.Value);
+        GameTexts.SetVariable("GOLD_VALUE", goldCost);
+
+        var notice = unaffordable ?? BuildFutureRequirementText(blueprint);
+
+        var hintText = string.IsNullOrEmpty(notice)
+            ? new TextObject(trait.ItemTraitDescription + "\n {GOLD_VALUE}{GOLD_ICON} , {CR_VALUE}{CUSTOMRESOURCE},\n {VALIDTYPE_RESTRICTION}")
+            : new TextObject("{TRAIT_EFFECT}\n\n{REQUIREMENT_TEXT}\n\n{COMPLETE_COST}");
+
+        hintText.SetTextVariable("REQUIREMENT_TEXT", notice);
+        hintText.SetTextVariable("TRAIT_EFFECT", trait.ItemTraitDescription);
+        hintText.SetTextVariable("COMPLETE_COST", "{GOLD_VALUE}{GOLD_ICON} , {CR_VALUE}{CUSTOMRESOURCE}");
 
         return new InquiryElement(new Tuple<List<Hero>, ItemObject>(blueprint.EligibleHeroes, blueprint.Item), blueprint.Item.Name.ToString(), new ItemImageIdentifier(blueprint.Item), enabled, hintText.ToString());
+    }
+
+    /// <summary>
+    /// The skill this blueprint will demand at the enchanting table, phrased as a heads-up
+    /// rather than a refusal. Returns empty when the party can already execute it, so the
+    /// hint stays clean for blueprints that need no warning.
+    /// </summary>
+    private static string BuildFutureRequirementText(PurchasableBlueprint blueprint)
+    {
+        var requirement = new EnchantmentHelper.BlueprintRequirement(blueprint.RequiredSkill, blueprint.RequiredSkillValue, blueprint.Restriction);
+        var unmet = EnchantmentHelper.GetUnmetRequirement(blueprint.BlueprintId, requirement);
+
+        if (unmet == null) return "";
+
+        return TORTextHelper.GetTextObject("tor_enchantmentshop_future_requirement", "You can learn this now, but cannot enchant with it yet. {REQUIREMENT}")
+            .SetTextVariable("REQUIREMENT", unmet)
+            .ToString();
+    }
+
+    /// <summary>
+    /// Why the player cannot afford this blueprint, or null if they can.
+    /// </summary>
+    private static string BuildUnaffordableText(int crCost, int goldCost)
+    {
+        var missing = new List<string>();
+
+        if (crCost >= Hero.MainHero.GetCultureSpecificCustomResourceValue())
+        {
+            missing.Add("{CUSTOMRESOURCE}");
+        }
+
+        if (goldCost >= Hero.MainHero.Gold)
+        {
+            missing.Add("{GOLD_ICON}");
+        }
+
+        return missing.Any() ? "Not enough " + string.Join(" and ", missing) + "." : null;
     }
 
     private static bool IsUsableTrait(ItemObject item)
@@ -122,70 +157,10 @@ public static class EnchantmentShopHelper
         return true;
     }
 
-    private static string BuildRequirementText(List<Hero> eligableHeroes, SkillObject skill, int skillValue, string restriction)
-    {
-        var requirementPrefix = GetRestrictionPrefix(restriction);
-
-        if (eligableHeroes.Count == 1)
-        {
-            var hero = eligableHeroes[0];
-            return hero == Hero.MainHero
-                ? requirementPrefix + "You don't have enough " + skill.Name + ". Requires " + skillValue + "."
-                : requirementPrefix + hero.Name + " doesn't have enough " + skill.Name + ". Requires " + skillValue + ".";
-        }
-
-        return requirementPrefix + "None of your eligible characters have enough " + skill.Name + ". Requires " + skillValue + ".";
-    }
-
-    private static string GetRestrictionPrefix(string restriction)
-    {
-        if (string.IsNullOrEmpty(restriction))
-        {
-            return "";
-        }
-
-        var lore = LoreObject.GetAll().FirstOrDefault(x => x.StringId == restriction);
-        return lore != null
-            ? "This enchantment is bound to the Lore of " + lore.Name + ". "
-            : "This enchantment requires " + restriction + ". ";
-    }
-
     private static int CalculateCustomResourceCost(int skillValue)
     {
         var factor = Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceGeneralizedFactor();
         return (int)factor * skillValue;
-    }
-
-    private static bool ApplyAffordabilityCheck(TextObject hintText, bool enabled, int crCost, int goldCost)
-    {
-        if (!enabled)
-        {
-            return false;
-        }
-
-        if (!hintText.GetVariableValue("REQUIREMENT_TEXT", out var requirementText) ||
-            requirementText != null && requirementText.ToString().IsEmpty())
-        {
-            var missing = new List<string>();
-
-            if (crCost >= Hero.MainHero.GetCultureSpecificCustomResourceValue())
-            {
-                missing.Add("{CUSTOMRESOURCE}");
-            }
-
-            if (goldCost >= Hero.MainHero.Gold)
-            {
-                missing.Add("{GOLD_ICON}");
-            }
-
-            if (missing.Any())
-            {
-                enabled = false;
-                hintText.SetTextVariable("REQUIREMENT_TEXT", "Not enough " + string.Join(" and ", missing) + ".");
-            }
-        }
-
-        return enabled;
     }
 
     private static void SetValidItemTypeRestrictionVariable(string blueprintId)
@@ -222,7 +197,7 @@ public static class EnchantmentShopHelper
 
         if (candidateHero != null)
         {
-            candidateHero.AddEnchantmentBlueprint(blueprintId, true);
+            EnchantmentBlueprints.Learn(blueprintId, candidateHero, true);
         }
         else
         {
@@ -233,7 +208,22 @@ public static class EnchantmentShopHelper
         }
     }
 
-    private static Hero SelectRecipientHero(List<Hero> heroes) => heroes.Count == 1 ? heroes[0] : heroes.FirstOrDefault(x => x == Hero.MainHero);
+    /// <summary>
+    /// Who is shown as having learned the blueprint. Storage is campaign-wide now, so this
+    /// only picks a face for the notification and the learned event - it cannot lose the
+    /// blueprint the way the old per-hero write could.
+    /// </summary>
+    /// <remarks>
+    /// Prefers the main hero when several are eligible, falling back to the first eligible
+    /// hero rather than returning null. The old version returned null whenever the main hero
+    /// was not among 2+ eligible heroes, which silently turned a paid-for blueprint into an
+    /// inventory item; that bug is gone because there is always a valid attribution.
+    /// </remarks>
+    private static Hero SelectRecipientHero(List<Hero> heroes)
+    {
+        if (heroes == null || heroes.Count == 0) return null;
+        return heroes.FirstOrDefault(x => x == Hero.MainHero) ?? heroes[0];
+    }
 
     private static void ChargeForPurchase(int skillValue, ItemObject item)
     {

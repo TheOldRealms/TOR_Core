@@ -6,7 +6,6 @@ using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ImageIdentifiers;
 using TaleWorlds.SaveSystem;
-using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
 using TOR_Core.Items.InventoryUseScripts;
@@ -76,11 +75,15 @@ public class EnchantmentBlueprintScript : BaseInventoryUseScript
     }
     public override void OnUse(MobileParty userParty, ItemObject item)
     {
+        // Blueprints are campaign-wide now, so "already learned" is one question rather than
+        // one per hero - if it is known there is nobody left to offer the manuscript to.
+        if (EnchantmentBlueprints.IsKnown(blueprintId))
+        {
+            TORCommon.Say("You have already learned this enchantment.");
+            return;
+        }
+
         var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
-
-        List<SkillObject> skills = Game.Current.DefaultSkills.GetDefaultSkills();
-
-        skills.AddRange(TORSkills.Instance.GetTorSkills());
 
         var selectableHeroes = new List<InquiryElement>();
 
@@ -110,29 +113,12 @@ public class EnchantmentBlueprintScript : BaseInventoryUseScript
                 continue;
             }
 
-            foreach (var skill in skills.Where(skill => skill.StringId == _requiredSkill).Where(skill => hero.GetSkillValue(skill) < _requiredSkillValue))
-            {
-                isValid = false;
-            }
+            // Skill deliberately not checked here any more. Reading a manuscript is acquiring
+            // knowledge; the skill to execute it is checked at the enchanting table instead
+            // (EnchantmentHelper.GetUnmetRequirement). Only the lore/attribute restriction
+            // above still gates who can read it.
 
-            if (isValid)
-            {
-                var blueprints = hero.GetExtendedInfo().KnownEnchantmentBlueprints;
-
-                foreach (var blueprint in blueprints)
-                {
-                    if (blueprint == blueprintId)
-                    {
-                        isValid = false;
-                    }
-                }
-            }
-
-
-            if (isValid)
-            {
-                selectableHeroes.Add(new InquiryElement(hero, hero.Name.ToString(), new CharacterImageIdentifier(CampaignUIHelper.GetCharacterCode(hero.CharacterObject))));
-            }
+            selectableHeroes.Add(new InquiryElement(hero, hero.Name.ToString(), new CharacterImageIdentifier(CampaignUIHelper.GetCharacterCode(hero.CharacterObject))));
         }
 
         if (selectableHeroes.IsEmpty())
@@ -149,9 +135,7 @@ public class EnchantmentBlueprintScript : BaseInventoryUseScript
         void OnSelectedOption(List<InquiryElement> inquiryElements)
         {
             var hero = (Hero)inquiryElements[0].Identifier;
-            hero.AddEnchantmentBlueprint(blueprintId, true);
-
+            EnchantmentBlueprints.Learn(blueprintId, hero, true);
         }
-
     }
 }

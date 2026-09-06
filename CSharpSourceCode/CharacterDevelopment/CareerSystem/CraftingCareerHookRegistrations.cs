@@ -2,6 +2,7 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.AbilitySystem;
 using TOR_Core.Extensions;
 using TOR_Core.Framework;
@@ -77,20 +78,20 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             {
                 if (hero.IsSpellCaster() && hero.GetCareer() == TORCareers.ImperialMagister)
                 {
-                    if (hero.HasKnownLore("LoreOfDeath")) hero.AddEnchantmentBlueprint("emp_enchant_shyish_whisper", true);
-                    if (hero.HasKnownLore("LoreOfMetal")) hero.AddEnchantmentBlueprint("emp_enchant_chamon_whisper", true);
-                    if (hero.HasKnownLore("LoreOfLight")) hero.AddEnchantmentBlueprint("emp_enchant_hysh_whisper", true);
-                    if (hero.HasKnownLore("LoreOfHeavens")) hero.AddEnchantmentBlueprint("emp_enchant_azyr_whisper", true);
-                    if (hero.HasKnownLore("LoreOfBeasts")) hero.AddEnchantmentBlueprint("emp_enchant_ghur_whisper", true);
-                    if (hero.HasKnownLore("LoreOfLife")) hero.AddEnchantmentBlueprint("emp_enchant_ghyran_whisper", true);
-                    if (hero.HasKnownLore("LoreOfFire")) hero.AddEnchantmentBlueprint("emp_enchant_aqshy_whisper", true);
+                    if (hero.HasKnownLore("LoreOfDeath")) EnchantmentBlueprints.Learn("emp_enchant_shyish_whisper", hero, true);
+                    if (hero.HasKnownLore("LoreOfMetal")) EnchantmentBlueprints.Learn("emp_enchant_chamon_whisper", hero, true);
+                    if (hero.HasKnownLore("LoreOfLight")) EnchantmentBlueprints.Learn("emp_enchant_hysh_whisper", hero, true);
+                    if (hero.HasKnownLore("LoreOfHeavens")) EnchantmentBlueprints.Learn("emp_enchant_azyr_whisper", hero, true);
+                    if (hero.HasKnownLore("LoreOfBeasts")) EnchantmentBlueprints.Learn("emp_enchant_ghur_whisper", hero, true);
+                    if (hero.HasKnownLore("LoreOfLife")) EnchantmentBlueprints.Learn("emp_enchant_ghyran_whisper", hero, true);
+                    if (hero.HasKnownLore("LoreOfFire")) EnchantmentBlueprints.Learn("emp_enchant_aqshy_whisper", hero, true);
                 }
 
                 if (hero.IsSpellCaster() && hero.HasCareer(TORCareers.GrailDamsel))
                     if (hero.HasKnownLore("LoreOfLife"))
-                        hero.AddEnchantmentBlueprint("emp_enchant_ghyran_whisper", true);
+                        EnchantmentBlueprints.Learn("emp_enchant_ghyran_whisper", hero, true);
 
-                if (hero.HasCareer(TORCareers.Runelord)) hero.AddEnchantmentBlueprint("dw_rune_stone", true);
+                if (hero.HasCareer(TORCareers.Runelord)) EnchantmentBlueprints.Learn("dw_rune_stone", hero, true);
             });
         }
 

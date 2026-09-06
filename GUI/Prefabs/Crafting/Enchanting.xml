@@ -114,7 +114,7 @@
 
                             <InventoryListPanel Id="CenterInnerPanel" DataSource="{Traits}" StackLayout.LayoutMethod="VerticalTopToBottom" WidthSizePolicy="StretchToParent" MarginLeft="20" HeightSizePolicy="CoverChildren" StepSize="10" EmptyNavigationWidget="..\..\..\MyCenterClipRect">
                               <ItemTemplate>
-                                <ButtonWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="50" Brush="TorEnchantingItemBrush" MarginBottom="2" Command.Click="ExecuteSelectTrait" IsSelected="@IsSelected">
+                                <ButtonWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="50" Brush="TorEnchantingItemBrush" MarginBottom="2" Command.Click="ExecuteSelectTrait" IsSelected="@IsSelected" IsEnabled="@IsEnabled">
                                   <Children>
                                     <ImageWidget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="30" SuggestedHeight="30" VerticalAlignment="Center" MarginLeft="15" MarginTop="2" Sprite="@IconName" />
                                     <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" MarginLeft="65" Text="@TraitName" Brush="TorEnchantingFontBrush" DoNotAcceptEvents="true"/>
