@@ -8,6 +8,7 @@ using TaleWorlds.Library;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
+using RefiningFormula = TaleWorlds.Core.Crafting.RefiningFormula;
 
 namespace TOR_Core.CampaignMechanics.Crafting
 {
@@ -132,7 +133,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
             return false;
         }
 
-        public override int GetEnergyCostForRefining(ref TaleWorlds.Core.Crafting.RefiningFormula refineFormula, Hero hero)
+        public override int GetEnergyCostForRefining(ref RefiningFormula refineFormula, Hero hero)
         {
             var value = base.GetEnergyCostForRefining(ref refineFormula, hero);
             return ApplyEnergyCostModifiers(value, hero);
@@ -170,7 +171,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
             return value;
         }
 
-        public override IEnumerable<TaleWorlds.Core.Crafting.RefiningFormula> GetRefiningFormulas(
+        public override IEnumerable<RefiningFormula> GetRefiningFormulas(
             Hero weaponsmith)
         {
             var values = base.GetRefiningFormulas(weaponsmith);
@@ -179,12 +180,12 @@ namespace TOR_Core.CampaignMechanics.Crafting
 
             if (weaponsmith.HasCareer(TORCareers.Runelord))
             {
-                var newValues = new List<TaleWorlds.Core.Crafting.RefiningFormula>();
+                var newValues = new List<RefiningFormula>();
                 foreach (var value in values)
                 {
                     if (weaponsmith.HasCareerChoice("ForgefireBurningPassive1") && value.Output == CraftingMaterials.Charcoal)
                     {
-                        var entry = new TaleWorlds.Core.Crafting.RefiningFormula(value.Input1, value.Input1Count, value.Input2, value.Input2Count, value.Output,
+                        var entry = new RefiningFormula(value.Input1, value.Input1Count, value.Input2, value.Input2Count, value.Output,
                             value.OutputCount + 1);
                         newValues.Add(entry);
                         continue;
@@ -192,7 +193,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
                     if (weaponsmith.HasCareerChoice("ForgefireBurningPassive2") && value.Output is CraftingMaterials.Iron1 or CraftingMaterials.Iron2 or CraftingMaterials.Iron3 or CraftingMaterials.Iron4)
                     {
 
-                        var entry = new TaleWorlds.Core.Crafting.RefiningFormula(value.Input1, value.Input1Count, value.Input2, value.Input2Count, value.Output,
+                        var entry = new RefiningFormula(value.Input1, value.Input1Count, value.Input2, value.Input2Count, value.Output,
                             value.OutputCount * 2);
                         newValues.Add(entry);
                         continue;
