@@ -8,9 +8,11 @@ using TaleWorlds.Core.ImageIdentifiers;
 using TaleWorlds.SaveSystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using TOR_Core.Items;
+using TOR_Core.Items.InventoryUseScripts;
 using TOR_Core.Utilities;
 
-namespace TOR_Core.Items.InventoryUseScripts;
+namespace TOR_Core.CampaignMechanics.Crafting;
 
 public class EnchantmentBlueprintScript : BaseInventoryUseScript
 {

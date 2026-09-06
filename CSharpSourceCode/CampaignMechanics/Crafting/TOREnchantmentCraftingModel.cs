@@ -10,7 +10,7 @@ using TOR_Core.Extensions;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
 
-namespace TOR_Core.Models;
+namespace TOR_Core.CampaignMechanics.Crafting;
 
 public class TOREnchantmentCraftingModel : GameModel
 {
