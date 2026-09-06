@@ -160,7 +160,7 @@ folder's contents are genuinely mixed and need to be divided.
 | `BattleMechanics/AI/` (all of it: `CastingAI/`, `TeamAI/`, `ArtilleryAI/`, `CivilianMissionAI/`, `CommonAIFunctions/`) | FW | Battle-simulation infrastructure, not a toggleable feature — every battle uses it regardless of which content modules are involved. |
 | `BattleMechanics/` root (`TORBattleAgentLogic`, `AddAgentComponentsMissionLogic`, `CustomCrosshairMissionBehavior`, `CinematicCameraMissionView`) | FW | Generic mission plumbing. |
 | `BattleMechanics/` root — `CareerPerkMissionBehavior` | MOD → `Careers/` | Career-specific despite living at `BattleMechanics/` root today. |
-| `BattleMechanics/` root — `TORMonsterSiegeLogic`, `SiegeEarlyVictoryMissionLogic` | MOD → `TORCustomSettlement/` | Monster-siege support exists for Troll Cave content. |
+| `BattleMechanics/` root — `TORMonsterSiegeLogic`, `SiegeEarlyVictoryMissionLogic` | MOD → `TORCustomSettlement/` | Siege support is for things like troll and treemen being able to bash down gates and not try to climb stairs as they'll get stuck due to size. |
 
 ### `BattleMechanics/*` content add-ons — Modules
 
