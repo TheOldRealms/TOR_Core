@@ -31,12 +31,9 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
         private string _uniqueSpawnId;
 
         [SaveableField(7)]
-        private bool _consumesFood; // old saves
-
-        [SaveableField(8)]
         private int _startingFoodPerType;
 
-        [SaveableField(9)]
+        [SaveableField(8)]
         private int _initialRegularTroopCount;
 
         public override Hero Leader => _partyOwner;

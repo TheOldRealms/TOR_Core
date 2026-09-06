@@ -109,6 +109,6 @@ namespace TOR_Core.BattleMechanics.AI.CommonAIFunctions
             set => base.Agent = value;
         }
 
-        public new Vec3 Position => GetPosition();
+        public Vec3 Position => GetPosition();
     }
 }

@@ -83,28 +83,11 @@ namespace TOR_Core.CampaignMechanics
         private CultureObject GetNearbyCulture()
         {
             CultureObject cultureObject = null;
-            float num = float.MaxValue;
-            
             var settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, Campaign.Current.GetAverageDistanceBetweenClosestTwoTownsWithNavigationType(MobileParty.NavigationType.Default));//Sly : average distance was ~60 when last observed.
 
             cultureObject = settlement.Culture;
 
-            //foreach (Settlement settlement in Campaign.Current.Settlements)
-            //{
-            //    if (settlement.IsTown || settlement.IsVillage)
-            //    {
-            //        float num2 = settlement.Position.DistanceSquared(MobileParty.MainParty.Position);
-            //        if (settlement.IsVillage)
-            //        {
-            //            num2 *= 1.05f;
-            //        }
-            //        if (num > num2)
-            //        {
-            //            cultureObject = settlement.Culture;
-            //            num = num2;
-            //        }
-            //    }
-            //}
+
             return cultureObject;
         }
     }

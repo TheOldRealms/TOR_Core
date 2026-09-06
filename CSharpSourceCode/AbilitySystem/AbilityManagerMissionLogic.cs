@@ -52,7 +52,7 @@ namespace TOR_Core.AbilitySystem
         private readonly string _castingStanceParticleName = "psys_spellcasting_stance";
         private SummonedCombatant _defenderSummoningCombatant;
         private SummonedCombatant _attackerSummoningCombatant;
-        private readonly float DamagePortionForChargingCareerAbility = 1f;
+
         private Dictionary<Team, int> _artillerySlots = [];
         private GameKey _quickCastMenuKey;
         private GameKey _quickCast;

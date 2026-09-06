@@ -69,13 +69,7 @@ namespace TOR_Core.Items.InventoryUseScripts
         }
     }
 
-
-
-    public class TORUseScriptArgumentException(string message) : ArgumentException
-    {
-
-    }
-
+    public class TORUseScriptArgumentException(string message) : ArgumentException(message) { }
 
     public class ScriptUseData()
     {

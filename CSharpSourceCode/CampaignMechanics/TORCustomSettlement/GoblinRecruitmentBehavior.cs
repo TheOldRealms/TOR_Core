@@ -28,7 +28,7 @@ public class GoblinRecruitmentBehavior : CampaignBehaviorBase
 
     private float _maximumWaitTime = 1;
     private CampaignTime _startWaitTime;
-    private float _progress;
+
     private Dictionary<string, CampaignTime> _goblinRecruitmentCooldowns = new();
     private int _pendingGoblins = 0;
 

@@ -23,10 +23,6 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
 {
     private readonly string _skillTrainerAttribute = "SkillTrainer";
 
-    private Dictionary<string, string> _icons;
-
-
-
     private readonly Dictionary<string, (string TrainerDialogId, string SkillId, string HubId, string HubReintroKey, List<string> Restrictions)> _skilltrainers = new()
     {
         {"tor_priest_trainer_empire_ulric_0",("UlricTrain","Faith", "priest_hubcult_of_ulric","priest_hub_reintrocult_of_ulric",[])},

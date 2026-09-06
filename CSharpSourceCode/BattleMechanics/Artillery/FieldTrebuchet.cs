@@ -119,7 +119,18 @@ namespace TOR_Core.BattleMechanics.Artillery
 			list = base.GameEntity.CollectScriptComponentsWithTagIncludingChildrenRecursive<SynchedMissionObject>("rotate_entity");
 			this.RotationObject = list[0];
 			base.OnInit();
+			// PROPOSED (CS1717, self-assignment -- possible real bug, not just lint noise): this
+			// reads `this.X = this.X;`, a no-op, because the field below (line ~661) hides the base
+			// class's same-named member with the same name. If the engine's firing-timing code reads
+			// the *base* RangedSiegeWeapon field (likely, since that's the vanilla type doing the
+			// actual siege-weapon simulation), then the intended 1.6s override on this line never
+			// actually reaches it. Suggested fix would be `base.TimeGapBetweenShootActionAndProjectileLeaving = this.TimeGapBetweenShootActionAndProjectileLeaving;`
+			// -- but flagging rather than applying, since I can't confirm from source alone which
+			// field the engine's timing logic actually reads.
+            // RANDY - @Sly - This seems redundant...
+#pragma warning disable CS1717
 			this.TimeGapBetweenShootActionAndProjectileLeaving = this.TimeGapBetweenShootActionAndProjectileLeaving;
+#pragma warning restore CS1717
 			this.TimeGapBetweenShootingEndAndReloadingStart = 0f;
 			this._ammoLoadPoints = new List<StandingPointWithWeaponRequirement>();
 			if (base.StandingPoints != null)
@@ -658,7 +669,14 @@ namespace TOR_Core.BattleMechanics.Artillery
 		public string RopeFireAnimation;
 		public string RopeSetUpAnimation;
 		public string VerticalAdjusterAnimation;
+		// PROPOSED (CS0108, should hide with `new` or `override`): this field hides
+		// RangedSiegeWeapon's own member of the same name (see the self-assignment note in OnInit
+		// above -- these two warnings are the same underlying issue). Adding `new` here would silence
+		// the warning without changing behavior; it wouldn't fix the OnInit bug by itself.
+        // RANDY - Again, your call.
+#pragma warning disable CS0108
 		public float TimeGapBetweenShootActionAndProjectileLeaving = 1.6f;
+#pragma warning restore CS0108
 		private GameEntity _verticalAdjuster;
 		private Skeleton _verticalAdjusterSkeleton;
 		private MatrixFrame _verticalAdjusterStartingLocalFrame;

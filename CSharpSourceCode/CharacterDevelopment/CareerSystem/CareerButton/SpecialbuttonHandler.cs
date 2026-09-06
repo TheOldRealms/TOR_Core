@@ -1,5 +1,4 @@
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.ViewModelCollection.Party;
 using TaleWorlds.Localization;
 using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 
@@ -10,10 +9,6 @@ namespace TOR_Core.CampaignMechanics
         private CareerButtonBehaviorBase.OnCareerButtonClickedEvent _clickEvent;
         private CareerButtonBehaviorBase.OnShouldButtonBeVisible _shouldButtonBeVisible;
         private CareerButtonBehaviorBase.OnShouldButtonBeActive _shouldButtonBeActive;
-
-        private PartyVM _partyVm;
-
-
         private static SpecialbuttonEventManagerHandler _instance;
 
         public bool IsInit;

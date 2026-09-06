@@ -185,13 +185,14 @@ namespace TOR_Core.HarmonyPatches
             for (int i = 0; i < newInstructions.Count - 1; i++)
             {
                 var instruction = newInstructions[i];
-                // Find where AgentVisualsData is instantiated, and insert our new instructions after it
-                if (instruction.opcode == OpCodes.Newobj && instruction.operand == AccessTools.Constructor(typeof(AgentVisualsData)))
+
+                if (instruction.opcode == OpCodes.Newobj && AccessTools.Constructor(typeof(AgentVisualsData)).Equals(instruction.operand))
                 {
                     insertionIndex = i + 1;
                     break;
                 }
             }
+
             if (insertionIndex < 0)
             {
                 throw new ArgumentException("Cannot find instruction. Patch: RefreshCharacterEntityAuxPatch");

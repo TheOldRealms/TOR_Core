@@ -234,7 +234,15 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             }
         }
 
+        // PROPOSED (CS0114, should add `new` or `override`): StatusEffectMissionLogic.cs calls this
+        // through the concrete `StatusEffectComponent` type (not polymorphically via
+        // `AgentComponent`), so `new` would match current behavior. Before adding `override` instead,
+        // worth checking whether the engine also auto-invokes AgentComponent.OnTick on every
+        // component each frame -- if so, that would double-tick status effects.
+        // Randy - @Sly the parent class has an OnTick registration, I don't know if the DI container registers both events though, the parent IS empty though.
+#pragma warning disable CS0114
         public void OnTick(float dt)
+#pragma warning restore CS0114
         {
             if (_currentEffects.Count > 0)
             {

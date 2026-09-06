@@ -10,12 +10,6 @@ namespace TOR_Core.AbilitySystem.Scripts;
 public class MindControlScript : CareerAbilityScript
 {
     private Agent _caster;
-    private float _radius;
-
-    private bool _mindControl;
-
-    private bool _sucessfulControl;
-
     private Vec3 _targetPosition;
 
     private bool _init;
