@@ -119,35 +119,13 @@ namespace TOR_Core.CampaignMechanics.Crafting
             SelectedTraits.Clear();
             SelectedItem?.DeselectItem();
             SelectedItem = item;
-            foreach (var hero in MobileParty.MainParty.GetMemberHeroes())
+            var knownBlueprints = EnchantmentBlueprints.GetKnown();
+            foreach (var trait in ItemTrait.All.Where(x => x.IsCraftable &&
+                                                           knownBlueprints.Contains(x.ItemTraitStringId) &&
+                                                           ItemTrait.IsValidFor(x, item.Item.Item.ItemType))
+                         .OrderBy(y => y.ItemTraitName))
             {
-                var traits = hero.GetExtendedInfo().KnownEnchantmentBlueprints;
-
-                foreach (var trait in traits)
-                {
-                    foreach (var x in ItemTrait.All)
-                    {
-                        if (x.ItemTraitStringId == trait)
-                        {
-                            var he = hero.HasKnownEnchantmentBlueprint(x.ItemTraitStringId);
-                            var ve = ItemTrait.IsValidFor(x, item.Item.Item.ItemType);
-                        }
-
-                    }
-
-                }
-
-                foreach (var trait in ItemTrait.All.Where(x => x.IsCraftable &&
-                                                               hero.HasKnownEnchantmentBlueprint(x.ItemTraitStringId) &&
-                                                               ItemTrait.IsValidFor(x, item.Item.Item.ItemType))
-                             .OrderBy(y => y.ItemTraitName))
-                {
-                    if (Traits.Any(x => x.ItemTrait.ItemTraitStringId == trait.ItemTraitStringId))
-                    {
-                        continue;
-                    }
-                    Traits.Add(new EnchantableTraitVM(trait, OnTraitSelected));
-                }
+                Traits.Add(new EnchantableTraitVM(trait, OnTraitSelected));
             }
 
             foreach (var ingredient in Ingredients)

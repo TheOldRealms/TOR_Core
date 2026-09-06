@@ -104,8 +104,6 @@ public static class EnchantmentHelper
         return true;
     }
 
-    internal static bool IsBlueprintKnownByParty(string blueprintId) => Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(hero => hero.HasKnownEnchantmentBlueprint(blueprintId));
-
     internal static bool IsBlueprintInInventory(string blueprintId) => Hero.MainHero.PartyBelongedTo.ItemRoster.Any(rosterElement =>
             TryGetBlueprintData(rosterElement.EquipmentElement.Item, out var inventoryBlueprintId, out _, out _, out _) &&
             inventoryBlueprintId == blueprintId);
@@ -152,7 +150,7 @@ public static class EnchantmentHelper
                 continue;
             }
 
-            if (IsBlueprintKnownByParty(blueprintId) || IsBlueprintInInventory(blueprintId))
+            if (EnchantmentBlueprints.IsKnown(blueprintId) || IsBlueprintInInventory(blueprintId))
             {
                 continue;
             }

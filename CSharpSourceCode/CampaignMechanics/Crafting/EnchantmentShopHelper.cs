@@ -49,7 +49,7 @@ public static class EnchantmentShopHelper
                 continue;
             }
 
-            if (EnchantmentHelper.IsBlueprintKnownByParty(blueprintId) || EnchantmentHelper.IsBlueprintInInventory(blueprintId))
+            if (EnchantmentBlueprints.IsKnown(blueprintId) || EnchantmentHelper.IsBlueprintInInventory(blueprintId))
             {
                 continue;
             }

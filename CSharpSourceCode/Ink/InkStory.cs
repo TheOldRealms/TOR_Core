@@ -19,6 +19,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.Audio;
+using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.CustomEvents;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
@@ -711,9 +712,8 @@ namespace TOR_Core.Ink
                 "asrai_enchant_ghostwalker"
             };
 
-            var partyHeroes = MobileParty.MainParty.GetMemberHeroes();
             var unknownEnchantments = orionEnchantments
-                .Where(enchantmentId => partyHeroes.All(hero => !hero.HasKnownEnchantmentBlueprint(enchantmentId)))
+                .Where(enchantmentId => !EnchantmentBlueprints.IsKnown(enchantmentId))
                 .ToList();
 
             if (unknownEnchantments.Count == 0)
