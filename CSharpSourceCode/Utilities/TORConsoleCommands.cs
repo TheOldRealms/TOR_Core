@@ -292,7 +292,6 @@ namespace TOR_Core.Utilities
             }
             if (arguments.Count == 2)
             {
-                hero = null;
                 var potentialHeroes = Campaign.Current.AliveHeroes.Where(x => x.Name.ToString() == arguments[0]).ToList();
 
                 if (!potentialHeroes.Any())
@@ -300,24 +299,12 @@ namespace TOR_Core.Utilities
                     return "no Hero with the given Name could be found";
                 }
 
-                foreach (var potentialHero in potentialHeroes)
-                {
-                    if (hero.PartyBelongedTo == MobileParty.MainParty)
-                    {
-                        if (hero.Name == potentialHero.Name)
-                        {
-                            hero = potentialHero;
-                            break;
-                        }
-                    }
-
-                    if (hero.Clan != Clan.PlayerClan && hero.Clan.Kingdom != Hero.MainHero.Clan.Kingdom) continue;
-                    if (hero.Name != potentialHero.Name) continue;
-
-                    hero = potentialHero;
-                    break;
-
-                }
+                // Prefer someone in the player's party, then fall back to the player's clan or
+                // kingdom. The candidates were already filtered by name above, so the name
+                // comparisons that used to live here were always true.
+                hero = potentialHeroes.FirstOrDefault(x => x.PartyBelongedTo == MobileParty.MainParty)
+                       ?? potentialHeroes.FirstOrDefault(x => x.Clan == Clan.PlayerClan
+                                                             || x.Clan?.Kingdom == Hero.MainHero.Clan?.Kingdom);
 
                 trait = arguments[1];
             }
