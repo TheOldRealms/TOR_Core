@@ -519,6 +519,7 @@
     <Compile Include="CampaignMechanics\Crafting\EnchantingScreen.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantingState.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantingVM.cs" />
+    <Compile Include="CampaignMechanics\Crafting\EnchantmentBlueprintBehavior.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantmentBlueprints.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantmentBlueprintScript.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantmentHelper.cs" />

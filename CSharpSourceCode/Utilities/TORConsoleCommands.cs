@@ -21,6 +21,7 @@ using TaleWorlds.ObjectSystem;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.TriggeredEffect;
+using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CampaignMechanics.UniqueSpawns;
@@ -338,6 +339,43 @@ namespace TOR_Core.Utilities
             return "Blueprint added: " + trait + "to " + hero.Name;
         }
 
+        /// <summary>
+        /// Phase 1 verification for docs/enchantment-blueprint-storage-proposal.md: compares
+        /// the campaign-scoped blueprint store against the per-hero party union it will
+        /// eventually replace. They should agree; any divergence is printed both ways.
+        /// </summary>
+        [CommandLineFunctionality.CommandLineArgumentFunction("check_enchantment_blueprint_store", "tor")]
+        public static string CheckEnchantmentBlueprintStore(List<string> arguments)
+        {
+            if (Campaign.Current == null) return "Function only available when playing in campaign mode.";
+
+            var behavior = EnchantmentBlueprintBehavior.Instance;
+            if (behavior == null) return "EnchantmentBlueprintBehavior is not registered.";
+
+            var stored = new HashSet<string>(behavior.Known);
+            var partyUnion = EnchantmentBlueprints.GetKnown();
+
+            var missingFromStore = partyUnion.Except(stored).OrderBy(x => x).ToList();
+            var notInParty = stored.Except(partyUnion).OrderBy(x => x).ToList();
+
+            var result = $"store: {stored.Count}, party union: {partyUnion.Count}\n";
+            result += missingFromStore.Count == 0 && notInParty.Count == 0
+                ? "MATCH - store agrees with the party union."
+                : "DIVERGED";
+
+            if (missingFromStore.Count > 0)
+            {
+                result += "\n  known by party but absent from store (unexpected):\n    " + string.Join("\n    ", missingFromStore);
+            }
+
+            if (notInParty.Count > 0)
+            {
+                result += "\n  in store but not known by any current party hero\n" +
+                          "  (expected if a companion who knew one has since left):\n    " + string.Join("\n    ", notInParty);
+            }
+
+            return result;
+        }
 
         [CommandLineFunctionality.CommandLineArgumentFunction("list_spells", "tor")]
         public static string ListSpells(List<string> argumentNames) =>
