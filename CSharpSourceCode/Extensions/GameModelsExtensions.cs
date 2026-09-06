@@ -1,6 +1,5 @@
 using System.Linq;
 using TaleWorlds.CampaignSystem;
-using TOR_Core.CampaignMechanics.Crafting.Models;
 using TOR_Core.Models;
 
 namespace TOR_Core.Extensions
@@ -22,11 +21,6 @@ namespace TOR_Core.Extensions
             return models.GetGameModels().OfType<TORCustomResourceModel>().LastOrDefault();
         }
 
-        public static TOREnchantmentIngredientsModel GetEnchantmentIngredientModel(this GameModels models)
-        {
-            return models.GetGameModels().OfType<TOREnchantmentIngredientsModel>().LastOrDefault();
-        }
-
         public static TORCompanionTrainingModel GetCompanionTrainingModel(this GameModels models)
         {
             return models.GetGameModels().OfType<TORCompanionTrainingModel>().LastOrDefault();
@@ -45,11 +39,6 @@ namespace TOR_Core.Extensions
         public static TORSiegeEngineCalculationModel GetSiegeEngineCalculationModel(this GameModels models)
         {
             return models.GetGameModels().OfType<TORSiegeEngineCalculationModel>().LastOrDefault();
-        }
-
-        public static TORSmithingModel GetSmithingModel(this GameModels models)
-        {
-            return models.GetGameModels().OfType<TORSmithingModel>().LastOrDefault();
         }
     }
 }

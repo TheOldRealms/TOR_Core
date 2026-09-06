@@ -506,6 +506,7 @@
     <Compile Include="CampaignMechanics\CharacterCreation\TORCharacterCreationContentHandler.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\TORCharacterCreationException.cs" />
     <Compile Include="CampaignMechanics\Companions\TORCompanionsCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\Crafting\CraftingModelsExtensions.cs" />
     <Compile Include="CampaignMechanics\Crafting\CraftingModule.cs" />
     <Compile Include="CampaignMechanics\Crafting\CraftingPatches.cs" />
     <Compile Include="CampaignMechanics\Crafting\CraftingVMExtension.cs" />
@@ -733,6 +734,8 @@
     <Compile Include="Extensions\UI\ViewModelExtensionAttribute.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionManager.cs" />
     <Compile Include="Extensions\ViewModelExtensions.cs" />
+    <Compile Include="Framework\ITORModule.cs" />
+    <Compile Include="Framework\TORModuleAttribute.cs" />
     <Compile Include="GameManagers\TORCampaignGameManager.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\TORSpecializationStage.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\TORSpecializationStageView.cs" />

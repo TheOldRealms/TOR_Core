@@ -195,7 +195,7 @@ namespace TOR_Core
                 starter.AddBehavior(new TORAllianceWarBehavior());
                 starter.AddBehavior(new SkillTrainerBehavior());
                 starter.AddBehavior(new OathGoldBehavior());
-                CraftingModule.RegisterCampaignBehaviors(starter);
+                new CraftingModule().RegisterCampaignBehaviors(starter);
                 starter.AddBehavior(new TeefBehavior());
                 starter.AddBehavior(new WaaaghBehavior());
                 starter.AddBehavior(new GreenskinBrawlBehavior());
@@ -273,7 +273,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TOREquipmentSelectionModel());
                 gameStarterObject.AddModel(new TOREncounterModel());
                 gameStarterObject.AddModel(new TORVolunteerModel());
-                CraftingModule.RegisterModels(gameStarterObject);
+                new CraftingModule().RegisterModels(gameStarterObject);
                 gameStarterObject.AddModel(new TORCompanionTrainingModel());
                 gameStarterObject.AddModel(new TORVillageProductionCalculatorModel());
                 gameStarterObject.AddModel(new TORCampaignTimeModel());
