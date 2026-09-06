@@ -9,8 +9,9 @@ using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
+using TOR_Core.CampaignMechanics.Crafting;
 
-namespace TOR_Core.CampaignMechanics.Crafting;
+namespace TOR_Core.CampaignMechanics.Crafting.Models;
 
 public class TOREnchantmentCraftingModel : GameModel
 {

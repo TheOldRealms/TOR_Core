@@ -1,5 +1,6 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TOR_Core.CampaignMechanics.Crafting.Models;
 
 namespace TOR_Core.CampaignMechanics.Crafting
 {

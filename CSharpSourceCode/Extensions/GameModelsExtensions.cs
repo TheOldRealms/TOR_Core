@@ -1,6 +1,6 @@
 using System.Linq;
 using TaleWorlds.CampaignSystem;
-using TOR_Core.CampaignMechanics.Crafting;
+using TOR_Core.CampaignMechanics.Crafting.Models;
 using TOR_Core.Models;
 
 namespace TOR_Core.Extensions

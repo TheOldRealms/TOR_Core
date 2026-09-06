@@ -7,6 +7,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting.WeaponDesign;
 using TaleWorlds.Core;
+using TOR_Core.CampaignMechanics.Crafting.Models;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 

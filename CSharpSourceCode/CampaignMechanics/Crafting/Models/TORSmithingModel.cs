@@ -10,7 +10,7 @@ using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 using RefiningFormula = TaleWorlds.Core.Crafting.RefiningFormula;
 
-namespace TOR_Core.CampaignMechanics.Crafting
+namespace TOR_Core.CampaignMechanics.Crafting.Models
 {
     /// <summary>
     /// Categories for weapon templates used in culture-based order filtering.

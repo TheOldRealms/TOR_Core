@@ -6,6 +6,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
+using TOR_Core.CampaignMechanics.Crafting.Models;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
 using TOR_Core.Utilities;

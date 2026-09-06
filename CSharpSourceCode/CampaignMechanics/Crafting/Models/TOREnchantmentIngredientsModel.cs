@@ -2,11 +2,12 @@ using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.Core;
+using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
-namespace TOR_Core.CampaignMechanics.Crafting;
+namespace TOR_Core.CampaignMechanics.Crafting.Models;
 
 public class TOREnchantmentIngredientsModel : GameModel
 {

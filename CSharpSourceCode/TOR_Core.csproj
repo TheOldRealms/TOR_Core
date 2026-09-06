@@ -526,10 +526,10 @@
     <Compile Include="CampaignMechanics\Crafting\PriestBehavior.cs" />
     <Compile Include="CampaignMechanics\Crafting\RefinementVMExtension.cs" />
     <Compile Include="CampaignMechanics\Crafting\TorEnchantingIngredients.cs" />
-    <Compile Include="CampaignMechanics\Crafting\TOREnchantmentCraftingModel.cs" />
-    <Compile Include="CampaignMechanics\Crafting\TOREnchantmentIngredientsModel.cs" />
     <Compile Include="CampaignMechanics\Crafting\TORArtisanDistrictCampaignBehavior.cs" />
-    <Compile Include="CampaignMechanics\Crafting\TORSmithingModel.cs" />
+    <Compile Include="CampaignMechanics\Crafting\Models\TOREnchantmentCraftingModel.cs" />
+    <Compile Include="CampaignMechanics\Crafting\Models\TOREnchantmentIngredientsModel.cs" />
+    <Compile Include="CampaignMechanics\Crafting\Models\TORSmithingModel.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissSceneNotificationItem.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\CareerSwitchCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\AsraiTag.cs" />
