@@ -13,13 +13,12 @@ using TaleWorlds.Core.ImageIdentifiers;
 using TaleWorlds.Library;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
-using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 using static TOR_Core.Utilities.TORConstants;
 
-namespace TOR_Core.CampaignMechanics.SpellTrainers;
+namespace TOR_Core.CampaignMechanics.Crafting;
 
 public class EnchanterTownBehavior : CampaignBehaviorBase
 {
