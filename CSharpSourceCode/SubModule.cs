@@ -361,6 +361,7 @@ namespace TOR_Core
                 _ = new TORCareers();
                 _ = new TORCareerChoiceGroups();
                 _ = new TORCareerChoices();
+                CraftingCareerHookRegistrations.RegisterAll();
                 _ = new TORCampaignEvents();
 
                 MBObjectManager.Instance.LoadXML("Religions", false);

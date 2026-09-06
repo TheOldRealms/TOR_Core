@@ -663,6 +663,7 @@
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceObject.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceObjectVM.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerHelper.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CraftingCareerHookRegistrations.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerObject.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerObjectVM.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerScreen.cs" />
@@ -734,6 +735,7 @@
     <Compile Include="Extensions\UI\ViewModelExtensionAttribute.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionManager.cs" />
     <Compile Include="Extensions\ViewModelExtensions.cs" />
+    <Compile Include="Framework\CraftingCareerHooks.cs" />
     <Compile Include="Framework\ITORModule.cs" />
     <Compile Include="Framework\TORModuleAttribute.cs" />
     <Compile Include="GameManagers\TORCampaignGameManager.cs" />

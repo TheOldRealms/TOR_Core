@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
-using TOR_Core.AbilitySystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Framework;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
 using TOR_Core.CampaignMechanics.Crafting;
@@ -58,20 +57,19 @@ public class TOREnchantmentCraftingModel : GameModel
         {
             if (hero.HasKnownEnchantmentBlueprint(itemTrait.ItemTraitStringId))
             {
+                // Note: this call is a different kind of coupling than the module-specific
+                // hooks below - PassiveEffectType is a generic, career-agnostic dispatch
+                // mechanism (CareerHelper doesn't know "Grail Damsel"/"Necrarch"/"Runelord" by
+                // name, it just applies every choice tagged EnchantmentCostReduction), it's
+                // just currently misplaced under CharacterDevelopment/CareerSystem alongside
+                // genuinely Careers-specific content. Left as-is; properly fixing it means
+                // relocating CareerHelper/PassiveEffectType to Framework, a separate, larger
+                // move with a much bigger blast radius (CareerHelper is used everywhere).
                 CharacterDevelopment.CareerSystem.CareerHelper.ApplyBasicCareerPassives(hero, ref explainedNumber, PassiveEffectType.EnchantmentCostReduction, true);
 
-                // Greylord: For every known spell, reduce enchantment cost by 1%
-                if (hero.HasCareerChoice("ForbiddenScrollsOfSapheryPassive3"))
+                foreach (var factor in CraftingCareerHooks.EnchantmentCostReductionFactors)
                 {
-                    var choice = TORCareerChoices.GetChoice("ForbiddenScrollsOfSapheryPassive3");
-                    if (choice != null)
-                    {
-                        var spellCount = hero.GetExtendedInfo().AllAbilities
-                            .Select(AbilityFactory.GetTemplate)
-                            .Count(ability => ability != null && ability.IsSpell);
-                        var reductionPercent = spellCount * choice.GetPassiveValue();
-                        explainedNumber.AddFactor(reductionPercent / 100f);
-                    }
+                    explainedNumber.AddFactor(factor(hero));
                 }
             }
         }

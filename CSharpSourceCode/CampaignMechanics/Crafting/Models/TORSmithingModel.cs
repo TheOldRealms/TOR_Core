@@ -5,8 +5,8 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
-using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using TOR_Core.Framework;
 using TOR_Core.Utilities;
 using RefiningFormula = TaleWorlds.Core.Crafting.RefiningFormula;
 
@@ -153,15 +153,14 @@ namespace TOR_Core.CampaignMechanics.Crafting.Models
 
         private int ApplyEnergyCostModifiers(int value, Hero hero)
         {
-            if (hero.HasCareer(TORCareers.Runelord))
+            foreach (var modifier in CraftingCareerHooks.EnergyCostModifiers)
             {
-                if (Hero.MainHero.HasCareerChoice("ForgefireBurningPassive3"))
-                {
-                    var reduction = value * 0.4f;
-                    value -= (int)MathF.Round(reduction);
-                }
+                value = modifier(hero, value);
             }
 
+            // Note: this one is a Religion-module coupling (cult_of_grungni is a blessing, not
+            // a career), a separate kind of coupling from the Careers one this pass addresses -
+            // left as-is.
             if (hero.PartyBelongedTo != null && hero.PartyBelongedTo.HasBlessing("cult_of_grungni"))
             {
                 var reduction = value * 0.25f;
@@ -176,29 +175,17 @@ namespace TOR_Core.CampaignMechanics.Crafting.Models
         {
             var values = base.GetRefiningFormulas(weaponsmith);
 
-
-
-            if (weaponsmith.HasCareer(TORCareers.Runelord))
+            if (CraftingCareerHooks.RefiningFormulaModifiers.Count > 0)
             {
                 var newValues = new List<RefiningFormula>();
                 foreach (var value in values)
                 {
-                    if (weaponsmith.HasCareerChoice("ForgefireBurningPassive1") && value.Output == CraftingMaterials.Charcoal)
+                    var modified = value;
+                    foreach (var modifier in CraftingCareerHooks.RefiningFormulaModifiers)
                     {
-                        var entry = new RefiningFormula(value.Input1, value.Input1Count, value.Input2, value.Input2Count, value.Output,
-                            value.OutputCount + 1);
-                        newValues.Add(entry);
-                        continue;
+                        modified = modifier(weaponsmith, modified);
                     }
-                    if (weaponsmith.HasCareerChoice("ForgefireBurningPassive2") && value.Output is CraftingMaterials.Iron1 or CraftingMaterials.Iron2 or CraftingMaterials.Iron3 or CraftingMaterials.Iron4)
-                    {
-
-                        var entry = new RefiningFormula(value.Input1, value.Input1Count, value.Input2, value.Input2Count, value.Output,
-                            value.OutputCount * 2);
-                        newValues.Add(entry);
-                        continue;
-                    }
-                    newValues.Add(value);
+                    newValues.Add(modified);
                 }
 
                 values = newValues;
