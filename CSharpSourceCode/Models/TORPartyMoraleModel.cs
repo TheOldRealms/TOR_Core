@@ -17,6 +17,9 @@ namespace TOR_Core.Models
     {
         public override ExplainedNumber GetEffectivePartyMorale(MobileParty mobileParty, bool includeDescription = false)
         {
+            //Sly : addresses a rare crash when a garrison party is forced outside the settlement due to an on-going siege at its settlement, then a QuarterDaily healing tick or some other event occurs at the moment it is outside before it returns back inside. Native should probably be asking garrison.HomeSettlement to find if the party is starving rather than CurrentSettlement. For militias it asks the Home, but not garrisons for unknown reasons.
+            if (mobileParty.IsGarrison && mobileParty.CurrentSettlement == null) return new ExplainedNumber(50f);
+
             var result = base.GetEffectivePartyMorale(mobileParty, includeDescription);
 
             if (!mobileParty.IsLordParty) return result;

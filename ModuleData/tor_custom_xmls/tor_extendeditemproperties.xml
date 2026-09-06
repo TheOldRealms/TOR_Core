@@ -7257,55 +7257,55 @@
 <ExtendedItemObjectProperties ItemStringId="tor_beastmen_weapn_axe_gor_001"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_emp_enchant_myrmidia_wisdom">
     <ItemTraits>
-      <ItemTrait>learn_emp_enchant_myrmidia_wisdom</ItemTrait>
+      <ItemTrait>learn_miracle_myrmidia_wisdom</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_gs_enchant_mork_kunningly_brutal">
     <ItemTraits>
-      <ItemTrait>learn_gs_enchant_mork_kunningly_brutal</ItemTrait>
+      <ItemTrait>learn_miracle_mork_kunningly_brutal</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_dw_rune_grimnir_slayers_oath">
     <ItemTraits>
-      <ItemTrait>learn_dw_rune_grimnir_slayers_oath</ItemTrait>
+      <ItemTrait>learn_miracle_grimnir_slayers_oath</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_dw_rune_grungni_drongrundum_spirit">
     <ItemTraits>
-      <ItemTrait>learn_dw_rune_grungni_drongrundum_spirit</ItemTrait>
+      <ItemTrait>learn_miracle_grungni_drongrundum_spirit</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_dw_rune_valaya_ancestor_queen_salve">
     <ItemTraits>
-      <ItemTrait>learn_dw_rune_valaya_ancestor_queen_salve</ItemTrait>
+      <ItemTrait>learn_miracle_valaya_ancestor_queen_salve</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_asrai_enchant_vaul_draugnir_breath">
     <ItemTraits>
-      <ItemTrait>learn_asrai_enchant_vaul_draugnir_breath</ItemTrait>
+      <ItemTrait>learn_miracle_vaul_draugnir_breath</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_eo_enchant_asuryan_phoenix_eternal">
     <ItemTraits>
-      <ItemTrait>learn_eo_enchant_asuryan_phoenix_eternal</ItemTrait>
+      <ItemTrait>learn_miracle_asuryan_phoenix_eternal</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_asrai_enchant_loec_tricksters_dance">
     <ItemTraits>
-      <ItemTrait>learn_asrai_enchant_loec_tricksters_dance</ItemTrait>
+      <ItemTrait>learn_miracle_loec_tricksters_dance</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_gs_enchant_gork_brutal_kunnin">
     <ItemTraits>
-      <ItemTrait>learn_gs_enchant_gork_brutal_kunnin</ItemTrait>
+      <ItemTrait>learn_miracle_gork_brutal_kunnin</ItemTrait>
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
