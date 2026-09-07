@@ -702,6 +702,12 @@
   <string id="tor_enchant_prompt_donate_items.title" text="{=str_tor_enchant_prompt_donate_items_title}Donate items" />
   <string id="tor_enchant_prompt_donate_items.text" text="{=str_tor_enchant_prompt_donate_items_text}Select the items you want to donate. You will obtain {CUSTOMRESOURCE_ICON} from this action. " />
   <string id="tor_enchant_no_description" text="{=str_tor_enchant_no_description}No description available." />
+  <string id="tor_enchanting_title" text="{=str_tor_enchanting_title}Enchanting" />
+  <string id="tor_runesmithing_title" text="{=str_tor_runesmithing_title}Runesmithing" />
+  <string id="tor_enchanting_requires_skill" text="{=str_tor_enchanting_requires_skill}Requires {SKILL} {VALUE}." />
+  <string id="tor_enchanting_requires_lore" text="{=str_tor_enchanting_requires_lore}Requires a character who knows the Lore of {LORE}." />
+  <string id="tor_enchanting_requires_attribute" text="{=str_tor_enchanting_requires_attribute}Requires a character with {ATTRIBUTE}." />
+  <string id="tor_enchantmentshop_future_requirement" text="{=str_tor_enchantmentshop_future_requirement}You can learn this now, but cannot enchant with it yet. {REQUIREMENT}" />
 
   <!-- EMPIRE (empire) - Imperial Alchemist dialogs -->
   <string id="tor_enchanter_start_p.empire" text="{=str_tor_enchanter_start_p_empire}I wish to learn about enchantment." />

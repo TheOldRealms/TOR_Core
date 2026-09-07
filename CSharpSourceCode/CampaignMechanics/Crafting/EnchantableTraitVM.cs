@@ -16,7 +16,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
         private string _itemTraitDescription;
         private Action<EnchantableTraitVM, bool> _onSelected;
         private string _iconName;
-        private bool _isEnabled;
+        private bool _isDisabled;
         private string _unmetRequirement;
         public ItemTrait ItemTrait => _trait;
 
@@ -33,7 +33,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
             _onSelected = onSelected;
             _unmetRequirement = unmetRequirement;
             IsSelected = false;
-            IsEnabled = unmetRequirement == null;
+            IsDisabled = unmetRequirement != null;
             TraitName = new TextObject(trait.ItemTraitName).ToString();
             IconName = trait.IconName;
             //Text on the right side of the screen that appears under the weapon preview and above the enchantment ingredients.
@@ -56,10 +56,10 @@ namespace TOR_Core.CampaignMechanics.Crafting
 
         private void ExecuteSelectTrait()
         {
-            // The prefab greys the row out, but a disabled ButtonWidget can still route a
-            // click in some navigation paths, so refuse it here too rather than trusting the
-            // view to be the only gate.
-            if (!IsEnabled) return;
+            // The prefab greys the row out and IsDisabled refuses the click, but gamepad and
+            // keyboard navigation can still route one, so refuse it here too rather than
+            // trusting the view to be the only gate.
+            if (IsDisabled) return;
 
             IsSelected = !IsSelected;
             _onSelected?.Invoke(this, IsSelected);
@@ -92,15 +92,15 @@ namespace TOR_Core.CampaignMechanics.Crafting
         }
 
         [DataSourceProperty]
-        public bool IsEnabled
+        public bool IsDisabled
         {
-            get => _isEnabled;
+            get => _isDisabled;
             set
             {
-                if (_isEnabled != value)
+                if (_isDisabled != value)
                 {
-                    _isEnabled = value;
-                    OnPropertyChangedWithValue(value, "IsEnabled");
+                    _isDisabled = value;
+                    OnPropertyChangedWithValue(value, "IsDisabled");
                 }
             }
         }
