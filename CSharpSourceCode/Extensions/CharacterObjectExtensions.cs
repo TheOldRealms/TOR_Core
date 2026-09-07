@@ -422,10 +422,11 @@ namespace TOR_Core.Extensions
                     var explainedNumber = new ExplainedNumber(cost);
                     CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref explainedNumber, PassiveEffectType.CustomResourceUpgradeCostModifier, true, character);
 
-                    
-                    
-                    
-                    
+                    if (Hero.MainHero.HasCareerChoice("IronDrakesPassive2") && character.HasAttribute(CharacterAttributes.IRONBREAKER))
+                    {
+                        cost = Math.Max((int)explainedNumber.ResultNumber, 1);
+                    }
+
                     // Waaagh3 and Waaagh4 : Teef upgrade penalty for Greenskins
                     if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN &&
                         info.ResourceCost.ResourceType == "Teef")//resource type check is redundant because upgrades should be disabled prior to this for other culture troops who would cost a different resource.

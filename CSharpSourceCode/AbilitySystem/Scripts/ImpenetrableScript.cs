@@ -7,17 +7,31 @@ namespace TOR_Core.AbilitySystem.Scripts;
 
 public class ImpenetrableScript : CareerAbilityScript
 {
+    protected override void OnBeforeTick(float dt)
+    {
+        base.OnBeforeTick(dt);
+
+        // Shieldwall selects nearby allies before the normal movement update on the first tick.
+        if (!HasTickedOnce && !IsFading)
+        {
+            GameEntity.SetGlobalFrame(GetNextGlobalFrame(GameEntity.GetGlobalFrame(), dt));
+        }
+    }
+
     protected override void OnBeforeRemoved(int removeReason)
     {
         var perkBehavior = Mission.Current.GetMissionBehavior<CareerPerkMissionBehavior>();
 
-        var bonus = 0f;
-        bonus = perkBehavior.CareerMissionVariables[0];
+        if (perkBehavior == null || Agent.Main == null)
+        {
+            return;
+        }
+
+        var bonus = perkBehavior.CareerMissionVariables[0];
 
         perkBehavior.CareerMissionVariables[0] = 0;
 
-
-        if (Hero.MainHero.HasCareerChoice("GromrilArmorKeystone") && Agent.Main != null && bonus > 0)
+        if (Hero.MainHero.HasCareerChoice("GromrilArmorKeystone") && bonus > 0)
         {
             for (int i = 0; i < bonus; i++)
             {
@@ -25,7 +39,7 @@ public class ImpenetrableScript : CareerAbilityScript
             }
         }
 
-        if (Hero.MainHero.HasCareerChoice("RuneWeaponsKeystone") && Agent.Main != null && bonus > 0)
+        if (Hero.MainHero.HasCareerChoice("RuneWeaponsKeystone") && bonus > 0)
         {
             for (int i = 0; i < bonus; i++)
             {

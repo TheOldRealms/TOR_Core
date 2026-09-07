@@ -611,9 +611,20 @@ namespace TOR_Core.Items
         public override void OnAgentShootMissile(Agent shooterAgent, EquipmentIndex weaponIndex, Vec3 position, Vec3 velocity, Mat3 orientation, bool hasRigidBody,
             int forcedMissileIndex)
         {
+            if (shooterAgent == null)
+            {
+                return;
+            }
+
+            var firedWeaponData = shooterAgent.Equipment[weaponIndex].CurrentUsageItem;
+            if (firedWeaponData != null)
+            {
+                TryRefundIronbreakerExplosiveCharge(shooterAgent, weaponIndex, firedWeaponData);
+            }
+
             var weaponData = shooterAgent.WieldedWeapon.CurrentUsageItem;
 
-            if (weaponData != null && shooterAgent != null)
+            if (weaponData != null)
             {
                 var missile = Mission.Current.MissilesList.FirstOrDefault(X => X.ShooterAgent == shooterAgent);
 
@@ -648,6 +659,30 @@ namespace TOR_Core.Items
                     }
                 }
             }
+        }
+
+        private static void TryRefundIronbreakerExplosiveCharge(Agent shooterAgent, EquipmentIndex weaponIndex, WeaponComponentData weaponData)
+        {
+            if (Campaign.Current == null || Hero.MainHero == null ||
+                !Hero.MainHero.HasCareer(TORCareers.Ironbreaker) ||
+                !Hero.MainHero.HasCareerChoice("NestCleansingPassive4") ||
+                shooterAgent.Character.IsHero ||
+                !shooterAgent.BelongsToMainParty() ||
+                !shooterAgent.Character.IsIronbreakerUnit() ||
+                weaponData.ItemUsage?.Contains("dwarf_hand_grenade") != true ||
+                MBRandom.RandomFloat >= 0.5f)
+            {
+                return;
+            }
+
+            var explosiveCharge = shooterAgent.Equipment[weaponIndex];
+            if (explosiveCharge.IsEmpty)
+            {
+                return;
+            }
+
+            // Update the native weapon amount as well as the managed equipment, without increasing its capacity.
+            shooterAgent.SetWeaponAmountInSlot(weaponIndex, (short)(explosiveCharge.Amount + 1), true);
         }
 
         private bool HasWeaponWithTrait(Agent agent, out List<ItemTrait> list)

@@ -86,6 +86,15 @@ namespace TOR_Core.Models
             return accuracy.ResultNumber;
         }
 
+        public override float GetKnockBackResistance(Agent agent)
+        {
+            if (agent.HasAttribute("NestCleansing"))
+            {
+                return 1;
+            }
+            return base.GetKnockBackResistance(agent);
+        }
+
         public override float GetKnockDownResistance(Agent agent, StrikeType strikeType)
         {
             if (agent.HasAttribute(CharacterAttributes.TUBTHUMPING))
@@ -155,36 +164,24 @@ namespace TOR_Core.Models
                                         {
                                             ammoCount.Add(2);
                                         }
-                                        if (agent.Character.IsIronbreakerUnit() && !agent.Character.IsHero && Hero.MainHero.HasCareerChoice("NestCleansingPassive4") && MBRandom.RandomFloat < 0.5f)
-                                        {
-                                            ammoCount.Add(1);
-                                        }
-
-
                                     }
 
                                     if (Hero.MainHero.HasCareerChoice("IronDrakesPassive4") && agent.GetOriginMobileParty() == MobileParty.MainParty && agent.Character.IsIronbreakerUnit())
                                     {
-                                        foreach (var elem in MobileParty.MainParty.MemberRoster.GetTroopRoster())
+                                        var ironbeardCount = MobileParty.MainParty.MemberRoster.GetTroopRoster()
+                                            .Where(elem => elem.Character.StringId == "tor_dw_ironbeard")
+                                            .Sum(elem => elem.Number);
+                                        if (ironbeardCount > 0)
                                         {
-                                            if (elem.Character.StringId == "tor_dw_ironbeard")
-                                            {
-                                                ammoCount.AddFactor(0.1f);
-                                            }
+                                            ammoCount.AddFactor(0.01f * ironbeardCount);
                                         }
                                     }
 
-                                    if (agent.Character.IsHero && agent.GetHero() == Hero.MainHero)
+                                    if ((agent.IsMainAgent || (mobileParty.IsMainParty && character.HeroObject?.IsPlayerCompanion == true)) &&
+                                        missionWeapon.Item.IsDrakeGunCanister() &&
+                                        Hero.MainHero.HasCareerChoice("IronDrakesPassive3"))
                                     {
-
-                                        if (missionWeapon.Item.IsFlameThrowerItem())
-                                        {
-                                            if (Hero.MainHero.HasCareerChoice("IronDrakesPassive3"))
-                                            {
-                                                ammoCount.Add(12);
-                                            }
-                                        }
-
+                                        ammoCount.Add(12);
                                     }
                                 }
 
@@ -206,8 +203,7 @@ namespace TOR_Core.Models
                                 if (agent == Agent.Main && Hero.MainHero.HasCareer(TORCareers.Ironbreaker) && Hero.MainHero.HasCareerChoice("ShieldwallPassive4"))
                                 {
                                     var smithingSkill = Hero.MainHero.GetSkillValue(DefaultSkills.Crafting);
-                                    hitPoints += (int)(smithingSkill * 0.5f);
-
+                                    hitPoints += (int)MathF.Round(hitPoints * smithingSkill * 0.005f);
                                 }
 
                                 var traits = agent.WieldedOffhandWeapon.Item.GetTraits().Where(x => x.StatsTuple.StatType == ItemTraitStatType.ShieldHealth).ToList();
@@ -218,29 +214,6 @@ namespace TOR_Core.Models
                                 }
 
                                 equipment.SetHitPointsOfSlot(equipmentIndex, (short)hitPoints, true);
-                            }
-                        }
-                    }
-
-                    if (agent.BelongsToMainParty() && agent.Character.IsIronbreakerUnit() && !agent.Character.IsRanged)
-                    {
-                        if (!Hero.MainHero.HasCareer(TORCareers.Ironbreaker)) return;
-
-                        if (Hero.MainHero.HasCareerChoice("NestCleansingPassive4") && MBRandom.RandomFloat < 0.5f)
-                        {
-                            MissionEquipment troopEquipment = agent.Equipment;
-                            for (int i = 0; i < 5; i++)
-                            {
-                                EquipmentIndex equipmentIndex = (EquipmentIndex)i;
-                                MissionWeapon missionWeapon = equipment[equipmentIndex];
-
-                                if (missionWeapon.IsEmpty)
-                                {
-                                    var item = MBObjectManager.Instance.GetObject<ItemObject>("tor_dwarf_weapon_grenade_dwarf_hand_grenade");
-                                    MissionWeapon weapon = new MissionWeapon(item, null, Hero.MainHero.ClanBanner);
-                                    agent.EquipWeaponWithNewEntity((EquipmentIndex)i, ref weapon);
-                                    break;
-                                }
                             }
                         }
                     }

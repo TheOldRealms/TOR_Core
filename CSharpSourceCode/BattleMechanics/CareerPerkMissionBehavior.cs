@@ -111,7 +111,8 @@ namespace TOR_Core.BattleMechanics
         public override void OnMeleeHit(Agent attacker, Agent victim, bool isCanceled, AttackCollisionData collisionData)
         {
             if (victim == null || attacker == null) return;
-            if (victim.IsMainAgent && victim.BelongsToMainParty() && victim.IsEnemyOf(attacker) && Hero.MainHero.HasCareer(TORCareers.Ironbreaker) && Hero.MainHero.HasCareerChoice("GromrilArmorKeystone"))
+            if (victim.IsMainAgent && victim.BelongsToMainParty() && victim.IsEnemyOf(attacker) && Hero.MainHero.HasCareer(TORCareers.Ironbreaker) &&
+                (Hero.MainHero.HasCareerChoice("GromrilArmorKeystone") || Hero.MainHero.HasCareerChoice("RuneWeaponsKeystone")))
             {
                 if (Agent.Main.HasAttribute(CharacterAttributes.IMPENETRABLE))
                 {

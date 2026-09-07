@@ -507,11 +507,12 @@ namespace TOR_Core.CharacterDevelopment
         public static float IronbreakerChargeSupplier(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue,
             AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
-            // Damage taken: check if the affected agent (one being hit) is the main hero - 5x charge from blocking
-            //Sly : this doesn't account for blocked hits in any way?
+            // Damage taken grants 5x charge; shield blocks grant a fixed 5 even when no health is lost.
             if (chargeType == ChargeType.DamageTaken && affectedAgent == Agent.Main && affectedAgent.GetHero() == Hero.MainHero)
             {
-                return chargeValue * 5;
+                return (collisionFlag & CareerHelper.ChargeCollisionFlag.HitShield) != 0
+                    ? 5
+                    : chargeValue * 5;
             }
 
             // Damage done with IronPriceKeystone: check if the affecting agent (one dealing damage) is the main hero - half efficiency

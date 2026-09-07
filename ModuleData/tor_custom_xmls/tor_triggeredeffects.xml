@@ -2978,10 +2978,11 @@
                              Radius="5"
                              HasShockWave="false"
                              TargetType="Self"
-                             ImbuedStatusEffectDuration="5"
+                             ImbuedStatusEffectDuration="10"
                              DamageVariance="0.0"
                              ScriptNameToTrigger="none">
         <ImbuedStatusEffect>impenetrable_invincible</ImbuedStatusEffect>
+		<ImbuedStatusEffect>impenetrable_movement_penalty</ImbuedStatusEffect>
 		<ImbuedStatusEffect>impenetrable_attribute</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
 	
