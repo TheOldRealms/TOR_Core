@@ -367,6 +367,8 @@ public class OathGoldBehavior : CampaignBehaviorBase
             {
                 var quest = TORQuestHelper.GetCurrentQuest<RunesmithQuest>("runelord_quest_1", true, IsRunelordInFront, out var existent);
 
+                Hero.MainHero.AddAttribute(CharacterAttributes.RUNE_MAGIC);
+
                 if (!existent)
                 {
                     quest.StartQuest();
