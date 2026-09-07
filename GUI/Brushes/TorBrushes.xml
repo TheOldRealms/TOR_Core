@@ -199,8 +199,6 @@
     <Brush Name="TorEnchantingFontBrush" Font="CasablancaAntique" TextHorizontalAlignment="Left">
         <Styles>
             <Style Name="Default" FontColor="#FFFFFFFF" TextBlur="0" TextOutlineAmount="0" TextGlowRadius="0" FontSize="20" />
-            <!-- The row button sets UpdateChildrenStates, so the label follows it into
-                 Disabled and greys with the background instead of staying stark white. -->
             <Style Name="Disabled" FontColor="#8C8C8CFF" TextBlur="0" TextOutlineAmount="0" TextGlowRadius="0" FontSize="20" />
         </Styles>
     </Brush>
