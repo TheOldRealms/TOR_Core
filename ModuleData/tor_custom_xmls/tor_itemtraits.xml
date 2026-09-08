@@ -2436,7 +2436,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_ghur_wildform}"3% physical resistance, 15% chance to receive a fleeting 3% physical resistance bonus for 10 seconds upon receiving damage. Stacks up to 3 times"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_ghur_wildform</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2450,7 +2450,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_ghur_savagery}"10% extra damage done as physical, 10% chance to receive a fleeting 2% attack speed bonus for 20 seconds upon dealing damge. Stacks up to 5 times"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_ghur_savagery</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2464,7 +2464,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_ghur_crows}"10% extra damage done as physical, 10% chance to summon vicious crows in a 3m radius, inflicting 2 frost damage per second for 20 seconds"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_ghur_crows</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2478,7 +2478,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_ghur_echo}"15% extra damage done as physical, 15% extra missile speed, 10% to reduce movement speed of nearby enemies by 20% for 20 seconds upon dealing damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_ghur_echo</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2492,7 +2492,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_ghur_whisper}"10% extra damage done as physical"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_ghur_whisper</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2506,7 +2506,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_hysh_sanctuary}"3% physical resistance, 5% chance to snare nearby enemies with a net of Hysh for 20 seconds upon receiving damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_hysh_sanctuary</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2520,7 +2520,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_hysh_brilliance}"15% chance to trigger a burst of light upon blocking damage. Reduces attack speed of nearby enemies within 3m for 20 seconds"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_hysh_brilliance</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2534,7 +2534,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_hysh_timewarp}"20% extra damage done as magical, 10% chance to receive a 40% movement speed buff for 3 seconds upon dealing damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_hysh_timewarp</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2548,7 +2548,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_hysh_clarity}"3 max Winds of Magic"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_hysh_clarity</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2562,7 +2562,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_hysh_whisper}"10% extra damage done as magical"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_hysh_whisper</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2576,7 +2576,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_hysh_providence}"5% magic resistance, 10 bonus skillpoints to Spellcraft"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_hysh_providence</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2590,7 +2590,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_ghyran_brambles}"Deal 25 physical damage to enemies blocked in melee -10% fire resistance"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_ghyran_brambles</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2604,7 +2604,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_ghyran_bloom}"6 extra HP, -10% fire resistance, 15% chance to regen 2HP per second for 5 seconds upon receiving damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_ghyran_bloom</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2618,7 +2618,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_ghyran_cloak}"25% extra healing rate when travelling"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_ghyran_cloak</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2632,7 +2632,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_ghyran_tendrils}"15% physical resistance, 25% to snare enemies within 3m with powerful roots for 20 seconds upon taking damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_ghyran_tendrils</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2646,7 +2646,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_ghyran_whisper}"3 extra HP, -15% fire resistance"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_ghyran_whisper</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2660,7 +2660,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_ghyran_intuition}"3 max Winds of Magic, -25% fire resistance"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_ghyran_intuition</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2674,7 +2674,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_aqshy_hearth}"7% bonus to fire damage, -25% fire resistance"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_aqshy_hearth</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2688,7 +2688,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_aqshy_firebreath}"25% extra damage done as fire, 20% to summon a fiery explosion dealing 60 fire damage in a 3m radius and inflicting burning (4 fire damage per second for 5 seconds)"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_aqshy_firebreath</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2702,7 +2702,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_aqshy_cinders}"15% extra damage done as fire, 15% chance to inflict burning on nearby enemies in a 3m radius (4 fire damage per second for 5 seconds) upon dealing damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_aqshy_cinders</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2716,7 +2716,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_aqshy_rage}"40% extra damage done as fire, -15% fire resistance"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_aqshy_rage</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2730,7 +2730,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_aqshy_whisper}"12% extra damage done as fire"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_aqshy_whisper</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2744,7 +2744,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_aqshy_fury}"Damaging burning enemies inflicts an extra 50 fire damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_aqshy_fury</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2758,7 +2758,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_aqshy_curtain}"20% fire resistance, 15% chance to inflict fire DoT on blocked enemies (4 fire damage per second for 5 seconds). This DoT effect can spread onto enemies and allies alike"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_aqshy_curtain</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2772,7 +2772,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_chamon_transmutation}"20% extra damage done as fire, projectiles penetrate targets"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_chamon_transmutation</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2786,7 +2786,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_chamon_aegis}"20% extra shield HP, 5% physical resistance, 50% chance to decrease physical resistance of nearby enemies by 40% for 5 sec upon blocking damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_chamon_aegis</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2800,7 +2800,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_chamon_laws}"50% extra armour penetration"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_chamon_laws</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2814,7 +2814,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_chamon_feathers_lead}"8% physical resistance, 5% penalty to movement speed"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_chamon_feathers_lead</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2828,7 +2828,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_chamon_lead_feathers}"3% penalty to physical resistance, 5% bonus to movement speed"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_chamon_lead_feathers</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2842,7 +2842,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_chamon_forge}"30% extra reload speed, 10% extra damage done as magical"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_chamon_forge</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2856,7 +2856,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_chamon_whisper}"3% physical resistance"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_chamon_whisper</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2870,7 +2870,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_chamon_crucible}"20% extra damage done as magical, weapon gains the Cleave trait"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_chamon_crucible</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2884,7 +2884,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_azyr_wind}"10% extra projectile speed"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_azyr_wind</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2898,7 +2898,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_azyr_harmony}"4% bonus to lightning damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_azyr_harmony</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2912,7 +2912,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_azyr_azure_mirror}"2% physical resistance, deal 15 lightning damage and knockdown to enemies attacking you in melee within 2m"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_azyr_azure_mirror</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2926,7 +2926,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_azyr_gale}"15% extra armour penetration, 15% chance to summon a gust of wind knocking down enemies in a 3m radius dealing an immediate 10 lightning damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_azyr_gale</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2940,7 +2940,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_azyr_foresight}"Gain 15% Physical Resistance and 15% bonus Lightning damage. Your attacks have a 15% chance to inspire nearby allies, granting them the same Lightning bonus for 20 seconds"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_azyr_foresight</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2954,7 +2954,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_azyr_divination}"5% magic resistance, 7% extra party travel speed"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_azyr_divination</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2968,7 +2968,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_azyr_whisper}"3% magic resistance, 3% extra party travel speed"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_azyr_whisper</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2982,7 +2982,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_shyish_pale_grip}"7% bonus to magic damage, -3 HP"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_shyish_pale_grip</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -2996,7 +2996,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_shyish_messengers}"5% magic resistance, 10% chance to inflict horrific visions in a 7m radius upon taking damage. Nearby enemies suffer 4 magical damage per second for 20 seconds"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_shyish_messengers</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3010,7 +3010,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_shyish_blight}"25% extra damage done as magical, 10% chance to reduce physical resistance of struck enemies by 25% for 5 seconds"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_shyish_blight</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3024,7 +3024,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_shyish_pall}"15% extra damage done as magical, gain a stacking 10% magic resistance bonus upon killing enemies. Stacks up to 5 times and fades after a short while"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_shyish_pall</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3038,7 +3038,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_shyish_withering}"10% extra damage done as magical, 10% chance to reduce movement speed of the struck enemy by 25% for 5 seconds"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_shyish_withering</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3052,7 +3052,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_shyish_whisper}"12% extra damage done as magical"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_shyish_whisper</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3066,7 +3066,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_shyish_deathsight}"Blocking hits of Undead units carries a 50% chance to apply an 'Exorcism', debuffing enemies making them 33% more vulnerable to Magical damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_shyish_deathsight</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3080,7 +3080,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_sigmar_beacon}"10% magic resistance, 15% extra prayer radius"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_sigmar_beacon</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3094,7 +3094,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_sigmar_retribution}"Gain a fleeting 10% bonus to holy damage when blocking blows of Undead and Daemons. Stacks up to 5 times, each lasting 15 seconds"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_sigmar_retribution</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3108,7 +3108,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_sigmar_soulfire}"6% magic resistance, 3 extra HP, 10% chance to emit a damaging wave of holy energy dealing 35 damage in a 7m radius whenever attacked by Undead and Daemons in melee"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_sigmar_soulfire</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3122,7 +3122,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_sigmar_light}"6% magic resistance, 3 extra HP, 10% chance to gain 2HP per second for 20 seconds whenever attacked by Undead and Daemons in melee"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_sigmar_light</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3136,7 +3136,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_sigmar_exorcism}"20% extra damage done as holy, 10% chance to deal 100% bonus damage against Undead and Daemons"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_sigmar_exorcism</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3150,7 +3150,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_sigmar_justice}"12% extra damage done as holy"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_sigmar_justice</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3164,7 +3164,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_ulric_wrath}"350% extra shield damage, 15% to receive a fleeting 3% attack speed bonus upon dealing damage. Stacks up to 5 times, each lasting 15 seconds"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_ulric_wrath</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3178,7 +3178,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_ulric_wolf_god_bite}"10% extra swing speed, 15% to receive a fleeting 6% bonus to frost damage upon dealing damage. Stacks up to 5 times each lasting 15 seconds"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_ulric_wolf_god_bite</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3192,7 +3192,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_ulric_chill}"15% extra damage done as frost"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_ulric_chill</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3206,7 +3206,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_ulric_frenzy}"5% physical resistance, receiving melee damage carries a 15% chance in a 3m radius to give allies a 15% attack speed increase for 20 seconds"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_ulric_frenzy</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3220,7 +3220,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_ulric_winterfather_gift}"5% magic resistance, 20 bonus skillpoints to Two Handed"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_ulric_winterfather_gift</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3234,7 +3234,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_shallya_mercy}"6 extra HP"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_shallya_mercy</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3248,7 +3248,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_shallya_pacifism}"Mercy is piety. Chance to heal 2 HP for 5 seconds when knocking out enemies"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_shallya_pacifism</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3262,7 +3262,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_shallya_purity}"50% extra healing rate when travelling"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_shallya_purity</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3276,7 +3276,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_shallya_compassion}"-50% shield HP, completely heals the wearer and nearby allies upon shield destruction"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_shallya_compassion</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3290,7 +3290,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_shallya_martyrdom}"3 extra HP, taking damage has a 33% chance to heal nearby friendly units for 2HP for 6 seconds in a 3m radius"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_shallya_martyrdom</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3304,7 +3304,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_bret_blessing_eerie_touch}"2% physical resistance, 25 bonus skillpoints to Riding"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>bret_blessing_eerie_touch</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3318,7 +3318,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_bret_blessing_fey_guidance}"10% extra party travel speed, 5% magic resistance"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>bret_blessing_fey_guidance</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3332,7 +3332,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_bret_blessing_grail_legacy}"30% extra damage done as holy, weapon gains the Cleave trait"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>bret_blessing_grail_legacy</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3346,7 +3346,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_bret_blessing_lady_ward}"10% magic resistance, Once per battle fatal wounds will revive you with 50% HP"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>bret_blessing_lady_ward</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3360,7 +3360,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_bret_blessing_scourge_evil}"5% extra swing speed, 50% chance to deal 40 holy damage in a 3m radius against Undead and Daemons"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>bret_blessing_scourge_evil</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3374,7 +3374,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_bret_blessing_shield_faith}"10% physical resistance, blocked hits reduce the cooldown of your Career Ability by 1 second"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>bret_blessing_shield_faith</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3388,7 +3388,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_bret_blessing_pilgrim_tenacity}"2 extra HP"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>bret_blessing_pilgrim_tenacity</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3402,7 +3402,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_bret_blessing_mists_sacred_lake}"3% physical resistance, 15% extra prayer and spell radius"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>bret_blessing_mists_sacred_lake</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3416,7 +3416,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_bret_blessing_wisdom_virtue}"3 extra HP, 5% magic resistance"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>bret_blessing_wisdom_virtue</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -3430,7 +3430,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_vc_enchant_bonds_darkness}"5% bonus to magic damage, summon 3 Skeleton Warriors for every enemy felled in melee"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>vc_enchant_bonds_darkness</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3444,7 +3444,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_vc_enchant_call_beyond}"10% bonus to magic damage, summon 3 Grave Guard for every enemy felled in melee"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>vc_enchant_call_beyond</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3458,7 +3458,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_vc_enchant_unhallowed_pact}"-5% physical resistance, 33% extra spell radius"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>vc_enchant_unhallowed_pact</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3472,7 +3472,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_vc_enchant_drinker_blood}"15% extra damage done as magical. Recover 1 HP for every instance of damage dealt in melee, triggers below 50% HP"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>vc_enchant_drinker_blood</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3486,7 +3486,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_vc_enchant_nightshroud}"5% magic resistance, 15% chance to reduce attack speed and damage of nearby enemies upon receiving damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>vc_enchant_nightshroud</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3500,7 +3500,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_vc_enchant_ethereal_whispers}"5% physical resistance, upon receiving ranged damage gain 50% ranged damage immunity for 20 seconds"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>vc_enchant_ethereal_whispers</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3514,7 +3514,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_vc_enchant_mockery_asps}"25% extra damage done as magical, ranged shots reduce physical resistance of the target by 50%"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>vc_enchant_mockery_asps</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3528,7 +3528,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_vc_enchant_touch_jet}"5% extra swing speed, each blow deals an extra 20% damage done as magical"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>vc_enchant_touch_jet</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3542,7 +3542,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_vc_enchant_caress_void}"-10% physical resistance, 10 max Winds of Magic"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>vc_enchant_caress_void</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3556,7 +3556,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_vc_enchant_unholy_blessing}"15% extra damage done as magical"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>vc_enchant_unholy_blessing</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3570,7 +3570,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_vc_enchant_chilling_hand}"15% extra damage done as frost, 10% chance to slow the movement, attack and reload speed of nearby enemies with each strike"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>vc_enchant_chilling_hand</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3584,7 +3584,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_vc_enchant_bulwark_blood_keep}"20% extra shield HP, 8% physical resistance"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>vc_enchant_bulwark_blood_keep</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3598,7 +3598,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_vc_enchant_crimson_flood}"25% extra damage done as magical, 10% to send out a damaging wave of magic with each strike. Each wave drains 2 HP of the wearer"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>vc_enchant_crimson_flood</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3612,7 +3612,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_vc_enchant_legacy_arkhan}"12% bonus to magic damage, 15% extra spell radius"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>vc_enchant_legacy_arkhan</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3626,7 +3626,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_vc_enchant_secrets_wsoran}"5% bonus to magic damage, 4 max Winds of Magic"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>vc_enchant_secrets_wsoran</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3640,7 +3640,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_we_enchant_blackbriar_kiss}"10% extra damage done as physical, 10% extra armour penetration"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>we_enchant_blackbriar_kiss</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3653,7 +3653,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_we_enchant_emissaries_mirai}"15% extra magical damage to the weapon, and on hit has a 15% chance to curse enemies around the target within 3 meters, dealing about 3 magical damage per second for 5 seconds."</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>we_enchant_emissaries_mirai</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3667,7 +3667,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_we_enchant_song_doom}"10% extra damage done as physical, 15% extra missile speed"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>we_enchant_song_doom</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3680,7 +3680,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_asrai_enchant_dusk_wood}"-8% physical resistance, 8 max Winds of Magic"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>asrai_enchant_dusk_wood</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3694,7 +3694,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_we_enchant_moon_stone}"10% bonus to magic damage, 12% extra travel speed"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>we_enchant_moon_stone</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3707,7 +3707,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_we_enchant_trickery_loec}"50% extra damage when striking at the backs of enemies. Same bonus applies to unaware enemies hit from any angle"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>we_enchant_trickery_loec</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3720,7 +3720,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_asrai_enchant_leylines_weave}"Gain 8 Forest Harmony daily, 3% physical resistance"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>asrai_enchant_leylines_weave</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3733,7 +3733,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_we_enchant_thorns_nettles}"-15% shield HP, deal 40 physical damage to enemies blocked in melee"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>we_enchant_thorns_nettles</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3746,7 +3746,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_we_enchant_tranquillity_cadai}"15% extra damage done as magical and 15% magic resistance, 30% chance to grant nearby troops 15% magic resistance for a short time upon dealing damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>we_enchant_tranquillity_cadai</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3760,7 +3760,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_asrai_enchant_radiance_woods}"3% Ward Save, 4 max Winds of Magic"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>asrai_enchant_radiance_woods</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3774,7 +3774,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_we_enchant_touch_lileath}"5% magic resistance, 3 max Winds of Magic"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>we_enchant_touch_lileath</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3787,7 +3787,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_we_enchant_dusk_dawn}"40% extra damage done as magical"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>we_enchant_dusk_dawn</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3800,7 +3800,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_we_enchant_arcane_bodkins}"10% extra armour penetration"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>we_enchant_arcane_bodkins</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3813,7 +3813,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_we_enchant_hagbane_tips}"50% chance to decrease the movement speed of the target by 40%"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>we_enchant_hagbane_tips</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3826,7 +3826,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_we_enchant_moon_fire}"20% extra damage done as fire"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>we_enchant_moon_fire</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3839,7 +3839,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_we_enchant_star_fire}"25% extra armour penetration"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>we_enchant_star_fire</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3852,7 +3852,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_we_enchant_swift_shiver}"10% extra damage done as magical and 10% extra missile speed"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>we_enchant_swift_shiver</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3865,7 +3865,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_we_enchant_trueflight}"40% extra armour penetration"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>we_enchant_trueflight</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3878,7 +3878,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_asrai_enchant_tree_lord}"5 extra HP, 15% chance to summon a Dryad upon taking damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>asrai_enchant_tree_lord</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3891,7 +3891,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_asrai_enchant_quake_hukon}"25% extra shield HP, 25% chance to knock down foes when blocking melee hits"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>asrai_enchant_quake_hukon</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3904,7 +3904,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_asrai_enchant_morai_heg}"10% extra swing speed, 500% damage when striking at the backs of enemies. Same bonus applies to unaware enemies hit from any angle"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>asrai_enchant_morai_heg</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3918,7 +3918,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_asrai_enchant_oakhart_blessing}"4% physical resistance, 4% bonus to magic damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>asrai_enchant_oakhart_blessing</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3932,7 +3932,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_asrai_enchant_vengeance_khaine}"8% extra swing speed, 15% extra damage done as physical, 100% damage when striking at the heads of enemies"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>asrai_enchant_vengeance_khaine</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3946,7 +3946,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_asrai_enchant_anath_raema}"15% extra damage done as magical and 15% extra missile speed, dismount damaged cavalry units"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>asrai_enchant_anath_raema</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3960,7 +3960,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_asrai_enchant_trance_loec}"10% extra swing speed, 10% bonus to physical damage and 10% physical resistance"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>asrai_enchant_trance_loec</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3973,7 +3973,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_asrai_enchant_embrace_isha}"4% Ward Save, 10% chance to recover 10 HP upon receiving damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>asrai_enchant_embrace_isha</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -3987,7 +3987,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_asrai_enchant_ferocity_kurnous}"30% extra damage done as magical, 50% extra missile speed"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>asrai_enchant_ferocity_kurnous</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4000,7 +4000,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_wisdom_hoeth}"7 max Winds of Magic, 5% bonus to magic damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>eo_enchant_wisdom_hoeth</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4014,7 +4014,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_storms_mathlann}"50% lightning resistance, 15% extra shield HP, 25% chance to summon a bolt of lightning upon blocking damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>eo_enchant_storms_mathlann</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4027,7 +4027,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_flames_asuryan}"60% extra damage done as fire, 15% fire resistance"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>eo_enchant_flames_asuryan</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4040,7 +4040,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_legacy_caledor}"50% fire resistance, 25% extra shield HP, 25% chance to conjure a fire explosion upon blocking damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>eo_enchant_legacy_caledor</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4053,7 +4053,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_sanctuary_saphery}"Upon receiving ranged damage gain complete physical ranged damage immunity for 30 seconds"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>eo_enchant_sanctuary_saphery</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4067,7 +4067,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_sarriel_whisper}"15% extra damage done as magical, 20% chance to reduce movement speed of the struck enemy by 25% for 5 seconds"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>eo_enchant_sarriel_whisper</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4081,7 +4081,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_anvil_vaul}"25% extra damage done as magical, ignores 75% of the target's armour"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>eo_enchant_anvil_vaul</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4095,7 +4095,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_veil_ladrielle}"5% physical resistance, 15% extra party travel speed"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>eo_enchant_veil_ladrielle</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4109,7 +4109,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_daroir_soulgem}"4% Ward Save, 5 extra HP"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>eo_enchant_daroir_soulgem</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4123,7 +4123,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_silver_tower_eyes}"15% extra missile speed, 200% extra headshot damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>eo_enchant_silver_tower_eyes</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4137,7 +4137,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_soulbound_shafts}"25% extra damage done as magical, projectiles penetrate targets"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>eo_enchant_soulbound_shafts</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4151,7 +4151,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_blood_aenarion}"5% extra movement speed, 5% physical resistance, 25% chance upon taking damage to receive a fleeting 4% attack speed bonus for 20 seconds. Stacks up to 5 times"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>eo_enchant_blood_aenarion</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4165,7 +4165,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_blood_aenarion_melee}"40% extra swing speed, 15% extra damage done as physical"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>eo_enchant_blood_aenarion_melee</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4179,7 +4179,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_grace_toriour}"5% extra movement speed, 5% physical resistance"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>eo_enchant_grace_toriour</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4193,7 +4193,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_gs_enchant_brutality_gork}"15% extra damage done as physical, 5% penalty to swing speed"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_brutality_gork</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4207,7 +4207,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_gs_enchant_tuffness_gork}"4% physical resistance, 5% penalty to movement speed"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_tuffness_gork</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4221,7 +4221,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_gs_enchant_clobberin_shield}"15% extra shield HP, 30% chance to knock down foes when blocking melee hits"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_clobberin_shield</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4235,7 +4235,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_gs_enchant_stunties_bane}"25% bonus to physical damage, 200% extra shield damage, 50 extra physical damage against Dwarfs"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_stunties_bane</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4249,7 +4249,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_gs_enchant_wallopin_krunch}"40% extra damage done as physical, weapon gains the Cleave trait"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_wallopin_krunch</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4263,7 +4263,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_gs_enchant_cunning_mork}"8% extra swing speed, 10% penalty to physical damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_cunning_mork</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4277,7 +4277,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_gs_enchant_call_great_green}"3 max Winds of Magic, 4% magic resistance"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_call_great_green</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4291,7 +4291,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_gs_enchant_backstabba_frenzy}"10% extra swing speed, 10% extra damage done as physical, 400% extra damage when striking at the backs of enemies. Same bonus applies to unaware enemies hit from any angle"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_backstabba_frenzy</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4305,7 +4305,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_gs_enchant_gaze_spider_god}"10% extra missile speed, ranged shots reduce physical resistance of the target by 35%"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_gaze_spider_god</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4319,7 +4319,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_gs_enchant_shadow_bad_moon}"15 extra magic damage, enemy wizards damaging you with spells lose 30 Winds of Magic"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_shadow_bad_moon</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -4333,7 +4333,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_shielding}"5% physical resistance, 33% extra shield HP"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_shielding</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4347,7 +4347,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_stone}"4% physical resistance"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_stone</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4361,7 +4361,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_vigour}"5 extra HP"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_vigour</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4375,7 +4375,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_parrying}"25% chance to knock down foes when blocking melee hits"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_parrying</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4389,7 +4389,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_protection}"5% magic resistance, 2 extra HP"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_protection</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4403,7 +4403,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_force}"33% extra shield HP, 70% chance to knock down foes when blocking melee hits"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_force</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4417,7 +4417,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_iron}"7% physical resistance"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_iron</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4431,7 +4431,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_impact}"10% physical resistance, 30% chance to knock down foes when blocking melee hits"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_impact</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4445,7 +4445,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_fortitude}"3% Ward Save, 4 extra HP"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_fortitude</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4459,7 +4459,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_spell_eating}"10% magic resistance, 50% chance to gain 100% magic resistance for a short time upon taking damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_spell_eating</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4473,7 +4473,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_master_rune_preservation}"6 extra HP, 10% chance to recover 2 HP upon taking damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_master_rune_preservation</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4487,7 +4487,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_master_rune_steel}"10% physical resistance"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_master_rune_steel</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4501,7 +4501,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_master_rune_skaldour}"100% fire resistance"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_master_rune_skaldour</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4515,7 +4515,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_master_rune_gromril}"5% Ward Save"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_master_rune_gromril</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4529,7 +4529,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_master_rune_adamant}"10% Ward Save, 50% extra shield HP"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_master_rune_adamant</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4543,7 +4543,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_striking}"5% extra swing speed, 10% extra damage done as physical"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_striking</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4557,7 +4557,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_fire}"20% extra damage done as fire"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_fire</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4571,7 +4571,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_speed}"15% extra swing speed"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_speed</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4585,7 +4585,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_might}"20% extra damage done as physical, 15% extra armour penetration"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_might</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4599,7 +4599,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_clear_sights}"10% extra damage done as physical, 15% faster reload speed"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_clear_sights</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4613,7 +4613,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_head_wrecking}"15% extra missile speed, 200% extra headshot damage"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_head_wrecking</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4627,7 +4627,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_unbinding}"25% extra damage done as magical, 15% magic resistance"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_unbinding</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4641,7 +4641,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_beastslaying}"500% damage against mounts and large enemies"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_beastslaying</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4655,7 +4655,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_reloading}"50% faster reload speed"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_reloading</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4669,7 +4669,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_cleaving}"25% extra damage done as physical, weapon gains the Cleave trait"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_cleaving</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4683,7 +4683,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_fury}"25% extra swing speed, 15% extra damage done as physical"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_fury</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4697,7 +4697,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_master_rune_breaking}"500% extra shield damage, 50% extra damage done as physical"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_master_rune_breaking</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4711,7 +4711,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_master_rune_swiftness}"50% extra swing speed, 15% extra damage done as physical"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_master_rune_swiftness</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4725,7 +4725,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_master_rune_flight}"33% extra missile speed, 25% chance to regain throwing ammunition upon landing hits"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_master_rune_flight</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4739,7 +4739,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_master_rune_alaric}"Ignore 95% of the target's armour"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_master_rune_alaric</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -4753,7 +4753,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_master_rune_skalf}"50% bonus to physical damage, 75% extra damage done as magical"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_master_rune_skalf</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -5021,7 +5021,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_emp_enchant_myrmidia_wisdom}"+100 Polearm skill and 10% Ward Save. When damaged, 30% chance to expose enemies within 5m for 8 seconds, reducing their attack speed and physical resistance by 25%"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_enchant_myrmidia_wisdom</InventoryScriptArgument>
         <InventoryScriptArgument>Faith</InventoryScriptArgument>
@@ -5049,7 +5049,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_gs_enchant_mork_kunningly_brutal}"20% movement speed and 15% bonus magical damage. When damaged, 25% chance to engulf enemies within 5m in Mork's miasma for 8 seconds, reducing movement speed by 30% and dealing 4 magical damage per second"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_mork_kunningly_brutal</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -5078,7 +5078,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_grimnir_slayers_oath}"15% Ward Save and 15 extra HP. Taking damage grants 35% attack speed for 5 seconds"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_grimnir_slayers_oath</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -5107,7 +5107,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_grungni_drongrundum_spirit}"50% extra lightning damage and 30% armor penetration. Dealing damage grants 25% attack speed for 5 seconds"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_grungni_drongrundum_spirit</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -5135,7 +5135,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_valaya_ancestor_queen_salve}"25 extra HP. When damaged, 25% chance to heal friendly troops within 3m for 2 HP per second over 15 seconds"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>dw_rune_valaya_ancestor_queen_salve</InventoryScriptArgument>
         <InventoryScriptArgument>Crafting</InventoryScriptArgument>
@@ -5157,7 +5157,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_asrai_enchant_vaul_draugnir_breath}"20% Ward Save and 20% movement speed"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>asrai_enchant_vaul_draugnir_breath</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -5185,7 +5185,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_eo_enchant_asuryan_phoenix_eternal}"30% extra fire damage. Hits have a 30% chance to ignite enemies within 3m for 4 fire damage per second over 12 seconds"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>eo_enchant_asuryan_phoenix_eternal</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -5213,7 +5213,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_asrai_enchant_loec_tricksters_dance}"20% swing speed. Dealing damage grants 25% movement speed for 5 seconds"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>asrai_enchant_loec_tricksters_dance</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
@@ -5242,7 +5242,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_gs_enchant_gork_brutal_kunnin}"Cleave and 20% extra physical damage. Dealing damage grants 25% attack speed for 5 seconds"</ItemTraitDescription>
-    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_gork_brutal_kunnin</InventoryScriptArgument>
         <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>

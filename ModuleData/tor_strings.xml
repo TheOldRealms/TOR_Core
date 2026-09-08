@@ -690,6 +690,17 @@
   <string id="tor_enchantmentshop_restriction.Thrown" text="{=str_tor_enchantmentshop_restriction_Thrown}Applies to thrown weapons" />
   <string id="tor_enchantmentshop_restriction.Invalid" text="{=str_tor_enchantmentshop_restriction_Invalid}" />
 
+  <!-- Enchantment Shop - skill requirement hints -->
+  <string id="tor_enchantmentshop_requirement_self" text="{=str_tor_enchantmentshop_requirement_self}{RESTRICTION_PREFIX}You don't have enough {SKILL}. Requires {VALUE}." />
+  <string id="tor_enchantmentshop_requirement_hero" text="{=str_tor_enchantmentshop_requirement_hero}{RESTRICTION_PREFIX}{HERO} doesn't have enough {SKILL}. Requires {VALUE}." />
+  <string id="tor_enchantmentshop_requirement_none" text="{=str_tor_enchantmentshop_requirement_none}{RESTRICTION_PREFIX}None of your eligible characters have enough {SKILL}. Requires {VALUE}." />
+  <string id="tor_enchantmentshop_requirement_prefix_lore" text="{=str_tor_enchantmentshop_requirement_prefix_lore}This enchantment is bound to the Lore of {LORE}. " />
+  <string id="tor_enchantmentshop_requirement_prefix_other" text="{=str_tor_enchantmentshop_requirement_prefix_other}This enchantment requires {RESTRICTION}. " />
+
+  <!-- Enchantment Shop - insufficient funds hints -->
+  <string id="tor_enchantmentshop_insufficient_both" text="{=str_tor_enchantmentshop_insufficient_both}Not enough {CUSTOMRESOURCE} and {GOLD_ICON}." />
+  <string id="tor_enchantmentshop_insufficient_customresource" text="{=str_tor_enchantmentshop_insufficient_customresource}Not enough {CUSTOMRESOURCE}." />
+
   <!-- Enchanting UI Messages -->
   <string id="tor_enchanting_title_text" text="{=str_tor_enchanting_title_text}Enchanting" />
   <string id="tor_enchanting_no_blueprints_text" text="{=str_tor_enchanting_no_blueprints_text}You don't know any enchantment blueprints." />
