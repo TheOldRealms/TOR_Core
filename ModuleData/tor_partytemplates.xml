@@ -1536,7 +1536,8 @@
 			<PartyTemplateStack min_value="2" max_value="6" troop="NPCCharacter.tor_dw_ironbreaker" />
 			<PartyTemplateStack min_value="2" max_value="5" troop="NPCCharacter.tor_dw_oldguard" />
 			<PartyTemplateStack min_value="1" max_value="9" troop="NPCCharacter.tor_dw_thunderer" />
-			<PartyTemplateStack min_value="1" max_value="5" troop="NPCCharacter.tor_dw_sharpshooter" />
+			<PartyTemplateStack min_value="0" max_value="3" troop="NPCCharacter.tor_dw_sharpshooter" />
+			<PartyTemplateStack min_value="1" max_value="2" troop="NPCCharacter.tor_dw_grudge_raker" />
 			<PartyTemplateStack min_value="1" max_value="2" troop="NPCCharacter.tor_dw_irondrake" />
 			<PartyTemplateStack min_value="1" max_value="2" troop="NPCCharacter.tor_dw_veteran_quarreller" />
 			<PartyTemplateStack min_value="1" max_value="1" troop="NPCCharacter.tor_dw_irondrake_trollhammer" />
@@ -1580,7 +1581,8 @@
 			<PartyTemplateStack min_value="2" max_value="7" troop="NPCCharacter.tor_dw_ironbreaker" />
 			<PartyTemplateStack min_value="2" max_value="5" troop="NPCCharacter.tor_dw_oldguard" />
 			<PartyTemplateStack min_value="5" max_value="18" troop="NPCCharacter.tor_dw_thunderer" />
-			<PartyTemplateStack min_value="3" max_value="9" troop="NPCCharacter.tor_dw_sharpshooter" />
+			<PartyTemplateStack min_value="1" max_value="5" troop="NPCCharacter.tor_dw_sharpshooter" />
+			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_dw_grudge_raker" />
 			<PartyTemplateStack min_value="1" max_value="3" troop="NPCCharacter.tor_dw_irondrake" />
 			<PartyTemplateStack min_value="1" max_value="2" troop="NPCCharacter.tor_dw_irondrake_trollhammer" />
 			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_dw_artillery_crew" />
