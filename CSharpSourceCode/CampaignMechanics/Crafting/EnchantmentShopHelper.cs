@@ -27,14 +27,15 @@ public static class EnchantmentShopHelper
         var selectableItems = BuildInquiryElements(purchasableBlueprints);
 
         var shopVariation = GetShopVariation(culture, blessings);
-        var title = GameTexts.FindText("tor_enchantmentshop_title", shopVariation).ToString();
-        var description = GameTexts.FindText("tor_enchantmentshop_description", shopVariation).ToString();
+        var title = TORTextHelper.GetText("tor_enchantmentshop_title", shopVariation, "Make your choice…");
+        var description = TORTextHelper.GetText("tor_enchantmentshop_description", shopVariation, "Select an arcane scroll to study:");
 
-        var inquirydata = new MultiSelectionInquiryData(title, description, selectableItems, true, 1, 1, "Accept", "Cancel",
+        var inquirydata = new MultiSelectionInquiryData(title, description, selectableItems, true, 1, 1, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
             AddEnchantment, null, "", true);
         MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
     }
 
+    //Note that RequiredSkillValue is not only gating purchasability, but it's also setting the cost for custom resources.
     private readonly record struct PurchasableBlueprint(ItemObject Item, string BlueprintId, SkillObject RequiredSkill, int RequiredSkillValue, string Restriction, List<Hero> EligibleHeroes);
 
     private static List<PurchasableBlueprint> GetPurchasableBlueprints(List<string> prefixList)
@@ -73,8 +74,8 @@ public static class EnchantmentShopHelper
 
         var enabled = blueprint.EligibleHeroes.Any(hero => hero.GetSkillValue(blueprint.RequiredSkill) >= blueprint.RequiredSkillValue);
 
-        var hintText = new TextObject("{TRAIT_EFFECT}\n\n{REQUIREMENT_TEXT}\n\n{COMPLETE_COST}");
-        hintText.SetTextVariable("REQUIREMENT_TEXT", enabled ? "" : BuildRequirementText(blueprint.EligibleHeroes, blueprint.RequiredSkill, blueprint.RequiredSkillValue, blueprint.Restriction));
+        var hintText = new TextObject("{TRAIT_EFFECT}{newline}{newline}{REQUIREMENT_TEXT}{newline}{newline}{COMPLETE_COST}");
+        hintText.SetTextVariable("REQUIREMENT_TEXT", enabled ? new TextObject("{=!}") : BuildRequirementText(blueprint.EligibleHeroes, blueprint.RequiredSkill, blueprint.RequiredSkillValue, blueprint.Restriction));
 
         var crCost = CalculateCustomResourceCost(blueprint.RequiredSkillValue);
         var goldCost = blueprint.Item.Value;
@@ -84,7 +85,7 @@ public static class EnchantmentShopHelper
 
         if (enabled)
         {
-            hintText = new TextObject(trait.ItemTraitDescription + "\n {GOLD_VALUE}{GOLD_ICON} , {CR_VALUE}{CUSTOMRESOURCE},\n {VALIDTYPE_RESTRICTION}");
+            hintText = new TextObject(trait.ItemTraitDescription + "{newline} {GOLD_VALUE}{GOLD_ICON} , {CR_VALUE}{CUSTOMRESOURCE},{newline} {VALIDTYPE_RESTRICTION}");
         }
 
         hintText.SetTextVariable("TRAIT_EFFECT", trait.ItemTraitDescription);
@@ -122,32 +123,48 @@ public static class EnchantmentShopHelper
         return true;
     }
 
-    private static string BuildRequirementText(List<Hero> eligableHeroes, SkillObject skill, int skillValue, string restriction)
+    private static TextObject BuildRequirementText(List<Hero> eligableHeroes, SkillObject skill, int skillValue, string restriction)
     {
-        var requirementPrefix = GetRestrictionPrefix(restriction);
+        var hero = eligableHeroes.Count == 1 ? eligableHeroes[0] : null;
 
-        if (eligableHeroes.Count == 1)
+        var text = hero == null
+            ? TORTextHelper.GetTextObject("tor_enchantmentshop_requirement_none",
+                "{RESTRICTION_PREFIX}None of your eligible characters have enough {SKILL}. Requires {VALUE}.")
+            : hero == Hero.MainHero
+                ? TORTextHelper.GetTextObject("tor_enchantmentshop_requirement_self",
+                    "{RESTRICTION_PREFIX}You don't have enough {SKILL}. Requires {VALUE}.")
+                : TORTextHelper.GetTextObject("tor_enchantmentshop_requirement_hero",
+                    "{RESTRICTION_PREFIX}{HERO} doesn't have enough {SKILL}. Requires {VALUE}.");
+
+        text.SetTextVariable("RESTRICTION_PREFIX", GetRestrictionPrefix(restriction));
+        text.SetTextVariable("SKILL", skill.Name);
+        text.SetTextVariable("VALUE", skillValue);
+
+        if (hero != null)
         {
-            var hero = eligableHeroes[0];
-            return hero == Hero.MainHero
-                ? requirementPrefix + "You don't have enough " + skill.Name + ". Requires " + skillValue + "."
-                : requirementPrefix + hero.Name + " doesn't have enough " + skill.Name + ". Requires " + skillValue + ".";
+            text.SetTextVariable("HERO", hero.Name);
         }
 
-        return requirementPrefix + "None of your eligible characters have enough " + skill.Name + ". Requires " + skillValue + ".";
+        return text;
     }
 
-    private static string GetRestrictionPrefix(string restriction)
+    private static TextObject GetRestrictionPrefix(string restriction)
     {
         if (string.IsNullOrEmpty(restriction))
         {
-            return "";
+            return new TextObject("{=!}");
         }
 
         var lore = LoreObject.GetAll().FirstOrDefault(x => x.StringId == restriction);
-        return lore != null
-            ? "This enchantment is bound to the Lore of " + lore.Name + ". "
-            : "This enchantment requires " + restriction + ". ";
+        var text = lore != null
+            ? TORTextHelper.GetTextObject("tor_enchantmentshop_requirement_prefix_lore",
+                "This enchantment is bound to the Lore of {LORE}. ")
+            : TORTextHelper.GetTextObject("tor_enchantmentshop_requirement_prefix_other",
+                "This enchantment requires {RESTRICTION}. ");
+
+        text.SetTextVariable(lore != null ? "LORE" : "RESTRICTION", lore?.Name ?? restriction);
+
+        return text;
     }
 
     private static int CalculateCustomResourceCost(int skillValue)
@@ -166,22 +183,23 @@ public static class EnchantmentShopHelper
         if (!hintText.GetVariableValue("REQUIREMENT_TEXT", out var requirementText) ||
             requirementText != null && requirementText.ToString().IsEmpty())
         {
-            var missing = new List<string>();
+            var missingCustomResource = crCost >= Hero.MainHero.GetCultureSpecificCustomResourceValue();
+            var missingGold = goldCost >= Hero.MainHero.Gold;
 
-            if (crCost >= Hero.MainHero.GetCultureSpecificCustomResourceValue())
-            {
-                missing.Add("{CUSTOMRESOURCE}");
-            }
-
-            if (goldCost >= Hero.MainHero.Gold)
-            {
-                missing.Add("{GOLD_ICON}");
-            }
-
-            if (missing.Any())
+            if (missingCustomResource || missingGold)
             {
                 enabled = false;
-                hintText.SetTextVariable("REQUIREMENT_TEXT", "Not enough " + string.Join(" and ", missing) + ".");
+
+                var text = missingCustomResource && missingGold
+                    ? TORTextHelper.GetTextObject("tor_enchantmentshop_insufficient_both",
+                        "Not enough {CUSTOMRESOURCE} and {GOLD_ICON}.")
+                    : missingCustomResource
+                        ? TORTextHelper.GetTextObject("tor_enchantmentshop_insufficient_customresource",
+                            "Not enough {CUSTOMRESOURCE}.")
+                        : TORTextHelper.GetTextObject("tor_not_enough_gold_text",
+                            "Not enough gold");
+
+                hintText.SetTextVariable("REQUIREMENT_TEXT", text);
             }
         }
 
@@ -193,7 +211,7 @@ public static class EnchantmentShopHelper
         var underlyingTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == blueprintId);
         if (underlyingTrait != null)
         {
-            var typeRestriction = GameTexts.FindText("tor_enchantmentshop_restriction", underlyingTrait.ValidItemType.ToString()).ToString();
+            var typeRestriction = TORTextHelper.GetText("tor_enchantmentshop_restriction", underlyingTrait.ValidItemType.ToString(), "");
             GameTexts.SetVariable("VALIDTYPE_RESTRICTION", typeRestriction);
         }
     }
