@@ -69,8 +69,6 @@ public class ChaosPortalComponent : BaseRaiderSpawnerComponent
         "tor_learn_dw_master_rune_adamant",
     ];
 
-    public override IFaction MapFaction => Settlement.Owner.Clan;
-
     public override MobileParty SpawnNewParty(Settlement initialTarget)
     {
         var find = TORCommon.FindSettlementsAroundPosition(Settlement.Position.ToVec2(), 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
@@ -80,7 +78,6 @@ public class ChaosPortalComponent : BaseRaiderSpawnerComponent
             targetPartySize *= 2;//20% chance for doubled party size
         }
 
-        //var chaosClan = Clan.FindFirst(x => x.StringId == "chaos_clan_1");
         var chaosRaidingParty = RaidingPartyComponent.CreateRaidingParty("chaos_raider_clan_1_party_" + RaidingPartyCount + 1, Settlement, TORTextHelper.GetText("tor_chaos_raiders", "Chaos Raiders"), targetPartySize);
         if (find != null)
         {
