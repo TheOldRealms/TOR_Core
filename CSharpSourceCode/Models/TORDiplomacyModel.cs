@@ -67,15 +67,18 @@ namespace TOR_Core.Models
         public override int GetInfluenceCostOfProposingPeace(Clan proposingClan) => 150;
         public override int GetInfluenceCostOfProposingWar(Clan proposingClan) => 150;
 
-        public override float GetRelationIncreaseFactor(Hero hero1, Hero hero2, float relationChange)
+        public override int GetEffectiveRelationChange(Hero originatingHero, Hero heroGainedRelationWith, int relationChange)
         {
-            var baseValue = base.GetRelationIncreaseFactor(hero1, hero2, relationChange);
+            var baseValue = base.GetEffectiveRelationChange(originatingHero, heroGainedRelationWith, relationChange);
             var values = new ExplainedNumber(baseValue);
 
-            var playerHero = hero1.IsHumanPlayerCharacter || hero2.IsHumanPlayerCharacter ? (hero1.IsHumanPlayerCharacter ? hero1 : hero2) : null;
-            if (playerHero == null) return baseValue;
+            if (!originatingHero.IsHumanPlayerCharacter && !heroGainedRelationWith.IsHumanPlayerCharacter) return baseValue;
 
-            var conversationHero = !hero1.IsHumanPlayerCharacter || !hero2.IsHumanPlayerCharacter ? (!hero1.IsHumanPlayerCharacter ? hero1 : hero2) : null;
+
+            var playerHero = originatingHero.IsHumanPlayerCharacter ? originatingHero : heroGainedRelationWith;
+            var otherHero = playerHero == originatingHero ? heroGainedRelationWith : originatingHero;
+
+
             if (playerHero.HasAnyCareer())
             {
                 var choices = playerHero.GetAllCareerChoices();
@@ -97,7 +100,7 @@ namespace TOR_Core.Models
                 {
                     if (baseValue > 0)
                     {
-                        if (conversationHero != null && conversationHero.Culture.StringId == TORConstants.Cultures.BRETONNIA)
+                        if (otherHero != null && otherHero.Culture.StringId == TORConstants.Cultures.BRETONNIA)
                         {
                             var choice = TORCareerChoices.GetChoice("JustCausePassive4");
                             if (choice != null)
@@ -109,7 +112,8 @@ namespace TOR_Core.Models
                     }
                 }
             }
-            return values.ResultNumber;
+
+            return values.RoundedResultNumber;
         }
 
         public override float GetScoreOfDeclaringWar(IFaction factionDeclaresWar, IFaction factionDeclaredWar, Clan evaluatingClan, out TextObject reason, bool includeReason = false)
