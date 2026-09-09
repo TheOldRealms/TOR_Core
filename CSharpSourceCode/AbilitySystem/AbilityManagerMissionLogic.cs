@@ -632,15 +632,19 @@ namespace TOR_Core.AbilitySystem
             if (team is null || team.TeamAgents.IsEmpty())
                 return;
 
+            var leader = team.Leader == null ? team.TeamAgents.FirstOrDefault() : team.Leader;
+
             if (team.Side == BattleSideEnum.Attacker && _attackerSummoningCombatant == null)
             {
-                var culture = team.Leader == null ? team.TeamAgents.FirstOrDefault().Character.Culture : team.Leader.Character.Culture;
-                _attackerSummoningCombatant = new SummonedCombatant(team, culture);
+                var culture = leader.Character.Culture;
+                var battleEnvironment = leader.Origin.BattleCombatant.CurrentBattleEnvironment;
+                _attackerSummoningCombatant = new SummonedCombatant(team, culture, battleEnvironment);
             }
             else if (team.Side == BattleSideEnum.Defender && _defenderSummoningCombatant == null)
             {
-                var culture = team.Leader == null ? team.TeamAgents.FirstOrDefault().Character.Culture : team.Leader.Character.Culture;
-                _defenderSummoningCombatant = new SummonedCombatant(team, culture);
+                var culture = leader.Character.Culture;
+                var battleEnvironment = leader.Origin.BattleCombatant.CurrentBattleEnvironment;
+                _defenderSummoningCombatant = new SummonedCombatant(team, culture, battleEnvironment);
             }
 
             RefreshMaxArtilleryCountForTeam(team);
