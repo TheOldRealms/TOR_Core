@@ -89,7 +89,7 @@ namespace TOR_Core.Extensions
             {
                 if (agent != null && ratio <= desiredRatio && ((float)countedUnits / (float)formation.CountOfUnits) <= desiredRatio)
                 {
-                    float lastMeleeAttackTime = agent.LastMeleeAttackTime;
+                    float lastMeleeAttackTime = agent.LastMeleeHitTime;
                     float lastMeleeHitTime = agent.LastMeleeHitTime;
                     if ((currentTime - lastMeleeAttackTime < 6f) || (currentTime - lastMeleeHitTime < 6f))
                     {
