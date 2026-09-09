@@ -99,6 +99,7 @@ public static class ModelPatches
         return true;
     }
 
+    //Sly : why is this a harmony patch instead of a model override? Did this become an override after this was originally written?
     // removes auto recruitment hard cap for player garrisons
     [HarmonyPrefix]
     [HarmonyPatch(typeof(DefaultSettlementGarrisonModel), nameof(DefaultSettlementGarrisonModel.GetMaximumDailyAutoRecruitmentCount))]
