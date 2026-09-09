@@ -51,42 +51,42 @@ namespace TOR_Core.HarmonyPatches
             return true;
         }
     }
-    [HarmonyPatch(typeof(MapTrackerProvider))]
-    internal static class QuestPartyMapTrackerProviderPatches
-    {
-        [HarmonyPostfix]
-        [HarmonyPatch("CanAddMobileParty")]
-        private static void CanAddMobilePartyPostfix(MobileParty party, ref bool __result)
-        {
-            if (__result)
-                return;
 
-            if (!party.IsCurrentlyUsedByAQuest)
-                return;
+    //[HarmonyPatch(typeof(MapTrackerProvider))]
+    //internal static class QuestPartyMapTrackerProviderPatches
+    //{
+    //    [HarmonyPostfix]
+    //    [HarmonyPatch("CanAddMobileParty")]
+    //    private static void CanAddMobilePartyPostfix(MobileParty party, ref bool __result)
+    //    {
+    //        if (__result)
+    //            return;
 
-            if (party.PartyComponent is not QuestPartyComponent)
-                return;
+    //        if (!party.IsCurrentlyUsedByAQuest)
+    //            return;
 
-            if (Campaign.Current.VisualTrackerManager.CheckTracked(party))
-                __result = true;
-        }
+    //        if (party.PartyComponent is not QuestPartyComponent)
+    //            return;
 
-        [HarmonyPostfix]
-        [HarmonyPatch("OnPartyQuestStatusChanged")]
-        private static void OnPartyQuestStatusChangedPostfix(MapTrackerProvider __instance, MobileParty mobileParty, bool isUsedByQuest)
-        {
-            if (!isUsedByQuest)
-                return;
+    //        if (Campaign.Current.VisualTrackerManager.CheckTracked(party))
+    //            __result = true;
+    //    }
 
-            if (mobileParty.PartyComponent is not QuestPartyComponent)
-                return;
+    //    [HarmonyPostfix]
+    //    [HarmonyPatch("OnPartyQuestStatusChanged")]
+    //    private static void OnPartyQuestStatusChangedPostfix(MapTrackerProvider __instance, MobileParty mobileParty, bool isUsedByQuest)
+    //    {
+    //        if (!isUsedByQuest)
+    //            return;
 
-            if (!Campaign.Current.VisualTrackerManager.CheckTracked(mobileParty))
-                return;
+    //        if (mobileParty.PartyComponent is not QuestPartyComponent)
+    //            return;
 
-            var addIfEligibleMethod = AccessTools.Method(typeof(MapTrackerProvider), "AddIfEligible", new[] { typeof(MobileParty) });
-            addIfEligibleMethod.Invoke(__instance, new object[] { mobileParty });
-        }
-    }
+    //        if (!Campaign.Current.VisualTrackerManager.CheckTracked(mobileParty))
+    //            return;
 
+    //        var addIfEligibleMethod = AccessTools.Method(typeof(MapTrackerProvider), "AddIfEligible", new[] { typeof(MobileParty) });
+    //        addIfEligibleMethod.Invoke(__instance, new object[] { mobileParty });
+    //    }
+    //}
 }
