@@ -1,6 +1,7 @@
 using Helpers;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Localization;
@@ -17,7 +18,7 @@ namespace TOR_Core.Models
         public override ExplainedNumber GetPartySpottingRange(MobileParty party, bool includeDescriptions = false)
         {
             var result = base.GetPartySpottingRange(party, includeDescriptions);
-            if (party.HasPerk(TORPerks.Faith.ForeSight)) PerkHelper.AddPerkBonusForParty(TORPerks.Faith.ForeSight, party, false, ref result);
+            if (party.HasPerk(TORPerks.Faith.ForeSight, out Hero perkOwnerHero, checkSecondaryRole: false)) PerkHelper.AddPerkBonusForParty(TORPerks.Faith.ForeSight, party, false, ref result);
 
             if (party.IsMainParty && party.LeaderHero != null && party.LeaderHero.HasAnyCareer())
             {

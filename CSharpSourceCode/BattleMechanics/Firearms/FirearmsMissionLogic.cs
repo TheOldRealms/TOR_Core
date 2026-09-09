@@ -274,7 +274,7 @@ namespace TOR_Core.BattleMechanics.Firearms
                 if (shooterAgent.Character is CharacterObject character && character.GetPerkValue(TORPerks.GunPowder.PackItIn))
                 {
                     ExplainedNumber num = new(amount);
-                    PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.PackItIn, character, true, ref num);
+                    PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.PackItIn, shooterAgent.CurrentBattleEnvironment, character, true, ref num);
                     amount = (short)num.ResultNumber;
                 }
                 ScatterShot(shooterAgent, accuracy, shooterAgent.WieldedWeapon.AmmoWeapon, position, orientation,

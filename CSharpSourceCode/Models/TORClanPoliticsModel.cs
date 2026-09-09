@@ -1,6 +1,7 @@
 ﻿using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.Core;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 
@@ -18,7 +19,7 @@ namespace TOR_Core.Models
             }
 
             var result = base.CalculateInfluenceChange(clan, includeDescriptions);
-            PerkHelper.AddPerkBonusForCharacter(TORPerks.Faith.Blessed, clan.Leader.CharacterObject, true, ref result);
+            PerkHelper.AddPerkBonusForCharacter(TORPerks.Faith.Blessed, BattleEnvironment.Any, clan.Leader.CharacterObject, true, ref result);
             if (clan != Clan.PlayerClan && clan.Influence < INFLUENCE_TRESHHOLD)
             {
                 result.Add(clan.Tier * 15f, new("AI Bonus"));
