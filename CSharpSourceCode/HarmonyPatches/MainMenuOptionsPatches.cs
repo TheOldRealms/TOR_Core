@@ -1,9 +1,14 @@
 ﻿using HarmonyLib;
+using SandBox.AdvancedStartOptions;
+using SandBox.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.ScreenSystem;
 using TOR_Core.Extensions.UI.MainMenu;
 using TOR_Core.GameManagers;
 
@@ -35,8 +40,30 @@ namespace TOR_Core.HarmonyPatches
 
         private static void OnClick()
         {
+            //Sly : code copied from SandBoxViewSubModule with replacement actions fetched via reflection.
+			AdvancedStartOptions options = AdvancedStartOptionsManager.CreateCampaignStartOptions();
+			if (!options.IsEmpty())
+			{
+				ScreenManager.AddGlobalLayer(SandBoxViewCreator.CreateCampaignAdvancedStartOptions(options, new Action<AdvancedStartOptions>(OnStartingOptionsConfirmedMethod), new Action(OnStartingOptionsClosedMethod)), true);
+				return;
+			}
+
             // Campaign creator delegate that creates a new Campaign in Campaign mode
-            MBGameManager.StartNewGame(new TorCampaignGameManager(() => new Campaign(CampaignGameMode.Campaign)));
+            MBGameManager.StartNewGame(new TorCampaignGameManager(() => new Campaign(CampaignGameMode.Campaign, options.GetChangedOptions())));
+
+            static void OnStartingOptionsConfirmedMethod(AdvancedStartOptions options)
+            {
+                var sandBoxViewSubModuleInstance = Activator.CreateInstance(typeof(SandBoxViewSubModule));
+                var onStartingOptionsConfirmedMethod = AccessTools.Method(typeof(SandBoxViewSubModule), "OnStartingOptionsConfirmed");
+                onStartingOptionsConfirmedMethod.Invoke(sandBoxViewSubModuleInstance, []);
+            }
+
+            static void OnStartingOptionsClosedMethod()
+            {
+                var sandBoxViewSubModuleInstance = Activator.CreateInstance(typeof(SandBoxViewSubModule));
+                var onStartingOptionsClosedMethod = AccessTools.Method(typeof(SandBoxViewSubModule), "OnStartingOptionsClosed");
+                onStartingOptionsClosedMethod.Invoke(sandBoxViewSubModuleInstance, []);
+            }
         }
 
         private static (bool, TextObject) IsDisabledAndReason()
