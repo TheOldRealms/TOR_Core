@@ -111,39 +111,41 @@ public static class ModelPatches
         return false;
     }
 
+    //Sly : underlying method no longer exists on 1.5 and no viable replacement is easily accessible or repurposeable.
+    //See Hero.CanDonateTroopsToGarrison as it was added to address this in the context of player clan parties dumping troops into garrisons.
     // prevent ai armies from leaving more troops in a garrison than the settlements garrison capacity
-    [HarmonyPatch(typeof(DefaultSettlementGarrisonModel), nameof(DefaultSettlementGarrisonModel.FindNumberOfTroopsToLeaveToGarrison))]
-    internal static class ClampTroopsLeftToGarrisonCapacityPatch
-    {
-        [HarmonyPostfix]
-        private static void Postfix(MobileParty mobileParty, Settlement settlement, ref int __result)
-        {
-            if (settlement == null || !settlement.IsFortification)
-            {
-                return;
-            }
+    //[HarmonyPatch(typeof(DefaultSettlementGarrisonModel), nameof(DefaultSettlementGarrisonModel.FindNumberOfTroopsToLeaveToGarrison))]
+    //internal static class ClampTroopsLeftToGarrisonCapacityPatch
+    //{
+    //    [HarmonyPostfix]
+    //    private static void Postfix(MobileParty mobileParty, Settlement settlement, ref int __result)
+    //    {
+    //        if (settlement == null || !settlement.IsFortification)
+    //        {
+    //            return;
+    //        }
 
-            var garrisonParty = settlement.Town.GarrisonParty;
-            var currentGarrisonCount = garrisonParty.Party.NumberOfAllMembers;
+    //        var garrisonParty = settlement.Town.GarrisonParty;
+    //        var currentGarrisonCount = garrisonParty.Party.NumberOfAllMembers;
 
-            var garrisonCapacityExplained = Campaign.Current.Models.PartySizeLimitModel.CalculateGarrisonPartySizeLimit(settlement);
-            var garrisonCapacity = (int)garrisonCapacityExplained.ResultNumber;
+    //        var garrisonCapacityExplained = Campaign.Current.Models.PartySizeLimitModel.CalculateGarrisonPartySizeLimit(settlement);
+    //        var garrisonCapacity = (int)garrisonCapacityExplained.ResultNumber;
 
-            var freeSlots = garrisonCapacity - currentGarrisonCount;
-            if (freeSlots < 0)
-            {
-                freeSlots = 0;
-            }
+    //        var freeSlots = garrisonCapacity - currentGarrisonCount;
+    //        if (freeSlots < 0)
+    //        {
+    //            freeSlots = 0;
+    //        }
 
-            if (__result > freeSlots)
-            {
-                __result = freeSlots;
-            }
+    //        if (__result > freeSlots)
+    //        {
+    //            __result = freeSlots;
+    //        }
 
-            if (__result < 0)
-            {
-                __result = 0;
-            }
-        }
-    }
+    //        if (__result < 0)
+    //        {
+    //            __result = 0;
+    //        }
+    //    }
+    //}
 }
