@@ -105,62 +105,67 @@ namespace TOR_Core.CharacterDevelopment
             _miracle = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("Miracle"));
         }
 
+        /// <remarks>
+        /// TroopUsageFlags are only accounted for if the PartyRole for the effect is Captain.
+        /// Undefined : perk won't apply. (Troop can't have a relevant flag)
+        /// Any : applies to all troops.
+        /// </remarks>
         private void InitializeAll()
         {
             _runAndGun.Initialize("{=str_tor_perk_run_and_gun_label}Run and Gun", TORSkills.GunPowder, 50, _mountedHeritage,
                 "{=str_tor_perk_run_and_gun_1}While on foot and using a pistol, your accuracy penalty for moving is reduced by 20%.",
                 PartyRole.Personal, -0.2f, EffectIncrementType.AddFactor,
                 "{=str_tor_perk_run_and_gun_2}Gunpowder infantry troops in your party have their gunpowder skill increased by 30.",
-                PartyRole.PartyLeader, 30f, EffectIncrementType.Add, TroopUsageFlags.None, TroopUsageFlags.OnFoot | TroopUsageFlags.Ranged);
+                PartyRole.PartyLeader, 30f, EffectIncrementType.Add, TroopUsageFlags.Undefined, TroopUsageFlags.OnFoot | TroopUsageFlags.Ranged);
             _mountedHeritage.Initialize("{=str_tor_perk_mounted_heritage_label}Mounted Heritage", TORSkills.GunPowder, 50, _runAndGun,
                 "{=str_tor_perk_mounted_heritage_1}Your accuracy is increased by 20% with gunpowder weapons when mounted.",
                 PartyRole.Personal, -0.2f, EffectIncrementType.AddFactor,
                 "{=str_tor_perk_mounted_heritage_2}Mounted ranged troops in your party have their riding skill increased by 30.",
-                PartyRole.PartyLeader, 30f, EffectIncrementType.Add, TroopUsageFlags.None, TroopUsageFlags.Mounted | TroopUsageFlags.Ranged);
+                PartyRole.PartyLeader, 30f, EffectIncrementType.Add, TroopUsageFlags.Undefined, TroopUsageFlags.Mounted | TroopUsageFlags.Ranged);
 
             _firingDrills.Initialize("{=str_tor_perk_firing_drills_label}Firing Drills", TORSkills.GunPowder, 100, _ammoWagons,
                 "{=str_tor_perk_firing_drills_1}Immediately gain +1 Discipline.",
                 PartyRole.Personal, 1f, EffectIncrementType.Add,
                 "{=str_tor_perk_firing_drills_2}Gunpowder troops in your party recieve +5 experience per day.",
-                PartyRole.PartyLeader, 5f, EffectIncrementType.Add, TroopUsageFlags.None, TroopUsageFlags.Ranged);
+                PartyRole.PartyLeader, 5f, EffectIncrementType.Add, TroopUsageFlags.Undefined, TroopUsageFlags.Ranged);
             _ammoWagons.Initialize("{=str_tor_perk_ammunition_wagons_label}Ammunition Wagons", TORSkills.GunPowder, 100, _firingDrills,
                 "{=str_tor_perk_ammunition_wagons_1}+50% starting ammunition for all gunpowder troops (including player).",
                 PartyRole.PartyLeader, 0.5f, EffectIncrementType.AddFactor,
                 "{=str_tor_perk_ammunition_wagons_2}Increase your party's inventory capacity by 30%.",
-                PartyRole.PartyLeader, 0.3f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                PartyRole.PartyLeader, 0.3f, EffectIncrementType.AddFactor);
 
             _closeQuarters.Initialize("{=str_tor_perk_close_quarter_label}Close Quarters", TORSkills.GunPowder, 150, _deadEye,
                 "{=str_tor_perk_close_quarter_1}You deal 25% increased damage with gunpowder weapons to enemies within 7 meters.",
                 PartyRole.Personal, 0.25f, EffectIncrementType.AddFactor,
                 "{=str_tor_perk_close_quarter_2}Ranged troops in your party have their One-handed skill increased by 30.",
-                PartyRole.PartyLeader, 30f, EffectIncrementType.Add, TroopUsageFlags.None, TroopUsageFlags.Ranged);
+                PartyRole.PartyLeader, 30f, EffectIncrementType.Add, TroopUsageFlags.Undefined, TroopUsageFlags.Ranged);
             _deadEye.Initialize("{=str_tor_perk_dead_eye_label}Dead Eye", TORSkills.GunPowder, 150, _closeQuarters,
                 "{=str_tor_perk_dead_eye_1}You deal 30% increased damage with longrifles.",
                 PartyRole.Personal, 0.3f, EffectIncrementType.AddFactor,
                 "{=str_tor_perk_dead_eye_2}Two-Handed gunpowder troops in your formation have their accuracy increased by 20%.",
-                PartyRole.Captain, -0.2f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.Ranged);
+                PartyRole.Captain, -0.2f, EffectIncrementType.AddFactor, TroopUsageFlags.Undefined, TroopUsageFlags.Ranged);
 
             _bulletProof.Initialize("{=str_tor_perk_bullet_proof_label}Bullet Proof", TORSkills.GunPowder, 200, _bombingSuit,
                 "{=str_tor_perk_bullet_proof_1}You take 15% less damage from handheld ranged weapons.",
                 PartyRole.Personal, -0.15f, EffectIncrementType.AddFactor,
                 "{=str_tor_perk_bullet_proof_2}Troops in your formation receive 5% less damage from handheld ranged weapons.",
-                PartyRole.Captain, -0.05f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                PartyRole.Captain, -0.05f, EffectIncrementType.AddFactor, TroopUsageFlags.Undefined, TroopUsageFlags.Any);
             _bombingSuit.Initialize("{=str_tor_perk_bomb_suit_label}Bomb Suit", TORSkills.GunPowder, 200, _bulletProof,
                 "{=str_tor_perk_bomb_suit_1}You take 25% less damage from siege artillery and explosions.",
                 PartyRole.Personal, -0.25f, EffectIncrementType.AddFactor,
                 "{=str_tor_perk_bomb_suit_2}Troops in your formation receive 10% less damage from siege artillery and explosions.",
-                PartyRole.Captain, -0.1f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                PartyRole.Captain, -0.1f, EffectIncrementType.AddFactor, TroopUsageFlags.Undefined, TroopUsageFlags.Any);
 
             _packItIn.Initialize("{=str_tor_perk_pack_it_in_label}Pack It In", TORSkills.GunPowder, 250, _steelTerror,
                 "{=str_tor_perk_pack_it_in_1}When you are using a multi-projectile gunpowder weapon, increase the number of projectiles by 50%.",
                 PartyRole.Personal, 0.5f, EffectIncrementType.AddFactor,
                 "{=str_tor_perk_pack_it_in_2}Troops in your formation using explosive gunpowder weapons gain +10% bonus damage and the damage is converted to Fire Damage.",
-                PartyRole.Captain, 0.1f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                PartyRole.Captain, 0.1f, EffectIncrementType.AddFactor, TroopUsageFlags.Undefined, TroopUsageFlags.Any);
             _steelTerror.Initialize("{=str_tor_perk_steel_terror_label}Steel Terror", TORSkills.GunPowder, 250, _packItIn,
                 "{=str_tor_perk_steel_terror_1}Artillery and explosive weapons in your party deal +10% morale damage in battle.",
                 PartyRole.PartyLeader, 0.1f, EffectIncrementType.AddFactor,
                 "{=str_tor_perk_steel_terror_2}Artillery crews and engineers in your party become unbreakable due to morale loss.",
-                PartyRole.PartyLeader, 1f, EffectIncrementType.Add, TroopUsageFlags.None, TroopUsageFlags.None);
+                PartyRole.PartyLeader, 1f, EffectIncrementType.Add);
 
             _piercingShots.Initialize("{=str_tor_perk_piercing_shots_label}Piercing Shots", TORSkills.GunPowder, 300, null,
                 "{=str_tor_perk_piercing_shots_1}Your shots ignore 50% of enemy armor and can penetrate shields.",
@@ -177,56 +182,57 @@ namespace TOR_Core.CharacterDevelopment
                 "{=str_tor_perk_selfish_1}Your damaging spells do 90% reduced damage to yourself.",
                 PartyRole.Personal, -0.9f, EffectIncrementType.AddFactor,
                 "{=str_tor_perk_selfish_2}Your self targeted buff spells have 50% more duration.",
-                PartyRole.Personal, 0.50f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                PartyRole.Personal, 0.50f, EffectIncrementType.AddFactor);
             _wellControlled.Initialize("{=str_tor_perk_well_controlled_label}Well Controlled", TORSkills.Spellcraft, 50, _selfish,
                 "{=str_tor_perk_well_controlled_1}Your damaging spells do 30% less damage to troops in your party.",
                 PartyRole.Personal, -0.3f, EffectIncrementType.AddFactor,
                 "{=str_tor_perk_well_controlled_2}Gain 5% advantage in simulation battles.",
-                PartyRole.PartyLeader, 0.05f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                PartyRole.Personal, 0.05f, EffectIncrementType.AddFactor);
 
             _librarian.Initialize("{=str_tor_perk_librarian_label}Librarian", TORSkills.Spellcraft, 125, _storyTeller,
                 "{=str_tor_perk_librarian_1}You gain double experience from reading books.",
                 PartyRole.Personal, 1f, EffectIncrementType.AddFactor,
                 "{=str_tor_perk_librarian_2}Learning new spells cost 50% less gold.",
-                PartyRole.Personal, -0.5f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                PartyRole.Personal, -0.5f, EffectIncrementType.AddFactor);
             _storyTeller.Initialize("{=str_tor_perk_story_teller_label}Storyteller", TORSkills.Spellcraft, 125, _librarian,
                 "{=str_tor_perk_story_teller_1}Every companion in your party gains 1000 experience in a random skill per day.",
                 PartyRole.PartyLeader, 1000f, EffectIncrementType.Add,
                 "{=str_tor_perk_story_teller_2}Your party gains a permanent +5 increase to party morale.",
-                PartyRole.PartyLeader, 5f, EffectIncrementType.Add, TroopUsageFlags.None, TroopUsageFlags.None);
+                PartyRole.PartyLeader, 5f, EffectIncrementType.Add);
 
+            //Sly : why were these not defined with each half in the respective effect string?
             _overCaster.Initialize("{=str_tor_perk_overcaster_label}Overcaster", TORSkills.Spellcraft, 150, _efficientSpellCaster,
                 "{=str_tor_perk_overcaster_1}Your damaging and healing spells are 20% more effective but cost 30% more winds of magic.",
                 PartyRole.Personal, 0.2f, EffectIncrementType.AddFactor,
                 string.Empty,
-                PartyRole.None, 0.3f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                PartyRole.None, 0.3f, EffectIncrementType.AddFactor);
             _efficientSpellCaster.Initialize("{=str_tor_perk_effective_spellcaster_label}Efficient Spellcaster", TORSkills.Spellcraft, 150, _overCaster,
                 "{=str_tor_perk_effective_spellcaster_1}Your damaging and healing spells are 20% less effective, but cost 30% less winds of magic.",
                 PartyRole.Personal, -0.2f, EffectIncrementType.AddFactor,
                 string.Empty,
-                PartyRole.None, -0.3f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                PartyRole.None, -0.3f, EffectIncrementType.AddFactor);
 
             _improvision.Initialize("{=str_tor_perk_improvision_label}Improvision", TORSkills.Spellcraft, 225, _catalyst,
                 "{=str_tor_perk_improvision_1}Your Winds of Magic is set to 25 if you have less than that at the beginning of the battle.",
                 PartyRole.Personal, 25f, EffectIncrementType.Add,
                 "{=str_tor_perk_improvision_2}+10% Persuasion chance during speech checks.",
-                PartyRole.Personal, 0.1f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                PartyRole.Personal, 0.1f, EffectIncrementType.AddFactor);
             _catalyst.Initialize("{=str_tor_perk_catalyst_label}Catalyst", TORSkills.Spellcraft, 225, _improvision,
                 "{=str_tor_perk_catalyst_1}For every magical item in your equipment slots you gain +5 extra Winds of magic at the start of battle.",
                 PartyRole.Personal, 5f, EffectIncrementType.Add,
                 "{=str_tor_perk_catalyst_2}You gain +20% Winds of Magic regeneration while waiting in a town.",
-                PartyRole.Personal, 0.2f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                PartyRole.Personal, 0.2f, EffectIncrementType.AddFactor);
 
             _dampener.Initialize("{=str_tor_perk_dampener_label}Dampener", TORSkills.Spellcraft, 250, _arcaneLink,
                 "{=str_tor_perk_dampener_1}Damage dealt by your damaging spells is reduced by 15%, but troops in your formation take 30% less damage from spells.",
                 PartyRole.Personal, -0.15f, EffectIncrementType.AddFactor,
                 "{=str_tor_perk_dampener_2}You gain 5% ward save.",
-                PartyRole.Personal, -0.05f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                PartyRole.Personal, -0.05f, EffectIncrementType.AddFactor);
             _arcaneLink.Initialize("{=str_tor_perk_arcane_link_label}Arcane Link", TORSkills.Spellcraft, 250, _dampener,
                 "{=str_tor_perk_arcane_link_1}Any buffs you cast on a friendly unit will now also apply to you even if you are not in range.",
                 PartyRole.Personal, 1f, EffectIncrementType.Add,
                 "{=str_tor_perk_arcane_link_2}As formation Captain, all troops in your formation deal additonal 10% magic damage.",
-                PartyRole.Captain, 0.1f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                PartyRole.Captain, 0.1f, EffectIncrementType.AddFactor, TroopUsageFlags.Undefined, TroopUsageFlags.Any);
 
             _trueTransmutation.Initialize("{=str_tor_perk_true_transmutation_label}True Transmutation", TORSkills.Spellcraft, 300, null,
                 "{=str_tor_perk_true_transmutation_1}Allows you to apply 2 enchantments. Dwarfs can apply a 3rd enchantment.",
@@ -243,24 +249,23 @@ namespace TOR_Core.CharacterDevelopment
                 "{=str_tor_perk_devotee_1}You gain +3 hitpoints for every point in Discipline.",
                 PartyRole.Personal, 3f, EffectIncrementType.Add,
                 "{=str_tor_perk_devotee_2}Praying at a shrine grants 50% increased devotion towards your chosen religion.",
-                PartyRole.Personal, 0.5f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                PartyRole.Personal, 0.5f, EffectIncrementType.AddFactor);
             _divineMission.Initialize("{=str_tor_perk_divine_mission_label}Divine Mission", TORSkills.Faith, 50, _devotee,
                 "{=str_tor_perk_divine_mission_1}You gain 1 focus point in Medicine.",
                 PartyRole.Personal, 1f, EffectIncrementType.Add,
                 "{=str_tor_perk_divine_mission_2}+1 militia growth in settlements owned by your clan.",
-                PartyRole.ClanLeader, 1f, EffectIncrementType.Add, TroopUsageFlags.None, TroopUsageFlags.None);
+                PartyRole.ClanLeader, 1f, EffectIncrementType.Add);
 
             _imperturbable.Initialize("{=str_tor_perk_imperturbable_label}Imperturbable", TORSkills.Faith, 100, _superstitious,
                 "{=str_tor_perk_imperturbable_1}Gain 500 Faith skill experience every day while waiting in a town.",
                 PartyRole.Personal, 500f, EffectIncrementType.Add,
                 "{=str_tor_perk_imperturbable_2}Religious units in your party gain 10% physical resistance.",
-                PartyRole.PartyLeader, 0.1f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None); //description should be updated to state town specifically
-            //Primary role is implemented as PartyLeader - description or implementation should be changed
+                PartyRole.PartyLeader, 0.1f, EffectIncrementType.AddFactor);
             _superstitious.Initialize("{=str_tor_perk_superstitious_label}Superstitious", TORSkills.Faith, 100, _imperturbable,
                 "{=str_tor_perk_superstitious_1}Cursed regions on the world map have 20% reduced damaging effect on your party.",
                 PartyRole.PartyLeader, -0.2f, EffectIncrementType.AddFactor,
                 "{=str_tor_perk_superstitious_2}Religious units in your party gain 10% bonus physical damage.",
-                PartyRole.PartyLeader, 0.1f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                PartyRole.PartyLeader, 0.1f, EffectIncrementType.AddFactor);
 
             _offering.Initialize("{=str_tor_perk_offering_label}Offering", TORSkills.Faith, 150, null,
                 "{=str_tor_perk_offering_1}Obtain the ability to donate items at shrines as sacrifical offering to gain Faith.",
@@ -270,12 +275,12 @@ namespace TOR_Core.CharacterDevelopment
                 "{=str_tor_perk_blessed_1}Your clan gains 3 Influence every day for every clan party with an active blessing.",
                 PartyRole.ClanLeader, 3f, EffectIncrementType.Add,
                 "{=str_tor_perk_blessed_2}While your party has an active blessing, religious units in your party gain 10xp every day.",
-                PartyRole.PartyMember, 10f, EffectIncrementType.Add, TroopUsageFlags.None, TroopUsageFlags.None);
+                PartyRole.PartyMember, 10f, EffectIncrementType.Add);
             _foreSight.Initialize("{=str_tor_perk_foresight_label}Foresight", TORSkills.Faith, 200, _blessed,
                 "{=str_tor_perk_foresight_1}Gain a free attribute point.",
                 PartyRole.Personal, 1f, EffectIncrementType.Add,
                 "{=str_tor_perk_foresight_2}Increase your party's sight range on the campaign map by 10%.",
-                PartyRole.PartyMember, 0.1f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                PartyRole.PartyMember, 0.1f, EffectIncrementType.AddFactor);
 
             _revival.Initialize("{=str_tor_perk_revival_label}Revival", TORSkills.Faith, 250, _spirit,
                 "{=str_tor_perk_revival_1}After all medicine/healing related skills fail, gain a second 30% chance for characters and units that would be killed to be wounded instead.",
