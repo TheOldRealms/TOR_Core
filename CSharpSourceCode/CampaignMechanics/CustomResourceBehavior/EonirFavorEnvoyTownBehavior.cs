@@ -594,7 +594,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
             foreach (var kingdom in allElectorStatesAtWar)
             {
-                list.Add(new InquiryElement(kingdom, kingdom.EncyclopediaTitle.ToString(), null, true, TORTextHelper.GetText("eonir_empire_peace_with_hint_text", "Force Peace with")));
+                list.Add(new InquiryElement(kingdom, kingdom.FormalName.ToString(), null, true, TORTextHelper.GetText("eonir_empire_peace_with_hint_text", "Force Peace with")));
             }
 
             if (list.IsEmpty()) return;
@@ -782,7 +782,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
             foreach (var kingdom in allKingdoms)
             {
-                list.Add(new InquiryElement(kingdom, kingdom.EncyclopediaTitle.ToString(), null, true, TORTextHelper.GetText("eonir_druchii_force_war_hint_text", "Force war between two kingdoms")));
+                list.Add(new InquiryElement(kingdom, kingdom.FormalName.ToString().ToString(), null, true, TORTextHelper.GetText("eonir_druchii_force_war_hint_text", "Force war between two kingdoms")));
             }
 
             if (list.IsEmpty()) return;
@@ -1179,7 +1179,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             foreach (var kingdom in humanKingdoms)
             {
 
-                list.Add(new InquiryElement(kingdom, kingdom.EncyclopediaTitle.ToString(), null, true, TORTextHelper.GetText("eonir_asur_diplomacy_hint_text", "Improve relationship")));
+                list.Add(new InquiryElement(kingdom, kingdom.FormalName.ToString().ToString(), null, true, TORTextHelper.GetText("eonir_asur_diplomacy_hint_text", "Improve relationship")));
             }
 
             if (list.IsEmpty()) return;
