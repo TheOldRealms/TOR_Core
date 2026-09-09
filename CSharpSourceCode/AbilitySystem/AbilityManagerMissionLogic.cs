@@ -158,6 +158,7 @@ namespace TOR_Core.AbilitySystem
                     if (!_hasAppliedStartingPerkEffects)
                     {
                         AddPerkEffectsToStartingWindsOfMagic();//Sly : this tick occurs when deployment begins which ends up allowing things like prayer cooldowns to count down while formations are being rearranged.
+                        //OnDeploymentFinished may be useful for applying one-time effects.
                         _hasAppliedStartingPerkEffects = true;
                     }
 
