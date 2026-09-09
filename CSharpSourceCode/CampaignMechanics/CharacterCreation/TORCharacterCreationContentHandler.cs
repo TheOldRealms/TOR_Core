@@ -548,7 +548,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // NEW 1.3.1: Just update character data, visual updates handled by GetPlayerMenuCharacterArgs
             CharacterObject.PlayerCharacter.Race = race;
         }
-
+        
+        /// <remarks>
+        /// Sly : as of 1.5, stealth equipment can be defined directly in the equipment sets for heroes. See https://forums.taleworlds.com/index.php?threads/e1-6-0-v1-5-0-modding-changes.443896/.
+        /// This likely means the career selection options can have a stealth equipment set added to them and it gets set here with the battle and civilian sets to have the player spawn with it.
+        /// </remarks>
         private void UpdateEquipment(CharacterCreationManager manager, CharacterCreationOption selectedOption, bool isFemale)
         {
             MBEquipmentRoster roster = null;
@@ -580,7 +584,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 CharacterObject.PlayerCharacter.UpdatePlayerCharacterBodyProperties(bodyProperties, CharacterObject.PlayerCharacter.Race, isFemale);
                 character.IsFemale = isFemale;
 
-                CharacterObject.PlayerCharacter.Equipment.FillFrom(roster.DefaultEquipment);
+                CharacterObject.PlayerCharacter.Equipment.FillFrom(equipment);
                 CharacterObject.PlayerCharacter.FirstCivilianEquipment.FillFrom(equipment);
             }
         }
@@ -1444,10 +1448,13 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     CharacterObject.PlayerCharacter.IsFemale);
             }
 
+            //FirstBattleEquipment for heroes returns the same property as Equipment
             CharacterObject.PlayerCharacter.Equipment.FillFrom(culture.DefaultBattleEquipmentRoster.DefaultEquipment);
             CharacterObject.PlayerCharacter.FirstCivilianEquipment.FillFrom(culture.DefaultCivilianEquipmentRoster.DefaultEquipment);
-            var emptyEquipment = new Equipment();
-            CharacterObject.PlayerCharacter.FirstStealthEquipment.FillFrom(emptyEquipment, false);
+
+            //Sly : this can likely be removed with 1.5+ onward if stealth sets are defined for careers/races and this set would be overwritten during other stages.
+            var emptyEquipment = new Equipment(Equipment.EquipmentType.Stealth);
+            CharacterObject.PlayerCharacter.FirstStealthEquipment.FillFrom(emptyEquipment);
         }
         
     }

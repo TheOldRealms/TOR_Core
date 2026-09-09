@@ -416,6 +416,9 @@ namespace TOR_Core.CampaignMechanics.Companions
             AddCompanionModifiers(hero.StealthEquipment);
         }
 
+        /// <remarks>
+        /// Sly : as of 1.5, stealth equipment can be defined directly in the equipment sets for heroes. See https://forums.taleworlds.com/index.php?threads/e1-6-0-v1-5-0-modding-changes.443896/.
+        /// </remarks>
         private void SwapStealthEquipment(Hero hero, Equipment stealthEquipment)
         {
             //Helpers.EquipmentHelper maybe?
