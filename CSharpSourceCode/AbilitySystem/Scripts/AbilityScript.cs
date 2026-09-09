@@ -301,6 +301,8 @@ namespace TOR_Core.AbilitySystem.Scripts
         }
 
         //Sly : reports of spell projectiles passing through terrain or objects. Why would collision not trigger the relevant effects?
+        //In the case of trolls, is this because their collision cylinder is too short and the missile passes above them?
+        //Is the physics_tick_rate allowing them to phase through for sufficiently high velocity projectiles?
         protected virtual void HandleCollision(Vec3 position, Vec3 normal)
         {
             if (!_hasTickedOnce) return;
