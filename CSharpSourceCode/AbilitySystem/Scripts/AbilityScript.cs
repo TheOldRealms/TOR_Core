@@ -300,6 +300,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             }
         }
 
+        //Sly : reports of spell projectiles passing through terrain or objects. Why would collision not trigger the relevant effects?
         protected virtual void HandleCollision(Vec3 position, Vec3 normal)
         {
             if (!_hasTickedOnce) return;
