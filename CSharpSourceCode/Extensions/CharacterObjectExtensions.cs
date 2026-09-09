@@ -486,7 +486,7 @@ namespace TOR_Core.Extensions
         {
             var effectiveWeight = new ExplainedNumber(character.FirstBattleEquipment.GetTotalWeightOfArmor(forHuman));
             
-            PerkHelper.AddPerkBonusForCharacter(DefaultPerks.Athletics.FormFittingArmor, character, true, ref effectiveWeight);
+            PerkHelper.AddPerkBonusForCharacter(DefaultPerks.Athletics.FormFittingArmor, BattleEnvironment.Any, character, true, ref effectiveWeight);
 
             if (CharacterObject.PlayerCharacter != null && character == CharacterObject.PlayerCharacter)
             {
