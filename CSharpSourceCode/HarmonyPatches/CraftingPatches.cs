@@ -19,7 +19,7 @@ namespace TOR_Core.HarmonyPatches
     public static class CraftingPatches
     {
         [HarmonyPrefix]
-        [HarmonyPatch(typeof(WeaponClassSelectionPopupVM), MethodType.Constructor, typeof(ViewModel), typeof(List<CraftingTemplate>), typeof(Action<int>), typeof(Func<CraftingTemplate, int>), typeof(Func<CraftingTemplate, int>))]
+        [HarmonyPatch(typeof(WeaponClassSelectionPopupVM), MethodType.Constructor, typeof(List<CraftingTemplate>), typeof(Action<int>), typeof(Func<CraftingTemplate, int>), typeof(Func<CraftingTemplate, int>))]
         public static void FilterCategories(List<CraftingTemplate> templatesList, Action<int> onSelect, Func<CraftingTemplate, int> getUnlockedPiecesCount, Func<CraftingTemplate, int> getUninspectedPiecesCount)
         {
             var backup = templatesList.ToList();
