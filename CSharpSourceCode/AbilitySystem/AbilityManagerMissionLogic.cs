@@ -623,6 +623,7 @@ namespace TOR_Core.AbilitySystem
             return 0;
         }
 
+        //Sly : OnBattleSideSpawned or AfterAddTeam may be relevant replacements if issues are found.
         public override void OnDeploymentFinished()
         {
             InitArtilleryCounts();
