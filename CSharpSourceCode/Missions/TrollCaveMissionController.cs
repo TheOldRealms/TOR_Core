@@ -79,6 +79,11 @@ namespace TOR_Core.Missions
             {
                 InitializeMission();
                 _isMissionInitialized = true;
+
+                // Signal deployment finished
+                //Leads to a call to OnBattleSideSpawned for each BattleSide which dispatches an event for MissionBehaviors to use accordingly.
+                //BattleSideEnum.None leads to an iteration through all battle sides.
+                Mission.OnInitialSpawnCompleted();
                 return;
             }
 
@@ -156,9 +161,6 @@ namespace TOR_Core.Missions
             SpawnPlayer();
             SpawnPlayerTroops();
             SpawnTrolls();
-
-            // Signal deployment finished
-            Mission.OnDeploymentFinished();
 
             // Set formation orders and PlayerOwner directly (vanilla hideout pattern)
             SetupFormationOrders();
