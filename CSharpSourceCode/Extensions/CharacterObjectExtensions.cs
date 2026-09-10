@@ -417,14 +417,11 @@ namespace TOR_Core.Extensions
             if (info != null && character.HasCustomResourceUpgradeRequirement())
             {
                 var cost = info.ResourceCost.UpgradeCost;
+
                 if (belongsToMainParty)
                 {
                     var explainedNumber = new ExplainedNumber(cost);
                     CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref explainedNumber, PassiveEffectType.CustomResourceUpgradeCostModifier, true, character);
-
-                    
-                    
-                    
                     
                     // Waaagh3 and Waaagh4 : Teef upgrade penalty for Greenskins
                     if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN &&
@@ -433,9 +430,14 @@ namespace TOR_Core.Extensions
                     {
                         if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_3))
                             explainedNumber.AddFactor(1.0f);
-                        else if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_2))cost = Math.Max((int)explainedNumber.ResultNumber, 1);
-                }           explainedNumber.AddFactor(0.5f);
+                        else if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_2))
+                            explainedNumber.AddFactor(0.5f);
                     }
+
+                    
+                    cost = Math.Max((int)explainedNumber.ResultNumber, 1);
+                }
+
                 return new Tuple<CustomResource, int>(CustomResourceManager.GetResourceObject(info.ResourceCost.ResourceType), cost);
             }
             return null;
