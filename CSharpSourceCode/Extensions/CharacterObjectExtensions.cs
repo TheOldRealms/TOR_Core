@@ -431,7 +431,7 @@ namespace TOR_Core.Extensions
                         info.ResourceCost.ResourceType == "Teef")//resource type check is redundant because upgrades should be disabled prior to this for other culture troops who would cost a different resource.
                         //Perhaps this would change if goblins had a different currency, but atm not relevant.
                     {
-                        if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_3))//Sly : these are spelled wrong and need to point at the Waaagh attributes
+                        if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_3))
                             explainedNumber.AddFactor(1.0f);
                         else if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_2))cost = Math.Max((int)explainedNumber.ResultNumber, 1);
                 }           explainedNumber.AddFactor(0.5f);
