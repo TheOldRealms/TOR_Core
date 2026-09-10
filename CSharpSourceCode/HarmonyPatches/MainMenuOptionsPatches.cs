@@ -40,22 +40,27 @@ namespace TOR_Core.HarmonyPatches
 
         private static void OnClick()
         {
-            //Sly : code copied from SandBoxViewSubModule with replacement actions fetched via reflection.
-			AdvancedStartOptions options = AdvancedStartOptionsManager.CreateCampaignStartOptions();
-			if (!options.IsEmpty())
-			{
-				ScreenManager.AddGlobalLayer(SandBoxViewCreator.CreateCampaignAdvancedStartOptions(options, new Action<AdvancedStartOptions>(OnStartingOptionsConfirmedMethod), new Action(OnStartingOptionsClosedMethod)), true);
-				return;
-			}
+            ////Action keeps getting a null target and therefore nothing happens when the button is clicked.
+            ////Sly : code copied from SandBoxViewSubModule with replacement actions fetched via reflection.
+            AdvancedStartOptions options = AdvancedStartOptionsManager.CreateCampaignStartOptions();
+            //if (!options.IsEmpty())
+            //{
+            //    var sandBoxViewSubModuleInstance = Activator.CreateInstance(typeof(SandBoxViewSubModule));
+            //    var onStartingOptionsConfirmedMethod = AccessTools.Method(typeof(SandBoxViewSubModule), "OnStartingOptionsConfirmed", [typeof(AdvancedStartOptions)]);
+            //    Action<AdvancedStartOptions> action = (Action<AdvancedStartOptions>)onStartingOptionsConfirmedMethod.Invoke(sandBoxViewSubModuleInstance, new object[] {options});
+            //    //var action = new Action<AdvancedStartOptions>(OnStartingOptionsConfirmedMethod);
+            //    ScreenManager.AddGlobalLayer(SandBoxViewCreator.CreateCampaignAdvancedStartOptions(options, action, new Action(OnStartingOptionsClosedMethod)), true);
+            //    return;
+            //}
 
             // Campaign creator delegate that creates a new Campaign in Campaign mode
             MBGameManager.StartNewGame(new TorCampaignGameManager(() => new Campaign(CampaignGameMode.Campaign, options.GetChangedOptions())));
 
-            static void OnStartingOptionsConfirmedMethod(AdvancedStartOptions options)
+            static void OnStartingOptionsConfirmedMethod(SandBox.AdvancedStartOptions.AdvancedStartOptions options)
             {
                 var sandBoxViewSubModuleInstance = Activator.CreateInstance(typeof(SandBoxViewSubModule));
-                var onStartingOptionsConfirmedMethod = AccessTools.Method(typeof(SandBoxViewSubModule), "OnStartingOptionsConfirmed");
-                onStartingOptionsConfirmedMethod.Invoke(sandBoxViewSubModuleInstance, []);
+                var onStartingOptionsConfirmedMethod = AccessTools.Method(typeof(SandBoxViewSubModule), "OnStartingOptionsConfirmed", [typeof(AdvancedStartOptions)]);
+                onStartingOptionsConfirmedMethod.Invoke(sandBoxViewSubModuleInstance, [options]);
             }
 
             static void OnStartingOptionsClosedMethod()
