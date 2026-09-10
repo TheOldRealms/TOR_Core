@@ -1345,7 +1345,7 @@ namespace TOR_Core.Utilities
             string questId = arguments[0];
 
             // Only allow specific quests that support this completion method
-            var supportedQuests = new[] { "OrcBossQuest1", "OrcBossQuest2", "OrcShamanQuest1", "OrcShamanQuest2" };
+            var supportedQuests = new[] { "OrcBossQuest1", "OrcBossQuest2", "OrcShamanQuest1", "OrcShamanQuest2", "runelord_quest_1", "runelord_quest_2" };
             if (!supportedQuests.Contains(questId))
                 return $"Quest '{questId}' cannot be finalized this way. Supported quests: {string.Join(", ", supportedQuests)}\n";
 
@@ -1359,6 +1359,10 @@ namespace TOR_Core.Utilities
             {
                 entry.UpdateCurrentProgress(Int32.MaxValue);
             }
+
+            // The Runelord career quests are finalized by the Runesmith guildmaster dialogue rather than by their own tick.
+            if (questId == "runelord_quest_1" || questId == "runelord_quest_2")
+                return $"Quest '{questId}' requirements completed! Talk to the Runesmith guildmaster after the next hourly tick to finalize it.\n";
 
             return $"Quest '{questId}' requirements completed! Quest will finalize on next hourly tick.\n";
         }

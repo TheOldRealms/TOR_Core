@@ -61,8 +61,8 @@ namespace TOR_Core.CampaignMechanics.Crafting
         /// </summary>
         /// <param name="learnedBy">
         /// Who did the learning. Storage is campaign-wide so this does not affect *where* the
-        /// blueprint goes — it is carried on the event for quest/UI attribution, and names the
-        /// hero in the notification. Defaults to the main hero.
+        /// blueprint goes, nor is it shown to the player — it is carried on the event for
+        /// quest/UI attribution only. Defaults to the main hero.
         /// </param>
         public static bool Learn(string blueprintId, Hero learnedBy = null, bool showNotification = false)
         {
@@ -80,11 +80,16 @@ namespace TOR_Core.CampaignMechanics.Crafting
             var hero = learnedBy ?? Hero.MainHero;
             TORCampaignEvents.Instance.OnEnchantmentLearned(hero, blueprintId);
 
-            if (showNotification) ShowLearnedNotification(blueprintId, hero);
+            if (showNotification) ShowLearnedNotification(blueprintId);
             return true;
         }
 
-        private static void ShowLearnedNotification(string blueprintId, Hero hero)
+        /// <summary>
+        /// Announces the blueprint itself, with no hero attached. Storage is campaign-wide, so
+        /// naming whoever happened to trigger the learn would imply an ownership that does not
+        /// exist - <c>learnedBy</c> is attribution for the event, not for the player.
+        /// </summary>
+        private static void ShowLearnedNotification(string blueprintId)
         {
             var itemTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == blueprintId);
             if (itemTrait == null)
@@ -93,10 +98,9 @@ namespace TOR_Core.CampaignMechanics.Crafting
                 return;
             }
 
-            var learnedEnchantmentText = TORTextHelper.GetTextObject("tor_learned_enchantment_text", "{HERO_NAME} learned the enchantment {ENCHANTMENT_NAME}");
-            learnedEnchantmentText.SetTextVariable("HERO_NAME", hero.Name);
+            var learnedEnchantmentText = TORTextHelper.GetTextObject("tor_enchantment_learned_text", "{ENCHANTMENT_NAME} has been learnt.");
             learnedEnchantmentText.SetTextVariable("ENCHANTMENT_NAME", itemTrait.ItemTraitName);
-            MBInformationManager.AddQuickInformation(learnedEnchantmentText, 0, hero.CharacterObject);
+            MBInformationManager.AddQuickInformation(learnedEnchantmentText);
         }
     }
 }

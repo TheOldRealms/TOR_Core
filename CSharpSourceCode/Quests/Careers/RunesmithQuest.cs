@@ -69,8 +69,11 @@ public class RunesmithQuest : QuestBase
     {
         if (AreAllTasksFinished())
         {
-            AddLog(TORTextHelper.GetTextObject("tor_runesmith_quest_log_complete", "Talk to the rune smith"));
+            if (this.JournalEntries.Count < 3)  //2 tasks plus the final log, the count the guildmaster dialogue checks for
+            {
+                AddLog(TORTextHelper.GetTextObject("tor_runesmith_quest_log_complete", "Talk to the rune smith"));
 
+            }
         }
     }
 
@@ -101,6 +104,7 @@ public class RunesmithQuest : QuestBase
 
     protected override void HourlyTick()
     {
+        UpdateQuest();
     }
 
     public override TextObject Title => TORTextHelper.GetTextObject("tor_runesmith_quest_title", "Runesmith Quest");

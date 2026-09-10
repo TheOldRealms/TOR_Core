@@ -709,7 +709,9 @@
   <string id="tor_enchanting_enter_name_text" text="{=str_tor_enchanting_enter_name_text}Enter name for your enchanted item" />
   <string id="tor_enchanting_failed_text" text="{=str_tor_enchanting_failed_text}Enchanting failed." />
   <string id="tor_enchanting_success_text" text="{=str_tor_enchanting_success_text}Enchanting successful. Item was added to inventory." />
-  <string id="tor_learned_enchantment_text" text="{=str_tor_learned_enchantment_text}{HERO_NAME} learned the enchantment {ENCHANTMENT_NAME}" />
+  <string id="tor_enchantment_learned_text" text="{=str_tor_enchantment_learned_text}{ENCHANTMENT_NAME} has been learnt." />
+  <string id="tor_enchantment_already_learned_text" text="{=str_tor_enchantment_already_learned_text}You have already learned this enchantment." />
+  <string id="tor_enchantment_manuscript_useless_text" text="{=str_tor_enchantment_manuscript_useless_text}The manuscript is of no use for you." />
   <string id="tor_enchant_prompt_donate_items.title" text="{=str_tor_enchant_prompt_donate_items_title}Donate items" />
   <string id="tor_enchant_prompt_donate_items.text" text="{=str_tor_enchant_prompt_donate_items_text}Select the items you want to donate. You will obtain {CUSTOMRESOURCE_ICON} from this action. " />
   <string id="tor_enchant_no_description" text="{=str_tor_enchant_no_description}No description available." />

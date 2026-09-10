@@ -2,9 +2,7 @@
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.Core;
-using TaleWorlds.Core.ImageIdentifiers;
 using TaleWorlds.SaveSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
@@ -79,63 +77,24 @@ public class EnchantmentBlueprintScript : BaseInventoryUseScript
         // one per hero - if it is known there is nobody left to offer the manuscript to.
         if (EnchantmentBlueprints.IsKnown(blueprintId))
         {
-            TORCommon.Say("You have already learned this enchantment.");
+            TORCommon.Say(TORTextHelper.GetText("tor_enchantment_already_learned_text", "You have already learned this enchantment."));
             return;
         }
 
-        var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
-
-        var selectableHeroes = new List<InquiryElement>();
-
-        foreach (var hero in heroes)
+        if (!CanAnyoneInPartyRead())
         {
-            var isValid = false;
-            if (!_requiredAttributesOrLores.IsEmpty())
-            {
-
-                if (_requiredAttributesOrLores.Any(attribute => hero.HasAttribute(attribute)))
-                {
-                    isValid = true;
-                }
-
-                if (_requiredAttributesOrLores.Any(attribute => hero.HasKnownLore(attribute))) //use attributes or lores to check.
-                {
-                    isValid = true;
-                }
-            }
-            else
-            {
-                isValid = true;
-            }
-
-            if (!isValid)
-            {
-                continue;
-            }
-
-            // Skill deliberately not checked here any more. Reading a manuscript is acquiring
-            // knowledge; the skill to execute it is checked at the enchanting table instead
-            // (EnchantmentHelper.GetUnmetRequirement). Only the lore/attribute restriction
-            // above still gates who can read it.
-
-            selectableHeroes.Add(new InquiryElement(hero, hero.Name.ToString(), new CharacterImageIdentifier(CampaignUIHelper.GetCharacterCode(hero.CharacterObject))));
-        }
-
-        if (selectableHeroes.IsEmpty())
-        {
-            TORCommon.Say("The manuscript is of no use for you.");
+            TORCommon.Say(TORTextHelper.GetText("tor_enchantment_manuscript_useless_text", "The manuscript is of no use for you."));
             return;
         }
 
-        var inquirydata = new MultiSelectionInquiryData("Choose hero to learn new enchantment",
-            "The scribing entails a powerful new enchantment effect for one of your party members to learn. Choose who will specialize in", selectableHeroes, true, 1, 1, "Accept", "Cancel", OnSelectedOption, null, "", false);
-        MBInformationManager.ShowMultiSelectionInquiry(inquirydata);
+        EnchantmentBlueprints.Learn(blueprintId, null, true);
 
-
-        void OnSelectedOption(List<InquiryElement> inquiryElements)
+        bool CanAnyoneInPartyRead()
         {
-            var hero = (Hero)inquiryElements[0].Identifier;
-            EnchantmentBlueprints.Learn(blueprintId, hero, true);
+            if (_requiredAttributesOrLores.IsEmpty()) return true;
+
+            return Hero.MainHero.PartyBelongedTo.GetMemberHeroes()
+                .Any(hero => _requiredAttributesOrLores.Any(attribute => hero.HasAttribute(attribute) || hero.HasKnownLore(attribute))); //use attributes or lores to check.
         }
     }
 }
