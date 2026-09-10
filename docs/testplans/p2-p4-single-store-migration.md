@@ -105,7 +105,7 @@ the check.
 This replaces P1's orphaned-entry trick. That test existed only because a session-launch seed
 could mask a broken save; with the seed gone, a plain save/reload is now a genuine proof.
 
-- [ ] Pass  - [ ] Fail
+- [X] Pass  - [ ] Fail
 
 **Result:**
 
@@ -129,7 +129,7 @@ The headline behaviour change, and the inverse of P1/S7.
 - **Fail — the rune disappears from `known`:** the store is being rebuilt from party state
   somewhere.
 
-- [ ] Pass  - [ ] Fail
+- [X] Pass  - [ ] Fail
 
 **Result:**
 
@@ -151,10 +151,10 @@ Find or arrange a known blueprint whose skill requirement nobody in the party me
 - Then raise the skill above the threshold (`campaign.set_skill_value` or levelling) and reopen
   the table — it must become selectable.
 
-- [ ] Greyed, not hidden
-- [ ] Tooltip states the requirement
-- [ ] Clicking a greyed entry does nothing
-- [ ] Becomes selectable once the skill is met
+- [X] Greyed, not hidden
+- [X] Tooltip states the requirement
+- [X] Clicking a greyed entry does nothing
+- [X] Becomes selectable once the skill is met
 
 **Result:**
 
@@ -176,7 +176,7 @@ With a rune known but **no** qualifying hero present:
 This is where the Runesmith fantasy now lives: they are required to *use* the rune, not to
 *remember* it.
 
-- [ ] Pass  - [ ] Fail
+- [X] Pass  - [ ] Fail
 
 **Result:**
 
@@ -196,10 +196,11 @@ hero B clears the skill but not the lore.
 
 If this is awkward to stage, skip it and say so — S3 and S4 are the load-bearing ones.
 
-- [ ] Pass  - [ ] Fail  - [ ] Skipped
+- [X] Pass  - [ ] Fail  - [ ] Skipped
 
 **Result:**
-
+This one was a bit more involved. I had my main hero who had the knowledge (runesmithing), and I gave a thane a higher smithing level, and it is compliant
+Groin the thane had 75 smithing, but didn't know the appropriate lore.
 **Notes:**
 
 ---
@@ -214,10 +215,10 @@ At an enchanter/Karak shop, find a blueprint whose skill requirement you do **no
   remaining reason to grey a shop row.
 - Buy it, then check it appears in `tor.check_enchantment_blueprints` under `blocked`.
 
-- [ ] Under-skilled row is buyable
-- [ ] Hint explains the future requirement
-- [ ] Unaffordable rows still disabled
-- [ ] Purchased blueprint shows as known-but-blocked
+- [X] Under-skilled row is buyable
+- [X] Hint explains the future requirement
+- [X] Unaffordable rows still disabled
+- [X] Purchased blueprint shows as known-but-blocked
 
 **Result:**
 
@@ -235,7 +236,7 @@ With **two or more** non-main-hero companions eligible for the same blueprint, b
 - **Expect:** it is learned, with a notification naming one of them. It must **not** land in the
   inventory as an item.
 
-- [ ] Pass  - [ ] Fail
+- [X] Pass  - [ ] Fail
 
 **Result:**
 
@@ -252,11 +253,11 @@ Use a blueprint manuscript item from the inventory.
 - **Expect:** using a manuscript for something already known says "You have already learned this
   enchantment." rather than offering an empty or pointless hero list.
 
-- [ ] Skill no longer filters the hero list
-- [ ] Already-known manuscript is refused cleanly
+- [X] Skill no longer filters the hero list
+- [X] Already-known manuscript is refused cleanly
 
 **Result:**
-
+Still asking for which character should learn it. Not too much of a fan of that. We should remove that and have it display a straight message
 **Notes:**
 
 ---
@@ -272,10 +273,10 @@ Start or continue a Runelord / Runesmith / Orc Shaman quest with a rune-counting
   used to be recomputed main-hero-only on load, so a companion's increment silently reverted.
 - Dismiss that companion → the counter still holds.
 
-- [ ] Baseline matches known count
-- [ ] Companion learning increments it
-- [ ] Survives a reload
-- [ ] Survives the companion leaving
+- [X] Baseline matches known count
+- [X] Companion learning increments it
+- [X] Survives a reload
+- [X] Survives the companion leaving
 
 **Result:**
 
@@ -292,13 +293,26 @@ At a Karak, with a rune learned by a **companion** rather than the player:
 - With **no** blueprints known at all, the button must still show "Hero doesn't know any Runes
   yet" rather than erroring.
 
-- [ ] Companion-learned rune is visible to the button
-- [ ] Empty-store case still handled
+- [X] Companion-learned rune is visible to the button
+- [X] Empty-store case still handled
 
 **Result:**
+The empty store should technically never be reached as we can't get to that without completing some of the quest.
 
 **Notes:**
 
+Assumptions I've made:
+
+    Threshold is derived from the constituent runes (highest of the 3).
+    Best-in-party — any hero can clear it, but the SAME hero must also have
+    RuneMagic.
+    Bug: Rune of Retribution references a trait id that doesn't exist(dw_rune_preservation), so it has never shown up in the list. So that was fixed.
+
+
+Resulting gates:
+  T1  Guarding / Sanctuary / Battle    75
+  T2  Strollaz' 100 · Rapid Fire 150 · Retribution 250
+  T3  Grimnir 225 · Grungni 250 · Valaya 275
 ---
 
 ## S11 — Cost reduction is main-hero only (P3c)
@@ -313,8 +327,8 @@ With a career that grants an enchantment cost reduction:
 Note this is the decision flagged as "for now": a hired Runelord can satisfy the lore
 restriction but contributes nothing to cost.
 
-- [ ] Discount no longer stacks
-- [ ] Only the main hero's career counts
+- [X] Discount no longer stacks
+- [X] Only the main hero's career counts
 
 **Result:**
 
@@ -336,7 +350,7 @@ tor.check_enchantment_blueprints
   you meet its requirements. **Career grants are now skill-gated like everything else** — that
   is intended, and is the balance change called out in the proposal.
 
-- [ ] Pass  - [ ] Fail
+- [X] Pass  - [ ] Fail
 
 **Result:**
 

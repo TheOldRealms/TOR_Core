@@ -41,7 +41,7 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
         new("unit_rune_battle", TORTextHelper.GetTextObject("tor_unit_rune_battle_name", "Rune of Battle"), TORTextHelper.GetTextObject("tor_unit_rune_battle_desc", "30% extra physical damage."), "unit_rune_battle",
             new List<string> { "dw_rune_striking","dw_rune_might","dw_rune_fire" }, 1),
         new("unit_rune_retribution", TORTextHelper.GetTextObject("tor_unit_rune_retribution_name", "Rune of Retribution"),
-            TORTextHelper.GetTextObject("tor_unit_rune_retribution_desc", "25% extra fire resistance, 35% extra fire damage."), "unit_rune_retribution", new List<string> { "dw_rune_spell_eating","dw_rune_preservation","dw_rune_fortitude" }, 2),
+            TORTextHelper.GetTextObject("tor_unit_rune_retribution_desc", "25% extra fire resistance, 35% extra fire damage."), "unit_rune_retribution", new List<string> { "dw_rune_spell_eating","dw_master_rune_preservation","dw_rune_fortitude" }, 2),
         new("unit_rune_rapid_fire", TORTextHelper.GetTextObject("tor_unit_rune_rapid_fire_name", "Rune of Rapid Fire"), TORTextHelper.GetTextObject("tor_unit_rune_rapid_fire_desc", "60% extra reload speed."), "unit_rune_rapid_fire",
             new List<string> { "dw_rune_head_wrecking","dw_rune_beastslaying","dw_rune_reloading" }, 2),
         new("unit_rune_strollaz", TORTextHelper.GetTextObject("tor_unit_rune_strollaz_name", "Strollaz' Rune"), TORTextHelper.GetTextObject("tor_unit_rune_strollaz_desc", "35% extra movement speed."), "unit_rune_strollaz",
@@ -128,6 +128,9 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
                 ItemTrait.All.Any(trait => trait.ItemTraitStringId == blueprintId)))
             .ToList();
 
+        // Scanned once for the whole prompt rather than per rune - see GetBlueprintRequirements.
+        var requirements = EnchantmentHelper.GetBlueprintRequirements();
+
         var list = new List<InquiryElement>();
 
         var currentRunes = GetCurrentActiveRunes(_currentCharacter);
@@ -170,9 +173,23 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
                 
                 GameTexts.SetVariable("UNKNOWN_RUNES_LIST", entries.ToString());
 
-                hint = TORTextHelper.GetTextObject("tor_unit_rune_unknown_runes_text", "You do not know the required runes: {REQUIRED_RUNES_LIST}");
-                
-                
+                hint = TORTextHelper.GetTextObject("tor_unit_rune_unknown_runes_text", "You do not know the required runes:{UNKNOWN_RUNES_LIST}");
+
+
+                list.Add(new InquiryElement(unitRune, new TextObject(displayText).ToString(), null, false, hint.ToString()));
+                continue;
+            }
+
+            // Knowing the runes is not enough - a unit rune inherits the crafting gate of the
+            // runes it is inscribed from, so the hardest of them has to be met as well.
+            var unmetRequirement = GetUnmetRuneRequirement(blueprintList, requirements);
+            if (unmetRequirement != null)
+            {
+                GameTexts.SetVariable("RUNE_DESCRIPTION", hint.ToString());
+                GameTexts.SetVariable("RUNE_REQUIREMENT", unmetRequirement);
+
+                hint = TORTextHelper.GetTextObject("tor_unit_rune_requirement_unmet", "{RUNE_DESCRIPTION}{newline}{newline}{RUNE_REQUIREMENT}");
+
                 list.Add(new InquiryElement(unitRune, new TextObject(displayText).ToString(), null, false, hint.ToString()));
                 continue;
             }
@@ -312,6 +329,36 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
         }
 
         return costMultiplier * itemTrait.IngredientAmount;
+    }
+
+    /// <summary>
+    /// Why the party cannot inscribe <paramref name="blueprintList"/> right now, or null if it
+    /// can. A unit rune is made from its constituent item runes, so it inherits their crafting
+    /// gate — the hardest of them is the one that decides.
+    /// </summary>
+    /// <remarks>
+    /// Each constituent is resolved through <see cref="EnchantmentHelper.GetUnmetRequirement"/>
+    /// rather than by comparing skill values here, so the restriction and the same-hero coupling
+    /// (one hero clears the lore/attribute and the skill threshold together) stay identical to the
+    /// enchanting table's, and keep working if a rune's constituents ever stop sharing a skill.
+    /// </remarks>
+    private static string GetUnmetRuneRequirement(List<string> blueprintList, Dictionary<string, EnchantmentHelper.BlueprintRequirement> requirements)
+    {
+        string hardestUnmet = null;
+        var hardestValue = int.MinValue;
+
+        foreach (var blueprintId in blueprintList)
+        {
+            if (!requirements.TryGetValue(blueprintId, out var requirement)) continue;
+
+            var unmet = EnchantmentHelper.GetUnmetRequirement(blueprintId, requirement);
+            if (unmet == null || requirement.RequiredSkillValue <= hardestValue) continue;
+
+            hardestValue = requirement.RequiredSkillValue;
+            hardestUnmet = unmet;
+        }
+
+        return hardestUnmet;
     }
 
     private bool HasIngredientsForUse(List<string> blueprintList, out List<(string Id, ItemObject ingredient, int cost, int available, bool notKnown)> failed)

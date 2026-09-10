@@ -447,6 +447,7 @@
   <string id="tor_unit_rune_active_display" text="{=str_tor_unit_rune_active_display}{RUNE_NAME}{newline}{RUNE_DESC}" />
   <string id="tor_unit_rune_warning_text" text="{=str_tor_unit_rune_warning_text}WARNING : Current {CURRENT_RUNE} will be removed without compensation." />
   <string id="tor_unit_rune_unknown_runes_text" text="{=str_tor_unit_rune_unknown_runes_text}You do not know the required runes:{UNKNOWN_RUNES_LIST}" />
+  <string id="tor_unit_rune_requirement_unmet" text="{=str_tor_unit_rune_requirement_unmet}{RUNE_DESCRIPTION}{newline}{newline}{RUNE_REQUIREMENT}" />
   <string id="tor_unit_rune_title" text="{=str_tor_unit_rune_title}Unit Runes" />
   <string id="tor_unit_rune_description" text="{=str_tor_unit_rune_description}Choose a rune to add to the equipment of your units. {RUNE_WARNING_TEXT}" />
   <string id="tor_unit_rune_not_for_heroes_text" text="{=str_tor_unit_rune_not_for_heroes_text}Doesn't work for heroes" />
