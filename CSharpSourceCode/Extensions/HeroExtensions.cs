@@ -21,6 +21,7 @@ using TOR_Core.Utilities;
 using FaceGen = TaleWorlds.Core.FaceGen;
 using LogLevel = NLog.LogLevel;
 using static TOR_Core.Utilities.TORConstants;
+using TOR_Core.CampaignMechanics.Crafting;
 
 namespace TOR_Core.Extensions
 {
