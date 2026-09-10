@@ -341,6 +341,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
             if (quest == null) return;
 
+            //When the quest requirements are fulfilled, a new JournalEntry is added allowing .Count to surpass the prior number of entries.
             if (quest.JournalEntries.Count > finalCount - 1) // easiest way to check if all conditions were fullfilled
             {
                 quest.JournalEntries[finalCount - 1].UpdateCurrentProgress(1);
