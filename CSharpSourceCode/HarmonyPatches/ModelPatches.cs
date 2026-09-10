@@ -101,15 +101,16 @@ public static class ModelPatches
 
     //Sly : why is this a harmony patch instead of a model override? Did this become an override after this was originally written?
     // removes auto recruitment hard cap for player garrisons
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(DefaultSettlementGarrisonModel), nameof(DefaultSettlementGarrisonModel.GetMaximumDailyAutoRecruitmentCount))]
-    private static bool Prefix_UncapDailyGarrisonAutoRecruitment(Town town, ref int __result)
-    {
-        if (town.OwnerClan != Clan.PlayerClan) return true;
+    //Sly : __result is an ExplainedNumber on 1.5
+    //[HarmonyPrefix]
+    //[HarmonyPatch(typeof(DefaultSettlementGarrisonModel), nameof(DefaultSettlementGarrisonModel.GetMaximumDailyAutoRecruitmentCount))]
+    //private static bool Prefix_UncapDailyGarrisonAutoRecruitment(Town town, ref int __result)
+    //{
+    //    if (town.OwnerClan != Clan.PlayerClan) return true;
 
-        __result = int.MaxValue;
-        return false;
-    }
+    //    __result = int.MaxValue;
+    //    return false;
+    //}
 
     //Sly : underlying method no longer exists on 1.5 and no viable replacement is easily accessible or repurposeable.
     //See Hero.CanDonateTroopsToGarrison as it was added to address this in the context of player clan parties dumping troops into garrisons.
