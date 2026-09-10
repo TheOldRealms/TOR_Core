@@ -324,7 +324,7 @@ namespace TOR_Core.Models
             //vanilla copy paste.
             bool specialFlag = troop.Occupation == Occupation.Mercenary || troop.Occupation == Occupation.Gangster || troop.Occupation == Occupation.CaravanGuard;
 
-            if (specialFlag) troopRecruitmentCost = MathF.Round(troopRecruitmentCost * 2f);
+            if (specialFlag) troopRecruitmentCost = MathF.Round(troopRecruitmentCost * 1.5f);
 
             if (buyerHero != null)
             {
