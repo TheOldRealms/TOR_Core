@@ -45,14 +45,10 @@ public class HerdStoneComponent : BaseRaiderSpawnerComponent
             "tor_learn_dw_master_rune_gromril"
         ];
 
-    public override IFaction MapFaction => Settlement.Owner.Clan;
-
     public override MobileParty SpawnNewParty(Settlement initialTarget)
     {
-        PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("ungor_party");
-        Clan beastmenClan = Clan.FindFirst(x => x.StringId == "beastmen_clan_1");
         var find = TORCommon.FindSettlementsAroundPosition(Settlement.Position.ToVec2(), 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
-        var raidingParty = RaidingPartyComponent.CreateRaidingParty("beastmen_clan_1_party_" + RaidingPartyCount + 1, Settlement, TORTextHelper.GetText("tor_beastmen_raiders", "Beastmen Raiders"), template, MBRandom.RandomInt(75, 99));
+        var raidingParty = RaidingPartyComponent.CreateRaidingParty("beastmen_clan_1_party_" + RaidingPartyCount + 1, Settlement, TORTextHelper.GetText("tor_beastmen_raiders", "Beastmen Raiders"), MBRandom.RandomInt(75, 99));
         if (find != null)
         {
             SetPartyAiAction.GetActionForRaidingSettlement(raidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false, false);

@@ -59,10 +59,10 @@ public class RaidingSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettleme
         var settlement = Settlement.CurrentSettlement;
         var component = settlement.SettlementComponent as BaseRaiderSpawnerComponent;
         var ownerClan = settlement.OwnerClan;
-        ownerClan ??= Clan.FindFirst(x => x.StringId == "chaos_clan_1");
+        ownerClan ??= Clan.FindFirst(x => x.StringId == "chaos_raider_clan_1");
         var template = ownerClan.DefaultPartyTemplate;
         var partysize = component.BattlePartySize;
-        var party = RaidingPartyComponent.CreateRaidingParty(settlement.StringId + "_defender_party", settlement, "Defenders", template, partysize);
+        var party = RaidingPartyComponent.CreateRaidingParty(settlement.StringId + "_defender_party", settlement, "Defenders", partysize);
         PlayerEncounter.RestartPlayerEncounter(party.Party, PartyBase.MainParty, false);
         if (PlayerEncounter.Battle == null)
         {

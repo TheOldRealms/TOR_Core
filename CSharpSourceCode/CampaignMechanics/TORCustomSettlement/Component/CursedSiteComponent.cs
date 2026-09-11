@@ -25,8 +25,6 @@ public class CursedSiteComponent : TORBaseSettlementComponent, IDisposable
         }
     }
 
-    public override IFaction MapFaction => Settlement.Owner.Clan;
-
     public void HourlyTick() => WardHours = Math.Max(0, WardHours - 1);
 
     public override void OnInit()

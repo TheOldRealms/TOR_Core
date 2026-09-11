@@ -26,7 +26,7 @@
       <WorldRoots id="worldroot_04" background_crop_position="0.0" background_mesh="oak_of_ages" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="chaos_portal_01" name="{=str_tor_settlements_chaos_portal}Chaos Portal" owner="Faction.chaos_clan_1" posX="1421.178" posY="900.773" culture="Culture.chaos_culture" text="{=!}Chaos Portal" gate_posX="1421.178" gate_posY="900.773">
+  <Settlement id="chaos_portal_01" name="{=str_tor_settlements_chaos_portal}Chaos Portal" owner="Faction.chaos_raider_clan_1" posX="1421.178" posY="900.773" culture="Culture.chaos_culture" text="{=!}Chaos Portal" gate_posX="1421.178" gate_posY="900.773">
     <Components>
       <ChaosPortal id="chaos_portal_01" background_crop_position="0.0" background_mesh="chaos_portal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>

@@ -11,26 +11,37 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.RaidingParties
 {
+    /// <remarks>
+    /// Historical notes from prior work :
+    /// - is_minor_faction : xml attribute must be false or absent to avoid the clan needing heroes and joining kingdoms as mercenaries.
+    /// - is_outlaw : unnecessary xml attribute, native does essentially nothing with it.
+    /// </remarks>
     public class RaidingPartyComponent : WarPartyComponent, IRaidingParty
     {
         [SaveableProperty(1)] public Settlement Target { get; set; }
+        
+        //Sly : PartyOwner can be null as long as clan.IsMinorFaction is false which exempts them from AiVisitSettlementBehavior.AiHourlyTick checks which hit NREs due to the assumption that minor factions are hero clans => checks for the owning hero when determining if a village is an enemy and an unviable target for recruitment, etc.
+        public override Hero PartyOwner
+        {
+            get
+            {
+                Clan actualClan = MobileParty.ActualClan;
+                if (actualClan == null) return null;
 
-        //Randy: This is by the MobileParty component to check, it cannot be null otherwise the raiding
-        //party cannot find its owner (taleworlds thing: IsSettlementSuitableForVisitingCondition)
-        public override Hero PartyOwner => Clan.Leader;
+                return actualClan.Leader;
+            }
+        }
 
-        [SaveableField(3)] private Settlement _home;
+        [SaveableField(2)] private Settlement _home;
         public override Settlement HomeSettlement => _home;
 
-        [SaveableField(4)] private string _name;
-        [SaveableField(5)] private PartyTemplateObject _template;
-        [SaveableField(6)] public int _partySize; //accessible to TORPartySizeModel which needs it to scale the troop counts up because native now only supports ratios up to 1.0 compared to the party template used
+        [SaveableField(3)] private string _name;
+        [SaveableField(4)] public int _partySize; //accessible to TORPartySizeModel which needs it to scale the troop counts up because native now only supports ratios up to 1.0 compared to the party template used
 
-        private RaidingPartyComponent(Settlement home, string name, PartyTemplateObject template, int partySize)
+        private RaidingPartyComponent(Settlement home, string name, int partySize)
         {
             _home = home;
             _name = name;
-            _template = template;
             _partySize = partySize;
         }
 
@@ -41,10 +52,10 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
 
         private void InitializeRaidingParty()
         {
-            if (_home.OwnerClan != null && _template != null)
+            if (_home.OwnerClan?.DefaultPartyTemplate != null)
             {
                 //party size adjustment handled in TORPartySizeModel.FindAppropriateInitialRosterForMobileParty
-                MobileParty.InitializeMobilePartyAroundPosition(_template, HomeSettlement.Position, 20);
+                MobileParty.InitializeMobilePartyAroundPosition(_home.OwnerClan.DefaultPartyTemplate, HomeSettlement.Position, 20);
                 MobileParty.ActualClan = _home.OwnerClan;
                 MobileParty.Aggressiveness = 2.0f;
                 MobileParty.Party.SetVisualAsDirty();
@@ -56,9 +67,9 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
             }
         }
 
-        public static MobileParty CreateRaidingParty(string stringId, Settlement home, string name, PartyTemplateObject template, int partySize)
+        public static MobileParty CreateRaidingParty(string stringId, Settlement home, string name, int partySize)
         {
-            return MobileParty.CreateParty(stringId, new RaidingPartyComponent(home, name, template, partySize));
+            return MobileParty.CreateParty(stringId, new RaidingPartyComponent(home, name, partySize));
         }
 
         public override TextObject Name => new(_name);

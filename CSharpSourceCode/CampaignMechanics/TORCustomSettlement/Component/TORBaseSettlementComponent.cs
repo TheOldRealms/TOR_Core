@@ -14,6 +14,7 @@ public abstract class TORBaseSettlementComponent : SettlementComponent
     public Clan OwnerClan { get; set; }
     public ReligionObject Religion { get; protected set; }
     public bool IsActive { get; set; }
+    public override IFaction MapFaction => Settlement.OwnerClan;
 
     public override void OnInit()
     {

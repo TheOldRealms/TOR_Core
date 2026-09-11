@@ -93,7 +93,7 @@ namespace TOR_Core.SaveGameSystem
             ConstructContainerDefinition(typeof(Dictionary<string, MobilePartyExtendedInfo>));
             ConstructContainerDefinition(typeof(List<RaidingPartyComponent>));
             ConstructContainerDefinition(typeof(List<KingdomDecision>));
-            ConstructContainerDefinition(typeof(Dictionary<Settlement, Dictionary<CharacterObject, int>>));
+            ConstructContainerDefinition(typeof(Dictionary<Settlement, Dictionary<CharacterObject, int>>));//Sly : is there any reason a container definition needst to be defined twice in the same class?
             ConstructContainerDefinition(typeof(Dictionary<string, double>));
             ConstructContainerDefinition(typeof(Dictionary<string, float>));
             ConstructContainerDefinition(typeof(Dictionary<string, string>));
