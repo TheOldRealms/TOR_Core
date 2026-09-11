@@ -13,10 +13,11 @@ Which files belong to which module: [`../vertical-slicing-proposal.md`](../verti
 | `—` | Not started. |
 | `WIP` | In progress; see the Branch column. |
 | `PR` | Code complete, PR open, not yet merged. |
-| `done` | Exit criteria met **and merged to `development`**. |
+| `done` | Exit criteria met **and merged to `next_update`** — the working master for this program. |
 | `n/a` | Does not apply (justify in Notes). |
 
-Branch names are `feature/[module][Epic]` — e.g. `feature/craftingFramework`.
+Branch names are `feature/[Epic][Module]` — e.g. `feature/moduleCrafting`, `feature/FrameworkCrafting`.
+Epics stack on the branch below them when the one below is still in review rather than waiting for a merge.
 
 ## Ledger
 
@@ -25,7 +26,7 @@ Ordered by suggested Modularize sequence: proven-small first, split-heavy in the
 
 | # | Module | 1 Modularize | 2 Framework | 3 Strings | 4 Codesmells | 5 Pattern | Notes |
 |---|---|---|---|---|---|---|---|
-| 0 | `Crafting` | **PR** | next | — | — | — | The worked example. Code done on `feature/moduleCrafting`, **unmerged** — needs its own PR under the one-epic-one-PR rule. Owns `CraftingCareerHooks` in `Framework/`. Strings unblocked: `tortools` MCP server is live. |
+| 0 | `Crafting` | **PR** | **PR** | next | — | — | The worked example. Epic 1 on `feature/moduleCrafting`, Epic 2 on `feature/FrameworkCrafting` — both unmerged, stacked (`next_update` → `moduleCrafting` → `CentralizeCraftingRecipes` → `FrameworkCrafting`). Epic 2 promoted `TORSettlementMenuHelpers` and `TorEnchantingIngredients` to `Framework/` and froze the inbound set as Public Surface in `MODULE.md`. One outbound edge survives — `PriestBehavior` → `Religion.ReligionObject.All` — deferred to Religion's Epic 1. Strings unblocked: `tortools` MCP server is live. |
 | 1 | `BountyMaster` | — | — | — | — | — | Small, few cross-references. Good second module. |
 | 2 | `PostBattleLoot` | — | — | — | — | — | Small, few cross-references. |
 | 3 | `Villages` | — | — | — | — | — | Pulls in `TORVillageProductionCalculatorModel`; possibly `PlaguedVillageQuestCampaignBehavior` (*verify*). |
@@ -47,7 +48,7 @@ Ordered by suggested Modularize sequence: proven-small first, split-heavy in the
 | 19 | `Greenskins` | — | — | — | — | — | Home of `GreenskinAICampaignBehavior` unresolved — may fold into `CustomResources` (Waaagh). Decide before starting. |
 | 20 | `CharacterCreation` | — | — | — | — | — | |
 | 21 | `Diplomacy` | — | — | — | — | — | Pulls in four models; already contributes its own `SaveableTypeDefiner`s — **O1 applies**. |
-| 22 | `Religion` | — | — | — | — | — | Pulls in `TORFaithModel`. Owns the `ReligionObject.All` edge `Crafting` currently reaches across for. |
+| 22 | `Religion` | — | — | — | — | — | Pulls in `TORFaithModel`. Must resolve `Crafting/PriestBehavior.cs:12` → `ReligionObject.All` during its Epic 1: either promote `ReligionObject` + hero religion extensions to `Framework/`, or move `PriestBehavior` out of Crafting into Religion. See `plans/crafting-framework.md`. |
 | 23 | `CustomResources` | — | — | — | — | — | `CustomResourceBehavior/` + `CustomResources/` + `WaaaghMeter/` + `TORCustomResourceModel` + `CustomResourcePatches` — **Harmony, ask first**. |
 | 24 | `TORCustomSettlement` | — | — | — | — | — | Also absorbs `TORSpecialSettlementBehavior`, `TORMonsterSiegeLogic`, `SiegeEarlyVictoryMissionLogic`. |
 | 25 | `Careers` | — | — | — | — | — | **Last.** Spans `CampaignMechanics/Careers/`, `CharacterDevelopment/CareerSystem/`, `CharacterDevelopment` root career types, `Quests/Careers/`, `AbilitySystem/Scripts/` career scripts, `CareerPerkMissionBehavior`, `SimpleCareerQuestBehavior`. |
@@ -64,6 +65,7 @@ Not modules, but module work depends on them.
 | `ITORModule` / `TORModuleAttribute` | done | In `Framework/`. Proven by `CraftingModule`. |
 | `TOR_Tools` XML handling | **being designed — blocks every Strings epic** | All XML handling routes through it. Nothing in Epic 3 starts until it exists. |
 | Save-namespace safety probe | **not run — blocking** | Open question O1. Must precede the first module that moves a `SaveableTypeDefiner`-registered type. Cheap and standalone; run it alone so a failure is unambiguous. |
+| Extension-method edge audit | **deferred — revisit before the third module's Epic 2** | Epic 2's exit criteria are `using` scans; a Framework extension method returning a module type (`Hero.GetCareer()` → `CareerObject`) passes them invisibly. Found in Crafting Epic 2, spec Amendment 2. Tooling question, not a per-module one — doing it by hand across 30 modules is the expensive path. |
 | `TORModuleRegistry` (reflection discovery) | not built | Open question O2. `SubModule.cs` still calls `new XModule().Register...()` explicitly. Fine up to ~10 modules. |
-| `Framework/` hook-contract count | 1 (`CraftingCareerHooks`) | At the third or fourth narrow pairwise hook class, stop and build a generic registry instead of adding a fifth. |
+| `Framework/` hook-contract count | 1 (`CraftingCareerHooks`) — unchanged by Crafting Epic 2, which promoted types rather than adding contracts | At the third or fourth narrow pairwise hook class, stop and build a generic registry instead of adding a fifth. |
 | One `tor_strings.xml` (no per-module files) | Epic 3, every module | **Settled 2026-09-11.** Grouping is by category/subcategory inside the single file. All access via the `tortools` MCP server. |

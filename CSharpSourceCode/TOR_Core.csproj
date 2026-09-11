@@ -528,7 +528,6 @@
     <Compile Include="CampaignMechanics\Crafting\LootCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Crafting\PriestBehavior.cs" />
     <Compile Include="CampaignMechanics\Crafting\RefinementVMExtension.cs" />
-    <Compile Include="CampaignMechanics\Crafting\TorEnchantingIngredients.cs" />
     <Compile Include="CampaignMechanics\Crafting\TORArtisanDistrictCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Crafting\Models\TOREnchantmentCraftingModel.cs" />
     <Compile Include="CampaignMechanics\Crafting\Models\TOREnchantmentIngredientsModel.cs" />
@@ -620,7 +619,6 @@
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TrollCaveCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TrollCaveDefenderPartyComponent.cs" />
-    <Compile Include="CampaignMechanics\TORCustomSettlement\TORSettlementMenuHelpers.cs" />
     <Compile Include="CampaignMechanics\TORFactionDiscontinuationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\TORAllianceWarBehavior.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\HonorAllianceDecision.cs" />
@@ -740,6 +738,8 @@
     <Compile Include="Framework\CraftingCareerHooks.cs" />
     <Compile Include="Framework\ITORModule.cs" />
     <Compile Include="Framework\TORModuleAttribute.cs" />
+    <Compile Include="Framework\TORSettlementMenuHelpers.cs" />
+    <Compile Include="Framework\TorEnchantingIngredients.cs" />
     <Compile Include="GameManagers\TORCampaignGameManager.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\TORSpecializationStage.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\TORSpecializationStageView.cs" />

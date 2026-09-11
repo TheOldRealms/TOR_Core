@@ -16,8 +16,11 @@ namespace TOR_Core.Framework
     /// CharacterDevelopment/CareerSystem for career-specific content any more (the one
     /// remaining reference, CareerHelper.ApplyBasicCareerPassives(...,
     /// PassiveEffectType.EnchantmentCostReduction, ...) in TOREnchantmentCraftingModel, is a
-    /// different case - see its comment), and CraftingCareerHookRegistrations never references
-    /// CampaignMechanics/Crafting either.
+    /// different case - see its comment). CraftingCareerHookRegistrations does still reference
+    /// CampaignMechanics/Crafting in one direction - it calls EnchantmentBlueprints.Learn(...)
+    /// to grant beginner blueprints - which is the allowed direction: a module may call into
+    /// another module's content through a Framework hook it is populating. What matters is that
+    /// Crafting never names a Career type for career-specific content.
     /// </summary>
     public static class CraftingCareerHooks
     {

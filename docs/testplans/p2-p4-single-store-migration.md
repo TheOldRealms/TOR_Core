@@ -28,10 +28,10 @@ the knowledge. If dismissing a Runesmith still removes runes from the table, tha
 
 | | |
 |---|---|
-| Date | |
-| Branch / commit | |
-| Save used | |
-| Tester | |
+| Date | 2026-09-11 |
+| Branch / commit | `feature/CentralizeCraftingRecipes` at `5f647591` |
+| Save used | New DAWI campaign (per Preconditions) |
+| Tester | randychihuahua |
 
 ## Preconditions
 
@@ -362,22 +362,22 @@ tor.check_enchantment_blueprints
 
 | Scenario | Result | Notes |
 |---|---|---|
-| **S1 Store persists across a reload (gate)** | | |
-| **S2 Blueprints survive a departure (gate)** | | |
-| **S3 Crafting-time skill gate (gate)** | | |
-| S4 Crafting-time lore/attribute gate | | |
-| S5 Both checks on one hero | | |
-| S6 Purchase not skill-gated | | |
-| S7 Purchase always lands | | |
-| S8 Manuscripts | | |
-| S9 Quest counters | | |
-| S10 Runelord career button | | |
-| S11 Cost reduction main-hero only | | |
-| S12 Fresh campaign | | |
+| **S1 Store persists across a reload (gate)** | Pass | |
+| **S2 Blueprints survive a departure (gate)** | Pass | |
+| **S3 Crafting-time skill gate (gate)** | Pass | All four checks |
+| S4 Crafting-time lore/attribute gate | Pass | |
+| S5 Both checks on one hero | Pass | Staged deliberately: main hero held RuneMagic, Groin the thane held 75 Smithing without the lore — stayed blocked |
+| S6 Purchase not skill-gated | Pass | |
+| S7 Purchase always lands | Pass | |
+| S8 Manuscripts | Pass, with change request | Still prompts for a recipient hero; should print a straight message instead — **open** |
+| S9 Quest counters | Pass | |
+| S10 Runelord career button | Pass | Empty store unreachable in practice (gated behind quest progress); `dw_rune_preservation` trait id bug found and fixed |
+| S11 Cost reduction main-hero only | Pass | |
+| S12 Fresh campaign | Pass | |
 
 **Sign-off**
 
-- [ ] Yes — S1, S2 and S3 all pass
+- [X] Yes — S1, S2 and S3 all pass
 - [ ] No — blocked by:
 
 ## Decisions to revisit after playing it

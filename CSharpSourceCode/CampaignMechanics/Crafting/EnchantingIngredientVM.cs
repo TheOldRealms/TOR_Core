@@ -1,6 +1,7 @@
 ﻿using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
+using TOR_Core.Framework;
 
 namespace TOR_Core.CampaignMechanics.Crafting
 {
