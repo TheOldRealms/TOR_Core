@@ -47,7 +47,7 @@ Manual test plan for [`../superpowers/plans/crafting-framework.md`](../superpowe
 | Setup | Launch the game to the main menu. |
 | Action | Load the existing DAWI save. |
 | Expect | No load-time crash, no missing-type exception in the log. A namespace change that missed a consumer shows up here, not later. |
-| Result | ☐ pass ☐ fail |
+| Result | X pass ☐ fail |
 
 ### S2 — Ingredients still resolve — **gate**
 
@@ -57,7 +57,7 @@ Manual test plan for [`../superpowers/plans/crafting-framework.md`](../superpowe
 | Action | Open the enchanting table and look at the ingredient list. |
 | Expect | All six ingredients (Arcane Scroll, Blessed Water, Dragon Blood, Amber Crystal, Warpstone Dust, Gem Stone) are named with their real names and your real stock counts. |
 | Fail | Blank names, zeroes across the board, or an empty list — `LoadIngredients()` did not run, or ran against a catalogue nothing populated. |
-| Result | ☐ pass ☐ fail |
+| Result | X pass ☐ fail |
 
 ### S3 — Town menu order — **gate**
 
@@ -66,7 +66,7 @@ Manual test plan for [`../superpowers/plans/crafting-framework.md`](../superpowe
 | Setup | Enter a town that has the artisan district. |
 | Action | Read the town menu top to bottom. |
 | Expect | The enchanting/artisan entries sit where they always did, and the vanilla smithy entry is still gone. `TORSettlementMenuHelpers.RearrangeTownMenus` is the only caller of that ordering; if it silently no-ops the entries land at the bottom of the menu. |
-| Result | ☐ pass ☐ fail |
+| Result | X pass ☐ fail |
 
 ### S4 — The other two menu callers
 
@@ -75,7 +75,7 @@ Manual test plan for [`../superpowers/plans/crafting-framework.md`](../superpowe
 | Setup | Visit a Greenskin settlement (brawl) and a settlement offering goblin recruitment. |
 | Action | Open each menu. |
 | Expect | The brawl and goblin-recruitment entries are in their usual positions. These three files were the other consumers of the moved helper. |
-| Result | ☐ pass ☐ fail |
+| Result | X pass ☐ fail |
 
 ### S5 — Enchant an item end to end
 
@@ -84,7 +84,7 @@ Manual test plan for [`../superpowers/plans/crafting-framework.md`](../superpowe
 | Setup | `tor.check_enchantment_blueprints` to pick a craftable blueprint. |
 | Action | Enchant a valid item with it at the table. |
 | Expect | Ingredient cost is charged, the item is produced, and the ingredient counts drop by the right amount. This exercises `TOREnchantmentIngredientsModel` and `TOREnchantmentCraftingModel`, both of which read the promoted catalogue. |
-| Result | ☐ pass ☐ fail |
+| Result | X pass ☐ fail |
 
 ### S6 — Ingredient loot still drops
 
@@ -93,7 +93,7 @@ Manual test plan for [`../superpowers/plans/crafting-framework.md`](../superpowe
 | Setup | Note your ingredient counts. |
 | Action | Fight and win a field battle, then collect loot. |
 | Expect | Ingredients appear in the loot at the usual rate. `EnchantmentIngredientLootCampaignBehavior` and `OathGoldBehavior` both resolve ingredients through the moved type. |
-| Result | ☐ pass ☐ fail |
+| Result | X pass ☐ fail |
 
 ### S7 — Career perk path
 
@@ -102,7 +102,7 @@ Manual test plan for [`../superpowers/plans/crafting-framework.md`](../superpowe
 | Setup | A hero with a career perk that grants or converts an enchanting trade good. |
 | Action | Trigger it (perk selection, or the relevant campaign event). |
 | Expect | Works unchanged. `TORCareerPerkCampaignBehavior` was the one file whose `using TOR_Core.CampaignMechanics.Crafting` was deleted outright — if anything else in it needed Crafting, it fails at build, not here, but exercise the path anyway. |
-| Result | ☐ pass ☐ fail |
+| Result | X pass ☐ fail |
 
 ### S8 — Runelord button
 
@@ -111,7 +111,7 @@ Manual test plan for [`../superpowers/plans/crafting-framework.md`](../superpowe
 | Setup | At a Karak with runes known. |
 | Action | Open the unit-rune career button. |
 | Expect | Rune list, ingredient icons and requirement text all render. This file consumes both the promoted catalogue and the frozen `EnchantmentHelper` surface. |
-| Result | ☐ pass ☐ fail |
+| Result | X pass ☐ fail |
 
 ## Commands added by this epic
 
@@ -122,16 +122,16 @@ None. Every scenario is reachable with existing commands; `tor.check_enchantment
 
 | Scenario | Result | Notes |
 |---|---|---|
-| **S1 Save loads (gate)** | | |
-| **S2 Ingredients resolve (gate)** | | |
-| **S3 Town menu order (gate)** | | |
-| S4 Brawl / goblin menus | | |
-| S5 Enchant end to end | | |
-| S6 Ingredient loot | | |
-| S7 Career perk path | | |
-| S8 Runelord button | | |
+| **S1 Save loads (gate)** |X| |
+| **S2 Ingredients resolve (gate)** |X| |
+| **S3 Town menu order (gate)** |X| |
+| S4 Brawl / goblin menus |X| |
+| S5 Enchant end to end |X| |
+| S6 Ingredient loot |X| |
+| S7 Career perk path |X| |
+| S8 Runelord button |X| |
 
 **Sign-off**
 
-- [ ] Yes — S1, S2 and S3 all pass
+- [X] Yes — S1, S2 and S3 all pass
 - [ ] No — blocked by:
