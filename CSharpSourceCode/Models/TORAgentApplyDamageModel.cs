@@ -474,7 +474,7 @@ namespace TOR_Core.Models
 
             resultDamage = ApplyKillingBlowAttributes(attackerAgent, victimAgent, resultDamage);
 
-            return resultDamage;
+            return TORDamageHelper.ApplyIronbreakerFriendlyFireReduction(attackerAgent, victimAgent, resultDamage);
         }
         private static float ApplySlayerAttributes(Agent attackerAgent, Agent victimAgent, float damage)
         {
@@ -1185,6 +1185,12 @@ namespace TOR_Core.Models
             if (!friendlyFire)
             {
                 result.LimitMin(0.11f);
+            }
+            else if (victim.HasAttribute("Impenetrable"))
+            {
+                // Impenetrable's ward save can stack with the Dawi friendly-fire reduction,
+                // but a protective ability must never turn incoming damage into healing.
+                result.LimitMin(0f);
             }
             return result.ResultNumber;
         }

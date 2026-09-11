@@ -15,8 +15,10 @@ namespace TOR_Core.Models
             if (characterObject.IsUndead()) return new ExplainedNumber(0);
 
             var explainedNumber = base.GetGoldCostForUpgrade(party, characterObject, upgradeTarget);
+            var applyIronbreakerDiscountLast = party.LeaderHero?.HasCareerChoice("IronPricePassive3") == true &&
+                characterObject.HasAttribute(CharacterAttributes.IRONBREAKER);
 
-            if (party.LeaderHero != null && party.LeaderHero == Hero.MainHero)
+            if (party.LeaderHero != null && party.LeaderHero == Hero.MainHero && !applyIronbreakerDiscountLast)
             {
                 CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.TroopUpgradeCost, true, characterObject);
             }
@@ -66,6 +68,18 @@ namespace TOR_Core.Models
                         }
                     }
 
+                }
+            }
+
+            if (party.LeaderHero != null && party.LeaderHero == Hero.MainHero && applyIronbreakerDiscountLast)
+            {
+                var costBeforeCareerPerks = explainedNumber.ResultNumber;
+                var careerAdjustedCost = new ExplainedNumber(costBeforeCareerPerks, explainedNumber.IncludeDescriptions);
+                CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref careerAdjustedCost, PassiveEffectType.TroopUpgradeCost, true, characterObject);
+                // Return the adjusted final cost; adding its delta to the old base would apply the surcharges again.
+                if (careerAdjustedCost.ResultNumber != costBeforeCareerPerks)
+                {
+                    explainedNumber = careerAdjustedCost;
                 }
             }
 
