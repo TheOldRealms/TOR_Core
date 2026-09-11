@@ -1755,6 +1755,7 @@
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_dw_sharpshooter" />
+      <upgrade_target id="NPCCharacter.tor_dw_grudge_raker" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_dw_thunderer_template" />
@@ -1775,6 +1776,22 @@
     <Equipments>
       <EquipmentSet id="tor_dw_sharpshooter_template" />
       <EquipmentSet id="tor_dw_sharpshooter_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_dw_grudge_raker" default_group="ranged" level="26" name="{=str_tor_dw_grudge_raker}Dawi Grudge-raker" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_sharpshooter" race="dwarf">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <hair_tags>
+        <hair_tag name="DwarfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="DwarfBeardmid" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_dw_grudge_raker_template" />
+      <EquipmentSet id="tor_dw_grudge_raker_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_ranger" default_group="ranged" level="26" name="{=str_tor_dw_ranger}Dawi Ranger" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_ranger" race="dwarf">

@@ -773,7 +773,7 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
             void OpenEnchantmentShop(List<string> prefixList, string culture)
             {
-                EnchantmentHelper.OpenEnchantmentRecipeShop(prefixList, culture, false);
+                EnchantmentShopHelper.OpenEnchantmentRecipeShop(prefixList, culture, false);
             }
         }
     }

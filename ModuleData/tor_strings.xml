@@ -690,6 +690,17 @@
   <string id="tor_enchantmentshop_restriction.Thrown" text="{=str_tor_enchantmentshop_restriction_Thrown}Applies to thrown weapons" />
   <string id="tor_enchantmentshop_restriction.Invalid" text="{=str_tor_enchantmentshop_restriction_Invalid}" />
 
+  <!-- Enchantment Shop - skill requirement hints -->
+  <string id="tor_enchantmentshop_requirement_self" text="{=str_tor_enchantmentshop_requirement_self}{RESTRICTION_PREFIX}You don't have enough {SKILL}. Requires {VALUE}." />
+  <string id="tor_enchantmentshop_requirement_hero" text="{=str_tor_enchantmentshop_requirement_hero}{RESTRICTION_PREFIX}{HERO} doesn't have enough {SKILL}. Requires {VALUE}." />
+  <string id="tor_enchantmentshop_requirement_none" text="{=str_tor_enchantmentshop_requirement_none}{RESTRICTION_PREFIX}None of your eligible characters have enough {SKILL}. Requires {VALUE}." />
+  <string id="tor_enchantmentshop_requirement_prefix_lore" text="{=str_tor_enchantmentshop_requirement_prefix_lore}This enchantment is bound to the Lore of {LORE}. " />
+  <string id="tor_enchantmentshop_requirement_prefix_other" text="{=str_tor_enchantmentshop_requirement_prefix_other}This enchantment requires {RESTRICTION}. " />
+
+  <!-- Enchantment Shop - insufficient funds hints -->
+  <string id="tor_enchantmentshop_insufficient_both" text="{=str_tor_enchantmentshop_insufficient_both}Not enough {CUSTOMRESOURCE} and {GOLD_ICON}." />
+  <string id="tor_enchantmentshop_insufficient_customresource" text="{=str_tor_enchantmentshop_insufficient_customresource}Not enough {CUSTOMRESOURCE}." />
+
   <!-- Enchanting UI Messages -->
   <string id="tor_enchanting_title_text" text="{=str_tor_enchanting_title_text}Enchanting" />
   <string id="tor_enchanting_no_blueprints_text" text="{=str_tor_enchanting_no_blueprints_text}You don't know any enchantment blueprints." />
@@ -4181,7 +4192,7 @@
   <!-- Career Choice Description - OrcShaman -->
   <string id="tor_careerchoice_description.OrcShamanRoot" text="{=str_tor_careerchoice_description_OrcShamanRoot}Da Shaman iz da centah uv da WAAAGH! You kunnect yerself to da boys ‘round, an’ dey will give you more ju-ju powa’ fer ZAPPIN’ an’ BLASTIN’. But if da boys start dyin’, den yer zappy energy gets blasted outta ya, an’ they take it wiv dem! Da betta ya get, de more you can kunnect to da WAAAGH!. An’ remember to stay close to da old ways. Wearin’ ‘ard bits an’ metal an’ stuff like dem ‘ard boyz iz gunna get ya less ju-ju powa’." />
   <string id="tor_careerchoice_description.BonesAnFirepitzKeystone" text="{=str_tor_careerchoice_description_BonesAnFirepitzKeystone}Call uv da Great Green iz always ready fer da scrap" />
-  <string id="tor_career_choice_description.BonesAnFirepitzPassive1" text="{=str_tor_career_choice_description_BonesAnFirepitzPassive1}Get 15 mumbo-jumbo pointz afta' winnin' brawls" />
+  <string id="tor_careerchoice_description.BonesAnFirepitzPassive1" text="{=str_tor_career_choice_description_BonesAnFirepitzPassive1}Get 15 mumbo-jumbo pointz afta' winnin' brawls" />
   <string id="tor_careerchoice_description.BonesAnFirepitzPassive2" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive2}10 more mumbo-jumbo pointz" />
   <string id="tor_careerchoice_description.BonesAnFirepitzPassive3" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive3}Betta findiness uv mumbo-jumbo fings afta' scraps" />
   <string id="tor_careerchoice_description.BonesAnFirepitzPassive4" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive4}More mumbo-jumbo eks-perr-yens afta' lootin' Idols" />

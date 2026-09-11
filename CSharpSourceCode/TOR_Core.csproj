@@ -516,6 +516,7 @@
     <Compile Include="CampaignMechanics\Crafting\EnchantingState.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantingVM.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantmentHelper.cs" />
+    <Compile Include="CampaignMechanics\Crafting\EnchantmentShopHelper.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantmentIngredientLootCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Crafting\LootCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Crafting\PriestBehavior.cs" />

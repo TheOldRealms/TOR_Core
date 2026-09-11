@@ -5789,12 +5789,12 @@
                      Name="{=gaze_uv_mork_label_str}Gaze uv Mork"
                      SpriteName="gazeofmork_icon"
                      CoolDown="30"
-                     WindsOfMagicCost="12"
+                     WindsOfMagicCost="8"
                      BaseMisCastChance="0.05"
                      Duration="3"
                      Radius="0.4"
                      AbilityType="Spell"
-                     AbilityEffectType="Missile"
+                     AbilityEffectType="SeekerMissile"
                      BaseMovementSpeed="80"
                      TickInterval="-1"
                      TriggerType="OnCollision"
@@ -5817,7 +5817,7 @@
                      AbilityTargetType="WorldPosition"
                      SpellTier="2"
                      BelongsToLoreID="BigWaaagh"
-                     TooltipDescription="{=gaze_uv_mork_description_str}Mork looks froo da Shaman's eyez as he blasts da gits wiv a proppa killy green fire.">
+                     TooltipDescription="{=gaze_uv_mork_description_str}Mork looks froo da Shaman's eyez as he blasts da gits wiv a proppa killy green fire. 110 magic dmg in a 4M radius.">
         <LightColorRGB x="50"
                        y="200"
                        z="50"
@@ -5883,7 +5883,7 @@
                      WindsOfMagicCost="16"
                      BaseMisCastChance="0.08"
                      Duration="0"
-                     Radius="3"
+                     Radius="7"
                      AbilityType="Spell"
                      AbilityEffectType="Blast"
                      BaseMovementSpeed="0"
@@ -5907,10 +5907,10 @@
                      CrosshairType="TargetedAOE"
                      MinDistance="5"
                      MaxDistance="25"
-                     TargetCapturingRadius="3"
+                     TargetCapturingRadius="7"
                      SpellTier="3"
                      BelongsToLoreID="BigWaaagh"
-                     TooltipDescription="{=brain_bursta_description_str}As da fightin' goes on, da Shaman builds up too much Waaagh! ju-ju, an' releases it in a BIG BOOM that throws gits to da ground.">
+                     TooltipDescription="{=brain_bursta_description_str}As da fightin' goes on, da Shaman builds up too much Waaagh! ju-ju, an' releases it in a BIG BOOM. It deals 90 magical damage in 7M.">
         <LightColorRGB x="50"
                        y="200"
                        z="50"
@@ -6048,10 +6048,10 @@
                      CrosshairType="TargetedAOE"
                      MinDistance="10"
                      MaxDistance="55"
-                     TargetCapturingRadius="6"
+                     TargetCapturingRadius="17"
                      SpellTier="4"
                      BelongsToLoreID="BigWaaagh"
-                     TooltipDescription="{=foot_uv_gork_description_str}Da Shaman loses himself in a da dance, an' on da beat, Gork's own foot strikes da ground to stomp everyfing below to dust.">
+                     TooltipDescription="{=foot_uv_gork_description_str}Da Shaman loses himself in da dance, an' on da beat, Gork's own foot strikes da ground. It deals 250 magical damage in 17M.">
         <LightColorRGB x="50"
                        y="200"
                        z="50"
