@@ -25,7 +25,7 @@ Ordered by suggested Modularize sequence: proven-small first, split-heavy in the
 
 | # | Module | 1 Modularize | 2 Framework | 3 Strings | 4 Codesmells | 5 Pattern | Notes |
 |---|---|---|---|---|---|---|---|
-| 0 | `Crafting` | **PR** | next | blocked | — | — | The worked example. Code done on `feature/moduleCrafting`, **unmerged** — needs its own PR under the new one-epic-one-PR rule. Owns `CraftingCareerHooks` in `Framework/`. Strings blocked on `TOR_Tools`. |
+| 0 | `Crafting` | **PR** | next | — | — | — | The worked example. Code done on `feature/moduleCrafting`, **unmerged** — needs its own PR under the one-epic-one-PR rule. Owns `CraftingCareerHooks` in `Framework/`. Strings unblocked: `tortools` MCP server is live. |
 | 1 | `BountyMaster` | — | — | — | — | — | Small, few cross-references. Good second module. |
 | 2 | `PostBattleLoot` | — | — | — | — | — | Small, few cross-references. |
 | 3 | `Villages` | — | — | — | — | — | Pulls in `TORVillageProductionCalculatorModel`; possibly `PlaguedVillageQuestCampaignBehavior` (*verify*). |
@@ -66,4 +66,4 @@ Not modules, but module work depends on them.
 | Save-namespace safety probe | **not run — blocking** | Open question O1. Must precede the first module that moves a `SaveableTypeDefiner`-registered type. Cheap and standalone; run it alone so a failure is unambiguous. |
 | `TORModuleRegistry` (reflection discovery) | not built | Open question O2. `SubModule.cs` still calls `new XModule().Register...()` explicitly. Fine up to ~10 modules. |
 | `Framework/` hook-contract count | 1 (`CraftingCareerHooks`) | At the third or fourth narrow pairwise hook class, stop and build a generic registry instead of adding a fifth. |
-| `ModuleData/Strings/` per-module files | not started | First one lands with Crafting's Strings epic, behind `TOR_Tools`. |
+| One `tor_strings.xml` (no per-module files) | Epic 3, every module | **Settled 2026-09-11.** Grouping is by category/subcategory inside the single file. All access via the `tortools` MCP server. |

@@ -1,45 +1,31 @@
 # `<Module>` <Epic> — PR Notes
 
-> Copy to `pr-notes/<module>-<epic>.md`. The block below is what goes in the PR body —
-> everything outside it is for you, not the reviewer.
+> Copy to `pr-notes/<module>-<epic>.md`. The block below is the PR body; everything outside it
+> is for you.
 
-**Branch:** `feature/<module><Epic>` → `development`
-**Commits:** `<base7>..<head7>`
-**Test plan:** `docs/testplans/<module>-<epic>.md` — <passed / not yet run>
-
-## For you to check before opening
-
-- Decisions taken during the epic: see the test plan's Decisions table. <n> of them.
-- Flagged, not fixed: <anything deliberately left, with why>
-- Harmony / behaviour overwrites: <none | asked and approved on DATE>
+**Branch:** `feature/<module><Epic>` → `development` · **Commits:** `<base7>..<head7>`
+**Test plan:** `docs/testplans/<module>-<epic>.md` — <passed / not run>
+**Check before opening:** <decisions taken · anything left unfixed · Harmony approvals>
 
 ---
 
 ## Copy-paste block
 
+**Half a page, hard cap.** The diff shows what changed file by file — do not restate it. This
+says only what a reviewer cannot get from reading the diff.
+
 ```markdown
 ## <Module> — <Epic>
 
-**What this does**
-<Two sentences. What changed, and what it unblocks.>
+<Two sentences: what this does, and why now.>
 
-**Why now**
-<One sentence: which epic this is, what comes next.>
+**Behaviour:** <"No player-visible change." — or exactly what changed, and what a user would notice.>
 
-**Changes**
-- `path/to/file.cs` — what and why
-- `path/to/other.cs` — what and why
+**Worth knowing**
+- <Something surprising a reviewer would otherwise have to discover: a default that flipped, a
+  decision taken over an alternative, a bug found on the way. Two or three lines at most.>
 
-**Behaviour**
-<"No player-visible change." — or exactly what changed.>
+**Tested:** <build + which test-plan scenarios, on which save/culture.>
 
-**Decisions worth a look**
-- <D1: what was chosen over what, in one line. Delete the section if there were none.>
-
-**How this was tested**
-Build clean against the installed game. `docs/testplans/<module>-<epic>.md`, scenarios S1–Sn,
-all passing on <save/culture>.
-
-**Not in this PR**
-- <deferred item — which epic picks it up>
+**Not in this PR:** <deferred item — which epic picks it up.>
 ```

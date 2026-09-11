@@ -7,13 +7,17 @@
 > | This file's task | Becomes | Plan |
 > |---|---|---|
 > | Task 1 — close the Step 1 gaps | **Epic 2 Framework** | `crafting-framework.md` |
-> | Task 5 — own string file | Epic 3 Strings *(blocked on `TOR_Tools`)* | `crafting-strings.md` |
+> | Task 5 — own string file | Epic 3 Strings — **but see below** | `crafting-strings.md` |
 > | Tasks 2 + 3 — decompose the three god-files | Epic 4 Codesmells | `crafting-codesmells.md` |
 > | Task 4 — town-service NPC pattern | Epic 5 Pattern | `crafting-pattern.md` |
 > | Task 6 — close out | Split across all four closeouts | — |
 >
 > Task 1's finding still stands and is the reason Epic 2 exists: Crafting's ledger row read
 > `done` while its cross-module references were never cut.
+>
+> **Task 5 is the stale one.** Per-module string files were cancelled on 2026-09-11: there is
+> one `ModuleData/tor_strings.xml`, grouped by category, written only through the `tortools` MCP
+> server. Task 5's id inventory is still useful; its file-splitting plan is not.
 
 # Crafting Module — Steps 2–4 Implementation Plan
 

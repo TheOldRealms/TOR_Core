@@ -12,7 +12,7 @@ modules. Every module passes through **five epics, in order**.
 |---|---|---|---|
 | 1 | **Modularize** | `feature/[module]Modularize` | One folder, self-registers via `ITORModule`, its models pulled in, builds, plays |
 | 2 | **Framework** | `feature/[module]Framework` | No `using TOR_Core.<OtherModule>` in either direction; genuinely shared code has moved to `Framework/` |
-| 3 | **Strings** | `feature/[module]Strings` | Every player-visible string resolves through `ModuleData/Strings/tor_<module>_strings.xml` |
+| 3 | **Strings** | `feature/[module]Strings` | Every player-visible string in the module resolves through an id in `ModuleData/tor_strings.xml`, added via TOR_Tools |
 | 4 | **Codesmells** | `feature/[module]Codesmells` | Bad practices found and fixed; no file left doing two jobs |
 | 5 | **Pattern** | `feature/[module]Pattern` | Recurring seams named; a pattern applied only where it earns its place |
 
@@ -74,7 +74,7 @@ The same five artifacts, every time:
 
 | Blocker | Blocks | State |
 |---|---|---|
-| `TOR_Tools` XML handling | Epic 3 (Strings), every module | Being designed. No Strings epic starts until it exists. |
+| `TOR_Tools` MCP server | Epic 3 (Strings), every module | **Built and working** at `D:/TOR_DEV/TOR_Tools`, registered as `tortools`. All `tor_strings.xml` access goes through it. |
 | Save-namespace safety probe (O1) | Epic 1, any module moving a `SaveableTypeDefiner` type | Not run. Cheap, standalone, must precede the first such move. |
 
 ## Starting an epic

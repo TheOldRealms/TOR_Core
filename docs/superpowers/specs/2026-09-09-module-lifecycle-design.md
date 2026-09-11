@@ -199,31 +199,50 @@ be promoted into `Framework/`. Amend the proposal's classification when that hap
 
 ## Epic 3 — Strings
 
-**Entry:** Epic 2 merged. **Blocked on `TOR_Tools`** — see `../README.md` Dependencies.
+**Entry:** Epic 2 merged.
 **Branch:** `feature/[module]Strings`
-**Goal:** every player-visible string in the module resolves through its own string file.
+**Goal:** every player-visible string in the module resolves through an id, and every id is
+registered in `ModuleData/tor_strings.xml`.
 
-1. Find every hardcoded player-visible literal and convert it to a `TextObject` with an id.
-2. Create `ModuleData/Strings/tor_<module>_strings.xml`, registered as its own
-   `<XmlNode><XmlName id="Strings" path="Strings/tor_<module>_strings" /></XmlNode>` in
-   `SubModule.xml`.
-3. Move the module's existing ids out of the 5,864-line `ModuleData/tor_strings.xml`.
+**Amended 2026-09-11.** This epic originally created one string file per module
+(`ModuleData/Strings/tor_<module>_strings.xml`). That is cancelled: **there is one strings file,
+`ModuleData/tor_strings.xml`, and it stays that way.** Grouping is by `category` / `subcategory`
+/ tags *inside* the file — which is what the TOR_Tools UI and the environment team filter on —
+not by splitting it. No `SubModule.xml` XML nodes are added, and nothing moves between files.
 
-**All XML handling goes through `TOR_Tools`.** Hand-editing these files is how ids get lost.
+The work, per module:
 
-Conventions are in [`../CONSTRAINTS.md`](../CONSTRAINTS.md). The point of the per-module file is
-that the environment team edits one small file scoped to one feature, and that a module's text
-moves with the module.
+1. Find every hardcoded player-visible literal in the module and convert it to a `TextObject`
+   with an id.
+2. Register each new id in `tor_strings.xml` **through the `tortools` MCP server**, with the
+   category and subcategory that place it with its neighbours.
+3. Audit the module's existing ids: right category, no orphans, no id referenced from code but
+   absent from the file.
+
+**Never hand-edit `tor_strings.xml`.** It is ~5,900 lines; a dropped or malformed id is
+invisible until a player sees a raw `{=str_tor_...}` in-game. The server indexes the file and
+validates writes — that is the whole reason Epic 3 waited for it.
+
+The relevant tools: `strings_query` and `strings_search` to find, `strings_list_categories` and
+`strings_by_category` to place, `strings_add` / `strings_update` / `strings_delete` to write.
+`strings_add` generates the `{=str_...}` key itself — do not hand-write one.
+
+Conventions are in [`../CONSTRAINTS.md`](../CONSTRAINTS.md). Culture variants use a `.<culture>`
+suffix on the id (`tor_enchantmentshop_title.empire`).
 
 **To settle on first use:**
 
-- Is `tor_strings.xml` drained until empty, or does it stay home to genuinely cross-cutting
-  strings? If the latter, what qualifies. (Crafting's analysis found 3 of 41 genuinely shared.)
 - What counts as player-visible? Debug and log strings stay hardcoded; the boundary cases are
   inquiry titles, tooltips and console feedback.
+- What is the category convention for a module's strings — one category per module, or per
+  feature within it? The existing file is organised by feature ("Skill perks", "Career Choice",
+  "UI"), not by code module, so a module's strings will usually span several categories. Decide
+  whether that is fine or whether a subcategory should carry the module name.
+- Is there a check that catches a newly added hardcoded literal in an already-done module, or is
+  it review discipline only?
 - Does `ModuleData/Languages/` need per-language files now? Only `VoicedLines` exists there and
   no translation file has ever been produced, so the first Strings epic may produce text nothing
-  yet consumes.
+  yet consumes. `TranslationTools` in the MCP server is the thing that would consume it.
 
 ## Epic 4 — Codesmells
 

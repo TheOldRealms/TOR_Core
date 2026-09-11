@@ -27,10 +27,17 @@ Binds every epic, every task, every agent. Referenced by plans rather than copie
 
 ## Localization
 
-- Id is `tor_<module>_<name>`; the default text carries a `{=str_tor_<module>_<name>}` prefix.
+- **One file.** `ModuleData/tor_strings.xml` is the only strings file. There are no per-module
+  string files — grouping is by `category` / `subcategory` / tags inside the one file, which is
+  what the environment team filters on.
+- **All `tor_strings.xml` access goes through the `tortools` MCP server** (`D:/TOR_DEV/TOR_Tools`).
+  Never hand-edit it: it is ~5,900 lines, and a dropped id is invisible until a player sees a raw
+  `{=str_tor_...}` in-game. The server indexes it in memory and validates on write.
+- Id is `tor_<name>`; the text carries a `{=str_tor_<name>}` default. Culture variants use a
+  `.<culture>` suffix (`tor_enchantmentshop_title.empire`).
+
 - Lookups go through `TORTextHelper`, never `GameTexts.FindText`.
 - A line break is `{newline}` — not an escape sequence.
-- **All XML handling goes through `TOR_Tools`.**
 
 ## Verification
 
