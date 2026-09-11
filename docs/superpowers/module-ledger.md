@@ -1,9 +1,9 @@
 # Module Ledger
 
-The living record of where every module is in the four-step lifecycle. **Update this at the
-end of every step** — a step with an untouched ledger row is not finished.
+The living record of where every module is. **Update this at the end of every epic** — an epic
+with an untouched row is not finished.
 
-Step definitions: [`specs/2026-09-09-module-lifecycle-design.md`](./specs/2026-09-09-module-lifecycle-design.md).
+Epic definitions: [`README.md`](./README.md) · [`specs/2026-09-09-module-lifecycle-design.md`](./specs/2026-09-09-module-lifecycle-design.md).
 Which files belong to which module: [`../vertical-slicing-proposal.md`](../vertical-slicing-proposal.md).
 
 ## Legend
@@ -12,55 +12,58 @@ Which files belong to which module: [`../vertical-slicing-proposal.md`](../verti
 |---|---|
 | `—` | Not started. |
 | `WIP` | In progress; see the Branch column. |
-| `done` | Step's exit criteria met and merged. |
-| `n/a` | Step does not apply (justify in Notes). |
+| `PR` | Code complete, PR open, not yet merged. |
+| `done` | Exit criteria met **and merged to `development`**. |
+| `n/a` | Does not apply (justify in Notes). |
+
+Branch names are `feature/[module][Epic]` — e.g. `feature/craftingFramework`.
 
 ## Ledger
 
-Ordered by suggested Step 1 sequence: proven-small first, split-heavy in the middle,
+Ordered by suggested Modularize sequence: proven-small first, split-heavy in the middle,
 `Careers` last because it spans five current top-level folders.
 
-| # | Module | S1 Modularize | S2 Refactor | S3 Patternize | S4 Localize | Branch | Notes |
+| # | Module | 1 Modularize | 2 Framework | 3 Strings | 4 Codesmells | 5 Pattern | Notes |
 |---|---|---|---|---|---|---|---|
-| 0 | `Crafting` | done | — | — | — | `feature/moduleCrafting` | The worked example the Step 1 process was generalized from. Owns `CraftingCareerHooks` in `Framework/`. **Not yet merged to `development`.** |
-| 1 | `BountyMaster` | — | — | — | — | | Small, few cross-references. Good second module. |
-| 2 | `PostBattleLoot` | — | — | — | — | | Small, few cross-references. |
-| 3 | `Villages` | — | — | — | — | | Pulls in `TORVillageProductionCalculatorModel`; possibly `PlaguedVillageQuestCampaignBehavior` (see proposal, flagged *verify*). |
-| 4 | `Assimilation` | — | — | — | — | | |
-| 5 | `Companions` | — | — | — | — | | Pulls in `TORCompanionHiringPriceCalculationModel`, `TORCompanionTrainingModel`. |
-| 6 | `ServeAsAHireling` | — | — | — | — | | Pulls in `TORHiringCompatibilityModel` (flagged *verify* in the proposal). |
-| 7 | `SpellTrainers` | — | — | — | — | | Pulls in `Quests/SpecializeLoreQuest`. |
-| 8 | `MasterEngineer` | — | — | — | — | | Pulls in `Quests/EngineerQuest`. |
-| 9 | `RaidingParties` | — | — | — | — | | |
-| 10 | `UniqueSpawns` | — | — | — | — | | |
-| 11 | `RegimentsOfRenown` | — | — | — | — | | |
-| 12 | `RaiseDead` | — | — | — | — | | |
-| 13 | `Banners` | — | — | — | — | | From `BattleMechanics/`. |
-| 14 | `Dismemberment` | — | — | — | — | | From `BattleMechanics/`. |
-| 15 | `Artillery` | — | — | — | — | | From `BattleMechanics/`; depends on Framework `AI/ArtilleryAI`. Pulls in `ArtilleryPatches`. |
-| 16 | `Firearms` | — | — | — | — | | From `BattleMechanics/`; absorbs `SniperScope/`. |
-| 17 | `Tournaments` | — | — | — | — | | New module: `BattleMechanics/CustomArenaModes/` + `Missions/ArcheryContestMissionController` + `JoustFightMissionController` + `CustomDialogs/DuelBehavior` + `TORTournamentModel` + `TournamentPatches` + `ArenaPracticePatch`. |
-| 18 | `Chaos` | — | — | — | — | | Possibly `Quests/HuntCultistsQuestCampaignBehavior` (flagged *verify*). |
-| 19 | `Greenskins` | — | — | — | — | | Home of `GreenskinAICampaignBehavior` is unresolved — may fold into `CustomResources` (Waaagh) instead of being its own module. Decide before starting. |
-| 20 | `CharacterCreation` | — | — | — | — | | |
-| 21 | `Diplomacy` | — | — | — | — | | Pulls in four models; already contributes its own `SaveableTypeDefiner`s. |
-| 22 | `Religion` | — | — | — | — | | Pulls in `TORFaithModel`. |
-| 23 | `CustomResources` | — | — | — | — | | `CustomResourceBehavior/` + `CustomResources/` + `WaaaghMeter/` + `TORCustomResourceModel` + `CustomResourcePatches`. |
-| 24 | `TORCustomSettlement` | — | — | — | — | | Also absorbs `TORSpecialSettlementBehavior`, `TORMonsterSiegeLogic`, `SiegeEarlyVictoryMissionLogic`. |
-| 25 | `Careers` | — | — | — | — | | **Last.** Spans `CampaignMechanics/Careers/`, `CharacterDevelopment/CareerSystem/`, `CharacterDevelopment` root career types, `Quests/Careers/`, `AbilitySystem/Scripts/` career scripts, `CareerPerkMissionBehavior`, `SimpleCareerQuestBehavior`. |
+| 0 | `Crafting` | **PR** | next | blocked | — | — | The worked example. Code done on `feature/moduleCrafting`, **unmerged** — needs its own PR under the new one-epic-one-PR rule. Owns `CraftingCareerHooks` in `Framework/`. Strings blocked on `TOR_Tools`. |
+| 1 | `BountyMaster` | — | — | — | — | — | Small, few cross-references. Good second module. |
+| 2 | `PostBattleLoot` | — | — | — | — | — | Small, few cross-references. |
+| 3 | `Villages` | — | — | — | — | — | Pulls in `TORVillageProductionCalculatorModel`; possibly `PlaguedVillageQuestCampaignBehavior` (*verify*). |
+| 4 | `Assimilation` | — | — | — | — | — | |
+| 5 | `Companions` | — | — | — | — | — | Pulls in `TORCompanionHiringPriceCalculationModel`, `TORCompanionTrainingModel`. |
+| 6 | `ServeAsAHireling` | — | — | — | — | — | Pulls in `TORHiringCompatibilityModel` (*verify*). |
+| 7 | `SpellTrainers` | — | — | — | — | — | Pulls in `Quests/SpecializeLoreQuest`. |
+| 8 | `MasterEngineer` | — | — | — | — | — | Pulls in `Quests/EngineerQuest`. |
+| 9 | `RaidingParties` | — | — | — | — | — | |
+| 10 | `UniqueSpawns` | — | — | — | — | — | |
+| 11 | `RegimentsOfRenown` | — | — | — | — | — | |
+| 12 | `RaiseDead` | — | — | — | — | — | |
+| 13 | `Banners` | — | — | — | — | — | From `BattleMechanics/`. |
+| 14 | `Dismemberment` | — | — | — | — | — | From `BattleMechanics/`. |
+| 15 | `Artillery` | — | — | — | — | — | Depends on Framework `AI/ArtilleryAI`. Pulls in `ArtilleryPatches` — **Harmony, ask first**. |
+| 16 | `Firearms` | — | — | — | — | — | From `BattleMechanics/`; absorbs `SniperScope/`. |
+| 17 | `Tournaments` | — | — | — | — | — | New module: `CustomArenaModes/` + `ArcheryContestMissionController` + `JoustFightMissionController` + `DuelBehavior` + `TORTournamentModel` + `TournamentPatches` + `ArenaPracticePatch` — **Harmony, ask first**. |
+| 18 | `Chaos` | — | — | — | — | — | Possibly `HuntCultistsQuestCampaignBehavior` (*verify*). |
+| 19 | `Greenskins` | — | — | — | — | — | Home of `GreenskinAICampaignBehavior` unresolved — may fold into `CustomResources` (Waaagh). Decide before starting. |
+| 20 | `CharacterCreation` | — | — | — | — | — | |
+| 21 | `Diplomacy` | — | — | — | — | — | Pulls in four models; already contributes its own `SaveableTypeDefiner`s — **O1 applies**. |
+| 22 | `Religion` | — | — | — | — | — | Pulls in `TORFaithModel`. Owns the `ReligionObject.All` edge `Crafting` currently reaches across for. |
+| 23 | `CustomResources` | — | — | — | — | — | `CustomResourceBehavior/` + `CustomResources/` + `WaaaghMeter/` + `TORCustomResourceModel` + `CustomResourcePatches` — **Harmony, ask first**. |
+| 24 | `TORCustomSettlement` | — | — | — | — | — | Also absorbs `TORSpecialSettlementBehavior`, `TORMonsterSiegeLogic`, `SiegeEarlyVictoryMissionLogic`. |
+| 25 | `Careers` | — | — | — | — | — | **Last.** Spans `CampaignMechanics/Careers/`, `CharacterDevelopment/CareerSystem/`, `CharacterDevelopment` root career types, `Quests/Careers/`, `AbilitySystem/Scripts/` career scripts, `CareerPerkMissionBehavior`, `SimpleCareerQuestBehavior`. |
 
-Module count is a target, not a contract — the proposal flags several placements as *verify*,
-and a module may be added, merged or dropped as Step 1 uncovers what a folder actually touches.
-When that happens, amend `vertical-slicing-proposal.md` and this table together.
+Module count is a target, not a contract. When a placement changes, amend
+`vertical-slicing-proposal.md` and this table together.
 
 ## Framework work items
 
-Not modules, but tracked here because module work depends on them.
+Not modules, but module work depends on them.
 
 | Item | State | Notes |
 |---|---|---|
 | `ITORModule` / `TORModuleAttribute` | done | In `Framework/`. Proven by `CraftingModule`. |
-| `TORModuleRegistry` (reflection discovery) | not built | `SubModule.cs` still calls `new XModule().Register...()` explicitly. Open question O2 in the spec — explicit list is fine up to roughly ten modules. |
-| Save-namespace safety probe | **not done — blocking** | Open question O1 in the spec. Must be answered before the first module that moves a `SaveableTypeDefiner`-registered type. |
+| `TOR_Tools` XML handling | **being designed — blocks every Strings epic** | All XML handling routes through it. Nothing in Epic 3 starts until it exists. |
+| Save-namespace safety probe | **not run — blocking** | Open question O1. Must precede the first module that moves a `SaveableTypeDefiner`-registered type. Cheap and standalone; run it alone so a failure is unambiguous. |
+| `TORModuleRegistry` (reflection discovery) | not built | Open question O2. `SubModule.cs` still calls `new XModule().Register...()` explicitly. Fine up to ~10 modules. |
 | `Framework/` hook-contract count | 1 (`CraftingCareerHooks`) | At the third or fourth narrow pairwise hook class, stop and build a generic registry instead of adding a fifth. |
-| `ModuleData/Strings/` per-module string files | not started | Needed before the first Step 4. |
+| `ModuleData/Strings/` per-module files | not started | First one lands with Crafting's Strings epic, behind `TOR_Tools`. |

@@ -1,40 +1,67 @@
 # Module Lifecycle — Design
 
 **Date:** 2026-09-09
-**Status:** Approved for Step 1. Steps 2–4 are outlines, to be deepened before first use.
+**Amended:** 2026-09-11 — four steps became five epics. See Amendment 1.
+**Status:** Approved. Epics 1 and 2 specified in detail; 3–5 deepen on first use.
 
-Defines the four-step process every module in `CSharpSourceCode/` passes through. Companion
-to [`../README.md`](../README.md) (the rules) and
-[`../../vertical-slicing-proposal.md`](../../vertical-slicing-proposal.md) (the classification
-of which file belongs to which module).
+Defines the process every module in `CSharpSourceCode/` passes through. Companion to
+[`../README.md`](../README.md) (the rules), [`../CONSTRAINTS.md`](../CONSTRAINTS.md) (the
+invariants) and [`../../vertical-slicing-proposal.md`](../../vertical-slicing-proposal.md)
+(the classification of which file belongs to which module).
 
-This document specifies **process, not placement**. It never names a module's files. When you
-need to know what belongs to `Religion/`, read the proposal's classification table.
+This document specifies **process, not placement**. It never names a module's files.
 
-## Why four steps and not one pass
+## Amendment 1 — 2026-09-11: four steps became five epics
 
-The four kinds of work — extracting a module, cleaning its files, applying patterns, exposing
-its strings — could in principle be done together in a single visit per module. They are
-separated because only the first one is *structural*: until a module is a real boundary, a
-cleanup or a localization pass has to guess where the boundary will end up, and gets redone
-when it lands somewhere else. Modularizing first makes the other three purely local edits
-inside a folder that nothing else reaches into.
+The original spec had four steps: Modularize, Refactor, Patternize, Localize. Executing
+Crafting exposed two defects.
 
-The cost of separating them is that a file gets touched more than once over the program's life.
-That is accepted: each touch is small, reviewable and independently shippable, which matters
-more on a codebase with no automated test suite, where every merge is validated by a build and
-a human playtest.
+**Defect 1 — Step 1 held two jobs.** Sub-steps 1.1–1.3 and 1.5 are mechanical: inventory files,
+move them, register the module, write the docs. Sub-step 1.4 — cutting the cross-module
+references — is none of those things. It is design work, it is where the risk lives, and it is
+the part that decides what `Framework/` becomes. Bundled together, the easy four hid the hard
+one: Crafting's ledger row read `done` while 1.4 was never finished, and a later plan had to
+open with a task to go back and do it. **1.4 is now Epic 2, on its own branch and its own PR.**
 
-## Step 1 — Modularize
+**Defect 2 — "Refactor" named a grab bag.** "No file left doing two jobs" described an outcome
+without naming the work. **It is now Epic 4, Codesmells**: find bad practices, fix them,
+flag what cannot be fixed.
 
-**Entry:** the module has a row in the ledger and nobody else holds it.
+Localization also moved from last to third. It is the lowest-risk epic — text and XML, no
+behaviour — and doing it before the code moves means string ids are settled before anything
+shuffles them.
 
-**Goal:** the module becomes one folder that registers itself, and no other part of the
-codebase names it.
+| Was | Is now |
+|---|---|
+| Step 1 Modularize (1.1–1.3, 1.5) | Epic 1 Modularize |
+| Step 1 Modularize (1.4) | **Epic 2 Framework** |
+| Step 4 Localize | Epic 3 Strings |
+| Step 2 Refactor | Epic 4 Codesmells |
+| Step 3 Patternize | Epic 5 Pattern |
 
-This step is specified in detail because it has been executed once — on `Crafting`, on branch
+**One epic is one branch is one PR.** The team cannot review large PRs; that constraint now
+shapes the process rather than being absorbed by it.
+
+## Why five epics and not one pass
+
+The five kinds of work — extracting a module, cutting its boundary, exposing its strings,
+cleaning its files, naming its patterns — could in principle be done in a single visit per
+module. They are separated because each one makes the next one's diff smaller, and because risk
+climbs monotonically down the list. Extraction is mechanical; boundary-cutting is design;
+patterns are judgement. Mixing them produces a diff no reviewer can hold in their head.
+
+The cost is that a file gets touched more than once over the program's life. That is accepted:
+each touch is small, reviewable and independently shippable, which matters more on a codebase
+with no automated test suite, where every merge is validated by a build and a human playtest.
+
+## Epic 1 — Modularize
+
+**Entry:** the module has a ledger row and nobody else holds it.
+**Branch:** `feature/[module]Modularize`
+**Goal:** the module becomes one folder that registers itself, with its models pulled in.
+
+Specified in detail because it has been executed once — on `Crafting`, on branch
 `feature/moduleCrafting` — and the sub-steps below are that execution generalized.
-
 ### 1.1 Inventory
 
 List every file that belongs to this module, wherever it currently lives, using the
@@ -89,12 +116,54 @@ interface methods — the net48 CLR rejects those with `CS8701` regardless of th
 `LangVersion`. If the empty bodies become a real nuisance, add an abstract base class that
 implements the interface with empty virtuals and have modules derive from it.
 
-### 1.4 Cut the cross-module references
 
-The invariant to reach: **the module's folder contains no `using TOR_Core.<OtherModule>`, and
-no other module's folder names this one.** Arrows point from modules into `Framework/`, never
-between modules.
+### 1.4 Verify and document
 
+- Build; confirm the module's own files produce no new errors (see `CONSTRAINTS.md` on judging
+  a build).
+- Smoke playtest the module's mechanic in a real session.
+- **Load a save made before the move.** The highest-risk part of the epic, not a formality —
+  see O1.
+- Write or refresh `CLAUDE.md` (narrative: how the pieces fit together) and `MODULE.md` (flat
+  per-class lookup table), within the word caps. `CampaignMechanics/Crafting/MODULE.md` is the
+  format to copy.
+- Write the test plan, the PR notes, and update the ledger row.
+
+### Exit criteria
+
+1. `SubModule.cs` contains no line naming this module's types except the `ITORModule` dispatch.
+2. Every moved file appears at its new path in `TOR_Core.csproj`.
+3. The project builds with no new errors attributable to this module.
+4. A save created before the branch loads, and the module's mechanic still works.
+5. `CLAUDE.md` and `MODULE.md` exist, are within caps, and describe the folder as it now is.
+6. Test plan scenarios pass; PR notes written; ledger row updated.
+
+**Not an exit criterion any more:** cross-module references. That is Epic 2.
+
+## Epic 2 — Framework
+
+**Entry:** Epic 1 merged.
+**Branch:** `feature/[module]Framework`
+**Goal:** the module's folder contains no `using TOR_Core.<OtherModule>`, and no other module's
+folder names this one. Arrows point from modules into `Framework/`, never between modules.
+
+This epic is where `Framework/` is actually designed. Every module passing through it either
+adds to `Framework/` or proves it did not need to.
+
+### 2.1 Inventory the edges
+
+Two lists, both written into the plan before anything moves:
+
+- **Outbound** — every `using TOR_Core.<OtherModule>` inside the module's folder, with the
+  member actually used and the file and line.
+- **Inbound** — every file outside the module that names one of its types. Each one is either
+  cut, or frozen into the module's declared **public surface**.
+
+Untangling every inbound edge is often a project in its own right. When it is, freeze the set
+instead: record it in `MODULE.md` as the public surface, and later epics treat those names as
+un-renameable. That converts an unbounded risk into a checklist.
+
+### 2.2 Cut the edges
 Two tools, in order of preference:
 
 1. **Module-local helper.** When the module was merely borrowing something from a shared
@@ -118,121 +187,104 @@ If neither tool fits — the dependency is real, one-directional, and the callee
 generic — the right answer is usually that the callee is not module content at all and should
 be promoted into `Framework/`. Amend the proposal's classification when that happens.
 
-### 1.5 Verify and document
-
-- Build, and confirm the module's own files produce no new errors. On this old-style net48
-  project a command-line build also emits a large set of unrelated NLog/Harmony/
-  `IsExternalInit` errors; judge the result by whether that error set is unchanged from before
-  the branch, not by whether it is empty.
-- Smoke playtest the module's mechanic in a real session.
-- **Load a save made before the move.** This is the highest-risk part of the step, not a
-  formality — see O1.
-- Write or refresh the folder's `CLAUDE.md` (narrative: how the pieces fit together) and
-  `MODULE.md` (flat per-class lookup table). `CampaignMechanics/Crafting/MODULE.md` is the
-  format to copy.
-- Update the ledger row.
 
 ### Exit criteria
 
-1. No `using TOR_Core.<OtherModule>` inside the module's folder, and no other module's folder
-   names this module.
-2. `SubModule.cs` contains no line naming this module's types except the `ITORModule` dispatch.
-3. Every moved file appears at its new path in `TOR_Core.csproj`.
-4. The project builds with no new errors attributable to this module.
-5. A save created before the branch loads, and the module's mechanic still works.
-6. `CLAUDE.md` and `MODULE.md` exist and describe the folder as it now is.
-7. The ledger row reads `done` for Step 1.
+1. No `using TOR_Core.<OtherModule>` inside the module's folder — or each survivor is recorded
+   in the ledger Notes with the module that will remove it and when.
+2. No other module's folder names this module, except through a `Framework/` contract.
+3. `MODULE.md` carries a **Public Surface** section listing every externally-referenced name.
+4. The `Framework/` hook-contract count in the ledger is updated.
+5. Build clean, save loads, test plan scenarios pass, PR notes written, ledger updated.
 
-## Step 2 — Refactor (outline)
+## Epic 3 — Strings
 
-**Entry:** Step 1 done and merged.
-**Goal:** a file-by-file cleanup pass; no file left doing two jobs.
+**Entry:** Epic 2 merged. **Blocked on `TOR_Tools`** — see `../README.md` Dependencies.
+**Branch:** `feature/[module]Strings`
+**Goal:** every player-visible string in the module resolves through its own string file.
 
-The work: read every file in the module in turn. Split files that carry two unrelated
-responsibilities. Delete dead code and unreferenced members. Normalize naming to the module's
-own convention. Reduce the surface each class exposes to what is actually consumed.
+1. Find every hardcoded player-visible literal and convert it to a `TextObject` with an id.
+2. Create `ModuleData/Strings/tor_<module>_strings.xml`, registered as its own
+   `<XmlNode><XmlName id="Strings" path="Strings/tor_<module>_strings" /></XmlNode>` in
+   `SubModule.xml`.
+3. Move the module's existing ids out of the 5,864-line `ModuleData/tor_strings.xml`.
 
-Because Step 1 removed every inbound cross-module reference, Step 2 should never need to change
-a signature another module depends on. If it does, that is a signal Step 1 was incomplete for
-this module — stop and finish Step 1 rather than working around it.
+**All XML handling goes through `TOR_Tools`.** Hand-editing these files is how ids get lost.
 
-**To settle before the first Step 2:**
+Conventions are in [`../CONSTRAINTS.md`](../CONSTRAINTS.md). The point of the per-module file is
+that the environment team edits one small file scoped to one feature, and that a module's text
+moves with the module.
 
-- What is the trigger that says "this file needs splitting"? A line count, a count of distinct
-  responsibilities, or reviewer judgement.
-- Does Step 2 rewrite a module's `MODULE.md`, or is `MODULE.md` regenerated at the end of every
-  step regardless?
-- How is "dead" established on a codebase where a lot is reached by reflection, by Harmony, or
-  by script names declared in XML? A plain "no references" search is not sufficient evidence
-  here, and deleting on that basis is how a mechanic silently stops firing.
+**To settle on first use:**
 
-## Step 3 — Patternize (outline)
+- Is `tor_strings.xml` drained until empty, or does it stay home to genuinely cross-cutting
+  strings? If the latter, what qualifies. (Crafting's analysis found 3 of 41 genuinely shared.)
+- What counts as player-visible? Debug and log strings stay hardcoded; the boundary cases are
+  inquiry titles, tooltips and console feedback.
+- Does `ModuleData/Languages/` need per-language files now? Only `VoicedLines` exists there and
+  no translation file has ever been produced, so the first Strings epic may produce text nothing
+  yet consumes.
 
-**Entry:** Step 2 done.
-**Goal:** design patterns applied *where they earn their place*, and the module's recurring
-seams named.
+## Epic 4 — Codesmells
 
-This step is explicitly **not** "apply patterns to everything". A pattern introduced where the
-code had no repetition adds indirection and subtracts nothing. The deliverable per module is a
-short list — often one or two entries, sometimes zero — of seams that genuinely recur, each
-with the pattern chosen for it and a sentence on what it bought.
+**Entry:** Epic 3 merged (or skipped with a ledger note while `TOR_Tools` is pending).
+**Branch:** `feature/[module]Codesmells`
+**Goal:** bad practices found and fixed; no file left doing two jobs.
 
-Two shapes already recur across the codebase and are the obvious starting vocabulary:
+Read every file in the module in turn. Split files carrying two unrelated responsibilities.
+Delete dead code. Normalize naming to the module's own convention. Reduce each class's surface
+to what is actually consumed.
 
-- **XML template + static factory/manager.** Already implemented at least five separate times
+Because Epic 2 removed the cross-module references, this epic should never need to change a
+signature another module depends on. If it does, Epic 2 was incomplete — go back and finish it
+rather than working around it.
+
+**Fix automatically; flag what cannot be fixed.** A smell that cannot be fixed inside this epic
+goes in the test plan's Decisions table with what it would take, not into a conversation.
+
+**To settle on first use:**
+
+- What triggers "this file needs splitting" — a line count, a count of responsibilities, or
+  reviewer judgement?
+- How is "dead" established on a codebase where much is reached by reflection, by Harmony, or by
+  script names declared in XML? A plain no-references search is **not** sufficient evidence, and
+  deleting on that basis is how a mechanic silently stops firing.
+
+## Epic 5 — Pattern
+
+**Entry:** Epic 4 merged.
+**Branch:** `feature/[module]Pattern`
+**Goal:** the module's recurring seams named, and a pattern applied only where it earns its
+place.
+
+Explicitly **not** "apply patterns to everything". A pattern introduced where the code had no
+repetition adds indirection and subtracts nothing. The deliverable is a short list — often one
+or two entries, sometimes zero — of seams that genuinely recur, each with the pattern chosen and
+a sentence on what it bought.
+
+**The kill switch.** Before writing an abstraction, diff the things it would unify. If they are
+not in fact the same shape, **do not write it** — record in `MODULE.md` that the shape did not
+generalize, and close the epic. A pattern extracted from two things that only look alike is
+worse than no pattern. An epic that ends here has still succeeded.
+
+Two shapes already recur across the codebase and are the starting vocabulary:
+
+- **XML template + static factory/manager.** Implemented at least five times
   (`AbilityTemplate`, `TriggeredEffectTemplate`, `StatusEffectTemplate`, `ItemTrait`, and the
-  `MBObjectManager`-registered types). A module adding a sixth should conform to a shared shape
-  rather than invent a variation.
+  `MBObjectManager`-registered types). A module adding a sixth should conform rather than
+  invent a variation.
 - **`[Attribute]` + reflection scan for registration.** Implemented twice —
   `[ViewModelExtension]`, and `[TORModule]` once its registry exists.
 
-**To settle before the first Step 3:**
+**To settle on first use:**
 
-- Is the pattern vocabulary fixed program-wide up front, or grown module by module? Growing it
-  risks two modules solving the same seam differently; fixing it up front risks specifying
-  patterns for seams that turn out not to exist.
-- Does Step 3 get to change a module's public surface, or is it internal-only like Step 2?
-- Where does the vocabulary live — a section in this spec, or its own document?
-
-## Step 4 — Localize (outline)
-
-**Entry:** Step 2 done. Step 3 is not a prerequisite.
-**Goal:** every player-visible string in the module resolves through its own string file.
-
-The work, per module:
-
-1. Find every hardcoded player-visible literal in the module and convert it to a `TextObject`
-   with a localization id.
-2. Create `ModuleData/Strings/tor_<module>_strings.xml` and register it as its own
-   `<XmlNode><XmlName id="Strings" path="Strings/tor_<module>_strings" /></XmlNode>` in
-   `SubModule.xml`.
-3. Move the module's existing ids out of the 5,864-line `ModuleData/tor_strings.xml` into that
-   file.
-
-Conventions already in force on this project and unchanged by this step: the string id is
-`tor_<module>_<name>`, the text carries a `{=str_tor_<module>_<name>}` default, lookups go
-through `TORTextHelper` rather than `GameTexts.FindText`, and a line break is `{newline}`, not
-an escape sequence.
-
-The point of the per-module file is that the environment team edits one small file scoped to
-one feature instead of scrolling a single shared one, and that a module's text moves with the
-module.
-
-**To settle before the first Step 4:**
-
-- Is `tor_strings.xml` drained module by module until it is empty, or does it stay as the home
-  for genuinely cross-cutting strings? If the latter, what qualifies as cross-cutting.
-- What counts as player-visible? Debug and log strings stay hardcoded; the boundary cases are
-  inquiry titles, tooltips, and console feedback.
-- Is there a check that catches a newly added hardcoded literal in an already-localized module,
-  or is it review discipline only?
-- Does `ModuleData/Languages/` need per-language files created now? Only `VoicedLines` exists
-  there today and no translation file has ever been produced, so the first Step 4 may be
-  producing text nothing yet consumes.
+- Is the vocabulary fixed program-wide up front, or grown module by module?
+- Does this epic get to change a module's public surface, or is it internal-only?
+- Where does the vocabulary live — a section here, or its own document?
 
 ## Deferred: Ink localization
 
-Out of scope for the four steps, and explicitly **not** part of any module's Step 4.
+Out of scope for the five epics, and explicitly **not** part of any module's Strings epic.
 
 `InkStories/` holds 30 `.ink` files, roughly 3,371 lines, with prose written inline as English.
 There is no localization mechanism of any kind: a translator cannot reach the text. `Ink/` is
@@ -256,7 +308,7 @@ Option 1 was the leading candidate. Recorded here so this is resumed rather than
 ## Open questions
 
 **O1 — Does moving a `SaveableTypeDefiner`-registered type to a new namespace break existing
-saves?** *Blocking; must be answered before the first module that moves such a type.*
+saves?** *Blocking; must be answered before the first module that moves such a type. Applies to Epic 1.*
 The `Crafting` pass did not answer it: `TorItemDuplicationData` is registered as id `16` in
 `SaveGameSystem/SaveableTypeDefiners.cs`, but it already lived in `CampaignMechanics/Crafting/`
 and so did not change namespace. Most later modules will move saved types. The probe is cheap —
@@ -273,7 +325,7 @@ readable, debuggable and has no startup cost; it is fine up to roughly ten modul
 the count approaches that, and confirm the reflection scan's startup cost against Bannerlord's
 load profile before committing to it.
 
-**O3 — Module ordering for Step 1.** The ledger's current order follows the proposal's phased
+**O3 — Module ordering for Epic 1.** The ledger's current order follows the proposal's phased
 suggestion: proven-small modules first (`BountyMaster`, `PostBattleLoot`, `Villages`),
 split-heavy ones in the middle, and `Careers` last because it spans five current top-level
 folders. Confirm or reorder before starting module #1.
@@ -287,5 +339,5 @@ owning module. Confirm before a module needs to add a saved type.
 **O5 — Placements flagged *verify* in the proposal.** `GreenskinAICampaignBehavior`,
 `TORHiringCompatibilityModel`, `HuntCultistsQuestCampaignBehavior` and
 `PlaguedVillageQuestCampaignBehavior` do not have a settled module. Each needs a source read
-before the module that would claim it starts Step 1. `Greenskins` may not survive as a module
+before the module that would claim it starts Epic 1. `Greenskins` may not survive as a module
 at all.

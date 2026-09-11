@@ -1,3 +1,20 @@
+> # ⚠️ SUPERSEDED — 2026-09-11
+>
+> Written against the old four-step spec, before the epic split
+> ([spec Amendment 1](../specs/2026-09-09-module-lifecycle-design.md#amendment-1--2026-09-11-four-steps-became-five-epics)).
+> **Do not execute as written.** Its content is sound and is being re-cut into four epic plans:
+>
+> | This file's task | Becomes | Plan |
+> |---|---|---|
+> | Task 1 — close the Step 1 gaps | **Epic 2 Framework** | `crafting-framework.md` |
+> | Task 5 — own string file | Epic 3 Strings *(blocked on `TOR_Tools`)* | `crafting-strings.md` |
+> | Tasks 2 + 3 — decompose the three god-files | Epic 4 Codesmells | `crafting-codesmells.md` |
+> | Task 4 — town-service NPC pattern | Epic 5 Pattern | `crafting-pattern.md` |
+> | Task 6 — close out | Split across all four closeouts | — |
+>
+> Task 1's finding still stands and is the reason Epic 2 exists: Crafting's ledger row read
+> `done` while its cross-module references were never cut.
+
 # Crafting Module — Steps 2–4 Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
