@@ -2,7 +2,7 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 
-namespace TOR_Core.Items
+namespace TOR_Core.Framework
 {
     public static class TorEnchantingIngredients
     {

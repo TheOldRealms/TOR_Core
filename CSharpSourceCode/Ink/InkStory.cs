@@ -19,6 +19,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.Audio;
+using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.CustomEvents;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
@@ -699,7 +700,7 @@ namespace TOR_Core.Ink
                 return;
             }
 
-            Hero.MainHero.AddEnchantmentBlueprint(blueprintId, true);
+            EnchantmentBlueprints.Learn(blueprintId, Hero.MainHero, true);
         }
 
         private void LearnRandomUnknownOrionEnchantment()
@@ -711,9 +712,8 @@ namespace TOR_Core.Ink
                 "asrai_enchant_ghostwalker"
             };
 
-            var partyHeroes = MobileParty.MainParty.GetMemberHeroes();
             var unknownEnchantments = orionEnchantments
-                .Where(enchantmentId => partyHeroes.All(hero => !hero.HasKnownEnchantmentBlueprint(enchantmentId)))
+                .Where(enchantmentId => !EnchantmentBlueprints.IsKnown(enchantmentId))
                 .ToList();
 
             if (unknownEnchantments.Count == 0)
@@ -722,7 +722,7 @@ namespace TOR_Core.Ink
             }
 
             var selectedEnchantment = unknownEnchantments[MBRandom.RandomInt(unknownEnchantments.Count)];
-            Hero.MainHero.AddEnchantmentBlueprint(selectedEnchantment, true);
+            EnchantmentBlueprints.Learn(selectedEnchantment, Hero.MainHero, true);
         }
         private void ChangePartyTroopCount(string troopId, int count)
         {
