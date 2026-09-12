@@ -283,6 +283,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 TORCampaignEvents.Instance.OnHeroExtendedInfoCreated(hero);
                 if (hero.Template != null) InitializeTemplatedHeroStats(hero);
                 hero.AddCultureSpecificCustomResource(0);
+                hero.HitPoints = hero.MaxHitPoints; //the extended info feeds MaxHitpoints, so a hero whose info was only just created is still carrying the smaller pre-info value
             }
         }
 
@@ -363,6 +364,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                     var info = new HeroExtendedInfo(hero.CharacterObject);
                     _heroInfos.Add(hero.GetInfoKey(), info);
                     hero.AddCultureSpecificCustomResource(0);
+                    hero.HitPoints = hero.MaxHitPoints; //the extended info feeds MaxHitpoints, so a hero whose info was only just created is still carrying the smaller pre-info value
                 }
             }
         }

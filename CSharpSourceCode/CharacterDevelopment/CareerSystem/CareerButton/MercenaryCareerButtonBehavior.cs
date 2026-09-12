@@ -63,6 +63,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
             AddCompanionAction.Apply(MobileParty.MainParty.ActualClan, hero);
             AddHeroToPartyAction.Apply(hero, MobileParty.MainParty);
             MobileParty.MainParty.MemberRoster.AddToCountsAtIndex(MobileParty.MainParty.MemberRoster.FindIndexOfTroop(_currentTemplate), -1);
+            CareerButtonHelper.ApplyPromotedHeroHealth(hero, _currentTemplate);
         }
 
         public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner = false, bool shiftClick = false)

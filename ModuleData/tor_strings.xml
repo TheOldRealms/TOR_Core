@@ -511,6 +511,18 @@
   <string id="tor_stats_tier3_text" text="{=str_tor_stats_tier3_text}Tier3" />
   <string id="tor_stats_tier4_text" text="{=str_tor_stats_tier4_text}Tier4" />
   <string id="tor_stats_vampire_body_text" text="{=str_tor_stats_vampire_body_text}Vampire body" />
+  <string id="tor_stats_dwarf_bonus_text" text="{=str_tor_stats_dwarf_bonus_text}Dwarf bonus" />
+  <string id="tor_stats_goblin_bonus_text" text="{=str_tor_stats_goblin_bonus_text}Goblin frailty" />
+  <string id="tor_stats_orc_bonus_text" text="{=str_tor_stats_orc_bonus_text}Orc bonus" />
+  <string id="tor_stats_troop_tier_text" text="{=str_tor_stats_troop_tier_text}Troop tier" />
+  <string id="tor_stats_undead_body_text" text="{=str_tor_stats_undead_body_text}Undead body" />
+  <string id="tor_stats_necromancer_champion_text" text="{=str_tor_stats_necromancer_champion_text}Necromantic empowerment" />
+  <string id="tor_stats_everchosen_text" text="{=str_tor_stats_everchosen_text}Everchosen" />
+  <string id="tor_stats_orion_text" text="{=str_tor_stats_orion_text}Orion" />
+  <string id="tor_stats_tough_text" text="{=str_tor_stats_tough_text}Tough" />
+  <string id="tor_stats_gift_of_nurgle_text" text="{=str_tor_stats_gift_of_nurgle_text}Gift of Nurgle" />
+  <string id="tor_stats_oak_of_ages_text" text="{=str_tor_stats_oak_of_ages_text}Oak of Ages" />
+  <string id="tor_stats_perks_text" text="{=str_tor_stats_perks_text}Perks" />
 
   <!-- Healing & Other Bonuses -->
   <string id="tor_healing_shallya_seal_text" text="{=str_tor_healing_shallya_seal_text}Shallya Seal" />
