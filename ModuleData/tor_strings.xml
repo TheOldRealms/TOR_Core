@@ -4171,7 +4171,7 @@
   <string id="tor_careerchoice_description.MeanestanDaBaddestKeystone" text="{=str_tor_careerchoice_description_MeanestanDaBaddestKeystone}Armed to da Teef iz betta killy wiv Polearm pointz" />
   <string id="tor_careerchoice_description.MeanestanDaBaddestPassive1" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive1}10% betta killin’" />
   <string id="tor_careerchoice_description.MeanestanDaBaddestPassive2" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive2}5 more Bosses fer da mob" />
-  <string id="tor_careerchoice_description.MeanestanDaBaddestPassive3" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive3}50% more shinies when leavin’ loot in Kwartamasta piles" />
+  <string id="tor_careerchoice_description.MeanestanDaBaddestPassive3" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive3}Get 50% more when leavin’ shinies wit da Kwartamasta" />
   <string id="tor_careerchoice_description.MeanestanDaBaddestPassive4" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive4}Big Bosses in da mob pay 5 Teef e’ry day" />
   <string id="tor_careerchoice_description.GetToDaChoppasKeystone" text="{=str_tor_careerchoice_description_GetToDaChoppasKeystone}Armed to da Teef makes da Boys proppa killy fer sum time" />
   <string id="tor_careerchoice_description.GetToDaChoppasPassive1" text="{=str_tor_careerchoice_description_GetToDaChoppasPassive1}10% betta killin’" />

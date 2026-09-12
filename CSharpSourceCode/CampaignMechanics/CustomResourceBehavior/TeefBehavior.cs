@@ -20,6 +20,7 @@ public class TeefBehavior : CampaignBehaviorBase
 {
     private const int ItemExchange = 400; // item of price of X gets X/400 of teef in return
     private const int GoldToTeefExchangeRate = 100;
+    private const int GoldToShinyPileExchangeRate = 5000;
     private const string QuartermasterId = "tor_kwartamasta_greenskins_0";
 
     public override void RegisterEvents()
@@ -403,35 +404,37 @@ public class TeefBehavior : CampaignBehaviorBase
 
     private void CreateShinyPiles(List<InquiryElement> inquiryElements)
     {
-        var gold = (int)(inquiryElements[0].Identifier);
-
-        var pileCount = gold / 5000;
+        var tradedGold = (int)(inquiryElements[0].Identifier);
+        
+        float pileCount = tradedGold / GoldToShinyPileExchangeRate;
+        
+        // MeanestanDaBaddestPassive3: 50% extra
+        if (Hero.MainHero.HasCareer(TORCareers.OrcBoss) && Hero.MainHero.HasCareerChoice("MeanestanDaBaddestPassive3"))
+        {
+            pileCount *= 1.5f;
+        }
 
         var pileItem = MBObjectManager.Instance.GetObject<ItemObject>("tor_gs_gold_pile");
 
-        Hero.MainHero.CurrentSettlement.Stash.AddToCounts(pileItem, pileCount);
+        Hero.MainHero.CurrentSettlement.Stash.AddToCounts(pileItem, (int)pileCount);
         
-        Hero.MainHero.ChangeHeroGold(-gold);
+        Hero.MainHero.ChangeHeroGold(-tradedGold);
     }
 
     private void TradeGoldForTeef(List<InquiryElement> inquiryElements)
     {
-        var gold = (int)(inquiryElements[0].Identifier);
+        var tradedGold = (int)(inquiryElements[0].Identifier);
 
-        var goldExchange = GoldToTeefExchangeRate;
+        float teefValue = tradedGold / GoldToTeefExchangeRate;
 
-
-
-        var teefValue = gold / goldExchange;
-
-        // MeanestanDaBaddestPassive3: double conversation -> 50% extra
+        // MeanestanDaBaddestPassive3: 50% extra
         if (Hero.MainHero.HasCareer(TORCareers.OrcBoss) && Hero.MainHero.HasCareerChoice("MeanestanDaBaddestPassive3"))
         {
-            teefValue *= 2;
+            teefValue *= 1.5f;
         }
 
         Hero.MainHero.AddCultureSpecificCustomResource(teefValue);
-        Hero.MainHero.Gold -= gold;
+        Hero.MainHero.Gold -= tradedGold;
     }
 
     private void OnItemsDiscarded(ItemRoster itemRoster)
