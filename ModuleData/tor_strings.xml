@@ -5560,16 +5560,22 @@
   <string id="tor_encyclopedia_filter_campaign_issues" text="{=str_tor_encyclopedia_filter_campaign_issues}Campaign Issues" />
   <string id="tor_encyclopedia_filter_types" text="{=str_tor_encyclopedia_filter_types}Types" />
 
-  <!-- Quartermaster/Shop Texts -->
+  <!-- Quartermaster/Kwartamasta Texts -->
   <string id="tor_gs_quartermaster_intro_text" text="{=str_tor_gs_quartermaster_intro_text}Yoo dere, youz got sumfing fer da Boss?" />
   <string id="tor_gs_quartermaster_anything_else_text" text="{=str_tor_gs_quartermaster_anything_else_text}Wot, youz got more?" />
   <string id="tor_gs_quartermaster_shinies_option_text" text="{=str_tor_gs_quartermaster_shinies_option_text}Shinies" />
+  <string id="tor_gs_quartermaster_shinies_option_text_owner" text="{=str_tor_gs_quartermaster_shinies_option_text_owner}Shinies for me pile" />
   <string id="tor_gs_quartermaster_loot_option_text" text="{=str_tor_gs_quartermaster_loot_option_text}Loot" />
   <string id="tor_gs_quartermaster_leave_option_text" text="{=str_tor_gs_quartermaster_leave_option_text}Iz outta 'ere!" />
   <string id="tor_gs_quartermaster_owner_intro_text" text="{=str_tor_gs_quartermaster_owner_intro_text}Oi, Boss, youz got sum loot fer da pile?" />
   <string id="tor_gs_quartermaster_owner_anything_else_text" text="{=str_tor_gs_quartermaster_owner_anything_else_text}Iz dere more, Boss?" />
   <string id="tor_gs_quartermaster_make_teefbags_option_text" text="{=str_tor_gs_quartermaster_make_teefbags_option_text}Make Teefbags" />
   <string id="tor_gs_give_items_to_boss_text" text="{=str_tor_gs_quartermaster_inventory_menu}Give Items to the Big Boss" />
+  <string id="tor_gs_spend_gold_description_text_teef" text="{=str_tor_gs_spend_gold_description_text_teef}The Big Boss takes your shinies. How much would you like to spend to obtain some Teef?" />
+  <string id="tor_gs_spend_gold_description_text_piles" text="{=str_tor_gs_spend_gold_description_text_piles}We takes your shinies Big Boss. How much for da loot pile (Stash)?" />
+	
+	
+	<!-- Dwarf Shop Texts -->
   <string id="tor_dw_shop_show_goods_text" text="{=str_tor_dw_shop_show_goods_text}Very well, take a look at our inventions." />
   <string id="tor_dw_engineer_buy_weapons_text" text="{=str_tor_dw_engineer_buy_weapons_text}I need better gear, Master Engineer." />
   <string id="tor_dw_quit_text" text="{=str_tor_dw_quit_text}That will be all." />
