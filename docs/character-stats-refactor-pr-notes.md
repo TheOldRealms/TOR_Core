@@ -48,6 +48,11 @@ Numbers are unchanged everywhere except the two bugs above. What did change:
 - Every bare `Add(…)` gained a description, so the health tooltip now explains Everchosen, Orion,
   Tough, the troop tier step, the undead penalty and the three race bonuses instead of showing an
   unattributed delta. Twelve new `tor_stats_*` strings.
+- **Removed the `Tier1`–`Tier4` acquired-attribute bonuses** (+100 / +150 / +200 / +300) as dead
+  code. Nothing grants them: they were never wired into `ModuleData` on any branch at any point in
+  history, no code writes them to `AcquiredAttributes`, and `CareerButtonHelper.HealthAttributes`
+  already omits them. `Tough` is the live attribute. Four dead `tor_stats_tier*_text` strings
+  removed with them. No gameplay effect.
 
 ## Verification
 

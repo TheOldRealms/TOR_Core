@@ -11,7 +11,6 @@ using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
-using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
 using static TOR_Core.Utilities.TORConstants;
@@ -140,7 +139,7 @@ namespace TOR_Core.Models
             var info = hero.GetExtendedInfo();
             if (info != null)
             {
-                AddCommonHeroHealth(ref number, hero, info);
+                AddCommonHeroHealth(ref number, hero);
 
                 switch (GetHeroKind(hero))
                 {
@@ -172,24 +171,8 @@ namespace TOR_Core.Models
         /// <summary>
         /// Applies to every hero that has extended info, whatever their kind.
         /// </summary>
-        private void AddCommonHeroHealth(ref ExplainedNumber number, Hero hero, HeroExtendedInfo info)
+        private void AddCommonHeroHealth(ref ExplainedNumber number, Hero hero)
         {
-            if (info.AcquiredAttributes.Contains("Tier1"))
-            {
-                number.Add(100, TORTextHelper.GetTextObject("tor_stats_tier1_text", "Tier1"));
-            }
-            else if (info.AcquiredAttributes.Contains("Tier2"))
-            {
-                number.Add(150, TORTextHelper.GetTextObject("tor_stats_tier2_text", "Tier2"));
-            }
-            else if (info.AcquiredAttributes.Contains("Tier3"))
-            {
-                number.Add(200, TORTextHelper.GetTextObject("tor_stats_tier3_text", "Tier3"));
-            }
-            else if (info.AcquiredAttributes.Contains("Tier4"))
-            {
-                number.Add(300, TORTextHelper.GetTextObject("tor_stats_tier4_text", "Tier4"));
-            }
             if (hero.IsVampire() && !hero.IsHumanPlayerCharacter)
             {
                 number.Add(100, TORTextHelper.GetTextObject("tor_stats_vampire_body_text", "Vampire body"));
