@@ -53,6 +53,34 @@ namespace TOR_Core.CampaignMechanics.Crafting
             {
                 Ingredients.Add(new EnchantingIngredientVM(ingredient.Key, ingredient.Value, MobileParty.MainParty.ItemRoster.GetItemNumber(ingredient.Value)));
             }
+
+            // Refined metals only get a slot when a known blueprint actually charges one,
+            // so cultures without metal-cost enchantments see the bar unchanged.
+            var knownBlueprints = EnchantmentBlueprints.GetKnown();
+            var metals = ItemTrait.All.Where(x => x.IsCraftable && x.MetalAmount > 0 && knownBlueprints.Contains(x.ItemTraitStringId))
+                .Select(x => x.MetalItem)
+                .Distinct()
+                .OrderBy(x => x);
+            foreach (var metal in metals)
+            {
+                var metalItem = GetMetalItem(metal);
+                if (metalItem == null) continue;
+                Ingredients.Add(new EnchantingIngredientVM(TorTradeGoodType.Invalid, metalItem, MobileParty.MainParty.ItemRoster.GetItemNumber(metalItem)));
+            }
+        }
+
+        private static ItemObject GetMetalItem(CraftingMaterials metal) => Campaign.Current.Models.GetSmithingModel()?.GetCraftingMaterialItem(metal);
+
+        private void AddPendingCost(ItemTrait itemTrait, int direction)
+        {
+            var ingredient = Ingredients.FirstOrDefault(x => x.IngredientType != TorTradeGoodType.Invalid && x.IngredientType == itemTrait.IngredientItem);
+            ingredient?.AddPendingAmount(direction * CalculateIngredientAmount(itemTrait));
+
+            if (itemTrait.MetalAmount <= 0) return;
+
+            var metalItem = GetMetalItem(itemTrait.MetalItem);
+            var metal = Ingredients.FirstOrDefault(x => x.Item == metalItem);
+            metal?.AddPendingAmount(direction * CalculateMetalAmount(itemTrait));
         }
 
         private void OnTraitSelected(EnchantableTraitVM itemTrait, bool isSelected)
@@ -71,8 +99,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
                 if (!SelectedTraits.Contains(itemTrait))
                 {
                     SelectedTraits.Add(itemTrait);
-                    var ingredient = Ingredients.FirstOrDefault(x => x.IngredientType == itemTrait.ItemTrait.IngredientItem);
-                    ingredient?.AddPendingAmount(-CalculateIngredientAmount(itemTrait.ItemTrait));
+                    AddPendingCost(itemTrait.ItemTrait, -1);
                 }
             }
             else
@@ -80,8 +107,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
                 if (SelectedTraits.Contains(itemTrait))
                 {
                     SelectedTraits.Remove(itemTrait);
-                    var ingredient = Ingredients.FirstOrDefault(x => x.IngredientType == itemTrait.ItemTrait.IngredientItem);
-                    ingredient?.AddPendingAmount(CalculateIngredientAmount(itemTrait.ItemTrait));
+                    AddPendingCost(itemTrait.ItemTrait, 1);
                 }
             }
             TORArtisanDistrictCampaignBehavior.Instance.ItemBeingCrafted = new TorItemBeingCraftedData { EquipmentElement = SelectedItem.Item, ItemTraits = SelectedTraits.Select(x => x.ItemTrait).ToList() };
@@ -111,6 +137,12 @@ namespace TOR_Core.CampaignMechanics.Crafting
             }
 
             return cost;
+        }
+
+        private int CalculateMetalAmount(ItemTrait itemTrait)
+        {
+            var model = (TOREnchantmentCraftingModel)Campaign.Current.Models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TOREnchantmentCraftingModel));
+            return model?.GetEffectiveMetalAmount(itemTrait) ?? itemTrait.MetalAmount;
         }
 
         private void OnItemSelected(EnchantableItemVM item)

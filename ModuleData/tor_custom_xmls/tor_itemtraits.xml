@@ -1844,7 +1844,9 @@
   <ItemTrait ItemTraitStringId="dw_rune_shielding" ItemTraitName="Rune of Shielding" IsCraftable="true" IconName="rune_shielding">
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
-    <IngredientAmount>4</IngredientAmount>
+    <IngredientAmount>0</IngredientAmount>
+    <MetalItem>Iron3</MetalItem>
+    <MetalAmount>20</MetalAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_shielding}"5% physical resistance, 33% extra shield HP"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.05" />
     <StatsTuple StatType="ShieldHealth" Value="33" />
@@ -1852,21 +1854,27 @@
   <ItemTrait ItemTraitStringId="dw_rune_stone" ItemTraitName="Rune of Stone" IsCraftable="true" IconName="rune_stone">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
-    <IngredientAmount>3</IngredientAmount>
+    <IngredientAmount>1</IngredientAmount>
+    <MetalItem>Iron4</MetalItem>
+    <MetalAmount>10</MetalAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_stone}"4% physical resistance"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.04" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="dw_rune_vigour" ItemTraitName="Rune of Vigour" IsCraftable="true" IconName="rune_vigour">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
-    <IngredientAmount>2</IngredientAmount>
+    <IngredientAmount>0</IngredientAmount>
+    <MetalItem>Iron3</MetalItem>
+    <MetalAmount>10</MetalAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_vigour}"5 extra HP"</ItemTraitDescription>
     <StatsTuple StatType="HealthMax" Value="5" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="dw_rune_parrying" ItemTraitName="Rune of Parrying" IsCraftable="true" ImbuedEffectChance="0.25" IconName="rune_parry">
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
-    <IngredientAmount>3</IngredientAmount>
+    <IngredientAmount>1</IngredientAmount>
+    <MetalItem>Iron4</MetalItem>
+    <MetalAmount>10</MetalAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_parrying}"25% chance to knock down foes when blocking melee hits"</ItemTraitDescription>
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.AttackTypeDefenseTriggerScript">
       <WeaponScriptArguments>
@@ -1880,7 +1888,9 @@
   <ItemTrait ItemTraitStringId="dw_rune_protection" ItemTraitName="Rune of Protection" IsCraftable="true" IconName="rune_protection">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
-    <IngredientAmount>4</IngredientAmount>
+    <IngredientAmount>0</IngredientAmount>
+    <MetalItem>Iron4</MetalItem>
+    <MetalAmount>10</MetalAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_protection}"5% magic resistance, 2 extra HP"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.05" />
     <StatsTuple StatType="HealthMax" Value="2" />
@@ -1961,7 +1971,9 @@
   <ItemTrait ItemTraitStringId="dw_master_rune_steel" ItemTraitName="Master Rune of Steel" IsCraftable="true" IconName="rune_steel">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
-    <IngredientAmount>40</IngredientAmount>
+    <IngredientAmount>20</IngredientAmount>
+    <MetalItem>Iron6</MetalItem>
+    <MetalAmount>6</MetalAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_master_rune_steel}"10% physical resistance"</ItemTraitDescription>
     <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
   </ItemTrait>
@@ -1990,7 +2002,9 @@
   <ItemTrait ItemTraitStringId="dw_rune_striking" ItemTraitName="Rune of Striking" IsCraftable="true" IconName="rune_striking">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
-    <IngredientAmount>6</IngredientAmount>
+    <IngredientAmount>2</IngredientAmount>
+    <MetalItem>Iron4</MetalItem>
+    <MetalAmount>15</MetalAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_striking}"5% extra swing speed, 10% extra damage done as physical"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.10" />
     <StatsTuple StatType="SwingSpeed" Value="5" />
@@ -1998,21 +2012,27 @@
   <ItemTrait ItemTraitStringId="dw_rune_fire" ItemTraitName="Rune of Fire" IsCraftable="true" IconName="rune_fire">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
-    <IngredientAmount>4</IngredientAmount>
+    <IngredientAmount>0</IngredientAmount>
+    <MetalItem>Iron4</MetalItem>
+    <MetalAmount>10</MetalAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_fire}"20% extra damage done as fire"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Fire" Percent="0.20" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="dw_rune_speed" ItemTraitName="Rune of Speed" IsCraftable="true" IconName="rune_speed">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
-    <IngredientAmount>5</IngredientAmount>
+    <IngredientAmount>2</IngredientAmount>
+    <MetalItem>Iron4</MetalItem>
+    <MetalAmount>15</MetalAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_speed}"15% extra swing speed"</ItemTraitDescription>
     <StatsTuple StatType="SwingSpeed" Value="15" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="dw_rune_might" ItemTraitName="Rune of Might" IsCraftable="true" IconName="rune_might">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
-    <IngredientAmount>5</IngredientAmount>
+    <IngredientAmount>0</IngredientAmount>
+    <MetalItem>Iron3</MetalItem>
+    <MetalAmount>30</MetalAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_might}"20% extra damage done as physical, 15% extra armour penetration"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.20" />
     <StatsTuple StatType="ArmorPenetration" Value="15" />
@@ -2020,7 +2040,9 @@
   <ItemTrait ItemTraitStringId="dw_rune_clear_sights" ItemTraitName="Rune of Clear Sights" IsCraftable="true" IconName="rune_clearsight">
     <ValidItemType>Ranged</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
-    <IngredientAmount>5</IngredientAmount>
+    <IngredientAmount>0</IngredientAmount>
+    <MetalItem>Iron3</MetalItem>
+    <MetalAmount>30</MetalAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_clear_sights}"10% extra damage done as physical, 15% faster reload speed"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.10" />
     <StatsTuple StatType="ReloadSpeed" Value="15" />
@@ -2028,7 +2050,9 @@
   <ItemTrait ItemTraitStringId="dw_rune_head_wrecking" ItemTraitName="Rune of Head-Wrecking" IsCraftable="true" ImbuedEffectChance="1.00" IconName="rune_headwrecking">
     <ValidItemType>Ranged</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
-    <IngredientAmount>24</IngredientAmount>
+    <IngredientAmount>12</IngredientAmount>
+    <MetalItem>Iron5</MetalItem>
+    <MetalAmount>12</MetalAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_head_wrecking}"15% extra missile speed, 200% extra headshot damage"</ItemTraitDescription>
     <StatsTuple StatType="MissileSpeed" Value="15" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.ExtraHeadshotDamageScript">
@@ -2059,7 +2083,9 @@
   <ItemTrait ItemTraitStringId="dw_rune_reloading" ItemTraitName="Rune of Reloading" IsCraftable="true" IconName="rune_reloading">
     <ValidItemType>Ranged</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
-    <IngredientAmount>30</IngredientAmount>
+    <IngredientAmount>15</IngredientAmount>
+    <MetalItem>Iron5</MetalItem>
+    <MetalAmount>15</MetalAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_reloading}"50% faster reload speed"</ItemTraitDescription>
     <StatsTuple StatType="ReloadSpeed" Value="50" />
   </ItemTrait>
@@ -2074,7 +2100,9 @@
   <ItemTrait ItemTraitStringId="dw_rune_fury" ItemTraitName="Rune of Fury" IsCraftable="true" IconName="rune_fury">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
-    <IngredientAmount>35</IngredientAmount>
+    <IngredientAmount>18</IngredientAmount>
+    <MetalItem>Iron5</MetalItem>
+    <MetalAmount>15</MetalAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_rune_fury}"25% extra swing speed, 15% extra damage done as physical"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.15" />
     <StatsTuple StatType="SwingSpeed" Value="25" />
@@ -2082,7 +2110,9 @@
   <ItemTrait ItemTraitStringId="dw_master_rune_breaking" ItemTraitName="Master Rune of Breaking" IsCraftable="true" IconName="rune_breaking">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
-    <IngredientAmount>42</IngredientAmount>
+    <IngredientAmount>21</IngredientAmount>
+    <MetalItem>Iron6</MetalItem>
+    <MetalAmount>6</MetalAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_dw_master_rune_breaking}"500% extra shield damage, 50% extra damage done as physical"</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.50" />
     <StatsTuple StatType="ShieldDamage" Value="500" />

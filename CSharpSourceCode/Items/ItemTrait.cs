@@ -5,6 +5,7 @@ using System.Xml.Serialization;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Framework;
 using static TaleWorlds.Core.ItemObject;
+using CraftingMaterials = TaleWorlds.Core.CraftingMaterials;
 
 namespace TOR_Core.Items
 {
@@ -46,6 +47,11 @@ namespace TOR_Core.Items
         public TorTradeGoodType IngredientItem { get; set; } = TorTradeGoodType.Invalid;
         [XmlElement]
         public int IngredientAmount { get; set; } = 1;
+        /// <summary>Refined metal charged on top of the ingredient. Only read when <see cref="MetalAmount"/> is above 0.</summary>
+        [XmlElement]
+        public CraftingMaterials MetalItem { get; set; } = CraftingMaterials.IronOre;
+        [XmlElement]
+        public int MetalAmount { get; set; } = 0;
         [XmlElement]
         public StatsTuple StatsTuple { get; set; }
 
@@ -152,6 +158,8 @@ namespace TOR_Core.Items
                    ValidItemType == other.ValidItemType &&
                    IngredientItem == other.IngredientItem &&
                    IngredientAmount == other.IngredientAmount &&
+                   MetalItem == other.MetalItem &&
+                   MetalAmount == other.MetalAmount &&
                    Equals(StatsTuple, other.StatsTuple);
         }
 
@@ -162,7 +170,7 @@ namespace TOR_Core.Items
 
         public override int GetHashCode()
         {
-            return (ItemTraitStringId, ItemTraitName, ItemTraitDescription, ResistanceTuple, AmplifierTuple, AdditionalDamageTuple, OnWeaponHitScript, OnInventoryUseScript, ImbuedStatusEffectId, ImbuedStatusEffectChance: ImbuedEffectChance, IconName, WeaponParticlePreset, IsCraftable, ValidItemType, IngredientItem, IngredientAmount, StatsTuple).GetHashCode();
+            return (ItemTraitStringId, ItemTraitName, ItemTraitDescription, ResistanceTuple, AmplifierTuple, AdditionalDamageTuple, OnWeaponHitScript, OnInventoryUseScript, ImbuedStatusEffectId, ImbuedStatusEffectChance: ImbuedEffectChance, IconName, WeaponParticlePreset, IsCraftable, ValidItemType, IngredientItem, IngredientAmount, MetalItem, MetalAmount, StatsTuple).GetHashCode();
         }
 
         public static bool operator ==(ItemTrait left, ItemTrait right)

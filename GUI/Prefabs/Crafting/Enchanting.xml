@@ -157,7 +157,7 @@
                 <ItemTableauWidget DataSource="{ItemTableau}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="650" SuggestedHeight="650" MarginTop="15" HorizontalAlignment="Center" VerticalAlignment="Center" ItemModifierId="@ItemModifierId" StringId="@StringId" BannerCode="@BannerCode" InitialPanRotation="3" />
               </Children>
             </Widget>
-            <Widget Id="LowerRightPanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="320" MarginRight="20" IsVisible="@IsPreviewEnabled" VerticalAlignment="Bottom" HorizontalAligment="Center">
+            <Widget Id="LowerRightPanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="340" MarginRight="20" IsVisible="@IsPreviewEnabled" VerticalAlignment="Bottom" HorizontalAligment="Center">
               <Children>
                 <ListPanel DataSource="{SelectedTraits}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom" HorizontalAligment="Center" DoNotAcceptEvents="true" MarginLeft="60" MarginRight="60">
                   <ItemTemplate>
@@ -167,9 +167,10 @@
               </Children>
             </Widget>
 
-            <Widget Id="IngredientsWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="120" VerticalAlignment="Bottom" MarginBottom="100" IsVisible="@IsPreviewEnabled">
+            <Widget Id="IngredientsWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginBottom="100" IsVisible="@IsPreviewEnabled">
               <Children>
-                <ListPanel DataSource="{Ingredients}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="HorizontalCentered" HorizontalAligment="Center" MarginLeft="60" MarginRight="60">
+                <!--Six columns: the enchanting ingredients fill the first row, refined metals wrap onto a centred second row-->
+                <GridWidget DataSource="{Ingredients}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" DefaultCellWidth="90" DefaultCellHeight="120" ColumnCount="6" LayoutImp.HorizontalLayoutMethod="Center">
 
                   <ItemTemplate>
                     <Widget WidthSizePolicy="Fixed" SuggestedWidth="80" HeightSizePolicy="StretchToParent" VerticalAlignment="Center" MarginTop="5" MarginLeft="5" MarginRight="5">
@@ -196,7 +197,7 @@
                     </Widget>
                   </ItemTemplate>
 
-                </ListPanel>
+                </GridWidget>
               </Children>
             </Widget>
 

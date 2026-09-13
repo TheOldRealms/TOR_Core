@@ -120,6 +120,7 @@ namespace TOR_Core.CampaignMechanics
 
                 var list = ItemTrait.All.Where(x => e.Traits.Contains(x.ItemTraitStringId)).ToList();
                 var totalIngredientValue = 0;
+                var totalMetalXp = 0;
                 foreach (var trait in list)
                 {
                     var itemValue = 0;
@@ -138,10 +139,23 @@ namespace TOR_Core.CampaignMechanics
                     }
 
                     totalIngredientValue += itemValue * trait.IngredientAmount;
+
+                    if (trait.MetalAmount > 0)
+                    {
+                        // Metal amounts run ~10x ingredient amounts, so this is XP per unit directly rather than an ingredient value.
+                        var metalXpPerUnit = trait.MetalItem switch
+                        {
+                            CraftingMaterials.Iron6 => 240,
+                            CraftingMaterials.Iron5 => 120,
+                            CraftingMaterials.Iron4 => 60,
+                            _ => 30
+                        };
+                        totalMetalXp += metalXpPerUnit * trait.MetalAmount;
+                    }
                 }
 
-                Hero.MainHero.AddSkillXp(DefaultSkills.Crafting, totalIngredientValue * 100);
-                Hero.MainHero.AddSkillXp(TORSkills.Spellcraft, totalIngredientValue * 100);
+                Hero.MainHero.AddSkillXp(DefaultSkills.Crafting, totalIngredientValue * 100 + totalMetalXp);
+                Hero.MainHero.AddSkillXp(TORSkills.Spellcraft, totalIngredientValue * 100 + totalMetalXp);
             }
         }
 

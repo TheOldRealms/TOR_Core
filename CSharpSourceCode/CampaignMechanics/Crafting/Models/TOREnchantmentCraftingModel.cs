@@ -53,6 +53,25 @@ public class TOREnchantmentCraftingModel : GameModel
     public int GetEffectiveIngredientAmount(ItemTrait itemTrait, TorTradeGoodType ingredient)
     {
         var explainedNumber = new ExplainedNumber(itemTrait.IngredientAmount);
+        ApplyCostReductions(itemTrait, ref explainedNumber);
+        return (int)explainedNumber.ResultNumber;
+    }
+
+    /// <summary>
+    /// Refined-metal cost after the same career discounts as the ingredient. Never discounted
+    /// below 1, so a small metal cost cannot round away to free.
+    /// </summary>
+    public int GetEffectiveMetalAmount(ItemTrait itemTrait)
+    {
+        if (itemTrait.MetalAmount <= 0) return 0;
+
+        var explainedNumber = new ExplainedNumber(itemTrait.MetalAmount);
+        ApplyCostReductions(itemTrait, ref explainedNumber);
+        return Math.Max(1, (int)explainedNumber.ResultNumber);
+    }
+
+    private static void ApplyCostReductions(ItemTrait itemTrait, ref ExplainedNumber explainedNumber)
+    {
         var hero = Hero.MainHero;
 
         if (hero != null && EnchantmentBlueprints.IsKnown(itemTrait.ItemTraitStringId))
@@ -72,7 +91,5 @@ public class TOREnchantmentCraftingModel : GameModel
                 explainedNumber.AddFactor(factor(hero));
             }
         }
-
-        return (int)explainedNumber.ResultNumber;
     }
 }
