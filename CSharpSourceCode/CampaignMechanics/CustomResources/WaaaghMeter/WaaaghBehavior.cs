@@ -329,7 +329,7 @@ public class WaaaghBehavior : CampaignBehaviorBase
         // Update previous level for next check
         _previousWaaaghLevel = currentLevel;
 
-        // Remove all Wargh state attributes
+        // Remove all Waaagh state attributes
         Hero.MainHero.RemoveAttribute(CharacterAttributes.WAAAAGH_0);
         Hero.MainHero.RemoveAttribute(CharacterAttributes.WAAAAGH_1);
         Hero.MainHero.RemoveAttribute(CharacterAttributes.WAAAAGH_2);
