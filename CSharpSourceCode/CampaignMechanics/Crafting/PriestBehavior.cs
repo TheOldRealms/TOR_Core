@@ -125,7 +125,7 @@ public class PriestBehavior : CampaignBehaviorBase
 
     private bool IsPriestInTown(Settlement settlement)
     {
-        var location = settlement.LocationComplex.GetLocationWithId("lordshall");
+        var location = settlement.LocationComplex.GetLocationWithId("house_1");
         var trainer = GetPriestForTown(settlement);
         if (trainer != null) return location.GetLocationCharacter(trainer) != null;
 
