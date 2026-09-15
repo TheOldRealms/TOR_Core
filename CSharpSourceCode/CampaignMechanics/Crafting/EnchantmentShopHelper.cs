@@ -182,6 +182,7 @@ public static class EnchantmentShopHelper
         if (!hintText.GetVariableValue("REQUIREMENT_TEXT", out var requirementText) ||
             requirementText != null && requirementText.ToString().IsEmpty())
         {
+            // TODO: >= means holding exactly the cost counts as "Not enough", so the purchase is blocked. Should this be >? -> PR discussion.
             var missingCustomResource = crCost >= Hero.MainHero.GetCultureSpecificCustomResourceValue();
             var missingGold = goldCost >= Hero.MainHero.Gold;
 

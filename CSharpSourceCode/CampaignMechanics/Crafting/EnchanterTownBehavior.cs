@@ -708,6 +708,7 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                                     resources[(int)type] += (int)Mathf.Max(1, trait.IngredientAmount * factor);
 
                                     customResourceElem += model.GetCustomResourceValueForIngredient(type) * trait.IngredientAmount;
+                                    // TODO: Doubles per ingredient trait (1/3, 2/3, 4/3, 8/3...), so the donation payout grows exponentially with trait count. Intended, or should it add 1/3 each time? -> PR discussion.
                                     customResourceFactor += customResourceFactor;
                                 }
                             }
