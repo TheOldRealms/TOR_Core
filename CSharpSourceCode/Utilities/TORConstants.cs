@@ -50,6 +50,7 @@ namespace TOR_Core.Utilities
             public const string GOBLIN_BANDIT = "looters";
             public const string CHAOS_CULTIST = "forest_bandits";
             public const string EMPIRE_DESERTERS = "mountain_bandits";
+            public const string NORSCAN_RAIDERS = "sea_raiders";
 
             public static readonly List<string> All =
             [

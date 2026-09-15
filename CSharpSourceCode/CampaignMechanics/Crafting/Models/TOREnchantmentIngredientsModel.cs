@@ -53,7 +53,10 @@ public class TOREnchantmentIngredientsModel : GameModel
             careerBonus += bonus(Hero.MainHero);
         }
 
-        return (int)(dropscore * GetDropAmplitude(ingredient) * RandomMultiplier(ingredient) * playerEarnedLootRate * careerBonus);
+        var amount = dropscore * GetDropAmplitude(ingredient) * RandomMultiplier(ingredient) * playerEarnedLootRate * careerBonus;
+
+        // Gems are tuned as a steady per-battle reward; truncating would cost ~0.5 gem every fight.
+        return ingredient == TorTradeGoodType.GemStone ? MBRandom.RoundRandomized(amount) : (int)amount;
     }
 
 
@@ -248,7 +251,7 @@ public class TOREnchantmentIngredientsModel : GameModel
                 amplitude = 0.05f / 3f; // this and amber will need further adjustments
                 break;
             case TorTradeGoodType.GemStone:
-                amplitude = 0.05f;
+                amplitude = 0.15f; // only four races drop gems and gem-priced recipes are the most expensive, so this runs above the others
                 break;
             case TorTradeGoodType.Invalid:
                 break;
@@ -287,7 +290,8 @@ public class TOREnchantmentIngredientsModel : GameModel
                 randomMax = 3f;
                 break;
             case TorTradeGoodType.GemStone:
-                randomMax = 1f;
+                randomMin = 0.75f; // narrow spread: gems should be predictable, not a lottery
+                randomMax = 1.25f;
                 break;
             case TorTradeGoodType.Invalid:
                 break;

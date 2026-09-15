@@ -730,6 +730,7 @@
   <string id="tor_enchanting_requires_lore" text="{=str_tor_enchanting_requires_lore}Requires a character who knows the Lore of {LORE}." />
   <string id="tor_enchanting_requires_attribute" text="{=str_tor_enchanting_requires_attribute}Requires a character with {ATTRIBUTE}." />
   <string id="tor_enchantmentshop_future_requirement" text="{=str_tor_enchantmentshop_future_requirement}You can learn this now, but cannot enchant with it yet. {REQUIREMENT}" />
+  <string id="tor_hideout_ingredients_found_text" text="{=str_tor_hideout_ingredients_found_text}You found {AMOUNT} {ITEM_NAME} hoarded in the hideout." />
 
   <!-- EMPIRE (empire) - Imperial Alchemist dialogs -->
   <string id="tor_enchanter_start_p.empire" text="{=str_tor_enchanter_start_p_empire}I wish to learn about enchantment." />

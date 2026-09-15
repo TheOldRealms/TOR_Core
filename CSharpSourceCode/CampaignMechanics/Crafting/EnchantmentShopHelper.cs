@@ -64,7 +64,11 @@ public static class EnchantmentShopHelper
     }
 
     private static List<InquiryElement> BuildInquiryElements(List<PurchasableBlueprint> blueprints) =>
-        blueprints.WhereQ(b  => IsUsableTrait(b.Item)).SelectQ(CreateInquiryElement).ToListQ();
+        blueprints.WhereQ(b  => IsUsableTrait(b.Item))
+            .OrderBy(b => b.RequiredSkillValue)
+            .ThenBy(b => b.Item.Name.ToString())
+            .Select(CreateInquiryElement)
+            .ToList();
 
     private static InquiryElement CreateInquiryElement(PurchasableBlueprint blueprint)
     {
