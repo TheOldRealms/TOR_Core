@@ -62,7 +62,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
                 var maxTraits = CalculateMaxTraits();
                 if (SelectedTraits.Count >= maxTraits)
                 {
-                    var selectHint = GameTexts.FindText("tor_enchant_hint_max_traits_selectable");
+                    var selectHint = TORTextHelper.GetTextObject("tor_enchant_hint_max_traits_selectable", "You can only select {MAX_TRAITS} traits");
                     selectHint.SetTextVariable("MAX_TRAITS", maxTraits);
                     InformationManager.ShowInquiry(new InquiryData(TORTextHelper.GetText("tor_enchanting_title_text", "Enchanting"), selectHint.ToString(), true, false, TORTextHelper.GetText("tor_inquiry_ok_text", "OK"), null, null, null), true);
                     itemTrait.DeselectTrait();
@@ -314,5 +314,17 @@ namespace TOR_Core.CampaignMechanics.Crafting
                 }
             }
         }
+
+        [DataSourceProperty]
+        public string ItemsHeaderText => TORTextHelper.GetText("tor_enchanting_items_header", "Items");
+
+        [DataSourceProperty]
+        public string TraitsHeaderText => TORTextHelper.GetText("tor_enchanting_traits_header", "Enchantments");
+
+        [DataSourceProperty]
+        public string EnchantButtonText => TORTextHelper.GetText("tor_enchanting_enchant_button", "Enchant");
+
+        [DataSourceProperty]
+        public string DoneButtonText => TORTextHelper.GetText("str_done", "Done");
     }
 }

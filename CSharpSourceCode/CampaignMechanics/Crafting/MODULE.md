@@ -4,9 +4,9 @@ Per-class lookup for `CampaignMechanics/Crafting/`.
 
 | Class | File | What it does |
 |---|---|---|
-| `CraftingModule` | `CraftingModule.cs` | `[TORModule] : ITORModule` — registers this module's behaviors and models with `SubModule`. |
+| `CraftingModule` | `CraftingModule.cs` | `[TORModule] : ITORModule` — registers behaviors and models. |
 | `EnchanterTownBehavior` | `EnchanterTownBehavior.cs` | Town service: culture → enchanter NPC template/dialogs, opens `EnchantingScreen`. |
-| `PriestBehavior` | `PriestBehavior.cs` | Town service: culture/cult → priest NPC, opens the blessing-flavoured shop. Reaches into `Religion` for `ReligionObject.All` — the one surviving outbound edge. |
+| `PriestBehavior` | `PriestBehavior.cs` | Town service: culture/cult → priest NPC, opens the blessing shop. `ReligionObject.All` is the one surviving outbound edge. |
 | `TORArtisanDistrictCampaignBehavior` (+ `TorItemDuplicationData`, `TorItemBeingCraftedData`) | `TORArtisanDistrictCampaignBehavior.cs` | Artisan district: duplication/queued-crafting state, replaces the vanilla smithy menu. |
 | `EnchantmentBlueprintBehavior` / `EnchantmentBlueprints` | `EnchantmentBlueprintBehavior.cs`, `EnchantmentBlueprints.cs` | The campaign-wide blueprint store and its query/learn API. |
 | `EnchantmentIngredientLootCampaignBehavior` | same | Ingredient drops in post-battle loot; clears leftover settlement stock. |
@@ -39,5 +39,5 @@ Frozen by Epic 2; anything absent is free to restructure.
 
 ## See also
 
-`Framework/TorEnchantingIngredients` (the six ingredient `ItemObject`s), `Items/ItemTrait`,
-`Framework/CraftingCareerHooks`.
+`Framework/TorEnchantingIngredients`, `Items/ItemTrait`, `Framework/CraftingCareerHooks`.
+Strings: `tor_strings.xml` — *priest blessings*, *Enchantment Shop*, *Enchanting UI Messages*.

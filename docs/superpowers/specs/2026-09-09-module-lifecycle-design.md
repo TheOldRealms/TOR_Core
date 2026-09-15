@@ -1,7 +1,7 @@
 # Module Lifecycle — Design
 
 **Date:** 2026-09-09
-**Amended:** 2026-09-11 — four steps became five epics (Amendment 1); the edge scan's blind spot recorded (Amendment 2).
+**Amended:** 2026-09-11 — four steps became five epics (Amendment 1); the edge scan's blind spot recorded (Amendment 2). 2026-09-15 — Epic 3's open questions settled (Amendment 3).
 **Status:** Approved. Epics 1 and 2 specified in detail; 3–5 deepen on first use.
 
 Defines the process every module in `CSharpSourceCode/` passes through. Companion to
@@ -63,6 +63,23 @@ likely shape: a Roslyn or reflection pass that resolves each `Framework/` extens
 return type and flags any that belong to `CampaignMechanics/<Module>`, run once per module as
 part of 2.1 rather than written per module. Until it exists, Epic 2 plans should state that their
 edge inventory covers `using` directives only.
+
+## Amendment 3 — 2026-09-15: Epic 3 settled on first use
+
+From Crafting's Strings epic; reasoning in `docs/testplans/crafting-strings.md`, D1–D9.
+
+- **`tortools` writes are not usable yet.** `strings_add` regenerates the whole file and drops all
+  326 category comments; its category model knows two categories. Until TOR_Tools preserves
+  comments, edit `tor_strings.xml` by hand into the matching comment block, use the server for
+  reads, and check `grep -c "<!--"` is unchanged. The server indexes in memory — restart it after
+  hand edits, and never run a write tool on a stale index.
+- **Player-visible** means drawn on screen, tooltips and notifications included. Exception and
+  log text stays literal.
+- **Category:** the existing feature blocks. No per-module block or subcategory.
+- **Regression check:** none automatic. Run `docs/superpowers/tools/strings-audit.ps1` in every
+  Strings epic.
+- **`ModuleData/Languages/`:** not needed until a translation is commissioned. Until then,
+  renaming or deleting ids is free.
 
 ## Why five epics and not one pass
 
@@ -251,7 +268,8 @@ The work, per module:
 3. Audit the module's existing ids: right category, no orphans, no id referenced from code but
    absent from the file.
 
-**Never hand-edit `tor_strings.xml`.** It is ~5,900 lines; a dropped or malformed id is
+**Never hand-edit `tor_strings.xml`** — *suspended by Amendment 3 until `tortools` writes keep the
+file's comments.* It is ~5,900 lines; a dropped or malformed id is
 invisible until a player sees a raw `{=str_tor_...}` in-game. The server indexes the file and
 validates writes — that is the whole reason Epic 3 waited for it.
 

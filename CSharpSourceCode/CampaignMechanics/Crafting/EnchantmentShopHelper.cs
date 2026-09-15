@@ -26,10 +26,11 @@ public static class EnchantmentShopHelper
         var selectableItems = BuildInquiryElements(purchasableBlueprints);
 
         var shopVariation = GetShopVariation(culture, blessings);
-        var title = GameTexts.FindText("tor_enchantmentshop_title", shopVariation).ToString();
-        var description = GameTexts.FindText("tor_enchantmentshop_description", shopVariation).ToString();
+        var title = TORTextHelper.GetText("tor_enchantmentshop_title", shopVariation, "Make your choice…");
+        var description = TORTextHelper.GetText("tor_enchantmentshop_description", shopVariation, "Select an arcane scroll to study:");
 
-        var inquirydata = new MultiSelectionInquiryData(title, description, selectableItems, true, 1, 1, "Accept", "Cancel",
+        var inquirydata = new MultiSelectionInquiryData(title, description, selectableItems, true, 1, 1,
+            TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
             AddEnchantment, null, "", true);
         MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
     }
@@ -73,23 +74,24 @@ public static class EnchantmentShopHelper
         var crCost = CalculateCustomResourceCost(blueprint.RequiredSkillValue);
         var goldCost = blueprint.Item.Value;
 
-        var unaffordable = BuildUnaffordableText(crCost, goldCost);
-        var enabled = unaffordable == null;
-
+        // Set before BuildUnaffordableText: it resolves {CUSTOMRESOURCE} immediately.
         SetValidItemTypeRestrictionVariable(blueprint.BlueprintId);
         GameTexts.SetVariable("CR_VALUE", crCost);
         GameTexts.SetVariable("CUSTOMRESOURCE", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText());
         GameTexts.SetVariable("GOLD_VALUE", goldCost);
 
+        var unaffordable = BuildUnaffordableText(crCost, goldCost);
+        var enabled = unaffordable == null;
+
         var notice = unaffordable ?? BuildFutureRequirementText(blueprint);
 
         var hintText = string.IsNullOrEmpty(notice)
-            ? new TextObject(trait.ItemTraitDescription + "\n {GOLD_VALUE}{GOLD_ICON} , {CR_VALUE}{CUSTOMRESOURCE},\n {VALIDTYPE_RESTRICTION}")
-            : new TextObject("{TRAIT_EFFECT}\n\n{REQUIREMENT_TEXT}\n\n{COMPLETE_COST}");
+            ? TORTextHelper.GetTextObject("tor_enchantmentshop_blueprint_hint", "{TRAIT_EFFECT}{newline}{COMPLETE_COST}{newline}{VALIDTYPE_RESTRICTION}")
+            : TORTextHelper.GetTextObject("tor_enchantmentshop_blueprint_hint_notice", "{TRAIT_EFFECT}{newline}{newline}{REQUIREMENT_TEXT}{newline}{newline}{COMPLETE_COST}");
 
         hintText.SetTextVariable("REQUIREMENT_TEXT", notice);
         hintText.SetTextVariable("TRAIT_EFFECT", trait.ItemTraitDescription);
-        hintText.SetTextVariable("COMPLETE_COST", "{GOLD_VALUE}{GOLD_ICON} , {CR_VALUE}{CUSTOMRESOURCE}");
+        hintText.SetTextVariable("COMPLETE_COST", TORTextHelper.GetTextObject("tor_enchantmentshop_blueprint_cost", "{GOLD_VALUE}{GOLD_ICON}, {CR_VALUE}{CUSTOMRESOURCE}"));
 
         return new InquiryElement(new Tuple<List<Hero>, ItemObject>(blueprint.EligibleHeroes, blueprint.Item), blueprint.Item.Name.ToString(), new ItemImageIdentifier(blueprint.Item), enabled, hintText.ToString());
     }
@@ -116,19 +118,17 @@ public static class EnchantmentShopHelper
     /// </summary>
     private static string BuildUnaffordableText(int crCost, int goldCost)
     {
-        var missing = new List<string>();
+        var lacksResource = crCost >= Hero.MainHero.GetCultureSpecificCustomResourceValue();
+        var lacksGold = goldCost >= Hero.MainHero.Gold;
 
-        if (crCost >= Hero.MainHero.GetCultureSpecificCustomResourceValue())
-        {
-            missing.Add("{CUSTOMRESOURCE}");
-        }
+        if (lacksResource && lacksGold)
+            return TORTextHelper.GetText("tor_enchantmentshop_insufficient_both", "Not enough {CUSTOMRESOURCE} and {GOLD_ICON}.");
+        if (lacksResource)
+            return TORTextHelper.GetText("tor_enchantmentshop_insufficient_customresource", "Not enough {CUSTOMRESOURCE}.");
+        if (lacksGold)
+            return TORTextHelper.GetText("tor_enchantmentshop_insufficient_gold", "Not enough {GOLD_ICON}.");
 
-        if (goldCost >= Hero.MainHero.Gold)
-        {
-            missing.Add("{GOLD_ICON}");
-        }
-
-        return missing.Any() ? "Not enough " + string.Join(" and ", missing) + "." : null;
+        return null;
     }
 
     private static bool IsUsableTrait(ItemObject item)
@@ -168,7 +168,7 @@ public static class EnchantmentShopHelper
         var underlyingTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == blueprintId);
         if (underlyingTrait != null)
         {
-            var typeRestriction = GameTexts.FindText("tor_enchantmentshop_restriction", underlyingTrait.ValidItemType.ToString()).ToString();
+            var typeRestriction = TORTextHelper.GetText("tor_enchantmentshop_restriction", underlyingTrait.ValidItemType.ToString(), "");
             GameTexts.SetVariable("VALIDTYPE_RESTRICTION", typeRestriction);
         }
     }

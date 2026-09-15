@@ -521,10 +521,7 @@
   <!-- priest blessings -->
   <string id="tor_priest_hub_intro.cult_of_ulric" text="{=str_tor_priest_hub_intro_cult_of_ulric}In the name of Ulric, how can I help you?" />
   <string id="tor_priest_hub_reintro.cult_of_ulric" text="{=str_tor_priest_hub_reintro_cult_of_ulric}Did you need something else?" />
-  <string id="tor_priest_hub_blessings_p.cult_of_ulric" text="{=str_tor_priest_hub_blessings_p_cult_of_ulric}I wish to learn more about the Great Wolf." />
   <string id="tor_priest_hub_quit_p.cult_of_ulric" text="{=str_tor_priest_hub_quit_p_cult_of_ulric}I must leave, may Ulric guide your blade." />
-  <string id="tor_priest_blessings_1.cult_of_ulric" text="{=str_tor_priest_blessings_1_cult_of_ulric}PLEASE REPORT WHERE YOU SEE THIS For a donation in Sigmar's name, I can grant you access to our holy tomes." />
-  <string id="tor_priest_blessings_decline.cult_of_ulric" text="{=str_tor_priest_blessings_decline_cult_of_ulric}PLEASE REPORT WHERE YOU SEE THIS You should talk to an Alchemist first. There is much more to learn before I can show you how you can bless your equipment." />
   <string id="tor_priest_start_accept.cult_of_ulric" text="{=str_tor_priest_start_accept_cult_of_ulric}Children of the Wolf, welcome!" />
   <string id="tor_priest_start_decline.cult_of_ulric" text="{=str_tor_priest_start_decline_cult_of_ulric}You need a follower of Ulric in your party if you wish to speak to me, stranger." />
   <string id="tor_priest_start_decline_hard.cult_of_ulric" text="{=str_tor_priest_start_decline_hard_cult_of_ulric}Leave, before I bare my fangs, outsider!" />
@@ -539,14 +536,11 @@
   <string id="tor_priest_start_decline_hard.cult_of_sigmar" text="{=str_tor_priest_start_decline_hard_cult_of_sigmar}Begone from my sight, at once!" />
   <string id="tor_priest_hub_intro.cult_of_sigmar" text="{=str_tor_priest_hub_intro_cult_of_sigmar}In the name of Sigmar, how can I help you?" />
   <string id="tor_priest_hub_reintro.cult_of_sigmar" text="{=str_tor_priest_hub_reintro_cult_of_sigmar}Was there something else?" />
-  <string id="tor_priest_hub_blessings_p.cult_of_sigmar" text="{=str_tor_priest_hub_blessings_p_cult_of_sigmar}Can you show me how to bless weapons in the name of Sigmar?" />
   <string id="tor_priest_hub_blessingshop_p.cult_of_sigmar" text="{=str_tor_priest_hub_blessingshop_p_cult_of_sigmar}Tell me more about blessing items in the name of Sigmar." />
   <string id="tor_priest_hub_party_blessing_p.cult_of_sigmar" text="{=str_tor_priest_hub_party_blessing_p_cult_of_sigmar}Can we receive the Heldenhammer's Blessing?" />
   <string id="tor_priest_hub_quit_p.cult_of_sigmar" text="{=str_tor_priest_hub_quit_p_cult_of_sigmar}I must leave." />
   <string id="tor_priest_blessingshop_1.cult_of_sigmar" text="{=str_tor_priest_blessingshop_1_cult_of_sigmar}For a donation, in Sigmar's name, I can grant you access to our holy tomes." />
-  <string id="tor_priest_blessingshop_decline.cult_of_sigmar" text="{=str_tor_priest_blessingshop_decline_cult_of_sigmar}You should talk to an Alchemist first. There is much more to learn before I can show you how you can bless your equipment." />
   <string id="tor_priest_blessing_party_1.cult_of_sigmar" text="{=str_tor_priest_blessing_party_1_cult_of_sigmar}By Sigmar Heldenhammer and Ghal Maraz, may your righteous wrath smite the unclean. Suffer not the foul, the mutant, the heretic for Sigmar walks with thee…" />
-  <string id="tor_priest_blessings_decline.cult_of_sigmar" text="{=str_tor_priest_blessings_decline_cult_of_sigmar}You have been blessed recently, there is no need of giving you the blessing." />
   <string id="tor_priest_hub_party_blessing_decline.cult_of_sigmar" text="{=str_tor_priest_hub_party_blessing_decline_cult_of_sigmar}You have been blessed by Sigmar recently, there is no need for another blessing." />
   <string id="tor_priest_hub_quit.cult_of_sigmar" text="{=str_tor_priest_hub_quit_cult_of_sigmar}Sigmar guide your path." />
   <string id="tor_priest_start_accept.cult_of_shallya" text="{=str_tor_priest_start_accept_cult_of_shallya}Welcome, friend of Shallya." />
@@ -558,9 +552,7 @@
   <string id="tor_priest_hub_party_blessing_p.cult_of_shallya" text="{=str_tor_priest_hub_party_blessing_p_cult_of_shallya}We wish to be blessed by the Lady in White." />
   <string id="tor_priest_hub_quit_p.cult_of_shallya" text="{=str_tor_priest_hub_quit_p_cult_of_shallya}I must take my leave." />
   <string id="tor_priest_blessingshop_1.cult_of_shallya" text="{=str_tor_priest_blessingshop_1_cult_of_shallya}For a small donation, you may access our tomes of healing and faith." />
-  <string id="tor_priest_blessingshop_decline.cult_of_shallya" text="{=str_tor_priest_blessingshop_decline_cult_of_shallya}You should talk to an Alchemist first. There is much more to learn before I can show you how you can bless your equipment." />
   <string id="tor_priest_blessing_party_1.cult_of_shallya" text="{=str_tor_priest_blessing_party_1_cult_of_shallya}May Her mercy and compassion serve Her humble followers…" />
-  <string id="tor_priest_blessings_decline.cult_of_shallya" text="{=str_tor_priest_blessings_decline_cult_of_shallya}You have been blessed recently, there is no need of giving you the blessing of a deity." />
   <string id="tor_priest_hub_party_blessing_decline.cult_of_shallya" text="{=str_tor_priest_hub_party_blessing_decline_cult_of_shallya}The Lady's healing light is with you still, return at a later time." />
   <string id="tor_priest_hub_quit.cult_of_shallya" text="{=str_tor_priest_hub_quit_cult_of_shallya}May Shallya's mercy be with you." />
 
@@ -691,16 +683,15 @@
   <string id="tor_enchantmentshop_restriction.Thrown" text="{=str_tor_enchantmentshop_restriction_Thrown}Applies to thrown weapons" />
   <string id="tor_enchantmentshop_restriction.Invalid" text="{=str_tor_enchantmentshop_restriction_Invalid}" />
 
-  <!-- Enchantment Shop - skill requirement hints -->
-  <string id="tor_enchantmentshop_requirement_self" text="{=str_tor_enchantmentshop_requirement_self}{RESTRICTION_PREFIX}You don't have enough {SKILL}. Requires {VALUE}." />
-  <string id="tor_enchantmentshop_requirement_hero" text="{=str_tor_enchantmentshop_requirement_hero}{RESTRICTION_PREFIX}{HERO} doesn't have enough {SKILL}. Requires {VALUE}." />
-  <string id="tor_enchantmentshop_requirement_none" text="{=str_tor_enchantmentshop_requirement_none}{RESTRICTION_PREFIX}None of your eligible characters have enough {SKILL}. Requires {VALUE}." />
-  <string id="tor_enchantmentshop_requirement_prefix_lore" text="{=str_tor_enchantmentshop_requirement_prefix_lore}This enchantment is bound to the Lore of {LORE}. " />
-  <string id="tor_enchantmentshop_requirement_prefix_other" text="{=str_tor_enchantmentshop_requirement_prefix_other}This enchantment requires {RESTRICTION}. " />
+  <!-- Enchantment Shop - blueprint hints -->
+  <string id="tor_enchantmentshop_blueprint_hint" text="{=str_tor_enchantmentshop_blueprint_hint}{TRAIT_EFFECT}{newline}{COMPLETE_COST}{newline}{VALIDTYPE_RESTRICTION}" />
+  <string id="tor_enchantmentshop_blueprint_hint_notice" text="{=str_tor_enchantmentshop_blueprint_hint_notice}{TRAIT_EFFECT}{newline}{newline}{REQUIREMENT_TEXT}{newline}{newline}{COMPLETE_COST}" />
+  <string id="tor_enchantmentshop_blueprint_cost" text="{=str_tor_enchantmentshop_blueprint_cost}{GOLD_VALUE}{GOLD_ICON}, {CR_VALUE}{CUSTOMRESOURCE}" />
 
   <!-- Enchantment Shop - insufficient funds hints -->
   <string id="tor_enchantmentshop_insufficient_both" text="{=str_tor_enchantmentshop_insufficient_both}Not enough {CUSTOMRESOURCE} and {GOLD_ICON}." />
   <string id="tor_enchantmentshop_insufficient_customresource" text="{=str_tor_enchantmentshop_insufficient_customresource}Not enough {CUSTOMRESOURCE}." />
+  <string id="tor_enchantmentshop_insufficient_gold" text="{=str_tor_enchantmentshop_insufficient_gold}Not enough {GOLD_ICON}." />
 
   <!-- Enchanting UI Messages -->
   <string id="tor_enchanting_title_text" text="{=str_tor_enchanting_title_text}Enchanting" />
@@ -713,8 +704,17 @@
   <string id="tor_enchantment_learned_text" text="{=str_tor_enchantment_learned_text}{ENCHANTMENT_NAME} has been learnt." />
   <string id="tor_enchantment_already_learned_text" text="{=str_tor_enchantment_already_learned_text}You have already learned this enchantment." />
   <string id="tor_enchantment_manuscript_useless_text" text="{=str_tor_enchantment_manuscript_useless_text}The manuscript is of no use for you." />
+  <string id="tor_enchanting_items_header" text="{=str_tor_enchanting_items_header}Items" />
+  <string id="tor_enchanting_traits_header" text="{=str_tor_enchanting_traits_header}Enchantments" />
+  <string id="tor_enchanting_enchant_button" text="{=str_tor_enchanting_enchant_button}Enchant" />
+  <string id="tor_enchant_trait_hint_requirement" text="{=str_tor_enchant_trait_hint_requirement}{DESCRIPTION}{newline}{newline}{REQUIREMENT}" />
+  <string id="tor_gained_resource_notification_text" text="{=str_tor_gained_resource_notification_text}Gained {AMOUNT}{RESOURCE_ICON}" />
+  <string id="tor_gained_items_notification_text" text="{=str_tor_gained_items_notification_text}Gained {ITEMS}" />
+  <string id="tor_gained_item_amount_text" text="{=str_tor_gained_item_amount_text}{AMOUNT} {ITEM_NAME}" />
   <string id="tor_enchant_prompt_donate_items.title" text="{=str_tor_enchant_prompt_donate_items_title}Donate items" />
   <string id="tor_enchant_prompt_donate_items.text" text="{=str_tor_enchant_prompt_donate_items_text}Select the items you want to donate. You will obtain {CUSTOMRESOURCE_ICON} from this action. " />
+  <string id="tor_enchant_prompt_disintegrate.title" text="{=str_tor_enchant_prompt_disintegrate_title}Disenchant items" />
+  <string id="tor_enchant_prompt_disintegrate.text" text="{=str_tor_enchant_prompt_disintegrate_text}Select the items you want to disenchant. Their ingredients will be returned to you." />
   <string id="tor_enchant_no_description" text="{=str_tor_enchant_no_description}No description available." />
   <string id="tor_enchanting_title" text="{=str_tor_enchanting_title}Enchanting" />
   <string id="tor_runesmithing_title" text="{=str_tor_runesmithing_title}Runesmithing" />
@@ -2000,7 +2000,8 @@
   <string id="str_weapon_usage.TorOrcTwoHandedAxe" text="{=str_tor_weapon_usage_TorOrcTwoHandedAxe}Orc Two Handed Axe" />
   <string id="str_weapon_usage.TorOrcStaves" text="{=str_tor_weapon_usage_TorOrcStaves}Orc Staff" />
   <string id="str_weapon_usage.TorLargeMonsterWeapon" text="{=str_tor_weapon_usage_TorLargeMonsterWeapon}LargeMonsterWeapon" />
-  <string id="tor_crafting.refine_all" text="{=str_tor_refine_all_text}Refine All" />
+  <string id="tor_refine_all_text" text="{=str_tor_refine_all_text}Refine All" />
+  <string id="tor_refine_all_count_text" text="{=str_tor_refine_all_count_text}Refine All ({COUNT})" />
   <string id="tor_refine_all_hint" text="{=str_tor_refine_all_hint}Refine repeatedly until stamina or materials are exhausted" />
 
   <!-- inventory -->
@@ -5806,7 +5807,7 @@
   <string id="tor_settlement_graveyard_closed" text="{=str_tor_settlement_graveyard_closed}The Graveyard's massive iron gates are closed shut." />
 
   <!-- Other Missing Texts -->
-  <string id="ironingot6_name" text="{=str_ironingot6_name}Gromril{@Plural}loads of gromril{\@}" />
+  <string id="tor_ironingot6_name" text="{=str_tor_ironingot6_name}Gromril{@Plural}loads of gromril{\@}" />
 
   <!-- Diplomacy -->
   <string id="tor_alliance_lore" text="{=str_tor_alliance_lore}Faction disposition" />

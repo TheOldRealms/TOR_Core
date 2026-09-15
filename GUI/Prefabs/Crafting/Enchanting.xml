@@ -34,7 +34,7 @@
         <!--Left Panel-->
         <Widget VisualDefinition="LeftPanel" Id="LeftPanel" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="500" HorizontalAlignment="Left" MarginLeft="60" MarginTop="160" MarginBottom="60" VerticalAlignment="Center" DoNotAcceptEvents="true">
           <Children>
-            <RichTextWidget Id="LeftPanelText" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Text="Items" PositionYOffset="-45" HorizontalAlignment="Center" Brush="Quest.CenterPanel.Title.Text" Brush.FontSize="36" />
+            <RichTextWidget Id="LeftPanelText" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Text="@ItemsHeaderText" PositionYOffset="-45" HorizontalAlignment="Center" Brush="Quest.CenterPanel.Title.Text" Brush.FontSize="36" />
             <Widget Id="LeftPanelBackground" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="StdAssets\Popup\canvas" DoNotAcceptEvents="true">
               <Children>
 
@@ -99,7 +99,7 @@
         <!--Center Panel-->
         <Widget Id="CenterPanel" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="500" HorizontalAlignment="Center" MarginTop="160" MarginBottom="60" VerticalAlignment="Center">
           <Children>
-            <RichTextWidget Id="CenterPanelText" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Text="Enchantments" PositionYOffset="-45" HorizontalAlignment="Center" Brush="Quest.CenterPanel.Title.Text" Brush.FontSize="36" />
+            <RichTextWidget Id="CenterPanelText" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Text="@TraitsHeaderText" PositionYOffset="-45" HorizontalAlignment="Center" Brush="Quest.CenterPanel.Title.Text" Brush.FontSize="36" />
             <Widget Id="CenterPanelBackground" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="StdAssets\Popup\canvas">
               <Children>
 
@@ -204,7 +204,7 @@
               <Children>
                 <ButtonWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Popup.Done.Button" HorizontalAligment="Center" MarginLeft="120" MarginRight="120" Command.Click="ExecuteEnchant" >
                   <Children>
-                    <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Popup.Button.Text" Text="Enchant" HorizontalAligment="Center" DoNotAcceptEvents="true" />
+                    <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Popup.Button.Text" Text="@EnchantButtonText" HorizontalAligment="Center" DoNotAcceptEvents="true" />
                   </Children>
                 </ButtonWidget>
               </Children>
@@ -213,7 +213,7 @@
         </Widget>
 
         <!--Close Screen Button-->
-        <Standard.DialogCloseButtons VisualDefinition="BottomMenu" HorizontalAlignment="Center" VerticalAlignment="Bottom" PositionYOffset="100" Parameter.DoneButtonAction="ExecuteClose" Parameter.DoneButtonText="Done" Parameter.ShowCancel="false" />
+        <Standard.DialogCloseButtons VisualDefinition="BottomMenu" HorizontalAlignment="Center" VerticalAlignment="Bottom" PositionYOffset="100" Parameter.DoneButtonAction="ExecuteClose" Parameter.DoneButtonText="@DoneButtonText" Parameter.ShowCancel="false" />
 
       </Children>
     </Widget>

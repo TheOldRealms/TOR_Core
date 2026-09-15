@@ -26,7 +26,7 @@ Ordered by suggested Modularize sequence: proven-small first, split-heavy in the
 
 | # | Module | 1 Modularize | 2 Framework | 3 Strings | 4 Codesmells | 5 Pattern | Notes |
 |---|---|---|---|---|---|---|---|
-| 0 | `Crafting` | **PR** | **PR** | next | — | — | The worked example. Epic 1 on `feature/moduleCrafting`, Epic 2 on `feature/FrameworkCrafting` — both unmerged, stacked (`next_update` → `moduleCrafting` → `CentralizeCraftingRecipes` → `FrameworkCrafting`). Epic 2 promoted `TORSettlementMenuHelpers` and `TorEnchantingIngredients` to `Framework/` and froze the inbound set as Public Surface in `MODULE.md`. One outbound edge survives — `PriestBehavior` → `Religion.ReligionObject.All` — deferred to Religion's Epic 1. Strings unblocked: `tortools` MCP server is live. |
+| 0 | `Crafting` | **PR** | **PR** | **PR** | next | — | The worked example. Epics 1–3 unmerged, stacked (`next_update` → `moduleCrafting` → `CentralizeCraftingRecipes` → `FrameworkCrafting` → `StringsCrafting`). Epic 2 froze the inbound set as Public Surface in `MODULE.md`; one outbound edge survives — `PriestBehavior` → `Religion.ReligionObject.All` — deferred to Religion's Epic 1. Epic 3: 4 ids code asked for never existed; 13 orphans deleted. **Epic 4 must** delete the unreachable `DonationMode(false)` branch in `EnchanterTownBehavior` together with its 4 strings (`../testplans/crafting-strings.md`, D5). |
 | 1 | `BountyMaster` | — | — | — | — | — | Small, few cross-references. Good second module. |
 | 2 | `PostBattleLoot` | — | — | — | — | — | Small, few cross-references. |
 | 3 | `Villages` | — | — | — | — | — | Pulls in `TORVillageProductionCalculatorModel`; possibly `PlaguedVillageQuestCampaignBehavior` (*verify*). |
@@ -63,7 +63,7 @@ Not modules, but module work depends on them.
 | Item | State | Notes |
 |---|---|---|
 | `ITORModule` / `TORModuleAttribute` | done | In `Framework/`. Proven by `CraftingModule`. |
-| `TOR_Tools` XML handling | **being designed — blocks every Strings epic** | All XML handling routes through it. Nothing in Epic 3 starts until it exists. |
+| `TOR_Tools` XML handling | reads work; **writes strip every comment block** | Strings epics hand-edit `tor_strings.xml` until fixed (spec Amendment 3). A TOR_Tools change, not a module one. |
 | Save-namespace safety probe | **not run — blocking** | Open question O1. Must precede the first module that moves a `SaveableTypeDefiner`-registered type. Cheap and standalone; run it alone so a failure is unambiguous. |
 | Extension-method edge audit | **deferred — revisit before the third module's Epic 2** | Epic 2's exit criteria are `using` scans; a Framework extension method returning a module type (`Hero.GetCareer()` → `CareerObject`) passes them invisibly. Found in Crafting Epic 2, spec Amendment 2. Tooling question, not a per-module one — doing it by hand across 30 modules is the expensive path. |
 | `TORModuleRegistry` (reflection discovery) | not built | Open question O2. `SubModule.cs` still calls `new XModule().Register...()` explicitly. Fine up to ~10 modules. |
