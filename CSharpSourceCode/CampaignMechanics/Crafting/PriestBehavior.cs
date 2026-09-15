@@ -166,7 +166,7 @@ public class PriestBehavior : CampaignBehaviorBase
             campaignStarter.AddDialogLine("priest_start_accept" + cult, "start", "priest_hub_intro" + cult,
                 TORTextHelper.GetText("tor_priest_start_accept", cult, "Welcome, faithful one. How may I serve you today?", skipValidation: true), () => PriestCondition(cult) && PlayerMeetsRequirements(cult), null, 200);
 
-            campaignStarter.AddDialogLine("priest_start_decline" + cult, "start", "close_window" + cult,
+            campaignStarter.AddDialogLine("priest_start_decline" + cult, "start", "close_window",
                 TORTextHelper.GetText("tor_priest_start_decline", cult, "I am sorry, but I can only help those who follow our faith.", skipValidation: true),
                 () => PriestCondition(cult) && !PlayerMeetsRequirements(cult) && !IsEnemyOfCult(cult), null, 200);
 
