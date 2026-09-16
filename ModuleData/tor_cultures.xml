@@ -4166,6 +4166,7 @@
 		</tournament_team_templates_four_participant>
 		<basic_mercenary_troops>
 			<template name="NPCCharacter.tor_merc_free_company_volunteer" />
+			<template name="NPCCharacter.tor_vc_lahmian_sister" />
 		</basic_mercenary_troops>
 	</Culture>
 	<Culture id="vlandia"
