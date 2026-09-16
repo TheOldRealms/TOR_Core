@@ -20,6 +20,7 @@ public class TeefBehavior : CampaignBehaviorBase
 {
     private const int ItemExchange = 400; // item of price of X gets X/400 of teef in return
     private const int GoldToTeefExchangeRate = 100;
+    private const int GoldToShinyPileExchangeRate = 5000;
     private const string QuartermasterId = "tor_kwartamasta_greenskins_0";
 
     public override void RegisterEvents()
@@ -160,11 +161,16 @@ public class TeefBehavior : CampaignBehaviorBase
         starter.AddPlayerLine("gw_quartermaster_hub_regular_loot_p", "gw_quartermaster_hub", "gw_quartermaster_regular_reintro", TORTextHelper.GetTextForNative("tor_gs_quartermaster_loot_option_text", "Loot"), null, OpenForSpending);
         starter.AddPlayerLine("gw_quartermaster_hub_regular_leave_p", "gw_quartermaster_hub", "close_window", TORTextHelper.GetTextForNative("tor_gs_quartermaster_leave_option_text", "Iz outta 'ere!"), null, null);
 
+
+
+        //Player owned settlement with options specific to them.
         starter.AddDialogLine("gw_quartermaster_playertown", "start", "gw_quartermaster_owner_hub", TORTextHelper.GetTextForNative("tor_gs_quartermaster_owner_intro_text", "Oi, Boss, youz got sum loot fer da pile?"), () => IsQuarterMaster() && PlayerOwnsTown(), null, 200);
         starter.AddDialogLine("gw_quartermaster_playertown_reintro", "gw_quartermaster_playertown_reintro", "gw_quartermaster_owner_hub", TORTextHelper.GetTextForNative("tor_gs_quartermaster_owner_anything_else_text", "Iz dere more, Boss?"), null, null, 200);
-        starter.AddPlayerLine("gw_quartermaster_hub_playertown_shinies_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", TORTextHelper.GetTextForNative("tor_gs_quartermaster_shinies_option_text", "Shinies"), () => Hero.MainHero.Gold >= 5000, () => SpendGold(CurrentSettlementIsGreenskinCamp()));//Shiny piles only apply effects in greenskin original settlements; therefore, trading for gold_piles is gated behind the same set of checks. Player ownership is verified earlier in the dialogue tree.
+        //Shiny piles only apply effects in greenskin original settlements. They are added to the town's stash for the player and grant buffs to the settlement
+        starter.AddPlayerLine("gw_quartermaster_hub_playertown_shinies_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", TORTextHelper.GetTextForNative("tor_gs_quartermaster_shinies_option_text_owner", "Shinies for me pile"), () => Hero.MainHero.Gold >= 5000 && CurrentSettlementIsGreenskinCamp(), () => SpendGold(forPiles: true));
         starter.AddPlayerLine("gw_quartermaster_hub_playertown_teef_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", TORTextHelper.GetTextForNative("tor_gs_quartermaster_make_teefbags_option_text", "Make Teefbags"), () => Hero.MainHero.GetCultureSpecificCustomResourceValue() >= 1000, MakeTeefBags);
-        starter.AddPlayerLine("gw_quartermaster_hub_playertown_loot_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", TORTextHelper.GetTextForNative("tor_gs_quartermaster_loot_option_text", "Loot"), CurrentSettlementIsGreenskinCamp, OpenForCreatingLootPiles);//Loot piles only apply effects in greenskin original settlements; therefore, trading for loot_piles is gated behind the same set of checks. Player ownership is verified earlier in the dialogue tree.
+        //Loot piles only apply effects in greenskin original settlements. They are added to the town's stash for the player and grant buffs to the settlement
+        starter.AddPlayerLine("gw_quartermaster_hub_playertown_loot_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", TORTextHelper.GetTextForNative("tor_gs_quartermaster_loot_option_text", "Loot"), CurrentSettlementIsGreenskinCamp, OpenForCreatingLootPiles);
         starter.AddPlayerLine("gw_quartermaster_hub_playertown_leave_p", "gw_quartermaster_owner_hub", "close_window", TORTextHelper.GetTextForNative("tor_gs_quartermaster_leave_option_text", "Iz outta 'ere!"), null, null);
 
         bool IsQuarterMaster()
@@ -335,7 +341,7 @@ public class TeefBehavior : CampaignBehaviorBase
         var currentGold = Hero.MainHero.Gold;
         var title = TORTextHelper.GetTextObject("tor_gs_spend_gold_title_text", "Spend Gold");
 
-        var description = TORTextHelper.GetTextObject("tor_gs_spend_gold_description_text", "The Big Boss takes your shinies. How much would you like to spend to obtain some Teef?");
+        var description = forPiles ? TORTextHelper.GetTextObject("tor_gs_spend_gold_description_text_piles", "We takes your shinies Big Boss. How much for da loot pile (Stash)?") : TORTextHelper.GetTextObject("tor_gs_spend_gold_description_text_teef", "The Big Boss takes your shinies. How much would you like to spend to obtain some Teef?");
 
         if (currentGold < 5000)
         {
@@ -398,35 +404,37 @@ public class TeefBehavior : CampaignBehaviorBase
 
     private void CreateShinyPiles(List<InquiryElement> inquiryElements)
     {
-        var gold = (int)(inquiryElements[0].Identifier);
-
-        var pileCount = gold / 5000;
+        var tradedGold = (int)(inquiryElements[0].Identifier);
+        
+        float pileCount = tradedGold / GoldToShinyPileExchangeRate;
+        
+        // MeanestanDaBaddestPassive3: 50% extra
+        if (Hero.MainHero.HasCareer(TORCareers.OrcBoss) && Hero.MainHero.HasCareerChoice("MeanestanDaBaddestPassive3"))
+        {
+            pileCount *= 1.5f;
+        }
 
         var pileItem = MBObjectManager.Instance.GetObject<ItemObject>("tor_gs_gold_pile");
 
-        Hero.MainHero.CurrentSettlement.Stash.AddToCounts(pileItem, pileCount);
+        Hero.MainHero.CurrentSettlement.Stash.AddToCounts(pileItem, (int)pileCount);
         
-        Hero.MainHero.ChangeHeroGold(-gold);
+        Hero.MainHero.ChangeHeroGold(-tradedGold);
     }
 
     private void TradeGoldForTeef(List<InquiryElement> inquiryElements)
     {
-        var gold = (int)(inquiryElements[0].Identifier);
+        var tradedGold = (int)(inquiryElements[0].Identifier);
 
-        var goldExchange = GoldToTeefExchangeRate;
+        float teefValue = tradedGold / GoldToTeefExchangeRate;
 
-
-
-        var teefValue = gold / goldExchange;
-
-        // MeanestanDaBaddestPassive3: double conversation -> 50% extra
+        // MeanestanDaBaddestPassive3: 50% extra
         if (Hero.MainHero.HasCareer(TORCareers.OrcBoss) && Hero.MainHero.HasCareerChoice("MeanestanDaBaddestPassive3"))
         {
-            teefValue *= 2;
+            teefValue *= 1.5f;
         }
 
         Hero.MainHero.AddCultureSpecificCustomResource(teefValue);
-        Hero.MainHero.Gold -= gold;
+        Hero.MainHero.Gold -= tradedGold;
     }
 
     private void OnItemsDiscarded(ItemRoster itemRoster)
