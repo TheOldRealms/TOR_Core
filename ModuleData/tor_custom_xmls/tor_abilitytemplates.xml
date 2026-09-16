@@ -3976,7 +3976,7 @@
     </AbilityTemplate>
     <AbilityTemplate StringID="DwarfCannonSpawner"
                      Name="{=dwarf_cannon_spawner_label_str}Place Dwarf Cannon"
-                     SpriteName="placeartillery_icon"
+                     SpriteName="placedwarfcannon_icon"
                      CoolDown="1"
                      WindsOfMagicCost="0"
                      BaseMisCastChance="0.0"
