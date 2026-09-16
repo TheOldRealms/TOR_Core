@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfCharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_villager">
     <Abilities />
@@ -3153,6 +3153,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
+	  <string>TheHunger</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
@@ -3168,6 +3169,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
+	  <string>TheHunger</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
@@ -3183,6 +3185,8 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
+	  <string>TheHunger</string>
+      <string>Piercing</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
@@ -11203,5 +11207,13 @@
     <Attributes>
       <string>MonsterAttack</string>
     </Attributes>
-  <DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></CharacterExtendedInfo>
-<CharacterExtendedInfo id="new_entry_1"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></CharacterExtendedInfo></ArrayOfCharacterExtendedInfo>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="new_entry_1">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+</ArrayOfCharacterExtendedInfo>
