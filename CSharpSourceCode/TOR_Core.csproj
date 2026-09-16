@@ -875,6 +875,7 @@
     <Compile Include="Models\TORRaidModel.cs" />
     <Compile Include="Models\TORSettlementFoodModel.cs" />
     <Compile Include="Models\TORSettlementLoyaltyModel.cs" />
+    <Compile Include="Models\TORSettlementGarrisonModel.cs" />
     <Compile Include="Models\TORSettlementMilitiaModel.cs" />
     <Compile Include="Models\TORSiegeEngineCalculationModel.cs" />
     <Compile Include="Models\TORSmithingModel.cs" />
