@@ -89,8 +89,9 @@ namespace TOR_Core.Extensions
             {
                 if (agent != null && ratio <= desiredRatio && ((float)countedUnits / (float)formation.CountOfUnits) <= desiredRatio)
                 {
+                    // 1.5 splits dealt and received melee hit timestamps
                     float lastMeleeAttackTime = agent.LastMeleeHitTime;
-                    float lastMeleeHitTime = agent.LastMeleeHitTime;
+                    float lastMeleeHitTime = agent.LastRecievedMeleeHitTime;
                     if ((currentTime - lastMeleeAttackTime < 6f) || (currentTime - lastMeleeHitTime < 6f))
                     {
                         countOfUnitsFightingInMelee++;

@@ -649,13 +649,14 @@ namespace TOR_Core.AbilitySystem
                 if (team.Side == BattleSideEnum.Attacker && _attackerSummoningCombatant == null)
                 {
                     var culture = leader.Character.Culture;
-                    var battleEnvironment = leader.Origin.BattleCombatant.CurrentBattleEnvironment;
+                    // BasicBattleAgentOrigin has no BattleCombatant. agent resolves the mission environment and fallback
+                    var battleEnvironment = leader.CurrentBattleEnvironment;
                     _attackerSummoningCombatant = new SummonedCombatant(team, culture, battleEnvironment);
                 }
                 else if (team.Side == BattleSideEnum.Defender && _defenderSummoningCombatant == null)
                 {
                     var culture = leader.Character.Culture;
-                    var battleEnvironment = leader.Origin.BattleCombatant.CurrentBattleEnvironment;
+                    var battleEnvironment = leader.CurrentBattleEnvironment;
                     _defenderSummoningCombatant = new SummonedCombatant(team, culture, battleEnvironment);
                 }
             }
