@@ -482,7 +482,7 @@ public class TORCustomResourceModel : GameModel
         return upkeep;
     }
 
-    public float GetFactorForGeneralizedCosts(CustomResource resource)
+    public virtual float GetFactorForGeneralizedCosts(CustomResource resource)
     {
 
         switch (resource.StringId)
