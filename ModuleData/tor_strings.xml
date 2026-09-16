@@ -4188,7 +4188,7 @@
   <string id="tor_careerchoice_description.MeanestanDaBaddestKeystone" text="{=str_tor_careerchoice_description_MeanestanDaBaddestKeystone}Armed to da Teef iz betta killy wiv Polearm pointz" />
   <string id="tor_careerchoice_description.MeanestanDaBaddestPassive1" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive1}10% betta killin’" />
   <string id="tor_careerchoice_description.MeanestanDaBaddestPassive2" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive2}5 more Bosses fer da mob" />
-  <string id="tor_careerchoice_description.MeanestanDaBaddestPassive3" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive3}50% more shinies when leavin’ loot in Kwartamasta piles" />
+  <string id="tor_careerchoice_description.MeanestanDaBaddestPassive3" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive3}Get 50% more when leavin’ shinies wit da Kwartamasta" />
   <string id="tor_careerchoice_description.MeanestanDaBaddestPassive4" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive4}Big Bosses in da mob pay 5 Teef e’ry day" />
   <string id="tor_careerchoice_description.GetToDaChoppasKeystone" text="{=str_tor_careerchoice_description_GetToDaChoppasKeystone}Armed to da Teef makes da Boys proppa killy fer sum time" />
   <string id="tor_careerchoice_description.GetToDaChoppasPassive1" text="{=str_tor_careerchoice_description_GetToDaChoppasPassive1}10% betta killin’" />
@@ -4209,7 +4209,7 @@
   <!-- Career Choice Description - OrcShaman -->
   <string id="tor_careerchoice_description.OrcShamanRoot" text="{=str_tor_careerchoice_description_OrcShamanRoot}Da Shaman iz da centah uv da WAAAGH! You kunnect yerself to da boys ‘round, an’ dey will give you more ju-ju powa’ fer ZAPPIN’ an’ BLASTIN’. But if da boys start dyin’, den yer zappy energy gets blasted outta ya, an’ they take it wiv dem! Da betta ya get, de more you can kunnect to da WAAAGH!. An’ remember to stay close to da old ways. Wearin’ ‘ard bits an’ metal an’ stuff like dem ‘ard boyz iz gunna get ya less ju-ju powa’." />
   <string id="tor_careerchoice_description.BonesAnFirepitzKeystone" text="{=str_tor_careerchoice_description_BonesAnFirepitzKeystone}Call uv da Great Green iz always ready fer da scrap" />
-  <string id="tor_career_choice_description.BonesAnFirepitzPassive1" text="{=str_tor_career_choice_description_BonesAnFirepitzPassive1}Get 15 mumbo-jumbo pointz afta' winnin' brawls" />
+  <string id="tor_careerchoice_description.BonesAnFirepitzPassive1" text="{=str_tor_career_choice_description_BonesAnFirepitzPassive1}Get 15 mumbo-jumbo pointz afta' winnin' brawls" />
   <string id="tor_careerchoice_description.BonesAnFirepitzPassive2" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive2}10 more mumbo-jumbo pointz" />
   <string id="tor_careerchoice_description.BonesAnFirepitzPassive3" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive3}Betta findiness uv mumbo-jumbo fings afta' scraps" />
   <string id="tor_careerchoice_description.BonesAnFirepitzPassive4" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive4}More mumbo-jumbo eks-perr-yens afta' lootin' Idols" />
@@ -5577,16 +5577,22 @@
   <string id="tor_encyclopedia_filter_campaign_issues" text="{=str_tor_encyclopedia_filter_campaign_issues}Campaign Issues" />
   <string id="tor_encyclopedia_filter_types" text="{=str_tor_encyclopedia_filter_types}Types" />
 
-  <!-- Quartermaster/Shop Texts -->
+  <!-- Quartermaster/Kwartamasta Texts -->
   <string id="tor_gs_quartermaster_intro_text" text="{=str_tor_gs_quartermaster_intro_text}Yoo dere, youz got sumfing fer da Boss?" />
   <string id="tor_gs_quartermaster_anything_else_text" text="{=str_tor_gs_quartermaster_anything_else_text}Wot, youz got more?" />
   <string id="tor_gs_quartermaster_shinies_option_text" text="{=str_tor_gs_quartermaster_shinies_option_text}Shinies" />
+  <string id="tor_gs_quartermaster_shinies_option_text_owner" text="{=str_tor_gs_quartermaster_shinies_option_text_owner}Shinies for me pile" />
   <string id="tor_gs_quartermaster_loot_option_text" text="{=str_tor_gs_quartermaster_loot_option_text}Loot" />
   <string id="tor_gs_quartermaster_leave_option_text" text="{=str_tor_gs_quartermaster_leave_option_text}Iz outta 'ere!" />
   <string id="tor_gs_quartermaster_owner_intro_text" text="{=str_tor_gs_quartermaster_owner_intro_text}Oi, Boss, youz got sum loot fer da pile?" />
   <string id="tor_gs_quartermaster_owner_anything_else_text" text="{=str_tor_gs_quartermaster_owner_anything_else_text}Iz dere more, Boss?" />
   <string id="tor_gs_quartermaster_make_teefbags_option_text" text="{=str_tor_gs_quartermaster_make_teefbags_option_text}Make Teefbags" />
   <string id="tor_gs_give_items_to_boss_text" text="{=str_tor_gs_quartermaster_inventory_menu}Give Items to the Big Boss" />
+  <string id="tor_gs_spend_gold_description_text_teef" text="{=str_tor_gs_spend_gold_description_text_teef}The Big Boss takes your shinies. How much would you like to spend to obtain some Teef?" />
+  <string id="tor_gs_spend_gold_description_text_piles" text="{=str_tor_gs_spend_gold_description_text_piles}We takes your shinies Big Boss. How much for da loot pile (Stash)?" />
+	
+	
+	<!-- Dwarf Shop Texts -->
   <string id="tor_dw_shop_show_goods_text" text="{=str_tor_dw_shop_show_goods_text}Very well, take a look at our inventions." />
   <string id="tor_dw_engineer_buy_weapons_text" text="{=str_tor_dw_engineer_buy_weapons_text}I need better gear, Master Engineer." />
   <string id="tor_dw_quit_text" text="{=str_tor_dw_quit_text}That will be all." />

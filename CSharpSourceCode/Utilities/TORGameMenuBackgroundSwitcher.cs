@@ -76,6 +76,11 @@ namespace TOR_Core.Utilities
                     args.MenuContext.SetBackgroundMeshName("bretonnia_arena");
                     return;
                 }
+                if (settlement.Culture.StringId == TORConstants.Cultures.GREENSKIN)
+                {
+                    args.MenuContext.SetBackgroundMeshName("greenskin_arena");
+                    return;
+                }
                 else if (settlement.Culture.StringId == TORConstants.Cultures.SYLVANIA)
                 {
                     args.MenuContext.SetBackgroundMeshName("vampire_arena");
