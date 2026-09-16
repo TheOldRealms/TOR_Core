@@ -39,13 +39,14 @@ namespace TOR_Core.AbilitySystem.SpellBook
         void IGameStateListener.OnActivate()
         {
             base.OnActivate();
-            var heroes = MobileParty.MainParty.GetSpellCasterMemberHeroes();
+            var heroes = MobileParty.MainParty.GetSpellBookMemberHeroes();
 
-            if (_state.IsTrainerMode && _state.TrainerCulture == TORConstants.Cultures.DAWI)
+            // Runesmiths are only trainable by their own guild. Every other trainer picks its lore
+            // list from the trainer's culture alone (see SpellBookVM), so leaving them in the list
+            // would offer them human lores.
+            if (_state.IsTrainerMode && _state.TrainerCulture != TORConstants.Cultures.DAWI)
             {
-                heroes = MobileParty.MainParty.GetMemberHeroes()
-                    .Where(x => x.IsSpellCaster() || x.HasAttribute(CharacterAttributes.RUNESMITH))
-                    .ToList();
+                heroes = heroes.Where(x => x.IsSpellCaster()).ToList();
             }
 
             if (heroes.Count == 0) heroes.Add(Hero.MainHero);

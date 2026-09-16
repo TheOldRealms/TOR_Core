@@ -147,6 +147,16 @@ namespace TOR_Core.Extensions
             return party.GetMemberHeroes().Where(x => x.IsSpellCaster()).ToList();
         }
 
+        public static bool HasSpellBookMember(this MobileParty party)
+        {
+            return party.GetMemberHeroes().Any(x => x.CanUseSpellBook());
+        }
+
+        public static List<Hero> GetSpellBookMemberHeroes(this MobileParty party)
+        {
+            return party.GetMemberHeroes().Where(x => x.CanUseSpellBook()).ToList();
+        }
+
         public static int GetHighestSkillValue(this MobileParty party, SkillObject skill)
         {
             int skillValue = 0;

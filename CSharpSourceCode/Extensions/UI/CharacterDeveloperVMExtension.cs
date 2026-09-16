@@ -18,7 +18,7 @@ namespace TOR_Core.Extensions.UI
         {
 
             HasCareer = Hero.MainHero.HasAnyCareer();
-            IsSpellCaster = Hero.MainHero.IsSpellCaster() || Hero.MainHero.PartyBelongedTo != null && Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.IsSpellCaster());
+            IsSpellCaster = Hero.MainHero.CanUseSpellBook() || Hero.MainHero.PartyBelongedTo != null && Hero.MainHero.PartyBelongedTo.HasSpellBookMember();
         }
 
         private void ExecuteNavigateToCareers()

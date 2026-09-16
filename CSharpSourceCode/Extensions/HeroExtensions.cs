@@ -441,6 +441,17 @@ namespace TOR_Core.Extensions
             return hero.HasAttribute(CharacterAttributes.SPELLCASTER);
         }
 
+        /// <summary>
+        /// Whether the spell book screen should be reachable for this hero. Runesmiths are not
+        /// <see cref="IsSpellCaster"/> - they deliberately lack the SpellCaster attribute so the
+        /// agent-side caster logic skips them - but they still gain a casting level from the
+        /// Spellcraft perks, so they need the book to see and spend it.
+        /// </summary>
+        public static bool CanUseSpellBook(this Hero hero)
+        {
+            return hero.IsSpellCaster() || hero.HasAttribute(CharacterAttributes.RUNESMITH);
+        }
+
         public static bool IsAbilityUser(this Hero hero)
         {
             return hero.HasAttribute(CharacterAttributes.ABILITY_USER);

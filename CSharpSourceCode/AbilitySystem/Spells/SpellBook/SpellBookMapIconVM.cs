@@ -28,7 +28,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
 
         public override void RefreshValues()
         {
-            if (MobileParty.MainParty.HasSpellCasterMember()) IsVisible = true;
+            if (MobileParty.MainParty.HasSpellBookMember()) IsVisible = true;
             else IsVisible = false;
             base.RefreshValues();
         }
