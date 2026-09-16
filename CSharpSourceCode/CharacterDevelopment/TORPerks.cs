@@ -187,7 +187,7 @@ namespace TOR_Core.CharacterDevelopment
                 "{=str_tor_perk_well_controlled_1}Your damaging spells do 30% less damage to troops in your party.",
                 PartyRole.Personal, -0.3f, EffectIncrementType.AddFactor,
                 "{=str_tor_perk_well_controlled_2}Gain 5% advantage in simulation battles.",
-                PartyRole.Personal, 0.05f, EffectIncrementType.AddFactor);
+                PartyRole.PartyLeader, 0.05f, EffectIncrementType.AddFactor);
 
             _librarian.Initialize("{=str_tor_perk_librarian_label}Librarian", TORSkills.Spellcraft, 125, _storyTeller,
                 "{=str_tor_perk_librarian_1}You gain double experience from reading books.",
