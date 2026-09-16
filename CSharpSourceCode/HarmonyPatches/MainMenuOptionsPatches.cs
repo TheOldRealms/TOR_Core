@@ -1,11 +1,13 @@
 ﻿using HarmonyLib;
 using SandBox.AdvancedStartOptions;
+using SandBox;
 using SandBox.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.GameState;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ScreenSystem;
@@ -19,13 +21,17 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public class MainMenuOptionsPatches
     {
+        private static bool _torCampaignStartPending;
+
         [HarmonyPostfix]
         [HarmonyPatch(typeof(Module), "GetInitialStateOptions")]
         public static void ReplaceVanillaNewGameOptions(ref IEnumerable<InitialStateOption> __result)
         {
-            var options = __result.Where(x => x.Id != "StoryModeNewGame" && x.Id != "SandBoxNewGame").ToList();
+            var options = __result.ToList();
+            var sandBoxNewGameOption = options.First(x => x.Id == "SandBoxNewGame");
+            options.RemoveAll(x => x.Id == "StoryModeNewGame" || x.Id == "SandBoxNewGame");
             // Low OrderIndex to appear at top (UI changed from BottomToTop to TopToBottom in 1.4)
-            var enterOldWorldOption = new InitialStateOption("TORNewgame", new TextObject("{=str_tor_menu_enter_game}Enter the Old World"), 1, OnClick, IsDisabledAndReason);
+            var enterOldWorldOption = new InitialStateOption("TORNewgame", new TextObject("{=str_tor_menu_enter_game}Enter the Old World"), 1, () => OnClick(sandBoxNewGameOption), IsDisabledAndReason);
             var buildShaderCacheOption = new InitialStateOption("TORForceLoad", new TextObject("{=str_tor_menu_shader_cache}Build Shader Cache"), 2, OnForceClick, IsDisabledAndReason);
             options.Add(enterOldWorldOption);
             options.Add(buildShaderCacheOption);
@@ -38,37 +44,40 @@ namespace TOR_Core.HarmonyPatches
             TORShaderCacheWarning.Show();
         }
 
-        private static void OnClick()
+        private static void OnClick(InitialStateOption sandBoxNewGameOption)
         {
-            ////Action keeps getting a null target and therefore nothing happens when the button is clicked.
-            ////Sly : code copied from SandBoxViewSubModule with replacement actions fetched via reflection.
-            AdvancedStartOptions options = AdvancedStartOptionsManager.CreateCampaignStartOptions();
-            //if (!options.IsEmpty())
-            //{
-            //    var sandBoxViewSubModuleInstance = Activator.CreateInstance(typeof(SandBoxViewSubModule));
-            //    var onStartingOptionsConfirmedMethod = AccessTools.Method(typeof(SandBoxViewSubModule), "OnStartingOptionsConfirmed", [typeof(AdvancedStartOptions)]);
-            //    Action<AdvancedStartOptions> action = (Action<AdvancedStartOptions>)onStartingOptionsConfirmedMethod.Invoke(sandBoxViewSubModuleInstance, new object[] {options});
-            //    //var action = new Action<AdvancedStartOptions>(OnStartingOptionsConfirmedMethod);
-            //    ScreenManager.AddGlobalLayer(SandBoxViewCreator.CreateCampaignAdvancedStartOptions(options, action, new Action(OnStartingOptionsClosedMethod)), true);
-            //    return;
-            //}
+            _torCampaignStartPending = true;
+            sandBoxNewGameOption.DoAction();
+        }
 
-            // Campaign creator delegate that creates a new Campaign in Campaign mode
-            MBGameManager.StartNewGame(new TorCampaignGameManager(() => new Campaign(CampaignGameMode.Campaign, options.GetChangedOptions())));
+        // 1.5 creates its own SandBoxGameManager for advanced start that cant be provided with TorCampaignGameManager for now
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(MBGameManager), nameof(MBGameManager.StartNewGame), [typeof(MBGameManager)])]
+        private static void UseTorCampaignManager(ref MBGameManager gameLoader)
+        {
+            if (!_torCampaignStartPending || gameLoader.GetType() != typeof(SandBoxGameManager))
+                return;
 
-            static void OnStartingOptionsConfirmedMethod(SandBox.AdvancedStartOptions.AdvancedStartOptions options)
-            {
-                var sandBoxViewSubModuleInstance = Activator.CreateInstance(typeof(SandBoxViewSubModule));
-                var onStartingOptionsConfirmedMethod = AccessTools.Method(typeof(SandBoxViewSubModule), "OnStartingOptionsConfirmed", [typeof(AdvancedStartOptions)]);
-                onStartingOptionsConfirmedMethod.Invoke(sandBoxViewSubModuleInstance, [options]);
-            }
+            var sandBoxGameManager = (SandBoxGameManager)gameLoader;
+            if (sandBoxGameManager.LoadingSavedGame)
+                return;
 
-            static void OnStartingOptionsClosedMethod()
-            {
-                var sandBoxViewSubModuleInstance = Activator.CreateInstance(typeof(SandBoxViewSubModule));
-                var onStartingOptionsClosedMethod = AccessTools.Method(typeof(SandBoxViewSubModule), "OnStartingOptionsClosed");
-                onStartingOptionsClosedMethod.Invoke(sandBoxViewSubModuleInstance, []);
-            }
+            var campaignCreator = (SandBoxGameManager.CampaignCreatorDelegate)AccessTools.Field(typeof(SandBoxGameManager), "_campaignCreator").GetValue(sandBoxGameManager);
+            gameLoader = new TorCampaignGameManager(campaignCreator);
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(SandBoxViewSubModule), "OnStartingOptionsClosed")]
+        private static void OnStartingOptionsClosed()
+        {
+            _torCampaignStartPending = false;
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(MapState), "OnActivate")]
+        private static void OnCampaignMapActivated()
+        {
+            _torCampaignStartPending = false;
         }
 
         private static (bool, TextObject) IsDisabledAndReason()
