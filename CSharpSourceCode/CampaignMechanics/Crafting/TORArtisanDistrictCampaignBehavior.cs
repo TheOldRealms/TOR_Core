@@ -20,7 +20,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
 {
     public class TORArtisanDistrictCampaignBehavior : CampaignBehaviorBase
     {
-        private bool _hasSmithyBeenRemoved;
+
         private Dictionary<ItemObject, TorItemDuplicationData> _customCraftedItems = [];
         public static TORArtisanDistrictCampaignBehavior Instance => Campaign.Current.GetCampaignBehavior<TORArtisanDistrictCampaignBehavior>();
         public TorItemBeingCraftedData ItemBeingCrafted { get; set; } = null;

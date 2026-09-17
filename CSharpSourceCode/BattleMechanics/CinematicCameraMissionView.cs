@@ -14,7 +14,7 @@ namespace TOR_Core.BattleMechanics
         private bool _isCameraActive = false;
         private float _cameraSpeed = 5f;
         private MissionMainAgentController _agentController;
-        protected IInputContext Input => MissionScreen.InputManager;
+        new IInputContext Input => MissionScreen.InputManager;
 
         public CinematicCameraMissionView()
         {

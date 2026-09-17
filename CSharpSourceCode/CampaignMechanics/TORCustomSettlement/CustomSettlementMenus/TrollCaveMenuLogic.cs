@@ -30,7 +30,6 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
     private int _trollsRecruited = 0;
     private bool _trollsAggressive = false;
     private int _battleTrollCount = 0;
-    private bool _isClearingCave = false; // True when clearing, false when luring gone wrong
 
     protected override void AddSettlementMenu(CampaignGameStarter campaignGameStarter)
     {
@@ -248,7 +247,6 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
 
     private void StartClearCave(MenuCallbackArgs args)
     {
-        _isClearingCave = true;
         _battleTrollCount = ClearTrollCount + MBRandom.RandomInt(0, 3); // 6-8 trolls
 
         var preSelectedTroops = TroopRoster.CreateDummyTroopRoster();
@@ -428,7 +426,6 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
 
     private void StartTrollBattle(MenuCallbackArgs args)
     {
-        _isClearingCave = false;
         // Luring gone wrong - fewer trolls based on how many were being recruited
         _battleTrollCount = MBRandom.RandomInt(LuringAttackTrollCountMin, LuringAttackTrollCountMax + 1);
 
