@@ -98,7 +98,6 @@ public class WrathAndRuinScript : ITriggeredScript
 {
     public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
     {
-        var extraEffect = false;
         var empowered = false;
         if (Agent.Main == triggeredByAgent)
             if (triggeredByAgent.HasAttribute("WisdomThungni"))

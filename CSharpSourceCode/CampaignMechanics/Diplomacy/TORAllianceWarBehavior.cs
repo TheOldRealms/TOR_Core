@@ -75,7 +75,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
             foreach (var enemy in Kingdom.All)
             {
-                if (enemy == kingdom || !kingdom.IsAtWarWith(enemy)) continue;
+                if (!kingdom.IsAtWarWith(enemy)) continue;//null check, equality check, elimination check
 
                 // Skip Chaos wars - they're forced and eternal, don't count towards limit
                 if (enemy.Culture?.StringId == TORConstants.Cultures.CHAOS) continue;
