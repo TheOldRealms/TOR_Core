@@ -234,15 +234,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             }
         }
 
-        // PROPOSED (CS0114, should add `new` or `override`): StatusEffectMissionLogic.cs calls this
-        // through the concrete `StatusEffectComponent` type (not polymorphically via
-        // `AgentComponent`), so `new` would match current behavior. Before adding `override` instead,
-        // worth checking whether the engine also auto-invokes AgentComponent.OnTick on every
-        // component each frame -- if so, that would double-tick status effects.
-        // Randy - @Sly the parent class has an OnTick registration, I don't know if the DI container registers both events though, the parent IS empty though.
-#pragma warning disable CS0114
-        public void OnTick(float dt)
-#pragma warning restore CS0114
+        /// <remarks>
+        /// AgentComponents can provide an override for AgentComponent.OnTick that gets called by Agent.Tick; however, the OnTick is only dispatched when Agent.IsActive which would freeze the StatusEffectComponent in its last state when the agent begins routing f.e. The main consequence here is that visuals and particles related to the statuses on an agent would remain in their last state and never expire once the agent was no longer "Active".
+        /// We therefore use a tick issued by the status effect manager which checks for our own validity conditions.
+        /// </remarks>
+        public void OnManagerMissionTick(float dt)
         {
             if (_currentEffects.Count > 0)
             {
