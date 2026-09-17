@@ -31,9 +31,6 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
         private string _uniqueSpawnId;
 
         [SaveableField(7)]
-        private int _startingFoodPerType;
-
-        [SaveableField(8)]
         private int _initialRegularTroopCount;
 
         public override Hero Leader => _partyOwner;
@@ -54,8 +51,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             TextObject partyName,
             PartyTemplateObject spawnTemplate,
             Clan ownerClan,
-            int targetPartySize,
-            int startingFoodPerType)
+            int targetPartySize)
         {
             _uniqueSpawnId = uniqueSpawnId;
             _spawnSettlement = spawnSettlement;
@@ -63,7 +59,6 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             _spawnTemplate = spawnTemplate;
             _partyOwner = ownerClan.Leader;
             _targetPartySize = targetPartySize;
-            _startingFoodPerType = startingFoodPerType;
         }
 
         protected override void OnMobilePartySetOnCreation()
@@ -84,22 +79,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             MobileParty.IsVisible = true;
             MobileParty.Ai.SetDoNotMakeNewDecisions(false);
 
-            AddStartingFoodIfNeeded();
-
             MobileParty.Party.SetVisualAsDirty();
-        }
-
-        private void AddStartingFoodIfNeeded()
-        {
-            if (_startingFoodPerType <= 0)
-            {
-                return;
-            }
-
-            foreach (var foodItem in MBObjectManager.Instance.GetObjectTypeList<ItemObject>().Where(item => item.HasFoodComponent && !item.NotMerchandise))
-            {
-                MobileParty.ItemRoster.Add(new ItemRosterElement(foodItem, _startingFoodPerType));
-            }
         }
 
         public static MobileParty CreateUniqueSpawnParty(
@@ -120,8 +100,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
                     partyName,
                     spawnTemplate,
                     ownerClan,
-                    targetPartySize,
-                    startingFoodPerType));
+                    targetPartySize));
         }
     }
 }
