@@ -16,7 +16,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
     public class TriggeredEffect(TriggeredEffectTemplate template, bool isTemplateMutated = false) : IDisposable
     {
         private TriggeredEffectTemplate _template = template;
-        private int _soundIndex;
         private SoundEvent _sound;
         private readonly bool _isTemplateMutated = isTemplateMutated;
         private static readonly object _pendingDisposeLock = new();
@@ -342,7 +341,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 relatedAgent1: -1,
                 relatedAgent2: -1);
 
-            _soundIndex = -1;
             _sound = null;
         }
         private void TriggerScript(Vec3 position, Agent triggerer, IEnumerable<Agent> triggeredAgents, float duration)
@@ -398,7 +396,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         {
             _sound?.Release();
             _sound = null;
-            _soundIndex = -1;
             _template = null;
         }
     }
