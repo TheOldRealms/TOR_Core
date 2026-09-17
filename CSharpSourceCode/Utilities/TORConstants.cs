@@ -485,7 +485,7 @@ namespace TOR_Core.Utilities
             public static bool SettlementBelongsOriginallyToFaction(Settlement settlement, Kingdom faction)
             {
                 var id = "";
-                var kingdom="";
+
                 if (settlement != null)
                 {
                     id = settlement.StringId;

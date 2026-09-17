@@ -33,10 +33,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private bool _shouldAutoSkip;
         private TORCharacterCreationContentHandler _cachedHandler;
 
-        // Instance flag to track if we've visited this stage before (within this character creation session)
-        // Changed from static to prevent cross-session contamination when creating multiple characters
-        private bool _wasVisited = false;
-
         // Track currently applied preview bonuses to properly clear them when switching options
         private SpecializationOption _currentPreviewOption = null;
 
@@ -343,9 +339,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // Reset preview tracking since we've applied final bonuses
             _currentPreviewOption = null;
 
-            // Mark this stage as visited
-            _wasVisited = true;
-
             _affirmativeAction();
         }
 
@@ -409,9 +402,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             // Reset preview tracking since we're clearing everything
             _currentPreviewOption = null;
-
-            // Reset the visited flag so next time we come forward it's treated as a fresh visit
-            _wasVisited = false;
 
             // Set flag to jump directly to Stage 3 (Profession) instead of Stage 1
             HarmonyPatches.CharacterCreationPatches.ShouldJumpToProfessionStage = true;
