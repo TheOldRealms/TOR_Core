@@ -186,6 +186,7 @@ namespace TOR_Core.HarmonyPatches
             {
                 var instruction = newInstructions[i];
 
+                // Find where AgentVisualsData is instantiated, and insert our new instructions after it
                 if (instruction.opcode == OpCodes.Newobj && AccessTools.Constructor(typeof(AgentVisualsData)).Equals(instruction.operand))
                 {
                     insertionIndex = i + 1;
