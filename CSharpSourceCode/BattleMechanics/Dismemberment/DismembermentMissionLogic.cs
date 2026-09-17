@@ -31,7 +31,6 @@ namespace TOR_Core.BattleMechanics.Dismemberment
         //14*20 = 280 Game Entities are spawned. keep the pool size as reasonable small as possible.
         private GameEntity[][] _pooledDismemberedLimbs;
         private int _index;
-        private bool _fullyInstantiated;
 
         private int _timeSpeedRequestID = 1111;
 
@@ -232,7 +231,6 @@ namespace TOR_Core.BattleMechanics.Dismemberment
             if (_index >= poolSize)
             {
                 _index = 0;
-                _fullyInstantiated = true;
             }
 
             for (var i = 0; i < _pooledDismemberedLimbs[_index].Length; i++)

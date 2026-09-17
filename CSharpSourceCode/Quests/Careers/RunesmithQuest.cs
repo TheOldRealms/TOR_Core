@@ -34,8 +34,6 @@ public class RunesmithQuest : QuestBase
         var currentKnownRunes = EnchantmentBlueprints.GetKnown().Count;
 
         var dwarfBehavior = Campaign.Current.GetCampaignBehavior<OathGoldBehavior>();
-        var completed = 0;
-
 
         if (dwarfBehavior != null)
         {
