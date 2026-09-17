@@ -33879,6 +33879,7 @@
       <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_arquebus_002" />
       <Equipment slot="Item1" id="Item.vlandia_sword_1_t2" />
       <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball" />
       <Equipment slot="Head" id="Item.tor_empire_head_hat_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_cannon_crew_001" />
@@ -33887,6 +33888,7 @@
       <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_arquebus_002" />
       <Equipment slot="Item1" id="Item.vlandia_sword_1_t2" />
       <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball" />
       <Equipment slot="Head" id="Item.tor_empire_head_hat_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_cannon_crew_001" />
@@ -33895,6 +33897,7 @@
       <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_arquebus_002" />
       <Equipment slot="Item1" id="Item.vlandia_sword_1_t2" />
       <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball" />
       <Equipment slot="Head" id="Item.tor_empire_head_hat_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_cannon_crew_001" />
@@ -33903,6 +33906,7 @@
       <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_arquebus_002" />
       <Equipment slot="Item1" id="Item.vlandia_sword_1_t2" />
       <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball" />
       <Equipment slot="Head" id="Item.tor_empire_head_hat_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_cannon_crew_001" />
@@ -33912,6 +33916,7 @@
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_longrifle_001" />
       <Equipment slot="Item1" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_sword_reiksguard_knight_003" />
       <Equipment slot="Head" id="Item.tor_empire_head_hat_cannon_crew_003" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_cannon_crew_001" />
@@ -33921,6 +33926,7 @@
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_longrifle_001" />
       <Equipment slot="Item1" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_sword_reiksguard_knight_003" />
       <Equipment slot="Head" id="Item.tor_empire_head_hat_cannon_crew_003" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_cannon_crew_001" />
@@ -33930,6 +33936,7 @@
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_longrifle_001" />
       <Equipment slot="Item1" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_sword_reiksguard_knight_003" />
       <Equipment slot="Head" id="Item.tor_empire_head_hat_cannon_crew_003" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_cannon_crew_001" />
@@ -33939,6 +33946,7 @@
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_longrifle_001" />
       <Equipment slot="Item1" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_sword_reiksguard_knight_003" />
       <Equipment slot="Head" id="Item.tor_empire_head_hat_cannon_crew_003" />
       <Equipment slot="Body" id="Item.tor_empire_body_armor_cannon_crew_001" />
@@ -33950,6 +33958,7 @@
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_longrifle_002" />
       <Equipment slot="Item1" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_pistolier_002" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_003" />
@@ -33960,6 +33969,7 @@
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_longrifle_002" />
       <Equipment slot="Item1" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_pistolier_002" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_003" />
@@ -33970,6 +33980,7 @@
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_longrifle_002" />
       <Equipment slot="Item1" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_pistolier_002" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_003" />
