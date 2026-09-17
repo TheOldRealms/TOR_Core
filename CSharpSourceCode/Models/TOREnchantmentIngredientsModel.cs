@@ -86,7 +86,7 @@ public class TOREnchantmentIngredientsModel : GameModel
                     }
 
 
-                    if (character.StringId.Contains("treeman"))
+                    if (character.IsTreeman())
                     {
                         result += 5f;
                     }
@@ -126,7 +126,7 @@ public class TOREnchantmentIngredientsModel : GameModel
                 if (character.IsHero && character.IsVampire() && !character.IsBloodDragon())
                     result += 5;
 
-                if (character.IsVampire() && character.HasAttribute("Necrarch"))
+                if (character.IsNecrarch())
                 {
                     result += 10;
                 }
@@ -202,7 +202,7 @@ public class TOREnchantmentIngredientsModel : GameModel
                 }
                 break;
             case TorTradeGoodType.GemStone:
-                if (character.Culture.StringId == TORConstants.Cultures.DAWI || character.Culture.StringId == TORConstants.Cultures.GREENSKIN || character.Culture.StringId == TORConstants.Cultures.GREENSKIN_BANDIT)//character.IsGreenskin || character.IsTroll is more reliable detection than hardcoding the cultures. Dawi as well can be changed to IsDwarf.
+                if (character.IsDwarf() || character.IsGreenskin() || character.IsTroll())
                 {
                     result += 1;
 
@@ -211,7 +211,7 @@ public class TOREnchantmentIngredientsModel : GameModel
                         result++;
                     }
                 }
-                if (character.StringId.Contains("iron") && character.Culture.StringId == TORConstants.Cultures.DAWI)
+                if (character.IsIronbreakerUnit())
                 {
                     result += 2;  //Ironbreaker bonus
                 }

@@ -13,6 +13,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Missions;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CampaignMechanics.CustomDialogs;
 
@@ -134,7 +135,7 @@ public class DuelBehavior : CampaignBehaviorBase
             if (Hero.MainHero.HasCareer(TORCareers.OrcBoss) && Hero.MainHero.HasCareerChoice("GetToDaChoppasPassive4"))
             {
                 // Check if target is a Warboss (clan leader or has warboss attribute)
-                if (_currentDuelTarget.IsClanLeader || _currentDuelTarget.HasAttribute("Warboss"))
+                if (_currentDuelTarget.IsClanLeader || _currentDuelTarget.HasAttribute(CharacterAttributes.WARBOSS))
                 {
                     var choice = TORCareerChoices.GetChoice("GetToDaChoppasPassive4");
                     if (choice != null)

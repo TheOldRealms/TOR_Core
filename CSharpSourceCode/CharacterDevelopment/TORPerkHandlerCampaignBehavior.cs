@@ -5,6 +5,7 @@ using TaleWorlds.Core;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CharacterDevelopment
 {
@@ -45,7 +46,7 @@ namespace TOR_Core.CharacterDevelopment
                 var info = hero.GetExtendedInfo();
                 if (info != null)
                 {
-                    if (hero.IsSpellCaster() || hero.HasAttribute("Runesmith"))
+                    if (hero.IsSpellCaster() || hero.HasAttribute(CharacterAttributes.RUNESMITH))
                     {
                         if (perk == TORPerks.Spellcraft.EntrySpells)
                         {

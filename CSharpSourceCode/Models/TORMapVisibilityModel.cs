@@ -8,6 +8,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
@@ -28,15 +29,15 @@ namespace TOR_Core.Models
             {
                 if (TORCommon.FindSettlementsAroundPosition(party.Position.ToVec2(), 30, (x) => x.Culture.StringId == TORConstants.Cultures.DAWI).Any())
                 {
-                    if (Hero.MainHero.HasAttribute("DwarfBrewersIII"))
+                    if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_BREWERS_3))
                     {
                         result.AddFactor(0.30f, new TextObject("Brewers Guild"));
                     }
-                    else if (Hero.MainHero.HasAttribute("DwarfBrewersII"))
+                    else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_BREWERS_2))
                     {
                         result.AddFactor(0.2f, new TextObject("Brewers Guild"));
                     }
-                    else if (Hero.MainHero.HasAttribute("DwarfBrewersI"))
+                    else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_BREWERS_1))
                     {
                         result.AddFactor(0.1f, new TextObject("Brewers Guild"));
                     }

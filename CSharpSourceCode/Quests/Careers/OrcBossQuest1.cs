@@ -7,6 +7,7 @@ using TaleWorlds.SaveSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Ink;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Quests.Careers
 {
@@ -232,7 +233,7 @@ namespace TOR_Core.Quests.Careers
         protected override void OnCompleteWithSuccess()
         {
             // Award the PlayerOrcBoss attribute
-            Hero.MainHero.AddAttribute("PlayerOrcBoss");
+            Hero.MainHero.AddAttribute(CharacterAttributes.PLAYER_ORC_BOSS);
 
             // Open the transition story to OrcBossQuest2
             InkStoryManager.OpenStory("OrcBossQuest2");

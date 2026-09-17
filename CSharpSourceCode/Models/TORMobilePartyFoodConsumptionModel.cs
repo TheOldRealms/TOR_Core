@@ -4,6 +4,7 @@ using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
@@ -85,19 +86,19 @@ namespace TOR_Core.Models
 
             if (party.LeaderHero == Hero.MainHero && Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
             {
-                if (Hero.MainHero.HasAttribute("Waaagh0"))
+                if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_0))
                 {
                     consumption.AddFactor(-0.6f, TORTextHelper.GetTextObject("tor_greenskin_internal_fightin_text", "Internal Fightin'"));
                 }
-                else if (Hero.MainHero.HasAttribute("Waaagh1"))
+                else if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_1))
                 {
                     consumption.AddFactor(-0.3f, TORTextHelper.GetTextObject("tor_greenskin_petty_squabblin_text", "Petty Squabblin'"));
                 }
-                else if (Hero.MainHero.HasAttribute("Waaagh2"))
+                else if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_2))
                 {
                     consumption.AddFactor(0.25f, TORTextHelper.GetTextObject("tor_greenskin_ere_we_go_text", "'Ere We Go!"));
                 }
-                else if (Hero.MainHero.HasAttribute("Waaagh3"))
+                else if (Hero.MainHero.HasAttribute(CharacterAttributes.WAAAAGH_3))
                 {
                     consumption.AddFactor(1.0f, TORTextHelper.GetTextObject("tor_greenskin_waaagh_text", "WAAAGH!!!!"));
                 }

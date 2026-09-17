@@ -7,6 +7,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Ink;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Quests.Careers
 {
@@ -214,7 +215,7 @@ namespace TOR_Core.Quests.Careers
         protected override void OnCompleteWithSuccess()
         {
             // Award the PlayerOrcShaman tier 2 attribute
-            Hero.MainHero.AddAttribute("PlayerOrcShamanTier2");
+            Hero.MainHero.AddAttribute(CharacterAttributes.PLAYER_ORC_SHAMAN_TIER_2);
 
             // Open the transition story which will start OrcShamanQuest2
             InkStoryManager.OpenStory("OrcShamanQuest2InitialVision");

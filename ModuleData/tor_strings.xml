@@ -53,6 +53,14 @@
   <string id="tor_race_name.wraith" text="{=str_tor_race_name_wraith}Wraith" />
   <string id="tor_race_name.spirit_host" text="{=str_tor_race_name_spirit_host}Spirit Host" />
   <string id="tor_race_name.troll" text="{=str_tor_race_name_troll}Troll" />
+	
+  <string id="tor_party_size_desc.FriendOfUndead" text="{=str_tor_party_size_desc_friendofundead}Friend of undead" />
+  <string id="tor_party_size_desc.CaravanOfDeath" text="{=str_tor_party_size_desc_caravanofdeath}Caravan of death" />
+  <string id="tor_party_size_desc.SettlementVampireCounts" text="{=str_tor_party_size_desc_settlementvampirecounts}Settlement of Vampire Counts" />
+  <string id="tor_party_size_desc.VampireLord" text="{=str_tor_party_size_desc_vampirelord}Vampire lord" />
+  <string id="tor_party_size_desc.Greenskins" text="{=str_tor_party_size_desc_greenskins}Greenskins" />
+  <string id="tor_party_size_desc.DwarfPenalty" text="{=str_tor_party_size_desc_dwarfpenalty}Dwarf cultural penalty" />
+  <string id="tor_party_size_desc.WoodelfPenalty" text="{=str_tor_party_size_desc_woodelfpenalty}Woodelf cultural penalty" />
 
   <!-- Skills - Skill labels -->
   <string id="tor_skill_faith" text="{=str_tor_skill_faith}Faith" />
@@ -682,6 +690,17 @@
   <string id="tor_enchantmentshop_restriction.Thrown" text="{=str_tor_enchantmentshop_restriction_Thrown}Applies to thrown weapons" />
   <string id="tor_enchantmentshop_restriction.Invalid" text="{=str_tor_enchantmentshop_restriction_Invalid}" />
 
+  <!-- Enchantment Shop - skill requirement hints -->
+  <string id="tor_enchantmentshop_requirement_self" text="{=str_tor_enchantmentshop_requirement_self}{RESTRICTION_PREFIX}You don't have enough {SKILL}. Requires {VALUE}." />
+  <string id="tor_enchantmentshop_requirement_hero" text="{=str_tor_enchantmentshop_requirement_hero}{RESTRICTION_PREFIX}{HERO} doesn't have enough {SKILL}. Requires {VALUE}." />
+  <string id="tor_enchantmentshop_requirement_none" text="{=str_tor_enchantmentshop_requirement_none}{RESTRICTION_PREFIX}None of your eligible characters have enough {SKILL}. Requires {VALUE}." />
+  <string id="tor_enchantmentshop_requirement_prefix_lore" text="{=str_tor_enchantmentshop_requirement_prefix_lore}This enchantment is bound to the Lore of {LORE}. " />
+  <string id="tor_enchantmentshop_requirement_prefix_other" text="{=str_tor_enchantmentshop_requirement_prefix_other}This enchantment requires {RESTRICTION}. " />
+
+  <!-- Enchantment Shop - insufficient funds hints -->
+  <string id="tor_enchantmentshop_insufficient_both" text="{=str_tor_enchantmentshop_insufficient_both}Not enough {CUSTOMRESOURCE} and {GOLD_ICON}." />
+  <string id="tor_enchantmentshop_insufficient_customresource" text="{=str_tor_enchantmentshop_insufficient_customresource}Not enough {CUSTOMRESOURCE}." />
+
   <!-- Enchanting UI Messages -->
   <string id="tor_enchanting_title_text" text="{=str_tor_enchanting_title_text}Enchanting" />
   <string id="tor_enchanting_no_blueprints_text" text="{=str_tor_enchanting_no_blueprints_text}You don't know any enchantment blueprints." />
@@ -980,13 +999,6 @@
   <string id="tor_dw_guildmaster_expedition_hub_found_artefacts_p" text="{=str_tor_dw_guildmaster_expedition_hub_found_artefacts_p}You find something of interest for me?" />
   <string id="tor_dw_guildmaster_expedition_hub_launch_expedition_p" text="{=str_tor_dw_guildmaster_expedition_hub_launch_expedition_p}Can I launch an expedition?" />
   <string id="tor_dw_guildmaster_gemcutter_hub_quit_p" text="{=str_tor_dw_guildmaster_gemcutter_hub_quit_p}That will be all, Master Boki." />
-  <string id="tor_party_size_desc.FriendOfUndead" text="{=str_tor_party_size_desc_friendofundead}Friend of undead" />
-  <string id="tor_party_size_desc.CaravanOfDeath" text="{=str_tor_party_size_desc_caravanofdeath}Caravan of death" />
-  <string id="tor_party_size_desc.SettlementVampireCounts" text="{=str_tor_party_size_desc_settlementvampirecounts}Settlement of Vampire Counts" />
-  <string id="tor_party_size_desc.VampireLord" text="{=str_tor_party_size_desc_vampirelord}Vampire lord" />
-  <string id="tor_party_size_desc.Greenskins" text="{=str_tor_party_size_desc_greenskins}Greenskins" />
-  <string id="tor_party_size_desc.DwarfPenalty" text="{=str_tor_party_size_desc_dwarfpenalty}Dwarf cultural penalty" />
-  <string id="tor_party_size_desc.WoodelfPenalty" text="{=str_tor_party_size_desc_woodelfpenalty}Woodelf cultural penalty" />
 
   <!-- Expeditions -->
   <string id="tor_dw_guildmaster_gemcutter_found_artefacts" text="{=str_tor_dw_guildmaster_expedition_found_artefacts}Some of the explorer teams return with treasuers or artifacts. Naturally, a portion would be shared with you." />
@@ -1037,8 +1049,8 @@
   <string id="tor_dw_guild_relationship.trustworthy" text="{=str_tor_dw_guild_relationship_trustworthy}Trustworthy" />
   <string id="tor_dw_guild_relationship.reliable" text="{=str_tor_dw_guild_relationship_reliable}Reliable" />
   <string id="tor_dw_guild_relationship.respected" text="{=str_tor_dw_guild_relationship_respected}Respected" />
-  <string id="tor_dw_oath_gold_spending_title_text" text="{=str_tor_dw_guild_donate_oathgold_label}Spend Oath Gold" />
-  <string id="tor_dw_oath_gold_spending_description_text" text="{=str_tor_dw_guild_donate_oathgold_description}Select how much Oath Gold you want to spend" />
+  <string id="tor_dw_oath_gold_spending_title_text" text="{=str_tor_dw_guild_donate_oathgold_label}Spend Oath Gold {GUILD_ICON}" />
+  <string id="tor_dw_oath_gold_spending_description_text" text="{=str_tor_dw_guild_donate_oathgold_description}Select how much Oath Gold you want to donate" />
   <string id="tor_dw_engineer_benefit.title" text="{=str_tor_dw_engineer_benefit_title}Engineers" />
   <string id="tor_dw_engineer_benefit.description" text="{=str_tor_dw_engineer_benefit_description}Access to ranged weapons and artillery, reduce gunmen and Irondrake upgrade costs." />
   <string id="tor_dw_engineer_benefit.arsenal" text="{=str_tor_dw_engineer_benefit_arsenal}Entire arsenal" />
@@ -1944,6 +1956,7 @@
   <string id="str_crafting_template.tor_kotww_axe_template" text="Knight of the White Wolf Axe" />
   <string id="str_crafting_template.tor_twohandedaxe" text="{=str_tor_crafting_template_TORGreataxes}TOR-Greataxes" />
   <string id="str_crafting_template.tor_mace_template" text="{=str_tor_crafting_template_TORMaces}TOR-Maces" />
+  <string id="str_crafting_template.tor_mace_knight_template" text="{=str_tor_crafting_template_TORKnightlyMaces}TOR-Knightly Maces" />
   <string id="str_crafting_template.tor_orc_mace_template" text="{=str_tor_crafting_template_TOROrcMaces}TOR-Orc Maces" />
   <string id="str_crafting_template.tor_orc_axe_template" text="{=str_tor_crafting_template_TorOrcOneHandedAxe}TOR-Orc Axes" />
   <string id="str_crafting_template.tor_orc_sword_template" text="{=str_tor_crafting_template_TorOrcOneHandedSword}TOR-Orc Swords" />
@@ -4158,7 +4171,7 @@
   <string id="tor_careerchoice_description.MeanestanDaBaddestKeystone" text="{=str_tor_careerchoice_description_MeanestanDaBaddestKeystone}Armed to da Teef iz betta killy wiv Polearm pointz" />
   <string id="tor_careerchoice_description.MeanestanDaBaddestPassive1" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive1}10% betta killin’" />
   <string id="tor_careerchoice_description.MeanestanDaBaddestPassive2" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive2}5 more Bosses fer da mob" />
-  <string id="tor_careerchoice_description.MeanestanDaBaddestPassive3" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive3}50% more shinies when leavin’ loot in Kwartamasta piles" />
+  <string id="tor_careerchoice_description.MeanestanDaBaddestPassive3" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive3}Get 50% more when leavin’ shinies wit da Kwartamasta" />
   <string id="tor_careerchoice_description.MeanestanDaBaddestPassive4" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive4}Big Bosses in da mob pay 5 Teef e’ry day" />
   <string id="tor_careerchoice_description.GetToDaChoppasKeystone" text="{=str_tor_careerchoice_description_GetToDaChoppasKeystone}Armed to da Teef makes da Boys proppa killy fer sum time" />
   <string id="tor_careerchoice_description.GetToDaChoppasPassive1" text="{=str_tor_careerchoice_description_GetToDaChoppasPassive1}10% betta killin’" />
@@ -4179,7 +4192,7 @@
   <!-- Career Choice Description - OrcShaman -->
   <string id="tor_careerchoice_description.OrcShamanRoot" text="{=str_tor_careerchoice_description_OrcShamanRoot}Da Shaman iz da centah uv da WAAAGH! You kunnect yerself to da boys ‘round, an’ dey will give you more ju-ju powa’ fer ZAPPIN’ an’ BLASTIN’. But if da boys start dyin’, den yer zappy energy gets blasted outta ya, an’ they take it wiv dem! Da betta ya get, de more you can kunnect to da WAAAGH!. An’ remember to stay close to da old ways. Wearin’ ‘ard bits an’ metal an’ stuff like dem ‘ard boyz iz gunna get ya less ju-ju powa’." />
   <string id="tor_careerchoice_description.BonesAnFirepitzKeystone" text="{=str_tor_careerchoice_description_BonesAnFirepitzKeystone}Call uv da Great Green iz always ready fer da scrap" />
-  <string id="tor_career_choice_description.BonesAnFirepitzPassive1" text="{=str_tor_career_choice_description_BonesAnFirepitzPassive1}Get 15 mumbo-jumbo pointz afta' winnin' brawls" />
+  <string id="tor_careerchoice_description.BonesAnFirepitzPassive1" text="{=str_tor_career_choice_description_BonesAnFirepitzPassive1}Get 15 mumbo-jumbo pointz afta' winnin' brawls" />
   <string id="tor_careerchoice_description.BonesAnFirepitzPassive2" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive2}10 more mumbo-jumbo pointz" />
   <string id="tor_careerchoice_description.BonesAnFirepitzPassive3" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive3}Betta findiness uv mumbo-jumbo fings afta' scraps" />
   <string id="tor_careerchoice_description.BonesAnFirepitzPassive4" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive4}More mumbo-jumbo eks-perr-yens afta' lootin' Idols" />
@@ -5047,7 +5060,7 @@
   <string id="tor_greenskin_brawl_intro" text="{=str_tor_greenskin_brawl_intro}Time to prove who's da biggest an' strongest! You ready for a proper scrap?" />
   <string id="tor_greenskin_brawl_victory_desc" text="{=str_tor_greenskin_brawl_victory_desc}You have won the brawl! The crowd cheers your victory. {newline} {BRAWL_RESULT}" />
   <string id="tor_greenskin_brawl_victory_reward" text="{=str_tor_greenskin_brawl_victory_reward}You earned {GOLD_REWARD} shinies, {RENOWN_REWARD} renown, and {TEEF_REWARD}{CR_ICON} from your brawl!{TROOP_REWARD}" />
-  <string id="tor_greenskin_brawl_victory_troops" text="{=str_tor_greenskin_brawl_victory_troops}Some of the Greenskins were quite impressed. They join you.{POUCHED_TROOPS}" />
+  <string id="tor_greenskin_brawl_victory_troops" text="{=str_tor_greenskin_brawl_victory_troops}{newline}Some of the Greenskins were quite impressed. They join you.{POUCHED_TROOPS}" />
   <string id="tor_greenskin_brawl_victory_accept" text="{=str_tor_greenskin_brawl_victory_accept}Claim your prize" />
   <string id="tor_greenskin_brawl_defeat_desc" text="{=str_tor_greenskin_brawl_defeat_desc}You lost {GOLD_LOSS} shinies and {TEEF_LOSS}{CR_ICON} due to your defeat." />
   <string id="tor_greenskin_brawl_defeat_accept" text="{=str_tor_greenskin_brawl_defeat_accept}Accept your defeat" />
@@ -5547,16 +5560,22 @@
   <string id="tor_encyclopedia_filter_campaign_issues" text="{=str_tor_encyclopedia_filter_campaign_issues}Campaign Issues" />
   <string id="tor_encyclopedia_filter_types" text="{=str_tor_encyclopedia_filter_types}Types" />
 
-  <!-- Quartermaster/Shop Texts -->
+  <!-- Quartermaster/Kwartamasta Texts -->
   <string id="tor_gs_quartermaster_intro_text" text="{=str_tor_gs_quartermaster_intro_text}Yoo dere, youz got sumfing fer da Boss?" />
   <string id="tor_gs_quartermaster_anything_else_text" text="{=str_tor_gs_quartermaster_anything_else_text}Wot, youz got more?" />
   <string id="tor_gs_quartermaster_shinies_option_text" text="{=str_tor_gs_quartermaster_shinies_option_text}Shinies" />
+  <string id="tor_gs_quartermaster_shinies_option_text_owner" text="{=str_tor_gs_quartermaster_shinies_option_text_owner}Shinies for me pile" />
   <string id="tor_gs_quartermaster_loot_option_text" text="{=str_tor_gs_quartermaster_loot_option_text}Loot" />
   <string id="tor_gs_quartermaster_leave_option_text" text="{=str_tor_gs_quartermaster_leave_option_text}Iz outta 'ere!" />
   <string id="tor_gs_quartermaster_owner_intro_text" text="{=str_tor_gs_quartermaster_owner_intro_text}Oi, Boss, youz got sum loot fer da pile?" />
   <string id="tor_gs_quartermaster_owner_anything_else_text" text="{=str_tor_gs_quartermaster_owner_anything_else_text}Iz dere more, Boss?" />
   <string id="tor_gs_quartermaster_make_teefbags_option_text" text="{=str_tor_gs_quartermaster_make_teefbags_option_text}Make Teefbags" />
   <string id="tor_gs_give_items_to_boss_text" text="{=str_tor_gs_quartermaster_inventory_menu}Give Items to the Big Boss" />
+  <string id="tor_gs_spend_gold_description_text_teef" text="{=str_tor_gs_spend_gold_description_text_teef}The Big Boss takes your shinies. How much would you like to spend to obtain some Teef?" />
+  <string id="tor_gs_spend_gold_description_text_piles" text="{=str_tor_gs_spend_gold_description_text_piles}We takes your shinies Big Boss. How much for da loot pile (Stash)?" />
+	
+	
+	<!-- Dwarf Shop Texts -->
   <string id="tor_dw_shop_show_goods_text" text="{=str_tor_dw_shop_show_goods_text}Very well, take a look at our inventions." />
   <string id="tor_dw_engineer_buy_weapons_text" text="{=str_tor_dw_engineer_buy_weapons_text}I need better gear, Master Engineer." />
   <string id="tor_dw_quit_text" text="{=str_tor_dw_quit_text}That will be all." />

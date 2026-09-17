@@ -7,7 +7,6 @@ namespace TOR_Core.Utilities
     public static class TORConstants
     {
         public const int TotalNumberOfUniqueLoadingScreenImages = 12;
-        public const int MIRACLE_CHANCE = 5;//Sly : currently ignored
         public const int MAXIMUM_DEVOTION_LEVEL = 100;
         public const int DEVOTED_TRESHOLD = 50;
         public const int FANATIC_TRESHOLD = 75;
@@ -188,12 +187,183 @@ namespace TOR_Core.Utilities
             ];
         }
 
-        public readonly struct Attributes
+        public readonly struct CharacterAttributes
         {
+            //Comments are examples, not exhaustive lists.
+
+            //Player specific
+            public const string PLAYER_RUNESMITH = "PlayerRunesmith";//quest completed for career tier 2
+            public const string PLAYER_RUNELORD = "PlayerRunelord";//quest completed for career tier 3
+            //These are quest related attributes. If the career tier is locked behind completing the quest, are these not fancy names for their CareerTier equivalents?
+            public const string PLAYER_ORC_BOSS = "PlayerOrcBoss";
+            public const string PLAYER_ORC_BIG_BOSS = "PlayerOrcBigBoss";
+            public const string PLAYER_ORC_SHAMAN_TIER_2 = "PlayerOrcShamanTier2";
+            public const string PLAYER_ORC_SHAMAN_TIER_3 = "PlayerOrcShamanTier3";
+            public const string GIFT_OF_NURGLE = "GiftOfNurgle";
+
+            //Ability system
+            public const string ABILITY_USER = "AbilityUser";
+            public const string CAN_PLACE_ARTILLERY = "CanPlaceArtillery";
+
+            //Special hero types - generally used for detecting specific types of npc heroes
             public const string SPELLCASTER = "SpellCaster";
             public const string RUNESMITH = "Runesmith";
-            public const string CAN_PLACE_ARTILLERY = "CanPlaceArtillery";
+            public const string ILL_FATED = "IllFated";//moussilon knights, similar to grail knights
+            public const string LEGENDARY_LORD = "LegendaryLord";//Specific famous heroes who need plot armour
+            public const string WARBOSS = "Warboss";//greenskin mechanic
+            public const string PRIEST_TRAINER = "PriestTrainer";//Blesses player, teaches equipment blessing, etc.
+            public const string SKILL_TRAINER = "SkillTrainer";
             public const string ENGINEER_COMPANION = "EngineerCompanion";
+            public const string NECROMANCER = "Necromancer";
+            public const string VAMPIRE = "Vampire";//what is this actually doing?
+            public const string WIGHT_KING = "WightKing";
+            public const string BRETONNIAN_KNIGHT = "BretonnianKnight";
+            public const string AI_COMPANION = "AiCompanion";//is this still a thing?
+            public const string SHAMAN_BOSS = "ShamanBoss";
+            public const string GLADE_CAPTAIN = "GladeCaptain";
+            public const string BIG_BOSS = "BigBoss";
+            public const string EVERCHOSEN = "Everchosen";//chaos archaon
+            public const string BLOOD_DRAGON = "BloodDragon";//they are a subtype of vampire that can't be differentiated by race
+            public const string SLAYER_LORD = "SlayerLord";
+            public const string BERGERAC = "Bergerac";//bretonnian minor clan, but why does this pass through an attribute rather than making use of native code that handles recruitment for minor clans who are supposed to pull from their special troops?
+            public const string PEASANT_KNIGHT = "PeasantKnight";//same as bergerac
+            public const string BRASS_KEEP = "BrassKeep";
+
+            //Agent-relevant
+            public const string TOUGH = "Tough";
+            public const string BULWARK = "Bulwark";
+            public const string BULWARK_2 = "Bulwark2";
+            public const string BULWARK_3 = "Bulwark3";
+            public const string ETHEREAL = "Ethereal";
+            public const string ETHEREAL_2 = "Ethereal2";
+            public const string MONSTER_SLAYER = "MonsterSlayer";
+            public const string MONSTER_SLAYER_2 = "MonsterSlayer2";
+            public const string PIERCING = "Piercing";
+            public const string PIERCING_2 = "Piercing2";
+            public const string POISONOUS = "Poisonous";
+            public const string POISONOUS_2 = "Poisonous2";
+            public const string REGENERATION = "Regeneration";
+            public const string REGENERATION_2 = "Regeneration2";
+            public const string REGENERATION_3 = "Regeneration3";
+            public const string SWIFT = "Swift";
+            public const string SWIFT_2 = "Swift2";
+            public const string SWIFT_3 = "Swift3";
+            public const string UNDEAD_SLAYER = "UndeadSlayer";
+            public const string UNDEAD_SLAYER_2 = "UndeadSlayer2";
+            public const string UNBREAKABLE = "Unbreakable";
+            public const string TUBTHUMPING = "Tubthumping";
+            public const string SURVIVOR = "Survivor";
+            public const string UNSTOPPABLE = "Unstoppable";
+            public const string HORSE_STEADY = "HorseSteady";
+            public const string HORSE_LINK = "HorseLink";
+            public const string SHIELD_PENETRATION = "ShieldPenetration";
+            public const string THE_HUNGER = "TheHunger";
+            public const string SLICE = "Slice";
+            public const string MONSTER_ATTACK = "MonsterAttack";
+            public const string EXPENDABLE = "Expendable";
+            public const string FRENZY = "Frenzy";
+            public const string DEADEYE = "Deadeye";
+            public const string CRUSH_THROUGH = "CrushThrough";
+            public const string BRUTE = "Brute";
+            public const string CLEAR_BLOOD_BURST = "ClearBloodBurst";
+            public const string IMMORTALITY = "Immortality";
+            public const string KILLING_BLOW = "KillingBlow";
+
+            //Priests
+            //These attributes may be applied to both player and npc. They are used to track prayer-using followers 
+            public const string PRIEST_LADY = "PriestLady";//damsels
+            public const string PRIEST = "Priest";//generic, unclear name, old attribute, specific to warrior priests as it was used to mark the player who had that career in the past
+            public const string PRIEST_SIGMAR = "PriestSigmar";
+            public const string PRIEST_ULRIC = "PriestUlric";
+
+            //Careers
+            //Seals and other troop-applied career modifiers are not present here.
+            //Attributes specific to a single career perk are not currently here.
+
+            public const string CAREER_TIER_1 = "CareerTier1";//granted by fulfilling the unlock conditions
+            public const string CAREER_TIER_2 = "CareerTier2";//granted by fulfilling the unlock conditions
+            public const string CAREER_TIER_3 = "CareerTier3";//granted by fulfilling the unlock conditions
+            public const string WINDS_LINK = "WindsLink";//orc shaman, spellsinger
+            public const string WINDS_DEATH_LINK = "WindsDeathLink";//orc shaman
+            public const string ACCUSATION_MARK = "AccusationMark";//witchhunter
+            public const string FELLFANG_MARK = "FellfangMark";//greylord
+            public const string NECROMANCER_CHAMPION = "NecromancerChampion";//necromancer
+            public const string IMPENETRABLE = "Impenetrable";//ironbreaker
+            public const string DOOM_SEEKING = "DoomSeeking";//slayer
+            public const string ARCANE_DMG = "Arcane_Dmg";//Magister, update for nomenclature
+            public const string KNIGHTLY_STRIKE = "KnightlyStrike";
+            public const string EXTORSION = "Extorsion";
+
+            //Traits
+            public const string THORNS = "Thorns";//damage reflection
+
+            //Custom Events
+            public const string DEFEATED_VITTORIO = "DefeatedVittorio";//granted upon winning a duel
+
+            //Asrai
+            public const string WE_WANDERER_SYMBOL = "WEWandererSymbol";
+            public const string WE_ARIEL_SYMBOL = "WEArielSymbol";
+            public const string WE_DURTHU_SYMBOL = "WEDurthuSymbol";
+            public const string WE_KITHBAND_SYMBOL = "WEKithbandSymbol";
+            public const string WE_ORION_SYMBOL = "WEOrionSymbol";
+            public const string WE_TREEKIN_SYMBOL = "WETreekinSymbol";
+            public const string WE_WARDANCER_SYMBOL = "WEWardancerSymbol";
+
+            //Dawi player
+            //grudges are from character creation options
+            public const string ELF_GRUDGE = "ElfGrudge";
+            public const string GREENSKIN_GRUDGE = "GreenskinGrudge";
+            public const string HUMAN_GRUDGE = "HumanGrudge";
+            public const string SKAVEN_GRUDGE = "SkavenGrudge";
+            public const string UNDEAD_GRUDGE = "UndeadGrudge";
+
+            //Dawi guild tiers
+            public const string GUILD_BREWERS_1 = "GuildBrewersI";
+            public const string GUILD_BREWERS_2 = "GuildBrewersII";
+            public const string GUILD_BREWERS_3 = "GuildBrewersIII";
+            public const string GUILD_ENGINEERS_1 = "GuildEngineersI";
+            public const string GUILD_ENGINEERS_2 = "GuildEngineersII";
+            public const string GUILD_ENGINEERS_3 = "GuildEngineersIII";
+            public const string GUILD_MINERS_1 = "GuildMinersI";
+            public const string GUILD_MINERS_2 = "GuildMinersII";
+            public const string GUILD_MINERS_3 = "GuildMinersIII";
+            public const string GUILD_WARRIORS_1 = "GuildWarriorsI";
+            public const string GUILD_WARRIORS_2 = "GuildWarriorsII";
+            public const string GUILD_WARRIORS_3 = "GuildWarriorsIII";
+            public const string GUILD_RUNESMITH_1 = "GuildRunesmithsI";
+            public const string GUILD_RUNESMITH_2 = "GuildRunesmithsII";
+            public const string GUILD_RUNESMITH_3 = "GuildRunesmithsIII";
+
+            //Empire
+            public const string PRESTIGE_NOBLE = "PrestigeNoble";//trades related to Prestige
+            
+            //Eonir
+            public const string DRUCHII_ENVOY = "DruchiiEnvoy";//druchii npc
+            public const string ASUR_ENVOY = "AsurEnvoy";//high elf npc
+            public const string EMPIRE_ENVOY = "EmpireEnvoy";//empire npc
+            public const string SPELLSINGER_ENVOY = "SpellsingerEnvoy";//spellsinger npc
+
+            //Greenskin
+            public const string WAAAAGH_0 = "Waaagh0";
+            public const string WAAAAGH_1 = "Waaagh1";
+            public const string WAAAAGH_2 = "Waaagh2";
+            public const string WAAAAGH_3 = "Waaagh3";
+            
+            //Characters? generic?
+            public const string DWARF_MINER = "DwarfMiner";
+            public const string DWARF_GUN = "DwarfGun";
+            public const string DWARF_WARRIOR = "DwarfWarrior";
+            public const string IRONBREAKER = "Ironbreaker";
+            public const string ARTILLERY_CREW = "ArtilleryCrew";
+            public const string CREW_2 = "CrewII";
+            public const string CREW_3 = "CrewIII";
+            public const string KNIGHTLY = "Knightly";
+            public const string MONSTROUS = "Monstrous";
+            public const string TREE_SPIRIT = "TreeSpirit";//this detection should instead move to the race and LHM gets cleaned up to be specific to a single type, but dryads would be unaccounted for which is why it remains for the moment. I don't think keeping all of the giant races on a single race entry is saving us enough memory to be worth other headaches.
+            public const string UNDEAD = "Undead";//is race detection faster than attribute lookup? It should be, particularly if we change to caching the race mapping and just performing integer comparisons. This is used for so many other things that there are hidden risks with a straight swap.
+
+            //Other?
+            public const string HAS_ANIMATION_TRIGGERED_EFFECTS = "HasAnimationTriggeredEffects";//treemen and trolls
         }
 
         /// <summary>

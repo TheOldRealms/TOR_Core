@@ -399,8 +399,8 @@ namespace TOR_Core.Utilities
                 AddCompanionAction.Apply(Clan.PlayerClan, hero);
                 AddHeroToPartyAction.Apply(hero, MobileParty.MainParty);
 
-                hero.AddAttribute("SpellCaster");
-                hero.AddAttribute("AbilityUser");
+                hero.AddAttribute(CharacterAttributes.SPELLCASTER);
+                hero.AddAttribute(CharacterAttributes.ABILITY_USER);
                 hero.SetSpellCastingLevel(TOR_Core.AbilitySystem.Spells.SpellCastingLevel.Master);
 
                 foreach (var spellId in torSpellNames)
@@ -432,7 +432,7 @@ namespace TOR_Core.Utilities
                 return CampaignCheats.ErrorType;
 
             if (!Hero.MainHero.IsNecromancer())
-                Hero.MainHero.AddAttribute("Necromancer");
+                Hero.MainHero.AddAttribute(CharacterAttributes.NECROMANCER);
 
             return MakePlayerSpellCaster(null) + "Player is necromancer now.\n ";
         }
@@ -444,10 +444,10 @@ namespace TOR_Core.Utilities
                 return CampaignCheats.ErrorType;
 
             if (!Hero.MainHero.IsSpellCaster())
-                Hero.MainHero.AddAttribute("SpellCaster");
+                Hero.MainHero.AddAttribute(CharacterAttributes.SPELLCASTER);
 
             if (!Hero.MainHero.IsAbilityUser())
-                Hero.MainHero.AddAttribute("AbilityUser");
+                Hero.MainHero.AddAttribute(CharacterAttributes.ABILITY_USER);
 
             return "Player is spell caster now. \n";
         }
@@ -1105,10 +1105,10 @@ namespace TOR_Core.Utilities
         private static bool HasHostilePartyCheatHeroRole(Hero hero)
         {
             if (hero.IsSpellCaster() ||
-                hero.HasAttribute(Attributes.SPELLCASTER) ||
-                hero.HasAttribute(Attributes.RUNESMITH) ||
-                hero.HasAttribute(Attributes.CAN_PLACE_ARTILLERY) ||
-                hero.HasAttribute(Attributes.ENGINEER_COMPANION))
+                hero.HasAttribute(CharacterAttributes.SPELLCASTER) ||
+                hero.HasAttribute(CharacterAttributes.RUNESMITH) ||
+                hero.HasAttribute(CharacterAttributes.CAN_PLACE_ARTILLERY) ||
+                hero.HasAttribute(CharacterAttributes.ENGINEER_COMPANION))
             {
                 return true;
             }

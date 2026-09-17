@@ -1778,7 +1778,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             Game.Current.AfterTick -= InitializeSiegeBattle;
             _hirelingEnlisted = false;
             _hirelingEnlistingLord = null;
-            Hero.MainHero.RemoveAttribute("enlisted");
+
             _hirelingWaitMenuShown = false;
             //I am not sure why this was needed? Putting it in makes it crash if you leave service while in a town for example.
             //This makes PlayerEncounter.EncounterSettlement null which is accessed via vanilla gamemenu init methods
@@ -2490,7 +2490,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             DisbandParty();
             //sets the player party to be ignored so it can't be targeted; refreshed with the IgnoreHirelingPartyRefresh event
             MobileParty.MainParty.IgnoreForHours(8f); //may have to set the player party to notActive maybe?
-            Hero.MainHero.AddAttribute("enlisted");
 
             ChangeKingdomAction.ApplyByJoinFactionAsMercenary(Hero.MainHero.Clan, _hirelingEnlistingLord.Clan.Kingdom, default, 25, false);
             MBTextManager.SetTextVariable("ENLISTINGLORDNAME", _hirelingEnlistingLord.EncyclopediaLinkWithName);

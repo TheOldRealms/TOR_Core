@@ -1,5 +1,6 @@
 ﻿using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.BattleMechanics.Artillery
 {
@@ -7,7 +8,7 @@ namespace TOR_Core.BattleMechanics.Artillery
     {
         public override bool IsDisabledForAgent(Agent agent)
         {
-            return !agent.HasAttribute("ArtilleryCrew") || base.IsDisabledForAgent(agent);
+            return !agent.HasAttribute(CharacterAttributes.ARTILLERY_CREW) || base.IsDisabledForAgent(agent);
         }
     }
 
@@ -23,7 +24,7 @@ namespace TOR_Core.BattleMechanics.Artillery
     {
         public override bool IsDisabledForAgent(Agent agent)
         {
-            return !agent.HasAttribute("ArtilleryCrew") || base.IsDisabledForAgent(agent);
+            return !agent.HasAttribute(CharacterAttributes.ARTILLERY_CREW) || base.IsDisabledForAgent(agent);
         }
     }
 }

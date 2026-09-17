@@ -166,6 +166,8 @@ namespace TOR_Core.Missions
                 int num = 0;
                 foreach (var participant in team.Participants)
                 {
+                    participant.ResetScore();
+
                     participant.MatchEquipment = participantWeaponEquipmentList[num].Clone(false);
                     AddParticipantArmor(participant);
                     num++;

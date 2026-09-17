@@ -24,6 +24,7 @@ using TOR_Core.Extensions.UI;
 using TOR_Core.Models;
 using TOR_Core.Utilities;
 using static Helpers.PartyScreenHelper;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CampaignMechanics.CustomResources
 {
@@ -171,15 +172,15 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 {
                     if (settlement.Culture.StringId == TORConstants.Cultures.DAWI)
                     {
-                        if (winner.HasAttribute("DwarfWarriorIII"))
+                        if (winner.HasAttribute(CharacterAttributes.GUILD_WARRIORS_3))
                         {
                             Hero.MainHero.AddCultureSpecificCustomResource(25);
                         }
-                        else if (winner.HasAttribute("DwarfWarriorII"))
+                        else if (winner.HasAttribute(CharacterAttributes.GUILD_WARRIORS_2))
                         {
                             Hero.MainHero.AddCultureSpecificCustomResource(20);
                         }
-                        else if (winner.HasAttribute("DwarfWarriorI"))
+                        else if (winner.HasAttribute(CharacterAttributes.GUILD_WARRIORS_1))
                         {
                             Hero.MainHero.AddCultureSpecificCustomResource(15);
                         }
@@ -423,7 +424,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
                         var partyCulture = party.Party.MobileParty?.ActualClan?.Culture ?? party.Party.MapFaction?.Culture ?? party.Party.MobileParty?.HomeSettlement?.Culture ?? party.Party.LeaderHero?.Culture;
 
-                        if (playerHero.HasAttribute("HumanGrudge"))
+                        if (playerHero.HasAttribute(CharacterAttributes.HUMAN_GRUDGE))
                         {
                             var humanCultures = new[] { TORConstants.Cultures.EMPIRE, TORConstants.Cultures.BRETONNIA, TORConstants.Cultures.HERRIMAULT, TORConstants.Cultures.EMPIRE_DESERTERS, TORConstants.Cultures.CHAOS_CULTIST };
 
@@ -443,7 +444,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                             }
                         }
 
-                        if (playerHero.HasAttribute("GreenskinGrudge"))
+                        if (playerHero.HasAttribute(CharacterAttributes.GREENSKIN_GRUDGE))
                         {
                             var greenskinCultures = new[] { TORConstants.Cultures.GREENSKIN, TORConstants.Cultures.GREENSKIN_BANDIT, TORConstants.Cultures.GOBLIN_BANDIT };
                             if (greenskinCultures.Contains(partyCulture.StringId))
@@ -452,7 +453,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                             }
                         }
 
-                        if (playerHero.HasAttribute("UndeadGrudge"))
+                        if (playerHero.HasAttribute(CharacterAttributes.UNDEAD_GRUDGE))
                         {
                             var undeadCultures = new[] { TORConstants.Cultures.SYLVANIA, TORConstants.Cultures.MOUSILLON };
                             if (undeadCultures.Contains(partyCulture.StringId))
@@ -461,7 +462,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                             }
                         }
 
-                        if (playerHero.HasAttribute("ElfGrudge"))
+                        if (playerHero.HasAttribute(CharacterAttributes.ELF_GRUDGE))
                         {
                             var elfCultures = new[] { TORConstants.Cultures.ASRAI, TORConstants.Cultures.EONIR, TORConstants.Cultures.DRUCHII };
                             if (elfCultures.Contains(partyCulture.StringId))
@@ -470,7 +471,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                             }
                         }
 
-                        if (playerHero.HasAttribute("SkavenGrudge"))
+                        if (playerHero.HasAttribute(CharacterAttributes.SKAVEN_GRUDGE))
                         {
                             hasgrudge = TORCommon.FindSettlementsAroundPosition(mapEvent.Position.ToVec2(), 30, (x) => (x.Culture.StringId == TORConstants.Cultures.GREENSKIN && x.IsTown || x.IsVillage) ||
                                 x.Culture.StringId == TORConstants.Cultures.DAWI && x.IsDwarfKarak()).AnyQ();
@@ -483,15 +484,15 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                         renownChange *= 2;
                     }
 
-                    if (playerHero.HasAttribute("DwarfWarriorIII"))
+                    if (playerHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_3))
                     {
                         renownChange *= 3f;
                     }
-                    else if (playerHero.HasAttribute("DwarfWarriorII"))
+                    else if (playerHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_2))
                     {
                         renownChange *= 2;
                     }
-                    else if (playerHero.HasAttribute("DwarfWarriorI"))
+                    else if (playerHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_1))
                     {
                         renownChange *= 1.5f;
                     }

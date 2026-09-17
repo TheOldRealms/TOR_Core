@@ -32,7 +32,7 @@ namespace TOR_Core.AbilitySystem.Spells.Prayers
             var religion = ReligionObject.All.Where(x => x.StringId == religionID).FirstOrDefault();
             StatItems.Add(new StatItemVM(TORTextHelper.GetText("tor_prayerbook_devoted_to", "Devoted to: "), religion.DeityName.ToString()));
             var battlePrayers = CareerHelper.GetPriestPrayerList(Hero.MainHero);
-            var highest = battlePrayers.Max(x => x.Rank);
+            var highest = battlePrayers.Max(x => x.Rank);//Sly : this finds the highest prayer tier in the lore, not the priest's highest accessible tier.
             var prayerLevelText = GameTexts.FindText("tor_prayer_level", ((PrayerLevel)highest).ToString());
             StatItems.Add(new StatItemVM(TORTextHelper.GetText("tor_prayerbook_prayer_level", "Prayer level: "), prayerLevelText.ToString()));
             var prayers = battlePrayers.ConvertAll(input => input.PrayerID);

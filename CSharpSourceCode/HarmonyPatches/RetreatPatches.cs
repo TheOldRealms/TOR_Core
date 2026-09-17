@@ -13,6 +13,7 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TOR_Core.Extensions;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.HarmonyPatches.AutoResolve
 {
@@ -630,7 +631,7 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
                     if (troop == null || troop.IsHero)
                         continue;
 
-                    if (troop.HasAttribute("Unbreakable"))
+                    if (troop.HasAttribute(CharacterAttributes.UNBREAKABLE))
                         continue;
 
                     var formationValue = GetRetreatFormationValue(troop.GetFormationClass());

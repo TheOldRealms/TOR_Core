@@ -1,22 +1,22 @@
 using HarmonyLib;
-using NLog;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
-using TaleWorlds.Core.ImageIdentifiers;
 using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
-using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
-using TOR_Core.Items;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Crafting;
 
+/// <summary>
+/// Enchantment blueprint data and item creation: what blueprints exist, who in the party
+/// is eligible to learn one, and building the actual enchanted <see cref="ItemObject"/>.
+/// For the town-service shop UI built on top of this data, see <see cref="EnchantmentShopHelper"/>.
+/// </summary>
 public static class EnchantmentHelper
 {
     public static ItemObject CreateEnchantedItem(ItemObject original, List<string> traits = null, string newName = null, bool playerCrafted = false, ItemModifier itemModifier = null)
@@ -53,7 +53,7 @@ public static class EnchantmentHelper
         return newItem;
     }
 
-    private static List<ItemObject> GetBlueprintItems(List<string> prefixList)
+    internal static List<ItemObject> GetBlueprintItems(List<string> prefixList)
     {
         return MBObjectManager.Instance.GetObjectTypeList<ItemObject>()
             .Where(item =>
@@ -65,7 +65,7 @@ public static class EnchantmentHelper
             .ToList();
     }
 
-    private static bool TryGetBlueprintData(ItemObject item, out string blueprintId, out SkillObject requiredSkill, out int requiredSkillValue, out string restriction)
+    internal static bool TryGetBlueprintData(ItemObject item, out string blueprintId, out SkillObject requiredSkill, out int requiredSkillValue, out string restriction)
     {
         blueprintId = null;
         requiredSkill = null;
@@ -104,19 +104,13 @@ public static class EnchantmentHelper
         return true;
     }
 
-    private static bool IsBlueprintCurrentlyApplicableToParty(string blueprintId)
-    {
-        if (Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(hero => hero.HasKnownEnchantmentBlueprint(blueprintId)))
-        {
-            return true;
-        }
+    internal static bool IsBlueprintKnownByParty(string blueprintId) => Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(hero => hero.HasKnownEnchantmentBlueprint(blueprintId));
 
-        return Hero.MainHero.PartyBelongedTo.ItemRoster.Any(rosterElement =>
+    internal static bool IsBlueprintInInventory(string blueprintId) => Hero.MainHero.PartyBelongedTo.ItemRoster.Any(rosterElement =>
             TryGetBlueprintData(rosterElement.EquipmentElement.Item, out var inventoryBlueprintId, out _, out _, out _) &&
             inventoryBlueprintId == blueprintId);
-    }
 
-    private static List<Hero> GetEligibleHeroesForBlueprint(string blueprintId, SkillObject requiredSkill, int requiredSkillValue, string restriction, bool requireRequiredSkill)
+    internal static List<Hero> GetEligibleHeroesForBlueprint(string blueprintId, SkillObject requiredSkill, int requiredSkillValue, string restriction, bool requireRequiredSkill)
     {
         var eligibleHeroes = new List<Hero>();
 
@@ -158,7 +152,7 @@ public static class EnchantmentHelper
                 continue;
             }
 
-            if (IsBlueprintCurrentlyApplicableToParty(blueprintId))
+            if (IsBlueprintKnownByParty(blueprintId) || IsBlueprintInInventory(blueprintId))
             {
                 continue;
             }

@@ -13,6 +13,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.BattleMechanics
 {
@@ -94,7 +95,7 @@ namespace TOR_Core.BattleMechanics
                         if (Mission.Current.Teams.PlayerEnemy.ActiveAgents.Count == 0)
                         {
                             //Sly : if the player is in their aoe, they mark themselves and this will kill them on mission end. Idk if the player being marked prevents mission end, but if it doesn't, then the simplest fix would be removing/not adding the MainAgent to the list. To be fixed when I remember and my current list of changes isn't already so long.
-                            var agents = Mission.Current.PlayerTeam.ActiveAgents.WhereQ(x => x.HasAttribute("FellfangMark")).ToList();
+                            var agents = Mission.Current.PlayerTeam.ActiveAgents.WhereQ(x => x.HasAttribute(CharacterAttributes.FELLFANG_MARK)).ToList();
 
                             for (int i = agents.Count - 1; i >= 0; i--)
                             {
@@ -112,7 +113,7 @@ namespace TOR_Core.BattleMechanics
             if (victim == null || attacker == null) return;
             if (victim.IsMainAgent && victim.BelongsToMainParty() && victim.IsEnemyOf(attacker) && Hero.MainHero.HasCareer(TORCareers.Ironbreaker) && Hero.MainHero.HasCareerChoice("GromrilArmorKeystone"))
             {
-                if (Agent.Main.HasAttribute("Impenetrable"))
+                if (Agent.Main.HasAttribute(CharacterAttributes.IMPENETRABLE))
                 {
                     GromrilArmorBehavior();
                 }
@@ -129,7 +130,7 @@ namespace TOR_Core.BattleMechanics
                 WitchHunterAccusationBehavior(affectorAgent, affectedAgent, blow.InflictedDamage);
             }
 
-            if (affectedAgent.HasAttribute("Thorns"))
+            if (affectedAgent.HasAttribute(CharacterAttributes.THORNS))
             {
                 var thornsDamage = (int)(blow.InflictedDamage * 0.25f);
                 var abilityLogic = Mission.Current?.GetMissionBehavior<AbilityManagerMissionLogic>();
@@ -154,7 +155,7 @@ namespace TOR_Core.BattleMechanics
             var comp = affectedAgent.GetComponent<StatusEffectComponent>();
             if (comp == null) return;
             var temporaryEffects = comp.GetTemporaryAttributes();
-            if (!temporaryEffects.Contains("AccusationMark")) return;
+            if (!temporaryEffects.Contains(CharacterAttributes.ACCUSATION_MARK)) return;
 
             var choices = Hero.MainHero.GetAllCareerChoices();
 
@@ -219,7 +220,7 @@ namespace TOR_Core.BattleMechanics
 
             if (Hero.MainHero.HasCareer(TORCareers.GreyLord))
             {
-                if (affectedAgent.HasAttribute("FellfangMark"))
+                if (affectedAgent.HasAttribute(CharacterAttributes.FELLFANG_MARK))
                 {
                     if (Hero.MainHero.HasCareerChoice("UnrestrictedMagicKeystone"))
                     {
@@ -232,7 +233,7 @@ namespace TOR_Core.BattleMechanics
 
 
             if (!(affectorAgent != null &&
-                  (affectorAgent.HasAttribute("WindsLink") || affectedAgent.HasAttribute("WindsDeathLink"))) &&
+                  (affectorAgent.HasAttribute(CharacterAttributes.WINDS_LINK) || affectedAgent.HasAttribute(CharacterAttributes.WINDS_DEATH_LINK))) &&
                 !CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent)) return;
 
             var playerHero = affectorAgent.GetHero();
@@ -252,12 +253,12 @@ namespace TOR_Core.BattleMechanics
             }
 
             // Call of da Green: WoM from linked Greenskin kills/deaths
-            if (affectorAgent.HasAttribute("WindsLink"))
+            if (affectorAgent.HasAttribute(CharacterAttributes.WINDS_LINK))
             {
                 Hero.MainHero.AddWindsOfMagic(0.5f);
             }
 
-            if (affectedAgent.HasAttribute("WindsDeathLink"))
+            if (affectedAgent.HasAttribute(CharacterAttributes.WINDS_DEATH_LINK))
             {
                 Hero.MainHero.AddWindsOfMagic(-0.15f);
             }
@@ -266,7 +267,7 @@ namespace TOR_Core.BattleMechanics
             {
                 var choices = Hero.MainHero.GetAllCareerChoices();
 
-                if (Hero.MainHero.HasCareer(TORCareers.Slayer) && Agent.Main.HasAttribute("DoomSeeking"))
+                if (Hero.MainHero.HasCareer(TORCareers.Slayer) && Agent.Main.HasAttribute(CharacterAttributes.DOOM_SEEKING))
                 {
                     CareerMissionVariables[0]++;
                 }
@@ -299,7 +300,7 @@ namespace TOR_Core.BattleMechanics
                         if (affectedAgent.Character != null)
                         {
                             multiplier = affectedAgent.Character.Level;
-                            if (affectedAgent.HasAttribute("AccusationMark"))
+                            if (affectedAgent.HasAttribute(CharacterAttributes.ACCUSATION_MARK))
                                 multiplier *= 2;
                         }
 
@@ -388,7 +389,7 @@ namespace TOR_Core.BattleMechanics
                     }
                 }
 
-                if (affectorAgent.HasAttribute("NecromancerChampion"))
+                if (affectorAgent.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION))
                 {
                     if (choices.Contains("GrimoireNecrisKeystone"))
                     {

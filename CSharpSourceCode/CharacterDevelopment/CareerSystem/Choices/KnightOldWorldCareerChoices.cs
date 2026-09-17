@@ -7,6 +7,7 @@ using TOR_Core.CampaignMechanics.Choices;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 
@@ -186,23 +187,23 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
     protected override void InitializePassives()
     {
         _secularOrdersPassive1.Initialize(CareerID, "-25% 'Prestige' cost for upgrading 'Knight' troops.", "SecularOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpgradeCostModifier, true,
-            characterObject => characterObject.HasAttribute("Knightly")));
+            characterObject => characterObject.HasAttribute(CharacterAttributes.KNIGHTLY)));
         _secularOrdersPassive2.Initialize(CareerID, "+20 One/Two-handed skill for all 'Knight' troops.", "SecularOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, new List<string>() { nameof(DefaultSkills.TwoHanded), nameof(DefaultSkills.OneHanded) }, characterObject =>
-            characterObject.HasAttribute("Knightly")));
+            characterObject.HasAttribute(CharacterAttributes.KNIGHTLY)));
 
         _secularOrdersPassive3.Initialize(CareerID, "-25% 'Gold' cost for upgrading 'Knight' troops.", "SecularOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopUpgradeCost, true,
-            characterObject => characterObject.HasAttribute("Knightly")));
+            characterObject => characterObject.HasAttribute(CharacterAttributes.KNIGHTLY)));
         _secularOrdersPassive4.Initialize(CareerID, "Can apply 'Secular Seals' to 'Templar Knights' and 'Templar Seals' to 'Secular Knights'.", "SecularOrders", false, ChoiceType.Passive);
 
         _pathOfConquestPassive1.Initialize(CareerID, "+5% personal 'Physical' melee damage.", "PathOfConquest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 5), AttackTypeMask.Melee));
         _pathOfConquestPassive2.Initialize(CareerID, "+1 party move speed on campaign map.", "PathOfConquest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.PartyMovementSpeed));
         _pathOfConquestPassive3.Initialize(CareerID, "+40% charge damage bonus for your personal mount.", "PathOfConquest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.HorseChargeDamage, true));
         _pathOfConquestPassive4.Initialize(CareerID, "+30 Polearm weapon skill for 'Knight' troops.", "PathOfConquest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, nameof(DefaultSkills.Polearm),
-            (characterObject) => characterObject.HasAttribute("Knightly")));
+            (characterObject) => characterObject.HasAttribute(CharacterAttributes.KNIGHTLY)));
 
         _squiresPassive1.Initialize(CareerID, "+15 personal Hitpoints.", "Squires", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
         _squiresPassive2.Initialize(CareerID, "-25% wages for 'Knight' troops.", "Squires", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopWages, true,
-            characterObject => characterObject.HasAttribute("Knightly")));
+            characterObject => characterObject.HasAttribute(CharacterAttributes.KNIGHTLY)));
         _squiresPassive3.Initialize(CareerID, "Wounded troops heal faster.", "Squires", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration));
         _squiresPassive4.Initialize(CareerID, "Victories against 'Non-Human' enemies give +100% 'Prestige'.", "Squires", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special));
 
@@ -210,7 +211,7 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
         _templarOrdersPassive2.Initialize(CareerID, "Gain Faith experience for slaying the forces of 'Undead' or 'Chaos'.", "TemplarOrders", false, ChoiceType.Passive);
         _templarOrdersPassive3.Initialize(CareerID, "'Knight' troops that follow your patron deity gain +15% 'Physical' melee damage.", "TemplarOrders", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.All,
-                (attacker, victim, mask) => attacker.Character.HasAttribute("Knightly") && attacker.BelongsToMainParty() && mask == AttackTypeMask.Melee && Hero.MainHero.HasAnyReligion() && Hero.MainHero.GetDominantReligion().ReligiousTroops.Contains((CharacterObject)attacker.Character)));
+                (attacker, victim, mask) => attacker.Character.HasAttribute(CharacterAttributes.KNIGHTLY) && attacker.BelongsToMainParty() && mask == AttackTypeMask.Melee && Hero.MainHero.HasAnyReligion() && Hero.MainHero.GetDominantReligion().ReligiousTroops.Contains((CharacterObject)attacker.Character)));
         _templarOrdersPassive4.Initialize(CareerID, "+20% personal 'Physical' melee damage against the forces of 'Undead'.", "TemplarOrders", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.All,
                 (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Melee && victim.IsUndead()));

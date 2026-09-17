@@ -13,6 +13,7 @@ using TOR_Core.Extensions;
 using TOR_Core.Ink;
 using TOR_Core.Missions;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Quests
 {
@@ -255,7 +256,7 @@ namespace TOR_Core.Quests
                         currentStory.SetVariable("MadeDealWithCultists", true);
                     }
                 }
-                Hero.MainHero.AddAttribute("GiftOfNurgle");
+                Hero.MainHero.AddAttribute(CharacterAttributes.GIFT_OF_NURGLE);
             }
 
             private void TurnHostile()

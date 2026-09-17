@@ -5,6 +5,7 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.Extensions;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.AbilitySystem.Scripts
 {
@@ -75,7 +76,7 @@ namespace TOR_Core.AbilitySystem.Scripts
 
                 var tempAttributes = target.GetComponent<StatusEffectComponent>().GetTemporaryAttributes();
 
-                if (tempAttributes.Contains("AccusationMark"))
+                if (tempAttributes.Contains(CharacterAttributes.ACCUSATION_MARK))
                 {
                     validTargets.Remove(target);
                 }

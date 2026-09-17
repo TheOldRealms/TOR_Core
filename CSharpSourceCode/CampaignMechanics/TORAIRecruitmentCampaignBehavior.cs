@@ -12,6 +12,7 @@ using TaleWorlds.LinQuick;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CampaignMechanics
 {
@@ -81,7 +82,7 @@ namespace TOR_Core.CampaignMechanics
             if (artilleryCrew == null) return;
 
             var crewInPartySum = party.MemberRoster.GetTroopRoster()
-                .Where(x => x.Character.GetAttributes().Contains("ArtilleryCrew"))
+                .Where(x => x.Character.HasAttribute(CharacterAttributes.ARTILLERY_CREW))
                 .Sum(x => x.Number);
 
             if (crewInPartySum > 10) { return; } //2 crew per gun, max 3 guns for certain ai parties
@@ -111,8 +112,8 @@ namespace TOR_Core.CampaignMechanics
                         }
 
                         if (party.Party.PartySizeLimit > party.MemberRoster.TotalManCount + UndeadCountTowns)
-                        {
-                            var count = party.LeaderHero.HasAttribute("BloodDragon") ? UndeadCountVillages : UndeadCountTowns;
+                        {//Sly : this can use the IsBloodDragon extension instead
+                            var count = party.LeaderHero.HasAttribute(CharacterAttributes.BLOOD_DRAGON) ? UndeadCountVillages : UndeadCountTowns;
                             party.MemberRoster.AddToCounts(_skeleton, count, false, 0);
 
                             if (party.ActualClan.StringId.Contains("necrarch"))
@@ -135,11 +136,11 @@ namespace TOR_Core.CampaignMechanics
                 }
 
                 // SlayerLord Recruitment in Dwarf Towns
-                if (party.LeaderHero.HasAttribute("SlayerLord") &&
+                if (party.LeaderHero.HasAttribute(CharacterAttributes.SLAYER_LORD) &&
                     party.CurrentSettlement != null &&
                     party.CurrentSettlement.IsDwarfKarak())
                 {
-                    ProcessSlayerRecruitment(party);
+                    ProcessSlayerRecruitment(party);//Sly : this is confusing as to why it's separate from the process of adding slayers to the party when entering a settlement
                 }
             }
         }
@@ -221,7 +222,7 @@ namespace TOR_Core.CampaignMechanics
         {
             if (party == null || settlement == null || leaderHero == null) return;
             if (party.IsMainParty || settlement.IsHideout) return;
-            if (!leaderHero.HasAttribute("SlayerLord")) return;
+            if (!leaderHero.HasAttribute(CharacterAttributes.SLAYER_LORD)) return;
             if (!settlement.IsDwarfKarak()) return;
             if (_slayer == null) return;
 
@@ -377,7 +378,7 @@ namespace TOR_Core.CampaignMechanics
             if (verifiedAmount == null || verifiedAmount < 1) return;
             amount = (int)verifiedAmount; //Sly : if multiple behaviours remove troops (which makes use of the roster index), then the roster index may vary and a troop with no valid index causes the troop roster to fetch data[-1], ie. AssimilationCampaignBehavior
 
-            if (recruiter.CharacterObject.IsBloodDragon())
+            if (recruiter.IsBloodDragon())
             {
                 if (troop.StringId == "tor_vc_vampire_newblood") return;
                 int count = 0;
@@ -396,7 +397,7 @@ namespace TOR_Core.CampaignMechanics
                 }
             }
 
-            if (recruiter.HasAttribute("Everchosen"))
+            if (recruiter.HasAttribute(CharacterAttributes.EVERCHOSEN))
             {
                 CharacterObject replacement = null;
 
@@ -416,12 +417,12 @@ namespace TOR_Core.CampaignMechanics
             if (troop.IsEliteTroop() && recruiter.Culture.StringId == TORConstants.Cultures.BRETONNIA)
             {
                 CharacterObject replacement = null;
-                if (recruiter.HasAttribute("Bergerac"))
+                if (recruiter.HasAttribute(CharacterAttributes.BERGERAC))
                 {
                     replacement = MBObjectManager.Instance.GetObject<CharacterObject>("tor_ror_bergerac_ranger");
                 }
 
-                if (recruiter.HasAttribute("PeasantKnight"))
+                if (recruiter.HasAttribute(CharacterAttributes.PEASANT_KNIGHT))
                 {
                     replacement = MBObjectManager.Instance.GetObject<CharacterObject>("tor_ror_peasant_squight");
                 }
@@ -458,7 +459,7 @@ namespace TOR_Core.CampaignMechanics
 
             if (recruiter.IsLord && troop.Culture.StringId == TORConstants.Cultures.MOUSILLON && recruiter.Culture.StringId == TORConstants.Cultures.BRETONNIA)
             {
-                var mousillonEquivalent = TORRecruitmentHelpers.GetMousillonEquivalent(troop);
+                var mousillonEquivalent = TORRecruitmentHelpers.GetMousillonEquivalent(troop);//Sly : this is inverted, it's taking a mousillon troop, and finding a different mousillon troop to give to a bretonnian.
                 if (mousillonEquivalent != null)
                 {
                     recruiter.PartyBelongedTo.Party.AddMember(mousillonEquivalent, amount);
@@ -468,7 +469,7 @@ namespace TOR_Core.CampaignMechanics
 
             if (recruiter.IsLord && troop.Culture.StringId == TORConstants.Cultures.BRETONNIA && recruiter.Culture.StringId == TORConstants.Cultures.MOUSILLON)
             {
-                var bretonniaEquivalent = TORRecruitmentHelpers.GetBretonnianEquivalent(troop);
+                var bretonniaEquivalent = TORRecruitmentHelpers.GetBretonnianEquivalent(troop);//Sly : same culture inversion as above.
                 if (bretonniaEquivalent != null)
                 {
                     recruiter.PartyBelongedTo.Party.AddMember(bretonniaEquivalent, amount);

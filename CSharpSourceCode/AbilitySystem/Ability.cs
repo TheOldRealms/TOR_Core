@@ -256,7 +256,7 @@ namespace TOR_Core.AbilitySystem
                                 {
                                     if (agent.GetHero().CharacterObject.IsRunesmith())
                                     {
-                                        cooldown.AddFactor(-0.02f);
+                                        cooldown.AddFactor(-0.02f);//Sly : this isn't what the perk says it does.
                                     }
                                 }
                             }

@@ -9,6 +9,7 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.LinQuick;
 using TOR_Core.Extensions;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
@@ -40,7 +41,7 @@ namespace TOR_Core.Models
 
 
             var list = battleParty.Troops.ToList();
-            bool partyHasArtilleryCrew = list.AnyQ(x => x.Troop.HasAttribute("ArtilleryCrew"));
+            bool partyHasArtilleryCrew = list.AnyQ(x => x.Troop.HasAttribute(CharacterAttributes.ARTILLERY_CREW));
             var crewMembers = 0;
             list.Shuffle();
 
@@ -60,7 +61,7 @@ namespace TOR_Core.Models
                         num = 10;
                         if (partyHasArtilleryCrew && crewMembers <= 6)
                         {
-                            if (element.Troop.HasAttribute("ArtilleryCrew"))
+                            if (element.Troop.HasAttribute(CharacterAttributes.ARTILLERY_CREW))
                             {
                                 num *= 15;
                                 crewMembers++;

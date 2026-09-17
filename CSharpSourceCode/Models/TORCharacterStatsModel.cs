@@ -15,6 +15,7 @@ using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
@@ -75,7 +76,7 @@ namespace TOR_Core.Models
                     number.Add(character.Tier * 10);
                     break;
             }
-            if (character.IsUndead() && !character.IsHero && !character.HasAttribute("NecromancerChampion"))
+            if (character.IsUndead() && !character.IsHero && !character.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION))
             {
                 number.Add(-25);
             }
@@ -93,7 +94,7 @@ namespace TOR_Core.Models
                 number.Add(40);
             }
 
-            if (character.HasAttribute("NecromancerChampion"))
+            if (character.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION))
             {
                 if (Mission.Current == null) return number;
                 var playerMainAgent = Mission.Current.MainAgent;
@@ -139,12 +140,12 @@ namespace TOR_Core.Models
                     number.Add(100, TORTextHelper.GetTextObject("tor_stats_vampire_body_text", "Vampire body"));
                 }
 
-                if (hero.HasAttribute("Everchosen"))
+                if (hero.HasAttribute(CharacterAttributes.EVERCHOSEN))
                 {
                     number.Add(2000);
                 }
 
-                if (hero.HasAttribute("Orion"))
+                if (hero.IsOrion())
                 {
                     number.Add(3000);
                 }
@@ -162,7 +163,7 @@ namespace TOR_Core.Models
                     number.Add(40);
                 }
 
-                if (hero.HasAttribute("Tough"))
+                if (hero.HasAttribute(CharacterAttributes.TOUGH))
                 {
                     number.Add(100);
                 }
@@ -217,7 +218,7 @@ namespace TOR_Core.Models
                     // BestofDaBestPassive4: Orc Big Bosses gain 100 health
                     if (Hero.MainHero.HasCareerChoice("BestofDaBestPassive4"))
                     {
-                        if (hero.HasAttribute("BigBoss"))
+                        if (hero.HasAttribute(CharacterAttributes.BIG_BOSS))
                         {
                             var choice = TORCareerChoices.GetChoice("BestofDaBestPassive4");
                             number.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
@@ -227,7 +228,7 @@ namespace TOR_Core.Models
                     // Orc Shaman: +70 HP for Shaman Boss companion
                     if (Hero.MainHero.HasCareerChoice("GorkAnMorkAreWatchinPassive4"))
                     {
-                        if (hero.HasAttribute("ShamanBoss"))
+                        if (hero.HasAttribute(CharacterAttributes.SHAMAN_BOSS))
                         {
                             var choice = TORCareerChoices.GetChoice("GorkAnMorkAreWatchinPassive4");
                             number.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
@@ -239,7 +240,7 @@ namespace TOR_Core.Models
                 if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI && hero.PartyBelongedTo != null && (hero.PartyBelongedTo.IsMainParty || hero == Hero.MainHero))
                 {
 
-                    if (!Hero.MainHero.HasAttribute("WEWandererSymbol"))
+                    if (!Hero.MainHero.HasAttribute(CharacterAttributes.WE_WANDERER_SYMBOL))
                     {
                         var level = hero.PartyBelongedTo.LeaderHero.GetForestHarmonyLevel();
                         switch (level)
@@ -262,12 +263,12 @@ namespace TOR_Core.Models
                     }
 
 
-                    if (Hero.MainHero.HasAttribute("WEWardancerSymbol"))
+                    if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_WARDANCER_SYMBOL))
                     {
                         number.AddFactor(0.25f, ForestHarmonyHelper.TreeSymbolText("WEWardancerSymbol"));
                     }
 
-                    if (hero == Hero.MainHero && Hero.MainHero.HasAttribute("WEDurthuSymbol"))
+                    if (hero == Hero.MainHero && Hero.MainHero.HasAttribute(CharacterAttributes.WE_DURTHU_SYMBOL))
                     {
                         number.AddFactor(0.10f);
                     }
@@ -275,7 +276,7 @@ namespace TOR_Core.Models
                 }
 
 
-                if (hero.HasAttribute("GiftOfNurgle")) number.Add(20, new TextObject("Gift of Nurgle"));
+                if (hero.HasAttribute(CharacterAttributes.GIFT_OF_NURGLE)) number.Add(20, new TextObject("Gift of Nurgle"));
             }
             if (hero.GetPerkValue(TORPerks.Faith.Devotee))
             {

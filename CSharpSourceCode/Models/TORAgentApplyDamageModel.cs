@@ -17,6 +17,7 @@ using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
@@ -230,7 +231,7 @@ namespace TOR_Core.Models
 
             if (isFatalHit && attacker.IsMainAgent)
             {
-                if (Hero.MainHero.HasCareer(TORCareers.KnightOldWorld) && attacker.HasAttribute("KnightlyStrike") && Hero.MainHero.HasCareerChoice("PathOfVigilanceKeystone"))
+                if (Hero.MainHero.HasCareer(TORCareers.KnightOldWorld) && attacker.HasAttribute(CharacterAttributes.KNIGHTLY_STRIKE) && Hero.MainHero.HasCareerChoice("PathOfVigilanceKeystone"))
                 {
                     attacker.ApplyStatusEffect("knightly_strike", attacker, 30, false, false, true);
                 }
@@ -873,19 +874,19 @@ namespace TOR_Core.Models
             if (agentLeader != null && agentLeader.Culture.StringId == TORConstants.Cultures.GREENSKIN &&
                 (mask == PropertyMask.Attack || mask == PropertyMask.All))
             {
-                if (agentLeader.HasAttribute("Waaagh0"))
+                if (agentLeader.HasAttribute(CharacterAttributes.WAAAAGH_0))
                 {
                     damageBonuses[(int)DamageType.Physical] -= 0.2f;
                 }
-                else if (agentLeader.HasAttribute("Waaagh1"))
+                else if (agentLeader.HasAttribute(CharacterAttributes.WAAAAGH_1))
                 {
                     damageBonuses[(int)DamageType.Physical] -= 0.1f;
                 }
-                else if (agentLeader.HasAttribute("Waaagh2"))
+                else if (agentLeader.HasAttribute(CharacterAttributes.WAAAAGH_2))
                 {
                     damageBonuses[(int)DamageType.Physical] += 0.1f;
                 }
-                else if (agentLeader.HasAttribute("Waaagh3"))
+                else if (agentLeader.HasAttribute(CharacterAttributes.WAAAAGH_3))
                 {
                     damageBonuses[(int)DamageType.Physical] += 0.2f;
                 }
@@ -923,7 +924,7 @@ namespace TOR_Core.Models
                     }
 
                     // Brewers Guild Level III bonus: +15% physical resistance for ranger units
-                    if (agent.BelongsToMainParty() && agentLeader != null && agentLeader.HasAttribute("DwarfBrewersIII"))
+                    if (agent.BelongsToMainParty() && agentLeader != null && agentLeader.HasAttribute(CharacterAttributes.GUILD_BREWERS_3))
                     {
                         if (agentCharacter.StringId.Contains("tor_dw_ranger"))
                         {
@@ -969,7 +970,7 @@ namespace TOR_Core.Models
                 return;
             }
 
-            if (Hero.MainHero.HasAttribute("WEDurthuSymbol"))
+            if (Hero.MainHero.HasAttribute(CharacterAttributes.WE_DURTHU_SYMBOL))
             {
                 resistances[(int)DamageType.Fire] -= 0.2f;
             }
@@ -1032,20 +1033,20 @@ namespace TOR_Core.Models
                 }
             }
 
-            if (agent.Character.HasAttribute("NecromancerChampion"))
+            if (agent.Character.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION))
             {
                 if ((attackMask == AttackTypeMask.Melee && mask == PropertyMask.Attack))
                 {
                     if (agent.Controller == AgentControllerType.Player)
                     {
 
-                        if (mask == PropertyMask.Attack && agent.Character.HasAttribute("NecromancerChampion") && choices.Contains("LiberMortisKeystone"))
+                        if (mask == PropertyMask.Attack && agent.Character.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION) && choices.Contains("LiberMortisKeystone"))
                         {
                             var choice = TORCareerChoices.GetChoice("LiberMortisKeystone");
                             damageBonuses[(int)DamageType.Physical] += choice.GetPassiveValue();
                         }
 
-                        if (mask == PropertyMask.Attack && agent.Character.HasAttribute("NecromancerChampion") && choices.Contains("BooksOfNagashKeystone"))
+                        if (mask == PropertyMask.Attack && agent.Character.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION) && choices.Contains("BooksOfNagashKeystone"))
                         {
                             var choice = TORCareerChoices.GetChoice("BooksOfNagashKeystone");
                             damageBonuses[(int)DamageType.Magical] += choice.GetPassiveValue();

@@ -8,6 +8,7 @@ using TaleWorlds.SaveSystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Quests.Careers
 {
@@ -199,7 +200,7 @@ namespace TOR_Core.Quests.Careers
         protected override void OnCompleteWithSuccess()
         {
             // Award the PlayerOrcShaman tier 3 attribute
-            Hero.MainHero.AddAttribute("PlayerOrcShamanTier3");
+            Hero.MainHero.AddAttribute(CharacterAttributes.PLAYER_ORC_SHAMAN_TIER_3);
 
             // TODO: Add final tier completion event/story if needed
         }

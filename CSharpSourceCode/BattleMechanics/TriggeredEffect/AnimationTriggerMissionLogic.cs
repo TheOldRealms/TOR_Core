@@ -7,6 +7,7 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.Source.Missions;
 using TOR_Core.AbilitySystem;
 using TOR_Core.Extensions;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.BattleMechanics.TriggeredEffect
 {
@@ -28,11 +29,11 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
 
             if (agent.IsHuman)
             {
-                if (!agent.IsHero && agent.Character != null && agent.Character.HasAttribute("HasAnimationTriggeredEffects"))
+                if (!agent.IsHero && agent.Character != null && agent.Character.HasAttribute(CharacterAttributes.HAS_ANIMATION_TRIGGERED_EFFECTS))
                 {
                     _trackedAgents.Add(agent, new MBList<AnimationTriggerTuple>());
                 }
-                else if (agent.IsHero && agent.GetHero() != null && agent.GetHero().HasAttribute("HasAnimationTriggeredEffects"))
+                else if (agent.IsHero && agent.GetHero() != null && agent.GetHero().HasAttribute(CharacterAttributes.HAS_ANIMATION_TRIGGERED_EFFECTS))
                 {
                     _trackedAgents.Add(agent, new MBList<AnimationTriggerTuple>());
                 }

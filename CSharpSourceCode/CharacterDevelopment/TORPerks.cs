@@ -177,7 +177,7 @@ namespace TOR_Core.CharacterDevelopment
                 "{=str_tor_perk_selfish_1}Your damaging spells do 90% reduced damage to yourself.",
                 PartyRole.Personal, -0.9f, EffectIncrementType.AddFactor,
                 "{=str_tor_perk_selfish_2}Your self targeted buff spells have 50% more duration.",
-                PartyRole.Personal, 0.15f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                PartyRole.Personal, 0.50f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
             _wellControlled.Initialize("{=str_tor_perk_well_controlled_label}Well Controlled", TORSkills.Spellcraft, 50, _selfish,
                 "{=str_tor_perk_well_controlled_1}Your damaging spells do 30% less damage to troops in your party.",
                 PartyRole.Personal, -0.3f, EffectIncrementType.AddFactor,
