@@ -226,7 +226,7 @@ public class OathGoldHelper
             OathRespectLevel.Respected => TORTextHelper.GetTextObject("tor_dw_guild_relationship", "respected", "Respected"),
             OathRespectLevel.Reliable => TORTextHelper.GetTextObject("tor_dw_guild_relationship", "reliable", "Reliable"),
             OathRespectLevel.Trustworthy => TORTextHelper.GetTextObject("tor_dw_guild_relationship", "trustworthy", "Trustworthy"),
-            OathRespectLevel.Unknown => TORTextHelper.GetTextObject("tor_dw_guild_relationship", "unknown", "Unknown")
+            _ => TORTextHelper.GetTextObject("tor_dw_guild_relationship", "unknown", "Unknown")
         };
     }
 }

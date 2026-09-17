@@ -41,7 +41,7 @@ namespace TOR_Core.Missions
         private int _enemySpawnIndex;
         private bool _isMissionInitialized;
         private int _spawnedPlayerTroopCount;
-        private bool _playerCanLeave;
+
         private bool _battleResolved;
         private BattleEndLogic _battleEndLogic;
         private bool _isPlayerDefeated;
@@ -112,7 +112,6 @@ namespace TOR_Core.Missions
             else if (GetActiveTrollCount() == 0)
             {
                 _battleResolved = true;
-                _playerCanLeave = true;
                 _battleEndLogic?.ChangeCanCheckForEndCondition(true);
                 // Set winner to player (attacker) - this enables proper loot screen
                 MapEvent.PlayerMapEvent?.SetOverrideWinner(BattleSideEnum.Attacker);
