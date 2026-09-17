@@ -127,7 +127,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 var statusEffectComponent = agent.GetComponent<StatusEffectComponent>(); // bakilsin
                 if (statusEffectComponent?.NeedsStatusEffectTick == true)
                 {
-                    statusEffectComponent.OnTick(dt);
+                    statusEffectComponent.OnManagerMissionTick(dt);
                 }
 
             }

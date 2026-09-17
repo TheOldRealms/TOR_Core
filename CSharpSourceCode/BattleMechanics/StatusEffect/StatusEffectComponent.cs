@@ -234,7 +234,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             }
         }
 
-        public void OnTick(float dt)
+        /// <remarks>
+        /// AgentComponents can provide an override for AgentComponent.OnTick that gets called by Agent.Tick; however, the OnTick is only dispatched when Agent.IsActive which would freeze the StatusEffectComponent in its last state when the agent begins routing f.e. The main consequence here is that visuals and particles related to the statuses on an agent would remain in their last state and never expire once the agent was no longer "Active".
+        /// We therefore use a tick issued by the status effect manager which checks for our own validity conditions.
+        /// </remarks>
+        public void OnManagerMissionTick(float dt)
         {
             if (_currentEffects.Count > 0)
             {

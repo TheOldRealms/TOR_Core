@@ -439,8 +439,6 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
 
 public class UnitRune()
 {
-    private readonly int _price;
-    private readonly TorTradeGoodType _enchantmentGood;
     public List<string> EnchantmentBluePrintIdList { get; }
     public TextObject RuneName { get; set; }
     public string Id { get; set; }

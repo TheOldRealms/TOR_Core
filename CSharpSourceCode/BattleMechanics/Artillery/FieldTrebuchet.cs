@@ -119,7 +119,7 @@ namespace TOR_Core.BattleMechanics.Artillery
 			list = base.GameEntity.CollectScriptComponentsWithTagIncludingChildrenRecursive<SynchedMissionObject>("rotate_entity");
 			this.RotationObject = list[0];
 			base.OnInit();
-			this.TimeGapBetweenShootActionAndProjectileLeaving = this.TimeGapBetweenShootActionAndProjectileLeaving;
+            TimeGapBetweenShootActionAndProjectileLeaving = TIME_GAP_BETWEEN_SHOOT_ACTION_AND_PROJECTILE_LEAVING;
 			this.TimeGapBetweenShootingEndAndReloadingStart = 0f;
 			this._ammoLoadPoints = new List<StandingPointWithWeaponRequirement>();
 			if (base.StandingPoints != null)
@@ -658,7 +658,7 @@ namespace TOR_Core.BattleMechanics.Artillery
 		public string RopeFireAnimation;
 		public string RopeSetUpAnimation;
 		public string VerticalAdjusterAnimation;
-		public float TimeGapBetweenShootActionAndProjectileLeaving = 1.6f;
+		private const float TIME_GAP_BETWEEN_SHOOT_ACTION_AND_PROJECTILE_LEAVING = 1.6f;
 		private GameEntity _verticalAdjuster;
 		private Skeleton _verticalAdjusterSkeleton;
 		private MatrixFrame _verticalAdjusterStartingLocalFrame;
