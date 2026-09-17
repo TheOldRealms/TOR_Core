@@ -512,6 +512,7 @@ namespace TOR_Core.Extensions
 
         public static bool BelongsToMainParty(this Agent agent)
         {
+            //Sly : is this more performant compared to agent.IsPlayerTroop or .IsPlayerUnit?
             var party = agent.GetOriginMobileParty();
             return party != null && party.IsMainParty;
         }
