@@ -26,7 +26,7 @@ Ordered by suggested Modularize sequence: proven-small first, split-heavy in the
 
 | # | Module | 1 Modularize | 2 Framework | 3 Strings | 4 Codesmells | 5 Pattern | Notes |
 |---|---|---|---|---|---|---|---|
-| 0 | `Crafting` | **PR** | **PR** | next | — | — | The worked example. Epic 1 on `feature/moduleCrafting`, Epic 2 on `feature/FrameworkCrafting` — both unmerged, stacked (`next_update` → `moduleCrafting` → `CentralizeCraftingRecipes` → `FrameworkCrafting`). Epic 2 promoted `TORSettlementMenuHelpers` and `TorEnchantingIngredients` to `Framework/` and froze the inbound set as Public Surface in `MODULE.md`. One outbound edge survives — `PriestBehavior` → `Religion.ReligionObject.All` — deferred to Religion's Epic 1. Strings unblocked: `tortools` MCP server is live. |
+| 0 | `Crafting` | **done** | **PR** | next | — | — | The worked example. Epic 1 merged to `next_update` as PR #32 — **squashed**, so every branch stacked above it needed a manual re-merge. Epic 2 on `feature/FrameworkCrafting`, stacked `next_update` → `CentralizeCraftingRecipes` → `FrameworkCrafting`. Epic 2 promoted `TORSettlementMenuHelpers` and `TorEnchantingIngredients` to `Framework/` and froze the inbound set as Public Surface in `MODULE.md`. One outbound edge survives — `PriestBehavior` → `Religion.ReligionObject.All` — deferred to Religion's Epic 1. Strings unblocked: `tortools` MCP server is live. |
 | 1 | `BountyMaster` | — | — | — | — | — | Small, few cross-references. Good second module. |
 | 2 | `PostBattleLoot` | — | — | — | — | — | Small, few cross-references. |
 | 3 | `Villages` | — | — | — | — | — | Pulls in `TORVillageProductionCalculatorModel`; possibly `PlaguedVillageQuestCampaignBehavior` (*verify*). |
@@ -63,7 +63,7 @@ Not modules, but module work depends on them.
 | Item | State | Notes |
 |---|---|---|
 | `ITORModule` / `TORModuleAttribute` | done | In `Framework/`. Proven by `CraftingModule`. |
-| `TOR_Tools` XML handling | **being designed — blocks every Strings epic** | All XML handling routes through it. Nothing in Epic 3 starts until it exists. |
+| `TOR_Tools` XML handling | **built and working** | At `D:/TOR_DEV/TOR_Tools`, registered as `tortools`. All XML handling routes through it. |
 | Save-namespace safety probe | **not run — blocking** | Open question O1. Must precede the first module that moves a `SaveableTypeDefiner`-registered type. Cheap and standalone; run it alone so a failure is unambiguous. |
 | Extension-method edge audit | **deferred — revisit before the third module's Epic 2** | Epic 2's exit criteria are `using` scans; a Framework extension method returning a module type (`Hero.GetCareer()` → `CareerObject`) passes them invisibly. Found in Crafting Epic 2, spec Amendment 2. Tooling question, not a per-module one — doing it by hand across 30 modules is the expensive path. |
 | `TORModuleRegistry` (reflection discovery) | not built | Open question O2. `SubModule.cs` still calls `new XModule().Register...()` explicitly. Fine up to ~10 modules. |
