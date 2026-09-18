@@ -33,7 +33,7 @@
 		id="minor_healing_regeneration" 
 		particle_id="healing_regeneration"
 		particle_intensity="High"
-		base_effect_value="3"
+		base_effect_value="4"
 		type="HealthOverTime"/>
 	<StatusEffectTemplate 
 		id="breath_of_darkness" 
@@ -303,7 +303,7 @@
 		do_not_attach_to_agent_skeleton="true"
     	base_effect_value="0.2"
 		type="DamageAmplification"
-		damage_type="All"
+		damage_type="Physical"
 		applies_for_attack_type="Melee">
 		<temporary_attribute>Unstoppable</temporary_attribute>
   	</StatusEffectTemplate>
@@ -566,7 +566,7 @@
 		particle_id="plague_of_rust"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
-    	base_effect_value="-0.5"
+    	base_effect_value="-0.7"
 		type="Resistance"
 		damage_type="Physical">
   	</StatusEffectTemplate>
@@ -585,7 +585,7 @@
 		id="final_transmutation_dot" 
 		particle_id="final_transmutation_dot"
 		particle_intensity="High"
-		base_effect_value="4"
+		base_effect_value="3"
 		type="DamageOverTime"
 		damage_type="Fire">
 	</StatusEffectTemplate>
@@ -595,7 +595,7 @@
 		particle_id=""
 		particle_intensity="Low"
 		do_not_attach_to_agent_skeleton="false"
-    	base_effect_value="-0.9"
+    	base_effect_value="-0.5"
 		type="MovementManipulation"
 		damage_type="Physical">
   	</StatusEffectTemplate>
@@ -949,7 +949,7 @@
 		id="ward_of_arrows" 
 		particle_id="psys_energy_sphere"
 		particle_intensity="Low"
-		base_effect_value="1"
+		base_effect_value=".5"
 		damage_type="Physical"
 		applies_for_attack_type="Ranged"
 		type="Resistance">
@@ -1370,7 +1370,7 @@
 		id="caress_of_laniph_dot"
 		particle_id="caress_of_laniph"
 		particle_intensity="High"
-    	base_effect_value="4"
+		base_effect_value="12"
 		do_not_attach_to_agent_skeleton="true"
 		type="DamageOverTime"
 		damage_type="Magical"/>
@@ -1379,10 +1379,10 @@
 		id="amaranth"
 		particle_id="amaranth"
 		particle_intensity="High"
-    	base_effect_value="50"
-		do_not_attach_to_agent_skeleton="true"
+    	base_effect_value=".60"
+		applies_for_attack_type="Spell"
 		type="Resistance"
-		damage_type="Magical"/>
+		damage_type="All"/>
 	
 	
 	<StatusEffectTemplate

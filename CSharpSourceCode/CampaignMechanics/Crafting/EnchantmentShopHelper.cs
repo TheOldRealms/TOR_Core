@@ -34,6 +34,7 @@ public static class EnchantmentShopHelper
         MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
     }
 
+    //Note that RequiredSkillValue is not only gating purchasability, but it's also setting the cost for custom resources.
     private readonly record struct PurchasableBlueprint(ItemObject Item, string BlueprintId, SkillObject RequiredSkill, int RequiredSkillValue, string Restriction, List<Hero> EligibleHeroes);
 
     private static List<PurchasableBlueprint> GetPurchasableBlueprints(List<string> prefixList)

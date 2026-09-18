@@ -16,6 +16,8 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         public List<string> Abilities = new List<string>();
         [XmlArray("Attributes")]
         public List<string> CharacterAttributes = new List<string>();
+        [XmlElement("AdditionalHealth")]
+        public int AdditionalHealth = 0;
         [XmlArray("DamageProportions")]
         public List<DamageProportionTuple> DamageProportions = new List<DamageProportionTuple>();
         [XmlArray("Resistances")]
