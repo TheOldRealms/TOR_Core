@@ -106,8 +106,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
             var model = (TOREnchantmentCraftingModel)Campaign.Current.Models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TOREnchantmentCraftingModel));
             if (model != null)
             {
-                cost = model.GetEffectiveIngredientAmount(MobileParty.MainParty.GetMemberHeroes(), itemTrait,
-                    itemTrait.IngredientItem);
+                cost = model.GetEffectiveIngredientAmount(itemTrait, itemTrait.IngredientItem);
             }
 
             return cost;
@@ -119,35 +118,23 @@ namespace TOR_Core.CampaignMechanics.Crafting
             SelectedTraits.Clear();
             SelectedItem?.DeselectItem();
             SelectedItem = item;
-            foreach (var hero in MobileParty.MainParty.GetMemberHeroes())
+            // Known blueprints are listed whether or not they can be executed right now:
+            // an unmet requirement greys the row and says why, rather than hiding it. Hiding
+            // reads as "you lost it", which is exactly the confusion the old party-union
+            // behaviour caused when a companion left.
+            var knownBlueprints = EnchantmentBlueprints.GetKnown();
+            var requirements = EnchantmentHelper.GetBlueprintRequirements();
+
+            foreach (var trait in ItemTrait.All.Where(x => x.IsCraftable &&
+                                                           knownBlueprints.Contains(x.ItemTraitStringId) &&
+                                                           ItemTrait.IsValidFor(x, item.Item.Item.ItemType))
+                         .OrderBy(y => y.ItemTraitName))
             {
-                var traits = hero.GetExtendedInfo().KnownEnchantmentBlueprints;
+                var unmetRequirement = requirements.TryGetValue(trait.ItemTraitStringId, out var requirement)
+                    ? EnchantmentHelper.GetUnmetRequirement(trait.ItemTraitStringId, requirement)
+                    : null;
 
-                foreach (var trait in traits)
-                {
-                    foreach (var x in ItemTrait.All)
-                    {
-                        if (x.ItemTraitStringId == trait)
-                        {
-                            var he = hero.HasKnownEnchantmentBlueprint(x.ItemTraitStringId);
-                            var ve = ItemTrait.IsValidFor(x, item.Item.Item.ItemType);
-                        }
-
-                    }
-
-                }
-
-                foreach (var trait in ItemTrait.All.Where(x => x.IsCraftable &&
-                                                               hero.HasKnownEnchantmentBlueprint(x.ItemTraitStringId) &&
-                                                               ItemTrait.IsValidFor(x, item.Item.Item.ItemType))
-                             .OrderBy(y => y.ItemTraitName))
-                {
-                    if (Traits.Any(x => x.ItemTrait.ItemTraitStringId == trait.ItemTraitStringId))
-                    {
-                        continue;
-                    }
-                    Traits.Add(new EnchantableTraitVM(trait, OnTraitSelected));
-                }
+                Traits.Add(new EnchantableTraitVM(trait, OnTraitSelected, unmetRequirement));
             }
 
             foreach (var ingredient in Ingredients)
