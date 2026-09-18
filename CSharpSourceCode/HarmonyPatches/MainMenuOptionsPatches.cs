@@ -1,16 +1,20 @@
 ﻿using HarmonyLib;
 using SandBox.AdvancedStartOptions;
 using SandBox;
+using SandBox.GauntletUI;
 using SandBox.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.GameState;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.MountAndBlade.GauntletUI;
 using TaleWorlds.ScreenSystem;
+using TOR_Core.Extensions.UI;
 using TOR_Core.Extensions.UI.MainMenu;
 using TOR_Core.GameManagers;
 
@@ -50,6 +54,26 @@ namespace TOR_Core.HarmonyPatches
             sandBoxNewGameOption.DoAction();
         }
 
+        [HarmonyTranspiler]
+        [HarmonyPatch(typeof(GauntletCampaignStartingOptionsView), "OnTick")]
+        private static IEnumerable<CodeInstruction> AllowTorInitialScreenForAdvancedStart(IEnumerable<CodeInstruction> instructions)
+        {
+            var codes = instructions.ToList();
+            var initialScreenCheck = codes.FindIndex(x => x.opcode == OpCodes.Isinst && Equals(x.operand, typeof(GauntletInitialScreen)));
+
+            if (initialScreenCheck < 0)
+                throw new ArgumentException("couldnt find advanced start initial screen check.");
+
+            codes[initialScreenCheck].opcode = OpCodes.Call;
+            codes[initialScreenCheck].operand = AccessTools.Method(typeof(MainMenuOptionsPatches), nameof(IsAdvancedStartHostScreen));
+
+            return codes;
+        }
+
+        private static bool IsAdvancedStartHostScreen(ScreenBase screen)
+        {
+            return screen is GauntletInitialScreen || screen is TORInitialScreen;
+        }
         // 1.5 creates its own SandBoxGameManager for advanced start that cant be provided with TorCampaignGameManager for now
         [HarmonyPrefix]
         [HarmonyPatch(typeof(MBGameManager), nameof(MBGameManager.StartNewGame), [typeof(MBGameManager)])]
