@@ -7,6 +7,7 @@ using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Framework;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
+using TOR_Core.CampaignMechanics.Crafting;
 
 namespace TOR_Core.CampaignMechanics.Crafting.Models;
 
