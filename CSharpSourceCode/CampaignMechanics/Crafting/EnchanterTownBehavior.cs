@@ -13,14 +13,12 @@ using TaleWorlds.Core.ImageIdentifiers;
 using TaleWorlds.Library;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
-using TOR_Core.CampaignMechanics.Crafting;
-using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
-using TOR_Core.Items;
+using TOR_Core.Framework;
 using TOR_Core.Utilities;
 using static TOR_Core.Utilities.TORConstants;
 
-namespace TOR_Core.CampaignMechanics.SpellTrainers;
+namespace TOR_Core.CampaignMechanics.Crafting;
 
 public class EnchanterTownBehavior : CampaignBehaviorBase
 {
@@ -278,6 +276,11 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
             return false;
         }
 
+        if (CraftingCareerHooks.EnchanterAccessGrants.Exists(grant => grant(Hero.MainHero, culture)))
+        {
+            return true;
+        }
+
         switch (culture)
         {
             case TORConstants.Cultures.EMPIRE:
@@ -306,11 +309,6 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                 return HasMatchingEnchanterCompanion(x => x.Culture.StringId == TORConstants.Cultures.BRETONNIA && x.IsSpellCaster());
 
             case TORConstants.Cultures.ASRAI:
-                if (Hero.MainHero.HasCareer(TORCareers.Spellsinger))
-                {
-                    return true;
-                }
-
                 if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI &&
                     Hero.MainHero.IsSpellCaster() &&
                     Hero.MainHero.GetKnownLoreCount() > 0)
@@ -586,37 +584,10 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
             void AddBeginnerBlueprintsForEnchantment()
             {
-                var career = Hero.MainHero.GetCareer();
-
-                if (Hero.MainHero.IsSpellCaster() && career == TORCareers.ImperialMagister)
+                foreach (var grantor in CraftingCareerHooks.BeginnerBlueprintGrantors)
                 {
-                    if (Hero.MainHero.HasKnownLore("LoreOfDeath")) 
-                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_shyish_whisper", true);
-
-                    if (Hero.MainHero.HasKnownLore("LoreOfMetal")) 
-                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_chamon_whisper", true);
-
-                    if (Hero.MainHero.HasKnownLore("LoreOfLight"))
-                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_hysh_whisper", true);
-
-                    if (Hero.MainHero.HasKnownLore("LoreOfHeavens")) 
-                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_azyr_whisper", true);
-
-                    if (Hero.MainHero.HasKnownLore("LoreOfBeasts")) 
-                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_ghur_whisper", true);
-
-                    if (Hero.MainHero.HasKnownLore("LoreOfLife")) 
-                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_ghyran_whisper", true);
-
-                    if (Hero.MainHero.HasKnownLore("LoreOfFire")) 
-                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_aqshy_whisper", true);
+                    grantor(Hero.MainHero);
                 }
-
-                if (Hero.MainHero.IsSpellCaster() && Hero.MainHero.HasCareer(TORCareers.GrailDamsel))
-                    if (Hero.MainHero.HasKnownLore("LoreOfLife"))
-                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_ghyran_whisper", true);
-
-                if (Hero.MainHero.HasCareer(TORCareers.Runelord)) Hero.MainHero.AddEnchantmentBlueprint("dw_rune_stone", true);
             }
 
             bool ConditionForDonation()
