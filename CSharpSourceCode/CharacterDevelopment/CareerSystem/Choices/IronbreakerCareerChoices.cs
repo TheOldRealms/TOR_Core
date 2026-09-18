@@ -308,7 +308,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
         _nestCleansingPassive1.Initialize(CareerID, "+10 personal Hitpoints.", "NestCleansing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
         _nestCleansingPassive2.Initialize(CareerID, "+20% personal 'Fire Resistance'.", "NestCleansing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Fire, 20), AttackTypeMask.All));
         _nestCleansingPassive3.Initialize(CareerID, "Your personal explosive charges gain +2 ammunition.", "NestCleansing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2));
-        _nestCleansingPassive4.Initialize(CareerID, "+50% chance of an 'Ironbreaker' troop to not consume an explosive charge when used.", "NestCleansing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
+        _nestCleansingPassive4.Initialize(CareerID, "+50% chance of an 'Ironbreaker' troop to not consume an explosive charge when used.", "NestCleansing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special, true));
 
         _tunnelWatchPassive1.Initialize(CareerID, "+15 personal Hitpoints.", "TunnelWatch", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
         _tunnelWatchPassive2.Initialize(CareerID, "+1 party move speed on campaign map.", "TunnelWatch", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.PartyMovementSpeed));

@@ -670,7 +670,7 @@ namespace TOR_Core.Items
                 !shooterAgent.BelongsToMainParty() ||
                 !shooterAgent.Character.IsIronbreakerUnit() ||
                 weaponData.ItemUsage?.Contains("dwarf_hand_grenade") != true ||
-                MBRandom.RandomFloat >= 0.5f)
+                MBRandom.RandomFloat >= TORCareerChoices.GetChoice("NestCleansingPassive4").GetPassiveValue())
             {
                 return;
             }
@@ -681,7 +681,6 @@ namespace TOR_Core.Items
                 return;
             }
 
-            // Update the native weapon amount as well as the managed equipment, without increasing its capacity.
             shooterAgent.SetWeaponAmountInSlot(weaponIndex, (short)(explosiveCharge.Amount + 1), true);
         }
 
