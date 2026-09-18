@@ -13,7 +13,6 @@ using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Extensions.UI;
-using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 
@@ -342,39 +341,5 @@ public static class CareerButtonHelper
         return true;
     }
 
-    /// <summary>
-    /// Attributes read by TORCharacterStatsModel.CalculateHeroHealth. Only these carry over on promotion.
-    /// </summary>
-    private static readonly string[] HealthAttributes =
-    [
-        CharacterAttributes.TOUGH,
-        CharacterAttributes.EVERCHOSEN,
-        CharacterAttributes.BIG_BOSS,
-        CharacterAttributes.SHAMAN_BOSS,
-        CharacterAttributes.GIFT_OF_NURGLE
-    ];
 
-    /// <summary>
-    /// Gives a hero promoted out of the party roster the health an equivalent hero of its race already has.
-    /// </summary>
-    /// <remarks>
-    /// A promoted troop gets a runtime CharacterObject with no entry in tor_extendedunitproperties.xml, and
-    /// ExtendedInfoManager only copies template attributes for wanderers, so it inherits nothing from the troop
-    /// it came from. Call this last - the companion health passives need the hero already in the clan and party.
-    /// </remarks>
-    public static void ApplyPromotedHeroHealth(Hero hero, CharacterObject sourceTroop)
-    {
-        foreach (var attribute in sourceTroop.GetAttributes().Where(x => HealthAttributes.Contains(x)))
-        {
-            hero.AddAttribute(attribute);
-        }
-
-        //Tough is how the xml gives dwarf and orc heroes their racial baseline - every one of them carries it, no troop does.
-        if (hero.IsDwarf() || hero.IsOrc())
-        {
-            hero.AddAttribute(CharacterAttributes.TOUGH);
-        }
-
-        hero.HitPoints = hero.MaxHitPoints;
-    }
 }
