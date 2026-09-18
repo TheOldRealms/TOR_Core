@@ -4,6 +4,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Choices;
 using TOR_Core.Extensions;
@@ -157,6 +158,15 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
                     PropertyName = "ImbuedStatusEffectDuration",
                     PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Athletics }, 0.05f),
                     MutationType = OperationType.Add
+                },
+                new CareerChoiceObject.MutationObject()
+                {
+                    MutationTargetType = typeof(StatusEffectTemplate),
+                    MutationTargetOriginalId = "impenetrable_rls",
+                    PropertyName = "BaseEffectValue",
+                    PropertyValue = (choice, originalValue, agent) => (float)new[] { "IronDrakesKeystone", "GromrilArmorKeystone", "RuneWeaponsKeystone" }
+                        .Count(id => agent.GetHero().HasCareerChoice(id)),
+                    MutationType = OperationType.Multiply
                 }
             });
 
@@ -228,7 +238,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
                 }
             });
 
-        _ironDrakesKeystone.Initialize(CareerID, "Impenetrable gains 0.02 seconds per Gunpowder point, and provides increased reload speed.", "IronDrakes", false,
+        _ironDrakesKeystone.Initialize(CareerID, "Impenetrable: +0.02s/Gunpowder; +25% reload speed.", "IronDrakes", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -236,7 +246,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
                     MutationTargetType = typeof(TriggeredEffectTemplate),
                     MutationTargetOriginalId = "apply_impenetrable",
                     PropertyName = "ImbuedStatusEffects",
-                    PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "impenetrable_rls" }).ToList(),
+                    PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "impenetrable_rls" }).Distinct().ToList(),
                     MutationType = OperationType.Replace
                 },
                 new CareerChoiceObject.MutationObject()
@@ -249,7 +259,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
                 }
             });
 
-        _gromrilArmorKeystone.Initialize(CareerID, "At 5s: +5% Physical Resistance per stored enemy melee hit for 10s. +25% reload speed; +0.02s Impenetrable per Gunpowder.", "GromrilArmor", false,
+        _gromrilArmorKeystone.Initialize(CareerID, "Each enemy melee hit taken or blocked with a shield during Impenetrable grants +5% Physical Resistance after it ends for 10 secs(Stacks 3 times). Gain +25% reload speed.+0.02s in Impenetrable per Gunpowder point.", "GromrilArmor", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -257,7 +267,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
                     MutationTargetType = typeof(TriggeredEffectTemplate),
                     MutationTargetOriginalId = "apply_impenetrable",
                     PropertyName = "ImbuedStatusEffects",
-                    PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "impenetrable_rls" }).ToList(),
+                    PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "impenetrable_rls" }).Distinct().ToList(),
                     MutationType = OperationType.Replace
                 },
                 new CareerChoiceObject.MutationObject()
@@ -270,7 +280,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
                 }
             });
 
-        _runeWeaponsKeystone.Initialize(CareerID, "At 5s: +5% Physical damage per stored enemy melee hit for 10s. +25% reload speed; +0.02s Impenetrable per Gunpowder.", "RuneWeapons", false,
+        _runeWeaponsKeystone.Initialize(CareerID, "Each enemy melee hit taken or blocked with a shield during Impenetrable grants +5% Physical damage after it ends for 10 secs(Stacks 3 times).Gain +25% reload speed.+0.02s in Impenetrable per Gunpowder point.", "RuneWeapons", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -278,7 +288,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
                     MutationTargetType = typeof(TriggeredEffectTemplate),
                     MutationTargetOriginalId = "apply_impenetrable",
                     PropertyName = "ImbuedStatusEffects",
-                    PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "impenetrable_rls" }).ToList(),
+                    PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "impenetrable_rls" }).Distinct().ToList(),
                     MutationType = OperationType.Replace
                 },
                 new CareerChoiceObject.MutationObject()

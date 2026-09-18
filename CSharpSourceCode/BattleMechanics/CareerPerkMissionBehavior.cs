@@ -110,7 +110,7 @@ namespace TOR_Core.BattleMechanics
         
         public override void OnMeleeHit(Agent attacker, Agent victim, bool isCanceled, AttackCollisionData collisionData)
         {
-            if (victim == null || attacker == null) return;
+            if (victim == null || attacker == null || isCanceled) return;
             if (victim.IsMainAgent && victim.BelongsToMainParty() && victim.IsEnemyOf(attacker) && Hero.MainHero.HasCareer(TORCareers.Ironbreaker) &&
                 (Hero.MainHero.HasCareerChoice("GromrilArmorKeystone") || Hero.MainHero.HasCareerChoice("RuneWeaponsKeystone")))
             {
@@ -148,7 +148,10 @@ namespace TOR_Core.BattleMechanics
 
         private void GromrilArmorBehavior()
         {
-            CareerMissionVariables[0] += 1;
+            if (CareerMissionVariables[0] < 3)
+            {
+                CareerMissionVariables[0] += 1;
+            }
         }
 
         private void WitchHunterAccusationBehavior(Agent affectorAgent, Agent affectedAgent, int inflictedDamge)
