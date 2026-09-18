@@ -162,7 +162,7 @@ namespace TOR_Core.Models
                                     {
                                         if (agent.Character.IsHero && agent.GetHero() == Hero.MainHero && Hero.MainHero.HasCareerChoice("NestCleansingPassive3"))
                                         {
-                                            ammoCount.Add(2);
+                                            ammoCount.Add(TORCareerChoices.GetChoice("NestCleansingPassive3").GetPassiveValue());
                                         }
                                     }
 
