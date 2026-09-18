@@ -205,6 +205,8 @@ namespace TOR_Core.Utilities
             public const string ABILITY_USER = "AbilityUser";
             public const string CAN_PLACE_ARTILLERY = "CanPlaceArtillery";
 
+            public const string RUNE_MAGIC = "RuneMagic";
+
             //Special hero types - generally used for detecting specific types of npc heroes
             public const string SPELLCASTER = "SpellCaster";
             public const string RUNESMITH = "Runesmith";

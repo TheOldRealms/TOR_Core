@@ -2,11 +2,8 @@
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.Core;
-using TaleWorlds.Core.ImageIdentifiers;
 using TaleWorlds.SaveSystem;
-using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
 using TOR_Core.Items.InventoryUseScripts;
@@ -76,82 +73,28 @@ public class EnchantmentBlueprintScript : BaseInventoryUseScript
     }
     public override void OnUse(MobileParty userParty, ItemObject item)
     {
-        var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
-
-        List<SkillObject> skills = Game.Current.DefaultSkills.GetDefaultSkills();
-
-        skills.AddRange(TORSkills.Instance.GetTorSkills());
-
-        var selectableHeroes = new List<InquiryElement>();
-
-        foreach (var hero in heroes)
+        // Blueprints are campaign-wide now, so "already learned" is one question rather than
+        // one per hero - if it is known there is nobody left to offer the manuscript to.
+        if (EnchantmentBlueprints.IsKnown(blueprintId))
         {
-            var isValid = false;
-            if (!_requiredAttributesOrLores.IsEmpty())
-            {
-
-                if (_requiredAttributesOrLores.Any(attribute => hero.HasAttribute(attribute)))
-                {
-                    isValid = true;
-                }
-
-                if (_requiredAttributesOrLores.Any(attribute => hero.HasKnownLore(attribute))) //use attributes or lores to check.
-                {
-                    isValid = true;
-                }
-            }
-            else
-            {
-                isValid = true;
-            }
-
-            if (!isValid)
-            {
-                continue;
-            }
-
-            foreach (var skill in skills.Where(skill => skill.StringId == _requiredSkill).Where(skill => hero.GetSkillValue(skill) < _requiredSkillValue))
-            {
-                isValid = false;
-            }
-
-            if (isValid)
-            {
-                var blueprints = hero.GetExtendedInfo().KnownEnchantmentBlueprints;
-
-                foreach (var blueprint in blueprints)
-                {
-                    if (blueprint == blueprintId)
-                    {
-                        isValid = false;
-                    }
-                }
-            }
-
-
-            if (isValid)
-            {
-                selectableHeroes.Add(new InquiryElement(hero, hero.Name.ToString(), new CharacterImageIdentifier(CampaignUIHelper.GetCharacterCode(hero.CharacterObject))));
-            }
-        }
-
-        if (selectableHeroes.IsEmpty())
-        {
-            TORCommon.Say("The manuscript is of no use for you.");
+            TORCommon.Say(TORTextHelper.GetText("tor_enchantment_already_learned_text", "You have already learned this enchantment."));
             return;
         }
 
-        var inquirydata = new MultiSelectionInquiryData("Choose hero to learn new enchantment",
-            "The scribing entails a powerful new enchantment effect for one of your party members to learn. Choose who will specialize in", selectableHeroes, true, 1, 1, "Accept", "Cancel", OnSelectedOption, null, "", false);
-        MBInformationManager.ShowMultiSelectionInquiry(inquirydata);
-
-
-        void OnSelectedOption(List<InquiryElement> inquiryElements)
+        if (!CanAnyoneInPartyRead())
         {
-            var hero = (Hero)inquiryElements[0].Identifier;
-            hero.AddEnchantmentBlueprint(blueprintId, true);
-
+            TORCommon.Say(TORTextHelper.GetText("tor_enchantment_manuscript_useless_text", "The manuscript is of no use for you."));
+            return;
         }
 
+        EnchantmentBlueprints.Learn(blueprintId, null, true);
+
+        bool CanAnyoneInPartyRead()
+        {
+            if (_requiredAttributesOrLores.IsEmpty()) return true;
+
+            return Hero.MainHero.PartyBelongedTo.GetMemberHeroes()
+                .Any(hero => _requiredAttributesOrLores.Any(attribute => hero.HasAttribute(attribute) || hero.HasKnownLore(attribute))); //use attributes or lores to check.
+        }
     }
 }
