@@ -35,15 +35,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public bool IsActiveForHero(Hero hero)
         {
+            // _unlockDelegate only supplies the unlock text (GetUnlockText); it must not decide activation.
             var value = false;
             if (_conditionDelegate != null)
             {
                 value = _conditionDelegate(hero, out _);
-            }
-
-            if (_unlockDelegate != null)
-            {
-                value = _unlockDelegate(hero, out _);
             }
 
             if (value)

@@ -53,6 +53,20 @@ namespace TOR_Core.Extensions
             return list;
         }
 
+        public static int GetAdditionalHealth(this CharacterObject characterObject)
+        {
+            var info = ExtendedInfoManager.GetCharacterInfoFor(characterObject.StringId);
+            if (info != null) return info.AdditionalHealth;
+
+            // promoted
+            if (characterObject.OriginalCharacter != null)
+            {
+                return ExtendedInfoManager.GetCharacterInfoFor(characterObject.OriginalCharacter.StringId)?.AdditionalHealth ?? 0;
+            }
+
+            return 0;
+        }
+
         public static bool HasAttribute(this BasicCharacterObject characterObject, string attributeName)
         {
             return characterObject.GetAttributes().Contains(attributeName);
