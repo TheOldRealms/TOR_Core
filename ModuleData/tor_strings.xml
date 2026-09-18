@@ -502,11 +502,14 @@
   <string id="tor_greenskin_shaman_companion" text="{=str_tor_greenskin_shaman_companion}Greenskin shaman companionn" />
 
   <!-- Character Stats Bonuses -->
-  <string id="tor_stats_minotaur_bonus_text" text="{=str_tor_stats_minotaur_bonus_text}Minotaur bonus" />
-  <string id="tor_stats_dryad_bonus_text" text="{=str_tor_stats_dryad_bonus_text}Dryad bonus" />
+  <string id="tor_stats_additional_health_text" text="{=str_tor_stats_additional_health_text}Additional Health" />
   <string id="tor_vampire_bonus" text="{=str_tor_vampire_bonus}Vampire bonus" />
   <string id="tor_vampire_nighttime_bonus" text="{=str_tor_vampire_nighttime_bonus}Vampire nighttime bonus" />
   <string id="tor_stats_large_monster_text" text="{=str_tor_stats_large_monster_text}Large Monster" />
+  <string id="tor_stats_tier1_text" text="{=str_tor_stats_tier1_text}Tier1" />
+  <string id="tor_stats_tier2_text" text="{=str_tor_stats_tier2_text}Tier2" />
+  <string id="tor_stats_tier3_text" text="{=str_tor_stats_tier3_text}Tier3" />
+  <string id="tor_stats_tier4_text" text="{=str_tor_stats_tier4_text}Tier4" />
   <string id="tor_stats_vampire_body_text" text="{=str_tor_stats_vampire_body_text}Vampire body" />
   <string id="tor_stats_dwarf_bonus_text" text="{=str_tor_stats_dwarf_bonus_text}Dwarf bonus" />
   <string id="tor_stats_goblin_bonus_text" text="{=str_tor_stats_goblin_bonus_text}Goblin frailty" />
@@ -5840,7 +5843,6 @@
   <string id="tor_alliance_limit" text="{=str_tor_alliance_limit}Alliance limit reached" />
   <string id="tor_trade_chaos" text="{=str_tor_trade_chaos}The forces of Chaos do not engage in trade." />
   <string id="tor_trade_greenskin" text="{=str_tor_trade_greenskin}Greenskins do not understand the concept of trade." />
-  <string id="tor_stats_troll_bonus_text" text="{=str_tor_stats_troll_bonus_text}Troll bonus" />
 
   <!-- MinorVampire lore choice popup -->
   <string id="tor_vampire_lore_choice_label" text="{=str_tor_vampire_lore_choice_label}Choose your Lore of Magic…" />

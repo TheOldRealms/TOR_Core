@@ -92,7 +92,7 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>AmberCrystal</IngredientItem>
     <IngredientAmount>1</IngredientAmount>
-    <ItemTraitDescription>{=str_tor_itemtraits_quicksilver_weapon}"Quicksilver surrounds your weapon. It deals an extra 25% physical damage."</ItemTraitDescription>
+    <ItemTraitDescription>{=str_tor_itemtraits_quicksilver_weapon}25% extra damage dealt as Physical.</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.25" />
     <WeaponParticlePreset ParticlePrefab="psys_quicksilver_swords" IsUniqueSingleCopy="false" />
   </ItemTrait>
