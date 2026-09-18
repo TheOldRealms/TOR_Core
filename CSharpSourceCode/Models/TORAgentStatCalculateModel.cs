@@ -88,7 +88,7 @@ namespace TOR_Core.Models
 
         public override float GetKnockBackResistance(Agent agent)
         {
-            if (agent.HasAttribute("NestCleansing"))
+            if (agent.HasAttribute(CharacterAttributes.NEST_CLEANSING))
             {
                 return 1;
             }
@@ -97,7 +97,7 @@ namespace TOR_Core.Models
 
         public override float GetKnockDownResistance(Agent agent, StrikeType strikeType)
         {
-            if (agent.HasAttribute(CharacterAttributes.TUBTHUMPING))
+            if (agent.HasAttribute(CharacterAttributes.TUBTHUMPING) || agent.HasAttribute(CharacterAttributes.NEST_CLEANSING))
             {
                 return 1;
             }

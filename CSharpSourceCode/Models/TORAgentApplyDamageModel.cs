@@ -433,6 +433,12 @@ namespace TOR_Core.Models
             // Apply career passives for damage values
             TORDamageHelper.ApplyCareerPassives(attackerAgent, victimAgent, attackTypeMask, additionalDamagePercentages, resistancePercentages);
 
+            if (collisionData.IsMissile &&
+                TORDamageHelper.IsNonMagicalSiegeOrExplosiveAmmunition(attackInformation.AttackerWeapon.Item))
+            {
+                TORDamageHelper.ApplyNestCleansingExplosionResistance(victimAgent, resistancePercentages);
+            }
+
             // Career-specific bonuses for melee/ranged
             if (Game.Current.GameType is Campaign && attackerAgent.IsMainAgent)
             {

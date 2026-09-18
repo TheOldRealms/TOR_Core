@@ -170,7 +170,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
                 }
             });
 
-        _nestCleansingKeystone.Initialize(CareerID, "Impenetrable adds 50% fire and explosion resistance to existing protection, and resists knockback and knockdown.", "NestCleansing", false,
+        _nestCleansingKeystone.Initialize(CareerID, "Impenetrable: +50% fire and non-magical explosive resistance; resist knockback and knockdown.", "NestCleansing", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()

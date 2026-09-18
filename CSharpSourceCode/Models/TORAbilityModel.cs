@@ -814,7 +814,7 @@ namespace TOR_Core.Models
             return CalculateAbilityDamage(attacker, victim, baseDamage, damageType, abilityTemplate, false);
         }
 
-        public int CalculateAbilityDamage(Agent attacker, Agent victim, int baseDamage, DamageType damageType, AbilityTemplate abilityTemplate, bool isExplosion)
+        public int CalculateAbilityDamage(Agent attacker, Agent victim, int baseDamage, DamageType damageType, AbilityTemplate abilityTemplate, bool isNonMagicalExplosion)
         {
             if (attacker == null || victim == null || baseDamage <= 0)
                 return baseDamage;
@@ -838,9 +838,9 @@ namespace TOR_Core.Models
             // Apply career passives for damage values
             TORDamageHelper.ApplyCareerPassives(attacker, victim, AttackTypeMask.Spell, additionalDamagePercentages, resistancePercentages);
 
-            if (isExplosion)
+            if (isNonMagicalExplosion)
             {
-                TORDamageHelper.ApplyNestCleansingExplosionResistance(victim, damageType, resistancePercentages);
+                TORDamageHelper.ApplyNestCleansingExplosionResistance(victim, resistancePercentages);
             }
 
             // Apply damage modifiers (virtual hook)
@@ -1024,7 +1024,7 @@ namespace TOR_Core.Models
 
                 // Calculate final damage with all modifiers
                 int finalDamage = CalculateAbilityDamage(caster, agent, baseDamage, damageType, abilityTemplate,
-                    IsExplosionEffect(triggeredEffectTemplate));
+                    abilityTemplate == null && triggeredEffectTemplate?.StringID?.Split('*')[0] == "grenade_explosion");
 
                 if (finalDamage > 0)
                 {
@@ -1051,19 +1051,6 @@ namespace TOR_Core.Models
                     // Note: Career ability charge is applied through OnAgentHit when RegisterBlow is called
                 }
             }
-        }
-
-        private static bool IsExplosionEffect(TriggeredEffectTemplate template)
-        {
-            if (template == null || template.DamageAmount <= 0 || template.Radius <= 0)
-            {
-                return false;
-            }
-
-            // TOR's explosion templates use these identifiers, including cloned variants.
-            // HasShockWave alone also describes stomps and wind effects, not just explosions.
-            return template.StringID?.IndexOf("_explosion", StringComparison.OrdinalIgnoreCase) >= 0 ||
-                   template.StringID?.StartsWith("explosion_", StringComparison.OrdinalIgnoreCase) == true;
         }
 
         /// <summary>

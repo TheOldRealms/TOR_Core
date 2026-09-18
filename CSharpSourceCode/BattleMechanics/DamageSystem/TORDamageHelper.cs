@@ -35,63 +35,49 @@ namespace TOR_Core.BattleMechanics.DamageSystem
             return Math.Max(0f, damage) * 0.5f;
         }
 
-        /// <summary>
-        /// Nest Cleansing adds 50 percentage points to the resistance for an explosion's damage type.
-        /// Fire is already covered by the status effect and must not receive the same bonus twice.
-        /// </summary>
-        public static void ApplyNestCleansingExplosionResistance(Agent victim, DamageType damageType, float[] resistancePercentages)
+        public static bool IsNonMagicalSiegeOrExplosiveAmmunition(ItemObject item)
         {
-            if (victim != null && damageType != DamageType.Fire && damageType != DamageType.All &&
-                victim.HasAttribute("NestCleansing"))
+            if (item?.WeaponComponent?.PrimaryWeapon == null) return false;
+
+            return item.WeaponComponent.PrimaryWeapon.WeaponClass == WeaponClass.Boulder ||
+                item.StringId is "tor_empire_weapon_ammo_grenade" or
+                    "tor_dw_weapon_grenade_hand_grenade" or
+                    "tor_dw_weapon_blasting_charges" or
+                    "tor_dw_iron_drake_trollhammer_torpedo" or
+                    "mangonel_c_boulder_projectile" or
+                    "mangonel_c_pot_projectile" or
+                    "mangonel_c_grapeshot_projectile" or
+                    "mangonel_c_grapeshot_fire_projectile";
+        }
+
+        public static void ApplyNestCleansingExplosionResistance(Agent victim, float[] resistances)
+        {
+            if (victim?.HasAttribute(TORConstants.CharacterAttributes.NEST_CLEANSING) != true) return;
+
+            for (int i = (int)DamageType.Physical; i < (int)DamageType.All; i++)
             {
-                resistancePercentages[(int)damageType] += 0.5f;
+                if (i != (int)DamageType.Fire) resistances[i] += 0.5f;
             }
         }
 
-        /// <summary>
-        /// Applies Ironbreaker defenses to artillery splash, whose ordinary path is raw damage.
-        /// Does not introduce spell amplification or change damage to unprotected agents.
-        /// </summary>
-        public static float ApplyIronbreakerExplosionDefenses(Agent attacker, Agent victim, float damage)
+        public static float CalculateExplosionDamage(Agent attacker, Agent victim, float damage, DamageType damageType)
         {
-            if (Campaign.Current == null || attacker == null || victim == null || !victim.IsHuman || damage <= 0f)
+            if (attacker == null || victim == null || damage <= 0 ||
+                MissionGameModels.Current?.AgentApplyDamageModel is not TORAgentApplyDamageModel model)
             {
                 return damage;
             }
 
-            var hasCareerDefense = victim.HasAttribute("Impenetrable") || victim.HasAttribute("NestCleansing");
-            if (!hasCareerDefense && victim.BelongsToMainParty())
-            {
-                var passiveType = victim.IsHero && victim.IsMainAgent ? PassiveEffectType.Resistance : PassiveEffectType.TroopResistance;
-                foreach (var choice in CareerHelper.GetCachedChoicesByType(passiveType))
-                {
-                    if ((choice.StringId == "GromrilArmorPassive1" || choice.StringId == "ShieldwallPassive3") &&
-                        choice.Passive.IsValidCombatInteraction(attacker, victim, AttackTypeMask.Ranged))
-                    {
-                        hasCareerDefense = true;
-                        break;
-                    }
-                }
-            }
+            var attack = model.CreateAgentPropertyContainer(attacker, PropertyMask.Attack, AttackTypeMask.Ranged);
+            var defense = model.CreateAgentPropertyContainer(victim, PropertyMask.Defense, AttackTypeMask.Ranged);
+            ApplyCareerPassives(attacker, victim, AttackTypeMask.Ranged, attack.AdditionalDamagePercentages, defense.ResistancePercentages);
+            ApplyNestCleansingExplosionResistance(victim, defense.ResistancePercentages);
 
-            if (!hasCareerDefense)
-            {
-                return damage;
-            }
-
-            var damageModel = MissionGameModels.Current?.AgentApplyDamageModel as TORAgentApplyDamageModel;
-            if (damageModel == null)
-            {
-                return damage;
-            }
-
-            var resistances = damageModel.CreateAgentPropertyContainer(victim, PropertyMask.Defense, AttackTypeMask.Ranged).ResistancePercentages;
-            ApplyCareerPassives(attacker, victim, AttackTypeMask.Ranged, new float[(int)DamageType.All + 1], resistances);
-            ApplyNestCleansingExplosionResistance(victim, DamageType.Physical, resistances);
-
-            var physicalFactor = Math.Max(0f, 1f - resistances[(int)DamageType.Physical]);
-            var wardFactor = damageModel.CalculateWardSaveFactor(attacker, victim, resistances, attacker.Team == victim.Team);
-            return Math.Min(damage, Math.Max(0f, damage * physicalFactor * wardFactor));
+            var proportions = new float[(int)DamageType.All + 1];
+            proportions[(int)damageType] = 1f;
+            var result = CalculateDamageWithProportions(damage, proportions, attack.DamagePercentages,
+                attack.AdditionalDamagePercentages, defense.ResistancePercentages, out _);
+            return Math.Max(0f, result * model.CalculateWardSaveFactor(attacker, victim, defense.ResistancePercentages, attacker.Team == victim.Team));
         }
 
         /// <summary>

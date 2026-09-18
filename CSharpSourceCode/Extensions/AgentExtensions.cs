@@ -607,7 +607,7 @@ namespace TOR_Core.Extensions
                     blow.BlowFlag = BlowFlags.NoSound;
                     blow.VictimBodyPart = BoneBodyPartType.Chest;
                     blow.StrikeType = StrikeType.Thrust;
-                    if (hasShockWave && !agent.HasAttribute("NestCleansing"))
+                    if (hasShockWave)
                     {
                         if (agent.HasMount) blow.BlowFlag |= BlowFlags.CanDismount;
                         else blow.BlowFlag |= BlowFlags.KnockDown;
