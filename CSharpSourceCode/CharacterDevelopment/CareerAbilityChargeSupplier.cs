@@ -507,7 +507,6 @@ namespace TOR_Core.CharacterDevelopment
         public static float IronbreakerChargeSupplier(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue,
             AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
-            // Damage taken grants 5x charge; shield blocks grant a fixed 5 even when no health is lost.
             if (chargeType == ChargeType.DamageTaken && affectedAgent == Agent.Main && affectedAgent.GetHero() == Hero.MainHero)
             {
                 return (collisionFlag & CareerHelper.ChargeCollisionFlag.HitShield) != 0

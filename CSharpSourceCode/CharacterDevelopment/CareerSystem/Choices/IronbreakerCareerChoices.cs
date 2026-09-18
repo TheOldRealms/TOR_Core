@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
@@ -147,7 +147,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
 
     protected override void InitializeKeyStones()
     {
-        _ironbreakerRoot.Initialize(CareerID, "Khazukan Kazakit-ha! Become Impenetrable for 10 seconds plus 0.05 seconds per Athletics point. Gain +90% personal 'Ward Save', but move 25% slower. (Ability is charged by receiving and blocking damage.)", null, true,
+        _ironbreakerRoot.Initialize(CareerID, "Khazukan Kazakit-ha! For a brief period become Impenetrable.Gain +90% personal 'Ward Save’ but move 25% slower. For every level of Athletics, gain 0.05s of Impenetrable.(Ability is charged by receiving and blocking damage) 120 sec cooldown.", null, true,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()

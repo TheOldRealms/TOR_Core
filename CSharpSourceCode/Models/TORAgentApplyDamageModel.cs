@@ -1182,15 +1182,13 @@ namespace TOR_Core.Models
             } 
 
             result.LimitMax(1);
-            if (!friendlyFire)
+            if (victim.HasAttribute(CharacterAttributes.IMPENETRABLE))
+            {
+                result.LimitMin(0.1f);
+            }
+            else if (!friendlyFire)
             {
                 result.LimitMin(0.11f);
-            }
-            else if (victim.HasAttribute("Impenetrable"))
-            {
-                // Impenetrable's ward save can stack with the Dawi friendly-fire reduction,
-                // but a protective ability must never turn incoming damage into healing.
-                result.LimitMin(0f);
             }
             return result.ResultNumber;
         }
