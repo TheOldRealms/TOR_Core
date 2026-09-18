@@ -33,10 +33,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             return agent.HealthLimit - agent.Health >= healthLost;
         }
 
-
         public static bool ContainsSpellType(AbilityComponent component, int spellCount, AbilityEffectType excludedEffectType)
         {
-            var wrongSpell = false;
+            //TODO: Why not use linq?
             for (int i = 0; i < spellCount; i++)
             {
                 var ability = component.GetAbility(i);
@@ -50,7 +49,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         public static bool ContainsSpellType(AbilityComponent component, int spellCount, AbilityTargetType excludedTargetType)
         {
-            var wrongSpell = false;
+
             if (component == null) return false;
             for (int i = 0; i < spellCount; i++)
             {

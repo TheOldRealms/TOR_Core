@@ -50,8 +50,8 @@
     <AbilityTemplate StringID="WardOfArrows"
                      Name="{=ward_of_arrows_label_str}Ward of Arrows"
                      SpriteName="ward_of_arrows_icon"
-                     CoolDown="10"
-                     WindsOfMagicCost="3"
+                     CoolDown="30"
+                     WindsOfMagicCost="5"
                      BaseMisCastChance="0.05"
                      Duration="0"
                      Radius="0"
@@ -79,7 +79,7 @@
                      TargetCapturingRadius="1"
                      SpellTier="1"
                      BelongsToLoreID="MinorMagic"
-                     TooltipDescription="{=ward_of_arrows_description_str}The caster is immune to ranged damage for 15 seconds.">
+                     TooltipDescription="{=ward_of_arrows_description_str}The wizard creates a barrier from the Ether. Ranged damage is reduced by 50% for 15 seconds.">
         <LightColorRGB x="255"
                        y="255"
                        z="255"
@@ -124,7 +124,7 @@
                      TargetCapturingRadius="1"
                      SpellTier="1"
                      BelongsToLoreID="MinorMagic"
-                     TooltipDescription="{=minor_heal_description_str}Heals the caster for 3 health every second for 7 seconds.">
+                     TooltipDescription="{=minor_heal_description_str}Heals the caster for 4 health every second for 7 seconds.">
         <LightColorRGB x="255"
                        y="255"
                        z="255"
@@ -1837,7 +1837,7 @@
                      Name="{=tasteofdeath_label_str}Taste of Death"
                      SpriteName="taste_of_death_icon"
                      CoolDown="10"
-                     WindsOfMagicCost="8"
+                     WindsOfMagicCost="10"
                      BaseMisCastChance="0.05"
                      Duration="5"
                      Radius="8"
@@ -1866,7 +1866,7 @@
                      CrosshairType="SingleTarget"
                      SpellTier="4"
                      BelongsToLoreID="LoreOfDeath"
-                     TooltipDescription="{=taste_of_death_description_str}A skeletal hand is outstretched towards the target, their life snuffed out within a heartbeat. Deal massive single-target damage.">
+                     TooltipDescription="{=taste_of_death_description_str}A skeletal hand is outstretched and their life snuffed out within a heartbeat. Does 200 Magic damage to one enemy. Can knock down or dismount the target.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -1911,7 +1911,7 @@
                      AbilityTargetType="WorldPosition"
                      SpellTier="2"
                      BelongsToLoreID="LoreOfDeath"
-                     TooltipDescription="{=ashes_and_dust_description_str}The caster channels potent death magic and looses it upon the foe, leaving nothing but dust in the wind. Deal medium damage in a small area.">
+                     TooltipDescription="{=ashes_and_dust_description_str}The caster channels potent death magic and looses it upon the foe, explodes in a 5m radius, does 60 magical damage.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -1960,7 +1960,7 @@
                      VisualsRotationVelocity="0"
                      SpellTier="4"
                      BelongsToLoreID="LoreOfDeath"
-                     TooltipDescription="{=purple_sun_description_str}The winds of Shyish blow strong as a vicious whirlwind of pure death is conjured upon the battlefield, tugging at the life energies of everything it touches.">
+                     TooltipDescription="{=purple_sun_description_str}The winds of Shyish blow strong as a vicious whirlwind of pure death is conjured upon the battlefield, Creates a vortex dealing 75 magical damage for 8 seconds in 4M.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -2005,7 +2005,7 @@
                      CrosshairType="TargetedAOE"
                      SpellTier="4"
                      BelongsToLoreID="LoreOfDeath"
-                     TooltipDescription="{=fate_of_bjuna_description_str}There was once a mighty warrior who never smiled, one that was cursed with eternal laughter until his sides split from the exertion. Targets suffer damage over time as well as a slowdown effect.">
+                     TooltipDescription="{=fate_of_bjuna_description_str}There was once a mighty warrior who never smiled, one that was cursed with eternal laughter until his sides split from the exertion. Curses the area with a magical DOT and a -50% movement speed penalty for 15 seconds.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -2024,7 +2024,7 @@
                      WindsOfMagicCost="25"
                      BaseMisCastChance="0.05"
                      Duration="0"
-                     Radius="3"
+                     Radius="10"
                      AbilityType="Spell"
                      AbilityEffectType="Augment"
                      BaseMovementSpeed="0"
@@ -2045,11 +2045,11 @@
                      AnimationActionName="act_release_heavy_thrown"
                      Offset="0.5"
                      AbilityTargetType="AlliesInAOE"
-                     TargetCapturingRadius="7"
+                     TargetCapturingRadius="10"
                      CrosshairType="Self"
                      SpellTier="3"
                      BelongsToLoreID="LoreOfDeath"
-                     TooltipDescription="{=amaranth_description_str}The spirits of the damned make for an effective barrier against magic, the spells aimed at the caster falter and lose 50% their potency.">
+                     TooltipDescription="{=amaranth_description_str}The spirits of the damned make for an effective barrier against magic, the spells that hit your troops falter and lose 75% of their potency">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -2089,12 +2089,12 @@
                      AnimationActionName="act_release_heavy_thrown"
                      Offset="0.5"
                      AbilityTargetType="EnemiesInAOE"
-                     TargetCapturingRadius="4"
+                     TargetCapturingRadius="5"
                      MaxDistance="125"
                      CrosshairType="TargetedAOE"
                      SpellTier="3"
                      BelongsToLoreID="LoreOfDeath"
-                     TooltipDescription="{=spirit_leech_description_str}With death comes life, as the caster drains the life force from the foe to restore his own withered flesh. Elite foes provide greater healing.">
+                     TooltipDescription="{=spirit_leech_description_str}With death comes life. Drains nearby enemies for 10 damage per second for 5 seconds, restoring 3 health per second to the caster. Stronger foes prolong the healing, with heroes taking priority. ">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -2109,15 +2109,15 @@
     <AbilityTemplate StringID="CaressOfLaniph"
                      Name="{=caress_of_laniph_label_str}Caress of Laniph"
                      SpriteName="caresslaniph_icon"
-                     CoolDown="35"
-                     WindsOfMagicCost="26"
+                     CoolDown="60"
+                     WindsOfMagicCost="32"
                      BaseMisCastChance="0.05"
-                     Duration="10"
-                     Radius="7.5"
+                     Duration="5"
+                     Radius="8"
                      AbilityType="Spell"
                      AbilityEffectType="Hex"
                      BaseMovementSpeed="0"
-                     TickInterval="1"
+                     TickInterval="3"
                      TriggerType="EveryTick"
                      HasLight="false"
                      LightIntensity="0"
@@ -2135,11 +2135,11 @@
                      Offset="0.5"
                      AbilityTargetType="EnemiesInAOE"
                      TargetCapturingRadius="10"
-                     MaxDistance="20"
+                     MaxDistance="15"
                      CrosshairType="TargetedAOE"
                      SpellTier="3"
                      BelongsToLoreID="LoreOfDeath"
-                     TooltipDescription="{=caress_of_laniph_description_str}With an outstretched hand, the caster's enemies are surrounded by a purple mist that no armour can shield from. The mist gently caresses the targets, before solidifying, constricting and then crushing the life out of the foe.">
+                     TooltipDescription="{=caress_of_laniph_description_str}With an outstretched hand, the caster's enemies are surrounded by a purple mist that no armour can shield from, crushing the life out of them. Deals up to 120 dmg over 5-10 seconds">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -3557,7 +3557,7 @@
                      CrosshairType="TargetedAOE"
                      SpellTier="3"
                      BelongsToLoreID="LoreOfMetal"
-                     TooltipDescription="{=quicksilver_swords_description_str}Infuses weapons of allies with gleaming energies - Even a rusty sword turns deadly with the help of a Metal Wizard. Friendly units deal 20% magic and fire damage for a duration of 60 seconds.">
+                     TooltipDescription="{=quicksilver_swords_description_str}Infuses weapons of allies with gleaming energies. Enchants allies' wielded weapons within a 25m radius for 60s, granting 25% extra damage dealt as Physical.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -3601,7 +3601,7 @@
                      MaxDistance="100"
                      CrosshairType="SingleTarget"
                      AbilityTargetType="SingleEnemy"
-                     TooltipDescription="{=gleaming_arrow_description_str}The Gold Wizard fires a projectile of golden energy out of his forehead. The missile homes in on the target and deals 100 physical damage.">
+                     TooltipDescription="{=gleaming_arrow_description_str}The Gold Wizard fires a projectile of golden energy out of his forehead. Fires a homing missile that deals 100 Magic damage.">
         <LightColorRGB x="255"
                        y="200"
                        z="0"
@@ -3649,7 +3649,7 @@
                      CrosshairType="TargetedAOE"
                      SpellTier="3"
                      BelongsToLoreID="LoreOfMetal"
-                     TooltipDescription="{=meteoric_ironclad_description_str}Allies are protected by an enchantment of iron and silver. Provides 60% physical resistance for a duration of 45 seconds.">
+                     TooltipDescription="{=meteoric_ironclad_description_str}Allies are protected by an enchantment of iron and silver.Grants allies within a 20m radius 60% Physical resistance for 45s.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -3694,7 +3694,7 @@
                      CrosshairType="TargetedAOE"
                      SpellTier="3"
                      BelongsToLoreID="LoreOfMetal"
-                     TooltipDescription="{=plague_of_rust_description_str}At a flick of the caster's wrist, the armor of foes is consumed by rust. Imposes a 70% physical resistance penalty for a duration of 120 seconds.">
+                     TooltipDescription="{=plague_of_rust_description_str}At a flick of the caster's wrist, the armor of foes is consumed by rust. Applies -70% Physical resistance to enemies within a 15m radius for 120s.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -3739,7 +3739,7 @@
                      MaxDistance="55"
                      SpellTier="3"
                      BelongsToLoreID="LoreOfMetal"
-                     TooltipDescription="{=gehennas_golden_globe_description_str}A glittering globe of energy engulfs and burns foes alive. Those unfortunate enough to survive are also slowed down for a short duration.">
+                     TooltipDescription="{=gehennas_golden_globe_description_str}A gleaming golden sphere that explodes, dealing 75 Fire damage to enemies.Survivors suffer -50% movement speed for 20s and can be knocked down or dismounted.">
         <LightColorRGB x="245"
                        y="247"
                        z="129"
@@ -3784,7 +3784,7 @@
                      CrosshairType="TargetedAOE"
                      SpellTier="4"
                      BelongsToLoreID="LoreOfMetal"
-                     TooltipDescription="{=final_transmutation_description_str}By weaving the brilliant Wind of Chamon, the wizard attempts to transmute his foes into statues of pure gold. Deals continuous damage and greatly slows down enemies.">
+                     TooltipDescription="{=final_transmutation_description_str}By weaving the brilliant Wind of Chamon, the wizard transmutes his foes into statues of pure gold. Curses enemies within a 12m radius, dealing 3 damage per second and applying -50% movement speed for 30s.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -3833,7 +3833,7 @@
                      VisualsRotationVelocity="10"
                      SpellTier="4"
                      BelongsToLoreID="LoreOfMetal"
-                     TooltipDescription="{=gehennas_golden_hounds_description_str}The wizard calls forth a pair of massive golden hounds that travel in a circular motion.">
+                     TooltipDescription="{=gehennas_golden_hounds_description_str}The wizard calls forth a pair of massive golden hounds for 20s. Vortex Deals 40 Fire damage every 0.5s to enemies.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -3976,7 +3976,7 @@
     </AbilityTemplate>
     <AbilityTemplate StringID="DwarfCannonSpawner"
                      Name="{=dwarf_cannon_spawner_label_str}Place Dwarf Cannon"
-                     SpriteName="placeartillery_icon"
+                     SpriteName="placedwarfcannon_icon"
                      CoolDown="1"
                      WindsOfMagicCost="0"
                      BaseMisCastChance="0.0"

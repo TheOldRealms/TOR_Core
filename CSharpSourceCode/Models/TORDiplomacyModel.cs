@@ -116,11 +116,11 @@ namespace TOR_Core.Models
             return values.RoundedResultNumber;
         }
 
-        public override float GetScoreOfDeclaringWar(IFaction factionDeclaresWar, IFaction factionDeclaredWar, Clan evaluatingClan, out TextObject reason, bool includeReason = false)
+        public override float GetScoreOfDeclaringWar(IFaction factionDeclaresWar, IFaction factionReceivingDeclaration, Clan evaluatingClan, out TextObject reason, bool includeReason = false)
         {
             reason = new TextObject("It is time to declare war!");
 
-            if (factionDeclaresWar is Kingdom declaringKingdom && factionDeclaredWar is Kingdom targetKingdom)
+            if (factionDeclaresWar is Kingdom declaringKingdom && factionReceivingDeclaration is Kingdom targetKingdom)
             {
                 // Use offensive war count (excludes alliance/defensive wars)
                 int offensiveWars = GetOffensiveWarCount(declaringKingdom);
@@ -140,7 +140,7 @@ namespace TOR_Core.Models
                 return customScore;
             }
 
-            return base.GetScoreOfDeclaringWar(factionDeclaresWar, factionDeclaredWar, evaluatingClan, out reason, includeReason);
+            return base.GetScoreOfDeclaringWar(factionDeclaresWar, factionReceivingDeclaration, evaluatingClan, out reason, includeReason);
         }
 
         public override float GetScoreOfDeclaringPeace(IFaction factionDeclaresPeace, IFaction factionDeclaredPeace)

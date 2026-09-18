@@ -10,8 +10,6 @@ namespace TOR_Core.Models
 {
     public class TORPartyTroopUpgradeModel : DefaultPartyTroopUpgradeModel
     {
-        //public override int MaxCharacterTier => 9;
-
         public override ExplainedNumber GetGoldCostForUpgrade(PartyBase party, CharacterObject characterObject, CharacterObject upgradeTarget)
         {
             if (characterObject.IsUndead()) return new ExplainedNumber(0);
