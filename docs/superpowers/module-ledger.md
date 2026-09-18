@@ -26,7 +26,7 @@ Ordered by suggested Modularize sequence: proven-small first, split-heavy in the
 
 | # | Module | 1 Modularize | 2 Framework | 3 Strings | 4 Codesmells | 5 Pattern | Notes |
 |---|---|---|---|---|---|---|---|
-| 0 | `Crafting` | **done** | **PR** | next | — | — | The worked example. Epic 1 merged to `next_update` as PR #32 — **squashed**, so every branch stacked above it needed a manual re-merge. Epic 2 on `feature/FrameworkCrafting`, stacked `next_update` → `CentralizeCraftingRecipes` → `FrameworkCrafting`. Epic 2 promoted `TORSettlementMenuHelpers` and `TorEnchantingIngredients` to `Framework/` and froze the inbound set as Public Surface in `MODULE.md`. One outbound edge survives — `PriestBehavior` → `Religion.ReligionObject.All` — deferred to Religion's Epic 1. Strings unblocked: `tortools` MCP server is live. |
+| 0 | `Crafting` | **done** | **PR** | next | — | — | The worked example. Epic 1 merged as PR #32, the blueprint-store work as PR #34 — both **squashed**, so every stacked branch needed a manual re-merge each time. Epic 2 on `feature/FrameworkCrafting`, now straight off `next_update`. Epic 2 promoted `TORSettlementMenuHelpers` and `TorEnchantingIngredients` to `Framework/` and froze the inbound set as Public Surface in `MODULE.md`. One outbound edge survives — `PriestBehavior` → `Religion.ReligionObject.All` — deferred to Religion's Epic 1. Strings unblocked: `tortools` MCP server is live. |
 | 1 | `BountyMaster` | — | — | — | — | — | Small, few cross-references. Good second module. |
 | 2 | `PostBattleLoot` | — | — | — | — | — | Small, few cross-references. |
 | 3 | `Villages` | — | — | — | — | — | Pulls in `TORVillageProductionCalculatorModel`; possibly `PlaguedVillageQuestCampaignBehavior` (*verify*). |
