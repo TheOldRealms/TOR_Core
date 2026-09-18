@@ -2,12 +2,12 @@ using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.Core;
-using TOR_Core.CharacterDevelopment;
+using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.Extensions;
-using TOR_Core.Items;
+using TOR_Core.Framework;
 using TOR_Core.Utilities;
 
-namespace TOR_Core.CampaignMechanics.Crafting;
+namespace TOR_Core.CampaignMechanics.Crafting.Models;
 
 public class TOREnchantmentIngredientsModel : GameModel
 {
@@ -48,14 +48,9 @@ public class TOREnchantmentIngredientsModel : GameModel
     {
         float careerBonus = 1f;
 
-        // Orc Shaman enchantment loot bonus
-        if (Hero.MainHero.HasCareerChoice("BonesAnFirepitzPassive3"))
+        foreach (var bonus in CraftingCareerHooks.IngredientLootBonusFactors)
         {
-            var choice = TORCareerChoices.GetChoice("BonesAnFirepitzPassive3");
-            if (choice != null)
-            {
-                careerBonus += choice.GetPassiveValue(); // 0.25 for 25%
-            }
+            careerBonus += bonus(Hero.MainHero);
         }
 
         return (int)(dropscore * GetDropAmplitude(ingredient) * RandomMultiplier(ingredient) * playerEarnedLootRate * careerBonus);
