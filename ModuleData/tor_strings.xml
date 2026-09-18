@@ -4049,7 +4049,7 @@
   <string id="tor_careerchoice_description.TunnelWatchPassive2" text="{=str_tor_careerchoice_description_TunnelWatchPassive2}+1 party move speed on campaign map." />
   <string id="tor_careerchoice_description.TunnelWatchPassive3" text="{=str_tor_careerchoice_description_TunnelWatchPassive3}+15% personal 'Physical' damage when facing Greenskins." />
   <string id="tor_careerchoice_description.TunnelWatchPassive4" text="{=str_tor_careerchoice_description_TunnelWatchPassive4}+5% personal melee 'Physical' damage." />
-  <string id="tor_careerchoice_description.IronPriceKeystone" text="{=str_tor_careerchoice_description_IronPriceKeystone}Impenetrable gains 0.02 seconds per Leadership point and can be charged by dealing damage." />
+  <string id="tor_careerchoice_description.IronPriceKeystone" text="{=str_tor_careerchoice_description_IronPriceKeystone}Impenetrable: +0.02s per Leadership point; dealing damage also charges it." />
   <string id="tor_careerchoice_description.IronPricePassive1" text="{=str_tor_careerchoice_description_IronPricePassive1}Hits below 15 damage no longer stagger you." />
   <string id="tor_careerchoice_description.IronPricePassive2" text="{=str_tor_careerchoice_description_IronPricePassive2}Personal attacks against shields deal increased 'Physical' damage." />
   <string id="tor_careerchoice_description.IronPricePassive3" text="{=str_tor_careerchoice_description_IronPricePassive3}-25% gold cost when upgrading 'Ironbreaker' troops." />

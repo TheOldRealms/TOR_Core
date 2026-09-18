@@ -15,71 +15,52 @@ namespace TOR_Core.Models
             if (characterObject.IsUndead()) return new ExplainedNumber(0);
 
             var explainedNumber = base.GetGoldCostForUpgrade(party, characterObject, upgradeTarget);
-            var applyIronbreakerDiscountLast = party.LeaderHero?.HasCareerChoice("IronPricePassive3") == true &&
-                characterObject.HasAttribute(CharacterAttributes.IRONBREAKER);
 
-            if (party.LeaderHero != null && party.LeaderHero == Hero.MainHero && !applyIronbreakerDiscountLast)
-            {
-                CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.TroopUpgradeCost, true, characterObject);
-            }
+            if (party.LeaderHero == null || party != PartyBase.MainParty || party.LeaderHero != Hero.MainHero) return explainedNumber;
+
+            CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.TroopUpgradeCost, true, characterObject);
 
             if (characterObject.Culture.StringId == TORConstants.Cultures.DAWI)
             {
-                if (party == PartyBase.MainParty)
+                if (characterObject.HasAttribute(CharacterAttributes.DWARF_GUN) || upgradeTarget.HasAttribute(CharacterAttributes.DWARF_GUN))
                 {
-                    if (characterObject.HasAttribute(CharacterAttributes.DWARF_GUN) || upgradeTarget.HasAttribute(CharacterAttributes.DWARF_GUN))
+                    if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_ENGINEERS_2))
                     {
-                        if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_ENGINEERS_2))
-                        {
-                            explainedNumber.AddFactor(-0.25f);
-                        }
-                        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_ENGINEERS_1))
-                        {
-                            explainedNumber.AddFactor(-0.15f);
-                        }
+                        explainedNumber.AddFactor(-0.25f);
                     }
-
-                    if (characterObject.HasAttribute(CharacterAttributes.DWARF_WARRIOR))
+                    else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_ENGINEERS_1))
                     {
-                        if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_3))
-                        {
-                            explainedNumber.AddFactor(-0.30f);
-                        }
-                        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_2))
-                        {
-                            explainedNumber.AddFactor(-0.20f);
-                        }
-                        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_1))
-                        {
-                            explainedNumber.AddFactor(-0.10f);
-                        }
+                        explainedNumber.AddFactor(-0.15f);
                     }
-
-                    if (characterObject.HasAttribute(CharacterAttributes.IRONBREAKER))
-                    {
-                        explainedNumber.AddFactor(3f);
-                        if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_RUNESMITH_3))
-                        {
-                            explainedNumber.AddFactor(-0.20f);
-                        }
-                        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_RUNESMITH_2))
-                        {
-                            explainedNumber.AddFactor(-0.10f);
-                        }
-                    }
-
                 }
-            }
 
-            if (party.LeaderHero != null && party.LeaderHero == Hero.MainHero && applyIronbreakerDiscountLast)
-            {
-                var costBeforeCareerPerks = explainedNumber.ResultNumber;
-                var careerAdjustedCost = new ExplainedNumber(costBeforeCareerPerks, explainedNumber.IncludeDescriptions);
-                CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref careerAdjustedCost, PassiveEffectType.TroopUpgradeCost, true, characterObject);
-                // Return the adjusted final cost; adding its delta to the old base would apply the surcharges again.
-                if (careerAdjustedCost.ResultNumber != costBeforeCareerPerks)
+                if (characterObject.HasAttribute(CharacterAttributes.DWARF_WARRIOR))
                 {
-                    explainedNumber = careerAdjustedCost;
+                    if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_3))
+                    {
+                        explainedNumber.AddFactor(-0.30f);
+                    }
+                    else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_2))
+                    {
+                        explainedNumber.AddFactor(-0.20f);
+                    }
+                    else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_1))
+                    {
+                        explainedNumber.AddFactor(-0.10f);
+                    }
+                }
+
+                if (characterObject.HasAttribute(CharacterAttributes.IRONBREAKER))
+                {
+                    explainedNumber.Add(explainedNumber.BaseNumber * 3);
+                    if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_RUNESMITH_3))
+                    {
+                        explainedNumber.AddFactor(-0.20f);
+                    }
+                    else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_RUNESMITH_2))
+                    {
+                        explainedNumber.AddFactor(-0.10f);
+                    }
                 }
             }
 

@@ -186,7 +186,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
                 }
             });
 
-        _ironPriceKeystone.Initialize(CareerID, "Impenetrable gains 0.02 seconds per Leadership point and can be charged by dealing damage.", "IronPrice", false,
+        _ironPriceKeystone.Initialize(CareerID, "Impenetrable: +0.02s per Leadership point; dealing damage also charges it.", "IronPrice", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
