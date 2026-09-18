@@ -42,9 +42,6 @@ public static class MobilePartyPatches
         __result = culturePartyTemplate;
     }
 
-    //Sly : where is this cultures comment from? It's unrelated to this patch.
-    //Fill available cultures
-
     [HarmonyPrefix]
     [HarmonyPatch(typeof(HeroSpawnCampaignBehavior), "CalculateScoreToCreateParty")]
     public static bool GiveHighScore(ref float __result)
