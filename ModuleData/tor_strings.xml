@@ -447,6 +447,7 @@
   <string id="tor_unit_rune_active_display" text="{=str_tor_unit_rune_active_display}{RUNE_NAME}{newline}{RUNE_DESC}" />
   <string id="tor_unit_rune_warning_text" text="{=str_tor_unit_rune_warning_text}WARNING : Current {CURRENT_RUNE} will be removed without compensation." />
   <string id="tor_unit_rune_unknown_runes_text" text="{=str_tor_unit_rune_unknown_runes_text}You do not know the required runes:{UNKNOWN_RUNES_LIST}" />
+  <string id="tor_unit_rune_requirement_unmet" text="{=str_tor_unit_rune_requirement_unmet}{RUNE_DESCRIPTION}{newline}{newline}{RUNE_REQUIREMENT}" />
   <string id="tor_unit_rune_title" text="{=str_tor_unit_rune_title}Unit Runes" />
   <string id="tor_unit_rune_description" text="{=str_tor_unit_rune_description}Choose a rune to add to the equipment of your units. {RUNE_WARNING_TEXT}" />
   <string id="tor_unit_rune_not_for_heroes_text" text="{=str_tor_unit_rune_not_for_heroes_text}Doesn't work for heroes" />
@@ -719,10 +720,18 @@
   <string id="tor_enchanting_enter_name_text" text="{=str_tor_enchanting_enter_name_text}Enter name for your enchanted item" />
   <string id="tor_enchanting_failed_text" text="{=str_tor_enchanting_failed_text}Enchanting failed." />
   <string id="tor_enchanting_success_text" text="{=str_tor_enchanting_success_text}Enchanting successful. Item was added to inventory." />
-  <string id="tor_learned_enchantment_text" text="{=str_tor_learned_enchantment_text}{HERO_NAME} learned the enchantment {ENCHANTMENT_NAME}" />
+  <string id="tor_enchantment_learned_text" text="{=str_tor_enchantment_learned_text}{ENCHANTMENT_NAME} has been learnt." />
+  <string id="tor_enchantment_already_learned_text" text="{=str_tor_enchantment_already_learned_text}You have already learned this enchantment." />
+  <string id="tor_enchantment_manuscript_useless_text" text="{=str_tor_enchantment_manuscript_useless_text}The manuscript is of no use for you." />
   <string id="tor_enchant_prompt_donate_items.title" text="{=str_tor_enchant_prompt_donate_items_title}Donate items" />
   <string id="tor_enchant_prompt_donate_items.text" text="{=str_tor_enchant_prompt_donate_items_text}Select the items you want to donate. You will obtain {CUSTOMRESOURCE_ICON} from this action. " />
   <string id="tor_enchant_no_description" text="{=str_tor_enchant_no_description}No description available." />
+  <string id="tor_enchanting_title" text="{=str_tor_enchanting_title}Enchanting" />
+  <string id="tor_runesmithing_title" text="{=str_tor_runesmithing_title}Runesmithing" />
+  <string id="tor_enchanting_requires_skill" text="{=str_tor_enchanting_requires_skill}Requires {SKILL} {VALUE}." />
+  <string id="tor_enchanting_requires_lore" text="{=str_tor_enchanting_requires_lore}Requires a character who knows the Lore of {LORE}." />
+  <string id="tor_enchanting_requires_attribute" text="{=str_tor_enchanting_requires_attribute}Requires a character with {ATTRIBUTE}." />
+  <string id="tor_enchantmentshop_future_requirement" text="{=str_tor_enchantmentshop_future_requirement}You can learn this now, but cannot enchant with it yet. {REQUIREMENT}" />
 
   <!-- EMPIRE (empire) - Imperial Alchemist dialogs -->
   <string id="tor_enchanter_start_p.empire" text="{=str_tor_enchanter_start_p_empire}I wish to learn about enchantment." />
