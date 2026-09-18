@@ -199,7 +199,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
                 }
             });
 
-        _shieldwallKeystone.Initialize(CareerID, "Impenetrable gains 0.02 seconds per One-Handed point and applies to all allies within a radius of 5 metres.", "ShieldWall", false,
+        _shieldwallKeystone.Initialize(CareerID, "Impenetrable: +0.02s per One-Handed point; protects allies within 5m.", "ShieldWall", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()

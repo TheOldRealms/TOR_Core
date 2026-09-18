@@ -4054,7 +4054,7 @@
   <string id="tor_careerchoice_description.IronPricePassive2" text="{=str_tor_careerchoice_description_IronPricePassive2}Personal attacks against shields deal increased 'Physical' damage." />
   <string id="tor_careerchoice_description.IronPricePassive3" text="{=str_tor_careerchoice_description_IronPricePassive3}-25% gold cost when upgrading 'Ironbreaker' troops." />
   <string id="tor_careerchoice_description.IronPricePassive4" text="{=str_tor_careerchoice_description_IronPricePassive4}+10 personal Hitpoints and -25% Oathgold cost when converting Dawi troops into Ironbreakers." />
-  <string id="tor_careerchoice_description.ShieldwallKeystone" text="{=str_tor_careerchoice_description_ShieldwallKeystone}Impenetrable gains 0.02 seconds per One-Handed point and applies to all allies within 5M." />
+  <string id="tor_careerchoice_description.ShieldwallKeystone" text="{=str_tor_careerchoice_description_ShieldwallKeystone}Impenetrable: +0.02s per One-Handed point; protects allies within 5m." />
   <string id="tor_careerchoice_description.ShieldwallPassive1" text="{=str_tor_careerchoice_description_ShieldwallPassive1}+10 personal Hitpoints." />
   <string id="tor_careerchoice_description.ShieldwallPassive2" text="{=str_tor_careerchoice_description_ShieldwallPassive2}+20 One-Handed skill for all Dawi troops." />
   <string id="tor_careerchoice_description.ShieldwallPassive3" text="{=str_tor_careerchoice_description_ShieldwallPassive3}+10% personal 'Physical Resistance' when a shield is equipped." />
