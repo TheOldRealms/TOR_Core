@@ -4,7 +4,9 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -46,6 +48,19 @@ namespace TOR_Core.Models
             }
 
             return result;
+        }
+
+        public override void GetMobilePartyVisibilityAndInspectedState(MobileParty mobileParty, Vec2[] points, float seeingRange, out bool isVisible, out bool isInspected, out bool isDistanceDependent)
+        {
+            if (mobileParty == MobileParty.MainParty && Hero.MainHero.IsEnlisted())
+            {
+                isVisible = false;
+                isInspected = false;
+                isDistanceDependent = false;
+                return;
+            }
+
+            base.GetMobilePartyVisibilityAndInspectedState(mobileParty, points, seeingRange, out isVisible, out isInspected, out isDistanceDependent);
         }
     }
 }

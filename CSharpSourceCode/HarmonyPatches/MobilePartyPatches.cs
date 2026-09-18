@@ -45,26 +45,6 @@ public static class MobilePartyPatches
     //Sly : where is this cultures comment from? It's unrelated to this patch.
     //Fill available cultures
 
-    //Commented out on editor 1.5.3 because the method is moved or removed. To verify and replace as needed.
-    //[HarmonyPrefix]
-    //[HarmonyPatch(typeof(PartyBase), "UpdateVisibilityAndInspected", MethodType.Normal)]
-    //public static bool PreIsVisible(ref PartyBase __instance)
-    //{
-    //    if (!__instance.IsMobile || !__instance.MobileParty.IsMainParty)
-    //    {
-    //        return true;
-    //    }
-
-    //    if (__instance.LeaderHero.IsEnlisted())
-    //    {
-    //        __instance.MobileParty.IsVisible = false;
-
-    //        return false;
-    //    }
-
-    //    return true;
-    //}
-
     [HarmonyPrefix]
     [HarmonyPatch(typeof(HeroSpawnCampaignBehavior), "CalculateScoreToCreateParty")]
     public static bool GiveHighScore(ref float __result)
