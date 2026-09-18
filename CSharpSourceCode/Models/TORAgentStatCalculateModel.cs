@@ -181,7 +181,7 @@ namespace TOR_Core.Models
                                         missionWeapon.Item.IsDrakeGunCanister() &&
                                         Hero.MainHero.HasCareerChoice("IronDrakesPassive3"))
                                     {
-                                        ammoCount.Add(12);
+                                        ammoCount.Add(TORCareerChoices.GetChoice("IronDrakesPassive3").GetPassiveValue());
                                     }
                                 }
 

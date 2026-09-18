@@ -4062,7 +4062,7 @@
   <string id="tor_careerchoice_description.IronDrakesKeystone" text="{=str_tor_careerchoice_description_IronDrakesKeystone}Impenetrable: +0.02s/Gunpowder; +25% reload speed." />
   <string id="tor_careerchoice_description.IronDrakesPassive1" text="{=str_tor_careerchoice_description_IronDrakesPassive1}+20% Fire damage for 'Irondrake' troops." />
   <string id="tor_careerchoice_description.IronDrakesPassive2" text="{=str_tor_careerchoice_description_IronDrakesPassive2}-25% Oathgold upgrade cost for the Ironbreaker troop line." />
-  <string id="tor_careerchoice_description.IronDrakesPassive3" text="{=str_tor_careerchoice_description_IronDrakesPassive3}+12 ammunition for Drakefire canisters carried by you and companions in your party." />
+  <string id="tor_careerchoice_description.IronDrakesPassive3" text="{=str_tor_careerchoice_description_IronDrakesPassive3}+12 Drakefire canister ammo for you and party companions." />
   <string id="tor_careerchoice_description.IronDrakesPassive4" text="{=str_tor_careerchoice_description_IronDrakesPassive4}+1% ammunition for 'Ironbreaker' troops per Ironbeard unit." />
   <string id="tor_careerchoice_description.GromrilArmorKeystone" text="{=str_tor_careerchoice_description_GromrilArmorKeystone}Each enemy melee hit taken or blocked with a shield during Impenetrable grants +5% Physical Resistance after it ends for 10 secs(Stacks 3 times). Gain +25% reload speed.+0.02s in Impenetrable per Gunpowder point." />
   <string id="tor_careerchoice_description.GromrilArmorPassive1" text="{=str_tor_careerchoice_description_GromrilArmorPassive1}+20% 'Physical Resistance' for 'Ironbreaker' troops." />
