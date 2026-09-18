@@ -340,7 +340,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
         _gromrilArmorPassive2.Initialize(CareerID, "+15 personal Hitpoints.", "GromrilArmor", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
         _gromrilArmorPassive3.Initialize(CareerID, "+5% personal 'Ward Save' if armour weight exceeds 25.", "GromrilArmor", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 5), AttackTypeMask.All,
             (attacker, victim, attackmask) => victim.IsMainAgent && CareerChoicesHelper.ArmorWeightCheck(victim, 25, false)));
-        _gromrilArmorPassive4.Initialize(CareerID, "-50% damage from friendly fire for 'Ironbreaker' troops.", "GromrilArmor", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special));
+        _gromrilArmorPassive4.Initialize(CareerID, "-50% damage from friendly fire for 'Ironbreaker' troops.", "GromrilArmor", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special, true));
 
         _runeWeaponsPassive1.Initialize(CareerID, "+10% 'Physical' damage for 'Ironbreaker' troops.", "RuneWeapons", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.All,
             (attacker, victim, mask) => attacker.BelongsToMainParty() && attacker.Character.IsIronbreakerUnit()));

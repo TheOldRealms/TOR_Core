@@ -1484,8 +1484,7 @@ namespace TOR_Core.AbilitySystem
                 return;
             }
 
-            var appliedDamage = (int)TORDamageHelper.ApplyIronbreakerFriendlyFireReduction(spellDamage.Caster, spellDamage.Target, spellDamage.Damage);
-            BookSpellDamage(spellDamage.CastId, spellDamage.Target, appliedDamage, 0, spellDamage.DamageType);
+            BookSpellDamage(spellDamage.CastId, spellDamage.Target, spellDamage.Damage, 0, spellDamage.DamageType);
 
             if (spellDamage.Target.Health <= 0 ||
                 spellDamage.Target.State == AgentState.Killed ||

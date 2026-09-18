@@ -2,6 +2,7 @@ using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
@@ -16,25 +17,6 @@ namespace TOR_Core.BattleMechanics.DamageSystem
     /// </summary>
     public static class TORDamageHelper
     {
-        /// <summary>
-        /// Halves the remaining friendly-fire damage after every other modifier.
-        /// Native hits and already-calculated scripted hits call this at their respective final damage boundaries.
-        /// </summary>
-        public static float ApplyIronbreakerFriendlyFireReduction(Agent attacker, Agent victim, float damage)
-        {
-            if (Campaign.Current == null ||
-                Hero.MainHero?.HasCareerChoice("GromrilArmorPassive4") != true ||
-                attacker == null || victim == null || attacker == victim ||
-                attacker.Team == null || attacker.Team == Team.Invalid || attacker.Team != victim.Team ||
-                victim.Character?.Culture == null || !victim.Character.IsIronbreakerUnit() ||
-                !victim.BelongsToMainParty())
-            {
-                return damage;
-            }
-
-            return Math.Max(0f, damage) * 0.5f;
-        }
-
         public static bool IsNonMagicalSiegeOrExplosiveAmmunition(ItemObject item)
         {
             if (item?.WeaponComponent?.PrimaryWeapon == null) return false;
@@ -111,6 +93,17 @@ namespace TOR_Core.BattleMechanics.DamageSystem
                 for (var index = 0; index < careerBonuses.Length; index++)
                 {
                     resistancePercentages[index] += careerBonuses[index];
+                }
+            }
+
+            if (Hero.MainHero.HasCareerChoice("GromrilArmorPassive4") && attacker != victim &&
+                attacker.Team != null && attacker.Team != Team.Invalid && attacker.Team == victim.Team &&
+                !victim.IsHero && victim.BelongsToMainParty() && victim.Character.IsIronbreakerUnit())
+            {
+                var resistance = TORCareerChoices.GetChoice("GromrilArmorPassive4").GetPassiveValue();
+                for (int i = (int)DamageType.Physical; i < (int)DamageType.All; i++)
+                {
+                    resistancePercentages[i] += resistance;
                 }
             }
         }

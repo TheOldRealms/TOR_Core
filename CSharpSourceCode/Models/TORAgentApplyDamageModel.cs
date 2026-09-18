@@ -480,7 +480,7 @@ namespace TOR_Core.Models
 
             resultDamage = ApplyKillingBlowAttributes(attackerAgent, victimAgent, resultDamage);
 
-            return TORDamageHelper.ApplyIronbreakerFriendlyFireReduction(attackerAgent, victimAgent, resultDamage);
+            return resultDamage;
         }
         private static float ApplySlayerAttributes(Agent attackerAgent, Agent victimAgent, float damage)
         {

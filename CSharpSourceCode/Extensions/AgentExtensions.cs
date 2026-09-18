@@ -13,7 +13,6 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.CustomBattle;
 using TOR_Core.AbilitySystem;
-using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -577,7 +576,6 @@ namespace TOR_Core.Extensions
             try
             {
                 if (agent.IsFadingOut()) return;
-                damageAmount = (int)TORDamageHelper.ApplyIronbreakerFriendlyFireReduction(damager, agent, damageAmount);
                 // Registering a blow causes the agent to react/stagger. Manipulate health directly if the damage won't kill the agent.
                 if (agent.State == AgentState.Active || agent.State == AgentState.Routed)
                 {
