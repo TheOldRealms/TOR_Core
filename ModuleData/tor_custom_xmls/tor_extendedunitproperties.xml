@@ -1258,6 +1258,7 @@
       <string>Unstoppable</string>
       <string>TreeSpirit</string>
     </Attributes>
+    <AdditionalHealth>100</AdditionalHealth>
     <Resistances>
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.50" />
@@ -1279,6 +1280,7 @@
       <string>TreeSpirit</string>
       <string>Monstrous</string>
     </Attributes>
+    <AdditionalHealth>1000</AdditionalHealth>
     <Resistances>
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.50" />
@@ -1298,6 +1300,7 @@
       <string>TreeSpirit</string>
       <string>Monstrous</string>
     </Attributes>
+    <AdditionalHealth>1000</AdditionalHealth>
     <Resistances>
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.50" />
@@ -2189,6 +2192,7 @@
       <string>Monstrous</string>
       <string>Brute</string>
     </Attributes>
+    <AdditionalHealth>450</AdditionalHealth>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.50" />
     </Resistances>
@@ -3550,6 +3554,7 @@
       <string>MonsterAttack</string>
       <string>Monstrous</string>
     </Attributes>
+    <AdditionalHealth>350</AdditionalHealth>
     <Resistances />
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="1.00" />
@@ -9919,6 +9924,7 @@
       <string>Regeneration</string>
       <string>LegendaryLord</string>
     </Attributes>
+    <AdditionalHealth>450</AdditionalHealth>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_bergerac_leader">
     <Abilities />
@@ -10710,6 +10716,7 @@
   <CharacterExtendedInfo id="tor_troll_lord_0">
     <Abilities />
     <Attributes />
+    <AdditionalHealth>450</AdditionalHealth>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_bergerac_lord">
     <Abilities />

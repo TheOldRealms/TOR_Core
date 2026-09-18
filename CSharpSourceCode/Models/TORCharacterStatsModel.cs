@@ -42,6 +42,12 @@ namespace TOR_Core.Models
 
         private void CalculateHitPoints(ref ExplainedNumber number, CharacterObject character)
         {
+            var additionalHealth = character.GetAdditionalHealth();
+            if (additionalHealth != 0)
+            {
+                number.Add(additionalHealth, TORTextHelper.GetTextObject("tor_stats_additional_health_text", "Additional Health"));
+            }
+
             AddRaceHealth(ref number, character);
             if (character.IsHero)
             {
@@ -53,30 +59,8 @@ namespace TOR_Core.Models
             }
         }
 
-        /// <summary>
-        /// Race bonuses apply to every category alike - troop, player, companion and lord.
-        /// </summary>
         private void AddRaceHealth(ref ExplainedNumber number, CharacterObject character)
         {
-            if (character.IsMinotaur())
-            {
-                number.Add(350f, TORTextHelper.GetTextObject("tor_stats_minotaur_bonus_text", "Minotaur bonus"));
-            }
-            if (character.IsTroll())
-            {
-                number.Add(450f, TORTextHelper.GetTextObject("tor_stats_troll_bonus_text", "Troll bonus"));
-            }
-            // Treemen carry the TreeSpirit attribute as well as the large_humanoid_monster race
-            // (tor_troopdefinitions.xml / tor_extendedunitproperties.xml), so this stays an else:
-            // they take the monster bonus instead of the dryad one, not both.
-            if (character.IsTreeman())
-            {
-                number.Add(1000f, TORTextHelper.GetTextObject("tor_stats_large_monster_text", "Large Monster"));
-            }
-            else if (character.IsTreeSpirit())
-            {
-                number.Add(100f, TORTextHelper.GetTextObject("tor_stats_dryad_bonus_text", "Dryad bonus"));
-            }
             if (character.IsDwarf())
             {
                 number.Add(20, TORTextHelper.GetTextObject("tor_stats_dwarf_bonus_text", "Dwarf bonus"));
