@@ -332,7 +332,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
         _ironDrakesPassive2.Initialize(CareerID, "-25% Oathgold upgrade cost for the Ironbreaker troop line.", "IronDrakes", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpgradeCostModifier, true,
             characterObject => characterObject.HasAttribute(CharacterAttributes.IRONBREAKER)));
         _ironDrakesPassive3.Initialize(CareerID, "+12 Drakefire canister ammo for you and party companions.", "IronDrakes", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(12));
-        _ironDrakesPassive4.Initialize(CareerID, "+1% ammunition for 'Ironbreaker' troops per Ironbeard unit.", "IronDrakes", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
+        _ironDrakesPassive4.Initialize(CareerID, "+1% Ironbreaker troop ammo per Ironbeard troop.", "IronDrakes", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.Special, true));
 
         _gromrilArmorPassive1.Initialize(CareerID, "+20% 'Physical Resistance' for 'Ironbreaker' troops.", "GromrilArmor", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.All,
             (attacker, victim, mask) => victim.BelongsToMainParty() && victim.Character.IsIronbreakerUnit()));

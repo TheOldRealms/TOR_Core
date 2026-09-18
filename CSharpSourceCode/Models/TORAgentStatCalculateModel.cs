@@ -173,7 +173,7 @@ namespace TOR_Core.Models
                                             .Sum(elem => elem.Number);
                                         if (ironbeardCount > 0)
                                         {
-                                            ammoCount.AddFactor(0.01f * ironbeardCount);
+                                            ammoCount.AddFactor(TORCareerChoices.GetChoice("IronDrakesPassive4").GetPassiveValue() * ironbeardCount);
                                         }
                                     }
 
