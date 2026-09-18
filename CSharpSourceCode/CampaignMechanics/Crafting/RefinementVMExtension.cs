@@ -6,8 +6,10 @@ using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting;
 using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting.Refinement;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade.View;
+using TOR_Core.Extensions;
+using TOR_Core.Extensions.UI;
 
-namespace TOR_Core.Extensions.UI
+namespace TOR_Core.CampaignMechanics.Crafting
 {
     [ViewModelExtension(typeof(RefinementVM))]
     public class RefinementVMExtension : BaseViewModelExtension
