@@ -390,7 +390,7 @@
                              SoundEffectId="none"
                              SoundEffectLength="0"
                              DamageType="Fire"
-                             ImbuedStatusEffectDuration="35"
+                             ImbuedStatusEffectDuration="30"
                              DamageAmount="0"
                              Radius="12"
                              HasShockWave="false"
@@ -408,7 +408,7 @@
                              Radius="3"
                              HasShockWave="false"
                              TargetType="All"
-                             DamageVariance="0.15"
+                             DamageVariance="0.1"
                              ScriptNameToTrigger="none" />
     <TriggeredEffectTemplate StringID="meteoric_ironclad"
                              BurstParticleEffectPrefab=""
@@ -430,7 +430,7 @@
                              SoundEffectLength="2.5"
                              DamageType="Fire"
                              DamageAmount="0"
-                             Radius="17"
+                             Radius="12"
                              HasShockWave="false"
                              TargetType="Enemy"
                              ImbuedStatusEffectDuration="120"
@@ -448,7 +448,7 @@
                              HasShockWave="true"
                              TargetType="All"
                              ImbuedStatusEffectDuration="20"
-                             DamageVariance="0.2"
+                             DamageVariance="0.1"
                              ScriptNameToTrigger="none">
         <ImbuedStatusEffect>golden_globe_mov_50</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
@@ -456,12 +456,12 @@
                              BurstParticleEffectPrefab="yellow_particle_explosion"
                              SoundEffectId="dart_explosion"
                              SoundEffectLength="2.5"
-                             DamageType="Physical"
+                             DamageType="Magical"
                              DamageAmount="100"
                              Radius="2"
                              HasShockWave="false"
                              TargetType="All"
-                             DamageVariance="0.2"
+                             DamageVariance="0.1"
                              ScriptNameToTrigger="none" />
     <TriggeredEffectTemplate StringID="apply_quicksilver_sword_trait"
                              BurstParticleEffectPrefab="none"
@@ -945,7 +945,7 @@
                              SoundEffectId="none"
                              SoundEffectLength="0"
                              DamageType="Magical"
-                             DamageAmount="101"
+                             DamageAmount="200"
                              Radius="8"
                              HasShockWave="true"
                              TargetType="Enemy"
@@ -959,12 +959,12 @@
                              SoundEffectId="none"
                              SoundEffectLength="0"
                              DamageType="Magical"
-                             ImbuedStatusEffectDuration="20"
-                             DamageAmount="0"
+                             ImbuedStatusEffectDuration="5"
+                             DamageAmount="6"
                              Radius="8"
                              HasShockWave="false"
                              TargetType="Enemy"
-                             DamageVariance="2">
+                             DamageVariance="0">
         <ImbuedStatusEffect>caress_of_laniph_dot</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
 	
@@ -976,7 +976,7 @@
                              DamageAmount="0"
                              Radius="20"
                              HasShockWave="false"
-                             TargetType="Self"
+                             TargetType="Friendly"
                              ImbuedStatusEffectDuration="20"
                              ScriptNameToTrigger="none">
         <ImbuedStatusEffect>amaranth</ImbuedStatusEffect>
@@ -990,7 +990,7 @@
                              DamageType="Magical"
                              ImbuedStatusEffectDuration="5"
                              DamageAmount="0"
-                             Radius="4"
+                             Radius="5"
                              HasShockWave="false"
 							 ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.SpiritLeech"
                              TargetType="Enemy"
@@ -1023,7 +1023,7 @@
                              Radius="4"
 							 ImbuedStatusEffectDuration="8"
                              HasShockWave="false"
-                             TargetType="All"
+                             TargetType="Enemy"
                              DamageVariance="0.1"
                              ScriptNameToTrigger="none">
 		 <ImbuedStatusEffect>fate_of_bjuna_dot</ImbuedStatusEffect>
