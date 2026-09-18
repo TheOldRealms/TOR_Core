@@ -4044,7 +4044,7 @@
   <string id="tor_careerchoice_description.NestCleansingPassive2" text="{=str_tor_careerchoice_description_NestCleansingPassive2}+20% personal 'Fire Resistance'." />
   <string id="tor_careerchoice_description.NestCleansingPassive3" text="{=str_tor_careerchoice_description_NestCleansingPassive3}Your personal explosive charges gain +2 ammunition." />
   <string id="tor_careerchoice_description.NestCleansingPassive4" text="{=str_tor_careerchoice_description_NestCleansingPassive4}+50% chance of an 'Ironbreaker' troop to not consume an explosive charge when used." />
-  <string id="tor_careerchoice_description.TunnelWatchKeystone" text="{=str_tor_careerchoice_description_TunnelWatchKeystone}Impenetrable gains 0.02 seconds per Scouting point, and begins battle charged." />
+  <string id="tor_careerchoice_description.TunnelWatchKeystone" text="{=str_tor_careerchoice_description_TunnelWatchKeystone}Impenetrable: +0.02s per Scouting point; starts battle charged." />
   <string id="tor_careerchoice_description.TunnelWatchPassive1" text="{=str_tor_careerchoice_description_TunnelWatchPassive1}+15 personal Hitpoints." />
   <string id="tor_careerchoice_description.TunnelWatchPassive2" text="{=str_tor_careerchoice_description_TunnelWatchPassive2}+1 party move speed on campaign map." />
   <string id="tor_careerchoice_description.TunnelWatchPassive3" text="{=str_tor_careerchoice_description_TunnelWatchPassive3}+15% personal 'Physical' damage when facing Greenskins." />

@@ -173,7 +173,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
                 },
             });
 
-        _tunnelWatchKeystone.Initialize(CareerID, "Impenetrable gains 0.02 seconds per Scouting point, and begins battle charged.", "TunnelWatch", false,
+        _tunnelWatchKeystone.Initialize(CareerID, "Impenetrable: +0.02s per Scouting point; starts battle charged.", "TunnelWatch", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
