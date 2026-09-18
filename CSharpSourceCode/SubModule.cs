@@ -167,7 +167,6 @@ namespace TOR_Core
                 starter.AddBehavior(new TORCaptivityCampaignBehavior());
                 starter.AddBehavior(new AssimilationCampaignBehavior());
                 starter.AddBehavior(new SpellTrainerInTownBehavior());
-                starter.AddBehavior(new EnchanterTownBehavior());
                 starter.AddBehavior(new MasterEngineerTownBehaviour());
                 starter.AddBehavior(new PrestigeNobleTownBehavior());
                 starter.AddBehavior(new EonirFavorEnvoyTownBehavior());
@@ -194,12 +193,9 @@ namespace TOR_Core
                 starter.AddBehavior(new TORStartupBehavior());
                 starter.AddBehavior(new TORKingdomDecisionsCampaignBehavior());
                 starter.AddBehavior(new TORAllianceWarBehavior());
-                starter.AddBehavior(new TORArtisanDistrictCampaignBehavior());
-                starter.AddBehavior(new PriestBehavior());
                 starter.AddBehavior(new SkillTrainerBehavior());
-                starter.AddBehavior(new EnchantmentIngredientLootCampaignBehavior());
-                starter.AddBehavior(new LootCampaignBehavior());
                 starter.AddBehavior(new OathGoldBehavior());
+                new CraftingModule().RegisterCampaignBehaviors(starter);
                 starter.AddBehavior(new TeefBehavior());
                 starter.AddBehavior(new WaaaghBehavior());
                 starter.AddBehavior(new GreenskinBrawlBehavior());
@@ -277,11 +273,9 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TOREquipmentSelectionModel());
                 gameStarterObject.AddModel(new TOREncounterModel());
                 gameStarterObject.AddModel(new TORVolunteerModel());
-                gameStarterObject.AddModel(new TORSmithingModel());
-                gameStarterObject.AddModel(new TOREnchantmentIngredientsModel());
+                new CraftingModule().RegisterModels(gameStarterObject);
                 gameStarterObject.AddModel(new TORCompanionTrainingModel());
                 gameStarterObject.AddModel(new TORVillageProductionCalculatorModel());
-                gameStarterObject.AddModel(new TOREnchantmentCraftingModel());
                 gameStarterObject.AddModel(new TORCampaignTimeModel());
                 gameStarterObject.AddModel(new TORSiegeEngineCalculationModel());
                 gameStarterObject.AddModel(new TORHiringCompatibilityModel());
@@ -367,6 +361,7 @@ namespace TOR_Core
                 _ = new TORCareers();
                 _ = new TORCareerChoiceGroups();
                 _ = new TORCareerChoices();
+                CraftingCareerHookRegistrations.RegisterAll();
                 _ = new TORCampaignEvents();
 
                 MBObjectManager.Instance.LoadXML("Religions", false);

@@ -26,6 +26,8 @@ namespace TOR_Core.Utilities
 
             list.Add(new TooltipProperty("Health", hitpoints.ToString, 0, false,
                 TooltipProperty.TooltipPropertyFlags.RundownResult));
+            list.Add(new TooltipProperty(TORTextHelper.GetText("tor_stats_additional_health_text", "Additional Health"),
+                info.AdditionalHealth.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
 
 
             list.AddRange(GenerateDamageDisplay(characterObject, info));

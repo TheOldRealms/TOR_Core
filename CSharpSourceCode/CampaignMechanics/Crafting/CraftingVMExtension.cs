@@ -2,8 +2,10 @@ using System.Reflection;
 using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
+using TOR_Core.Extensions;
+using TOR_Core.Extensions.UI;
 
-namespace TOR_Core.Extensions.UI
+namespace TOR_Core.CampaignMechanics.Crafting
 {
     [ViewModelExtension(typeof(CraftingVM))]
     public class CraftingVMExtension : BaseViewModelExtension

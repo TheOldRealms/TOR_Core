@@ -7,12 +7,11 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting.WeaponDesign;
 using TaleWorlds.Core;
-using TOR_Core.CampaignMechanics.Crafting;
+using TOR_Core.CampaignMechanics.Crafting.Models;
 using TOR_Core.Extensions;
-using TOR_Core.Models;
 using TOR_Core.Utilities;
 
-namespace TOR_Core.HarmonyPatches
+namespace TOR_Core.CampaignMechanics.Crafting
 {
     [HarmonyPatch]
     public static class CraftingPatches
