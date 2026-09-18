@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_neutral_head_helm_001" RaceLock="human">
     <ItemTraits />
@@ -452,7 +452,7 @@
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_head_helm_green_knight" RaceLock="human">
     <ItemTraits />
     <Description />
-  </ExtendedItemObjectProperties>  
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_head_helm_greathelm_001" RaceLock="human">
     <ItemTraits />
     <Description />
@@ -1280,7 +1280,7 @@
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_shoulder_pauldron_green_knight" RaceLock="human">
     <ItemTraits />
     <Description />
-  </ExtendedItemObjectProperties>  
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_shoulder_pauldron_knight_001" RaceLock="human">
     <ItemTraits />
     <Description />
@@ -1626,7 +1626,7 @@
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_bestigor_shoulderpads_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
-  </ExtendedItemObjectProperties>  
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_shoulder_necklace_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
@@ -1638,7 +1638,7 @@
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_shoulder_shoulderpads_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
-  </ExtendedItemObjectProperties>  
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_necklace_minotaur_001" RaceLock="minotaur">
     <ItemTraits />
     <Description />
@@ -1855,10 +1855,10 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
-   <ExtendedItemObjectProperties ItemStringId="tor_vc_body_breastplate_skeleton_001" RaceLock="skeleton">
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_breastplate_skeleton_001" RaceLock="skeleton">
     <ItemTraits />
     <Description />
-  </ExtendedItemObjectProperties> 
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_body_loincloth_ghoul_001" RaceLock="ghoul">
     <ItemTraits />
     <Description />
@@ -2002,7 +2002,7 @@
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_body_armour_green_knight" RaceLock="human">
     <ItemTraits />
     <Description />
-  </ExtendedItemObjectProperties>  
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_body_armor_knight_001" RaceLock="human">
     <ItemTraits />
     <Description />
@@ -2486,7 +2486,7 @@
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_body_armour_bestigor_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
-  </ExtendedItemObjectProperties>  
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_body_armour_gor_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
@@ -2494,15 +2494,15 @@
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_body_armour_gor_002" RaceLock="gor2">
     <ItemTraits />
     <Description />
-  </ExtendedItemObjectProperties>  
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_bestigor_facemask_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
-  </ExtendedItemObjectProperties>   
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_helm_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
-  </ExtendedItemObjectProperties>  
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_body_armor_ungor_001" RaceLock="ungor">
     <ItemTraits />
     <Description />
@@ -2726,7 +2726,7 @@
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_arm_gauntlet_green_knight" RaceLock="human">
     <ItemTraits />
     <Description />
-  </ExtendedItemObjectProperties>  
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_arm_gauntlet_questing_knight_001" RaceLock="human">
     <ItemTraits />
     <Description />
@@ -2920,7 +2920,7 @@
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_arm_bracers_bestigor_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
-  </ExtendedItemObjectProperties>  
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_arm_bracers_gor_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
@@ -3282,7 +3282,7 @@
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_leg_boots_green_knight" RaceLock="human">
     <ItemTraits />
     <Description />
-  </ExtendedItemObjectProperties>  
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_leg_boots_knight_001" RaceLock="human">
     <ItemTraits />
     <Description />
@@ -3570,7 +3570,7 @@
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_legs_bestigor_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
-  </ExtendedItemObjectProperties>  
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_legs_gor_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
@@ -7274,7 +7274,11 @@
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
-<ExtendedItemObjectProperties ItemStringId="tor_beastmen_weapn_axe_gor_001"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_weapn_axe_gor_001">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_learn_emp_enchant_myrmidia_wisdom">
     <ItemTraits>
       <ItemTrait>learn_miracle_myrmidia_wisdom</ItemTrait>
@@ -7328,5 +7332,31 @@
       <ItemTrait>learn_miracle_gork_brutal_kunnin</ItemTrait>
     </ItemTraits>
     <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="new_entry_1">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="0.50" />
+      <DamageProportionTuple DamageType="Magical" Percent="0.50" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_kotr_sword_001">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_dolorous_blade">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="0.50" />
+      <DamageProportionTuple DamageType="Magical" Percent="0.50" />
+    </DamageProportions>
+    <ItemTraits>
+      <ItemTrait>learn_emp_enchant_azyr_gale</ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_shield_green_knight">
+    <ItemTraits>
+      <ItemTrait>learn_bret_blessing_mists_sacred_lake</ItemTrait>
+      <ItemTrait>extra_health_regen_10</ItemTrait>
+    </ItemTraits>
   </ExtendedItemObjectProperties>
 </ArrayOfExtendedItemObjectProperties>
