@@ -449,6 +449,10 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_head_helm_green_knight" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>  
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_head_helm_greathelm_001" RaceLock="human">
     <ItemTraits />
     <Description />
@@ -1273,6 +1277,10 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_shoulder_pauldron_green_knight" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>  
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_shoulder_pauldron_knight_001" RaceLock="human">
     <ItemTraits />
     <Description />
@@ -1991,6 +1999,10 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_body_armour_green_knight" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>  
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_body_armor_knight_001" RaceLock="human">
     <ItemTraits />
     <Description />
@@ -2711,6 +2723,10 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_arm_gauntlet_green_knight" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>  
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_arm_gauntlet_questing_knight_001" RaceLock="human">
     <ItemTraits />
     <Description />
@@ -3263,6 +3279,10 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_leg_boots_green_knight" RaceLock="human">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>  
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnian_leg_boots_knight_001" RaceLock="human">
     <ItemTraits />
     <Description />
