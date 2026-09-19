@@ -21,6 +21,7 @@ using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using TOR_Core.Framework;
 using TOR_Core.Items;
 using TOR_Core.Models;
 using TOR_Core.Quests;

@@ -15,7 +15,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
     /// The one place CharacterDevelopment/CareerSystem is allowed to know about
     /// CampaignMechanics/Crafting: pushes each career's enchanting/smithing-specific effects
     /// into Crafting's CraftingCareerHooks extension points, so Crafting's own code never
-    /// references a Career/CareerChoice by name. Called once from SubModule.BeginGameStart,
+    /// references a Career/CareerChoice by name. Called from SubModule.BeginGameStart (every new or loaded campaign),
     /// after TORCareers/TORCareerChoices exist (the closures below resolve lazily at call
     /// time regardless, so exact ordering doesn't actually matter).
     /// </summary>
@@ -23,6 +23,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
     {
         public static void RegisterAll()
         {
+            // BeginGameStart runs for every new or loaded campaign in a session; the hook lists are static.
+            CraftingCareerHooks.Clear();
+
             RegisterGreyLordEnchantmentCostReduction();
             RegisterOrcShamanIngredientLootBonus();
             RegisterBeginnerBlueprintGrants();

@@ -1,7 +1,7 @@
 # Module Lifecycle — Design
 
 **Date:** 2026-09-09
-**Amended:** 2026-09-11 — four steps became five epics. See Amendment 1.
+**Amended:** 2026-09-11 — four steps became five epics (Amendment 1); the edge scan's blind spot recorded (Amendment 2).
 **Status:** Approved. Epics 1 and 2 specified in detail; 3–5 deepen on first use.
 
 Defines the process every module in `CSharpSourceCode/` passes through. Companion to
@@ -41,6 +41,28 @@ shuffles them.
 
 **One epic is one branch is one PR.** The team cannot review large PRs; that constraint now
 shapes the process rather than being absorbed by it.
+
+## Amendment 2 — 2026-09-11: the edge scan is necessary, not sufficient
+
+Found during Crafting's Epic 2. Both of Epic 2's exit criteria are `using`-based greps, and a
+`using` is not the only way one module reaches another's types.
+
+An extension method owned by `Framework/` can return a module's type. The caller names neither
+the method's owner nor the returned type — it just writes `x.Foo().Bar` — so no `using` is
+emitted and the scan reports clean. `CampaignMechanics/Crafting/EnchanterTownBehavior.cs:438,443`
+is the found case: `Hero.MainHero.GetCareer().StringId`, where `GetCareer()` is in
+`Extensions/HeroExtensions.cs` (Framework) and returns `CareerObject` (Careers).
+
+**Not fixed, deliberately.** The one instance found is a string-id comparison — about the weakest
+coupling a reference can be — and inventing a detection pass mid-epic would have been scope the
+epic did not ask for. **But it applies to all 30 remaining modules**, and doing it by hand 30
+times is the expensive path, so this is a tooling question, not a per-module one.
+
+**Revisit before the third module's Epic 2**, tracked in the ledger's Framework work items. The
+likely shape: a Roslyn or reflection pass that resolves each `Framework/` extension method's
+return type and flags any that belong to `CampaignMechanics/<Module>`, run once per module as
+part of 2.1 rather than written per module. Until it exists, Epic 2 plans should state that their
+edge inventory covers `using` directives only.
 
 ## Why five epics and not one pass
 
@@ -163,7 +185,15 @@ Untangling every inbound edge is often a project in its own right. When it is, f
 instead: record it in `MODULE.md` as the public surface, and later epics treat those names as
 un-renameable. That converts an unbounded risk into a checklist.
 
+**The `using` scan has a blind spot — see Amendment 2.** A module can reach a *type* belonging to
+another module without ever naming its namespace, by going through an extension method that
+`Framework/` owns. `Crafting` does exactly this: `EnchanterTownBehavior` calls
+`Hero.MainHero.GetCareer().StringId`, and `GetCareer()` lives in `Extensions/HeroExtensions.cs`
+(Framework) but returns a `CareerObject` (Careers). No `using` appears, so both exit criteria
+below report clean. Treat a clean scan as necessary, not sufficient.
+
 ### 2.2 Cut the edges
+
 Two tools, in order of preference:
 
 1. **Module-local helper.** When the module was merely borrowing something from a shared
@@ -193,6 +223,8 @@ be promoted into `Framework/`. Amend the proposal's classification when that hap
 1. No `using TOR_Core.<OtherModule>` inside the module's folder — or each survivor is recorded
    in the ledger Notes with the module that will remove it and when.
 2. No other module's folder names this module, except through a `Framework/` contract.
+   Criteria 1 and 2 are `using` scans and miss types reached through Framework extension methods
+   — see Amendment 2. A clean scan is necessary, not sufficient.
 3. `MODULE.md` carries a **Public Surface** section listing every externally-referenced name.
 4. The `Framework/` hook-contract count in the ledger is updated.
 5. Build clean, save loads, test plan scenarios pass, PR notes written, ledger updated.
