@@ -1162,6 +1162,10 @@ namespace TOR_Core.Models
             }
         }
 
+        /// <summary>
+        /// Calculates the % damage reduction to be applied directly to the damage.
+        /// Ie. 60% ward save factor => damage * 0.6 = 40% damage taken.
+        /// </summary>
         public float CalculateWardSaveFactor(Agent attacker, Agent victim, float[] resistances, bool friendlyFire)
         {
             var result = new ExplainedNumber(1f);
@@ -1187,15 +1191,15 @@ namespace TOR_Core.Models
                 result.AddFactor(-0.9f);
             } 
 
-            result.LimitMax(1);
-            if (victim.HasAttribute(CharacterAttributes.IMPENETRABLE))
+            if (!friendlyFire)
             {
-                result.LimitMin(0.1f);
+                result.LimitMin(0.10f);
             }
-            else if (!friendlyFire)
+            else
             {
-                result.LimitMin(0.11f);
+                result.LimitMin(0f);
             }
+
             return result.ResultNumber;
         }
 
