@@ -4340,7 +4340,7 @@
   <string id="tor_careerunlock_level_1.GrailKnight" text="{=str_tor_careerunlock_level_1_grailknight}" />
   <string id="tor_careerunlock_level_2.GrailKnight" text="{=str_tor_careerunlock_level_2_grailknight}Required clan renown: 2" />
   <string id="tor_careerunlock_level_3.GrailKnight" text="{=str_tor_careerunlock_level_3_grailknight}Required clan renown: 4" />
-  <string id="tor_enchant_hint_max_traits_selectable" text="{=str_tor_enchant_hint_max_traits_selectable}You can only select {MAX_TRAITS} traits" />
+  <string id="tor_enchant_hint_max_traits_selectable" text="{=str_tor_enchant_hint_max_traits_selectable}You can only select {MAX_TRAITS} {?IS_PLURAL}traits{?}trait{\?}" />
 
   <!-- Grail Damsel -->
   <string id="tor_careerunlock_level_1.GrailDamsel" text="{=str_tor_careerunlock_level_1_graildamsel}" />

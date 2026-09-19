@@ -62,8 +62,9 @@ namespace TOR_Core.CampaignMechanics.Crafting
                 var maxTraits = CalculateMaxTraits();
                 if (SelectedTraits.Count >= maxTraits)
                 {
-                    var selectHint = TORTextHelper.GetTextObject("tor_enchant_hint_max_traits_selectable", "You can only select {MAX_TRAITS} traits");
+                    var selectHint = TORTextHelper.GetTextObject("tor_enchant_hint_max_traits_selectable", "You can only select {MAX_TRAITS} {?IS_PLURAL}traits{?}trait{\\?}");
                     selectHint.SetTextVariable("MAX_TRAITS", maxTraits);
+                    selectHint.SetTextVariable("IS_PLURAL", maxTraits > 1 ? 1 : 0);
                     InformationManager.ShowInquiry(new InquiryData(TORTextHelper.GetText("tor_enchanting_title_text", "Enchanting"), selectHint.ToString(), true, false, TORTextHelper.GetText("tor_inquiry_ok_text", "OK"), null, null, null), true);
                     itemTrait.DeselectTrait();
                     return;
