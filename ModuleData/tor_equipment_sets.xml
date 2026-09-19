@@ -9148,6 +9148,7 @@
       <Equipment slot="Head" id="Item.pilgrim_hood" />
       <Equipment slot="Body" id="Item.sackcloth_tunic" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -9156,6 +9157,7 @@
       <Equipment slot="Head" id="Item.pilgrim_hood" />
       <Equipment slot="Body" id="Item.sackcloth_tunic" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -9164,6 +9166,7 @@
       <Equipment slot="Head" id="Item.pilgrim_hood" />
       <Equipment slot="Body" id="Item.sackcloth_tunic" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -9172,6 +9175,7 @@
       <Equipment slot="Head" id="Item.pilgrim_hood" />
       <Equipment slot="Body" id="Item.sackcloth_tunic" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -9180,6 +9184,7 @@
       <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_hood_001" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_peasant_001" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -9188,6 +9193,7 @@
       <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_hood_001" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_peasant_001" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -9196,6 +9202,7 @@
       <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_hood_001" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_peasant_001" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -9204,6 +9211,7 @@
       <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_hood_001" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_peasant_001" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -9212,6 +9220,7 @@
       <Equipment slot="Head" id="Item.arming_coif" />
       <Equipment slot="Body" id="Item.sackcloth_tunic" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -9220,6 +9229,7 @@
       <Equipment slot="Head" id="Item.arming_coif" />
       <Equipment slot="Body" id="Item.sackcloth_tunic" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -9228,6 +9238,7 @@
       <Equipment slot="Head" id="Item.arming_coif" />
       <Equipment slot="Body" id="Item.sackcloth_tunic" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -9236,6 +9247,7 @@
       <Equipment slot="Head" id="Item.arming_coif" />
       <Equipment slot="Body" id="Item.sackcloth_tunic" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_br_hunter_template" culture="Culture.vlandia">
@@ -9247,6 +9259,7 @@
       <Equipment slot="Body" id="Item.nordic_sloven" />
       <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -9256,6 +9269,7 @@
       <Equipment slot="Body" id="Item.nordic_sloven" />
       <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -9265,6 +9279,7 @@
       <Equipment slot="Body" id="Item.nordic_sloven" />
       <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -9274,6 +9289,7 @@
       <Equipment slot="Body" id="Item.nordic_sloven" />
       <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -9284,6 +9300,7 @@
       <Equipment slot="Cape" id="Item.padded_leather_shoulders" />
       <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -9294,6 +9311,7 @@
       <Equipment slot="Cape" id="Item.padded_leather_shoulders" />
       <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -9304,6 +9322,7 @@
       <Equipment slot="Cape" id="Item.padded_leather_shoulders" />
       <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -9314,6 +9333,7 @@
       <Equipment slot="Cape" id="Item.padded_leather_shoulders" />
       <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -9324,6 +9344,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -9334,6 +9355,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -9344,6 +9366,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -9354,6 +9377,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -9364,6 +9388,7 @@
       <Equipment slot="Cape" id="Item.wrapped_scarf" />
       <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -9374,6 +9399,7 @@
       <Equipment slot="Cape" id="Item.wrapped_scarf" />
       <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -9384,6 +9410,7 @@
       <Equipment slot="Cape" id="Item.wrapped_scarf" />
       <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -9394,6 +9421,7 @@
       <Equipment slot="Cape" id="Item.wrapped_scarf" />
       <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_br_villein_template" culture="Culture.vlandia">
@@ -9406,6 +9434,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -9416,6 +9445,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -9426,6 +9456,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -9436,6 +9467,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -9445,6 +9477,7 @@
       <Equipment slot="Body" id="Item.banded_leather_over_mail" />
       <Equipment slot="Gloves" id="Item.padded_vambrace" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -9454,6 +9487,7 @@
       <Equipment slot="Body" id="Item.banded_leather_over_mail" />
       <Equipment slot="Gloves" id="Item.padded_vambrace" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -9463,6 +9497,7 @@
       <Equipment slot="Body" id="Item.banded_leather_over_mail" />
       <Equipment slot="Gloves" id="Item.padded_vambrace" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -9472,6 +9507,7 @@
       <Equipment slot="Body" id="Item.banded_leather_over_mail" />
       <Equipment slot="Gloves" id="Item.padded_vambrace" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -9481,6 +9517,7 @@
       <Equipment slot="Body" id="Item.layered_leather_tunic" />
       <Equipment slot="Gloves" id="Item.padded_vambrace" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -9490,6 +9527,7 @@
       <Equipment slot="Body" id="Item.layered_leather_tunic" />
       <Equipment slot="Gloves" id="Item.padded_vambrace" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -9499,6 +9537,7 @@
       <Equipment slot="Body" id="Item.layered_leather_tunic" />
       <Equipment slot="Gloves" id="Item.padded_vambrace" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -9508,6 +9547,7 @@
       <Equipment slot="Body" id="Item.layered_leather_tunic" />
       <Equipment slot="Gloves" id="Item.padded_vambrace" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -9517,6 +9557,7 @@
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_manatarms_003" />
       <Equipment slot="Gloves" id="Item.guarded_armwraps" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -9526,6 +9567,7 @@
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_manatarms_003" />
       <Equipment slot="Gloves" id="Item.guarded_armwraps" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -9535,6 +9577,7 @@
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_manatarms_003" />
       <Equipment slot="Gloves" id="Item.guarded_armwraps" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -9544,6 +9587,7 @@
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_manatarms_003" />
       <Equipment slot="Gloves" id="Item.guarded_armwraps" />
       <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_br_mounted_yeoman_template" culture="Culture.vlandia">
@@ -12098,6 +12142,7 @@
       <Equipment slot="Head" id="Item.battania_civil_hood" />
       <Equipment slot="Body" id="Item.vlandia_bandit_b" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -12106,6 +12151,7 @@
       <Equipment slot="Head" id="Item.battania_civil_hood" />
       <Equipment slot="Body" id="Item.vlandia_bandit_b" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -12114,6 +12160,7 @@
       <Equipment slot="Head" id="Item.battania_civil_hood" />
       <Equipment slot="Body" id="Item.vlandia_bandit_b" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -12122,6 +12169,7 @@
       <Equipment slot="Head" id="Item.battania_civil_hood" />
       <Equipment slot="Body" id="Item.vlandia_bandit_b" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -12130,6 +12178,7 @@
       <Equipment slot="Head" id="Item.imperial_leather_coif" />
       <Equipment slot="Body" id="Item.sackcloth_tunic" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -12138,6 +12187,7 @@
       <Equipment slot="Head" id="Item.imperial_leather_coif" />
       <Equipment slot="Body" id="Item.sackcloth_tunic" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -12146,6 +12196,7 @@
       <Equipment slot="Head" id="Item.imperial_leather_coif" />
       <Equipment slot="Body" id="Item.sackcloth_tunic" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -12154,6 +12205,7 @@
       <Equipment slot="Head" id="Item.imperial_leather_coif" />
       <Equipment slot="Body" id="Item.sackcloth_tunic" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -12162,6 +12214,7 @@
       <Equipment slot="Head" id="Item.pilgrim_hood" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_peasant_001" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -12170,6 +12223,7 @@
       <Equipment slot="Head" id="Item.pilgrim_hood" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_peasant_001" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -12178,6 +12232,7 @@
       <Equipment slot="Head" id="Item.pilgrim_hood" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_peasant_001" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -12186,6 +12241,7 @@
       <Equipment slot="Head" id="Item.pilgrim_hood" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_peasant_001" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -12194,6 +12250,7 @@
       <Equipment slot="Head" id="Item.pilgrim_hood" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_peasant_001" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -12202,6 +12259,7 @@
       <Equipment slot="Head" id="Item.pilgrim_hood" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_peasant_001" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -12210,6 +12268,7 @@
       <Equipment slot="Head" id="Item.pilgrim_hood" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_peasant_001" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.hunting_bow" />
@@ -12218,6 +12277,7 @@
       <Equipment slot="Head" id="Item.pilgrim_hood" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_peasant_001" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_m_hunter_template" culture="Culture.mousillon">
@@ -12229,6 +12289,7 @@
       <Equipment slot="Body" id="Item.vlandia_bandit_a" />
       <Equipment slot="Gloves" id="Item.ragged_armwraps" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -12238,6 +12299,7 @@
       <Equipment slot="Body" id="Item.vlandia_bandit_a" />
       <Equipment slot="Gloves" id="Item.ragged_armwraps" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -12247,6 +12309,7 @@
       <Equipment slot="Body" id="Item.vlandia_bandit_a" />
       <Equipment slot="Gloves" id="Item.ragged_armwraps" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -12256,6 +12319,7 @@
       <Equipment slot="Body" id="Item.vlandia_bandit_a" />
       <Equipment slot="Gloves" id="Item.ragged_armwraps" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -12265,6 +12329,7 @@
       <Equipment slot="Body" id="Item.vlandia_bandit_a" />
       <Equipment slot="Gloves" id="Item.ragged_armwraps" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -12274,6 +12339,7 @@
       <Equipment slot="Body" id="Item.vlandia_bandit_a" />
       <Equipment slot="Gloves" id="Item.ragged_armwraps" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -12283,6 +12349,7 @@
       <Equipment slot="Body" id="Item.vlandia_bandit_a" />
       <Equipment slot="Gloves" id="Item.ragged_armwraps" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -12292,6 +12359,7 @@
       <Equipment slot="Body" id="Item.vlandia_bandit_a" />
       <Equipment slot="Gloves" id="Item.ragged_armwraps" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -12301,6 +12369,7 @@
       <Equipment slot="Body" id="Item.vlandia_bandit_a" />
       <Equipment slot="Gloves" id="Item.ragged_armwraps" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -12310,6 +12379,7 @@
       <Equipment slot="Body" id="Item.vlandia_bandit_a" />
       <Equipment slot="Gloves" id="Item.ragged_armwraps" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -12319,6 +12389,7 @@
       <Equipment slot="Body" id="Item.vlandia_bandit_a" />
       <Equipment slot="Gloves" id="Item.ragged_armwraps" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.glen_ranger_bow" />
@@ -12328,6 +12399,7 @@
       <Equipment slot="Body" id="Item.vlandia_bandit_a" />
       <Equipment slot="Gloves" id="Item.ragged_armwraps" />
       <Equipment slot="Leg" id="Item.ragged_boots" />
+      <Equipment slot="Item3" id="Item.blunt_arrows" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_m_villein_template" culture="Culture.mousillon">
@@ -12340,6 +12412,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.guarded_armwraps" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -12350,6 +12423,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.guarded_armwraps" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -12360,6 +12434,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.guarded_armwraps" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -12370,6 +12445,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.guarded_armwraps" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -12380,6 +12456,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.guarded_armwraps" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -12390,6 +12467,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.guarded_armwraps" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -12400,6 +12478,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.guarded_armwraps" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -12410,6 +12489,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.guarded_armwraps" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -12420,6 +12500,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.guarded_armwraps" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -12430,6 +12511,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.guarded_armwraps" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -12440,6 +12522,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.guarded_armwraps" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.lowland_yew_bow" />
@@ -12450,6 +12533,7 @@
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Gloves" id="Item.guarded_armwraps" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_m_mounted_yeoman_template" culture="Culture.mousillon">

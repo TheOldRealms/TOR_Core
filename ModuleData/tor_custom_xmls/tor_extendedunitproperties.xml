@@ -7707,7 +7707,6 @@
   <CharacterExtendedInfo id="tor_m_lord_mousillon_first_9">
     <Abilities />
     <Attributes>
-      <string>AiCompanion</string>
       <string>Undead</string>
     </Attributes>
   </CharacterExtendedInfo>
@@ -11226,6 +11225,16 @@
   <CharacterExtendedInfo id="tor_br_greenknight_leader">
     <Attributes>
       <string>LegendaryLord</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_m_lord_mousillon_first_11">
+    <Attributes>
+      <string>Necromancer</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_m_lord_mousillon_first_10">
+    <Attributes>
+      <string>BloodDragon</string>
     </Attributes>
   </CharacterExtendedInfo>
 </ArrayOfCharacterExtendedInfo>
