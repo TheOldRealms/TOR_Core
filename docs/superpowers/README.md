@@ -10,11 +10,11 @@ modules. Every module passes through **five epics, in order**.
 
 | # | Epic | Branch | Done when |
 |---|---|---|---|
-| 1 | **Modularize** | `feature/[module]Modularize` | One folder, self-registers via `ITORModule`, its models pulled in, builds, plays |
-| 2 | **Framework** | `feature/[module]Framework` | No `using TOR_Core.<OtherModule>` in either direction; genuinely shared code has moved to `Framework/` |
-| 3 | **Strings** | `feature/[module]Strings` | Every player-visible string in the module resolves through an id in `ModuleData/tor_strings.xml`, added via TOR_Tools |
-| 4 | **Codesmells** | `feature/[module]Codesmells` | Bad practices found and fixed; no file left doing two jobs |
-| 5 | **Pattern** | `feature/[module]Pattern` | Recurring seams named; a pattern applied only where it earns its place |
+| 1 | **Modularize** | `feature/module[Module]` | One folder, self-registers via `ITORModule`, its models pulled in, builds, plays |
+| 2 | **Framework** | `feature/Framework[Module]` | No `using TOR_Core.<OtherModule>` in either direction; genuinely shared code has moved to `Framework/` |
+| 3 | **Strings** | `feature/Strings[Module]` | Every player-visible string in the module resolves through an id in `ModuleData/tor_strings.xml`, added via TOR_Tools |
+| 4 | **Codesmells** | `feature/Codesmells[Module]` | Bad practices found and fixed; no file left doing two jobs |
+| 5 | **Pattern** | `feature/Pattern[Module]` | Recurring seams named; a pattern applied only where it earns its place |
 
 ## Why this order
 
@@ -79,9 +79,9 @@ The same five artifacts, every time:
 
 ## Starting an epic
 
-1. Open `module-ledger.md`; confirm the module's previous epic is `done` and merged.
+1. Open `module-ledger.md`; confirm the previous epic is at least code-complete. Waiting for its merge is preferred, not required — when you stack instead, say so in the plan.
 2. Read that epic's section in [`specs/2026-09-09-module-lifecycle-design.md`](./specs/2026-09-09-module-lifecycle-design.md).
 3. Write the plan into `plans/` from [`templates/epic-plan.md`](./templates/epic-plan.md).
-4. Branch `feature/[module][Epic]`, execute, build, playtest.
+4. Branch `feature/[Epic][Module]` — off the previous epic's branch if it has not merged yet — then execute, build, playtest.
 5. Write PR notes; hand them over. **You** open the PR.
 6. Update the ledger.
