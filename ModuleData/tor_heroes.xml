@@ -755,5 +755,5 @@
   <Hero id="tor_we_orion_factionleader" text="The king of the woods" faction="Faction.wildhunt_clan_1" />
   <Hero id="tor_we_orion_spellsinger_1" faction="Faction.wildhunt_clan_1" />
   <Hero id="tor_we_orion_spellsinger_2" faction="Faction.wildhunt_clan_1" />
-  <Hero id="tor_br_greenknight_leader" text="He is green and a knight (...)" faction="Faction.green_knight_clan_1" />
+  <Hero id="tor_br_greenknight_leader" text="{=str_encyclopedia_tor_br_greenknight_leader}He is green and a knight (...)" faction="Faction.green_knight_clan_1" />
 </Heroes>
