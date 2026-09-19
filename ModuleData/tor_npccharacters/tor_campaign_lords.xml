@@ -13261,7 +13261,6 @@
       <Trait id="Mercy" value="-2" />
       <Trait id="Generosity" value="0" />
     </Traits>
-	    <Equipments>
     <Equipments>
       <EquipmentSet id="tor_we_orion_template" />
       <EquipmentSet id="tor_we_orion_template" equipmentType="Civilian" />
