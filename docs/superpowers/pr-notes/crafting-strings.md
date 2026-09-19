@@ -1,6 +1,6 @@
 # `Crafting` Strings — PR Notes
 
-**Branch:** `feature/StringsCrafting` → `feature/FrameworkCrafting` (fifth in the stack; merge after the four below)
+**Branch:** `feature/StringsCrafting` → `next_update` (everything below it has landed)
 **Commits:** `feeb82f..<head>` — fill in once committed
 **Test plan:** `docs/testplans/crafting-strings.md` — **not run**
 **Code-check pass:** run. One regression found and fixed (shop "Not enough" hint resolved before
