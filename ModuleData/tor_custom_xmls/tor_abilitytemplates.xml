@@ -4712,7 +4712,7 @@
     <AbilityTemplate StringID="Impenetrable"
                      Name="{=impenetrable_label_str}Impenetrable"
                      SpriteName="impenetrable_icon"
-                     CoolDown="5"
+                     CoolDown="120"
                      WindsOfMagicCost="0"
                      BaseMisCastChance="0.05"
                      Duration="5"
@@ -4741,7 +4741,7 @@
                      MaxDistance="25"
                      CrosshairType="Self"
                      SpellTier="2"
-                     TooltipDescription="{=impenetrable_description_str}Khazukan Kazakit-HA! For a brief period gain full damage immunity but move 25% slower. Impenetrable lasts longer with every level of Athletics.">
+                     TooltipDescription="{=impenetrable_description_str}Gain 90% Ward Save and -25% movement speed. Lasts 10s plus 0.05s per Athletics point. 120s cooldown from activation. Charges from damage taken and shield blocks.">
         <LightColorRGB x="255"
                        y="255"
                        z="255"
