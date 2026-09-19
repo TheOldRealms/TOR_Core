@@ -21,15 +21,9 @@ namespace TOR_Core.BattleMechanics.DamageSystem
         {
             if (item?.WeaponComponent?.PrimaryWeapon == null) return false;
 
-            return item.WeaponComponent.PrimaryWeapon.WeaponClass == WeaponClass.Boulder ||
-                item.StringId is "tor_empire_weapon_ammo_grenade" or
-                    "tor_dw_weapon_grenade_hand_grenade" or
-                    "tor_dw_weapon_blasting_charges" or
-                    "tor_dw_iron_drake_trollhammer_torpedo" or
-                    "mangonel_c_boulder_projectile" or
-                    "mangonel_c_pot_projectile" or
-                    "mangonel_c_grapeshot_projectile" or
-                    "mangonel_c_grapeshot_fire_projectile";
+            return item.IsExplosiveAmmunition() ||
+                item.StringId is "tor_dw_weapon_blasting_charges" or
+                    "tor_dw_iron_drake_trollhammer_torpedo";
         }
 
         public static void ApplyNestCleansingExplosionResistance(Agent victim, float[] resistances)
