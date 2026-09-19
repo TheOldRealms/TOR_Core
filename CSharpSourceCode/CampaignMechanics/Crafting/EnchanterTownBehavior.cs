@@ -11,6 +11,7 @@ using TaleWorlds.CampaignSystem.Settlements.Locations;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ImageIdentifiers;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
 using TOR_Core.Extensions;
@@ -624,13 +625,14 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                 GameTexts.SetVariable("CUSTOMRESOURCE_ICON", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText());
 
 
-                var title = GameTexts.FindText("tor_enchant_prompt_disintegrate", "title");
-                var text = GameTexts.FindText("tor_enchant_prompt_disintegrate", "text");
-                if (customResourceExchange)
-                {
-                    title = GameTexts.FindText("tor_enchant_prompt_donate_items", "title");
-                    text = GameTexts.FindText("tor_enchant_prompt_donate_items", "text");
-                }
+                // Nothing calls DonationMode(false) today; the disintegrate strings exist so the branch is
+                // localized while it survives. Deleting the branch and its strings is Codesmells work.
+                var title = customResourceExchange
+                    ? TORTextHelper.GetTextObject("tor_enchant_prompt_donate_items", "title", "Donate items")
+                    : TORTextHelper.GetTextObject("tor_enchant_prompt_disintegrate", "title", "Disenchant items");
+                var text = customResourceExchange
+                    ? TORTextHelper.GetTextObject("tor_enchant_prompt_donate_items", "text", "Select the items you want to donate. You will obtain {CUSTOMRESOURCE_ICON} from this action. ")
+                    : TORTextHelper.GetTextObject("tor_enchant_prompt_disintegrate", "text", "Select the items you want to disenchant. Their ingredients will be returned to you.");
 
 
                 var inquirydata = new MultiSelectionInquiryData(title.ToString(), text.ToString(), selectableItems, true, 1, 15, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
@@ -698,22 +700,26 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                         return;
                     }
 
-                    var text = "";
+                    var gainedItems = new List<TextObject>();
 
                     foreach (TorTradeGoodType type in Enum.GetValues(typeof(TorTradeGoodType)))
                     {
-                        text.Add(" ");
                         var ingredient = TorEnchantingIngredients.GetItemObjectForIngredient(type);
                         if (ingredient == null)
                             continue;
 
                         Hero.MainHero.PartyBelongedTo.ItemRoster.Add(new ItemRosterElement(ingredient, resources[(int)type]));
-                        if (resources[(int)type] > 0) text += resources[(int)type] + ", " + ingredient.Name;
+                        if (resources[(int)type] > 0)
+                        {
+                            gainedItems.Add(TORTextHelper.GetTextObject("tor_gained_item_amount_text", "{AMOUNT} {ITEM_NAME}")
+                                .SetTextVariable("AMOUNT", resources[(int)type])
+                                .SetTextVariable("ITEM_NAME", ingredient.Name));
+                        }
                     }
 
 
                     var gainedItemsText = TORTextHelper.GetTextObject("tor_gained_items_notification_text", "Gained {ITEMS}");
-                    gainedItemsText.SetTextVariable("ITEMS", text);
+                    gainedItemsText.SetTextVariable("ITEMS", GameTexts.GameTextHelper.MergeTextObjectsWithComma(gainedItems, false));
                     MBInformationManager.AddQuickInformation(gainedItemsText, 2000, Hero.MainHero.CharacterObject);
                 }
             }
