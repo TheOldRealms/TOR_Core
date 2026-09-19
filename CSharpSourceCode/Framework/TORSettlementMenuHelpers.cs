@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem.GameMenus;
 
-namespace TOR_Core.CampaignMechanics.TORCustomSettlement
+namespace TOR_Core.Framework
 {
     public static class TORSettlementMenuHelpers
     {

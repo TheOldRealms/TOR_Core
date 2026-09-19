@@ -11,13 +11,16 @@ namespace TOR_Core.Framework
     /// Crafting's own folder so that neither module has to reference the other's namespace:
     /// Crafting depends on this (Framework) to consume the hooks, and the module contributing
     /// effects (today, CharacterDevelopment/CareerSystem/CraftingCareerHookRegistrations,
-    /// called once from SubModule.BeginGameStart after the career registries exist) depends on
+    /// called from SubModule.BeginGameStart on every campaign start after the career registries exist) depends on
     /// this (Framework) to populate them. Nothing under CampaignMechanics/Crafting/ references
     /// CharacterDevelopment/CareerSystem for career-specific content any more (the one
     /// remaining reference, CareerHelper.ApplyBasicCareerPassives(...,
     /// PassiveEffectType.EnchantmentCostReduction, ...) in TOREnchantmentCraftingModel, is a
-    /// different case - see its comment), and CraftingCareerHookRegistrations never references
-    /// CampaignMechanics/Crafting either.
+    /// different case - see its comment). CraftingCareerHookRegistrations does still reference
+    /// CampaignMechanics/Crafting in one direction - it calls EnchantmentBlueprints.Learn(...)
+    /// to grant beginner blueprints - which is the allowed direction: a module may call into
+    /// another module's content through a Framework hook it is populating. What matters is that
+    /// Crafting never names a Career type for career-specific content.
     /// </summary>
     public static class CraftingCareerHooks
     {
@@ -38,5 +41,16 @@ namespace TOR_Core.Framework
 
         /// <summary>Per-formula modifiers for the refining-formula list, applied as (hero, formula) -&gt; (possibly modified) formula, chained in registration order.</summary>
         public static readonly List<Func<Hero, RefiningFormula, RefiningFormula>> RefiningFormulaModifiers = new();
+
+        /// <summary>Empties every hook list. These are static, so they outlive a campaign; registration must start from empty or each new/loaded campaign stacks another copy of every effect.</summary>
+        public static void Clear()
+        {
+            EnchantmentCostReductionFactors.Clear();
+            IngredientLootBonusFactors.Clear();
+            BeginnerBlueprintGrantors.Clear();
+            EnchanterAccessGrants.Clear();
+            EnergyCostModifiers.Clear();
+            RefiningFormulaModifiers.Clear();
+        }
     }
 }
