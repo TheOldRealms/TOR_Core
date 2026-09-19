@@ -3157,7 +3157,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
-	  <string>TheHunger</string>
+      <string>TheHunger</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
@@ -3173,7 +3173,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
-	  <string>TheHunger</string>
+      <string>TheHunger</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
@@ -3189,7 +3189,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
-	  <string>TheHunger</string>
+      <string>TheHunger</string>
       <string>Piercing</string>
     </Attributes>
     <Resistances>
@@ -11222,5 +11222,10 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_greenknight_leader">
+    <Attributes>
+      <string>LegendaryLord</string>
+    </Attributes>
   </CharacterExtendedInfo>
 </ArrayOfCharacterExtendedInfo>

@@ -13262,10 +13262,11 @@
       <Trait id="Generosity" value="0" />
     </Traits>
 	    <Equipments>
+    <Equipments>
       <EquipmentSet id="tor_we_orion_template" />
       <EquipmentSet id="tor_we_orion_template" equipmentType="Civilian" />
-	    </Equipments>
-  </NPCCharacter> 
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_we_orion_spellsinger_1" default_group="infantry" name="{=str_tor_we_orion_spellsinger}Spellsinger" occupation="Special" culture="Culture.battania" voice="softspoken" age="30" race="elf" is_female="true" skill_template="SkillSet.tor_skills_wanderer_guardianmage" is_hero="true">
     <face>
       <face_key_template value="BodyProperty.spellsinger" />
@@ -13440,6 +13441,24 @@
     <Equipments>
       <EquipmentSet id="jules_the_jester_template" />
       <EquipmentSet id="jules_the_jester_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_greenknight_leader" name="The Green Knight" default_group="cavalry" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="58" skill_template="SkillSet.tor_skills_louenleoncoeur">
+    <face>
+      <BodyProperties age="43" weight="0.5568" build="0.5163" key="0002780D8044034576A2A6415759B9EA73B77A9971DB846978735A5944668856854C76030C85738C888796AA3686398C000000000000000C00000000418C1002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="10" />
+      <Trait id="Commander" value="10" />
+      <Trait id="Politician" value="10" />
+      <Trait id="Manager" value="10" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Mercy" value="2" />
+      <Trait id="Generosity" value="2" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_greenknight_template" />
+      <EquipmentSet id="tor_greenknight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dog_clan_hero_braganza" default_group="ranged" name="{=str_tor_dog_clan_hero_braganza}Luka Braganza" occupation="Lord" culture="Culture.empire" voice="curt" age="53" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">

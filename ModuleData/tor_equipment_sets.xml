@@ -33991,6 +33991,7 @@
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_longrifle_002" />
       <Equipment slot="Item1" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_pistolier_002" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_003" />
@@ -44195,6 +44196,52 @@
       <Equipment slot="Body" id="Item.tunic_with_rolled_cloth" />
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Leg" id="Item.sturgia_boots_b" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_greenknight_template" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_dolorous_blade" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_green_knight" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_green_knight" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armour_green_knight" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_green_knight" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_green_knight" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_green_knight" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_greenkighthorse" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_dolorous_blade" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_green_knight" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_green_knight" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armour_green_knight" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_green_knight" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_green_knight" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_green_knight" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_greenkighthorse" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_dolorous_blade" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_green_knight" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_green_knight" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armour_green_knight" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_green_knight" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_green_knight" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_green_knight" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_greenkighthorse" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_dolorous_blade" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_green_knight" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_green_knight" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armour_green_knight" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_green_knight" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_green_knight" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_green_knight" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_greenkighthorse" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_marchand_template" culture="Culture.vlandia">
