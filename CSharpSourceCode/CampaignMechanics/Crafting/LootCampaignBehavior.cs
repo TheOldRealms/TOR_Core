@@ -349,8 +349,7 @@ public class LootCampaignBehavior : CampaignBehaviorBase
             GameTexts.SetVariable("NAMEMODIFIER", nameModifier);
             GameTexts.SetVariable("NAMEOFITEM", item.Name);
 
-            var defaultName = item.Name + ", " + nameModifier;
-            var name = TORTextHelper.GetTextObject("tor_magical_items_trait_nameComposition", defaultName);
+            var name = TORTextHelper.GetTextObject("tor_magical_items_trait_nameComposition", "{NAMEMODIFIER} {NAMEOFITEM}");
 
             var magicItem = EnchantmentHelper.CreateEnchantedItem(item, traitList, name.ToString(), false);
 

@@ -52,7 +52,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
 
         private void OnSessionStart(CampaignGameStarter starter)
         {
-            AccessTools.Property(typeof(ItemObject), "Name").SetValue(DefaultItems.IronIngot6, TORTextHelper.GetTextObject("ironingot6_name", "Gromril{@Plural}loads of gromril{\\@}"));
+            AccessTools.Property(typeof(ItemObject), "Name").SetValue(DefaultItems.IronIngot6, TORTextHelper.GetTextObject("tor_ironingot6_name", "Gromril{@Plural}loads of gromril{\\@}"));
             TorEnchantingIngredients.LoadIngredients();
             AddTownMenu(starter);
 

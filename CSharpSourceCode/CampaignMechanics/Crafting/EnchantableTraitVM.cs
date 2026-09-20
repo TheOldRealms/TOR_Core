@@ -46,12 +46,12 @@ namespace TOR_Core.CampaignMechanics.Crafting
         {
             var text = string.IsNullOrEmpty(ItemTraitDescription) ? TORTextHelper.GetText("tor_enchant_no_description", "No description available.") : ItemTraitDescription;
 
-            if (!string.IsNullOrEmpty(_unmetRequirement))
-            {
-                text += "\n\n" + _unmetRequirement;
-            }
+            if (string.IsNullOrEmpty(_unmetRequirement)) return text;
 
-            return text;
+            return TORTextHelper.GetTextObject("tor_enchant_trait_hint_requirement", "{DESCRIPTION}{newline}{newline}{REQUIREMENT}")
+                .SetTextVariable("DESCRIPTION", text)
+                .SetTextVariable("REQUIREMENT", _unmetRequirement)
+                .ToString();
         }
 
         private void ExecuteSelectTrait()

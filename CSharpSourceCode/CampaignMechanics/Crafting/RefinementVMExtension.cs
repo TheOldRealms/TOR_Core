@@ -81,7 +81,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
             MaxRefinementCount = maxCount;
             CanRefineAll = maxCount > 1;
             RefineAllText = maxCount > 1
-                ? $"{TORTextHelper.GetText("tor_refine_all_text", "Refine All")} ({maxCount})"
+                ? TORTextHelper.GetTextObject("tor_refine_all_count_text", "Refine All ({COUNT})").SetTextVariable("COUNT", maxCount).ToString()
                 : TORTextHelper.GetText("tor_refine_all_text", "Refine All");
 
             NotifyParentPropertiesChanged();

@@ -74,7 +74,7 @@ The same five artifacts, every time:
 
 | Blocker | Blocks | State |
 |---|---|---|
-| `TOR_Tools` MCP server | Epic 3 (Strings), every module | **Built and working** at `D:/TOR_DEV/TOR_Tools`, registered as `tortools`. All `tor_strings.xml` access goes through it. |
+| `TOR_Tools` MCP server | Epic 3 (Strings), every module | Built at `D:/TOR_DEV/TOR_Tools`, registered as `tortools`. **Reads only** — its writes delete every comment block in `tor_strings.xml`; hand-edit until fixed (spec Amendment 3). |
 | Save-namespace safety probe (O1) | Epic 1, any module moving a `SaveableTypeDefiner` type | Not run. Cheap, standalone, must precede the first such move. |
 
 ## Starting an epic
