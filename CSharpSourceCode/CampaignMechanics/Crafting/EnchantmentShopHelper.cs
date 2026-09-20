@@ -164,40 +164,6 @@ public static class EnchantmentShopHelper
         return (int)factor * skillValue;
     }
 
-    private static bool ApplyAffordabilityCheck(TextObject hintText, bool enabled, int crCost, int goldCost)
-    {
-        if (!enabled)
-        {
-            return false;
-        }
-
-        if (!hintText.GetVariableValue("REQUIREMENT_TEXT", out var requirementText) ||
-            requirementText != null && requirementText.ToString().IsEmpty())
-        {
-            // TODO: >= means holding exactly the cost counts as "Not enough", so the purchase is blocked. Should this be >? -> PR discussion.
-            var missingCustomResource = crCost >= Hero.MainHero.GetCultureSpecificCustomResourceValue();
-            var missingGold = goldCost >= Hero.MainHero.Gold;
-
-            if (missingCustomResource || missingGold)
-            {
-                enabled = false;
-
-                var text = missingCustomResource && missingGold
-                    ? TORTextHelper.GetTextObject("tor_enchantmentshop_insufficient_both",
-                        "Not enough {CUSTOMRESOURCE} and {GOLD_ICON}.")
-                    : missingCustomResource
-                        ? TORTextHelper.GetTextObject("tor_enchantmentshop_insufficient_customresource",
-                            "Not enough {CUSTOMRESOURCE}.")
-                        : TORTextHelper.GetTextObject("tor_not_enough_gold_text",
-                            "Not enough gold");
-
-                hintText.SetTextVariable("REQUIREMENT_TEXT", text);
-            }
-        }
-
-        return enabled;
-    }
-
     private static void SetValidItemTypeRestrictionVariable(string blueprintId)
     {
         var underlyingTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == blueprintId);
