@@ -119,8 +119,8 @@ public static class EnchantmentShopHelper
     /// </summary>
     private static string BuildUnaffordableText(int crCost, int goldCost)
     {
-        var lacksResource = crCost >= Hero.MainHero.GetCultureSpecificCustomResourceValue();
-        var lacksGold = goldCost >= Hero.MainHero.Gold;
+        var lacksResource = crCost > Hero.MainHero.GetCultureSpecificCustomResourceValue();
+        var lacksGold = goldCost > Hero.MainHero.Gold;
 
         if (lacksResource && lacksGold)
             return TORTextHelper.GetText("tor_enchantmentshop_insufficient_both", "Not enough {CUSTOMRESOURCE} and {GOLD_ICON}.");
