@@ -39,7 +39,7 @@ public class TOREnchantmentCraftingModel : GameModel
             // Dwarfs get 2 enchantments by default
             else if (isDwarf)
             {
-                return Math.Max(value, 2);
+                value = Math.Max(value, 2);
             }
         }
 

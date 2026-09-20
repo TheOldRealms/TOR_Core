@@ -178,9 +178,7 @@ public class LootCampaignBehavior : CampaignBehaviorBase
             }
 
 
-            //why only check their armour?
-            if (heroes.Where(hero => hero.IsActive).Any(hero => hero.CharacterObject.GetCharacterEquipment(EquipmentIndex.ArmorItemBeginSlot, EquipmentIndex.HorseHarness)
-                    .AnyQ(x => x == item)))
+            if (heroes.Where(hero => hero.IsActive).Any(hero => IsEquipped(hero.BattleEquipment, item) || IsEquipped(hero.CivilianEquipment, item)))
             {
                 found = true;
             }
@@ -213,6 +211,21 @@ public class LootCampaignBehavior : CampaignBehaviorBase
             TORArtisanDistrictCampaignBehavior.Instance?.ForgetDuplicatedItem(item);
             MBObjectManager.Instance.UnregisterObject(item);
         }
+    }
+
+    /// <summary>
+    /// Every slot, weapons included - checking only armour slots let a looted weapon a hero was holding be unregistered.
+    /// </summary>
+    private static bool IsEquipped(Equipment equipment, ItemObject item)
+    {
+        if (equipment == null) return false;
+
+        for (var slot = EquipmentIndex.WeaponItemBeginSlot; slot < EquipmentIndex.NumEquipmentSetSlots; slot++)
+        {
+            if (equipment[slot].Item == item) return true;
+        }
+
+        return false;
     }
 
     /// <summary>
@@ -266,7 +279,7 @@ public class LootCampaignBehavior : CampaignBehaviorBase
 
             var traitList = new List<string>();
             var item = character.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Cape).Where(x => !x.IsBannerItem()).TakeRandom(1).FirstOrDefault();
-            if (item.NotMerchandise) continue;
+            if (item == null || item.NotMerchandise) continue;
 
             for (var j = 0; j < traitCount; j++)
                 if (item != null)
