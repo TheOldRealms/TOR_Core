@@ -102,7 +102,7 @@ public class PriestBehavior : CampaignBehaviorBase
     private void SpawnPriest(Settlement settlement, bool forceSpawn)
     {
         var trainer = GetPriestForTown(settlement);
-        var currentLocation = settlement.LocationComplex.GetLocationWithId("house_1");
+        var currentLocation = settlement.LocationComplex.GetLocationWithId("lordshall");
         if (trainer != null && currentLocation != null)
         {
             if (forceSpawn)
@@ -125,7 +125,7 @@ public class PriestBehavior : CampaignBehaviorBase
 
     private bool IsPriestInTown(Settlement settlement)
     {
-        var location = settlement.LocationComplex.GetLocationWithId("house_1");
+        var location = settlement.LocationComplex.GetLocationWithId("lordshall");
         var trainer = GetPriestForTown(settlement);
         if (trainer != null) return location.GetLocationCharacter(trainer) != null;
 
