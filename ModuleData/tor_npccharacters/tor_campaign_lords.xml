@@ -4626,7 +4626,7 @@
       <EquipmentSet id="tor_damsel_template_3" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_parravon_first_9" voice="earnest" age="65" name="Guillem de Morêt-Ferde" default_group="cavalry" occupation="Lord" culture="Culture.vlandia" race="bretonnian" skill_template="SkillSet.tor_skills_knight_lord">
+  <NPCCharacter id="tor_br_lord_parravon_first_9" voice="earnest" age="65" name="{=str_tor_br_lord_parravon_first_9}Guillem de Morêt-Ferde" default_group="cavalry" occupation="Lord" culture="Culture.vlandia" race="bretonnian" skill_template="SkillSet.tor_skills_knight_lord">
     <Equipments>
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" />
     </Equipments>
@@ -4769,7 +4769,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_montfort_first_8" name="Sir Ghadrivaun de Grispoudaine" default_group="cavalry" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="36" race="bretonnian" skill_template="SkillSet.tor_skills_knight_lord">
+  <NPCCharacter id="tor_br_lord_montfort_first_8" name="{=str_tor_br_lord_montfort_first_8}Sir Ghadrivaun de Grispoudaine" default_group="cavalry" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="36" race="bretonnian" skill_template="SkillSet.tor_skills_knight_lord">
     <Equipments>
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" />
     </Equipments>
@@ -5092,7 +5092,7 @@
       <EquipmentSet id="tor_damsel_template_2" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_bordeleaux_first_9" name="Lord Pierre-Alphonse de Domesnils" default_group="cavalry" occupation="Lord" culture="Culture.vlandia" voice="ironic" age="48" race="bretonnian" skill_template="SkillSet.tor_skills_knight_lord">
+  <NPCCharacter id="tor_br_lord_bordeleaux_first_9" name="{=str_tor_br_lord_bordeleaux_first_9}Lord Pierre-Alphonse de Domesnils" default_group="cavalry" occupation="Lord" culture="Culture.vlandia" voice="ironic" age="48" race="bretonnian" skill_template="SkillSet.tor_skills_knight_lord">
     <Equipments>
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" />
     </Equipments>
@@ -6243,7 +6243,7 @@
       <EquipmentSet id="tor_damsel_template_3" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_lyonesse_first_9" name="Baron Reolas Lemonfor" default_group="cavalry" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="28" race="bretonnian" skill_template="SkillSet.tor_skills_knight_lord">
+  <NPCCharacter id="tor_br_lord_lyonesse_first_9" name="{=str_tor_br_lord_lyonesse_first_9}Baron Reolas Lemonfor" default_group="cavalry" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="28" race="bretonnian" skill_template="SkillSet.tor_skills_knight_lord">
     <Equipments>
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_2" />
     </Equipments>
@@ -6386,7 +6386,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_artois_first_8" name="Clovis de Bosquet-Roy’s" default_group="cavalry" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="33" race="bretonnian" skill_template="SkillSet.tor_skills_knight_lord">
+  <NPCCharacter id="tor_br_lord_artois_first_8" name="{=str_tor_br_lord_artois_first_8}Clovis de Bosquet-Roy’s" default_group="cavalry" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="33" race="bretonnian" skill_template="SkillSet.tor_skills_knight_lord">
     <Equipments>
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" />
     </Equipments>
@@ -6529,7 +6529,7 @@
       <EquipmentSet id="tor_damsel_template_3" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_gisoreux_first_8" occupation="Lord" culture="Culture.vlandia" voice="earnest" default_group="cavalry" name="Lord Pierre le Récupérateur" age="45" race="bretonnian" skill_template="SkillSet.tor_skills_knight_lord">
+  <NPCCharacter id="tor_br_lord_gisoreux_first_8" occupation="Lord" culture="Culture.vlandia" voice="earnest" default_group="cavalry" name="{=str_tor_br_lord_gisoreux_first_8}Lord Pierre le Récupérateur" age="45" race="bretonnian" skill_template="SkillSet.tor_skills_knight_lord">
     <Equipments>
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" />
     </Equipments>
@@ -6546,7 +6546,7 @@
       <Trait id="Generosity" value="3" />
     </Traits>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lord_gisoreux_first_9" default_group="cavalry" occupation="Lord" culture="Culture.vlandia" voice="curt" age="56" race="bretonnian" skill_template="SkillSet.tor_skills_knight_lord" name="Marechal Aimeboire du Vin ">
+  <NPCCharacter id="tor_br_lord_gisoreux_first_9" default_group="cavalry" occupation="Lord" culture="Culture.vlandia" voice="curt" age="56" race="bretonnian" skill_template="SkillSet.tor_skills_knight_lord" name="{=str_tor_br_lord_gisoreux_first_9}Marechal Aimeboire du Vin ">
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
       <Trait id="Commander" value="2" />
@@ -6743,7 +6743,7 @@
       <EquipmentSet id="tor_black_duke_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_lord_mousillon_first_10" name="Erikan Crowfiend" occupation="Lord" default_group="cavalry" culture="Culture.mousillon" voice="earnest" age="40" skill_template="SkillSet.tor_skills_bloodknight_lord" race="vampire">
+  <NPCCharacter id="tor_m_lord_mousillon_first_10" name="{=str_tor_m_lord_mousillon_first_10}Erikan Crowfiend" occupation="Lord" default_group="cavalry" culture="Culture.mousillon" voice="earnest" age="40" skill_template="SkillSet.tor_skills_bloodknight_lord" race="vampire">
     <Equipments>
       <EquipmentSet id="tor_blooddragon_templar_template" />
     </Equipments>
@@ -6760,7 +6760,7 @@
       <Trait id="Generosity" value="0" />
     </Traits>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_lord_mousillon_first_11" name="Obald the Bonefather" occupation="Lord" default_group="cavalry" culture="Culture.mousillon" voice="ironic" age="90" skill_template="SkillSet.tor_skills_necromancer_lord" race="bretonnian">
+  <NPCCharacter id="tor_m_lord_mousillon_first_11" name="{=str_tor_m_lord_mousillon_first_11}Obald the Bonefather" occupation="Lord" default_group="cavalry" culture="Culture.mousillon" voice="ironic" age="90" skill_template="SkillSet.tor_skills_necromancer_lord" race="bretonnian">
     <Equipments>
       <EquipmentSet id="tor_necromancer_template" />
     </Equipments>
@@ -13401,7 +13401,7 @@
       <EquipmentSet id="tor_generic_druchii_lord_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_orion_factionleader" name="Orion, Master of the Wild Hunt" default_group="infantry" occupation="Special" culture="Culture.battania" voice="curt" age="25" race="orion" is_hero="true" skill_template="SkillSet.tor_skills_karlfranz">
+  <NPCCharacter id="tor_we_orion_factionleader" name="{=str_tor_tor_we_orion_factionleader}Orion, Master of the Wild Hunt" default_group="infantry" occupation="Special" culture="Culture.battania" voice="curt" age="25" race="orion" is_hero="true" skill_template="SkillSet.tor_skills_karlfranz">
     <face>
       <BodyProperties age="25" weight="0.2608" build="0.3997" key="0000AC0FC0B40000B97634CE6774B835537D86629511323BDCB177278A840203010646130048B49500000000000000000000000000000000000000003E040000" />
     </face>
