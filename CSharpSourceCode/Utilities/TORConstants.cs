@@ -205,6 +205,8 @@ namespace TOR_Core.Utilities
             public const string ABILITY_USER = "AbilityUser";
             public const string CAN_PLACE_ARTILLERY = "CanPlaceArtillery";
 
+            public const string RUNE_MAGIC = "RuneMagic";
+
             //Special hero types - generally used for detecting specific types of npc heroes
             public const string SPELLCASTER = "SpellCaster";
             public const string RUNESMITH = "Runesmith";
@@ -289,6 +291,7 @@ namespace TOR_Core.Utilities
             public const string FELLFANG_MARK = "FellfangMark";//greylord
             public const string NECROMANCER_CHAMPION = "NecromancerChampion";//necromancer
             public const string IMPENETRABLE = "Impenetrable";//ironbreaker
+            public const string NEST_CLEANSING = "NestCleansing";
             public const string DOOM_SEEKING = "DoomSeeking";//slayer
             public const string ARCANE_DMG = "Arcane_Dmg";//Magister, update for nomenclature
             public const string KNIGHTLY_STRIKE = "KnightlyStrike";

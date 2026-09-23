@@ -7,7 +7,6 @@ using TaleWorlds.Core;
 using TaleWorlds.Core.ImageIdentifiers;
 using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
-using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
@@ -30,11 +29,13 @@ public static class EnchantmentShopHelper
         var title = TORTextHelper.GetText("tor_enchantmentshop_title", shopVariation, "Make your choice…");
         var description = TORTextHelper.GetText("tor_enchantmentshop_description", shopVariation, "Select an arcane scroll to study:");
 
-        var inquirydata = new MultiSelectionInquiryData(title, description, selectableItems, true, 1, 1, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
+        var inquirydata = new MultiSelectionInquiryData(title, description, selectableItems, true, 1, 1,
+            TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
             AddEnchantment, null, "", true);
         MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
     }
 
+    //Note that RequiredSkillValue is not only gating purchasability, but it's also setting the cost for custom resources.
     private readonly record struct PurchasableBlueprint(ItemObject Item, string BlueprintId, SkillObject RequiredSkill, int RequiredSkillValue, string Restriction, List<Hero> EligibleHeroes);
 
     private static List<PurchasableBlueprint> GetPurchasableBlueprints(List<string> prefixList)
@@ -49,12 +50,12 @@ public static class EnchantmentShopHelper
                 continue;
             }
 
-            if (EnchantmentHelper.IsBlueprintKnownByParty(blueprintId) || EnchantmentHelper.IsBlueprintInInventory(blueprintId))
+            if (EnchantmentBlueprints.IsKnown(blueprintId) || EnchantmentHelper.IsBlueprintInInventory(blueprintId))
             {
                 continue;
             }
 
-            var eligibleHeroes = EnchantmentHelper.GetEligibleHeroesForBlueprint(blueprintId, requiredSkill, requiredSkillValue, restriction, false);
+            var eligibleHeroes = EnchantmentHelper.GetEligibleHeroesForBlueprint(blueprintId, restriction);
             if (eligibleHeroes.Any())
             {
                 list.Add(new PurchasableBlueprint(item, blueprintId, requiredSkill, requiredSkillValue, restriction, eligibleHeroes));
@@ -71,29 +72,64 @@ public static class EnchantmentShopHelper
     {
         var trait = blueprint.Item.GetTraits().FirstOrDefault();
 
-        var enabled = blueprint.EligibleHeroes.Any(hero => hero.GetSkillValue(blueprint.RequiredSkill) >= blueprint.RequiredSkillValue);
-
-        var hintText = new TextObject("{TRAIT_EFFECT}{newline}{newline}{REQUIREMENT_TEXT}{newline}{newline}{COMPLETE_COST}");
-        hintText.SetTextVariable("REQUIREMENT_TEXT", enabled ? new TextObject("{=!}") : BuildRequirementText(blueprint.EligibleHeroes, blueprint.RequiredSkill, blueprint.RequiredSkillValue, blueprint.Restriction));
-
         var crCost = CalculateCustomResourceCost(blueprint.RequiredSkillValue);
         var goldCost = blueprint.Item.Value;
-        enabled = ApplyAffordabilityCheck(hintText, enabled, crCost, goldCost);
 
+        // Set before BuildUnaffordableText: it resolves {CUSTOMRESOURCE} immediately.
         SetValidItemTypeRestrictionVariable(blueprint.BlueprintId);
-
-        if (enabled)
-        {
-            hintText = new TextObject(trait.ItemTraitDescription + "{newline} {GOLD_VALUE}{GOLD_ICON} , {CR_VALUE}{CUSTOMRESOURCE},{newline} {VALIDTYPE_RESTRICTION}");
-        }
-
-        hintText.SetTextVariable("TRAIT_EFFECT", trait.ItemTraitDescription);
-        hintText.SetTextVariable("COMPLETE_COST", "{GOLD_VALUE}{GOLD_ICON} , {CR_VALUE}{CUSTOMRESOURCE}");
         GameTexts.SetVariable("CR_VALUE", crCost);
         GameTexts.SetVariable("CUSTOMRESOURCE", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText());
-        GameTexts.SetVariable("GOLD_VALUE", blueprint.Item.Value);
+        GameTexts.SetVariable("GOLD_VALUE", goldCost);
+
+        var unaffordable = BuildUnaffordableText(crCost, goldCost);
+        var enabled = unaffordable == null;
+
+        var notice = unaffordable ?? BuildFutureRequirementText(blueprint);
+
+        var hintText = string.IsNullOrEmpty(notice)
+            ? TORTextHelper.GetTextObject("tor_enchantmentshop_blueprint_hint", "{TRAIT_EFFECT}{newline}{COMPLETE_COST}{newline}{VALIDTYPE_RESTRICTION}")
+            : TORTextHelper.GetTextObject("tor_enchantmentshop_blueprint_hint_notice", "{TRAIT_EFFECT}{newline}{newline}{REQUIREMENT_TEXT}{newline}{newline}{COMPLETE_COST}");
+
+        hintText.SetTextVariable("REQUIREMENT_TEXT", notice);
+        hintText.SetTextVariable("TRAIT_EFFECT", trait.ItemTraitDescription);
+        hintText.SetTextVariable("COMPLETE_COST", TORTextHelper.GetTextObject("tor_enchantmentshop_blueprint_cost", "{GOLD_VALUE}{GOLD_ICON}, {CR_VALUE}{CUSTOMRESOURCE}"));
 
         return new InquiryElement(new Tuple<List<Hero>, ItemObject>(blueprint.EligibleHeroes, blueprint.Item), blueprint.Item.Name.ToString(), new ItemImageIdentifier(blueprint.Item), enabled, hintText.ToString());
+    }
+
+    /// <summary>
+    /// The skill this blueprint will demand at the enchanting table, phrased as a heads-up
+    /// rather than a refusal. Returns empty when the party can already execute it, so the
+    /// hint stays clean for blueprints that need no warning.
+    /// </summary>
+    private static string BuildFutureRequirementText(PurchasableBlueprint blueprint)
+    {
+        var requirement = new EnchantmentHelper.BlueprintRequirement(blueprint.RequiredSkill, blueprint.RequiredSkillValue, blueprint.Restriction);
+        var unmet = EnchantmentHelper.GetUnmetRequirement(blueprint.BlueprintId, requirement);
+
+        if (unmet == null) return "";
+
+        return TORTextHelper.GetTextObject("tor_enchantmentshop_future_requirement", "You can learn this now, but cannot enchant with it yet. {REQUIREMENT}")
+            .SetTextVariable("REQUIREMENT", unmet)
+            .ToString();
+    }
+
+    /// <summary>
+    /// Why the player cannot afford this blueprint, or null if they can.
+    /// </summary>
+    private static string BuildUnaffordableText(int crCost, int goldCost)
+    {
+        var lacksResource = crCost > Hero.MainHero.GetCultureSpecificCustomResourceValue();
+        var lacksGold = goldCost > Hero.MainHero.Gold;
+
+        if (lacksResource && lacksGold)
+            return TORTextHelper.GetText("tor_enchantmentshop_insufficient_both", "Not enough {CUSTOMRESOURCE} and {GOLD_ICON}.");
+        if (lacksResource)
+            return TORTextHelper.GetText("tor_enchantmentshop_insufficient_customresource", "Not enough {CUSTOMRESOURCE}.");
+        if (lacksGold)
+            return TORTextHelper.GetText("tor_enchantmentshop_insufficient_gold", "Not enough {GOLD_ICON}.");
+
+        return null;
     }
 
     private static bool IsUsableTrait(ItemObject item)
@@ -122,87 +158,10 @@ public static class EnchantmentShopHelper
         return true;
     }
 
-    private static TextObject BuildRequirementText(List<Hero> eligableHeroes, SkillObject skill, int skillValue, string restriction)
-    {
-        var hero = eligableHeroes.Count == 1 ? eligableHeroes[0] : null;
-
-        var text = hero == null
-            ? TORTextHelper.GetTextObject("tor_enchantmentshop_requirement_none",
-                "{RESTRICTION_PREFIX}None of your eligible characters have enough {SKILL}. Requires {VALUE}.")
-            : hero == Hero.MainHero
-                ? TORTextHelper.GetTextObject("tor_enchantmentshop_requirement_self",
-                    "{RESTRICTION_PREFIX}You don't have enough {SKILL}. Requires {VALUE}.")
-                : TORTextHelper.GetTextObject("tor_enchantmentshop_requirement_hero",
-                    "{RESTRICTION_PREFIX}{HERO} doesn't have enough {SKILL}. Requires {VALUE}.");
-
-        text.SetTextVariable("RESTRICTION_PREFIX", GetRestrictionPrefix(restriction));
-        text.SetTextVariable("SKILL", skill.Name);
-        text.SetTextVariable("VALUE", skillValue);
-
-        if (hero != null)
-        {
-            text.SetTextVariable("HERO", hero.Name);
-        }
-
-        return text;
-    }
-
-    private static TextObject GetRestrictionPrefix(string restriction)
-    {
-        if (string.IsNullOrEmpty(restriction))
-        {
-            return new TextObject("{=!}");
-        }
-
-        var lore = LoreObject.GetAll().FirstOrDefault(x => x.StringId == restriction);
-        var text = lore != null
-            ? TORTextHelper.GetTextObject("tor_enchantmentshop_requirement_prefix_lore",
-                "This enchantment is bound to the Lore of {LORE}. ")
-            : TORTextHelper.GetTextObject("tor_enchantmentshop_requirement_prefix_other",
-                "This enchantment requires {RESTRICTION}. ");
-
-        text.SetTextVariable(lore != null ? "LORE" : "RESTRICTION", lore?.Name ?? restriction);
-
-        return text;
-    }
-
     private static int CalculateCustomResourceCost(int skillValue)
     {
         var factor = Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceGeneralizedFactor();
         return (int)factor * skillValue;
-    }
-
-    private static bool ApplyAffordabilityCheck(TextObject hintText, bool enabled, int crCost, int goldCost)
-    {
-        if (!enabled)
-        {
-            return false;
-        }
-
-        if (!hintText.GetVariableValue("REQUIREMENT_TEXT", out var requirementText) ||
-            requirementText != null && requirementText.ToString().IsEmpty())
-        {
-            var missingCustomResource = crCost >= Hero.MainHero.GetCultureSpecificCustomResourceValue();
-            var missingGold = goldCost >= Hero.MainHero.Gold;
-
-            if (missingCustomResource || missingGold)
-            {
-                enabled = false;
-
-                var text = missingCustomResource && missingGold
-                    ? TORTextHelper.GetTextObject("tor_enchantmentshop_insufficient_both",
-                        "Not enough {CUSTOMRESOURCE} and {GOLD_ICON}.")
-                    : missingCustomResource
-                        ? TORTextHelper.GetTextObject("tor_enchantmentshop_insufficient_customresource",
-                            "Not enough {CUSTOMRESOURCE}.")
-                        : TORTextHelper.GetTextObject("tor_not_enough_gold_text",
-                            "Not enough gold");
-
-                hintText.SetTextVariable("REQUIREMENT_TEXT", text);
-            }
-        }
-
-        return enabled;
     }
 
     private static void SetValidItemTypeRestrictionVariable(string blueprintId)
@@ -239,7 +198,7 @@ public static class EnchantmentShopHelper
 
         if (candidateHero != null)
         {
-            candidateHero.AddEnchantmentBlueprint(blueprintId, true);
+            EnchantmentBlueprints.Learn(blueprintId, candidateHero, true);
         }
         else
         {
@@ -250,7 +209,22 @@ public static class EnchantmentShopHelper
         }
     }
 
-    private static Hero SelectRecipientHero(List<Hero> heroes) => heroes.Count == 1 ? heroes[0] : heroes.FirstOrDefault(x => x == Hero.MainHero);
+    /// <summary>
+    /// Who is shown as having learned the blueprint. Storage is campaign-wide now, so this
+    /// only picks a face for the notification and the learned event - it cannot lose the
+    /// blueprint the way the old per-hero write could.
+    /// </summary>
+    /// <remarks>
+    /// Prefers the main hero when several are eligible, falling back to the first eligible
+    /// hero rather than returning null. The old version returned null whenever the main hero
+    /// was not among 2+ eligible heroes, which silently turned a paid-for blueprint into an
+    /// inventory item; that bug is gone because there is always a valid attribution.
+    /// </remarks>
+    private static Hero SelectRecipientHero(List<Hero> heroes)
+    {
+        if (heroes == null || heroes.Count == 0) return null;
+        return heroes.FirstOrDefault(x => x == Hero.MainHero) ?? heroes[0];
+    }
 
     private static void ChargeForPurchase(int skillValue, ItemObject item)
     {

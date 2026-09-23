@@ -6,9 +6,10 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
+using TOR_Core.CampaignMechanics.Crafting.Models;
 using TOR_Core.Extensions;
+using TOR_Core.Framework;
 using TOR_Core.Items;
-using TOR_Core.Models;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Crafting
@@ -61,8 +62,9 @@ namespace TOR_Core.CampaignMechanics.Crafting
                 var maxTraits = CalculateMaxTraits();
                 if (SelectedTraits.Count >= maxTraits)
                 {
-                    var selectHint = GameTexts.FindText("tor_enchant_hint_max_traits_selectable");
+                    var selectHint = TORTextHelper.GetTextObject("tor_enchant_hint_max_traits_selectable", "You can only select {MAX_TRAITS} {?IS_PLURAL}traits{?}trait{\\?}");
                     selectHint.SetTextVariable("MAX_TRAITS", maxTraits);
+                    selectHint.SetTextVariable("IS_PLURAL", maxTraits > 1 ? 1 : 0);
                     InformationManager.ShowInquiry(new InquiryData(TORTextHelper.GetText("tor_enchanting_title_text", "Enchanting"), selectHint.ToString(), true, false, TORTextHelper.GetText("tor_inquiry_ok_text", "OK"), null, null, null), true);
                     itemTrait.DeselectTrait();
                     return;
@@ -106,8 +108,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
             var model = (TOREnchantmentCraftingModel)Campaign.Current.Models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TOREnchantmentCraftingModel));
             if (model != null)
             {
-                cost = model.GetEffectiveIngredientAmount(MobileParty.MainParty.GetMemberHeroes(), itemTrait,
-                    itemTrait.IngredientItem);
+                cost = model.GetEffectiveIngredientAmount(itemTrait, itemTrait.IngredientItem);
             }
 
             return cost;
@@ -119,35 +120,23 @@ namespace TOR_Core.CampaignMechanics.Crafting
             SelectedTraits.Clear();
             SelectedItem?.DeselectItem();
             SelectedItem = item;
-            foreach (var hero in MobileParty.MainParty.GetMemberHeroes())
+            // Known blueprints are listed whether or not they can be executed right now:
+            // an unmet requirement greys the row and says why, rather than hiding it. Hiding
+            // reads as "you lost it", which is exactly the confusion the old party-union
+            // behaviour caused when a companion left.
+            var knownBlueprints = EnchantmentBlueprints.GetKnown();
+            var requirements = EnchantmentHelper.GetBlueprintRequirements();
+
+            foreach (var trait in ItemTrait.All.Where(x => x.IsCraftable &&
+                                                           knownBlueprints.Contains(x.ItemTraitStringId) &&
+                                                           ItemTrait.IsValidFor(x, item.Item.Item.ItemType))
+                         .OrderBy(y => y.ItemTraitName))
             {
-                var traits = hero.GetExtendedInfo().KnownEnchantmentBlueprints;
+                var unmetRequirement = requirements.TryGetValue(trait.ItemTraitStringId, out var requirement)
+                    ? EnchantmentHelper.GetUnmetRequirement(trait.ItemTraitStringId, requirement)
+                    : null;
 
-                foreach (var trait in traits)
-                {
-                    foreach (var x in ItemTrait.All)
-                    {
-                        if (x.ItemTraitStringId == trait)
-                        {
-                            var he = hero.HasKnownEnchantmentBlueprint(x.ItemTraitStringId);
-                            var ve = ItemTrait.IsValidFor(x, item.Item.Item.ItemType);
-                        }
-
-                    }
-
-                }
-
-                foreach (var trait in ItemTrait.All.Where(x => x.IsCraftable &&
-                                                               hero.HasKnownEnchantmentBlueprint(x.ItemTraitStringId) &&
-                                                               ItemTrait.IsValidFor(x, item.Item.Item.ItemType))
-                             .OrderBy(y => y.ItemTraitName))
-                {
-                    if (Traits.Any(x => x.ItemTrait.ItemTraitStringId == trait.ItemTraitStringId))
-                    {
-                        continue;
-                    }
-                    Traits.Add(new EnchantableTraitVM(trait, OnTraitSelected));
-                }
+                Traits.Add(new EnchantableTraitVM(trait, OnTraitSelected, unmetRequirement));
             }
 
             foreach (var ingredient in Ingredients)
@@ -326,5 +315,17 @@ namespace TOR_Core.CampaignMechanics.Crafting
                 }
             }
         }
+
+        [DataSourceProperty]
+        public string ItemsHeaderText => TORTextHelper.GetText("tor_enchanting_items_header", "Items");
+
+        [DataSourceProperty]
+        public string TraitsHeaderText => TORTextHelper.GetText("tor_enchanting_traits_header", "Enchantments");
+
+        [DataSourceProperty]
+        public string EnchantButtonText => TORTextHelper.GetText("tor_enchanting_enchant_button", "Enchant");
+
+        [DataSourceProperty]
+        public string DoneButtonText => TORTextHelper.GetText("str_done", "Done");
     }
 }

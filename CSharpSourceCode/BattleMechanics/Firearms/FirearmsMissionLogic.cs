@@ -10,6 +10,7 @@ using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
@@ -554,6 +555,7 @@ namespace TOR_Core.BattleMechanics.Firearms
                 {
                     var baseDamage = explosionDamage * MBRandom.RandomFloatRanged(1 - damageVariance, 1 + damageVariance);
                     var damage = (explosionRadius - distance) / explosionRadius * baseDamage;
+                    damage = TORDamageHelper.CalculateExplosionDamage(affector, agent, damage, DamageType.Physical);
                     agent.ApplyDamage((int)damage, position, affector, doBlow: true, hasShockWave: true);
                 }
             }

@@ -3157,7 +3157,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
-	  <string>TheHunger</string>
+      <string>TheHunger</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
@@ -3173,7 +3173,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
-	  <string>TheHunger</string>
+      <string>TheHunger</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
@@ -3189,7 +3189,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
-	  <string>TheHunger</string>
+      <string>TheHunger</string>
       <string>Piercing</string>
     </Attributes>
     <Resistances>
@@ -7707,7 +7707,6 @@
   <CharacterExtendedInfo id="tor_m_lord_mousillon_first_9">
     <Abilities />
     <Attributes>
-      <string>AiCompanion</string>
       <string>Undead</string>
     </Attributes>
   </CharacterExtendedInfo>
@@ -11222,5 +11221,20 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_greenknight_leader">
+    <Attributes>
+      <string>LegendaryLord</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_m_lord_mousillon_first_11">
+    <Attributes>
+      <string>Necromancer</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_m_lord_mousillon_first_10">
+    <Attributes>
+      <string>BloodDragon</string>
+    </Attributes>
   </CharacterExtendedInfo>
 </ArrayOfCharacterExtendedInfo>

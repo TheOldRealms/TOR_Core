@@ -1,9 +1,12 @@
+using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Models;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.DamageSystem
@@ -14,6 +17,45 @@ namespace TOR_Core.BattleMechanics.DamageSystem
     /// </summary>
     public static class TORDamageHelper
     {
+        public static bool IsNonMagicalSiegeOrExplosiveAmmunition(ItemObject item)
+        {
+            if (item?.WeaponComponent?.PrimaryWeapon == null) return false;
+
+            return item.IsExplosiveAmmunition() ||
+                item.StringId is "tor_dw_weapon_blasting_charges" or
+                    "tor_dw_iron_drake_trollhammer_torpedo";
+        }
+
+        public static void ApplyNestCleansingExplosionResistance(Agent victim, float[] resistances)
+        {
+            if (victim?.HasAttribute(TORConstants.CharacterAttributes.NEST_CLEANSING) != true) return;
+
+            for (int i = (int)DamageType.Physical; i < (int)DamageType.All; i++)
+            {
+                if (i != (int)DamageType.Fire) resistances[i] += 0.5f;
+            }
+        }
+
+        public static float CalculateExplosionDamage(Agent attacker, Agent victim, float damage, DamageType damageType)
+        {
+            if (attacker == null || victim == null || damage <= 0 ||
+                MissionGameModels.Current?.AgentApplyDamageModel is not TORAgentApplyDamageModel model)
+            {
+                return damage;
+            }
+
+            var attack = model.CreateAgentPropertyContainer(attacker, PropertyMask.Attack, AttackTypeMask.Ranged);
+            var defense = model.CreateAgentPropertyContainer(victim, PropertyMask.Defense, AttackTypeMask.Ranged);
+            ApplyCareerPassives(attacker, victim, AttackTypeMask.Ranged, attack.AdditionalDamagePercentages, defense.ResistancePercentages);
+            ApplyNestCleansingExplosionResistance(victim, defense.ResistancePercentages);
+
+            var proportions = new float[(int)DamageType.All + 1];
+            proportions[(int)damageType] = 1f;
+            var result = CalculateDamageWithProportions(damage, proportions, attack.DamagePercentages,
+                attack.AdditionalDamagePercentages, defense.ResistancePercentages, out _);
+            return Math.Max(0f, result * model.CalculateWardSaveFactor(attacker, victim, defense.ResistancePercentages, attacker.Team == victim.Team));
+        }
+
         /// <summary>
         /// Applies career passives to damage and resistance percentages for both attacker and victim.
         /// </summary>
@@ -45,6 +87,17 @@ namespace TOR_Core.BattleMechanics.DamageSystem
                 for (var index = 0; index < careerBonuses.Length; index++)
                 {
                     resistancePercentages[index] += careerBonuses[index];
+                }
+            }
+
+            if (Hero.MainHero.HasCareerChoice("GromrilArmorPassive4") && attacker != victim &&
+                attacker.Team != null && attacker.Team != Team.Invalid && attacker.Team == victim.Team &&
+                !victim.IsHero && victim.BelongsToMainParty() && victim.Character.IsIronbreakerUnit())
+            {
+                var resistance = TORCareerChoices.GetChoice("GromrilArmorPassive4").GetPassiveValue();
+                for (int i = (int)DamageType.Physical; i < (int)DamageType.All; i++)
+                {
+                    resistancePercentages[i] += resistance;
                 }
             }
         }

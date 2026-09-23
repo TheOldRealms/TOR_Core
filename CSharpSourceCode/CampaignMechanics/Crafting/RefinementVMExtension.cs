@@ -6,8 +6,10 @@ using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting;
 using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting.Refinement;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade.View;
+using TOR_Core.Extensions;
+using TOR_Core.Extensions.UI;
 
-namespace TOR_Core.Extensions.UI
+namespace TOR_Core.CampaignMechanics.Crafting
 {
     [ViewModelExtension(typeof(RefinementVM))]
     public class RefinementVMExtension : BaseViewModelExtension
@@ -79,7 +81,7 @@ namespace TOR_Core.Extensions.UI
             MaxRefinementCount = maxCount;
             CanRefineAll = maxCount > 1;
             RefineAllText = maxCount > 1
-                ? $"{TORTextHelper.GetText("tor_refine_all_text", "Refine All")} ({maxCount})"
+                ? TORTextHelper.GetTextObject("tor_refine_all_count_text", "Refine All ({COUNT})").SetTextVariable("COUNT", maxCount).ToString()
                 : TORTextHelper.GetText("tor_refine_all_text", "Refine All");
 
             NotifyParentPropertiesChanged();

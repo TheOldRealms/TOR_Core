@@ -2,8 +2,10 @@ using System.Reflection;
 using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
+using TOR_Core.Extensions;
+using TOR_Core.Extensions.UI;
 
-namespace TOR_Core.Extensions.UI
+namespace TOR_Core.CampaignMechanics.Crafting
 {
     [ViewModelExtension(typeof(CraftingVM))]
     public class CraftingVMExtension : BaseViewModelExtension
@@ -67,7 +69,7 @@ namespace TOR_Core.Extensions.UI
         public bool CanRefineAll => GetRefinementExtension()?.CanRefineAll ?? false;
 
         [DataSourceProperty]
-        public string RefineAllText => GetRefinementExtension()?.RefineAllText ?? "Refine All";
+        public string RefineAllText => GetRefinementExtension()?.RefineAllText ?? TORTextHelper.GetText("tor_refine_all_text", "Refine All");
 
         [DataSourceProperty]
         public BasicTooltipViewModel RefineAllHint => _refineAllHint;

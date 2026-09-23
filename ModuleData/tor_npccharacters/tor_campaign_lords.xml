@@ -4626,6 +4626,23 @@
       <EquipmentSet id="tor_damsel_template_3" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_parravon_first_9" voice="earnest" age="65" name="{=str_tor_br_lord_parravon_first_9}Guillem de Morêt-Ferde" default_group="cavalry" occupation="Lord" culture="Culture.vlandia" race="bretonnian" skill_template="SkillSet.tor_skills_knight_lord">
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" />
+    </Equipments>
+    <face>
+      <BodyProperties age="65" weight="0.7265" build="0.4589" key="0000680B9E2C3A028859A686879A78C774D6946B7A5C536D539437B9898D56E40077B60307C3265800000000000000000000000000000000000000001CF47080" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="6" />
+      <Trait id="Commander" value="4" />
+      <Trait id="Politician" value="4" />
+      <Trait id="Manager" value="4" />
+      <Trait id="Honor" value="5" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="2" />
+    </Traits>
+  </NPCCharacter>
   <NPCCharacter id="tor_br_lord_montfort_factionleader" default_group="cavalry" name="{=str_tor_br_lord_montfort_factionleader}Duke Folcard de Montfort" occupation="Lord" culture="Culture.vlandia" voice="curt" age="31" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.7946" build="0.5927" key="0010700F0088020EAA5B4BCA68A232D65738A5A8C7575869664B876857B754940049C60304D7779B00000000000000000000000000000000000000004C846102" />
@@ -4751,6 +4768,23 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" />
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" equipmentType="Civilian" />
     </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_montfort_first_8" name="{=str_tor_br_lord_montfort_first_8}Sir Ghadrivaun de Grispoudaine" default_group="cavalry" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="36" race="bretonnian" skill_template="SkillSet.tor_skills_knight_lord">
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" />
+    </Equipments>
+    <face>
+      <BodyProperties age="36" weight="0.2791" build="0.7678" key="0000CC080044300C4673696679B77C8A757C468242CBCBB8663579AC8A8964AC007C46030718C958000000000000000000000000000000000000000024EC7100" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="6" />
+      <Trait id="Commander" value="6" />
+      <Trait id="Politician" value="4" />
+      <Trait id="Manager" value="3" />
+      <Trait id="Honor" value="4" />
+      <Trait id="Mercy" value="5" />
+      <Trait id="Generosity" value="4" />
+    </Traits>
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_bastonne_factionleader" default_group="cavalry" name="{=str_tor_br_lord_bastonne_factionleader}Duke Bohemond Beastslayer" occupation="Lord" culture="Culture.vlandia" voice="curt" age="35" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
@@ -5057,6 +5091,23 @@
       <EquipmentSet id="tor_damsel_template_2" />
       <EquipmentSet id="tor_damsel_template_2" equipmentType="Civilian" />
     </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_bordeleaux_first_9" name="{=str_tor_br_lord_bordeleaux_first_9}Lord Pierre-Alphonse de Domesnils" default_group="cavalry" occupation="Lord" culture="Culture.vlandia" voice="ironic" age="48" race="bretonnian" skill_template="SkillSet.tor_skills_knight_lord">
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" />
+    </Equipments>
+    <face>
+      <BodyProperties age="48" weight="0.5452" build="0.5631" key="0002640B97FC09D47D4889A488B69FAC61747AB778BA7E521676A2786C3A89740078860307C5C888000000000000000000000000000000000000000034EC2040" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="6" />
+      <Trait id="Politician" value="2" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="3" />
+      <Trait id="Generosity" value="3" />
+    </Traits>
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_carcassonne_factionleader" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_factionleader}Duke Huebald of Carcassonne" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
@@ -6192,6 +6243,23 @@
       <EquipmentSet id="tor_damsel_template_3" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_lyonesse_first_9" name="{=str_tor_br_lord_lyonesse_first_9}Baron Reolas Lemonfor" default_group="cavalry" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="28" race="bretonnian" skill_template="SkillSet.tor_skills_knight_lord">
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_2" />
+    </Equipments>
+    <face>
+      <BodyProperties age="28" weight="0.5879" build="0.3668" key="000A94009EB436CF835B59A5DB4A188ECDD4967B8998AD5225665169C49A95680096960309C546C600000000000000000000000000000000000000003B3C3140" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="6" />
+      <Trait id="Commander" value="4" />
+      <Trait id="Politician" value="6" />
+      <Trait id="Manager" value="4" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="3" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+  </NPCCharacter>
   <NPCCharacter id="tor_br_lord_artois_factionleader" default_group="cavalry" name="{=str_tor_br_lord_artois_factionleader}Duke Chilfroy of Artois" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
       <BodyProperties version="4" age="40" weight="0.2207" build="0.9537" key="000A4C054000100E5DC5EE0E29D8483659FF8085A0108100DFF9CF8CBB23F476EFCE06350F6AEB37E3EEFFC499E8F0BE000000000000003F000000003FFC9002" />
@@ -6302,7 +6370,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_artois_first_7" default_group="cavalry" name="{=str_tor_br_lord_artois_first_7}Lord Guiscard «le bûcheron»" occupation="Lord" culture="Culture.vlandia" voice="curt" age="29" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
-      <BodyProperties version="4" age="" weight="" build="" key="" />
+      <BodyProperties version="4" age="29" weight="0.5085" build="0.5128" key="00089C0018582192CA83279843353BC5D89889CB789774956847959759ACB54D00D886030D4B827700000000000000000000000000000000000000002FBC6140" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="9" />
@@ -6317,6 +6385,23 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" />
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" equipmentType="Civilian" />
     </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_artois_first_8" name="{=str_tor_br_lord_artois_first_8}Clovis de Bosquet-Roy’s" default_group="cavalry" occupation="Lord" culture="Culture.vlandia" voice="softspoken" age="33" race="bretonnian" skill_template="SkillSet.tor_skills_knight_lord">
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" />
+    </Equipments>
+    <face>
+      <BodyProperties age="33" weight="0.5876" build="0.5813" key="0002B00551000086467C6388B6B83E56A5286154B7BBB65AC3A56CD689A81C390079960307A867C900000000000000000000000000000000000000005CE41140" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="5" />
+      <Trait id="Honor" value="4" />
+      <Trait id="Mercy" value="3" />
+      <Trait id="Generosity" value="2" />
+    </Traits>
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_gisoreux_factionleader" default_group="cavalry" name="{=str_tor_br_lord_gisoreux_factionleader}Duke Hagen d'Gisoreux" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_knight_lord" race="bretonnian" is_hero="true">
     <face>
@@ -6443,6 +6528,40 @@
       <EquipmentSet id="tor_damsel_template_3" />
       <EquipmentSet id="tor_damsel_template_3" equipmentType="Civilian" />
     </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_gisoreux_first_8" occupation="Lord" culture="Culture.vlandia" voice="earnest" default_group="cavalry" name="{=str_tor_br_lord_gisoreux_first_8}Lord Pierre le Récupérateur" age="45" race="bretonnian" skill_template="SkillSet.tor_skills_knight_lord">
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" />
+    </Equipments>
+    <face>
+      <BodyProperties age="56" weight="0.8641" key="00022C001A58170B97C49B843637B49D168998A37387548C9284254719B754B50086D6030821D43900000000000000000000000000000000000000002D049000" build="0.3909" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="4" />
+      <Trait id="Commander" value="3" />
+      <Trait id="Politician" value="2" />
+      <Trait id="Manager" value="3" />
+      <Trait id="Honor" value="4" />
+      <Trait id="Mercy" value="3" />
+      <Trait id="Generosity" value="3" />
+    </Traits>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_gisoreux_first_9" default_group="cavalry" occupation="Lord" culture="Culture.vlandia" voice="curt" age="56" race="bretonnian" skill_template="SkillSet.tor_skills_knight_lord" name="{=str_tor_br_lord_gisoreux_first_9}Marechal Aimeboire du Vin ">
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="2" />
+      <Trait id="Politician" value="3" />
+      <Trait id="Manager" value="4" />
+      <Trait id="Honor" value="5" />
+      <Trait id="Mercy" value="2" />
+      <Trait id="Generosity" value="2" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" />
+    </Equipments>
+    <face>
+      <BodyProperties age="47" weight="0.368" build="0.4498" key="001B1C040EE40002776E44BC8A3D69B96DED8D79837AD1532A89596EE5C7739800D766030D99AB6200000000000000000000000000000000000000002BAC1140" />
+    </face>
   </NPCCharacter>
   <NPCCharacter id="tor_m_lord_mousillon_factionleader" default_group="cavalry" name="{=str_tor_m_lord_mousillon_factionleader}The Serpent of Mousillon" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_serpent" race="bretonnian" is_hero="true">
     <face>
@@ -6606,7 +6725,7 @@
       <EquipmentSet id="tor_pitre_fonce_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_m_lord_mousillon_first_9" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_9}The Black Duke" occupation="Special" culture="Culture.mousillon" voice="curt" age="50" skill_template="SkillSet.tor_skills_knight_lord" race="skeleton" is_hero="true">
+  <NPCCharacter id="tor_m_lord_mousillon_first_9" default_group="cavalry" name="{=str_tor_m_lord_mousillon_first_9}The Black Duke" occupation="Lord" culture="Culture.mousillon" voice="curt" age="50" skill_template="SkillSet.tor_skills_knight_lord" race="skeleton" is_hero="true">
     <face>
       <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
     </face>
@@ -6623,6 +6742,40 @@
       <EquipmentSet id="tor_black_duke_template" />
       <EquipmentSet id="tor_black_duke_template" equipmentType="Civilian" />
     </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_lord_mousillon_first_10" name="{=str_tor_m_lord_mousillon_first_10}Erikan Crowfiend" occupation="Lord" default_group="cavalry" culture="Culture.mousillon" voice="earnest" age="40" skill_template="SkillSet.tor_skills_bloodknight_lord" race="vampire">
+    <Equipments>
+      <EquipmentSet id="tor_blooddragon_templar_template" />
+    </Equipments>
+    <face>
+      <BodyProperties key="0002380E5BFC39401A75D9599695268CA814A8648A66786983B1876EBB79BE750065760306C28B6C000000000000000000000000000000000000000032C44000" weight="0.4682" build="0.3493" age="45" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="9" />
+      <Trait id="Honor" value="5" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+  </NPCCharacter>
+  <NPCCharacter id="tor_m_lord_mousillon_first_11" name="{=str_tor_m_lord_mousillon_first_11}Obald the Bonefather" occupation="Lord" default_group="cavalry" culture="Culture.mousillon" voice="ironic" age="90" skill_template="SkillSet.tor_skills_necromancer_lord" race="bretonnian">
+    <Equipments>
+      <EquipmentSet id="tor_necromancer_template" />
+    </Equipments>
+    <face>
+      <BodyProperties weight="0.7688" build="0.0046" key="00008C0E5DE41BD2955A877356889D51C6AB88B61FAC5C3686A5DA35666E47350050C60305A67A9B0000000000000000000000000000000000000000649C7140" age="90" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="6" />
+      <Trait id="Generosity" value="0" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Honor" value="5" />
+      <Trait id="Manager" value="7" />
+      <Trait id="Politician" value="6" />
+      <Trait id="Commander" value="7" />
+    </Traits>
   </NPCCharacter>
   <NPCCharacter id="tor_m_lord_mousillon_second_1" default_group="cavalry" name="{=str_tor_m_lord_mousillon_second_1}Lord Aucassin" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_bloodknight_lord" race="vampire" is_hero="true">
     <face>
@@ -13248,7 +13401,7 @@
       <EquipmentSet id="tor_generic_druchii_lord_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_orion_factionleader" name="Orion, Master of the Wild Hunt" default_group="infantry" occupation="Special" culture="Culture.battania" voice="curt" age="25" race="orion" is_hero="true" skill_template="SkillSet.tor_skills_karlfranz" ext_Attributes="Legendary">
+  <NPCCharacter id="tor_we_orion_factionleader" name="{=str_tor_tor_we_orion_factionleader}Orion, Master of the Wild Hunt" default_group="infantry" occupation="Special" culture="Culture.battania" voice="curt" age="25" race="orion" is_hero="true" skill_template="SkillSet.tor_skills_karlfranz">
     <face>
       <BodyProperties age="25" weight="0.2608" build="0.3997" key="0000AC0FC0B40000B97634CE6774B835537D86629511323BDCB177278A840203010646130048B49500000000000000000000000000000000000000003E040000" />
     </face>
@@ -13261,11 +13414,11 @@
       <Trait id="Mercy" value="-2" />
       <Trait id="Generosity" value="0" />
     </Traits>
-	    <Equipments>
+    <Equipments>
       <EquipmentSet id="tor_we_orion_template" />
       <EquipmentSet id="tor_we_orion_template" equipmentType="Civilian" />
-	    </Equipments>
-  </NPCCharacter> 
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_we_orion_spellsinger_1" default_group="infantry" name="{=str_tor_we_orion_spellsinger}Spellsinger" occupation="Special" culture="Culture.battania" voice="softspoken" age="30" race="elf" is_female="true" skill_template="SkillSet.tor_skills_wanderer_guardianmage" is_hero="true">
     <face>
       <face_key_template value="BodyProperty.spellsinger" />
@@ -13440,6 +13593,24 @@
     <Equipments>
       <EquipmentSet id="jules_the_jester_template" />
       <EquipmentSet id="jules_the_jester_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_greenknight_leader" name="{=str_tor_br_greenknight_leader}The Green Knight" default_group="cavalry" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="58" skill_template="SkillSet.tor_skills_louenleoncoeur">
+    <face>
+      <BodyProperties age="43" weight="0.5568" build="0.5163" key="0002780D8044034576A2A6415759B9EA73B77A9971DB846978735A5944668856854C76030C85738C888796AA3686398C000000000000000C00000000418C1002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="10" />
+      <Trait id="Commander" value="10" />
+      <Trait id="Politician" value="10" />
+      <Trait id="Manager" value="10" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Mercy" value="2" />
+      <Trait id="Generosity" value="2" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_greenknight_template" />
+      <EquipmentSet id="tor_greenknight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dog_clan_hero_braganza" default_group="ranged" name="{=str_tor_dog_clan_hero_braganza}Luka Braganza" occupation="Lord" culture="Culture.empire" voice="curt" age="53" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">

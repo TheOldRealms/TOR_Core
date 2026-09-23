@@ -11,16 +11,15 @@ using TaleWorlds.CampaignSystem.Settlements.Locations;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ImageIdentifiers;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
-using TOR_Core.CampaignMechanics.Crafting;
-using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
-using TOR_Core.Items;
+using TOR_Core.Framework;
 using TOR_Core.Utilities;
 using static TOR_Core.Utilities.TORConstants;
 
-namespace TOR_Core.CampaignMechanics.SpellTrainers;
+namespace TOR_Core.CampaignMechanics.Crafting;
 
 public class EnchanterTownBehavior : CampaignBehaviorBase
 {
@@ -278,6 +277,11 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
             return false;
         }
 
+        if (CraftingCareerHooks.EnchanterAccessGrants.Exists(grant => grant(Hero.MainHero, culture)))
+        {
+            return true;
+        }
+
         switch (culture)
         {
             case TORConstants.Cultures.EMPIRE:
@@ -306,11 +310,6 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                 return HasMatchingEnchanterCompanion(x => x.Culture.StringId == TORConstants.Cultures.BRETONNIA && x.IsSpellCaster());
 
             case TORConstants.Cultures.ASRAI:
-                if (Hero.MainHero.HasCareer(TORCareers.Spellsinger))
-                {
-                    return true;
-                }
-
                 if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI &&
                     Hero.MainHero.IsSpellCaster() &&
                     Hero.MainHero.GetKnownLoreCount() > 0)
@@ -586,37 +585,10 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
             void AddBeginnerBlueprintsForEnchantment()
             {
-                var career = Hero.MainHero.GetCareer();
-
-                if (Hero.MainHero.IsSpellCaster() && career == TORCareers.ImperialMagister)
+                foreach (var grantor in CraftingCareerHooks.BeginnerBlueprintGrantors)
                 {
-                    if (Hero.MainHero.HasKnownLore("LoreOfDeath")) 
-                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_shyish_whisper", true);
-
-                    if (Hero.MainHero.HasKnownLore("LoreOfMetal")) 
-                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_chamon_whisper", true);
-
-                    if (Hero.MainHero.HasKnownLore("LoreOfLight"))
-                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_hysh_whisper", true);
-
-                    if (Hero.MainHero.HasKnownLore("LoreOfHeavens")) 
-                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_azyr_whisper", true);
-
-                    if (Hero.MainHero.HasKnownLore("LoreOfBeasts")) 
-                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_ghur_whisper", true);
-
-                    if (Hero.MainHero.HasKnownLore("LoreOfLife")) 
-                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_ghyran_whisper", true);
-
-                    if (Hero.MainHero.HasKnownLore("LoreOfFire")) 
-                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_aqshy_whisper", true);
+                    grantor(Hero.MainHero);
                 }
-
-                if (Hero.MainHero.IsSpellCaster() && Hero.MainHero.HasCareer(TORCareers.GrailDamsel))
-                    if (Hero.MainHero.HasKnownLore("LoreOfLife"))
-                        Hero.MainHero.AddEnchantmentBlueprint("emp_enchant_ghyran_whisper", true);
-
-                if (Hero.MainHero.HasCareer(TORCareers.Runelord)) Hero.MainHero.AddEnchantmentBlueprint("dw_rune_stone", true);
             }
 
             bool ConditionForDonation()
@@ -653,13 +625,14 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                 GameTexts.SetVariable("CUSTOMRESOURCE_ICON", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText());
 
 
-                var title = GameTexts.FindText("tor_enchant_prompt_disintegrate", "title");
-                var text = GameTexts.FindText("tor_enchant_prompt_disintegrate", "text");
-                if (customResourceExchange)
-                {
-                    title = GameTexts.FindText("tor_enchant_prompt_donate_items", "title");
-                    text = GameTexts.FindText("tor_enchant_prompt_donate_items", "text");
-                }
+                // Nothing calls DonationMode(false) today; the disintegrate strings exist so the branch is
+                // localized while it survives. Deleting the branch and its strings is Codesmells work.
+                var title = customResourceExchange
+                    ? TORTextHelper.GetTextObject("tor_enchant_prompt_donate_items", "title", "Donate items")
+                    : TORTextHelper.GetTextObject("tor_enchant_prompt_disintegrate", "title", "Disenchant items");
+                var text = customResourceExchange
+                    ? TORTextHelper.GetTextObject("tor_enchant_prompt_donate_items", "text", "Select the items you want to donate. You will obtain {CUSTOMRESOURCE_ICON} from this action. ")
+                    : TORTextHelper.GetTextObject("tor_enchant_prompt_disintegrate", "text", "Select the items you want to disenchant. Their ingredients will be returned to you.");
 
 
                 var inquirydata = new MultiSelectionInquiryData(title.ToString(), text.ToString(), selectableItems, true, 1, 15, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
@@ -706,6 +679,7 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                                     resources[(int)type] += (int)Mathf.Max(1, trait.IngredientAmount * factor);
 
                                     customResourceElem += model.GetCustomResourceValueForIngredient(type) * trait.IngredientAmount;
+                                    // TODO: Doubles per ingredient trait (1/3, 2/3, 4/3, 8/3...), so the donation payout grows exponentially with trait count. Intended, or should it add 1/3 each time? -> PR discussion.
                                     customResourceFactor += customResourceFactor;
                                 }
                             }
@@ -727,22 +701,26 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                         return;
                     }
 
-                    var text = "";
+                    var gainedItems = new List<TextObject>();
 
                     foreach (TorTradeGoodType type in Enum.GetValues(typeof(TorTradeGoodType)))
                     {
-                        text.Add(" ");
                         var ingredient = TorEnchantingIngredients.GetItemObjectForIngredient(type);
                         if (ingredient == null)
                             continue;
 
                         Hero.MainHero.PartyBelongedTo.ItemRoster.Add(new ItemRosterElement(ingredient, resources[(int)type]));
-                        if (resources[(int)type] > 0) text += resources[(int)type] + ", " + ingredient.Name;
+                        if (resources[(int)type] > 0)
+                        {
+                            gainedItems.Add(TORTextHelper.GetTextObject("tor_gained_item_amount_text", "{AMOUNT} {ITEM_NAME}")
+                                .SetTextVariable("AMOUNT", resources[(int)type])
+                                .SetTextVariable("ITEM_NAME", ingredient.Name));
+                        }
                     }
 
 
                     var gainedItemsText = TORTextHelper.GetTextObject("tor_gained_items_notification_text", "Gained {ITEMS}");
-                    gainedItemsText.SetTextVariable("ITEMS", text);
+                    gainedItemsText.SetTextVariable("ITEMS", GameTexts.GameTextHelper.MergeTextObjectsWithComma(gainedItems, false));
                     MBInformationManager.AddQuickInformation(gainedItemsText, 2000, Hero.MainHero.CharacterObject);
                 }
             }

@@ -433,6 +433,12 @@ namespace TOR_Core.Models
             // Apply career passives for damage values
             TORDamageHelper.ApplyCareerPassives(attackerAgent, victimAgent, attackTypeMask, additionalDamagePercentages, resistancePercentages);
 
+            if (collisionData.IsMissile &&
+                TORDamageHelper.IsNonMagicalSiegeOrExplosiveAmmunition(attackInformation.AttackerWeapon.Item))
+            {
+                TORDamageHelper.ApplyNestCleansingExplosionResistance(victimAgent, resistancePercentages);
+            }
+
             // Career-specific bonuses for melee/ranged
             if (Game.Current.GameType is Campaign && attackerAgent.IsMainAgent)
             {
@@ -1156,6 +1162,10 @@ namespace TOR_Core.Models
             }
         }
 
+        /// <summary>
+        /// Calculates the % damage reduction to be applied directly to the damage.
+        /// Ie. 60% ward save factor => damage * 0.6 = 40% damage taken.
+        /// </summary>
         public float CalculateWardSaveFactor(Agent attacker, Agent victim, float[] resistances, bool friendlyFire)
         {
             var result = new ExplainedNumber(1f);
@@ -1181,11 +1191,15 @@ namespace TOR_Core.Models
                 result.AddFactor(-0.9f);
             } 
 
-            result.LimitMax(1);
             if (!friendlyFire)
             {
-                result.LimitMin(0.11f);
+                result.LimitMin(0.10f);
             }
+            else
+            {
+                result.LimitMin(0f);
+            }
+
             return result.ResultNumber;
         }
 
