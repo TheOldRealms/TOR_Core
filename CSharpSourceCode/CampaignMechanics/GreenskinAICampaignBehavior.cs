@@ -350,4 +350,17 @@ namespace TOR_Core.CampaignMechanics
             // No data to sync
         }
     }
+
+    //Sly : what are the things I seek from this when it's functional?
+    ///Greenskin factions periodically enter a waaagh state that makes them an aggressive faction with larger numbers that slams itself against enemies.
+    ///I don't really care about it being a defensive waaagh, but that the faction has a specific identity of ebb and flow as it transitions between power states.
+    ///So let's imagine something else beyond the current resistance to destruction.
+    ///
+    ///They can enter a power state when some conditions are fulfilled, perhaps :
+    ///- some number of casualties have been caused, battles fought, destruction caused
+    ///- inverses, casualties received, destruction received, etc.
+    ///- passage of time
+    ///- accumulation of influence, renown
+    ///- recruitment of orcs, or troops in general
+    ///- 
 }
