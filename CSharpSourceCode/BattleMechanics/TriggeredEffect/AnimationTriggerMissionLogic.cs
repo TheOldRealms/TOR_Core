@@ -37,6 +37,11 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 {
                     _trackedAgents.Add(agent, new MBList<AnimationTriggerTuple>());
                 }
+                //Sly : addition to test animation triggers with player treeman
+                else if (agent.IsHero && agent.GetHero() != null && agent.IsTreeman())
+                {
+                    _trackedAgents.Add(agent, new MBList<AnimationTriggerTuple>());
+                }
             }
 
         }
