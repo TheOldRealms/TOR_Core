@@ -66,12 +66,14 @@ namespace TOR_Core.AbilitySystem.Scripts
         {
             for (var i = (int)GameKeyDefinition.Down; i <= (int)GameKeyDefinition.Right; i++)
             {
-                _keyContext.GetGameKey(i).KeyboardKey.ChangeKey(_keyboardMovementKeys[i]);
+                if (_keyboardMovementKeys.TryGetValue(i, out InputKey keyboardInputKey))
+                _keyContext.GetGameKey(i).KeyboardKey.ChangeKey(keyboardInputKey);
             }
 
             for (var i = (int)GameKeyDefinition.Down; i <= (int)GameKeyDefinition.Right; i++)
             {
-                _keyContext.GetGameKey(i).ControllerKey.ChangeKey(_controllerMovementKeys[i]);
+                if (_controllerMovementKeys.TryGetValue(i, out InputKey controllerInputKey))
+                _keyContext.GetGameKey(i).ControllerKey.ChangeKey(controllerInputKey);
             }
         }
 

@@ -913,10 +913,16 @@ namespace TOR_Core.AbilitySystem
         private void RebindBothKeys(int gameKey)
         {
             if (_keyContext.GetGameKey(gameKey).KeyboardKey?.InputKey == InputKey.Invalid)
-            _keyContext.GetGameKey(gameKey).KeyboardKey.ChangeKey(_storedKeyboardKeys[gameKey]);
+            {
+                if (_storedKeyboardKeys.TryGetValue(gameKey, out InputKey keyboardInputKey))
+                _keyContext.GetGameKey(gameKey).KeyboardKey.ChangeKey(keyboardInputKey);
+            }
 
             if (_keyContext.GetGameKey(gameKey).ControllerKey?.InputKey == InputKey.Invalid)
-            _keyContext.GetGameKey(gameKey).ControllerKey.ChangeKey(_storedControllerKeys[gameKey]);
+            {
+                if (_storedControllerKeys.TryGetValue(gameKey, out InputKey controllerInputKey))
+                _keyContext.GetGameKey(gameKey).ControllerKey.ChangeKey(controllerInputKey);
+            }
         }
 
         private void UnbindWeaponKeys()
