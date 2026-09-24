@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.InputSystem;
@@ -10,8 +11,10 @@ namespace TOR_Core.AbilitySystem.Scripts
 {
     public class ShadowStepScript : CareerAbilityScript
     {
-        private readonly InputKey[] _axisKeys = new InputKey[4];
+        private Dictionary<int, InputKey> _keyboardMovementKeys = [];
+        private Dictionary<int, InputKey> _controllerMovementKeys = [];
         private readonly GameKeyContext _keyContext = HotKeyManager.GetCategory("Generic");
+        private IInputContext InputContext => Mission.Current.InputManager;
         private const float _minimalDistance = 2;
         private float _speed = 10f;
         private float _effectTickInterval;
@@ -47,21 +50,21 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         private void SaveKeyBindings()
         {
-            for (var i = 0; i < 4; i++) _axisKeys[i] = _keyContext.GetGameKey(i).KeyboardKey.InputKey;
+            for (var i = (int)GameKeyDefinition.Down; i <= (int)GameKeyDefinition.Right; i++) _keyboardMovementKeys[i] = _keyContext.GetGameKey(i).KeyboardKey.InputKey;
+            for (var i = (int)GameKeyDefinition.Down; i <= (int)GameKeyDefinition.Right; i++) _controllerMovementKeys[i] = _keyContext.GetGameKey(i).ControllerKey.InputKey;
         }
 
         private void RestoreKeyBindings()
         {
-            _keyContext.GetGameKey(0).KeyboardKey.ChangeKey(_axisKeys[0]);
-            _keyContext.GetGameKey(1).KeyboardKey.ChangeKey(_axisKeys[1]);
-            _keyContext.GetGameKey(2).KeyboardKey.ChangeKey(_axisKeys[2]);
-            _keyContext.GetGameKey(3).KeyboardKey.ChangeKey(_axisKeys[3]);
+            for (var i = (int)GameKeyDefinition.Down; i <= (int)GameKeyDefinition.Right; i++) _keyContext.GetGameKey(i).KeyboardKey.ChangeKey(_keyboardMovementKeys[i]);
+            for (var i = (int)GameKeyDefinition.Down; i <= (int)GameKeyDefinition.Right; i++) _keyContext.GetGameKey(i).ControllerKey.ChangeKey(_controllerMovementKeys[i]);
         }
 
         private void DisbindKeyBindings()
         {
-            //_axisKeys[0] is the move forward button; it is left unbound so the player can use mistform regardless of what keybinds they use when playing
-            for (var i = 1; i < 4; i++) _keyContext.GetGameKey(i).KeyboardKey.ChangeKey(InputKey.Invalid);
+            //The GameKey for Up is left bound so the player moves forward with their normal key
+            for (var i = (int)GameKeyDefinition.Down; i <= (int)GameKeyDefinition.Right; i++) _keyContext.GetGameKey(i).KeyboardKey.ChangeKey(InputKey.Invalid);
+            for (var i = (int)GameKeyDefinition.Down; i <= (int)GameKeyDefinition.Right; i++) _keyContext.GetGameKey(i).ControllerKey.ChangeKey(InputKey.Invalid);
         }
 
         protected override void OnBeforeTick(float dt)
@@ -87,7 +90,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             }
             else
             {
-                if (Input.IsKeyDown(_axisKeys[0]))
+                if (InputContext.IsGameKeyPressed((int)GameKeyDefinition.Up))
                 {
                     if (_playerFlyableObjectScript.IsReady() && GetDistance() > _minimalDistance)
                     {

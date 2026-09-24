@@ -103,17 +103,6 @@ namespace TOR_Core.HarmonyPatches
             return false;
         }
 
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(HotKeyManager), "RegisterInitialContexts")]
-        public static bool AddTorContext(ref IEnumerable<GameKeyContext> contexts)
-        {
-            List<GameKeyContext> newcontexts = contexts.ToList();
-            if (!newcontexts.Any(x => x is TORGameKeyContext)) newcontexts.Add(new TORGameKeyContext());
-            contexts = newcontexts;
-            return true;
-        }
-
-
         //For some reason, sometimes on a hideout becoming visible this fires off without the lists of settlement tuples being initialized
         //which should happen on nameplate creation of the new visible hideout.
         [HarmonyPrefix]

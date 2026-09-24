@@ -33,7 +33,7 @@ namespace TOR_Core.AbilitySystem
             if (_abilityLogic == null) _abilityLogic = Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>();
             if (_abilityLogic != null)
             {
-                IsVisible = _abilityLogic.CurrentState == AbilityModeState.QuickMenuSelection;
+                IsVisible = _abilityLogic.CurrentState == AbilityModeState.AbilitySelectionMenu;
                 if (IsVisible)
                 {
                     if (CurrentAbility == null) CurrentAbility = new AbilityHUD_VM();
