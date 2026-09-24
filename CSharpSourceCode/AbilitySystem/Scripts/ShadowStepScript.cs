@@ -50,14 +50,29 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         private void SaveKeyBindings()
         {
-            for (var i = (int)GameKeyDefinition.Down; i <= (int)GameKeyDefinition.Right; i++) _keyboardMovementKeys[i] = _keyContext.GetGameKey(i).KeyboardKey.InputKey;
-            for (var i = (int)GameKeyDefinition.Down; i <= (int)GameKeyDefinition.Right; i++) _controllerMovementKeys[i] = _keyContext.GetGameKey(i).ControllerKey.InputKey;
+            for (var i = (int)GameKeyDefinition.Down; i <= (int)GameKeyDefinition.Right; i++)
+            {
+                var keyboardKey = _keyContext.GetGameKey(i).KeyboardKey?.InputKey ?? InputKey.Invalid;
+                _keyboardMovementKeys[i] = keyboardKey;
+            }
+            for (var i = (int)GameKeyDefinition.Down; i <= (int)GameKeyDefinition.Right; i++)
+            {
+                var controllerKey = _keyContext.GetGameKey(i).ControllerKey?.InputKey ?? InputKey.Invalid;
+                _controllerMovementKeys[i] = controllerKey;
+            }
         }
 
         private void RestoreKeyBindings()
         {
-            for (var i = (int)GameKeyDefinition.Down; i <= (int)GameKeyDefinition.Right; i++) _keyContext.GetGameKey(i).KeyboardKey.ChangeKey(_keyboardMovementKeys[i]);
-            for (var i = (int)GameKeyDefinition.Down; i <= (int)GameKeyDefinition.Right; i++) _keyContext.GetGameKey(i).ControllerKey.ChangeKey(_controllerMovementKeys[i]);
+            for (var i = (int)GameKeyDefinition.Down; i <= (int)GameKeyDefinition.Right; i++)
+            {
+                _keyContext.GetGameKey(i).KeyboardKey.ChangeKey(_keyboardMovementKeys[i]);
+            }
+
+            for (var i = (int)GameKeyDefinition.Down; i <= (int)GameKeyDefinition.Right; i++)
+            {
+                _keyContext.GetGameKey(i).ControllerKey.ChangeKey(_controllerMovementKeys[i]);
+            }
         }
 
         private void DisbindKeyBindings()

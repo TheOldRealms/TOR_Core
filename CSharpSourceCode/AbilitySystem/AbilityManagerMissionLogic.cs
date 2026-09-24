@@ -56,7 +56,8 @@ namespace TOR_Core.AbilitySystem
         private SummonedCombatant _attackerSummoningCombatant;
 
         private Dictionary<Team, int> _artillerySlots = [];
-        private IInputContext InputContext => Mission.InputManager;
+        private IInputContext MissionInputContext => Mission.InputManager;
+        private bool _inputCategoryAdded;
         private int _abilitySelectionMenuId = (int)TorKeyMap.AbilitySelectionMenu;
         private int _quickCastId = (int)TorKeyMap.QuickCast;
         private int _careerAbilityId = (int)TorKeyMap.CareerAbilityCast;
@@ -116,6 +117,18 @@ namespace TOR_Core.AbilitySystem
             Mission.OnItemPickUp += OnItemPickup;
         }
 
+        public override void OnMissionTick(float dt)
+        {
+            base.OnMissionTick(dt);
+
+            //Sly : couldn't find a better event to put this in that would have it be checked just once.
+            if (!_inputCategoryAdded && MissionInputContext !=  null)
+            {
+                (MissionInputContext as InputContext).RegisterHotKeyCategory(HotKeyManager.GetCategory(nameof(TORGameKeyContext)));
+                _inputCategoryAdded = true;
+            }
+        }
+
         public void InitHideOutBossFight()
         {
             OnInitHideOutBossFight?.Invoke();
@@ -130,7 +143,7 @@ namespace TOR_Core.AbilitySystem
             Game.Current.EventManager.RegisterEvent(new Action<MissionPlayerToggledOrderViewEvent>(OnPlayerToggleOrder));
             
             _keyContext.GetGameKey((int)GameKeyDefinition.ViewCharacter).ControllerKey.ChangeKey(InputKey.Invalid); // Unbind ViewCharacter Controller key
-
+            
             TORSummonHelper.ResetInitialSpawnedTroopCount();
 
             _missionAgentSpawnLogic = Mission.GetMissionBehavior<DefaultBattleMissionAgentSpawnLogic>();
@@ -410,12 +423,12 @@ namespace TOR_Core.AbilitySystem
 
         private void HandleInput(float dt)
         {
-            if (InputContext.IsHotKeyPressed(_showScoreboardId))
+            if (MissionInputContext.IsHotKeyPressed(_showScoreboardId))
                 return;
             
             if (_currentState == AbilityModeState.AbilitySelectionMenu || _currentState == AbilityModeState.Targeting)
             {
-                if (InputContext.IsGameKeyPressed(_cancelCastId))
+                if (MissionInputContext.IsGameKeyPressed(_cancelCastId))
                 {
                     DisableAbilityMode(false, null);
                     return;
@@ -426,15 +439,15 @@ namespace TOR_Core.AbilitySystem
             {
                 case AbilityModeState.Off:
                     {
-                        if (InputContext.IsGameKeyPressed(_confirmCastId) || InputContext.IsGameKeyPressed(_cancelCastId))
+                        if (MissionInputContext.IsGameKeyPressed(_confirmCastId) || MissionInputContext.IsGameKeyPressed(_cancelCastId))
                         {
                             if (_abilityComponent.CareerAbility != null && _abilityComponent.CareerAbility.IsActive) _abilityComponent.OnInterrupt();
                         }
-                        else if (InputContext.IsGameKeyPressed(_abilitySelectionMenuId))
+                        else if (MissionInputContext.IsGameKeyPressed(_abilitySelectionMenuId))
                         {
                             EnableQuickSelectionMenuMode();
                         }
-                        else if (InputContext.IsGameKeyPressed(_careerAbilityId))
+                        else if (MissionInputContext.IsGameKeyPressed(_careerAbilityId))
                         {
                             TextObject disabledReason = new("Error Casting Career Ability");
                             if (_abilityComponent.CareerAbility != null && !_abilityComponent.CareerAbility.IsDisabled(Agent.Main, out disabledReason) && IsSniperScopeDisabled())
@@ -464,7 +477,7 @@ namespace TOR_Core.AbilitySystem
                                 _abilityView.DisplayErrorMessage(disabledReason.ToString());
                             }
                         }
-                        else if (InputContext.IsGameKeyPressed(_quickCastId))
+                        else if (MissionInputContext.IsGameKeyPressed(_quickCastId))
                         {
                             if (_abilityComponent.CurrentAbility != null && !_abilityComponent.CurrentAbility.IsDisabled(Agent.Main, out _) && IsSniperScopeDisabled())
                             {
@@ -480,7 +493,7 @@ namespace TOR_Core.AbilitySystem
                     break;
                 case AbilityModeState.AbilitySelectionMenu:
                     {
-                        if (!InputContext.IsGameKeyPressed(_abilitySelectionMenuId))
+                        if (!MissionInputContext.IsGameKeyPressed(_abilitySelectionMenuId))
                         {
                             if (_abilityComponent.CurrentAbility.IsDisabled(Agent.Main, out TextObject failureReason))
                             {
@@ -511,7 +524,7 @@ namespace TOR_Core.AbilitySystem
                     break;
                 case AbilityModeState.Targeting:
                     {
-                        if (InputContext.IsGameKeyPressed(_confirmCastId))
+                        if (MissionInputContext.IsGameKeyPressed(_confirmCastId))
                         {
                             bool flag = _abilityComponent.CurrentAbility.Crosshair == null ||
                                         !_abilityComponent.CurrentAbility.Crosshair.IsVisible ||
@@ -531,7 +544,7 @@ namespace TOR_Core.AbilitySystem
                                 }
                             }
                         }
-                        else if (InputContext.IsGameKeyPressed(_abilitySelectionMenuId))
+                        else if (MissionInputContext.IsGameKeyPressed(_abilitySelectionMenuId))
                         {
                             EnableQuickSelectionMenuMode();
                         }
@@ -899,8 +912,10 @@ namespace TOR_Core.AbilitySystem
 
         private void RebindBothKeys(int gameKey)
         {
+            if (_keyContext.GetGameKey(gameKey).KeyboardKey?.InputKey == InputKey.Invalid)
             _keyContext.GetGameKey(gameKey).KeyboardKey.ChangeKey(_storedKeyboardKeys[gameKey]);
 
+            if (_keyContext.GetGameKey(gameKey).ControllerKey?.InputKey == InputKey.Invalid)
             _keyContext.GetGameKey(gameKey).ControllerKey.ChangeKey(_storedControllerKeys[gameKey]);
         }
 
@@ -916,10 +931,13 @@ namespace TOR_Core.AbilitySystem
 
         private void StoreAndUnbindBothKeys(int gameKey)
         {
-            _storedKeyboardKeys.AddOrReplace(gameKey, _keyContext.GetGameKey(gameKey).KeyboardKey.InputKey);
+            var keyboardKey = _keyContext.GetGameKey(gameKey).KeyboardKey?.InputKey ?? InputKey.Invalid;
+            _storedKeyboardKeys.AddOrReplace(gameKey, keyboardKey);
             _keyContext.GetGameKey(gameKey).KeyboardKey.ChangeKey(InputKey.Invalid);
 
-            _storedControllerKeys.AddOrReplace(gameKey, _keyContext.GetGameKey(gameKey).ControllerKey.InputKey);
+
+            var controllerKey = _keyContext.GetGameKey(gameKey).ControllerKey?.InputKey ?? InputKey.Invalid;
+            _storedControllerKeys.AddOrReplace(gameKey, controllerKey);
             _keyContext.GetGameKey(gameKey).ControllerKey.ChangeKey(InputKey.Invalid);
         }
 
