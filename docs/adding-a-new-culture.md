@@ -328,14 +328,56 @@ _Fill in as the build progresses so future cultures can look up "what did they d
 - Hero: `tor_beastmen_lord_factionleader` — the Beastlord of the Great Herd (placeholder text)
 - BodyProperty: `fighter_beastmen_peasant` — verbatim clone of `fighter_mousillon_peasant` (needs Beastmen-flavored hair/beard/tattoo pool later)
 - Starting settlements: **re-owned** Carroburg (town_ML3) + its 4 bound villages (Anseldorf ML3_1, Barenfähre ML3_2, Dunkelbild ML3_3, Weidemarkt ML3_4). Middenland loses those. `owner=Faction.beastmen_clan_1`, `culture=Culture.beastmen` on all five. No new settlement ids created. Positional / scene / component ids unchanged (crucial — settlement ids are referenced from save games, quests, and other data files).
-- CC spawn coordinates: **not set** — spawn logic in `TORCharacterCreationContentHandler.cs` still needs Beastmen-specific coordinates. The player can't yet start as a Beastmen character.
+- CC spawn coordinates: set in culture XML (`start_point_position_x="932.531"`, `start_point_position_y="1049.944"` — near Mousillon region, inherited from clone). Player can start as Beastmen.
 
-**Caveat — the existing `BEASTMEN` alias:**
+**Caveat — the existing `BEASTMEN` alias (RESOLVED in Session 2):**
 
-`Utilities/TORConstants.cs` line 44 already has `public const string BEASTMEN = "steppe_bandits";`. That is a **legacy bandit-tier alias** — pre-existing, unrelated to this buildout. The new kingdom-tier culture we authored uses the literal id `"beastmen"` and does **not** yet have a C# constant of its own. Any C# code that currently does `if (culture.StringId == TORConstants.Cultures.BEASTMEN)` will match the *bandit* culture (steppe_bandits), not the new kingdom culture. Same pattern as `GREENSKIN` (kingdom) / `GREENSKIN_BANDIT` (bandit) or `CHAOS` (kingdom) / `CHAOS_CULTIST` (bandit) — but the split hasn't been formalized for Beastmen yet. **Next session** should decide whether to rename `BEASTMEN` → `BEASTMEN_BANDIT` and add a new `BEASTMEN = "beastmen"` for the kingdom, or use a distinct name like `BEASTMEN_KINGDOM`.
+~~`Utilities/TORConstants.cs` line 44 already has `public const string BEASTMEN = "steppe_bandits";`. That is a **legacy bandit-tier alias**...~~
+
+**Resolution:** Renamed `BEASTMEN` → `BEASTMEN_BANDIT` for the bandit culture, added `BEASTMEN = "beastmen"` for the kingdom. All code references updated to check both where appropriate (e.g., `IsBeastman()` returns true for either).
+
+**Session 2 (2026-09-27) — C# integration, custom resource, culture strings:**
+
+Fixed the crash and made the culture fully selectable:
+
+1. **NPCCharacter entry for hero** — added `tor_beastmen_lord_factionleader` to `tor_campaign_lords.xml`. Heroes need BOTH a `<Hero>` entry in `tor_heroes.xml` AND an `<NPCCharacter>` entry in `tor_campaign_lords.xml` to initialize properly. Missing the latter caused `settlement.Owner.Culture` to be null → crash in `IsDwarfKarak`.
+
+2. **TORConstants.cs cleanup:**
+   - Renamed `BEASTMEN = "steppe_bandits"` → `BEASTMEN_BANDIT = "steppe_bandits"` (bandit alias)
+   - Added `BEASTMEN = "beastmen"` (new kingdom culture)
+   - Added `BEASTMEN` to `Cultures.All` list
+
+3. **Updated all code references** to handle both `BEASTMEN` and `BEASTMEN_BANDIT`:
+   - `CharacterObjectExtensions.cs` — `IsBeastman()` checks both
+   - `CustomResourceManager.cs` — evilCultures arrays
+   - `WeaponHitScriptsMissionLogic.cs` — agent filtering
+   - `TORGameMenuBackgroundSwitcher.cs` — background switch cases
+   - `TORCultureBattleSettings.cs` — battle AI personality
+   - `ReligionObjectHelper.cs` — pantheon mapping (both → Chaos)
+
+4. **Character creation race/body properties:**
+   - Added `default_ungor` body properties string
+   - Added `case TORConstants.Cultures.BEASTMEN:` in `OnCultureSelected()` → sets race to "ungor"
+
+5. **Custom resource "DarkOmen":**
+   - Added to `CustomResourceManager.Initialize()` with `darkenergy_icon_45` placeholder icon
+   - Associated with `TORConstants.Cultures.BEASTMEN`
+   - Added `BEASTMEN` to battle rewards culture check (line ~296)
+   - Added localization: `tor_custom_resource_name.DarkOmen`, `tor_custom_resource_description.DarkOmen`
+
+6. **Culture localization strings added:**
+   - `str_culture_rich_name.beastmen` — "Beastmen of Chaos"
+   - `str_culture_description.beastmen` — lore description
+   - `str_faction_formal_name_for_culture.beastmen` — "Beastmen Warherds"
+   - `str_faction_informal_name_for_culture.beastmen` — "the Beastmen"
+   - `str_adjective_for_culture.beastmen` — "beastman"
+   - `str_neutral_term_for_culture.beastmen` — "beastmen"
+
+**Result:** Culture is now selectable in character creation, spawns correctly, and has a working custom resource.
 
 **Still-to-do for a first-pass playable Beastmen:**
 
-- Character-creation flow (Stage 3): `option_1/2/3_beastmen_*` in `tor_cc_options.xml`, spawn coords + banner-icon assignment in `TORCharacterCreationContentHandler.cs`, related strings.
 - Cross-culture rules (Stage 4): hiring compatibility, reinforcement, faction discontinuation flag.
 - Content polish (deferred): Beastmen-flavored name pools, notable templates, banner-icon groups, troop tree, encounter mesh, townspeople file.
+- DarkOmen icon: create proper icon asset (currently using darkenergy_icon_45 placeholder).
+- DarkOmen mechanics: implement earning/spending behaviors specific to beastmen (currently just earns from battles like other cultures).
