@@ -84,12 +84,12 @@ namespace TOR_Core.Models
 
             if (partyCulture?.StringId == TORConstants.Cultures.DAWI)
             {
-                num.AddFactor(-0.25f, TORTextHelper.GetTextObject("tor_party_size_desc", "DwarfPenalty", "Dwarf cultural penalty"));
+                num.Add(-(num.BaseNumber * 0.25f), TORTextHelper.GetTextObject("tor_party_size_desc", "DwarfPenalty", "Dwarf cultural penalty"));
             }
 
             if (partyCulture?.StringId == TORConstants.Cultures.ASRAI)
             {
-                num.AddFactor(-0.25f, TORTextHelper.GetTextObject("tor_party_size_desc", "WoodelfPenalty", "Woodelf cultural penalty"));
+                num.Add(-(num.BaseNumber * 0.25f), TORTextHelper.GetTextObject("tor_party_size_desc", "WoodelfPenalty", "Woodelf cultural penalty"));
 
                 if (party.LeaderHero == Hero.MainHero)
                 {

@@ -1961,6 +1961,7 @@
   <string id="str_how_to_learn_skill.Spellcraft" text="{=str_tor_how_to_learn_skill_Spellcraft}Cast spells, do damage with magic." />
 
   <!-- crafting -->
+  <!-- The base id that these are attached to as variants is defined in native code which looks among the variants for a matching string to the crafting template id. -->
   <string id="str_crafting_template.tor_twohandedswords_template" text="{=str_tor_crafting_template_TORGreatswords}TOR-Greatswords" />
   <string id="str_crafting_template.tor_orc_twohandedsword_template" text="{=str_tor_crafting_template_TOROrcGreatswords}TOR-Orc Greatswords" />
   <string id="str_crafting_template.tor_sword_template" text="{=str_tor_crafting_template_TORSwords}TOR-Swords" />

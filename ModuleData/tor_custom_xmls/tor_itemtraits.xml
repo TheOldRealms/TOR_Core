@@ -700,6 +700,19 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
+  <ItemTrait ItemTraitStringId="bret_dolorous_blade_gale" ItemTraitName="Empowered Gale of Azyr" IsCraftable="false" ImbuedEffectChance="0.40" IconName="grail">
+    <ValidItemType>Weapon</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_bret_dolorous_blade_gale}"15% extra armour penetration. Hits have a 40% chance to unleash a gust around the wielder, knocking down enemies within 3m and dealing up to 40 lightning damage."</ItemTraitDescription>
+    <StatsTuple StatType="ArmorPenetration" Value="15" />
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
+      <WeaponScriptArguments>
+        <WeaponScriptArgument>dolorous_blade_gale_enchant</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
+      </WeaponScriptArguments>
+    </OnWeaponHitScript>
+  </ItemTrait>
   <ItemTrait ItemTraitStringId="emp_enchant_azyr_foresight" ItemTraitName="Foresight of Azyr" IsCraftable="true" ImbuedEffectChance="0.15" IconName="azyr">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
@@ -5250,5 +5263,76 @@
         <InventoryScriptArgument>BigWaaagh</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
+  </ItemTrait>
+  <!-- Unique lord equipment: no crafting recipes or learning manuscripts. -->
+  <ItemTrait ItemTraitStringId="unique_helden_hammer" ItemTraitName="The Helden-Hammer" IsCraftable="false" ImbuedEffectChance="0.50" IconName="ghal_maraz">
+    <ValidItemType>Melee</ValidItemType>
+    <ItemTraitDescription>{=str_tor_itemtraits_unique_helden_hammer}+125% extra holy damage and +35% swing speed. Eligible hits have a 50% chance to unleash a 3m burst around the wielder, dealing 40 frost damage and knocking enemies down.</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Holy" Percent="1.25" />
+    <StatsTuple StatType="SwingSpeed" Value="35" />
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
+      <WeaponScriptArguments>
+        <WeaponScriptArgument>helden_hammer_frost_burst</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
+      </WeaponScriptArguments>
+    </OnWeaponHitScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="unique_enchantment_couronne" ItemTraitName="Enchantment of Couronne" IsCraftable="false" ImbuedEffectChance="0.50" IconName="grail">
+    <ValidItemType>Melee</ValidItemType>
+    <ItemTraitDescription>{=str_tor_itemtraits_unique_enchantment_couronne}+125% extra magical damage and 100% armor penetration. Eligible hits have a 50% chance to snare the struck enemy in a net for 15 seconds.</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Magical" Percent="1.25" />
+    <StatsTuple StatType="ArmorPenetration" Value="100" />
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
+      <WeaponScriptArguments>
+        <WeaponScriptArgument>couronne_net</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
+      </WeaponScriptArguments>
+    </OnWeaponHitScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="unique_enchantment_unholy_power" ItemTraitName="Enchantment of unholy power" IsCraftable="false" ImbuedEffectChance="0.33" IconName="voncarstein_icon">
+    <ValidItemType>Melee</ValidItemType>
+    <ItemTraitDescription>{=str_tor_itemtraits_unique_enchantment_unholy_power}+100% extra magical damage and +50% swing speed. Eligible hits have a 33% chance to summon 15 Grave Guard.</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Magical" Percent="1.00" />
+    <StatsTuple StatType="SwingSpeed" Value="50" />
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
+      <WeaponScriptArguments>
+        <WeaponScriptArgument>unholy_power_grave_guard</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
+      </WeaponScriptArguments>
+    </OnWeaponHitScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="unique_bulaks_spirit" ItemTraitName="Bulaks Spirit" IsCraftable="false" IconName="gork_icon">
+    <ValidItemType>Armor</ValidItemType>
+    <ItemTraitDescription>{=str_tor_itemtraits_unique_bulaks_spirit}Bulaks Spirit: +75% physical resistance and +50 maximum health.</ItemTraitDescription>
+    <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
+    <StatsTuple StatType="HealthMax" Value="50" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="unique_bulaks_spirit_magic" ItemTraitName="Bulaks Spirit" IsCraftable="false" IconName="mork_icon">
+    <ValidItemType>Armor</ValidItemType>
+    <ItemTraitDescription>{=str_tor_itemtraits_unique_bulaks_spirit_magic}Bulaks Spirit: +75% magical resistance.</ItemTraitDescription>
+    <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.75" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="unique_rune_dargo" ItemTraitName="Rune of Dargo" IsCraftable="false" IconName="rune_might">
+    <ValidItemType>Melee</ValidItemType>
+    <ItemTraitDescription>{=str_tor_itemtraits_unique_rune_dargo}Rune of Dargo: +125% extra physical damage and +50% swing speed.</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Physical" Percent="1.25" />
+    <StatsTuple StatType="SwingSpeed" Value="50" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="unique_rune_dargo_penetration" ItemTraitName="Rune of Dargo" IsCraftable="false" IconName="rune_might">
+    <ValidItemType>Melee</ValidItemType>
+    <ItemTraitDescription>{=str_tor_itemtraits_unique_rune_dargo_penetration}Rune of Dargo: 50% armor penetration.</ItemTraitDescription>
+    <StatsTuple StatType="ArmorPenetration" Value="50" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="unique_green_knight_shield" ItemTraitName="Green Knight's Shield" IsCraftable="false" ImbuedEffectChance="0.50" IconName="grail">
+    <ValidItemType>Shield</ValidItemType>
+    <ItemTraitDescription>{=str_tor_itemtraits_unique_green_knight_shield}Attacks that strike this shield have a 50% chance to release a burst of light around the attacker, slowing enemies within 3m by 25% for 20 seconds.</ItemTraitDescription>
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
+      <WeaponScriptArguments>
+        <WeaponScriptArgument>hysh_brilliance_enchant</WeaponScriptArgument>
+        <WeaponScriptArgument>true</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
+      </WeaponScriptArguments>
+    </OnWeaponHitScript>
   </ItemTrait>
 </ItemTraits>
