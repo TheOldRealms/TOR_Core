@@ -11597,8 +11597,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_black_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_black_orc_warboss_template_001" equipmentType="Civilian" />
+      <EquipmentSet id="tor_morglum_template" />
+      <EquipmentSet id="tor_morglum_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_neck_snappers_first_2" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_first_2}Warboss Oglok the 'Orrible" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_blackorc_lord" is_female="false" race="orc" is_hero="true">

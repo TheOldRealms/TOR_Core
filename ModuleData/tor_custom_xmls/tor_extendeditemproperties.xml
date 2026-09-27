@@ -3824,7 +3824,9 @@
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_weapon_sword_mannfred">
-    <ItemTraits />
+    <ItemTraits>
+      <ItemTrait>unique_enchantment_unholy_power</ItemTrait>
+    </ItemTraits>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -4317,7 +4319,10 @@
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_greataxe_ungrim_001">
-    <ItemTraits />
+    <ItemTraits>
+      <ItemTrait>unique_rune_dargo</ItemTrait>
+      <ItemTrait>unique_rune_dargo_penetration</ItemTrait>
+    </ItemTraits>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -4521,7 +4526,9 @@
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_ghal_maraz">
-    <ItemTraits />
+    <ItemTraits>
+      <ItemTrait>unique_helden_hammer</ItemTrait>
+    </ItemTraits>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="0.30" />
       <DamageProportionTuple DamageType="Holy" Percent="0.70" />
@@ -7350,13 +7357,27 @@
       <DamageProportionTuple DamageType="Magical" Percent="0.50" />
     </DamageProportions>
     <ItemTraits>
-      <ItemTrait>learn_emp_enchant_azyr_gale</ItemTrait>
+      <ItemTrait>bret_dolorous_blade_gale</ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_shield_green_knight">
     <ItemTraits>
-      <ItemTrait>learn_bret_blessing_mists_sacred_lake</ItemTrait>
-      <ItemTrait>extra_health_regen_10</ItemTrait>
+      <ItemTrait>unique_green_knight_shield</ItemTrait>
     </ItemTraits>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_sword_couronne">
+    <ItemTraits>
+      <ItemTrait>unique_enchantment_couronne</ItemTrait>
+    </ItemTraits>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_body_armour_bulaks_bloody" RaceLock="orc">
+    <ItemTraits>
+      <ItemTrait>unique_bulaks_spirit</ItemTrait>
+      <ItemTrait>unique_bulaks_spirit_magic</ItemTrait>
+    </ItemTraits>
+    <Description />
   </ExtendedItemObjectProperties>
 </ArrayOfExtendedItemObjectProperties>
