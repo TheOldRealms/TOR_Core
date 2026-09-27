@@ -59,7 +59,11 @@ done
 # For the debug workflow the recommended launch option is just:
 #   PROTON_LOG=1 %command% /singleplayer _MODULES_*Native*SandBoxCore*SandBox*StoryMode*CustomBattle*TOR_Armory*TOR_Environment*TOR_Core*_MODULES_
 
-if pgrep -af "Bannerlord|Launcher\.exe.*/singleplayer" >/dev/null 2>&1; then
+# "Game is running" detector: pgrep against the Wine-side reaper wrapper
+# for AppId 261550. This matches ONLY the Steam-launched game process
+# chain, not other tools that happen to have "Bannerlord" in their path
+# (e.g. the TOR_Tools MCP host).
+if pgrep -af "reaper.*SteamLaunch.*AppId=$APPID" >/dev/null 2>&1; then
     log "game already running — skipping steam:// launch"
 else
     log "launching Steam game $APPID"

@@ -14,7 +14,7 @@ WSDIR="$HOME/.local/share/Steam/steamapps/workshop/content/261550"
 
 log() { printf '[undo] %s\n' "$*"; }
 
-if pgrep -f "Bannerlord|Launcher\.exe.*/singleplayer" >/dev/null 2>&1; then
+if pgrep -f "reaper.*SteamLaunch.*AppId=261550" >/dev/null 2>&1; then
     log "WARNING: game is running. Close it before running undo."
     exit 1
 fi

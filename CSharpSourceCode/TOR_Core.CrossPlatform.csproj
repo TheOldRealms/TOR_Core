@@ -347,4 +347,12 @@
     <Copy SourceFiles="@(FilesToCopy)" DestinationFolder="$(TargetDir)..\Win64_Shipping_wEditor\%(RecursiveDir)" SkipUnchangedFiles="true" />
   </Target>
 
+
+  <!-- Keep the linux-debug tooling directory out of the C# compilation. -->
+  <ItemGroup>
+    <Compile Remove="linux-debug\**" />
+    <None Remove="linux-debug\**" />
+    <EmbeddedResource Remove="linux-debug\**" />
+  </ItemGroup>
+
 </Project>

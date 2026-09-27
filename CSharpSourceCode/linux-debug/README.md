@@ -30,7 +30,7 @@ variable inspection, real stack traces. Same workflow as F5-debug on Windows.
    `mono-2.0-sgen.dll` with a shim that activates the soft-debug agent on
    port 56000):
    ```
-   cd Tools/linux-debug/mono-proxy && make install
+   cd CSharpSourceCode/linux-debug/mono-proxy && make install
    ```
    The Makefile extracts the export table from your installed mono, generates
    a matching proxy `.def`, cross-compiles the proxy with mingw-w64, backs up
@@ -54,7 +54,7 @@ variable inspection, real stack traces. Same workflow as F5-debug on Windows.
      listener, Rider is the client).
    - Leave "Enable mixed-mode debugging" unchecked.
    - **Before launch → + → Run External tool:**
-     - Program: absolute path to `Tools/linux-debug/attach-run.sh`
+     - Program: absolute path to `CSharpSourceCode/linux-debug/attach-run.sh`
      - Working directory: repo root
      - The tool will exit 0 once port 56000 is listening, then Rider attaches.
 
@@ -88,7 +88,7 @@ Steam sometimes overwrites the launcher exe and `mono-2.0-sgen.dll` during
 updates. If breakpoints stop working:
 
 ```
-cd Tools/linux-debug/mono-proxy && make install
+cd CSharpSourceCode/linux-debug/mono-proxy && make install
 ```
 
 The Makefile detects a fresh mono, renames it to `monosgenorig.dll` again,
@@ -98,7 +98,7 @@ its next run.
 ## Reverting
 
 ```
-./Tools/linux-debug/undo.sh
+./CSharpSourceCode/linux-debug/undo.sh
 ```
 
 Undoes the launcher swap, restores workshop mod SubModule.xml files, and
