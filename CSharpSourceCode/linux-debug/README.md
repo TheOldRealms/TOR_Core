@@ -95,6 +95,20 @@ The Makefile detects a fresh mono, renames it to `monosgenorig.dll` again,
 and reinstalls the proxy. `attach-run.sh` re-applies the launcher swap on
 its next run.
 
+## When Rider's Stop hangs / everything sticks
+
+```
+./CSharpSourceCode/linux-debug/stop.sh
+```
+
+Force-kills any lingering Bannerlord/Wine processes and frees TCP 56000.
+Useful because Rider's Mono Remote "Stop" tries to negotiate a graceful
+`VM_DISPOSE` over TCP; if the game process is already dead, that
+negotiation hangs forever. In Rider itself, the ▾ next to the red Stop
+square offers **Detach** — use that instead of Terminate for remote
+attaches, it closes only Rider's side of the TCP connection without
+waiting for a peer response.
+
 ## Reverting
 
 ```
