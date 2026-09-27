@@ -1266,4 +1266,28 @@
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
+    <Kingdom id="beastmen"
+             owner="Hero.tor_beastmen_lord_factionleader"
+             banner_key="11.39.142.1633.1633.814.959.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_mousillon"
+             primary_banner_color="0xff4A2820"
+             secondary_banner_color="0xff8B7355"
+             label_color="FF211F1F"
+             color="FF4A2820"
+             color2="FF8B7355"
+             alternative_color="FFffffff"
+             alternative_color2="FF660653"
+             culture="Culture.beastmen"
+             settlement_banner_mesh="encounter_flag_a"
+             flag_mesh="info_screen_flags_b"
+             name="{=str_tor_kingdom_beastmen}Beastmen Herds"
+             short_name="{=str_tor_kingdom_beastmen_short}Beastmen"
+             title="{=str_tor_kingdom_beastmen_title}Beastmen Herds"
+             ruler_title="{=str_tor_kingdom_beastmen_ruler}Beastlord"
+             text="{=str_tor_kingdom_beastmen_text}Placeholder: cloned from Mousillon during the initial Beastmen shell buildout. Rewrite before ship.">
+        <relationships>
+            <relationship kingdom="Kingdom.lyonesse"
+                          value="-1"
+                          isAtWar="true" />
+        </relationships>
+    </Kingdom>
 </Kingdoms>

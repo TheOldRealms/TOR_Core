@@ -5453,6 +5453,648 @@
 			<template name="NPCCharacter.tor_m_caravan_ranged" />
 		</basic_mercenary_troops>
 	</Culture>
+	<Culture id="beastmen"
+		name="{=str_tor_culture_beastmen}Beastmen"
+		is_main_culture="true"
+		color="0xff4A2820"
+		color2="0xff8B7355"
+		elite_basic_troop="NPCCharacter.tor_m_outcast_errant"
+		basic_troop="NPCCharacter.tor_m_peasant_levy"
+		melee_militia_troop="NPCCharacter.tor_m_manatarms_militia"
+		ranged_militia_troop="NPCCharacter.tor_m_peasant_archer"
+		melee_elite_militia_troop="NPCCharacter.tor_m_manatarms"
+		ranged_elite_militia_troop="NPCCharacter.tor_m_longbowman"
+		can_have_settlement="true"
+		villager_party_template="PartyTemplate.mousillon_villager_template"
+		default_party_template="PartyTemplate.mousillon_lordparty_template"
+		encounter_background_mesh="mousillon_encounter"
+		faction_banner_key="11.14.14.1536.1536.764.764.1.0.0.160.15.15.497.497.764.764.1.0.0"
+		militia_party_template="PartyTemplate.mousillon_militia_template"
+		settlement_patrol_template_level_1="PartyTemplate.patrol_party_ms_template_level_1"
+		settlement_patrol_template_level_2="PartyTemplate.patrol_party_ms_template_level_2"
+		settlement_patrol_template_level_3="PartyTemplate.patrol_party_ms_template_level_3"
+		rebels_party_template="PartyTemplate.mousillon_rebelparty_template"
+		vassal_reward_party_template="PartyTemplate.mousillon_lordparty_template"
+		text="{=!}Culture description. Not sure where you see this. If you see this pls report with exact location!"
+		tournament_master="NPCCharacter.tournament_master_vlandia"
+		villager="NPCCharacter.tor_m_villager"
+		caravan_master="NPCCharacter.tor_m_caravan_captain"
+		caravan_guard="NPCCharacter.tor_m_caravan_guard"
+		veteran_caravan_guard="NPCCharacter.tor_m_caravan_elite_ranged"
+		prison_guard="NPCCharacter.tor_m_manatarms_halberd"
+		guard="NPCCharacter.tor_m_manatarms_halberd"
+		blacksmith="NPCCharacter.blacksmith_vlandia"
+		weaponsmith="NPCCharacter.weaponsmith_vlandia"
+		townswoman="NPCCharacter.townswoman_vlandia"
+		townswoman_infant="NPCCharacter.townswoman_infant_vlandia"
+		townswoman_child="NPCCharacter.townswoman_child_vlandia"
+		townswoman_teenager="NPCCharacter.townswoman_teenager_vlandia"
+		townsman="NPCCharacter.townsman_vlandia"
+		townsman_infant="NPCCharacter.townsman_infant_vlandia"
+		townsman_child="NPCCharacter.townsman_child_vlandia"
+		townsman_teenager="NPCCharacter.townsman_teenager_vlandia"
+		village_woman="NPCCharacter.village_woman_vlandia"
+		villager_male_child="NPCCharacter.villager_child_vlandia"
+		villager_male_teenager="NPCCharacter.villager_teenager_vlandia"
+		villager_female_child="NPCCharacter.village_woman_child_vlandia"
+		villager_female_teenager="NPCCharacter.village_woman_teenager_vlandia"
+		ransom_broker="NPCCharacter.ransom_broker_vlandia"
+		gangleader_bodyguard="NPCCharacter.gangleader_bodyguard_vlandia"
+		merchant_notary="NPCCharacter.merchant_notary_vlandia"
+		artisan_notary="NPCCharacter.artisan_notary_vlandia"
+		preacher_notary="NPCCharacter.preacher_notary_vlandia"
+		rural_notable_notary="NPCCharacter.rural_notable_notary_vlandia"
+		shop_worker="NPCCharacter.shop_worker_vlandia"
+		tavernkeeper="NPCCharacter.tavernkeeper_vlandia"
+		taverngamehost="NPCCharacter.taverngamehost_vlandia"
+		musician="NPCCharacter.musician_vlandia"
+		tavern_wench="NPCCharacter.tavern_wench_vlandia"
+		armorer="NPCCharacter.armorer_vlandia"
+		horseMerchant="NPCCharacter.horseMerchant_vlandia"
+		barber="NPCCharacter.barber_vlandia"
+		merchant="NPCCharacter.merchant_vlandia"
+		beggar="NPCCharacter.beggar_vlandia"
+		female_beggar="NPCCharacter.female_beggar_vlandia"
+		female_dancer="NPCCharacter.female_dancer_vlandia"
+		default_battle_equipment_roster="EquipmentRoster.emp_civ_template_default"
+		default_civilian_equipment_roster="EquipmentRoster.emp_civ_template_default"
+		default_stealth_equipment_roster="EquipmentRoster.default_stealth_equipment_roster"
+		duel_preset_equipment_roster="EquipmentRoster.emp_duel_preset_template"
+		marriage_bride_equipment_roster="EquipmentRoster.marriage_female_emp_cutscene_template"
+		board_game_type="Tablut"
+		default_character_creation_body_property="BodyProperty.default_character_creation_body_property_empire"
+		start_point_position_x="932.531"
+		start_point_position_y="1049.944">
+		<caravan_party_templates>
+			<caravan_party_template
+				id="PartyTemplate.mousillon_elite_caravan_template" />
+		</caravan_party_templates>
+		<elite_caravan_party_templates>
+			<caravan_party_template
+				id="PartyTemplate.mousillon_elite_caravan_template" />
+		</elite_caravan_party_templates>
+		<available_ship_hulls></available_ship_hulls>
+		<vassal_reward_items>
+			<item id="Item.sturgia_mace_2_t4" />
+		</vassal_reward_items>
+		<banner_bearer_replacement_weapons>
+			<item id="Item.vlandia_sword_1_t2" />
+			<item id="Item.vlandia_sword_2_t3" />
+			<item id="Item.vlandia_sword_3_t4" />
+			<item id="Item.vlandia_sword_5_t5" />
+		</banner_bearer_replacement_weapons>
+		<default_policies>
+			<policy id="policy_feudal_inheritance" />
+			<policy id="policy_castle_charters" />
+		</default_policies>
+		<male_names>
+			<name name="{=bretonnia_male_name_1}Alain" />
+			<name name="{=bretonnia_male_name_2}Arnaud" />
+			<name name="{=bretonnia_male_name_3}Antoine" />
+			<name name="{=bretonnia_male_name_4}Adélard" />
+			<name name="{=bretonnia_male_name_5}André" />
+			<name name="{=bretonnia_male_name_6}Arthur" />
+			<name name="{=bretonnia_male_name_7}Aldéric" />
+			<name name="{=bretonnia_male_name_8}Alexandre" />
+			<name name="{=bretonnia_male_name_9}Amédée" />
+			<name name="{=bretonnia_male_name_10}Anthelme" />
+			<name name="{=bretonnia_male_name_11}Aristide" />
+			<name name="{=bretonnia_male_name_12}Arsène" />
+			<name name="{=bretonnia_male_name_13}Adrien" />
+			<name name="{=bretonnia_male_name_14}Aubin" />
+			<name name="{=bretonnia_male_name_15}Aubert" />
+			<name name="{=bretonnia_male_name_16}Aimery" />
+			<name name="{=bretonnia_male_name_17}Amis" />
+			<name name="{=bretonnia_male_name_18}Auberi" />
+			<name name="{=bretonnia_male_name_19}Aymeri" />
+			<name name="{=bretonnia_male_name_20}Acard" />
+			<name name="{=bretonnia_male_name_21}Adelelm" />
+			<name name="{=bretonnia_male_name_22}Aildag" />
+			<name name="{=bretonnia_male_name_23}Ailred" />
+			<name name="{=bretonnia_male_name_24}Airard" />
+			<name name="{=bretonnia_male_name_25}Aitard" />
+			<name name="{=bretonnia_male_name_26}Aiulf" />
+			<name name="{=bretonnia_male_name_27}Albold" />
+			<name name="{=bretonnia_male_name_28}Alulf" />
+			<name name="{=bretonnia_male_name_29}Alvery" />
+			<name name="{=bretonnia_male_name_30}Anketill" />
+			<name name="{=bretonnia_male_name_31}Ansculf" />
+			<name name="{=bretonnia_male_name_32}Ansquetil" />
+			<name name="{=bretonnia_male_name_33}Asclettin" />
+			<name name="{=bretonnia_male_name_34}Albert" />
+			<name name="{=bretonnia_male_name_35}Adalhard" />
+			<name name="{=bretonnia_male_name_36}Anthelme" />
+			<name name="{=bretonnia_male_name_37}Alberic" />
+			<name name="{=bretonnia_male_name_38}Armand" />
+			<name name="{=bretonnia_male_name_39}Bernard" />
+			<name name="{=bretonnia_male_name_40}Bertrand" />
+			<name name="{=bretonnia_male_name_41}Baptiste" />
+			<name name="{=bretonnia_male_name_42}Bérenger" />
+			<name name="{=bretonnia_male_name_43}Barnabé" />
+			<name name="{=bretonnia_male_name_44}Benoît" />
+			<name name="{=bretonnia_male_name_45}Bellamy" />
+			<name name="{=bretonnia_male_name_46}Bagot" />
+			<name name="{=bretonnia_male_name_47}Benzelin" />
+			<name name="{=bretonnia_male_name_48}Berner" />
+			<name name="{=bretonnia_male_name_49}Bigot" />
+			<name name="{=bretonnia_male_name_50}Boselin" />
+			<name name="{=bretonnia_male_name_51}Bounifas" />
+			<name name="{=bretonnia_male_name_52}Brenier" />
+			<name name="{=bretonnia_male_name_53}Bohemond" />
+			<name name="{=bretonnia_male_name_54}Beligulf" />
+			<name name="{=bretonnia_male_name_55}Charles" />
+			<name name="{=bretonnia_male_name_56}Cyril" />
+			<name name="{=bretonnia_male_name_57}Cedric" />
+			<name name="{=bretonnia_male_name_58}Claude" />
+			<name name="{=bretonnia_male_name_59}Côme" />
+			<name name="{=bretonnia_male_name_60}Chenebelle" />
+			<name name="{=bretonnia_male_name_61}Clarenbald" />
+			<name name="{=bretonnia_male_name_62}Custefre" />
+			<name name="{=bretonnia_male_name_63}Cassyon" />
+			<name name="{=bretonnia_male_name_64}Chilfroy" />
+			<name name="{=bretonnia_male_name_65}Corentin" />
+			<name name="{=bretonnia_male_name_66}Dieudonné" />
+			<name name="{=bretonnia_male_name_67}Denis" />
+			<name name="{=bretonnia_male_name_68}Didier" />
+			<name name="{=bretonnia_male_name_69}Druward" />
+			<name name="{=bretonnia_male_name_70}Dachelin" />
+			<name name="{=bretonnia_male_name_71}D'Argent" />
+			<name name="{=bretonnia_male_name_72}Éliott" />
+			<name name="{=bretonnia_male_name_73}Émeric" />
+			<name name="{=bretonnia_male_name_74}Edmé" />
+			<name name="{=bretonnia_male_name_75}Évariste" />
+			<name name="{=bretonnia_male_name_76}Édouard" />
+			<name name="{=bretonnia_male_name_77}Émile" />
+			<name name="{=bretonnia_male_name_78}Étienne" />
+			<name name="{=bretonnia_male_name_79}Eugène" />
+			<name name="{=bretonnia_male_name_80}Enguerran" />
+			<name name="{=bretonnia_male_name_81}Estienne" />
+			<name name="{=bretonnia_male_name_82}Eudes" />
+			<name name="{=bretonnia_male_name_83}Edovart" />
+			<name name="{=bretonnia_male_name_84}Edvalt" />
+			<name name="{=bretonnia_male_name_85}Edwars" />
+			<name name="{=bretonnia_male_name_86}Erchenbald" />
+			<name name="{=bretonnia_male_name_87}Ertald" />
+			<name name="{=bretonnia_male_name_88}Escargot" />
+			<name name="{=bretonnia_male_name_89}Frederic" />
+			<name name="{=bretonnia_male_name_90}Fabien" />
+			<name name="{=bretonnia_male_name_91}Fabian" />
+			<name name="{=bretonnia_male_name_92}Félix" />
+			<name name="{=bretonnia_male_name_93}François" />
+			<name name="{=bretonnia_male_name_94}Fali" />
+			<name name="{=bretonnia_male_name_95}Falkes" />
+			<name name="{=bretonnia_male_name_96}Felypp" />
+			<name name="{=bretonnia_male_name_97}Ferri" />
+			<name name="{=bretonnia_male_name_98}Filimor" />
+			<name name="{=bretonnia_male_name_99}Firmatus" />
+			<name name="{=bretonnia_male_name_100}Fulcard" />
+			<name name="{=bretonnia_male_name_101}Fulcwald" />
+			<name name="{=bretonnia_male_name_102}Folcard" />
+			<name name="{=bretonnia_male_name_103}Guy" />
+			<name name="{=bretonnia_male_name_104}Georges" />
+			<name name="{=bretonnia_male_name_105}Gilles" />
+			<name name="{=bretonnia_male_name_106}Guillaume" />
+			<name name="{=bretonnia_male_name_107}Gerard" />
+			<name name="{=bretonnia_male_name_108}Gilbert" />
+			<name name="{=bretonnia_male_name_109}Gaultier" />
+			<name name="{=bretonnia_male_name_110}Gervais" />
+			<name name="{=bretonnia_male_name_111}Gui" />
+			<name name="{=bretonnia_male_name_112}Gaston" />
+			<name name="{=bretonnia_male_name_113}Geoffrey" />
+			<name name="{=bretonnia_male_name_114}Grégoire" />
+			<name name="{=bretonnia_male_name_115}Garnier" />
+			<name name="{=bretonnia_male_name_116}Geoffroi" />
+			<name name="{=bretonnia_male_name_117}Gidie" />
+			<name name="{=bretonnia_male_name_118}Gosse" />
+			<name name="{=bretonnia_male_name_119}Guarin" />
+			<name name="{=bretonnia_male_name_120}Guiscard" />
+			<name name="{=bretonnia_male_name_121}Galfrid" />
+			<name name="{=bretonnia_male_name_122}Geffrei" />
+			<name name="{=bretonnia_male_name_123}Goffrey" />
+			<name name="{=bretonnia_male_name_124}Gilon" />
+			<name name="{=bretonnia_male_name_125}Galand" />
+			<name name="{=bretonnia_male_name_126}Gastille" />
+			<name name="{=bretonnia_male_name_127}Henri" />
+			<name name="{=bretonnia_male_name_128}Hugo" />
+			<name name="{=bretonnia_male_name_129}Honoré" />
+			<name name="{=bretonnia_male_name_130}Hervé" />
+			<name name="{=bretonnia_male_name_131}Hue" />
+			<name name="{=bretonnia_male_name_132}Huwe" />
+			<name name="{=bretonnia_male_name_133}Huebald" />
+			<name name="{=bretonnia_male_name_134}Hagen" />
+			<name name="{=bretonnia_male_name_135}Jean" />
+			<name name="{=bretonnia_male_name_136}Jacques" />
+			<name name="{=bretonnia_male_name_137}Julien" />
+			<name name="{=bretonnia_male_name_138}Jules" />
+			<name name="{=bretonnia_male_name_139}Joël" />
+			<name name="{=bretonnia_male_name_140}Jérôme" />
+			<name name="{=bretonnia_male_name_141}Jehan" />
+			<name name="{=bretonnia_male_name_142}Johan" />
+			<name name="{=bretonnia_male_name_143}Josse" />
+			<name name="{=bretonnia_male_name_144}Jofroi" />
+			<name name="{=bretonnia_male_name_145}Jovin" />
+			<name name="{=bretonnia_male_name_146}Juers" />
+			<name name="{=bretonnia_male_name_147}Jerrod" />
+			<name name="{=bretonnia_male_name_148}Kallez" />
+			<name name="{=bretonnia_male_name_149}Laurent" />
+			<name name="{=bretonnia_male_name_150}Louis" />
+			<name name="{=bretonnia_male_name_151}Lucen" />
+			<name name="{=bretonnia_male_name_152}Loeys" />
+			<name name="{=bretonnia_male_name_153}Lyam" />
+			<name name="{=bretonnia_male_name_154}Louen" />
+			<name name="{=bretonnia_male_name_155}Laroche" />
+			<name name="{=bretonnia_male_name_156}Michel" />
+			<name name="{=bretonnia_male_name_157}Mael" />
+			<name name="{=bretonnia_male_name_158}Maxime" />
+			<name name="{=bretonnia_male_name_159}Maurice" />
+			<name name="{=bretonnia_male_name_160}Mahi" />
+			<name name="{=bretonnia_male_name_161}Mauger" />
+			<name name="{=bretonnia_male_name_162}Maugier" />
+			<name name="{=bretonnia_male_name_163}Maldred" />
+			<name name="{=bretonnia_male_name_164}Machevort" />
+			<name name="{=bretonnia_male_name_165}Merovech" />
+			<name name="{=bretonnia_male_name_166}Morlant" />
+			<name name="{=bretonnia_male_name_167}Noël" />
+			<name name="{=bretonnia_male_name_168}Néal" />
+			<name name="{=bretonnia_male_name_169}Néel" />
+			<name name="{=bretonnia_male_name_170}Olivier" />
+			<name name="{=bretonnia_male_name_171}Onfroi" />
+			<name name="{=bretonnia_male_name_172}Osbern" />
+			<name name="{=bretonnia_male_name_173}Ottiwell" />
+			<name name="{=bretonnia_male_name_174}Ounfrei" />
+			<name name="{=bretonnia_male_name_175}Philippe" />
+			<name name="{=bretonnia_male_name_176}Pierre" />
+			<name name="{=bretonnia_male_name_177}Pascal" />
+			<name name="{=bretonnia_male_name_178}Piers" />
+			<name name="{=bretonnia_male_name_179}Pagan" />
+			<name name="{=bretonnia_male_name_180}Payn" />
+			<name name="{=bretonnia_male_name_181}Rene" />
+			<name name="{=bretonnia_male_name_182}Robert" />
+			<name name="{=bretonnia_male_name_183}Régis" />
+			<name name="{=bretonnia_male_name_184}Reuben" />
+			<name name="{=bretonnia_male_name_185}Ruben" />
+			<name name="{=bretonnia_male_name_186}Rainier" />
+			<name name="{=bretonnia_male_name_187}Rolant" />
+			<name name="{=bretonnia_male_name_188}Roland" />
+			<name name="{=bretonnia_male_name_189}Roul" />
+			<name name="{=bretonnia_male_name_190}Renâod" />
+			<name name="{=bretonnia_male_name_191}Richer" />
+			<name name="{=bretonnia_male_name_192}Richold" />
+			<name name="{=bretonnia_male_name_193}Roulaund" />
+			<name name="{=bretonnia_male_name_194}Richemont" />
+			<name name="{=bretonnia_male_name_195}Sebastien" />
+			<name name="{=bretonnia_male_name_196}Samuel" />
+			<name name="{=bretonnia_male_name_197}Sévère" />
+			<name name="{=bretonnia_male_name_198}Sylvestre" />
+			<name name="{=bretonnia_male_name_199}Saer" />
+			<name name="{=bretonnia_male_name_200}Serlo" />
+			<name name="{=bretonnia_male_name_201}Stigand" />
+			<name name="{=bretonnia_male_name_202}Sarlat" />
+			<name name="{=bretonnia_male_name_203}Thierry" />
+			<name name="{=bretonnia_male_name_204}Théodore" />
+			<name name="{=bretonnia_male_name_205}Théo" />
+			<name name="{=bretonnia_male_name_206}Thibault" />
+			<name name="{=bretonnia_male_name_207}Timothée" />
+			<name name="{=bretonnia_male_name_208}Turstin" />
+			<name name="{=bretonnia_male_name_209}Tristan" />
+			<name name="{=bretonnia_male_name_210}Tancred" />
+			<name name="{=bretonnia_male_name_211}Taubert" />
+			<name name="{=bretonnia_male_name_212}Theodoric" />
+			<name name="{=bretonnia_male_name_213}Tudual" />
+			<name name="{=bretonnia_male_name_214}Vincent" />
+			<name name="{=bretonnia_male_name_215}Vauquelin" />
+			<name name="{=bretonnia_male_name_216}Waleran" />
+			<name name="{=bretonnia_male_name_217}Walkelin" />
+			<name name="{=bretonnia_male_name_218}Walweyn" />
+			<name name="{=bretonnia_male_name_219}Waundrile" />
+			<name name="{=bretonnia_male_name_220}Willielmus" />
+			<name name="{=bretonnia_male_name_221}Yves" />
+			<name name="{=bretonnia_male_name_222}Yannick" />
+			<name name="{=bretonnia_male_name_223}Yder" />
+			<name name="{=bretonnia_male_name_224}Yvrou" />
+			<name name="{=bretonnia_male_name_225}Yanis" />
+		</male_names>
+		<female_names>
+			<name name="{=bretonnia_female_name_1}Anne" />
+			<name name="{=bretonnia_female_name_2}Ailionóra" />
+			<name name="{=bretonnia_female_name_3}Aldusa" />
+			<name name="{=bretonnia_female_name_4}Alison" />
+			<name name="{=bretonnia_female_name_5}Alicent" />
+			<name name="{=bretonnia_female_name_6}Annotta" />
+			<name name="{=bretonnia_female_name_7}Anstace" />
+			<name name="{=bretonnia_female_name_8}Ascelina" />
+			<name name="{=bretonnia_female_name_9}Aaliz" />
+			<name name="{=bretonnia_female_name_10}Alice" />
+			<name name="{=bretonnia_female_name_11}Abelina" />
+			<name name="{=bretonnia_female_name_12}Abigail" />
+			<name name="{=bretonnia_female_name_13}Aceline" />
+			<name name="{=bretonnia_female_name_14}Acherea" />
+			<name name="{=bretonnia_female_name_15}Achilde" />
+			<name name="{=bretonnia_female_name_16}Achillande" />
+			<name name="{=bretonnia_female_name_17}Adalinde" />
+			<name name="{=bretonnia_female_name_18}Adalsinde" />
+			<name name="{=bretonnia_female_name_19}Adélaïse" />
+			<name name="{=bretonnia_female_name_20}Adelet" />
+			<name name="{=bretonnia_female_name_21}Adelice" />
+			<name name="{=bretonnia_female_name_22}Adurée" />
+			<name name="{=bretonnia_female_name_23}Advisa" />
+			<name name="{=bretonnia_female_name_24}Adwige" />
+			<name name="{=bretonnia_female_name_25}Agace" />
+			<name name="{=bretonnia_female_name_26}Agnesona" />
+			<name name="{=bretonnia_female_name_27}Ahélis" />
+			<name name="{=bretonnia_female_name_28}Ainora" />
+			<name name="{=bretonnia_female_name_29}Alainne" />
+			<name name="{=bretonnia_female_name_30}Alaire" />
+			<name name="{=bretonnia_female_name_31}Albinette" />
+			<name name="{=bretonnia_female_name_32}Aldessa" />
+			<name name="{=bretonnia_female_name_33}Aliennor" />
+			<name name="{=bretonnia_female_name_34}Alixente" />
+			<name name="{=bretonnia_female_name_35}Alixia" />
+			<name name="{=bretonnia_female_name_36}Alexia" />
+			<name name="{=bretonnia_female_name_37}Almodis" />
+			<name name="{=bretonnia_female_name_38}Alodie" />
+			<name name="{=bretonnia_female_name_39}Alvice" />
+			<name name="{=bretonnia_female_name_40}Amaelina" />
+			<name name="{=bretonnia_female_name_41}Anceline" />
+			<name name="{=bretonnia_female_name_42}Anillia" />
+			<name name="{=bretonnia_female_name_43}Arégonde" />
+			<name name="{=bretonnia_female_name_44}Ascelina" />
+			<name name="{=bretonnia_female_name_45}Atallana" />
+			<name name="{=bretonnia_female_name_46}Auberée" />
+			<name name="{=bretonnia_female_name_47}Aubine" />
+			<name name="{=bretonnia_female_name_48}Aubinette" />
+			<name name="{=bretonnia_female_name_49}Audéarde" />
+			<name name="{=bretonnia_female_name_50}Audierne" />
+			<name name="{=bretonnia_female_name_51}Aurisma" />
+			<name name="{=bretonnia_female_name_52}Avoise" />
+			<name name="{=bretonnia_female_name_53}Aymonette" />
+			<name name="{=bretonnia_female_name_54}Adeline" />
+			<name name="{=bretonnia_female_name_55}Brigitte" />
+			<name name="{=bretonnia_female_name_56}Basilia" />
+			<name name="{=bretonnia_female_name_57}Bartholomette" />
+			<name name="{=bretonnia_female_name_58}Basina" />
+			<name name="{=bretonnia_female_name_59}Baudette" />
+			<name name="{=bretonnia_female_name_60}Baudine" />
+			<name name="{=bretonnia_female_name_61}Beatrisia" />
+			<name name="{=bretonnia_female_name_62}Belina" />
+			<name name="{=bretonnia_female_name_63}Bellissima" />
+			<name name="{=bretonnia_female_name_64}Benceline" />
+			<name name="{=bretonnia_female_name_65}Berarde" />
+			<name name="{=bretonnia_female_name_66}Bertisma" />
+			<name name="{=bretonnia_female_name_67}Bertrande" />
+			<name name="{=bretonnia_female_name_68}Bietrix" />
+			<name name="{=bretonnia_female_name_69}Beatrix" />
+			<name name="{=bretonnia_female_name_70}Blanchefleur" />
+			<name name="{=bretonnia_female_name_71}Blancheflor" />
+			<name name="{=bretonnia_female_name_72}Blanchia" />
+			<name name="{=bretonnia_female_name_73}Bonne" />
+			<name name="{=bretonnia_female_name_74}Bourgine" />
+			<name name="{=bretonnia_female_name_75}Bourjoise" />
+			<name name="{=bretonnia_female_name_76}Brunehaut" />
+			<name name="{=bretonnia_female_name_77}Brunissende" />
+			<name name="{=bretonnia_female_name_78}Catherine" />
+			<name name="{=bretonnia_female_name_79}Christine" />
+			<name name="{=bretonnia_female_name_80}Celine" />
+			<name name="{=bretonnia_female_name_81}Catant" />
+			<name name="{=bretonnia_female_name_82}Catelot" />
+			<name name="{=bretonnia_female_name_83}Cathereau" />
+			<name name="{=bretonnia_female_name_84}Chrétienne" />
+			<name name="{=bretonnia_female_name_85}Christina" />
+			<name name="{=bretonnia_female_name_86}Clarel" />
+			<name name="{=bretonnia_female_name_87}Carmel" />
+			<name name="{=bretonnia_female_name_88}Climence" />
+			<name name="{=bretonnia_female_name_89}Coustance" />
+			<name name="{=bretonnia_female_name_90}Crestine" />
+			<name name="{=bretonnia_female_name_91}Crestienne" />
+			<name name="{=bretonnia_female_name_92}Dalmatia" />
+			<name name="{=bretonnia_female_name_93}Dangereuse" />
+			<name name="{=bretonnia_female_name_94}Déotille" />
+			<name name="{=bretonnia_female_name_95}Dévote" />
+			<name name="{=bretonnia_female_name_96}Dominilde" />
+			<name name="{=bretonnia_female_name_97}Douceline" />
+			<name name="{=bretonnia_female_name_98}Doulce" />
+			<name name="{=bretonnia_female_name_99}Dulcelina" />
+			<name name="{=bretonnia_female_name_100}Edelina" />
+			<name name="{=bretonnia_female_name_101}Edeline" />
+			<name name="{=bretonnia_female_name_102}Ellenor" />
+			<name name="{=bretonnia_female_name_103}Ellice" />
+			<name name="{=bretonnia_female_name_104}Evelin" />
+			<name name="{=bretonnia_female_name_105}Edburge" />
+			<name name="{=bretonnia_female_name_106}Edelinne" />
+			<name name="{=bretonnia_female_name_107}Elisanna" />
+			<name name="{=bretonnia_female_name_108}Elisaria" />
+			<name name="{=bretonnia_female_name_109}Elvidis" />
+			<name name="{=bretonnia_female_name_110}Emelisse" />
+			<name name="{=bretonnia_female_name_111}Emelot" />
+			<name name="{=bretonnia_female_name_112}Emilde" />
+			<name name="{=bretonnia_female_name_113}Emissa" />
+			<name name="{=bretonnia_female_name_114}Engelais" />
+			<name name="{=bretonnia_female_name_115}Engelsent" />
+			<name name="{=bretonnia_female_name_116}Erembourc" />
+			<name name="{=bretonnia_female_name_117}Ermenalda" />
+			<name name="{=bretonnia_female_name_118}Ermenelda" />
+			<name name="{=bretonnia_female_name_119}Eschive" />
+			<name name="{=bretonnia_female_name_120}Esclarmonde" />
+			<name name="{=bretonnia_female_name_121}Estiennette" />
+			<name name="{=bretonnia_female_name_122}Etionette" />
+			<name name="{=bretonnia_female_name_123}Eudeline" />
+			<name name="{=bretonnia_female_name_124}Eustachie" />
+			<name name="{=bretonnia_female_name_125}Eustacie" />
+			<name name="{=bretonnia_female_name_126}Fredesine" />
+			<name name="{=bretonnia_female_name_127}Fredistina" />
+			<name name="{=bretonnia_female_name_128}Frethesenta" />
+			<name name="{=bretonnia_female_name_129}Falatrude" />
+			<name name="{=bretonnia_female_name_130}Farberta" />
+			<name name="{=bretonnia_female_name_131}Felise" />
+			<name name="{=bretonnia_female_name_132}Floretia" />
+			<name name="{=bretonnia_female_name_133}Florie" />
+			<name name="{=bretonnia_female_name_134}Foy" />
+			<name name="{=bretonnia_female_name_135}Fay" />
+			<name name="{=bretonnia_female_name_136}Francesia" />
+			<name name="{=bretonnia_female_name_137}Fraisende" />
+			<name name="{=bretonnia_female_name_138}Gillie" />
+			<name name="{=bretonnia_female_name_139}Gilliette" />
+			<name name="{=bretonnia_female_name_140}Gunnor" />
+			<name name="{=bretonnia_female_name_141}Genevote" />
+			<name name="{=bretonnia_female_name_142}Genevieve" />
+			<name name="{=bretonnia_female_name_143}Géraldesse" />
+			<name name="{=bretonnia_female_name_144}Gerarde" />
+			<name name="{=bretonnia_female_name_145}Gile" />
+			<name name="{=bretonnia_female_name_146}Gilia" />
+			<name name="{=bretonnia_female_name_147}Gisa" />
+			<name name="{=bretonnia_female_name_148}Gislilde" />
+			<name name="{=bretonnia_female_name_149}Guiana" />
+			<name name="{=bretonnia_female_name_150}Guillelma" />
+			<name name="{=bretonnia_female_name_151}Guiscarde" />
+			<name name="{=bretonnia_female_name_152}Guya" />
+			<name name="{=bretonnia_female_name_153}Hildiard" />
+			<name name="{=bretonnia_female_name_154}Hadelinde" />
+			<name name="{=bretonnia_female_name_155}Haimengarde" />
+			<name name="{=bretonnia_female_name_156}Haouys" />
+			<name name="{=bretonnia_female_name_157}Helevysa" />
+			<name name="{=bretonnia_female_name_158}Helissent" />
+			<name name="{=bretonnia_female_name_159}Hodierna" />
+			<name name="{=bretonnia_female_name_160}Isabelle" />
+			<name name="{=bretonnia_female_name_161}Ismay" />
+			<name name="{=bretonnia_female_name_162}Ivetta" />
+			<name name="{=bretonnia_female_name_163}Idelinde" />
+			<name name="{=bretonnia_female_name_164}Idina" />
+			<name name="{=bretonnia_female_name_165}Idoine" />
+			<name name="{=bretonnia_female_name_166}Isabea" />
+			<name name="{=bretonnia_female_name_167}Isa" />
+			<name name="{=bretonnia_female_name_168}Jacqueline" />
+			<name name="{=bretonnia_female_name_169}Jehane" />
+			<name name="{=bretonnia_female_name_170}Johanna" />
+			<name name="{=bretonnia_female_name_171}Jacquine" />
+			<name name="{=bretonnia_female_name_172}Jamette" />
+			<name name="{=bretonnia_female_name_173}Jehannette" />
+			<name name="{=bretonnia_female_name_174}Lecelina" />
+			<name name="{=bretonnia_female_name_175}Liégarde" />
+			<name name="{=bretonnia_female_name_176}Linot" />
+			<name name="{=bretonnia_female_name_177}Liuthilde" />
+			<name name="{=bretonnia_female_name_178}Lorence" />
+			<name name="{=bretonnia_female_name_179}Loysse" />
+			<name name="{=bretonnia_female_name_180}Louvine" />
+			<name name="{=bretonnia_female_name_181}Lucresse" />
+			<name name="{=bretonnia_female_name_182}Marie" />
+			<name name="{=bretonnia_female_name_183}Monique" />
+			<name name="{=bretonnia_female_name_184}Mâode" />
+			<name name="{=bretonnia_female_name_185}Maude" />
+			<name name="{=bretonnia_female_name_186}Margerie" />
+			<name name="{=bretonnia_female_name_187}Margery" />
+			<name name="{=bretonnia_female_name_188}Maria" />
+			<name name="{=bretonnia_female_name_189}Mariot" />
+			<name name="{=bretonnia_female_name_190}Maysant" />
+			<name name="{=bretonnia_female_name_191}Madalaigne" />
+			<name name="{=bretonnia_female_name_192}Madalène" />
+			<name name="{=bretonnia_female_name_193}Marin" />
+			<name name="{=bretonnia_female_name_194}Mathia" />
+			<name name="{=bretonnia_female_name_195}Maurisia" />
+			<name name="{=bretonnia_female_name_196}Nathalie" />
+			<name name="{=bretonnia_female_name_197}Nestoria" />
+			<name name="{=bretonnia_female_name_198}Noémy" />
+			<name name="{=bretonnia_female_name_199}Noire" />
+			<name name="{=bretonnia_female_name_200}Natalis" />
+			<name name="{=bretonnia_female_name_201}Orielda" />
+			<name name="{=bretonnia_female_name_202}Ortlinia" />
+			<name name="{=bretonnia_female_name_203}Odelina" />
+			<name name="{=bretonnia_female_name_204}Odolia" />
+			<name name="{=bretonnia_female_name_205}Ombelline" />
+			<name name="{=bretonnia_female_name_206}Osane" />
+			<name name="{=bretonnia_female_name_207}Oudine" />
+			<name name="{=bretonnia_female_name_208}Odett" />
+			<name name="{=bretonnia_female_name_209}Primeveire" />
+			<name name="{=bretonnia_female_name_210}Parisa" />
+			<name name="{=bretonnia_female_name_211}Parva" />
+			<name name="{=bretonnia_female_name_212}Pentecouste" />
+			<name name="{=bretonnia_female_name_213}Perronelle" />
+			<name name="{=bretonnia_female_name_214}Plaisance" />
+			<name name="{=bretonnia_female_name_215}Poubelle" />
+			<name name="{=bretonnia_female_name_216}Polemia" />
+			<name name="{=bretonnia_female_name_217}Richera" />
+			<name name="{=bretonnia_female_name_218}Richolda" />
+			<name name="{=bretonnia_female_name_219}Rinoelle" />
+			<name name="{=bretonnia_female_name_220}Richelle" />
+			<name name="{=bretonnia_female_name_221}Roesia" />
+			<name name="{=bretonnia_female_name_222}Régilinde" />
+			<name name="{=bretonnia_female_name_223}Richeut" />
+			<name name="{=bretonnia_female_name_224}Robertine" />
+			<name name="{=bretonnia_female_name_225}Robine" />
+			<name name="{=bretonnia_female_name_226}Roscilla" />
+			<name name="{=bretonnia_female_name_227}Sylvie" />
+			<name name="{=bretonnia_female_name_228}Sophie" />
+			<name name="{=bretonnia_female_name_229}Stephanie" />
+			<name name="{=bretonnia_female_name_230}Salvia" />
+			<name name="{=bretonnia_female_name_231}Sadrilde" />
+			<name name="{=bretonnia_female_name_232}Saroilde" />
+			<name name="{=bretonnia_female_name_233}Sedile" />
+			<name name="{=bretonnia_female_name_234}Sicletrude" />
+			<name name="{=bretonnia_female_name_235}Supplicia" />
+			<name name="{=bretonnia_female_name_236}Yvetta" />
+			<name name="{=bretonnia_female_name_237}Ysole" />
+			<name name="{=bretonnia_female_name_238}Ysabeau" />
+			<name name="{=bretonnia_female_name_239}Yfame" />
+			<name name="{=bretonnia_female_name_240}Angeline" />
+			<name name="{=bretonnia_female_name_241}Alysse" />
+			<name name="{=bretonnia_female_name_242}Eleanor" />
+			<name name="{=bretonnia_female_name_243}Guerrite" />
+			<name name="{=bretonnia_female_name_244}Iselda" />
+			<name name="{=bretonnia_female_name_245}Jevena" />
+		</female_names>
+		<clan_names>
+			<name name="{=!}de{ORIGIN_SETTLEMENT}" />
+		</clan_names>
+		<cultural_feats>
+			<feat id="vlandian_renown_mercenary_income" />
+			<feat id="vlandian_villages_production_bonus" />
+			<feat id="vlandian_increased_army_influence_cost" />
+		</cultural_feats>
+		<possible_clan_banner_icon_ids>
+			<icon id="140" />
+			<icon id="141" />
+			<icon id="142" />
+			<icon id="143" />
+			<icon id="144" />
+			<icon id="145" />
+			<icon id="146" />
+			<icon id="159" />
+			<icon id="205" />
+			<icon id="206" />
+			<icon id="207" />
+			<icon id="417" />
+			<icon id="418" />
+			<icon id="419" />
+			<icon id="300" />
+			<icon id="301" />
+			<icon id="302" />
+			<icon id="303" />
+			<icon id="315" />
+		</possible_clan_banner_icon_ids>
+		<notable_templates>
+			<template name="NPCCharacter.spc_notable_mousillon_merch1" />
+			<template name="NPCCharacter.spc_notable_mousillon_merch2" />
+			<template name="NPCCharacter.spc_notable_mousillon_merch3" />
+			<template name="NPCCharacter.spc_notable_mousillon_merch4" />
+			<template name="NPCCharacter.spc_notable_mousillon_merch5" />
+			<template name="NPCCharacter.spc_notable_mousillon_1" />
+			<template name="NPCCharacter.spc_notable_mousillon_1b" />
+			<template name="NPCCharacter.spc_notable_mousillon_2" />
+			<template name="NPCCharacter.spc_notable_mousillon_3" />
+			<template name="NPCCharacter.spc_mousillon_gangleader_1" />
+			<template name="NPCCharacter.spc_mousillon_gangleader_2" />
+			<template name="NPCCharacter.spc_mousillon_gangleader_3" />
+			<template name="NPCCharacter.spc_notable_mousillon_artisan_1" />
+			<template name="NPCCharacter.spc_notable_mousillon_artisan_2" />
+			<template name="NPCCharacter.spc_notable_mousillon_rural_1" />
+			<template name="NPCCharacter.spc_notable_mousillon_rural_2" />
+			<template name="NPCCharacter.spc_mousillon_headman_1" />
+			<template name="NPCCharacter.spc_mousillon_headman_2" />
+			<template name="NPCCharacter.spc_mousillon_headman_3" />
+		</notable_templates>
+		<lord_templates>
+			<template name="NPCCharacter.tor_m_rogue_lord_0" />
+			<template name="NPCCharacter.tor_m_rogue_lord_1" />
+			<template name="NPCCharacter.tor_m_rogue_lord_2" />
+		</lord_templates>
+		<rebellion_hero_templates>
+			<template name="NPCCharacter.tor_m_rogue_lord_0" />
+			<template name="NPCCharacter.tor_m_rogue_lord_1" />
+			<template name="NPCCharacter.tor_m_rogue_lord_2" />
+		</rebellion_hero_templates>
+		<tournament_team_templates_one_participant>
+			<template name="NPCCharacter.tor_m_tournament_template_one_participant_v1" />
+		</tournament_team_templates_one_participant>
+		<tournament_team_templates_two_participant>
+			<template name="NPCCharacter.tor_m_tournament_template_two_participant_v1" />
+		</tournament_team_templates_two_participant>
+		<tournament_team_templates_four_participant>
+			<template name="NPCCharacter.tor_m_tournament_template_four_participant_v1" />
+		</tournament_team_templates_four_participant>
+		<basic_mercenary_troops>
+			<template name="NPCCharacter.tor_m_caravan_guard" />
+			<template name="NPCCharacter.tor_m_caravan_ranged" />
+		</basic_mercenary_troops>
+	</Culture>
 	<Culture id="eonir"
 		name="{=str_tor_eonirfaction}Eonir"
 		is_main_culture="true"
