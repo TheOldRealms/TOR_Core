@@ -62,6 +62,8 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 new CustomResource("OathGold", "oathgold_icon_45", TORConstants.Cultures.DAWI, OathGoldHelper.GetOathGoldInfo));
             Instance._resources.Add("Teef",
                 new CustomResource("Teef", "teef_icon_45", TORConstants.Cultures.GREENSKIN, TeefHelper.GetTeefInfo));
+            Instance._resources.Add("DarkOmen",
+                new CustomResource("DarkOmen", "darkenergy_icon_45", TORConstants.Cultures.BEASTMEN));
             Instance._resources.Add("Meat",
                 new CustomResource("Meat", "meat_icon_45"));
             Instance._resources.Add("Waaagh",
@@ -295,7 +297,8 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 playerCulture.StringId == TORConstants.Cultures.BRETONNIA ||
                 playerCulture.StringId == TORConstants.Cultures.EONIR ||
                 playerCulture.StringId == TORConstants.Cultures.ASRAI ||
-                playerCulture.StringId == TORConstants.Cultures.DAWI)
+                playerCulture.StringId == TORConstants.Cultures.DAWI ||
+                playerCulture.StringId == TORConstants.Cultures.BEASTMEN)
             {
                 var fairBattleOrPlayerInferior = _initialCombatRatio < 1.1f;
 
