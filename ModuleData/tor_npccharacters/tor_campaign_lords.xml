@@ -13739,4 +13739,23 @@
       <EquipmentSet id="dog_al_muktar_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
+  <!-- Beastmen Lords -->
+  <NPCCharacter id="tor_beastmen_lord_factionleader" default_group="infantry" name="{=str_tor_beastmen_lord_factionleader}The Beastlord" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="35" weight="0.7" build="0.8" key="0002500F170012457C70638A76C1136A6DC98666F4C19600C4B640398A95A03600BB36030BA7A40500000000000000000000000000000000000000003B743080" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="6" />
+      <Trait id="Politician" value="2" />
+      <Trait id="Manager" value="4" />
+      <Trait id="Honor" value="-5" />
+      <Trait id="Mercy" value="-8" />
+      <Trait id="Generosity" value="-3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_m_lord_serpent" />
+      <EquipmentSet id="tor_m_lord_serpent" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
 </NPCCharacters>

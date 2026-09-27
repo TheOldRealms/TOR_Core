@@ -41,7 +41,8 @@ namespace TOR_Core.Utilities
             public const string MOUSILLON = "mousillon";
             public const string ASRAI = "battania";
             public const string DRUCHII = "druchii";
-            public const string BEASTMEN = "steppe_bandits";
+            public const string BEASTMEN = "beastmen";
+            public const string BEASTMEN_BANDIT = "steppe_bandits";
             public const string CHAOS = "chaos_culture";
             public const string EONIR = "eonir";
             public const string DAWI = "sturgia";
@@ -53,7 +54,7 @@ namespace TOR_Core.Utilities
 
             public static readonly List<string> All =
             [
-                EMPIRE,BRETONNIA,SYLVANIA,MOUSILLON,ASRAI,EONIR,DAWI,GREENSKIN
+                EMPIRE,BRETONNIA,SYLVANIA,MOUSILLON,ASRAI,EONIR,DAWI,GREENSKIN,BEASTMEN
             ];
         }
 
