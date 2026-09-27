@@ -135,6 +135,7 @@ namespace TOR_Core.Utilities
                     args.MenuContext.SetBackgroundMeshName("dwarf_prisoner");
                     return;
                 case TORConstants.Cultures.BEASTMEN:
+                case TORConstants.Cultures.BEASTMEN_BANDIT:
                     args.MenuContext.SetBackgroundMeshName("beastmen_captive");
                     return;
                 default:
