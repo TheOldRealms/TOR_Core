@@ -120,21 +120,63 @@ log "waiting up to ${TIMEOUT}s for TCP :$PORT..."
 for i in $(seq 1 "$TIMEOUT"); do
     if ss -tln 2>/dev/null | grep -qE ":${PORT}\b"; then
         log "port $PORT is listening ($i s). ready for Rider attach."
-        # --- 6. Spawn background watcher for auto-cleanup ------------------
-        # When the game process dies (crash or normal exit), wineserver keeps
-        # holding TCP :$PORT — Rider's Mono Remote session then can't detect
-        # that the peer is dead and won't detach cleanly. This watcher runs
-        # stop.sh once the game is gone, which force-closes the socket and
-        # drops Rider's connection so its debug session finishes.
+        # --- 6. Spawn background watcher for two-way auto-cleanup ----------
+        # This watcher couples the game process and Rider's debug session so
+        # either one exiting takes down the other. Without it:
+        #   - Game crashes -> wineserver holds TCP :56000 -> Rider hangs on
+        #     a zombie "Connected" state until you kill Rider.
+        #   - Rider Stop -> game keeps running, so "attach next time" fails
+        #     because port is in use and dev has to kill the game manually.
+        #
+        # Logic:
+        #   1. Wait for Rider to establish its TCP connection (up to 60s).
+        #   2. Then poll every 2s. Whichever of (game dies) or (Rider TCP
+        #      goes away) happens first, run stop.sh to bring down the
+        #      other one too. Uses a 3s grace period on Rider disconnect
+        #      to allow for brief detach/reconnect during hot-swap etc.
         (
-            # Wait for game process to disappear (it's already up, else we'd
-            # not have hit port-open). Poll every 5 s to keep CPU minimal.
-            while pgrep -f "reaper.*SteamLaunch.*AppId=$APPID" >/dev/null 2>&1; do
-                sleep 5
+            ss_estab() {
+                ss -tn state established "( sport = :$PORT )" 2>/dev/null | tail -n +2 | grep -q .
+            }
+            game_alive() {
+                pgrep -f "reaper.*SteamLaunch.*AppId=$APPID" >/dev/null 2>&1
+            }
+
+            # Phase 1: wait for Rider to attach (or timeout to no-attach mode)
+            rider_ever_connected=0
+            for _ in $(seq 1 60); do
+                if ss_estab; then rider_ever_connected=1; break; fi
+                game_alive || break
+                sleep 1
             done
-            # Give wine's own cleanup a moment before we force it.
-            sleep 3
-            "$SCRIPT_DIR/stop.sh" >/dev/null 2>&1
+
+            if [ "$rider_ever_connected" -eq 0 ]; then
+                # Rider never connected — just clean up when game dies
+                while game_alive; do sleep 5; done
+                sleep 3
+                "$SCRIPT_DIR/stop.sh" >/dev/null 2>&1
+                exit 0
+            fi
+
+            # Phase 2: both sides alive, monitor both
+            while true; do
+                if ! game_alive; then
+                    # Game died -> force-close wineserver socket so Rider detaches
+                    sleep 3
+                    "$SCRIPT_DIR/stop.sh" >/dev/null 2>&1
+                    exit 0
+                fi
+                if ! ss_estab; then
+                    # Rider disconnected -> may be a brief blip; wait once
+                    sleep 3
+                    if ! ss_estab; then
+                        # Really gone -> kill the game (mirrors Rider's Stop)
+                        "$SCRIPT_DIR/stop.sh" >/dev/null 2>&1
+                        exit 0
+                    fi
+                fi
+                sleep 2
+            done
         ) </dev/null >/dev/null 2>&1 &
         disown $! 2>/dev/null || true
         exit 0
