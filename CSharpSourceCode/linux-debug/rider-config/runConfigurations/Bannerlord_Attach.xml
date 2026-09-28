@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Bannerlord Attach" type="MonoRemoteConfigurationType" factoryName="Mono Remote Debug">
+    <option name="HOST" value="127.0.0.1" />
+    <option name="PORT" value="56000" />
+    <option name="LISTEN_PORT" value="false" />
+    <option name="ENABLE_MIXED_MODE" value="false" />
+    <method v="2">
+      <!-- Build TOR_Core.CrossPlatform first (writes fresh DLL+PDB into bin/Win64_Shipping_Client/) -->
+      <option name="Make" enabled="true" />
+      <!-- Then kill any running game and re-launch via attach-run.sh --restart -->
+      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_Bannerlord Prepare" />
+    </method>
+  </configuration>
+</component>

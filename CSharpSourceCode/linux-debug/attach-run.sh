@@ -3,14 +3,23 @@
 #
 # Steps:
 #   1. Verify proxy DLL is installed (fail fast with a helpful message).
-#   2. Ensure Bannerlord.Native.exe is what Steam launches (rename swap).
-#   3. Hide workshop mods whose IDs collide with local dev modules.
-#   4. Fire the game via steam://rungameid/261550.
-#   5. Poll TCP :56000 (the Mono soft-debug agent) until it listens or timeout.
+#   2. If --restart: kill any running game via stop.sh (needed for the
+#      Rider iteration cycle so we always attach to a fresh process with
+#      the freshly built TOR_Core.dll loaded).
+#   3. Ensure Bannerlord.Native.exe is what Steam launches (rename swap).
+#   4. Hide workshop mods whose IDs collide with local dev modules.
+#   5. Fire the game via steam://rungameid/261550 (unless already running
+#      and --restart wasn't passed — then attach to the existing process).
+#   6. Poll TCP :56000 (the Mono soft-debug agent) until it listens or timeout.
 #
 # Intended use: as the "Before launch → External tool" for a Rider Mono Remote
 # run config. Rider launches this, waits for exit 0, then attaches to the
 # already-listening agent.
+#
+# Flags:
+#   --restart   kill the running game (if any) before launching, so the
+#               freshly built TOR_Core.dll gets loaded. Use this in the
+#               Rider Before-Launch chain after "Build Project".
 #
 # Standalone use: run manually before hitting Debug in Rider.
 
@@ -22,12 +31,32 @@ APPID=261550
 PORT=56000
 TIMEOUT=90
 
+RESTART=0
+for arg in "$@"; do
+    case "$arg" in
+        --restart) RESTART=1 ;;
+        *) echo "unknown arg: $arg" >&2; exit 2 ;;
+    esac
+done
+
 log()  { printf '[attach-run] %s\n' "$*"; }
 die()  { printf '[attach-run] ERROR: %s\n' "$*" >&2; exit 1; }
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 # --- 1. Verify proxy install ---------------------------------------------
 [ -f "$GAMEBIN/monosgenorig.dll" ] || die "proxy not installed. Run:
-  cd Tools/linux-debug/mono-proxy && make install"
+  cd CSharpSourceCode/linux-debug/mono-proxy && make install"
+
+# --- 1b. --restart: kill running game first ------------------------------
+if [ "$RESTART" -eq 1 ]; then
+    if pgrep -f "reaper.*SteamLaunch.*AppId=$APPID" >/dev/null 2>&1; then
+        log "--restart: killing running game so freshly built DLL gets loaded"
+        "$SCRIPT_DIR/stop.sh"
+        # Give wineserver a moment to release TCP :$PORT before we start polling
+        sleep 2
+    fi
+fi
 
 # --- 2. Ensure native launcher swap --------------------------------------
 LAUNCHER="$GAMEBIN/TaleWorlds.MountAndBlade.Launcher.exe"

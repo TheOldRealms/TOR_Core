@@ -45,18 +45,30 @@ variable inspection, real stack traces. Same workflow as F5-debug on Windows.
    `MONO_SDB_ENV_OPTIONS` or `MONO_ENV_OPTIONS` — TaleWorlds' Mono ignores
    both; the proxy activates the agent directly.
 
-4. **Set up Rider's Mono Remote configuration:**
+4. **Install the Rider run config and external tool** (one command,
+   copies templates into `.idea/` which is gitignored):
+   ```
+   ./CSharpSourceCode/linux-debug/install-rider-config.sh
+   ```
+   Then in Rider: **File → Reload All from Disk**. A `Bannerlord Attach`
+   entry appears in the top-right run/debug dropdown. Its Before Launch
+   chain is already:
+   1. **Build Project** — recompiles `TOR_Core.CrossPlatform` so
+      `bin/Win64_Shipping_Client/TOR_Core.{dll,pdb}` are fresh.
+   2. **External tool "Bannerlord Prepare"** — runs
+      `attach-run.sh --restart`, which kills any live game (so the
+      fresh DLL gets loaded), applies swap/proxy/mod-hide, launches
+      via `steam://`, polls port 56000, exits 0 when ready.
+   3. Rider then attaches to `127.0.0.1:56000`.
+
+   Manual alternative if you'd rather set it up by hand:
    - `Run → Edit Configurations → + → Mono Remote`
-   - Name: `Bannerlord Attach`
-   - Host: `127.0.0.1`
-   - Port: `56000`
-   - Leave "Listen for incoming connections" **unchecked** (the game is the
-     listener, Rider is the client).
-   - Leave "Enable mixed-mode debugging" unchecked.
-   - **Before launch → + → Run External tool:**
-     - Program: absolute path to `CSharpSourceCode/linux-debug/attach-run.sh`
-     - Working directory: repo root
-     - The tool will exit 0 once port 56000 is listening, then Rider attaches.
+   - Name: `Bannerlord Attach`, Host: `127.0.0.1`, Port: `56000`
+   - Listen for incoming = **unchecked** (game is server, Rider is client)
+   - Enable mixed-mode = unchecked
+   - Before Launch: **+ Build Project** (for `TOR_Core.CrossPlatform`),
+     then **+ Run External tool** pointing at
+     `linux-debug/attach-run.sh` with parameter `--restart`.
 
 ## Daily workflow
 

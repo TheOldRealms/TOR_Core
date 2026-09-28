@@ -1,0 +1,9 @@
+<toolSet name="External Tools">
+  <tool name="Bannerlord Prepare" description="Kill any running game, apply swap/proxy/mod-hide, launch via Steam, poll port 56000" showInMainMenu="false" showInEditor="false" showInProject="false" showInSearchPopup="false" disabled="false" useConsole="true" showConsoleOnStdOut="true" showConsoleOnStdErr="true" synchronizeAfterRun="false">
+    <exec>
+      <option name="COMMAND" value="$PROJECT_DIR$/linux-debug/attach-run.sh" />
+      <option name="PARAMETERS" value="--restart" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </exec>
+  </tool>
+</toolSet>
