@@ -145,6 +145,24 @@ namespace TOR_Core.HarmonyPatches
         }
     }
 
+    [HarmonyPatch]
+    [HarmonyPatchCategory("LatePatches")]
+    public static class EncyclopediaHeroHelmetPatch
+    {
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(EncyclopediaHeroPageVM), nameof(EncyclopediaHeroPageVM.Refresh))]
+        public static void ShowLordEncyclopediaHelmet(EncyclopediaHeroPageVM __instance)
+        {
+            var hero = (Hero)__instance.Obj;
+            if (hero.HasAttribute(CharacterAttributes.ENCYCLOPEDIA_HELMET))
+            {
+                __instance.HeroCharacter.SetEquipment(
+                    EquipmentIndex.Head,
+                    hero.BattleEquipment[EquipmentIndex.Head]);
+            }
+        }
+    }
+
     [HarmonyPatch(typeof(HintViewModel), nameof(HintViewModel.ExecuteBeginHint))]
     public static class EncyclopediaUnitPropertyHintPatch
     {

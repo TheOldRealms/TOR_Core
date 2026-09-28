@@ -11377,6 +11377,7 @@
   <CharacterExtendedInfo id="tor_br_greenknight_leader">
     <Attributes>
       <string>LegendaryLord</string>
+	  <string>EncyclopediaHelmet</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_lord_mousillon_first_11">
