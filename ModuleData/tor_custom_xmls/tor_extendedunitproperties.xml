@@ -3539,6 +3539,37 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beast_bandit_ungor_scavenger">
+    <Abilities />
+    <Attributes>
+      <string>Expendable</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beast_bandit_ungor_raider">
+    <Abilities />
+    <Attributes>
+      <string>Expendable</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beast_bandit_ungor_halfhorn_chief">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_beast_gor">
     <Abilities />
     <Attributes />
@@ -3567,6 +3598,112 @@
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_beast_minotaur">
+    <Abilities />
+    <Attributes>
+      <string>Unbreakable</string>
+      <string>Unstoppable</string>
+      <string>Frenzy</string>
+      <string>MonsterAttack</string>
+      <string>Monstrous</string>
+    </Attributes>
+    <AdditionalHealth>350</AdditionalHealth>
+    <Resistances />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="1.00" />
+    </DamageAmplifiers>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastmen_ungor">
+    <Abilities />
+    <Attributes>
+      <string>Expendable</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastmen_shielded_ungor">
+    <Abilities />
+    <Attributes>
+      <string>Expendable</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastmen_ungor_raider">
+    <Abilities />
+    <Attributes>
+      <string>Expendable</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastmen_ungor_chief_raider">
+    <Abilities />
+    <Attributes>
+      <string>Expendable</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastmen_ungor_chief">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastmen_gor">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastmen_gor_foerender">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastmen_gor_manripper">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastmen_gor_gougehorn">
+    <Attributes>
+      <string>MonsterAttack</string>
+    </Attributes>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastmen_minotaur">
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
@@ -10117,6 +10254,21 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_prophetess_bw">
+    <Abilities>
+      <string>AmberSpear</string>
+      <string>TanglingThorn</string>
+      <string>PannsImpenetrablePelt</string>
+      <string>HailStorm</string>
+      <string>FlockOfDoom</string>
+      <string>TheBeastUnleashed</string>
+      <string>CurseOfAnraheir</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastmen_lord_stormcrow">
     <Abilities>
       <string>AmberSpear</string>
       <string>TanglingThorn</string>

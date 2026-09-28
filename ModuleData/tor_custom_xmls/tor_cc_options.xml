@@ -1556,12 +1556,8 @@
 
 
 
-	<!-- Beastmen character-creation options (initial shell buildout, 2026-09-27).
-	     Three archetypes per stage: Ungor (light scout), Gor (frontline warrior),
-	     Bray-touched (mystic / warherd lieutenant). EquipmentSetIds reuse existing
-	     raider-tier sets from Mousillon and generic pools; Beastmen-specific gear
-	     is not authored yet. -->
-	<CharacterCreationOption Id="option_1_beastmen_ungor" Culture="beastmen" StageNumber="1" EquipmentSetId="tor_cc_outlaws_1">
+	<!-- Beastmen backgrounds use Ungor equipment by default. -->
+	<CharacterCreationOption Id="option_1_beastmen_ungor" Culture="beastmen" StageNumber="1" EquipmentSetId="tor_beast_ungor_template">
 		<SkillsToIncrease>
 			<string>Bow</string>
 			<string>Athletics</string>
@@ -1573,7 +1569,7 @@
 		<OptionFlavourText>{=str_tor_cc_beastmen_ungor_text}You were spawned into the herd as an Ungor — small horns, weaker limbs, meant to run and fetch rather than fight and die. What you lack in muscle you learned to make up for with a keen eye and a fleet hoof.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_1_beastmen_gor" Culture="beastmen" StageNumber="1" EquipmentSetId="tor_cc_peat_farmer_1">
+	<CharacterCreationOption Id="option_1_beastmen_gor" Culture="beastmen" StageNumber="1" EquipmentSetId="tor_beast_ungor_template">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>TwoHanded</string>
@@ -1585,7 +1581,7 @@
 		<OptionFlavourText>{=str_tor_cc_beastmen_gor_text}You were spawned strong — full horns, thick hide, the mark of a Gor. You ate the weakest of your brood as calves and grew large on their bones. The herd's warriors watched you and nodded.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_1_beastmen_touched" Culture="beastmen" StageNumber="1" EquipmentSetId="tor_cc_commoners_1">
+	<CharacterCreationOption Id="option_1_beastmen_touched" Culture="beastmen" StageNumber="1" EquipmentSetId="tor_beast_ungor_template">
 		<SkillsToIncrease>
 			<string>Medicine</string>
 			<string>Leadership</string>
@@ -1597,7 +1593,7 @@
 		<OptionFlavourText>{=str_tor_cc_beastmen_touched_text}You were born under a bad moon, marked with the twin-tailed comet on your hide. The Bray-Shamans of the herd watched you closely — the dark gods had touched you, though for good or ill none could yet say.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_2_beastmen_forest_stalker" Culture="beastmen" StageNumber="2" EquipmentSetId="tor_cc_brigand_2">
+	<CharacterCreationOption Id="option_2_beastmen_forest_stalker" Culture="beastmen" StageNumber="2" EquipmentSetId="tor_beast_ungor_template">
 		<SkillsToIncrease>
 			<string>Bow</string>
 			<string>Scouting</string>
@@ -1609,7 +1605,7 @@
 		<OptionFlavourText>{=str_tor_cc_beastmen_stalker_text}You hunted alone in the deep Drakwald — human trappers, lost travellers, sleeping foresters. You learned to move without sound and to strike from cover. The herd left you to your work because you never returned empty-hoofed.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_2_beastmen_warherd_raider" Culture="beastmen" StageNumber="2" EquipmentSetId="tor_cc_man_at_arms_2">
+	<CharacterCreationOption Id="option_2_beastmen_warherd_raider" Culture="beastmen" StageNumber="2" EquipmentSetId="tor_beast_ungor_template">
 		<SkillsToIncrease>
 			<string>TwoHanded</string>
 			<string>Athletics</string>
@@ -1621,7 +1617,7 @@
 		<OptionFlavourText>{=str_tor_cc_beastmen_raider_text}You ran with the warherds — down through the Drakwald and out onto Middenland's farms and hamlets. You burned houses, dragged screaming humans back to the herdstone, and returned drenched in blood and glory.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_2_beastmen_herdstone_watcher" Culture="beastmen" StageNumber="2" EquipmentSetId="tor_cc_swampaire_2">
+	<CharacterCreationOption Id="option_2_beastmen_herdstone_watcher" Culture="beastmen" StageNumber="2" EquipmentSetId="tor_beast_ungor_template">
 		<SkillsToIncrease>
 			<string>Medicine</string>
 			<string>Leadership</string>
@@ -1633,7 +1629,7 @@
 		<OptionFlavourText>{=str_tor_cc_beastmen_herdstone_text}You served at the great herdstone under a Bray-Shaman's hoof — tending the sacred fires, dragging bound sacrifices to the altar, whispering to the shadows that gathered between the standing stones. You saw things not meant for mortal eyes.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_3_beastmen_ungor_fetcher" Culture="beastmen" StageNumber="3" EquipmentSetId="tor_cc_cordon_runner_3">
+	<CharacterCreationOption Id="option_3_beastmen_ungor_fetcher" Culture="beastmen" StageNumber="3" EquipmentSetId="tor_beast_ungor_template">
 		<SkillsToIncrease>
 			<string>Bow</string>
 			<string>Throwing</string>
@@ -1645,7 +1641,7 @@
 		<OptionFlavourText>{=str_tor_cc_beastmen_fetcher_text}You have taken your place among the Ungor Fetchers — the herd's skirmishers and scouts. Small horns, sharp eyes, and the fastest hooves in the warherd. You harry the enemy from cover while the Gors close in for the kill.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_3_beastmen_gor_warrior" Culture="beastmen" StageNumber="3" EquipmentSetId="tor_cc_bog_pirate_3">
+	<CharacterCreationOption Id="option_3_beastmen_gor_warrior" Culture="beastmen" StageNumber="3" EquipmentSetId="tor_beast_ungor_template">
 		<SkillsToIncrease>
 			<string>TwoHanded</string>
 			<string>OneHanded</string>
@@ -1657,7 +1653,7 @@
 		<OptionFlavourText>{=str_tor_cc_beastmen_warrior_text}You are a Gor now — the herd's frontline, its cleaving axe. You are what humans see when the forest breaks open at nightfall and comes charging out of the treeline: horned, bloody, and unstoppable.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_3_beastmen_wargor_champion" Culture="beastmen" StageNumber="3" EquipmentSetId="tor_cc_knight_errant_3">
+	<CharacterCreationOption Id="option_3_beastmen_wargor_champion" Culture="beastmen" StageNumber="3" EquipmentSetId="tor_beast_ungor_template">
 		<SkillsToIncrease>
 			<string>TwoHanded</string>
 			<string>Leadership</string>

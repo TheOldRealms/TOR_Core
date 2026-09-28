@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <SPCultures>
 	<Culture 
 		id="empire"
@@ -5458,31 +5458,31 @@
 		is_main_culture="true"
 		color="0xff4A2820"
 		color2="0xff8B7355"
-		elite_basic_troop="NPCCharacter.tor_m_outcast_errant"
-		basic_troop="NPCCharacter.tor_m_peasant_levy"
-		melee_militia_troop="NPCCharacter.tor_m_manatarms_militia"
-		ranged_militia_troop="NPCCharacter.tor_m_peasant_archer"
-		melee_elite_militia_troop="NPCCharacter.tor_m_manatarms"
-		ranged_elite_militia_troop="NPCCharacter.tor_m_longbowman"
+		elite_basic_troop="NPCCharacter.tor_beastmen_gor"
+		basic_troop="NPCCharacter.tor_beastmen_ungor"
+		melee_militia_troop="NPCCharacter.tor_beastmen_shielded_ungor"
+		ranged_militia_troop="NPCCharacter.tor_beastmen_ungor_raider"
+		melee_elite_militia_troop="NPCCharacter.tor_beastmen_gor_foerender"
+		ranged_elite_militia_troop="NPCCharacter.tor_beastmen_ungor_chief_raider"
 		can_have_settlement="true"
-		villager_party_template="PartyTemplate.mousillon_villager_template"
-		default_party_template="PartyTemplate.mousillon_lordparty_template"
+		villager_party_template="PartyTemplate.tor_beastmen_villager_template"
+		default_party_template="PartyTemplate.tor_beastmen_lordparty_template"
 		encounter_background_mesh="mousillon_encounter"
 		faction_banner_key="11.14.14.1536.1536.764.764.1.0.0.160.15.15.497.497.764.764.1.0.0"
-		militia_party_template="PartyTemplate.mousillon_militia_template"
-		settlement_patrol_template_level_1="PartyTemplate.patrol_party_ms_template_level_1"
-		settlement_patrol_template_level_2="PartyTemplate.patrol_party_ms_template_level_2"
-		settlement_patrol_template_level_3="PartyTemplate.patrol_party_ms_template_level_3"
-		rebels_party_template="PartyTemplate.mousillon_rebelparty_template"
-		vassal_reward_party_template="PartyTemplate.mousillon_lordparty_template"
+		militia_party_template="PartyTemplate.tor_beastmen_militia_template"
+		settlement_patrol_template_level_1="PartyTemplate.tor_beastmen_patrol_template_level_1"
+		settlement_patrol_template_level_2="PartyTemplate.tor_beastmen_patrol_template_level_2"
+		settlement_patrol_template_level_3="PartyTemplate.tor_beastmen_patrol_template_level_3"
+		rebels_party_template="PartyTemplate.tor_beastmen_rebelparty_template"
+		vassal_reward_party_template="PartyTemplate.tor_beastmen_lordparty_template"
 		text="{=!}Culture description. Not sure where you see this. If you see this pls report with exact location!"
 		tournament_master="NPCCharacter.tournament_master_vlandia"
-		villager="NPCCharacter.tor_m_villager"
-		caravan_master="NPCCharacter.tor_m_caravan_captain"
-		caravan_guard="NPCCharacter.tor_m_caravan_guard"
-		veteran_caravan_guard="NPCCharacter.tor_m_caravan_elite_ranged"
-		prison_guard="NPCCharacter.tor_m_manatarms_halberd"
-		guard="NPCCharacter.tor_m_manatarms_halberd"
+		villager="NPCCharacter.tor_beastmen_ungor"
+		caravan_master="NPCCharacter.tor_beastmen_gor"
+		caravan_guard="NPCCharacter.tor_beastmen_shielded_ungor"
+		veteran_caravan_guard="NPCCharacter.tor_beastmen_ungor_chief_raider"
+		prison_guard="NPCCharacter.tor_beastmen_shielded_ungor"
+		guard="NPCCharacter.tor_beastmen_shielded_ungor"
 		blacksmith="NPCCharacter.blacksmith_vlandia"
 		weaponsmith="NPCCharacter.weaponsmith_vlandia"
 		townswoman="NPCCharacter.townswoman_vlandia"
@@ -6051,35 +6051,28 @@
 			<icon id="315" />
 		</possible_clan_banner_icon_ids>
 		<notable_templates>
-			<template name="NPCCharacter.spc_notable_mousillon_merch1" />
-			<template name="NPCCharacter.spc_notable_mousillon_merch2" />
-			<template name="NPCCharacter.spc_notable_mousillon_merch3" />
-			<template name="NPCCharacter.spc_notable_mousillon_merch4" />
-			<template name="NPCCharacter.spc_notable_mousillon_merch5" />
-			<template name="NPCCharacter.spc_notable_mousillon_1" />
-			<template name="NPCCharacter.spc_notable_mousillon_1b" />
-			<template name="NPCCharacter.spc_notable_mousillon_2" />
-			<template name="NPCCharacter.spc_notable_mousillon_3" />
-			<template name="NPCCharacter.spc_mousillon_gangleader_1" />
-			<template name="NPCCharacter.spc_mousillon_gangleader_2" />
-			<template name="NPCCharacter.spc_mousillon_gangleader_3" />
-			<template name="NPCCharacter.spc_notable_mousillon_artisan_1" />
-			<template name="NPCCharacter.spc_notable_mousillon_artisan_2" />
-			<template name="NPCCharacter.spc_notable_mousillon_rural_1" />
-			<template name="NPCCharacter.spc_notable_mousillon_rural_2" />
-			<template name="NPCCharacter.spc_mousillon_headman_1" />
-			<template name="NPCCharacter.spc_mousillon_headman_2" />
-			<template name="NPCCharacter.spc_mousillon_headman_3" />
+			<template name="NPCCharacter.tor_beastmen_notable_merchant_ungor" />
+			<template name="NPCCharacter.tor_beastmen_notable_merchant_bestigor" />
+			<template name="NPCCharacter.tor_beastmen_notable_artisan_ungor" />
+			<template name="NPCCharacter.tor_beastmen_notable_artisan_bestigor" />
+			<template name="NPCCharacter.tor_beastmen_notable_ruralnotable_ungor" />
+			<template name="NPCCharacter.tor_beastmen_notable_ruralnotable_bestigor" />
+			<template name="NPCCharacter.tor_beastmen_notable_headman_ungor" />
+			<template name="NPCCharacter.tor_beastmen_notable_headman_bestigor" />
+			<template name="NPCCharacter.tor_beastmen_notable_gangleader_ungor" />
+			<template name="NPCCharacter.tor_beastmen_notable_gangleader_bestigor" />
+			<template name="NPCCharacter.tor_beastmen_notable_preacher_ungor" />
+			<template name="NPCCharacter.tor_beastmen_notable_preacher_bestigor" />
 		</notable_templates>
 		<lord_templates>
-			<template name="NPCCharacter.tor_m_rogue_lord_0" />
-			<template name="NPCCharacter.tor_m_rogue_lord_1" />
-			<template name="NPCCharacter.tor_m_rogue_lord_2" />
+			<template name="NPCCharacter.tor_beastmen_lord_template_1" />
+			<template name="NPCCharacter.tor_beastmen_lord_template_2" />
+			<template name="NPCCharacter.tor_beastmen_lord_template_3" />
 		</lord_templates>
 		<rebellion_hero_templates>
-			<template name="NPCCharacter.tor_m_rogue_lord_0" />
-			<template name="NPCCharacter.tor_m_rogue_lord_1" />
-			<template name="NPCCharacter.tor_m_rogue_lord_2" />
+			<template name="NPCCharacter.tor_beastmen_lord_template_1" />
+			<template name="NPCCharacter.tor_beastmen_lord_template_2" />
+			<template name="NPCCharacter.tor_beastmen_lord_template_3" />
 		</rebellion_hero_templates>
 		<tournament_team_templates_one_participant>
 			<template name="NPCCharacter.tor_m_tournament_template_one_participant_v1" />
@@ -6091,8 +6084,7 @@
 			<template name="NPCCharacter.tor_m_tournament_template_four_participant_v1" />
 		</tournament_team_templates_four_participant>
 		<basic_mercenary_troops>
-			<template name="NPCCharacter.tor_m_caravan_guard" />
-			<template name="NPCCharacter.tor_m_caravan_ranged" />
+			<template name="NPCCharacter.tor_beastmen_minotaur" />
 		</basic_mercenary_troops>
 	</Culture>
 	<Culture id="eonir"
@@ -6554,12 +6546,12 @@
 	</Culture>
 	<Culture id="steppe_bandits"
 		name="{=str_tor_beastmenfaction}Beastmen Warband"
-		bandit_chief="NPCCharacter.tor_beast_ungor_chief"
-		bandit_raider="NPCCharacter.tor_beast_ungor_raider"
-		bandit_bandit="NPCCharacter.tor_beast_ungor"
-		bandit_boss="NPCCharacter.tor_beast_ungor_chief"
-		elite_basic_troop="NPCCharacter.tor_beast_gor"
-		basic_troop="NPCCharacter.tor_beast_ungor"
+		bandit_chief="NPCCharacter.tor_beast_bandit_ungor_halfhorn_chief"
+		bandit_raider="NPCCharacter.tor_beast_bandit_ungor_raider"
+		bandit_bandit="NPCCharacter.tor_beast_bandit_ungor_scavenger"
+		bandit_boss="NPCCharacter.tor_beast_bandit_ungor_halfhorn_chief"
+		elite_basic_troop="NPCCharacter.tor_beast_bandit_ungor_halfhorn_chief"
+		basic_troop="NPCCharacter.tor_beast_bandit_ungor_scavenger"
 		is_bandit="true"
 		can_have_settlement="true"
 		encounter_background_mesh="beastmen_bandit_encounter"
