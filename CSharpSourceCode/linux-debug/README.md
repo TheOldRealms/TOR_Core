@@ -170,3 +170,35 @@ See `mono-proxy/proxy.c` for the full narrated implementation.
 - First-chance managed exceptions with the debugger attached occasionally
   crash the game (a Mono limitation). If you hit this, disable
   "Break when thrown" and only break on unhandled exceptions.
+- **Rider gets stuck in a "pseudo-attached" state after session ends** —
+  Rider's Mono Remote UI shows the debug session as active even after the
+  game/TCP/backend process are all gone. External kill scripts (`stop.sh`)
+  can't reach it because there's no OS-level state left to kill. This is
+  [RIDER-45772](https://youtrack.jetbrains.com/issue/RIDER-45772) — an
+  unresolved JetBrains bug, not caused by our setup. Workarounds:
+  - Right-click the session tab → Close / Terminate (works in some
+    Rider versions)
+  - Kill `Rider.Backend` process — resets Rider's debug state without
+    losing your editor tabs
+  - Full Rider restart (nuclear but reliable)
+
+## Why the Mono soft-debug path was necessary (state of the art)
+
+We researched alternatives before settling on the Mono proxy approach:
+
+- **Wine Mono** (Proton's default .NET runtime) is compiled with the
+  soft-debug agent stubbed out (`debugger-agent-stubs.c`) — calling
+  `mono_debugger_agent_parse_options` there `g_error`s. So Wine Mono
+  cannot be a debug target. Rebuilding Wine Mono with soft-debug enabled
+  requires porting the agent's socket/threading layer to Windows API —
+  documented as multi-day work by the community.
+- **CoreCLR + vsdbg** would only apply to Bannerlord's Xbox Game Pass
+  build (Steam is Mono-hosted). Also, Rider's CoreCLR remote attach is
+  SSH-only and can't reach a Windows-PE CoreCLR inside Wine.
+- **Bypassing the launcher and running `Bannerlord.Native.exe`** was the
+  only way to get TaleWorlds' bundled Mono (which has the agent) to be
+  the JIT of record; the managed launcher path uses Wine Mono.
+
+The proxy DLL is the only Bannerlord+Linux+Rider recipe published as of
+2026 — no BUTR/BLSE/community solution exists. RIDER-45772 is the last
+rough edge; everything else works.
