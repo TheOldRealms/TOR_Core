@@ -48,6 +48,22 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 [ -f "$GAMEBIN/monosgenorig.dll" ] || die "proxy not installed. Run:
   cd CSharpSourceCode/linux-debug/mono-proxy && make install"
 
+# --- 1a. Build TOR_Core.CrossPlatform ------------------------------------
+# Doing the build here (rather than in Rider's Before Launch chain) lets us
+# get by with a single Before Launch task in the Rider run config, which
+# sidesteps figuring out the right Build-task XML for .NET SDK-style
+# projects. Incremental builds are ~1s if nothing changed.
+CSHARP_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+CSPROJ="$CSHARP_DIR/TOR_Core.CrossPlatform.csproj"
+if [ -f "$CSPROJ" ]; then
+    log "building TOR_Core.CrossPlatform (Debug)"
+    if ! dotnet build "$CSPROJ" -c Debug --nologo -v q; then
+        die "dotnet build failed. Fix errors above and retry."
+    fi
+else
+    log "WARN: $CSPROJ not found; skipping build"
+fi
+
 # --- 1b. --restart: kill running game first ------------------------------
 if [ "$RESTART" -eq 1 ]; then
     if pgrep -f "reaper.*SteamLaunch.*AppId=$APPID" >/dev/null 2>&1; then
@@ -104,6 +120,23 @@ log "waiting up to ${TIMEOUT}s for TCP :$PORT..."
 for i in $(seq 1 "$TIMEOUT"); do
     if ss -tln 2>/dev/null | grep -qE ":${PORT}\b"; then
         log "port $PORT is listening ($i s). ready for Rider attach."
+        # --- 6. Spawn background watcher for auto-cleanup ------------------
+        # When the game process dies (crash or normal exit), wineserver keeps
+        # holding TCP :$PORT — Rider's Mono Remote session then can't detect
+        # that the peer is dead and won't detach cleanly. This watcher runs
+        # stop.sh once the game is gone, which force-closes the socket and
+        # drops Rider's connection so its debug session finishes.
+        (
+            # Wait for game process to disappear (it's already up, else we'd
+            # not have hit port-open). Poll every 5 s to keep CPU minimal.
+            while pgrep -f "reaper.*SteamLaunch.*AppId=$APPID" >/dev/null 2>&1; do
+                sleep 5
+            done
+            # Give wine's own cleanup a moment before we force it.
+            sleep 3
+            "$SCRIPT_DIR/stop.sh" >/dev/null 2>&1
+        ) </dev/null >/dev/null 2>&1 &
+        disown $! 2>/dev/null || true
         exit 0
     fi
     sleep 1
