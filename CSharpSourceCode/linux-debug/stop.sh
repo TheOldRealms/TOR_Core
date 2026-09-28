@@ -16,7 +16,26 @@ set -uo pipefail
 log() { printf '[stop] %s\n' "$*"; }
 
 APPID=261550
+PORT=56000
 killed=0
+
+# 0. Kill the JetBrains debug helper that Rider spawned to hold the client
+# side of the TCP connection to our debug port. Rider's Mono Remote UI
+# doesn't notice when the server (wineserver) dies, so it hangs showing
+# "Connected" forever until we kill this specific subprocess. We identify
+# it by the peer-owning-dport-$PORT criterion, then sanity-check the
+# process name/command line so we never nuke unrelated JetBrains work.
+while IFS= read -r pid; do
+    [ -z "$pid" ] && continue
+    fullcmd=$(ps -o args= -p "$pid" 2>/dev/null || echo)
+    # Only kill if it looks like a JetBrains debug helper — never the main
+    # Rider IDE, and never something with no JetBrains connection at all.
+    if echo "$fullcmd" | grep -qiE "JetBrains\.Debug|Rider\.Backend|Debugger\.Worker"; then
+        log "killing Rider debug helper pid $pid ($(echo "$fullcmd" | head -c 60)...)"
+        kill "$pid" 2>/dev/null && killed=$((killed+1))
+    fi
+done < <(ss -tnp state established "( dport = :$PORT )" 2>/dev/null \
+    | grep -oE 'pid=[0-9]+' | cut -d= -f2 | sort -u)
 
 # 1. The Steam reaper wrapper — kills the whole Proton launch chain
 for pid in $(pgrep -af "reaper.*SteamLaunch.*AppId=$APPID" 2>/dev/null | awk '{print $1}'); do
