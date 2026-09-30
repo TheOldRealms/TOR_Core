@@ -101,6 +101,7 @@ namespace TOR_Core.CampaignMechanics.Companions
                     if (wanderer == null)
                     {
                         SpawnWanderer(townList[i].Settlement, out wanderer);//weekly refill of wanderers if the town doesn't have one
+                        if (wanderer == null) continue;//some cultures have no wanderer template; there is no hero to rotate
                     }
 
                     //wanderers are shuffled forward 1 town, and the last town generates a new wanderer to replace the old one.

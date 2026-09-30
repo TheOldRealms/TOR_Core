@@ -1401,6 +1401,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 "<BodyProperties version='4' age='25' weight='0.4182' build='0.1898' key='0005000F00000280F77664884754DCBAFF9E566095F09F1F74414A49893F81FE0F77760307A7B7A536000000000000000000000000000007000000003CFC0000'/>";
             string default_orc =
                 "<BodyProperties version='4' age='25' weight='0.3657' build='0.2978'  key='0005100000CC00005C12429361532471D9656C584FA9A47724B588AAD7B53C5DDACBA6130657877845CCBADBCCBCBABC0000000000000016000000002ECC0000'/>";
+            string default_ungor =
+                "<BodyProperties version='4' age='25' weight='0.5' build='0.5' key='00005C0F800000C26C86666777666666777777777766666666555566666A666600456603045565650000000000000000000000000000000000000000000D3000'/>";
             string keyValue;
 
             var culture = CharacterObject.PlayerCharacter.Culture;
@@ -1435,6 +1437,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 case TORConstants.Cultures.GREENSKIN:
                     keyValue = default_orc;
                     CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("orc");
+                    break;
+                case TORConstants.Cultures.BEASTMEN:
+                    keyValue = default_ungor;
+                    CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("ungor");
                     break;
                 default:
                     keyValue = default_empire;

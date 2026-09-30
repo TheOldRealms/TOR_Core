@@ -41,12 +41,12 @@ namespace TOR_Core.BattleMechanics
                 TickEvents();
             }
 
-            if (Mission.InputManager.IsGameKeyDown(24))
+            if (Mission.InputManager.IsGameKeyDown((int)GameKeyDefinition.Zoom))
             {
                 ZoomKeyDownEvents();
             }
 
-            if (_zoomKeyEventStarted && Mission.InputManager.IsGameKeyReleased(24))
+            if (_zoomKeyEventStarted && Mission.InputManager.IsGameKeyReleased((int)GameKeyDefinition.Zoom))
             {
                 ZoomKeyUpEvents();
             }

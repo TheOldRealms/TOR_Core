@@ -45,6 +45,8 @@ namespace TOR_Core.AbilitySystem
         private EquipmentIndex _offHand = EquipmentIndex.None;
         private AbilityComponent _abilityComponent;
         private GameKeyContext _keyContext = HotKeyManager.GetCategory("CombatHotKeyCategory");
+        private Dictionary<int, InputKey> _storedKeyboardKeys = [];
+        private Dictionary<int, InputKey> _storedControllerKeys = [];
         private static ActionIndexCache? _idleAnimation;
         private ParticleSystem[] _psys = null;
         private GameEntity[] _castStanceParticleEntities = null;
@@ -54,9 +56,14 @@ namespace TOR_Core.AbilitySystem
         private SummonedCombatant _attackerSummoningCombatant;
 
         private Dictionary<Team, int> _artillerySlots = [];
-        private GameKey _quickCastMenuKey;
-        private GameKey _quickCast;
-        private GameKey _specialMoveKey;
+        private IInputContext MissionInputContext => Mission.InputManager;
+        private bool _inputCategoryAdded;
+        private int _abilitySelectionMenuId = (int)TorKeyMap.AbilitySelectionMenu;
+        private int _quickCastId = (int)TorKeyMap.QuickCast;
+        private int _careerAbilityId = (int)TorKeyMap.CareerAbilityCast;
+        private int _confirmCastId = (int)GameKeyDefinition.Attack;
+        private int _cancelCastId = (int)GameKeyDefinition.Defend;
+        private string _showScoreboardId = "HoldShow";
         private AbilityHUDMissionView _abilityView;
         private int _timeRequestID = 1338;
         private float _lastActivationDeltaTime;
@@ -99,6 +106,7 @@ namespace TOR_Core.AbilitySystem
                 return _idleAnimation.Value;
             }
         }
+
         public AbilityModeState CurrentState => _currentState;
 
         public bool ShouldSuppressCombatActions => CurrentState == AbilityModeState.Targeting || CurrentState == AbilityModeState.Casting || _disableCombatActionsAfterCast;
@@ -107,6 +115,18 @@ namespace TOR_Core.AbilitySystem
         {
             base.OnBehaviorInitialize();
             Mission.OnItemPickUp += OnItemPickup;
+        }
+
+        public override void OnMissionTick(float dt)
+        {
+            base.OnMissionTick(dt);
+
+            //Sly : couldn't find a better event to put this in that would have it be checked just once.
+            if (!_inputCategoryAdded && MissionInputContext !=  null)
+            {
+                (MissionInputContext as InputContext).RegisterHotKeyCategory(HotKeyManager.GetCategory(nameof(TORGameKeyContext)));
+                _inputCategoryAdded = true;
+            }
         }
 
         public void InitHideOutBossFight()
@@ -121,10 +141,9 @@ namespace TOR_Core.AbilitySystem
             OnInitHideOutBossFight = null;
             _abilityView = Mission.Current.GetMissionBehavior<AbilityHUDMissionView>();
             Game.Current.EventManager.RegisterEvent(new Action<MissionPlayerToggledOrderViewEvent>(OnPlayerToggleOrder));
-            _quickCastMenuKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey((int)TorKeyMap.QuickCastSelectionMenu);
-            _quickCast = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey((int)TorKeyMap.QuickCast);
-            _specialMoveKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey((int)TorKeyMap.CareerAbilityCast);
-
+            
+            _keyContext.GetGameKey((int)GameKeyDefinition.ViewCharacter).ControllerKey.ChangeKey(InputKey.Invalid); // Unbind ViewCharacter Controller key
+            
             TORSummonHelper.ResetInitialSpawnedTroopCount();
 
             _missionAgentSpawnLogic = Mission.GetMissionBehavior<DefaultBattleMissionAgentSpawnLogic>();
@@ -254,7 +273,7 @@ namespace TOR_Core.AbilitySystem
 
         private void EnableQuickSelectionMenuMode()
         {
-            _currentState = AbilityModeState.QuickMenuSelection;
+            _currentState = AbilityModeState.AbilitySelectionMenu;
             _abilityView.MissionScreen?.RegisterRadialMenuObject(_abilityView);
             CacheWieldedItemsForRestore();
             ChangeKeyBindings();
@@ -405,12 +424,12 @@ namespace TOR_Core.AbilitySystem
 
         private void HandleInput(float dt)
         {
-            if (Input.IsKeyDown(InputKey.Tab))
+            if (MissionInputContext.IsHotKeyPressed(_showScoreboardId))
                 return;
-
-            if (_currentState == AbilityModeState.QuickMenuSelection || _currentState == AbilityModeState.Targeting)
+            
+            if (_currentState == AbilityModeState.AbilitySelectionMenu || _currentState == AbilityModeState.Targeting)
             {
-                if (Input.IsKeyPressed(InputKey.RightMouseButton))
+                if (MissionInputContext.IsGameKeyPressed(_cancelCastId))
                 {
                     DisableAbilityMode(false, null);
                     return;
@@ -421,15 +440,15 @@ namespace TOR_Core.AbilitySystem
             {
                 case AbilityModeState.Off:
                     {
-                        if (Input.IsKeyPressed(InputKey.RightMouseButton) || Input.IsKeyPressed(InputKey.LeftMouseButton))
+                        if (MissionInputContext.IsGameKeyPressed(_confirmCastId) || MissionInputContext.IsGameKeyPressed(_cancelCastId))
                         {
                             if (_abilityComponent.CareerAbility != null && _abilityComponent.CareerAbility.IsActive) _abilityComponent.OnInterrupt();
                         }
-                        else if (Input.IsKeyPressed(_quickCastMenuKey.KeyboardKey.InputKey) || Input.IsKeyPressed(_quickCastMenuKey.ControllerKey.InputKey))
+                        else if (MissionInputContext.IsGameKeyPressed(_abilitySelectionMenuId))
                         {
                             EnableQuickSelectionMenuMode();
                         }
-                        else if (Input.IsKeyPressed(_specialMoveKey.KeyboardKey.InputKey) || Input.IsKeyPressed(_specialMoveKey.ControllerKey.InputKey))
+                        else if (MissionInputContext.IsGameKeyPressed(_careerAbilityId))
                         {
                             TextObject disabledReason = new("Error Casting Career Ability");
                             if (_abilityComponent.CareerAbility != null && !_abilityComponent.CareerAbility.IsDisabled(Agent.Main, out disabledReason) && IsSniperScopeDisabled())
@@ -459,7 +478,7 @@ namespace TOR_Core.AbilitySystem
                                 _abilityView.DisplayErrorMessage(disabledReason.ToString());
                             }
                         }
-                        else if (Input.IsKeyPressed(_quickCast.KeyboardKey.InputKey) || Input.IsKeyPressed(_quickCast.ControllerKey.InputKey))
+                        else if (MissionInputContext.IsGameKeyPressed(_quickCastId))
                         {
                             if (_abilityComponent.CurrentAbility != null && !_abilityComponent.CurrentAbility.IsDisabled(Agent.Main, out _) && IsSniperScopeDisabled())
                             {
@@ -473,9 +492,9 @@ namespace TOR_Core.AbilitySystem
                         }
                     }
                     break;
-                case AbilityModeState.QuickMenuSelection:
+                case AbilityModeState.AbilitySelectionMenu:
                     {
-                        if (!Input.IsKeyDown(_quickCastMenuKey.KeyboardKey.InputKey) && !Input.IsKeyDown(_quickCastMenuKey.ControllerKey.InputKey))
+                        if (!MissionInputContext.IsGameKeyDown(_abilitySelectionMenuId))
                         {
                             if (_abilityComponent.CurrentAbility.IsDisabled(Agent.Main, out TextObject failureReason))
                             {
@@ -506,7 +525,7 @@ namespace TOR_Core.AbilitySystem
                     break;
                 case AbilityModeState.Targeting:
                     {
-                        if (Input.IsKeyPressed(InputKey.LeftMouseButton))
+                        if (MissionInputContext.IsGameKeyPressed(_confirmCastId))
                         {
                             bool flag = _abilityComponent.CurrentAbility.Crosshair == null ||
                                         !_abilityComponent.CurrentAbility.Crosshair.IsVisible ||
@@ -526,7 +545,7 @@ namespace TOR_Core.AbilitySystem
                                 }
                             }
                         }
-                        else if (Input.IsKeyPressed(_quickCastMenuKey.KeyboardKey.InputKey) || Input.IsKeyPressed(_quickCastMenuKey.ControllerKey.InputKey))
+                        else if (MissionInputContext.IsGameKeyPressed(_abilitySelectionMenuId))
                         {
                             EnableQuickSelectionMenuMode();
                         }
@@ -882,6 +901,9 @@ namespace TOR_Core.AbilitySystem
             _castStanceParticleAgent = null;
         }
 
+        /// <remarks>
+        /// Sly : There's probably a more elegant way to do this by imposing a filter to the ability mission screen which determines how inputs are interpreted while it's active.
+        /// </remarks>
         private void ChangeKeyBindings()
         {
             if (_abilityComponent != null && _currentState != AbilityModeState.Off)
@@ -896,22 +918,59 @@ namespace TOR_Core.AbilitySystem
 
         private void BindWeaponKeys()
         {
-            _keyContext.GetGameKey(11).KeyboardKey.ChangeKey(InputKey.MouseScrollUp);
-            _keyContext.GetGameKey(12).KeyboardKey.ChangeKey(InputKey.MouseScrollDown);
-            _keyContext.GetGameKey(18).KeyboardKey.ChangeKey(InputKey.Numpad1);
-            _keyContext.GetGameKey(19).KeyboardKey.ChangeKey(InputKey.Numpad2);
-            _keyContext.GetGameKey(20).KeyboardKey.ChangeKey(InputKey.Numpad3);
-            _keyContext.GetGameKey(21).KeyboardKey.ChangeKey(InputKey.Numpad4);
+            RebindBothKeys((int)GameKeyDefinition.EquipPrimaryWeapon);
+            RebindBothKeys((int)GameKeyDefinition.EquipSecondaryWeapon);
+            RebindBothKeys((int)GameKeyDefinition.EquipWeapon1);
+            RebindBothKeys((int)GameKeyDefinition.EquipWeapon2);
+            RebindBothKeys((int)GameKeyDefinition.EquipWeapon3);
+            RebindBothKeys((int)GameKeyDefinition.EquipWeapon4);
+            _storedKeyboardKeys.Clear();
+            _storedControllerKeys.Clear();
+        }
+
+        private void RebindBothKeys(int gameKey)
+        {
+            if (_keyContext.GetGameKey(gameKey).KeyboardKey?.InputKey == InputKey.Invalid)
+            {
+                if (_storedKeyboardKeys.TryGetValue(gameKey, out InputKey keyboardInputKey))
+                _keyContext.GetGameKey(gameKey).KeyboardKey.ChangeKey(keyboardInputKey);
+            }
+
+            if (_keyContext.GetGameKey(gameKey).ControllerKey?.InputKey == InputKey.Invalid)
+            {
+                if (_storedControllerKeys.TryGetValue(gameKey, out InputKey controllerInputKey))
+                _keyContext.GetGameKey(gameKey).ControllerKey.ChangeKey(controllerInputKey);
+            }
         }
 
         private void UnbindWeaponKeys()
         {
-            _keyContext.GetGameKey(11).KeyboardKey.ChangeKey(InputKey.Invalid);
-            _keyContext.GetGameKey(12).KeyboardKey.ChangeKey(InputKey.Invalid);
-            _keyContext.GetGameKey(18).KeyboardKey.ChangeKey(InputKey.Invalid);
-            _keyContext.GetGameKey(19).KeyboardKey.ChangeKey(InputKey.Invalid);
-            _keyContext.GetGameKey(20).KeyboardKey.ChangeKey(InputKey.Invalid);
-            _keyContext.GetGameKey(21).KeyboardKey.ChangeKey(InputKey.Invalid);
+            StoreAndUnbindBothKeys((int)GameKeyDefinition.EquipPrimaryWeapon);
+            StoreAndUnbindBothKeys((int)GameKeyDefinition.EquipSecondaryWeapon);
+            StoreAndUnbindBothKeys((int)GameKeyDefinition.EquipWeapon1);
+            StoreAndUnbindBothKeys((int)GameKeyDefinition.EquipWeapon2);
+            StoreAndUnbindBothKeys((int)GameKeyDefinition.EquipWeapon3);
+            StoreAndUnbindBothKeys((int)GameKeyDefinition.EquipWeapon4);
+        }
+
+        private void StoreAndUnbindBothKeys(int gameKey)
+        {
+            var key = _keyContext.GetGameKey(gameKey);
+            // An action can have no binding object for one input device.
+            if (key.KeyboardKey != null)
+            {
+                // Selection and targeting can both unbind before a single restore.
+                if (!_storedKeyboardKeys.ContainsKey(gameKey))
+                    _storedKeyboardKeys.Add(gameKey, key.KeyboardKey.InputKey);
+                key.KeyboardKey.ChangeKey(InputKey.Invalid);
+            }
+
+            if (key.ControllerKey != null)
+            {
+                if (!_storedControllerKeys.ContainsKey(gameKey))
+                    _storedControllerKeys.Add(gameKey, key.ControllerKey.InputKey);
+                key.ControllerKey.ChangeKey(InputKey.Invalid);
+            }
         }
 
         private void OnItemPickup(Agent agent, SpawnedItemEntity item)
@@ -1059,7 +1118,7 @@ namespace TOR_Core.AbilitySystem
         {
             if (@event.IsOrderEnabled)
             {
-                if (_currentState == AbilityModeState.Targeting || _currentState == AbilityModeState.QuickMenuSelection)
+                if (_currentState == AbilityModeState.Targeting || _currentState == AbilityModeState.AbilitySelectionMenu)
                 {
                     DisableAbilityMode(false, null);
                 }
@@ -2327,7 +2386,7 @@ namespace TOR_Core.AbilitySystem
     public enum AbilityModeState
     {
         Off,
-        QuickMenuSelection,
+        AbilitySelectionMenu,
         Targeting,
         Casting
     }

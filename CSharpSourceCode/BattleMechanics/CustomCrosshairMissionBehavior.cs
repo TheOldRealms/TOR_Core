@@ -158,8 +158,8 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
         private bool CanUseSniperScope()
         {
             return Mission.CameraIsFirstPerson &&
-                   Input.IsKeyDown(InputKey.LeftShift) &&
-                   Input.IsKeyDown(InputKey.LeftMouseButton) &&
+                   Input.IsGameKeyPressed((int)GameKeyDefinition.Zoom) &&
+                   Input.IsGameKeyPressed((int)GameKeyDefinition.Attack) &&
                    Agent.Main.GetCurrentActionType(1) == Agent.ActionCodeType.ReadyRanged &&
                    Agent.Main.WieldedWeapon.Item.StringId.Contains("longrifle") &&
                    IsRightAngleToShoot();

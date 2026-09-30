@@ -42772,7 +42772,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_louen_template" culture="Culture.vlandia">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.empire_noble_sword_2_t5" />
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_sword_couronne" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_grail_knight_001" />
       <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_002" />
       <Equipment slot="Head" id="Item.tor_bretonnian_head_louen_leoncoeur" />
@@ -42784,7 +42784,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.empire_noble_sword_2_t5" />
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_sword_couronne" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_grail_knight_001" />
       <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_002" />
       <Equipment slot="Head" id="Item.tor_bretonnian_head_louen_leoncoeur" />
@@ -42796,7 +42796,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
-      <Equipment slot="Item0" id="Item.empire_noble_sword_2_t5" />
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_sword_couronne" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_grail_knight_001" />
       <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_002" />
       <Equipment slot="Head" id="Item.tor_bretonnian_head_louen_leoncoeur" />
@@ -42808,7 +42808,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
-      <Equipment slot="Item0" id="Item.empire_noble_sword_2_t5" />
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_sword_couronne" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_grail_knight_001" />
       <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_002" />
       <Equipment slot="Head" id="Item.tor_bretonnian_head_louen_leoncoeur" />
@@ -54152,6 +54152,40 @@
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_light_wizard_001" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_light_wizard_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_light_wizard_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_morglum_template" culture="Culture.aserai">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_greataxe_black_orc_001" />
+      <Equipment slot="Head" id="Item.tor_greenskin_orc_black_5_helmet_001" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_bulaks_bloody" />
+      <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_black_5_001" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_orc_black_5_001" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_boots_orc_black_5_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_greataxe_black_orc_001" />
+      <Equipment slot="Head" id="Item.tor_greenskin_orc_black_5_helmet_001" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_bulaks_bloody" />
+      <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_black_5_001" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_orc_black_5_001" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_boots_orc_black_5_001" />
+    </EquipmentSet>
+    <EquipmentSet equipmentType="Civilian">
+      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_greataxe_black_orc_001" />
+      <Equipment slot="Head" id="Item.tor_greenskin_orc_black_5_helmet_001" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_bulaks_bloody" />
+      <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_black_5_001" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_orc_black_5_001" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_boots_orc_black_5_001" />
+    </EquipmentSet>
+    <EquipmentSet equipmentType="Civilian" civilian="true">
+      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_greataxe_black_orc_001" />
+      <Equipment slot="Head" id="Item.tor_greenskin_orc_black_5_helmet_001" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_bulaks_bloody" />
+      <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_black_5_001" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_orc_black_5_001" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_boots_orc_black_5_001" />
     </EquipmentSet>
   </EquipmentRoster>
 </EquipmentRosters>

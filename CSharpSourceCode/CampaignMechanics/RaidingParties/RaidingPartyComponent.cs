@@ -17,7 +17,8 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
 
         //Randy: This is by the MobileParty component to check, it cannot be null otherwise the raiding
         //party cannot find its owner (taleworlds thing: IsSettlementSuitableForVisitingCondition)
-        public override Hero PartyOwner => Clan.Leader;
+        //Sly : Can't use the party's Clan.Leader as encounter resolution will have removed the war party from the clan and cause an NRE, eg. FinishEncounterInternal accesses the map faction after the party was removed from the clan, calling this PartyOwner getter.
+        public override Hero PartyOwner => HomeSettlement.Owner;
 
         [SaveableField(3)] private Settlement _home;
         public override Settlement HomeSettlement => _home;
