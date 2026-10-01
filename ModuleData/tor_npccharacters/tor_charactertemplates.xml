@@ -760,6 +760,14 @@
       <EquipmentSet id="tor_gs_goblin_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_wanderer_beastman_1" name="{FIRSTNAME} the Wargor" occupation="Wanderer" culture="Culture.beastmen" default_group="infantry" voice="ironic" age="50" is_template="true" is_hero="false" skill_template="SkillSet.tor_skills_berserker_lord">
+    <face>
+      <face_key_template value="BodyProperty.gor" />
+    </face>
+    <Equipments>
+      <EquipmentSet id="tor_beast_gor_gougehorn_template" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_empire_deserter_lord_0" default_group="cavalry" name="{=str_tor_empire_deserter_lord_0}{FIRSTNAME} the Deserter Captain" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_commander_lord" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empireofman" />
