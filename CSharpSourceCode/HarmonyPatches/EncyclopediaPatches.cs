@@ -413,6 +413,26 @@ namespace TOR_Core.HarmonyPatches
         {
             switch (attribute)
             {
+                case CharacterAttributes.MONSTROUS:
+                    return "attribute_icon_monstrous";
+                case CharacterAttributes.ARTILLERY_CREW:
+                    return "attribute_icon_artillery_crew";
+                case "cult_of_loec":
+                    return "attribute_icon_cult_of_loec";
+                case "cult_of_manaan":
+                    return "attribute_icon_cult_of_manaan";
+                case "cult_of_morr":
+                    return "attribute_icon_cult_of_morr";
+                case "cult_of_sigmar":
+                    return "attribute_icon_cult_of_sigmar";
+                case "cult_of_lady":
+                    return "attribute_icon_cult_of_the_lady";
+                case "cult_of_ulric":
+                    return "attribute_icon_cult_of_ulric";
+                case "cult_of_grimnir":
+                    return "attribute_icon_cult_of_grimnir";
+                case "cult_of_myrmidia":
+                    return "attribute_icon_cult_of_myrmidia";
                 case CharacterAttributes.UNDEAD:
                     return "attribute_icon_undead";
                 case CharacterAttributes.ETHEREAL:
