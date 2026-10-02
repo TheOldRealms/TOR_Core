@@ -4077,6 +4077,15 @@
   <string id="tor_career_button_knightoldworld_seal_decline.not_eligible" text="{=tor_career_button_knightoldworld_seal_decline.not_eligible}Not eligible for seal." />
   <string id="tor_extendedInfo.Undead" text="{=str_tor_extendedinfo_undead}Undead - not affected by morale, and instead of fleeing, shall crumble to dust. If defeated, this unit cannot be wounded." />
   <string id="tor_extendedInfo.ArtilleryCrew" text="{=str_tor_extendedinfo_artillerycrew}Artillery Crew - required to operate most artillery pieces." />
+  <string id="tor_extendedInfo.Monstrous" text="{=str_tor_extendedinfo_monstrous}Monstrous - Attacks gates (...)" />
+  <string id="tor_extendedInfo.cult_of_loec" text="{=str_tor_extendedinfo_cult_of_loec}Cult of Loec - Religious unit of Loec.(...)" />
+  <string id="tor_extendedInfo.cult_of_manaan" text="{=str_tor_extendedinfo_cult_of_manaan}Cult of Manann - Religious unit of Manann(...)" />
+  <string id="tor_extendedInfo.cult_of_morr" text="{=str_tor_extendedinfo_cult_of_morr}Cult of Morr - Religious unit of Morr.(...)" />
+  <string id="tor_extendedInfo.cult_of_sigmar" text="{=str_tor_extendedinfo_cult_of_sigmar}Cult of Sigmar - Religious unit of Sigmar.(...)" />
+  <string id="tor_extendedInfo.cult_of_lady" text="{=str_tor_extendedinfo_cult_of_lady}Cult of the Lady - Religious unit of the Lady.(...)" />
+  <string id="tor_extendedInfo.cult_of_ulric" text="{=str_tor_extendedinfo_cult_of_ulric}Cult of Ulric - Religious unit of Ulric.(...)" />
+  <string id="tor_extendedInfo.cult_of_grimnir" text="{=str_tor_extendedinfo_cult_of_grimnir}Cult of Grimnir - Religious unit of Grimnir.(...)" />
+  <string id="tor_extendedInfo.cult_of_myrmidia" text="{=str_tor_extendedinfo_cult_of_myrmidia}Cult of Myrmidia - Religious unit of Myrmidia.(...)" />
   <string id="tor_extendedInfo.Unbreakable" text="{=str_tor_extendedinfo_unbreakable}Unbreakable - shall never flee due to low morale." />
   <string id="tor_extendedInfo.Unstoppable" text="{=str_tor_extendedinfo_unstoppable}Unstoppable - does not stagger upon receiving damage." />
   <string id="tor_extendedInfo.Regeneration" text="{=str_tor_extendedinfo_regeneration}Regeneration - restores {VALUE} health per second.(...)" />
