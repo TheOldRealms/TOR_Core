@@ -144,7 +144,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
     protected override void InitializeKeyStones()
     {
         _wayWatcherRoot.Initialize(CareerID,
-            "Soon, the Lumberfoots shall regret their trespass! Fire a Lethal Shot, with deadly precision! +50% 'Physical' damage to your next shot. Every 'Keystone' career perk unlocked increases arrows affected by Lethal Shot by +1, but decreases its recharge rate. (Ability is charged by dealing 'Physical' damage with bows.)",
+            "Soon, the Lumberfoots shall regret their trespass! Fire a Lethal Shot, with deadly precision! +50% 'Physical' damage to your next shot. Every 'Keystone' career perk unlocked increases arrows affected by Lethal Shot by +1, but decreases its recharge rate.",
             null, true, ChoiceType.Keystone, []);
 
         _protectorOfTheWoodsKeystone.Initialize(CareerID,
