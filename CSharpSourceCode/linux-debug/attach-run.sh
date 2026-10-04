@@ -86,18 +86,29 @@ if [ ! -f "$LAUNCHER_BAK" ]; then
     cp "$NATIVE" "$LAUNCHER" || die "swap: cp failed"
 fi
 
-# --- 3. Hide known-conflicting workshop mods ----------------------------
-# Workshop TOR_Core (3025574678) and workshop Harmony (2859188632) duplicate
-# local IDs; direct-launch of Bannerlord.Native.exe crashes during module
-# registration when duplicates are discovered.
-CONFLICTS=(2859188632 3025574678)
-for id in "${CONFLICTS[@]}"; do
-    sub="$WSDIR/$id/SubModule.xml"
-    if [ -f "$sub" ]; then
-        log "hiding workshop mod $id"
-        mv "$sub" "$sub.disabled"
-    fi
-done
+# --- 3. Isolate from workshop content -----------------------------------
+# Bannerlord discovers and parses every SubModule.xml under the workshop
+# dir, even for mods not in the _MODULES_ CLI list. For dev debugging we
+# want ONLY the local Modules/ to be loaded — any workshop mod is either
+# noise (shows up in the mod graph), a direct conflict (duplicate IDs),
+# or an incomplete file that triggers "Module ... can't be loaded" dialogs.
+# Simplest fix: temporarily rename the whole 261550 workshop dir so the
+# engine sees no workshop content. stop.sh restores it on cleanup.
+WS_HIDDEN="$WSDIR.disabled-by-attach-run"
+if [ -d "$WSDIR" ] && [ ! -L "$WSDIR" ]; then
+    log "hiding workshop content: $WSDIR -> $WS_HIDDEN"
+    mv "$WSDIR" "$WS_HIDDEN"
+fi
+
+# Clean up any legacy per-mod SubModule.xml.disabled renames from the
+# earlier (less effective) hiding strategy. These exist only inside
+# the hidden dir now, but future runs/users may still have them loose.
+if [ -d "$WS_HIDDEN" ]; then
+    find "$WS_HIDDEN" -maxdepth 2 -name "SubModule.xml.disabled" 2>/dev/null \
+        | while IFS= read -r f; do
+            mv "$f" "${f%.disabled}" 2>/dev/null
+        done
+fi
 
 # --- 4. Launch via Steam -------------------------------------------------
 # Steam applies whatever launch options are set in the app properties.

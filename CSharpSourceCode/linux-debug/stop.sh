@@ -71,6 +71,18 @@ else
     log "sent SIGTERM to $killed processes"
 fi
 
+# 3b. Restore workshop content directory if attach-run.sh moved it aside
+WSDIR="$HOME/.local/share/Steam/steamapps/workshop/content/$APPID"
+WS_HIDDEN="$WSDIR.disabled-by-attach-run"
+if [ -d "$WS_HIDDEN" ]; then
+    if [ -d "$WSDIR" ]; then
+        log "WARNING: both $WSDIR and $WS_HIDDEN exist; leaving hidden as-is"
+    else
+        log "restoring workshop content: $WS_HIDDEN -> $WSDIR"
+        mv "$WS_HIDDEN" "$WSDIR"
+    fi
+fi
+
 # 4. Verify port 56000 is freed
 if ss -tln 2>/dev/null | grep -qE ":56000\b"; then
     log "WARNING: port 56000 still held (wineserver may need more time; retry in 5s)"
