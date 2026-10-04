@@ -176,11 +176,13 @@ See `mono-proxy/proxy.c` for the full narrated implementation.
   can't reach it because there's no OS-level state left to kill. This is
   [RIDER-45772](https://youtrack.jetbrains.com/issue/RIDER-45772) — an
   unresolved JetBrains bug, not caused by our setup. Workarounds:
+  - **`./reset-rider-backend.sh --force`** — kills just `Rider.Backend`
+    (Rider's .NET backend process), which the main IDE auto-respawns in
+    a few seconds. Editor tabs, open files, and indices are preserved;
+    the stuck debug UI state is cleared. Fastest recovery.
   - Right-click the session tab → Close / Terminate (works in some
     Rider versions)
-  - Kill `Rider.Backend` process — resets Rider's debug state without
-    losing your editor tabs
-  - Full Rider restart (nuclear but reliable)
+  - Full Rider restart (nuclear but always works)
 
 ## Why the Mono soft-debug path was necessary (state of the art)
 
