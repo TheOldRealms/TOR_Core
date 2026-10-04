@@ -161,6 +161,17 @@ See `mono-proxy/proxy.c` for the full narrated implementation.
 
 ## Known issues
 
+- **"Enter the Old World" crashes the game silently on Linux** (`rglTerrain_shader_generator::clear` → access violation in msvcrt).
+  Cause: TaleWorlds' `pbr_terrain` shader has a `normalize()`-of-zero
+  that produces NaN; on RADV / RDNA 4 (and possibly other newer AMD
+  GPUs) the terrain shader variant selected for Terrain Quality
+  Medium/Low tolerates this badly and crashes the GPU process.
+  **Fix**: in main-menu **Options → Performance**, set
+  **Terrain Quality = High**. Restart game. The High variant doesn't
+  hit the NaN path. Also toggling **Tessellation = Off** sometimes helps.
+  (Not caused by our setup — reproduces on vanilla Steam launch too.
+  Related: TAOM mod docs on `pbr_terrain` NaN, Mesa RDNA 4 shader
+  edge-cases. Report in TOR dev Discord if you hit it on another GPU.)
 - Some crashes on "Enter the Old World" don't trip a Rider breakpoint —
   they're probably native (Wine-side) faults that the Mono debugger can't
   see. Enable **Debug → Break on Exceptions → System.Exception (Break when
