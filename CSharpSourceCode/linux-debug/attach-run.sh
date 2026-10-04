@@ -86,25 +86,29 @@ if [ ! -f "$LAUNCHER_BAK" ]; then
     cp "$NATIVE" "$LAUNCHER" || die "swap: cp failed"
 fi
 
-# --- 3. Isolate from workshop content -----------------------------------
-# Bannerlord discovers and parses every SubModule.xml under the workshop
-# dir, even for mods not in the _MODULES_ CLI list. For dev debugging we
-# want ONLY the local Modules/ to be loaded — any workshop mod is either
-# noise (shows up in the mod graph), a direct conflict (duplicate IDs),
-# or an incomplete file that triggers "Module ... can't be loaded" dialogs.
-# Simplest fix: temporarily rename the whole 261550 workshop dir so the
-# engine sees no workshop content. stop.sh restores it on cleanup.
+# --- 3. (removed) Workshop isolation --------------------------------------
+# Earlier versions renamed the workshop content dir to hide it from the
+# engine. That caused DirectoryNotFoundException dialogs because Steam's
+# manifest kept telling Bannerlord the workshop mods existed, and the
+# engine then failed to read their SubModule.xml.
+#
+# Positive control over "what loads" is already handled by the Steam
+# launch option _MODULES_...*ModuleName*..._MODULES_ — only modules in
+# that list get ACTIVATED (code runs). Workshop mods get DISCOVERED
+# (metadata parsed) but not activated, which is harmless. Duplicate-ID
+# conflicts (e.g. workshop TOR_Core) are a problem the user solves by
+# unsubscribing in Steam — not something this script should tamper with.
+#
+# One-shot migration: restore any .disabled-by-attach-run dir left behind
+# by a previous version of this script so the user gets back to normal.
 WS_HIDDEN="$WSDIR.disabled-by-attach-run"
-if [ -d "$WSDIR" ] && [ ! -L "$WSDIR" ]; then
-    log "hiding workshop content: $WSDIR -> $WS_HIDDEN"
-    mv "$WSDIR" "$WS_HIDDEN"
+if [ -d "$WS_HIDDEN" ] && [ ! -d "$WSDIR" ]; then
+    log "restoring legacy-hidden workshop dir: $WS_HIDDEN -> $WSDIR"
+    mv "$WS_HIDDEN" "$WSDIR"
 fi
-
-# Clean up any legacy per-mod SubModule.xml.disabled renames from the
-# earlier (less effective) hiding strategy. These exist only inside
-# the hidden dir now, but future runs/users may still have them loose.
-if [ -d "$WS_HIDDEN" ]; then
-    find "$WS_HIDDEN" -maxdepth 2 -name "SubModule.xml.disabled" 2>/dev/null \
+# Also undo any legacy per-mod SubModule.xml.disabled renames.
+if [ -d "$WSDIR" ]; then
+    find "$WSDIR" -maxdepth 2 -name "SubModule.xml.disabled" 2>/dev/null \
         | while IFS= read -r f; do
             mv "$f" "${f%.disabled}" 2>/dev/null
         done
