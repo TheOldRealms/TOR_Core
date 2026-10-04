@@ -17,13 +17,24 @@ CSHARP_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"      # CSharpSourceCode/
 # workspace.xml file.
 
 nested_idea() {
-    # If nested workspace exists, echo its .idea dir; else echo empty.
-    for d in "$CSHARP_DIR"/.idea/.idea.*.dir/.idea; do
-        if [ -f "$d/workspace.xml" ]; then
-            echo "$d"
-            return 0
+    # Rider creates nested .idea/.idea.<name>[.dir]/.idea/ layouts:
+    #   - For bare .csproj opens: .idea.<ProjectName>.dir/
+    #   - For .sln opens:         .idea.<SolutionName>/   (no .dir suffix)
+    # When multiple exist (because the project was opened both ways), pick
+    # the one with the most recently modified workspace.xml — that's the
+    # live Rider session.
+    local best="" best_mtime=0
+    for d in "$CSHARP_DIR"/.idea/.idea.*/.idea; do
+        [ -f "$d/workspace.xml" ] || continue
+        local mt
+        mt=$(stat -c %Y "$d/workspace.xml" 2>/dev/null)
+        [ -z "$mt" ] && continue
+        if [ "$mt" -gt "$best_mtime" ]; then
+            best="$d"
+            best_mtime="$mt"
         fi
     done
+    [ -n "$best" ] && { echo "$best"; return 0; }
     return 1
 }
 
