@@ -29,14 +29,14 @@
     <!-- Override with environment variable: BANNERLORD_PATH -->
     <BannerlordPath Condition="'$(BANNERLORD_PATH)' != ''">$(BANNERLORD_PATH)</BannerlordPath>
 
-    <!-- Default Windows path (absolute, since relative with forward slashes fails) -->
-    <BannerlordPath Condition="'$(BannerlordPath)' == '' AND '$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))' == 'true'">$(MSBuildThisFileDirectory)..\..\..</BannerlordPath>
-
-    <!-- Default Linux path (Steam Proton) - adjust as needed -->
-    <BannerlordPath Condition="'$(BannerlordPath)' == '' AND '$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' == 'true'">$(HOME)/.steam/steam/steamapps/common/Mount &amp; Blade II Bannerlord</BannerlordPath>
-
-    <!-- Fallback for older MSBuild -->
-    <BannerlordPath Condition="'$(BannerlordPath)' == ''">$(MSBuildThisFileDirectory)..\..\..</BannerlordPath>
+    <!-- Default: relative path from the csproj to the game root.
+         Mod lives at Modules/TOR_Core/CSharpSourceCode/, so three levels up
+         is the Bannerlord install dir. Works on both Linux and Windows and
+         avoids absolute symlink paths (like ~/.steam/steam/...) which cause
+         Rider's VFS indexer on Linux to walk the entire Steam install
+         (including every other game's Proton prefix) — tens of millions
+         of files, hours of indexing. -->
+    <BannerlordPath Condition="'$(BannerlordPath)' == ''">$(MSBuildThisFileDirectory)../../..</BannerlordPath>
 
     <GameBinPath>$(BannerlordPath)/bin/Win64_Shipping_Client</GameBinPath>
     <ModulesPath>$(BannerlordPath)/Modules</ModulesPath>
