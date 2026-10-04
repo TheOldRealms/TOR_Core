@@ -29,7 +29,7 @@
 set -uo pipefail
 
 APPID_CLASS="steam_app_1393600"     # Modding Kit Steam AppID
-POLL=0.3                             # seconds between polls
+POLL=0.1                             # seconds between polls (3x faster than default)
 
 ONCE=0
 VERBOSE=0
