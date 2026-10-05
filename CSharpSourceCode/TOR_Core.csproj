@@ -608,7 +608,6 @@
     <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
     <Compile Include="CampaignMechanics\TownPOIs\Access.cs" />
     <Compile Include="CampaignMechanics\TownPOIs\Reasons.cs" />
-    <Compile Include="CampaignMechanics\TownPOIs\TORSettlementAccessModel.cs" />
     <Compile Include="CampaignMechanics\TORAIRecruitmentCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCaptivityCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\CustomSettlementMenus\CursedSiteMenuLogic.cs" />
@@ -886,6 +885,7 @@
     <Compile Include="Models\TORPersuasionModel.cs" />
     <Compile Include="Models\TORPrisonerRecruitmentCalculationModel.cs" />
     <Compile Include="Models\TORRaidModel.cs" />
+    <Compile Include="Models\TORSettlementAccessModel.cs" />
     <Compile Include="Models\TORSettlementFoodModel.cs" />
     <Compile Include="Models\TORSettlementLoyaltyModel.cs" />
     <Compile Include="Models\TORSettlementMilitiaModel.cs" />

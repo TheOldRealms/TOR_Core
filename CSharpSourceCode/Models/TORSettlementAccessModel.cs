@@ -4,10 +4,11 @@ using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.TownPOIs;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 
-namespace TOR_Core.CampaignMechanics.TownPOIs
+namespace TOR_Core.Models
 {
     /// <summary>
     /// Answers <c>CanMainHeroAccessLocation</c> for TOR-specific POIs (location ids starting
