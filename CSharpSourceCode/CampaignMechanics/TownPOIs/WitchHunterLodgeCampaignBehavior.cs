@@ -48,12 +48,11 @@ namespace TOR_Core.CampaignMechanics.TownPOIs
 
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
-            // Added to the top-level "town" menu rather than a submenu — the Witch Hunter
-            // Lodge isn't a craft destination, so grouping it with town_artisan would be
-            // off-theme. Final position pinned by RearrangeTownMenus after town_artisan
-            // in OnAfterSessionLaunched (keeps "our mod additions below artisan district").
+            // Registered under "town_artisan" alongside Wizard Hall — all faction-hall POIs
+            // cluster together in one submenu rather than scattering across the main town
+            // menu. Final position pinned via RearrangeTownMenus in OnAfterSessionLaunched.
             starter.AddGameMenuOption(
-                menuId: "town",
+                menuId: "town_artisan",
                 optionId: LocationId,
                 optionText: TORTextHelper.GetTextForNative(
                     "tor_poi_witchhunter_lodge.EnterLabel", "Visit the Witch Hunter Lodge"),
@@ -62,10 +61,15 @@ namespace TOR_Core.CampaignMechanics.TownPOIs
                 isLeave: false);
         }
 
+        /// <summary>
+        /// Pinned directly above the submenu's "Leave" option so the entry can never end up
+        /// below Leave regardless of the order in which hall behaviors' OnAfterSessionLaunched
+        /// handlers fire (anchoring against another hall's option would be order-dependent).
+        /// </summary>
         private void OnAfterSessionLaunched(CampaignGameStarter starter)
         {
-            var townMenu = Campaign.Current.GameMenuManager.GetGameMenu("town");
-            TORSettlementMenuHelpers.RearrangeTownMenus(townMenu, LocationId, "town_artisan");
+            var artisanMenu = Campaign.Current.GameMenuManager.GetGameMenu("town_artisan");
+            TORSettlementMenuHelpers.RearrangeTownMenus(artisanMenu, LocationId, "town_artisan_leave", above: true);
         }
 
         private bool LodgeMenuCondition(MenuCallbackArgs args)

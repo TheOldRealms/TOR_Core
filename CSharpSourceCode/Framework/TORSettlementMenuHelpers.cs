@@ -7,45 +7,43 @@ namespace TOR_Core.Framework
 {
     public static class TORSettlementMenuHelpers
     {
+        /// <summary>
+        /// Repositions <paramref name="entryId"/> directly after (default) or before
+        /// (<paramref name="above"/>=true) <paramref name="targetEntryId"/> in the given
+        /// <paramref name="menu"/>'s options list.
+        ///
+        /// <para>Previous single-pass implementation had a latent bug: when the entry
+        /// appeared in the list AFTER the target (which is the common case — new TOR
+        /// options are typically appended to vanilla menus, and anchor against earlier
+        /// vanilla entries), the one-past-target iteration would attempt
+        /// <c>options[-1]</c> because the entry hadn't been encountered yet.
+        /// Replaced with a straightforward two-pass: strip entry, locate target, insert.</para>
+        /// </summary>
         public static void RearrangeTownMenus(GameMenu menu, string entryId, string targetEntryId, bool above = false)
         {
             if (menu == null) return;
 
-            var options = AccessTools.Field(typeof(GameMenu), "_menuItems").GetValue(menu) as List<GameMenuOption>;
+            var optionsField = AccessTools.Field(typeof(GameMenu), "_menuItems");
+            if (optionsField == null) return;
+
+            var options = optionsField.GetValue(menu) as List<GameMenuOption>;
             if (options == null) return;
 
-            var targetEntry = options.FirstOrDefault(x => x.IdString == targetEntryId);
             var entry = options.FirstOrDefault(x => x.IdString == entryId);
+            var targetEntry = options.FirstOrDefault(x => x.IdString == targetEntryId);
+            if (entry == null || targetEntry == null) return;
 
-            if (targetEntry != null && entry != null)
-            {
-                int positionEntryIndex = -1;
-                int entryEntryIndex = -1;
-                List<GameMenuOption> newOptions = new List<GameMenuOption>();
+            // Pass 1: drop the entry from the list (reference-identity, matches above lookup).
+            var reordered = options.Where(o => o != entry).ToList();
 
-                for (int i = 0; i < options.Count; i++)
-                {
-                    var option = options[i];
-                    if (option == targetEntry)
-                    {
-                        positionEntryIndex = i;
-                    }
-                    else if (option == entry)
-                    {
-                        entryEntryIndex = i;
-                        continue;
-                    }
+            // Pass 2: find the target in the entry-less list and insert at the correct side.
+            int targetIndex = reordered.IndexOf(targetEntry);
+            if (targetIndex < 0) return;
 
-                    var shift = above ? -1 : 1;
-                    if (positionEntryIndex > -1 && i == positionEntryIndex + 1)
-                    {
-                        newOptions.Add(options[entryEntryIndex]);
-                    }
-                    newOptions.Add(option);
-                }
+            int insertIndex = above ? targetIndex : targetIndex + 1;
+            reordered.Insert(insertIndex, entry);
 
-                AccessTools.Field(typeof(GameMenu), "_menuItems").SetValue(menu, newOptions);
-            }
+            optionsField.SetValue(menu, reordered);
         }
     }
 }
