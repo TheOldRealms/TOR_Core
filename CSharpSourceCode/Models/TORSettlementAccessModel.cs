@@ -36,19 +36,21 @@ namespace TOR_Core.Models
             if (locationId == null || !locationId.StartsWith("tor_"))
                 return base.CanMainHeroAccessLocation(settlement, locationId, out disableOption, out disabledText);
 
-            // Rule 7: siege is centralized for every TOR POI, not re-checked in each method.
-            if (settlement != null && settlement.IsUnderSiege)
-                return Access.Deny(out disableOption, out disabledText, Reasons.SiegeSealed);
-
-            // Rule 2: dispatch one line each.
+            // Rule 2: dispatch one line each. Each POI's method owns its own siege check
+            // (and all other guards), so denial text can be flavored per POI without a
+            // central dispatch table.
             switch (locationId)
             {
                 case "tor_wizardhall":
                     return CanAccessWizardHall(settlement, out disableOption, out disabledText);
 
-                // Rule 6: unknown tor_ id → fail-closed with generic reason.
+                // Rule 6: unknown tor_ id → fail-closed with a hardcoded fallback. Any menu
+                // option that pointed at this id without a matching per-POI method is broken
+                // configuration; the fallback keeps the game runnable without obscuring the bug.
                 default:
-                    return Access.Deny(out disableOption, out disabledText, Reasons.Sealed);
+                    disableOption = true;
+                    disabledText = new TextObject("This place is sealed.");
+                    return false;
             }
         }
 
@@ -58,21 +60,25 @@ namespace TOR_Core.Models
 
             // Discovery hook — stubbed to true today (see IsDiscovered). Hide-eligible reason.
             if (!IsDiscovered(s, "tor_wizardhall"))
-                return Access.Deny(out disableOption, out disabledText, Reasons.Undiscovered);
+                return Access.Deny(out disableOption, out disabledText, WizardHallReasons.Undiscovered);
 
             // Settlement whitelist. Defensive: the menu option should only register on eligible
             // towns, so this branch is a fail-safe for callers that query the model directly.
             if (!HallLocations.IsWizardHallSettlement(s))
-                return Access.Deny(out disableOption, out disabledText, Reasons.NotAHallHere);
+                return Access.Deny(out disableOption, out disabledText, WizardHallReasons.Sealed);
+
+            // Siege gate (per-POI so denial text can be flavored for this hall).
+            if (s.IsUnderSiege)
+                return Access.Deny(out disableOption, out disabledText, WizardHallReasons.SiegeSealed);
 
             // Race lock — humans only.
             if (h.CharacterObject.Race != FaceGen.GetRaceOrDefault("human"))
-                return Access.Deny(out disableOption, out disabledText, Reasons.WardsRejectRace);
+                return Access.Deny(out disableOption, out disabledText, WizardHallReasons.Rejected);
 
             // Career lock — Imperial Magister only.
             if (!h.HasCareer(TORCareers.ImperialMagister))
                 return Access.Deny(out disableOption, out disabledText,
-                    Reasons.MustHaveCareer(TORCareers.ImperialMagister.Name));
+                    WizardHallReasons.MustHaveCareer(TORCareers.ImperialMagister.Name));
 
             return Access.Allow(out disableOption, out disabledText);
         }

@@ -86,10 +86,10 @@ namespace TOR_Core.CampaignMechanics.TownPOIs
                                            out bool disableOption, out TextObject disabledText);
 
             // Menu-condition translator: hide (vs. gray-with-tooltip) the option when the
-            // model's denial reason is one of the "non-spoilery" cases. Reference equality
-            // works because Reasons.* are static-readonly fields in the same assembly.
-            if (!canEnter && (ReferenceEquals(disabledText, Reasons.Undiscovered)
-                              || ReferenceEquals(disabledText, Reasons.NotAHallHere)))
+            // model's denial reason is one of the "never-should-see" cases. Reference
+            // equality works because WizardHallReasons.* are static-readonly fields.
+            if (!canEnter && (ReferenceEquals(disabledText, WizardHallReasons.Undiscovered)
+                              || ReferenceEquals(disabledText, WizardHallReasons.Sealed)))
                 return MenuHelper.SetOptionProperties(args, false, false, null);
 
             return MenuHelper.SetOptionProperties(args, canEnter, disableOption, disabledText);
@@ -137,10 +137,11 @@ namespace TOR_Core.CampaignMechanics.TownPOIs
             // Skip if the player is allowed (no reason to notify them).
             if (canEnter) return;
 
-            // Skip the two "non-spoilery" states — the hall isn't here, or hasn't been
-            // discovered yet. Same translator rule as the menu-condition hide branch.
-            if (ReferenceEquals(disabledText, Reasons.NotAHallHere)
-                || ReferenceEquals(disabledText, Reasons.Undiscovered))
+            // Skip the two "never-should-see" states — the hall isn't accessible from this
+            // settlement (Sealed) or hasn't been discovered yet. Same translator rule as the
+            // menu-condition hide branch.
+            if (ReferenceEquals(disabledText, WizardHallReasons.Sealed)
+                || ReferenceEquals(disabledText, WizardHallReasons.Undiscovered))
                 return;
 
             // Hall exists in this town but main hero is blocked — fire the banner once.

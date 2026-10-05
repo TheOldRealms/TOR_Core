@@ -5264,12 +5264,11 @@
   <string id="str_faction_informal_name_for_culture.beastmen" text="{=str_faction_informal_name_for_culture.beastmen}[TODO] the Beastmen" category="Factions" subcategory="Beastmen" />
   <string id="str_adjective_for_culture.beastmen" text="{=str_adjective_for_culture.beastmen}[TODO] beastman" category="Factions" subcategory="Beastmen" />
   <string id="str_neutral_term_for_culture.beastmen" text="{=str_neutral_term_for_culture.beastmen}[TODO] beastmen" category="Factions" subcategory="Beastmen" />
-  <string id="tor_poi.SiegeSealed" text="{=str_tor_poi.SiegeSealed}The gates are sealed during the siege." category="POIs" subcategory="Shared" />
-  <string id="tor_poi.Sealed" text="{=str_tor_poi.Sealed}This place is sealed." category="POIs" subcategory="Shared" />
-  <string id="tor_poi.Undiscovered" text="{=str_tor_poi.Undiscovered}You have not yet found this place." category="POIs" subcategory="Shared" />
-  <string id="tor_poi.NotAHallHere" text="{=str_tor_poi.NotAHallHere}There is no hall of this kind here." category="POIs" subcategory="Shared" />
-  <string id="tor_poi.WardsRejectRace" text="{=str_tor_poi.WardsRejectRace}The wards of this place reject your kind." category="POIs" subcategory="Shared" />
-  <string id="tor_poi.MustHaveCareer" text="{=str_tor_poi.MustHaveCareer}Only {REQUIRED_CAREER} may enter." category="POIs" subcategory="Shared" />
   <string id="tor_poi_wizardhall.Name" text="{=str_tor_poi_wizardhall.Name}Wizard Hall" category="POIs" subcategory="Wizard Hall" />
   <string id="tor_poi_wizardhall.EnterLabel" text="{=str_tor_poi_wizardhall.EnterLabel}Visit the Wizard Hall" category="POIs" subcategory="Wizard Hall" />
+  <string id="tor_poi_wizardhall.Undiscovered" text="{=str_tor_poi_wizardhall.Undiscovered}You have not yet found this place." category="POIs" subcategory="Wizard Hall" />
+  <string id="tor_poi_wizardhall.Sealed" text="{=str_tor_poi_wizardhall.Sealed}This place is sealed." category="POIs" subcategory="Wizard Hall" />
+  <string id="tor_poi_wizardhall.SiegeSealed" text="{=str_tor_poi_wizardhall.SiegeSealed}The gates of the College are sealed during the siege." category="POIs" subcategory="Wizard Hall" />
+  <string id="tor_poi_wizardhall.Rejected" text="{=str_tor_poi_wizardhall.Rejected}The wards of the College turn you away." category="POIs" subcategory="Wizard Hall" />
+  <string id="tor_poi_wizardhall.MustHaveCareer" text="{=str_tor_poi_wizardhall.MustHaveCareer}Only {REQUIRED_CAREER} may enter the College." category="POIs" subcategory="Wizard Hall" />
 </strings>
