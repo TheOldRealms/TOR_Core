@@ -50,6 +50,7 @@ using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
+using TOR_Core.CampaignMechanics.TownPOIs;
 using TOR_Core.CampaignMechanics.UniqueSpawns;
 using TOR_Core.CampaignSupport.TownBehaviours;
 using TOR_Core.CharacterDevelopment;
@@ -240,6 +241,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORPartyWageModel());
                 gameStarterObject.AddModel(new TORPrisonerRecruitmentCalculationModel());
                 gameStarterObject.AddModel(new TORSettlementMilitiaModel());
+                gameStarterObject.AddModel(new TORSettlementAccessModel());
                 gameStarterObject.AddModel(new TORAbilityModel());
                 gameStarterObject.AddModel(new TORCharacterDevelopmentModel());
                 gameStarterObject.AddModel(new TORPartyTrainingModel());
