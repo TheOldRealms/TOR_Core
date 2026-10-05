@@ -14,6 +14,7 @@ using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using TOR_Core.Ink;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Religion
@@ -25,6 +26,7 @@ namespace TOR_Core.CampaignMechanics.Religion
         private const int SameReligionBonusMax = 50;
         private const int CompatiblePantheonBonusMax = 25;
         private const int HostilePantheonMalusMax = 75;
+        private List<string> _grantedMiracleCults = [];
 
         public override void RegisterEvents()
         {
@@ -36,6 +38,29 @@ namespace TOR_Core.CampaignMechanics.Religion
             CampaignEvents.OnCollectLootsItemsEvent.AddNonSerializedListener(this, PlayerLootCollected);
             TORCampaignEvents.Instance.DevotionLevelChanged += OnDevotionLevelChanged;
             TORCampaignEvents.Instance.HeroExtendedInfoCreated += OnHeroExtendedInfoCreated;
+            TORCampaignEvents.Instance.ShrinePrayer += OnShrinePrayer;
+        }
+
+        /// <remarks>
+        /// The Miracle story accepts no argument; it checks the MainHero religion and grants items to MainParty inventory despite this generic formulation.
+        /// </remarks>
+        private void OnShrinePrayer(object sender, ShrinePrayerEventArgs eventArgs)//hero, religion, shrine
+        {
+            var hero = eventArgs.Hero;
+            var heroReligion = hero.GetDominantReligion();
+            if (heroReligion != null && heroReligion == eventArgs.Religion && hero.GetDevotionLevelForReligion(heroReligion) == DevotionLevel.Fanatic)
+            {
+                if (!hero.GetPerkValue(TORPerks.Faith.Miracle)) return;
+                if (_grantedMiracleCults.Contains(eventArgs.Religion.StringId)) return;
+
+                if (heroReligion.ReligiousArtifacts.Count < 1)
+                {
+                    TORCommon.Log("ReligionCampaignBehavior : " + heroReligion.Name.ToString() + "miracle triggered with no religious artifacts", LogLevel.Warn);
+                }
+                
+                _grantedMiracleCults.Add(eventArgs.Religion.StringId);
+                InkStoryManager.OpenStory("Miracle");
+            }
         }
 
         private void PlayerLootCollected(PartyBase winnerParty, ItemRoster gainedLoots)
@@ -230,12 +255,16 @@ namespace TOR_Core.CampaignMechanics.Religion
             }
         }
 
-        public override void SyncData(IDataStore dataStore) { }
+        public override void SyncData(IDataStore dataStore)
+        {
+            dataStore.SyncData("_grantedMiracleCults", ref _grantedMiracleCults);
+        }
 
         public void Dispose()
         {
             TORCampaignEvents.Instance.DevotionLevelChanged -= OnDevotionLevelChanged;
             TORCampaignEvents.Instance.HeroExtendedInfoCreated -= OnHeroExtendedInfoCreated;
+            TORCampaignEvents.Instance.ShrinePrayer -= OnShrinePrayer;
         }
 
         private void SetIntialReligionBasedRelationDriftForAi()

@@ -42624,28 +42624,28 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_vc_necrarch_lord_template" culture="Culture.khuzait">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_vc_weapon_staff_nm_001" />
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_khopesh_001" />
       <Equipment slot="Body" id="Item.tor_vc_body_basic_robe_necrarch_001" />
       <Equipment slot="Cape" id="Item.tor_vc_shoulder_basic_cape_necrarch_001" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_horse_zombie_horse_001" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_vampire_002" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_vc_weapon_staff_nm_001" />
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_khopesh_001" />
       <Equipment slot="Body" id="Item.tor_vc_body_basic_robe_necrarch_001" />
       <Equipment slot="Cape" id="Item.tor_vc_shoulder_basic_cape_necrarch_001" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_horse_zombie_horse_001" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_vampire_002" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
-      <Equipment slot="Item0" id="Item.tor_vc_weapon_staff_nm_001" />
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_khopesh_001" />
       <Equipment slot="Body" id="Item.tor_vc_body_basic_robe_necrarch_001" />
       <Equipment slot="Cape" id="Item.tor_vc_shoulder_basic_cape_necrarch_001" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_horse_zombie_horse_001" />
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_vampire_002" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
-      <Equipment slot="Item0" id="Item.tor_vc_weapon_staff_nm_001" />
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_khopesh_001" />
       <Equipment slot="Body" id="Item.tor_vc_body_basic_robe_necrarch_001" />
       <Equipment slot="Cape" id="Item.tor_vc_shoulder_basic_cape_necrarch_001" />
       <Equipment slot="Horse" id="Item.tor_vc_mount_horse_zombie_horse_001" />

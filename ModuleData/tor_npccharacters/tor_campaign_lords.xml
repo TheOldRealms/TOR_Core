@@ -13740,9 +13740,9 @@
     </Equipments>
   </NPCCharacter>
   <!-- Beastmen Lords -->
-  <NPCCharacter id="tor_beastmen_lord_factionleader" default_group="infantry" name="{=str_tor_beastmen_lord_factionleader}The Beastlord" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_beastmen_lord_factionleader" default_group="infantry" name="{=str_tor_beastmen_lord_factionleader}Ndhiub Nluffur" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" race="gor2" skill_template="SkillSet.tor_skills_beastmen_ndhiub_lord" is_hero="true">
     <face>
-      <BodyProperties version="4" age="35" weight="0.7" build="0.8" key="0002500F170012457C70638A76C1136A6DC98666F4C19600C4B640398A95A03600BB36030BA7A40500000000000000000000000000000000000000003B743080" />
+      <BodyProperties version="4" age="35" weight="0.8" build="1" key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="8" />
@@ -13754,8 +13754,92 @@
       <Trait id="Generosity" value="-3" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_m_lord_serpent" />
-      <EquipmentSet id="tor_m_lord_serpent" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_gor_gougehorn_template" />
+      <EquipmentSet id="tor_beast_gor_gougehorn_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_lord_stormcrow" default_group="infantry" name="{=str_tor_beastmen_lord_stormcrow}Fgodhm the Stormcrow" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" race="gor2" skill_template="SkillSet.tor_skills_beastmen_caster_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="35" weight="0.35" build="0.55" key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />
+    </face>
+    <Traits>
+      <Trait id="Honor" value="-5" />
+      <Trait id="Mercy" value="-8" />
+      <Trait id="Generosity" value="-3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_beast_gor_manripper_template" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_lord_halfspawn" default_group="infantry" name="{=str_tor_beastmen_lord_halfspawn}Wilphfkhob the Half Spawn" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" race="gor2" skill_template="SkillSet.tor_skills_beastmen_berserker_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="35" weight="0.9" build="1" key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />
+    </face>
+    <Traits>
+      <Trait id="Honor" value="-5" />
+      <Trait id="Mercy" value="-8" />
+      <Trait id="Generosity" value="-3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_beast_gor_manripper_template" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_lord_guiym" default_group="infantry" name="{=str_tor_beastmen_lord_guiym}Guiym Phlar" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" race="gor2" skill_template="SkillSet.tor_skills_beastmen_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="35" weight="0.6" build="0.75" key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />
+    </face>
+    <Traits>
+      <Trait id="Honor" value="-5" />
+      <Trait id="Mercy" value="-8" />
+      <Trait id="Generosity" value="-3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_beast_gor_manripper_template" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_lord_nodhph" default_group="infantry" name="{=str_tor_beastmen_lord_nodhph}Nodhph Ndhuiaodh" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" race="gor2" skill_template="SkillSet.tor_skills_beastmen_berserker_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="35" weight="0.7" build="0.9" key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />
+    </face>
+    <Traits>
+      <Trait id="Honor" value="-5" />
+      <Trait id="Mercy" value="-8" />
+      <Trait id="Generosity" value="-3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_beast_gor_manripper_template" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_lord_shdhimib" default_group="infantry" name="{=str_tor_beastmen_lord_shdhimib}Shdhimib" occupation="Lord" culture="Culture.beastmen" voice="curt" age="65" race="gor2" skill_template="SkillSet.tor_skills_beastmen_commander_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="65" weight="0.55" build="0.8" key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />
+    </face>
+    <Traits>
+      <Trait id="Honor" value="-5" />
+      <Trait id="Mercy" value="-8" />
+      <Trait id="Generosity" value="-3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_beast_gor_manripper_template" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_lord_shodhshodh" default_group="infantry" name="{=str_tor_beastmen_lord_shodhshodh}Shodhshodh" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" race="gor2" skill_template="SkillSet.tor_skills_beastmen_berserker_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="35" weight="0.5" build="0.85" key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />
+    </face>
+    <Traits>
+      <Trait id="Honor" value="-5" />
+      <Trait id="Mercy" value="-8" />
+      <Trait id="Generosity" value="-3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_beast_gor_manripper_template" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 </NPCCharacters>

@@ -170,6 +170,9 @@ namespace TOR_Core.Utilities
                 case TORConstants.Cultures.DAWI:
                     args.MenuContext.SetBackgroundMeshName("dwarf_tavern");
                     return;
+                case TORConstants.Cultures.GREENSKIN:
+                    args.MenuContext.SetBackgroundMeshName("greenskin_tavern");
+                    return;
             }
         }
 
