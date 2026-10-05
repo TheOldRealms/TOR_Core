@@ -17,6 +17,7 @@ using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CampaignMechanics.TownPOIs;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -59,7 +60,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
         private bool IsTrainerInCollege(Settlement settlement)
         {
-            var location = settlement.LocationComplex.GetLocationWithId("house_1");
+            var location = settlement.LocationComplex.GetLocationWithId(HallLocations.GetTrainerLocationId(settlement));
             var trainer = GetTrainerForTown(settlement);
             if (trainer != null)
             {
@@ -83,7 +84,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
         private void SpawnTrainerInCollege(Settlement settlement, bool forceSpawn)
         {
             var trainer = GetTrainerForTown(settlement);
-            var collegeloc = settlement.LocationComplex.GetLocationWithId("house_1");
+            var collegeloc = settlement.LocationComplex.GetLocationWithId(HallLocations.GetTrainerLocationId(settlement));
             if (trainer != null && collegeloc != null)
             {
                 // Skip spellsinger envoy - they should stay in the lordshall, not the magic college

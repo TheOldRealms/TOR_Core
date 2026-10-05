@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Settlements;
@@ -30,13 +29,6 @@ namespace TOR_Core.Models
     /// </summary>
     public class TORSettlementAccessModel : DefaultSettlementAccessModel
     {
-        private static readonly HashSet<string> _wizardHallSettlements = new()
-        {
-            "town_RL1",  // Altdorf
-            "town_WI1",  // Nuln
-            "town_ML1",  // Middenheim
-        };
-
         public override bool CanMainHeroAccessLocation(Settlement settlement, string locationId,
                                                        out bool disableOption, out TextObject disabledText)
         {
@@ -70,7 +62,7 @@ namespace TOR_Core.Models
 
             // Settlement whitelist. Defensive: the menu option should only register on eligible
             // towns, so this branch is a fail-safe for callers that query the model directly.
-            if (!_wizardHallSettlements.Contains(s.StringId))
+            if (!HallLocations.IsWizardHallSettlement(s))
                 return Access.Deny(out disableOption, out disabledText, Reasons.NotAHallHere);
 
             // Race lock — humans only.

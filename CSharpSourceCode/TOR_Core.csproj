@@ -607,6 +607,7 @@
     <Compile Include="CampaignMechanics\SkillTrainerBehavior.cs" />
     <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
     <Compile Include="CampaignMechanics\TownPOIs\Access.cs" />
+    <Compile Include="CampaignMechanics\TownPOIs\HallLocations.cs" />
     <Compile Include="CampaignMechanics\TownPOIs\Reasons.cs" />
     <Compile Include="CampaignMechanics\TownPOIs\WizardHallCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORAIRecruitmentCampaignBehavior.cs" />
