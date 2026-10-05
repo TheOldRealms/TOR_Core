@@ -50,6 +50,7 @@ using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
+using TOR_Core.CampaignMechanics.TownPOIs;
 using TOR_Core.CampaignMechanics.UniqueSpawns;
 using TOR_Core.CampaignSupport.TownBehaviours;
 using TOR_Core.CharacterDevelopment;
@@ -167,6 +168,7 @@ namespace TOR_Core
                 starter.AddBehavior(new TORCaptivityCampaignBehavior());
                 starter.AddBehavior(new AssimilationCampaignBehavior());
                 starter.AddBehavior(new SpellTrainerInTownBehavior());
+                starter.AddBehavior(new WizardHallCampaignBehavior());
                 starter.AddBehavior(new MasterEngineerTownBehaviour());
                 starter.AddBehavior(new PrestigeNobleTownBehavior());
                 starter.AddBehavior(new EonirFavorEnvoyTownBehavior());
