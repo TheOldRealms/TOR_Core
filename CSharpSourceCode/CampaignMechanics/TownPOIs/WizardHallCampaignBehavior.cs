@@ -10,6 +10,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Framework;
 
 namespace TOR_Core.CampaignMechanics.TownPOIs
 {
@@ -38,6 +39,7 @@ namespace TOR_Core.CampaignMechanics.TownPOIs
         public override void RegisterEvents()
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
+            CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, OnAfterSessionLaunched);
             CampaignEvents.SettlementEntered.AddNonSerializedListener(this, OnSettlementEntered);
         }
 
@@ -48,15 +50,31 @@ namespace TOR_Core.CampaignMechanics.TownPOIs
 
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
+            // Registered under "town_artisan" (not "town") — "Visit the Wizard Hall" sits as a
+            // sibling of "Visit the enchanter" inside the artisan district submenu, which is
+            // thematically coherent (same Imperial Magister NPC underpins both options).
+            // Final position within the submenu is pinned via RearrangeTownMenus in
+            // OnAfterSessionLaunched.
             starter.AddGameMenuOption(
-                menuId: "town",
+                menuId: "town_artisan",
                 optionId: LocationId,
                 optionText: TORTextHelper.GetTextForNative(
                     "tor_wizardhall_menu_entry", "Visit the Wizard Hall"),
                 condition: HallMenuCondition,
                 consequence: HallMenuConsequence,
-                isLeave: false,
-                index: 4);
+                isLeave: false);
+        }
+
+        /// <summary>
+        /// Fires after all behaviors have registered their menu options, so the entry we want
+        /// to anchor against ("town_artisan_enchanting") definitely exists. Pins "Visit the
+        /// Wizard Hall" directly after "Visit the enchanter" — grouping the two Imperial
+        /// Magister entry points.
+        /// </summary>
+        private void OnAfterSessionLaunched(CampaignGameStarter starter)
+        {
+            var artisanMenu = Campaign.Current.GameMenuManager.GetGameMenu("town_artisan");
+            TORSettlementMenuHelpers.RearrangeTownMenus(artisanMenu, LocationId, "town_artisan_enchanting");
         }
 
         private bool HallMenuCondition(MenuCallbackArgs args)
@@ -79,9 +97,16 @@ namespace TOR_Core.CampaignMechanics.TownPOIs
 
         private void HallMenuConsequence(MenuCallbackArgs args)
         {
+            // Defensive re-check: vanilla's GameMenu.RunMenuOptionConsequence (GameMenu.cs:266-
+            // 283) doesn't gate on IsEnabled, so a grayed option can still fire the consequence
+            // via keyboard shortcuts or UI edge cases. The condition sets IsEnabled correctly,
+            // but we also hard-fail here so non-eligible heroes cannot sneak into the hall.
+            if (!Campaign.Current.Models.SettlementAccessModel.CanMainHeroAccessLocation(
+                    Settlement.CurrentSettlement, LocationId, out _, out _))
+                return;
+
             // vanilla lordshall-style transition: swap current Location to the hall via
-            // LocationEncounter. Triggers LocationCharactersAreReadyToSpawnEvent, which
-            // the NPC-population behavior (task 8) subscribes to.
+            // LocationEncounter. Triggers LocationCharactersAreReadyToSpawnEvent.
             var manager = Campaign.Current.GameMenuManager;
             manager.NextLocation = LocationComplex.Current.GetLocationWithId(LocationId);
             manager.PreviousLocation = LocationComplex.Current.GetLocationWithId("center");
