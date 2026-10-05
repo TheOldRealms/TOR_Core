@@ -44,6 +44,9 @@ namespace TOR_Core.Models
                 case "tor_wizardhall":
                     return CanAccessWizardHall(settlement, out disableOption, out disabledText);
 
+                case "tor_witchhunter_lodge":
+                    return CanAccessWitchHunterLodge(settlement, out disableOption, out disabledText);
+
                 // Rule 6: unknown tor_ id → fail-closed with a hardcoded fallback. Any menu
                 // option that pointed at this id without a matching per-POI method is broken
                 // configuration; the fallback keeps the game runnable without obscuring the bug.
@@ -79,6 +82,29 @@ namespace TOR_Core.Models
             if (!h.HasCareer(TORCareers.ImperialMagister))
                 return Access.Deny(out disableOption, out disabledText,
                     WizardHallReasons.MustHaveCareer(TORCareers.ImperialMagister.Name));
+
+            return Access.Allow(out disableOption, out disabledText);
+        }
+
+        private bool CanAccessWitchHunterLodge(Settlement s, out bool disableOption, out TextObject disabledText)
+        {
+            var h = Hero.MainHero;
+
+            // Discovery hook (stubbed to true today). Hide-eligible reason.
+            if (!IsDiscovered(s, "tor_witchhunter_lodge"))
+                return Access.Deny(out disableOption, out disabledText, WitchHunterLodgeReasons.Undiscovered);
+
+            // Settlement whitelist — defensive fail-safe.
+            if (!HallLocations.IsWitchHunterLodgeSettlement(s))
+                return Access.Deny(out disableOption, out disabledText, WitchHunterLodgeReasons.Sealed);
+
+            // Per-POI siege gate.
+            if (s.IsUnderSiege)
+                return Access.Deny(out disableOption, out disabledText, WitchHunterLodgeReasons.SiegeSealed);
+
+            // Race lock — humans only. No career gate (the lodge welcomes any human visitor).
+            if (h.CharacterObject.Race != FaceGen.GetRaceOrDefault("human"))
+                return Access.Deny(out disableOption, out disabledText, WitchHunterLodgeReasons.Rejected);
 
             return Access.Allow(out disableOption, out disabledText);
         }

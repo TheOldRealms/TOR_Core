@@ -608,6 +608,8 @@
     <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
     <Compile Include="CampaignMechanics\TownPOIs\Access.cs" />
     <Compile Include="CampaignMechanics\TownPOIs\HallLocations.cs" />
+    <Compile Include="CampaignMechanics\TownPOIs\WitchHunterLodgeCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\TownPOIs\WitchHunterLodgeReasons.cs" />
     <Compile Include="CampaignMechanics\TownPOIs\WizardHallCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TownPOIs\WizardHallReasons.cs" />
     <Compile Include="CampaignMechanics\TORAIRecruitmentCampaignBehavior.cs" />

@@ -25,6 +25,7 @@ namespace TOR_Core.CampaignMechanics.TownPOIs
     public static class HallLocations
     {
         public const string WizardHallLocationId = "tor_wizardhall";
+        public const string WitchHunterLodgeLocationId = "tor_witchhunter_lodge";
 
         /// <summary>Settlements where <c>tor_wizardhall</c> is a real POI (has a scene override in <c>tor_settlements.xml</c>).</summary>
         private static readonly HashSet<string> _wizardHallSettlements = new()
@@ -34,13 +35,34 @@ namespace TOR_Core.CampaignMechanics.TownPOIs
             "town_ML1",  // Middenheim
         };
 
+        /// <summary>
+        /// Settlements where <c>tor_witchhunter_lodge</c> is a real POI. These are the Empire
+        /// towns TOR already associates with the witch hunter chapterhouse scene via house_2.
+        /// </summary>
+        private static readonly HashSet<string> _witchHunterLodgeSettlements = new()
+        {
+            "town_ST1",  // Wurtbad
+            "town_ST2",  // Leicheberg
+            "town_WI4",  // Meissen
+            "town_RL4",  // Bögenhafen
+            "town_OM1",  // Bechafen
+            "town_OM2",  // Eisental
+            "town_OL3",  // Ferlangen
+        };
+
         public static bool IsWizardHallSettlement(Settlement settlement) =>
             settlement != null && _wizardHallSettlements.Contains(settlement.StringId);
+
+        public static bool IsWitchHunterLodgeSettlement(Settlement settlement) =>
+            settlement != null && _witchHunterLodgeSettlements.Contains(settlement.StringId);
 
         /// <summary>
         /// Returns the Location StringId where in-town trainer behaviors should place their
         /// trainer hero in this settlement. <c>tor_wizardhall</c> for Imperial college
         /// towns; <c>house_1</c> fallback for everything else (vanilla pre-POI pattern).
+        ///
+        /// <para>Note: Witch Hunter Lodge towns do not override this — the lodge is a scene
+        /// without an NPC trainer, so no trainer-spawn behavior targets it.</para>
         /// </summary>
         public static string GetTrainerLocationId(Settlement settlement)
         {

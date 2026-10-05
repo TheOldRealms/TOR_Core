@@ -5271,4 +5271,10 @@
   <string id="tor_poi_wizardhall.SiegeSealed" text="{=str_tor_poi_wizardhall.SiegeSealed}The gates of the College are sealed during the siege." category="POIs" subcategory="Wizard Hall" />
   <string id="tor_poi_wizardhall.Rejected" text="{=str_tor_poi_wizardhall.Rejected}The wards of the College turn you away." category="POIs" subcategory="Wizard Hall" />
   <string id="tor_poi_wizardhall.MustHaveCareer" text="{=str_tor_poi_wizardhall.MustHaveCareer}Only {REQUIRED_CAREER} may enter the College." category="POIs" subcategory="Wizard Hall" />
+  <string id="tor_poi_witchhunter_lodge.Name" text="{=str_tor_poi_witchhunter_lodge.Name}Witch Hunter Lodge" category="POIs" subcategory="Witch Hunter Lodge" />
+  <string id="tor_poi_witchhunter_lodge.EnterLabel" text="{=str_tor_poi_witchhunter_lodge.EnterLabel}Visit the Witch Hunter Lodge" category="POIs" subcategory="Witch Hunter Lodge" />
+  <string id="tor_poi_witchhunter_lodge.Undiscovered" text="{=str_tor_poi_witchhunter_lodge.Undiscovered}You have not yet found this place." category="POIs" subcategory="Witch Hunter Lodge" />
+  <string id="tor_poi_witchhunter_lodge.Sealed" text="{=str_tor_poi_witchhunter_lodge.Sealed}This place is sealed." category="POIs" subcategory="Witch Hunter Lodge" />
+  <string id="tor_poi_witchhunter_lodge.SiegeSealed" text="{=str_tor_poi_witchhunter_lodge.SiegeSealed}The lodge is closed during the siege." category="POIs" subcategory="Witch Hunter Lodge" />
+  <string id="tor_poi_witchhunter_lodge.Rejected" text="{=str_tor_poi_witchhunter_lodge.Rejected}The templars turn you away." category="POIs" subcategory="Witch Hunter Lodge" />
 </strings>

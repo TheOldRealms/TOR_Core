@@ -169,6 +169,7 @@ namespace TOR_Core
                 starter.AddBehavior(new AssimilationCampaignBehavior());
                 starter.AddBehavior(new SpellTrainerInTownBehavior());
                 starter.AddBehavior(new WizardHallCampaignBehavior());
+                starter.AddBehavior(new WitchHunterLodgeCampaignBehavior());
                 starter.AddBehavior(new MasterEngineerTownBehaviour());
                 starter.AddBehavior(new PrestigeNobleTownBehavior());
                 starter.AddBehavior(new EonirFavorEnvoyTownBehavior());

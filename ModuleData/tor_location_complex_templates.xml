@@ -20,6 +20,15 @@
 			ai_can_exit="CanAlways"
 			player_can_enter="CanIfSettlementAccessModelLetsPlayer"
 			player_can_see="CanAlways" />
+		<Location
+			id="tor_witchhunter_lodge"
+			name="{=tor_poi_witchhunter_lodge.Name}Witch Hunter Lodge"
+			indoor="true"
+			max_prosperity="20"
+			ai_can_enter="CanIfHero"
+			ai_can_exit="CanAlways"
+			player_can_enter="CanIfSettlementAccessModelLetsPlayer"
+			player_can_see="CanAlways" />
 	</LocationComplexTemplate>
 
 </LocationComplexTemplates>
