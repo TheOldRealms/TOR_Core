@@ -59,7 +59,7 @@ namespace TOR_Core.CampaignMechanics.TownPOIs
                 menuId: "town_artisan",
                 optionId: LocationId,
                 optionText: TORTextHelper.GetTextForNative(
-                    "tor_wizardhall_menu_entry", "Visit the Wizard Hall"),
+                    "tor_poi_wizardhall.EnterLabel", "Visit the Wizard Hall"),
                 condition: HallMenuCondition,
                 consequence: HallMenuConsequence,
                 isLeave: false);

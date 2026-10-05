@@ -13,7 +13,7 @@
 	<LocationComplexTemplate id="town_complex">
 		<Location
 			id="tor_wizardhall"
-			name="{=tor_wizardhall_name}Wizard Hall"
+			name="{=tor_poi_wizardhall.Name}Wizard Hall"
 			indoor="true"
 			max_prosperity="20"
 			ai_can_enter="CanIfHero"

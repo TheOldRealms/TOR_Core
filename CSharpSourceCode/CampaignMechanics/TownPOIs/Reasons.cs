@@ -36,7 +36,7 @@ namespace TOR_Core.CampaignMechanics.TownPOIs
         /// </summary>
         public static readonly TextObject Undiscovered =
             TORTextHelper.GetTextObject(
-                "tor_reasons_undiscovered",
+                "tor_poi.Undiscovered",
                 "You have not yet found this place.");
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace TOR_Core.CampaignMechanics.TownPOIs
         /// </summary>
         public static readonly TextObject NotAHallHere =
             TORTextHelper.GetTextObject(
-                "tor_reasons_not_a_hall_here",
+                "tor_poi.NotAHallHere",
                 "There is no hall of this kind here.");
 
         // ------- Static reasons (gray-with-tooltip)
@@ -56,7 +56,7 @@ namespace TOR_Core.CampaignMechanics.TownPOIs
         /// </summary>
         public static readonly TextObject SiegeSealed =
             TORTextHelper.GetTextObject(
-                "tor_reasons_siege_sealed",
+                "tor_poi.SiegeSealed",
                 "The gates are sealed during the siege.");
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace TOR_Core.CampaignMechanics.TownPOIs
         /// </summary>
         public static readonly TextObject Sealed =
             TORTextHelper.GetTextObject(
-                "tor_reasons_sealed",
+                "tor_poi.Sealed",
                 "This place is sealed.");
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace TOR_Core.CampaignMechanics.TownPOIs
         /// </summary>
         public static readonly TextObject WardsRejectRace =
             TORTextHelper.GetTextObject(
-                "tor_reasons_wards_reject_race",
+                "tor_poi.WardsRejectRace",
                 "The wards of this place reject your kind.");
 
         // ------- Parametric reasons (gray-with-tooltip only — never hide-eligible)
@@ -85,7 +85,7 @@ namespace TOR_Core.CampaignMechanics.TownPOIs
         public static TextObject MustHaveCareer(TextObject requiredCareerName) =>
             TORTextHelper
                 .GetTextObject(
-                    "tor_reasons_must_have_career",
+                    "tor_poi.MustHaveCareer",
                     "Only {REQUIRED_CAREER} may enter.")
                 .SetTextVariable("REQUIRED_CAREER", requiredCareerName);
     }
