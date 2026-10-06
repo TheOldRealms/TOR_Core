@@ -71,15 +71,6 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             return loc != null && loc.GetSceneCount() > 0;
         }
 
-        /// <summary>
-        /// Does this POI host the settlement's trainer hero? When true,
-        /// <see cref="SettlementPOIRegistry.GetTrainerLocationId"/> routes in-town trainer
-        /// behaviors to this POI's <see cref="LocationId"/> for the settlements where
-        /// <see cref="AppliesTo"/> is true. Default is false — the POI has no NPC trainer
-        /// and keeps <c>house_1</c> for whichever behavior spawns there.
-        /// </summary>
-        public virtual bool HostsTrainer => false;
-
         // ------- Convention-based reason lookup
 
         /// <summary>POI short name derived from <see cref="LocationId"/> (strips the <c>tor_</c> prefix).</summary>

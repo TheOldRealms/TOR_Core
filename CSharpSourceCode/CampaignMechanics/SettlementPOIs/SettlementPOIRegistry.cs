@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using TaleWorlds.CampaignSystem.Settlements;
 
 namespace TOR_Core.CampaignMechanics.SettlementPOIs
 {
@@ -28,23 +27,5 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
 
         /// <summary>Clear the registry — only for test harnesses / reload scenarios.</summary>
         public static void Clear() => _byLocationId.Clear();
-
-        /// <summary>
-        /// Returns the Location StringId where in-town trainer behaviors should place their
-        /// trainer hero in <paramref name="s"/>. If any registered POI
-        /// <see cref="SettlementPOI.HostsTrainer"/> and <see cref="SettlementPOI.AppliesTo"/>
-        /// this settlement, that POI's <see cref="SettlementPOI.LocationId"/> is returned.
-        /// Falls back to <c>house_1</c> — the vanilla pre-POI location trainer behaviors
-        /// targeted before the migration.
-        /// </summary>
-        public static string GetTrainerLocationId(Settlement s)
-        {
-            foreach (var poi in _byLocationId.Values)
-            {
-                if (poi.HostsTrainer && poi.AppliesTo(s))
-                    return poi.LocationId;
-            }
-            return "house_1";
-        }
     }
 }
