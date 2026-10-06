@@ -827,6 +827,14 @@
       <EquipmentSet id="tor_br_grail_knight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_br_lost_son" name="{=str_tor_br_lost_son}Bretonnian Lost Son" level="46" default_group="cavalry" culture="Culture.vlandia" occupation="Soldier" is_basic_troop="true" skill_template="SkillSet.tor_skills_level46" race="bretonnian">
+    <Equipments>
+      <EquipmentSet id="tor_br_lost_sons_template" />
+    </Equipments>
+    <face>
+      <face_key_template value="BodyProperty.bretonnianknight" />
+    </face>
+  </NPCCharacter>
   <NPCCharacter id="tor_br_caravan_guard" default_group="cavalry" level="21" name="{=str_tor_br_caravan_guard}Bretonnian Caravan Horseman" occupation="CaravanGuard" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21" race="bretonnian" localizationId="str_tor_br_caravan_guard">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />

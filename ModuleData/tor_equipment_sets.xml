@@ -10764,6 +10764,80 @@
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_005" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_br_lost_sons_template" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_lost_sons_001" />
+      <Equipment slot="Item1" id="Item.tor_bretonnian_lost_sons_trident_001" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_noble_001" />
+      <Equipment slot="Head" id="Item.tor_bretonnia_head_helm_lost_sons_002" />
+      <Equipment slot="Body" id="Item.tor_bretonnian_body_armour_lost_sons" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_lost_sons_001" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_lost_sons" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_lost_sons" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_kelpie" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_kelpiearmour_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_lost_sons_001" />
+      <Equipment slot="Item1" id="Item.tor_bretonnian_lost_sons_trident_001" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_noble_001" />
+      <Equipment slot="Head" id="Item.tor_bretonnia_head_helm_lost_sons_002" />
+      <Equipment slot="Body" id="Item.tor_bretonnian_body_armour_lost_sons" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_lost_sons_001" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_lost_sons" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_lost_sons" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_kelpie" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_kelpiearmour_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_lost_sons_001" />
+      <Equipment slot="Item1" id="Item.tor_bretonnian_lost_sons_trident_001" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_noble_002" />
+      <Equipment slot="Head" id="Item.tor_bretonnia_head_helm_lost_sons_001" />
+      <Equipment slot="Body" id="Item.tor_bretonnian_body_armour_lost_sons" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_lost_sons_001" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_lost_sons" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_lost_sons" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_kelpie" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_kelpiearmour_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_lost_sons_001" />
+      <Equipment slot="Item1" id="Item.tor_bretonnian_lost_sons_trident_001" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_noble_002" />
+      <Equipment slot="Head" id="Item.tor_bretonnia_head_helm_lost_sons_001" />
+      <Equipment slot="Body" id="Item.tor_bretonnian_body_armour_lost_sons" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_lost_sons_001" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_lost_sons" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_lost_sons" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_kelpie" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_kelpiearmour_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_lost_sons_001" />
+      <Equipment slot="Item1" id="Item.tor_bretonnian_lost_sons_trident_001" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_noble_003" />
+      <Equipment slot="Head" id="Item.tor_bretonnia_head_helm_lost_sons_003" />
+      <Equipment slot="Body" id="Item.tor_bretonnian_body_armour_lost_sons" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_lost_sons_001" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_lost_sons" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_lost_sons" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_kelpie" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_kelpiearmour_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_lost_sons_001" />
+      <Equipment slot="Item1" id="Item.tor_bretonnian_lost_sons_trident_001" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_shield_noble_003" />
+      <Equipment slot="Head" id="Item.tor_bretonnia_head_helm_lost_sons_003" />
+      <Equipment slot="Body" id="Item.tor_bretonnian_body_armour_lost_sons" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_lost_sons_001" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_lost_sons" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_lost_sons" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_kelpie" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_kelpiearmour_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_bretonnia_tournament_template_one_participant_v1" culture="Culture.vlandia">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_jousting_001" />
