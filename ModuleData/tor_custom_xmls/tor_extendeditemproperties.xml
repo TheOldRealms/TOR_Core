@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_neutral_head_helm_001" RaceLock="human">
     <ItemTraits />
@@ -7359,4 +7359,4 @@
       <ItemTrait>extra_health_regen_10</ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
-</ArrayOfExtendedItemObjectProperties>
+<ExtendedItemObjectProperties ItemStringId="tor_bret_weapon_mace_knight_001"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties></ArrayOfExtendedItemObjectProperties>
