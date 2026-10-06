@@ -60,53 +60,85 @@ namespace TOR_Core.Models
         private bool CanAccessWizardHall(Settlement s, out bool disableOption, out TextObject disabledText)
         {
             var h = Hero.MainHero;
+            disableOption = true;
 
             // Discovery hook — stubbed to true today (see IsDiscovered). Hide-eligible reason.
             if (!IsDiscovered(s, "tor_wizardhall"))
-                return Access.Deny(out disableOption, out disabledText, WizardHallReasons.Undiscovered);
+            {
+                disabledText = WizardHallReasons.Undiscovered;
+                return false;
+            }
 
             // Settlement whitelist. Defensive: the menu option should only register on eligible
             // towns, so this branch is a fail-safe for callers that query the model directly.
-            if (!HallLocations.IsWizardHallSettlement(s))
-                return Access.Deny(out disableOption, out disabledText, WizardHallReasons.Sealed);
+            if (!TownPOILocations.IsWizardHallSettlement(s))
+            {
+                disabledText = WizardHallReasons.Sealed;
+                return false;
+            }
 
             // Siege gate (per-POI so denial text can be flavored for this hall).
             if (s.IsUnderSiege)
-                return Access.Deny(out disableOption, out disabledText, WizardHallReasons.SiegeSealed);
+            {
+                disabledText = WizardHallReasons.SiegeSealed;
+                return false;
+            }
 
             // Race lock — humans only.
             if (h.CharacterObject.Race != FaceGen.GetRaceOrDefault("human"))
-                return Access.Deny(out disableOption, out disabledText, WizardHallReasons.Rejected);
+            {
+                disabledText = WizardHallReasons.Rejected;
+                return false;
+            }
 
             // Career lock — Imperial Magister only.
             if (!h.HasCareer(TORCareers.ImperialMagister))
-                return Access.Deny(out disableOption, out disabledText,
-                    WizardHallReasons.MustHaveCareer(TORCareers.ImperialMagister.Name));
+            {
+                disabledText = WizardHallReasons.MustHaveCareer(TORCareers.ImperialMagister.Name);
+                return false;
+            }
 
-            return Access.Allow(out disableOption, out disabledText);
+            disableOption = false;
+            disabledText = null;
+            return true;
         }
 
         private bool CanAccessWitchHunterLodge(Settlement s, out bool disableOption, out TextObject disabledText)
         {
             var h = Hero.MainHero;
+            disableOption = true;
 
             // Discovery hook (stubbed to true today). Hide-eligible reason.
             if (!IsDiscovered(s, "tor_witchhunter_lodge"))
-                return Access.Deny(out disableOption, out disabledText, WitchHunterLodgeReasons.Undiscovered);
+            {
+                disabledText = WitchHunterLodgeReasons.Undiscovered;
+                return false;
+            }
 
             // Settlement whitelist — defensive fail-safe.
-            if (!HallLocations.IsWitchHunterLodgeSettlement(s))
-                return Access.Deny(out disableOption, out disabledText, WitchHunterLodgeReasons.Sealed);
+            if (!TownPOILocations.IsWitchHunterLodgeSettlement(s))
+            {
+                disabledText = WitchHunterLodgeReasons.Sealed;
+                return false;
+            }
 
             // Per-POI siege gate.
             if (s.IsUnderSiege)
-                return Access.Deny(out disableOption, out disabledText, WitchHunterLodgeReasons.SiegeSealed);
+            {
+                disabledText = WitchHunterLodgeReasons.SiegeSealed;
+                return false;
+            }
 
             // Race lock — humans only. No career gate (the lodge welcomes any human visitor).
             if (h.CharacterObject.Race != FaceGen.GetRaceOrDefault("human"))
-                return Access.Deny(out disableOption, out disabledText, WitchHunterLodgeReasons.Rejected);
+            {
+                disabledText = WitchHunterLodgeReasons.Rejected;
+                return false;
+            }
 
-            return Access.Allow(out disableOption, out disabledText);
+            disableOption = false;
+            disabledText = null;
+            return true;
         }
 
         /// <summary>

@@ -14,8 +14,8 @@ namespace TOR_Core.CampaignMechanics.TownPOIs
     /// </para>
     /// <list type="bullet">
     ///   <item><b>static readonly</b> — cached once, reference-comparable. The menu-condition
-    ///         translator in <see cref="WizardHallCampaignBehavior"/> uses
-    ///         <c>ReferenceEquals</c> against these to decide hide-vs-gray.</item>
+    ///         translator in <see cref="TownPOIBehavior"/> uses <c>ReferenceEquals</c> against
+    ///         these to decide hide-vs-gray.</item>
     ///   <item><b>methods</b> — fill in text variables, return a fresh <see cref="TextObject"/>
     ///         each call. Not reference-comparable; always gray-with-tooltip.</item>
     /// </list>

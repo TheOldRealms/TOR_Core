@@ -606,11 +606,11 @@
     <Compile Include="CampaignMechanics\ServeAsAHireling\ServeAsAHirelingHelpers.cs" />
     <Compile Include="CampaignMechanics\SkillTrainerBehavior.cs" />
     <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
-    <Compile Include="CampaignMechanics\TownPOIs\Access.cs" />
-    <Compile Include="CampaignMechanics\TownPOIs\HallLocations.cs" />
-    <Compile Include="CampaignMechanics\TownPOIs\WitchHunterLodgeCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\TownPOIs\TownPOILocations.cs" />
+    <Compile Include="CampaignMechanics\TownPOIs\TownPOIBehavior.cs" />
+    <Compile Include="CampaignMechanics\TownPOIs\WitchHunterLodgePOI.cs" />
     <Compile Include="CampaignMechanics\TownPOIs\WitchHunterLodgeReasons.cs" />
-    <Compile Include="CampaignMechanics\TownPOIs\WizardHallCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\TownPOIs\WizardHallPOI.cs" />
     <Compile Include="CampaignMechanics\TownPOIs\WizardHallReasons.cs" />
     <Compile Include="CampaignMechanics\TORAIRecruitmentCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCaptivityCampaignBehavior.cs" />
