@@ -836,6 +836,19 @@
                              TroopIdToSummon="tor_vc_grave_guard_warrior"
                              NumberToSummon="20"
                              ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.SummonScript" />
+    <TriggeredEffectTemplate StringID="unholy_power_grave_guard"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             Radius="1"
+                             HasShockWave="false"
+                             TargetType="All"
+                             DamageVariance="0"
+                             TroopIdToSummon="tor_vc_grave_guard_warrior"
+                             NumberToSummon="15"
+                             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.SummonScript" />
     <TriggeredEffectTemplate StringID="wind_of_death_tick"
                              BurstParticleEffectPrefab="none"
                              SoundEffectId="none"
@@ -2008,7 +2021,47 @@
                              ImbuedStatusEffectDuration="20"
                              ScriptNameToTrigger="none">
     </TriggeredEffectTemplate>
+	<TriggeredEffectTemplate StringID="helden_hammer_frost_burst"
+                             BurstParticleEffectPrefab="wind_blast"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Frost"
+                             DamageAmount="40"
+                             Radius="3"
+                             HasShockWave="true"
+                             TargetType="Enemy"
+                             DamageVariance="0.0"
+                             ImbuedStatusEffectDuration="20"
+                             ScriptNameToTrigger="none">
+    </TriggeredEffectTemplate>
+	<TriggeredEffectTemplate StringID="couronne_net"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             Radius="1"
+                             HasShockWave="false"
+                             TargetType="Enemy"
+                             ImbuedStatusEffectDuration="15"
+                             DamageVariance="0.0"
+                             ScriptNameToTrigger="none">
+        <ImbuedStatusEffect>net_amyn_movementimpair_100</ImbuedStatusEffect>
+    </TriggeredEffectTemplate>
 	
+	<TriggeredEffectTemplate StringID="dolorous_blade_gale_enchant"
+                             BurstParticleEffectPrefab="wind_blast"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Lightning"
+                             DamageAmount="40"
+                             Radius="3"
+                             HasShockWave="true"
+                             TargetType="Enemy"
+                             DamageVariance="0.0"
+                             ImbuedStatusEffectDuration="20"
+                             ScriptNameToTrigger="none">
+    </TriggeredEffectTemplate>
 	<TriggeredEffectTemplate StringID="azyr_foresight_enchant"
                              BurstParticleEffectPrefab="none"
                              SoundEffectId="none"
@@ -2978,10 +3031,11 @@
                              Radius="5"
                              HasShockWave="false"
                              TargetType="Self"
-                             ImbuedStatusEffectDuration="5"
+                             ImbuedStatusEffectDuration="10"
                              DamageVariance="0.0"
                              ScriptNameToTrigger="none">
         <ImbuedStatusEffect>impenetrable_invincible</ImbuedStatusEffect>
+		<ImbuedStatusEffect>impenetrable_movement_penalty</ImbuedStatusEffect>
 		<ImbuedStatusEffect>impenetrable_attribute</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
 	

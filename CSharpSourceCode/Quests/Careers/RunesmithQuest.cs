@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
+using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.Menagery;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -30,7 +31,7 @@ public class RunesmithQuest : QuestBase
 
     private void InitializeQuest()
     {
-        var currentKnownRunes = Hero.MainHero.GetExtendedInfo().KnownEnchantmentBlueprints.Count;
+        var currentKnownRunes = EnchantmentBlueprints.GetKnown().Count;
 
         var dwarfBehavior = Campaign.Current.GetCampaignBehavior<OathGoldBehavior>();
 
@@ -66,8 +67,11 @@ public class RunesmithQuest : QuestBase
     {
         if (AreAllTasksFinished())
         {
-            AddLog(TORTextHelper.GetTextObject("tor_runesmith_quest_log_complete", "Talk to the rune smith"));
+            if (this.JournalEntries.Count < 3)  //2 tasks plus the final log, the count the guildmaster dialogue checks for
+            {
+                AddLog(TORTextHelper.GetTextObject("tor_runesmith_quest_log_complete", "Talk to the rune smith"));
 
+            }
         }
     }
 
@@ -98,6 +102,7 @@ public class RunesmithQuest : QuestBase
 
     protected override void HourlyTick()
     {
+        UpdateQuest();
     }
 
     public override TextObject Title => TORTextHelper.GetTextObject("tor_runesmith_quest_title", "Runesmith Quest");

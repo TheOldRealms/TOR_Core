@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Settlements>
   <!--Custom Settlements-->
   <Settlement id="oak_of_ages" name="{=str_tor_settlements_oak_of_ages}Oak of Ages" owner="Faction.athel_loren_clan_1" posX="1218.711" posY="798.5" culture="Culture.battania" text="{=!}Oak of Ages" gate_posX="1218.711" gate_posY="798.5">
@@ -682,7 +682,7 @@
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
-      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_2" scene_name="TOR_POI_empire_witch_hunter_chapterhouse" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
     </Locations>
@@ -920,7 +920,7 @@
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
-      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_2" scene_name="TOR_POI_empire_witch_hunter_chapterhouse" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
     </Locations>
@@ -1933,7 +1933,7 @@
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
-      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_2" scene_name="TOR_POI_empire_witch_hunter_chapterhouse" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
     </Locations>
@@ -3378,7 +3378,7 @@
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
-      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_2" scene_name="TOR_POI_empire_witch_hunter_chapterhouse" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
     </Locations>
@@ -3916,7 +3916,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_ML3" name="{=Settlements.Settlement.name.town_ML3}Carroburg" owner="Faction.middenland_clan_1" posX="1235.959" posY="1095.879" culture="Culture.empire" gate_posX="1234.072" gate_posY="1100.257" text="{=Settlements.Settlement.text.town_ML3}The former capital city of Middenland, when it was separate from Middenheim and known as the province of Drakwald, it is now a trade hub with a focus on glass-making. It is a place wreathed in history, as it was also once the seat of the Teutogen King, and capital of the Empire under the Drakwald Emperors. It is home to the great Carroburg greatswords and has a chapter house dedicated to the Order of the Blazing sun, as such it remains an imperious fortress within the Empire.">
+  <Settlement id="town_ML3" name="{=Settlements.Settlement.name.town_ML3}Carroburg" owner="Faction.tor_beastmen_greatherd_clan_1" posX="1235.959" posY="1095.879" culture="Culture.beastmen" gate_posX="1234.072" gate_posY="1100.257" text="{=Settlements.Settlement.text.town_ML3}The former capital city of Middenland, when it was separate from Middenheim and known as the province of Drakwald, it is now a trade hub with a focus on glass-making. It is a place wreathed in history, as it was also once the seat of the Teutogen King, and capital of the Empire under the Drakwald Emperors. It is home to the great Carroburg greatswords and has a chapter house dedicated to the Order of the Blazing sun, as such it remains an imperious fortress within the Empire.">
     <Components>
       <Town id="town_comp_ML3" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="3600">
         <Buildings>
@@ -3952,7 +3952,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_ML3_1" name="{=Settlements.Settlement.name.village_ML3_1}Anseldorf" posX="1242.768" posY="1108.756" culture="Culture.empire" text="{=Settlements.Settlement.text.village_ML3_1}Not far from the city of Carroburg, Anseldorf is one of the first villages many stumble upon as they cross from Reikland into Middenland, not too much farther north lies the Midden Moors and it’s murk filled waters">
+  <Settlement id="village_ML3_1" name="{=Settlements.Settlement.name.village_ML3_1}Anseldorf" posX="1242.768" posY="1108.756" culture="Culture.beastmen" text="{=Settlements.Settlement.text.village_ML3_1}Not far from the city of Carroburg, Anseldorf is one of the first villages many stumble upon as they cross from Reikland into Middenland, not too much farther north lies the Midden Moors and it’s murk filled waters">
     <Components>
       <Village id="village_comp_ML3_1" village_type="VillageType.wheat_farm" hearth="250" bound="Settlement.town_ML3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3965,7 +3965,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_ML3_2" name="{=Settlements.Settlement.name.village_ML3_2}Barenfӓhre" posX="1267.157" posY="1114.173" culture="Culture.empire" text="{=Settlements.Settlement.text.village_ML3_2}As one of the many villages that can be seen dotted against the River Talabec, Barenfahre has ferry access, as such it is often a point to cross the river while also playing host to the myriad of traders, travellers and luxury liners that pass along the Talabec.">
+  <Settlement id="village_ML3_2" name="{=Settlements.Settlement.name.village_ML3_2}Barenfӓhre" posX="1267.157" posY="1114.173" culture="Culture.beastmen" text="{=Settlements.Settlement.text.village_ML3_2}As one of the many villages that can be seen dotted against the River Talabec, Barenfahre has ferry access, as such it is often a point to cross the river while also playing host to the myriad of traders, travellers and luxury liners that pass along the Talabec.">
     <Components>
       <Village id="village_comp_ML3_2" village_type="VillageType.fisherman" hearth="250" bound="Settlement.town_ML3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3978,7 +3978,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_ML3_3" name="{=Settlements.Settlement.name.village_ML3_3}Dunkelbild" posX="1259.959" posY="1134.824" culture="Culture.empire" text="{=Settlements.Settlement.text.village_ML3_3}Far closer to the Midden Moors and nestled quite nicely against the edge of the Drakwald, lies the humble village of Dunkelbild. There is very little to remark from this place, but that itself is a blessing given the manner of beasts that prowl the forests.">
+  <Settlement id="village_ML3_3" name="{=Settlements.Settlement.name.village_ML3_3}Dunkelbild" posX="1259.959" posY="1134.824" culture="Culture.beastmen" text="{=Settlements.Settlement.text.village_ML3_3}Far closer to the Midden Moors and nestled quite nicely against the edge of the Drakwald, lies the humble village of Dunkelbild. There is very little to remark from this place, but that itself is a blessing given the manner of beasts that prowl the forests.">
     <Components>
       <Village id="village_comp_ML3_3" village_type="VillageType.lumberjack" hearth="250" bound="Settlement.town_ML3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3991,7 +3991,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_ML3_4" name="{=Settlements.Settlement.name.village_ML3_4}Weidemarkt" posX="1285.249" posY="1118.987" culture="Culture.empire" text="{=Settlements.Settlement.text.village_ML3_4}Description:  Placed comfortably along one of the most used roads between Altdorf and Middenheim, this village has seen all manner of passers by. It is also one of the few villages to grow and offer it’s own wines, a welcome sight to any weary traveller. ">
+  <Settlement id="village_ML3_4" name="{=Settlements.Settlement.name.village_ML3_4}Weidemarkt" posX="1285.249" posY="1118.987" culture="Culture.beastmen" text="{=Settlements.Settlement.text.village_ML3_4}Description:  Placed comfortably along one of the most used roads between Altdorf and Middenheim, this village has seen all manner of passers by. It is also one of the few villages to grow and offer it’s own wines, a welcome sight to any weary traveller. ">
     <Components>
       <Village id="village_comp_ML3_4" village_type="VillageType.vineyard" hearth="250" bound="Settlement.town_ML3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4421,7 +4421,7 @@
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
-      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_2" scene_name="TOR_POI_empire_witch_hunter_chapterhouse" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
     </Locations>
@@ -4509,7 +4509,7 @@
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
-      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_2" scene_name="TOR_POI_empire_witch_hunter_chapterhouse" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
     </Locations>
@@ -5738,7 +5738,7 @@
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
-      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_2" scene_name="TOR_POI_empire_witch_hunter_chapterhouse" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
     </Locations>
@@ -6612,7 +6612,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="TOR_bretonnia_city_001" scene_name_1="TOR_bretonnia_city_001" scene_name_2="TOR_bretonnia_city_001" scene_name_3="TOR_bretonnia_city_001" />
-      <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
+      <Location id="arena" scene_name="TOR_POI_bretonnia_couronnearena" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
       <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />

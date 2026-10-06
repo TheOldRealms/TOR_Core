@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
+using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -62,7 +63,7 @@ namespace TOR_Core.Quests.Careers
             _currentFaithLevel = Hero.MainHero?.GetSkillValue(TORSkills.Faith) ?? 0;
 
             // TODO: Get actual values from behaviors when they're implemented
-            _currentEnchantsLearned = Hero.MainHero.GetExtendedInfo().KnownEnchantmentBlueprints.Count;
+            _currentEnchantsLearned = EnchantmentBlueprints.GetKnown().Count;
             _currentTeefTransferred = 0;
             _currentCitiesCaptured = 0;
 
@@ -166,8 +167,6 @@ namespace TOR_Core.Quests.Careers
 
         private void OnEnchantmentLearned(object sender, EnchantmentLearnedEventArgs e)
         {
-            if (e.Hero != Hero.MainHero) return;
-
             _currentEnchantsLearned++;
             _taskEnchantsLearned.UpdateCurrentProgress(_currentEnchantsLearned);
             UpdateQuest();

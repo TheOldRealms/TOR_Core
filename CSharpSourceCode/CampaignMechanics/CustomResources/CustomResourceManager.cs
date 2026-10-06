@@ -62,6 +62,8 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 new CustomResource("OathGold", "oathgold_icon_45", TORConstants.Cultures.DAWI, OathGoldHelper.GetOathGoldInfo));
             Instance._resources.Add("Teef",
                 new CustomResource("Teef", "teef_icon_45", TORConstants.Cultures.GREENSKIN, TeefHelper.GetTeefInfo));
+            Instance._resources.Add("DarkOmen",
+                new CustomResource("DarkOmen", "darkenergy_icon_45", TORConstants.Cultures.BEASTMEN));
             Instance._resources.Add("Meat",
                 new CustomResource("Meat", "meat_icon_45"));
             Instance._resources.Add("Waaagh",
@@ -295,7 +297,8 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 playerCulture.StringId == TORConstants.Cultures.BRETONNIA ||
                 playerCulture.StringId == TORConstants.Cultures.EONIR ||
                 playerCulture.StringId == TORConstants.Cultures.ASRAI ||
-                playerCulture.StringId == TORConstants.Cultures.DAWI)
+                playerCulture.StringId == TORConstants.Cultures.DAWI ||
+                playerCulture.StringId == TORConstants.Cultures.BEASTMEN)
             {
                 var fairBattleOrPlayerInferior = _initialCombatRatio < 1.1f;
 
@@ -321,7 +324,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
                 if (playerHero.HasCareerChoice("HolyPurgePassive2"))
                 {
-                    var evilCultures = new[] { TORConstants.Cultures.CHAOS, TORConstants.Cultures.BEASTMEN, TORConstants.Cultures.SYLVANIA, TORConstants.Cultures.MOUSILLON, TORConstants.Cultures.CHAOS_CULTIST};
+                    var evilCultures = new[] { TORConstants.Cultures.CHAOS, TORConstants.Cultures.BEASTMEN, TORConstants.Cultures.BEASTMEN_BANDIT, TORConstants.Cultures.SYLVANIA, TORConstants.Cultures.MOUSILLON, TORConstants.Cultures.CHAOS_CULTIST};
 
                     foreach (var party in defeatedSide.Parties)
                      {
@@ -339,7 +342,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
                 if (playerHero.HasCareerChoice("HuntTheWickedPassive2"))
                 {
-                    var evilCultures = new[] { TORConstants.Cultures.CHAOS, TORConstants.Cultures.BEASTMEN, TORConstants.Cultures.SYLVANIA, TORConstants.Cultures.MOUSILLON, TORConstants.Cultures.CHAOS_CULTIST};
+                    var evilCultures = new[] { TORConstants.Cultures.CHAOS, TORConstants.Cultures.BEASTMEN, TORConstants.Cultures.BEASTMEN_BANDIT, TORConstants.Cultures.SYLVANIA, TORConstants.Cultures.MOUSILLON, TORConstants.Cultures.CHAOS_CULTIST};
                     foreach (var party in defeatedSide.Parties)
                     {
                         //Sly : Party.Culture can't be used because it actually uses Party.MapFaction.Culture and MapFaction can be null if MobileParty or Settlement is null. Party.Owner.Culture is unreliable because bandit clans usually don't have a clan leader and it would therefore be null. ActualClan is used because this will return a valid clan even for bandit parties.
@@ -397,7 +400,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
                 }
 
-                if (playerCulture.StringId == TORConstants.Cultures.ASRAI && playerParty.InAthelLoren() && defeatedSide.Parties.AnyQ(x => x.Party.MapFaction?.Culture.StringId == TORConstants.Cultures.BEASTMEN))//risky, but MapFaction.Culture will refer back to the bandit clan culture which works out
+                if (playerCulture.StringId == TORConstants.Cultures.ASRAI && playerParty.InAthelLoren() && defeatedSide.Parties.AnyQ(x => x.Party.MapFaction?.Culture.StringId == TORConstants.Cultures.BEASTMEN || x.Party.MapFaction?.Culture.StringId == TORConstants.Cultures.BEASTMEN_BANDIT))
                 {
                     renownChange *= 3;
                 }
@@ -609,7 +612,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             {
                 foreach (var element in prisoners.GetTroopRoster())
                 {
-                    if (element.Character.Culture.StringId != TORConstants.Cultures.BEASTMEN) continue;
+                    if (element.Character.Culture.StringId != TORConstants.Cultures.BEASTMEN && element.Character.Culture.StringId != TORConstants.Cultures.BEASTMEN_BANDIT) continue;
 
                     result += 3 * element.Number;
                 }
@@ -887,7 +890,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
             if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
             {
-                if (troop.Culture.StringId == TORConstants.Cultures.BEASTMEN)
+                if (troop.Culture.StringId == TORConstants.Cultures.BEASTMEN || troop.Culture.StringId == TORConstants.Cultures.BEASTMEN_BANDIT)
                 {
                     explainedNumber.Add(3 * transferAmount);
                 }

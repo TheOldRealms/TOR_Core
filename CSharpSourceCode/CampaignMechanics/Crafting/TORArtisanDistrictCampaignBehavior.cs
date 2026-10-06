@@ -10,8 +10,8 @@ using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
-using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.Extensions;
+using TOR_Core.Framework;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
 using static TaleWorlds.CampaignSystem.CampaignBehaviors.CraftingCampaignBehavior;
@@ -52,7 +52,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
 
         private void OnSessionStart(CampaignGameStarter starter)
         {
-            AccessTools.Property(typeof(ItemObject), "Name").SetValue(DefaultItems.IronIngot6, TORTextHelper.GetTextObject("ironingot6_name", "Gromril{@Plural}loads of gromril{\\@}"));
+            AccessTools.Property(typeof(ItemObject), "Name").SetValue(DefaultItems.IronIngot6, TORTextHelper.GetTextObject("tor_ironingot6_name", "Gromril{@Plural}loads of gromril{\\@}"));
             TorEnchantingIngredients.LoadIngredients();
             AddTownMenu(starter);
 

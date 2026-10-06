@@ -18,6 +18,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
 
         public void RegisterCampaignBehaviors(CampaignGameStarter starter)
         {
+            starter.AddBehavior(new EnchantmentBlueprintBehavior());
             starter.AddBehavior(new EnchanterTownBehavior());
             starter.AddBehavior(new TORArtisanDistrictCampaignBehavior());
             starter.AddBehavior(new PriestBehavior());

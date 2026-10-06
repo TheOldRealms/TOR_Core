@@ -69,7 +69,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
         public bool CanRefineAll => GetRefinementExtension()?.CanRefineAll ?? false;
 
         [DataSourceProperty]
-        public string RefineAllText => GetRefinementExtension()?.RefineAllText ?? "Refine All";
+        public string RefineAllText => GetRefinementExtension()?.RefineAllText ?? TORTextHelper.GetText("tor_refine_all_text", "Refine All");
 
         [DataSourceProperty]
         public BasicTooltipViewModel RefineAllHint => _refineAllHint;

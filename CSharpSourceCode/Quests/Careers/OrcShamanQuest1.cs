@@ -179,7 +179,6 @@ namespace TOR_Core.Quests.Careers
 
         private void OnEnchantmentLearned(object sender, EnchantmentLearnedEventArgs e)
         {
-            if (e.Hero != Hero.MainHero) return;
             if (!_hasPrayedAtShrine) return; // Only track after shrine prayer
 
             _currentEnchantsLearned++;

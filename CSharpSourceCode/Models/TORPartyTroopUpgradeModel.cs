@@ -16,56 +16,51 @@ namespace TOR_Core.Models
 
             var explainedNumber = base.GetGoldCostForUpgrade(party, characterObject, upgradeTarget);
 
-            if (party.LeaderHero != null && party.LeaderHero == Hero.MainHero)
-            {
-                CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.TroopUpgradeCost, true, characterObject);
-            }
+            if (party.LeaderHero == null || party != PartyBase.MainParty || party.LeaderHero != Hero.MainHero) return explainedNumber;
+
+            CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.TroopUpgradeCost, true, characterObject);
 
             if (characterObject.Culture.StringId == TORConstants.Cultures.DAWI)
             {
-                if (party == PartyBase.MainParty)
+                if (characterObject.HasAttribute(CharacterAttributes.DWARF_GUN) || upgradeTarget.HasAttribute(CharacterAttributes.DWARF_GUN))
                 {
-                    if (characterObject.HasAttribute(CharacterAttributes.DWARF_GUN) || upgradeTarget.HasAttribute(CharacterAttributes.DWARF_GUN))
+                    if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_ENGINEERS_2))
                     {
-                        if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_ENGINEERS_2))
-                        {
-                            explainedNumber.AddFactor(-0.25f);
-                        }
-                        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_ENGINEERS_1))
-                        {
-                            explainedNumber.AddFactor(-0.15f);
-                        }
+                        explainedNumber.AddFactor(-0.25f);
                     }
-
-                    if (characterObject.HasAttribute(CharacterAttributes.DWARF_WARRIOR))
+                    else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_ENGINEERS_1))
                     {
-                        if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_3))
-                        {
-                            explainedNumber.AddFactor(-0.30f);
-                        }
-                        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_2))
-                        {
-                            explainedNumber.AddFactor(-0.20f);
-                        }
-                        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_1))
-                        {
-                            explainedNumber.AddFactor(-0.10f);
-                        }
+                        explainedNumber.AddFactor(-0.15f);
                     }
+                }
 
-                    if (characterObject.HasAttribute(CharacterAttributes.IRONBREAKER))
+                if (characterObject.HasAttribute(CharacterAttributes.DWARF_WARRIOR))
+                {
+                    if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_3))
                     {
-                        explainedNumber.AddFactor(3f);
-                        if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_RUNESMITH_3))
-                        {
-                            explainedNumber.AddFactor(-0.20f);
-                        }
-                        else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_RUNESMITH_2))
-                        {
-                            explainedNumber.AddFactor(-0.10f);
-                        }
+                        explainedNumber.AddFactor(-0.30f);
                     }
+                    else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_2))
+                    {
+                        explainedNumber.AddFactor(-0.20f);
+                    }
+                    else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_WARRIORS_1))
+                    {
+                        explainedNumber.AddFactor(-0.10f);
+                    }
+                }
 
+                if (characterObject.HasAttribute(CharacterAttributes.IRONBREAKER))
+                {
+                    explainedNumber.Add(explainedNumber.BaseNumber * 3);
+                    if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_RUNESMITH_3))
+                    {
+                        explainedNumber.AddFactor(-0.20f);
+                    }
+                    else if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_RUNESMITH_2))
+                    {
+                        explainedNumber.AddFactor(-0.10f);
+                    }
                 }
             }
 

@@ -19,6 +19,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.Audio;
+using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.CustomEvents;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
@@ -384,7 +385,7 @@ namespace TOR_Core.Ink
             }
             if (!_story.TryGetExternalFunction("GiveMiracleItem", out _))
             {
-                _story.BindExternalFunction("GiveMiracleItem", GiveMiracleItem, false);
+                _story.BindExternalFunction("GiveMiracleItem", GiveMiracleItems, false);
             }
             if (!_story.TryGetExternalFunction("ResetRaiderSites", out _))
             {
@@ -481,35 +482,20 @@ namespace TOR_Core.Ink
             }
         }
 
-        private void GiveMiracleItem()
+        /// <summary>
+        /// Grants all religious artifacts for the MainHero's cult to the MainParty inventory.
+        /// </summary>
+        /// <remarks>
+        /// Granted as QuestItems to prevent transfers or loss when party defeated.
+        /// </remarks>
+        private void GiveMiracleItems()
         {
-            bool gaveItem = false;
             var religion = Hero.MainHero.GetDominantReligion();
             var inventory = MobileParty.MainParty.ItemRoster;
             foreach (var item in religion.ReligiousArtifacts)
             {
-                bool found = false;
-                for (int i = 0; i < inventory.Count; i++)
-                {
-                    var itemInventory = inventory.GetItemAtIndex(i);
-                    if (item.StringId == itemInventory.StringId)
-                    {
-                        gaveItem = true;
-                        found = true;//Sly : why would this break without setting gaveItem? This code is incredibly unclear on how it is supposed to handle multiple artifacts in the list, and initially wasn't even able to prevent duplicates with a list of 1 item.
-                        break;
-                    }
-                }
-                if (found) continue;
-                else
-                {
-                    inventory.Add(new ItemRosterElement(item, 1));
-                    gaveItem = true;
-                    break;
-                }
-            }
-            if (!gaveItem)
-            {
-                inventory.Add(new ItemRosterElement(religion.ReligiousArtifacts.TakeRandom(1).FirstOrDefault(), 1));
+                var equipmentElem = new EquipmentElement(item, null, null, true);
+                inventory.Add(new ItemRosterElement(equipmentElem, 1));
             }
         }
 
@@ -699,7 +685,7 @@ namespace TOR_Core.Ink
                 return;
             }
 
-            Hero.MainHero.AddEnchantmentBlueprint(blueprintId, true);
+            EnchantmentBlueprints.Learn(blueprintId, Hero.MainHero, true);
         }
 
         private void LearnRandomUnknownOrionEnchantment()
@@ -711,9 +697,8 @@ namespace TOR_Core.Ink
                 "asrai_enchant_ghostwalker"
             };
 
-            var partyHeroes = MobileParty.MainParty.GetMemberHeroes();
             var unknownEnchantments = orionEnchantments
-                .Where(enchantmentId => partyHeroes.All(hero => !hero.HasKnownEnchantmentBlueprint(enchantmentId)))
+                .Where(enchantmentId => !EnchantmentBlueprints.IsKnown(enchantmentId))
                 .ToList();
 
             if (unknownEnchantments.Count == 0)
@@ -722,7 +707,7 @@ namespace TOR_Core.Ink
             }
 
             var selectedEnchantment = unknownEnchantments[MBRandom.RandomInt(unknownEnchantments.Count)];
-            Hero.MainHero.AddEnchantmentBlueprint(selectedEnchantment, true);
+            EnchantmentBlueprints.Learn(selectedEnchantment, Hero.MainHero, true);
         }
         private void ChangePartyTroopCount(string troopId, int count)
         {

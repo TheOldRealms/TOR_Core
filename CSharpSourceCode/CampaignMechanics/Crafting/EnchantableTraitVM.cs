@@ -16,13 +16,24 @@ namespace TOR_Core.CampaignMechanics.Crafting
         private string _itemTraitDescription;
         private Action<EnchantableTraitVM, bool> _onSelected;
         private string _iconName;
+        private bool _isDisabled;
+        private string _unmetRequirement;
         public ItemTrait ItemTrait => _trait;
 
-        public EnchantableTraitVM(ItemTrait trait, Action<EnchantableTraitVM, bool> onSelected)
+        /// <summary>
+        /// Why this enchantment cannot be applied right now, or null if it can. A known
+        /// blueprint with an unmet requirement is shown greyed with the reason rather than
+        /// hidden, so the player can see what to work toward.
+        /// </summary>
+        public string UnmetRequirement => _unmetRequirement;
+
+        public EnchantableTraitVM(ItemTrait trait, Action<EnchantableTraitVM, bool> onSelected, string unmetRequirement = null)
         {
             _trait = trait;
             _onSelected = onSelected;
+            _unmetRequirement = unmetRequirement;
             IsSelected = false;
+            IsDisabled = unmetRequirement != null;
             TraitName = new TextObject(trait.ItemTraitName).ToString();
             IconName = trait.IconName;
             //Text on the right side of the screen that appears under the weapon preview and above the enchantment ingredients.
@@ -34,11 +45,22 @@ namespace TOR_Core.CampaignMechanics.Crafting
         private string GetHintText()
         {
             var text = string.IsNullOrEmpty(ItemTraitDescription) ? TORTextHelper.GetText("tor_enchant_no_description", "No description available.") : ItemTraitDescription;
-            return text;
+
+            if (string.IsNullOrEmpty(_unmetRequirement)) return text;
+
+            return TORTextHelper.GetTextObject("tor_enchant_trait_hint_requirement", "{DESCRIPTION}{newline}{newline}{REQUIREMENT}")
+                .SetTextVariable("DESCRIPTION", text)
+                .SetTextVariable("REQUIREMENT", _unmetRequirement)
+                .ToString();
         }
 
         private void ExecuteSelectTrait()
         {
+            // The prefab greys the row out and IsDisabled refuses the click, but gamepad and
+            // keyboard navigation can still route one, so refuse it here too rather than
+            // trusting the view to be the only gate.
+            if (IsDisabled) return;
+
             IsSelected = !IsSelected;
             _onSelected?.Invoke(this, IsSelected);
         }
@@ -65,6 +87,20 @@ namespace TOR_Core.CampaignMechanics.Crafting
                 {
                     _isSelected = value;
                     OnPropertyChangedWithValue(value, "IsSelected");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public bool IsDisabled
+        {
+            get => _isDisabled;
+            set
+            {
+                if (_isDisabled != value)
+                {
+                    _isDisabled = value;
+                    OnPropertyChangedWithValue(value, "IsDisabled");
                 }
             }
         }

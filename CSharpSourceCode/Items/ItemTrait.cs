@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
-using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Framework;
 using static TaleWorlds.Core.ItemObject;
 
 namespace TOR_Core.Items

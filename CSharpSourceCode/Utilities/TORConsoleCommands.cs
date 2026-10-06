@@ -21,6 +21,7 @@ using TaleWorlds.ObjectSystem;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.TriggeredEffect;
+using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CampaignMechanics.UniqueSpawns;
@@ -275,56 +276,27 @@ namespace TOR_Core.Utilities
             return result;
         }
 
+        /// <summary>
+        /// Blueprints are campaign-wide, so there is no hero to add one to - the old
+        /// "[Hero Name] | [TraitId]" form is gone. The learned event still carries a hero,
+        /// but nothing reads it, so this reports the main hero as the learner.
+        /// </summary>
         [CommandLineFunctionality.CommandLineArgumentFunction("add_enchantment_blueprint", "tor")]
         public static string AddEnchantmentBlueprint(List<string> arguments)
         {
             if (Campaign.Current == null) return "Function only available when playing in campaign mode.";
-            var trait = "";
-            var hero = Hero.MainHero;
-            if (arguments.Count >= 3)
-            {
-                return "either use 1 or 2 arguments. Just 1 argument : Main hero learns blueprint. 2 Arguments : hero with the name learns blueprint";
-            }
-            if (arguments.Count == 1)
-            {
-                trait = arguments[0];
-            }
-            if (arguments.Count == 2)
-            {
-                hero = null;
-                var potentialHeroes = Campaign.Current.AliveHeroes.Where(x => x.Name.ToString() == arguments[0]).ToList();
 
-                if (!potentialHeroes.Any())
-                {
-                    return "no Hero with the given Name could be found";
-                }
+            string usage = "tor.add_enchantment_blueprint [TraitId]\n" +
+                           "Blueprints are known campaign-wide, so no hero is named.";
 
-                foreach (var potentialHero in potentialHeroes)
-                {
-                    if (hero.PartyBelongedTo == MobileParty.MainParty)
-                    {
-                        if (hero.Name == potentialHero.Name)
-                        {
-                            hero = potentialHero;
-                            break;
-                        }
-                    }
+            if (CampaignCheats.CheckHelp(arguments)) return usage;
 
-                    if (hero.Clan != Clan.PlayerClan && hero.Clan.Kingdom != Hero.MainHero.Clan.Kingdom) continue;
-                    if (hero.Name != potentialHero.Name) continue;
+            // Trait ids never contain spaces, so anything past the first token is a mistake -
+            // most likely the retired "[Hero Name] | [TraitId]" form.
+            if (arguments.Count != 1) return usage;
 
-                    hero = potentialHero;
-                    break;
-
-                }
-
-                trait = arguments[1];
-            }
-
-            if (hero == null)
-            {
-                return "no Hero with the given Name could be found in Clan or Kingdom";
-            }
+            var trait = arguments[0].Trim();
+            if (string.IsNullOrEmpty(trait)) return usage;
 
             var obj = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == trait);
             if (obj == null)
@@ -332,12 +304,51 @@ namespace TOR_Core.Utilities
                 return ("There exists no trait with the id " + trait);
             }
 
-            hero.AddEnchantmentBlueprint(trait);
+            if (!EnchantmentBlueprints.Learn(trait))
+            {
+                return "Blueprint " + trait + " is already known.";
+            }
 
-
-            return "Blueprint added: " + trait + "to " + hero.Name;
+            return "Blueprint added: " + trait;
         }
 
+        /// <summary>
+        /// Reports what the party knows and, for anything it cannot currently enchant with,
+        /// why. Blueprint knowledge is campaign-wide and permanent, so the only interesting
+        /// question left is whether the crafting-time requirements are met.
+        /// </summary>
+        [CommandLineFunctionality.CommandLineArgumentFunction("check_enchantment_blueprints", "tor")]
+        public static string CheckEnchantmentBlueprints(List<string> arguments)
+        {
+            if (Campaign.Current == null) return "Function only available when playing in campaign mode.";
+
+            var store = EnchantmentBlueprintBehavior.Instance;
+            if (store == null) return "EnchantmentBlueprintBehavior is not registered.";
+
+            var known = EnchantmentBlueprints.GetKnown().OrderBy(x => x).ToList();
+            if (known.Count == 0) return "No enchantment blueprints known.";
+
+            var requirements = EnchantmentHelper.GetBlueprintRequirements();
+            var craftable = new List<string>();
+            var blocked = new List<string>();
+
+            foreach (var blueprintId in known)
+            {
+                var unmet = requirements.TryGetValue(blueprintId, out var requirement)
+                    ? EnchantmentHelper.GetUnmetRequirement(blueprintId, requirement)
+                    : null;
+
+                if (unmet == null) craftable.Add(blueprintId);
+                else blocked.Add(blueprintId + " - " + unmet);
+            }
+
+            var result = $"known: {known.Count} (craftable now: {craftable.Count}, blocked: {blocked.Count})";
+
+            if (craftable.Count > 0) result += "\n  craftable:\n    " + string.Join("\n    ", craftable);
+            if (blocked.Count > 0) result += "\n  known but not craftable right now:\n    " + string.Join("\n    ", blocked);
+
+            return result;
+        }
 
         [CommandLineFunctionality.CommandLineArgumentFunction("list_spells", "tor")]
         public static string ListSpells(List<string> argumentNames) =>
@@ -1334,7 +1345,7 @@ namespace TOR_Core.Utilities
             string questId = arguments[0];
 
             // Only allow specific quests that support this completion method
-            var supportedQuests = new[] { "OrcBossQuest1", "OrcBossQuest2", "OrcShamanQuest1", "OrcShamanQuest2" };
+            var supportedQuests = new[] { "OrcBossQuest1", "OrcBossQuest2", "OrcShamanQuest1", "OrcShamanQuest2", "runelord_quest_1", "runelord_quest_2" };
             if (!supportedQuests.Contains(questId))
                 return $"Quest '{questId}' cannot be finalized this way. Supported quests: {string.Join(", ", supportedQuests)}\n";
 
@@ -1348,6 +1359,10 @@ namespace TOR_Core.Utilities
             {
                 entry.UpdateCurrentProgress(Int32.MaxValue);
             }
+
+            // The Runelord career quests are finalized by the Runesmith guildmaster dialogue rather than by their own tick.
+            if (questId == "runelord_quest_1" || questId == "runelord_quest_2")
+                return $"Quest '{questId}' requirements completed! Talk to the Runesmith guildmaster after the next hourly tick to finalize it.\n";
 
             return $"Quest '{questId}' requirements completed! Quest will finalize on next hourly tick.\n";
         }

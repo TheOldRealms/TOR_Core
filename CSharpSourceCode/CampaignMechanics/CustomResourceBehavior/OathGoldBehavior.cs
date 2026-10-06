@@ -21,6 +21,7 @@ using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using TOR_Core.Framework;
 using TOR_Core.Items;
 using TOR_Core.Models;
 using TOR_Core.Quests;
@@ -367,6 +368,8 @@ public class OathGoldBehavior : CampaignBehaviorBase
             () => !Hero.MainHero.HasAttribute(CharacterAttributes.PLAYER_RUNESMITH) && Hero.MainHero.HasCareer(TORCareers.Runelord), () =>
             {
                 var quest = TORQuestHelper.GetCurrentQuest<RunesmithQuest>("runelord_quest_1", true, IsRunelordInFront, out var existent);
+
+                Hero.MainHero.AddAttribute(CharacterAttributes.RUNE_MAGIC);
 
                 if (!existent)
                 {

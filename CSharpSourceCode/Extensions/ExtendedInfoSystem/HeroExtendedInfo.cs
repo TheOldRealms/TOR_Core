@@ -25,7 +25,8 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         [SaveableField(7)] private List<string> _selectedAbilities = [];
         [SaveableField(8)] public string CareerID = string.Empty;
         [SaveableField(9)] public List<string> CareerChoices = [];
-        [SaveableField(10)] public List<string> KnownEnchantmentBlueprints = [];
+
+        // Slot 10 held KnownEnchantmentBlueprints, maybe wait to reuse.
 
         public CharacterObject BaseCharacter => _baseCharacter;
 
@@ -227,19 +228,6 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             if (LoreObject.GetLore(loreId) != null && !_knownLores.Contains(loreId)) _knownLores.Add(loreId);
         }
 
-        public void AddKnownEnchantmentBlueprint(string blueprintId)
-        {
-            if (!KnownEnchantmentBlueprints.Contains(blueprintId))
-            {
-                KnownEnchantmentBlueprints.Add(blueprintId);
-                TORCampaignEvents.Instance.OnEnchantmentLearned(_baseCharacter.HeroObject, blueprintId);
-            }
-        }
-
-        public bool HasKnownEnchantmentBlueprint(string blueprintId)
-        {
-            return KnownEnchantmentBlueprints.Contains(blueprintId);
-        }
 
         public void RemoveAbility(string abilityID)
         {

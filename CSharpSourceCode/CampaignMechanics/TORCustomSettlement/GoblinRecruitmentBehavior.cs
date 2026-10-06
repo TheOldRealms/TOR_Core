@@ -13,6 +13,7 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Framework;
 using TOR_Core.Missions;
 using TOR_Core.Utilities;
 

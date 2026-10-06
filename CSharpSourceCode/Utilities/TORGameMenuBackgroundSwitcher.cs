@@ -135,6 +135,7 @@ namespace TOR_Core.Utilities
                     args.MenuContext.SetBackgroundMeshName("dwarf_prisoner");
                     return;
                 case TORConstants.Cultures.BEASTMEN:
+                case TORConstants.Cultures.BEASTMEN_BANDIT:
                     args.MenuContext.SetBackgroundMeshName("beastmen_captive");
                     return;
                 default:
@@ -168,6 +169,9 @@ namespace TOR_Core.Utilities
                     return;
                 case TORConstants.Cultures.DAWI:
                     args.MenuContext.SetBackgroundMeshName("dwarf_tavern");
+                    return;
+                case TORConstants.Cultures.GREENSKIN:
+                    args.MenuContext.SetBackgroundMeshName("greenskin_tavern");
                     return;
             }
         }

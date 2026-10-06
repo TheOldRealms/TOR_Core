@@ -41,7 +41,8 @@ namespace TOR_Core.Utilities
             public const string MOUSILLON = "mousillon";
             public const string ASRAI = "battania";
             public const string DRUCHII = "druchii";
-            public const string BEASTMEN = "steppe_bandits";
+            public const string BEASTMEN = "beastmen";
+            public const string BEASTMEN_BANDIT = "steppe_bandits";
             public const string CHAOS = "chaos_culture";
             public const string EONIR = "eonir";
             public const string DAWI = "sturgia";
@@ -53,7 +54,7 @@ namespace TOR_Core.Utilities
 
             public static readonly List<string> All =
             [
-                EMPIRE,BRETONNIA,SYLVANIA,MOUSILLON,ASRAI,EONIR,DAWI,GREENSKIN
+                EMPIRE,BRETONNIA,SYLVANIA,MOUSILLON,ASRAI,EONIR,DAWI,GREENSKIN,BEASTMEN
             ];
         }
 
@@ -205,11 +206,14 @@ namespace TOR_Core.Utilities
             public const string ABILITY_USER = "AbilityUser";
             public const string CAN_PLACE_ARTILLERY = "CanPlaceArtillery";
 
+            public const string RUNE_MAGIC = "RuneMagic";
+
             //Special hero types - generally used for detecting specific types of npc heroes
             public const string SPELLCASTER = "SpellCaster";
             public const string RUNESMITH = "Runesmith";
             public const string ILL_FATED = "IllFated";//moussilon knights, similar to grail knights
             public const string LEGENDARY_LORD = "LegendaryLord";//Specific famous heroes who need plot armour
+            public const string ENCYCLOPEDIA_HELMET = "EncyclopediaHelmet"; //heroes with hidden faces in lore
             public const string WARBOSS = "Warboss";//greenskin mechanic
             public const string PRIEST_TRAINER = "PriestTrainer";//Blesses player, teaches equipment blessing, etc.
             public const string SKILL_TRAINER = "SkillTrainer";
@@ -289,6 +293,7 @@ namespace TOR_Core.Utilities
             public const string FELLFANG_MARK = "FellfangMark";//greylord
             public const string NECROMANCER_CHAMPION = "NecromancerChampion";//necromancer
             public const string IMPENETRABLE = "Impenetrable";//ironbreaker
+            public const string NEST_CLEANSING = "NestCleansing";
             public const string DOOM_SEEKING = "DoomSeeking";//slayer
             public const string ARCANE_DMG = "Arcane_Dmg";//Magister, update for nomenclature
             public const string KNIGHTLY_STRIKE = "KnightlyStrike";

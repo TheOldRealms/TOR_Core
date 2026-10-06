@@ -205,7 +205,7 @@ folder's contents are genuinely mixed and need to be divided.
 | Folder | Verdict | Notes |
 |---|---|---|
 | `Items/` root (`ItemTrait`, `ItemTraitManager`, `ItemTraitAgentComponent`, `ExtendedItemObjectManager`/`Properties`) | FW | Generic item-enchantment/metadata engine. |
-| `Items/` root (`TorEnchantingIngredients`, item-trait tooltip VMs/widgets) | MOD → `Crafting/` | Crafting-flavored UI colocated in `Items/` today. |
+| `Items/` root (item-trait tooltip VMs/widgets) | MOD → `Crafting/` | Crafting-flavored UI colocated in `Items/` today. `TorEnchantingIngredients` was listed here in error (it lived in `Crafting/`) and is now FW — see Amendments. |
 | `Items/InventoryUseScriptsCampaignBehavior` | FW | Generic dispatcher. |
 | `Items/WeaponHitScripts/`, `Items/InventoryUseScripts/` | FW interface, **SPLIT** implementations | The `IWeaponHitScript`/`IInventoryUseScript` contracts stay FW; concrete scripts move with whichever module grants the item that uses them. |
 | `Models/` (generic combat/party/settlement-economy formula overrides — the majority) | FW | Stays a registration surface, but each `AddModel` call should move to be issued by the owning module (Framework or the module registering itself), not centrally in `SubModule.OnGameStart`. |
@@ -249,3 +249,12 @@ mechanics and save/load in particular, given `SaveGameSystem`'s "never renumber"
 - **Reflection-based discovery** mirrors the existing `ViewModelExtensionManager` pattern, but is a runtime cost/load-order change worth confirming against Bannerlord's startup profiling before committing, vs. an explicit (but still short) list of module types in `SubModule.cs`.
 - A few placements above are flagged **"verify"** — `GreenskinAICampaignBehavior`, `TORHiringCompatibilityModel`, `HuntCultistsQuestCampaignBehavior`, `PlaguedVillageQuestCampaignBehavior` — their current CLAUDE.md summaries don't pin down which module they truly belong to; worth a quick source read before moving.
 - Should `SaveGameSystem`'s central definer be split by module now, or only for *new* types going forward (leaving existing ids where they are, since renumbering breaks saves)?
+
+## Amendments
+
+Amended in place as epics discover that a classification above is wrong.
+
+| Date | Epic | Change |
+|---|---|---|
+| 2026-09-11 | Crafting Epic 2 | `TorEnchantingIngredients` + `TorTradeGoodType`: MOD → **FW**. A catalogue of six ingredient `ItemObject`s with no `using TOR_Core.*` of its own, which `Items/ItemTrait` and `Models/TORFaithModel` — both FW — already reached into `Crafting/` to use. Now `Framework/TorEnchantingIngredients.cs`. |
+| 2026-09-11 | Crafting Epic 2 | `TORSettlementMenuHelpers`: MOD (`TORCustomSettlement/`) → **FW**. 50 lines of generic town-menu ordering with one public method, already shared by `Crafting` and `TORCustomSettlement`. Now `Framework/TORSettlementMenuHelpers.cs`. |

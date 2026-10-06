@@ -811,6 +811,11 @@ namespace TOR_Core.Models
         /// </summary>
         public int CalculateAbilityDamage(Agent attacker, Agent victim, int baseDamage, DamageType damageType, AbilityTemplate abilityTemplate)
         {
+            return CalculateAbilityDamage(attacker, victim, baseDamage, damageType, abilityTemplate, false);
+        }
+
+        public int CalculateAbilityDamage(Agent attacker, Agent victim, int baseDamage, DamageType damageType, AbilityTemplate abilityTemplate, bool isNonMagicalExplosion)
+        {
             if (attacker == null || victim == null || baseDamage <= 0)
                 return baseDamage;
 
@@ -832,6 +837,11 @@ namespace TOR_Core.Models
 
             // Apply career passives for damage values
             TORDamageHelper.ApplyCareerPassives(attacker, victim, AttackTypeMask.Spell, additionalDamagePercentages, resistancePercentages);
+
+            if (isNonMagicalExplosion)
+            {
+                TORDamageHelper.ApplyNestCleansingExplosionResistance(victim, resistancePercentages);
+            }
 
             // Apply damage modifiers (virtual hook)
             resultDamage = ApplyDamageModifiers(resultDamage, attacker, victim, damageType, abilityTemplate, damageAmplifications, additionalDamagePercentages, resistancePercentages);
@@ -1013,7 +1023,8 @@ namespace TOR_Core.Models
                 if (baseDamage <= 0) continue;
 
                 // Calculate final damage with all modifiers
-                int finalDamage = CalculateAbilityDamage(caster, agent, baseDamage, damageType, abilityTemplate);
+                int finalDamage = CalculateAbilityDamage(caster, agent, baseDamage, damageType, abilityTemplate,
+                    abilityTemplate == null && triggeredEffectTemplate?.StringID?.Split('*')[0] == "grenade_explosion");
 
                 if (finalDamage > 0)
                 {
