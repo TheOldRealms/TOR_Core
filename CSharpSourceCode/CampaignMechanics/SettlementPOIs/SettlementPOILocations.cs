@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem.Settlements;
 
-namespace TOR_Core.CampaignMechanics.TownPOIs
+namespace TOR_Core.CampaignMechanics.SettlementPOIs
 {
     /// <summary>
     /// Single source of truth for which settlements host which TOR POI, plus the helper
     /// in-town trainer behaviors use to pick between a POI location id and the vanilla
     /// <c>house_1</c> fallback.
     ///
-    /// <para>Scheduled for inlining: once each POI subclass of <see cref="TownPOIBehavior"/>
+    /// <para>Scheduled for inlining: once each POI subclass of <see cref="SettlementPOI"/>
     /// also owns its access predicate (next refactor slice), the whitelists will migrate
     /// onto those classes and this file disappears. Keeping centralised for now so the
     /// trainer behaviors have a stable call site.</para>
@@ -23,7 +23,7 @@ namespace TOR_Core.CampaignMechanics.TownPOIs
     ///         Imperial Magister trainer per settlement.</item>
     /// </list>
     /// </summary>
-    public static class TownPOILocations
+    public static class SettlementPOILocations
     {
         public const string WizardHallLocationId = "tor_wizardhall";
         public const string WitchHunterLodgeLocationId = "tor_witchhunter_lodge";

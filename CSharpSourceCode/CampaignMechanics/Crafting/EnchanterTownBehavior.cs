@@ -14,7 +14,7 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
-using TOR_Core.CampaignMechanics.TownPOIs;
+using TOR_Core.CampaignMechanics.SettlementPOIs;
 using TOR_Core.Extensions;
 using TOR_Core.Framework;
 using TOR_Core.Utilities;
@@ -149,7 +149,7 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
         if(settlement.IsTorLithanel())  //needs fixing with more care later. 3 behaviors all at once are here interfering.
             return;
         
-        var currentLocation = settlement.LocationComplex.GetLocationWithId(TownPOILocations.GetTrainerLocationId(settlement));
+        var currentLocation = settlement.LocationComplex.GetLocationWithId(SettlementPOILocations.GetTrainerLocationId(settlement));
         if (trainer != null && currentLocation != null)
         {
             if (forceSpawn)
@@ -172,7 +172,7 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
     private bool IsTrainerInCollege(Settlement settlement)
     {
-        var location = settlement.LocationComplex.GetLocationWithId(TownPOILocations.GetTrainerLocationId(settlement));
+        var location = settlement.LocationComplex.GetLocationWithId(SettlementPOILocations.GetTrainerLocationId(settlement));
         var trainer = GetEnchanterForTown(settlement);
         if (trainer != null) return location.GetLocationCharacter(trainer) != null;
 
