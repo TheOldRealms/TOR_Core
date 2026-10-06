@@ -162,7 +162,7 @@ namespace TOR_Core.CampaignMechanics.Chaos
 
             if (chaosKingdom == null)
             {
-                Campaign.Current.KingdomManager.CreateKingdom(clan.Name, clan.InformalName, chaosCulture, clan, clan.Name);
+                Campaign.Current.KingdomManager.CreateKingdom(clan.Name, clan.InformalName, chaosCulture, clan, formalName: clan.Name);
             }
             else if (chaosKingdom.IsEliminated)
             {

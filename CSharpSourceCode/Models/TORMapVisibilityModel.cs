@@ -50,17 +50,20 @@ namespace TOR_Core.Models
             return result;
         }
 
-        public override void GetMobilePartyVisibilityAndInspectedState(MobileParty mobileParty, Vec2[] points, float seeingRange, out bool isVisible, out bool isInspected, out bool isDistanceDependent)
+        /// <remarks>
+        /// 1.5.4 dropped the isDistanceDependent out-parameter from this overload (it survives only on
+        /// GetSettlementInspectedState), so the 1.5.3 three-out signature no longer overrides anything.
+        /// </remarks>
+        public override void GetMobilePartyVisibilityAndInspectedState(MobileParty mobileParty, Vec2[] points, float seeingRange, out bool isVisible, out bool isInspected)
         {
             if (mobileParty == MobileParty.MainParty && Hero.MainHero.IsEnlisted())
             {
                 isVisible = false;
                 isInspected = false;
-                isDistanceDependent = false;
                 return;
             }
 
-            base.GetMobilePartyVisibilityAndInspectedState(mobileParty, points, seeingRange, out isVisible, out isInspected, out isDistanceDependent);
+            base.GetMobilePartyVisibilityAndInspectedState(mobileParty, points, seeingRange, out isVisible, out isInspected);
         }
     }
 }
