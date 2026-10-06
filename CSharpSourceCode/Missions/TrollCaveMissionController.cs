@@ -79,6 +79,9 @@ namespace TOR_Core.Missions
             {
                 InitializeMission();
                 _isMissionInitialized = true;
+
+                // OnInitialSpawnCompleted also completes deployment for missions without a deployment controller
+                Mission.OnInitialSpawnCompleted();
                 return;
             }
 
@@ -155,9 +158,6 @@ namespace TOR_Core.Missions
             SpawnPlayer();
             SpawnPlayerTroops();
             SpawnTrolls();
-
-            // Signal deployment finished
-            Mission.OnDeploymentFinished();
 
             // Set formation orders and PlayerOwner directly (vanilla hideout pattern)
             SetupFormationOrders();

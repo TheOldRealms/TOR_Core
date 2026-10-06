@@ -85,9 +85,9 @@ namespace TOR_Core.Models
 
             if (village.Bound != null && village.VillageState == Village.VillageStates.Normal)
             {
-                PerkHelper.AddPerkBonusForTown(DefaultPerks.Medicine.BushDoctor, village.Bound.Town, ref result);
-                PerkHelper.AddPerkBonusForTown(DefaultPerks.Athletics.Energetic, village.Bound.Town, ref result);
-                PerkHelper.AddPerkBonusForTown(DefaultPerks.Steward.AidCorps, village.Bound.Town, ref result);
+                PerkHelper.AddPerkBonusForTown(DefaultPerks.Medicine.BushDoctor, village.Bound.Town, isPrimaryBonus: true,  ref result);
+                PerkHelper.AddPerkBonusForTown(DefaultPerks.Athletics.Energetic, village.Bound.Town, isPrimaryBonus: false, ref result);
+                PerkHelper.AddPerkBonusForTown(DefaultPerks.Steward.AidCorps, village.Bound.Town, isPrimaryBonus: false, ref result);
 
                 if (village.Bound.IsFortification)
                 {

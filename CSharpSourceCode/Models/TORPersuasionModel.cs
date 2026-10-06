@@ -2,6 +2,7 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Conversation.Persuasion;
 using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TOR_Core.CharacterDevelopment;
 
@@ -19,7 +20,7 @@ namespace TOR_Core.Models
             base.GetChances(optionArgs, out _successChance, out _critSuccessChance, out _critFailChance, out _failChance, difficultyMultiplier);
             if (CharacterObject.PlayerCharacter.GetPerkValue(TORPerks.Spellcraft.Improvision))
             {
-                PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.Improvision, CharacterObject.PlayerCharacter, false, ref bonusChance);
+                PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.Improvision, BattleEnvironment.Any, CharacterObject.PlayerCharacter, false, ref bonusChance);
             }
             successChance = MathF.Clamp(_successChance * bonusChance.ResultNumber, 0f, 1f);
             critFailChance = _critFailChance;
