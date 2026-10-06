@@ -11370,8 +11370,17 @@
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="new_entry_1">
-    <DamageProportions><DamageProportionTuple DamageType="Magical" Percent="0.90" /><DamageProportionTuple DamageType="Physical" Percent="0.10" /></DamageProportions>
-  <Resistances><ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.70" /></Resistances><DamageAmplifiers><AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.30" /></DamageAmplifiers></CharacterExtendedInfo>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Magical" Percent="0.90" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.10" />
+    </DamageProportions>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.70" />
+    </Resistances>
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.30" />
+    </DamageAmplifiers>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_greenknight_leader">
     <Attributes>
       <string>LegendaryLord</string>
@@ -11418,4 +11427,12 @@
       <string>MonsterAttack</string>
     </Attributes>
   </CharacterExtendedInfo>
-</ArrayOfCharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_cygor">
+    <Attributes>
+      <string>Unstoppable</string>
+      <string>Tough</string>
+      <string>MonsterAttack</string>
+      <string>CannotClimbLadders</string>
+    </Attributes>
+  <DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions><Resistances><ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.70" /></Resistances></CharacterExtendedInfo>
+<CharacterExtendedInfo id="tor_giant"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></CharacterExtendedInfo></ArrayOfCharacterExtendedInfo>

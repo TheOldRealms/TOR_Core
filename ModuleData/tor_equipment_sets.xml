@@ -39554,12 +39554,20 @@
       <Equipment slot="Body" id="Item.tor_beastmen_body_minotaur_001" />
       <Equipment slot="Gloves" id="Item.tor_beastmen_arm_hands_minotaur_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_accessories_2_001" />
+      <Equipment slot="Item0" id="Item.cygor_boulder" />
+      <Equipment slot="Item1" id="Item.cygor_boulder" />
+      <Equipment slot="Item2" id="Item.cygor_boulder" />
+      <Equipment slot="Item3" id="Item.cygor_boulder" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Head" id="Item.tor_beastmen_accessories_001" />
       <Equipment slot="Body" id="Item.tor_beastmen_body_minotaur_001" />
       <Equipment slot="Gloves" id="Item.tor_beastmen_arm_hands_minotaur_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_accessories_2_001" />
+      <Equipment slot="Item0" id="Item.cygor_boulder" />
+      <Equipment slot="Item1" id="Item.cygor_boulder" />
+      <Equipment slot="Item2" id="Item.cygor_boulder" />
+      <Equipment slot="Item3" id="Item.cygor_boulder" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_br_bandit_template" culture="Culture.sea_raiders">

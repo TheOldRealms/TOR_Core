@@ -4082,7 +4082,7 @@
       <EquipmentSet id="tor_beast_pestigor_template" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_cygor" name="{=str_tor_cygor}Cygor" level="46" default_group="infantry" culture="Culture.beastmen" occupation="Mercenary" is_basic_troop="true" skill_template="SkillSet.tor_skills_level46" race="large_humanoid_monster">
+  <NPCCharacter id="tor_cygor" name="{=str_tor_cygor}Cygor" level="46" default_group="ranged" culture="Culture.beastmen" occupation="Mercenary" is_basic_troop="true" skill_template="SkillSet.tor_skills_level46" race="large_humanoid_monster">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
