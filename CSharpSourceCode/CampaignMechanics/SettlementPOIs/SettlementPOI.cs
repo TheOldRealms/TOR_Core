@@ -56,6 +56,30 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         /// </summary>
         protected virtual bool IsDiscovered(Settlement settlement) => true;
 
+        /// <summary>
+        /// Does this POI exist in <paramref name="s"/>? Derived from the settlement's
+        /// LocationComplex rather than a hardcoded whitelist — a settlement "has" the POI
+        /// iff its per-settlement <c>&lt;Location id="…"/&gt;</c> entry in
+        /// <c>tor_settlements.xml</c> supplies at least one <c>scene_name_*</c>.
+        /// Template-only Locations (no scene) are considered absent, which is why
+        /// <c>tor_location_complex_templates.xml</c> declares each POI's Location without a
+        /// scene — scenes live on per-settlement overrides.
+        /// </summary>
+        public bool AppliesTo(Settlement s)
+        {
+            var loc = s?.LocationComplex?.GetLocationWithId(LocationId);
+            return loc != null && loc.GetSceneCount() > 0;
+        }
+
+        /// <summary>
+        /// Does this POI host the settlement's trainer hero? When true,
+        /// <see cref="SettlementPOIRegistry.GetTrainerLocationId"/> routes in-town trainer
+        /// behaviors to this POI's <see cref="LocationId"/> for the settlements where
+        /// <see cref="AppliesTo"/> is true. Default is false — the POI has no NPC trainer
+        /// and keeps <c>house_1</c> for whichever behavior spawns there.
+        /// </summary>
+        public virtual bool HostsTrainer => false;
+
         // ------- Convention-based reason lookup
 
         /// <summary>POI short name derived from <see cref="LocationId"/> (strips the <c>tor_</c> prefix).</summary>

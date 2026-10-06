@@ -607,7 +607,6 @@
     <Compile Include="CampaignMechanics\SkillTrainerBehavior.cs" />
     <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\SettlementPOI.cs" />
-    <Compile Include="CampaignMechanics\SettlementPOIs\SettlementPOILocations.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\SettlementPOIManagerCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\SettlementPOIRegistry.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\WitchHunterLodgePOI.cs" />

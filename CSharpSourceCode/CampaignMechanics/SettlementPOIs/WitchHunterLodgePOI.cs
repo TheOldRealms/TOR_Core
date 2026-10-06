@@ -7,13 +7,14 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
 {
     /// <summary>
     /// Witch Hunter Lodge POI — the Order of Sigmar chapterhouses. Reachable from the
-    /// <c>town_artisan</c> submenu in seven Empire towns (see
-    /// <see cref="SettlementPOILocations.IsWitchHunterLodgeSettlement"/>). Race-locked to humans;
-    /// no career gate; no NPC trainer (empty scene).
+    /// <c>town_artisan</c> submenu in whichever Empire settlements provide a scene override
+    /// for <c>tor_witchhunter_lodge</c> in <c>tor_settlements.xml</c> (currently Wurtbad,
+    /// Leicheberg, Meissen, Bögenhafen, Bechafen, Eisental, Ferlangen). Race-locked to
+    /// humans; no career gate; no NPC trainer (empty scene).
     /// </summary>
     public class WitchHunterLodgePOI : SettlementPOI
     {
-        public override string LocationId => SettlementPOILocations.WitchHunterLodgeLocationId;
+        public override string LocationId => "tor_witchhunter_lodge";
         public override string ParentMenuId => "town_artisan";
         public override string AnchorEntryId => "town_artisan_leave";
         public override bool AnchorAbove => true;    // sit directly above "Leave"
@@ -28,7 +29,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 denialReason = R("Undiscovered", "You have not yet found this place.");
                 return false;
             }
-            if (!SettlementPOILocations.IsWitchHunterLodgeSettlement(s))
+            if (!AppliesTo(s))
             {
                 denialReason = R("Sealed", "This place is sealed.");
                 return false;

@@ -14,7 +14,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
     /// </summary>
     public class WizardHallPOI : SettlementPOI
     {
-        public override string LocationId => SettlementPOILocations.WizardHallLocationId;
+        public override string LocationId => "tor_wizardhall";
         public override string ParentMenuId => "town_artisan";
         public override string AnchorEntryId => "town_artisan_enchanting";
         public override bool AnchorAbove => false;   // sit right after "Visit the enchanter"
@@ -22,15 +22,18 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public override string EnterLabelId => "tor_poi_wizardhall.EnterLabel";
         public override string EnterLabelDefault => "Visit the Wizard Hall";
 
+        /// <summary>Enchanter + spell-trainer heroes migrate here from <c>house_1</c>.</summary>
+        public override bool HostsTrainer => true;
+
         public override bool CheckAccess(Settlement s, Hero h, out TextObject denialReason)
         {
-            // Order: cheapest-and-broadest first — discovery → whitelist → siege → race → career.
+            // Order: cheapest-and-broadest first — discovery → applies → siege → race → career.
             if (!IsDiscovered(s))
             {
                 denialReason = R("Undiscovered", "You have not yet found this place.");
                 return false;
             }
-            if (!SettlementPOILocations.IsWizardHallSettlement(s))
+            if (!AppliesTo(s))
             {
                 denialReason = R("Sealed", "This place is sealed.");
                 return false;
