@@ -22,22 +22,6 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public override string EnterLabelId => "tor_poi_wizardhall.EnterLabel";
         public override string EnterLabelDefault => "Visit the Wizard Hall";
 
-        /// <summary>
-        /// Where should the Imperial Magister trainer be placed in <paramref name="s"/>?
-        /// The Wizard Hall POI's Location if the settlement hosts it, else <c>house_1</c>
-        /// (vanilla pre-POI location that TOR trainer behaviors fall back to). Called from
-        /// <see cref="TOR_Core.CampaignMechanics.Crafting.EnchanterTownBehavior"/> and
-        /// <see cref="TOR_Core.CampaignMechanics.SpellTrainers.SpellTrainerInTownBehavior"/>.
-        /// Lives here (not on <see cref="SettlementPOI"/>) because trainer placement is a
-        /// Wizard-Hall-specific concern; a future Runehall / Engineer Hall will supply its
-        /// own equivalent helper for its own trainer behaviors.
-        /// </summary>
-        public static string GetTrainerLocationId(Settlement s)
-        {
-            var poi = SettlementPOIManagerCampaignBehavior.Get("tor_wizardhall") as WizardHallPOI;
-            return poi != null && poi.AppliesTo(s) ? poi.LocationId : "house_1";
-        }
-
         public override bool CheckAccess(Settlement s, Hero h, out TextObject denialReason)
         {
             // Order: cheapest-and-broadest first — discovery → applies → siege → race → career.

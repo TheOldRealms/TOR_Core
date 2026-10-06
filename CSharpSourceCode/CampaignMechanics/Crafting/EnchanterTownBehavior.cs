@@ -149,7 +149,8 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
         if(settlement.IsTorLithanel())  //needs fixing with more care later. 3 behaviors all at once are here interfering.
             return;
         
-        var currentLocation = settlement.LocationComplex.GetLocationWithId(WizardHallPOI.GetTrainerLocationId(settlement));
+        var locationId = settlement.Culture.StringId == TORConstants.Cultures.EMPIRE ? "tor_wizardhall" : "house_1";
+        var currentLocation = settlement.LocationComplex.GetLocationWithId(locationId);
         if (trainer != null && currentLocation != null)
         {
             if (forceSpawn)
@@ -172,7 +173,8 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
     private bool IsTrainerInCollege(Settlement settlement)
     {
-        var location = settlement.LocationComplex.GetLocationWithId(WizardHallPOI.GetTrainerLocationId(settlement));
+        var locationId = settlement.Culture.StringId == TORConstants.Cultures.EMPIRE ? "tor_wizardhall" : "house_1";
+        var location = settlement.LocationComplex.GetLocationWithId(locationId);
         var trainer = GetEnchanterForTown(settlement);
         if (trainer != null) return location.GetLocationCharacter(trainer) != null;
 

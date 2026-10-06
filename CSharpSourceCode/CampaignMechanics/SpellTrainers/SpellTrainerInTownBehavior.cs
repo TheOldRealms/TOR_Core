@@ -60,7 +60,8 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
         private bool IsTrainerInCollege(Settlement settlement)
         {
-            var location = settlement.LocationComplex.GetLocationWithId(WizardHallPOI.GetTrainerLocationId(settlement));
+            var locationId = settlement.Culture.StringId == TORConstants.Cultures.EMPIRE ? "tor_wizardhall" : "house_1";
+            var location = settlement.LocationComplex.GetLocationWithId(locationId);
             var trainer = GetTrainerForTown(settlement);
             if (trainer != null)
             {
@@ -84,7 +85,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
         private void SpawnTrainerInCollege(Settlement settlement, bool forceSpawn)
         {
             var trainer = GetTrainerForTown(settlement);
-            var collegeloc = settlement.LocationComplex.GetLocationWithId(WizardHallPOI.GetTrainerLocationId(settlement));
+            var collegeloc = settlement.LocationComplex.GetLocationWithId("tor_wizardhall");
             if (trainer != null && collegeloc != null)
             {
                 // Skip spellsinger envoy - they should stay in the lordshall, not the magic college

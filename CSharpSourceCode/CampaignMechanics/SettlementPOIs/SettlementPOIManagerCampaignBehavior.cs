@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Encounters;
@@ -15,13 +17,12 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
     /// <summary>
     /// Single campaign-lifecycle entry point for every TOR settlement POI. Also owns the
     /// static <c>LocationId → <see cref="SettlementPOI"/></c> lookup used by
-    /// <see cref="TOR_Core.Models.TORSettlementAccessModel"/> and by POI-specific helpers
-    /// (e.g. <see cref="WizardHallPOI.GetTrainerLocationId"/>).
+    /// <see cref="TOR_Core.Models.TORSettlementAccessModel"/> and by POI-specific helpers.
     ///
-    /// <para>POI classes self-register via <see cref="Register"/> from
-    /// <c>SubModule.InitializeGameStarter</c>, before this behavior's event handlers fire.
-    /// On session launch each registered POI gets its menu option wired; on
-    /// after-session-launch each gets pinned via <see cref="TORSettlementMenuHelpers"/>.</para>
+    /// <para>POIs register themselves automatically: on session launch the manager scans the
+    /// TOR_Core assembly for every concrete <see cref="SettlementPOI"/> subclass with a
+    /// parameterless constructor and instantiates one of each into the registry. Adding a
+    /// new POI is just a new subclass file — SubModule.cs needs no changes.</para>
     ///
     /// <para>No per-POI state is persisted — this behavior exists only to drive menu wiring
     /// and expose the registry. Access-rule evaluation happens via
@@ -30,23 +31,12 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
     /// </summary>
     public class SettlementPOIManagerCampaignBehavior : CampaignBehaviorBase
     {
-        // ------- Registry (static — survives behavior re-registration across campaign restarts)
-
         private static readonly Dictionary<string, SettlementPOI> _byLocationId = new();
 
         public static IEnumerable<SettlementPOI> All => _byLocationId.Values;
 
-        public static void Register(SettlementPOI poi)
-        {
-            if (poi == null || string.IsNullOrEmpty(poi.LocationId)) return;
-            _byLocationId[poi.LocationId] = poi;
-        }
-
         public static SettlementPOI Get(string locationId) =>
             _byLocationId.TryGetValue(locationId, out var poi) ? poi : null;
-
-        /// <summary>Clear the registry — only for test harnesses / reload scenarios.</summary>
-        public static void Clear() => _byLocationId.Clear();
 
         // ------- Lifecycle
 
@@ -60,6 +50,8 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
 
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
+            DiscoverAndRegisterAllPOIs();
+
             foreach (var poi in _byLocationId.Values)
             {
                 var captured = poi;   // avoid loop-variable capture in the lambdas
@@ -70,6 +62,18 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                     condition: args => MenuCondition(args, captured),
                     consequence: args => MenuConsequence(args, captured),
                     isLeave: false);
+            }
+        }
+
+        private static void DiscoverAndRegisterAllPOIs()
+        {
+            if (_byLocationId.Count > 0) return;
+
+            foreach (var t in typeof(SettlementPOI).Assembly.GetTypes()
+                                 .Where(t => t.IsSubclassOf(typeof(SettlementPOI)) && !t.IsAbstract))
+            {
+                var poi = (SettlementPOI)Activator.CreateInstance(t);
+                _byLocationId[poi.LocationId] = poi;
             }
         }
 
