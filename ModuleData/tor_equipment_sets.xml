@@ -39456,6 +39456,38 @@
       <Equipment slot="Cape" id="Item.aserai_horseman_shoulder" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_beast_pestigor_template" culture="Culture.beastmen">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_chaos_weapon_thaxe_nurgle_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_pauldron_nurgle_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_chaos_weapon_thaxe_nurgle_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_pauldron_nurgle_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_beast_cygor_template" culture="Culture.beastmen">
+    <EquipmentSet>
+      <Equipment slot="Head" id="Item.tor_beastmen_accessories_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_minotaur_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_hands_minotaur_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_accessories_2_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Head" id="Item.tor_beastmen_accessories_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_minotaur_001" />
+      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_hands_minotaur_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_accessories_2_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_br_bandit_template" culture="Culture.sea_raiders">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.falchion_sword_t2" />
