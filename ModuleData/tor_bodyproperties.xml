@@ -219,6 +219,18 @@
                        build="0.774"
                        key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />
   </BodyProperty>
+    <BodyProperty id="pestigor">
+    <BodyPropertiesMin version="4"
+                       age="22"
+                       weight="0.3102"
+                       build="0.4923"
+                       key="003A5C0FC00000016C86666777666666777777777766666666555566666A66660177761307556565000000000000000000000000000000000000000000E40000" />
+    <BodyPropertiesMax version="4"
+                       age="22"
+                       weight="0.3627"
+                       build="0.774"
+                       key="003A5C0FC00000016C86666777666666777777777766666666555566666A66660177761307556565000000000000000000000000000000000000000000E40000" />
+  </BodyProperty>
   <BodyProperty id="minotaur">
     <BodyPropertiesMin version="4"
                        age="22"

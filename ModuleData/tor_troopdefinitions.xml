@@ -3842,7 +3842,7 @@
       <EquipmentSet id="tor_beast_ungor_chief_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_beast_gor" default_group="infantry" level="26" name="{=str_tor_beast_gor}Gor" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level26" is_basic_troop="true" race="gor2" localizationId="str_tor_beast_gor">
+  <NPCCharacter id="tor_beast_gor" default_group="infantry" level="26" name="{=str_tor_beast_gor}Gor" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level26" is_basic_troop="true" race="gor" localizationId="str_tor_beast_gor">
     <face>
       <face_key_template value="BodyProperty.gor" />
     </face>
@@ -4040,6 +4040,54 @@
     <Equipments>
       <EquipmentSet id="tor_beast_minotaur_template" />
       <EquipmentSet id="tor_beast_minotaur_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastman_khorngor" name="{=str_tor_beastman_khorngor}Khornegor" level="41" default_group="infantry" culture="Culture.beastmen" occupation="Mercenary" is_basic_troop="true" skill_template="SkillSet.tor_skills_level41" race="gor2">
+    <face>
+      <face_key_template value="BodyProperty.gor" />
+    </face>
+    <Equipments>
+      <EquipmentSet id="tor_beast_pestigor_template" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastman_pestigor" name="{=str_tor_beastman_pestigor}Pestigor" level="41" default_group="infantry" culture="Culture.beastmen" occupation="Mercenary" is_basic_troop="true" skill_template="SkillSet.tor_skills_level41" race="gor2">
+    <face>
+      <face_key_template value="BodyProperty.pestigor" />
+    </face>
+    <Equipments>
+      <EquipmentSet id="tor_beast_pestigor_template" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastman_slaangor" name="{=str_tor_beastman_slaangor}Slaangors" level="41" default_group="infantry" culture="Culture.beastmen" occupation="Mercenary" is_basic_troop="true" skill_template="SkillSet.tor_skills_level41" race="gor2">
+    <face>
+      <face_key_template value="BodyProperty.gor" />
+    </face>
+    <Equipments>
+      <EquipmentSet id="tor_beast_pestigor_template" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastman_tzaangor" name="{=str_tor_beastman_tzaangor}Tzaangor" level="41" default_group="infantry" culture="Culture.beastmen" occupation="Mercenary" is_basic_troop="true" skill_template="SkillSet.tor_skills_level41" race="gor2">
+    <face>
+      <face_key_template value="BodyProperty.gor" />
+    </face>
+    <Equipments>
+      <EquipmentSet id="tor_beast_pestigor_template" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_cygor" name="{=str_tor_cygor}Cygor" level="46" default_group="infantry" culture="Culture.beastmen" occupation="Mercenary" is_basic_troop="true" skill_template="SkillSet.tor_skills_level46" race="large_humanoid_monster">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <Equipments>
+      <EquipmentSet id="tor_beast_cygor_template" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_giant" name="{=str_tor_giant}Giant" level="46" default_group="infantry" culture="Culture.beastmen" occupation="Mercenary" is_basic_troop="true" skill_template="SkillSet.tor_skills_level46" race="large_humanoid_monster">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <Equipments>
+      <EquipmentSet id="tor_beast_ungor_template" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dog_braganza_01" default_group="ranged" level="21" name="{=str_tor_dog_braganza_01}Besieger Crossbowman" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true" localizationId="str_tor_dog_braganza_01">
