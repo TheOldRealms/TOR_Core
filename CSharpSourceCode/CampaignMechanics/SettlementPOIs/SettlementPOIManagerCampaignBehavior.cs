@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Encounters;
@@ -12,16 +13,43 @@ using TOR_Core.Framework;
 namespace TOR_Core.CampaignMechanics.SettlementPOIs
 {
     /// <summary>
-    /// Single campaign-lifecycle entry point for every TOR town POI. Iterates
-    /// <see cref="SettlementPOIRegistry"/> on session launch to wire each POI's menu option, then
-    /// again after session launch to pin positions via <see cref="TORSettlementMenuHelpers"/>.
+    /// Single campaign-lifecycle entry point for every TOR settlement POI. Also owns the
+    /// static <c>LocationId → <see cref="SettlementPOI"/></c> lookup used by
+    /// <see cref="TOR_Core.Models.TORSettlementAccessModel"/> and by POI-specific helpers
+    /// (e.g. <see cref="WizardHallPOI.GetTrainerLocationId"/>).
     ///
-    /// <para>No per-POI state is persisted — this behavior exists only to drive menu wiring.
-    /// Access-rule evaluation happens via <see cref="TOR_Core.Models.TORSettlementAccessModel"/>
-    /// dispatching to each POI's <see cref="SettlementPOI.CheckAccess"/>.</para>
+    /// <para>POI classes self-register via <see cref="Register"/> from
+    /// <c>SubModule.InitializeGameStarter</c>, before this behavior's event handlers fire.
+    /// On session launch each registered POI gets its menu option wired; on
+    /// after-session-launch each gets pinned via <see cref="TORSettlementMenuHelpers"/>.</para>
+    ///
+    /// <para>No per-POI state is persisted — this behavior exists only to drive menu wiring
+    /// and expose the registry. Access-rule evaluation happens via
+    /// <see cref="TOR_Core.Models.TORSettlementAccessModel"/> dispatching to each POI's
+    /// <see cref="SettlementPOI.CheckAccess"/>.</para>
     /// </summary>
     public class SettlementPOIManagerCampaignBehavior : CampaignBehaviorBase
     {
+        // ------- Registry (static — survives behavior re-registration across campaign restarts)
+
+        private static readonly Dictionary<string, SettlementPOI> _byLocationId = new();
+
+        public static IEnumerable<SettlementPOI> All => _byLocationId.Values;
+
+        public static void Register(SettlementPOI poi)
+        {
+            if (poi == null || string.IsNullOrEmpty(poi.LocationId)) return;
+            _byLocationId[poi.LocationId] = poi;
+        }
+
+        public static SettlementPOI Get(string locationId) =>
+            _byLocationId.TryGetValue(locationId, out var poi) ? poi : null;
+
+        /// <summary>Clear the registry — only for test harnesses / reload scenarios.</summary>
+        public static void Clear() => _byLocationId.Clear();
+
+        // ------- Lifecycle
+
         public override void RegisterEvents()
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
@@ -32,7 +60,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
 
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
-            foreach (var poi in SettlementPOIRegistry.All)
+            foreach (var poi in _byLocationId.Values)
             {
                 var captured = poi;   // avoid loop-variable capture in the lambdas
                 starter.AddGameMenuOption(
@@ -47,7 +75,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
 
         private void OnAfterSessionLaunched(CampaignGameStarter starter)
         {
-            foreach (var poi in SettlementPOIRegistry.All)
+            foreach (var poi in _byLocationId.Values)
             {
                 var menu = Campaign.Current.GameMenuManager.GetGameMenu(poi.ParentMenuId);
                 TORSettlementMenuHelpers.RearrangeTownMenus(menu, poi.LocationId, poi.AnchorEntryId, poi.AnchorAbove);

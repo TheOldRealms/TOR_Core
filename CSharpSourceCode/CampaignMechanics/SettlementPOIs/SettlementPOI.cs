@@ -12,10 +12,11 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
     /// Runehall / Engineer Hall / Chapel / Grove / Herdstone / Crypt / …).
     ///
     /// <para>Not a <c>CampaignBehaviorBase</c>: all shared lifecycle work — event wiring,
-    /// menu-option registration, menu rearrangement — lives on
-    /// <see cref="SettlementPOIManagerCampaignBehavior"/>, which iterates
-    /// <see cref="SettlementPOIRegistry"/>. One manager handles any number of POIs, so adding a
-    /// new POI is just a new subclass plus one line in SubModule to register it.</para>
+    /// menu-option registration, menu rearrangement — plus the
+    /// <c>LocationId → SettlementPOI</c> registry lookup all live on
+    /// <see cref="SettlementPOIManagerCampaignBehavior"/>. One manager handles any number
+    /// of POIs, so adding a new POI is just a new subclass plus one
+    /// <see cref="SettlementPOIManagerCampaignBehavior.Register"/> call in SubModule.</para>
     ///
     /// <para>Denial reasons use convention-based lookup via <see cref="R"/> against
     /// <c>tor_poi_&lt;shortName&gt;.&lt;field&gt;</c> in <c>tor_strings.xml</c>.</para>

@@ -169,10 +169,10 @@ namespace TOR_Core
                 starter.AddBehavior(new AssimilationCampaignBehavior());
                 starter.AddBehavior(new SpellTrainerInTownBehavior());
                 // POI classes are plain descriptors (not CampaignBehaviors). Register them
-                // with the SettlementPOIRegistry; the SettlementPOIManagerCampaignBehavior
+                // with the SettlementPOIManagerCampaignBehavior; the SettlementPOIManagerCampaignBehavior
                 // iterates the registry to wire menus and dispatch access-rule questions.
-                SettlementPOIRegistry.Register(new WizardHallPOI());
-                SettlementPOIRegistry.Register(new WitchHunterLodgePOI());
+                SettlementPOIManagerCampaignBehavior.Register(new WizardHallPOI());
+                SettlementPOIManagerCampaignBehavior.Register(new WitchHunterLodgePOI());
                 starter.AddBehavior(new SettlementPOIManagerCampaignBehavior());
                 starter.AddBehavior(new MasterEngineerTownBehaviour());
                 starter.AddBehavior(new PrestigeNobleTownBehavior());

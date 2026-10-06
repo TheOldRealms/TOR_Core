@@ -34,7 +34,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         /// </summary>
         public static string GetTrainerLocationId(Settlement s)
         {
-            var poi = SettlementPOIRegistry.Get("tor_wizardhall") as WizardHallPOI;
+            var poi = SettlementPOIManagerCampaignBehavior.Get("tor_wizardhall") as WizardHallPOI;
             return poi != null && poi.AppliesTo(s) ? poi.LocationId : "house_1";
         }
 
