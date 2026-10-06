@@ -58,8 +58,6 @@ namespace TOR_Core.HarmonyPatches
             return raceName == "human" || raceName == "bretonnian";
         }
 
-        // This patch makes the created AgentVisuals use the correct action set and so the correct skeleton when it is refreshed
-        // Method to avoid having to insert a bunch of instructions and instead only insert 2 (LdArg0 and Call)
         [HarmonyPrefix]
         [HarmonyPatch(typeof(MissionFaceCacheView), "CheckForSimilarFacesFromCache")]
         public static bool DisableMissionFaceReuseForCustomRaces(
@@ -175,7 +173,9 @@ namespace TOR_Core.HarmonyPatches
                 useFaceCache = false;
             }
         }
-
+        
+        // This patch makes the created AgentVisuals use the correct action set and so the correct skeleton when it is refreshed
+        // Method to avoid having to insert a bunch of instructions and instead only insert 2 (LdArg0 and Call)
         [HarmonyTranspiler]
         [HarmonyPatch(typeof(BodyGeneratorView), "RefreshCharacterEntityAux")]
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator ilGen)

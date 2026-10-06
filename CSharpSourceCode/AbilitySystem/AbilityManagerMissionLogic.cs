@@ -493,7 +493,7 @@ namespace TOR_Core.AbilitySystem
                     break;
                 case AbilityModeState.AbilitySelectionMenu:
                     {
-                        if (!MissionInputContext.IsGameKeyPressed(_abilitySelectionMenuId))
+                        if (!MissionInputContext.IsGameKeyDown(_abilitySelectionMenuId))
                         {
                             if (_abilityComponent.CurrentAbility.IsDisabled(Agent.Main, out TextObject failureReason))
                             {
@@ -908,6 +908,8 @@ namespace TOR_Core.AbilitySystem
             RebindBothKeys((int)GameKeyDefinition.EquipWeapon2);
             RebindBothKeys((int)GameKeyDefinition.EquipWeapon3);
             RebindBothKeys((int)GameKeyDefinition.EquipWeapon4);
+            _storedKeyboardKeys.Clear();
+            _storedControllerKeys.Clear();
         }
 
         private void RebindBothKeys(int gameKey)
@@ -937,14 +939,22 @@ namespace TOR_Core.AbilitySystem
 
         private void StoreAndUnbindBothKeys(int gameKey)
         {
-            var keyboardKey = _keyContext.GetGameKey(gameKey).KeyboardKey?.InputKey ?? InputKey.Invalid;
-            _storedKeyboardKeys.AddOrReplace(gameKey, keyboardKey);
-            _keyContext.GetGameKey(gameKey).KeyboardKey.ChangeKey(InputKey.Invalid);
+            var key = _keyContext.GetGameKey(gameKey);
+            // An action can have no binding object for one input device.
+            if (key.KeyboardKey != null)
+            {
+                // Selection and targeting can both unbind before a single restore.
+                if (!_storedKeyboardKeys.ContainsKey(gameKey))
+                    _storedKeyboardKeys.Add(gameKey, key.KeyboardKey.InputKey);
+                key.KeyboardKey.ChangeKey(InputKey.Invalid);
+            }
 
-
-            var controllerKey = _keyContext.GetGameKey(gameKey).ControllerKey?.InputKey ?? InputKey.Invalid;
-            _storedControllerKeys.AddOrReplace(gameKey, controllerKey);
-            _keyContext.GetGameKey(gameKey).ControllerKey.ChangeKey(InputKey.Invalid);
+            if (key.ControllerKey != null)
+            {
+                if (!_storedControllerKeys.ContainsKey(gameKey))
+                    _storedControllerKeys.Add(gameKey, key.ControllerKey.InputKey);
+                key.ControllerKey.ChangeKey(InputKey.Invalid);
+            }
         }
 
         private void OnItemPickup(Agent agent, SpawnedItemEntity item)

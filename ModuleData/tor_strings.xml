@@ -3560,7 +3560,7 @@
   <string id="tor_careerchoice_description.BlackGrailVowPassive2" text="{=str_tor_careerchoice_description_BlackGrailVowPassive2}Hits below 15 damage no longer stagger you." />
   <string id="tor_careerchoice_description.BlackGrailVowPassive3" text="{=str_tor_careerchoice_description_BlackGrailVowPassive3}+8% 'Ward Save' for Mousillon 'Knight' troops." />
   <string id="tor_careerchoice_description.BlackGrailVowPassive4" text="{=str_tor_careerchoice_description_BlackGrailVowPassive4}+5 daily 'Dark Energy' per Necromancer and Vampire companion." />
-  <string id="tor_careerchoice_description.WayWatcherRoot" text="{=str_tor_careerchoice_description_WayWatcherRoot}Soon, the Lumberfoots shall regret their trespass! Fire a Lethal Shot, with deadly precision! +50% 'Physical' damage to your next shot. Every 'Keystone' career perk unlocked increases arrows affected by Lethal Shot by +1, but decreases its recharge rate. (Ability is charged by dealing 'Physical' damage with bows.)" />
+  <string id="tor_careerchoice_description.WayWatcherRoot" text="{=str_tor_careerchoice_description_WayWatcherRoot}Soon, the Lumberfoots shall regret their trespass! Fire a Lethal Shot, with deadly precision! +50% 'Physical' damage to your next shot. Every 'Keystone' career perk unlocked increases arrows affected by Lethal Shot by +1, but decreases its charge rate. (Ability is charged by dealing damage with bows.)" />
   <string id="tor_careerchoice_description.ProtectorOfTheWoodsKeystone" text="{=str_tor_careerchoice_description_ProtectorOfTheWoodsKeystone}Lethal Shot can be used on battle start, reduces required damage to use, and affects +1 shot." />
   <string id="tor_careerchoice_description.ProtectorOfTheWoodsPassive1" text="{=str_tor_careerchoice_description_ProtectorOfTheWoodsPassive1}+10% personal ranged 'Physical' damage." />
   <string id="tor_careerchoice_description.ProtectorOfTheWoodsPassive2" text="{=str_tor_careerchoice_description_ProtectorOfTheWoodsPassive2}+3 arrows per quiver you have equipped." />
@@ -4077,6 +4077,15 @@
   <string id="tor_career_button_knightoldworld_seal_decline.not_eligible" text="{=tor_career_button_knightoldworld_seal_decline.not_eligible}Not eligible for seal." />
   <string id="tor_extendedInfo.Undead" text="{=str_tor_extendedinfo_undead}Undead - not affected by morale, and instead of fleeing, shall crumble to dust. If defeated, this unit cannot be wounded." />
   <string id="tor_extendedInfo.ArtilleryCrew" text="{=str_tor_extendedinfo_artillerycrew}Artillery Crew - required to operate most artillery pieces." />
+  <string id="tor_extendedInfo.Monstrous" text="{=str_tor_extendedinfo_monstrous}Monstrous - Attacks gates (...)" />
+  <string id="tor_extendedInfo.cult_of_loec" text="{=str_tor_extendedinfo_cult_of_loec}Cult of Loec - Religious unit of Loec.(...)" />
+  <string id="tor_extendedInfo.cult_of_manaan" text="{=str_tor_extendedinfo_cult_of_manaan}Cult of Manann - Religious unit of Manann(...)" />
+  <string id="tor_extendedInfo.cult_of_morr" text="{=str_tor_extendedinfo_cult_of_morr}Cult of Morr - Religious unit of Morr.(...)" />
+  <string id="tor_extendedInfo.cult_of_sigmar" text="{=str_tor_extendedinfo_cult_of_sigmar}Cult of Sigmar - Religious unit of Sigmar.(...)" />
+  <string id="tor_extendedInfo.cult_of_lady" text="{=str_tor_extendedinfo_cult_of_lady}Cult of the Lady - Religious unit of the Lady.(...)" />
+  <string id="tor_extendedInfo.cult_of_ulric" text="{=str_tor_extendedinfo_cult_of_ulric}Cult of Ulric - Religious unit of Ulric.(...)" />
+  <string id="tor_extendedInfo.cult_of_grimnir" text="{=str_tor_extendedinfo_cult_of_grimnir}Cult of Grimnir - Religious unit of Grimnir.(...)" />
+  <string id="tor_extendedInfo.cult_of_myrmidia" text="{=str_tor_extendedinfo_cult_of_myrmidia}Cult of Myrmidia - Religious unit of Myrmidia.(...)" />
   <string id="tor_extendedInfo.Unbreakable" text="{=str_tor_extendedinfo_unbreakable}Unbreakable - shall never flee due to low morale." />
   <string id="tor_extendedInfo.Unstoppable" text="{=str_tor_extendedinfo_unstoppable}Unstoppable - does not stagger upon receiving damage." />
   <string id="tor_extendedInfo.Regeneration" text="{=str_tor_extendedinfo_regeneration}Regeneration - restores {VALUE} health per second.(...)" />
@@ -5255,4 +5264,17 @@
   <string id="str_faction_informal_name_for_culture.beastmen" text="{=str_faction_informal_name_for_culture.beastmen}[TODO] the Beastmen" category="Factions" subcategory="Beastmen" />
   <string id="str_adjective_for_culture.beastmen" text="{=str_adjective_for_culture.beastmen}[TODO] beastman" category="Factions" subcategory="Beastmen" />
   <string id="str_neutral_term_for_culture.beastmen" text="{=str_neutral_term_for_culture.beastmen}[TODO] beastmen" category="Factions" subcategory="Beastmen" />
+  <string id="tor_poi_wizardhall.Name" text="{=str_tor_poi_wizardhall.Name}Wizard Hall" category="POIs" subcategory="Wizard Hall" />
+  <string id="tor_poi_wizardhall.EnterLabel" text="{=str_tor_poi_wizardhall.EnterLabel}Visit the Wizard Hall" category="POIs" subcategory="Wizard Hall" />
+  <string id="tor_poi_wizardhall.Undiscovered" text="{=str_tor_poi_wizardhall.Undiscovered}You have not yet found this place." category="POIs" subcategory="Wizard Hall" />
+  <string id="tor_poi_wizardhall.Sealed" text="{=str_tor_poi_wizardhall.Sealed}This place is sealed." category="POIs" subcategory="Wizard Hall" />
+  <string id="tor_poi_wizardhall.SiegeSealed" text="{=str_tor_poi_wizardhall.SiegeSealed}The gates of the College are sealed during the siege." category="POIs" subcategory="Wizard Hall" />
+  <string id="tor_poi_wizardhall.Rejected" text="{=str_tor_poi_wizardhall.Rejected}The wards of the College turn you away." category="POIs" subcategory="Wizard Hall" />
+  <string id="tor_poi_wizardhall.MustHaveCareer" text="{=str_tor_poi_wizardhall.MustHaveCareer}Only {REQUIRED_CAREER} may enter the College." category="POIs" subcategory="Wizard Hall" />
+  <string id="tor_poi_witchhunter_lodge.Name" text="{=str_tor_poi_witchhunter_lodge.Name}Witch Hunter Lodge" category="POIs" subcategory="Witch Hunter Lodge" />
+  <string id="tor_poi_witchhunter_lodge.EnterLabel" text="{=str_tor_poi_witchhunter_lodge.EnterLabel}Visit the Witch Hunter Lodge" category="POIs" subcategory="Witch Hunter Lodge" />
+  <string id="tor_poi_witchhunter_lodge.Undiscovered" text="{=str_tor_poi_witchhunter_lodge.Undiscovered}You have not yet found this place." category="POIs" subcategory="Witch Hunter Lodge" />
+  <string id="tor_poi_witchhunter_lodge.Sealed" text="{=str_tor_poi_witchhunter_lodge.Sealed}This place is sealed." category="POIs" subcategory="Witch Hunter Lodge" />
+  <string id="tor_poi_witchhunter_lodge.SiegeSealed" text="{=str_tor_poi_witchhunter_lodge.SiegeSealed}The lodge is closed during the siege." category="POIs" subcategory="Witch Hunter Lodge" />
+  <string id="tor_poi_witchhunter_lodge.Rejected" text="{=str_tor_poi_witchhunter_lodge.Rejected}The templars turn you away." category="POIs" subcategory="Witch Hunter Lodge" />
 </strings>

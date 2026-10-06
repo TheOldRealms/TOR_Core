@@ -3897,6 +3897,151 @@
       <EquipmentSet id="tor_beast_minotaur_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_beast_bandit_ungor_scavenger" default_group="infantry" level="11" name="{=str_tor_beast_bandit_ungor_scavenger}Ungor Scavenger" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level11" race="ungor" localizationId="str_tor_beast_bandit_ungor_scavenger">
+    <face>
+      <face_key_template value="BodyProperty.ungor" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_beast_bandit_ungor_raider" />
+      <upgrade_target id="NPCCharacter.tor_beast_bandit_ungor_halfhorn_chief" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_beast_ungor_template" />
+      <EquipmentSet id="tor_beast_ungor_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beast_bandit_ungor_raider" default_group="ranged" level="16" name="{=str_tor_beast_bandit_ungor_raider}Ungor Raider" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level16" race="ungor" localizationId="str_tor_beast_bandit_ungor_raider">
+    <face>
+      <face_key_template value="BodyProperty.ungor" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_beast_ungor_raider_template" />
+      <EquipmentSet id="tor_beast_ungor_raider_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beast_bandit_ungor_halfhorn_chief" default_group="infantry" level="21" name="{=str_tor_beast_bandit_ungor_halfhorn_chief}Ungor Halfhorn Chief" occupation="Bandit" culture="Culture.steppe_bandits" skill_template="SkillSet.tor_skills_level21" race="ungor" localizationId="str_tor_beast_bandit_ungor_halfhorn_chief">
+    <face>
+      <face_key_template value="BodyProperty.ungor" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_beast_ungor_chief_template" />
+      <EquipmentSet id="tor_beast_ungor_chief_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_ungor" default_group="infantry" level="11" name="{=str_tor_beast_ungor}Ungor" occupation="Soldier" culture="Culture.beastmen" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true" race="ungor" localizationId="str_tor_beast_ungor">
+    <face>
+      <face_key_template value="BodyProperty.ungor" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_beastmen_shielded_ungor" />
+      <upgrade_target id="NPCCharacter.tor_beastmen_ungor_raider" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_beast_ungor_template" />
+      <EquipmentSet id="tor_beast_ungor_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_shielded_ungor" default_group="infantry" level="16" name="{=str_tor_beast_shielded_ungor}Shielded Ungor" occupation="Soldier" culture="Culture.beastmen" skill_template="SkillSet.tor_skills_level16" race="ungor" localizationId="str_tor_beast_shielded_ungor">
+    <face>
+      <face_key_template value="BodyProperty.ungor" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_beastmen_ungor_chief" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_beast_shielded_ungor_template" />
+      <EquipmentSet id="tor_beast_shielded_ungor_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_ungor_raider" default_group="ranged" level="16" name="{=str_tor_beast_ungor_raider}Ungor Raider" occupation="Soldier" culture="Culture.beastmen" skill_template="SkillSet.tor_skills_level16" race="ungor" localizationId="str_tor_beast_ungor_raider">
+    <face>
+      <face_key_template value="BodyProperty.ungor" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_beastmen_ungor_chief_raider" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_beast_ungor_raider_template" />
+      <EquipmentSet id="tor_beast_ungor_raider_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_ungor_chief_raider" default_group="ranged" level="21" name="{=str_tor_beast_ungor_chief_raider}Ungor Halfhorn Raider" occupation="Soldier" culture="Culture.beastmen" skill_template="SkillSet.tor_skills_level21" race="ungor" localizationId="str_tor_beast_ungor_chief_raider">
+    <face>
+      <face_key_template value="BodyProperty.ungor" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_beast_ungor_raider_chief_template" />
+      <EquipmentSet id="tor_beast_ungor_raider_chief_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_ungor_chief" default_group="infantry" level="21" name="{=str_tor_beast_ungor_chief}Ungor Halfhorn" occupation="Soldier" culture="Culture.beastmen" skill_template="SkillSet.tor_skills_level21" race="ungor" localizationId="str_tor_beast_ungor_chief">
+    <face>
+      <face_key_template value="BodyProperty.ungor" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_beast_ungor_chief_template" />
+      <EquipmentSet id="tor_beast_ungor_chief_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_gor" default_group="infantry" level="26" name="{=str_tor_beast_gor}Gor" occupation="Soldier" culture="Culture.beastmen" skill_template="SkillSet.tor_skills_level26" is_basic_troop="true" race="gor2" localizationId="str_tor_beast_gor">
+    <face>
+      <face_key_template value="BodyProperty.gor" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_beastmen_gor_foerender" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_beast_gor_template" />
+      <EquipmentSet id="tor_beast_gor_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_gor_foerender" default_group="infantry" level="31" name="{=str_tor_beast_gor_foerender}Gor Foe-Render" occupation="Soldier" culture="Culture.beastmen" skill_template="SkillSet.tor_skills_level31" race="gor2" localizationId="str_tor_beast_gor_foerender">
+    <face>
+      <face_key_template value="BodyProperty.gor" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_beastmen_gor_manripper" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_beast_gor_foerender_template" />
+      <EquipmentSet id="tor_beast_gor_foerender_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_gor_manripper" default_group="infantry" level="36" name="{=str_tor_beast_gor_manripper}Bestigor" occupation="Soldier" culture="Culture.beastmen" skill_template="SkillSet.tor_skills_level36" race="gor2" localizationId="str_tor_beast_gor_manripper">
+    <face>
+      <face_key_template value="BodyProperty.gor" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_beastmen_gor_gougehorn" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_beast_gor_manripper_template" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_gor_gougehorn" name="{=str_tor_beast_gor_gougehorn}Bestigor Gouge-Horn" level="41" default_group="infantry" culture="Culture.beastmen" occupation="Soldier" skill_template="SkillSet.tor_skills_level41" race="gor2" localizationId="str_tor_beast_gor_gougehorn">
+    <face>
+      <face_key_template value="BodyProperty.gor" />
+    </face>
+    <Equipments>
+      <EquipmentSet id="tor_beast_gor_gougehorn_template" />
+      <EquipmentSet id="tor_beast_gor_gougehorn_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_minotaur" default_group="infantry" level="36" name="{=str_tor_beast_minotaur}Minotaur" occupation="Mercenary" culture="Culture.beastmen" skill_template="SkillSet.tor_skills_troll" is_basic_troop="true" race="minotaur" localizationId="str_tor_beast_minotaur">
+    <face>
+      <face_key_template value="BodyProperty.minotaur" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_beast_minotaur_template" />
+      <EquipmentSet id="tor_beast_minotaur_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_dog_braganza_01" default_group="ranged" level="21" name="{=str_tor_dog_braganza_01}Besieger Crossbowman" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true" localizationId="str_tor_dog_braganza_01">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />

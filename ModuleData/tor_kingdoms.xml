@@ -1283,7 +1283,7 @@
              short_name="{=str_tor_kingdom_beastmen_short}Beastmen"
              title="{=str_tor_kingdom_beastmen_title}Beastmen Herds"
              ruler_title="{=str_tor_kingdom_beastmen_ruler}Beastlord"
-             text="{=str_tor_kingdom_beastmen_text}Placeholder: cloned from Mousillon during the initial Beastmen shell buildout. Rewrite before ship.">
+             text="{=str_tor_kingdom_beastmen_text}Ndhiub Nluffur leads the Warherd of the Moonfather, a gathering of Wargors drawn beneath a single Beastlord. His warherd raids the settlements of Men and hunts the enemies of the Dark Gods.">
         <relationships>
             <relationship kingdom="Kingdom.lyonesse"
                           value="-1"

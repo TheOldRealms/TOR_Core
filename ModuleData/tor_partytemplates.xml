@@ -2080,6 +2080,13 @@
 		  <PartyTemplateStack min_value="0" max_value="5" troop="NPCCharacter.tor_beast_minotaur" />
 		</stacks>
 	</MBPartyTemplate>
+	<MBPartyTemplate id="ungor_bandit_party" >
+		<stacks>
+		  <PartyTemplateStack min_value="8" max_value="24" troop="NPCCharacter.tor_beast_bandit_ungor_scavenger" />
+		  <PartyTemplateStack min_value="4" max_value="18" troop="NPCCharacter.tor_beast_bandit_ungor_raider" />
+		  <PartyTemplateStack min_value="2" max_value="8" troop="NPCCharacter.tor_beast_bandit_ungor_halfhorn_chief" />
+		</stacks>
+	</MBPartyTemplate>
 	<MBPartyTemplate id="druchii_slaver_party" >
 		<stacks>
 		  <PartyTemplateStack min_value="4" max_value="24" troop="NPCCharacter.tor_de_conscript" />
@@ -2091,8 +2098,8 @@
 	</MBPartyTemplate>
 	<MBPartyTemplate id="ungor_boss_party" >
 		<stacks>
-		  <PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_beast_gor" />
-		  <PartyTemplateStack min_value="1" max_value="1" troop="NPCCharacter.tor_beast_gor_manripper" />
+		  <PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_beast_bandit_ungor_raider" />
+		  <PartyTemplateStack min_value="1" max_value="1" troop="NPCCharacter.tor_beast_bandit_ungor_halfhorn_chief" />
 		</stacks>
 	</MBPartyTemplate>
 
@@ -2536,6 +2543,64 @@
 			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_chaos_norscan_reaver" />
 			<PartyTemplateStack min_value="6" max_value="6" troop="NPCCharacter.tor_chaos_cultist_of_chaos" />
 			<PartyTemplateStack min_value="4" max_value="4" troop="NPCCharacter.tor_chaos_norscan_whaler" />
+		</stacks>
+	</MBPartyTemplate>
+	<!-- Warherd of the Moonfather: approved 160-troop lord composition. -->
+	<MBPartyTemplate id="tor_beastmen_lordparty_template">
+		<stacks>
+			<PartyTemplateStack min_value="10" max_value="10" troop="NPCCharacter.tor_beastmen_ungor" />
+			<PartyTemplateStack min_value="35" max_value="35" troop="NPCCharacter.tor_beastmen_shielded_ungor" />
+			<PartyTemplateStack min_value="30" max_value="30" troop="NPCCharacter.tor_beastmen_ungor_raider" />
+			<PartyTemplateStack min_value="30" max_value="30" troop="NPCCharacter.tor_beastmen_gor" />
+			<PartyTemplateStack min_value="10" max_value="10" troop="NPCCharacter.tor_beastmen_gor_foerender" />
+			<PartyTemplateStack min_value="24" max_value="24" troop="NPCCharacter.tor_beastmen_gor_manripper" />
+			<PartyTemplateStack min_value="1" max_value="1" troop="NPCCharacter.tor_beastmen_gor_gougehorn" />
+			<PartyTemplateStack min_value="20" max_value="20" troop="NPCCharacter.tor_beastmen_minotaur" />
+		</stacks>
+	</MBPartyTemplate>
+	<MBPartyTemplate id="tor_beastmen_militia_template">
+		<stacks>
+			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_beastmen_shielded_ungor" />
+			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_beastmen_ungor_raider" />
+		</stacks>
+	</MBPartyTemplate>
+	<!-- Beastmen settlement villagers, patrols, and rebels. -->
+	<MBPartyTemplate id="tor_beastmen_villager_template">
+		<stacks>
+			<PartyTemplateStack min_value="15" max_value="30" troop="NPCCharacter.tor_beastmen_ungor" />
+		</stacks>
+	</MBPartyTemplate>
+	<MBPartyTemplate id="tor_beastmen_patrol_template_level_1">
+		<stacks>
+			<PartyTemplateStack min_value="6" max_value="6" troop="NPCCharacter.tor_beastmen_shielded_ungor" />
+			<PartyTemplateStack min_value="4" max_value="4" troop="NPCCharacter.tor_beastmen_ungor_raider" />
+			<PartyTemplateStack min_value="2" max_value="2" troop="NPCCharacter.tor_beastmen_ungor" />
+		</stacks>
+	</MBPartyTemplate>
+	<MBPartyTemplate id="tor_beastmen_patrol_template_level_2">
+		<stacks>
+			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_beastmen_shielded_ungor" />
+			<PartyTemplateStack min_value="6" max_value="6" troop="NPCCharacter.tor_beastmen_ungor_raider" />
+			<PartyTemplateStack min_value="5" max_value="5" troop="NPCCharacter.tor_beastmen_gor" />
+		</stacks>
+	</MBPartyTemplate>
+	<MBPartyTemplate id="tor_beastmen_patrol_template_level_3">
+		<stacks>
+			<PartyTemplateStack min_value="10" max_value="10" troop="NPCCharacter.tor_beastmen_gor" />
+			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_beastmen_ungor_chief_raider" />
+			<PartyTemplateStack min_value="6" max_value="6" troop="NPCCharacter.tor_beastmen_gor_foerender" />
+			<PartyTemplateStack min_value="4" max_value="4" troop="NPCCharacter.tor_beastmen_ungor_raider" />
+		</stacks>
+	</MBPartyTemplate>
+	<MBPartyTemplate id="tor_beastmen_rebelparty_template">
+		<stacks>
+			<PartyTemplateStack min_value="20" max_value="26" troop="NPCCharacter.tor_beastmen_ungor" />
+			<PartyTemplateStack min_value="10" max_value="20" troop="NPCCharacter.tor_beastmen_ungor_raider" />
+			<PartyTemplateStack min_value="10" max_value="20" troop="NPCCharacter.tor_beastmen_shielded_ungor" />
+			<PartyTemplateStack min_value="8" max_value="16" troop="NPCCharacter.tor_beastmen_gor" />
+			<PartyTemplateStack min_value="4" max_value="8" troop="NPCCharacter.tor_beastmen_ungor_chief" />
+			<PartyTemplateStack min_value="8" max_value="16" troop="NPCCharacter.tor_beastmen_gor_foerender" />
+			<PartyTemplateStack min_value="4" max_value="8" troop="NPCCharacter.tor_beastmen_gor_manripper" />
 		</stacks>
 	</MBPartyTemplate>
 </partyTemplates>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Merges TOR-specific Location rows into vanilla LocationComplexTemplates.
+	The engine's XML merger matches by UniqueAttributes from the XSD:
+	<LocationComplexTemplate id="..."> and <Location id="..."> are matched by id.
+	Matching template -> merge in place; new Location id -> appended to the template.
+
+	Access rules for each tor_ location are owned by Models/TORSettlementAccessModel.cs.
+	Per-settlement scene_name_* overrides live in tor_settlements.xml.
+-->
+<LocationComplexTemplates>
+
+	<LocationComplexTemplate id="town_complex">
+		<Location
+			id="tor_wizardhall"
+			name="{=tor_poi_wizardhall.Name}Wizard Hall"
+			indoor="true"
+			max_prosperity="20"
+			ai_can_enter="CanIfHero"
+			ai_can_exit="CanAlways"
+			player_can_enter="CanIfSettlementAccessModelLetsPlayer"
+			player_can_see="CanAlways" />
+		<Location
+			id="tor_witchhunter_lodge"
+			name="{=tor_poi_witchhunter_lodge.Name}Witch Hunter Lodge"
+			indoor="true"
+			max_prosperity="20"
+			ai_can_enter="CanIfHero"
+			ai_can_exit="CanAlways"
+			player_can_enter="CanIfSettlementAccessModelLetsPlayer"
+			player_can_see="CanAlways" />
+	</LocationComplexTemplate>
+
+</LocationComplexTemplates>
