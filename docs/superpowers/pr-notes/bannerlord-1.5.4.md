@@ -5,7 +5,13 @@ naval expansion into the base game, which is why `BattleEnvironment` turns up th
 perk API and why mission deployment hooks moved.
 
 This branch is `origin/1.5-changes` merged onto current `next_update`, plus the 1.5.3 → 1.5.4
-delta. **It reaches the main menu.** Nothing beyond load has been played.
+delta.
+
+**Confirmed working by hand:** campaign loads, map movement, encyclopedia, inventory, career
+screen. That incidentally clears the encyclopedia and inventory constructor patches, the
+`Kingdom.FormalName` change, the map tracker patches and all 47 `TroopUsageFlags` sites in
+`TORPerks` — perk initialisation would have thrown otherwise. **Not yet exercised: a battle, a
+save/reload, or any daily-tick economy.**
 
 ## Why the merge, not a fresh migration
 
@@ -27,7 +33,7 @@ what moved and why:
 | Moved | Consequence |
 |---|---|
 | `GetMobilePartyVisibilityAndInspectedState` lost its `out bool isDistanceDependent` | three-out override bound to nothing; compile error |
-| `CreateKingdom` gained `MBReadOnlyList<PolicyObject> initialPolicies` at position 5, pushing `formalName` to 7 | a positional `formalName` silently binds to `initialPolicies`. **Compiled clean on 1.5.3.** Now passed by name |
+| `CreateKingdom` gained `MBReadOnlyList<PolicyObject> initialPolicies` at position 5, pushing `formalName` to 7 | the positional 5th argument stopped type-checking (`TextObject` → `MBReadOnlyList<PolicyObject>`), so this was a plain compile error. Now passed by name — positions 6, 7 and 8 are all `TextObject`, so a future reorder among those *would* bind silently |
 | `DefaultSettlementGarrisonModel.GetMaximumDailyAutoRecruitmentCount` returns `ExplainedNumber` | already handled on `1.5-changes` via `TORSettlementGarrisonModel` rather than a patch |
 
 ## Gaps — what is NOT verified
