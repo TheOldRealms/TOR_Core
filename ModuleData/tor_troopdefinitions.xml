@@ -827,7 +827,7 @@
       <EquipmentSet id="tor_br_grail_knight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_lost_son" name="{=str_tor_br_lost_son}Bretonnian Lost Son" level="46" default_group="cavalry" culture="Culture.vlandia" occupation="Soldier" is_basic_troop="true" skill_template="SkillSet.tor_skills_level46" race="bretonnian">
+  <NPCCharacter id="tor_br_lost_son" name="{=str_tor_br_lost_son}Bretonnian Lost Son" level="46" default_group="cavalry" culture="Culture.vlandia" occupation="Soldier" is_basic_troop="true" skill_template="SkillSet.tor_skills_level46" race="bretonnian" localizationId="str_tor_br_lost_son">
     <Equipments>
       <EquipmentSet id="tor_br_lost_sons_template" />
     </Equipments>
@@ -3469,6 +3469,14 @@
       <EquipmentSet id="tor_vc_lahmian_countess_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_vc_ghoul" name="{=str_tor_vc_ghoul}Ghoul" level="16" default_group="infantry" culture="Culture.khuzait" occupation="Soldier" is_basic_troop="true" skill_template="SkillSet.tor_skills_level16" race="ghoul">
+    <Equipments>
+      <EquipmentSet id="tor_vc_ghoul_template" />
+    </Equipments>
+    <face>
+      <face_key_template value="BodyProperty.ghoul" />
+    </face>
+  </NPCCharacter>
   <NPCCharacter id="tor_vc_caravan_captain" default_group="cavalry" level="26" name="{=str_tor_vc_caravan_captain}Sylvanian Caravan Captain" occupation="CaravanGuard" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level26" localizationId="str_tor_vc_caravan_captain">
     <face>
       <face_key_template value="BodyProperty.fighter_empireofman" />
@@ -4050,7 +4058,7 @@
       <EquipmentSet id="tor_beast_minotaur_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_beastman_khorngor" name="{=str_tor_beastman_khorngor}Khornegor" level="41" default_group="infantry" culture="Culture.beastmen" occupation="Mercenary" is_basic_troop="true" skill_template="SkillSet.tor_skills_level41" race="gor2">
+  <NPCCharacter id="tor_beastman_khorngor" name="{=str_tor_beastman_khorngor}Khornegor" level="41" default_group="infantry" culture="Culture.beastmen" occupation="Mercenary" is_basic_troop="true" skill_template="SkillSet.tor_skills_level41" race="gor2" localizationId="str_tor_beastman_khorngor">
     <face>
       <face_key_template value="BodyProperty.gor" />
     </face>
@@ -4058,7 +4066,7 @@
       <EquipmentSet id="tor_beast_pestigor_template" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_beastman_pestigor" name="{=str_tor_beastman_pestigor}Pestigor" level="41" default_group="infantry" culture="Culture.beastmen" occupation="Mercenary" is_basic_troop="true" skill_template="SkillSet.tor_skills_level41" race="gor2">
+  <NPCCharacter id="tor_beastman_pestigor" name="{=str_tor_beastman_pestigor}Pestigor" level="41" default_group="infantry" culture="Culture.beastmen" occupation="Mercenary" is_basic_troop="true" skill_template="SkillSet.tor_skills_level41" race="gor2" localizationId="str_tor_beastman_pestigor">
     <face>
       <face_key_template value="BodyProperty.pestigor" />
     </face>
@@ -4066,7 +4074,7 @@
       <EquipmentSet id="tor_beast_pestigor_template" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_beastman_slaangor" name="{=str_tor_beastman_slaangor}Slaangors" level="41" default_group="infantry" culture="Culture.beastmen" occupation="Mercenary" is_basic_troop="true" skill_template="SkillSet.tor_skills_level41" race="gor2">
+  <NPCCharacter id="tor_beastman_slaangor" name="{=str_tor_beastman_slaangor}Slaangors" level="41" default_group="infantry" culture="Culture.beastmen" occupation="Mercenary" is_basic_troop="true" skill_template="SkillSet.tor_skills_level41" race="gor2" localizationId="str_tor_beastman_slaangor">
     <face>
       <face_key_template value="BodyProperty.gor" />
     </face>
@@ -4074,7 +4082,7 @@
       <EquipmentSet id="tor_beast_pestigor_template" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_beastman_tzaangor" name="{=str_tor_beastman_tzaangor}Tzaangor" level="41" default_group="infantry" culture="Culture.beastmen" occupation="Mercenary" is_basic_troop="true" skill_template="SkillSet.tor_skills_level41" race="gor2">
+  <NPCCharacter id="tor_beastman_tzaangor" name="{=str_tor_beastman_tzaangor}Tzaangor" level="41" default_group="infantry" culture="Culture.beastmen" occupation="Mercenary" is_basic_troop="true" skill_template="SkillSet.tor_skills_level41" race="gor2" localizationId="str_tor_beastman_tzaangor">
     <face>
       <face_key_template value="BodyProperty.gor" />
     </face>
@@ -4082,7 +4090,7 @@
       <EquipmentSet id="tor_beast_pestigor_template" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_cygor" name="{=str_tor_cygor}Cygor" level="46" default_group="ranged" culture="Culture.beastmen" occupation="Mercenary" is_basic_troop="true" skill_template="SkillSet.tor_skills_level46" race="large_humanoid_monster">
+  <NPCCharacter id="tor_cygor" name="{=str_tor_cygor}Cygor" level="46" default_group="ranged" culture="Culture.beastmen" occupation="Mercenary" is_basic_troop="true" skill_template="SkillSet.tor_skills_level46" race="large_humanoid_monster" localizationId="str_tor_cygor">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -4090,7 +4098,7 @@
       <EquipmentSet id="tor_beast_cygor_template" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_giant" name="{=str_tor_giant}Giant" level="46" default_group="infantry" culture="Culture.beastmen" occupation="Mercenary" is_basic_troop="true" skill_template="SkillSet.tor_skills_level46" race="large_humanoid_monster">
+  <NPCCharacter id="tor_giant" name="{=str_tor_giant}Giant" level="46" default_group="infantry" culture="Culture.beastmen" occupation="Mercenary" is_basic_troop="true" skill_template="SkillSet.tor_skills_level46" race="large_humanoid_monster" localizationId="str_tor_giant">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>

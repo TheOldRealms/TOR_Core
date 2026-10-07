@@ -20942,6 +20942,24 @@
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_vampire_001" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_vc_ghoul_template" culture="Culture.khuzait">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_ghoul_1h_mace_001" />
+      <Equipment slot="Body" id="Item.tor_vc_body_loincloth_ghoul_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_ghoul_1h_mace_001" />
+      <Equipment slot="Body" id="Item.tor_vc_body_loincloth_ghoul_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_ghoul_1h_mace_002" />
+      <Equipment slot="Body" id="Item.tor_vc_body_loincloth_ghoul_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_ghoul_1h_mace_002" />
+      <Equipment slot="Body" id="Item.tor_vc_body_loincloth_ghoul_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_vc_tournament_template_one_participant_v1" culture="Culture.khuzait">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_sword_skeleton_002" />

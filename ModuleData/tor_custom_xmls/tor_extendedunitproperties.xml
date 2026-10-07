@@ -11426,6 +11426,16 @@
       <string>Knightly</string>
       <string>MonsterAttack</string>
     </Attributes>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Magical" Percent="0.90" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.10" />
+    </DamageProportions>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.70" />
+    </Resistances>
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="2.00" />
+    </DamageAmplifiers>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_cygor">
     <Attributes>
@@ -11434,5 +11444,21 @@
       <string>MonsterAttack</string>
       <string>CannotClimbLadders</string>
     </Attributes>
-  <DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions><Resistances><ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.70" /></Resistances></CharacterExtendedInfo>
-<CharacterExtendedInfo id="tor_giant"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></CharacterExtendedInfo></ArrayOfCharacterExtendedInfo>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.70" />
+    </Resistances>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_giant">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_vc_ghoul">
+    <Attributes>
+      <string>Undead</string>
+    </Attributes>
+  <DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions><Resistances><ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" /></Resistances></CharacterExtendedInfo>
+</ArrayOfCharacterExtendedInfo>
