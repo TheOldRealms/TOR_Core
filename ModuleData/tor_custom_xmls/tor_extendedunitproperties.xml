@@ -3605,6 +3605,7 @@
       <string>Frenzy</string>
       <string>MonsterAttack</string>
       <string>Monstrous</string>
+      <string>Piercing</string>
     </Attributes>
     <AdditionalHealth>350</AdditionalHealth>
     <Resistances />
@@ -3619,6 +3620,7 @@
     <Abilities />
     <Attributes>
       <string>Expendable</string>
+      <string>Swift</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -3630,6 +3632,7 @@
     <Abilities />
     <Attributes>
       <string>Expendable</string>
+      <string>Swift</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -3641,6 +3644,7 @@
     <Abilities />
     <Attributes>
       <string>Expendable</string>
+      <string>Swift</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -3652,6 +3656,7 @@
     <Abilities />
     <Attributes>
       <string>Expendable</string>
+      <string>Swift</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -3661,7 +3666,10 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_beastmen_ungor_chief">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Swift</string>
+      <string>MonsterSlayer</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -3670,27 +3678,40 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_beastmen_gor">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Swift</string>
+    </Attributes>
     <Resistances />
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.10" />
+    </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_beastmen_gor_foerender">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Swift</string>
+    </Attributes>
     <Resistances />
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.10" />
+    </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_beastmen_gor_manripper">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Swift</string>
+      <string>Piercing</string>
+    </Attributes>
     <Resistances />
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.10" />
+    </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -3698,19 +3719,26 @@
   <CharacterExtendedInfo id="tor_beastmen_gor_gougehorn">
     <Attributes>
       <string>MonsterAttack</string>
+      <string>Swift</string>
+      <string>Piercing</string>
     </Attributes>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
+    </DamageAmplifiers>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_beastmen_minotaur">
     <Abilities />
     <Attributes>
-      <string>Unbreakable</string>
       <string>Unstoppable</string>
       <string>Frenzy</string>
       <string>MonsterAttack</string>
       <string>Monstrous</string>
+      <string>Swift2</string>
+      <string>Piercing</string>
+      <string>Minotaur</string>
     </Attributes>
     <AdditionalHealth>350</AdditionalHealth>
     <Resistances />
@@ -8126,6 +8154,7 @@
     <Abilities />
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_first_6">
@@ -11370,8 +11399,17 @@
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="new_entry_1">
-    <DamageProportions><DamageProportionTuple DamageType="Magical" Percent="0.90" /><DamageProportionTuple DamageType="Physical" Percent="0.10" /></DamageProportions>
-  <Resistances><ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.70" /></Resistances><DamageAmplifiers><AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.30" /></DamageAmplifiers></CharacterExtendedInfo>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Magical" Percent="0.90" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.10" />
+    </DamageProportions>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.70" />
+    </Resistances>
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.30" />
+    </DamageAmplifiers>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_greenknight_leader">
     <Attributes>
       <string>LegendaryLord</string>
@@ -11404,21 +11442,35 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <Attributes>
+      <string>Swift</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_beastman_pestigor">
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <Attributes>
+      <string>Swift</string>
+      <string>Bulwark</string>
+      <string>Piercing</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_beastman_slaangor">
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <Attributes>
+      <string>Swift</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_beastman_tzaangor">
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <Attributes>
+      <string>Swift</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lost_son">
     <Attributes>
@@ -11431,5 +11483,48 @@
       <string>UndeadSlayer2</string>
       <string>Immortality</string>
     </Attributes>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Magical" Percent="0.90" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.10" />
+    </DamageProportions>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.70" />
+    </Resistances>
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="2.00" />
+    </DamageAmplifiers>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_cygor">
+    <Attributes>
+      <string>Unstoppable</string>
+      <string>Swift</string>
+      <string>Minotaur</string>
+      <string>Piercing</string>
+      <string>Monstrous</string>
+    </Attributes>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <Resistances><ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.80" /></Resistances>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_giant">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <Attributes>
+      <string>Tough</string>
+      <string>Bulwark2</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_vc_ghoul">
+    <Attributes>
+      <string>Undead</string>
+    </Attributes>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" />
+    </Resistances>
   </CharacterExtendedInfo>
 </ArrayOfCharacterExtendedInfo>

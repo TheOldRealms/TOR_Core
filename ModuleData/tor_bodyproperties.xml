@@ -171,6 +171,18 @@
                        build="0.8812"
                        key="003F800000000000269C8BCCD8BEBADDA9AB82733338CA137A8A999A2799B98900CD46030CA4588900000000000000000000000000000000FFFFFFFF8194003F" />
   </BodyProperty>
+    <BodyProperty id="ghoul">
+    <BodyPropertiesMin version="4"
+                       age="25"
+                       weight="0.5578"
+                       build="0.2794"
+                       key="002DA80D8744000085A668C7E728742A3E5A79E69ACE8C867A3833764A3BBB8901D486130D77C62800000000000000000000000000000000000000002FAC0000" />
+    <BodyPropertiesMax version="4"
+                       age="25"
+                       weight="0.6444"
+                       build="0.361"
+                       key="00004C0558B4000067696646C468B8A3734A9E97878BD472463865A8B988749801C5A6130C4B9AA60000000000000000000000000000000000000000578C0000" />
+  </BodyProperty>
   <BodyProperty id="harbinger">
     <BodyPropertiesMin version="4"
                        age="25"
