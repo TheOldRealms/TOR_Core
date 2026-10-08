@@ -5264,4 +5264,82 @@
   <string id="str_faction_informal_name_for_culture.beastmen" text="{=str_faction_informal_name_for_culture.beastmen}[TODO] the Beastmen" category="Factions" subcategory="Beastmen" />
   <string id="str_adjective_for_culture.beastmen" text="{=str_adjective_for_culture.beastmen}[TODO] beastman" category="Factions" subcategory="Beastmen" />
   <string id="str_neutral_term_for_culture.beastmen" text="{=str_neutral_term_for_culture.beastmen}[TODO] beastmen" category="Factions" subcategory="Beastmen" />
+  <string id="tor_reinforcement_generic_allied_1" text="{=str_tor_reinforcement_generic_allied_1}generic allied reinforcement reaction 1" />
+  <string id="tor_reinforcement_generic_allied_2" text="{=str_tor_reinforcement_generic_allied_2}generic allied reinforcement reaction 2" />
+  <string id="tor_reinforcement_generic_enemy_1" text="{=str_tor_reinforcement_generic_enemy_1}generic enemy reinforcement reaction 1" />
+  <string id="tor_reinforcement_generic_enemy_2" text="{=str_tor_reinforcement_generic_enemy_2}generic enemy reinforcement reaction 2" />
+  <string id="tor_reinforcement_empire_allied" text="{=str_tor_reinforcement_empire_allied}empire reinforces allied side" />
+  <string id="tor_reinforcement_empire_enemy" text="{=str_tor_reinforcement_empire_enemy}empire reinforces enemy side" />
+  <string id="tor_reinforcement_empire_allied_1" text="{=str_tor_reinforcement_empire_allied_1}empire allied reinforcement reaction 1" />
+  <string id="tor_reinforcement_empire_allied_2" text="{=str_tor_reinforcement_empire_allied_2}empire allied reinforcement reaction 2" />
+  <string id="tor_reinforcement_empire_enemy_1" text="{=str_tor_reinforcement_empire_enemy_1}empire enemy reinforcement reaction 1" />
+  <string id="tor_reinforcement_empire_enemy_2" text="{=str_tor_reinforcement_empire_enemy_2}empire enemy reinforcement reaction 2" />
+  <string id="tor_reinforcement_bretonnia_allied_1" text="{=str_tor_reinforcement_bretonnia_allied_1}bretonnia allied reinforcement reaction 1" />
+  <string id="tor_reinforcement_bretonnia_allied_2" text="{=str_tor_reinforcement_bretonnia_allied_2}bretonnia allied reinforcement reaction 2" />
+  <string id="tor_reinforcement_bretonnia_enemy_1" text="{=str_tor_reinforcement_bretonnia_enemy_1}bretonnia enemy reinforcement reaction 1" />
+  <string id="tor_reinforcement_bretonnia_enemy_2" text="{=str_tor_reinforcement_bretonnia_enemy_2}bretonnia enemy reinforcement reaction 2" />
+  <string id="tor_reinforcement_sylvania_allied_1" text="{=str_tor_reinforcement_sylvania_allied_1}sylvania allied reinforcement reaction 1" />
+  <string id="tor_reinforcement_sylvania_allied_2" text="{=str_tor_reinforcement_sylvania_allied_2}sylvania allied reinforcement reaction 2" />
+  <string id="tor_reinforcement_sylvania_enemy_1" text="{=str_tor_reinforcement_sylvania_enemy_1}sylvania enemy reinforcement reaction 1" />
+  <string id="tor_reinforcement_sylvania_enemy_2" text="{=str_tor_reinforcement_sylvania_enemy_2}sylvania enemy reinforcement reaction 2" />
+  <string id="tor_reinforcement_mousillon_allied_1" text="{=str_tor_reinforcement_mousillon_allied_1}mousillon allied reinforcement reaction 1" />
+  <string id="tor_reinforcement_mousillon_allied_2" text="{=str_tor_reinforcement_mousillon_allied_2}mousillon allied reinforcement reaction 2" />
+  <string id="tor_reinforcement_mousillon_enemy_1" text="{=str_tor_reinforcement_mousillon_enemy_1}mousillon enemy reinforcement reaction 1" />
+  <string id="tor_reinforcement_mousillon_enemy_2" text="{=str_tor_reinforcement_mousillon_enemy_2}mousillon enemy reinforcement reaction 2" />
+  <string id="tor_reinforcement_asrai_allied_1" text="{=str_tor_reinforcement_asrai_allied_1}asrai allied reinforcement reaction 1" />
+  <string id="tor_reinforcement_asrai_allied_2" text="{=str_tor_reinforcement_asrai_allied_2}asrai allied reinforcement reaction 2" />
+  <string id="tor_reinforcement_asrai_enemy_1" text="{=str_tor_reinforcement_asrai_enemy_1}asrai enemy reinforcement reaction 1" />
+  <string id="tor_reinforcement_asrai_enemy_2" text="{=str_tor_reinforcement_asrai_enemy_2}asrai enemy reinforcement reaction 2" />
+  <string id="tor_reinforcement_eonir_allied_1" text="{=str_tor_reinforcement_eonir_allied_1}eonir allied reinforcement reaction 1" />
+  <string id="tor_reinforcement_eonir_allied_2" text="{=str_tor_reinforcement_eonir_allied_2}eonir allied reinforcement reaction 2" />
+  <string id="tor_reinforcement_eonir_enemy_1" text="{=str_tor_reinforcement_eonir_enemy_1}eonir enemy reinforcement reaction 1" />
+  <string id="tor_reinforcement_eonir_enemy_2" text="{=str_tor_reinforcement_eonir_enemy_2}eonir enemy reinforcement reaction 2" />
+  <string id="tor_reinforcement_dawi_allied_1" text="{=str_tor_reinforcement_dawi_allied_1}dawi allied reinforcement reaction 1" />
+  <string id="tor_reinforcement_dawi_allied_2" text="{=str_tor_reinforcement_dawi_allied_2}dawi allied reinforcement reaction 2" />
+  <string id="tor_reinforcement_dawi_enemy_1" text="{=str_tor_reinforcement_dawi_enemy_1}dawi enemy reinforcement reaction 1" />
+  <string id="tor_reinforcement_dawi_enemy_2" text="{=str_tor_reinforcement_dawi_enemy_2}dawi enemy reinforcement reaction 2" />
+  <string id="tor_reinforcement_greenskin_allied_1" text="{=str_tor_reinforcement_greenskin_allied_1}greenskin allied reinforcement reaction 1" />
+  <string id="tor_reinforcement_greenskin_allied_2" text="{=str_tor_reinforcement_greenskin_allied_2}greenskin allied reinforcement reaction 2" />
+  <string id="tor_reinforcement_greenskin_enemy_1" text="{=str_tor_reinforcement_greenskin_enemy_1}greenskin enemy reinforcement reaction 1" />
+  <string id="tor_reinforcement_greenskin_enemy_2" text="{=str_tor_reinforcement_greenskin_enemy_2}greenskin enemy reinforcement reaction 2" />
+  <string id="tor_reinforcement_beastmen_allied_1" text="{=str_tor_reinforcement_beastmen_allied_1}beastmen allied reinforcement reaction 1" />
+  <string id="tor_reinforcement_beastmen_allied_2" text="{=str_tor_reinforcement_beastmen_allied_2}beastmen allied reinforcement reaction 2" />
+  <string id="tor_reinforcement_beastmen_enemy_1" text="{=str_tor_reinforcement_beastmen_enemy_1}beastmen enemy reinforcement reaction 1" />
+  <string id="tor_reinforcement_beastmen_enemy_2" text="{=str_tor_reinforcement_beastmen_enemy_2}beastmen enemy reinforcement reaction 2" />
+  <string id="tor_reinforcement_ungrim_lord_1" text="{=str_tor_reinforcement_ungrim_lord_1}ungrim arrival line" />
+  <string id="tor_reinforcement_ungrim_troops_1" text="{=str_tor_reinforcement_ungrim_troops_1}ungrim troops react to arrival" />
+  <string id="tor_reinforcement_ungrim_reinforced_side_1" text="{=str_tor_reinforcement_ungrim_reinforced_side_1}reinforced side reacts to ungrim" />
+  <string id="tor_reinforcement_morglum_lord_1" text="{=str_tor_reinforcement_morglum_lord_1}morglum arrival line" />
+  <string id="tor_reinforcement_morglum_troops_1" text="{=str_tor_reinforcement_morglum_troops_1}morglum troops react to arrival" />
+  <string id="tor_reinforcement_morglum_reinforced_side_1" text="{=str_tor_reinforcement_morglum_reinforced_side_1}reinforced side reacts to morglum" />
+  <string id="tor_reinforcement_louen_lord_1" text="{=str_tor_reinforcement_louen_lord_1}louen arrival line" />
+  <string id="tor_reinforcement_louen_troops_1" text="{=str_tor_reinforcement_louen_troops_1}louen troops react to arrival" />
+  <string id="tor_reinforcement_louen_reinforced_side_1" text="{=str_tor_reinforcement_louen_reinforced_side_1}reinforced side reacts to louen" />
+  <string id="tor_reinforcement_green_knight_allied" text="{=str_tor_reinforcement_green_knight_allied}green knight reinforces allied side" />
+  <string id="tor_reinforcement_green_knight_enemy" text="{=str_tor_reinforcement_green_knight_enemy}green knight reinforces enemy side" />
+  <string id="tor_reinforcement_green_knight_lord_1" text="{=str_tor_reinforcement_green_knight_lord_1}green knight arrival line" />
+  <string id="tor_reinforcement_green_knight_troops_1" text="{=str_tor_reinforcement_green_knight_troops_1}lost son reacts to green knight arrival" />
+  <string id="tor_reinforcement_green_knight_cheat" text="{=str_tor_reinforcement_green_knight_cheat}Sons of Bretonnia! We ride for unity! We ride for the living!" />
+  <string id="tor_reinforcement_green_knight_reinforced_side_1" text="{=str_tor_reinforcement_green_knight_reinforced_side_1}bretonnia reacts to green knight arrival" />
+  <string id="tor_reinforcement_beastmen_green_knight_enemy" text="{=str_tor_reinforcement_beastmen_green_knight_beastmen}Shaabhekh?!?" />
+  <string id="tor_reinforcement_karl_franz_allied" text="{=str_tor_reinforcement_karl_franz_allied}karl franz reinforces allied side" />
+  <string id="tor_reinforcement_karl_franz_enemy" text="{=str_tor_reinforcement_karl_franz_enemy}karl franz reinforces enemy side" />
+  <string id="tor_reinforcement_karl_franz_lord_1" text="{=str_tor_reinforcement_karl_franz_lord_1}karl franz arrival line" />
+  <string id="tor_reinforcement_karl_franz_troops_1" text="{=str_tor_reinforcement_karl_franz_troops_1}karl franz troops react to arrival" />
+  <string id="tor_reinforcement_karl_franz_reinforced_side_1" text="{=str_tor_reinforcement_karl_franz_reinforced_side_1}reinforced side reacts to karl franz" />
+  <string id="tor_reinforcement_marrisith_lord_1" text="{=str_tor_reinforcement_marrisith_lord_1}queen marrisith arrival line" />
+  <string id="tor_reinforcement_marrisith_troops_1" text="{=str_tor_reinforcement_marrisith_troops_1}queen marrisith troops react to arrival" />
+  <string id="tor_reinforcement_marrisith_reinforced_side_1" text="{=str_tor_reinforcement_marrisith_reinforced_side_1}reinforced side reacts to queen marrisith" />
+  <string id="tor_reinforcement_orion_lord_1" text="{=str_tor_reinforcement_orion_lord_1}orion arrival line" />
+  <string id="tor_reinforcement_orion_troops_1" text="{=str_tor_reinforcement_orion_troops_1}orion troops react to arrival" />
+  <string id="tor_reinforcement_orion_reinforced_side_1" text="{=str_tor_reinforcement_orion_reinforced_side_1}reinforced side reacts to orion" />
+  <string id="tor_reinforcement_araloth_lord_1" text="{=str_tor_reinforcement_araloth_lord_1}araloth arrival line" />
+  <string id="tor_reinforcement_araloth_troops_1" text="{=str_tor_reinforcement_araloth_troops_1}araloth troops react to arrival" />
+  <string id="tor_reinforcement_araloth_reinforced_side_1" text="{=str_tor_reinforcement_araloth_reinforced_side_1}reinforced side reacts to araloth" />
+  <string id="tor_reinforcement_pyucius_lord_1" text="{=str_tor_reinforcement_pyucius_lord_1}pyucius arrival line" />
+  <string id="tor_reinforcement_pyucius_troops_1" text="{=str_tor_reinforcement_pyucius_troops_1}pyucius troops react to arrival" />
+  <string id="tor_reinforcement_pyucius_reinforced_side_1" text="{=str_tor_reinforcement_pyucius_reinforced_side_1}reinforced side reacts to pyucius" />
+  <string id="tor_reinforcement_serpent_lord_1" text="{=str_tor_reinforcement_serpent_lord_1}serpent of mousillon arrival line" />
+  <string id="tor_reinforcement_serpent_troops_1" text="{=str_tor_reinforcement_serpent_troops_1}serpent of mousillon troops react to arrival" />
+  <string id="tor_reinforcement_serpent_reinforced_side_1" text="{=str_tor_reinforcement_serpent_reinforced_side_1}reinforced side reacts to serpent of mousillon" />
 </strings>

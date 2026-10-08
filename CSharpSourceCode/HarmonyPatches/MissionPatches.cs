@@ -12,6 +12,7 @@ using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics.Reinforcements;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Models;
@@ -42,7 +43,14 @@ namespace TOR_Core.HarmonyPatches
                 __result = origin.OwnerParty;
                 return false;
             }
-            else return true;
+
+            if (___Agent.Origin is GreenKnightAgentOrigin)
+            {
+                __result = null;
+                return false;
+            }
+
+            return true;
         }
 
         [HarmonyPrefix]

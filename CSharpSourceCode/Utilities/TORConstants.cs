@@ -267,7 +267,6 @@ namespace TOR_Core.Utilities
             public const string EXPENDABLE = "Expendable";
             public const string FRENZY = "Frenzy";
             public const string DEADEYE = "Deadeye";
-            public const string CRUSH_THROUGH = "CrushThrough";
             public const string BRUTE = "Brute";
             public const string CLEAR_BLOOD_BURST = "ClearBloodBurst";
             public const string IMMORTALITY = "Immortality";

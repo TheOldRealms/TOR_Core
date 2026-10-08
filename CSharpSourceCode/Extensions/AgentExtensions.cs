@@ -239,10 +239,6 @@ namespace TOR_Core.Extensions
             return agent.HasAttribute(CharacterAttributes.MONSTER_ATTACK);
         }
 
-        public static bool HasCrushThrough(this Agent agent)
-        {
-            return agent.HasAttribute(CharacterAttributes.CRUSH_THROUGH);
-        }
         public static bool HasBrute(this Agent agent)
         {
             return agent.HasAttribute(CharacterAttributes.BRUTE);

@@ -445,6 +445,13 @@
     <Compile Include="BattleMechanics\Artillery\FieldTrebuchet.cs" />
     <Compile Include="BattleMechanics\Banners\CustomBannerManager.cs" />
     <Compile Include="BattleMechanics\Banners\CustomBannerMissionLogic.cs" />
+    <Compile Include="BattleMechanics\Reinforcements\GreenKnightAgentOrigin.cs" />
+    <Compile Include="BattleMechanics\Reinforcements\GreenKnightBehavior.cs" />
+    <Compile Include="BattleMechanics\Reinforcements\GreenKnightMissionLogic.cs" />
+    <Compile Include="BattleMechanics\Reinforcements\ReinforcementArrivalNotifier.cs" />
+    <Compile Include="BattleMechanics\Reinforcements\ReinforcementBehavior.cs" />
+    <Compile Include="BattleMechanics\Reinforcements\ReinforcementMissionLogic.cs" />
+    <Compile Include="BattleMechanics\Reinforcements\ReinforcementPartyAgentOrigin.cs" />
     <Compile Include="BattleMechanics\CareerPerkMissionBehavior.cs" />
     <Compile Include="BattleMechanics\CinematicCameraMissionView.cs" />
     <Compile Include="BattleMechanics\CustomArenaModes\ArcheryContestAgentController.cs" />

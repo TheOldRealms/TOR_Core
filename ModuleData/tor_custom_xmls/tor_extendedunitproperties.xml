@@ -11378,6 +11378,18 @@
       <string>EncyclopediaHelmet</string>
     </Attributes>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_greenknight_mission">
+    <Attributes>
+      <string>Bulwark3</string>
+      <string>Piercing2</string>
+      <string>Unbreakable</string>
+      <string>Unstoppable</string>
+      <string>Regeneration3</string>
+      <string>Ethereal2</string>
+      <string>UndeadSlayer2</string>
+      <string>Immortality</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_lord_mousillon_first_11">
     <Attributes>
       <string>Necromancer</string>
@@ -11410,12 +11422,14 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lost_son">
     <Attributes>
+      <string>Bulwark3</string>
+      <string>Piercing2</string>
       <string>Unbreakable</string>
       <string>Unstoppable</string>
-      <string>Tough</string>
-      <string>Piercing</string>
-      <string>Knightly</string>
-      <string>MonsterAttack</string>
+      <string>Regeneration3</string>
+      <string>Ethereal2</string>
+      <string>UndeadSlayer2</string>
+      <string>Immortality</string>
     </Attributes>
   </CharacterExtendedInfo>
 </ArrayOfCharacterExtendedInfo>
