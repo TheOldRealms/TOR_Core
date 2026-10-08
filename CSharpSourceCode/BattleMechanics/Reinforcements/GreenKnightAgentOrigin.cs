@@ -28,8 +28,8 @@ namespace TOR_Core.BattleMechanics.Reinforcements
         public int Seed => Troop.GetDefaultFaceSeed(_rank);
         public bool IsUnderPlayersCommand => false;
         public bool IsInSameArmyAsPlayer => false;
-        public uint FactionColor => _battleCombatant.BasicCulture.Color;
-        public uint FactionColor2 => _battleCombatant.BasicCulture.Color2;
+        public uint FactionColor => _battleCombatant.Banner.GetPrimaryColor();
+        public uint FactionColor2 => _battleCombatant.Banner.GetFirstIconColor();
         BasicCharacterObject IAgentOriginBase.Troop => Troop;
         bool IAgentOriginBase.HasThrownWeapon => _hasThrownWeapon;
         bool IAgentOriginBase.HasHeavyArmor => _hasHeavyArmor;

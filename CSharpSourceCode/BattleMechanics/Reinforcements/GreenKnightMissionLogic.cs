@@ -168,7 +168,8 @@ namespace TOR_Core.BattleMechanics.Reinforcements
         private void QueueVirtualForce()
         {
             var sideLeader = _battle.GetLeaderParty(_state.BretonniaSide);
-            var combatant = new CustomBattleCombatant(_greenKnight.Name, sideLeader.Culture, sideLeader.Banner)
+            var sonsOfTheLady = MBObjectManager.Instance.GetObject<Clan>("green_knight_clan_1");
+            var combatant = new CustomBattleCombatant(_greenKnight.Name, sideLeader.Culture, sonsOfTheLady.ClanOriginalBanner)
             {
                 Side = _state.BretonniaSide
             };

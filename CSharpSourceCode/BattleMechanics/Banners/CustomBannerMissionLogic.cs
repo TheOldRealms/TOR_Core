@@ -231,6 +231,9 @@ namespace TOR_Core.BattleMechanics.Banners
 
         private Banner DetermineBanner(Agent agent)
         {
+            if (agent.Origin is GreenKnightAgentOrigin greenKnightOrigin)
+                return greenKnightOrigin.Banner;
+
             string factionId = "";
             if (Game.Current.GameType is Campaign)
             {

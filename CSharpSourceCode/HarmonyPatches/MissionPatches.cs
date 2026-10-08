@@ -54,6 +54,17 @@ namespace TOR_Core.HarmonyPatches
         }
 
         [HarmonyPrefix]
+        [HarmonyPatch(typeof(Mission), nameof(Mission.SpawnAgent))]
+        public static void GreenKnightClothingColors(AgentBuildData agentBuildData)
+        {
+            if (agentBuildData.AgentOrigin is GreenKnightAgentOrigin origin)
+            {
+                agentBuildData.ClothingColor1(origin.FactionColor);
+                agentBuildData.ClothingColor2(origin.FactionColor2);
+            }
+        }
+
+        [HarmonyPrefix]
         [HarmonyPatch(typeof(Mission), "FallDamageCallback")]
         public static bool FallDamageCallbackPrefix(Agent victim)
         {
