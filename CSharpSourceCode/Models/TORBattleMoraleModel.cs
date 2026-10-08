@@ -23,9 +23,9 @@ namespace TOR_Core.Models
             {
                 return false;
             }
-            if (agent.Origin is GreenKnightAgentOrigin) return true;
             if (agent.IsUndead() || agent.IsUnbreakable() || agent.IsTreeSpirit() || agent.Origin is SummonedAgentOrigin) return false;
-            else return base.CanPanicDueToMorale(agent);
+            if (agent.Origin is GreenKnightAgentOrigin) return true;
+            return base.CanPanicDueToMorale(agent);
         }
 
         public override float GetEffectiveInitialMorale(Agent agent, float baseMorale)
