@@ -44,7 +44,7 @@ namespace TOR_Core.BattleMechanics.Reinforcements
             if (_state.BretonniaSide != BattleSideEnum.None)
             {
                 _greenKnight = MBObjectManager.Instance.GetObject<CharacterObject>("tor_br_greenknight_mission");
-                _lostSon = MBObjectManager.Instance.GetObject<CharacterObject>("tor_br_greenknight_mission");
+                _lostSon = MBObjectManager.Instance.GetObject<CharacterObject>("tor_br_lost_son");
             }
         }
 

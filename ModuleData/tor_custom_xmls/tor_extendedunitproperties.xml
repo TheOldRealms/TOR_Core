@@ -11426,7 +11426,18 @@
       <string>Ethereal2</string>
       <string>UndeadSlayer2</string>
       <string>Immortality</string>
+	  <string>MonsterAttack</string>
     </Attributes>
+	    <AdditionalHealth>250</AdditionalHealth>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
+    </Resistances>
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="5.00" />
+    </DamageAmplifiers>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Magical" Percent="1.00" />
+    </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_lord_mousillon_first_11">
     <Attributes>
