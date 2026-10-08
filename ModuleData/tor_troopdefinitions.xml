@@ -827,6 +827,16 @@
       <EquipmentSet id="tor_br_grail_knight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
+    <NPCCharacter id="tor_br_greenknight_mission" default_group="cavalry" level="46" name="{=str_tor_br_greenknight_leader}The Green Knight" occupation="Soldier" culture="Culture.vlandia" voice="earnest" skill_template="SkillSet.tor_skills_louenleoncoeur" race="bretonnian" localizationId="str_tor_br_greenknight_leader" is_hidden_encyclopedia="true">
+    <face>
+      <BodyProperties age="43" weight="0.5568" build="0.5163" key="0002780D8044034576A2A6415759B9EA73B77A9971DB846978735A5944668856854C76030C85738C888796AA3686398C000000000000000C00000000418C1002" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_greenknight_template" />
+      <EquipmentSet id="tor_greenknight_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_br_lost_son" name="{=str_tor_br_lost_son}Bretonnian Lost Son" level="46" default_group="cavalry" culture="Culture.vlandia" occupation="Soldier" is_basic_troop="true" skill_template="SkillSet.tor_skills_level46" race="bretonnian" localizationId="str_tor_br_lost_son">
     <Equipments>
       <EquipmentSet id="tor_br_lost_sons_template" />
