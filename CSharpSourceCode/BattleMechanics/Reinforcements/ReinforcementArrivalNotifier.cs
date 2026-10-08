@@ -46,7 +46,6 @@ namespace TOR_Core.BattleMechanics.Reinforcements
             public ArrivalSpeaker? IntroSpeaker { get; }
             public float IntroDuration { get; }
             public float SoundDuration { get; }
-            public float LineEndOffset { get; }
 
             public ArrivalLine(
                 string textId,
@@ -56,8 +55,7 @@ namespace TOR_Core.BattleMechanics.Reinforcements
                 string introText = null,
                 ArrivalSpeaker? introSpeaker = null,
                 float introDuration = 0f,
-                float soundDuration = 0f,
-                float lineEndOffset = 1.2f)
+                float soundDuration = 0f)
             {
                 TextId = textId;
                 Speaker = speaker;
@@ -67,7 +65,6 @@ namespace TOR_Core.BattleMechanics.Reinforcements
                 IntroSpeaker = introSpeaker;
                 IntroDuration = introDuration;
                 SoundDuration = soundDuration;
-                LineEndOffset = lineEndOffset;
             }
         }
 
@@ -95,24 +92,25 @@ namespace TOR_Core.BattleMechanics.Reinforcements
             }
         }
 
-        public static void ShowGreenKnightCheat(CharacterObject lostSon, bool reinforcesPlayer)
+        public static void ShowGreenKnightCheat(CharacterObject greenKnight, bool reinforcesPlayer)
         {
-            ShowGreenKnight(lostSon, reinforcesPlayer);
+            ShowGreenKnight(greenKnight, reinforcesPlayer);
         }
 
-        public static void ShowGreenKnight(CharacterObject lostSon, bool reinforcesPlayer)
+        public static void ShowGreenKnight(CharacterObject greenKnight, bool reinforcesPlayer)
         {
             var battle = MapEvent.PlayerMapEvent;
             var opposingSide = reinforcesPlayer ? battle.PlayerSide.GetOppositeSide() : battle.PlayerSide;
             var opposingSideTroop = GetRandomTroop(battle.GetMapEventSide(opposingSide).Parties);
             var greenKnightPool = GetSpecialArrivalPool("tor_br_greenknight_mission");
-            var arrivalLine = greenKnightPool.Lines.First(x => x.TextId == "tor_reinforcement_green_knight_cheat");
-            var introSpeaker = arrivalLine.IntroSpeaker == ArrivalSpeaker.OpposingSideTroops ? opposingSideTroop : lostSon;
+            var greenKnightLines = greenKnightPool.Lines.Where(x => x.IsLine && x.Speaker == ArrivalSpeaker.Lord).ToList();
+            var arrivalLine = greenKnightLines[MBRandom.RandomInt(greenKnightLines.Count)];
+            var introSpeaker = arrivalLine.IntroSpeaker == ArrivalSpeaker.OpposingSideTroops ? opposingSideTroop : greenKnight;
 
-            if (TryStartLineArrival(arrivalLine, lostSon, introSpeaker))
+            if (TryStartLineArrival(arrivalLine, greenKnight, introSpeaker))
                 return;
 
-            MBInformationManager.AddQuickInformation(GameTexts.FindText(arrivalLine.TextId), 0, lostSon);
+            MBInformationManager.AddQuickInformation(GameTexts.FindText(arrivalLine.TextId), 0, greenKnight);
             TORAudioManager.CreateSoundInstance(arrivalLine.ModuleSound, false)?.Play();
         }
 
@@ -179,7 +177,7 @@ namespace TOR_Core.BattleMechanics.Reinforcements
                 return;
             }
 
-            var notificationEndTime = System.Math.Max(arrivalLine.IntroDuration, arrivalLine.SoundDuration - arrivalLine.LineEndOffset);
+            var notificationEndTime = System.Math.Max(arrivalLine.IntroDuration, arrivalLine.SoundDuration);
             if (!_notificationFinished && _arrivalElapsed >= notificationEndTime)
             {
                 if (_notificationVm.GotNotification && _notificationVm.CurrentNotification.GameNotificationText == arrivalText)
@@ -383,14 +381,13 @@ namespace TOR_Core.BattleMechanics.Reinforcements
                             new ArrivalLine("tor_reinforcement_green_knight_troops_1", ArrivalSpeaker.LordTroops),
                             new ArrivalLine(
                                 "tor_reinforcement_green_knight_cheat",
-                                ArrivalSpeaker.LordTroops,
+                                ArrivalSpeaker.Lord,
                                 "ReinforcementNoises/tor_bret_greenknight_01",
                                 isLine: true,
                                 introText: "??!?!?",
                                 introSpeaker: ArrivalSpeaker.OpposingSideTroops,
                                 introDuration: 2.9f,
-                                soundDuration: 10f,
-                                lineEndOffset: 1.2f),
+                                soundDuration: 10f),
                             new ArrivalLine("tor_reinforcement_green_knight_reinforced_side_1", ArrivalSpeaker.ReinforcedSideTroops),
                             new ArrivalLine("tor_reinforcement_beastmen_green_knight_enemy", ArrivalSpeaker.OpposingSideTroops)
                         },

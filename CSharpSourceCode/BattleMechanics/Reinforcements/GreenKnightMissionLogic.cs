@@ -138,9 +138,9 @@ namespace TOR_Core.BattleMechanics.Reinforcements
             {
                 var reinforcesPlayer = _state.BretonniaSide == _battle.PlayerSide;
                 if (_state.ForcedByCheat)
-                    ReinforcementArrivalNotifier.ShowGreenKnightCheat(_lostSon, reinforcesPlayer);
+                    ReinforcementArrivalNotifier.ShowGreenKnightCheat(_greenKnight, reinforcesPlayer);
                 else
-                    ReinforcementArrivalNotifier.ShowGreenKnight(_lostSon, reinforcesPlayer);
+                    ReinforcementArrivalNotifier.ShowGreenKnight(_greenKnight, reinforcesPlayer);
             }
         }
 
