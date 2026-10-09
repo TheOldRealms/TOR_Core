@@ -182,7 +182,7 @@ namespace TOR_Core.BattleMechanics.Reinforcements
             {
                 if (_notificationVm.GotNotification && _notificationVm.CurrentNotification.GameNotificationText == arrivalText)
                 {
-                    _notificationVm.SkipCurrentNotification();
+                    _notificationVm.FadeOutCurrentNotification();
                     _notificationFinished = true;
                 }
             }
@@ -190,10 +190,12 @@ namespace TOR_Core.BattleMechanics.Reinforcements
             if (_activeArrivalSound.IsPlaybackRequested)
                 return;
 
-            if (_notificationVm.GotNotification &&
-                (_notificationVm.CurrentNotification.GameNotificationText == arrivalText || _notificationVm.CurrentNotification.GameNotificationText == arrivalLine.IntroText))
+            if (_notificationVm.GotNotification)
             {
-                _notificationVm.SkipCurrentNotification();
+                if (!_notificationFinished && _notificationVm.CurrentNotification.GameNotificationText == arrivalText)
+                    _notificationVm.FadeOutCurrentNotification();
+                else if (_notificationVm.CurrentNotification.GameNotificationText == arrivalLine.IntroText)
+                    _notificationVm.SkipCurrentNotification();
             }
 
             ClearArrivalNotification();
