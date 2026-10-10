@@ -45,6 +45,13 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         // Key: "settlementId|locationId" → list of hero StringIds living at that POI in that settlement.
         private Dictionary<string, List<string>> _residents = new();
 
+        // Runtime-attached scenes (via EstablishAt). Vanilla's Location serializer does
+        // NOT persist _sceneNames mutated at runtime, so we remember them here and re-apply
+        // SetSceneName on OnSessionLaunched after load. XML-defined scenes are re-applied
+        // by vanilla's XML loader on each session and don't need to be in this dict.
+        // Key: "settlementId|locationId" → sceneName.
+        private Dictionary<string, string> _dynamicScenes = new();
+
         // ------- Lifecycle
 
         public override void RegisterEvents()
@@ -57,6 +64,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public override void SyncData(IDataStore dataStore)
         {
             dataStore.SyncData("_poiResidents", ref _residents);
+            dataStore.SyncData("_poiDynamicScenes", ref _dynamicScenes);
         }
 
         /// <summary>
@@ -72,11 +80,30 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             var loc = s.LocationComplex?.GetLocationWithId(poi.LocationId);
             if (loc == null) return false;   // template doesn't define this Location in the settlement's complex
             if (loc.GetSceneCount() == 0) loc.SetSceneName(0, sceneName);
+            _dynamicScenes[$"{s.StringId}|{poi.LocationId}"] = sceneName;
             // Place any trainers that newly apply at this settlement.
             foreach (var h in _byLocationId.Values.OfType<ISpellTrainerHost>())  if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
             foreach (var h in _byLocationId.Values.OfType<IEnchanterHost>())      if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
             foreach (var h in _byLocationId.Values.OfType<ISkillTrainerHost>())  if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
             return poi.AppliesTo(s);
+        }
+
+        /// <summary>
+        /// Re-apply SetSceneName for POIs established at runtime, since vanilla's Location
+        /// serializer doesn't carry mutated _sceneNames across save/load. Idempotent — no-op
+        /// when the Location already has a scene (e.g. from XML).
+        /// </summary>
+        private void ReapplyDynamicScenes()
+        {
+            foreach (var kvp in _dynamicScenes)
+            {
+                var parts = kvp.Key.Split('|');
+                if (parts.Length != 2) continue;
+                var settlement = Settlement.All.FirstOrDefault(s => s.StringId == parts[0]);
+                var loc = settlement?.LocationComplex?.GetLocationWithId(parts[1]);
+                if (loc != null && loc.GetSceneCount() == 0)
+                    loc.SetSceneName(0, kvp.Value);
+            }
         }
 
         public Hero GetOrCreateHero(Settlement s, string locationId, string templateId)
@@ -164,6 +191,10 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                     consequence: args => MenuConsequence(args, captured),
                     isLeave: false);
             }
+
+            // Re-apply any runtime-attached scenes before the trainer sweep, so AppliesTo
+            // reflects post-load reality for POIs established in a previous session.
+            ReapplyDynamicScenes();
 
             // Defensive sweep — verify every POI's expected trainer is placed in their
             // applicable settlement, covering both fresh campaigns (replaces OnNewGameCreated)
