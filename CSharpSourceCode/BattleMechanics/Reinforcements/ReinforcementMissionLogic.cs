@@ -159,7 +159,7 @@ namespace TOR_Core.BattleMechanics.Reinforcements
                 {
                     Party = party,
                     Side = side,
-                    RemainingArrivalTime = CalculateArrivalDelay(distance, party.Speed, arrivalFactor)
+                    RemainingArrivalTime = CalculateArrivalDelay(distance, party.Speed, _battle.EventTerrainType, arrivalFactor)
                 });
             }
 
@@ -562,12 +562,24 @@ namespace TOR_Core.BattleMechanics.Reinforcements
             NumberSpawnedTroopsField.SetValue(spawnContext, currentCount + amount);
         }
 
-        private static float CalculateArrivalDelay(float distance, float speed, float arrivalFactor)
+        private static float CalculateArrivalDelay(float distance, float speed, TerrainType encounterTerrain, float arrivalFactor)
         {
-            // parties already within 3 map units arrives instantly
-            var travelDistance = MathF.Max(0f, distance - 3f);
-            var travelDelay = travelDistance / speed * 50f; // campaign travel time -> mission seconds
-            return (10f + travelDelay) * arrivalFactor;
+            var terrainFactor = encounterTerrain switch
+            {
+                TerrainType.Desert => 1.05f,
+                TerrainType.Dune => 1.05f,
+                TerrainType.Forest => 1.12f,
+                TerrainType.Snow => 1.15f,
+                TerrainType.Mountain => 1.2f,
+                TerrainType.Canyon => 1.2f,
+                TerrainType.Swamp => 1.25f,
+                _ => 1f
+            };
+
+            var travelDistance = MathF.Max(0f, distance - 2f);
+            var travelDelay = 22.5f * travelDistance * MathF.Pow(4f / speed, 1.5f) * terrainFactor;
+            var randomDelay = 30f + MBRandom.RandomFloat * 60f;
+            return (randomDelay + travelDelay) * arrivalFactor;
         }
     }
 }
