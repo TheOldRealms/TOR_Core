@@ -135,14 +135,20 @@
 							</Children>
 						</Widget>
 
+            <!-- RoR: top-left of shield (existing position) -->
             <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="!Large.Height"  VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="18" MarginBottom="86" Text="RoR" IsVisible="@IsRoRSettlement" Brush="TorRoRSettlementBrush"/>
 
-            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="24" SuggestedHeight="24" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="60" MarginBottom="86" Text="@Poi1Text" IsVisible="@Poi1Discovered" Brush="@Poi1Brush"/>
-            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="24" SuggestedHeight="24" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="60" MarginBottom="86" Text="?" IsVisible="@Poi1ShowQuestion" Brush="TorRoRSettlementBrush"/>
-            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="24" SuggestedHeight="24" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="90" MarginBottom="86" Text="@Poi2Text" IsVisible="@Poi2Discovered" Brush="@Poi2Brush"/>
-            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="24" SuggestedHeight="24" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="90" MarginBottom="86" Text="?" IsVisible="@Poi2ShowQuestion" Brush="TorRoRSettlementBrush"/>
-            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="24" SuggestedHeight="24" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="120" MarginBottom="86" Text="@Poi3Text" IsVisible="@Poi3Discovered" Brush="@Poi3Brush"/>
-            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="24" SuggestedHeight="24" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="120" MarginBottom="86" Text="?" IsVisible="@Poi3ShowQuestion" Brush="TorRoRSettlementBrush"/>
+            <!-- POI1: top-right of shield -->
+            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="24" SuggestedHeight="24" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="90" MarginBottom="86" Text="@Poi1Text" IsVisible="@Poi1Discovered" Brush="@Poi1Brush"/>
+            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="24" SuggestedHeight="24" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="90" MarginBottom="86" Text="?" IsVisible="@Poi1ShowQuestion" Brush="TorRoRSettlementBrush"/>
+
+            <!-- POI2: bottom-left of shield -->
+            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="24" SuggestedHeight="24" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="18" MarginTop="86" Text="@Poi2Text" IsVisible="@Poi2Discovered" Brush="@Poi2Brush"/>
+            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="24" SuggestedHeight="24" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="18" MarginTop="86" Text="?" IsVisible="@Poi2ShowQuestion" Brush="TorRoRSettlementBrush"/>
+
+            <!-- POI3: bottom-right of shield -->
+            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="24" SuggestedHeight="24" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="90" MarginTop="86" Text="@Poi3Text" IsVisible="@Poi3Discovered" Brush="@Poi3Brush"/>
+            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="24" SuggestedHeight="24" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="90" MarginTop="86" Text="?" IsVisible="@Poi3ShowQuestion" Brush="TorRoRSettlementBrush"/>
 						
           </Children>
         </SettlementNameplateItemWidget>
