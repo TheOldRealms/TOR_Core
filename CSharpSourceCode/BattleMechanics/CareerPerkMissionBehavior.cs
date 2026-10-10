@@ -202,22 +202,27 @@ namespace TOR_Core.BattleMechanics
             }
         }
 
+        /// <summary>
+        /// Whether an enemy was killed or knocked out, as opposed to retreating or being hit by friendly fire.
+        /// </summary>
+        private static bool IsEnemyTakenDown(Agent affectorAgent, Agent affectedAgent, AgentState agentState)
+        {
+            return (agentState == AgentState.Killed || agentState == AgentState.Unconscious) &&
+                   affectorAgent?.Team != null && affectedAgent?.Team != null && affectorAgent.Team.IsEnemyOf(affectedAgent.Team);
+        }
+
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {
             // Runelord: Teachings of Thungni - runed units reduce career ability cooldown on kill
             if (Hero.MainHero.HasCareer(TORCareers.Runelord))
             {
                 if (affectorAgent != null && !affectorAgent.IsHero && affectorAgent.BelongsToMainParty() &&
+                    IsEnemyTakenDown(affectorAgent, affectedAgent, agentState) &&
                     Hero.MainHero.HasCareerChoice("TeachingsOfThungniKeystone"))
                 {
                     if (affectorAgent.Character.HasUnitRune() && Agent.Main != null && Agent.Main.IsActive())
                     {
-                        var careerAbility = Agent.Main.GetCareerAbility();
-                        if (careerAbility != null)
-                        {
-                            var cooldown = careerAbility.GetCoolDownLeft();
-                            careerAbility.SetCoolDown(cooldown - 1);
-                        }
+                        Agent.Main.GetCareerAbility()?.RefundCooldown(1);
                     }
                 }
             }
