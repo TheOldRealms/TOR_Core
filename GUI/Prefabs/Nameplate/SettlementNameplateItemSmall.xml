@@ -137,9 +137,9 @@
 
             <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="!Small.Height"  VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="6" MarginBottom="66" Text="RoR" IsVisible="@IsRoRSettlement" Brush="TorRoRSettlementBrush"/>
 
-            <RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="38" MarginBottom="42" Text="@Poi1Text" IsVisible="@Poi1Visible" Brush="TorRoRSettlementBrush"/>
-            <RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="6" MarginTop="42" Text="@Poi2Text" IsVisible="@Poi2Visible" Brush="TorRoRSettlementBrush"/>
-            <RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="38" MarginTop="42" Text="@Poi3Text" IsVisible="@Poi3Visible" Brush="TorRoRSettlementBrush"/>
+            <RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32" Brush.FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="38" MarginBottom="42" Text="@Poi1Text" IsVisible="@Poi1Visible" Brush="TorRoRSettlementBrush"/>
+            <RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32" Brush.FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="6" MarginTop="42" Text="@Poi2Text" IsVisible="@Poi2Visible" Brush="TorRoRSettlementBrush"/>
+            <RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32" Brush.FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="38" MarginTop="42" Text="@Poi3Text" IsVisible="@Poi3Visible" Brush="TorRoRSettlementBrush"/>
 
           </Children>
         </SettlementNameplateItemWidget>				
