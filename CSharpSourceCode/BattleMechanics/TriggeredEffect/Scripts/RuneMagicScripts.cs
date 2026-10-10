@@ -74,6 +74,12 @@ public class SpellbreakerRuneScript : ITriggeredScript
 
         var isPlayerCast = Agent.Main == triggeredByAgent;
 
+        var drain = WindsDrain;
+        if (isPlayerCast && Hero.MainHero.HasCareerChoice("StoneAndSteelKeystone"))
+        {
+            drain *= 1 + TORCareerChoices.GetChoice("StoneAndSteelKeystone").GetPassiveValue();
+        }
+
         foreach (var agent in triggeredAgents)
         {
             if (agent.Team == null) continue;
@@ -85,7 +91,7 @@ public class SpellbreakerRuneScript : ITriggeredScript
             }
             else if (agent.Team.IsEnemyOf(casterTeam) && agent.IsSpellCaster())
             {
-                agent.GetHero()?.AddWindsOfMagic(-WindsDrain);
+                agent.GetHero()?.AddWindsOfMagic(-drain);
             }
         }
 

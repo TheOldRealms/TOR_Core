@@ -165,17 +165,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             });
 
         _stoneAndSteelKeystone.Initialize(CareerID, "The 'Rune' Spellbreaker drains +50% more 'Winds of Magic'.", "StoneAndSteel", false,
-            ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
-            {
-                new CareerChoiceObject.MutationObject()
-                {
-                    MutationTargetType = typeof(AbilityTemplate),
-                    MutationTargetOriginalId = "WisdomOfThungni",
-                    PropertyName = "CoolDown",
-                    PropertyValue = (choice, originalValue, agent) => -((int)originalValue * 0.35f),
-                    MutationType = OperationType.Add
-                }
-            });
+            ChoiceType.Keystone, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special, true)); //special
 
         _legacyOfGrungniKeystone.Initialize(CareerID,
             "The 'Rune' Oath and Steel applies 'Fire' damage to troops.",
