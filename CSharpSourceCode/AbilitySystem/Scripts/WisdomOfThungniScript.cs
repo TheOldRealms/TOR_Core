@@ -1,3 +1,4 @@
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine;
 using TaleWorlds.LinQuick;
@@ -8,62 +9,27 @@ using TOR_Core.Items;
 
 namespace TOR_Core.AbilitySystem.Scripts;
 
+/// <summary>
+/// Enchants the wielded weapon and refunds cooldown of the next 'Rune' ability on cooldown. The empowerment itself
+/// (the WisdomThungni attribute) is applied by the ability's triggered effect, apply_wisdom_thungni.
+/// </summary>
 public class WisdomOfThungniScript : CareerAbilityScript
 {
-    private const int BASEVALUE = 5;
+    private const float RuneCooldownRefund = 15;
 
     public override void Initialize(Ability ability, ref GameEntity entity)
     {
         base.Initialize(ability, ref entity);
 
-        if (Agent.Main == null) return;
         var agent = Agent.Main;
-        var abilityComponent = agent.GetComponent<AbilityComponent>();
+        var abilityComponent = agent?.GetComponent<AbilityComponent>();
+        if (abilityComponent == null) return;
 
-        var bonus = Ability.Template.ScaleVariable1;
-        var secondRound = false;
-        var value = (int)(BASEVALUE + bonus);
+        var weaponEnchantment = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "magical_weapon_15");
+        if (weaponEnchantment != null) agent.GetComponent<ItemTraitAgentComponent>()?.AddTraitToWieldedWeapon(weaponEnchantment, ability.Template.Duration);
 
-
-        var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "magical_weapon_10");
-        if (trait != null)
-        {
-            var comp = agent.GetComponent<ItemTraitAgentComponent>();
-            if (comp != null) comp.AddTraitToWieldedWeapon(trait, ability.Template.Duration);
-        }
-
-
-        foreach (var element in abilityComponent.KnownAbilitySystem)
-        {
-            if (!element.IsOnCooldown()) continue;
-
-            if (!element.Template.IsSpell) continue;
-
-            var left = element.GetCoolDownLeft();
-            if (secondRound) value /= 2;
-
-            element.SetCoolDown(left - value);
-
-            if (Hero.MainHero.HasAttribute("StoneAndSteelPassive4") && !element.IsOnCooldown())
-            {
-                var choice = TORCareerChoices.GetChoice("StoneAndSteelPassive4");
-                Agent.Main.ApplyStatusEffect("thungni_stone_and_steel_buff", Agent.Main, choice.GetPassiveValue());
-            }
-
-            if (!secondRound && Hero.MainHero.HasCareerChoice("ForgefireBurningKeystone"))
-            {
-                secondRound = true;
-                continue;
-            }
-
-            if (left < value)
-            {
-                value -= left;
-                continue;
-            }
-
-
-            break;
-        }
+        abilityComponent.KnownAbilitySystem.FirstOrDefault(IsRuneOnCooldown)?.RefundCooldown(RuneCooldownRefund);
     }
+
+    private static bool IsRuneOnCooldown(Ability ability) => ability.Template.BelongsToLoreID == "RuneMagic" && ability.IsOnCooldown();
 }

@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.CampaignMechanics.Choices;
@@ -13,6 +15,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 
 public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 {
+    private const int WisdomOfThungniMinimumCooldown = 20;
+
     private CareerChoiceObject _runelorddRoot;
 
     private CareerChoiceObject _forgefireBurningPassive1;
@@ -109,15 +113,15 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 
     protected override void InitializeKeyStones()
     {
-        _runelorddRoot.Initialize(CareerID, "The runes are cast! By the Wisdom of Thungni, reduce the cooldown of the next 'Rune' ability by 15s, and empower all 'Rune' abilities for 5s. For every level of Smithing, Wisdom of Thungni's cooldown is reduced by 0.1s. (60s cooldown.)", null, true,
+        _runelorddRoot.Initialize(CareerID, "The runes are cast! By the Wisdom of Thungni, reduce the cooldown of the next 'Rune' ability by 15s, and empower all 'Rune' abilities for 5s. Also applies 15% extra damage dealt as 'Magic' to your weapon for 15s. For every level of Smithing, Wisdom of Thungni's cooldown is reduced by 0.1s. (60s cooldown.)", null, true,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
                 {
                     MutationTargetType = typeof(AbilityTemplate),
                     MutationTargetOriginalId = "WisdomOfThungni",
-                    PropertyName = "ScaleVariable1",
-                    PropertyValue = (choice, originalValue, agent) =>  CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Crafting }, 0.1f),
+                    PropertyName = "CoolDown",
+                    PropertyValue = (choice, originalValue, agent) => ReduceWisdomOfThungniCooldown(choice, originalValue, agent, DefaultSkills.Crafting),
                     MutationType = OperationType.Add
                 },
             });
@@ -245,5 +249,17 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
     protected override void UnlockCareerBenefitsTier3()
     {
 
+    }
+
+    /// <summary>
+    /// Each point in <paramref name="skill"/> takes 0.1s off Wisdom of Thungni's cooldown. The Smithing, Faith and Spellcraft
+    /// mutations run one after another on the same template, so each one is clamped against the cooldown the previous ones
+    /// left, and together they never go below <see cref="WisdomOfThungniMinimumCooldown"/>.
+    /// </summary>
+    private static float ReduceWisdomOfThungniCooldown(CareerChoiceObject choice, object currentCooldown, Agent agent, SkillObject skill)
+    {
+        var reduction = CareerHelper.AddSkillEffectToValue(choice, agent, [skill], 0.1f);
+        var reducibleCooldown = Math.Max(0f, Convert.ToSingle(currentCooldown) - WisdomOfThungniMinimumCooldown);
+        return -Math.Min(reduction, reducibleCooldown);
     }
 }

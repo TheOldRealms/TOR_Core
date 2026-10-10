@@ -1624,7 +1624,7 @@
                              Radius="5"
                              HasShockWave="false"
                              TargetType="Self"
-                             ImbuedStatusEffectDuration="10"
+                             ImbuedStatusEffectDuration="5"
                              DamageVariance="0"
                              ScriptNameToTrigger="none">
 		        <ImbuedStatusEffect>thungni_attribute</ImbuedStatusEffect>

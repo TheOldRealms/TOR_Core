@@ -112,6 +112,14 @@
     <AdditionalDamageTuple DamageType="Magical" Percent="0.10" />
     <WeaponParticlePreset ParticlePrefab="psys_magic_weapon" IsUniqueSingleCopy="false" />
   </ItemTrait>
+  <ItemTrait ItemTraitStringId="magical_weapon_15" ItemTraitName="Enchanted Weapon" IsCraftable="false" IconName="traits_magic_icon">
+    <ValidItemType>Weapon</ValidItemType>
+    <IngredientItem>ArcaneScroll</IngredientItem>
+    <IngredientAmount>1</IngredientAmount>
+    <ItemTraitDescription>{=str_tor_itemtraits_magical_weapon_15}Your weapon is enchanted. 15% extra damage dealt as Magical.</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Magical" Percent="0.15" />
+    <WeaponParticlePreset ParticlePrefab="psys_magic_weapon" IsUniqueSingleCopy="false" />
+  </ItemTrait>
   <ItemTrait ItemTraitStringId="lesser_fire_ruby" ItemTraitName="Lesser Fireruby" IsCraftable="false" IconName="traits_fire_icon">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>WarpstoneDust</IngredientItem>

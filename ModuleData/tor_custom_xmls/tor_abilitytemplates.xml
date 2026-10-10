@@ -4580,7 +4580,7 @@
                      CoolDown="60"
                      WindsOfMagicCost="0"
                      BaseMisCastChance="0.05"
-                     Duration="12"
+                     Duration="15"
                      Radius="3"
                      AbilityType="CareerAbility"
                      AbilityEffectType="Augment"
@@ -4617,6 +4617,7 @@
                 <z>255</z>
             </AsVec2>
         </LightColorRGB>
+        <TriggeredEffect>apply_wisdom_thungni</TriggeredEffect>
     </AbilityTemplate>
     <AbilityTemplate StringID="KnightlyStrike"
                      Name="{=knightly_strike_label_str}Knightly Strike"

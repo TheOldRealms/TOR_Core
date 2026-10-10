@@ -4134,7 +4134,7 @@
   <string id="tor_careerchoice_description.TheLastJourneyPassive4" text="{=str_tor_careerchoice_description_TheLastJourneyPassive4}+40% ranged 'Physical Resistance' for all 'Slayer' troops." />
 
   <!-- Career Choice Description - Runelord -->
-  <string id="tor_careerchoice_description.RunelordRoot" text="{=str_tor_careerchoice_description_RunelordRoot}The runes are cast! By the Wisdom of Thungni, reduce the cooldown of the next 'Rune' ability by 15s, and empower all 'Rune' abilities for 5s. For every level of Smithing, Wisdom of Thungni's cooldown is reduced by 0.1s. (60s cooldown.)" />
+  <string id="tor_careerchoice_description.RunelordRoot" text="{=str_tor_careerchoice_description_RunelordRoot}The runes are cast! By the Wisdom of Thungni, reduce the cooldown of the next 'Rune' ability by 15s, and empower all 'Rune' abilities for 5s. Also applies 15% extra damage dealt as 'Magic' to your weapon for 15s. For every level of Smithing, Wisdom of Thungni's cooldown is reduced by 0.1s. (60s cooldown.)" />
   <string id="tor_careerchoice_description.ForgefireBurningKeystone" text="{=str_tor_careerchoice_description_ForgefireBurningKeystone}Wisdom of Thungi now applies to the next 'Rune' in the sequence at half efficency as well." />
   <string id="tor_careerchoice_description.ForgefireBurningPassive1" text="{=str_tor_careerchoice_description_ForgefireBurningPassive1}+1 charcoal from burning wood." />
   <string id="tor_careerchoice_description.ForgefireBurningPassive2" text="{=str_tor_careerchoice_description_ForgefireBurningPassive2}+1 ingot when forging metal." />
