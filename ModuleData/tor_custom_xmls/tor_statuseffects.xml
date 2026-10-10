@@ -1564,7 +1564,7 @@
 		id="unit_rune_guarding"
 		particle_id="general_light_buff"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="0.3"
+		base_effect_value="0.15"
 		applies_for_attack_type="All"
 		type="Resistance"
 		damage_type="Physical">
@@ -1656,7 +1656,7 @@
 		id="unit_rune_grimnir"
 		particle_id="general_fire_buff"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="0.35"
+		base_effect_value="0.2"
 		applies_for_attack_type="Ranged"
 		type="AttackSpeedManipulation"
 		damage_type="Physical">
@@ -1670,6 +1670,16 @@
 		applies_for_attack_type="All"
 		type="DamageAmplification"
 		damage_type="Physical">
+	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate 
+		id="unit_rune_grimnir_3"
+		particle_id=""
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.35"
+		applies_for_attack_type="All"
+		type="DamageAmplification"
+		damage_type="Fire">
 	</StatusEffectTemplate>
 	
 	

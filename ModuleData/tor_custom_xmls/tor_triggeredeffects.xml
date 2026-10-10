@@ -1827,6 +1827,7 @@
                              ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyFlamingItemTraitScript">
         <ImbuedStatusEffect>unit_rune_grimnir</ImbuedStatusEffect>
 		<ImbuedStatusEffect>unit_rune_grimnir_2</ImbuedStatusEffect>
+		<ImbuedStatusEffect>unit_rune_grimnir_3</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
 	
 	    <!-- Item Traits -->
