@@ -56,6 +56,21 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         protected virtual bool IsDiscovered(Settlement settlement) => true;
 
         /// <summary>
+        /// Brush name to render as the nameplate icon when this POI is discovered. If a
+        /// POI has a dedicated sprite brush (e.g. "TorPoiWizardHallIconBrush"), set it
+        /// here; the nameplate renders the sprite. Empty default means fall back to a
+        /// text-only representation via <see cref="MapIconText"/>.
+        /// </summary>
+        public virtual string MapIconBrushName => "";
+
+        /// <summary>
+        /// Short text (1-3 chars) rendered when the POI has no sprite brush yet. Also
+        /// used as the "?" fallback for undiscovered state is handled generically by the
+        /// nameplate — this is only the discovered-but-no-sprite case.
+        /// </summary>
+        public virtual string MapIconText => "";
+
+        /// <summary>
         /// Does this POI exist in <paramref name="s"/>? Scene presence is the sole gate —
         /// a POI "exists" at a settlement when the Location row has at least one scene
         /// attached (via XML on load, or <see cref="SettlementPOIManagerCampaignBehavior.EstablishAt"/>

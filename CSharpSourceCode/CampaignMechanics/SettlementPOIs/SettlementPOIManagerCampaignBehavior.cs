@@ -5,6 +5,7 @@ using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameMenus;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.Settlements.Locations;
 using TaleWorlds.Core;
@@ -52,6 +53,13 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         // Key: "settlementId|locationId" → sceneName.
         private Dictionary<string, string> _dynamicScenes = new();
 
+        // Per-settlement discovered POI set — "has the player been here and seen this POI?"
+        // Undiscovered POIs show as "?" on the map nameplate; discovered ones show their
+        // specific MapIconText. Discovery fires on OnSettlementEnteredEvent (reveal all
+        // applicable POIs at once per the "visit the town → learn what's in it" model).
+        // Key: settlementId → list of discovered POI LocationIds.
+        private Dictionary<string, List<string>> _discovered = new();
+
         // ------- Lifecycle
 
         public override void RegisterEvents()
@@ -59,12 +67,54 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
             CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, OnAfterSessionLaunched);
             CampaignEvents.BeforeMissionOpenedEvent.AddNonSerializedListener(this, OnBeforeMissionOpened);
+            CampaignEvents.SettlementEntered.AddNonSerializedListener(this, OnSettlementEntered);
         }
 
         public override void SyncData(IDataStore dataStore)
         {
             dataStore.SyncData("_poiResidents", ref _residents);
             dataStore.SyncData("_poiDynamicScenes", ref _dynamicScenes);
+            dataStore.SyncData("_poiDiscovered", ref _discovered);
+        }
+
+        public bool IsDiscovered(Settlement s, SettlementPOI poi)
+        {
+            if (s == null || poi == null) return false;
+            return _discovered.TryGetValue(s.StringId, out var ids) && ids.Contains(poi.LocationId);
+        }
+
+        public void MarkDiscovered(Settlement s, SettlementPOI poi)
+        {
+            if (s == null || poi == null) return;
+            if (!_discovered.TryGetValue(s.StringId, out var ids))
+                _discovered[s.StringId] = ids = new List<string>();
+            if (!ids.Contains(poi.LocationId)) ids.Add(poi.LocationId);
+        }
+
+        public void UnmarkDiscovered(Settlement s, SettlementPOI poi)
+        {
+            if (s == null || poi == null) return;
+            if (_discovered.TryGetValue(s.StringId, out var ids))
+                ids.Remove(poi.LocationId);
+        }
+
+        /// <summary>
+        /// Reveal every applicable POI at the settlement. Called on OnSettlementEnteredEvent
+        /// so visiting a town unlocks its full icon set in one step. Idempotent — safe to
+        /// call repeatedly.
+        /// </summary>
+        public void MarkAllApplicableDiscovered(Settlement s)
+        {
+            if (s == null) return;
+            foreach (var poi in _byLocationId.Values)
+                if (poi.AppliesTo(s)) MarkDiscovered(s, poi);
+        }
+
+        private void OnSettlementEntered(MobileParty party, Settlement settlement, Hero hero)
+        {
+            // Only the player's own visits reveal POIs — AI parties entering doesn't count.
+            if (party != MobileParty.MainParty) return;
+            MarkAllApplicableDiscovered(settlement);
         }
 
         /// <summary>

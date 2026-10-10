@@ -22,6 +22,8 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public override string EnterLabelId => "tor_poi_witchhunter_lodge.EnterLabel";
         public override string EnterLabelDefault => "Visit the Witch Hunter Lodge";
 
+        public override string MapIconText => "H";   // text fallback until sprite art lands
+
         public override bool CheckAccess(Settlement s, Hero h, out TextObject denialReason)
         {
             if (!IsDiscovered(s))

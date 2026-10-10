@@ -136,6 +136,13 @@
 
             <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="!Medium.Height"  VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="14" MarginBottom="76" Text="RoR" IsVisible="@IsRoRSettlement" Brush="TorRoRSettlementBrush"/>
 
+            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="50" MarginBottom="76" Text="@Poi1Text" IsVisible="@Poi1Discovered" Brush="@Poi1Brush"/>
+            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="50" MarginBottom="76" Text="?" IsVisible="@Poi1ShowQuestion" Brush="TorRoRSettlementBrush"/>
+            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="76" MarginBottom="76" Text="@Poi2Text" IsVisible="@Poi2Discovered" Brush="@Poi2Brush"/>
+            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="76" MarginBottom="76" Text="?" IsVisible="@Poi2ShowQuestion" Brush="TorRoRSettlementBrush"/>
+            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="102" MarginBottom="76" Text="@Poi3Text" IsVisible="@Poi3Discovered" Brush="@Poi3Brush"/>
+            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="102" MarginBottom="76" Text="?" IsVisible="@Poi3ShowQuestion" Brush="TorRoRSettlementBrush"/>
+
           </Children>
         </SettlementNameplateItemWidget>
 

@@ -357,4 +357,23 @@
             <Style Name="Default" />
         </Styles>
     </Brush>
+
+    <!-- POI nameplate icons. TextWidget uses these as the visual via a sprite BrushLayer;
+         empty Text content lets the sprite be the whole display. -->
+    <Brush Name="TorPoiWizardHallIconBrush">
+        <Layers>
+            <BrushLayer Name="Default" Sprite="winds_icon_45" />
+        </Layers>
+        <Styles>
+            <Style Name="Default" />
+        </Styles>
+    </Brush>
+    <Brush Name="TorPoiEngineerHallIconBrush">
+        <Layers>
+            <BrushLayer Name="Default" Sprite="cannon_icon" />
+        </Layers>
+        <Styles>
+            <Style Name="Default" />
+        </Styles>
+    </Brush>
 </Brushes>

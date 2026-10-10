@@ -22,6 +22,8 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public string EnchanterTemplateId    => "tor_enchanter_empire_0";
         public List<string> EnchantmentSuffixes => new() { "emp_enchant" };
 
+        public override string MapIconBrushName => "TorPoiWizardHallIconBrush";
+
         public override bool CheckAccess(Settlement s, Hero h, out TextObject denialReason)
         {
             if (!IsDiscovered(s))
