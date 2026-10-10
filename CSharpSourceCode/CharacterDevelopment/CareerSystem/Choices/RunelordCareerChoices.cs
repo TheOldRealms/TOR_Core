@@ -144,7 +144,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                     MutationType = OperationType.Add
                 },
             });
-        //radius increased by how much? AbilityModel implementation adds 2 different amounts
+
         _chiselAndHammerKeystone.Initialize(CareerID, "Wisdom of Thungi also scales with Spellcraft. Radius of 'Rune' abilities is increased.", "ChiselAndHammer", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
@@ -152,8 +152,8 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                 {
                     MutationTargetType = typeof(AbilityTemplate),
                     MutationTargetOriginalId = "WisdomOfThungni",
-                    PropertyName = "ScaleVariable1",
-                    PropertyValue = (choice, originalValue, agent) =>  CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Spellcraft }, 0.1f),
+                    PropertyName = "CoolDown",
+                    PropertyValue = (choice, originalValue, agent) => ReduceWisdomOfThungniCooldown(choice, originalValue, agent, TORSkills.Spellcraft),
                     MutationType = OperationType.Add
                 },
 

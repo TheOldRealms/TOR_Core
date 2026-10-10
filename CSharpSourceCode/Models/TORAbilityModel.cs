@@ -249,13 +249,11 @@ namespace TOR_Core.Models
                             }
                         }
                     }
-                    if (playerHero.HasCareer(TORCareers.Runelord))
+                    if (playerHero.HasCareer(TORCareers.Runelord) && originAbilityTemplate.BelongsToLoreID == "RuneMagic")
                     {
                         if (playerHero.HasCareerChoice("ChiselAndHammerKeystone"))
                         {
                             explainedNumber.AddFactor(0.2f);
-                            var smithingValue = playerHero.GetSkillValue(DefaultSkills.Crafting);
-                            explainedNumber.AddFactor(0.05f * smithingValue);
                         }
 
                         if (playerHero.HasCareerChoice("LegacyOfGrungniPassive4"))
