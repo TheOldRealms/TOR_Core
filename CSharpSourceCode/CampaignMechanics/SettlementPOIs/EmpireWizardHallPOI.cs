@@ -22,7 +22,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public string EnchanterTemplateId    => "tor_enchanter_empire_0";
         public List<string> EnchantmentSuffixes => new() { "emp_enchant" };
 
-        public override string MapIconText => "<img src=\"winds_icon_45\">";
+        public override string MapIconText => "<img src=\"winds_icon_100\">";
 
         public override bool CheckAccess(Settlement s, Hero h, out TextObject denialReason)
         {
