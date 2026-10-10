@@ -136,6 +136,14 @@ namespace TOR_Core.Models
                     resultArmor.AddFactor(-piercingArmorReduction);
                 }
 
+                // Rune of Wrath and Ruin sunders its victims, so every attack against them pierces their armour.
+                var sunderedArmorReduction = attackInformation.VictimAgent?.GetSunderedArmorReduction() ?? 0f;
+                if (sunderedArmorReduction > 0f)
+                {
+                    resultArmor.AddFactor(-sunderedArmorReduction);
+                }
+
+                resultArmor.LimitMin(0f); // stacked reductions must not produce negative armour
             }
 
             return resultArmor.ResultNumber;

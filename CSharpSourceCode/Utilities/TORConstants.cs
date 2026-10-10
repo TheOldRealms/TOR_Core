@@ -242,6 +242,7 @@ namespace TOR_Core.Utilities
             public const string MONSTER_SLAYER_2 = "MonsterSlayer2";
             public const string PIERCING = "Piercing";
             public const string PIERCING_2 = "Piercing2";
+            public const string SUNDERED = "Sundered";//temporary status attribute, attacks against the agent pierce its armour
             public const string POISONOUS = "Poisonous";
             public const string POISONOUS_2 = "Poisonous2";
             public const string REGENERATION = "Regeneration";
@@ -293,6 +294,7 @@ namespace TOR_Core.Utilities
             public const string IMPENETRABLE = "Impenetrable";//ironbreaker
             public const string NEST_CLEANSING = "NestCleansing";
             public const string DOOM_SEEKING = "DoomSeeking";//slayer
+            public const string WISDOM_THUNGNI = "WisdomThungni";//runelord, empowers 'Rune' abilities while active
             public const string ARCANE_DMG = "Arcane_Dmg";//Magister, update for nomenclature
             public const string KNIGHTLY_STRIKE = "KnightlyStrike";
             public const string EXTORSION = "Extorsion";

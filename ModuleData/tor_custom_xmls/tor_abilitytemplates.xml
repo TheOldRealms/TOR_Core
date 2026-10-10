@@ -5547,7 +5547,7 @@
                      AbilityTargetType="AlliesInAOE"
                      CrosshairType="TargetedAOE"
                      MaxDistance="20"
-                     TargetCapturingRadius="8"
+                     TargetCapturingRadius="12"
                      SpellTier="2"
                      BelongsToLoreID="RuneMagic"
                      TooltipDescription="{=oath_and_steel_description_str}The blessing bestowed by Grungni strengthens Dwarf mail and plate, as each weapon and suit of armor recalls the hammer strikes that shaped it. Grant 25% physical resistance to nearby Dwarfs. Empowered: Grant 20% extra physical damage to nearby Dwarfs.">
@@ -5593,7 +5593,7 @@
                      AbilityTargetType="AlliesInAOE"
                      CrosshairType="TargetedAOE"
                      MaxDistance="20"
-                     TargetCapturingRadius="8"
+                     TargetCapturingRadius="12"
                      SpellTier="2"
                      BelongsToLoreID="RuneMagic"
                      TooltipDescription="{=hearth_and_home_description_str}Originally, a gift bestowed to the Dwarfs by Valaya, the Rune of Hearth and Home ignites a Dwarf's pride in his hold, clan, and ancestors. Nearby allies receive bonuses to reload speed and movement speed. Empowered: Grant a bonus to attack speed.">
@@ -5636,10 +5636,10 @@
                      CastTime="0"
                      AnimationActionName="act_release_heavy_thrown"
                      Offset="0"
-                     AbilityTargetType="AlliesInAOE"
+                     AbilityTargetType="EnemiesInAOE"
                      CrosshairType="TargetedAOE"
                      MaxDistance="20"
-                     TargetCapturingRadius="8"
+                     TargetCapturingRadius="12"
                      SpellTier="3"
                      BelongsToLoreID="RuneMagic"
                      TooltipDescription="{=spellbreaking_description_str}The oldest Longbeards say this Rune was forged by the combined efforts of Grungni and Valaya. The Runesmith unleashes the rune to disrupt enemy spellcasters—cleanse spell effects affecting friendly units and drain Winds of Magic of enemy wizards. Empowered: Set all abilities of enemy spellcasters on cooldown.">
@@ -5682,13 +5682,13 @@
                      CastTime="0"
                      AnimationActionName="act_release_heavy_thrown"
                      Offset="0"
-                     AbilityTargetType="AlliesInAOE"
+                     AbilityTargetType="EnemiesInAOE"
                      CrosshairType="TargetedAOE"
                      MaxDistance="20"
                      TargetCapturingRadius="8"
                      SpellTier="4"
                      BelongsToLoreID="RuneMagic"
-                     TooltipDescription="{=wrath_and_ruin_description_str}The blessing of Grimnir channels the wrath of the war god, causing the earth to fracture and releasing fire and sulfur. Deal medium damage to surrounding foes. Empowered: Affected enemies suffer damage over time.">
+                     TooltipDescription="{=wrath_and_ruin_description_str}The blessing of Grimnir channels the wrath of the war god, causing the earth to fracture and releasing fire and sulfur. Deal medium damage to surrounding foes and sunder them: attacks against them ignore 30% of their armour. Empowered: Affected enemies are knocked down and suffer damage over time.">
         <LightColorRGB x="255"
                        y="255"
                        z="255"
