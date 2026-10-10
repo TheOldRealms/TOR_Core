@@ -19,7 +19,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
 
         public string SkillTrainerTemplateId => "tor_nulnengineernpc_empire";
 
-        public override string MapIconBrushName => "TorPoiEngineerHallIconBrush";
+        public override string MapIconText => "<img src=\"cannon_icon\">";
 
         public override bool CheckAccess(Settlement s, Hero h, out TextObject denialReason)
         {

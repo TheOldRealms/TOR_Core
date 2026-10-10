@@ -56,17 +56,13 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         protected virtual bool IsDiscovered(Settlement settlement) => true;
 
         /// <summary>
-        /// Brush name to render as the nameplate icon when this POI is discovered. If a
-        /// POI has a dedicated sprite brush (e.g. "TorPoiWizardHallIconBrush"), set it
-        /// here; the nameplate renders the sprite. Empty default means fall back to a
-        /// text-only representation via <see cref="MapIconText"/>.
-        /// </summary>
-        public virtual string MapIconBrushName => "";
-
-        /// <summary>
-        /// Short text (1-3 chars) rendered when the POI has no sprite brush yet. Also
-        /// used as the "?" fallback for undiscovered state is handled generically by the
-        /// nameplate — this is only the discovered-but-no-sprite case.
+        /// Text rendered on the settlement nameplate when this POI is discovered. For
+        /// sprite icons, return the Gauntlet inline-image syntax
+        /// <c>&lt;img src="sprite_name"&gt;</c> — the nameplate's TextWidget parses the
+        /// tag and renders the sprite inline (same pattern as
+        /// <see cref="CustomResource.GetCustomResourceIconAsText"/>). For POIs without
+        /// an art asset yet, a short letter (e.g. "H") also works. Default empty = no
+        /// visible icon when discovered.
         /// </summary>
         public virtual string MapIconText => "";
 
