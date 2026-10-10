@@ -135,11 +135,11 @@
 
   <!-- Skill perks - Spellcraft -->
   <string id="tor_perk_novice_spellcaster_label" text="{=str_tor_perk_novice_spellcaster_label}Novice Spellcaster" />
-  <string id="tor_perk_novice_spellcaster_1" text="{=str_tor_perk_novice_spellcaster_1}Gain access to entry level spells." />
+  <string id="tor_perk_novice_spellcaster_1" text="{=str_tor_perk_novice_spellcaster_1}Gain access to entry level spells and runes." />
   <string id="tor_perk_adept_spellcaster_label" text="{=str_tor_perk_adept_spellcaster_label}Adept Spellcaster" />
-  <string id="tor_perk_adept_spellcaster_1" text="{=str_tor_perk_adept_spellcaster_1}Gain access to adept level spells." />
+  <string id="tor_perk_adept_spellcaster_1" text="{=str_tor_perk_adept_spellcaster_1}Gain access to adept level spells and runes." />
   <string id="tor_perk_master_spellcaster_label" text="{=str_tor_perk_master_spellcaster_label}Master Spellcaster" />
-  <string id="tor_perk_master_spellcaster_1" text="{=str_tor_perk_master_spellcaster_1}Gain access to master level spells." />
+  <string id="tor_perk_master_spellcaster_1" text="{=str_tor_perk_master_spellcaster_1}Gain access to master level spells and runes." />
   <string id="tor_perk_selfish_label" text="{=str_tor_perk_selfish_label}Selfish" />
   <string id="tor_perk_selfish_1" text="{=str_tor_perk_selfish_1}Your damaging spells do 90% reduced damage to yourself." />
   <string id="tor_perk_selfish_2" text="{=str_tor_perk_selfish_2}Your self targeted buff spells have 50% more duration." />
@@ -148,14 +148,14 @@
   <string id="tor_perk_well_controlled_2" text="{=str_tor_perk_well_controlled_2}Gain 5% advantage in simulation battles." />
   <string id="tor_perk_librarian_label" text="{=str_tor_perk_librarian_label}Librarian" />
   <string id="tor_perk_librarian_1" text="{=str_tor_perk_librarian_1}You gain double experience from reading books." />
-  <string id="tor_perk_librarian_2" text="{=str_tor_perk_librarian_2}Learning new spells cost 50% less gold." />
+  <string id="tor_perk_librarian_2" text="{=str_tor_perk_librarian_2}Learning new spells and runes costs 50% less gold." />
   <string id="tor_perk_story_teller_label" text="{=str_tor_perk_story_teller_label}Storyteller" />
   <string id="tor_perk_story_teller_1" text="{=str_tor_perk_story_teller_1}Every companion in your party gains 1000 experience in a random skill per day." />
   <string id="tor_perk_story_teller_2" text="{=str_tor_perk_story_teller_2}Your party gains a permanent +5 increase to party morale." />
   <string id="tor_perk_overcaster_label" text="{=str_tor_perk_overcaster_label}Overcaster" />
-  <string id="tor_perk_overcaster_1" text="{=str_tor_perk_overcaster_1}Your damaging spells do 20% more damage but cost 30% more winds of magic." />
+  <string id="tor_perk_overcaster_1" text="{=str_tor_perk_overcaster_1}Your damaging and healing spells are 20% more effective but cost 30% more winds of magic." />
   <string id="tor_perk_effective_spellcaster_label" text="{=str_tor_perk_effective_spellcaster_label}Efficient Spellcaster" />
-  <string id="tor_perk_effective_spellcaster_1" text="{=str_tor_perk_effective_spellcaster_1}Your damaging spells do 20% less damage, but cost 30% less winds of magic." />
+  <string id="tor_perk_effective_spellcaster_1" text="{=str_tor_perk_effective_spellcaster_1}Your damaging and healing spells are 20% less effective, but cost 30% less winds of magic." />
   <string id="tor_perk_improvision_label" text="{=str_tor_perk_improvision_label}Improvision" />
   <string id="tor_perk_improvision_1" text="{=str_tor_perk_improvision_1}Your Winds of Magic is set to 25 if you have less than that at the beginning of the battle." />
   <string id="tor_perk_improvision_2" text="{=str_tor_perk_improvision_2}+10% Persuasion chance during speech checks." />
@@ -166,7 +166,7 @@
   <string id="tor_perk_dampener_1" text="{=str_tor_perk_dampener_1}Damage dealt by your damaging spells is reduced by 15%, but troops in your formation take 30% less damage from spells." />
   <string id="tor_perk_dampener_2" text="{=str_tor_perk_dampener_2}You gain 5% ward save." />
   <string id="tor_perk_arcane_link_label" text="{=str_tor_perk_arcane_link_label}Arcane Link" />
-  <string id="tor_perk_arcane_link_1" text="{=str_tor_perk_arcane_link_1}Any buffs you cast on a friendly unit will now also apply to you even if you are not in range." />
+  <string id="tor_perk_arcane_link_1" text="{=str_tor_perk_arcane_link_1}Any buffs you cast on a friendly unit, including runes, will now also apply to you even if you are not in range." />
   <string id="tor_perk_arcane_link_2" text="{=str_tor_perk_arcane_link_2}As formation Captain, all troops in your formation deal additonal 10% magic damage." />
   <string id="tor_perk_exchange_label" text="{=str_tor_perk_exchange_label}Exchange" />
   <string id="tor_perk_exchange_1" text="{=str_tor_perk_exchange_1}All physical damage done by your weapons is doubled and dealt again as magical damage." />
