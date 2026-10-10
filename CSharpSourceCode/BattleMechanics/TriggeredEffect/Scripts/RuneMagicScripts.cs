@@ -46,7 +46,7 @@ public class HearthAndHome : ITriggeredScript
     {
         if (Agent.Main != triggeredByAgent) return;
 
-        var rangedDamage = Hero.MainHero.HasAttribute("ForHearthAndHomeKeystone");
+        var rangedDamage = Hero.MainHero.HasCareerChoice("ForHearthAndHomeKeystone");
         var empowered = triggeredByAgent.HasAttribute(CharacterAttributes.WISDOM_THUNGNI);
 
         if (!empowered && !rangedDamage) return;
