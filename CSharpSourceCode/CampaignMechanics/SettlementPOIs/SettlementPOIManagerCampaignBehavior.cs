@@ -7,7 +7,9 @@ using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.Settlements.Locations;
+using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Framework;
@@ -44,9 +46,57 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
             CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, OnAfterSessionLaunched);
+            CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
+            CampaignEvents.BeforeMissionOpenedEvent.AddNonSerializedListener(this, OnBeforeMissionOpened);
         }
 
         public override void SyncData(IDataStore dataStore) { }
+
+        public Hero GetOrCreateHero(Settlement s, string templateId)
+        {
+            if (s == null || string.IsNullOrEmpty(templateId)) return null;
+
+            // Match on HomeSettlement rather than HeroesWithoutParty so we still find the
+            // hero when they're temporarily in a party (siege garrison, kidnapped, etc.)
+            // — avoids duplicate creation.
+            var existing = Hero.AllAliveHeroes.FirstOrDefault(
+                h => h.HomeSettlement == s && h.Template?.StringId == templateId);
+            if (existing != null) return existing;
+
+            var template = MBObjectManager.Instance.GetObject<CharacterObject>(templateId);
+            if (template == null) return null;
+
+            var hero = HeroCreator.CreateSpecialHero(template, s, null, null, 50);
+            hero.SupporterOf = s.OwnerClan;
+            hero.Culture = s.Culture;
+            var name = template.GetName();
+            name.SetTextVariable("FIRSTNAME", hero.FirstName);
+            hero.SetName(name, hero.FirstName);
+            hero.CharacterObject.HiddenInEncyclopedia = true;
+            HeroHelper.SpawnHeroForTheFirstTime(hero, s);
+            return hero;
+        }
+
+        private void OnNewGameCreated(CampaignGameStarter _)
+        {
+            foreach (var s in Settlement.All)
+            {
+                if (!s.IsTown) continue;
+                PlaceTrainersFor(s);
+            }
+        }
+
+        private void OnBeforeMissionOpened()
+        {
+            var s = Settlement.CurrentSettlement;
+            if (s?.IsTown == true) PlaceTrainersFor(s);
+        }
+
+        private void PlaceTrainersFor(Settlement s)
+        {
+            foreach (var host in _byLocationId.Values.OfType<ISpellTrainerHost>())
+                host.EnsurePlaced(s);
+        }
 
         private void OnSessionLaunched(CampaignGameStarter starter)
         {

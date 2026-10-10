@@ -35,7 +35,6 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
         private readonly string _woodelfTrainerId = "tor_spelltrainer_woodelves_0";
         private readonly string _greenskinTrainerId = "tor_spelltrainer_greenskins_0";
         private string _testResult = "";
-        private Dictionary<string, string> _settlementToTrainerMap = new Dictionary<string, string>();
 
         private readonly float _testSuccessChance = 1f;
         private const int DarkEnergyLoreCost = 2000;
@@ -60,8 +59,9 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
         private bool IsTrainerInCollege(Settlement settlement)
         {
-            var locationId = settlement.Culture.StringId == TORConstants.Cultures.EMPIRE ? "tor_wizardhall" : "house_1";
-            var location = settlement.LocationComplex.GetLocationWithId(locationId);
+            if (settlement.Culture.StringId == TORConstants.Cultures.EMPIRE) return true;
+
+            var location = settlement.LocationComplex.GetLocationWithId("house_1");
             var trainer = GetTrainerForTown(settlement);
             if (trainer != null)
             {
@@ -73,19 +73,27 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
         public Hero GetTrainerForTown(Settlement settlement)
         {
-            Hero hero = null;
-            var heroId = "";
-            if (_settlementToTrainerMap.TryGetValue(settlement.StringId, out heroId))
-            {
-                hero = Hero.FindFirst(x => x.StringId == heroId);
-            }
-            return hero;
+            var tid = GetTemplateIdForSettlement(settlement);
+            if (tid == null) return null;
+            return Hero.AllAliveHeroes.FirstOrDefault(h => h.HomeSettlement == settlement && h.Template?.StringId == tid);
+        }
+
+        private string GetTemplateIdForSettlement(Settlement s)
+        {
+            var c = s.Culture.StringId;
+            if (c == TORConstants.Cultures.BRETONNIA && s.StringId == "town_BA1") return _prophetessTrainerId;
+            if (c == TORConstants.Cultures.SYLVANIA || c == TORConstants.Cultures.MOUSILLON) return _vampireTrainerId;
+            if (c == TORConstants.Cultures.ASRAI) return _woodelfTrainerId;
+            if (c == TORConstants.Cultures.GREENSKIN) return _greenskinTrainerId;
+            return null;
         }
 
         private void SpawnTrainerInCollege(Settlement settlement, bool forceSpawn)
         {
+            if (settlement.Culture.StringId == TORConstants.Cultures.EMPIRE) return;
+
             var trainer = GetTrainerForTown(settlement);
-            var collegeloc = settlement.LocationComplex.GetLocationWithId("tor_wizardhall");
+            var collegeloc = settlement.LocationComplex.GetLocationWithId("house_1");
             if (trainer != null && collegeloc != null)
             {
                 // Skip spellsinger envoy - they should stay in the lordshall, not the magic college
@@ -121,10 +129,11 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
         private void CreateTrainer(Settlement settlement)
         {
+            if (settlement.Culture.StringId == TORConstants.Cultures.EMPIRE) return;
+
             CharacterObject template = null;
             if (settlement.Culture.StringId == TORConstants.Cultures.BRETONNIA && settlement.StringId == "town_BA1") template = MBObjectManager.Instance.GetObject<CharacterObject>(_prophetessTrainerId);
             if (settlement.Culture.StringId == TORConstants.Cultures.SYLVANIA || settlement.Culture.StringId == TORConstants.Cultures.MOUSILLON) template = MBObjectManager.Instance.GetObject<CharacterObject>(_vampireTrainerId);
-            if (settlement.Culture.StringId == TORConstants.Cultures.EMPIRE) template = MBObjectManager.Instance.GetObject<CharacterObject>(_empireTrainerId);
             if (settlement.Culture.StringId == TORConstants.Cultures.ASRAI) template = MBObjectManager.Instance.GetObject<CharacterObject>(_woodelfTrainerId);
             if (settlement.Culture.StringId == TORConstants.Cultures.GREENSKIN) template = MBObjectManager.Instance.GetObject<CharacterObject>(_greenskinTrainerId);
 
@@ -146,7 +155,6 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 nameObject.SetTextVariable("FIRSTNAME", hero.FirstName);
                 hero.SetName(nameObject, hero.FirstName);
                 HeroHelper.SpawnHeroForTheFirstTime(hero, settlement);
-                _settlementToTrainerMap.Add(settlement.StringId, hero.StringId);
                 hero.CharacterObject.HiddenInEncyclopedia = true;
 
                 if (hero.Culture.StringId == TORConstants.Cultures.BRETONNIA)
@@ -189,7 +197,10 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
         public bool IsSpellTrainer(Hero hero)
         {
-            return _settlementToTrainerMap.ContainsValue(hero.StringId);
+            var t = hero?.Template?.StringId;
+            return t == _empireTrainerId || t == _vampireTrainerId
+                || t == _prophetessTrainerId || t == _woodelfTrainerId
+                || t == _greenskinTrainerId;
         }
 
         private void ProphetesseDialogs(CampaignGameStarter obj)
@@ -1135,10 +1146,6 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             InformationManager.HideInquiry();
         }
 
-        public override void SyncData(IDataStore dataStore)
-        {
-            dataStore.SyncData("_trainerToSettlementMap", ref _settlementToTrainerMap);
-
-        }
+        public override void SyncData(IDataStore dataStore) { }
     }
 }
