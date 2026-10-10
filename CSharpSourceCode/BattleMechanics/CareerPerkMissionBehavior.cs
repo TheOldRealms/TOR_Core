@@ -211,6 +211,17 @@ namespace TOR_Core.BattleMechanics
                    affectorAgent?.Team != null && affectedAgent?.Team != null && affectorAgent.Team.IsEnemyOf(affectedAgent.Team);
         }
 
+        /// <summary>
+        /// Whether the killing weapon carries a Dawi rune. The blow names the missile for ranged kills, so the launcher's runes count as well.
+        /// </summary>
+        private static bool IsRuneWeaponKill(Agent affectorAgent, KillingBlow blow)
+        {
+            if (!blow.IsValid) return false;
+
+            return ItemObject.GetItemFromWeaponKind(blow.WeaponItemKind).GetDawiRuneCount() > 0 ||
+                   (blow.IsMissile && affectorAgent.WieldedWeapon.Item.GetDawiRuneCount() > 0);
+        }
+
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {
             // Runelord: Teachings of Thungni - runed units reduce career ability cooldown on kill
@@ -318,13 +329,10 @@ namespace TOR_Core.BattleMechanics
                     }
                 }
                 
-                if (choices.Contains("ChiselAndHammerPassive2"))
+                if (choices.Contains("ChiselAndHammerPassive2") && IsEnemyTakenDown(affectorAgent, affectedAgent, agentState) && IsRuneWeaponKill(affectorAgent, blow))
                 {
                     var value = ((int)blow.InflictedDamage) / 10; //Not sure if this is too much can be adjusted
-                    if (affectorAgent.WieldedWeapon.Item.HasAnyTrait())
-                    {
-                        Hero.MainHero.AddSkillXp(TORSkills.Spellcraft, value);
-                    }
+                    Hero.MainHero.AddSkillXp(TORSkills.Spellcraft, value);
                 }
 
                 if (choices.Contains("ControlledHungerPassive4"))
