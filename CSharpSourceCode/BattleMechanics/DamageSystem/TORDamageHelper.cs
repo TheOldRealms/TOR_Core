@@ -2,6 +2,7 @@ using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -69,6 +70,8 @@ namespace TOR_Core.BattleMechanics.DamageSystem
             if (Game.Current.GameType is not Campaign)
                 return;
 
+            ApplyRuneWardSave(victim, resistancePercentages);
+
             if (!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(attacker, victim))
                 return;
 
@@ -100,6 +103,26 @@ namespace TOR_Core.BattleMechanics.DamageSystem
                     resistancePercentages[i] += resistance;
                 }
             }
+        }
+
+        /// <summary>
+        /// Runelord ForHearthAndHomePassive1: friendly troops under an active 'Rune' (Oath and Steel, Hearth and Home) gain Ward Save.
+        /// Applied before the main party gate of <see cref="ApplyCareerPassives"/>, so troops of allied parties benefit as well.
+        /// </summary>
+        private static void ApplyRuneWardSave(Agent victim, float[] resistancePercentages)
+        {
+            if (victim == null || victim.IsMount || victim.IsHero || victim.Team == null) return;
+            if (!Hero.MainHero.HasCareerChoice("ForHearthAndHomePassive1")) return;
+
+            var playerTeam = Mission.Current?.PlayerTeam;
+            if (playerTeam == null || !victim.Team.IsFriendOf(playerTeam)) return;
+
+            var statusEffectComponent = victim.GetComponent<StatusEffectComponent>();
+            if (statusEffectComponent == null || !statusEffectComponent.HasActiveEffects) return;
+            if (statusEffectComponent.GetActiveEffectCount("oath_and_steel_buff_res") == 0 &&
+                statusEffectComponent.GetActiveEffectCount("hearth_and_home_buff_speed") == 0) return;
+
+            resistancePercentages[(int)DamageType.All] += TORCareerChoices.GetChoice("ForHearthAndHomePassive1").GetPassiveValue();
         }
 
         /// <summary>

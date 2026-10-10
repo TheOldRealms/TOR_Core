@@ -208,8 +208,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _chiselAndHammerPassive4.Initialize(CareerID, "-25% 'Oathgold' cost to upgrade 'Elite' troops.", "ChiselAndHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpgradeCostModifier, true,
             characterObject => characterObject.IsEliteTroop()));
 
-        _forHearthAndHomePassive1.Initialize(CareerID, "+10% 'Ward Save' for troops affected by a 'Rune'.", "ForHearthAndHome", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.Spell,
-            (attacker, victim, mask) => !victim.BelongsToMainParty() && victim.IsHero && victim.GetHero().CharacterObject.IsRunesmith()));
+        _forHearthAndHomePassive1.Initialize(CareerID, "+10% 'Ward Save' for troops affected by a 'Rune'.", "ForHearthAndHome", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true)); //special
         _forHearthAndHomePassive2.Initialize(CareerID, "+3 Hitpoints for every equipment 'Rune' to the wearer.", "ForHearthAndHome", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.Special));
         _forHearthAndHomePassive3.Initialize(CareerID, "For every troop affected by a 'Rune', the party gains +0.05 healing.", "ForHearthAndHome", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.05f, PassiveEffectType.Special));
         _forHearthAndHomePassive4.Initialize(CareerID, "+10% duration of 'Rune' abilities. Points in Faith increases duration by 0.1%.", "ForHearthAndHome", false,
