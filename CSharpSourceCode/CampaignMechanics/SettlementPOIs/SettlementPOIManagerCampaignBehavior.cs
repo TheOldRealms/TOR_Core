@@ -125,6 +125,8 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 host.EnsurePlaced(s);
             foreach (var host in _byLocationId.Values.OfType<IEnchanterHost>())
                 host.EnsurePlaced(s);
+            foreach (var host in _byLocationId.Values.OfType<ISkillTrainerHost>())
+                host.EnsurePlaced(s);
         }
 
         private void OnSessionLaunched(CampaignGameStarter starter)

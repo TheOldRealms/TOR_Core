@@ -5277,4 +5277,11 @@
   <string id="tor_poi_witchhunter_lodge.Sealed" text="{=str_tor_poi_witchhunter_lodge.Sealed}This place is sealed." category="POIs" subcategory="Witch Hunter Lodge" />
   <string id="tor_poi_witchhunter_lodge.SiegeSealed" text="{=str_tor_poi_witchhunter_lodge.SiegeSealed}The lodge is closed during the siege." category="POIs" subcategory="Witch Hunter Lodge" />
   <string id="tor_poi_witchhunter_lodge.Rejected" text="{=str_tor_poi_witchhunter_lodge.Rejected}The templars turn you away." category="POIs" subcategory="Witch Hunter Lodge" />
+  <string id="tor_poi_empire_engineer_hall.Name" text="{=str_tor_poi_empire_engineer_hall.Name}Empire Engineer Hall" category="POIs" subcategory="Empire Engineer Hall" />
+  <string id="tor_poi_empire_engineer_hall.EnterLabel" text="{=str_tor_poi_empire_engineer_hall.EnterLabel}Visit the Empire Engineer Hall" category="POIs" subcategory="Empire Engineer Hall" />
+  <string id="tor_poi_empire_engineer_hall.Undiscovered" text="{=str_tor_poi_empire_engineer_hall.Undiscovered}You have not yet found this place." category="POIs" subcategory="Empire Engineer Hall" />
+  <string id="tor_poi_empire_engineer_hall.Sealed" text="{=str_tor_poi_empire_engineer_hall.Sealed}This place is sealed." category="POIs" subcategory="Empire Engineer Hall" />
+  <string id="tor_poi_empire_engineer_hall.SiegeSealed" text="{=str_tor_poi_empire_engineer_hall.SiegeSealed}The gates of the Engineer Hall are sealed during the siege." category="POIs" subcategory="Empire Engineer Hall" />
+  <string id="tor_poi_empire_engineer_hall.Rejected" text="{=str_tor_poi_empire_engineer_hall.Rejected}The engineers turn you away." category="POIs" subcategory="Empire Engineer Hall" />
+  <string id="tor_poi_empire_engineer_hall.WrongCulture" text="{=str_tor_poi_empire_engineer_hall.WrongCulture}The Imperial engineers only serve those of the Empire." category="POIs" subcategory="Empire Engineer Hall" />
 </strings>

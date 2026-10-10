@@ -608,10 +608,13 @@
     <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\SettlementPOI.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\SettlementPOIManagerCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\SettlementPOIs\EmpireEngineerHallPOI.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\EmpireWizardHallPOI.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\EnchanterHostExtensions.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\IEnchanterHost.cs" />
+    <Compile Include="CampaignMechanics\SettlementPOIs\ISkillTrainerHost.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\ISpellTrainerHost.cs" />
+    <Compile Include="CampaignMechanics\SettlementPOIs\SkillTrainerHostExtensions.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\SpellTrainerHostExtensions.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\TrainerPlacement.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\WitchHunterLodgePOI.cs" />

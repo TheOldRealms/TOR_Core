@@ -1831,6 +1831,7 @@
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
       <Location id="tor_wizardhall" scene_name="TOR_wizard_hall_001_atmo_w_night" />
+      <Location id="tor_empire_engineer_hall" scene_name="TOR_engineer_office_002" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
