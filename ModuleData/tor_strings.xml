@@ -444,8 +444,9 @@
   <!-- Career Button - unit rune -->
   <string id="tor_unit_rune_cost_display" text="{=str_tor_unit_rune_cost_display}{RUNE_DESCRIPTION}{newline}{newline}Required ingredients:{newline}{RUNE_COST_LIST}" />
   <string id="tor_unit_rune_cost_insufficient" text="{=str_tor_unit_rune_cost_insufficient}{RUNE_DESCRIPTION}{newline}{newline}Required ingredients:{newline}{RUNE_COST_LIST}{newline}You do not have enough ingredients!" />
+  <string id="tor_unit_rune_combined_cost_insufficient" text="{=str_tor_unit_rune_combined_cost_insufficient}You do not have enough ingredients for all selected runes." />
   <string id="tor_unit_rune_active_display" text="{=str_tor_unit_rune_active_display}{RUNE_NAME}{newline}{RUNE_DESC}" />
-  <string id="tor_unit_rune_warning_text" text="{=str_tor_unit_rune_warning_text}WARNING : Current {CURRENT_RUNE} will be removed without compensation." />
+  <string id="tor_unit_rune_warning_text" text="{=str_tor_unit_rune_warning_text}WARNING : Current {CURRENT_RUNE} will be removed without compensation unless selected again." />
   <string id="tor_unit_rune_unknown_runes_text" text="{=str_tor_unit_rune_unknown_runes_text}You do not know the required runes:{UNKNOWN_RUNES_LIST}" />
   <string id="tor_unit_rune_requirement_unmet" text="{=str_tor_unit_rune_requirement_unmet}{RUNE_DESCRIPTION}{newline}{newline}{RUNE_REQUIREMENT}" />
   <string id="tor_unit_rune_title" text="{=str_tor_unit_rune_title}Unit Runes" />
