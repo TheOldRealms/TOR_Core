@@ -129,10 +129,11 @@ namespace TOR_Core.Models
                 switch (GetHeroKind(hero))
                 {
                     case HeroKind.Player:
-                        // Nothing player-exclusive outside AddAsraiHealth today.
+                        AddEquipmentRuneHealth(ref number, hero);
                         break;
                     case HeroKind.Companion:
                         AddCompanionCareerHealth(ref number, hero);
+                        AddEquipmentRuneHealth(ref number, hero);
                         break;
                     case HeroKind.Lord:
                         // AI heroes receive the common block only.
@@ -240,14 +241,6 @@ namespace TOR_Core.Models
                 number.Add(knightCount * choice.GetPassiveValue(), choice.BelongsToGroup.Name);
             }
 
-            if (Hero.MainHero.HasCareerChoice("ForHearthAndHomePassive2"))
-            {
-                var equipment = hero.CharacterObject.GetCharacterEquipment();
-                var choice = TORCareerChoices.GetChoice("ForHearthAndHomePassive2");
-                var traitedItemCount = equipment.CountQ(item => item.HasAnyTrait());
-                number.Add(traitedItemCount * (int)choice.GetPassiveValue(), choice.BelongsToGroup.Name);
-            }
-
             // BestofDaBestPassive4: Orc Big Bosses gain 100 health
             if (Hero.MainHero.HasCareerChoice("BestofDaBestPassive4"))
             {
@@ -267,6 +260,21 @@ namespace TOR_Core.Models
                     number.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
                 }
             }
+        }
+
+        /// <summary>
+        /// Runelord ForHearthAndHomePassive2: hitpoints for every Dawi rune on the hero's equipment.
+        /// Reaches the player and their companions.
+        /// </summary>
+        private void AddEquipmentRuneHealth(ref ExplainedNumber number, Hero hero)
+        {
+            if (!Hero.MainHero.HasCareerChoice("ForHearthAndHomePassive2")) return;
+
+            var runeCount = hero.CharacterObject.GetCharacterEquipment().SumQ(item => item.GetDawiRuneCount());
+            if (runeCount <= 0) return;
+
+            var choice = TORCareerChoices.GetChoice("ForHearthAndHomePassive2");
+            number.Add(runeCount * choice.GetPassiveValue(), choice.BelongsToGroup.Name);
         }
 
         /// <summary>
