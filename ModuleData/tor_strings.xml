@@ -4159,7 +4159,7 @@
   <string id="tor_careerchoice_description.StoneAndSteelPassive1" text="{=str_tor_careerchoice_description_StoneAndSteelPassive1}+10% personal 'Magic Resistance'." />
   <string id="tor_careerchoice_description.StoneAndSteelPassive2" text="{=str_tor_careerchoice_description_StoneAndSteelPassive2}+10% 'Magic Resistance' for all troops." />
   <string id="tor_careerchoice_description.StoneAndSteelPassive3" text="{=str_tor_careerchoice_description_StoneAndSteelPassive3}+25 personal Hitpoints." />
-  <string id="tor_careerchoice_description.StoneAndSteelPassive4" text="{=str_tor_careerchoice_description_StoneAndSteelPassive4}When a 'Rune' ability is refreshed, gain +50% 'Magic' damage for 15s." />
+  <string id="tor_careerchoice_description.StoneAndSteelPassive4" text="{=str_tor_careerchoice_description_StoneAndSteelPassive4}When a 'Rune' ability is refreshed by Wisdom of Thungni, gain +50% 'Magic' damage for 15s." />
   <string id="tor_careerchoice_description.LegacyOfGrungniKeystone" text="{=str_tor_careerchoice_description_LegacyOfGrungniKeystone}The 'Rune' Oath and Steel applies 'Fire' damage to troops." />
   <string id="tor_careerchoice_description.LegacyOfGrungniPassive1" text="{=str_tor_careerchoice_description_LegacyOfGrungniPassive1}Runesmith Guild provides more 'Oathgold' from delivered steel." />
   <string id="tor_careerchoice_description.LegacyOfGrungniPassive2" text="{=str_tor_careerchoice_description_LegacyOfGrungniPassive2}Ironsmelters within Karaks provide +2 'Oathgold' daily." />

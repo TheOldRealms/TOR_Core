@@ -220,7 +220,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _stoneAndSteelPassive2.Initialize(CareerID, "+10% 'Magic Resistance' for all troops.", "StoneAndSteel", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell,
             (attacker, victim, mask) => victim.BelongsToMainParty() && victim.Character.Culture.StringId == TORConstants.Cultures.DAWI));
         _stoneAndSteelPassive3.Initialize(CareerID, "+25 personal Hitpoints.", "StoneAndSteel", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
-        _stoneAndSteelPassive4.Initialize(CareerID, "When a 'Rune' ability is refreshed, gain +50% 'Magic' damage for 15s.", "StoneAndSteel", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15));
+        _stoneAndSteelPassive4.Initialize(CareerID, "When a 'Rune' ability is refreshed by Wisdom of Thungni, gain +50% 'Magic' damage for 15s.", "StoneAndSteel", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15));
 
         _legacyOfGrungniPassive1.Initialize(CareerID, "Runesmith Guild provides more 'Oathgold' from delivered steel.", "LegacyOfGrungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true));
         _legacyOfGrungniPassive2.Initialize(CareerID, "Ironsmelters within Karaks provide +2 'Oathgold' daily.", "LegacyOfGrungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());

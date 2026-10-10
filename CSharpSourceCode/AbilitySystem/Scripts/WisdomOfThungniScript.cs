@@ -31,11 +31,19 @@ public class WisdomOfThungniScript : CareerAbilityScript
         // Forgefire Burning keystone: the next rune in the sequence is refunded as well, at half efficiency.
         var runesToRefund = Hero.MainHero.HasCareerChoice("ForgefireBurningKeystone") ? 2 : 1;
         var refund = RuneCooldownRefund;
+        var runeRefreshed = false;
 
         foreach (var rune in abilityComponent.KnownAbilitySystem.Where(IsRuneOnCooldown).Take(runesToRefund))
         {
             rune.RefundCooldown(refund);
+            runeRefreshed |= !rune.IsOnCooldown();
             refund /= 2;
+        }
+
+        if (runeRefreshed && Hero.MainHero.HasCareerChoice("StoneAndSteelPassive4"))
+        {
+            var choice = TORCareerChoices.GetChoice("StoneAndSteelPassive4");
+            agent.ApplyStatusEffect("thungni_stone_and_steel_buff", agent, choice.GetPassiveValue(), false);
         }
     }
 
