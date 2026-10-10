@@ -42,13 +42,14 @@
     <ModulesPath>$(BannerlordPath)/Modules</ModulesPath>
   </PropertyGroup>
 
-  <!-- Debug/Run configuration (F5 / green arrow) -->
-  <PropertyGroup>
-    <StartAction>Program</StartAction>
-    <StartProgram>$(GameBinPath)/Bannerlord.exe</StartProgram>
-    <StartArguments>/singleplayer _MODULES_*Native*SandBoxCore*SandBox*StoryMode*CustomBattle*TOR_Armory*TOR_Environment*TOR_Core*_MODULES_</StartArguments>
-    <StartWorkingDirectory>$(GameBinPath)</StartWorkingDirectory>
-  </PropertyGroup>
+  <!-- No <StartAction>/<StartProgram> block.
+       On Linux, F5 / project-level Run would launch Bannerlord.exe under
+       Fedora's system mono, which fails with
+         UnauthorizedAccessException: '/usr/share/Mount and Blade II Bannerlord'
+       (the launcher can't resolve the install path and double-faults on
+       the crash-log write). Always use the "Bannerlord Attach" Mono
+       Remote run config instead; direct Steam launch is unaffected.
+       See linux-debug/README.md -> "UnauthorizedAccessException ...". -->
 
   <!-- Configuration-specific settings -->
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
