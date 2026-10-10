@@ -36,7 +36,14 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
             _isShrine = settlement.SettlementComponent is ShrineComponent;
             for (int i = 0; i < SlotCount; i++) { _slotBrush[i] = ""; _slotText[i] = ""; }
             RefreshPoiState();
+            // Manager keeps this VM cached for the session; subscribe for discovery updates
+            // so slot state refreshes when the player visits a settlement or a console
+            // command fires. VMs are never destroyed per-settlement so no unsubscribe path
+            // is needed for the current lifecycle.
+            SettlementPOIManagerCampaignBehavior.DiscoveryChanged += OnDiscoveryChanged;
         }
+
+        private void OnDiscoveryChanged() => RefreshPoiState();
 
         /// <summary>
         /// Rebuild slot assignments from current manager state. Call after discovery triggers

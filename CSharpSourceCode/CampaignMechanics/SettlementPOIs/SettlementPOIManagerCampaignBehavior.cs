@@ -77,6 +77,14 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             dataStore.SyncData("_poiDiscovered", ref _discovered);
         }
 
+        /// <summary>
+        /// Fires whenever discovery state changes for any (settlement, POI) pair. Nameplate
+        /// VMs subscribe to this so they can refresh their displayed slot state — VMs are
+        /// cached per settlement by the Harmony patch, so they never re-construct and would
+        /// otherwise stay stale with the discovery=false values they were born with.
+        /// </summary>
+        public static event Action DiscoveryChanged;
+
         public bool IsDiscovered(Settlement s, SettlementPOI poi)
         {
             if (s == null || poi == null) return false;
@@ -88,14 +96,17 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             if (s == null || poi == null) return;
             if (!_discovered.TryGetValue(s.StringId, out var ids))
                 _discovered[s.StringId] = ids = new List<string>();
-            if (!ids.Contains(poi.LocationId)) ids.Add(poi.LocationId);
+            if (ids.Contains(poi.LocationId)) return;
+            ids.Add(poi.LocationId);
+            DiscoveryChanged?.Invoke();
         }
 
         public void UnmarkDiscovered(Settlement s, SettlementPOI poi)
         {
             if (s == null || poi == null) return;
-            if (_discovered.TryGetValue(s.StringId, out var ids))
-                ids.Remove(poi.LocationId);
+            if (!_discovered.TryGetValue(s.StringId, out var ids)) return;
+            if (!ids.Remove(poi.LocationId)) return;
+            DiscoveryChanged?.Invoke();
         }
 
         /// <summary>
@@ -106,8 +117,17 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public void MarkAllApplicableDiscovered(Settlement s)
         {
             if (s == null) return;
+            bool changed = false;
             foreach (var poi in _byLocationId.Values)
-                if (poi.AppliesTo(s)) MarkDiscovered(s, poi);
+            {
+                if (!poi.AppliesTo(s)) continue;
+                if (!_discovered.TryGetValue(s.StringId, out var ids))
+                    _discovered[s.StringId] = ids = new List<string>();
+                if (ids.Contains(poi.LocationId)) continue;
+                ids.Add(poi.LocationId);
+                changed = true;
+            }
+            if (changed) DiscoveryChanged?.Invoke();
         }
 
         private void OnSettlementEntered(MobileParty party, Settlement settlement, Hero hero)
