@@ -82,7 +82,9 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             var hero = HeroCreator.CreateSpecialHero(template, s, null, null, 50);
             hero.SupporterOf = s.OwnerClan;
             hero.Culture = s.Culture;
-            var name = template.GetName();
+            // Clone the TextObject so SetTextVariable doesn't mutate the shared template-level
+            // instance (which otherwise causes every hero of this template to display the last-set FIRSTNAME).
+            var name = template.GetName().CopyTextObject();
             name.SetTextVariable("FIRSTNAME", hero.FirstName);
             hero.SetName(name, hero.FirstName);
             hero.CharacterObject.HiddenInEncyclopedia = true;

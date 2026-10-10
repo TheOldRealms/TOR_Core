@@ -2248,7 +2248,7 @@
       <EquipmentSet id="tor_qnpc_prestige_noble_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_spelltrainer_empire_0" default_group="infantry" name="{=str_tor_spelltrainer_empire_0}College Magister" occupation="Special" culture="Culture.empire" voice="ironic" age="102" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_spelltrainer_empire_0" default_group="infantry" name="{=str_tor_spelltrainer_empire_0}{FIRSTNAME} the College Magister" occupation="Special" culture="Culture.empire" voice="ironic" age="102" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.genericwizard" />
     </face>
