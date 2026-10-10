@@ -197,7 +197,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 
         _teachingsOfThungniPassive1.Initialize(CareerID, "-25% cost for 'Enchantments'.", "TeachingsOfThungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.EnchantmentCostReduction, true));
         _teachingsOfThungniPassive2.Initialize(CareerID, "Crafting an equipment 'Rune' provides Smithing/Spellcraft experience.", "TeachingsOfThungni", false, ChoiceType.Passive, null, null);
-        _teachingsOfThungniPassive3.Initialize(CareerID, "+10% 'Ward Save' for troops affected by a 'Rune'.", "TeachingsOfThungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.Spell,
+        _teachingsOfThungniPassive3.Initialize(CareerID, "+10% 'Ward Save' for troops affected by a 'Rune'.", "TeachingsOfThungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.All,
             (attacker, victim, mask) => victim.BelongsToMainParty() && !victim.IsHero && victim.Character.HasUnitRune()));
         _teachingsOfThungniPassive4.Initialize(CareerID, "+25% party carrying capacity.", "TeachingsOfThungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.InventoryCapacity, true));
 
