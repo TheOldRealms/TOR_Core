@@ -28,7 +28,15 @@ public class WisdomOfThungniScript : CareerAbilityScript
         var weaponEnchantment = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "magical_weapon_15");
         if (weaponEnchantment != null) agent.GetComponent<ItemTraitAgentComponent>()?.AddTraitToWieldedWeapon(weaponEnchantment, ability.Template.Duration);
 
-        abilityComponent.KnownAbilitySystem.FirstOrDefault(IsRuneOnCooldown)?.RefundCooldown(RuneCooldownRefund);
+        // Forgefire Burning keystone: the next rune in the sequence is refunded as well, at half efficiency.
+        var runesToRefund = Hero.MainHero.HasCareerChoice("ForgefireBurningKeystone") ? 2 : 1;
+        var refund = RuneCooldownRefund;
+
+        foreach (var rune in abilityComponent.KnownAbilitySystem.Where(IsRuneOnCooldown).Take(runesToRefund))
+        {
+            rune.RefundCooldown(refund);
+            refund /= 2;
+        }
     }
 
     private static bool IsRuneOnCooldown(Ability ability) => ability.Template.BelongsToLoreID == "RuneMagic" && ability.IsOnCooldown();
