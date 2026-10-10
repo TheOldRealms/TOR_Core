@@ -360,7 +360,7 @@ namespace TOR_Core.Models
                     }
                 }
 
-                if (Hero.MainHero.HasCareer(TORCareers.Runelord))
+                if (Hero.MainHero.HasCareer(TORCareers.Runelord) && template.BelongsToLoreID == "RuneMagic")
                 {
                     if (Hero.MainHero.HasCareerChoice("ForHearthAndHomePassive4"))
                     {
