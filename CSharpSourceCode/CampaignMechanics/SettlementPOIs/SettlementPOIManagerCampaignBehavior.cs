@@ -13,6 +13,7 @@ using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Framework;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.SettlementPOIs
 {
@@ -46,7 +47,6 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
             CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, OnAfterSessionLaunched);
-            CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
             CampaignEvents.BeforeMissionOpenedEvent.AddNonSerializedListener(this, OnBeforeMissionOpened);
         }
 
@@ -63,6 +63,16 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 h => h.HomeSettlement == s && h.Template?.StringId == templateId);
             if (existing != null) return existing;
 
+            // Design intent: POI residents never change HomeSettlement. If a hero with the
+            // matching template exists elsewhere, HomeSettlement has drifted unexpectedly —
+            // reuse rather than duplicate, log so we see it in testing.
+            var drifted = Hero.AllAliveHeroes.FirstOrDefault(h => h.Template?.StringId == templateId);
+            if (drifted != null)
+            {
+                TORCommon.Log($"[POI] Trainer {templateId} expected at {s.StringId} but found at {drifted.HomeSettlement?.StringId ?? "<none>"} — reusing to avoid duplicate.", NLog.LogLevel.Warn);
+                return drifted;
+            }
+
             var template = MBObjectManager.Instance.GetObject<CharacterObject>(templateId);
             if (template == null) return null;
 
@@ -77,19 +87,19 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             return hero;
         }
 
-        private void OnNewGameCreated(CampaignGameStarter _)
+        private void OnBeforeMissionOpened()
+        {
+            var s = Settlement.CurrentSettlement;
+            if (s?.IsTown == true) PlaceTrainersFor(s);
+        }
+
+        private void PlaceAllTrainersEverywhere()
         {
             foreach (var s in Settlement.All)
             {
                 if (!s.IsTown) continue;
                 PlaceTrainersFor(s);
             }
-        }
-
-        private void OnBeforeMissionOpened()
-        {
-            var s = Settlement.CurrentSettlement;
-            if (s?.IsTown == true) PlaceTrainersFor(s);
         }
 
         private void PlaceTrainersFor(Settlement s)
@@ -113,6 +123,11 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                     consequence: args => MenuConsequence(args, captured),
                     isLeave: false);
             }
+
+            // Defensive sweep — verify every POI's expected trainer is placed in their
+            // applicable settlement, covering both fresh campaigns (replaces OnNewGameCreated)
+            // and loaded saves.
+            PlaceAllTrainersEverywhere();
         }
 
         private static void DiscoverAndRegisterAllPOIs()

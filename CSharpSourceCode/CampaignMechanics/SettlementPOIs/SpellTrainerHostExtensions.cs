@@ -16,7 +16,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             if (!(host is SettlementPOI poi) || !poi.AppliesTo(s)) return;
             var hero = host.GetOrCreateTrainer(s);
             if (hero == null) return;
-            if (hero.PartyBelongedTo != null) return;   // off fighting / caravan / etc.
+            if (!s.HeroesWithoutParty.Contains(hero)) return;   // in party or visiting elsewhere → skip
             var location = s.LocationComplex.GetLocationWithId(poi.LocationId);
             TrainerPlacement.EnsureAt(s, hero, location);
         }
