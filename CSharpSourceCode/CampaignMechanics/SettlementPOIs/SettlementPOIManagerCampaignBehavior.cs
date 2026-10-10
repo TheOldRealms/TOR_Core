@@ -45,6 +45,11 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         // Key: "settlementId|locationId" → list of hero StringIds living at that POI in that settlement.
         private Dictionary<string, List<string>> _residents = new();
 
+        // Established POIs: Key "settlementId|locationId" → scene_name attached at this spot.
+        // Scene_name is persisted so OnSessionLaunched can re-apply SetSceneName in case
+        // Location._sceneNames isn't captured by vanilla's auto-serializer.
+        private Dictionary<string, string> _establishedScenes = new();
+
         // ------- Lifecycle
 
         public override void RegisterEvents()
@@ -57,6 +62,94 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public override void SyncData(IDataStore dataStore)
         {
             dataStore.SyncData("_poiResidents", ref _residents);
+            dataStore.SyncData("_poiEstablishedScenes", ref _establishedScenes);
+        }
+
+        private static string MakeEstablishKey(Settlement s, string locationId) =>
+            $"{s.StringId}|{locationId}";
+
+        public bool IsEstablished(Settlement s, SettlementPOI poi)
+        {
+            if (s == null || poi == null) return false;
+            return _establishedScenes.ContainsKey(MakeEstablishKey(s, poi.LocationId));
+        }
+
+        public void MarkEstablished(Settlement s, SettlementPOI poi, string sceneName)
+        {
+            if (s == null || poi == null || string.IsNullOrEmpty(sceneName)) return;
+            _establishedScenes[MakeEstablishKey(s, poi.LocationId)] = sceneName;
+        }
+
+        public void UnmarkEstablished(Settlement s, SettlementPOI poi)
+        {
+            if (s == null || poi == null) return;
+            _establishedScenes.Remove(MakeEstablishKey(s, poi.LocationId));
+        }
+
+        /// <summary>
+        /// Dynamically establish a POI at a settlement. Attaches the scene to the
+        /// template-provided Location row and marks the (settlement, POI) pair as established.
+        /// Idempotent — calling repeatedly is harmless.
+        /// Returns true if the POI is now established (either newly or already).
+        /// </summary>
+        public bool EstablishAt(Settlement s, SettlementPOI poi, string sceneName)
+        {
+            if (s == null || poi == null || string.IsNullOrEmpty(sceneName)) return false;
+            var loc = s.LocationComplex?.GetLocationWithId(poi.LocationId);
+            if (loc == null) return false;   // template doesn't define this Location in the settlement's complex
+            if (loc.GetSceneCount() == 0) loc.SetSceneName(0, sceneName);
+            MarkEstablished(s, poi, sceneName);
+            // Place any trainers that newly apply.
+            foreach (var h in _byLocationId.Values.OfType<ISpellTrainerHost>())  if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
+            foreach (var h in _byLocationId.Values.OfType<IEnchanterHost>())      if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
+            foreach (var h in _byLocationId.Values.OfType<ISkillTrainerHost>())  if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
+            return true;
+        }
+
+        private const string XmlEstablishedMarker = "<xml>";
+
+        /// <summary>
+        /// Auto-seed any (settlement, POI) pair that already has a scene via XML as
+        /// "established." Vanilla re-applies the XML scene on every load, so we only need
+        /// a sentinel marker — we don't need to persist the actual scene name here.
+        /// For dynamically-established pairs, <see cref="EstablishAt"/> stores the real
+        /// scene name instead so OnSessionLaunched can re-apply SetSceneName if vanilla's
+        /// Location serializer doesn't carry our runtime-attached scene across save/load.
+        /// </summary>
+        private void AutoSeedXmlEstablishedPOIs()
+        {
+            foreach (var poi in _byLocationId.Values)
+            {
+                if (!poi.RequiresEstablishment) continue;
+                foreach (var s in Settlement.All)
+                {
+                    if (!s.IsTown) continue;
+                    var loc = s.LocationComplex?.GetLocationWithId(poi.LocationId);
+                    if (loc == null || loc.GetSceneCount() == 0) continue;
+                    var key = MakeEstablishKey(s, poi.LocationId);
+                    if (_establishedScenes.ContainsKey(key)) continue;
+                    _establishedScenes[key] = XmlEstablishedMarker;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Re-apply SetSceneName for dynamically-established POIs on load, in case vanilla's
+        /// Location serializer doesn't persist runtime-attached _sceneNames. Idempotent and
+        /// cheap (no-op when the Location already has the scene).
+        /// </summary>
+        private void ReapplyDynamicEstablishedScenes()
+        {
+            foreach (var kvp in _establishedScenes)
+            {
+                if (kvp.Value == XmlEstablishedMarker) continue;
+                var parts = kvp.Key.Split('|');
+                if (parts.Length != 2) continue;
+                var settlement = Settlement.All.FirstOrDefault(s => s.StringId == parts[0]);
+                var loc = settlement?.LocationComplex?.GetLocationWithId(parts[1]);
+                if (loc != null && loc.GetSceneCount() == 0)
+                    loc.SetSceneName(0, kvp.Value);
+            }
         }
 
         public Hero GetOrCreateHero(Settlement s, string locationId, string templateId)
@@ -144,6 +237,12 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                     consequence: args => MenuConsequence(args, captured),
                     isLeave: false);
             }
+
+            // Establish-state housekeeping. Order matters: re-apply dynamic scenes first
+            // (so they count toward auto-seed's "has scene" check), then auto-seed any
+            // XML sites that aren't yet recorded.
+            ReapplyDynamicEstablishedScenes();
+            AutoSeedXmlEstablishedPOIs();
 
             // Defensive sweep — verify every POI's expected trainer is placed in their
             // applicable settlement, covering both fresh campaigns (replaces OnNewGameCreated)

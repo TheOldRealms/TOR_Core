@@ -56,18 +56,28 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         protected virtual bool IsDiscovered(Settlement settlement) => true;
 
         /// <summary>
-        /// Does this POI exist in <paramref name="s"/>? Derived from the settlement's
-        /// LocationComplex rather than a hardcoded whitelist — a settlement "has" the POI
-        /// iff its per-settlement <c>&lt;Location id="…"/&gt;</c> entry in
-        /// <c>tor_settlements.xml</c> supplies at least one <c>scene_name_*</c>.
-        /// Template-only Locations (no scene) are considered absent, which is why
-        /// <c>tor_location_complex_templates.xml</c> declares each POI's Location without a
-        /// scene — scenes live on per-settlement overrides.
+        /// When true, scene presence is NOT sufficient for <see cref="AppliesTo"/> to pass —
+        /// the manager must also mark this (settlement, POI) pair as established. Lets a POI
+        /// pre-exist as a Location row (via XML template) across many settlements but only
+        /// activate at the ones where it's been "built" at runtime (quest reward, etc.).
+        /// Default false: scene presence alone activates.
+        /// </summary>
+        public virtual bool RequiresEstablishment => false;
+
+        /// <summary>
+        /// Does this POI exist in <paramref name="s"/>? Scene presence is the baseline; if
+        /// <see cref="RequiresEstablishment"/> is also true, the manager's established flag
+        /// must be set.
         /// </summary>
         public bool AppliesTo(Settlement s)
         {
             var loc = s?.LocationComplex?.GetLocationWithId(LocationId);
-            return loc != null && loc.GetSceneCount() > 0;
+            bool hasScene = loc != null && loc.GetSceneCount() > 0;
+            if (!hasScene) return false;
+            if (!RequiresEstablishment) return true;
+
+            var mgr = Campaign.Current?.GetCampaignBehavior<SettlementPOIManagerCampaignBehavior>();
+            return mgr != null && mgr.IsEstablished(s, this);
         }
 
         // ------- Convention-based reason lookup
