@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
@@ -7,7 +8,7 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.SettlementPOIs
 {
-    public class EmpireWizardHallPOI : SettlementPOI, ISpellTrainerHost
+    public class EmpireWizardHallPOI : SettlementPOI, ISpellTrainerHost, IEnchanterHost
     {
         public override string LocationId => "tor_wizardhall";
         public override string ParentMenuId => "town_artisan";
@@ -18,6 +19,8 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public override string EnterLabelDefault => "Visit the Empire Wizard Hall";
 
         public string SpellTrainerTemplateId => "tor_spelltrainer_empire_0";
+        public string EnchanterTemplateId    => "tor_enchanter_empire_0";
+        public List<string> EnchantmentSuffixes => new() { "emp_enchant" };
 
         public override bool CheckAccess(Settlement s, Hero h, out TextObject denialReason)
         {

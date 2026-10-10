@@ -63,8 +63,8 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 h => h.HomeSettlement == s && h.Template?.StringId == templateId);
             if (existing != null) return existing;
 
-            // Design intent: POI residents never change HomeSettlement. If a hero with the
-            // matching template exists elsewhere, HomeSettlement has drifted unexpectedly —
+            // Design intent: POI residents never change "home" settlement. If a hero with the
+            // matching template exists elsewhere, home settlement has drifted unexpectedly —
             // reuse rather than duplicate, log so we see it in testing.
             var drifted = Hero.AllAliveHeroes.FirstOrDefault(h => h.Template?.StringId == templateId);
             if (drifted != null)
@@ -105,6 +105,8 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         private void PlaceTrainersFor(Settlement s)
         {
             foreach (var host in _byLocationId.Values.OfType<ISpellTrainerHost>())
+                host.EnsurePlaced(s);
+            foreach (var host in _byLocationId.Values.OfType<IEnchanterHost>())
                 host.EnsurePlaced(s);
         }
 

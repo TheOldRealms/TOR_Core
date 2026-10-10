@@ -145,11 +145,13 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
     private void SpawnEnchanter(Settlement settlement, bool forceSpawn = false)
     {
+        if (settlement.Culture.StringId == TORConstants.Cultures.EMPIRE) return;
+
         var trainer = GetEnchanterForTown(settlement);
         if(settlement.IsTorLithanel())  //needs fixing with more care later. 3 behaviors all at once are here interfering.
             return;
-        
-        var locationId = settlement.Culture.StringId == TORConstants.Cultures.EMPIRE ? "tor_wizardhall" : "house_1";
+
+        var locationId = "house_1";
         var currentLocation = settlement.LocationComplex.GetLocationWithId(locationId);
         if (trainer != null && currentLocation != null)
         {
@@ -173,8 +175,9 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
     private bool IsTrainerInCollege(Settlement settlement)
     {
-        var locationId = settlement.Culture.StringId == TORConstants.Cultures.EMPIRE ? "tor_wizardhall" : "house_1";
-        var location = settlement.LocationComplex.GetLocationWithId(locationId);
+        if (settlement.Culture.StringId == TORConstants.Cultures.EMPIRE) return true;
+
+        var location = settlement.LocationComplex.GetLocationWithId("house_1");
         var trainer = GetEnchanterForTown(settlement);
         if (trainer != null) return location.GetLocationCharacter(trainer) != null;
 
@@ -204,6 +207,8 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
     private void CreateEnchanter(Settlement settlement)
     {
+        if (settlement.Culture.StringId == TORConstants.Cultures.EMPIRE) return;
+
         CharacterObject template = null;
 
         var cultureID = settlement.Culture.StringId;
