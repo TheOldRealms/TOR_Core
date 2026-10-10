@@ -36,7 +36,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
+  <!-- Windows-only F5/Run config. On Linux (Rider opening this sln by mistake),
+       running Bannerlord.exe through Fedora mono fails with
+       UnauthorizedAccessException: '/usr/share/Mount and Blade II Bannerlord'.
+       Use TOR_Core.CrossPlatform.sln + "Bannerlord Attach" Mono Remote config on Linux. -->
+  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
     <StartAction>Program</StartAction>
     <StartProgram>..\..\..\bin\Win64_Shipping_Client\Bannerlord.exe</StartProgram>
     <StartArguments>/singleplayer _MODULES_%2aNative%2aSandBoxCore%2aSandBox%2aStoryMode%2aCustomBattle%2aTOR_Armory%2aTOR_Environment%2aTOR_Core%2a_MODULES_</StartArguments>
