@@ -1407,25 +1407,6 @@ namespace TOR_Core.Utilities
                 : $"Failed to establish {poiLocationId} at {settlementId} (Location row missing in complex?).\n";
         }
 
-        [CommandLineFunctionality.CommandLineArgumentFunction("unestablish_poi", "tor")]
-        public static string UnestablishPOI(List<string> arguments)
-        {
-            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
-                return CampaignCheats.ErrorType;
-            if (Campaign.Current == null) return "Function only available in campaign mode.\n";
-
-            if (arguments.Count < 2)
-                return "Usage: tor.unestablish_poi <settlementId> <poiLocationId>\n";
-
-            var s = Settlement.All.FirstOrDefault(x => x.StringId == arguments[0]);
-            if (s == null) return $"Settlement '{arguments[0]}' not found.\n";
-            var poi = SettlementPOIManagerCampaignBehavior.Get(arguments[1]);
-            if (poi == null) return $"POI '{arguments[1]}' not found.\n";
-
-            Campaign.Current.GetCampaignBehavior<SettlementPOIManagerCampaignBehavior>()?.UnmarkEstablished(s, poi);
-            return $"Unestablished {arguments[1]} at {s.Name}.\n";
-        }
-
         private static string AggregateOutput(string topicHeader, List<string> matchedSpells) =>
             matchedSpells.Aggregate(
                 $"\n{topicHeader}\n",

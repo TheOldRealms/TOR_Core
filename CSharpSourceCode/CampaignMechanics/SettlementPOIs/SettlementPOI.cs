@@ -56,28 +56,16 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         protected virtual bool IsDiscovered(Settlement settlement) => true;
 
         /// <summary>
-        /// When true, scene presence is NOT sufficient for <see cref="AppliesTo"/> to pass —
-        /// the manager must also mark this (settlement, POI) pair as established. Lets a POI
-        /// pre-exist as a Location row (via XML template) across many settlements but only
-        /// activate at the ones where it's been "built" at runtime (quest reward, etc.).
-        /// Default false: scene presence alone activates.
-        /// </summary>
-        public virtual bool RequiresEstablishment => false;
-
-        /// <summary>
-        /// Does this POI exist in <paramref name="s"/>? Scene presence is the baseline; if
-        /// <see cref="RequiresEstablishment"/> is also true, the manager's established flag
-        /// must be set.
+        /// Does this POI exist in <paramref name="s"/>? Scene presence is the sole gate —
+        /// a POI "exists" at a settlement when the Location row has at least one scene
+        /// attached (via XML on load, or <see cref="SettlementPOIManagerCampaignBehavior.EstablishAt"/>
+        /// at runtime). The town_complex template provides the Location row in every town's
+        /// LocationComplex; only scenes are per-settlement.
         /// </summary>
         public bool AppliesTo(Settlement s)
         {
             var loc = s?.LocationComplex?.GetLocationWithId(LocationId);
-            bool hasScene = loc != null && loc.GetSceneCount() > 0;
-            if (!hasScene) return false;
-            if (!RequiresEstablishment) return true;
-
-            var mgr = Campaign.Current?.GetCampaignBehavior<SettlementPOIManagerCampaignBehavior>();
-            return mgr != null && mgr.IsEstablished(s, this);
+            return loc != null && loc.GetSceneCount() > 0;
         }
 
         // ------- Convention-based reason lookup

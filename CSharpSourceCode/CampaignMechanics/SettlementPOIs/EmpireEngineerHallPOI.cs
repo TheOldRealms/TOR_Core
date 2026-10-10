@@ -19,10 +19,6 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
 
         public string SkillTrainerTemplateId => "tor_nulnengineernpc_empire";
 
-        // POI is "built" per settlement at runtime — Nuln has it via XML scene (auto-seeded
-        // on load); other towns need an explicit EstablishAt call (quest reward, etc.).
-        public override bool RequiresEstablishment => true;
-
         public override bool CheckAccess(Settlement s, Hero h, out TextObject denialReason)
         {
             if (!IsDiscovered(s))
