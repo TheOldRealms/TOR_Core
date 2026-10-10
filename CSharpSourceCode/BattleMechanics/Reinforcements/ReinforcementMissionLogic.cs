@@ -10,6 +10,7 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.BattleMechanics.Reinforcements
@@ -232,8 +233,21 @@ namespace TOR_Core.BattleMechanics.Reinforcements
 
                 // retreat/re entry cannot reset the timer or reroll the decision for that mapevent
                 candidate.Resolved = true;
-                if (CanStillJoin(candidate) && ShouldJoinBattle(candidate.Party, candidate.Side))
-                    RegisterReinforcingParty(candidate.Party, candidate.Side);
+                if (CanStillJoin(candidate))
+                {
+                    if (ShouldJoinBattle(candidate.Party, candidate.Side))
+                    {
+                        RegisterReinforcingParty(candidate.Party, candidate.Side);
+                    }
+                    else
+                    {
+                        var party = candidate.Party;
+                        var partyName = party.Army?.LeaderParty == party ? party.ArmyName : party.Name;
+                        var message = new TextObject("{=tor_reinforcement_did_not_join}{PARTY_NAME} didn't join the battle.");
+                        message.SetTextVariable("PARTY_NAME", partyName);
+                        InformationManager.DisplayMessage(new InformationMessage(message.ToString()));
+                    }
+                }
             }
 
             ReleaseDelayedReinforcements(BattleSideEnum.Defender);
