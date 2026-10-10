@@ -7,8 +7,9 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
     {
         public static Hero GetOrCreateEnchanter(this IEnchanterHost host, Settlement s)
         {
+            if (!(host is SettlementPOI poi)) return null;
             var mgr = Campaign.Current?.GetCampaignBehavior<SettlementPOIManagerCampaignBehavior>();
-            return mgr?.GetOrCreateHero(s, host.EnchanterTemplateId);
+            return mgr?.GetOrCreateHero(s, poi.LocationId, host.EnchanterTemplateId);
         }
 
         public static void EnsurePlaced(this IEnchanterHost host, Settlement s)

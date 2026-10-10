@@ -7,8 +7,9 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
     {
         public static Hero GetOrCreateTrainer(this ISpellTrainerHost host, Settlement s)
         {
+            if (!(host is SettlementPOI poi)) return null;
             var mgr = Campaign.Current?.GetCampaignBehavior<SettlementPOIManagerCampaignBehavior>();
-            return mgr?.GetOrCreateHero(s, host.SpellTrainerTemplateId);
+            return mgr?.GetOrCreateHero(s, poi.LocationId, host.SpellTrainerTemplateId);
         }
 
         public static void EnsurePlaced(this ISpellTrainerHost host, Settlement s)

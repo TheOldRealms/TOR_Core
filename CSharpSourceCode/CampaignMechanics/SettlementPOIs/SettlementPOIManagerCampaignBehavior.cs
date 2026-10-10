@@ -41,6 +41,10 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public static SettlementPOI Get(string locationId) =>
             _byLocationId.TryGetValue(locationId, out var poi) ? poi : null;
 
+        // Central registry of POI residents.
+        // Key: "settlementId|locationId" → list of hero StringIds living at that POI in that settlement.
+        private Dictionary<string, List<string>> _residents = new();
+
         // ------- Lifecycle
 
         public override void RegisterEvents()
@@ -50,27 +54,26 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             CampaignEvents.BeforeMissionOpenedEvent.AddNonSerializedListener(this, OnBeforeMissionOpened);
         }
 
-        public override void SyncData(IDataStore dataStore) { }
-
-        public Hero GetOrCreateHero(Settlement s, string templateId)
+        public override void SyncData(IDataStore dataStore)
         {
-            if (s == null || string.IsNullOrEmpty(templateId)) return null;
+            dataStore.SyncData("_poiResidents", ref _residents);
+        }
 
-            // Match on HomeSettlement rather than HeroesWithoutParty so we still find the
-            // hero when they're temporarily in a party (siege garrison, kidnapped, etc.)
-            // — avoids duplicate creation.
-            var existing = Hero.AllAliveHeroes.FirstOrDefault(
-                h => h.HomeSettlement == s && h.Template?.StringId == templateId);
-            if (existing != null) return existing;
+        public Hero GetOrCreateHero(Settlement s, string locationId, string templateId)
+        {
+            if (s == null || string.IsNullOrEmpty(locationId) || string.IsNullOrEmpty(templateId)) return null;
 
-            // Design intent: POI residents never change "home" settlement. If a hero with the
-            // matching template exists elsewhere, home settlement has drifted unexpectedly —
-            // reuse rather than duplicate, log so we see it in testing.
-            var drifted = Hero.AllAliveHeroes.FirstOrDefault(h => h.Template?.StringId == templateId);
-            if (drifted != null)
+            var key = $"{s.StringId}|{locationId}";
+            if (!_residents.TryGetValue(key, out var ids))
+                _residents[key] = ids = new List<string>();
+
+            // Dedup by template: if a resident of this POI already has this template, reuse.
+            // Natural handling of "two role interfaces, same template" (Dawi: spell trainer +
+            // enchanter → same template → one hero plays both).
+            foreach (var id in ids)
             {
-                TORCommon.Log($"[POI] Trainer {templateId} expected at {s.StringId} but found at {drifted.HomeSettlement?.StringId ?? "<none>"} — reusing to avoid duplicate.", NLog.LogLevel.Warn);
-                return drifted;
+                var h = Hero.FindFirst(x => x.StringId == id);
+                if (h != null && h.IsAlive && h.Template?.StringId == templateId) return h;
             }
 
             var template = MBObjectManager.Instance.GetObject<CharacterObject>(templateId);
@@ -84,7 +87,19 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             hero.SetName(name, hero.FirstName);
             hero.CharacterObject.HiddenInEncyclopedia = true;
             HeroHelper.SpawnHeroForTheFirstTime(hero, s);
+            ids.Add(hero.StringId);
             return hero;
+        }
+
+        public IEnumerable<Hero> GetResidents(Settlement s, string locationId)
+        {
+            var key = $"{s.StringId}|{locationId}";
+            if (!_residents.TryGetValue(key, out var ids)) yield break;
+            foreach (var id in ids)
+            {
+                var h = Hero.FindFirst(x => x.StringId == id);
+                if (h != null) yield return h;
+            }
         }
 
         private void OnBeforeMissionOpened()
