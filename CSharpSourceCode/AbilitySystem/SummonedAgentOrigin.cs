@@ -123,7 +123,9 @@ namespace TOR_Core.AbilitySystem
 
         public Banner Banner { get; private set; }
 
-        public SummonedCombatant(Team team, BasicCultureObject culture)
+        public BattleEnvironment CurrentBattleEnvironment {get; }
+
+        public SummonedCombatant(Team team, BasicCultureObject culture, BattleEnvironment currentBattleEnvironment)
         {
             Name = new TextObject("Summoned");
             Side = team.Side;
@@ -132,6 +134,7 @@ namespace TOR_Core.AbilitySystem
             PrimaryColorPair = new Tuple<uint, uint>(team.Color, team.Color2);
             AlternativeColorPair = new Tuple<uint, uint>(team.Color, team.Color2);
             Banner = team.Banner;
+            CurrentBattleEnvironment = currentBattleEnvironment;
         }
 
         public int GetTacticsSkillAmount() => 30;

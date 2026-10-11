@@ -1,4 +1,5 @@
 ﻿using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TOR_Core.CharacterDevelopment;
@@ -12,7 +13,7 @@ namespace TOR_Core.Models
         public override ExplainedNumber CalculateInventoryCapacity(MobileParty mobileParty, bool isCurrentlyAtSea, bool includeDescriptions = false, int additionalTroops = 0, int additionalSpareMounts = 0, int additionalPackAnimals = 0, bool includeFollowers = false)
         {
             var result = base.CalculateInventoryCapacity(mobileParty, includeDescriptions, isCurrentlyAtSea, additionalTroops, additionalSpareMounts, additionalPackAnimals, includeFollowers);
-            if (mobileParty != null && mobileParty.HasPerk(TORPerks.GunPowder.AmmoWagons))
+            if (mobileParty != null && mobileParty.HasPerk(TORPerks.GunPowder.AmmoWagons, out Hero perkOwnerHero, checkSecondaryRole: true))
             {
                 result.AddFactor(TORPerks.GunPowder.AmmoWagons.SecondaryBonus, TORPerks.GunPowder.AmmoWagons.Name);
             }

@@ -115,7 +115,7 @@ namespace TOR_Core.Models
             AddScaledSurgeonSurvivalBonus(mobileParty, ref survivalChanceDenominator);
 
             if (enemyParty?.MobileParty != null &&
-                enemyParty.MobileParty.HasPerk(DefaultPerks.Medicine.DoctorsOath))
+                enemyParty.MobileParty.HasPerk(DefaultPerks.Medicine.DoctorsOath, out Hero perkOwnerHero, checkSecondaryRole: false))
             {
                 AddScaledSurgeonSurvivalBonus(enemyParty.MobileParty, ref survivalChanceDenominator);
                 SkillLevelingManager.OnSurgeryApplied(enemyParty.MobileParty, surgerySuccess: false, character.Tier);
@@ -129,8 +129,7 @@ namespace TOR_Core.Models
                     DefaultPerks.Medicine.PhysicianOfPeople,
                     mobileParty,
                     isPrimaryBonus: false,
-                    ref survivalChanceDenominator,
-                    mobileParty.IsCurrentlyAtSea);
+                    ref survivalChanceDenominator);
             }
 
             var deathChance = 1f / survivalChanceDenominator.ResultNumber;
@@ -329,27 +328,32 @@ namespace TOR_Core.Models
         }
 
         /// <remarks>
-        /// AI parties heal once per day, or 4 times on the quarterDaily tick - I don't remember the specifics. The main party heals on hourly ticks.
+        /// AI parties heal 4 times daily on the quarterDaily tick.
+        /// The main party heals on hourly ticks.
+        /// Clan heroes are healed on their clan's HourlyClanTick.
+        /// 
+        /// This method no longer exists on 1.5 in native and can't be used as an entry point for regen item traits.
+        /// Their future will depend on whether we need to harmony patch or TW adds a new entry point.
         /// </remarks>
-        public override int GetHeroesEffectedHealingAmount(Hero hero, float healingRate)
-        {
-            var effectiveRate = new ExplainedNumber(base.GetHeroesEffectedHealingAmount(hero, healingRate));
+        //public override int GetHeroesEffectedHealingAmount(Hero hero, float healingRate)
+        //{
+        //    var effectiveRate = new ExplainedNumber(base.GetHeroesEffectedHealingAmount(hero, healingRate));
 
-            if (hero.PartyBelongedTo == MobileParty.MainParty)
-            {
-                var equipmentEffect = hero.GetAggregatedStatEffectFromEquipment(ItemTraitStatType.HealthRegen);
-                if (equipmentEffect > 0)
-                {
-                    effectiveRate.AddFactor(equipmentEffect, GameTexts.FindText("tor_generic_enchantedEquipment"));//percentage values are listed on the item traits
-                }
-            }
-            float resultNumber = effectiveRate.ResultNumber;
-            if (resultNumber - (float)(int)resultNumber > MBRandom.RandomFloat)
-            {
-                return (int)resultNumber + 1;
-            }
+        //    if (hero.PartyBelongedTo == MobileParty.MainParty)
+        //    {
+        //        var equipmentEffect = hero.GetAggregatedStatEffectFromEquipment(ItemTraitStatType.HealthRegen);
+        //        if (equipmentEffect > 0)
+        //        {
+        //            effectiveRate.AddFactor(equipmentEffect, GameTexts.FindText("tor_generic_enchantedEquipment"));//percentage values are listed on the item traits
+        //        }
+        //    }
+        //    float resultNumber = effectiveRate.ResultNumber;
+        //    if (resultNumber - (float)(int)resultNumber > MBRandom.RandomFloat)
+        //    {
+        //        return (int)resultNumber + 1;
+        //    }
 
-            return (int)resultNumber;
-        }
+        //    return (int)resultNumber;
+        //}
     }
 }

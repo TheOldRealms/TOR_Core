@@ -38,14 +38,14 @@ namespace TOR_Core.Models
         public int CalculateDevotionIncreaseForPraying(Hero hero)
         {
             ExplainedNumber result = new ExplainedNumber(TORConstants.DEFAULT_PRAYING_DEVOTION_INCREASE);
-            PerkHelper.AddPerkBonusForCharacter(TORPerks.Faith.Devotee, hero.CharacterObject, false, ref result);
+            PerkHelper.AddPerkBonusForCharacter(TORPerks.Faith.Devotee, BattleEnvironment.Any, hero.CharacterObject, false, ref result);
             return (int)result.ResultNumber;
         }
 
         public int CalculateCursedRegionDamagePerHour(MobileParty party)
         {
             ExplainedNumber result = new ExplainedNumber(TORConstants.DEFAULT_CURSE_WOUND_STRENGTH);
-            PerkHelper.AddPerkBonusForCharacter(TORPerks.Faith.Superstitious, party.LeaderHero.CharacterObject, true, ref result);
+            PerkHelper.AddPerkBonusForCharacter(TORPerks.Faith.Superstitious, party.CurrentBattleEnvironment, party.LeaderHero.CharacterObject, true, ref result);
             return (int)result.ResultNumber;
         }
 
