@@ -1035,11 +1035,11 @@
     <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_shallya_mercy}"6 extra HP"</ItemTraitDescription>
     <StatsTuple StatType="HealthMax" Value="6" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_blessing_shallya_pacifism" ItemTraitName="Pacifism of Shallya" IsCraftable="true" IconName="shallya_dove_icon">
+  <ItemTrait ItemTraitStringId="emp_blessing_shallya_pacifism" ItemTraitName="Pacifism of Shallya" IsCraftable="true" ImbuedEffectChance="0.75" IconName="shallya_dove_icon">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>26</IngredientAmount>
-    <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_shallya_pacifism}"Mercy is piety. Chance to heal 2 HP for 5 seconds when knocking out enemies"</ItemTraitDescription>
+    <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_shallya_pacifism}"Mercy is piety. 75% chance to heal 2 HP per tick for 5 seconds when knocking out enemies"</ItemTraitDescription>
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.KnockOutCheckTriggerScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>shallya_pacifism_enchant</WeaponScriptArgument>
@@ -3260,7 +3260,7 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_shallya_pacifism}"Mercy is piety. Chance to heal 2 HP for 5 seconds when knocking out enemies"</ItemTraitDescription>
+    <ItemTraitDescription>{=str_tor_itemtraits_emp_blessing_shallya_pacifism}"Mercy is piety. 75% chance to heal 2 HP per tick for 5 seconds when knocking out enemies"</ItemTraitDescription>
     <OnInventoryUseScript InventoryScriptName="TOR_Core.CampaignMechanics.Crafting.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>emp_blessing_shallya_pacifism</InventoryScriptArgument>

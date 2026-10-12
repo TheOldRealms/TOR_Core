@@ -1484,10 +1484,34 @@
              banner_key="11.2.7.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_sons_of_lady"
              tier="6"
              is_minor_faction="true"
+			 is_clan_type_mercenary="true"
              is_outlaw="false"
              settlement_banner_mesh="encounter_flag_f"
-             text="{=str_tor_clan_greenknight_clan_desc}SImps of the lady (...)"
-             default_party_template="PartyTemplate.bretonnia_lordparty_template" />
+             text="{=str_tor_clan_greenknight_clan_desc}Ride for Bretonnia (...)"
+             default_party_template="PartyTemplate.bretonnia_lordparty_template" >
+			<minor_faction_character_templates>
+            </minor_faction_character_templates>
+	</Faction>
+    <Faction id="the_fay_enchantress_clan_1"
+             name="Fay Enchantress"
+             banner_key="11.2.7.1500.1500.764.764.1.1.0.125.20.41.600.600.764.764.0.0.0:kingdom_sons_of_lady"
+			 label_color="FF34671e"
+             color="FF34671e"
+             color2="FF830808"
+             alternative_color="FF34671e"
+             alternative_color2="FF830808"
+             culture="Culture.vlandia"
+             tier="6"
+             is_minor_faction="true"
+			 is_clan_type_mercenary="true"
+             is_outlaw="false"
+             default_party_template="PartyTemplate.bretonnia_lordparty_template"
+             settlement_banner_mesh="encounter_flag_f"
+             text="Morgiana the Fey (...)"
+             owner="Hero.tor_br_fey_leader" >
+			 <minor_faction_character_templates>
+            </minor_faction_character_templates>
+			</Faction>
     <Faction id="empire_college_magic"
              default_party_template="PartyTemplate.college_magic_01"
              name="{=str_tor_clan_college_magic_clan_1_name}Imperial Colleges of Magic"
@@ -1787,5 +1811,6 @@
              super_faction="Kingdom.beastmen"
              is_noble="true"
              text="{=str_tor_clan_beastmen_1_text}The Warherd of the Moonfather is a relatively new threat to Athel Loren. Under the leadership of Ndhiub, several Wargors of dubious reputation have been drawn beneath a single Beastlord, forming a savage host that has already laid waste to numerous Bretonnian villages along the forest's borders. Having bloodied his warherd upon the settlements of Men, Ndhiub has now turned his attention inwards, towards the ancient glades of Athel Loren, and outwards, towards the mines that are hidden in the vaults. Ndhiub attempts to coordinate his attacks with those of Morghur the Shadowgave, striking whenever word reaches him that the twisted abomination has once again emerged from the depths of the forest. Whether Morghur is even aware that such coordination is taking place is another matter entirely. The Shadowgave's mind is a tempest of madness, hatred and visions incomprehensible even to himself."
-             banner_key="11.102.7.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_moonfather" />
+             banner_key="11.102.7.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_moonfather" >
+			 </Faction>
 </Factions>

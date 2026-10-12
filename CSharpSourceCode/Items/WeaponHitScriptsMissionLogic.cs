@@ -9,6 +9,7 @@ using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
@@ -271,6 +272,19 @@ namespace TOR_Core.Items
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {
             _traitCoolDownMap.Remove(affectedAgent.Index);
+
+            if (agentState != AgentState.Unconscious || !affectedAgent.IsHuman ||
+                affectorAgent == null || !affectorAgent.IsHuman || !affectorAgent.IsActive() ||
+                !affectedAgent.IsEnemyOf(affectorAgent) || !blow.IsValid || TORSpellBlowHelper.IsSpellBlow(blow))
+                return;
+
+            var trait = ItemObject.GetItemFromWeaponKind(blow.WeaponItemKind)?.GetTraits(affectorAgent)
+                .FirstOrDefault(x => x.ItemTraitStringId == "emp_blessing_shallya_pacifism");
+            if (trait != null && MBRandom.RandomFloat < trait.ImbuedEffectChance)
+            {
+                TriggeredEffectManager.CreateNew(trait.OnWeaponHitScript.WeaponScriptArguments[0])
+                    .Trigger(affectorAgent.Position, Vec3.Up, affectorAgent);
+            }
         }
 
         /// <summary>
@@ -374,6 +388,9 @@ namespace TOR_Core.Items
 
         private static bool CanApplyOffensiveWeaponTrait(ItemTrait trait, Agent affectedAgent, Agent affectorAgent, Blow blow)
         {
+            // Pacifism is resolved against the confirmed knockout in OnAgentRemoved.
+            if (trait.ItemTraitStringId == "emp_blessing_shallya_pacifism") return false;
+
             if (!CanUseOffensiveWeaponTraitTarget(affectedAgent, affectorAgent))
             {
                 return false;

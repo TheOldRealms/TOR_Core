@@ -12,6 +12,7 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
 using TaleWorlds.ScreenSystem;
+using TOR_Core.Audio;
 using TOR_Core.CampaignMechanics.MapNotifications;
 using TOR_Core.Extensions;
 using TOR_Core.Ink;
@@ -100,6 +101,11 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
         [SaveableField(20)]
         private Dictionary<string, float> _orionLastFiefCaptureDayHeroID = [];
 
+        [SaveableField(21)]
+        private string _orionPendingHuntTargetHeroId;
+
+        [SaveableField(22)]
+        private int _orionPendingHuntDailyTicksLeft;
         private bool _removingOrionByScript;
         private bool _repairingOrionDiplomacy;
         private bool _removingOrionMercenaryContract;
@@ -147,6 +153,8 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             dataStore.SyncData("_orionLastPickedWarPlanMode", ref _orionLastPickedWarPlanMode);
             dataStore.SyncData("_orionWarPlanTravelDaysLeft", ref _orionWarPlanTravelDaysLeft);
             dataStore.SyncData("_orionLastFiefCaptureDayHeroID", ref _orionLastFiefCaptureDayHeroID);
+            dataStore.SyncData("_orionPendingHuntTargetHeroId", ref _orionPendingHuntTargetHeroId);
+            dataStore.SyncData("_orionPendingHuntDailyTicksLeft", ref _orionPendingHuntDailyTicksLeft);
         }
 
         public bool IsOrionRetreating(MobileParty party)
@@ -294,6 +302,8 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             _orionWarPrimarySettlementId = null;
             _orionWarSecondarySettlementId = null;
             _orionHuntTargetHeroId = null;
+            _orionPendingHuntTargetHeroId = null;
+            _orionPendingHuntDailyTicksLeft = 0;
             _orionWarPlanTimerStarted = false;
             _orionWarPlanTravelDaysLeft = 0;
             _queuedOrionInkStorys ??= [];
@@ -385,6 +395,13 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             RepairDiplomacy();
             DecayWarPressure();
             ForgetOldCaptureRevenges();
+
+            if (_orionPendingHuntDailyTicksLeft > 0)
+            {
+                _orionPendingHuntDailyTicksLeft--;
+            }
+
+            TryStartPendingHunt();
             TickMacroPlan();
             OpenQueuedInkStoryOnMap();
         }
@@ -393,6 +410,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
         {
             RepairDiplomacyAfterCampaignStart();
             KeepOnOakRoad();
+            TryStartPendingHunt();
             KeepOnHuntTrail();
             OpenQueuedInkStoryOnMap();
         }
@@ -678,6 +696,8 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             _orionState = UniqueSpawnState.Active;
             _orionWarPlanDaysLeft = 0;
             _orionHuntTargetHeroId = null;
+            _orionPendingHuntTargetHeroId = null;
+            _orionPendingHuntDailyTicksLeft = 0;
             _orionWarPlanTimerStarted = false;
             _orionWarPlanTravelDaysLeft = 0;
 
@@ -1571,7 +1591,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
 
         private bool TryPickHuntTarget(MobileParty orionParty)
         {
-            if (orionParty == null)
+            if (orionParty == null || _orionPendingHuntTargetHeroId != null)
             {
                 return false;
             }
@@ -1734,6 +1754,13 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
 
         private void StartHunt(Hero targetHero, bool showPlayerWarning)
         {
+            if (showPlayerWarning)
+            {
+                _orionPendingHuntTargetHeroId = targetHero.StringId;
+                _orionPendingHuntDailyTicksLeft = 2;
+                return;
+            }
+
             _orionWarPlanMode = UniqueSpawnCampaignBehavior.WarPlanLordHunt;
             _orionHuntTargetHeroId = targetHero.StringId;
             _orionWarTargetFactionId = targetHero.MapFaction?.StringId;
@@ -1742,14 +1769,51 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             _orionWarPlanDaysLeft = OrionWarPlanStayDurationDays;
             _orionWarPlanTimerStarted = true;
             _orionWarPlanTravelDaysLeft = 0;
+        }
 
-            if (showPlayerWarning)
+        private void TryStartPendingHunt()
+        {
+            if (_orionPendingHuntTargetHeroId == null || _orionPendingHuntDailyTicksLeft > 0)
             {
-                Campaign.Current.CampaignInformationManager.NewMapNoticeAdded(
-                    new TORMapNotification(
-                        new TextObject("{=str_tor_unique_orion_hunt_player}Your scouts report the God-King of the forest is following your trail, seeking vengeance for his slain kin."),
-                        "tor_orion_hunt"));
+                return;
             }
+
+            var targetHero = Hero.Find(_orionPendingHuntTargetHeroId);
+            var orionParty = CurrentParty();
+            if (_orionState != UniqueSpawnState.Active || orionParty == null ||
+                !HuntTargetHeroIsValid(targetHero) || targetHero.MapFaction == null ||
+                !targetHero.MapFaction.IsAtWarWith(AthelLoren()) || HuntTargetParty(targetHero) == null)
+            {
+                _orionPendingHuntTargetHeroId = null;
+                _orionPendingHuntDailyTicksLeft = 0;
+                return;
+            }
+
+            if (orionParty.MapEvent != null && orionParty.MapEvent.IsRaid)
+            {
+                orionParty.MapEvent.FinalizeEvent();
+            }
+
+            if (orionParty.MapEvent != null)
+            {
+                return;
+            }
+
+            if (orionParty.SiegeEvent != null)
+            {
+                orionParty.SiegeEvent.FinalizeSiegeEvent();
+            }
+
+            _orionPendingHuntTargetHeroId = null;
+            _orionPendingHuntDailyTicksLeft = 0;
+            StartHunt(targetHero, false);
+            KeepOnHuntTrail(orionParty);
+
+            Campaign.Current.CampaignInformationManager.NewMapNoticeAdded(
+                new TORMapNotification(
+                    new TextObject("{=str_tor_unique_orion_hunt_player}Your scouts report the God-King of the forest is following your trail, seeking vengeance for his slain kin."),
+                    "tor_orion_hunt"));
+            TORAudioManager.CreateSoundInstance("ReinforcementNoises/tor_welf_orion_01", false)?.Play();
         }
 
         private void KeepOnHuntTrail()
@@ -1826,6 +1890,8 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
         private void ClearHunt()
         {
             ClearHuntTargetOnly();
+            _orionPendingHuntTargetHeroId = null;
+            _orionPendingHuntDailyTicksLeft = 0;
 
             if (_orionWarPlanMode == UniqueSpawnCampaignBehavior.WarPlanLordHunt)
             {

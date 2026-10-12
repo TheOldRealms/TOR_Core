@@ -13487,7 +13487,7 @@
       <EquipmentSet id="tor_gs_troll_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_bergerac_leader" default_group="ranged" name="{=str_tor_br_bergerac_leader}Bertrand the Brigand" occupation="Lord" culture="Culture.vlandia" voice="curt" age="53" skill_template="SkillSet.tor_skills_archer_lord" is_hero="true">
+  <NPCCharacter id="tor_br_bergerac_leader" default_group="ranged" name="{=str_tor_br_bergerac_leader}Bertrand the Brigand" occupation="Lord" culture="Culture.vlandia" voice="curt" age="53" skill_template="SkillSet.tor_skills_archer_lord" is_hero="true" race="bretonnian">
     <face>
       <BodyProperties version="4" age="43" weight="0.4753" build="0.6235" key="0005A40D800001CFFF76648E6774B835534F86029511683BDCBCBF2C748476670F7B36030958240797000000000000000000000000000009000000003F2C9042" />
     </face>
@@ -13505,7 +13505,7 @@
       <EquipmentSet id="tor_bertrand_bergerac_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_bergerac_2" default_group="ranged" name="{=str_tor_br_bergerac_2}Gui le Gros" occupation="Special" culture="Culture.vlandia" voice="curt" age="53" skill_template="SkillSet.tor_skills_archer_lord" is_hero="true">
+  <NPCCharacter id="tor_br_bergerac_2" default_group="ranged" name="{=str_tor_br_bergerac_2}Gui le Gros" occupation="Special" culture="Culture.vlandia" voice="curt" age="53" skill_template="SkillSet.tor_skills_archer_lord" is_hero="true" race="bretonnian">
     <face>
       <BodyProperties version="4" age="43" weight="0.5693" build="0.8107" key="0005AC0B8070200C767887E1CE2C00A167884877557363887A4AFE1A79986896EEEFF603031985F56F5FC74A4727BAEA0000000000000003000000004C6C4002" />
     </face>
@@ -13523,7 +13523,7 @@
       <EquipmentSet id="tor_guy_le_gros_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_bergerac_3" default_group="ranged" name="{=str_tor_br_bergerac_3}Hugo le Petit" occupation="Special" culture="Culture.vlandia" voice="curt" age="53" skill_template="SkillSet.tor_skills_archer_lord" is_hero="true">
+  <NPCCharacter id="tor_br_bergerac_3" default_group="ranged" name="{=str_tor_br_bergerac_3}Hugo le Petit" occupation="Special" culture="Culture.vlandia" voice="curt" age="53" skill_template="SkillSet.tor_skills_archer_lord" is_hero="true" race="bretonnian">
     <face>
       <BodyProperties version="4" age="43" weight="0.9988" build="0.3889" key="0013600540CC2A0EA631882B9875D476738567878385437C25DA345A465ADADD6A91D6030C78879AC9A8FE7AC24C47C2000000000000000C00000000318C2002" />
     </face>
@@ -13541,7 +13541,7 @@
       <EquipmentSet id="tor_hugo_le_petit_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_wainfleet_leader" default_group="cavalry" name="{=str_tor_br_wainfleet_leader}Geg of Wainfleet" occupation="Lord" culture="Culture.vlandia" voice="curt" age="53" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_wainfleet_leader" default_group="cavalry" name="{=str_tor_br_wainfleet_leader}Geg of Wainfleet" occupation="Lord" culture="Culture.vlandia" voice="curt" age="53" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true" race="bretonnian">
     <face>
       <BodyProperties version="4" age="43" weight="0.5568" build="0.5163" key="0002780D8044034576A2A6415759B9EA73B77A9971DB846978735A5944668856854C76030C85738C888796AA3686398C000000000000000C00000000418C1002" />
     </face>
@@ -13559,7 +13559,7 @@
       <EquipmentSet id="tor_peasant_knight_lord_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_troubadour_leader" default_group="ranged" name="{=str_tor_br_troubadour_leader}Sir Tristan the Troubadour" occupation="Lord" culture="Culture.vlandia" voice="curt" age="53" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true">
+  <NPCCharacter id="tor_br_troubadour_leader" default_group="ranged" name="{=str_tor_br_troubadour_leader}Sir Tristan the Troubadour" occupation="Lord" culture="Culture.vlandia" voice="curt" age="53" skill_template="SkillSet.tor_skills_knight_lord" is_hero="true" race="bretonnian">
     <face>
       <BodyProperties version="4" age="43" weight="0.6709" build="0.4609" key="0015400080702002839C9745C7B72762772899A9969876B7549D87776B991A689BA7560307B987797A4A535B93868A640000000000000007000000003CF410C2" />
     </face>
@@ -13577,7 +13577,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_troubadour_2" default_group="ranged" name="{=str_tor_br_troubadour_2}Jules the Jester" occupation="Special" culture="Culture.vlandia" voice="curt" age="53" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_br_troubadour_2" default_group="ranged" name="{=str_tor_br_troubadour_2}Jules the Jester" occupation="Special" culture="Culture.vlandia" voice="curt" age="53" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true" race="bretonnian">
     <face>
       <BodyProperties version="4" age="43" weight="0.1065" build="0.0262" key="0015540280882012A9B2945AC71435967B6889679B9C7A8852963EDC895C77752B5AC60306A9B37A02A8D87A6B68D63D0000000000000006000000002ABC3002" />
     </face>
@@ -13595,7 +13595,7 @@
       <EquipmentSet id="jules_the_jester_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_greenknight_leader" name="{=str_tor_br_greenknight_leader}The Green Knight" default_group="cavalry" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="58" skill_template="SkillSet.tor_skills_louenleoncoeur">
+  <NPCCharacter id="tor_br_greenknight_leader" name="{=str_tor_br_greenknight_leader}The Green Knight" default_group="cavalry" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="58" skill_template="SkillSet.tor_skills_louenleoncoeur" is_hero="true" race="bretonnian">
     <face>
       <BodyProperties age="43" weight="0.5568" build="0.5163" key="0002780D8044034576A2A6415759B9EA73B77A9971DB846978735A5944668856854C76030C85738C888796AA3686398C000000000000000C00000000418C1002" />
     </face>
@@ -13612,6 +13612,78 @@
       <EquipmentSet id="tor_greenknight_template" />
       <EquipmentSet id="tor_greenknight_template" equipmentType="Civilian" />
     </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_fey_leader" name="Morgiana le Fay" default_group="cavalry" occupation="Lord" voice="earnest" age="24" is_female="true" skill_template="SkillSet.tor_skills_gelt" is_hero="true" culture="Culture.vlandia" race="bretonnian">
+    <Equipments>
+      <EquipmentSet id="tor_fay_enchantress_template" />
+      <EquipmentSet id="tor_fay_enchantress_template" equipmentType="Civilian" />
+    </Equipments>
+    <face>
+      <BodyProperties version="4" age="22" weight="0.0602" build="0.5933" key="0000A40012B44014739A8C4A8784957D5B86A17EAB974B83DD8A3687993D884600A916030A87458D0000000000000000000000000000000000000000455C4044" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="10" />
+      <Trait id="Commander" value="10" />
+      <Trait id="Politician" value="10" />
+      <Trait id="Manager" value="10" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Mercy" value="2" />
+      <Trait id="Generosity" value="2" />
+    </Traits>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_fey_1" name="Jeneva the Blessed Maid of Mousillon" default_group="infantry" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="25" is_female="true" is_hero="true" skill_template="SkillSet.tor_skills_caster_lord" race="bretonnian">
+    <Equipments>
+      <EquipmentSet id="tor_damsel_template_1" />
+      <EquipmentSet id="tor_damsel_template_1" equipmentType="Civilian" />
+    </Equipments>
+    <face>
+      <BodyProperties version="4" age="22" weight="0.0602" build="0.5933" key="0000A40012B44014739A8C4A8784957D5B86A17EAB974B83DD8A3687993D884600A916030A87458D0000000000000000000000000000000000000000455C4044" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="5" />
+      <Trait id="Mercy" value="2" />
+      <Trait id="Generosity" value="2" />
+      <Trait id="Honor" value="2" />
+    </Traits>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_fey_2" name="Alisse the Haunted" default_group="infantry" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="25" is_female="true" is_hero="true" skill_template="SkillSet.tor_skills_caster_lord" race="bretonnian">
+    <Equipments>
+      <EquipmentSet id="tor_damsel_template_2" />
+      <EquipmentSet id="tor_damsel_template_2" equipmentType="Civilian" />
+    </Equipments>
+    <face>
+      <BodyProperties version="4" age="22" weight="0.0602" build="0.5933" key="0000A40012B44014739A8C4A8784957D5B86A17EAB974B83DD8A3687993D884600A916030A87458D0000000000000000000000000000000000000000455C4044" />
+    </face>
+    <Traits>
+      <Trait id="Manager" value="5" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Commander" value="5" />
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Mercy" value="2" />
+      <Trait id="Generosity" value="2" />
+    </Traits>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_fey_3" name="Enchantress Guerrite" default_group="infantry" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="25" is_female="true" is_hero="true" skill_template="SkillSet.tor_skills_caster_lord" race="bretonnian">
+    <Equipments>
+      <EquipmentSet id="tor_damsel_template_3" />
+      <EquipmentSet id="tor_damsel_template_3" equipmentType="Civilian" />
+    </Equipments>
+    <face>
+      <BodyProperties version="4" age="22" weight="0.0602" build="0.5933" key="0000A40012B44014739A8C4A8784957D5B86A17EAB974B83DD8A3687993D884600A916030A87458D0000000000000000000000000000000000000000455C4044" />
+    </face>
+    <Traits>
+      <Trait id="Commander" value="5" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="5" />
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Generosity" value="2" />
+      <Trait id="Mercy" value="2" />
+      <Trait id="Honor" value="2" />
+    </Traits>
   </NPCCharacter>
   <NPCCharacter id="tor_dog_clan_hero_braganza" default_group="ranged" name="{=str_tor_dog_clan_hero_braganza}Luka Braganza" occupation="Lord" culture="Culture.empire" voice="curt" age="53" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
@@ -13739,7 +13811,6 @@
       <EquipmentSet id="dog_al_muktar_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <!-- Beastmen Lords -->
   <NPCCharacter id="tor_beastmen_lord_factionleader" default_group="infantry" name="{=str_tor_beastmen_lord_factionleader}Ndhiub Nluffur" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" race="gor2" skill_template="SkillSet.tor_skills_beastmen_ndhiub_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="35" weight="0.8" build="1" key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />

@@ -5,6 +5,7 @@ using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.Utilities
 {
@@ -20,15 +21,8 @@ namespace TOR_Core.Utilities
         /// </summary>
         public const int MinSlotsForSummoning = 5;
 
-        public const float InitialSpawnAgentCapMultiplier = 1.60f; // active agents cant go beyond 1.60 times the initial spawned agent count
-
-        /// <summary>
-        /// Minimum initial troop count before the soft summon cap is applied.
-        /// Below this threshold, only the hard mission limit applies.
-        /// </summary>
-        public const int SoftCapThreshold = 200;
-
-        private static int _initialSpawnedTroopCount;
+        // reinforcements expand the summon headroom by this multiplier, so that a battle with 100 non-summoned troops can have 160 summoned troops at once.
+        public const float DynamicBattleAgentCapMultiplier = 1.60f;
 
         private static ActionIndexCache? _actRaiseFromGround;
         private static ActionIndexCache ActRaiseFromGround
@@ -40,15 +34,6 @@ namespace TOR_Core.Utilities
                 return _actRaiseFromGround.Value;
             }
         }
-        public static void ResetInitialSpawnedTroopCount()
-        {
-            _initialSpawnedTroopCount = 0;
-        }
-
-        public static void RegisterInitialTroopsSpawned(int troopCount)
-        {
-            _initialSpawnedTroopCount += troopCount;
-        }
 
         public static int GetCurrentActiveAgentCount()
         {
@@ -56,14 +41,20 @@ namespace TOR_Core.Utilities
             return Mission.Current.Agents.CountQ(a => a.IsActive());
         }
 
-        public static int GetInitialSpawnBasedAgentLimit()
+        public static int GetCurrentNonSummonedTroopCount()
         {
-            return (int)MathF.Floor(_initialSpawnedTroopCount * InitialSpawnAgentCapMultiplier);
+            if (Mission.Current == null) return 0;
+            return Mission.Current.Agents.CountQ(a => a.IsActive() && a.IsHuman && !a.IsSummoned());
         }
 
-        public static int GetInitialSpawnBasedAvailableSummonSlots()
+        public static int GetDynamicBattleAgentLimit()
         {
-            return Math.Max(0, GetInitialSpawnBasedAgentLimit() - GetCurrentActiveAgentCount());
+            return (int)MathF.Floor(GetCurrentNonSummonedTroopCount() * DynamicBattleAgentCapMultiplier);
+        }
+
+        public static int GetDynamicBattleAvailableSummonSlots()
+        {
+            return Math.Max(0, GetDynamicBattleAgentLimit() - GetCurrentActiveAgentCount());
         }
 
         public static AgentBuildData GetAgentBuildData(Agent caster, string summonedUnitID)
@@ -105,19 +96,12 @@ namespace TOR_Core.Utilities
         }
 
         /// <summary>
-        /// Gets the number of available slots for summoning new agents.
-        /// Soft cap only applies when initial troop count >= SoftCapThreshold.
+        /// Gets the number of available slots for summoning new agents respecting the reinforcements spawned during that mission
         /// </summary>
         public static int GetAvailableSummonSlots()
         {
             var hardAvailableSlots = Math.Max(0, GetMissionAgentLimit() - GetCurrentAgentCount());
-
-            if (_initialSpawnedTroopCount < SoftCapThreshold)
-            {
-                return hardAvailableSlots;
-            }
-
-            var softAvailableSlots = GetInitialSpawnBasedAvailableSummonSlots();
+            var softAvailableSlots = GetDynamicBattleAvailableSummonSlots();
             return Math.Min(hardAvailableSlots, softAvailableSlots);
         }
 
