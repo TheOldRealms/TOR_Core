@@ -143,9 +143,18 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
         }
     }
 
+    private static bool IsPoiManagedEnchanterCulture(string cultureId)
+    {
+        return cultureId == TORConstants.Cultures.EMPIRE
+            || cultureId == TORConstants.Cultures.SYLVANIA
+            || cultureId == TORConstants.Cultures.MOUSILLON
+            || cultureId == TORConstants.Cultures.ASRAI
+            || cultureId == TORConstants.Cultures.GREENSKIN;
+    }
+
     private void SpawnEnchanter(Settlement settlement, bool forceSpawn = false)
     {
-        if (settlement.Culture.StringId == TORConstants.Cultures.EMPIRE) return;
+        if (IsPoiManagedEnchanterCulture(settlement.Culture.StringId)) return;
 
         var trainer = GetEnchanterForTown(settlement);
         if(settlement.IsTorLithanel())  //needs fixing with more care later. 3 behaviors all at once are here interfering.
@@ -175,7 +184,7 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
     private bool IsTrainerInCollege(Settlement settlement)
     {
-        if (settlement.Culture.StringId == TORConstants.Cultures.EMPIRE) return true;
+        if (IsPoiManagedEnchanterCulture(settlement.Culture.StringId)) return true;
 
         var location = settlement.LocationComplex.GetLocationWithId("house_1");
         var trainer = GetEnchanterForTown(settlement);
@@ -207,7 +216,7 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
     private void CreateEnchanter(Settlement settlement)
     {
-        if (settlement.Culture.StringId == TORConstants.Cultures.EMPIRE) return;
+        if (IsPoiManagedEnchanterCulture(settlement.Culture.StringId)) return;
 
         CharacterObject template = null;
 

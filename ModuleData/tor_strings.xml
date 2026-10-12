@@ -6033,4 +6033,31 @@
 
   <!-- POIs - Smoke Test -->
   <string id="tor_test_mcp_linkedfield_verification" text="{=str_tor_test_mcp_linkedfield_verification}Smoke test — safe to delete." />
+
+  <!-- POIs - Vampire Crypt -->
+  <string id="tor_poi_vampire_crypt.Name" text="{=str_tor_poi_vampire_crypt.Name}Vampire Crypt" />
+  <string id="tor_poi_vampire_crypt.EnterLabel" text="{=str_tor_poi_vampire_crypt.EnterLabel}Visit the Vampire Crypt" />
+  <string id="tor_poi_vampire_crypt.Undiscovered" text="{=str_tor_poi_vampire_crypt.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_vampire_crypt.Sealed" text="{=str_tor_poi_vampire_crypt.Sealed}This place is sealed." />
+  <string id="tor_poi_vampire_crypt.SiegeSealed" text="{=str_tor_poi_vampire_crypt.SiegeSealed}The crypt is sealed during the siege." />
+  <string id="tor_poi_vampire_crypt.Rejected" text="{=str_tor_poi_vampire_crypt.Rejected}The dead within turn you away." />
+  <string id="tor_poi_vampire_crypt.MustHaveCareer" text="{=str_tor_poi_vampire_crypt.MustHaveCareer}Only the undying may enter the crypt." />
+
+  <!-- POIs - Spellsingers Grove -->
+  <string id="tor_poi_spellsingers_grove.Name" text="{=str_tor_poi_spellsingers_grove.Name}Spellsingers' Grove" />
+  <string id="tor_poi_spellsingers_grove.EnterLabel" text="{=str_tor_poi_spellsingers_grove.EnterLabel}Visit the Spellsingers' Grove" />
+  <string id="tor_poi_spellsingers_grove.Undiscovered" text="{=str_tor_poi_spellsingers_grove.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_spellsingers_grove.Sealed" text="{=str_tor_poi_spellsingers_grove.Sealed}This place is sealed." />
+  <string id="tor_poi_spellsingers_grove.SiegeSealed" text="{=str_tor_poi_spellsingers_grove.SiegeSealed}The grove's wards close during the siege." />
+  <string id="tor_poi_spellsingers_grove.Rejected" text="{=str_tor_poi_spellsingers_grove.Rejected}The grove does not open for your kind." />
+  <string id="tor_poi_spellsingers_grove.MustHaveCareer" text="{=str_tor_poi_spellsingers_grove.MustHaveCareer}Only the children of Ariel may enter the grove." />
+
+  <!-- POIs - Shaman Hut -->
+  <string id="tor_poi_shaman_hut.Name" text="{=str_tor_poi_shaman_hut.Name}Shaman Hut" />
+  <string id="tor_poi_shaman_hut.EnterLabel" text="{=str_tor_poi_shaman_hut.EnterLabel}Visit the Shaman Hut" />
+  <string id="tor_poi_shaman_hut.Undiscovered" text="{=str_tor_poi_shaman_hut.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_shaman_hut.Sealed" text="{=str_tor_poi_shaman_hut.Sealed}This place is sealed." />
+  <string id="tor_poi_shaman_hut.SiegeSealed" text="{=str_tor_poi_shaman_hut.SiegeSealed}The shaman da hut iz closed. Bosses fightin'!" />
+  <string id="tor_poi_shaman_hut.Rejected" text="{=str_tor_poi_shaman_hut.Rejected}Da shaman don't see yer kind." />
+  <string id="tor_poi_shaman_hut.MustHaveCareer" text="{=str_tor_poi_shaman_hut.MustHaveCareer}Only shaman-boyz may enter." />
 </strings>

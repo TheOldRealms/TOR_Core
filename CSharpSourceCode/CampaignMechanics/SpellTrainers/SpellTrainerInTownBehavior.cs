@@ -57,9 +57,18 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             }
         }
 
+        private static bool IsPoiManagedSpellTrainerCulture(string cultureId)
+        {
+            return cultureId == TORConstants.Cultures.EMPIRE
+                || cultureId == TORConstants.Cultures.SYLVANIA
+                || cultureId == TORConstants.Cultures.MOUSILLON
+                || cultureId == TORConstants.Cultures.ASRAI
+                || cultureId == TORConstants.Cultures.GREENSKIN;
+        }
+
         private bool IsTrainerInCollege(Settlement settlement)
         {
-            if (settlement.Culture.StringId == TORConstants.Cultures.EMPIRE) return true;
+            if (IsPoiManagedSpellTrainerCulture(settlement.Culture.StringId)) return true;
 
             var location = settlement.LocationComplex.GetLocationWithId("house_1");
             var trainer = GetTrainerForTown(settlement);
@@ -90,7 +99,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
         private void SpawnTrainerInCollege(Settlement settlement, bool forceSpawn)
         {
-            if (settlement.Culture.StringId == TORConstants.Cultures.EMPIRE) return;
+            if (IsPoiManagedSpellTrainerCulture(settlement.Culture.StringId)) return;
 
             var trainer = GetTrainerForTown(settlement);
             var collegeloc = settlement.LocationComplex.GetLocationWithId("house_1");
@@ -129,7 +138,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
         private void CreateTrainer(Settlement settlement)
         {
-            if (settlement.Culture.StringId == TORConstants.Cultures.EMPIRE) return;
+            if (IsPoiManagedSpellTrainerCulture(settlement.Culture.StringId)) return;
 
             CharacterObject template = null;
             if (settlement.Culture.StringId == TORConstants.Cultures.BRETONNIA && settlement.StringId == "town_BA1") template = MBObjectManager.Instance.GetObject<CharacterObject>(_prophetessTrainerId);
