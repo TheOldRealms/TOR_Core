@@ -5225,121 +5225,63 @@
   <string id="str_formation_ai_behavior_text.TORBehaviorRetreat" text="{=str_tor_formation_ai_behavior_text_torbehaviorretreat}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are retreating." />
   <string id="str_formation_ai_behavior_text.TORBehaviorSkirmish" text="{=str_tor_formation_ai_behavior_text_torbehaviorskirmish}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are skirmishing." />
   <string id="str_formation_ai_sergeant_instruction_behaviour_text.TORBehaviorCharge" text="{=str_formation_ai_sergeant_instruction_behaviour_text.torbehaviorcharge}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are Charging." />
-  <string id="tor_we_scout" text="{=str_tor_we_scout}Asrai Ranger" category="Units" subcategory="Wood Elves" />
-  <string id="tor_we_kings_bowman" text="{=str_tor_we_kings_bowman}Asrai Kings Bowman" category="Units" subcategory="Wood Elves" />
-  <string id="tor_test_subject" text="{=str_tor_test_subject}Test Subject" category="Units" subcategory="Test" />
-  <string id="str_tor_culture_beastmen" text="{=str_tor_culture_beastmen}Beastmen" category="Factions" subcategory="Beastmen" />
-  <string id="str_tor_kingdom_beastmen" text="{=str_tor_kingdom_beastmen}Beastmen Herds" category="Factions" subcategory="Beastmen" />
-  <string id="str_tor_kingdom_beastmen_short" text="{=str_tor_kingdom_beastmen_short}Beastmen" category="Factions" subcategory="Beastmen" />
-  <string id="str_tor_kingdom_beastmen_title" text="{=str_tor_kingdom_beastmen_title}Beastmen Herds" category="Factions" subcategory="Beastmen" />
-  <string id="str_tor_kingdom_beastmen_ruler" text="{=str_tor_kingdom_beastmen_ruler}Beastlord" category="Factions" subcategory="Beastmen" />
-  <string id="str_tor_kingdom_beastmen_text" text="{=str_tor_kingdom_beastmen_text}The scattered herds of Chaos-corrupted beast-kin that stalk the Drakwald and the deep places of the Empire. Ruled by no crown but might, they raid the borderlands from herdstone-shadowed hollows in the trees." category="Factions" subcategory="Beastmen" />
-  <string id="str_tor_clan_beastmen_1" text="{=str_tor_clan_beastmen_1}Great Herd" category="Factions" subcategory="Beastmen" />
-  <string id="str_tor_clan_beastmen_1_text" text="{=str_tor_clan_beastmen_1_text}The paramount warherd of the Drakwald, gathered under the horns of the current Beastlord." category="Factions" subcategory="Beastmen" />
-  <string id="str_tor_hero_beastmen_leader_text" text="{=str_tor_hero_beastmen_leader_text}The current Beastlord of the Great Herd, whose horns and hooves rule by fear and by strength alone." category="Factions" subcategory="Beastmen" />
-  <string id="tor_cc_beastmen_ungor_label" text="{=str_tor_cc_beastmen_ungor_label}Ungor Whelp" category="Character Creation" subcategory="Beastmen" />
-  <string id="tor_cc_beastmen_ungor_text" text="{=str_tor_cc_beastmen_ungor_text}You were spawned into the herd as an Ungor — small horns, weaker limbs, meant to run and fetch rather than fight and die. What you lack in muscle you learned to make up for with a keen eye and a fleet hoof." category="Character Creation" subcategory="Beastmen" />
-  <string id="tor_cc_beastmen_gor_label" text="{=str_tor_cc_beastmen_gor_label}Gor Spawn" category="Character Creation" subcategory="Beastmen" />
-  <string id="tor_cc_beastmen_gor_text" text="{=str_tor_cc_beastmen_gor_text}You were spawned strong — full horns, thick hide, the mark of a Gor. You ate the weakest of your brood as calves and grew large on their bones. The herd's warriors watched you and nodded." category="Character Creation" subcategory="Beastmen" />
-  <string id="tor_cc_beastmen_touched_label" text="{=str_tor_cc_beastmen_touched_label}Bray-Touched" category="Character Creation" subcategory="Beastmen" />
-  <string id="tor_cc_beastmen_touched_text" text="{=str_tor_cc_beastmen_touched_text}You were born under a bad moon, marked with the twin-tailed comet on your hide. The Bray-Shamans of the herd watched you closely — the dark gods had touched you, though for good or ill none could yet say." category="Character Creation" subcategory="Beastmen" />
-  <string id="tor_cc_beastmen_stalker_label" text="{=str_tor_cc_beastmen_stalker_label}Forest Stalker" category="Character Creation" subcategory="Beastmen" />
-  <string id="tor_cc_beastmen_stalker_text" text="{=str_tor_cc_beastmen_stalker_text}You hunted alone in the deep Drakwald — human trappers, lost travellers, sleeping foresters. You learned to move without sound and to strike from cover. The herd left you to your work because you never returned empty-hoofed." category="Character Creation" subcategory="Beastmen" />
-  <string id="tor_cc_beastmen_raider_label" text="{=str_tor_cc_beastmen_raider_label}Warherd Raider" category="Character Creation" subcategory="Beastmen" />
-  <string id="tor_cc_beastmen_raider_text" text="{=str_tor_cc_beastmen_raider_text}You ran with the warherds — down through the Drakwald and out onto Middenland's farms and hamlets. You burned houses, dragged screaming humans back to the herdstone, and returned drenched in blood and glory." category="Character Creation" subcategory="Beastmen" />
-  <string id="tor_cc_beastmen_herdstone_label" text="{=str_tor_cc_beastmen_herdstone_label}Herdstone Watcher" category="Character Creation" subcategory="Beastmen" />
-  <string id="tor_cc_beastmen_herdstone_text" text="{=str_tor_cc_beastmen_herdstone_text}You served at the great herdstone under a Bray-Shaman's hoof — tending the sacred fires, dragging bound sacrifices to the altar, whispering to the shadows that gathered between the standing stones. You saw things not meant for mortal eyes." category="Character Creation" subcategory="Beastmen" />
-  <string id="tor_cc_beastmen_fetcher_label" text="{=str_tor_cc_beastmen_fetcher_label}Ungor Fetcher" category="Character Creation" subcategory="Beastmen" />
-  <string id="tor_cc_beastmen_fetcher_text" text="{=str_tor_cc_beastmen_fetcher_text}You have taken your place among the Ungor Fetchers — the herd's skirmishers and scouts. Small horns, sharp eyes, and the fastest hooves in the warherd. You harry the enemy from cover while the Gors close in for the kill." category="Character Creation" subcategory="Beastmen" />
-  <string id="tor_cc_beastmen_warrior_label" text="{=str_tor_cc_beastmen_warrior_label}Gor of the Great Herd" category="Character Creation" subcategory="Beastmen" />
-  <string id="tor_cc_beastmen_warrior_text" text="{=str_tor_cc_beastmen_warrior_text}You are a Gor now — the herd's frontline, its cleaving axe. You are what humans see when the forest breaks open at nightfall and comes charging out of the treeline: horned, bloody, and unstoppable." category="Character Creation" subcategory="Beastmen" />
-  <string id="tor_cc_beastmen_wargor_label" text="{=str_tor_cc_beastmen_wargor_label}Wargor Champion" category="Character Creation" subcategory="Beastmen" />
-  <string id="tor_cc_beastmen_wargor_text" text="{=str_tor_cc_beastmen_wargor_text}You have risen above the common Gor — you are a Wargor, a chosen champion of the herd. Junior lieutenants of the Beastlord, Wargors bellow orders across the battle and split human skulls with heavy axes. One day, perhaps, the horns of a full Beastlord will crown you." category="Character Creation" subcategory="Beastmen" />
-  <string id="str_tor_beastmen_lord_factionleader" text="{=str_tor_beastmen_lord_factionleader}[TODO] The Beastlord" category="Factions" subcategory="Beastmen" />
-  <string id="tor_custom_resource_name.DarkOmen" text="{=str_tor_custom_resource_name.DarkOmen}[TODO] Dark Omen" category="Custom Resources" subcategory="Beastmen" />
-  <string id="tor_custom_resource_description.DarkOmen" text="{=str_tor_custom_resource_description.DarkOmen}[TODO] A measure of the dark favor bestowed upon the herd by the Chaos Gods. Used to perform dark rituals and summon reinforcements." category="Custom Resources" subcategory="Beastmen" />
-  <string id="str_culture_rich_name.beastmen" text="{=str_culture_rich_name.beastmen}[TODO] Beastmen of Chaos" category="Factions" subcategory="Beastmen" />
-  <string id="str_culture_description.beastmen" text="{=str_culture_description.beastmen}[TODO] The Beastmen are the twisted children of Chaos, mutated descendants of humans corrupted by the dark energies that flow from the north. They lurk in the deepest forests of the Old World, gathering in savage warherds around their herdstones. Driven by an instinctive hatred of civilization and all its works, the Beastmen live only to tear down what others have built. When the horns sound and the Beastlords rally their herds, the forests disgorge a tide of cloven-hoofed fury that sweeps away all in its path." category="Factions" subcategory="Beastmen" />
-  <string id="str_faction_formal_name_for_culture.beastmen" text="{=str_faction_formal_name_for_culture.beastmen}[TODO] Beastmen Warherds" category="Factions" subcategory="Beastmen" />
-  <string id="str_faction_informal_name_for_culture.beastmen" text="{=str_faction_informal_name_for_culture.beastmen}[TODO] the Beastmen" category="Factions" subcategory="Beastmen" />
-  <string id="str_adjective_for_culture.beastmen" text="{=str_adjective_for_culture.beastmen}[TODO] beastman" category="Factions" subcategory="Beastmen" />
-  <string id="str_neutral_term_for_culture.beastmen" text="{=str_neutral_term_for_culture.beastmen}[TODO] beastmen" category="Factions" subcategory="Beastmen" />
-  <string id="tor_reinforcement_generic_allied_1" text="{=str_tor_reinforcement_generic_allied_1}generic allied reinforcement reaction 1" />
-  <string id="tor_reinforcement_generic_allied_2" text="{=str_tor_reinforcement_generic_allied_2}generic allied reinforcement reaction 2" />
-  <string id="tor_reinforcement_generic_enemy_1" text="{=str_tor_reinforcement_generic_enemy_1}generic enemy reinforcement reaction 1" />
-  <string id="tor_reinforcement_generic_enemy_2" text="{=str_tor_reinforcement_generic_enemy_2}generic enemy reinforcement reaction 2" />
-  <string id="tor_reinforcement_empire_allied" text="{=str_tor_reinforcement_empire_allied}empire reinforces allied side" />
-  <string id="tor_reinforcement_empire_enemy" text="{=str_tor_reinforcement_empire_enemy}empire reinforces enemy side" />
-  <string id="tor_reinforcement_empire_allied_1" text="{=str_tor_reinforcement_empire_allied_1}empire allied reinforcement reaction 1" />
-  <string id="tor_reinforcement_empire_allied_2" text="{=str_tor_reinforcement_empire_allied_2}empire allied reinforcement reaction 2" />
-  <string id="tor_reinforcement_empire_enemy_1" text="{=str_tor_reinforcement_empire_enemy_1}empire enemy reinforcement reaction 1" />
-  <string id="tor_reinforcement_empire_enemy_2" text="{=str_tor_reinforcement_empire_enemy_2}empire enemy reinforcement reaction 2" />
-  <string id="tor_reinforcement_bretonnia_allied_1" text="{=str_tor_reinforcement_bretonnia_allied_1}bretonnia allied reinforcement reaction 1" />
-  <string id="tor_reinforcement_bretonnia_allied_2" text="{=str_tor_reinforcement_bretonnia_allied_2}bretonnia allied reinforcement reaction 2" />
-  <string id="tor_reinforcement_bretonnia_enemy_1" text="{=str_tor_reinforcement_bretonnia_enemy_1}bretonnia enemy reinforcement reaction 1" />
-  <string id="tor_reinforcement_bretonnia_enemy_2" text="{=str_tor_reinforcement_bretonnia_enemy_2}bretonnia enemy reinforcement reaction 2" />
-  <string id="tor_reinforcement_sylvania_allied_1" text="{=str_tor_reinforcement_sylvania_allied_1}sylvania allied reinforcement reaction 1" />
-  <string id="tor_reinforcement_sylvania_allied_2" text="{=str_tor_reinforcement_sylvania_allied_2}sylvania allied reinforcement reaction 2" />
-  <string id="tor_reinforcement_sylvania_enemy_1" text="{=str_tor_reinforcement_sylvania_enemy_1}sylvania enemy reinforcement reaction 1" />
-  <string id="tor_reinforcement_sylvania_enemy_2" text="{=str_tor_reinforcement_sylvania_enemy_2}sylvania enemy reinforcement reaction 2" />
-  <string id="tor_reinforcement_mousillon_allied_1" text="{=str_tor_reinforcement_mousillon_allied_1}mousillon allied reinforcement reaction 1" />
-  <string id="tor_reinforcement_mousillon_allied_2" text="{=str_tor_reinforcement_mousillon_allied_2}mousillon allied reinforcement reaction 2" />
-  <string id="tor_reinforcement_mousillon_enemy_1" text="{=str_tor_reinforcement_mousillon_enemy_1}mousillon enemy reinforcement reaction 1" />
-  <string id="tor_reinforcement_mousillon_enemy_2" text="{=str_tor_reinforcement_mousillon_enemy_2}mousillon enemy reinforcement reaction 2" />
-  <string id="tor_reinforcement_asrai_allied_1" text="{=str_tor_reinforcement_asrai_allied_1}asrai allied reinforcement reaction 1" />
-  <string id="tor_reinforcement_asrai_allied_2" text="{=str_tor_reinforcement_asrai_allied_2}asrai allied reinforcement reaction 2" />
-  <string id="tor_reinforcement_asrai_enemy_1" text="{=str_tor_reinforcement_asrai_enemy_1}asrai enemy reinforcement reaction 1" />
-  <string id="tor_reinforcement_asrai_enemy_2" text="{=str_tor_reinforcement_asrai_enemy_2}asrai enemy reinforcement reaction 2" />
-  <string id="tor_reinforcement_eonir_allied_1" text="{=str_tor_reinforcement_eonir_allied_1}eonir allied reinforcement reaction 1" />
-  <string id="tor_reinforcement_eonir_allied_2" text="{=str_tor_reinforcement_eonir_allied_2}eonir allied reinforcement reaction 2" />
-  <string id="tor_reinforcement_eonir_enemy_1" text="{=str_tor_reinforcement_eonir_enemy_1}eonir enemy reinforcement reaction 1" />
-  <string id="tor_reinforcement_eonir_enemy_2" text="{=str_tor_reinforcement_eonir_enemy_2}eonir enemy reinforcement reaction 2" />
-  <string id="tor_reinforcement_dawi_allied_1" text="{=str_tor_reinforcement_dawi_allied_1}dawi allied reinforcement reaction 1" />
-  <string id="tor_reinforcement_dawi_allied_2" text="{=str_tor_reinforcement_dawi_allied_2}dawi allied reinforcement reaction 2" />
-  <string id="tor_reinforcement_dawi_enemy_1" text="{=str_tor_reinforcement_dawi_enemy_1}dawi enemy reinforcement reaction 1" />
-  <string id="tor_reinforcement_dawi_enemy_2" text="{=str_tor_reinforcement_dawi_enemy_2}dawi enemy reinforcement reaction 2" />
-  <string id="tor_reinforcement_greenskin_allied_1" text="{=str_tor_reinforcement_greenskin_allied_1}greenskin allied reinforcement reaction 1" />
-  <string id="tor_reinforcement_greenskin_allied_2" text="{=str_tor_reinforcement_greenskin_allied_2}greenskin allied reinforcement reaction 2" />
-  <string id="tor_reinforcement_greenskin_enemy_1" text="{=str_tor_reinforcement_greenskin_enemy_1}greenskin enemy reinforcement reaction 1" />
-  <string id="tor_reinforcement_greenskin_enemy_2" text="{=str_tor_reinforcement_greenskin_enemy_2}greenskin enemy reinforcement reaction 2" />
-  <string id="tor_reinforcement_beastmen_allied_1" text="{=str_tor_reinforcement_beastmen_allied_1}beastmen allied reinforcement reaction 1" />
-  <string id="tor_reinforcement_beastmen_allied_2" text="{=str_tor_reinforcement_beastmen_allied_2}beastmen allied reinforcement reaction 2" />
-  <string id="tor_reinforcement_beastmen_enemy_1" text="{=str_tor_reinforcement_beastmen_enemy_1}beastmen enemy reinforcement reaction 1" />
-  <string id="tor_reinforcement_beastmen_enemy_2" text="{=str_tor_reinforcement_beastmen_enemy_2}beastmen enemy reinforcement reaction 2" />
-  <string id="tor_reinforcement_ungrim_lord_1" text="{=str_tor_reinforcement_ungrim_lord_1}ungrim arrival line" />
-  <string id="tor_reinforcement_ungrim_troops_1" text="{=str_tor_reinforcement_ungrim_troops_1}ungrim troops react to arrival" />
-  <string id="tor_reinforcement_ungrim_reinforced_side_1" text="{=str_tor_reinforcement_ungrim_reinforced_side_1}reinforced side reacts to ungrim" />
-  <string id="tor_reinforcement_morglum_lord_1" text="{=str_tor_reinforcement_morglum_lord_1}morglum arrival line" />
-  <string id="tor_reinforcement_morglum_troops_1" text="{=str_tor_reinforcement_morglum_troops_1}morglum troops react to arrival" />
-  <string id="tor_reinforcement_morglum_reinforced_side_1" text="{=str_tor_reinforcement_morglum_reinforced_side_1}reinforced side reacts to morglum" />
-  <string id="tor_reinforcement_louen_lord_1" text="{=str_tor_reinforcement_louen_lord_1}louen arrival line" />
-  <string id="tor_reinforcement_louen_troops_1" text="{=str_tor_reinforcement_louen_troops_1}louen troops react to arrival" />
-  <string id="tor_reinforcement_louen_reinforced_side_1" text="{=str_tor_reinforcement_louen_reinforced_side_1}reinforced side reacts to louen" />
-  <string id="tor_reinforcement_green_knight_allied" text="{=str_tor_reinforcement_green_knight_allied}green knight reinforces allied side" />
-  <string id="tor_reinforcement_green_knight_enemy" text="{=str_tor_reinforcement_green_knight_enemy}green knight reinforces enemy side" />
-  <string id="tor_reinforcement_green_knight_lord_1" text="{=str_tor_reinforcement_green_knight_lord_1}green knight arrival line" />
-  <string id="tor_reinforcement_green_knight_troops_1" text="{=str_tor_reinforcement_green_knight_troops_1}lost son reacts to green knight arrival" />
-  <string id="tor_reinforcement_green_knight_cheat" text="{=str_tor_reinforcement_green_knight_cheat}Sons of Bretonnia! We ride for unity! We ride for the living!" />
-  <string id="tor_reinforcement_green_knight_reinforced_side_1" text="{=str_tor_reinforcement_green_knight_reinforced_side_1}bretonnia reacts to green knight arrival" />
-  <string id="tor_reinforcement_beastmen_green_knight_enemy" text="{=str_tor_reinforcement_beastmen_green_knight_beastmen}Shaabhekh?!?" />
-  <string id="tor_reinforcement_karl_franz_allied" text="{=str_tor_reinforcement_karl_franz_allied}karl franz reinforces allied side" />
-  <string id="tor_reinforcement_karl_franz_enemy" text="{=str_tor_reinforcement_karl_franz_enemy}karl franz reinforces enemy side" />
-  <string id="tor_reinforcement_karl_franz_lord_1" text="{=str_tor_reinforcement_karl_franz_lord_1}karl franz arrival line" />
-  <string id="tor_reinforcement_karl_franz_troops_1" text="{=str_tor_reinforcement_karl_franz_troops_1}karl franz troops react to arrival" />
-  <string id="tor_reinforcement_karl_franz_reinforced_side_1" text="{=str_tor_reinforcement_karl_franz_reinforced_side_1}reinforced side reacts to karl franz" />
-  <string id="tor_reinforcement_marrisith_lord_1" text="{=str_tor_reinforcement_marrisith_lord_1}queen marrisith arrival line" />
-  <string id="tor_reinforcement_marrisith_troops_1" text="{=str_tor_reinforcement_marrisith_troops_1}queen marrisith troops react to arrival" />
-  <string id="tor_reinforcement_marrisith_reinforced_side_1" text="{=str_tor_reinforcement_marrisith_reinforced_side_1}reinforced side reacts to queen marrisith" />
-  <string id="tor_reinforcement_orion_lord_1" text="{=str_tor_reinforcement_orion_lord_1}orion arrival line" />
-  <string id="tor_reinforcement_orion_troops_1" text="{=str_tor_reinforcement_orion_troops_1}orion troops react to arrival" />
-  <string id="tor_reinforcement_orion_reinforced_side_1" text="{=str_tor_reinforcement_orion_reinforced_side_1}reinforced side reacts to orion" />
-  <string id="tor_reinforcement_araloth_lord_1" text="{=str_tor_reinforcement_araloth_lord_1}araloth arrival line" />
-  <string id="tor_reinforcement_araloth_troops_1" text="{=str_tor_reinforcement_araloth_troops_1}araloth troops react to arrival" />
-  <string id="tor_reinforcement_araloth_reinforced_side_1" text="{=str_tor_reinforcement_araloth_reinforced_side_1}reinforced side reacts to araloth" />
-  <string id="tor_reinforcement_pyucius_lord_1" text="{=str_tor_reinforcement_pyucius_lord_1}pyucius arrival line" />
-  <string id="tor_reinforcement_pyucius_troops_1" text="{=str_tor_reinforcement_pyucius_troops_1}pyucius troops react to arrival" />
-  <string id="tor_reinforcement_pyucius_reinforced_side_1" text="{=str_tor_reinforcement_pyucius_reinforced_side_1}reinforced side reacts to pyucius" />
-  <string id="tor_reinforcement_serpent_lord_1" text="{=str_tor_reinforcement_serpent_lord_1}serpent of mousillon arrival line" />
-  <string id="tor_reinforcement_serpent_troops_1" text="{=str_tor_reinforcement_serpent_troops_1}serpent of mousillon troops react to arrival" />
-  <string id="tor_reinforcement_serpent_reinforced_side_1" text="{=str_tor_reinforcement_serpent_reinforced_side_1}reinforced side reacts to serpent of mousillon" />
+  <string id="tor_we_scout" text="{=str_tor_we_scout}Asrai Ranger" />
+  <string id="tor_we_kings_bowman" text="{=str_tor_we_kings_bowman}Asrai Kings Bowman" />
+  <string id="tor_test_subject" text="{=str_tor_test_subject}Test Subject" />
+  <string id="str_tor_culture_beastmen" text="{=str_tor_culture_beastmen}Beastmen" />
+  <string id="str_tor_kingdom_beastmen" text="{=str_tor_kingdom_beastmen}Beastmen Herds" />
+  <string id="str_tor_kingdom_beastmen_short" text="{=str_tor_kingdom_beastmen_short}Beastmen" />
+  <string id="str_tor_kingdom_beastmen_title" text="{=str_tor_kingdom_beastmen_title}Beastmen Herds" />
+  <string id="str_tor_kingdom_beastmen_ruler" text="{=str_tor_kingdom_beastmen_ruler}Beastlord" />
+  <string id="str_tor_kingdom_beastmen_text" text="{=str_tor_kingdom_beastmen_text}The scattered herds of Chaos-corrupted beast-kin that stalk the Drakwald and the deep places of the Empire. Ruled by no crown but might, they raid the borderlands from herdstone-shadowed hollows in the trees." />
+  <string id="str_tor_clan_beastmen_1" text="{=str_tor_clan_beastmen_1}Great Herd" />
+  <string id="str_tor_clan_beastmen_1_text" text="{=str_tor_clan_beastmen_1_text}The paramount warherd of the Drakwald, gathered under the horns of the current Beastlord." />
+  <string id="str_tor_hero_beastmen_leader_text" text="{=str_tor_hero_beastmen_leader_text}The current Beastlord of the Great Herd, whose horns and hooves rule by fear and by strength alone." />
+  <string id="tor_cc_beastmen_ungor_label" text="{=str_tor_cc_beastmen_ungor_label}Ungor Whelp" />
+  <string id="tor_cc_beastmen_ungor_text" text="{=str_tor_cc_beastmen_ungor_text}You were spawned into the herd as an Ungor — small horns, weaker limbs, meant to run and fetch rather than fight and die. What you lack in muscle you learned to make up for with a keen eye and a fleet hoof." />
+  <string id="tor_cc_beastmen_gor_label" text="{=str_tor_cc_beastmen_gor_label}Gor Spawn" />
+  <string id="tor_cc_beastmen_gor_text" text="{=str_tor_cc_beastmen_gor_text}You were spawned strong — full horns, thick hide, the mark of a Gor. You ate the weakest of your brood as calves and grew large on their bones. The herd's warriors watched you and nodded." />
+  <string id="tor_cc_beastmen_touched_label" text="{=str_tor_cc_beastmen_touched_label}Bray-Touched" />
+  <string id="tor_cc_beastmen_touched_text" text="{=str_tor_cc_beastmen_touched_text}You were born under a bad moon, marked with the twin-tailed comet on your hide. The Bray-Shamans of the herd watched you closely — the dark gods had touched you, though for good or ill none could yet say." />
+  <string id="tor_cc_beastmen_stalker_label" text="{=str_tor_cc_beastmen_stalker_label}Forest Stalker" />
+  <string id="tor_cc_beastmen_stalker_text" text="{=str_tor_cc_beastmen_stalker_text}You hunted alone in the deep Drakwald — human trappers, lost travellers, sleeping foresters. You learned to move without sound and to strike from cover. The herd left you to your work because you never returned empty-hoofed." />
+  <string id="tor_cc_beastmen_raider_label" text="{=str_tor_cc_beastmen_raider_label}Warherd Raider" />
+  <string id="tor_cc_beastmen_raider_text" text="{=str_tor_cc_beastmen_raider_text}You ran with the warherds — down through the Drakwald and out onto Middenland's farms and hamlets. You burned houses, dragged screaming humans back to the herdstone, and returned drenched in blood and glory." />
+  <string id="tor_cc_beastmen_herdstone_label" text="{=str_tor_cc_beastmen_herdstone_label}Herdstone Watcher" />
+  <string id="tor_cc_beastmen_herdstone_text" text="{=str_tor_cc_beastmen_herdstone_text}You served at the great herdstone under a Bray-Shaman's hoof — tending the sacred fires, dragging bound sacrifices to the altar, whispering to the shadows that gathered between the standing stones. You saw things not meant for mortal eyes." />
+  <string id="tor_cc_beastmen_fetcher_label" text="{=str_tor_cc_beastmen_fetcher_label}Ungor Fetcher" />
+  <string id="tor_cc_beastmen_fetcher_text" text="{=str_tor_cc_beastmen_fetcher_text}You have taken your place among the Ungor Fetchers — the herd's skirmishers and scouts. Small horns, sharp eyes, and the fastest hooves in the warherd. You harry the enemy from cover while the Gors close in for the kill." />
+  <string id="tor_cc_beastmen_warrior_label" text="{=str_tor_cc_beastmen_warrior_label}Gor of the Great Herd" />
+  <string id="tor_cc_beastmen_warrior_text" text="{=str_tor_cc_beastmen_warrior_text}You are a Gor now — the herd's frontline, its cleaving axe. You are what humans see when the forest breaks open at nightfall and comes charging out of the treeline: horned, bloody, and unstoppable." />
+  <string id="tor_cc_beastmen_wargor_label" text="{=str_tor_cc_beastmen_wargor_label}Wargor Champion" />
+  <string id="tor_cc_beastmen_wargor_text" text="{=str_tor_cc_beastmen_wargor_text}You have risen above the common Gor — you are a Wargor, a chosen champion of the herd. Junior lieutenants of the Beastlord, Wargors bellow orders across the battle and split human skulls with heavy axes. One day, perhaps, the horns of a full Beastlord will crown you." />
+  <string id="str_tor_beastmen_lord_factionleader" text="{=str_tor_beastmen_lord_factionleader}[TODO] The Beastlord" />
+  <string id="tor_custom_resource_name.DarkOmen" text="{=str_tor_custom_resource_name.DarkOmen}[TODO] Dark Omen" />
+  <string id="tor_custom_resource_description.DarkOmen" text="{=str_tor_custom_resource_description.DarkOmen}[TODO] A measure of the dark favor bestowed upon the herd by the Chaos Gods. Used to perform dark rituals and summon reinforcements." />
+  <string id="str_culture_rich_name.beastmen" text="{=str_culture_rich_name.beastmen}[TODO] Beastmen of Chaos" />
+  <string id="str_culture_description.beastmen" text="{=str_culture_description.beastmen}[TODO] The Beastmen are the twisted children of Chaos, mutated descendants of humans corrupted by the dark energies that flow from the north. They lurk in the deepest forests of the Old World, gathering in savage warherds around their herdstones. Driven by an instinctive hatred of civilization and all its works, the Beastmen live only to tear down what others have built. When the horns sound and the Beastlords rally their herds, the forests disgorge a tide of cloven-hoofed fury that sweeps away all in its path." />
+  <string id="str_faction_formal_name_for_culture.beastmen" text="{=str_faction_formal_name_for_culture.beastmen}[TODO] Beastmen Warherds" />
+  <string id="str_faction_informal_name_for_culture.beastmen" text="{=str_faction_informal_name_for_culture.beastmen}[TODO] the Beastmen" />
+  <string id="str_adjective_for_culture.beastmen" text="{=str_adjective_for_culture.beastmen}[TODO] beastman" />
+  <string id="str_neutral_term_for_culture.beastmen" text="{=str_neutral_term_for_culture.beastmen}[TODO] beastmen" />
+  <string id="tor_poi_wizardhall.Name" text="{=str_tor_poi_wizardhall.Name}Wizard Hall" />
+  <string id="tor_poi_wizardhall.EnterLabel" text="{=str_tor_poi_wizardhall.EnterLabel}Visit the Wizard Hall" />
+  <string id="tor_poi_wizardhall.Undiscovered" text="{=str_tor_poi_wizardhall.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_wizardhall.Sealed" text="{=str_tor_poi_wizardhall.Sealed}This place is sealed." />
+  <string id="tor_poi_wizardhall.SiegeSealed" text="{=str_tor_poi_wizardhall.SiegeSealed}The gates of the College are sealed during the siege." />
+  <string id="tor_poi_wizardhall.Rejected" text="{=str_tor_poi_wizardhall.Rejected}The wards of the College turn you away." />
+  <string id="tor_poi_wizardhall.MustHaveCareer" text="{=str_tor_poi_wizardhall.MustHaveCareer}Only {REQUIRED_CAREER} may enter the College." />
+  <string id="tor_poi_witchhunter_lodge.Name" text="{=str_tor_poi_witchhunter_lodge.Name}Witch Hunter Lodge" />
+  <string id="tor_poi_witchhunter_lodge.EnterLabel" text="{=str_tor_poi_witchhunter_lodge.EnterLabel}Visit the Witch Hunter Lodge" />
+  <string id="tor_poi_witchhunter_lodge.Undiscovered" text="{=str_tor_poi_witchhunter_lodge.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_witchhunter_lodge.Sealed" text="{=str_tor_poi_witchhunter_lodge.Sealed}This place is sealed." />
+  <string id="tor_poi_witchhunter_lodge.SiegeSealed" text="{=str_tor_poi_witchhunter_lodge.SiegeSealed}The lodge is closed during the siege." />
+  <string id="tor_poi_witchhunter_lodge.Rejected" text="{=str_tor_poi_witchhunter_lodge.Rejected}The templars turn you away." />
+  <string id="tor_poi_empire_engineer_hall.Name" text="{=str_tor_poi_empire_engineer_hall.Name}Empire Engineer Hall" />
+  <string id="tor_poi_empire_engineer_hall.EnterLabel" text="{=str_tor_poi_empire_engineer_hall.EnterLabel}Visit the Empire Engineer Hall" />
+  <string id="tor_poi_empire_engineer_hall.Undiscovered" text="{=str_tor_poi_empire_engineer_hall.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_empire_engineer_hall.Sealed" text="{=str_tor_poi_empire_engineer_hall.Sealed}This place is sealed." />
+  <string id="tor_poi_empire_engineer_hall.SiegeSealed" text="{=str_tor_poi_empire_engineer_hall.SiegeSealed}The gates of the Engineer Hall are sealed during the siege." />
+  <string id="tor_poi_empire_engineer_hall.Rejected" text="{=str_tor_poi_empire_engineer_hall.Rejected}The engineers turn you away." />
+  <string id="tor_poi_empire_engineer_hall.WrongCulture" text="{=str_tor_poi_empire_engineer_hall.WrongCulture}The Imperial engineers only serve those of the Empire." />
 </strings>
