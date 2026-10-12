@@ -136,9 +136,9 @@
 
             <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="!Medium.Height"  VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="14" MarginBottom="76" Text="RoR" IsVisible="@IsRoRSettlement" Brush="TorRoRSettlementBrush"/>
 
-            <RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="40" SuggestedHeight="40" Brush.FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="50" MarginBottom="52" Text="@Poi1Text" IsVisible="@Poi1Visible" Brush="TorRoRSettlementBrush"/>
-            <RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="40" SuggestedHeight="40" Brush.FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="14" MarginTop="52" Text="@Poi2Text" IsVisible="@Poi2Visible" Brush="TorRoRSettlementBrush"/>
-            <RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="40" SuggestedHeight="40" Brush.FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="50" MarginTop="52" Text="@Poi3Text" IsVisible="@Poi3Visible" Brush="TorRoRSettlementBrush"/>
+            <RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="40" SuggestedHeight="40" Brush.FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="58"  MarginBottom="76" Text="@Poi1Text" IsVisible="@Poi1Visible" Brush="TorRoRSettlementBrush"/>
+            <RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="40" SuggestedHeight="40" Brush.FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="100" MarginBottom="76" Text="@Poi2Text" IsVisible="@Poi2Visible" Brush="TorRoRSettlementBrush"/>
+            <RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="40" SuggestedHeight="40" Brush.FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="142" MarginBottom="76" Text="@Poi3Text" IsVisible="@Poi3Visible" Brush="TorRoRSettlementBrush"/>
 
           </Children>
         </SettlementNameplateItemWidget>
