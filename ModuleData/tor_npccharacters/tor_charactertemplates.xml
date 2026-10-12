@@ -2360,7 +2360,7 @@
       <EquipmentSet id="tor_qnpc_necromagister_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_spelltrainer_bretonnia_0" default_group="infantry" name="{=str_tor_spelltrainer_bretonnia_0}The Fay Enchantress" occupation="Special" culture="Culture.vlandia" voice="ironic" age="30" is_female="true" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_spelltrainer_bretonnia_0" default_group="infantry" name="{=str_tor_spelltrainer_bretonnia_0}Maiden of the Fey" occupation="Special" culture="Culture.vlandia" voice="ironic" age="30" is_female="true" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fey_enchantress" />
     </face>

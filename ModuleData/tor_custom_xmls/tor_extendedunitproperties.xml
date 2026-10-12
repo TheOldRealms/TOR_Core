@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfCharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_villager">
     <Abilities />
@@ -11426,9 +11426,9 @@
       <string>Ethereal2</string>
       <string>UndeadSlayer2</string>
       <string>Immortality</string>
-	  <string>MonsterAttack</string>
+      <string>MonsterAttack</string>
     </Attributes>
-	    <AdditionalHealth>250</AdditionalHealth>
+    <AdditionalHealth>250</AdditionalHealth>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
     </Resistances>
@@ -11516,7 +11516,9 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <Resistances><ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.80" /></Resistances>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.80" />
+    </Resistances>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_giant">
     <DamageProportions>
@@ -11537,5 +11539,25 @@
     <Resistances>
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" />
     </Resistances>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_fey_1">
+    <Attributes>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_fey_leader">
+    <Attributes>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_fey_2">
+    <Attributes>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_fey_3">
+    <Attributes>
+      <string>SpellCaster</string>
+    </Attributes>
   </CharacterExtendedInfo>
 </ArrayOfCharacterExtendedInfo>
