@@ -13613,7 +13613,7 @@
       <EquipmentSet id="tor_greenknight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_fey_leader" name="Morgiana le Fay" default_group="cavalry" occupation="Lady" voice="earnest" age="24" is_female="true" skill_template="SkillSet.tor_skills_gelt" is_hero="true" culture="Culture.vlandia" race="bretonnian">
+  <NPCCharacter id="tor_br_fey_leader" name="Morgiana le Fay" default_group="cavalry" occupation="Lord" voice="earnest" age="24" is_female="true" skill_template="SkillSet.tor_skills_gelt" is_hero="true" culture="Culture.vlandia" race="bretonnian">
     <Equipments>
       <EquipmentSet id="tor_fay_enchantress_template" />
       <EquipmentSet id="tor_fay_enchantress_template" equipmentType="Civilian" />
@@ -13631,7 +13631,7 @@
       <Trait id="Generosity" value="2" />
     </Traits>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_fey_1" name="Jeneva the Blessed Maid of Mousillon" default_group="infantry" occupation="Lady" culture="Culture.vlandia" voice="earnest" age="25" is_female="true" is_hero="true" skill_template="SkillSet.tor_skills_caster_lord" race="bretonnian">
+  <NPCCharacter id="tor_br_fey_1" name="Jeneva the Blessed Maid of Mousillon" default_group="infantry" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="25" is_female="true" is_hero="true" skill_template="SkillSet.tor_skills_caster_lord" race="bretonnian">
     <Equipments>
       <EquipmentSet id="tor_damsel_template_1" />
       <EquipmentSet id="tor_damsel_template_1" equipmentType="Civilian" />
@@ -13649,7 +13649,7 @@
       <Trait id="Honor" value="2" />
     </Traits>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_fey_2" name="Alisse the Haunted" default_group="infantry" occupation="Lady" culture="Culture.vlandia" voice="earnest" age="25" is_female="true" is_hero="true" skill_template="SkillSet.tor_skills_caster_lord" race="bretonnian">
+  <NPCCharacter id="tor_br_fey_2" name="Alisse the Haunted" default_group="infantry" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="25" is_female="true" is_hero="true" skill_template="SkillSet.tor_skills_caster_lord" race="bretonnian">
     <Equipments>
       <EquipmentSet id="tor_damsel_template_2" />
       <EquipmentSet id="tor_damsel_template_2" equipmentType="Civilian" />
@@ -13667,7 +13667,7 @@
       <Trait id="Generosity" value="2" />
     </Traits>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_fey_3" name="Enchantress Guerrite" default_group="infantry" occupation="Lady" culture="Culture.vlandia" voice="earnest" age="25" is_female="true" is_hero="true" skill_template="SkillSet.tor_skills_caster_lord" race="bretonnian">
+  <NPCCharacter id="tor_br_fey_3" name="Enchantress Guerrite" default_group="infantry" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="25" is_female="true" is_hero="true" skill_template="SkillSet.tor_skills_caster_lord" race="bretonnian">
     <Equipments>
       <EquipmentSet id="tor_damsel_template_3" />
       <EquipmentSet id="tor_damsel_template_3" equipmentType="Civilian" />
