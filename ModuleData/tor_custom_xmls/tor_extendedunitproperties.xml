@@ -11548,6 +11548,7 @@
   <CharacterExtendedInfo id="tor_br_fey_leader">
     <Attributes>
       <string>SpellCaster</string>
+      <string>LegendaryLord</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_fey_2">

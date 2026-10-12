@@ -13613,7 +13613,7 @@
       <EquipmentSet id="tor_greenknight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_fey_leader" name="Morgiana le Fay" default_group="cavalry" occupation="Lord" voice="earnest" age="24" is_female="true" skill_template="SkillSet.tor_skills_gelt" is_hero="true" culture="Culture.vlandia" race="bretonnian">
+  <NPCCharacter id="tor_br_fey_leader" name="Morgiana le Fay" default_group="cavalry" occupation="Lord" voice="earnest" age="24" is_female="true" skill_template="SkillSet.tor_skills_queenmarrisith" is_hero="true" culture="Culture.vlandia" race="bretonnian">
     <Equipments>
       <EquipmentSet id="tor_fay_enchantress_template" />
       <EquipmentSet id="tor_fay_enchantress_template" equipmentType="Civilian" />
@@ -13637,7 +13637,7 @@
       <EquipmentSet id="tor_damsel_template_1" equipmentType="Civilian" />
     </Equipments>
     <face>
-      <BodyProperties version="4" age="22" weight="0.0602" build="0.5933" key="0000A40012B44014739A8C4A8784957D5B86A17EAB974B83DD8A3687993D884600A916030A87458D0000000000000000000000000000000000000000455C4044" />
+      <BodyProperties version="4" age="22" weight="0" build="0.8347" key="0000840613002013358BE43B1563B775ABDB3A3B6828A55734A45827994B26A3008D0603083365BB00000000000000000000000000000000000000005F0C2040" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -13655,7 +13655,7 @@
       <EquipmentSet id="tor_damsel_template_2" equipmentType="Civilian" />
     </Equipments>
     <face>
-      <BodyProperties version="4" age="22" weight="0.0602" build="0.5933" key="0000A40012B44014739A8C4A8784957D5B86A17EAB974B83DD8A3687993D884600A916030A87458D0000000000000000000000000000000000000000455C4044" />
+      <BodyProperties version="4" age="22" weight="0" build="0.8347" key="00000C0013002004358BE43B1563B775ABDB3A3B6828A55734A45827994B26A3008D0603083365BB00000000000000000000000000000000000000005F0C2040" />
     </face>
     <Traits>
       <Trait id="Manager" value="5" />
@@ -13673,7 +13673,7 @@
       <EquipmentSet id="tor_damsel_template_3" equipmentType="Civilian" />
     </Equipments>
     <face>
-      <BodyProperties version="4" age="22" weight="0.0602" build="0.5933" key="0000A40012B44014739A8C4A8784957D5B86A17EAB974B83DD8A3687993D884600A916030A87458D0000000000000000000000000000000000000000455C4044" />
+      <BodyProperties version="4" age="22" weight="0" build="0.8347" key="0000AC06D300200A358BE43B1563B775ABDB3A3B6828A55734A45827994B26A3008D0603083365BB00000000000000000000000000000000000000005F0C2040" />
     </face>
     <Traits>
       <Trait id="Commander" value="5" />
