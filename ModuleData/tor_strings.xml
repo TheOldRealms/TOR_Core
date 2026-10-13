@@ -191,11 +191,11 @@
 
   <!-- Skill perks - Spellcraft -->
   <string id="tor_perk_novice_spellcaster_label" text="{=str_tor_perk_novice_spellcaster_label}Novice Spellcaster" />
-  <string id="tor_perk_novice_spellcaster_1" text="{=str_tor_perk_novice_spellcaster_1}Gain access to entry level spells." />
+  <string id="tor_perk_novice_spellcaster_1" text="{=str_tor_perk_novice_spellcaster_1}Gain access to entry level spells and runes." />
   <string id="tor_perk_adept_spellcaster_label" text="{=str_tor_perk_adept_spellcaster_label}Adept Spellcaster" />
-  <string id="tor_perk_adept_spellcaster_1" text="{=str_tor_perk_adept_spellcaster_1}Gain access to adept level spells." />
+  <string id="tor_perk_adept_spellcaster_1" text="{=str_tor_perk_adept_spellcaster_1}Gain access to adept level spells and runes." />
   <string id="tor_perk_master_spellcaster_label" text="{=str_tor_perk_master_spellcaster_label}Master Spellcaster" />
-  <string id="tor_perk_master_spellcaster_1" text="{=str_tor_perk_master_spellcaster_1}Gain access to master level spells." />
+  <string id="tor_perk_master_spellcaster_1" text="{=str_tor_perk_master_spellcaster_1}Gain access to master level spells and runes." />
   <string id="tor_perk_selfish_label" text="{=str_tor_perk_selfish_label}Selfish" />
   <string id="tor_perk_selfish_1" text="{=str_tor_perk_selfish_1}Your damaging spells do 90% reduced damage to yourself." />
   <string id="tor_perk_selfish_2" text="{=str_tor_perk_selfish_2}Your self targeted buff spells have 50% more duration." />
@@ -204,14 +204,14 @@
   <string id="tor_perk_well_controlled_2" text="{=str_tor_perk_well_controlled_2}Gain 5% advantage in simulation battles." />
   <string id="tor_perk_librarian_label" text="{=str_tor_perk_librarian_label}Librarian" />
   <string id="tor_perk_librarian_1" text="{=str_tor_perk_librarian_1}You gain double experience from reading books." />
-  <string id="tor_perk_librarian_2" text="{=str_tor_perk_librarian_2}Learning new spells cost 50% less gold." />
+  <string id="tor_perk_librarian_2" text="{=str_tor_perk_librarian_2}Learning new spells and runes costs 50% less gold." />
   <string id="tor_perk_story_teller_label" text="{=str_tor_perk_story_teller_label}Storyteller" />
   <string id="tor_perk_story_teller_1" text="{=str_tor_perk_story_teller_1}Every companion in your party gains 1000 experience in a random skill per day." />
   <string id="tor_perk_story_teller_2" text="{=str_tor_perk_story_teller_2}Your party gains a permanent +5 increase to party morale." />
   <string id="tor_perk_overcaster_label" text="{=str_tor_perk_overcaster_label}Overcaster" />
-  <string id="tor_perk_overcaster_1" text="{=str_tor_perk_overcaster_1}Your damaging spells do 20% more damage but cost 30% more winds of magic." />
+  <string id="tor_perk_overcaster_1" text="{=str_tor_perk_overcaster_1}Your damaging and healing spells are 20% more effective but cost 30% more winds of magic." />
   <string id="tor_perk_effective_spellcaster_label" text="{=str_tor_perk_effective_spellcaster_label}Efficient Spellcaster" />
-  <string id="tor_perk_effective_spellcaster_1" text="{=str_tor_perk_effective_spellcaster_1}Your damaging spells do 20% less damage, but cost 30% less winds of magic." />
+  <string id="tor_perk_effective_spellcaster_1" text="{=str_tor_perk_effective_spellcaster_1}Your damaging and healing spells are 20% less effective, but cost 30% less winds of magic." />
   <string id="tor_perk_improvision_label" text="{=str_tor_perk_improvision_label}Improvision" />
   <string id="tor_perk_improvision_1" text="{=str_tor_perk_improvision_1}Your Winds of Magic is set to 25 if you have less than that at the beginning of the battle." />
   <string id="tor_perk_improvision_2" text="{=str_tor_perk_improvision_2}+10% Persuasion chance during speech checks." />
@@ -222,7 +222,7 @@
   <string id="tor_perk_dampener_1" text="{=str_tor_perk_dampener_1}Damage dealt by your damaging spells is reduced by 15%, but troops in your formation take 30% less damage from spells." />
   <string id="tor_perk_dampener_2" text="{=str_tor_perk_dampener_2}You gain 5% ward save." />
   <string id="tor_perk_arcane_link_label" text="{=str_tor_perk_arcane_link_label}Arcane Link" />
-  <string id="tor_perk_arcane_link_1" text="{=str_tor_perk_arcane_link_1}Any buffs you cast on a friendly unit will now also apply to you even if you are not in range." />
+  <string id="tor_perk_arcane_link_1" text="{=str_tor_perk_arcane_link_1}Any buffs you cast on a friendly unit, including runes, will now also apply to you even if you are not in range." />
   <string id="tor_perk_arcane_link_2" text="{=str_tor_perk_arcane_link_2}As formation Captain, all troops in your formation deal additonal 10% magic damage." />
   <string id="tor_perk_exchange_label" text="{=str_tor_perk_exchange_label}Exchange" />
   <string id="tor_perk_exchange_1" text="{=str_tor_perk_exchange_1}All physical damage done by your weapons is doubled and dealt again as magical damage." />
@@ -520,8 +520,9 @@
   <!-- Career Button - unit rune -->
   <string id="tor_unit_rune_cost_display" text="{=str_tor_unit_rune_cost_display}{RUNE_DESCRIPTION}{newline}{newline}Required ingredients:{newline}{RUNE_COST_LIST}" />
   <string id="tor_unit_rune_cost_insufficient" text="{=str_tor_unit_rune_cost_insufficient}{RUNE_DESCRIPTION}{newline}{newline}Required ingredients:{newline}{RUNE_COST_LIST}{newline}You do not have enough ingredients!" />
+  <string id="tor_unit_rune_combined_cost_insufficient" text="{=str_tor_unit_rune_combined_cost_insufficient}You do not have enough ingredients for all selected runes." />
   <string id="tor_unit_rune_active_display" text="{=str_tor_unit_rune_active_display}{RUNE_NAME}{newline}{RUNE_DESC}" />
-  <string id="tor_unit_rune_warning_text" text="{=str_tor_unit_rune_warning_text}WARNING : Current {CURRENT_RUNE} will be removed without compensation." />
+  <string id="tor_unit_rune_warning_text" text="{=str_tor_unit_rune_warning_text}WARNING : Current {CURRENT_RUNE} will be removed without compensation unless selected again." />
   <string id="tor_unit_rune_unknown_runes_text" text="{=str_tor_unit_rune_unknown_runes_text}You do not know the required runes:{UNKNOWN_RUNES_LIST}" />
   <string id="tor_unit_rune_title" text="{=str_tor_unit_rune_title}Unit Runes" />
   <string id="tor_unit_rune_description" text="{=str_tor_unit_rune_description}Choose a rune to add to the equipment of your units. {RUNE_WARNING_TEXT}" />
@@ -4199,7 +4200,7 @@
   <string id="tor_careerchoice_description.TheLastJourneyPassive4" text="{=str_tor_careerchoice_description_TheLastJourneyPassive4}+40% ranged 'Physical Resistance' for all 'Slayer' troops." />
 
   <!-- Career Choice Description - Runelord -->
-  <string id="tor_careerchoice_description.RunelordRoot" text="{=str_tor_careerchoice_description_RunelordRoot}The runes are cast! By the Wisdom of Thungni, reduce the cooldown of the next 'Rune' ability by 15s, and empower all 'Rune' abilities for 5s. For every level of Smithing, Wisdom of Thungni's cooldown is reduced by 0.1s. (60s cooldown.)" />
+  <string id="tor_careerchoice_description.RunelordRoot" text="{=str_tor_careerchoice_description_RunelordRoot}The runes are cast! By the Wisdom of Thungni, reduce the cooldown of the next 'Rune' ability by 15s, and empower all 'Rune' abilities for 5s. Also applies 15% extra damage dealt as 'Magic' to your weapon for 15s. For every level of Smithing, Wisdom of Thungni's cooldown is reduced by 0.1s. (60s cooldown.)" />
   <string id="tor_careerchoice_description.ForgefireBurningKeystone" text="{=str_tor_careerchoice_description_ForgefireBurningKeystone}Wisdom of Thungi now applies to the next 'Rune' in the sequence at half efficency as well." />
   <string id="tor_careerchoice_description.ForgefireBurningPassive1" text="{=str_tor_careerchoice_description_ForgefireBurningPassive1}+1 charcoal from burning wood." />
   <string id="tor_careerchoice_description.ForgefireBurningPassive2" text="{=str_tor_careerchoice_description_ForgefireBurningPassive2}+1 ingot when forging metal." />
@@ -4224,12 +4225,12 @@
   <string id="tor_careerchoice_description.StoneAndSteelPassive1" text="{=str_tor_careerchoice_description_StoneAndSteelPassive1}+10% personal 'Magic Resistance'." />
   <string id="tor_careerchoice_description.StoneAndSteelPassive2" text="{=str_tor_careerchoice_description_StoneAndSteelPassive2}+10% 'Magic Resistance' for all troops." />
   <string id="tor_careerchoice_description.StoneAndSteelPassive3" text="{=str_tor_careerchoice_description_StoneAndSteelPassive3}+25 personal Hitpoints." />
-  <string id="tor_careerchoice_description.StoneAndSteelPassive4" text="{=str_tor_careerchoice_description_StoneAndSteelPassive4}When a 'Rune' ability is refreshed, gain +50% 'Magic' damage for 15s." />
+  <string id="tor_careerchoice_description.StoneAndSteelPassive4" text="{=str_tor_careerchoice_description_StoneAndSteelPassive4}When a 'Rune' ability is refreshed by Wisdom of Thungni, gain +50% 'Magic' damage for 15s." />
   <string id="tor_careerchoice_description.LegacyOfGrungniKeystone" text="{=str_tor_careerchoice_description_LegacyOfGrungniKeystone}The 'Rune' Oath and Steel applies 'Fire' damage to troops." />
   <string id="tor_careerchoice_description.LegacyOfGrungniPassive1" text="{=str_tor_careerchoice_description_LegacyOfGrungniPassive1}Runesmith Guild provides more 'Oathgold' from delivered steel." />
   <string id="tor_careerchoice_description.LegacyOfGrungniPassive2" text="{=str_tor_careerchoice_description_LegacyOfGrungniPassive2}Ironsmelters within Karaks provide +2 'Oathgold' daily." />
   <string id="tor_careerchoice_description.LegacyOfGrungniPassive3" text="{=str_tor_careerchoice_description_LegacyOfGrungniPassive3}-33% cost to apply a 'Rune' to troops." />
-  <string id="tor_careerchoice_description.LegacyOfGrungniPassive4" text="{=str_tor_careerchoice_description_LegacyOfGrungniPassive4}Smithing levels increase personal range/radius of 'Rune' abilities by 0.05%." />
+  <string id="tor_careerchoice_description.LegacyOfGrungniPassive4" text="{=str_tor_careerchoice_description_LegacyOfGrungniPassive4}Smithing levels increase personal range of 'Rune' abilities by 0.4% (up to +100%) and radius by 0.05%." />
   <string id="tor_careerchoice_description.AnvilOfDoomKeystone" text="{=str_tor_careerchoice_description_AnvilOfDoomKeystone}The 'Rune' Wrath and Ruin's damage increased by 0.05% per point in Spellcraft." />
   <string id="tor_careerchoice_description.AnvilOfDoomPassive1" text="{=str_tor_careerchoice_description_AnvilOfDoomPassive1}+15% personal 'Magic' damage." />
   <string id="tor_careerchoice_description.AnvilOfDoomPassive2" text="{=str_tor_careerchoice_description_AnvilOfDoomPassive2}+5 'Oathgold' daily when an 'Anvil of Doom' is present." />

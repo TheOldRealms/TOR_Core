@@ -166,6 +166,17 @@ namespace TOR_Core.Extensions
             return attributes.Contains(CharacterAttributes.PIERCING) ? 0.30f : 0f;
         }
 
+        /// <summary>
+        /// Armour reduction for attacks against this agent. Sundered is only ever granted by status effects, so only those are checked.
+        /// </summary>
+        public static float GetSunderedArmorReduction(this Agent agent)
+        {
+            var statusEffectComponent = agent.GetComponent<StatusEffectComponent>();
+            if (statusEffectComponent == null || !statusEffectComponent.HasActiveEffects) return 0f;
+
+            return statusEffectComponent.GetTemporaryAttributes().Contains(CharacterAttributes.SUNDERED) ? 0.30f : 0f;
+        }
+
         public static float GetBulwarkRangedDamageReduction(this Agent agent)
         {
             var attributes = agent.GetAttributes();

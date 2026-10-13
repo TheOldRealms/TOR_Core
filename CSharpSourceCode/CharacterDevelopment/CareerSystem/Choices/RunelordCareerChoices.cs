@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.CampaignMechanics.Choices;
@@ -13,6 +15,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 
 public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 {
+    private const int WisdomOfThungniMinimumCooldown = 20;
+
     private CareerChoiceObject _runelorddRoot;
 
     private CareerChoiceObject _forgefireBurningPassive1;
@@ -109,15 +113,15 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 
     protected override void InitializeKeyStones()
     {
-        _runelorddRoot.Initialize(CareerID, "The runes are cast! By the Wisdom of Thungni, reduce the cooldown of the next 'Rune' ability by 15s, and empower all 'Rune' abilities for 5s. For every level of Smithing, Wisdom of Thungni's cooldown is reduced by 0.1s. (60s cooldown.)", null, true,
+        _runelorddRoot.Initialize(CareerID, "The runes are cast! By the Wisdom of Thungni, reduce the cooldown of the next 'Rune' ability by 15s, and empower all 'Rune' abilities for 5s. Also applies 15% extra damage dealt as 'Magic' to your weapon for 15s. For every level of Smithing, Wisdom of Thungni's cooldown is reduced by 0.1s. (60s cooldown.)", null, true,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
                 {
                     MutationTargetType = typeof(AbilityTemplate),
                     MutationTargetOriginalId = "WisdomOfThungni",
-                    PropertyName = "ScaleVariable1",
-                    PropertyValue = (choice, originalValue, agent) =>  CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Crafting }, 0.1f),
+                    PropertyName = "CoolDown",
+                    PropertyValue = (choice, originalValue, agent) => ReduceWisdomOfThungniCooldown(choice, originalValue, agent, DefaultSkills.Crafting),
                     MutationType = OperationType.Add
                 },
             });
@@ -135,12 +139,12 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                 {
                     MutationTargetType = typeof(AbilityTemplate),
                     MutationTargetOriginalId = "WisdomOfThungni",
-                    PropertyName = "ScaleVariable1",
-                    PropertyValue = (choice, originalValue, agent) =>  CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.1f),
+                    PropertyName = "CoolDown",
+                    PropertyValue = (choice, originalValue, agent) => ReduceWisdomOfThungniCooldown(choice, originalValue, agent, TORSkills.Faith),
                     MutationType = OperationType.Add
                 },
             });
-        //radius increased by how much? AbilityModel implementation adds 2 different amounts
+
         _chiselAndHammerKeystone.Initialize(CareerID, "Wisdom of Thungi also scales with Spellcraft. Radius of 'Rune' abilities is increased.", "ChiselAndHammer", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
@@ -148,8 +152,8 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                 {
                     MutationTargetType = typeof(AbilityTemplate),
                     MutationTargetOriginalId = "WisdomOfThungni",
-                    PropertyName = "ScaleVariable1",
-                    PropertyValue = (choice, originalValue, agent) =>  CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Spellcraft }, 0.1f),
+                    PropertyName = "CoolDown",
+                    PropertyValue = (choice, originalValue, agent) => ReduceWisdomOfThungniCooldown(choice, originalValue, agent, TORSkills.Spellcraft),
                     MutationType = OperationType.Add
                 },
 
@@ -161,17 +165,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             });
 
         _stoneAndSteelKeystone.Initialize(CareerID, "The 'Rune' Spellbreaker drains +50% more 'Winds of Magic'.", "StoneAndSteel", false,
-            ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
-            {
-                new CareerChoiceObject.MutationObject()
-                {
-                    MutationTargetType = typeof(AbilityTemplate),
-                    MutationTargetOriginalId = "WisdomOfThungni",
-                    PropertyName = "CoolDown",
-                    PropertyValue = (choice, originalValue, agent) => -((int)originalValue * 0.35f),
-                    MutationType = OperationType.Add
-                }
-            });
+            ChoiceType.Keystone, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special, true)); //special
 
         _legacyOfGrungniKeystone.Initialize(CareerID,
             "The 'Rune' Oath and Steel applies 'Fire' damage to troops.",
@@ -193,7 +187,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 
         _teachingsOfThungniPassive1.Initialize(CareerID, "-25% cost for 'Enchantments'.", "TeachingsOfThungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.EnchantmentCostReduction, true));
         _teachingsOfThungniPassive2.Initialize(CareerID, "Crafting an equipment 'Rune' provides Smithing/Spellcraft experience.", "TeachingsOfThungni", false, ChoiceType.Passive, null, null);
-        _teachingsOfThungniPassive3.Initialize(CareerID, "+10% 'Ward Save' for troops affected by a 'Rune'.", "TeachingsOfThungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.Spell,
+        _teachingsOfThungniPassive3.Initialize(CareerID, "+10% 'Ward Save' for troops affected by a 'Rune'.", "TeachingsOfThungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.All,
             (attacker, victim, mask) => victim.BelongsToMainParty() && !victim.IsHero && victim.Character.HasUnitRune()));
         _teachingsOfThungniPassive4.Initialize(CareerID, "+25% party carrying capacity.", "TeachingsOfThungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.InventoryCapacity, true));
 
@@ -204,8 +198,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _chiselAndHammerPassive4.Initialize(CareerID, "-25% 'Oathgold' cost to upgrade 'Elite' troops.", "ChiselAndHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpgradeCostModifier, true,
             characterObject => characterObject.IsEliteTroop()));
 
-        _forHearthAndHomePassive1.Initialize(CareerID, "+10% 'Ward Save' for troops affected by a 'Rune'.", "ForHearthAndHome", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.Spell,
-            (attacker, victim, mask) => !victim.BelongsToMainParty() && victim.IsHero && victim.GetHero().CharacterObject.IsRunesmith()));
+        _forHearthAndHomePassive1.Initialize(CareerID, "+10% 'Ward Save' for troops affected by a 'Rune'.", "ForHearthAndHome", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true)); //special
         _forHearthAndHomePassive2.Initialize(CareerID, "+3 Hitpoints for every equipment 'Rune' to the wearer.", "ForHearthAndHome", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.Special));
         _forHearthAndHomePassive3.Initialize(CareerID, "For every troop affected by a 'Rune', the party gains +0.05 healing.", "ForHearthAndHome", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.05f, PassiveEffectType.Special));
         _forHearthAndHomePassive4.Initialize(CareerID, "+10% duration of 'Rune' abilities. Points in Faith increases duration by 0.1%.", "ForHearthAndHome", false,
@@ -217,12 +210,12 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _stoneAndSteelPassive2.Initialize(CareerID, "+10% 'Magic Resistance' for all troops.", "StoneAndSteel", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell,
             (attacker, victim, mask) => victim.BelongsToMainParty() && victim.Character.Culture.StringId == TORConstants.Cultures.DAWI));
         _stoneAndSteelPassive3.Initialize(CareerID, "+25 personal Hitpoints.", "StoneAndSteel", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
-        _stoneAndSteelPassive4.Initialize(CareerID, "When a 'Rune' ability is refreshed, gain +50% 'Magic' damage for 15s.", "StoneAndSteel", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15));
+        _stoneAndSteelPassive4.Initialize(CareerID, "When a 'Rune' ability is refreshed by Wisdom of Thungni, gain +50% 'Magic' damage for 15s.", "StoneAndSteel", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15));
 
         _legacyOfGrungniPassive1.Initialize(CareerID, "Runesmith Guild provides more 'Oathgold' from delivered steel.", "LegacyOfGrungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true));
         _legacyOfGrungniPassive2.Initialize(CareerID, "Ironsmelters within Karaks provide +2 'Oathgold' daily.", "LegacyOfGrungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
         _legacyOfGrungniPassive3.Initialize(CareerID, "-33% cost to apply a 'Rune' to troops.", "LegacyOfGrungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
-        _legacyOfGrungniPassive4.Initialize(CareerID, "Smithing levels increase personal range/radius of 'Rune' abilities by 0.05%.", "LegacyOfGrungni", false,
+        _legacyOfGrungniPassive4.Initialize(CareerID, "Smithing levels increase personal range of 'Rune' abilities by 0.4% (up to +100%) and radius by 0.05%.", "LegacyOfGrungni", false,
             ChoiceType.Passive, new List<CareerChoiceObject.MutationObject>(){}, null);
 
         _anvilOfDoomPassive1.Initialize(CareerID, "+15% personal 'Magic' damage.", "AnvilOfDoom", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 15), AttackTypeMask.Spell));
@@ -245,5 +238,17 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
     protected override void UnlockCareerBenefitsTier3()
     {
 
+    }
+
+    /// <summary>
+    /// Each point in <paramref name="skill"/> takes 0.1s off Wisdom of Thungni's cooldown. The Smithing, Faith and Spellcraft
+    /// mutations run one after another on the same template, so each one is clamped against the cooldown the previous ones
+    /// left, and together they never go below <see cref="WisdomOfThungniMinimumCooldown"/>.
+    /// </summary>
+    private static float ReduceWisdomOfThungniCooldown(CareerChoiceObject choice, object currentCooldown, Agent agent, SkillObject skill)
+    {
+        var reduction = CareerHelper.AddSkillEffectToValue(choice, agent, [skill], 0.1f);
+        var reducibleCooldown = Math.Max(0f, Convert.ToSingle(currentCooldown) - WisdomOfThungniMinimumCooldown);
+        return -Math.Min(reduction, reducibleCooldown);
     }
 }

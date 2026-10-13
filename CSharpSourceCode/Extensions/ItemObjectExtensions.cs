@@ -1,4 +1,5 @@
 using HarmonyLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.Core;
@@ -156,6 +157,15 @@ namespace TOR_Core.Extensions
 
             var props = item.GetTorSpecificDataReadOnly();
             return props?.ItemTraits != null && props.ItemTraits.Count > 0;
+        }
+
+        /// <summary>
+        /// Number of Dawi runes (dw_rune_* and dw_master_rune_* traits) inscribed on the item.
+        /// </summary>
+        public static int GetDawiRuneCount(this ItemObject item)
+        {
+            return item.GetTraits().Count(trait => trait.ItemTraitStringId.StartsWith("dw_rune_", StringComparison.Ordinal) ||
+                                                   trait.ItemTraitStringId.StartsWith("dw_master_rune_", StringComparison.Ordinal));
         }
 
         public static bool HasAnyLootTraits(this ItemObject item)

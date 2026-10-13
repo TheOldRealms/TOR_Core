@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -50,9 +52,9 @@ namespace TOR_Core.AbilitySystem.Crosshairs
                 if (_missionScreen.GetProjectedMousePositionOnGround(out _position, out _normal, BodyFlags.CommonFocusRayCastExcludeFlags, true))
                 {
                     _currentDistance = _caster.Position.Distance(_position);
-                    if (_currentDistance > _template.MaxDistance)
+                    if (_currentDistance > MaxDistance)
                     {
-                        _position = _caster.LookFrame.Advance(_template.MaxDistance).origin;
+                        _position = _caster.LookFrame.Advance(MaxDistance).origin;
                         _position.z = _mission.Scene.GetGroundHeightAtPosition(Position);
                     }
                     Position = _position;
@@ -63,11 +65,25 @@ namespace TOR_Core.AbilitySystem.Crosshairs
                 }
                 else
                 {
-                    _position = _caster.LookFrame.Advance(_template.MaxDistance).origin;
+                    _position = _caster.LookFrame.Advance(MaxDistance).origin;
                     _position.z = _mission.Scene.GetGroundHeightAtPosition(Position);
                     Position = _position;
                 }
             }
+        }
+
+        /// <summary>
+        /// Cast range after career perks. Skills don't change during a mission, so it is calculated once.
+        /// </summary>
+        private float CalculateMaxDistance()
+        {
+            if (Game.Current.GameType is Campaign && _caster.Character is CharacterObject character)
+            {
+                var abilityModel = Campaign.Current.Models.GetAbilityModel();
+                if (abilityModel != null) return abilityModel.CalculateMaxDistanceForAbility(character, _template, _template.MaxDistance);
+            }
+
+            return _template.MaxDistance;
         }
 
         private void UpdateTargets()
@@ -162,6 +178,10 @@ namespace TOR_Core.AbilitySystem.Crosshairs
         private MBReadOnlyList<Agent> _previousTargets;
 
         private float _currentDistance;
+
+        private float? _maxDistance;
+
+        private float MaxDistance => _maxDistance ??= CalculateMaxDistance();
 
         private Vec3 _position;
 

@@ -167,11 +167,11 @@ namespace TOR_Core.CharacterDevelopment
                 PartyRole.Personal, -0.5f, EffectIncrementType.AddFactor, "{=str_tor_perk_piercing_shots_2}Gunpowder troops in your party can pierce shields.", PartyRole.PartyLeader, 0, EffectIncrementType.Invalid);
 
             _entrySpells.Initialize("{=str_tor_perk_novice_spellcaster_label}Novice Spellcaster", TORSkills.Spellcraft, 25, null,
-                "{=str_tor_perk_novice_spellcaster_1}Gain access to entry level spells.", PartyRole.Personal, 0, EffectIncrementType.Invalid);
+                "{=str_tor_perk_novice_spellcaster_1}Gain access to entry level spells and runes.", PartyRole.Personal, 0, EffectIncrementType.Invalid);
             _adeptSpells.Initialize("{=str_tor_perk_adept_spellcaster_label}Adept Spellcaster", TORSkills.Spellcraft, 100, null,
-                "{=str_tor_perk_adept_spellcaster_1}Gain access to adept level spells.", PartyRole.Personal, 0, EffectIncrementType.Invalid);
+                "{=str_tor_perk_adept_spellcaster_1}Gain access to adept level spells and runes.", PartyRole.Personal, 0, EffectIncrementType.Invalid);
             _masterSpells.Initialize("{=str_tor_perk_master_spellcaster_label}Master Spellcaster", TORSkills.Spellcraft, 200, null,
-                "{=str_tor_perk_master_spellcaster_1}Gain access to master level spells.", PartyRole.Personal, 0, EffectIncrementType.Invalid);
+                "{=str_tor_perk_master_spellcaster_1}Gain access to master level spells and runes.", PartyRole.Personal, 0, EffectIncrementType.Invalid);
 
             _selfish.Initialize("{=str_tor_perk_selfish_label}Selfish", TORSkills.Spellcraft, 50, _wellControlled,
                 "{=str_tor_perk_selfish_1}Your damaging spells do 90% reduced damage to yourself.",
@@ -187,7 +187,7 @@ namespace TOR_Core.CharacterDevelopment
             _librarian.Initialize("{=str_tor_perk_librarian_label}Librarian", TORSkills.Spellcraft, 125, _storyTeller,
                 "{=str_tor_perk_librarian_1}You gain double experience from reading books.",
                 PartyRole.Personal, 1f, EffectIncrementType.AddFactor,
-                "{=str_tor_perk_librarian_2}Learning new spells cost 50% less gold.",
+                "{=str_tor_perk_librarian_2}Learning new spells and runes costs 50% less gold.",
                 PartyRole.Personal, -0.5f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
             _storyTeller.Initialize("{=str_tor_perk_story_teller_label}Storyteller", TORSkills.Spellcraft, 125, _librarian,
                 "{=str_tor_perk_story_teller_1}Every companion in your party gains 1000 experience in a random skill per day.",
@@ -223,7 +223,7 @@ namespace TOR_Core.CharacterDevelopment
                 "{=str_tor_perk_dampener_2}You gain 5% ward save.",
                 PartyRole.Personal, -0.05f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
             _arcaneLink.Initialize("{=str_tor_perk_arcane_link_label}Arcane Link", TORSkills.Spellcraft, 250, _dampener,
-                "{=str_tor_perk_arcane_link_1}Any buffs you cast on a friendly unit will now also apply to you even if you are not in range.",
+                "{=str_tor_perk_arcane_link_1}Any buffs you cast on a friendly unit, including runes, will now also apply to you even if you are not in range.",
                 PartyRole.Personal, 1f, EffectIncrementType.Add,
                 "{=str_tor_perk_arcane_link_2}As formation Captain, all troops in your formation deal additonal 10% magic damage.",
                 PartyRole.Captain, 0.1f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);

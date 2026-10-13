@@ -1637,7 +1637,7 @@
                              Radius="5"
                              HasShockWave="false"
                              TargetType="Self"
-                             ImbuedStatusEffectDuration="10"
+                             ImbuedStatusEffectDuration="5"
                              DamageVariance="0"
                              ScriptNameToTrigger="none">
 		        <ImbuedStatusEffect>thungni_attribute</ImbuedStatusEffect>
@@ -1649,13 +1649,14 @@
                              SoundEffectId="none"
                              SoundEffectLength="0"
                              DamageType="Magical"
-                             DamageAmount="20"
+                             DamageAmount="30"
                              Radius="8"
                              HasShockWave="false"
                              TargetType="Enemy"
                              DamageVariance="0.0"
                              ImbuedStatusEffectDuration="5"
                              ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.WrathAndRuinScript">
+        <ImbuedStatusEffect>wrath_and_ruin_sunder</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
 	
 	<TriggeredEffectTemplate StringID="oath_and_steel"
@@ -1670,7 +1671,7 @@
                              DamageVariance="0.0"
                              ImbuedStatusEffectDuration="20"
                              ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.OathAndSteelScript">
-        <ImbuedStatusEffect>oath_and_steel</ImbuedStatusEffect>
+        <ImbuedStatusEffect>oath_and_steel_buff_res</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
 	
 	<TriggeredEffectTemplate StringID="rune_of_spellbreaking"
@@ -1678,10 +1679,10 @@
                              SoundEffectId="none"
                              SoundEffectLength="0"
                              DamageType="Invalid"
-                             DamageAmount="5"
+                             DamageAmount="0"
                              Radius="12"
                              HasShockWave="false"
-                             TargetType="Enemy"
+                             TargetType="All"
                              DamageVariance="0.0"
                              ImbuedStatusEffectDuration="5"
                              ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.SpellbreakerRuneScript">
@@ -1839,6 +1840,7 @@
                              ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyFlamingItemTraitScript">
         <ImbuedStatusEffect>unit_rune_grimnir</ImbuedStatusEffect>
 		<ImbuedStatusEffect>unit_rune_grimnir_2</ImbuedStatusEffect>
+		<ImbuedStatusEffect>unit_rune_grimnir_3</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
 	
 	    <!-- Item Traits -->
