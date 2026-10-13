@@ -10500,6 +10500,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_br_grail_knight_template" culture="Culture.vlandia">
     <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_bret_weapon_mace_knight_001" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_grail_knight_003" />
       <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_001" />
       <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_kotr_003" />
@@ -10544,6 +10545,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
     <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_kotr_sword_001" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_grail_knight_002" />
       <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_002" />
       <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_kotr_002" />
@@ -10588,6 +10590,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_001" />
     </EquipmentSet>
     <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_bret_weapon_mace_knight_001" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_grail_knight_001" />
       <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_001" />
       <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_kotr_001" />
@@ -10632,6 +10635,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_004" />
     </EquipmentSet>
     <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_kotr_sword_001" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_grail_knight_001" />
       <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_001" />
       <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_greathelm_001" />
@@ -10676,6 +10680,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_002" />
     </EquipmentSet>
     <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_bret_weapon_mace_knight_001" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_grail_knight_001" />
       <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_001" />
       <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_kotr_001" />
@@ -10720,6 +10725,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
     <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_kotr_sword_001" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_noble_001" />
       <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_lance_jousting_003" />
       <Equipment slot="Head" id="Item.tor_mousillon_head_helm_kotr_001" />
