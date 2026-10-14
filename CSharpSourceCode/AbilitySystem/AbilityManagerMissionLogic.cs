@@ -168,6 +168,7 @@ namespace TOR_Core.AbilitySystem
                     if (!_hasAppliedStartingPerkEffects)
                     {
                         AddPerkEffectsToStartingWindsOfMagic();//Sly : this tick occurs when deployment begins which ends up allowing things like prayer cooldowns to count down while formations are being rearranged.
+                        //OnDeploymentFinished may be useful for applying one-time effects.
                         _hasAppliedStartingPerkEffects = true;
                     }
 
@@ -616,28 +617,43 @@ namespace TOR_Core.AbilitySystem
             return 0;
         }
 
-        public override void OnTeamDeployed(Team team)
+        //Sly : OnBattleSideSpawned or AfterAddTeam may be relevant replacements if issues are found.
+        public override void OnDeploymentFinished()
         {
-            InitTeam(team);
+            InitArtilleryCounts();
+            InitSummoningCombatants();
         }
 
-        private void InitTeam(Team team)
+        private void InitArtilleryCounts()
         {
-            if (team is null || team.TeamAgents.IsEmpty())
-                return;
-
-            if (team.Side == BattleSideEnum.Attacker && _attackerSummoningCombatant == null)
+            foreach (var team in Mission.Teams)
             {
-                var culture = team.Leader == null ? team.TeamAgents.FirstOrDefault().Character.Culture : team.Leader.Character.Culture;
-                _attackerSummoningCombatant = new SummonedCombatant(team, culture);
+                RefreshMaxArtilleryCountForTeam(team);
             }
-            else if (team.Side == BattleSideEnum.Defender && _defenderSummoningCombatant == null)
-            {
-                var culture = team.Leader == null ? team.TeamAgents.FirstOrDefault().Character.Culture : team.Leader.Character.Culture;
-                _defenderSummoningCombatant = new SummonedCombatant(team, culture);
-            }
+        }
 
-            RefreshMaxArtilleryCountForTeam(team);
+        private void InitSummoningCombatants()
+        {
+            foreach (var team in Mission.Teams)
+            {
+                if (team.TeamAgents.IsEmpty()) continue;
+
+                var leader = team.Leader ?? team.TeamAgents.FirstOrDefault();
+
+                if (team.Side == BattleSideEnum.Attacker && _attackerSummoningCombatant == null)
+                {
+                    var culture = leader.Character.Culture;
+                    // BasicBattleAgentOrigin has no BattleCombatant. agent resolves the mission environment and fallback
+                    var battleEnvironment = leader.CurrentBattleEnvironment;
+                    _attackerSummoningCombatant = new SummonedCombatant(team, culture, battleEnvironment);
+                }
+                else if (team.Side == BattleSideEnum.Defender && _defenderSummoningCombatant == null)
+                {
+                    var culture = leader.Character.Culture;
+                    var battleEnvironment = leader.CurrentBattleEnvironment;
+                    _defenderSummoningCombatant = new SummonedCombatant(team, culture, battleEnvironment);
+                }
+            }
         }
 
         private void RefreshMaxArtilleryCountForTeam(Team team)
@@ -939,8 +955,7 @@ namespace TOR_Core.AbilitySystem
             if (_attackerSummoningCombatant == null
                 || _defenderSummoningCombatant == null)
             {
-                InitTeam(Mission.Current.Teams.Attacker);
-                InitTeam(Mission.Current.Teams.Defender);
+                InitSummoningCombatants();
             }
 
             var combatantToReturn =

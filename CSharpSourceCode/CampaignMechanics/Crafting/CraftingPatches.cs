@@ -7,6 +7,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting.WeaponDesign;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TOR_Core.CampaignMechanics.Crafting.Models;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -17,8 +18,8 @@ namespace TOR_Core.CampaignMechanics.Crafting
     public static class CraftingPatches
     {
         [HarmonyPrefix]
-        [HarmonyPatch(typeof(WeaponClassSelectionPopupVM), MethodType.Constructor, typeof(ICraftingCampaignBehavior), typeof(List<CraftingTemplate>), typeof(Action<int>), typeof(Func<CraftingTemplate, int>))]
-        public static void FilterCategories(ICraftingCampaignBehavior craftingBehavior, List<CraftingTemplate> templatesList, Action<int> onSelect, Func<CraftingTemplate, int> getUnlockedPiecesCount)
+        [HarmonyPatch(typeof(WeaponClassSelectionPopupVM), MethodType.Constructor, typeof(List<CraftingTemplate>), typeof(Action<int>), typeof(Func<CraftingTemplate, int>), typeof(Func<CraftingTemplate, int>))]
+        public static void FilterCategories(List<CraftingTemplate> templatesList, Action<int> onSelect, Func<CraftingTemplate, int> getUnlockedPiecesCount, Func<CraftingTemplate, int> getUninspectedPiecesCount)
         {
             var backup = templatesList.ToList();
             templatesList.Clear();
