@@ -250,89 +250,62 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_empire_state_troop_template" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_006" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_militia_002" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_001" />
-      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_001" />
-      <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_worn_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_pistolier_003" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_001" />
+      <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_006" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_militia_002" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_001" />
-      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_001" />
-      <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_worn_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_pistolier_003" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_001" />
+      <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
-      <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_006" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_militia_002" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_001" />
-      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_001" />
-      <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_worn_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_pistolier_003" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_001" />
+      <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
-      <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_006" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_militia_002" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_001" />
-      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_001" />
-      <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_worn_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_pistolier_003" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_001" />
+      <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
     </EquipmentSet>
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.aserai_axe_1_t2" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_007" />
-      <Equipment slot="Head" id="Item.arming_coif" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_militia_003" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_002" />
-      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_002" />
-      <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_worn_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_pistolier_003" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_001" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_002" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.aserai_axe_1_t2" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_007" />
-      <Equipment slot="Head" id="Item.arming_coif" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_militia_003" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_002" />
-      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_002" />
-      <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_worn_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_pistolier_003" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_001" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_002" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
-      <Equipment slot="Item0" id="Item.aserai_axe_1_t2" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_007" />
-      <Equipment slot="Head" id="Item.arming_coif" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_militia_003" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_002" />
-      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_002" />
-      <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_worn_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_pistolier_003" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_001" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_mace_002" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
-      <Equipment slot="Item0" id="Item.aserai_axe_1_t2" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_007" />
-      <Equipment slot="Head" id="Item.arming_coif" />
-      <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_002" />
-      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_002" />
-      <Equipment slot="Leg" id="Item.steppe_leather_boots" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.aserai_mace_2_t2" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_007" />
-      <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_001" />
-      <Equipment slot="Leg" id="Item.leather_boots" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.aserai_mace_2_t2" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_007" />
-      <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_001" />
-      <Equipment slot="Leg" id="Item.leather_boots" />
-    </EquipmentSet>
-    <EquipmentSet equipmentType="Civilian">
-      <Equipment slot="Item0" id="Item.aserai_mace_2_t2" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_007" />
-      <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_001" />
-      <Equipment slot="Leg" id="Item.leather_boots" />
-    </EquipmentSet>
-    <EquipmentSet equipmentType="Civilian" civilian="true">
-      <Equipment slot="Item0" id="Item.aserai_mace_2_t2" />
       <Equipment slot="Head" id="Item.tor_empire_head_helm_militia_003" />
       <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_002" />
       <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_worn_001" />
