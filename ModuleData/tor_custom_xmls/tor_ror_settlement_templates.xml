@@ -48,7 +48,7 @@
     />
     <RORSettlementTemplate
         SettlementId="town_AV3"
-        BaseTroopId="tor_ror_kragsburg_retainer"
+        BaseTroopId="tor_ror_kragsburg_sergeant"
         MenuHeaderText="{=str_tor_ror_settlement_text_kragsburg}The town is home to the Von Kragsburg Guard. Their barracks are ornate, ordered and clean."
         MenuBackgroundImageId="invalid"
         RegimentName="{=str_tor_ror_settlement_name_kragsburg}Von Kragsburg Guard"
@@ -61,14 +61,6 @@
         MenuBackgroundImageId="invalid"
         RegimentName="{=str_tor_ror_settlement_name_engineer}Imperial Gunnery School of Nuln"
         RegimentHQName="{=str_tor_ror_settlement_hqname_engineer}Imperial Gunnery School"
-    />
-    <RORSettlementTemplate
-        SettlementId="town_WI4"
-        BaseTroopId="tor_ror_grundel_defender_troop"
-        MenuHeaderText="{=str_tor_ror_settlement_text_grundel}The town houses the quarters of Grundel's Defenders. A temporary resting place, spears are lined up against the walls."
-        MenuBackgroundImageId="invalid"
-        RegimentName="{=str_tor_ror_settlement_name_grundel}Grundel's Defenders"
-        RegimentHQName="{=str_tor_ror_settlement_hqname_grundel}Defenders Quarters"
     />
     <RORSettlementTemplate
         SettlementId="town_SY2"
@@ -96,7 +88,7 @@
     />
     <RORSettlementTemplate
         SettlementId="village_TB1_2"
-        BaseTroopId="tor_ror_longshank_initiate"
+        BaseTroopId="tor_ror_longshank_ranger"
         MenuHeaderText="{=str_tor_ror_settlement_text_longshank}The village houses a Longshanks Encampment. Despite their life of constant travel, vowing to never stay anywhere for long, camps like this can still be found when these hardy folk rest their weary legs."
         MenuBackgroundImageId="invalid"
         RegimentName="{=str_tor_ror_settlement_name_longshank}Longshanks"
@@ -104,19 +96,11 @@
     />
     <RORSettlementTemplate
         SettlementId="castle_village_TB3_2"
-        BaseTroopId="tor_ror_ward_of_taal"
+        BaseTroopId="tor_ror_horned_hunter"
         MenuHeaderText="{=str_tor_ror_settlement_text_taal}The village houses a Horned Hunter Encampment. Despite deep forays into the woods of Talabecland, travelling far from civilisation to honour Taal, Hunters are seen to pass through this camp to rest."
         MenuBackgroundImageId="invalid"
         RegimentName="{=str_tor_ror_settlement_name_taal}Horned Hunters of Taal"
         RegimentHQName="{=str_tor_ror_settlement_hqname_taal}Horned Hunter Encampment"
-    />
-    <RORSettlementTemplate
-        SettlementId="village_RL1_3"
-        BaseTroopId="tor_ror_son_of_altdorf"
-        MenuHeaderText="{=str_tor_ror_settlement_text_altdorf}Home to the renowned and loved Altdorf Company of Honour, the 'Sons of the Reik', only the best may fight alongside these venerable warriors."
-        MenuBackgroundImageId="invalid"
-        RegimentName="{=str_tor_ror_settlement_name_altdorf}Altdorf Company of Honour"
-        RegimentHQName="{=str_tor_ror_settlement_hqname_altdorf}Company Barracks"
     />
     <RORSettlementTemplate
         SettlementId="town_RL1"
@@ -151,28 +135,12 @@
         RegimentHQName="{=str_tor_ror_settlement_hqname_ostland_shield}Chapel of Morr"
 	/>
 		<RORSettlementTemplate
-		SettlementId="village_HL3_3"
-        BaseTroopId="tor_ror_hochland_drakwald_patrol"
-        MenuHeaderText="{=str_tor_ror_settlement_text_drakwald_patrol}The village is home to a Drakwald patrol outpost, The Gunderman's Surefires are ready to set out."
-        MenuBackgroundImageId="invalid"
-        RegimentName="{=str_tor_ror_settlement_name_drakwald_patrol}Gunderman's Surefires"
-        RegimentHQName="{=str_tor_ror_settlement_hqname_drakwald_patrol}Outpost of the Gunderman's Surefires"
-	/>
-		<RORSettlementTemplate
 		SettlementId="town_WA1"
         BaseTroopId="tor_ror_marienburg_sailor"
         MenuHeaderText="{=str_tor_ror_settlement_text_marienburg_sailor}Inside the port of Marienburg, The Van Klumpf Buccaneers are to be found on their ship, Ready to set sail."
         MenuBackgroundImageId="invalid"
         RegimentName="{=str_tor_ror_settlement_name_marienburg_sailor}Van Klumpf Buccaneers"
         RegimentHQName="{=str_tor_ror_settlement_hqname_marienburg_sailor}Tavern of the Van Klumpf Buccaneers"
-	/>
-		<RORSettlementTemplate
-		SettlementId="town_NL2"
-        BaseTroopId="tor_ror_nordland_mariner"
-        MenuHeaderText="{=str_tor_ror_settlement_text_nordland_mariner}The town is a home to the famous Nordland Seahawks, ready to board any Norscan longship."
-        MenuBackgroundImageId="invalid"
-        RegimentName="{=str_tor_ror_settlement_name_nordland_mariner}Nordland Seahawks"
-        RegimentHQName="{=str_tor_ror_settlement_hqname_nordland_mariner}Barracks of the Nordland Seahawks"
 	/>
 	<RORSettlementTemplate
         SettlementId="castle_village_AQ3_2"

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfCharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_villager">
     <Abilities />
@@ -3992,7 +3992,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_kragsburg_sergeant">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>MonsterSlayer</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -4002,7 +4004,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_kragsburg_house_guard">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>MonsterSlayer</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -4107,55 +4111,14 @@
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.25" />
     </Resistances>
-    <DamageAmplifiers><AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="2.00" /></DamageAmplifiers>
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="2.00" />
+    </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="0.90" />
       <DamageProportionTuple DamageType="Fire" Percent="0.10" />
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="30" />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_grundel_defender_troop">
-    <Abilities />
-    <Attributes />
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_grundel_defender_stalwart">
-    <Abilities />
-    <Attributes />
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="5" />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_grundel_defender_sergeant">
-    <Abilities />
-    <Attributes>
-      <string>Unbreakable</string>
-    </Attributes>
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="8" />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_grundel_defender_defender">
-    <Abilities />
-    <Attributes>
-      <string>Unbreakable</string>
-    </Attributes>
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="12" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_deathjack_longbowman">
     <Abilities />
@@ -4188,32 +4151,8 @@
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="10" />
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_ward_of_taal">
-    <Abilities />
-    <Attributes />
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
-    </Resistances>
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_hunter_of_taal">
-    <Abilities />
-    <Attributes />
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.15" />
-    </Resistances>
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="3" />
-  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_horned_hunter">
     <Abilities />
-    <Attributes />
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.25" />
     </Resistances>
@@ -4222,37 +4161,6 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="5" />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_longshank_initiate">
-    <Abilities />
-    <Attributes />
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_longshank_strider">
-    <Abilities />
-    <Attributes />
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="1" />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_longshank_warden">
-    <Abilities />
-    <Attributes>
-      <string>Deadeye</string>
-    </Attributes>
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="3" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_longshank_ranger">
     <Abilities />
@@ -4337,35 +4245,6 @@
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="60" />
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_son_of_altdorf">
-    <Abilities />
-    <Attributes />
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_altdorf_companyman">
-    <Abilities />
-    <Attributes />
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="8" />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_altdorf_company_sergeant">
-    <Abilities />
-    <Attributes />
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="15" />
-  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_hochland_scout">
     <Abilities />
     <Attributes>
@@ -4424,28 +4303,6 @@
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="20" />
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_hochland_drakwald_patrol">
-    <Abilities />
-    <Attributes />
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_gundermans_surefire">
-    <Abilities />
-    <Attributes>
-      <string>Piercing</string>
-      <string>MonsterSlayer</string>
-    </Attributes>
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="8" />
-  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_marienburg_sailor">
     <Abilities />
     <Attributes>
@@ -4475,31 +4332,6 @@
     <Attributes />
     <Resistances>
       <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.50" />
-    </Resistances>
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_nordland_mariner">
-    <Abilities />
-    <Attributes />
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.50" />
-    </Resistances>
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_nordland_seahawk">
-    <Abilities />
-    <Attributes>
-      <string>Unbreakable</string>
-      <string>Piercing</string>
-    </Attributes>
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.25" />
     </Resistances>
     <DamageAmplifiers />
     <DamageProportions>

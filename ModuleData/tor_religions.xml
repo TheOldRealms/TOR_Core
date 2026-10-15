@@ -50,7 +50,7 @@
             <FollowerClan stringId="hochland_clan_3" />
         </Followers>
         <ReligiousTroops>
-            <ReligiousTroop id="NPCCharacter.tor_ror_ward_of_taal" />
+            <ReligiousTroop id="NPCCharacter.tor_ror_horned_hunter" />
         </ReligiousTroops>
         <EliteUnits>
             <EliteUnit id="NPCCharacter.tor_ror_maisontaal_cultist" />
