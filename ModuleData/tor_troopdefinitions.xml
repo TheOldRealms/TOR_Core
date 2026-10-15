@@ -4464,40 +4464,6 @@
       <EquipmentSet id="tor_blazing_sun_innercircle_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ror_deathjack_longbowman" default_group="ranged" level="16" name="{=str_tor_ror_deathjack_longbowman}Deathjack Longbowman" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true" localizationId="str_tor_ror_deathjack_longbowman">
-    <face>
-      <face_key_template value="BodyProperty.fighter_ror_stirlander" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_ror_deathjack_marksman" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_deathjack_longbowman_template" />
-      <EquipmentSet id="tor_deathjack_longbowman_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_ror_deathjack_marksman" default_group="ranged" level="21" name="{=str_tor_ror_deathjack_marksman}Deathjack Marksman" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level21" localizationId="str_tor_ror_deathjack_marksman">
-    <face>
-      <face_key_template value="BodyProperty.fighter_ror_stirlander" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_ror_deathjack_toxophilite" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_deathjack_marksman_template" />
-      <EquipmentSet id="tor_deathjack_marksman_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_ror_deathjack_toxophilite" default_group="ranged" level="26" name="{=str_tor_ror_deathjack_toxophilite}Deathjack Toxophilite" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level26" localizationId="str_tor_ror_deathjack_toxophilite">
-    <face>
-      <face_key_template value="BodyProperty.fighter_ror_stirlander" />
-    </face>
-    <upgrade_targets />
-    <Equipments>
-      <EquipmentSet id="tor_deathjack_toxophilite_template" />
-      <EquipmentSet id="tor_deathjack_toxophilite_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
   <NPCCharacter id="tor_ror_horned_hunter" default_group="infantry" level="26" name="{=str_tor_ror_horned_hunter}Horned Hunter" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level26" localizationId="str_tor_ror_horned_hunter">
     <face>
       <face_key_template value="BodyProperty.hornedhunter" />

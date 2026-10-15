@@ -792,9 +792,6 @@
 			<PartyTemplateStack min_value="1" max_value="2" troop="NPCCharacter.tor_ror_stir_river_patrolman" />
 			<PartyTemplateStack min_value="1" max_value="2" troop="NPCCharacter.tor_ror_stir_river_patrol_guardsman" />
 			<PartyTemplateStack min_value="1" max_value="2" troop="NPCCharacter.tor_ror_stir_river_patrol_nimrod" />
-			<PartyTemplateStack min_value="1" max_value="2" troop="NPCCharacter.tor_ror_deathjack_longbowman" />
-			<PartyTemplateStack min_value="1" max_value="2" troop="NPCCharacter.tor_ror_deathjack_marksman" />
-			<PartyTemplateStack min_value="1" max_value="2" troop="NPCCharacter.tor_ror_deathjack_toxophilite" />
 		</stacks>
 	</MBPartyTemplate>
 	<MBPartyTemplate id="stirland_lordparty_template" >
