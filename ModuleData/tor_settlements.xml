@@ -95,6 +95,10 @@
     <Components>
       <Shrine id="grove_of_the_lady_01" religion="cult_of_lady" background_crop_position="0.0" background_mesh="shrine_of_lady" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
+    <Locations complex_template="LocationComplexTemplate.shrine_lady_complex">
+      <Location id="center" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
+      <Location id="tor_bretonnia_forest_trainer_shrine" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
+    </Locations>
   </Settlement>
   <Settlement id="grove_of_the_lady_02" name="{=str_tor_settlements_grove_lady2}Grove of the Lady" owner="Faction.bastonne_clan_1" posX="1038.792" posY="1070.953" culture="Culture.vlandia" text="{=!}Grove of the Lady" gate_posX="1038.792" gate_posY="1070.953">
     <Components>

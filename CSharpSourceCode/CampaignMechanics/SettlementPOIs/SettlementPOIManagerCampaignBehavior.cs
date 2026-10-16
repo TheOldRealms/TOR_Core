@@ -318,6 +318,27 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                     Settlement.CurrentSettlement, poi.LocationId, out _, out _))
                 return;
 
+            // Custom-settlement menus (shrine_menu, oak_of_ages_menu, raidingsite_menu, ...)
+            // leave PlayerEncounter.LocationEncounter unset because vanilla only populates it
+            // for town/castle/village/hideout entry. If we're on one of those menus the
+            // encounter is still live (TOREncounterGameMenuModel.GetEncounterMenu just
+            // routes to a different menu id), so EnterSettlement() primes LocationEncounter
+            // in-place without re-opening the menu.
+            var settlement = Settlement.CurrentSettlement;
+            if (PlayerEncounter.LocationEncounter == null
+                && PlayerEncounter.Current != null
+                && PlayerEncounter.EncounterSettlement == settlement)
+            {
+                PlayerEncounter.EnterSettlement();
+            }
+
+            if (PlayerEncounter.LocationEncounter == null || LocationComplex.Current == null)
+            {
+                // Can't open the scene without an active LocationEncounter + complex.
+                // Bail quietly — menu stays on; player can leave normally.
+                return;
+            }
+
             // vanilla lordshall-style transition — triggers LocationCharactersAreReadyToSpawnEvent
             // and the normal exit-back-to-town flow.
             var manager = Campaign.Current.GameMenuManager;

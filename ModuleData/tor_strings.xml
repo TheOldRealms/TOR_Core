@@ -6060,4 +6060,13 @@
   <string id="tor_poi_shaman_hut.SiegeSealed" text="{=str_tor_poi_shaman_hut.SiegeSealed}The shaman da hut iz closed. Bosses fightin'!" />
   <string id="tor_poi_shaman_hut.Rejected" text="{=str_tor_poi_shaman_hut.Rejected}Da shaman don't see yer kind." />
   <string id="tor_poi_shaman_hut.MustHaveCareer" text="{=str_tor_poi_shaman_hut.MustHaveCareer}Only shaman-boyz may enter." />
+
+  <!-- POIs - Forest Shrine of the Lady -->
+  <string id="tor_poi_bretonnia_forest_trainer_shrine.Name" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.Name}Forest Shrine of the Lady" />
+  <string id="tor_poi_bretonnia_forest_trainer_shrine.EnterLabel" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.EnterLabel}Approach the shrine..." />
+  <string id="tor_poi_bretonnia_forest_trainer_shrine.Undiscovered" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_bretonnia_forest_trainer_shrine.Sealed" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.Sealed}This place is sealed." />
+  <string id="tor_poi_bretonnia_forest_trainer_shrine.SiegeSealed" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.SiegeSealed}The grove's wards close during the siege." />
+  <string id="tor_poi_bretonnia_forest_trainer_shrine.WrongCulture" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.WrongCulture}The Lady's shrine is a sacred place of Bretonnia." />
+  <string id="tor_poi_bretonnia_forest_trainer_shrine.NotCaster" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.NotCaster}Only those gifted with magic may approach the Lady." />
 </strings>
