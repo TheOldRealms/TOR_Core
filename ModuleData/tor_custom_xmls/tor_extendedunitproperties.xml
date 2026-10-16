@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfCharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_villager">
     <Abilities />
@@ -44,39 +44,22 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_spearman">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>MonsterSlayer</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_empire_armored_spearman">
-    <Abilities />
-    <Attributes />
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_empire_veteran_swordsman">
-    <Abilities />
-    <Attributes />
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="1" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_halberdier">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>MonsterSlayer</string>
+    </Attributes>
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.25" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -86,22 +69,11 @@
     <Abilities />
     <Attributes />
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.25" />
-    </DamageAmplifiers>
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="4" />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_empire_pikeman">
-    <Abilities />
-    <Attributes />
-    <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="4" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_sergeant">
     <Abilities />
@@ -113,25 +85,7 @@
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="3" />
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_empire_scout">
-    <Abilities />
-    <Attributes />
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_archer">
-    <Abilities />
-    <Attributes />
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_empire_skirmisher">
     <Abilities />
     <Attributes />
     <Resistances />
@@ -4144,42 +4098,6 @@
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="15" />
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_blazing_sun_preceptor">
-    <Abilities />
-    <Attributes>
-      <string>Unbreakable</string>
-      <string>Knightly</string>
-    </Attributes>
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.15" />
-    </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="1.50" />
-    </DamageAmplifiers>
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.90" />
-      <DamageProportionTuple DamageType="Fire" Percent="0.10" />
-    </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="30" />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_blazing_sun_demigryph_knight">
-    <Abilities />
-    <Attributes>
-      <string>Unbreakable</string>
-      <string>Knightly</string>
-    </Attributes>
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.15" />
-    </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="1.50" />
-    </DamageAmplifiers>
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.90" />
-      <DamageProportionTuple DamageType="Fire" Percent="0.10" />
-    </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="50" />
-  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_blazing_sun_innercircle">
     <Abilities />
     <Attributes>
@@ -4189,32 +4107,12 @@
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.25" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="2.00" />
-    </DamageAmplifiers>
+    <DamageAmplifiers><AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="2.00" /></DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="0.90" />
       <DamageProportionTuple DamageType="Fire" Percent="0.10" />
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="30" />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_blazing_sun_demigryph_innercircle">
-    <Abilities />
-    <Attributes>
-      <string>Unbreakable</string>
-      <string>Knightly</string>
-    </Attributes>
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.25" />
-    </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="2.00" />
-    </DamageAmplifiers>
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.90" />
-      <DamageProportionTuple DamageType="Fire" Percent="0.10" />
-    </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="60" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_grundel_defender_troop">
     <Abilities />
@@ -11560,5 +11458,10 @@
     <Attributes>
       <string>SpellCaster</string>
     </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_empire_duke_champion">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
   </CharacterExtendedInfo>
 </ArrayOfCharacterExtendedInfo>
