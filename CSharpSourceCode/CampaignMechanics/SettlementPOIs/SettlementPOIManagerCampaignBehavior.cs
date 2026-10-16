@@ -251,6 +251,10 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         {
             DiscoverAndRegisterAllPOIs();
 
+            // Shared trainer dialogs (generic greet, magic-test, lore specialise, scroll
+            // shop, goodbye) register once. POI-specific trees come from each POI below.
+            SpellTrainers.SpellTrainerHelper.RegisterCommonDialogs(starter);
+
             foreach (var poi in _byLocationId.Values)
             {
                 var captured = poi;   // avoid loop-variable capture in the lambdas
@@ -261,6 +265,11 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                     condition: args => MenuCondition(args, captured),
                     consequence: args => MenuConsequence(args, captured),
                     isLeave: false);
+
+                // Each POI contributes its own trainer dialog tree (if any). Default
+                // SettlementPOI.RegisterDialogs is a no-op, so POIs without a conversation
+                // partner opt out by not overriding.
+                captured.RegisterDialogs(starter);
             }
 
             // Re-apply any runtime-attached scenes before the trainer sweep, so AppliesTo

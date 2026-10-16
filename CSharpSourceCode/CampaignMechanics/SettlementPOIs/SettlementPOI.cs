@@ -4,6 +4,8 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Localization;
 using TOR_Core.Extensions;
 
+
+
 namespace TOR_Core.CampaignMechanics.SettlementPOIs
 {
     /// <summary>
@@ -128,5 +130,13 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
 
         public virtual TextObject HideOnSealed =>
             R("Sealed", "This place is sealed.");
+
+        /// <summary>
+        /// Register this POI's trainer dialog tree (if any) against the campaign.
+        /// Called once per session by <c>SettlementPOIManagerCampaignBehavior</c>.
+        /// Default is no-op: POIs without a conversation partner (ROR recruiter,
+        /// future scene-only POIs) don't need to override.
+        /// </summary>
+        public virtual void RegisterDialogs(CampaignGameStarter starter) { }
     }
 }

@@ -170,7 +170,6 @@ namespace TOR_Core
                 starter.AddBehavior(new RORCampaignBehavior());
                 starter.AddBehavior(new TORCaptivityCampaignBehavior());
                 starter.AddBehavior(new AssimilationCampaignBehavior());
-                starter.AddBehavior(new SpellTrainerDialogsBehavior());
                 starter.AddBehavior(new SpellCasterLordLevelBehavior());
                 // SettlementPOI subclasses self-register via reflection on session launch;
                 // SubModule only needs the manager behavior itself.

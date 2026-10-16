@@ -521,16 +521,7 @@ namespace TOR_Core.Extensions
             else return false;
         }
 
-        public static bool IsSpellTrainer(this Hero hero)
-        {
-            var behavior = Campaign.Current.GetCampaignBehavior<SpellTrainerDialogsBehavior>();
-            if (behavior != null)
-            {
-                return behavior.IsSpellTrainer(hero);
-            }
-
-            return false;
-        }
+        public static bool IsSpellTrainer(this Hero hero) => SpellTrainerHelper.IsSpellTrainer(hero);
 
         public static bool IsEnchanter(this Hero hero)
         {
