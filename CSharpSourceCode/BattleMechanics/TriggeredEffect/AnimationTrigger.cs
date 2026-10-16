@@ -6,12 +6,8 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
     [Serializable]
     public class AnimationTrigger
     {
-        [XmlAttribute(attributeName: "action_name")]
-        public string ActionName { get; set; }
-        [XmlAttribute(attributeName: "animation_percent_to_trigger")]
-        public float AnimationPercent { get; set; }
-        [XmlAttribute(attributeName: "bone_index")]
-        public sbyte BoneIndex { get; set; }
+        [XmlAttribute(attributeName: "character_id")]
+        public string CharacterId { get; set; }
         [XmlAttribute(attributeName: "triggered_effect")]
         public string TriggeredEffectId { get; set; }
     }
