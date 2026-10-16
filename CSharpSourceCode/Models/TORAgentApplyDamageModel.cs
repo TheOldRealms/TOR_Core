@@ -1445,6 +1445,7 @@ namespace TOR_Core.Models
             base.DecideWeaponCollisionReaction(registeredBlow, collisionData, attacker, defender, attackerWeapon, isFatalHit, isShruggedOff, momentumRemaining, out colReaction);
 
             if (defender == null) return;
+            if (collisionData.CollisionResult == CombatCollisionResult.HitWorld) return;
             if (momentumRemaining == 0) return;
 
             
