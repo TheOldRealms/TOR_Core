@@ -1311,7 +1311,7 @@ namespace TOR_Core.Models
                     equipmentIndex = attackerAgent.GetPrimaryWieldedItemIndex();
                 }
 
-                if (((equipmentIndex != EquipmentIndex.None) ? attackerAgent.Equipment[equipmentIndex].CurrentUsageItem : null) == null || isPassiveUsage || strikeType != 0 || (attackDirection != 0 && !attackerAgent.HasCrushThrough()))
+                if (((equipmentIndex != EquipmentIndex.None) ? attackerAgent.Equipment[equipmentIndex].CurrentUsageItem : null) == null || isPassiveUsage || strikeType != 0)
                 {
                     return false;
                 }
@@ -1347,7 +1347,7 @@ namespace TOR_Core.Models
             if (attackerUsageItem != null
                 && !isPassiveUsage
                 && strikeType == 0
-                && ((attackDirection == 0 || attackerAgent.HasCrushThrough()) || bruteAiMeleeCtbAttack)
+                && (attackDirection == 0 || bruteAiMeleeCtbAttack)
                 && totalAttackEnergy > 58f)
             {
             #if TOR_CTB_LOG
@@ -1445,6 +1445,7 @@ namespace TOR_Core.Models
             base.DecideWeaponCollisionReaction(registeredBlow, collisionData, attacker, defender, attackerWeapon, isFatalHit, isShruggedOff, momentumRemaining, out colReaction);
 
             if (defender == null) return;
+            if (collisionData.CollisionResult == CombatCollisionResult.HitWorld) return;
             if (momentumRemaining == 0) return;
 
             

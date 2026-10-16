@@ -20,6 +20,7 @@ using TaleWorlds.MountAndBlade.View.Screens;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics.Reinforcements;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.CustomResources;
@@ -493,6 +494,20 @@ namespace TOR_Core.Utilities
             target.ApplyDamage(damage, target.Position);
             return "Damaged " + target.Name + " with " + damage + "\n";
 
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("spawn_green_knight", "tor")]
+        public static string SpawnGreenKnight(List<string> arguments)
+        {
+
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+
+            var greenKnightLogic = Mission.Current.GetMissionBehavior<GreenKnightMissionLogic>();
+            if (!greenKnightLogic.ScheduleCheatArrival())
+                return "arrival is already scheduled or no arrival can be scheduled";
+
+            return "wait 10 seconds";
         }
 
         [CommandLineFunctionality.CommandLineArgumentFunction("add_blessing", "tor")]

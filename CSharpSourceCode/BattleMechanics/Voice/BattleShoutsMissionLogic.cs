@@ -9,13 +9,16 @@ namespace TOR_Core.BattleMechanics.Voice
         private bool _battleEnded;
         private bool _deploymentFinished;
 
-        public override void OnTeamDeployed(Team team)
+        public override void AfterAddTeam(Team team)
         {
-            if (team.IsPlayerTeam && team.IsPlayerGeneral)
-            {
-                _playerOrderController = team.PlayerOrderController;
-                _playerOrderController.OnOrderIssued += OnOrderIssued;
-            }
+            //Sly : override target changed as prior target no longer exists on 1.5.2.
+            //Commented out the contents as the code effectively never ran.
+            //To be determined if class is deleted entirely as naber's sound work may remove any possible need.
+            //if (team.IsPlayerTeam && team.IsPlayerGeneral)
+            //{
+            //    _playerOrderController = team.PlayerOrderController;
+            //    _playerOrderController.OnOrderIssued += OnOrderIssued;
+            //}
         }
 
         public override void OnDeploymentFinished()

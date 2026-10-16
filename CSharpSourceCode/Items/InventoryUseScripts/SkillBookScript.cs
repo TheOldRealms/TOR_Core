@@ -74,7 +74,7 @@ namespace TOR_Core.Items.InventoryUseScripts
 
                     var adjustedXp = new ExplainedNumber(_xpAmount);
 
-                    PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.Librarian, party.LeaderHero.CharacterObject, true, ref adjustedXp);
+                    PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.Librarian, party.CurrentBattleEnvironment, party.LeaderHero.CharacterObject, true, ref adjustedXp);
 
                     party.LeaderHero.AddSkillXp(skill, adjustedXp.RoundedResultNumber / _learningTime);
                     TORCommon.Say($"Gained {adjustedXp.RoundedResultNumber / _learningTime} XP in {skill.Name}.");

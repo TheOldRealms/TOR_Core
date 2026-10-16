@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfCharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_villager">
     <Abilities />
@@ -44,39 +44,22 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_spearman">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>MonsterSlayer</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_empire_armored_spearman">
-    <Abilities />
-    <Attributes />
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_empire_veteran_swordsman">
-    <Abilities />
-    <Attributes />
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="1" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_halberdier">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>MonsterSlayer</string>
+    </Attributes>
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.25" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -86,22 +69,11 @@
     <Abilities />
     <Attributes />
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.25" />
-    </DamageAmplifiers>
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="4" />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_empire_pikeman">
-    <Abilities />
-    <Attributes />
-    <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="4" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_sergeant">
     <Abilities />
@@ -113,25 +85,7 @@
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="3" />
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_empire_scout">
-    <Abilities />
-    <Attributes />
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_archer">
-    <Abilities />
-    <Attributes />
-    <Resistances />
-    <DamageAmplifiers />
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_empire_skirmisher">
     <Abilities />
     <Attributes />
     <Resistances />
@@ -3539,6 +3493,37 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beast_bandit_ungor_scavenger">
+    <Abilities />
+    <Attributes>
+      <string>Expendable</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beast_bandit_ungor_raider">
+    <Abilities />
+    <Attributes>
+      <string>Expendable</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beast_bandit_ungor_halfhorn_chief">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_beast_gor">
     <Abilities />
     <Attributes />
@@ -3574,6 +3559,140 @@
       <string>Frenzy</string>
       <string>MonsterAttack</string>
       <string>Monstrous</string>
+      <string>Piercing</string>
+    </Attributes>
+    <AdditionalHealth>350</AdditionalHealth>
+    <Resistances />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="1.00" />
+    </DamageAmplifiers>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastmen_ungor">
+    <Abilities />
+    <Attributes>
+      <string>Expendable</string>
+      <string>Swift</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastmen_shielded_ungor">
+    <Abilities />
+    <Attributes>
+      <string>Expendable</string>
+      <string>Swift</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastmen_ungor_raider">
+    <Abilities />
+    <Attributes>
+      <string>Expendable</string>
+      <string>Swift</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastmen_ungor_chief_raider">
+    <Abilities />
+    <Attributes>
+      <string>Expendable</string>
+      <string>Swift</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastmen_ungor_chief">
+    <Abilities />
+    <Attributes>
+      <string>Swift</string>
+      <string>MonsterSlayer</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastmen_gor">
+    <Abilities />
+    <Attributes>
+      <string>Swift</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.10" />
+    </DamageAmplifiers>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastmen_gor_foerender">
+    <Abilities />
+    <Attributes>
+      <string>Swift</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.10" />
+    </DamageAmplifiers>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastmen_gor_manripper">
+    <Abilities />
+    <Attributes>
+      <string>Swift</string>
+      <string>Piercing</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.10" />
+    </DamageAmplifiers>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastmen_gor_gougehorn">
+    <Attributes>
+      <string>MonsterAttack</string>
+      <string>Swift</string>
+      <string>Piercing</string>
+    </Attributes>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
+    </DamageAmplifiers>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastmen_minotaur">
+    <Abilities />
+    <Attributes>
+      <string>Unstoppable</string>
+      <string>Frenzy</string>
+      <string>MonsterAttack</string>
+      <string>Monstrous</string>
+      <string>Swift2</string>
+      <string>Piercing</string>
+      <string>Minotaur</string>
     </Attributes>
     <AdditionalHealth>350</AdditionalHealth>
     <Resistances />
@@ -3979,42 +4098,6 @@
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="15" />
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_blazing_sun_preceptor">
-    <Abilities />
-    <Attributes>
-      <string>Unbreakable</string>
-      <string>Knightly</string>
-    </Attributes>
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.15" />
-    </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="1.50" />
-    </DamageAmplifiers>
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.90" />
-      <DamageProportionTuple DamageType="Fire" Percent="0.10" />
-    </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="30" />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_blazing_sun_demigryph_knight">
-    <Abilities />
-    <Attributes>
-      <string>Unbreakable</string>
-      <string>Knightly</string>
-    </Attributes>
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.15" />
-    </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="1.50" />
-    </DamageAmplifiers>
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.90" />
-      <DamageProportionTuple DamageType="Fire" Percent="0.10" />
-    </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="50" />
-  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_blazing_sun_innercircle">
     <Abilities />
     <Attributes>
@@ -4024,32 +4107,12 @@
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.25" />
     </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="2.00" />
-    </DamageAmplifiers>
+    <DamageAmplifiers><AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="2.00" /></DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="0.90" />
       <DamageProportionTuple DamageType="Fire" Percent="0.10" />
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="30" />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_ror_blazing_sun_demigryph_innercircle">
-    <Abilities />
-    <Attributes>
-      <string>Unbreakable</string>
-      <string>Knightly</string>
-    </Attributes>
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.25" />
-    </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="2.00" />
-    </DamageAmplifiers>
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.90" />
-      <DamageProportionTuple DamageType="Fire" Percent="0.10" />
-    </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="60" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_grundel_defender_troop">
     <Abilities />
@@ -7989,6 +8052,7 @@
     <Abilities />
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_first_6">
@@ -10131,6 +10195,21 @@
       <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastmen_lord_stormcrow">
+    <Abilities>
+      <string>AmberSpear</string>
+      <string>TanglingThorn</string>
+      <string>PannsImpenetrablePelt</string>
+      <string>HailStorm</string>
+      <string>FlockOfDoom</string>
+      <string>TheBeastUnleashed</string>
+      <string>CurseOfAnraheir</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_hm_lord">
     <Abilities>
       <string>ShieldOfSaphery</string>
@@ -11219,13 +11298,44 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="new_entry_1">
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Magical" Percent="0.90" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.10" />
     </DamageProportions>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.70" />
+    </Resistances>
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.30" />
+    </DamageAmplifiers>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_greenknight_leader">
     <Attributes>
       <string>LegendaryLord</string>
+      <string>EncyclopediaHelmet</string>
     </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_greenknight_mission">
+    <Attributes>
+      <string>Bulwark3</string>
+      <string>Piercing2</string>
+      <string>Unbreakable</string>
+      <string>Unstoppable</string>
+      <string>Regeneration3</string>
+      <string>Ethereal2</string>
+      <string>UndeadSlayer2</string>
+      <string>Immortality</string>
+      <string>MonsterAttack</string>
+    </Attributes>
+    <AdditionalHealth>250</AdditionalHealth>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
+    </Resistances>
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="5.00" />
+    </DamageAmplifiers>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Magical" Percent="1.00" />
+    </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_lord_mousillon_first_11">
     <Attributes>
@@ -11236,5 +11346,122 @@
     <Attributes>
       <string>BloodDragon</string>
     </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastman_khorngor">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <Attributes>
+      <string>Swift</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastman_pestigor">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <Attributes>
+      <string>Swift</string>
+      <string>Bulwark</string>
+      <string>Piercing</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastman_slaangor">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <Attributes>
+      <string>Swift</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_beastman_tzaangor">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <Attributes>
+      <string>Swift</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_lost_son">
+    <Attributes>
+      <string>Bulwark3</string>
+      <string>Piercing2</string>
+      <string>Unbreakable</string>
+      <string>Unstoppable</string>
+      <string>Regeneration3</string>
+      <string>Ethereal2</string>
+      <string>UndeadSlayer2</string>
+      <string>Immortality</string>
+    </Attributes>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Magical" Percent="0.90" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.10" />
+    </DamageProportions>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.70" />
+    </Resistances>
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="2.00" />
+    </DamageAmplifiers>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_cygor">
+    <Attributes>
+      <string>Unstoppable</string>
+      <string>Swift</string>
+      <string>Minotaur</string>
+      <string>Piercing</string>
+      <string>Monstrous</string>
+    </Attributes>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.80" />
+    </Resistances>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_giant">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <Attributes>
+      <string>Tough</string>
+      <string>Bulwark2</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_vc_ghoul">
+    <Attributes>
+      <string>Undead</string>
+    </Attributes>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" />
+    </Resistances>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_fey_1">
+    <Attributes>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_fey_leader">
+    <Attributes>
+      <string>SpellCaster</string>
+      <string>LegendaryLord</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_fey_2">
+    <Attributes>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_fey_3">
+    <Attributes>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_empire_duke_champion">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
   </CharacterExtendedInfo>
 </ArrayOfCharacterExtendedInfo>

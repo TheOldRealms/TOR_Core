@@ -213,6 +213,7 @@ namespace TOR_Core.Utilities
             public const string RUNESMITH = "Runesmith";
             public const string ILL_FATED = "IllFated";//moussilon knights, similar to grail knights
             public const string LEGENDARY_LORD = "LegendaryLord";//Specific famous heroes who need plot armour
+            public const string ENCYCLOPEDIA_HELMET = "EncyclopediaHelmet"; //heroes with hidden faces in lore
             public const string WARBOSS = "Warboss";//greenskin mechanic
             public const string PRIEST_TRAINER = "PriestTrainer";//Blesses player, teaches equipment blessing, etc.
             public const string SKILL_TRAINER = "SkillTrainer";
@@ -266,7 +267,6 @@ namespace TOR_Core.Utilities
             public const string EXPENDABLE = "Expendable";
             public const string FRENZY = "Frenzy";
             public const string DEADEYE = "Deadeye";
-            public const string CRUSH_THROUGH = "CrushThrough";
             public const string BRUTE = "Brute";
             public const string CLEAR_BLOOD_BURST = "ClearBloodBurst";
             public const string IMMORTALITY = "Immortality";

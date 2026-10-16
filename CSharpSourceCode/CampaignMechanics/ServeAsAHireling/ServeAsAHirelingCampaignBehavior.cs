@@ -2490,6 +2490,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             DisbandParty();
             //sets the player party to be ignored so it can't be targeted; refreshed with the IgnoreHirelingPartyRefresh event
             MobileParty.MainParty.IgnoreForHours(8f); //may have to set the player party to notActive maybe?
+            //See PartyBase.IInteractablePoint.CanPartyInteract for why the player is interactable. ie a map event could be started with that party, but the ability for the ai to even target them in the first place is upstream because CanPartyInteract is only checked when contact is made and EncounterManager.HandleEncounterForMobileParty is checking for creation validity.
+            //Something seems off with how MobileParty.ShouldBeIgnored is being determined/used.
 
             ChangeKingdomAction.ApplyByJoinFactionAsMercenary(Hero.MainHero.Clan, _hirelingEnlistingLord.Clan.Kingdom, default, 25, false);
             MBTextManager.SetTextVariable("ENLISTINGLORDNAME", _hirelingEnlistingLord.EncyclopediaLinkWithName);

@@ -25,6 +25,7 @@ using TOR_Core.BattleMechanics.Banners;
 using TOR_Core.BattleMechanics.Dismemberment;
 using TOR_Core.BattleMechanics.Firearms;
 using TOR_Core.BattleMechanics.Morale;
+using TOR_Core.BattleMechanics.Reinforcements;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.BattleMechanics.Voice;
@@ -159,6 +160,8 @@ namespace TOR_Core
                 starter.AddBehavior(new RaidingPartyCampaignBehavior());
                 starter.AddBehavior(new UniqueSpawnCampaignBehavior());
                 starter.AddBehavior(new OrionCampaignBehavior());
+                starter.AddBehavior(new ReinforcementBehavior());
+                starter.AddBehavior(new GreenKnightBehavior());
                 starter.AddBehavior(new CustomDialogCampaignBehavior());
                 starter.AddBehavior(new TORCompanionDialogBehavior());
                 starter.AddBehavior(new PostBattleCampaignBehavior());
@@ -240,6 +243,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORPartyWageModel());
                 gameStarterObject.AddModel(new TORPrisonerRecruitmentCalculationModel());
                 gameStarterObject.AddModel(new TORSettlementMilitiaModel());
+                gameStarterObject.AddModel(new TORSettlementGarrisonModel());
                 gameStarterObject.AddModel(new TORAbilityModel());
                 gameStarterObject.AddModel(new TORCharacterDevelopmentModel());
                 gameStarterObject.AddModel(new TORPartyTrainingModel());
@@ -323,6 +327,12 @@ namespace TOR_Core
             if (Game.Current.GameType is Campaign)
             {
                 mission.AddMissionBehavior(new CareerPerkMissionBehavior());
+
+                if (mission.GetMissionBehavior<DefaultBattleMissionAgentSpawnLogic>() != null)
+                {
+                    mission.AddMissionBehavior(new ReinforcementMissionLogic());
+                    mission.AddMissionBehavior(new GreenKnightMissionLogic());
+                }
 
                 if (mission.GetMissionBehavior<CampaignSiegeStateHandler>()?.IsSiege == true)
                 {

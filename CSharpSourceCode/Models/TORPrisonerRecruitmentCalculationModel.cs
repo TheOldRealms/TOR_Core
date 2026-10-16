@@ -60,12 +60,12 @@ namespace TOR_Core.Models
 
 
 
-        public override int GetPrisonerRecruitmentMoraleEffect(
+        public override float GetPrisonerRecruitmentMoraleEffect(
             PartyBase party,
             CharacterObject character,
             int num)
         {
-            var value = 0;
+            var value = 0f;
             if (party.LeaderHero?.Culture.StringId == TORConstants.Cultures.GREENSKIN)
             {
                 return value;

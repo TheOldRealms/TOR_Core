@@ -27,7 +27,7 @@ namespace TOR_Core.Models
             {
                 if (attacker.GetPerkValue(TORPerks.GunPowder.PiercingShots) && weaponComponent.IsGunPowderWeapon())
                 {
-                    PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.PiercingShots, attacker, true, ref resultArmor);
+                    PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.PiercingShots, attackInformation.AttackerBattleEnvironment, attacker, true, ref resultArmor);
                 }
 
                 if (attacker.IsPlayerCharacter && attacker.HeroObject == Hero.MainHero)

@@ -1,9 +1,12 @@
 using Helpers;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -17,7 +20,7 @@ namespace TOR_Core.Models
         public override ExplainedNumber GetPartySpottingRange(MobileParty party, bool includeDescriptions = false)
         {
             var result = base.GetPartySpottingRange(party, includeDescriptions);
-            if (party.HasPerk(TORPerks.Faith.ForeSight)) PerkHelper.AddPerkBonusForParty(TORPerks.Faith.ForeSight, party, false, ref result);
+            if (party.HasPerk(TORPerks.Faith.ForeSight, out Hero perkOwnerHero, checkSecondaryRole: false)) PerkHelper.AddPerkBonusForParty(TORPerks.Faith.ForeSight, party, false, ref result);
 
             if (party.IsMainParty && party.LeaderHero != null && party.LeaderHero.HasAnyCareer())
             {
@@ -45,6 +48,22 @@ namespace TOR_Core.Models
             }
 
             return result;
+        }
+
+        /// <remarks>
+        /// 1.5.4 dropped the isDistanceDependent out-parameter from this overload (it survives only on
+        /// GetSettlementInspectedState), so the 1.5.3 three-out signature no longer overrides anything.
+        /// </remarks>
+        public override void GetMobilePartyVisibilityAndInspectedState(MobileParty mobileParty, Vec2[] points, float seeingRange, out bool isVisible, out bool isInspected)
+        {
+            if (mobileParty == MobileParty.MainParty && Hero.MainHero.IsEnlisted())
+            {
+                isVisible = false;
+                isInspected = false;
+                return;
+            }
+
+            base.GetMobilePartyVisibilityAndInspectedState(mobileParty, points, seeingRange, out isVisible, out isInspected);
         }
     }
 }

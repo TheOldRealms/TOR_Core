@@ -8,6 +8,7 @@ using TaleWorlds.Engine;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.Source.Missions;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.BattleMechanics.Reinforcements;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 using static TaleWorlds.Core.ItemObject;
@@ -160,6 +161,12 @@ namespace TOR_Core.BattleMechanics.Banners
                     if (!party.IsMobile) return false;
                     if (!party.MobileParty.IsLordParty) return false;
                 }
+                else if (agent.Origin is ReinforcementPartyAgentOrigin reinforcementOrigin)
+                {
+                    var party = reinforcementOrigin.Party;
+                    if (!party.IsMobile) return false;
+                    if (!party.MobileParty.IsLordParty) return false;
+                }
                 else return false;
             }
 
@@ -224,6 +231,9 @@ namespace TOR_Core.BattleMechanics.Banners
 
         private Banner DetermineBanner(Agent agent)
         {
+            if (agent.Origin is GreenKnightAgentOrigin greenKnightOrigin)
+                return greenKnightOrigin.Banner;
+
             string factionId = "";
             if (Game.Current.GameType is Campaign)
             {
@@ -241,6 +251,14 @@ namespace TOR_Core.BattleMechanics.Banners
                     //var origin = agent.Origin as PartyGroupAgentOrigin;
                     factionId = groupOrigin.Party.MapFaction.StringId;
                     if (groupOrigin.Party.MapFaction.Leader == Hero.MainHero)
+                    {
+                        return Hero.MainHero.ClanBanner;
+                    }
+                }
+                if (agent.Origin is ReinforcementPartyAgentOrigin reinforcementOrigin)
+                {
+                    factionId = reinforcementOrigin.Party.MapFaction.StringId;
+                    if (reinforcementOrigin.Party.MapFaction.Leader == Hero.MainHero)
                     {
                         return Hero.MainHero.ClanBanner;
                     }
