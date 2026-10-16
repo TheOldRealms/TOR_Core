@@ -43,8 +43,8 @@ namespace TOR_Core.AbilitySystem.Spells
                 _lores.Add("LoreOfDeath", new LoreObject("LoreOfDeath", TORTextHelper.GetText("tor_spell_stat_name_death", "Lore of Death"), "deathmagic_symbol", new List<string>(TORConstants.Cultures.All.Where(x => x != TORConstants.Cultures.EMPIRE && x != TORConstants.Cultures.ASRAI && x != TORConstants.Cultures.EONIR && x != TORConstants.Cultures.SYLVANIA && x != TORConstants.Cultures.MOUSILLON).ToList())));
 
                 // NOTE: High Magic and Dark Magic are disabled for ASRAI (Wood Elves) in general, BUT Spellsingers can still access them
-                // through the special Spellweaver dialog (SpellTrainerInTownBehavior.cs:390-403) which bypasses culture restrictions
-                // by offering a hardcoded list of both lores. This ensures only Spellsingers can become High/Dark Weavers, not all Wood Elf casters.
+                // through the special Spellweaver dialog in SpellTrainerDialogsBehavior.SpellsingerDialogs, which bypasses culture
+                // restrictions by offering a hardcoded list of both lores. This ensures only Spellsingers can become High/Dark Weavers.
                 _lores.Add("HighMagic", new LoreObject("HighMagic", TORTextHelper.GetText("tor_spell_stat_name_high", "High Magic"), "highmagic_symbol", new List<string>() { TORConstants.Cultures.EMPIRE, TORConstants.Cultures.BRETONNIA, TORConstants.Cultures.MOUSILLON, TORConstants.Cultures.SYLVANIA, TORConstants.Cultures.ASRAI, TORConstants.Cultures.DAWI, TORConstants.Cultures.GREENSKIN }, true));
 
                 _lores.Add("DarkMagic", new LoreObject("DarkMagic", TORTextHelper.GetText("tor_spell_stat_name_dark", "Dark Magic"), "darkmagic_symbol", new List<string>() { TORConstants.Cultures.EMPIRE, TORConstants.Cultures.BRETONNIA, TORConstants.Cultures.ASRAI, TORConstants.Cultures.DAWI, TORConstants.Cultures.GREENSKIN }, true));

@@ -1,14 +1,9 @@
-using Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.AgentOrigins;
-using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
-using TaleWorlds.CampaignSystem.Settlements;
-using TaleWorlds.CampaignSystem.Settlements.Locations;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
@@ -17,17 +12,27 @@ using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.CustomResources;
-using TOR_Core.CampaignMechanics.SettlementPOIs;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Quests;
 using TOR_Core.Utilities;
-using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CampaignMechanics.SpellTrainers
 {
-    public class SpellTrainerInTownBehavior : CampaignBehaviorBase
+    /// <summary>
+    /// Owns the five trainer dialog trees (Prophetess / Spellsinger / Vampire /
+    /// Greenskin / generic Empire+VC magic-test & lore-specialisation) + the
+    /// <see cref="IsSpellTrainer(Hero)"/> template-id check used by extensions.
+    ///
+    /// Trainer placement is done by <c>SettlementPOIManagerCampaignBehavior</c>
+    /// through its culture POIs (VampireCrypt, SpellsingersGrove, ShamanHut,
+    /// BretonniaForestTrainerShrine, Runehall, DwarfEngineerHall). This behavior
+    /// only registers the dialog triggers that fire when the player opens a
+    /// conversation with any hero whose <c>Template.StringId</c> matches one of
+    /// the trainer template ids below.
+    /// </summary>
+    public class SpellTrainerDialogsBehavior : CampaignBehaviorBase
     {
         private readonly string _empireTrainerId = "tor_spelltrainer_empire_0";
         private readonly string _vampireTrainerId = "tor_spelltrainer_vc_0";
@@ -42,154 +47,11 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
         public override void RegisterEvents()
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
-            CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
-            CampaignEvents.GameMenuOpened.AddNonSerializedListener(this, OnGameMenuOpened);
-            CampaignEvents.BeforeMissionOpenedEvent.AddNonSerializedListener(this, OnBeforeMissionStart);
-        }
-
-        private void OnBeforeMissionStart() => SpawnTrainerIfNeeded();
-        private void OnGameMenuOpened(MenuCallbackArgs obj) => SpawnTrainerIfNeeded();
-        private void SpawnTrainerIfNeeded()
-        {
-            if (Settlement.CurrentSettlement != null && Settlement.CurrentSettlement.IsTown && !IsTrainerInCollege(Settlement.CurrentSettlement))
-            {
-                SpawnTrainerInCollege(Settlement.CurrentSettlement, true);
-            }
-        }
-
-        private static bool IsPoiManagedSpellTrainerCulture(string cultureId)
-        {
-            return cultureId == TORConstants.Cultures.EMPIRE
-                || cultureId == TORConstants.Cultures.SYLVANIA
-                || cultureId == TORConstants.Cultures.MOUSILLON
-                || cultureId == TORConstants.Cultures.ASRAI
-                || cultureId == TORConstants.Cultures.GREENSKIN;
-        }
-
-        private bool IsTrainerInCollege(Settlement settlement)
-        {
-            if (IsPoiManagedSpellTrainerCulture(settlement.Culture.StringId)) return true;
-
-            var location = settlement.LocationComplex.GetLocationWithId("house_1");
-            var trainer = GetTrainerForTown(settlement);
-            if (trainer != null)
-            {
-                return location.GetLocationCharacter(trainer) != null;
-            }
-
-            return false;
-        }
-
-        public Hero GetTrainerForTown(Settlement settlement)
-        {
-            var tid = GetTemplateIdForSettlement(settlement);
-            if (tid == null) return null;
-            return Hero.AllAliveHeroes.FirstOrDefault(h => h.HomeSettlement == settlement && h.Template?.StringId == tid);
-        }
-
-        private string GetTemplateIdForSettlement(Settlement s)
-        {
-            var c = s.Culture.StringId;
-            if (c == TORConstants.Cultures.BRETONNIA && s.StringId == "town_BA1") return _prophetessTrainerId;
-            if (c == TORConstants.Cultures.SYLVANIA || c == TORConstants.Cultures.MOUSILLON) return _vampireTrainerId;
-            if (c == TORConstants.Cultures.ASRAI) return _woodelfTrainerId;
-            if (c == TORConstants.Cultures.GREENSKIN) return _greenskinTrainerId;
-            return null;
-        }
-
-        private void SpawnTrainerInCollege(Settlement settlement, bool forceSpawn)
-        {
-            if (IsPoiManagedSpellTrainerCulture(settlement.Culture.StringId)) return;
-
-            var trainer = GetTrainerForTown(settlement);
-            var collegeloc = settlement.LocationComplex.GetLocationWithId("house_1");
-            if (trainer != null && collegeloc != null)
-            {
-                // Skip spellsinger envoy - they should stay in the lordshall, not the magic college
-                if (trainer.HasAttribute(CharacterAttributes.SPELLSINGER_ENVOY))
-                {
-                    return;
-                }
-
-                if (forceSpawn)
-                {
-                    LocationCharacter locationCharacter = new LocationCharacter(new AgentData(new SimpleAgentOrigin(trainer.CharacterObject, -1, null, default(UniqueTroopDescriptor))).Monster(FaceGen.GetBaseMonsterFromRace(trainer.CharacterObject.Race)), new LocationCharacter.AddBehaviorsDelegate(SandBoxManager.Instance.AgentBehaviorManager.AddWandererBehaviors), "npc_common", true, LocationCharacter.CharacterRelations.Neutral, null, true, false, null, false, false, true);
-                    collegeloc.AddCharacter(locationCharacter);
-                }
-                else
-                {
-                    var locChar = settlement.LocationComplex.GetLocationCharacterOfHero(trainer);
-                    var currentloc = settlement.LocationComplex.GetLocationOfCharacter(trainer);
-                    if (currentloc != collegeloc) settlement.LocationComplex.ChangeLocation(locChar, currentloc, collegeloc);
-                }
-            }
-        }
-
-        private void OnNewGameCreated(CampaignGameStarter obj)
-        {
-            foreach (var settlement in Settlement.All)
-            {
-                if (settlement.IsTown)
-                {
-                    CreateTrainer(settlement);
-                }
-            }
-        }
-
-        private void CreateTrainer(Settlement settlement)
-        {
-            if (IsPoiManagedSpellTrainerCulture(settlement.Culture.StringId)) return;
-
-            CharacterObject template = null;
-            if (settlement.Culture.StringId == TORConstants.Cultures.BRETONNIA && settlement.StringId == "town_BA1") template = MBObjectManager.Instance.GetObject<CharacterObject>(_prophetessTrainerId);
-            if (settlement.Culture.StringId == TORConstants.Cultures.SYLVANIA || settlement.Culture.StringId == TORConstants.Cultures.MOUSILLON) template = MBObjectManager.Instance.GetObject<CharacterObject>(_vampireTrainerId);
-            if (settlement.Culture.StringId == TORConstants.Cultures.ASRAI) template = MBObjectManager.Instance.GetObject<CharacterObject>(_woodelfTrainerId);
-            if (settlement.Culture.StringId == TORConstants.Cultures.GREENSKIN) template = MBObjectManager.Instance.GetObject<CharacterObject>(_greenskinTrainerId);
-
-            if (template != null)
-            {
-                Hero hero = null;
-                if (settlement.HeroesWithoutParty.Any(x => x.Template == template))
-                {
-                    hero = settlement.HeroesWithoutParty.First(x => x.Template == template);
-                }
-                else
-                {
-                    hero = HeroCreator.CreateSpecialHero(template, settlement, null, null, 50);
-                }
-
-                hero.SupporterOf = settlement.OwnerClan;
-                hero.Culture = settlement.Culture;//for templates shared across cultures
-                var nameObject = template.GetName();
-                nameObject.SetTextVariable("FIRSTNAME", hero.FirstName);
-                hero.SetName(nameObject, hero.FirstName);
-                HeroHelper.SpawnHeroForTheFirstTime(hero, settlement);
-                hero.CharacterObject.HiddenInEncyclopedia = true;
-
-                if (hero.Culture.StringId == TORConstants.Cultures.BRETONNIA)
-                {
-                    hero.SetName(template.Name, template.Name);
-                }
-            }
         }
 
         private void OnSessionLaunched(CampaignGameStarter obj)
         {
             AddDialogs(obj);
-            ForceLevelsForAllHeroes();
-        }
-
-        private void ForceLevelsForAllHeroes()
-        {
-            foreach (var hero in Hero.AllAliveHeroes)
-            {
-                if (hero.IsSpellCaster() && hero != Hero.MainHero && hero.Occupation == Occupation.Lord)
-                {
-                    var info = hero.GetExtendedInfo();
-                    if (info == null || info.SpellCastingLevel == SpellCastingLevel.Master) continue;
-                    hero.SetSpellCastingLevel(SpellCastingLevel.Master);
-                }
-            }
         }
 
         private void OpenScrollShop()

@@ -396,7 +396,8 @@
     <Compile Include="CampaignMechanics\ServeAsAHireling\ServeAsAHirelingCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\ServeAsAHireling\ServeAsAHirelingHelpers.cs" />
     <Compile Include="CampaignMechanics\SkillTrainerBehavior.cs" />
-    <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
+    <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerDialogsBehavior.cs" />
+    <Compile Include="CampaignMechanics\SpellTrainers\SpellCasterLordLevelBehavior.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\SettlementPOI.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\SettlementPOIManagerCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\EmpireEngineerHallPOI.cs" />

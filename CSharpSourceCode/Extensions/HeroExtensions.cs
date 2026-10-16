@@ -523,7 +523,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsSpellTrainer(this Hero hero)
         {
-            var behavior = Campaign.Current.GetCampaignBehavior<SpellTrainerInTownBehavior>();
+            var behavior = Campaign.Current.GetCampaignBehavior<SpellTrainerDialogsBehavior>();
             if (behavior != null)
             {
                 return behavior.IsSpellTrainer(hero);
