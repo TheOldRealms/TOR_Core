@@ -1,5 +1,5 @@
 using TaleWorlds.CampaignSystem;
-using TOR_Core.AbilitySystem.SpellBook;
+using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.SpellTrainers
