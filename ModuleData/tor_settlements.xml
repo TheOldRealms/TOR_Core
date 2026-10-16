@@ -11260,6 +11260,7 @@
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
       <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
+      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -11424,6 +11425,7 @@
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
       <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
+      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -11588,6 +11590,7 @@
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
       <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
+      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -11739,6 +11742,7 @@
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
       <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
+      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -11890,6 +11894,7 @@
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
       <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
+      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -11991,6 +11996,7 @@
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
       <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
+      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -12055,6 +12061,7 @@
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
       <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
+      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -12193,6 +12200,7 @@
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
       <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
+      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -12344,6 +12352,7 @@
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
       <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
+      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -12458,6 +12467,7 @@
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
       <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
+      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -12609,6 +12619,7 @@
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
       <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
+      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -12672,6 +12683,7 @@
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
       <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
+      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />

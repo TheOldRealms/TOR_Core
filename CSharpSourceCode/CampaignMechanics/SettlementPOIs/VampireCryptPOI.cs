@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Settlements;
-using TaleWorlds.Core;
 using TaleWorlds.Localization;
-using TOR_Core.CharacterDevelopment;
-using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.SettlementPOIs
 {
@@ -28,15 +26,10 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             if (!AppliesTo(s))    { denialReason = R("Sealed", "This place is sealed."); return false; }
             if (s.IsUnderSiege)   { denialReason = R("SiegeSealed", "The crypt is sealed during the siege."); return false; }
 
-            var race = h.CharacterObject.Race;
-            if (race != FaceGen.GetRaceOrDefault("vampire") && race != FaceGen.GetRaceOrDefault("necrarch"))
+            var c = h.Culture.StringId;
+            if (c != TORConstants.Cultures.SYLVANIA && c != TORConstants.Cultures.MOUSILLON)
             {
-                denialReason = R("Rejected", "The dead within turn you away.");
-                return false;
-            }
-            if (!h.HasCareer(TORCareers.Necrarch) && !h.HasCareer(TORCareers.MinorVampire))
-            {
-                denialReason = R("MustHaveCareer", "Only the undying may enter the crypt.");
+                denialReason = R("WrongCulture", "The crypt opens only to those of Sylvania or Mousillon.");
                 return false;
             }
             denialReason = null;

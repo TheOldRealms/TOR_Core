@@ -1,9 +1,7 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Settlements;
-using TaleWorlds.Core;
 using TaleWorlds.Localization;
-using TOR_Core.CharacterDevelopment;
-using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.SettlementPOIs
 {
@@ -32,14 +30,9 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             if (!AppliesTo(s))    { denialReason = R("Sealed", "This place is sealed."); return false; }
             if (s.IsUnderSiege)   { denialReason = R("SiegeSealed", "The hold's gates are shut while under siege."); return false; }
 
-            if (h.CharacterObject.Race != FaceGen.GetRaceOrDefault("dwarf"))
+            if (h.Culture.StringId != TORConstants.Cultures.DAWI)
             {
-                denialReason = R("WrongRace", "The Runehall is open to the dawi alone.");
-                return false;
-            }
-            if (!h.HasCareer(TORCareers.Runelord))
-            {
-                denialReason = R("MustHaveCareer", "Only those who walk the path of Thungni may approach the anvil.");
+                denialReason = R("WrongCulture", "The Runehall is open to the dawi alone.");
                 return false;
             }
             denialReason = null;

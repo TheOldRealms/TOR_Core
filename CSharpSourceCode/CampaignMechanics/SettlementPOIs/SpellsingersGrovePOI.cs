@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Settlements;
-using TaleWorlds.Core;
 using TaleWorlds.Localization;
-using TOR_Core.CharacterDevelopment;
-using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.SettlementPOIs
 {
@@ -28,15 +26,10 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             if (!AppliesTo(s))    { denialReason = R("Sealed", "This place is sealed."); return false; }
             if (s.IsUnderSiege)   { denialReason = R("SiegeSealed", "The grove's wards close during the siege."); return false; }
 
-            var race = h.CharacterObject.Race;
-            if (race != FaceGen.GetRaceOrDefault("elf") && race != FaceGen.GetRaceOrDefault("orion"))
+            var c = h.Culture.StringId;
+            if (c != TORConstants.Cultures.ASRAI && c != TORConstants.Cultures.EONIR)
             {
-                denialReason = R("Rejected", "The grove does not open for your kind.");
-                return false;
-            }
-            if (!h.HasCareer(TORCareers.Spellsinger) && !h.HasCareer(TORCareers.Waywatcher))
-            {
-                denialReason = R("MustHaveCareer", "Only the children of Ariel may enter the grove.");
+                denialReason = R("WrongCulture", "The grove opens only to the elves of Athel Loren and Laurelorn.");
                 return false;
             }
             denialReason = null;

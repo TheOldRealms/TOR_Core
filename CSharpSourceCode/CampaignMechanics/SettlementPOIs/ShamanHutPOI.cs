@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Settlements;
-using TaleWorlds.Core;
 using TaleWorlds.Localization;
-using TOR_Core.CharacterDevelopment;
-using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.SettlementPOIs
 {
@@ -28,15 +26,9 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             if (!AppliesTo(s))    { denialReason = R("Sealed", "This place is sealed."); return false; }
             if (s.IsUnderSiege)   { denialReason = R("SiegeSealed", "The shaman da hut iz closed. Bosses fightin'!"); return false; }
 
-            var race = h.CharacterObject.Race;
-            if (race != FaceGen.GetRaceOrDefault("orc") && race != FaceGen.GetRaceOrDefault("goblin"))
+            if (h.Culture.StringId != TORConstants.Cultures.GREENSKIN)
             {
-                denialReason = R("Rejected", "Da shaman don't see yer kind.");
-                return false;
-            }
-            if (!h.HasCareer(TORCareers.OrcShaman))
-            {
-                denialReason = R("MustHaveCareer", "Only shaman-boyz may enter.");
+                denialReason = R("WrongCulture", "Da shaman don't see yer kind.");
                 return false;
             }
             denialReason = null;

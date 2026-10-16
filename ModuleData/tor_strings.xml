@@ -6078,4 +6078,12 @@
   <string id="tor_poi_runehall.SiegeSealed" text="{=str_tor_poi_runehall.SiegeSealed}The hold's gates are shut while under siege." />
   <string id="tor_poi_runehall.WrongRace" text="{=str_tor_poi_runehall.WrongRace}The Runehall is open to the dawi alone." />
   <string id="tor_poi_runehall.MustHaveCareer" text="{=str_tor_poi_runehall.MustHaveCareer}Only those who walk the path of Thungni may approach the anvil." />
+
+  <!-- POIs - Dwarf Engineer Hall -->
+  <string id="tor_poi_dwarf_engineer_hall.Name" text="{=str_tor_poi_dwarf_engineer_hall.Name}Engineers' Hall" />
+  <string id="tor_poi_dwarf_engineer_hall.EnterLabel" text="{=str_tor_poi_dwarf_engineer_hall.EnterLabel}Visit the Engineers' Hall" />
+  <string id="tor_poi_dwarf_engineer_hall.Undiscovered" text="{=str_tor_poi_dwarf_engineer_hall.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_dwarf_engineer_hall.Sealed" text="{=str_tor_poi_dwarf_engineer_hall.Sealed}This place is sealed." />
+  <string id="tor_poi_dwarf_engineer_hall.SiegeSealed" text="{=str_tor_poi_dwarf_engineer_hall.SiegeSealed}The hold's gates are shut while under siege." />
+  <string id="tor_poi_dwarf_engineer_hall.WrongCulture" text="{=str_tor_poi_dwarf_engineer_hall.WrongCulture}The Engineers' Hall is open to the dawi alone." />
 </strings>

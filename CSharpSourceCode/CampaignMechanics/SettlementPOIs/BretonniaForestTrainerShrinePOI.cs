@@ -40,11 +40,6 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 denialReason = R("WrongCulture", "The Lady's shrine is a sacred place of Bretonnia.");
                 return false;
             }
-            if (!h.IsSpellCaster())
-            {
-                denialReason = R("NotCaster", "Only those gifted with magic may approach the Lady.");
-                return false;
-            }
             denialReason = null;
             return true;
         }
