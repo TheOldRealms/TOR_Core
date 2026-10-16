@@ -24,6 +24,10 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
 
         public string SpellTrainerTemplateId => "tor_dawi_engineers_guild_npc_0";
 
+        // Dwarves have no spellcasters, so no companion fallback — main-hero culture only.
+        public bool IsPartyEligibleForTrainer() =>
+            Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI;
+
         public override bool CheckAccess(Settlement s, Hero h, out TextObject denialReason)
         {
             if (!IsDiscovered(s)) { denialReason = R("Undiscovered", "You have not yet found this place."); return false; }

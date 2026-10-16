@@ -3,8 +3,10 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.SettlementPOIs
 {
@@ -21,6 +23,13 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public string SpellTrainerTemplateId => "tor_spelltrainer_empire_0";
         public string EnchanterTemplateId    => "tor_enchanter_empire_0";
         public List<string> EnchantmentSuffixes => new() { "emp_enchant" };
+
+        public bool IsPartyEligibleForTrainer()
+        {
+            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.EMPIRE) return true;
+            return SpellTrainerHelper.HasMatchingSpellTrainerCompanion(
+                x => x.Culture.StringId == TORConstants.Cultures.EMPIRE && x.IsSpellCaster());
+        }
 
         public override string MapIconText => "<img src=\"winds_icon_45\" extend=\"15\">";
 

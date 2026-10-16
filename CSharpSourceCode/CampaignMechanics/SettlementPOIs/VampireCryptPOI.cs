@@ -29,6 +29,15 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public string EnchanterTemplateId    => "tor_spelltrainer_vc_0";
         public List<string> EnchantmentSuffixes => new() { "vc_enchant" };
 
+        public bool IsPartyEligibleForTrainer()
+        {
+            if (IsVcCulture(Hero.MainHero.Culture.StringId)) return true;
+            return SpellTrainerHelper.HasMatchingSpellTrainerCompanion(x => IsVcCulture(x.Culture.StringId) && x.IsSpellCaster());
+        }
+
+        private static bool IsVcCulture(string cultureId) =>
+            cultureId == TORConstants.Cultures.SYLVANIA || cultureId == TORConstants.Cultures.MOUSILLON;
+
         public override bool CheckAccess(Settlement s, Hero h, out TextObject denialReason)
         {
             if (!IsDiscovered(s)) { denialReason = R("Undiscovered", "You have not yet found this place."); return false; }

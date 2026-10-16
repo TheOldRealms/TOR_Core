@@ -14,6 +14,7 @@ using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CampaignMechanics.SettlementPOIs;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -63,68 +64,35 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 || t == GreenskinTrainerId;
         }
 
-        public static bool IsVcTrainerCulture(string cultureId)
-        {
-            return cultureId == TORConstants.Cultures.SYLVANIA || cultureId == TORConstants.Cultures.MOUSILLON;
-        }
-
-        // ------- Access rules (main hero OR party-companion)
-
+        /// <summary>
+        /// Convenience: does the main hero's party contain a non-main-hero companion
+        /// matching the given predicate? Used by POI <c>IsPartyEligibleForTrainer</c>
+        /// implementations to check for culture-matching spellcaster companions.
+        /// </summary>
         public static bool HasMatchingSpellTrainerCompanion(Func<Hero, bool> predicate)
         {
             if (Hero.MainHero.PartyBelongedTo == null) return false;
             return Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x != Hero.MainHero && predicate(x));
         }
 
-        public static bool HasEmpireTrainerAccess()
-        {
-            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.EMPIRE) return true;
-            return HasMatchingSpellTrainerCompanion(x => x.Culture.StringId == TORConstants.Cultures.EMPIRE && x.IsSpellCaster());
-        }
-
-        public static bool HasVampireTrainerAccess()
-        {
-            if (IsVcTrainerCulture(Hero.MainHero.Culture.StringId)) return true;
-            return HasMatchingSpellTrainerCompanion(x => IsVcTrainerCulture(x.Culture.StringId) && x.IsSpellCaster());
-        }
-
-        public static bool HasBretonnianTrainerAccess()
-        {
-            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.BRETONNIA) return true;
-            return HasMatchingSpellTrainerCompanion(x => x.Culture.StringId == TORConstants.Cultures.BRETONNIA && x.IsSpellCaster());
-        }
-
-        public static bool HasSpellsingerTrainerAccess()
-        {
-            if (Hero.MainHero.HasCareer(TORCareers.Spellsinger)) return true;
-            if (Hero.MainHero.HasCareer(TORCareers.Warden)) return true;
-            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI &&
-                Hero.MainHero.IsSpellCaster() &&
-                Hero.MainHero.GetKnownLoreCount() > 0)
-            {
-                return true;
-            }
-            return HasMatchingSpellTrainerCompanion(x => x.Culture.StringId == TORConstants.Cultures.ASRAI && x.IsSpellCaster());
-        }
-
-        public static bool HasGreenskinTrainerAccess()
-        {
-            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN) return true;
-            return HasMatchingSpellTrainerCompanion(x => x.Culture.StringId == TORConstants.Cultures.GREENSKIN && x.IsSpellCaster());
-        }
-
+        /// <summary>
+        /// Dispatch to the <see cref="ISpellTrainerHost"/> that owns this trainer template.
+        /// Each POI decides its own party-eligibility rule (no central switch on template id).
+        /// Also requires the POI to apply to the current settlement — the POI's XML scene
+        /// overrides encode which settlement cultures host it.
+        /// </summary>
         public static bool CanAccessSpellTrainer(Hero trainer)
         {
-            var settlementCulture = Settlement.CurrentSettlement?.Culture?.StringId;
             var templateId = trainer.Template?.StringId;
-            if (settlementCulture == null || templateId == null) return false;
+            var settlement = Settlement.CurrentSettlement;
+            if (templateId == null || settlement == null) return false;
 
-            if (templateId == EmpireTrainerId)     return settlementCulture == TORConstants.Cultures.EMPIRE    && HasEmpireTrainerAccess();
-            if (templateId == VampireTrainerId)    return IsVcTrainerCulture(settlementCulture)                && HasVampireTrainerAccess();
-            if (templateId == ProphetessTrainerId) return settlementCulture == TORConstants.Cultures.BRETONNIA && HasBretonnianTrainerAccess();
-            if (templateId == WoodelfTrainerId)    return settlementCulture == TORConstants.Cultures.ASRAI     && HasSpellsingerTrainerAccess();
-            if (templateId == GreenskinTrainerId)  return settlementCulture == TORConstants.Cultures.GREENSKIN && HasGreenskinTrainerAccess();
-            return false;
+            var host = SettlementPOIManagerCampaignBehavior.All
+                .OfType<ISpellTrainerHost>()
+                .FirstOrDefault(h => h.SpellTrainerTemplateId == templateId);
+            if (host == null) return false;
+
+            return ((SettlementPOI)host).AppliesTo(settlement) && host.IsPartyEligibleForTrainer();
         }
 
         public static bool IsBlockedSpellTrainerConversation()

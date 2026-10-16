@@ -31,6 +31,20 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public string EnchanterTemplateId    => "tor_spelltrainer_woodelves_0";
         public List<string> EnchantmentSuffixes => new() { "we_enchant", "asrai_enchant" };
 
+        public bool IsPartyEligibleForTrainer()
+        {
+            if (Hero.MainHero.HasCareer(TORCareers.Spellsinger)) return true;
+            if (Hero.MainHero.HasCareer(TORCareers.Warden)) return true;
+            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI &&
+                Hero.MainHero.IsSpellCaster() &&
+                Hero.MainHero.GetKnownLoreCount() > 0)
+            {
+                return true;
+            }
+            return SpellTrainerHelper.HasMatchingSpellTrainerCompanion(
+                x => x.Culture.StringId == TORConstants.Cultures.ASRAI && x.IsSpellCaster());
+        }
+
         public override bool CheckAccess(Settlement s, Hero h, out TextObject denialReason)
         {
             if (!IsDiscovered(s)) { denialReason = R("Undiscovered", "You have not yet found this place."); return false; }

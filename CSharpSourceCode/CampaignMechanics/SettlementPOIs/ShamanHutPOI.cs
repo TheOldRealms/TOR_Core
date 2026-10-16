@@ -26,6 +26,13 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public string EnchanterTemplateId    => "tor_spelltrainer_greenskins_0";
         public List<string> EnchantmentSuffixes => new() { "gs_enchant" };
 
+        public bool IsPartyEligibleForTrainer()
+        {
+            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN) return true;
+            return SpellTrainerHelper.HasMatchingSpellTrainerCompanion(
+                x => x.Culture.StringId == TORConstants.Cultures.GREENSKIN && x.IsSpellCaster());
+        }
+
         public override bool CheckAccess(Settlement s, Hero h, out TextObject denialReason)
         {
             if (!IsDiscovered(s)) { denialReason = R("Undiscovered", "You have not yet found this place."); return false; }

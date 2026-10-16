@@ -35,6 +35,13 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public string EnchanterTemplateId    => "tor_spelltrainer_bretonnia_0";
         public List<string> EnchantmentSuffixes => new() { "br_enchant" };
 
+        public bool IsPartyEligibleForTrainer()
+        {
+            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.BRETONNIA) return true;
+            return SpellTrainerHelper.HasMatchingSpellTrainerCompanion(
+                x => x.Culture.StringId == TORConstants.Cultures.BRETONNIA && x.IsSpellCaster());
+        }
+
         public override bool CheckAccess(Settlement s, Hero h, out TextObject denialReason)
         {
             if (!IsDiscovered(s)) { denialReason = R("Undiscovered", "You have not yet found this place."); return false; }
