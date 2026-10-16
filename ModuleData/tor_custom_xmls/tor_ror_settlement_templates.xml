@@ -23,6 +23,28 @@
         MenuBackgroundImageId="invalid"
         RegimentName="{=str_tor_ror_settlement_name_blazing_sun}Knights of the Blazing Sun"
         RegimentHQName="{=str_tor_ror_settlement_hqname_blazing_sun}Blazing Sun Chapter House"
+		
+		
+    />
+	    <RORSettlementTemplate
+        SettlementId="town_TB1"
+        BaseTroopId="tor_ror_blazing_sun_initiate"
+        MenuHeaderText="{=str_tor_ror_settlement_text_blazing_sun}Within the town there is a Chapter House of the Knights of the Blazing Sun."
+        MenuBackgroundImageId="invalid"
+        RegimentName="{=str_tor_ror_settlement_name_blazing_sun}Knights of the Blazing Sun"
+        RegimentHQName="{=str_tor_ror_settlement_hqname_blazing_sun}Blazing Sun Chapter House"
+		
+		
+    />
+	    <RORSettlementTemplate
+        SettlementId="town_ML3"
+        BaseTroopId="tor_ror_blazing_sun_initiate"
+        MenuHeaderText="{=str_tor_ror_settlement_text_blazing_sun}Within the town there is a Chapter House of the Knights of the Blazing Sun."
+        MenuBackgroundImageId="invalid"
+        RegimentName="{=str_tor_ror_settlement_name_blazing_sun}Knights of the Blazing Sun"
+        RegimentHQName="{=str_tor_ror_settlement_hqname_blazing_sun}Blazing Sun Chapter House"
+		
+		
     />
     <RORSettlementTemplate
         SettlementId="town_AV3"

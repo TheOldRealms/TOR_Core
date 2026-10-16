@@ -2,6 +2,7 @@ using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
@@ -74,7 +75,7 @@ namespace TOR_Core.Models
             }
             if (settlement.OwnerClan != null && settlement.OwnerClan.Leader != null)
             {
-                PerkHelper.AddPerkBonusForCharacter(TORPerks.Faith.DivineMission, settlement.OwnerClan.Leader.CharacterObject, false, ref result);
+                PerkHelper.AddPerkBonusForCharacter(TORPerks.Faith.DivineMission, BattleEnvironment.Any, settlement.OwnerClan.Leader.CharacterObject, false, ref result);
             }
 
             if (settlement.Culture.StringId == TORConstants.Cultures.DAWI && settlement.IsDwarfKarak())

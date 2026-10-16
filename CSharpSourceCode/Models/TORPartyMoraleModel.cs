@@ -25,7 +25,7 @@ namespace TOR_Core.Models
             if (!mobileParty.IsLordParty) return result;
 
 
-            if (mobileParty.HasPerk(TORPerks.Spellcraft.StoryTeller))
+            if (mobileParty.HasPerk(TORPerks.Spellcraft.StoryTeller, out Hero perkOwnerHero, checkSecondaryRole: true))
             {
                 result.Add(TORPerks.Spellcraft.StoryTeller.SecondaryBonus, TORPerks.Spellcraft.StoryTeller.Name);
             }

@@ -19,7 +19,9 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 return _instance;
             }
         }
+
         public List<AnimationTrigger> AnimationTriggers { get; private set; }
+
         private AnimationTriggerManager()
         {
             AnimationTriggers = new List<AnimationTrigger>();
@@ -45,14 +47,20 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             LoadAnimationTriggers();
         }
 
-        public static bool HasTriggersForAction(string actionName)
+        public static string GetEffectForCharacter (string characterId)
         {
-            return Instance.AnimationTriggers.Any(x => x.ActionName == actionName);
+            var triggeredEffectId = Instance.AnimationTriggers.FirstOrDefault(x => x.CharacterId == characterId).TriggeredEffectId;
+            return triggeredEffectId;
         }
 
-        public static AnimationTrigger GetTriggerForAction(string actionName)
-        {
-            return Instance.AnimationTriggers.FirstOrDefault(x => x.ActionName == actionName);
-        }
+        //public static bool HasTriggersForAction(string actionName)
+        //{
+        //    return Instance.AnimationTriggers.Any(x => x.ActionName == actionName);
+        //}
+
+        //public static AnimationTrigger GetTriggerForAction(string actionName)
+        //{
+        //    return Instance.AnimationTriggers.FirstOrDefault(x => x.ActionName == actionName);
+        //}
     }
 }

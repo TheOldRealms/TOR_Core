@@ -248,6 +248,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORPrisonerRecruitmentCalculationModel());
                 gameStarterObject.AddModel(new TORSettlementMilitiaModel());
                 gameStarterObject.AddModel(new TORSettlementAccessModel());
+                gameStarterObject.AddModel(new TORSettlementGarrisonModel());
                 gameStarterObject.AddModel(new TORAbilityModel());
                 gameStarterObject.AddModel(new TORCharacterDevelopmentModel());
                 gameStarterObject.AddModel(new TORPartyTrainingModel());

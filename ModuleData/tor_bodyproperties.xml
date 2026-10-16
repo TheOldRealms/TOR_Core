@@ -171,7 +171,7 @@
                        build="0.8812"
                        key="003F800000000000269C8BCCD8BEBADDA9AB82733338CA137A8A999A2799B98900CD46030CA4588900000000000000000000000000000000FFFFFFFF8194003F" />
   </BodyProperty>
-    <BodyProperty id="ghoul">
+  <BodyProperty id="ghoul">
     <BodyPropertiesMin version="4"
                        age="25"
                        weight="0.5578"
@@ -231,7 +231,7 @@
                        build="0.774"
                        key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />
   </BodyProperty>
-    <BodyProperty id="pestigor">
+  <BodyProperty id="pestigor">
     <BodyPropertiesMin version="4"
                        age="22"
                        weight="0.3102"

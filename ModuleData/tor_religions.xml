@@ -137,7 +137,7 @@
         </Followers>
         <ReligiousTroops>
         </ReligiousTroops>
-        <ReligiousArtifacts>
+        <ReligiousArtifacts> 
             <ArtifactItem id="Item.tor_bretonnian_trident_001" />
         </ReligiousArtifacts>
     </Religion>
@@ -155,13 +155,11 @@
         <Followers>
         </Followers>
         <ReligiousTroops>
+		<ReligiousTroop id="NPCCharacter.tor_ror_blazing_sun_initiate" />
         </ReligiousTroops>
-        <EliteUnits>
+        <EliteUnits> 
             <EliteUnit id="NPCCharacter.tor_ror_blazing_sun_knight" />
-            <EliteUnit id="NPCCharacter.tor_ror_blazing_sun_preceptor" />
-            <EliteUnit id="NPCCharacter.tor_ror_blazing_sun_demigryph_knight" />
             <EliteUnit id="NPCCharacter.tor_ror_blazing_sun_innercircle" />
-            <EliteUnit id="NPCCharacter.tor_ror_blazing_sun_demigryph_innercircle" />
         </EliteUnits>
         <ReligiousArtifacts>
             <ArtifactItem id="Item.tor_learn_emp_enchant_myrmidia_wisdom" />
