@@ -12,6 +12,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
+using TOR_Core.Missions;
 using TOR_Core.Extensions;
 using TOR_Core.Framework;
 using TOR_Core.Utilities;
@@ -318,24 +319,23 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                     Settlement.CurrentSettlement, poi.LocationId, out _, out _))
                 return;
 
-            // Custom-settlement menus (shrine_menu, oak_of_ages_menu, raidingsite_menu, ...)
-            // leave PlayerEncounter.LocationEncounter unset because vanilla only populates it
-            // for town/castle/village/hideout entry. If we're on one of those menus the
-            // encounter is still live (TOREncounterGameMenuModel.GetEncounterMenu just
-            // routes to a different menu id), so EnterSettlement() primes LocationEncounter
-            // in-place without re-opening the menu.
             var settlement = Settlement.CurrentSettlement;
-            if (PlayerEncounter.LocationEncounter == null
-                && PlayerEncounter.Current != null
-                && PlayerEncounter.EncounterSettlement == settlement)
+
+            // Dual-path: TOR custom settlement components (ShrineComponent, OakOfAgesComponent,
+            // raiding sites, …) never get a vanilla LocationEncounter because the engine's
+            // encounter machinery only recognises Town/Castle/Village/Hideout. For those,
+            // launch the scene directly via MissionState.OpenNew (same path TOR uses for
+            // arena/brawl/duel). Town-type POIs keep the LocationEncounter route.
+            if (poi.UsesMissionLaunch)
             {
-                PlayerEncounter.EnterSettlement();
+                OpenPoiViaMission(poi, settlement);
+                return;
             }
 
             if (PlayerEncounter.LocationEncounter == null || LocationComplex.Current == null)
             {
-                // Can't open the scene without an active LocationEncounter + complex.
-                // Bail quietly — menu stays on; player can leave normally.
+                // Town-mode POI without a live LocationEncounter — bail cleanly rather than
+                // NRE. Shouldn't happen on a vanilla town but defensively keep the guard.
                 return;
             }
 
@@ -347,6 +347,27 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             PlayerEncounter.LocationEncounter.CreateAndOpenMissionController(manager.NextLocation);
             manager.NextLocation = null;
             manager.PreviousLocation = null;
+        }
+
+        /// <summary>
+        /// Resolve the POI's scene + trainer hero and hand off to the mission launcher.
+        /// Scene plumbing lives in <see cref="TorMissionManager.OpenPoiVisitMission"/>
+        /// so this stays an orchestration layer.
+        /// </summary>
+        private static void OpenPoiViaMission(SettlementPOI poi, Settlement settlement)
+        {
+            var location = settlement?.LocationComplex?.GetLocationWithId(poi.LocationId);
+            if (location == null) return;
+
+            string sceneName = location.GetSceneName(1);
+            if (string.IsNullOrEmpty(sceneName)) sceneName = location.GetSceneName(0);
+            if (string.IsNullOrEmpty(sceneName)) return;
+
+            // If the POI is a trainer host, resolve the hero so the mission can spawn
+            // them as a visible civilian agent.
+            Hero trainer = (poi is ISpellTrainerHost host) ? host.GetOrCreateTrainer(settlement) : null;
+
+            TorMissionManager.OpenPoiVisitMission(sceneName, poi.ParentMenuId, trainer);
         }
     }
 }

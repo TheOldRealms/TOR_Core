@@ -22,6 +22,9 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public override string EnterLabelId => "tor_poi_bretonnia_forest_trainer_shrine.EnterLabel";
         public override string EnterLabelDefault => "Approach the shrine...";
 
+        // Shrines don't get a vanilla LocationEncounter — launch the scene directly.
+        public override bool UsesMissionLaunch => true;
+
         public string SpellTrainerTemplateId => "tor_spelltrainer_bretonnia_0";
         public string EnchanterTemplateId    => "tor_spelltrainer_bretonnia_0";
         public List<string> EnchantmentSuffixes => new() { "br_enchant" };

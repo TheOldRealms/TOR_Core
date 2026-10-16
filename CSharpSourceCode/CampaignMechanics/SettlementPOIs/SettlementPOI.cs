@@ -41,6 +41,19 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         /// <summary>English fallback for the menu label when <see cref="EnterLabelId"/> is not registered.</summary>
         public abstract string EnterLabelDefault { get; }
 
+        /// <summary>
+        /// Scene-launch mode for this POI.
+        /// <para><b>False (default)</b> — vanilla <c>PlayerEncounter.LocationEncounter.CreateAndOpenMissionController</c>
+        /// path. Works on towns, castles, villages, hideouts: anywhere vanilla populates a
+        /// <c>LocationEncounter</c> on entry. Supports LocationCharacters (NPCs attached to
+        /// the location in XML / spawned by behaviors).</para>
+        /// <para><b>True</b> — direct <c>MissionState.OpenNew</c> path. Used for TOR custom
+        /// settlements (shrines, Oak of Ages, chaos portals, …) whose component types the
+        /// engine's encounter machinery doesn't recognize. The scene loads, but LocationCharacters
+        /// aren't auto-spawned — any NPC placement must happen via a MissionBehavior.</para>
+        /// </summary>
+        public virtual bool UsesMissionLaunch => false;
+
         // ------- Access rule (the main hook)
 
         /// <summary>
