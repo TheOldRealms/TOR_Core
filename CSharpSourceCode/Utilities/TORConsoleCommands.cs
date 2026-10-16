@@ -572,14 +572,24 @@ namespace TOR_Core.Utilities
             if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
                 return CampaignCheats.ErrorType;
 
-            var careerId = arguments[0];
-            var career = TORCareers.All.FirstOrDefault(x => x.StringId == careerId);
-            if (career != null)
+            if (arguments == null || arguments.Count == 0)
+                return "Usage: tor.add_career <career_id>. Example: tor.add_career Necrarch\n";
+
+            try
             {
-                Hero.MainHero.AddCareer(career);
-                return string.Format("Player now has {0} career. \n", career.StringId);
+                var careerId = arguments[0];
+                var career = TORCareers.All.FirstOrDefault(x => x.StringId == careerId);
+                if (career != null)
+                {
+                    Hero.MainHero.AddCareer(career);
+                    return string.Format("Player now has {0} career. \n", career.StringId);
+                }
+                return "No career with the given argument found. \n";
             }
-            else return "No career with the given argument found. \n";
+            catch (Exception ex)
+            {
+                return "tor.add_career crashed: " + ex.GetType().Name + ": " + ex.Message + "\n";
+            }
         }
 
         [CommandLineFunctionality.CommandLineArgumentFunction("open_ink_story", "tor")]
