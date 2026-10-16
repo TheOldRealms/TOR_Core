@@ -6069,4 +6069,13 @@
   <string id="tor_poi_bretonnia_forest_trainer_shrine.SiegeSealed" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.SiegeSealed}The grove's wards close during the siege." />
   <string id="tor_poi_bretonnia_forest_trainer_shrine.WrongCulture" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.WrongCulture}The Lady's shrine is a sacred place of Bretonnia." />
   <string id="tor_poi_bretonnia_forest_trainer_shrine.NotCaster" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.NotCaster}Only those gifted with magic may approach the Lady." />
+
+  <!-- POIs - Runehall -->
+  <string id="tor_poi_runehall.Name" text="{=str_tor_poi_runehall.Name}Runehall" />
+  <string id="tor_poi_runehall.EnterLabel" text="{=str_tor_poi_runehall.EnterLabel}Visit the Runehall" />
+  <string id="tor_poi_runehall.Undiscovered" text="{=str_tor_poi_runehall.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_runehall.Sealed" text="{=str_tor_poi_runehall.Sealed}This place is sealed." />
+  <string id="tor_poi_runehall.SiegeSealed" text="{=str_tor_poi_runehall.SiegeSealed}The hold's gates are shut while under siege." />
+  <string id="tor_poi_runehall.WrongRace" text="{=str_tor_poi_runehall.WrongRace}The Runehall is open to the dawi alone." />
+  <string id="tor_poi_runehall.MustHaveCareer" text="{=str_tor_poi_runehall.MustHaveCareer}Only those who walk the path of Thungni may approach the anvil." />
 </strings>
