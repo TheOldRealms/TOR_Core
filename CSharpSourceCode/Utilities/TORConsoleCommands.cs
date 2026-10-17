@@ -11,6 +11,7 @@ using TaleWorlds.CampaignSystem.GameState;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Party.PartyComponents;
 using TaleWorlds.CampaignSystem.Roster;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
@@ -25,6 +26,7 @@ using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.CampaignMechanics.SettlementPOIs;
 using TOR_Core.CampaignMechanics.UniqueSpawns;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
@@ -570,14 +572,24 @@ namespace TOR_Core.Utilities
             if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
                 return CampaignCheats.ErrorType;
 
-            var careerId = arguments[0];
-            var career = TORCareers.All.FirstOrDefault(x => x.StringId == careerId);
-            if (career != null)
+            if (arguments == null || arguments.Count == 0)
+                return "Usage: tor.add_career <career_id>. Example: tor.add_career Necrarch\n";
+
+            try
             {
-                Hero.MainHero.AddCareer(career);
-                return string.Format("Player now has {0} career. \n", career.StringId);
+                var careerId = arguments[0];
+                var career = TORCareers.All.FirstOrDefault(x => x.StringId == careerId);
+                if (career != null)
+                {
+                    Hero.MainHero.AddCareer(career);
+                    return string.Format("Player now has {0} career. \n", career.StringId);
+                }
+                return "No career with the given argument found. \n";
             }
-            else return "No career with the given argument found. \n";
+            catch (Exception ex)
+            {
+                return "tor.add_career crashed: " + ex.GetType().Name + ": " + ex.Message + "\n";
+            }
         }
 
         [CommandLineFunctionality.CommandLineArgumentFunction("open_ink_story", "tor")]
@@ -1380,6 +1392,81 @@ namespace TOR_Core.Utilities
                 return $"Quest '{questId}' requirements completed! Talk to the Runesmith guildmaster after the next hourly tick to finalize it.\n";
 
             return $"Quest '{questId}' requirements completed! Quest will finalize on next hourly tick.\n";
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("establish_poi", "tor")]
+        public static string EstablishPOI(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+            if (Campaign.Current == null) return "Function only available in campaign mode.\n";
+
+            if (arguments.Count < 2)
+                return "Usage: tor.establish_poi <settlementId> <poiLocationId> [sceneName]\n" +
+                       "  <settlementId>: e.g. town_ML1 (Middenheim)\n" +
+                       "  <poiLocationId>: e.g. tor_empire_engineer_hall\n" +
+                       "  [sceneName]: optional, defaults to a POI-known scene when supported\n";
+
+            var settlementId = arguments[0];
+            var poiLocationId = arguments[1];
+            var sceneName = arguments.Count >= 3 ? arguments[2] : null;
+
+            var s = Settlement.All.FirstOrDefault(x => x.StringId == settlementId);
+            if (s == null) return $"Settlement '{settlementId}' not found.\n";
+
+            var poi = SettlementPOIManagerCampaignBehavior.Get(poiLocationId);
+            if (poi == null) return $"POI '{poiLocationId}' not found.\n";
+
+            // Known POI → scene defaults, so testers don't have to remember scene asset names.
+            if (string.IsNullOrEmpty(sceneName))
+            {
+                if (poi is EmpireEngineerHallPOI) sceneName = "TOR_engineer_office_002";
+                else return $"No default scene for POI '{poiLocationId}'. Pass sceneName.\n";
+            }
+
+            var mgr = Campaign.Current.GetCampaignBehavior<SettlementPOIManagerCampaignBehavior>();
+            if (mgr == null) return "POI manager unavailable.\n";
+
+            return mgr.EstablishAt(s, poi, sceneName)
+                ? $"Established {poiLocationId} at {s.Name} ({settlementId}) with scene '{sceneName}'.\n"
+                : $"Failed to establish {poiLocationId} at {settlementId} (Location row missing in complex?).\n";
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("discover_all_pois", "tor")]
+        public static string DiscoverAllPOIs(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+            if (Campaign.Current == null) return "Function only available in campaign mode.\n";
+
+            if (arguments.Count < 1)
+                return "Usage: tor.discover_all_pois <settlementId>\n";
+
+            var s = Settlement.All.FirstOrDefault(x => x.StringId == arguments[0]);
+            if (s == null) return $"Settlement '{arguments[0]}' not found.\n";
+
+            Campaign.Current.GetCampaignBehavior<SettlementPOIManagerCampaignBehavior>()?.MarkAllApplicableDiscovered(s);
+            return $"Marked all applicable POIs at {s.Name} as discovered.\n";
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("undiscover_all_pois", "tor")]
+        public static string UndiscoverAllPOIs(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+            if (Campaign.Current == null) return "Function only available in campaign mode.\n";
+
+            if (arguments.Count < 1)
+                return "Usage: tor.undiscover_all_pois <settlementId>\n";
+
+            var s = Settlement.All.FirstOrDefault(x => x.StringId == arguments[0]);
+            if (s == null) return $"Settlement '{arguments[0]}' not found.\n";
+
+            var mgr = Campaign.Current.GetCampaignBehavior<SettlementPOIManagerCampaignBehavior>();
+            if (mgr == null) return "POI manager unavailable.\n";
+            foreach (var poi in SettlementPOIManagerCampaignBehavior.All)
+                mgr.UnmarkDiscovered(s, poi);
+            return $"Unmarked all POIs at {s.Name} as undiscovered.\n";
         }
 
         private static string AggregateOutput(string topicHeader, List<string> matchedSpells) =>

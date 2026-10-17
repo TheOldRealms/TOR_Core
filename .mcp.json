@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "tor_tools": {
-      "command": "dotnet",
+      "command": "/usr/bin/dotnet",
       "args": [
         "/home/Zerca/.local/share/Steam/steamapps/common/Mount & Blade II Bannerlord/Modules/TOR_Tools/release-mcp/TORTools.Mcp.Host.dll"
       ]

@@ -36,7 +36,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
+  <!-- Windows-only F5/Run config. On Linux (Rider opening this sln by mistake),
+       running Bannerlord.exe through Fedora mono fails with
+       UnauthorizedAccessException: '/usr/share/Mount and Blade II Bannerlord'.
+       Use TOR_Core.CrossPlatform.sln + "Bannerlord Attach" Mono Remote config on Linux. -->
+  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
     <StartAction>Program</StartAction>
     <StartProgram>..\..\..\bin\Win64_Shipping_Client\Bannerlord.exe</StartProgram>
     <StartArguments>/singleplayer _MODULES_%2aNative%2aSandBoxCore%2aSandBox%2aStoryMode%2aCustomBattle%2aTOR_Armory%2aTOR_Environment%2aTOR_Core%2a_MODULES_</StartArguments>
@@ -299,7 +303,8 @@
     <Compile Include="CampaignMechanics\Crafting\CraftingVMExtension.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantableItemVM.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantableTraitVM.cs" />
-    <Compile Include="CampaignMechanics\Crafting\EnchanterTownBehavior.cs" />
+    <Compile Include="CampaignMechanics\Crafting\EnchanterHelper.cs" />
+    <Compile Include="CampaignMechanics\Crafting\EnchanterProgressBehavior.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantingIngredientVM.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantingIngredientWidget.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantingItemTableauVM.cs" />
@@ -392,7 +397,25 @@
     <Compile Include="CampaignMechanics\ServeAsAHireling\ServeAsAHirelingCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\ServeAsAHireling\ServeAsAHirelingHelpers.cs" />
     <Compile Include="CampaignMechanics\SkillTrainerBehavior.cs" />
-    <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
+    <Compile Include="CampaignMechanics\SpellTrainers\SpellCasterLordLevelBehavior.cs" />
+    <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerHelper.cs" />
+    <Compile Include="CampaignMechanics\SettlementPOIs\SettlementPOI.cs" />
+    <Compile Include="CampaignMechanics\SettlementPOIs\SettlementPOIManagerCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\SettlementPOIs\EmpireEngineerHallPOI.cs" />
+    <Compile Include="CampaignMechanics\SettlementPOIs\EmpireWizardHallPOI.cs" />
+    <Compile Include="CampaignMechanics\SettlementPOIs\VampireCryptPOI.cs" />
+    <Compile Include="CampaignMechanics\SettlementPOIs\SpellsingersGrovePOI.cs" />
+    <Compile Include="CampaignMechanics\SettlementPOIs\ShamanHutPOI.cs" />
+    <Compile Include="CampaignMechanics\SettlementPOIs\BretonniaForestTrainerShrinePOI.cs" />
+    <Compile Include="CampaignMechanics\SettlementPOIs\RunehallPOI.cs" />
+    <Compile Include="CampaignMechanics\SettlementPOIs\DwarfEngineerHallPOI.cs" />
+    <Compile Include="Missions\PoiVisitMissionController.cs" />
+    <Compile Include="Missions\PoiCivilianAgentSpawner.cs" />
+    <Compile Include="CampaignMechanics\SettlementPOIs\IEnchanterHost.cs" />
+    <Compile Include="CampaignMechanics\SettlementPOIs\ISkillTrainerHost.cs" />
+    <Compile Include="CampaignMechanics\SettlementPOIs\ISpellTrainerHost.cs" />
+    <Compile Include="CampaignMechanics\SettlementPOIs\TrainerPlacement.cs" />
+    <Compile Include="CampaignMechanics\SettlementPOIs\WitchHunterLodgePOI.cs" />
     <Compile Include="CampaignMechanics\TORAIRecruitmentCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCaptivityCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\CustomSettlementMenus\CursedSiteMenuLogic.cs" />
@@ -670,6 +693,7 @@
     <Compile Include="Models\TORPersuasionModel.cs" />
     <Compile Include="Models\TORPrisonerRecruitmentCalculationModel.cs" />
     <Compile Include="Models\TORRaidModel.cs" />
+    <Compile Include="Models\TORSettlementAccessModel.cs" />
     <Compile Include="Models\TORSettlementFoodModel.cs" />
     <Compile Include="Models\TORSettlementLoyaltyModel.cs" />
     <Compile Include="Models\TORSettlementGarrisonModel.cs" />

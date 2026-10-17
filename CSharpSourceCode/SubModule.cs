@@ -51,6 +51,7 @@ using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
+using TOR_Core.CampaignMechanics.SettlementPOIs;
 using TOR_Core.CampaignMechanics.UniqueSpawns;
 using TOR_Core.CampaignSupport.TownBehaviours;
 using TOR_Core.CharacterDevelopment;
@@ -169,7 +170,10 @@ namespace TOR_Core
                 starter.AddBehavior(new RORCampaignBehavior());
                 starter.AddBehavior(new TORCaptivityCampaignBehavior());
                 starter.AddBehavior(new AssimilationCampaignBehavior());
-                starter.AddBehavior(new SpellTrainerInTownBehavior());
+                starter.AddBehavior(new SpellCasterLordLevelBehavior());
+                // SettlementPOI subclasses self-register via reflection on session launch;
+                // SubModule only needs the manager behavior itself.
+                starter.AddBehavior(new SettlementPOIManagerCampaignBehavior());
                 starter.AddBehavior(new MasterEngineerTownBehaviour());
                 starter.AddBehavior(new PrestigeNobleTownBehavior());
                 starter.AddBehavior(new EonirFavorEnvoyTownBehavior());
@@ -243,6 +247,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORPartyWageModel());
                 gameStarterObject.AddModel(new TORPrisonerRecruitmentCalculationModel());
                 gameStarterObject.AddModel(new TORSettlementMilitiaModel());
+                gameStarterObject.AddModel(new TORSettlementAccessModel());
                 gameStarterObject.AddModel(new TORSettlementGarrisonModel());
                 gameStarterObject.AddModel(new TORAbilityModel());
                 gameStarterObject.AddModel(new TORCharacterDevelopmentModel());

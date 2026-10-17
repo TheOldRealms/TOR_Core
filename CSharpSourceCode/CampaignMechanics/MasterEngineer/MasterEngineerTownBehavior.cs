@@ -68,12 +68,8 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
 
         private void EnforceEngineerLocation()
         {
-            if (Settlement.CurrentSettlement == null || Settlement.CurrentSettlement != _nuln) return;
-            var locationchar = _nuln.LocationComplex.GetLocationCharacterOfHero(_masterEngineerHero);
-            var office = _nuln.LocationComplex.GetLocationWithId("house_2");
-            var currentloc = _nuln.LocationComplex.GetLocationOfCharacter(locationchar);
-            if (locationchar is null || office is null || currentloc is null) return;
-            if (currentloc != office) _nuln.LocationComplex.ChangeLocation(locationchar, currentloc, office);
+            // POI handles Nuln's engineer placement — EmpireEngineerHallPOI via ISkillTrainerHost.
+            return;
         }
 
         private void AddEngineerDialogLines(CampaignGameStarter obj)

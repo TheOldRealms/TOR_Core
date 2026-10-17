@@ -6033,4 +6033,57 @@
 
   <!-- POIs - Smoke Test -->
   <string id="tor_test_mcp_linkedfield_verification" text="{=str_tor_test_mcp_linkedfield_verification}Smoke test — safe to delete." />
+
+  <!-- POIs - Vampire Crypt -->
+  <string id="tor_poi_vampire_crypt.Name" text="{=str_tor_poi_vampire_crypt.Name}Vampire Crypt" />
+  <string id="tor_poi_vampire_crypt.EnterLabel" text="{=str_tor_poi_vampire_crypt.EnterLabel}Visit the Vampire Crypt" />
+  <string id="tor_poi_vampire_crypt.Undiscovered" text="{=str_tor_poi_vampire_crypt.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_vampire_crypt.Sealed" text="{=str_tor_poi_vampire_crypt.Sealed}This place is sealed." />
+  <string id="tor_poi_vampire_crypt.SiegeSealed" text="{=str_tor_poi_vampire_crypt.SiegeSealed}The crypt is sealed during the siege." />
+  <string id="tor_poi_vampire_crypt.Rejected" text="{=str_tor_poi_vampire_crypt.Rejected}The dead within turn you away." />
+  <string id="tor_poi_vampire_crypt.MustHaveCareer" text="{=str_tor_poi_vampire_crypt.MustHaveCareer}Only the undying may enter the crypt." />
+
+  <!-- POIs - Spellsingers Grove -->
+  <string id="tor_poi_spellsingers_grove.Name" text="{=str_tor_poi_spellsingers_grove.Name}Spellsingers' Grove" />
+  <string id="tor_poi_spellsingers_grove.EnterLabel" text="{=str_tor_poi_spellsingers_grove.EnterLabel}Visit the Spellsingers' Grove" />
+  <string id="tor_poi_spellsingers_grove.Undiscovered" text="{=str_tor_poi_spellsingers_grove.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_spellsingers_grove.Sealed" text="{=str_tor_poi_spellsingers_grove.Sealed}This place is sealed." />
+  <string id="tor_poi_spellsingers_grove.SiegeSealed" text="{=str_tor_poi_spellsingers_grove.SiegeSealed}The grove's wards close during the siege." />
+  <string id="tor_poi_spellsingers_grove.Rejected" text="{=str_tor_poi_spellsingers_grove.Rejected}The grove does not open for your kind." />
+  <string id="tor_poi_spellsingers_grove.MustHaveCareer" text="{=str_tor_poi_spellsingers_grove.MustHaveCareer}Only the children of Ariel may enter the grove." />
+
+  <!-- POIs - Shaman Hut -->
+  <string id="tor_poi_shaman_hut.Name" text="{=str_tor_poi_shaman_hut.Name}Shaman Hut" />
+  <string id="tor_poi_shaman_hut.EnterLabel" text="{=str_tor_poi_shaman_hut.EnterLabel}Visit the Shaman Hut" />
+  <string id="tor_poi_shaman_hut.Undiscovered" text="{=str_tor_poi_shaman_hut.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_shaman_hut.Sealed" text="{=str_tor_poi_shaman_hut.Sealed}This place is sealed." />
+  <string id="tor_poi_shaman_hut.SiegeSealed" text="{=str_tor_poi_shaman_hut.SiegeSealed}The shaman da hut iz closed. Bosses fightin'!" />
+  <string id="tor_poi_shaman_hut.Rejected" text="{=str_tor_poi_shaman_hut.Rejected}Da shaman don't see yer kind." />
+  <string id="tor_poi_shaman_hut.MustHaveCareer" text="{=str_tor_poi_shaman_hut.MustHaveCareer}Only shaman-boyz may enter." />
+
+  <!-- POIs - Forest Shrine of the Lady -->
+  <string id="tor_poi_bretonnia_forest_trainer_shrine.Name" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.Name}Forest Shrine of the Lady" />
+  <string id="tor_poi_bretonnia_forest_trainer_shrine.EnterLabel" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.EnterLabel}Approach the shrine..." />
+  <string id="tor_poi_bretonnia_forest_trainer_shrine.Undiscovered" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_bretonnia_forest_trainer_shrine.Sealed" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.Sealed}This place is sealed." />
+  <string id="tor_poi_bretonnia_forest_trainer_shrine.SiegeSealed" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.SiegeSealed}The grove's wards close during the siege." />
+  <string id="tor_poi_bretonnia_forest_trainer_shrine.WrongCulture" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.WrongCulture}The Lady's shrine is a sacred place of Bretonnia." />
+  <string id="tor_poi_bretonnia_forest_trainer_shrine.NotCaster" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.NotCaster}Only those gifted with magic may approach the Lady." />
+
+  <!-- POIs - Runehall -->
+  <string id="tor_poi_runehall.Name" text="{=str_tor_poi_runehall.Name}Runehall" />
+  <string id="tor_poi_runehall.EnterLabel" text="{=str_tor_poi_runehall.EnterLabel}Visit the Runehall" />
+  <string id="tor_poi_runehall.Undiscovered" text="{=str_tor_poi_runehall.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_runehall.Sealed" text="{=str_tor_poi_runehall.Sealed}This place is sealed." />
+  <string id="tor_poi_runehall.SiegeSealed" text="{=str_tor_poi_runehall.SiegeSealed}The hold's gates are shut while under siege." />
+  <string id="tor_poi_runehall.WrongRace" text="{=str_tor_poi_runehall.WrongRace}The Runehall is open to the dawi alone." />
+  <string id="tor_poi_runehall.MustHaveCareer" text="{=str_tor_poi_runehall.MustHaveCareer}Only those who walk the path of Thungni may approach the anvil." />
+
+  <!-- POIs - Dwarf Engineer Hall -->
+  <string id="tor_poi_dwarf_engineer_hall.Name" text="{=str_tor_poi_dwarf_engineer_hall.Name}Engineers' Hall" />
+  <string id="tor_poi_dwarf_engineer_hall.EnterLabel" text="{=str_tor_poi_dwarf_engineer_hall.EnterLabel}Visit the Engineers' Hall" />
+  <string id="tor_poi_dwarf_engineer_hall.Undiscovered" text="{=str_tor_poi_dwarf_engineer_hall.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_dwarf_engineer_hall.Sealed" text="{=str_tor_poi_dwarf_engineer_hall.Sealed}This place is sealed." />
+  <string id="tor_poi_dwarf_engineer_hall.SiegeSealed" text="{=str_tor_poi_dwarf_engineer_hall.SiegeSealed}The hold's gates are shut while under siege." />
+  <string id="tor_poi_dwarf_engineer_hall.WrongCulture" text="{=str_tor_poi_dwarf_engineer_hall.WrongCulture}The Engineers' Hall is open to the dawi alone." />
 </strings>
