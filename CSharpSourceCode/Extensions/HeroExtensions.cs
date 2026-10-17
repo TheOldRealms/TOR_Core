@@ -523,15 +523,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsSpellTrainer(this Hero hero) => SpellTrainerHelper.IsSpellTrainer(hero);
 
-        public static bool IsEnchanter(this Hero hero)
-        {
-            var behavior = Campaign.Current.GetCampaignBehavior<EnchanterTownBehavior>();
-            if (behavior != null)
-            {
-                return behavior.IsEnchanter(hero);
-            }
-            else return false;
-        }
+        public static bool IsEnchanter(this Hero hero) => EnchanterHelper.IsEnchanter(hero);
 
         public static bool IsImperialMagister(this Hero hero)
         {

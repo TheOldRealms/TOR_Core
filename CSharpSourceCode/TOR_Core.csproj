@@ -303,7 +303,8 @@
     <Compile Include="CampaignMechanics\Crafting\CraftingVMExtension.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantableItemVM.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantableTraitVM.cs" />
-    <Compile Include="CampaignMechanics\Crafting\EnchanterTownBehavior.cs" />
+    <Compile Include="CampaignMechanics\Crafting\EnchanterHelper.cs" />
+    <Compile Include="CampaignMechanics\Crafting\EnchanterProgressBehavior.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantingIngredientVM.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantingIngredientWidget.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantingItemTableauVM.cs" />

@@ -269,6 +269,17 @@ public class OathGoldBehavior : CampaignBehaviorBase
         GameTexts.SetVariable("WHEAT_ICON", "<img src=\"General\\Icons\\Production\\wheat\" extend=\"6\">");//wheat comes out as white. Need to look at if it's the brush that needs to have the colour, or if handled in code. Would prefer to avoid any hardcoding.
 
         AddRuneSmithDialogue(campaignGameStarter);
+
+        // Dawi enchantment lives here (not on a POI) because the Runesmith-guild
+        // dialog + oathgold economy is already intertwined on this behavior.
+        // Architecture: docs/town-pois-and-access-model/architecture-redesign.md.
+        EnchanterHelper.RegisterEnchanterBranch(campaignGameStarter,
+            culture: TORConstants.Cultures.DAWI,
+            hubToken: "tor_dw_guildmaster_runesmith_hub",
+            quitToken: "start",
+            isMultiUse: true,
+            enchantmentSuffixes: new List<string> { "dw_rune" },
+            cultureAccess: HasDawiEnchanterAccess);
         AddEngineerDialogue(campaignGameStarter);
         AddMinerDialogue(campaignGameStarter);
         AddBrewerDialogue(campaignGameStarter);
@@ -1573,6 +1584,13 @@ public class OathGoldBehavior : CampaignBehaviorBase
         int oathGoldEquivalent = grainValue / GrainValueToOathGoldRatio;
 
         return oathGoldEquivalent;
+    }
+
+    private bool HasDawiEnchanterAccess()
+    {
+        if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI) return true;
+        if (Hero.MainHero.PartyBelongedTo == null) return false;
+        return Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x != Hero.MainHero && x.HasAttribute(CharacterAttributes.RUNESMITH));
     }
 
     public override void SyncData(IDataStore dataStore)

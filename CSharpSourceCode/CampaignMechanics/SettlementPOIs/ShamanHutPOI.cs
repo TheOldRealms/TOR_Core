@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
@@ -73,6 +74,16 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             obj.AddDialogLine("trainer_greenskin_goodbye", "saygoodbye_greenskin", "close_window",
                 TORTextHelper.GetText("tor_spelltrainer_greenskin_goodbye", "I'z can feel da Gods talkin'. Get outta 'ere!"),
                 isGreenskinTrainer, null, 200, null);
+
+            // Enchanter branch — same hero as the trainer via template-id dedup,
+            // attached to the Greenskin hub.
+            EnchanterHelper.RegisterEnchanterBranch(obj,
+                culture: TORConstants.Cultures.GREENSKIN,
+                hubToken: "choices_greenskin",
+                quitToken: "hub_greenskin",
+                isMultiUse: true,
+                enchantmentSuffixes: EnchantmentSuffixes,
+                cultureAccess: IsPartyEligibleForEnchanter);
 
             bool isGreenskinTrainer()
             {

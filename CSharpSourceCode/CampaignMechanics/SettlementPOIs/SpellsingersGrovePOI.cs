@@ -8,6 +8,7 @@ using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -107,6 +108,16 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             obj.AddPlayerLine("trainer_spellsinger_playergoodbye", "choices_spellsinger", "saygoodbye", TORTextHelper.GetTextForNative("tor_spelltrainer_spellsinger_player_goodbye", "Ariel be with you."), null, null, 200, null);
             obj.AddDialogLine("trainer_spellsinger_goodbye", "saygoodbye", "close_window", TORTextHelper.GetTextForNative("tor_spelltrainer_spellsinger_goodbye", "May She guide you on all your paths through her garden."), isSpellsingerTrainer, null, 200, null);
             obj.AddDialogLine("trainer_spellsinger_afterlearnspells", "openbook_spellsinger", "hub_spellsinger", TORTextHelper.GetTextForNative("tor_spelltrainer_spellsinger_close_book", "A new facet of Ariel's infinite knowledge."), null, SpellTrainerHelper.OpenbookConsequence, 200, null);
+
+            // Enchanter branch — same hero as the trainer via template-id dedup,
+            // attached to the Spellsinger hub.
+            EnchanterHelper.RegisterEnchanterBranch(obj,
+                culture: TORConstants.Cultures.ASRAI,
+                hubToken: "choices_spellsinger",
+                quitToken: "hub_spellsinger",
+                isMultiUse: true,
+                enchantmentSuffixes: EnchantmentSuffixes,
+                cultureAccess: IsPartyEligibleForEnchanter);
 
             bool isSpellsingerTrainer()
             {

@@ -7,6 +7,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CharacterDevelopment;
@@ -112,6 +113,24 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             obj.AddDialogLine("trainer_vampire_goodbye", "saygoodbye_vampire", "close_window",
                 TORTextHelper.GetText("tor_spelltrainer_vampire_goodbye", "Until the next moonrise…"),
                 isVampireTrainer, null, 200, null);
+
+            // Enchanter branches — same hero as the trainer via template-id dedup.
+            // Registered for BOTH SYLVANIA and MOUSILLON since the shared VC trainer
+            // can spawn under either culture (SharesVcEnchanterBranch unites them).
+            EnchanterHelper.RegisterEnchanterBranch(obj,
+                culture: TORConstants.Cultures.SYLVANIA,
+                hubToken: "vampire_choices",
+                quitToken: "hub_vampire",
+                isMultiUse: true,
+                enchantmentSuffixes: EnchantmentSuffixes,
+                cultureAccess: IsPartyEligibleForEnchanter);
+            EnchanterHelper.RegisterEnchanterBranch(obj,
+                culture: TORConstants.Cultures.MOUSILLON,
+                hubToken: "vampire_choices",
+                quitToken: "hub_vampire",
+                isMultiUse: true,
+                enchantmentSuffixes: EnchantmentSuffixes,
+                cultureAccess: IsPartyEligibleForEnchanter);
 
             bool isVampireTrainer()
             {

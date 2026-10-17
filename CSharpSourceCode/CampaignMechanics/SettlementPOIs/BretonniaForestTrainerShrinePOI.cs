@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
@@ -33,7 +34,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
 
         public string SpellTrainerTemplateId => "tor_spelltrainer_bretonnia_0";
         public string EnchanterTemplateId    => "tor_spelltrainer_bretonnia_0";
-        public List<string> EnchantmentSuffixes => new() { "br_enchant" };
+        public List<string> EnchantmentSuffixes => new() { "emp_enchant", "bret_blessing" };
 
         public bool IsPartyEligibleForTrainer()
         {
@@ -70,6 +71,16 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             obj.AddPlayerLine("trainer_prophetesse_playergoodbye", "choices_prophetesse", "saygoodbye", TORTextHelper.GetTextForNative("tor_spelltrainer_prophetesse_player_goodbye", "Until we meet again, my Fay Enchantress."), null, null, 200, null);
             obj.AddDialogLine("trainer_prophetesse_goodbye", "saygoodbye", "close_window", TORTextHelper.GetTextForNative("tor_spelltrainer_prophetesse_goodbye", "Go forth, and may the Lady's grace illuminate your path."), isMorgianaLeFay, null, 200, null);
             obj.AddDialogLine("trainer_prophetesse_afterlearnspells", "openbook_prophetesse", "hub_prophetesse", TORTextHelper.GetTextForNative("tor_spelltrainer_prophetesse_close_book", "You have grasped this weave with prowess. Carry this knowledge, and may it serve you well, as a beacon of the Lady's blessings."), null, SpellTrainerHelper.OpenbookConsequence, 200, null);
+
+            // Enchanter branch — same hero as the trainer via template-id dedup,
+            // attached to the Prophetess hub.
+            EnchanterHelper.RegisterEnchanterBranch(obj,
+                culture: TORConstants.Cultures.BRETONNIA,
+                hubToken: "choices_prophetesse",
+                quitToken: "hub_prophetesse",
+                isMultiUse: true,
+                enchantmentSuffixes: EnchantmentSuffixes,
+                cultureAccess: IsPartyEligibleForEnchanter);
 
             bool isMorgianaLeFay()
             {

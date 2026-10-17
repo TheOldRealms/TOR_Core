@@ -3,6 +3,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
@@ -68,6 +69,20 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
 
             denialReason = null;
             return true;
+        }
+
+        public override void RegisterDialogs(CampaignGameStarter starter)
+        {
+            // Empire's enchanter is a separate hero from the spelltrainer and gets its
+            // own standalone dialog (isMultiUse=false → attaches to the generic "start"
+            // hub). The spelltrainer side runs through SpellTrainerHelper.RegisterCommonDialogs.
+            EnchanterHelper.RegisterEnchanterBranch(starter,
+                culture: TORConstants.Cultures.EMPIRE,
+                hubToken: "start",
+                quitToken: "close_window",
+                isMultiUse: false,
+                enchantmentSuffixes: EnchantmentSuffixes,
+                cultureAccess: IsPartyEligibleForEnchanter);
         }
     }
 }
