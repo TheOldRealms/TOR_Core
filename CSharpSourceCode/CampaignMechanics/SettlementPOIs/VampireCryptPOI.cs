@@ -35,6 +35,9 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             return SpellTrainerHelper.HasMatchingSpellTrainerCompanion(x => IsVcCulture(x.Culture.StringId) && x.IsSpellCaster());
         }
 
+        // Same hero plays both roles via template-id dedup, so eligibility is identical.
+        public bool IsPartyEligibleForEnchanter() => IsPartyEligibleForTrainer();
+
         private static bool IsVcCulture(string cultureId) =>
             cultureId == TORConstants.Cultures.SYLVANIA || cultureId == TORConstants.Cultures.MOUSILLON;
 

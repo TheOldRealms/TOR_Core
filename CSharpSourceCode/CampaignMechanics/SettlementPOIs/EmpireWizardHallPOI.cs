@@ -31,6 +31,10 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 x => x.Culture.StringId == TORConstants.Cultures.EMPIRE && x.IsSpellCaster());
         }
 
+        // Enchanter is a separate hero from the spelltrainer here, but the party-access
+        // rule is the same (Empire culture or Empire spellcaster companion).
+        public bool IsPartyEligibleForEnchanter() => IsPartyEligibleForTrainer();
+
         public override string MapIconText => "<img src=\"winds_icon_45\" extend=\"15\">";
 
         public override bool CheckAccess(Settlement s, Hero h, out TextObject denialReason)

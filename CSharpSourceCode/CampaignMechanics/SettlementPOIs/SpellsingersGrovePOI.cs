@@ -45,6 +45,12 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 x => x.Culture.StringId == TORConstants.Cultures.ASRAI && x.IsSpellCaster());
         }
 
+        // Same hero plays both roles via template-id dedup, so eligibility is identical.
+        // Note the legacy EnchanterTownBehavior rule was slightly tighter (no career-only
+        // paths); we unify on the trainer rule here. Audit if enchanter-specific access
+        // ever needs to differ.
+        public bool IsPartyEligibleForEnchanter() => IsPartyEligibleForTrainer();
+
         public override bool CheckAccess(Settlement s, Hero h, out TextObject denialReason)
         {
             if (!IsDiscovered(s)) { denialReason = R("Undiscovered", "You have not yet found this place."); return false; }

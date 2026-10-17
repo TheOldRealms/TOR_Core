@@ -16,6 +16,15 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
 
         /// <summary>Enchantment suffix pool this host can apply (e.g. "vc_enchant").</summary>
         List<string> EnchantmentSuffixes { get; }
+
+        /// <summary>
+        /// Can the player's party engage this enchanter? Same shape as
+        /// <see cref="ISpellTrainerHost.IsPartyEligibleForTrainer"/> — each POI
+        /// owns the "main hero OR party-companion matches this culture" rule.
+        /// In practice, non-Empire POIs delegate to IsPartyEligibleForTrainer
+        /// since the same hero plays both roles via template-id dedup.
+        /// </summary>
+        bool IsPartyEligibleForEnchanter();
     }
 
     /// <summary>

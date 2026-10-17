@@ -299,66 +299,32 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
             return true;
         }
 
+        // POI-managed cultures: dispatch to the owning IEnchanterHost so the
+        // per-culture access rule lives next to the POI, not in a central switch.
+        // Find the host by matching the culture's enchanter template id.
+        if (_cultureToTemplateMap.TryGetValue(culture, out var templateInfo))
+        {
+            var host = SettlementPOIManagerCampaignBehavior.All
+                .OfType<IEnchanterHost>()
+                .FirstOrDefault(h => h.EnchanterTemplateId == templateInfo.enchanterTemplate);
+            if (host != null)
+            {
+                return host.IsPartyEligibleForEnchanter();
+            }
+        }
+
+        // Legacy cases without a POI: DAWI (OathGoldBehavior owns the Runesmith) and
+        // EONIR (EonirFavorEnvoyTownBehavior owns the envoy). Both are explicitly kept
+        // out of the POI system per architecture-redesign.md.
         switch (culture)
         {
-            case TORConstants.Cultures.EMPIRE:
-                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.EMPIRE)
-                {
-                    return true;
-                }
-
-                return HasMatchingEnchanterCompanion(x => x.Culture.StringId == TORConstants.Cultures.EMPIRE && x.IsSpellCaster());
-
-            case TORConstants.Cultures.SYLVANIA:
-            case TORConstants.Cultures.MOUSILLON:
-                if (SharesVcEnchanterBranch(culture, Hero.MainHero.Culture.StringId))
-                {
-                    return true;
-                }
-
-                return HasMatchingEnchanterCompanion(x => SharesVcEnchanterBranch(culture, x.Culture.StringId) && x.IsSpellCaster());
-
-            case TORConstants.Cultures.BRETONNIA:
-                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.BRETONNIA)
-                {
-                    return true;
-                }
-
-                return HasMatchingEnchanterCompanion(x => x.Culture.StringId == TORConstants.Cultures.BRETONNIA && x.IsSpellCaster());
-
-            case TORConstants.Cultures.ASRAI:
-                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI &&
-                    Hero.MainHero.IsSpellCaster() &&
-                    Hero.MainHero.GetKnownLoreCount() > 0)
-                {
-                    return true;
-                }
-
-                return HasMatchingEnchanterCompanion(x => x.Culture.StringId == TORConstants.Cultures.ASRAI && x.IsSpellCaster());
-
             case TORConstants.Cultures.EONIR:
-                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.EONIR)
-                {
-                    return true;
-                }
-
+                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.EONIR) return true;
                 return HasMatchingEnchanterCompanion(x => x.Culture.StringId == TORConstants.Cultures.EONIR && x.IsSpellCaster());
 
             case TORConstants.Cultures.DAWI:
-                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI)
-                {
-                    return true;
-                }
-
+                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI) return true;
                 return HasMatchingEnchanterCompanion(x => x.HasAttribute(CharacterAttributes.RUNESMITH));
-
-            case TORConstants.Cultures.GREENSKIN:
-                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
-                {
-                    return true;
-                }
-
-                return HasMatchingEnchanterCompanion(x => x.Culture.StringId == TORConstants.Cultures.GREENSKIN && x.IsSpellCaster());
 
             default:
                 return false;

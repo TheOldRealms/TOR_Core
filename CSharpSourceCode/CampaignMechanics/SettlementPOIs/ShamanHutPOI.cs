@@ -33,6 +33,9 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 x => x.Culture.StringId == TORConstants.Cultures.GREENSKIN && x.IsSpellCaster());
         }
 
+        // Same hero plays both roles via template-id dedup, so eligibility is identical.
+        public bool IsPartyEligibleForEnchanter() => IsPartyEligibleForTrainer();
+
         public override bool CheckAccess(Settlement s, Hero h, out TextObject denialReason)
         {
             if (!IsDiscovered(s)) { denialReason = R("Undiscovered", "You have not yet found this place."); return false; }
