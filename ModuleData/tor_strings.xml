@@ -6086,4 +6086,9 @@
   <string id="tor_poi_dwarf_engineer_hall.Sealed" text="{=str_tor_poi_dwarf_engineer_hall.Sealed}This place is sealed." />
   <string id="tor_poi_dwarf_engineer_hall.SiegeSealed" text="{=str_tor_poi_dwarf_engineer_hall.SiegeSealed}The hold's gates are shut while under siege." />
   <string id="tor_poi_dwarf_engineer_hall.WrongCulture" text="{=str_tor_poi_dwarf_engineer_hall.WrongCulture}The Engineers' Hall is open to the dawi alone." />
+
+  <!-- Settlement Menus - Castle Courtyard -->
+  <string id="tor_castlecomplex" text="{=str_tor_castlecomplex}Visit the Courtyard" />
+  <string id="tor_castle_courtyard.leave" text="{=str_tor_castle_courtyard.leave}Back to the keep..." />
+  <string id="tor_castlecomplex_intro" text="{=str_tor_castlecomplex_intro}You walk the courtyard, trading nods with the hangers-on." />
 </strings>

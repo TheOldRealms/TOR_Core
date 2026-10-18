@@ -5,7 +5,6 @@ using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.SpellTrainers;
-using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -55,15 +54,13 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 denialReason = R("SiegeSealed", "The gates of the College are sealed during the siege.");
                 return false;
             }
-            if (h.CharacterObject.Race != FaceGen.GetRaceOrDefault("human"))
+            // Any Imperial — plus Bretonnian spellcasters (damsels / prophetesses visiting
+            // the Colleges in a Lady-blessed capacity). Everyone else is denied.
+            bool allowed = h.Culture.StringId == TORConstants.Cultures.EMPIRE
+                        || (h.Culture.StringId == TORConstants.Cultures.BRETONNIA && h.IsSpellCaster());
+            if (!allowed)
             {
-                denialReason = R("Rejected", "The wards of the College turn you away.");
-                return false;
-            }
-            if (!h.HasCareer(TORCareers.ImperialMagister))
-            {
-                denialReason = R("MustHaveCareer", "Only {REQUIRED_CAREER} may enter the College.")
-                    .SetTextVariable("REQUIRED_CAREER", TORCareers.ImperialMagister.Name);
+                denialReason = R("WrongCulture", "The College of Magic is open to those of the Empire — and the Lady's blessed.");
                 return false;
             }
 

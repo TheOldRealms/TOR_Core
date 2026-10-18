@@ -255,6 +255,10 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             // shop, goodbye) register once. POI-specific trees come from each POI below.
             SpellTrainers.SpellTrainerHelper.RegisterCommonDialogs(starter);
 
+            // Castle submenu — parallel to vanilla town_artisan, so castle POIs have
+            // a place to live. Culture-aware entry label.
+            CastleCourtyardMenu.Register(starter);
+
             foreach (var poi in _byLocationId.Values)
             {
                 var captured = poi;   // avoid loop-variable capture in the lambdas

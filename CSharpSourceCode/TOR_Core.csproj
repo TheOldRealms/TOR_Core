@@ -406,6 +406,7 @@
     <Compile Include="CampaignMechanics\SettlementPOIs\SpellsingersGrovePOI.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\ShamanHutPOI.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\BretonniaForestTrainerShrinePOI.cs" />
+    <Compile Include="CampaignMechanics\SettlementPOIs\CastleCourtyardMenu.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\RunehallPOI.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\DwarfEngineerHallPOI.cs" />
     <Compile Include="Missions\PoiVisitMissionController.cs" />

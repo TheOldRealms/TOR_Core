@@ -137,9 +137,11 @@
 
             <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="!Small.Height"  VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="6" MarginBottom="66" Text="RoR" IsVisible="@IsRoRSettlement" Brush="TorRoRSettlementBrush"/>
 
-            <RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32" Brush.FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="44"  MarginBottom="62" Text="@Poi1Text" IsVisible="@Poi1Visible" Brush="TorRoRSettlementBrush"/>
-            <RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32" Brush.FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="80"  MarginBottom="62" Text="@Poi2Text" IsVisible="@Poi2Visible" Brush="TorRoRSettlementBrush"/>
-            <RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32" Brush.FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="116" MarginBottom="62" Text="@Poi3Text" IsVisible="@Poi3Visible" Brush="TorRoRSettlementBrush"/>
+            <!-- POI icons hidden at Small (far-zoom) tier to declutter the world view.
+                 Icons remain visible on the Large and Medium prefabs. -->
+            <RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32" Brush.FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="44"  MarginBottom="62" Text="@Poi1Text" IsVisible="false" Brush="TorRoRSettlementBrush"/>
+            <RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32" Brush.FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="80"  MarginBottom="62" Text="@Poi2Text" IsVisible="false" Brush="TorRoRSettlementBrush"/>
+            <RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32" Brush.FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="116" MarginBottom="62" Text="@Poi3Text" IsVisible="false" Brush="TorRoRSettlementBrush"/>
 
           </Children>
         </SettlementNameplateItemWidget>				
