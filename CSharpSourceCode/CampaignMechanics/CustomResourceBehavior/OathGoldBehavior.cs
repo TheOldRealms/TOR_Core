@@ -56,6 +56,15 @@ public class OathGoldBehavior : CampaignBehaviorBase
     public const string BrewerGuildId = "brewer";
     public const string WarriorGuildId = "warrior";
 
+    // Guilds whose hero + placement is owned by SettlementPOIs (RunehallPOI,
+    // DwarfEngineerHallPOI). OathGold still owns their econ/attributes/dialog;
+    // only hero creation and sublocation placement is skipped here.
+    private static readonly HashSet<string> POIManagedGuilds = new()
+    {
+        RunesmithGuildId,
+        EngineerGuildId,
+    };
+
 
     private Dictionary<string, int> _guildValues;
     private double _lastTimeVistedTown;
@@ -208,7 +217,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         if (!settlement.IsDwarfKarak()) return;
 
-        foreach (var template in _templates.Where(template => !IsGuildMasterInDesignatedLocation(settlement, template.Value.Location, template.Value.CharacterTemplate)))
+        foreach (var template in _templates.Where(template => !POIManagedGuilds.Contains(template.Key) && !IsGuildMasterInDesignatedLocation(settlement, template.Value.Location, template.Value.CharacterTemplate)))
         {
             SpawnGuildMaster(settlement, true, template.Value.Location, template.Value.CharacterTemplate);
         }
@@ -1547,6 +1556,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
         var guildmasters = new List<string>();
         foreach (var template in _templates)
         {
+            if (POIManagedGuilds.Contains(template.Key)) continue;
             var hero = CreateGuildMaster(settlement, template.Value.CharacterTemplate);
             guildmasters.Add(hero.StringId);
         }
