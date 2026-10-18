@@ -153,9 +153,10 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             if (loc.GetSceneCount() == 0) loc.SetSceneName(0, sceneName);
             _dynamicScenes[$"{s.StringId}|{poi.LocationId}"] = sceneName;
             // Place any resident NPCs that newly apply at this settlement.
-            foreach (var h in _byLocationId.Values.OfType<ISpellTrainerHost>())  if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
-            foreach (var h in _byLocationId.Values.OfType<IEnchanterHost>())      if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
-            foreach (var h in _byLocationId.Values.OfType<ISkillTrainerHost>())  if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
+            foreach (var h in _byLocationId.Values.OfType<ISpellTrainerHost>())      if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
+            foreach (var h in _byLocationId.Values.OfType<IEnchanterHost>())          if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
+            foreach (var h in _byLocationId.Values.OfType<ISkillTrainerHost>())      if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
+            foreach (var h in _byLocationId.Values.OfType<IWitchHunterLodgeHost>())  if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
             return poi.AppliesTo(s);
         }
 
@@ -192,6 +193,17 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             {
                 var h = Hero.FindFirst(x => x.StringId == id);
                 if (h != null && h.IsAlive && h.Template?.StringId == templateId) return h;
+            }
+
+            // Orphan adoption: before spawning a fresh hero, scan the settlement for an
+            // unregistered hero already matching the template. Covers the save-migration
+            // case where a legacy behavior (e.g. BountyMasterCampaignBehavior) created the
+            // hero outside the POI residents dict, and we don't want duplicates.
+            var orphan = s.HeroesWithoutParty.FirstOrDefault(h => h.IsAlive && h.Template?.StringId == templateId);
+            if (orphan != null)
+            {
+                ids.Add(orphan.StringId);
+                return orphan;
             }
 
             var template = MBObjectManager.Instance.GetObject<CharacterObject>(templateId);
@@ -249,6 +261,8 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             foreach (var host in _byLocationId.Values.OfType<IEnchanterHost>())
                 host.EnsurePlaced(s);
             foreach (var host in _byLocationId.Values.OfType<ISkillTrainerHost>())
+                host.EnsurePlaced(s);
+            foreach (var host in _byLocationId.Values.OfType<IWitchHunterLodgeHost>())
                 host.EnsurePlaced(s);
         }
 

@@ -31,7 +31,6 @@ using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.BattleMechanics.Voice;
 using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.Assimilation;
-using TOR_Core.CampaignMechanics.BountyMaster;
 using TOR_Core.CampaignMechanics.Careers;
 using TOR_Core.CampaignMechanics.Chaos;
 using TOR_Core.CampaignMechanics.Companions;
@@ -184,7 +183,6 @@ namespace TOR_Core
                 starter.AddBehavior(new TORPartyUpgraderCampaignBehavior());
                 starter.AddBehavior(new InkStoryCampaignBehavior());
                 starter.AddBehavior(new ReligionCampaignBehavior());
-                starter.AddBehavior(new BountyMasterCampaignBehavior());
                 starter.AddBehavior(new HuntCultistsQuestCampaignBehavior());
                 starter.AddBehavior(new TORCareerPerkCampaignBehavior());
                 starter.AddBehavior(new RaceFixCampaignBehavior());

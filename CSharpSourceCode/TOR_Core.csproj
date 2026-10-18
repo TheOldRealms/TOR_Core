@@ -284,7 +284,6 @@
     <Compile Include="CampaignMechanics\Companions\TORAICompanionCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\AssimilationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\RaceFixCampaignBehavior.cs" />
-    <Compile Include="CampaignMechanics\BountyMaster\BountyMasterCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CampaignEventHelpers.cs" />
     <Compile Include="CampaignMechanics\Careers\CareerButtonDialogs.cs" />
     <Compile Include="CampaignMechanics\Careers\CareerDialogOptionsCampaignBehavior.cs" />

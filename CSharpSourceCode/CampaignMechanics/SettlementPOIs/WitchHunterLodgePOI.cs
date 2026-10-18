@@ -20,7 +20,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
     /// humans; no career gate. The lodge NPC — currently the relocated BountyMaster —
     /// hosts the hub dialog defined in <see cref="RegisterDialogs"/>.
     /// </summary>
-    public class WitchHunterLodgePOI : SettlementPOI
+    public class WitchHunterLodgePOI : SettlementPOI, IWitchHunterLodgeHost
     {
         public override string LocationId => "tor_witchhunter_lodge";
         public override string ParentMenuId => "town_artisan";
@@ -31,6 +31,15 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public override string EnterLabelDefault => "Visit the Witch Hunter Lodge";
 
         public override string MapIconText => "H";   // text fallback until sprite art lands
+
+        /// <summary>
+        /// Template id for the lodge's resident Inquisitor. Historically owned by the now-
+        /// retired <c>BountyMasterCampaignBehavior</c>; moving the lifecycle into the POI
+        /// framework collapsed that behavior but kept the same hero template so existing
+        /// saves adopt their current bounty-master hero into the lodge via
+        /// <see cref="SettlementPOIManagerCampaignBehavior.GetOrCreateHero"/>'s orphan scan.
+        /// </summary>
+        public string InquisitorTemplateId => "tor_bountymaster_empire_0";
 
         public override bool CheckAccess(Settlement s, Hero h, out TextObject denialReason)
         {
