@@ -70,7 +70,7 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(HuntCultistsQuestCampaignBehavior.HuntCultistsQuest), 201);
             AddClassDefinition(typeof(PlaguedVillageQuestCampaignBehavior.PlaguedVillageIssue), 202);
             AddClassDefinition(typeof(PlaguedVillageQuestCampaignBehavior.PlaguedVillageQuest), 203);
-            AddClassDefinition(typeof(EngineerQuest), 204);
+            // 204 was EngineerQuest — retired with the quest; keep the slot gap so other ids stay stable.
             AddClassDefinition(typeof(SpecializeLoreQuest), 205);
             AddClassDefinition(typeof(RunesmithQuest), 206);
             AddClassDefinition(typeof(RunelordQuest), 207);
@@ -83,7 +83,7 @@ namespace TOR_Core.SaveGameSystem
         protected override void DefineEnumTypes() //watch out for the save ids used for class definitions, conflicts will cause crashes on load
         {
             //Enums between 100-199
-            AddEnumDefinition(typeof(EngineerQuestStates), 100);
+            // 100 was EngineerQuestStates — retired with the quest; slot preserved.
             AddEnumDefinition(typeof(SpellCastingLevel), 101);
             AddEnumDefinition(typeof(UniqueSpawnState), 102);
         }
