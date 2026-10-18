@@ -73,10 +73,19 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 IsInquisitorPartner, null, 200, null);
 
             // --- hub player lines (mockup wording verbatim)
-            obj.AddPlayerLine("tor_witchhunter_lodge_hunts", "tor_witchhunter_lodge_hub", "tor_witchhunter_lodge_hunts_stub",
+            // Hunts has two variants with identical player text: when the Inquisitor is
+            // carrying an issue (HuntCultists / PlaguedVillage / future hunts) we hand off
+            // to vanilla's hero_main_options state so the standard issue brief + accept/
+            // decline flow runs. Otherwise we fall through to the stub reply.
+            obj.AddPlayerLine("tor_witchhunter_lodge_hunts", "tor_witchhunter_lodge_hub", "hero_main_options",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_hunts",
                     "Inquisitor, I wish to aid the Empire! Do you have anything special that needs doing?"),
-                null, null, 200, null);
+                InquisitorHasHunt, null, 200, null);
+
+            obj.AddPlayerLine("tor_witchhunter_lodge_hunts_none", "tor_witchhunter_lodge_hub", "tor_witchhunter_lodge_hunts_stub",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_hunts",
+                    "Inquisitor, I wish to aid the Empire! Do you have anything special that needs doing?"),
+                () => !InquisitorHasHunt(), null, 200, null);
 
             obj.AddPlayerLine("tor_witchhunter_lodge_bounties", "tor_witchhunter_lodge_hub", "tor_witchhunter_lodge_bounties_stub",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_bounties",
@@ -109,10 +118,51 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                     "Nothing new in the ledger just yet. Return in time."),
                 null, null, 200);
 
-            obj.AddDialogLine("tor_witchhunter_lodge_turnins_todo", "tor_witchhunter_lodge_turnins_stub", "tor_witchhunter_lodge_hub",
+            // --- turn-ins dispatcher
+            // Branch at the stub state: if the player has anything qualifying, drop into
+            // the sub-menu; otherwise reply "nothing to burn" and return to the hub.
+            obj.AddDialogLine("tor_witchhunter_lodge_turnins_open", "tor_witchhunter_lodge_turnins_stub", "tor_witchhunter_lodge_turnins_menu",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.turnins_open",
+                    "Show me what you have brought."),
+                WitchHunterTurnInHelper.AnyTurnInAvailable, null, 200);
+
+            obj.AddDialogLine("tor_witchhunter_lodge_turnins_nothing", "tor_witchhunter_lodge_turnins_stub", "tor_witchhunter_lodge_hub",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.turnins_todo",
-                    "Not yet — the Inquisition's clerks are still cataloguing."),
+                    "You bring nothing worth burning. Return when you have."),
+                () => !WitchHunterTurnInHelper.AnyTurnInAvailable(), null, 200);
+
+            // Chaos — bulk per-head
+            obj.AddPlayerLine("tor_witchhunter_lodge_turnins_chaos", "tor_witchhunter_lodge_turnins_menu", "tor_witchhunter_lodge_turnins_chaos_done",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.turnins_chaos",
+                    "I bring {WHL_CHAOS_COUNT} cultists and heretics for your judgement."),
+                WitchHunterTurnInHelper.UpdateChaosLine, WitchHunterTurnInHelper.TurnInChaos, 200, null);
+            obj.AddDialogLine("tor_witchhunter_lodge_turnins_chaos_reply", "tor_witchhunter_lodge_turnins_chaos_done", "tor_witchhunter_lodge_turnins_menu",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.turnins_chaos_reply",
+                    "Good. The purifying flames await them."),
                 null, null, 200);
+
+            // Undead — bulk per-head
+            obj.AddPlayerLine("tor_witchhunter_lodge_turnins_undead", "tor_witchhunter_lodge_turnins_menu", "tor_witchhunter_lodge_turnins_undead_done",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.turnins_undead",
+                    "I bring {WHL_UNDEAD_COUNT} undead vermin for cleansing."),
+                WitchHunterTurnInHelper.UpdateUndeadLine, WitchHunterTurnInHelper.TurnInUndead, 200, null);
+            obj.AddDialogLine("tor_witchhunter_lodge_turnins_undead_reply", "tor_witchhunter_lodge_turnins_undead_done", "tor_witchhunter_lodge_turnins_menu",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.turnins_undead_reply",
+                    "Sigmar's holy fire shall consume them. Sword and flame, as it must be."),
+                null, null, 200);
+
+            // Hero prisoners — close dialog and open a selection popup; execution + rewards
+            // apply per-hero. Running the popup from the dialog consequence lets the player
+            // pick a subset rather than committing a bulk action in a single line.
+            obj.AddPlayerLine("tor_witchhunter_lodge_turnins_heroes", "tor_witchhunter_lodge_turnins_menu", "close_window",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.turnins_heroes",
+                    "I have {WHL_HERO_COUNT} enemies of the faith to put on trial."),
+                WitchHunterTurnInHelper.UpdateHeroesLine, WitchHunterTurnInHelper.OpenHereticHeroSelection, 200, null);
+
+            obj.AddPlayerLine("tor_witchhunter_lodge_turnins_done", "tor_witchhunter_lodge_turnins_menu", "tor_witchhunter_lodge_hub",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.turnins_done",
+                    "That is all for now."),
+                null, null, 200, null);
 
             obj.AddDialogLine("tor_witchhunter_lodge_store_todo", "tor_witchhunter_lodge_store_stub", "tor_witchhunter_lodge_hub",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.store_todo",
@@ -131,6 +181,12 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             var complex = LocationComplex.Current;
             var loc = complex?.GetLocationOfCharacter(partner.HeroObject);
             return loc != null && loc.StringId == "tor_witchhunter_lodge";
+        }
+
+        private static bool InquisitorHasHunt()
+        {
+            var partner = CharacterObject.OneToOneConversationCharacter;
+            return partner?.HeroObject?.Issue != null;
         }
     }
 }

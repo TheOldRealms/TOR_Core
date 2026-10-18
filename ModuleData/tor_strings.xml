@@ -6029,7 +6029,18 @@
   <string id="tor_poi_witchhunter_lodge.player_leave" text="{=str_tor_poi_witchhunter_lodge.player_leave}Have a good day Lord Inquisitor!" />
   <string id="tor_poi_witchhunter_lodge.hunts_todo" text="{=str_tor_poi_witchhunter_lodge.hunts_todo}Return soon — I will have hunts to assign." />
   <string id="tor_poi_witchhunter_lodge.bounties_todo" text="{=str_tor_poi_witchhunter_lodge.bounties_todo}Nothing new in the ledger just yet. Return in time." />
-  <string id="tor_poi_witchhunter_lodge.turnins_todo" text="{=str_tor_poi_witchhunter_lodge.turnins_todo}Not yet — the Inquisition's clerks are still cataloguing." />
+  <string id="tor_poi_witchhunter_lodge.turnins_todo" text="{=str_tor_poi_witchhunter_lodge.turnins_todo}You bring nothing worth burning. Return when you have." />
+  <string id="tor_poi_witchhunter_lodge.turnins_open" text="{=str_tor_poi_witchhunter_lodge.turnins_open}Show me what you have brought." />
+  <string id="tor_poi_witchhunter_lodge.turnins_chaos" text="{=str_tor_poi_witchhunter_lodge.turnins_chaos}I bring {WHL_CHAOS_COUNT} cultists and heretics for your judgement." />
+  <string id="tor_poi_witchhunter_lodge.turnins_chaos_reply" text="{=str_tor_poi_witchhunter_lodge.turnins_chaos_reply}Good. The purifying flames await them." />
+  <string id="tor_poi_witchhunter_lodge.turnins_undead" text="{=str_tor_poi_witchhunter_lodge.turnins_undead}I bring {WHL_UNDEAD_COUNT} undead vermin for cleansing." />
+  <string id="tor_poi_witchhunter_lodge.turnins_undead_reply" text="{=str_tor_poi_witchhunter_lodge.turnins_undead_reply}Sigmar's holy fire shall consume them. Sword and flame, as it must be." />
+  <string id="tor_poi_witchhunter_lodge.turnins_heroes" text="{=str_tor_poi_witchhunter_lodge.turnins_heroes}I have {WHL_HERO_COUNT} enemies of the faith to put on trial." />
+  <string id="tor_poi_witchhunter_lodge.turnins_done" text="{=str_tor_poi_witchhunter_lodge.turnins_done}That is all for now." />
+  <string id="tor_poi_witchhunter_lodge.heroes_popup_title" text="{=str_tor_poi_witchhunter_lodge.heroes_popup_title}Put on Trial" />
+  <string id="tor_poi_witchhunter_lodge.heroes_popup_desc" text="{=str_tor_poi_witchhunter_lodge.heroes_popup_desc}Select which captives to hand to the Inquisition. They will not be seen again." />
+  <string id="tor_poi_witchhunter_lodge.heroes_popup_accept" text="{=str_tor_poi_witchhunter_lodge.heroes_popup_accept}Execute" />
+  <string id="tor_poi_witchhunter_lodge.heroes_popup_cancel" text="{=str_tor_poi_witchhunter_lodge.heroes_popup_cancel}Cancel" />
   <string id="tor_poi_witchhunter_lodge.store_todo" text="{=str_tor_poi_witchhunter_lodge.store_todo}Our armaments are being inventoried. Return shortly." />
 
   <!-- POIs - Empire Engineer Hall -->
