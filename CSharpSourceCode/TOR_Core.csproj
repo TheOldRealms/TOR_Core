@@ -373,6 +373,8 @@
     <Compile Include="CampaignMechanics\TORCustomSettlement\Component\WorldRootsComponent.cs" />
     <Compile Include="CampaignMechanics\Villages\TORTownManagementVillageItemVM.cs" />
     <Compile Include="CampaignMechanics\Villages\TORVillageTypes.cs" />
+    <Compile Include="CampaignMechanics\FactionScenes\FactionSceneEntry.cs" />
+    <Compile Include="CampaignMechanics\FactionScenes\TORFactionSceneRegistry.cs" />
     <Compile Include="Extensions\UI\PartyVMExtension.cs" />
     <Compile Include="CampaignMechanics\CustomResources\TeefHelper.cs" />
     <Compile Include="CampaignMechanics\RaidingParties\IRaidingParty.cs" />
@@ -583,6 +585,7 @@
     <Compile Include="HarmonyPatches\GameTextPatches.cs" />
     <Compile Include="HarmonyPatches\FastTradeInventoryPatch.cs" />
     <Compile Include="HarmonyPatches\InventoryResetPatch.cs" />
+    <Compile Include="HarmonyPatches\JoinKingdomSceneIDPatch.cs" />
     <Compile Include="HarmonyPatches\InventoryPatches.cs" />
     <Compile Include="HarmonyPatches\LogEntryNotificationPatches.cs" />
     <Compile Include="HarmonyPatches\ItemPatches.cs" />
