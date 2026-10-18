@@ -6088,7 +6088,27 @@
   <string id="tor_poi_dwarf_engineer_hall.WrongCulture" text="{=str_tor_poi_dwarf_engineer_hall.WrongCulture}The Engineers' Hall is open to the dawi alone." />
 
   <!-- Settlement Menus - Castle Courtyard -->
-  <string id="tor_castlecomplex" text="{=str_tor_castlecomplex}Visit the Courtyard" />
+  <string id="tor_castlecomplex" text="{=str_tor_castlecomplex}Visit the Quarters" />
   <string id="tor_castle_courtyard.leave" text="{=str_tor_castle_courtyard.leave}Back to the keep..." />
-  <string id="tor_castlecomplex_intro" text="{=str_tor_castlecomplex_intro}You walk the courtyard, trading nods with the hangers-on." />
+  <string id="tor_castlecomplex_intro" text="{=str_tor_castlecomplex_intro}You walk the quarters, trading nods with the hangers-on." />
+  <string id="tor_castlecomplex.vlandia" text="{=str_tor_castlecomplex.vlandia}Attend the household" />
+  <string id="tor_castlecomplex_intro.vlandia" text="{=str_tor_castlecomplex_intro.vlandia}The lower bailey of {SETTLEMENT_NAME} teems with retainers and petitioners. A damsel's attendants watch from a doorway." />
+  <string id="tor_castlecomplex.khuzait" text="{=str_tor_castlecomplex.khuzait}Descend to the undercroft" />
+  <string id="tor_castlecomplex_intro.khuzait" text="{=str_tor_castlecomplex_intro.khuzait}The undercroft of {SETTLEMENT_NAME} is cold and still. Only the dripping of water breaks the silence." />
+  <string id="tor_castlecomplex.mousillon" text="{=str_tor_castlecomplex.mousillon}Descend to the undercroft" />
+  <string id="tor_castlecomplex_intro.mousillon" text="{=str_tor_castlecomplex_intro.mousillon}The undercroft of {SETTLEMENT_NAME} smells of damp earth and old blood. Something scuttles beyond the lantern-light." />
+  <string id="tor_castlecomplex.sturgia" text="{=str_tor_castlecomplex.sturgia}Visit the clan workshops" />
+  <string id="tor_castlecomplex_intro.sturgia" text="{=str_tor_castlecomplex_intro.sturgia}The workshops of {SETTLEMENT_NAME} ring with hammer-blows deep inside the mountain, lit by furnace-glow and runic lanterns." />
+
+  <!-- Settlement Menus - Town Complex -->
+  <string id="tor_towncomplex" text="{=str_tor_towncomplex}Go to the artisan district" />
+  <string id="tor_towncomplex_intro" text="{=str_tor_towncomplex_intro}You have arrived at {SETTLEMENT_NAME}'s Artisan District. It is a lively place where artisans and craftsmen of varying professions are busy in their workshops." />
+  <string id="tor_towncomplex.vlandia" text="{=str_tor_towncomplex.vlandia}Walk the market square" />
+  <string id="tor_towncomplex_intro.vlandia" text="{=str_tor_towncomplex_intro.vlandia}The market square of {SETTLEMENT_NAME} bustles with Bretonnian craftsmen, their stalls fragrant with wine, leather, and fresh bread." />
+  <string id="tor_towncomplex.khuzait" text="{=str_tor_towncomplex.khuzait}Walk the dark alleys" />
+  <string id="tor_towncomplex_intro.khuzait" text="{=str_tor_towncomplex_intro.khuzait}The alleys of {SETTLEMENT_NAME} are quiet in the long twilight; townsfolk avert their eyes and hurry past." />
+  <string id="tor_towncomplex.mousillon" text="{=str_tor_towncomplex.mousillon}Walk the dark alleys" />
+  <string id="tor_towncomplex_intro.mousillon" text="{=str_tor_towncomplex_intro.mousillon}The alleys of {SETTLEMENT_NAME} reek of damp and rot. Figures huddle in doorways and watch you pass without comment." />
+  <string id="tor_towncomplex.sturgia" text="{=str_tor_towncomplex.sturgia}Visit the clan workshops" />
+  <string id="tor_towncomplex_intro.sturgia" text="{=str_tor_towncomplex_intro.sturgia}The workshops of {SETTLEMENT_NAME} ring with hammer-blows; smoke and sparks curl up through grates in the stone ceiling." />
 </strings>

@@ -152,7 +152,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             if (loc == null) return false;   // template doesn't define this Location in the settlement's complex
             if (loc.GetSceneCount() == 0) loc.SetSceneName(0, sceneName);
             _dynamicScenes[$"{s.StringId}|{poi.LocationId}"] = sceneName;
-            // Place any trainers that newly apply at this settlement.
+            // Place any resident NPCs that newly apply at this settlement.
             foreach (var h in _byLocationId.Values.OfType<ISpellTrainerHost>())  if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
             foreach (var h in _byLocationId.Values.OfType<IEnchanterHost>())      if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
             foreach (var h in _byLocationId.Values.OfType<ISkillTrainerHost>())  if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
@@ -225,19 +225,24 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         private void OnBeforeMissionOpened()
         {
             var s = Settlement.CurrentSettlement;
-            if (s?.IsTown == true) PlaceTrainersFor(s);
+            if (s != null && (s.IsTown || s.IsCastle)) PlaceResidentsFor(s);
         }
 
-        private void PlaceAllTrainersEverywhere()
+        private void PlaceAllResidentsEverywhere()
         {
             foreach (var s in Settlement.All)
             {
-                if (!s.IsTown) continue;
-                PlaceTrainersFor(s);
+                if (!s.IsTown && !s.IsCastle) continue;
+                PlaceResidentsFor(s);
             }
         }
 
-        private void PlaceTrainersFor(Settlement s)
+        /// <summary>
+        /// Place every POI's resident NPC(s) at the settlement — spell trainers, enchanters,
+        /// skill trainers, and any future host interfaces. Each host's <c>EnsurePlaced</c>
+        /// is idempotent, so repeated calls across session-launch and mission-open are safe.
+        /// </summary>
+        private void PlaceResidentsFor(Settlement s)
         {
             foreach (var host in _byLocationId.Values.OfType<ISpellTrainerHost>())
                 host.EnsurePlaced(s);
@@ -293,10 +298,10 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             // reflects post-load reality for POIs established in a previous session.
             ReapplyDynamicScenes();
 
-            // Defensive sweep — verify every POI's expected trainer is placed in their
+            // Defensive sweep — verify every POI's expected resident NPC is placed in their
             // applicable settlement, covering both fresh campaigns (replaces OnNewGameCreated)
             // and loaded saves.
-            PlaceAllTrainersEverywhere();
+            PlaceAllResidentsEverywhere();
         }
 
         private static void DiscoverAndRegisterAllPOIs()
