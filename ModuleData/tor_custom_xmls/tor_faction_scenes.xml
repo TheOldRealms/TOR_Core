@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  TOR faction-scene registry. Loaded on campaign start by TORFactionSceneRegistry.Load().
+  Each <Scene> row overrides a vanilla SceneNotificationItem's SceneID when its filters match.
+  No matching row = vanilla scene plays unchanged. Design: TORTasks/faction-scenes-registry/
+
+  ATTRIBUTES
+    trigger    (required) which vanilla ceremony to override (see table below)
+    scene_id   (required) TOR scene asset to play instead of the vanilla one
+    culture    (optional) filter by kingdom's Culture.StringId; omit = matches any culture
+
+  TOR CULTURE STRINGIDS (shadows vanilla ids — verified against tor_cultures.xml)
+    khuzait  = Vampire Counts
+    vlandia  = Bretonnia
+    battania = Wood Elves
+    (Empire / Dwarfs / Chaos / Orcs / High Elves — add rows once ids are confirmed)
+
+  VANILLA TRIGGERS (short name -> vanilla subclass -> vanilla scene id)
+  Only triggers with a Harmony patch wired in HarmonyPatches/ actually fire. Adding a
+  <Scene> row for an un-wired trigger is harmless but has no effect until the patch exists.
+  Wired at MVP: FactionJoin.
+
+    FactionJoin               JoinKingdomSceneNotificationItem                 scn_cutscene_factionjoin                       [WIRED]
+    BecomeKing                BecomeKingSceneNotificationItem                  scn_become_king_notification
+    KingdomCreated            KingdomCreatedSceneNotificationItem              scn_kingdom_made
+    KingdomDestroyed          KingdomDestroyedSceneNotificationItem            scn_cutscene_enemykingdom_destroyed
+    PledgeAllegiance          PledgeAllegianceSceneNotificationItem            scn_pledge_allegiance_notification
+    HeirComingOfAge           HeirComingOfAgeSceneNotificationItem             scn_cutscene_heir_coming_of_age
+    HeirComingOfAgeFemale     HeirComingOfAgeFemaleSceneNotificationItem       scn_hero_come_of_age_female
+    NewBorn                   NewBornSceneNotificationItem                     scn_born_baby
+    NewBornFemale             NewBornFemaleHeroSceneNotificationItem           scn_born_baby_female_hero
+    Marriage                  MarriageSceneNotificationItem                    scn_cutscene_wedding
+    ClanMemberPeaceDeath      ClanMemberPeaceDeathSceneNotificationItem        scn_cutscene_family_member_death
+    ClanMemberWarDeath        ClanMemberWarDeathSceneNotificationItem          scn_cutscene_family_member_death_war
+    DeathOldAge               DeathOldAgeSceneNotificationItem                 scn_cutscene_death_old_age
+    NavalDeath                NavalDeathSceneNotificationItem                  scn_cutscene_main_hero_naval_battle_death
+    HeroExecution             HeroExecutionSceneNotificationData               scn_execution_notification
+    DragonBanner              DeclareDragonBannerSceneNotificationItem         scn_cutscene_declare_dragon_banner
+    BannerPieceFirst          FindingFirstBannerPieceSceneNotificationItem     scn_first_banner_piece_notification
+    BannerPieceSecond         FindingSecondBannerPieceSceneNotificationItem    scn_second_banner_piece_notification
+    BannerPieceThird          FindingThirdBannerPieceSceneNotificationItem     scn_third_banner_piece_notification
+    EmpireConspiracyBegins    EmpireConspiracyBeginsSceneNotificationItem      scn_empire_conspiracy_start_notification
+    EmpireConspiracySupports  EmpireConspiracySupportsSceneNotificationItem*   scn_empire_conspiracy_supports_notification
+    SupportedFactionDefeated  SupportedFactionDefeatedSceneNotificationItem    scn_supported_faction_defeated_notification
+
+  To wire a new trigger: copy HarmonyPatches/JoinKingdomSceneIDPatch.cs, change the
+  typeof(...) and the Trigger const. The context expression ("__instance.KingdomToUse"
+  in the join case) differs per subclass — grab the appropriate public property.
+-->
+<FactionScenes>
+  <Scene trigger="FactionJoin"
+         culture="vlandia"
+         scene_id="TOR_cutscene_factionjoin_bretonnia_01" />
+
+  <Scene trigger="FactionJoin"
+         culture="khuzait"
+         scene_id="TOR_cutscene_factionjoin_VC_01" />
+
+  <Scene trigger="FactionJoin"
+         culture="battania"
+         scene_id="TOR_cutscene_factionjoin_we_01" />
+</FactionScenes>

@@ -19,7 +19,7 @@ namespace TOR_Core.CampaignMechanics.FactionScenes
             _entries = new List<FactionSceneEntry>();
             _loaded = true;
 
-            string path = TORPaths.TORCoreModuleDataPath + FileName;
+            string path = TORPaths.TORCoreModuleExtendedDataPath + FileName;
             if (!File.Exists(path))
             {
                 TORCommon.Log(
@@ -45,18 +45,16 @@ namespace TOR_Core.CampaignMechanics.FactionScenes
             {
                 var entry = new FactionSceneEntry
                 {
-                    Id = (string)sceneEl.Attribute("id"),
                     Trigger = (string)sceneEl.Attribute("trigger"),
                     SceneId = (string)sceneEl.Attribute("scene_id"),
                     Culture = (string)sceneEl.Attribute("culture"),
                 };
 
-                if (string.IsNullOrEmpty(entry.Id) ||
-                    string.IsNullOrEmpty(entry.Trigger) ||
+                if (string.IsNullOrEmpty(entry.Trigger) ||
                     string.IsNullOrEmpty(entry.SceneId))
                 {
                     TORCommon.Log(
-                        "TORFactionSceneRegistry: skipping entry missing required attribute (id/trigger/scene_id).",
+                        "TORFactionSceneRegistry: skipping entry missing required attribute (trigger/scene_id).",
                         NLog.LogLevel.Warn);
                     continue;
                 }
