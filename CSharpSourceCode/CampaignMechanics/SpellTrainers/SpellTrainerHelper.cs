@@ -117,7 +117,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 .Where(item => item.IsInventoryUsable() && item.GetTraits().Any(trait => trait.OnInventoryUseScript.InventoryScriptName.Contains("SkillBookScript")))
                 .ToList()
                 .ForEach(item => roster.Add(new ItemRosterElement(item, MBRandom.RandomInt(1, 5))));
-            InventoryScreenHelper.OpenScreenAsTrade(roster, Settlement.CurrentSettlement.Town);
+            InventoryScreenHelper.OpenScreenAsTrade(roster, Settlement.CurrentSettlement.SettlementComponent);
         }
 
         public static void OpenbookConsequence()
