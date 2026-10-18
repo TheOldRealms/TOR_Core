@@ -42,6 +42,7 @@ using TOR_Core.CampaignMechanics.CustomEvents;
 using TOR_Core.CampaignMechanics.CustomResourceBehavior;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Diplomacy;
+using TOR_Core.CampaignMechanics.FactionScenes;
 using TOR_Core.CampaignMechanics.Menagery;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
@@ -152,6 +153,7 @@ namespace TOR_Core
             {
                 var starter = starterObject as CampaignGameStarter;
                 TORGameStarterHelper.CleanCampaignStarter(starter);
+                TORFactionSceneRegistry.Load();
                 starter.AddBehavior(new ExtendedInfoManager());
                 starter.AddBehavior(new ChaosCampaignBehavior());
                 starter.AddBehavior(new InventoryUseScriptsCampaignBehavior());
