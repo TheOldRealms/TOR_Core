@@ -81,49 +81,59 @@ namespace TOR_Core.CampaignMechanics.BountyMaster
             }
         }
 
-        private void OnGameMenuOpened(MenuCallbackArgs obj) => SpawnBountyMasterIfNeeded();
+        private void OnGameMenuOpened(MenuCallbackArgs obj) => PlaceBountyMasterIfNeeded();
 
-        private void OnBeforeMissionStart() => SpawnBountyMasterIfNeeded();
+        private void OnBeforeMissionStart() => PlaceBountyMasterIfNeeded();
 
-        private void SpawnBountyMasterIfNeeded()
+        private void PlaceBountyMasterIfNeeded()
         {
-            if (Settlement.CurrentSettlement != null && Settlement.CurrentSettlement.IsTown && !IsBountyMasterInTavern(Settlement.CurrentSettlement))
-            {
-                SpawnBountyMasterInTavern(Settlement.CurrentSettlement, true);
-            }
+            var s = Settlement.CurrentSettlement;
+            if (s != null && s.IsTown && !IsBountyMasterPlaced(s))
+                PlaceBountyMaster(s);
         }
 
-        private void SpawnBountyMasterInTavern(Settlement settlement, bool forceSpawn)
+        /// <summary>
+        /// Target location for the town's bounty master. Prefers the Witch Hunter Lodge
+        /// where it exists (the Order of Sigmar canonically runs bounty work from the
+        /// chapterhouse); falls back to the tavern — vanilla's historic placement — for
+        /// Empire towns without a lodge.
+        /// </summary>
+        private static Location GetTargetLocation(Settlement settlement)
         {
-            var master = GetBountyMasterForTown(settlement);
-            var tavern = settlement.LocationComplex.GetLocationWithId("tavern");
-            if (master != null && tavern != null)
-            {
-
-                if (forceSpawn)
-                {
-                    LocationCharacter locationCharacter = new LocationCharacter(new AgentData(new SimpleAgentOrigin(master.CharacterObject, -1, null, default(UniqueTroopDescriptor))).Monster(FaceGen.GetBaseMonsterFromRace(master.CharacterObject.Race)), new LocationCharacter.AddBehaviorsDelegate(SandBoxManager.Instance.AgentBehaviorManager.AddWandererBehaviors), "npc_common", true, LocationCharacter.CharacterRelations.Neutral, null, true, false, null, false, false, true);
-                    tavern.AddCharacter(locationCharacter);
-                }
-                else
-                {
-                    var locChar = settlement.LocationComplex.GetLocationCharacterOfHero(master);
-                    var currentloc = settlement.LocationComplex.GetLocationOfCharacter(master);
-                    if (currentloc != tavern) settlement.LocationComplex.ChangeLocation(locChar, currentloc, tavern);
-                }
-            }
+            var complex = settlement?.LocationComplex;
+            if (complex == null) return null;
+            var lodge = complex.GetLocationWithId("tor_witchhunter_lodge");
+            if (lodge != null && lodge.GetSceneCount() > 0) return lodge;
+            return complex.GetLocationWithId("tavern");
         }
 
-        private bool IsBountyMasterInTavern(Settlement currentSettlement)
+        private bool IsBountyMasterPlaced(Settlement settlement)
         {
-            var settlement = Settlement.CurrentSettlement;
-            var location = settlement.LocationComplex.GetLocationWithId("tavern");
             var master = GetBountyMasterForTown(settlement);
-            if (master != null)
-            {
-                return location.GetLocationCharacter(master) != null;
-            }
-            else return false;
+            var target = GetTargetLocation(settlement);
+            if (master == null || target == null) return false;
+            return target.GetLocationCharacter(master) != null;
+        }
+
+        private void PlaceBountyMaster(Settlement settlement)
+        {
+            var master = GetBountyMasterForTown(settlement);
+            var target = GetTargetLocation(settlement);
+            if (master == null || target == null) return;
+
+            // Migrate from an older placement (e.g. tavern on a save predating the lodge).
+            var current = settlement.LocationComplex.GetLocationOfCharacter(master);
+            if (current != null && current != target && current.GetLocationCharacter(master) != null)
+                current.RemoveCharacter(master);
+
+            if (target.GetLocationCharacter(master) != null) return;
+
+            var locationCharacter = new LocationCharacter(
+                new AgentData(new SimpleAgentOrigin(master.CharacterObject, -1, null, default(UniqueTroopDescriptor)))
+                    .Monster(FaceGen.GetBaseMonsterFromRace(master.CharacterObject.Race)),
+                new LocationCharacter.AddBehaviorsDelegate(SandBoxManager.Instance.AgentBehaviorManager.AddWandererBehaviors),
+                "npc_common", true, LocationCharacter.CharacterRelations.Neutral, null, true, false, null, false, false, true);
+            target.AddCharacter(locationCharacter);
         }
 
         private Hero GetBountyMasterForTown(Settlement settlement)

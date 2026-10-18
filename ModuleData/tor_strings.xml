@@ -6021,6 +6021,16 @@
   <string id="tor_poi_witchhunter_lodge.Sealed" text="{=str_tor_poi_witchhunter_lodge.Sealed}This place is sealed." />
   <string id="tor_poi_witchhunter_lodge.SiegeSealed" text="{=str_tor_poi_witchhunter_lodge.SiegeSealed}The lodge is closed during the siege." />
   <string id="tor_poi_witchhunter_lodge.Rejected" text="{=str_tor_poi_witchhunter_lodge.Rejected}The templars turn you away." />
+  <string id="tor_poi_witchhunter_lodge.hub_greet" text="{=str_tor_poi_witchhunter_lodge.hub_greet}What brings you to the Lodge?" />
+  <string id="tor_poi_witchhunter_lodge.player_hunts" text="{=str_tor_poi_witchhunter_lodge.player_hunts}Inquisitor, I wish to aid the Empire! Do you have anything special that needs doing?" />
+  <string id="tor_poi_witchhunter_lodge.player_bounties" text="{=str_tor_poi_witchhunter_lodge.player_bounties}Are there any bounties the Inquisition needs done?" />
+  <string id="tor_poi_witchhunter_lodge.player_turnins" text="{=str_tor_poi_witchhunter_lodge.player_turnins}Lord Inquisitor! I have some things you might be interested in." />
+  <string id="tor_poi_witchhunter_lodge.player_store" text="{=str_tor_poi_witchhunter_lodge.player_store}I wish to acquire some Inquisition armaments." />
+  <string id="tor_poi_witchhunter_lodge.player_leave" text="{=str_tor_poi_witchhunter_lodge.player_leave}Have a good day Lord Inquisitor!" />
+  <string id="tor_poi_witchhunter_lodge.hunts_todo" text="{=str_tor_poi_witchhunter_lodge.hunts_todo}Return soon — I will have hunts to assign." />
+  <string id="tor_poi_witchhunter_lodge.bounties_todo" text="{=str_tor_poi_witchhunter_lodge.bounties_todo}Nothing new in the ledger just yet. Return in time." />
+  <string id="tor_poi_witchhunter_lodge.turnins_todo" text="{=str_tor_poi_witchhunter_lodge.turnins_todo}Not yet — the Inquisition's clerks are still cataloguing." />
+  <string id="tor_poi_witchhunter_lodge.store_todo" text="{=str_tor_poi_witchhunter_lodge.store_todo}Our armaments are being inventoried. Return shortly." />
 
   <!-- POIs - Empire Engineer Hall -->
   <string id="tor_poi_empire_engineer_hall.Name" text="{=str_tor_poi_empire_engineer_hall.Name}Empire Engineer Hall" />
