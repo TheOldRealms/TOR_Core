@@ -195,6 +195,56 @@ See `mono-proxy/proxy.c` for the full narrated implementation.
     Rider versions)
   - Full Rider restart (nuclear but always works)
 
+- **`UnauthorizedAccessException: Access to the path '/usr/share/Mount and Blade II Bannerlord' is denied`** when launching
+  from Rider.
+  Full stack ends in `TaleWorlds.Starter.Library.Program.Starter()` under
+  Fedora's system mono (`/builddir/build/BUILD/mono-6.14.1-build/...`).
+  **Cause**: `TOR_Core.CrossPlatform.csproj` has a Windows-era
+  `<StartAction>Program</StartAction>` + `<StartProgram>$(GameBinPath)/Bannerlord.exe</StartProgram>`
+  block. On Linux, Rider interprets that as "run `Bannerlord.exe` via
+  system mono" if the project-level run action fires (e.g. user selected
+  the `TOR_Core.CrossPlatform` project in the top-right run dropdown
+  instead of the **"Bannerlord Attach"** Mono Remote config, or hit F5
+  with the editor focused on project files). Bannerlord.exe is a
+  managed launcher that invokes `TaleWorlds.Starter.Library.Program.Starter()`
+  — on Linux that starter can't resolve the install path, defaults to
+  `/usr/share/Mount and Blade II Bannerlord`, tries to write a crash log
+  there, double-faults on the permission error. The real underlying
+  error is hidden by the log-write failure.
+  **Fix**: always select **"Bannerlord Attach"** in the top-right
+  run-config dropdown, not the project name directly. If this trap
+  catches you repeatedly, strip the `<StartAction>`/`<StartProgram>`/
+  `<StartArguments>`/`<StartWorkingDirectory>` block from
+  `TOR_Core.CrossPlatform.csproj` (or guard it with `Condition="'$(OS)' == 'Windows_NT'"`).
+  Direct Steam launch is unaffected — it uses Proton/Wine, not Fedora mono.
+
+- **Ctrl+Alt+F1–F7 is a kernel-level TTY switch, not an app shortcut.**
+  Any `Ctrl+Alt+F<n>` keystroke tells the Linux kernel to switch to
+  virtual terminal `<n>` — handled below the display server, so no
+  application (game, Wine, compositor) can intercept it. Hitting it
+  while a fullscreen Vulkan app (Bannerlord/DXVK) is running forces
+  the GPU driver to hand off display control from the game to the
+  kernel console. **On RADV / RDNA 4** (RX 9070 XT confirmed, Mesa
+  26.2.3) this handoff frequently wedges the GPU — the console appears
+  but any attempt to switch back or interact freezes the whole system.
+  Only a cold boot (SysRq REISUB or power button) recovers. After
+  recovery, stale Wine prefix state can also block the next few launch
+  attempts (`compatdata/261550/pfx.lock`); fully-restart Steam.
+
+  Hazards for TOR developers specifically:
+  - **Vanilla Bannerlord cheat shortcuts use `Ctrl+F4` / `Ctrl+Shift+F4`.**
+    Easy to fat-finger an extra Alt during combat and nuke the system.
+    Train the muscle memory: **never hold Alt during cheat shortcuts.**
+  - Prefer the TOR console command path for cheats:
+    tilde (`~`) opens the dev console (needs `cheat_mode = 1` in
+    `engine_config.txt`), then `tor.damage_agent 9999` kills the
+    targeted enemy. No keyboard-combo risk.
+  - If you need to escape a hung fullscreen game, use SysRq keys
+    (REISUB) for a safe reboot rather than Ctrl+Alt+Fn to flee to a TTY.
+  - Running games in **borderless windowed** mode avoids VT-switch
+    scenarios entirely — Alt+Tab + Alt+F4 work cleanly without any
+    VT handoff. Trade-off: slightly worse presentation latency.
+
 ## Why the Mono soft-debug path was necessary (state of the art)
 
 We researched alternatives before settling on the Mono proxy approach:

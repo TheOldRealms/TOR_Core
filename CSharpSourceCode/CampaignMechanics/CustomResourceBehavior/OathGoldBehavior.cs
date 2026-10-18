@@ -56,6 +56,15 @@ public class OathGoldBehavior : CampaignBehaviorBase
     public const string BrewerGuildId = "brewer";
     public const string WarriorGuildId = "warrior";
 
+    // Guilds whose hero + placement is owned by SettlementPOIs (RunehallPOI,
+    // DwarfEngineerHallPOI). OathGold still owns their econ/attributes/dialog;
+    // only hero creation and sublocation placement is skipped here.
+    private static readonly HashSet<string> POIManagedGuilds = new()
+    {
+        RunesmithGuildId,
+        EngineerGuildId,
+    };
+
 
     private Dictionary<string, int> _guildValues;
     private double _lastTimeVistedTown;
@@ -208,7 +217,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         if (!settlement.IsDwarfKarak()) return;
 
-        foreach (var template in _templates.Where(template => !IsGuildMasterInDesignatedLocation(settlement, template.Value.Location, template.Value.CharacterTemplate)))
+        foreach (var template in _templates.Where(template => !POIManagedGuilds.Contains(template.Key) && !IsGuildMasterInDesignatedLocation(settlement, template.Value.Location, template.Value.CharacterTemplate)))
         {
             SpawnGuildMaster(settlement, true, template.Value.Location, template.Value.CharacterTemplate);
         }
@@ -269,6 +278,17 @@ public class OathGoldBehavior : CampaignBehaviorBase
         GameTexts.SetVariable("WHEAT_ICON", "<img src=\"General\\Icons\\Production\\wheat\" extend=\"6\">");//wheat comes out as white. Need to look at if it's the brush that needs to have the colour, or if handled in code. Would prefer to avoid any hardcoding.
 
         AddRuneSmithDialogue(campaignGameStarter);
+
+        // Dawi enchantment lives here (not on a POI) because the Runesmith-guild
+        // dialog + oathgold economy is already intertwined on this behavior.
+        // Architecture: docs/town-pois-and-access-model/architecture-redesign.md.
+        EnchanterHelper.RegisterEnchanterBranch(campaignGameStarter,
+            culture: TORConstants.Cultures.DAWI,
+            hubToken: "tor_dw_guildmaster_runesmith_hub",
+            quitToken: "start",
+            isMultiUse: true,
+            enchantmentSuffixes: new List<string> { "dw_rune" },
+            cultureAccess: HasDawiEnchanterAccess);
         AddEngineerDialogue(campaignGameStarter);
         AddMinerDialogue(campaignGameStarter);
         AddBrewerDialogue(campaignGameStarter);
@@ -1536,6 +1556,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
         var guildmasters = new List<string>();
         foreach (var template in _templates)
         {
+            if (POIManagedGuilds.Contains(template.Key)) continue;
             var hero = CreateGuildMaster(settlement, template.Value.CharacterTemplate);
             guildmasters.Add(hero.StringId);
         }
@@ -1573,6 +1594,13 @@ public class OathGoldBehavior : CampaignBehaviorBase
         int oathGoldEquivalent = grainValue / GrainValueToOathGoldRatio;
 
         return oathGoldEquivalent;
+    }
+
+    private bool HasDawiEnchanterAccess()
+    {
+        if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI) return true;
+        if (Hero.MainHero.PartyBelongedTo == null) return false;
+        return Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x != Hero.MainHero && x.HasAttribute(CharacterAttributes.RUNESMITH));
     }
 
     public override void SyncData(IDataStore dataStore)

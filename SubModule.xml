@@ -120,6 +120,13 @@
 				<GameType value="CampaignStoryMode" />
 			</IncludedGameTypes>
 		</XmlNode>
+		<XmlNode>
+			<XmlName id="LocationComplexTemplates" path="tor_location_complex_templates" />
+			<IncludedGameTypes>
+				<GameType value="Campaign" />
+				<GameType value="CampaignStoryMode" />
+			</IncludedGameTypes>
+		</XmlNode>
     <XmlNode>
 			<XmlName id="GameText" path="tor_string_overrides" />
 		</XmlNode>
