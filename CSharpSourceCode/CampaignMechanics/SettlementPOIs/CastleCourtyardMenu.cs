@@ -4,6 +4,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TOR_Core.Extensions;
+using TOR_Core.Framework;
 
 namespace TOR_Core.CampaignMechanics.SettlementPOIs
 {
@@ -19,6 +20,12 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
     public static class CastleCourtyardMenu
     {
         public const string MenuId = "castle_courtyard";
+        public const string EntryOptionId = "castle_courtyard_enter";
+
+        // Anchor the entry option above the vanilla "Take a walk around the castle"
+        // row — the courtyard is a routine castle activity, so it belongs next to
+        // the roam/stroll options rather than the siege/besiege/leave block.
+        private const string CastleWalkOptionId = "castle_take_a_walk";
 
         private const string DefaultLabel = "Visit the Quarters";
         private const string DefaultIntro = "You walk the quarters, trading nods with the hangers-on.";
@@ -32,7 +39,10 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         {
             starter.AddGameMenu(MenuId, "{CASTLE_QUARTERS_INTRO}", OnMenuInit);
 
-            starter.AddGameMenuOption("castle", "castle_courtyard_enter",
+            // Final position comes from Rearrange() in AfterSessionLaunched; the index
+            // here is just the initial drop-in slot before vanilla's full option set
+            // is assembled.
+            starter.AddGameMenuOption("castle", EntryOptionId,
                 "{CASTLE_QUARTERS_LABEL}",
                 OnEnterCondition,
                 args => GameMenu.SwitchToMenu(MenuId),
@@ -62,6 +72,19 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             MBTextManager.SetTextVariable("SETTLEMENT_NAME", s?.Name ?? TextObject.GetEmpty());
             MBTextManager.SetTextVariable("CASTLE_QUARTERS_INTRO",
                 TORTextHelper.GetSettlementComplexTextObject("tor_castlecomplex_intro", s, DefaultIntro));
+        }
+
+        /// <summary>
+        /// Move the courtyard entry above the vanilla "Take a walk around the castle"
+        /// row. Called from <see cref="SettlementPOIManagerCampaignBehavior"/>'s
+        /// OnAfterSessionLaunched, i.e. after the vanilla castle menu is fully assembled
+        /// and its options have their final indices.
+        /// </summary>
+        public static void Rearrange()
+        {
+            var menu = Campaign.Current?.GameMenuManager?.GetGameMenu("castle");
+            if (menu == null) return;
+            TORSettlementMenuHelpers.RearrangeTownMenus(menu, EntryOptionId, CastleWalkOptionId, above: true);
         }
     }
 }

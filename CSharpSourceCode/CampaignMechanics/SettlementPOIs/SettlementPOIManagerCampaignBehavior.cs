@@ -318,6 +318,10 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
 
         private void OnAfterSessionLaunched(CampaignGameStarter starter)
         {
+            // Anchor the castle_courtyard entry above vanilla "Take a walk around the castle"
+            // now that the vanilla castle menu is fully populated.
+            CastleCourtyardMenu.Rearrange();
+
             foreach (var poi in _byLocationId.Values)
             {
                 foreach (var attach in poi.MenuAttachments)
