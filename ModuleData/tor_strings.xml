@@ -6041,7 +6041,8 @@
   <string id="tor_poi_witchhunter_lodge.heroes_popup_desc" text="{=str_tor_poi_witchhunter_lodge.heroes_popup_desc}Select which captives to hand to the Inquisition. They will not be seen again." />
   <string id="tor_poi_witchhunter_lodge.heroes_popup_accept" text="{=str_tor_poi_witchhunter_lodge.heroes_popup_accept}Execute" />
   <string id="tor_poi_witchhunter_lodge.heroes_popup_cancel" text="{=str_tor_poi_witchhunter_lodge.heroes_popup_cancel}Cancel" />
-  <string id="tor_poi_witchhunter_lodge.store_todo" text="{=str_tor_poi_witchhunter_lodge.store_todo}Our armaments are being inventoried. Return shortly." />
+  <string id="tor_poi_witchhunter_lodge.store_open" text="{=str_tor_poi_witchhunter_lodge.store_open}The Order's wares. These will serve you better than tavern-forged scrap." />
+  <string id="tor_poi_witchhunter_lodge.store_reply" text="{=str_tor_poi_witchhunter_lodge.store_reply}What else can I do for you?" />
 
   <!-- POIs - Empire Engineer Hall -->
   <string id="tor_poi_empire_engineer_hall.Name" text="{=str_tor_poi_empire_engineer_hall.Name}Empire Engineer Hall" />

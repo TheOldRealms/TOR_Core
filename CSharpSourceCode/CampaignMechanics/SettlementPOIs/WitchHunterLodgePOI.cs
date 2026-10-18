@@ -1,8 +1,12 @@
+using Helpers;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.Settlements.Locations;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -164,9 +168,16 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                     "That is all for now."),
                 null, null, 200, null);
 
-            obj.AddDialogLine("tor_witchhunter_lodge_store_todo", "tor_witchhunter_lodge_store_stub", "tor_witchhunter_lodge_hub",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.store_todo",
-                    "Our armaments are being inventoried. Return shortly."),
+            // --- store (flat roster: witch-hunter kit from the three canonical templates,
+            // plus musket-ball + silver-bullet ammo). Opens as trade so the player can both
+            // buy and sell gear in one screen.
+            obj.AddDialogLine("tor_witchhunter_lodge_store_open", "tor_witchhunter_lodge_store_stub", "tor_witchhunter_lodge_store_reply",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.store_open",
+                    "The Order's wares. These will serve you better than tavern-forged scrap."),
+                null, OpenInquisitionStore, 200);
+            obj.AddDialogLine("tor_witchhunter_lodge_store_reply", "tor_witchhunter_lodge_store_reply", "tor_witchhunter_lodge_hub",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.store_reply",
+                    "What else can I do for you?"),
                 null, null, 200);
         }
 
@@ -187,6 +198,42 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         {
             var partner = CharacterObject.OneToOneConversationCharacter;
             return partner?.HeroObject?.Issue != null;
+        }
+
+        // Curated witch-hunter trade roster. Pulled from the three canonical equipment
+        // templates (wanderer, lord-companion, qnpc) plus silver-bullet ammo as the
+        // thematic chaser. Flat tier — no prestige/career gates.
+        private static readonly string[] InquisitionStoreItemIds = new[]
+        {
+            // Armor — hats cycle three tiers from basic to companion-grade.
+            "tor_empire_head_hat_witch_hunter_001",
+            "tor_empire_head_hat_witch_hunter_002",
+            "tor_empire_head_hat_witch_hunter_003",
+            "tor_empire_body_armor_witch_hunter_001",
+            "tor_empire_shoulder_pauldron_witch_hunter_001",
+            "tor_empire_arm_gauntlet_witch_hunter_001",
+            "tor_empire_leg_boots_witch_hunter_001",
+            // Weapons — rapier for silverware and flintlocks for the heretic.
+            "tor_empire_weapon_rapier_001",
+            "tor_empire_weapon_rapier_002",
+            "tor_empire_weapon_gun_handgun_003",
+            "tor_empire_weapon_gun_flintlock_pistol_007",
+            "tor_empire_weapon_gun_flintlock_pistol_008",
+            // Ammo — includes the silver shot the Order is known for.
+            "tor_neutral_weapon_ammo_musket_ball",
+            "tor_neutral_weapon_ammo_silver_bullet",
+        };
+
+        private static void OpenInquisitionStore()
+        {
+            var roster = new ItemRoster();
+            foreach (var id in InquisitionStoreItemIds)
+            {
+                var item = MBObjectManager.Instance.GetObject<ItemObject>(id);
+                if (item == null) continue;
+                roster.Add(new ItemRosterElement(item, MBRandom.RandomInt(1, 4)));
+            }
+            InventoryScreenHelper.OpenScreenAsTrade(roster, Settlement.CurrentSettlement.Town);
         }
     }
 }
