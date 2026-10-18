@@ -43,22 +43,6 @@ namespace TOR_Core.Utilities
     {
         private static List<string> torSpellNames = AbilityFactory.GetAllSpellNamesAsList();
 
-        //TODO currently disabled due to missing Engineer Quest
-        [CommandLineFunctionality.CommandLineArgumentFunction("whereisgoswin", "tor")]
-        public static string TeleportPlayerToQuestParty(List<string> arguments)
-        {
-            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
-                return CampaignCheats.ErrorType;
-            var engineerquest = EngineerQuest.GetCurrentActiveIfExists();
-            if (engineerquest != null)
-            {
-                Campaign.Current.MainParty.Position = NavigationHelper.FindReachablePointAroundPosition(engineerquest.TargetParty.Position, MobileParty.NavigationType.Default, 1f);
-
-                return " *puff*... there he is!";
-            }
-            return "Engineer Quest is not active \n";
-        }
-
         [CommandLineFunctionality.CommandLineArgumentFunction("whereAreAICompanions", "tor")]
         public static string ShowCompanionPosition(List<string> arguments)
         {

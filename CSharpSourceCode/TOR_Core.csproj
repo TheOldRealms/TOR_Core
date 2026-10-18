@@ -375,7 +375,6 @@
     <Compile Include="CampaignMechanics\Villages\TORVillageTypes.cs" />
     <Compile Include="Extensions\UI\PartyVMExtension.cs" />
     <Compile Include="CampaignMechanics\CustomResources\TeefHelper.cs" />
-    <Compile Include="CampaignMechanics\MasterEngineer\MasterEngineerTownBehavior.cs" />
     <Compile Include="CampaignMechanics\RaidingParties\IRaidingParty.cs" />
     <Compile Include="CampaignMechanics\RaidingParties\RaidingPartyCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\RaidingParties\RaidingPartyComponent.cs" />
@@ -711,7 +710,6 @@
     <Compile Include="Quests\Careers\OrcShamanQuest2.cs" />
     <Compile Include="Quests\Careers\RunelordQuest.cs" />
     <Compile Include="Quests\Careers\RunesmithQuest.cs" />
-    <Compile Include="Quests\EngineerQuest.cs" />
     <Compile Include="Quests\HuntCultistsQuestCampaignBehavior.cs" />
     <Compile Include="Quests\PlaguedVillageQuestCampaignBehavior.cs" />
     <Compile Include="Quests\QuestPartyComponent.cs" />
