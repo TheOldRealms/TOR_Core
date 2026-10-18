@@ -6113,6 +6113,7 @@
       <Location id="center" scene_name="TOR_vampire_castle_001_atmo_w_night" scene_name_1="TOR_vampire_castle_001_atmo_w_night" scene_name_2="TOR_vampire_castle_001_atmo_w_night" scene_name_3="TOR_vampire_castle_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
+      <Location id="tor_vampire_crypt" scene_name="TOR_vampire_magister_001" />
     </Locations>
   </Settlement>
   <!-- Laurelorn -->

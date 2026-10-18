@@ -262,13 +262,26 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             foreach (var poi in _byLocationId.Values)
             {
                 var captured = poi;   // avoid loop-variable capture in the lambdas
-                starter.AddGameMenuOption(
-                    menuId: captured.ParentMenuId,
-                    optionId: captured.LocationId,
-                    optionText: TORTextHelper.GetTextForNative(captured.EnterLabelId, captured.EnterLabelDefault),
-                    condition: args => MenuCondition(args, captured),
-                    consequence: args => MenuConsequence(args, captured),
-                    isLeave: false);
+
+                // One menu entry per attachment. Most POIs have a single attachment
+                // (town_artisan); multi-attached POIs (e.g. VampireCryptPOI on both
+                // town_artisan and castle_courtyard) get an entry on each menu.
+                // AppliesTo + CheckAccess still gate per-settlement so entries only
+                // render where the POI's XML actually sets up a scene.
+                foreach (var attach in captured.MenuAttachments)
+                {
+                    // Option ids must be unique within a menu but may repeat across
+                    // menus. Suffix the LocationId with the menu to keep ids distinct
+                    // across attachments.
+                    var optionId = captured.LocationId + "@" + attach.MenuId;
+                    starter.AddGameMenuOption(
+                        menuId: attach.MenuId,
+                        optionId: optionId,
+                        optionText: TORTextHelper.GetTextForNative(captured.EnterLabelId, captured.EnterLabelDefault),
+                        condition: args => MenuCondition(args, captured),
+                        consequence: args => MenuConsequence(args, captured),
+                        isLeave: false);
+                }
 
                 // Each POI contributes its own trainer dialog tree (if any). Default
                 // SettlementPOI.RegisterDialogs is a no-op, so POIs without a conversation
@@ -302,8 +315,13 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         {
             foreach (var poi in _byLocationId.Values)
             {
-                var menu = Campaign.Current.GameMenuManager.GetGameMenu(poi.ParentMenuId);
-                TORSettlementMenuHelpers.RearrangeTownMenus(menu, poi.LocationId, poi.AnchorEntryId, poi.AnchorAbove);
+                foreach (var attach in poi.MenuAttachments)
+                {
+                    var menu = Campaign.Current.GameMenuManager.GetGameMenu(attach.MenuId);
+                    if (menu == null) continue;   // castle_courtyard menu may not exist yet during edge-case load timing
+                    var optionId = poi.LocationId + "@" + attach.MenuId;
+                    TORSettlementMenuHelpers.RearrangeTownMenus(menu, optionId, attach.AnchorEntryId, attach.AnchorAbove);
+                }
             }
         }
 

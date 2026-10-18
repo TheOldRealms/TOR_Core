@@ -23,6 +23,16 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public override string AnchorEntryId => "town_artisan_leave";
         public override bool AnchorAbove => true;
 
+        // Attach to BOTH the town artisan submenu (Sylvania/Mousillon towns) and the
+        // castle courtyard submenu (Necrarch tower castle_MT1 and future castles).
+        // AppliesTo gates per-settlement — the castle entry only appears where the
+        // scene override is set up in tor_settlements.xml.
+        public override IEnumerable<ParentMenuAttachment> MenuAttachments => new[]
+        {
+            new ParentMenuAttachment("town_artisan",      "town_artisan_leave",     true),
+            new ParentMenuAttachment("castle_courtyard",  "castle_courtyard_leave", true),
+        };
+
         public override string EnterLabelId => "tor_poi_vampire_crypt.EnterLabel";
         public override string EnterLabelDefault => "Visit the Vampire Crypt";
 

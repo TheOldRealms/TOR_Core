@@ -37,6 +37,19 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         /// <summary>True = pin above the anchor; false = pin below (right-after).</summary>
         public virtual bool AnchorAbove => true;
 
+        /// <summary>
+        /// Where this POI's "visit" option appears. Default is one attachment matching
+        /// the legacy <see cref="ParentMenuId"/> / <see cref="AnchorEntryId"/> /
+        /// <see cref="AnchorAbove"/> properties — so existing town POIs don't change.
+        ///
+        /// Override to attach the same POI to multiple menus (e.g. both the town
+        /// artisan submenu AND the castle courtyard submenu). The manager renders
+        /// one menu option per attachment; <see cref="AppliesTo"/> + <see cref="CheckAccess"/>
+        /// still gate per-settlement, so entries only show where the POI actually exists.
+        /// </summary>
+        public virtual IEnumerable<ParentMenuAttachment> MenuAttachments =>
+            new[] { new ParentMenuAttachment(ParentMenuId, AnchorEntryId, AnchorAbove) };
+
         /// <summary>Localization id for the "Visit …" menu label.</summary>
         public abstract string EnterLabelId { get; }
 
@@ -139,4 +152,11 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         /// </summary>
         public virtual void RegisterDialogs(CampaignGameStarter starter) { }
     }
+
+    /// <summary>
+    /// A single parent-menu attachment for a <see cref="SettlementPOI"/>: which menu
+    /// the "visit" option is registered on, which existing menu entry it anchors
+    /// against, and whether it goes above or below that anchor.
+    /// </summary>
+    public readonly record struct ParentMenuAttachment(string MenuId, string AnchorEntryId, bool AnchorAbove);
 }

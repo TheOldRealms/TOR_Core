@@ -85,6 +85,21 @@
 			player_can_see="CanAlways" />
 	</LocationComplexTemplate>
 
+	<!-- Castle-level POI locations. Add Locations here when a POI subclass opts
+	     into castle attachment via MenuAttachments. Scene overrides live in
+	     tor_settlements.xml per castle (settlements_add_location MCP tool). -->
+	<LocationComplexTemplate id="castle_complex">
+		<Location
+			id="tor_vampire_crypt"
+			name="{=tor_poi_vampire_crypt.Name}Vampire Crypt"
+			indoor="true"
+			max_prosperity="20"
+			ai_can_enter="CanIfHero"
+			ai_can_exit="CanAlways"
+			player_can_enter="CanIfSettlementAccessModelLetsPlayer"
+			player_can_see="CanAlways" />
+	</LocationComplexTemplate>
+
 	<LocationComplexTemplate id="shrine_lady_complex">
 		<Location
 			id="tor_bretonnia_forest_trainer_shrine"
