@@ -42,16 +42,6 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             return mgr?.GetOrCreateHero(s, poi.LocationId, host.EnchanterTemplateId);
         }
 
-        public static void EnsurePlaced(this IEnchanterHost host, Settlement s)
-        {
-            if (!(host is SettlementPOI poi) || !poi.AppliesTo(s)) return;
-            var hero = host.GetOrCreateEnchanter(s);
-            if (hero == null) return;
-            if (!s.HeroesWithoutParty.Contains(hero)) return;
-            var location = s.LocationComplex.GetLocationWithId(poi.LocationId);
-            TrainerPlacement.EnsureAt(s, hero, location);
-        }
-
         public static bool IsEnchanterHero(this Hero h, IEnchanterHost host)
         {
             return h?.Template?.StringId != null

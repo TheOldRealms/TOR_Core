@@ -28,6 +28,8 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
 
         public string SkillTrainerTemplateId => "tor_nulnengineernpc_empire";
 
+        public override void EnsurePlaced(Settlement s) => PlaceResident(s, SkillTrainerTemplateId);
+
         public override string MapIconText => "<img src=\"cannon_icon\" extend=\"15\">";
 
         public override bool CheckAccess(Settlement s, Hero h, out TextObject denialReason)

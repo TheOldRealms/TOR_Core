@@ -152,11 +152,9 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             if (loc == null) return false;   // template doesn't define this Location in the settlement's complex
             if (loc.GetSceneCount() == 0) loc.SetSceneName(0, sceneName);
             _dynamicScenes[$"{s.StringId}|{poi.LocationId}"] = sceneName;
-            // Place any resident NPCs that newly apply at this settlement.
-            foreach (var h in _byLocationId.Values.OfType<ISpellTrainerHost>())      if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
-            foreach (var h in _byLocationId.Values.OfType<IEnchanterHost>())          if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
-            foreach (var h in _byLocationId.Values.OfType<ISkillTrainerHost>())      if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
-            foreach (var h in _byLocationId.Values.OfType<IWitchHunterLodgeHost>())  if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
+            // Place any resident NPC(s) this POI hosts. The POI's EnsurePlaced is a
+            // no-op if it doesn't host anyone, so the single dispatch covers every POI.
+            poi.EnsurePlaced(s);
             return poi.AppliesTo(s);
         }
 
@@ -256,14 +254,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         /// </summary>
         private void PlaceResidentsFor(Settlement s)
         {
-            foreach (var host in _byLocationId.Values.OfType<ISpellTrainerHost>())
-                host.EnsurePlaced(s);
-            foreach (var host in _byLocationId.Values.OfType<IEnchanterHost>())
-                host.EnsurePlaced(s);
-            foreach (var host in _byLocationId.Values.OfType<ISkillTrainerHost>())
-                host.EnsurePlaced(s);
-            foreach (var host in _byLocationId.Values.OfType<IWitchHunterLodgeHost>())
-                host.EnsurePlaced(s);
+            foreach (var poi in _byLocationId.Values) poi.EnsurePlaced(s);
         }
 
         private void OnSessionLaunched(CampaignGameStarter starter)

@@ -24,6 +24,8 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
 
         public string SpellTrainerTemplateId => "tor_dawi_runelord_trainer_0";
 
+        public override void EnsurePlaced(Settlement s) => PlaceResident(s, SpellTrainerTemplateId);
+
         // Dwarves have no spellcasters, so no companion fallback — main-hero culture only.
         public bool IsPartyEligibleForTrainer() =>
             Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI;

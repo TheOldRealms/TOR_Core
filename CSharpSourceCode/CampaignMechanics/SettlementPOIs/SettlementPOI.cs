@@ -151,6 +151,34 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         /// future scene-only POIs) don't need to override.
         /// </summary>
         public virtual void RegisterDialogs(CampaignGameStarter starter) { }
+
+        /// <summary>
+        /// Spawn + place any resident NPC(s) this POI hosts at <paramref name="s"/>.
+        /// Called on both session launch and before each mission open so the hero is
+        /// always present where expected. Default is no-op — POIs with no resident
+        /// (scene-only POIs, recruiter-style POIs) opt out by not overriding.
+        /// Hosts of a single NPC override by calling <see cref="PlaceResident"/>;
+        /// hosts of multiple NPCs (e.g. a wizard hall with distinct trainer and
+        /// enchanter heroes) call it per template.
+        /// </summary>
+        public virtual void EnsurePlaced(Settlement s) { }
+
+        /// <summary>
+        /// Shared resident-placement primitive: get-or-create a hero of
+        /// <paramref name="templateId"/> at <paramref name="s"/> via the POI
+        /// manager (which handles save-state and orphan adoption), then plant the
+        /// LocationCharacter into this POI's location. Idempotent — repeated calls
+        /// across session-launch and mission-open are safe.
+        /// </summary>
+        protected void PlaceResident(Settlement s, string templateId)
+        {
+            if (string.IsNullOrEmpty(templateId) || !AppliesTo(s)) return;
+            var mgr = TaleWorlds.CampaignSystem.Campaign.Current?.GetCampaignBehavior<SettlementPOIManagerCampaignBehavior>();
+            var hero = mgr?.GetOrCreateHero(s, LocationId, templateId);
+            if (hero == null || !s.HeroesWithoutParty.Contains(hero)) return;
+            var location = s.LocationComplex.GetLocationWithId(LocationId);
+            TrainerPlacement.EnsureAt(s, hero, location);
+        }
     }
 
     /// <summary>

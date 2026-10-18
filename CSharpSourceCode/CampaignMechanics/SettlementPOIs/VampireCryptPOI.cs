@@ -40,6 +40,9 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public string EnchanterTemplateId    => "tor_spelltrainer_vc_0";
         public List<string> EnchantmentSuffixes => new() { "vc_enchant" };
 
+        // Same template fills both roles; template-id dedup in the manager keeps it one hero.
+        public override void EnsurePlaced(Settlement s) => PlaceResident(s, SpellTrainerTemplateId);
+
         public bool IsPartyEligibleForTrainer()
         {
             if (IsVcCulture(Hero.MainHero.Culture.StringId)) return true;
