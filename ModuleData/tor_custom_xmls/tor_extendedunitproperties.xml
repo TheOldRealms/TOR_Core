@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfCharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_villager">
     <Abilities />
@@ -2729,6 +2729,7 @@
     <Abilities />
     <Attributes>
       <string>Undead</string>
+      <string>KillingBlow</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" />
@@ -2745,6 +2746,7 @@
     <Abilities />
     <Attributes>
       <string>Undead</string>
+      <string>KillingBlow</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" />
@@ -2805,6 +2807,7 @@
     <Abilities />
     <Attributes>
       <string>Undead</string>
+      <string>KillingBlow</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" />
@@ -2821,6 +2824,7 @@
     <Abilities />
     <Attributes>
       <string>Undead</string>
+      <string>KillingBlow</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" />
@@ -2837,6 +2841,7 @@
     <Abilities />
     <Attributes>
       <string>Undead</string>
+      <string>KillingBlow</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" />
@@ -2853,6 +2858,7 @@
     <Abilities />
     <Attributes>
       <string>Undead</string>
+      <string>KillingBlow</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
@@ -4107,7 +4113,9 @@
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.25" />
     </Resistances>
-    <DamageAmplifiers><AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="2.00" /></DamageAmplifiers>
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="2.00" />
+    </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="0.90" />
       <DamageProportionTuple DamageType="Fire" Percent="0.10" />
@@ -10018,15 +10026,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_bergerac_2">
     <Abilities />
-    <Attributes>
-      <string>AiCompanion</string>
-    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_bergerac_3">
     <Abilities />
-    <Attributes>
-      <string>AiCompanion</string>
-    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_wainfleet_leader">
     <Abilities />
