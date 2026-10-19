@@ -90,17 +90,18 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
             _ => 0,
         };
 
-        // Active-bounty count = number of ACCEPTED bounty quests only. Un-accepted
-        // issues sitting at the lodge don't fill the cap; the cap is about
-        // concurrent commitments.
-        public int ActiveMinorBounties()
+        // Active-bounty count = number of ACCEPTED bounty quests of the matching
+        // tier only. Un-accepted issues sitting at the lodge don't fill the cap;
+        // the cap is about concurrent commitments.
+        public int ActiveMinorBounties() => CountActive(BountyTier.Minor);
+        public int ActiveMajorBounties() => CountActive(BountyTier.Major);
+
+        private static int CountActive(BountyTier tier)
         {
             var quests = Campaign.Current?.QuestManager?.Quests;
             if (quests == null) return 0;
-            return quests.Count(q => q is MinorBountyQuestBase);
+            return quests.Count(q => q is BountyQuest bq && bq.Tier == tier);
         }
-
-        public int ActiveMajorBounties() => 0;   // Phase C: MajorBountyQuest
 
         // ---- Mutators (invoked by dialog consequences and quest OnTimedOut)
 
@@ -132,11 +133,12 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
         }
 
         /// <summary>
-        /// Roll for a Minor Bounty issue once per in-game day per lodge-containing
-        /// settlement. The player no longer re-rolls by bouncing in and out of a
-        /// town; offers accumulate across lodges at a predictable cadence.
-        /// Vanilla's one-issue-per-hero constraint still applies — each lodge
-        /// holds at most one offer, but seven lodges = seven independent slots.
+        /// Roll bounty issues once per in-game day per lodge-containing settlement.
+        /// One lodge can only host one offer at a time (vanilla single-slot per
+        /// hero); the Minor roll fires first, Major second — if the Minor roll
+        /// succeeds, the slot fills and Major silently skips. Across the seven
+        /// lodges that's enough variance for both tiers to show up at the right
+        /// pace once the player has unlocked Major availability.
         /// </summary>
         private void OnDailyTickSettlement(Settlement settlement)
         {
@@ -146,18 +148,30 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
             if (lodge == null || lodge.GetSceneCount() == 0) return;
 
             var inquisitor = settlement.HeroesWithoutParty.FirstOrDefault(h => h.IsBountyMaster());
-            if (inquisitor == null || inquisitor.Issue != null) return;
+            if (inquisitor == null) return;
 
-            // Don't generate offers the player can never accept (cap gate).
-            if (MinorBountyCap <= 0 || ActiveMinorBounties() >= MinorBountyCap) return;
+            TryRollBounty(inquisitor, BountyTier.Minor);
+            TryRollBounty(inquisitor, BountyTier.Major);
+        }
+
+        private void TryRollBounty(Hero inquisitor, BountyTier tier)
+        {
+            if (inquisitor.Issue != null) return;   // single slot filled already
+
+            // Per-rank cap gate — don't generate what the player can't accept.
+            var cap = tier == BountyTier.Minor ? MinorBountyCap : MajorBountyCap;
+            var active = tier == BountyTier.Minor ? ActiveMinorBounties() : ActiveMajorBounties();
+            if (cap <= 0 || active >= cap) return;
 
             if (MBRandom.RandomInt(0, 100) >= TORConstants.BOUNTY_QUEST_CHANCE) return;
 
+            PotentialIssueData.StartIssueDelegate factory =
+                tier == BountyTier.Minor
+                    ? new PotentialIssueData.StartIssueDelegate(OnMinorBountyIssueSelected)
+                    : new PotentialIssueData.StartIssueDelegate(OnMajorBountyIssueSelected);
+
             Campaign.Current.IssueManager.CreateNewIssue(
-                new PotentialIssueData(
-                    new PotentialIssueData.StartIssueDelegate(OnMinorBountyIssueSelected),
-                    typeof(MinorBountyIssue),
-                    IssueBase.IssueFrequency.VeryCommon),
+                new PotentialIssueData(factory, typeof(BountyIssue), IssueBase.IssueFrequency.VeryCommon),
                 inquisitor);
 
             // Tell nameplate VMs to re-render — the lodge icon flips to its
@@ -165,33 +179,42 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
             SettlementPOIManagerCampaignBehavior.NotifyIconsChanged();
         }
 
-        private IssueBase OnMinorBountyIssueSelected(in PotentialIssueData pid, Hero issueOwner)
+        private IssueBase OnMinorBountyIssueSelected(in PotentialIssueData pid, Hero issueOwner) => CreateBountyIssue(issueOwner, BountyTier.Minor);
+        private IssueBase OnMajorBountyIssueSelected(in PotentialIssueData pid, Hero issueOwner) => CreateBountyIssue(issueOwner, BountyTier.Major);
+
+        private static IssueBase CreateBountyIssue(Hero issueOwner, BountyTier tier)
         {
-            var template = BountyTemplates.PickRandomMinor();
+            var template = BountyTemplates.PickRandom(tier);
             if (template.IsEmpty) return null;
             var count    = MBRandom.RandomInt(template.CountMin,    template.CountMax + 1);
             var gold     = MBRandom.RandomInt(template.GoldMin,     template.GoldMax + 1);
             var prestige = MBRandom.RandomInt(template.PrestigeMin, template.PrestigeMax + 1);
-            return new MinorBountyIssue(issueOwner, template.Id, count, gold, prestige);
+            return new BountyIssue(issueOwner, template.Id, tier, count, gold, prestige);
         }
 
         /// <summary>
         /// Counter bump on successful bounty completion. Fail paths bump nothing —
         /// the pending-failure flag is set from the quest's <c>OnTimedOut</c>
-        /// directly against the behavior.
+        /// directly against the behavior. Both tiers routed via the issue's
+        /// <see cref="BountyIssue.Tier"/>.
         /// </summary>
         private void OnIssueUpdated(IssueBase issue, IssueBase.IssueUpdateDetails details, Hero relatedHero)
         {
-            if (issue is MinorBountyIssue)
+            if (!(issue is BountyIssue bounty)) return;
+
+            // Any state change on a bounty issue (accepted, cancelled, expired, done)
+            // means the lodge icon should re-evaluate — "H!" goes back to "H" once
+            // the inquisitor isn't carrying an offer anymore.
+            SettlementPOIManagerCampaignBehavior.NotifyIconsChanged();
+
+            if (details == IssueBase.IssueUpdateDetails.IssueFinishedWithSuccess)
             {
-                // Any state change on a bounty issue (accepted, cancelled, expired, done)
-                // means the lodge icon should re-evaluate — "H!" goes back to "H" once
-                // the inquisitor isn't carrying an offer anymore.
-                SettlementPOIManagerCampaignBehavior.NotifyIconsChanged();
+                switch (bounty.Tier)
+                {
+                    case BountyTier.Minor: CompleteMinor(); break;
+                    case BountyTier.Major: CompleteMajor(); break;
+                }
             }
-            if (details == IssueBase.IssueUpdateDetails.IssueFinishedWithSuccess && issue is MinorBountyIssue)
-                CompleteMinor();
-            // Phase C: else if (issue is MajorBountyIssue) CompleteMajor();
         }
 
         public override void SyncData(IDataStore dataStore)
@@ -266,7 +289,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
                 var quests = Campaign.Current?.QuestManager?.Quests;
                 if (quests != null)
                 {
-                    foreach (var q in quests.OfType<Bounties.MinorBountyQuestBase>())
+                    foreach (var q in quests.OfType<Bounties.BountyQuest>())
                         q.OnLodgePrisonersDonated(roster);
                 }
             }

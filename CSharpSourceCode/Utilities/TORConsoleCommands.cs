@@ -1461,7 +1461,7 @@ namespace TOR_Core.Utilities
         {
             if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType)) return CampaignCheats.ErrorType;
             if (CampaignCheats.CheckHelp(arguments))
-                return "Force a Minor Bounty offer onto the inquisitor in the player's current lodge town. Optional first arg: template id (minor_kill_cultists, minor_kill_chaos, minor_kill_undead). No arg = random.\n";
+                return "Force a Bounty offer onto the inquisitor in the player's current lodge town. Optional arg: template id (any of the minor_* or major_* keys from BountyTemplates). No arg = random Minor.\n";
 
             var s = Settlement.CurrentSettlement;
             if (s == null) return "Not in a settlement.\n";
@@ -1474,12 +1474,16 @@ namespace TOR_Core.Utilities
 
             if (inquisitor.Issue != null) return $"Inquisitor {inquisitor.Name} already has an active issue ({inquisitor.Issue.GetType().Name}). Clear it first.\n";
 
-            // Pick a template: arg if valid, random otherwise.
+            // Pick a template: arg if valid, random Minor otherwise.
             BountyTemplate template = default;
             if (arguments.Count > 0)
             {
-                template = BountyTemplates.GetMinor(arguments[0]);
-                if (template.IsEmpty) return $"Unknown template id '{arguments[0]}'. Options: " + string.Join(", ", BountyTemplates.AllMinor().Select(t => t.Id)) + "\n";
+                template = BountyTemplates.Get(arguments[0]);
+                if (template.IsEmpty)
+                {
+                    var all = BountyTemplates.AllMinor().Concat(BountyTemplates.AllMajor()).Select(t => t.Id);
+                    return $"Unknown template id '{arguments[0]}'. Options: " + string.Join(", ", all) + "\n";
+                }
             }
             else
             {
@@ -1487,18 +1491,19 @@ namespace TOR_Core.Utilities
                 if (template.IsEmpty) return "No Minor Bounty templates registered.\n";
             }
 
+            var tier     = template.Tier;
             var count    = MBRandom.RandomInt(template.CountMin,    template.CountMax + 1);
             var gold     = MBRandom.RandomInt(template.GoldMin,     template.GoldMax + 1);
             var prestige = MBRandom.RandomInt(template.PrestigeMin, template.PrestigeMax + 1);
 
             Campaign.Current.IssueManager.CreateNewIssue(
                 new PotentialIssueData(
-                    (in PotentialIssueData pid, Hero owner) => new MinorBountyIssue(owner, template.Id, count, gold, prestige),
-                    typeof(MinorBountyIssue),
+                    (in PotentialIssueData pid, Hero owner) => new BountyIssue(owner, template.Id, tier, count, gold, prestige),
+                    typeof(BountyIssue),
                     IssueBase.IssueFrequency.VeryCommon),
                 inquisitor);
 
-            return $"Spawned '{template.Id}' on {inquisitor.Name} at {s.Name}: {count} {template.TargetLabel}, {gold}g + {prestige} prestige.\n";
+            return $"Spawned '{template.Id}' ({tier}) on {inquisitor.Name} at {s.Name}: {count} {template.TargetLabel}, {gold}g + {prestige} prestige.\n";
         }
 
         private static string AggregateOutput(string topicHeader, List<string> matchedSpells) =>

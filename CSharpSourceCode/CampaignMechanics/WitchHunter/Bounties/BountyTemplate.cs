@@ -17,6 +17,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
     public readonly struct BountyTemplate
     {
         public readonly string Id;
+        public readonly BountyTier Tier;
         public readonly BountyObjectiveType ObjectiveType;
 
         /// <summary>Predicate deciding whether a given killed/captured troop counts toward this bounty.</summary>
@@ -37,6 +38,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
 
         public BountyTemplate(
             string id,
+            BountyTier tier,
             BountyObjectiveType objectiveType,
             Func<CharacterObject, bool> targetMatches,
             string targetLabel,
@@ -47,6 +49,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
             string titleKey, string titleFallback)
         {
             Id = id;
+            Tier = tier;
             ObjectiveType = objectiveType;
             TargetMatches = targetMatches;
             TargetLabel = targetLabel;

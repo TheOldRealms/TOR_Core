@@ -8,33 +8,32 @@ using TOR_Core.Extensions;
 namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
 {
     /// <summary>
-    /// Parameterised Minor Bounty issue — follows the vanilla <see cref="IssueBase"/>
-    /// contract, mirroring <c>HuntCultistsIssue</c> as the local reference pattern.
-    /// Holds the <see cref="BountyTemplate"/> id plus the rolled target count and
-    /// reward values; the <see cref="MinorBountyQuest"/> created on acceptance
-    /// inherits the same values.
-    ///
-    /// <para>Only Phase B's <see cref="BountyObjectiveType.KillTroops"/> templates
-    /// use this class today. Other objective shapes (capture / clear-hideout /
-    /// defeat-parties) will likely need their own subclasses in Phase C.</para>
+    /// Unified bounty issue for both Minor and Major tiers. The tier is
+    /// SaveableField-persisted so the behavior's <c>OnIssueUpdated</c> hook
+    /// can route completion to the right counter without reading the template
+    /// back from the issue (templates are runtime constants and could be
+    /// edited between save/load).
     /// </summary>
-    public class MinorBountyIssue : IssueBase
+    public class BountyIssue : IssueBase
     {
         [SaveableField(0)] private string _templateId;
         [SaveableField(1)] private int _targetCount;
         [SaveableField(2)] private int _rewardGold;
         [SaveableField(3)] private int _rewardPrestige;
+        [SaveableField(4)] private BountyTier _tier;   // defaults to Minor on old saves — correct
 
-        public MinorBountyIssue(Hero issueOwner, string templateId, int targetCount, int rewardGold, int rewardPrestige)
+        public BountyIssue(Hero issueOwner, string templateId, BountyTier tier, int targetCount, int rewardGold, int rewardPrestige)
             : base(issueOwner, CampaignTime.DaysFromNow(30f))
         {
             _templateId = templateId;
+            _tier = tier;
             _targetCount = targetCount;
             _rewardGold = rewardGold;
             _rewardPrestige = rewardPrestige;
         }
 
-        public BountyTemplate Template => BountyTemplates.GetMinor(_templateId);
+        public BountyTemplate Template => BountyTemplates.Get(_templateId);
+        public BountyTier Tier => _tier;
         public int TargetCount => _targetCount;
         public int RewardPrestige => _rewardPrestige;
 
@@ -53,15 +52,15 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
         }
 
         public override TextObject IssueAcceptByPlayer => TORTextHelper.GetTextObject(
-            "tor_wh_bounty_minor_accept_player", "I will see it done.");
+            "tor_wh_bounty_accept_player", "I will see it done.");
 
         public override TextObject IssueQuestSolutionExplanationByIssueGiver
         {
             get
             {
                 var text = TORTextHelper.GetTextObject(
-                    "tor_wh_bounty_minor_quest_explanation",
-                    "Kill {COUNT} {TARGET}. On the deed the Order will pay you {REWARD_GOLD}{GOLD_ICON} and {REWARD_PRESTIGE} prestige.");
+                    "tor_wh_bounty_quest_explanation",
+                    "Deal with {COUNT} {TARGET}. On the deed the Order will pay you {REWARD_GOLD}{GOLD_ICON} and {REWARD_PRESTIGE} prestige.");
                 var t = Template;
                 text.SetTextVariable("COUNT", _targetCount);
                 text.SetTextVariable("TARGET", t.TargetLabel);
@@ -73,7 +72,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
         }
 
         public override TextObject IssueQuestSolutionAcceptByPlayer => TORTextHelper.GetTextObject(
-            "tor_wh_bounty_minor_quest_accept_player", "Consider it done.");
+            "tor_wh_bounty_quest_accept_player", "Consider it done.");
 
         public override bool IsThereAlternativeSolution => false;
         public override bool IsThereLordSolution => false;
@@ -124,11 +123,9 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
 
         protected override QuestBase GenerateIssueQuest(string questId)
         {
-            // One quest class handles every objective type; the switch is internal
-            // (see MinorBountyQuest.OnBattleEnd). No per-objective dispatch here.
-            return new MinorBountyQuest(
+            return new BountyQuest(
                 questId, IssueOwner, CampaignTime.DaysFromNow(20f),
-                _templateId, _targetCount, _rewardGold, _rewardPrestige);
+                _templateId, _tier, _targetCount, _rewardGold, _rewardPrestige);
         }
 
         protected override void OnGameLoad() { }

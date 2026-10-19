@@ -6,20 +6,20 @@ using TOR_Core.Extensions;
 namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
 {
     /// <summary>
-    /// Static registry of bounty templates. Values anchor on the Empire Quests
-    /// Mechanics spreadsheet (<c>TORTasks/witchhunter feature/Empire Quests_Mechanics.ods</c>);
-    /// tune after playtest. Phase B ships only Minor templates with the
-    /// <see cref="BountyObjectiveType.KillTroops"/> objective. Phase C adds
-    /// capture / clear-hideout / defeat-parties and the Major templates.
+    /// Static registry of bounty templates for both tiers. Values anchor on the
+    /// Empire Quests Mechanics spreadsheet (<c>TORTasks/witchhunter feature/Empire
+    /// Quests_Mechanics.ods</c>); tune after playtest. Single dict keyed by id;
+    /// per-tier views (<see cref="AllMinor"/>, <see cref="AllMajor"/>,
+    /// <see cref="PickRandom"/>) filter by <see cref="BountyTemplate.Tier"/>.
     /// </summary>
     public static class BountyTemplates
     {
-        private static readonly Dictionary<string, BountyTemplate> _minor = new()
+        private static readonly Dictionary<string, BountyTemplate> _all = new()
         {
+            // ---- Minor: KillTroops
             ["minor_kill_cultists"] = new BountyTemplate(
-                id: "minor_kill_cultists",
+                id: "minor_kill_cultists", tier: BountyTier.Minor,
                 objectiveType: BountyObjectiveType.KillTroops,
-                // IsCultist() = culture == CHAOS_CULTIST. Narrower than IsChaos.
                 targetMatches: t => t?.IsCultist() == true,
                 targetLabel: "Chaos Cultists",
                 countMin: 15, countMax: 25,
@@ -31,10 +31,8 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
                 titleFallback: "Cull the Cultists"),
 
             ["minor_kill_chaos"] = new BountyTemplate(
-                id: "minor_kill_chaos",
+                id: "minor_kill_chaos", tier: BountyTier.Minor,
                 objectiveType: BountyObjectiveType.KillTroops,
-                // IsChaos covers CHAOS and CHAOS_CULTIST; this template is deliberately
-                // broader than the cultist-only one above.
                 targetMatches: t => t?.IsChaos() == true,
                 targetLabel: "chaos marauders",
                 countMin: 30, countMax: 50,
@@ -46,7 +44,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
                 titleFallback: "Thin the Marauder Hordes"),
 
             ["minor_kill_undead"] = new BountyTemplate(
-                id: "minor_kill_undead",
+                id: "minor_kill_undead", tier: BountyTier.Minor,
                 objectiveType: BountyObjectiveType.KillTroops,
                 targetMatches: t => t?.IsUndead() == true,
                 targetLabel: "undead",
@@ -58,11 +56,9 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
                 titleKey: "tor_wh_bounty_minor_kill_undead_title",
                 titleFallback: "Cleanse the Walking Dead"),
 
-            // --- Capture-and-return templates: progress ticks when the player
-            // donates matching troops via the lodge's Prisoners turn-in. Any
-            // lodge honours the delivery.
+            // ---- Minor: CaptureTroops
             ["minor_capture_cultists"] = new BountyTemplate(
-                id: "minor_capture_cultists",
+                id: "minor_capture_cultists", tier: BountyTier.Minor,
                 objectiveType: BountyObjectiveType.CaptureTroops,
                 targetMatches: t => t?.IsCultist() == true,
                 targetLabel: "chaos cultists",
@@ -75,7 +71,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
                 titleFallback: "Captives for the Interrogators"),
 
             ["minor_capture_chaos"] = new BountyTemplate(
-                id: "minor_capture_chaos",
+                id: "minor_capture_chaos", tier: BountyTier.Minor,
                 objectiveType: BountyObjectiveType.CaptureTroops,
                 targetMatches: t => t?.IsChaos() == true,
                 targetLabel: "chaos warriors",
@@ -87,10 +83,9 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
                 titleKey: "tor_wh_bounty_minor_capture_chaos_title",
                 titleFallback: "Chaos Prisoners Wanted Alive"),
 
-            // --- Defeat-parties templates: progress ticks per defeated enemy party
-            // containing matching troops. "Bands of X" semantics.
+            // ---- Minor: DefeatParties
             ["minor_defeat_cultists"] = new BountyTemplate(
-                id: "minor_defeat_cultists",
+                id: "minor_defeat_cultists", tier: BountyTier.Minor,
                 objectiveType: BountyObjectiveType.DefeatParties,
                 targetMatches: t => t?.IsCultist() == true,
                 targetLabel: "chaos cultist bands",
@@ -103,7 +98,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
                 titleFallback: "Scatter the Cultist Bands"),
 
             ["minor_defeat_chaos_raids"] = new BountyTemplate(
-                id: "minor_defeat_chaos_raids",
+                id: "minor_defeat_chaos_raids", tier: BountyTier.Minor,
                 objectiveType: BountyObjectiveType.DefeatParties,
                 targetMatches: t => t?.IsChaos() == true,
                 targetLabel: "chaos raiding parties",
@@ -115,10 +110,9 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
                 titleKey: "tor_wh_bounty_minor_defeat_chaos_raids_title",
                 titleFallback: "Break the Chaos Raiders"),
 
-            // --- Clear-hideout templates: progress ticks per hideout battle won
-            // whose garrison contains any troop matching the predicate.
+            // ---- Minor: ClearHideout
             ["minor_clear_cultist_hideouts"] = new BountyTemplate(
-                id: "minor_clear_cultist_hideouts",
+                id: "minor_clear_cultist_hideouts", tier: BountyTier.Minor,
                 objectiveType: BountyObjectiveType.ClearHideout,
                 targetMatches: t => t?.IsCultist() == true,
                 targetLabel: "cult lairs",
@@ -131,7 +125,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
                 titleFallback: "Burn the Cult Lairs"),
 
             ["minor_clear_chaos_hideouts"] = new BountyTemplate(
-                id: "minor_clear_chaos_hideouts",
+                id: "minor_clear_chaos_hideouts", tier: BountyTier.Minor,
                 objectiveType: BountyObjectiveType.ClearHideout,
                 targetMatches: t => t?.IsChaos() == true,
                 targetLabel: "chaos hideouts",
@@ -142,18 +136,74 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
                 briefFallback: "Marauder bands have dug in near our settlements. Dig {COUNT} of them out.",
                 titleKey: "tor_wh_bounty_minor_clear_chaos_hideouts_title",
                 titleFallback: "Root Out the Marauder Hideouts"),
+
+            // ---- Major: higher-stakes rewards, broader counts, mid-to-late-game pitch.
+            // Spreadsheet reference: "Capture and return any Norscan" 20-30 → 6000-9000 gold,
+            // "Defeat Chaos Raiding parties" 3-5 → 150-250 prestige, "Clear out Troll dens"
+            // 1-3 → 4000-12000 gold. MVP set is three templates, one per common objective
+            // shape, to prove the Major flow end-to-end.
+
+            ["major_kill_chaos"] = new BountyTemplate(
+                id: "major_kill_chaos", tier: BountyTier.Major,
+                objectiveType: BountyObjectiveType.KillTroops,
+                targetMatches: t => t?.IsChaos() == true,
+                targetLabel: "chaos troops",
+                countMin: 60, countMax: 100,
+                goldMin: 6000, goldMax: 10000,
+                prestigeMin: 100, prestigeMax: 150,
+                briefKey: "tor_wh_bounty_major_kill_chaos_brief",
+                briefFallback: "A larger host moves against the Empire. Put {COUNT} chaos troops in the ground. The Order will reward you handsomely.",
+                titleKey: "tor_wh_bounty_major_kill_chaos_title",
+                titleFallback: "Grand Cull of the Chaos Host"),
+
+            ["major_defeat_chaos_warbands"] = new BountyTemplate(
+                id: "major_defeat_chaos_warbands", tier: BountyTier.Major,
+                objectiveType: BountyObjectiveType.DefeatParties,
+                targetMatches: t => t?.IsChaos() == true,
+                targetLabel: "chaos warbands",
+                countMin: 3, countMax: 5,
+                goldMin: 0, goldMax: 0,
+                prestigeMin: 150, prestigeMax: 250,
+                briefKey: "tor_wh_bounty_major_defeat_chaos_warbands_brief",
+                briefFallback: "Full warbands bear down on the north. Break {COUNT} of them — not raiders, warbands. The Order will know your name afterwards.",
+                titleKey: "tor_wh_bounty_major_defeat_chaos_warbands_title",
+                titleFallback: "Break the Chaos Warbands"),
+
+            ["major_clear_chaos_lairs"] = new BountyTemplate(
+                id: "major_clear_chaos_lairs", tier: BountyTier.Major,
+                objectiveType: BountyObjectiveType.ClearHideout,
+                targetMatches: t => t?.IsChaos() == true,
+                targetLabel: "chaos strongholds",
+                countMin: 1, countMax: 3,
+                goldMin: 8000, goldMax: 15000,
+                prestigeMin: 0, prestigeMax: 0,
+                briefKey: "tor_wh_bounty_major_clear_chaos_lairs_brief",
+                briefFallback: "Fortified lairs have taken root. Burn {COUNT} of them — these are not minor cells. The Order will pay a king's ransom for the service.",
+                titleKey: "tor_wh_bounty_major_clear_chaos_lairs_title",
+                titleFallback: "Burn the Chaos Strongholds"),
         };
 
-        public static BountyTemplate GetMinor(string id) =>
-            _minor.TryGetValue(id, out var t) ? t : default;
+        public static BountyTemplate Get(string id) =>
+            _all.TryGetValue(id, out var t) ? t : default;
 
-        public static IEnumerable<BountyTemplate> AllMinor() => _minor.Values;
-
-        public static BountyTemplate PickRandomMinor()
+        // Backwards-compat helper for the ByTier lookups used by the console
+        // command and generation code; Minor-only kept to avoid a wider rename.
+        public static BountyTemplate GetMinor(string id)
         {
-            if (_minor.Count == 0) return default;
-            var keys = _minor.Keys.ToList();
-            return _minor[keys[MBRandom.RandomInt(keys.Count)]];
+            var t = Get(id);
+            return t.Tier == BountyTier.Minor ? t : default;
         }
+
+        public static IEnumerable<BountyTemplate> AllMinor() => _all.Values.Where(t => t.Tier == BountyTier.Minor);
+        public static IEnumerable<BountyTemplate> AllMajor() => _all.Values.Where(t => t.Tier == BountyTier.Major);
+
+        public static BountyTemplate PickRandom(BountyTier tier)
+        {
+            var pool = _all.Values.Where(t => t.Tier == tier).ToList();
+            if (pool.Count == 0) return default;
+            return pool[MBRandom.RandomInt(pool.Count)];
+        }
+
+        public static BountyTemplate PickRandomMinor() => PickRandom(BountyTier.Minor);
     }
 }

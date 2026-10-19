@@ -46,7 +46,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         {
             if (s == null) return MapIconText;
             var inquisitor = s.HeroesWithoutParty.FirstOrDefault(h => h.IsBountyMaster());
-            if (inquisitor?.Issue is MinorBountyIssue) return "H!";
+            if (inquisitor?.Issue is BountyIssue) return "H!";
             return MapIconText;
         }
 
@@ -234,10 +234,18 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 null, null, 200);
 
             // Ask for a new major bounty — gated on MajorBountyCap > 0 (Trusted+).
-            obj.AddPlayerLine("tor_witchhunter_lodge_bounties_ask_major", "tor_witchhunter_lodge_bounties_menu", "tor_witchhunter_lodge_bounties_offer_major_npc",
+            // Two variants with identical text: has-issue routes to vanilla's
+            // hero_main_options for the issue brief, no-issue falls to the stub.
+            obj.AddPlayerLine("tor_witchhunter_lodge_bounties_ask_major", "tor_witchhunter_lodge_bounties_menu", "hero_main_options",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.ask_major",
                     "Are there major bounties the Order needs seen to?"),
-                CanOfferMajor, null, 200, null);
+                () => CanOfferMajor() && InquisitorHasMajorBounty(), null, 200, null);
+
+            obj.AddPlayerLine("tor_witchhunter_lodge_bounties_ask_major_stub", "tor_witchhunter_lodge_bounties_menu", "tor_witchhunter_lodge_bounties_offer_major_npc",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.ask_major",
+                    "Are there major bounties the Order needs seen to?"),
+                () => CanOfferMajor() && !InquisitorHasMajorBounty(), null, 200, null);
+
             obj.AddDialogLine("tor_witchhunter_lodge_bounties_offer_major_npc", "tor_witchhunter_lodge_bounties_offer_major_npc", "tor_witchhunter_lodge_bounties_menu",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.offer_major_stub",
                     "The Order's heavier hunts can wait. Return when the days have turned."),
@@ -319,17 +327,20 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         {
             // Hunts covers anything that ISN'T a bounty — HuntCultists, PlaguedVillage,
             // and whatever story-driven issue types land later. Bounties have their own
-            // branch, so filter MinorBountyIssue (and future Major) out.
+            // branch, so filter BountyIssue (both tiers) out.
             var issue = CharacterObject.OneToOneConversationCharacter?.HeroObject?.Issue;
             if (issue == null) return false;
-            if (issue is MinorBountyIssue) return false;
+            if (issue is BountyIssue) return false;
             return true;
         }
 
-        private static bool InquisitorHasMinorBounty()
+        private static bool InquisitorHasMinorBounty() => InquisitorBountyTier() == BountyTier.Minor;
+        private static bool InquisitorHasMajorBounty() => InquisitorBountyTier() == BountyTier.Major;
+
+        private static BountyTier? InquisitorBountyTier()
         {
             var issue = CharacterObject.OneToOneConversationCharacter?.HeroObject?.Issue;
-            return issue is MinorBountyIssue;
+            return (issue is BountyIssue b) ? b.Tier : (BountyTier?)null;
         }
 
         private static bool IsKnown() =>
@@ -365,7 +376,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             var quests = Campaign.Current?.QuestManager?.Quests;
             if (quests == null) return false;
             // Phase C: || q is MajorBountyQuest mjq && mjq.IsVoluntaryAbandonAvailable
-            return quests.Any(q => q is MinorBountyQuestBase mq && mq.IsVoluntaryAbandonAvailable);
+            return quests.Any(q => q is BountyQuest mq && mq.IsVoluntaryAbandonAvailable);
         }
 
         private static bool HasTurnInBounty()
@@ -373,7 +384,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             var quests = Campaign.Current?.QuestManager?.Quests;
             if (quests == null) return false;
             // Phase C: || q is MajorBountyQuest mjq && mjq.IsReadyForTurnIn
-            return quests.Any(q => q is MinorBountyQuestBase mq && mq.IsReadyForTurnIn);
+            return quests.Any(q => q is BountyQuest mq && mq.IsReadyForTurnIn);
         }
 
         private static void OpenTurnInBountyInquiry()
@@ -381,7 +392,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             var quests = Campaign.Current?.QuestManager?.Quests;
             if (quests == null) return;
 
-            var turnable = quests.OfType<MinorBountyQuestBase>()
+            var turnable = quests.OfType<BountyQuest>()
                 .Where(q => q.IsReadyForTurnIn)
                 .ToList();
             if (turnable.Count == 0) return;
@@ -405,7 +416,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         {
             if (picked == null) return;
             foreach (var el in picked)
-                if (el.Identifier is MinorBountyQuestBase q) q.TurnInAndComplete();
+                if (el.Identifier is BountyQuest q) q.TurnInAndComplete();
         }
 
         private static void OpenAbandonBountyInquiry()
@@ -414,7 +425,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             if (quests == null) return;
 
             var abandonable = quests
-                .OfType<MinorBountyQuestBase>()
+                .OfType<BountyQuest>()
                 .Where(q => q.IsVoluntaryAbandonAvailable)
                 .Cast<QuestBase>()
                 .ToList();
