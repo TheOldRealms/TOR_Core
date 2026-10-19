@@ -127,19 +127,19 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
             CampaignEvents.OnPrisonerDonatedToSettlementEvent.AddNonSerializedListener(this, OnPrisonersSold);
-            CampaignEvents.SettlementEntered.AddNonSerializedListener(this, OnSettlementEntered);
+            CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, OnDailyTickSettlement);
             CampaignEvents.OnIssueUpdatedEvent.AddNonSerializedListener(this, OnIssueUpdated);
         }
 
         /// <summary>
-        /// Roll for a Minor Bounty issue on each lodge-town entry. Only one issue
-        /// per hero at a time — the vanilla constraint — so the roll silently
-        /// skips if the inquisitor is already carrying something (a Hunt from
-        /// HuntCultists, a prior bounty, etc).
+        /// Roll for a Minor Bounty issue once per in-game day per lodge-containing
+        /// settlement. The player no longer re-rolls by bouncing in and out of a
+        /// town; offers accumulate across lodges at a predictable cadence.
+        /// Vanilla's one-issue-per-hero constraint still applies — each lodge
+        /// holds at most one offer, but seven lodges = seven independent slots.
         /// </summary>
-        private void OnSettlementEntered(MobileParty party, Settlement settlement, Hero leaderHero)
+        private void OnDailyTickSettlement(Settlement settlement)
         {
-            if (party != MobileParty.MainParty) return;
             if (settlement == null) return;
 
             var lodge = settlement.LocationComplex?.GetLocationWithId("tor_witchhunter_lodge");
@@ -148,8 +148,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
             var inquisitor = settlement.HeroesWithoutParty.FirstOrDefault(h => h.IsBountyMaster());
             if (inquisitor == null || inquisitor.Issue != null) return;
 
-            // Respect the per-rank concurrent cap — don't flood the lodge with offers
-            // when the player can't accept more anyway.
+            // Don't generate offers the player can never accept (cap gate).
             if (MinorBountyCap <= 0 || ActiveMinorBounties() >= MinorBountyCap) return;
 
             if (MBRandom.RandomInt(0, 100) >= TORConstants.BOUNTY_QUEST_CHANCE) return;
