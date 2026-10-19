@@ -6040,6 +6040,17 @@
   <string id="tor_poi_witchhunter_lodge.notrust" text="{=str_tor_poi_witchhunter_lodge.notrust}Return once you have earned our trust." />
   <string id="tor_poi_witchhunter_lodge.companions_todo" text="{=str_tor_poi_witchhunter_lodge.companions_todo}No witch hunters are available for the taking right now. Return in time." />
   <string id="tor_poi_witchhunter_lodge.exclusive_todo" text="{=str_tor_poi_witchhunter_lodge.exclusive_todo}The Order has nothing for you yet, brother. Return in time." />
+  <string id="tor_poi_witchhunter_lodge.bounties_hub" text="{=str_tor_poi_witchhunter_lodge.bounties_hub}What business will you take up with the Order?" />
+  <string id="tor_poi_witchhunter_lodge.excuse_minor" text="{=str_tor_poi_witchhunter_lodge.excuse_minor}I beg forgiveness for the last minor hunt." />
+  <string id="tor_poi_witchhunter_lodge.excuse_minor_reply" text="{=str_tor_poi_witchhunter_lodge.excuse_minor_reply}Granted. See the next one through to its end." />
+  <string id="tor_poi_witchhunter_lodge.excuse_major" text="{=str_tor_poi_witchhunter_lodge.excuse_major}I beg forgiveness for the last major hunt." />
+  <string id="tor_poi_witchhunter_lodge.excuse_major_reply" text="{=str_tor_poi_witchhunter_lodge.excuse_major_reply}The Order is slow to forgive, but you have paid for it. See the next through." />
+  <string id="tor_poi_witchhunter_lodge.bounties_abandon" text="{=str_tor_poi_witchhunter_lodge.bounties_abandon}I cannot finish a bounty." />
+  <string id="tor_poi_witchhunter_lodge.ask_minor" text="{=str_tor_poi_witchhunter_lodge.ask_minor}Are there minor bounties the Order needs seen to?" />
+  <string id="tor_poi_witchhunter_lodge.offer_minor_stub" text="{=str_tor_poi_witchhunter_lodge.offer_minor_stub}Nothing in the ledger right now — return in a few days." />
+  <string id="tor_poi_witchhunter_lodge.ask_major" text="{=str_tor_poi_witchhunter_lodge.ask_major}Are there major bounties the Order needs seen to?" />
+  <string id="tor_poi_witchhunter_lodge.offer_major_stub" text="{=str_tor_poi_witchhunter_lodge.offer_major_stub}The Order's heavier hunts can wait. Return when the days have turned." />
+  <string id="tor_poi_witchhunter_lodge.bounties_back" text="{=str_tor_poi_witchhunter_lodge.bounties_back}That is all for now." />
   <string id="tor_poi_witchhunter_lodge.store_open" text="{=str_tor_poi_witchhunter_lodge.store_open}The Order's wares. These will serve you better than tavern-forged scrap." />
   <string id="tor_poi_witchhunter_lodge.store_reply" text="{=str_tor_poi_witchhunter_lodge.store_reply}What else can I do for you?" />
 

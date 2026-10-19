@@ -155,10 +155,67 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                     "Return soon — I will have hunts to assign."),
                 null, null, 200);
 
-            obj.AddDialogLine("tor_witchhunter_lodge_bounties_todo", "tor_witchhunter_lodge_bounties_stub", "tor_witchhunter_lodge_hub",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.bounties_todo",
-                    "Nothing new in the ledger just yet. Return in time."),
+            // --- Bounties dispatcher: three independent concerns per the design doc.
+            // Pending failure (minor/major) must be excused before new bounties of that
+            // tier can be taken. Voluntary abandonment opens an inquiry listing active
+            // quests ≥ 3 days old (Phase B wires the real bounty quests; for now the
+            // condition returns false, keeping the line hidden). Normal offers run only
+            // when the player is under cap and has no pending failure of that tier.
+            obj.AddDialogLine("tor_witchhunter_lodge_bounties_hub_npc", "tor_witchhunter_lodge_bounties_stub", "tor_witchhunter_lodge_bounties_menu",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.bounties_hub",
+                    "What business will you take up with the Order?"),
                 null, null, 200);
+
+            // Excuse — minor
+            obj.AddPlayerLine("tor_witchhunter_lodge_bounties_excuse_minor", "tor_witchhunter_lodge_bounties_menu", "tor_witchhunter_lodge_bounties_excuse_minor_npc",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.excuse_minor",
+                    "I beg forgiveness for the last minor hunt."),
+                HasMinorFailurePending, ExcuseMinorFailure, 200, null);
+            obj.AddDialogLine("tor_witchhunter_lodge_bounties_excuse_minor_npc", "tor_witchhunter_lodge_bounties_excuse_minor_npc", "tor_witchhunter_lodge_bounties_menu",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.excuse_minor_reply",
+                    "Granted. See the next one through to its end."),
+                null, null, 200);
+
+            // Excuse — major
+            obj.AddPlayerLine("tor_witchhunter_lodge_bounties_excuse_major", "tor_witchhunter_lodge_bounties_menu", "tor_witchhunter_lodge_bounties_excuse_major_npc",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.excuse_major",
+                    "I beg forgiveness for the last major hunt."),
+                HasMajorFailurePending, ExcuseMajorFailure, 200, null);
+            obj.AddDialogLine("tor_witchhunter_lodge_bounties_excuse_major_npc", "tor_witchhunter_lodge_bounties_excuse_major_npc", "tor_witchhunter_lodge_bounties_menu",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.excuse_major_reply",
+                    "The Order is slow to forgive, but you have paid for it. See the next through."),
+                null, null, 200);
+
+            // Voluntary abandon — hidden until Phase B wires an active-quest check.
+            obj.AddPlayerLine("tor_witchhunter_lodge_bounties_abandon", "tor_witchhunter_lodge_bounties_menu", "close_window",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.bounties_abandon",
+                    "I cannot finish a bounty."),
+                HasAbandonableBounty, OpenAbandonBountyInquiry, 200, null);
+
+            // Ask for a new minor bounty — Phase B replaces the stub with real generation.
+            obj.AddPlayerLine("tor_witchhunter_lodge_bounties_ask_minor", "tor_witchhunter_lodge_bounties_menu", "tor_witchhunter_lodge_bounties_offer_minor_npc",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.ask_minor",
+                    "Are there minor bounties the Order needs seen to?"),
+                CanOfferMinor, null, 200, null);
+            obj.AddDialogLine("tor_witchhunter_lodge_bounties_offer_minor_npc", "tor_witchhunter_lodge_bounties_offer_minor_npc", "tor_witchhunter_lodge_bounties_menu",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.offer_minor_stub",
+                    "Nothing in the ledger right now — return in a few days."),
+                null, null, 200);
+
+            // Ask for a new major bounty — gated on MajorBountyCap > 0 (Trusted+).
+            obj.AddPlayerLine("tor_witchhunter_lodge_bounties_ask_major", "tor_witchhunter_lodge_bounties_menu", "tor_witchhunter_lodge_bounties_offer_major_npc",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.ask_major",
+                    "Are there major bounties the Order needs seen to?"),
+                CanOfferMajor, null, 200, null);
+            obj.AddDialogLine("tor_witchhunter_lodge_bounties_offer_major_npc", "tor_witchhunter_lodge_bounties_offer_major_npc", "tor_witchhunter_lodge_bounties_menu",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.offer_major_stub",
+                    "The Order's heavier hunts can wait. Return when the days have turned."),
+                null, null, 200);
+
+            obj.AddPlayerLine("tor_witchhunter_lodge_bounties_back", "tor_witchhunter_lodge_bounties_menu", "tor_witchhunter_lodge_hub",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.bounties_back",
+                    "That is all for now."),
+                null, null, 200, null);
 
             // Shared "not yet trusted" fallback — Hunts and Store both land here below rank.
             obj.AddDialogLine("tor_witchhunter_lodge_notrust", "tor_witchhunter_lodge_notrust_stub", "tor_witchhunter_lodge_hub",
@@ -238,6 +295,34 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
 
         private static bool IsWitchHunterCareer() =>
             Hero.MainHero != null && Hero.MainHero.HasCareer(TORCareers.WitchHunter);
+
+        private static WitchHunterInquisitionBehavior Inq() =>
+            Campaign.Current?.GetCampaignBehavior<WitchHunterInquisitionBehavior>();
+
+        private static bool HasMinorFailurePending() => Inq()?.MinorFailurePending == true;
+        private static bool HasMajorFailurePending() => Inq()?.MajorFailurePending == true;
+        private static void ExcuseMinorFailure() => Inq()?.ExcuseMinorFailure();
+        private static void ExcuseMajorFailure() => Inq()?.ExcuseMajorFailure();
+
+        private static bool CanOfferMinor()
+        {
+            var inq = Inq();
+            if (inq == null) return false;
+            return inq.MinorBountyCap > 0 && !inq.MinorFailurePending && inq.ActiveMinorBounties() < inq.MinorBountyCap;
+        }
+
+        private static bool CanOfferMajor()
+        {
+            var inq = Inq();
+            if (inq == null) return false;
+            return inq.MajorBountyCap > 0 && !inq.MajorFailurePending && inq.ActiveMajorBounties() < inq.MajorBountyCap;
+        }
+
+        // Phase B introduces Minor/MajorBountyQuest with [SaveableField] _acceptedAt;
+        // the abandon flow reads that to list quests ≥ 3 days old. For now the stub
+        // keeps the line hidden by always returning false.
+        private static bool HasAbandonableBounty() => false;
+        private static void OpenAbandonBountyInquiry() { /* Phase B wires the inquiry. */ }
 
         // Two-tier roster per the design: basic unlocks at Known (INQUISITION_KNOWN),
         // full set adds in at Respected (INQUISITION_RESPECTED). "Basic" is the
