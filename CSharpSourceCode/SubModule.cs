@@ -99,7 +99,20 @@ namespace TOR_Core
             ViewModelExtensionManager.Initialize(); //has to happen before harmony PatchAll
 
             HarmonyInstance = new Harmony("mod.harmony.theoldrealms");
-            HarmonyInstance.PatchAllUncategorized();
+            // Wrap PatchAll so a signature mismatch (vanilla method renamed, args changed,
+            // return type drift) leaves a breadcrumb in the TOR log instead of a silent
+            // startup crash. Harmony throws on failed patch registration otherwise.
+            try
+            {
+                HarmonyInstance.PatchAllUncategorized();
+            }
+            catch (System.Exception harmonyEx)
+            {
+                LogManager.GetCurrentClassLogger().Fatal(harmonyEx,
+                    "Harmony PatchAllUncategorized failed — a patched vanilla method likely moved. " +
+                    "Check the stack for the offending patch class. Patches will not be applied.");
+                throw;
+            }
             UIConfig.DoNotUseGeneratedPrefabs = true;
 
             TORConfig.ReadConfig();
@@ -246,6 +259,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORPartyTroopUpgradeModel());
                 gameStarterObject.AddModel(new TORPartyWageModel());
                 gameStarterObject.AddModel(new TORPrisonerRecruitmentCalculationModel());
+                gameStarterObject.AddModel(new TORPrisonerDonationModel());
                 gameStarterObject.AddModel(new TORSettlementMilitiaModel());
                 gameStarterObject.AddModel(new TORSettlementAccessModel());
                 gameStarterObject.AddModel(new TORSettlementGarrisonModel());
