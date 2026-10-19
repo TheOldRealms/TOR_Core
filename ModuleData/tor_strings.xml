@@ -6035,6 +6035,11 @@
   <string id="tor_poi_witchhunter_lodge.turnins_done" text="{=str_tor_poi_witchhunter_lodge.turnins_done}That is all for now." />
   <string id="tor_poi_witchhunter_lodge.materials_title" text="{=str_tor_poi_witchhunter_lodge.materials_title}For the Pyre" />
   <string id="tor_poi_witchhunter_lodge.materials_description" text="{=str_tor_poi_witchhunter_lodge.materials_description}What have you brought the Order?" />
+  <string id="tor_poi_witchhunter_lodge.player_companions" text="{=str_tor_poi_witchhunter_lodge.player_companions}I seek a witch hunter willing to join me." />
+  <string id="tor_poi_witchhunter_lodge.player_exclusive" text="{=str_tor_poi_witchhunter_lodge.player_exclusive}What of the Order's business for one of our own?" />
+  <string id="tor_poi_witchhunter_lodge.notrust" text="{=str_tor_poi_witchhunter_lodge.notrust}Return once you have earned our trust." />
+  <string id="tor_poi_witchhunter_lodge.companions_todo" text="{=str_tor_poi_witchhunter_lodge.companions_todo}No witch hunters are available for the taking right now. Return in time." />
+  <string id="tor_poi_witchhunter_lodge.exclusive_todo" text="{=str_tor_poi_witchhunter_lodge.exclusive_todo}The Order has nothing for you yet, brother. Return in time." />
   <string id="tor_poi_witchhunter_lodge.store_open" text="{=str_tor_poi_witchhunter_lodge.store_open}The Order's wares. These will serve you better than tavern-forged scrap." />
   <string id="tor_poi_witchhunter_lodge.store_reply" text="{=str_tor_poi_witchhunter_lodge.store_reply}What else can I do for you?" />
 

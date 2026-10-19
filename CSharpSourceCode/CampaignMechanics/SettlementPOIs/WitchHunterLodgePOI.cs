@@ -7,6 +7,8 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.CampaignMechanics.WitchHunter;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -72,9 +74,12 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         }
 
         /// <summary>
-        /// Inquisitor hub dialog. Mockup: six-option interaction fan — Hunts, Bounties,
-        /// Turn-ins, Store, (reserved special), Leave. M1 wires the hub shell; the four
-        /// content branches land as stubs that return to the hub, to be filled by M2–M5.
+        /// Inquisitor hub dialog. Design doc specifies six branches (plus Leave):
+        /// Hunts, Bounties, Turn-ins, Store, Companion Recruitment, Witch Hunter
+        /// Exclusive. Hunts and Store are rep-gated behind the <c>INQUISITION_KNOWN</c>
+        /// attribute (and store further on <c>INQUISITION_RESPECTED</c> for the full
+        /// tier — see T6). Witch Hunter Exclusive is career-gated. Companion
+        /// Recruitment is open from Unknown rank per the design.
         /// </summary>
         public override void RegisterDialogs(CampaignGameStarter obj)
         {
@@ -87,20 +92,24 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                     "What brings you to the Lodge?"),
                 IsInquisitorPartner, null, 200, null);
 
-            // --- hub player lines (mockup wording verbatim)
-            // Hunts has two variants with identical player text: when the Inquisitor is
-            // carrying an issue (HuntCultists / PlaguedVillage / future hunts) we hand off
-            // to vanilla's hero_main_options state so the standard issue brief + accept/
-            // decline flow runs. Otherwise we fall through to the stub reply.
+            // --- Hunts: three mutually-exclusive variants with identical player text.
+            // Known with an issue → vanilla hero_main_options for the issue brief flow.
+            // Known with no issue → "Return soon" stub.
+            // Not Known yet → shared "earn trust" stub so the player understands why.
             obj.AddPlayerLine("tor_witchhunter_lodge_hunts", "tor_witchhunter_lodge_hub", "hero_main_options",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_hunts",
                     "Inquisitor, I wish to aid the Empire! Do you have anything special that needs doing?"),
-                InquisitorHasHunt, null, 200, null);
+                () => IsKnown() && InquisitorHasHunt(), null, 200, null);
 
             obj.AddPlayerLine("tor_witchhunter_lodge_hunts_none", "tor_witchhunter_lodge_hub", "tor_witchhunter_lodge_hunts_stub",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_hunts",
                     "Inquisitor, I wish to aid the Empire! Do you have anything special that needs doing?"),
-                () => !InquisitorHasHunt(), null, 200, null);
+                () => IsKnown() && !InquisitorHasHunt(), null, 200, null);
+
+            obj.AddPlayerLine("tor_witchhunter_lodge_hunts_locked", "tor_witchhunter_lodge_hub", "tor_witchhunter_lodge_notrust_stub",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_hunts",
+                    "Inquisitor, I wish to aid the Empire! Do you have anything special that needs doing?"),
+                () => !IsKnown(), null, 200, null);
 
             obj.AddPlayerLine("tor_witchhunter_lodge_bounties", "tor_witchhunter_lodge_hub", "tor_witchhunter_lodge_bounties_stub",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_bounties",
@@ -112,17 +121,35 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                     "Lord Inquisitor! I have some things you might be interested in."),
                 null, null, 200, null);
 
+            // --- Store: gated by rank; T6 adds the tiered roster inside the stub.
             obj.AddPlayerLine("tor_witchhunter_lodge_store", "tor_witchhunter_lodge_hub", "tor_witchhunter_lodge_store_stub",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_store",
                     "I wish to acquire some Inquisition armaments."),
+                IsKnown, null, 200, null);
+
+            obj.AddPlayerLine("tor_witchhunter_lodge_store_locked", "tor_witchhunter_lodge_hub", "tor_witchhunter_lodge_notrust_stub",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_store",
+                    "I wish to acquire some Inquisition armaments."),
+                () => !IsKnown(), null, 200, null);
+
+            // --- Companion Recruitment: open at Unknown rank per design; Phase D fills in.
+            obj.AddPlayerLine("tor_witchhunter_lodge_companions", "tor_witchhunter_lodge_hub", "tor_witchhunter_lodge_companions_stub",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_companions",
+                    "I seek a witch hunter willing to join me."),
                 null, null, 200, null);
+
+            // --- Witch Hunter Exclusive: career-gated; design doc explicitly defers the mechanic.
+            obj.AddPlayerLine("tor_witchhunter_lodge_exclusive", "tor_witchhunter_lodge_hub", "tor_witchhunter_lodge_exclusive_stub",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_exclusive",
+                    "What of the Order's business for one of our own?"),
+                IsWitchHunterCareer, null, 200, null);
 
             obj.AddPlayerLine("tor_witchhunter_lodge_leave", "tor_witchhunter_lodge_hub", "close_window",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_leave",
                     "Have a good day Lord Inquisitor!"),
                 null, null, 200, null);
 
-            // --- stub replies (fill in M2–M5)
+            // --- stub replies
             obj.AddDialogLine("tor_witchhunter_lodge_hunts_todo", "tor_witchhunter_lodge_hunts_stub", "tor_witchhunter_lodge_hub",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.hunts_todo",
                     "Return soon — I will have hunts to assign."),
@@ -131,6 +158,22 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             obj.AddDialogLine("tor_witchhunter_lodge_bounties_todo", "tor_witchhunter_lodge_bounties_stub", "tor_witchhunter_lodge_hub",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.bounties_todo",
                     "Nothing new in the ledger just yet. Return in time."),
+                null, null, 200);
+
+            // Shared "not yet trusted" fallback — Hunts and Store both land here below rank.
+            obj.AddDialogLine("tor_witchhunter_lodge_notrust", "tor_witchhunter_lodge_notrust_stub", "tor_witchhunter_lodge_hub",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.notrust",
+                    "Return once you have earned our trust."),
+                null, null, 200);
+
+            obj.AddDialogLine("tor_witchhunter_lodge_companions_todo", "tor_witchhunter_lodge_companions_stub", "tor_witchhunter_lodge_hub",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.companions_todo",
+                    "No witch hunters are available for the taking right now. Return in time."),
+                null, null, 200);
+
+            obj.AddDialogLine("tor_witchhunter_lodge_exclusive_todo", "tor_witchhunter_lodge_exclusive_stub", "tor_witchhunter_lodge_hub",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.exclusive_todo",
+                    "The Order has nothing for you yet, brother. Return in time."),
                 null, null, 200);
 
             // --- turn-ins dispatcher
@@ -190,38 +233,58 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             return partner?.HeroObject?.Issue != null;
         }
 
-        // Curated witch-hunter trade roster. Pulled from the three canonical equipment
-        // templates (wanderer, lord-companion, qnpc) plus silver-bullet ammo as the
-        // thematic chaser. Flat tier — no prestige/career gates.
-        private static readonly string[] InquisitionStoreItemIds = new[]
+        private static bool IsKnown() =>
+            Hero.MainHero?.HasAttribute(WitchHunterInquisitionBehavior.AttrKnown) == true;
+
+        private static bool IsWitchHunterCareer() =>
+            Hero.MainHero != null && Hero.MainHero.HasCareer(TORCareers.WitchHunter);
+
+        // Two-tier roster per the design: basic unlocks at Known (INQUISITION_KNOWN),
+        // full set adds in at Respected (INQUISITION_RESPECTED). "Basic" is the
+        // lower-end witch hunter kit — plain hat, boots, gloves, rapier mk1, handgun
+        // mk1, standard ball. "Full-tier adds" layer in the heavier armor pieces,
+        // the companion-grade hat, upgraded rapier + flintlock pistols, and the
+        // thematic silver bullets.
+        private static readonly string[] StoreTierBasic = new[]
         {
-            // Armor — hats cycle three tiers from basic to companion-grade.
             "tor_empire_head_hat_witch_hunter_001",
+            "tor_empire_arm_gauntlet_witch_hunter_001",
+            "tor_empire_leg_boots_witch_hunter_001",
+            "tor_empire_weapon_rapier_001",
+            "tor_empire_weapon_gun_handgun_003",
+            "tor_neutral_weapon_ammo_musket_ball",
+        };
+
+        private static readonly string[] StoreTierFullAdds = new[]
+        {
             "tor_empire_head_hat_witch_hunter_002",
             "tor_empire_head_hat_witch_hunter_003",
             "tor_empire_body_armor_witch_hunter_001",
             "tor_empire_shoulder_pauldron_witch_hunter_001",
-            "tor_empire_arm_gauntlet_witch_hunter_001",
-            "tor_empire_leg_boots_witch_hunter_001",
-            // Weapons — rapier for silverware and flintlocks for the heretic.
-            "tor_empire_weapon_rapier_001",
             "tor_empire_weapon_rapier_002",
-            "tor_empire_weapon_gun_handgun_003",
             "tor_empire_weapon_gun_flintlock_pistol_007",
             "tor_empire_weapon_gun_flintlock_pistol_008",
-            // Ammo — includes the silver shot the Order is known for.
-            "tor_neutral_weapon_ammo_musket_ball",
             "tor_neutral_weapon_ammo_silver_bullet",
         };
 
         private static void OpenInquisitionStore()
         {
+            var full = Hero.MainHero?.HasAttribute(WitchHunterInquisitionBehavior.AttrRespected) == true;
             var roster = new ItemRoster();
-            foreach (var id in InquisitionStoreItemIds)
+            foreach (var id in StoreTierBasic)
             {
                 var item = MBObjectManager.Instance.GetObject<ItemObject>(id);
                 if (item == null) continue;
                 roster.Add(new ItemRosterElement(item, MBRandom.RandomInt(1, 4)));
+            }
+            if (full)
+            {
+                foreach (var id in StoreTierFullAdds)
+                {
+                    var item = MBObjectManager.Instance.GetObject<ItemObject>(id);
+                    if (item == null) continue;
+                    roster.Add(new ItemRosterElement(item, MBRandom.RandomInt(1, 4)));
+                }
             }
             InventoryScreenHelper.OpenScreenAsTrade(roster, Settlement.CurrentSettlement.Town);
         }
