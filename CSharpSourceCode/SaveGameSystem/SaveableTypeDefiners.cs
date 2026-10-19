@@ -89,6 +89,7 @@ namespace TOR_Core.SaveGameSystem
             // the field layout saved under the old class name.
             AddClassDefinition(typeof(CampaignMechanics.WitchHunter.Bounties.MinorBountyKillQuest), 213);
             AddClassDefinition(typeof(CampaignMechanics.WitchHunter.Bounties.MinorBountyCaptureQuest), 214);
+            AddClassDefinition(typeof(CampaignMechanics.WitchHunter.Bounties.MinorBountyDefeatPartyQuest), 215);
         }
 
         protected override void DefineEnumTypes() //watch out for the save ids used for class definitions, conflicts will cause crashes on load

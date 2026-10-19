@@ -86,6 +86,34 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
                 briefFallback: "Chaos warbands grow bold. Take {COUNT} of them alive — the Order will pay well for prisoners of their calibre.",
                 titleKey: "tor_wh_bounty_minor_capture_chaos_title",
                 titleFallback: "Chaos Prisoners Wanted Alive"),
+
+            // --- Defeat-parties templates: progress ticks per defeated enemy party
+            // containing matching troops. "Bands of X" semantics.
+            ["minor_defeat_cultists"] = new BountyTemplate(
+                id: "minor_defeat_cultists",
+                objectiveType: BountyObjectiveType.DefeatParties,
+                targetMatches: t => t?.IsCultist() == true,
+                targetLabel: "chaos cultist bands",
+                countMin: 2, countMax: 4,
+                goldMin: 0, goldMax: 0,
+                prestigeMin: 50, prestigeMax: 100,
+                briefKey: "tor_wh_bounty_minor_defeat_cultists_brief",
+                briefFallback: "Our scouts have spotted {COUNT} cultist bands on the roads. Scatter them.",
+                titleKey: "tor_wh_bounty_minor_defeat_cultists_title",
+                titleFallback: "Scatter the Cultist Bands"),
+
+            ["minor_defeat_chaos_raids"] = new BountyTemplate(
+                id: "minor_defeat_chaos_raids",
+                objectiveType: BountyObjectiveType.DefeatParties,
+                targetMatches: t => t?.IsChaos() == true,
+                targetLabel: "chaos raiding parties",
+                countMin: 2, countMax: 3,
+                goldMin: 3000, goldMax: 4500,
+                prestigeMin: 0, prestigeMax: 0,
+                briefKey: "tor_wh_bounty_minor_defeat_chaos_raids_brief",
+                briefFallback: "Marauders are burning villages. Break {COUNT} of their raiding parties and the Order will see you paid.",
+                titleKey: "tor_wh_bounty_minor_defeat_chaos_raids_title",
+                titleFallback: "Break the Chaos Raiders"),
         };
 
         public static BountyTemplate GetMinor(string id) =>
