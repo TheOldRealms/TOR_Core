@@ -424,9 +424,7 @@
     <Compile Include="CampaignMechanics\WitchHunter\Bounties\BountyTemplates.cs" />
     <Compile Include="CampaignMechanics\WitchHunter\Bounties\MinorBountyIssue.cs" />
     <Compile Include="CampaignMechanics\WitchHunter\Bounties\MinorBountyQuestBase.cs" />
-    <Compile Include="CampaignMechanics\WitchHunter\Bounties\MinorBountyKillQuest.cs" />
-    <Compile Include="CampaignMechanics\WitchHunter\Bounties\MinorBountyCaptureQuest.cs" />
-    <Compile Include="CampaignMechanics\WitchHunter\Bounties\MinorBountyDefeatPartyQuest.cs" />
+    <Compile Include="CampaignMechanics\WitchHunter\Bounties\MinorBountyQuest.cs" />
     <Compile Include="CampaignMechanics\Shared\MaterialTurnInHelper.cs" />
     <Compile Include="CampaignMechanics\Shared\DonationSideEffectSuppression.cs" />
     <Compile Include="Models\TORPrisonerDonationModel.cs" />
