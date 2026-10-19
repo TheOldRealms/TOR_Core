@@ -1,7 +1,10 @@
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.ComponentInterfaces;
 using TaleWorlds.CampaignSystem.MapEvents;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
+using TaleWorlds.Core;
 
 namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
 {
@@ -24,17 +27,20 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
 
         protected override void RegisterEvents()
         {
-            // All battle-driven objective types feed off the same vanilla event;
-            // the switch inside OnBattleEnd picks the right counter. Capture
-            // bounties are push-driven via OnLodgePrisonersDonated and don't
-            // need the subscription, but subscribing uniformly is cheaper than
-            // branching on type at Register time.
+            // Two vanilla events cover all objective types. OnPlayerBattleEndEvent
+            // handles Kill / DefeatParties — the switch inside OnBattleEnd picks
+            // the counter. OnHideoutBattleCompletedEvent fires in addition for
+            // hideout wins (vanilla also fires the general battle event, so
+            // Kill/DefeatParties still count kills in a hideout naturally).
+            // Capture is push-driven via OnLodgePrisonersDonated, no subscription.
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, OnBattleEnd);
+            CampaignEvents.OnHideoutBattleCompletedEvent.AddNonSerializedListener(this, OnHideoutCompleted);
         }
 
         protected override void OnFinalize()
         {
             CampaignEvents.OnPlayerBattleEndEvent.ClearListeners(this);
+            CampaignEvents.OnHideoutBattleCompletedEvent.ClearListeners(this);
         }
 
         private void OnBattleEnd(MapEvent mapEvent)
@@ -56,9 +62,31 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
                 case BountyObjectiveType.DefeatParties:
                     BumpProgressBy(CountMatchingParties(defeatedSide, template));
                     break;
-                // CaptureTroops is handled via OnLodgePrisonersDonated.
-                // ClearHideout will land here as a new case (Phase C step 4).
+                // CaptureTroops handled via OnLodgePrisonersDonated.
+                // ClearHideout handled via OnHideoutCompleted — fires on its own event.
             }
+        }
+
+        private void OnHideoutCompleted(BattleSideEnum battleSide, HideoutEventComponent eventComponent, HideoutEventComponent.HideoutBattleEndState endState)
+        {
+            var template = Template;
+            if (template.ObjectiveType != BountyObjectiveType.ClearHideout) return;
+            if (template.IsEmpty || template.TargetMatches == null) return;
+
+            var mapEvent = eventComponent?.MapEvent;
+            if (mapEvent == null) return;
+            if (!mapEvent.HasWinner || mapEvent.WinningSide != mapEvent.PlayerSide) return;
+
+            // Hideout counts as 1 if any troop in its garrison matched the template.
+            // "Chaos cultist hideouts" are hideouts whose defenders include cultists,
+            // and so on for other categories; the troop-level predicate transfers
+            // cleanly because the hideout's garrison composition names the hideout
+            // (bandit hideouts contain bandits, cult lairs contain cultists, etc.).
+            var defeatedSide = mapEvent.GetMapEventSide(mapEvent.DefeatedSide);
+            if (defeatedSide == null) return;
+            bool matched = defeatedSide.Parties
+                .Any(p => p.Troops.Any(t => template.TargetMatches(t.Troop)));
+            if (matched) BumpProgressBy(1);
         }
 
         public override void OnLodgePrisonersDonated(FlattenedTroopRoster roster)

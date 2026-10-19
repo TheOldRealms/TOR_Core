@@ -114,6 +114,34 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
                 briefFallback: "Marauders are burning villages. Break {COUNT} of their raiding parties and the Order will see you paid.",
                 titleKey: "tor_wh_bounty_minor_defeat_chaos_raids_title",
                 titleFallback: "Break the Chaos Raiders"),
+
+            // --- Clear-hideout templates: progress ticks per hideout battle won
+            // whose garrison contains any troop matching the predicate.
+            ["minor_clear_cultist_hideouts"] = new BountyTemplate(
+                id: "minor_clear_cultist_hideouts",
+                objectiveType: BountyObjectiveType.ClearHideout,
+                targetMatches: t => t?.IsCultist() == true,
+                targetLabel: "cult lairs",
+                countMin: 2, countMax: 3,
+                goldMin: 0, goldMax: 0,
+                prestigeMin: 80, prestigeMax: 120,
+                briefKey: "tor_wh_bounty_minor_clear_cultist_hideouts_brief",
+                briefFallback: "The Order has mapped {COUNT} active cult lairs. Burn them out.",
+                titleKey: "tor_wh_bounty_minor_clear_cultist_hideouts_title",
+                titleFallback: "Burn the Cult Lairs"),
+
+            ["minor_clear_chaos_hideouts"] = new BountyTemplate(
+                id: "minor_clear_chaos_hideouts",
+                objectiveType: BountyObjectiveType.ClearHideout,
+                targetMatches: t => t?.IsChaos() == true,
+                targetLabel: "chaos hideouts",
+                countMin: 2, countMax: 3,
+                goldMin: 3000, goldMax: 4500,
+                prestigeMin: 0, prestigeMax: 0,
+                briefKey: "tor_wh_bounty_minor_clear_chaos_hideouts_brief",
+                briefFallback: "Marauder bands have dug in near our settlements. Dig {COUNT} of them out.",
+                titleKey: "tor_wh_bounty_minor_clear_chaos_hideouts_title",
+                titleFallback: "Root Out the Marauder Hideouts"),
         };
 
         public static BountyTemplate GetMinor(string id) =>
