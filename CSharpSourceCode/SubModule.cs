@@ -53,6 +53,7 @@ using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 using TOR_Core.CampaignMechanics.SettlementPOIs;
 using TOR_Core.CampaignMechanics.UniqueSpawns;
+using TOR_Core.CampaignMechanics.WitchHunter;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -174,6 +175,7 @@ namespace TOR_Core
                 // SettlementPOI subclasses self-register via reflection on session launch;
                 // SubModule only needs the manager behavior itself.
                 starter.AddBehavior(new SettlementPOIManagerCampaignBehavior());
+                starter.AddBehavior(new WitchHunterInquisitionBehavior());
                 starter.AddBehavior(new PrestigeNobleTownBehavior());
                 starter.AddBehavior(new EonirFavorEnvoyTownBehavior());
                 starter.AddBehavior(new TORPerkHandlerCampaignBehavior());

@@ -417,6 +417,11 @@
     <Compile Include="CampaignMechanics\SettlementPOIs\ISpellTrainerHost.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\TrainerPlacement.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\WitchHunterLodgePOI.cs" />
+    <Compile Include="CampaignMechanics\WitchHunter\InquisitionRank.cs" />
+    <Compile Include="CampaignMechanics\WitchHunter\WitchHunterInquisitionBehavior.cs" />
+    <Compile Include="CampaignMechanics\Shared\MaterialTurnInHelper.cs" />
+    <Compile Include="CampaignMechanics\Shared\DonationSideEffectSuppression.cs" />
+    <Compile Include="HarmonyPatches\SuppressDonationInfluencePatch.cs" />
     <Compile Include="CampaignMechanics\TORAIRecruitmentCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCaptivityCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\CustomSettlementMenus\CursedSiteMenuLogic.cs" />
