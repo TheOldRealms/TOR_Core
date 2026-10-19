@@ -1,4 +1,9 @@
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Roster;
+using TaleWorlds.CampaignSystem.Settlements;
+using TOR_Core.CampaignMechanics.SettlementPOIs;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.WitchHunter
@@ -109,6 +114,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
         public override void RegisterEvents()
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
+            CampaignEvents.OnPrisonerDonatedToSettlementEvent.AddNonSerializedListener(this, OnPrisonersSold);
         }
 
         public override void SyncData(IDataStore dataStore)
@@ -125,6 +131,61 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
             // predate the behavior (counters default to 0, no-op) and the natural
             // case where attributes were already applied in a prior session.
             ApplyRankAttributes();
+        }
+
+        /// <summary>
+        /// Prisoner-donation callback. Fires on every donation (ours, Eonir's,
+        /// vanilla's); checks our lodge-donation flag first and bails out
+        /// cleanly otherwise. Rewards are ransom-broker-style gold per troop
+        /// with a 2.5× multiplier for heretical categories, plus a small
+        /// prestige stipend. Hero prisoners pay a flat high-tier rate and
+        /// are released via <see cref="EndCaptivityAction.ApplyByRansom"/>
+        /// (matches the Eonir envoy's "release immediately" model —
+        /// avoids forcing the player to micro-manage captured heroes).
+        /// </summary>
+        private void OnPrisonersSold(MobileParty seller, FlattenedTroopRoster roster, Settlement receiving)
+        {
+            if (!WitchHunterTurnInHelper.IsLodgeDonationActive) return;
+            if (seller != MobileParty.MainParty) return;
+
+            // Defensive: if we're not actually in a lodge town, bail. Stale flag
+            // from a cancelled screen would otherwise fire against the wrong town.
+            var lodge = receiving?.LocationComplex?.GetLocationWithId("tor_witchhunter_lodge");
+            if (lodge == null || lodge.GetSceneCount() == 0)
+            {
+                WitchHunterTurnInHelper.EndLodgeDonation();
+                return;
+            }
+
+            try
+            {
+                int gold = 0, prestige = 0;
+                foreach (var el in roster)
+                {
+                    gold     += WitchHunterTurnInHelper.CalculateHereticalGoldFor(el.Troop);
+                    prestige += WitchHunterTurnInHelper.CalculateHereticalPrestigeFor(el.Troop);
+
+                    if (el.Troop.IsHero && el.Troop.HeroObject != null && el.Troop.HeroObject.IsAlive)
+                    {
+                        // Clean release — the envoy / lodge takes care of them. No vanilla
+                        // execution path (that's a design non-goal; the Inquisition handles
+                        // disposal off-screen).
+                        EndCaptivityAction.ApplyByRansom(el.Troop.HeroObject, null);
+                    }
+                    else
+                    {
+                        // Remove from the receiving settlement's prison roster so vanilla
+                        // doesn't swell the garrison with our handed-off prisoners.
+                        receiving.Party.PrisonRoster.RemoveTroop(el.Troop);
+                    }
+                }
+                if (gold > 0) GiveGoldAction.ApplyBetweenCharacters(null, Hero.MainHero, gold);
+                if (prestige > 0) Hero.MainHero.AddCustomResource("Prestige", prestige);
+            }
+            finally
+            {
+                WitchHunterTurnInHelper.EndLodgeDonation();
+            }
         }
 
         /// <summary>

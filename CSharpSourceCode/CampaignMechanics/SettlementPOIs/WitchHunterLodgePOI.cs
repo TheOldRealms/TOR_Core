@@ -134,45 +134,24 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 null, null, 200);
 
             // --- turn-ins dispatcher
-            // Branch at the stub state: if the player has anything qualifying, drop into
-            // the sub-menu; otherwise reply "nothing to burn" and return to the hub.
+            // NPC pivots the player into the sub-menu with a short line. The materials
+            // and prisoners sub-flows live in WitchHunterTurnInHelper and each take over
+            // the UI entirely (inquiry popup / donate-to-town screen), so both target
+            // close_window as their consequence point.
             obj.AddDialogLine("tor_witchhunter_lodge_turnins_open", "tor_witchhunter_lodge_turnins_stub", "tor_witchhunter_lodge_turnins_menu",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.turnins_open",
-                    "Show me what you have brought."),
-                WitchHunterTurnInHelper.AnyTurnInAvailable, null, 200);
-
-            obj.AddDialogLine("tor_witchhunter_lodge_turnins_nothing", "tor_witchhunter_lodge_turnins_stub", "tor_witchhunter_lodge_hub",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.turnins_todo",
-                    "You bring nothing worth burning. Return when you have."),
-                () => !WitchHunterTurnInHelper.AnyTurnInAvailable(), null, 200);
-
-            // Chaos — bulk per-head
-            obj.AddPlayerLine("tor_witchhunter_lodge_turnins_chaos", "tor_witchhunter_lodge_turnins_menu", "tor_witchhunter_lodge_turnins_chaos_done",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.turnins_chaos",
-                    "I bring {WHL_CHAOS_COUNT} cultists and heretics for your judgement."),
-                WitchHunterTurnInHelper.UpdateChaosLine, WitchHunterTurnInHelper.TurnInChaos, 200, null);
-            obj.AddDialogLine("tor_witchhunter_lodge_turnins_chaos_reply", "tor_witchhunter_lodge_turnins_chaos_done", "tor_witchhunter_lodge_turnins_menu",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.turnins_chaos_reply",
-                    "Good. The purifying flames await them."),
+                    "What have you brought the Order?"),
                 null, null, 200);
 
-            // Undead — bulk per-head
-            obj.AddPlayerLine("tor_witchhunter_lodge_turnins_undead", "tor_witchhunter_lodge_turnins_menu", "tor_witchhunter_lodge_turnins_undead_done",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.turnins_undead",
-                    "I bring {WHL_UNDEAD_COUNT} undead vermin for cleansing."),
-                WitchHunterTurnInHelper.UpdateUndeadLine, WitchHunterTurnInHelper.TurnInUndead, 200, null);
-            obj.AddDialogLine("tor_witchhunter_lodge_turnins_undead_reply", "tor_witchhunter_lodge_turnins_undead_done", "tor_witchhunter_lodge_turnins_menu",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.turnins_undead_reply",
-                    "Sigmar's holy fire shall consume them. Sword and flame, as it must be."),
-                null, null, 200);
+            obj.AddPlayerLine("tor_witchhunter_lodge_turnins_materials", "tor_witchhunter_lodge_turnins_menu", "close_window",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.turnins_materials",
+                    "Materials for the pyre — scrolls, warpstone."),
+                null, WitchHunterTurnInHelper.OpenMaterialTurnIn, 200, null);
 
-            // Hero prisoners — close dialog and open a selection popup; execution + rewards
-            // apply per-hero. Running the popup from the dialog consequence lets the player
-            // pick a subset rather than committing a bulk action in a single line.
-            obj.AddPlayerLine("tor_witchhunter_lodge_turnins_heroes", "tor_witchhunter_lodge_turnins_menu", "close_window",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.turnins_heroes",
-                    "I have {WHL_HERO_COUNT} enemies of the faith to put on trial."),
-                WitchHunterTurnInHelper.UpdateHeroesLine, WitchHunterTurnInHelper.OpenHereticHeroSelection, 200, null);
+            obj.AddPlayerLine("tor_witchhunter_lodge_turnins_prisoners", "tor_witchhunter_lodge_turnins_menu", "close_window",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.turnins_prisoners",
+                    "Prisoners for the Order to deal with."),
+                null, WitchHunterTurnInHelper.OpenPrisonerTurnIn, 200, null);
 
             obj.AddPlayerLine("tor_witchhunter_lodge_turnins_done", "tor_witchhunter_lodge_turnins_menu", "tor_witchhunter_lodge_hub",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.turnins_done",

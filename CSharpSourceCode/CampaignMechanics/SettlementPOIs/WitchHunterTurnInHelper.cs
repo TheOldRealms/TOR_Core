@@ -1,153 +1,168 @@
 using System.Collections.Generic;
-using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.ViewModelCollection;
+using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
-using TaleWorlds.Core.ImageIdentifiers;
-using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TaleWorlds.ObjectSystem;
+using TOR_Core.CampaignMechanics.Shared;
 using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.SettlementPOIs
 {
     /// <summary>
-    /// Shared helpers for the Witch Hunter Lodge turn-in branch — prisoner filters, dialog
-    /// conditions, and consequence callbacks. Lives in its own file so
-    /// <see cref="WitchHunterLodgePOI"/> stays a thin dialog-registration surface.
+    /// Dialog consequences for the Witch Hunter Lodge's Turn-ins branch. Two
+    /// sub-flows per the Chapterhouse design doc:
     ///
-    /// Reward constants are intentional placeholders; expect to tune after playtest.
+    /// <list type="bullet">
+    /// <item><b>Materials</b> — Warpstone Dust and Arcane Scrolls, delivered via
+    /// the shared <see cref="MaterialTurnInHelper"/>. Enchanted gear deferred to
+    /// Phase E (needs a trait-based filter).</item>
+    /// <item><b>Prisoners</b> — the Druchii-envoy pattern: open vanilla's donate-
+    /// to-town screen as a UI vehicle, catch <c>OnPrisonerDonatedToSettlementEvent</c>
+    /// in <see cref="WitchHunter.WitchHunterInquisitionBehavior"/>, apply ransom-
+    /// broker-style rewards with a heretical-category multiplier, suppress the
+    /// vanilla kingdom-influence gain via <see cref="DonationSideEffectSuppression"/>.</item>
+    /// </list>
+    ///
+    /// Reward constants are placeholders anchored to the Empire Quests Mechanics
+    /// spreadsheet; expect to tune after playtest.
     /// </summary>
     public static class WitchHunterTurnInHelper
     {
-        public const int ChaosGoldPerHead = 50;
-        public const int ChaosPrestigePerHead = 1;
+        // ------- Materials turn-in
 
-        public const int UndeadGoldPerHead = 75;
-        public const int UndeadPrestigePerHead = 2;
+        public const int WarpstoneBatchSize = 1;
+        public const int ScrollBatchSize    = 1;
 
-        public const int HeroGoldPerHead = 1000;
-        public const int HeroPrestigePerHead = 25;
-        public const int HeroInquisitorRelation = 2;
+        public const int WarpstonePrestige  = 50;
+        public const int WarpstoneGold      = 300;
+        public const int ScrollPrestige     = 10;
+        public const int ScrollGold         = 100;
 
-        public static int CountChaosPrisoners() =>
-            PrisonerElements().Where(x => !x.Character.IsHero && x.Character.IsChaos())
-                              .Sum(x => x.Number);
-
-        public static int CountUndeadPrisoners() =>
-            PrisonerElements().Where(x => !x.Character.IsHero && (x.Character.IsUndead() || x.Character.IsVampire()))
-                              .Sum(x => x.Number);
-
-        public static List<Hero> HereticHeroPrisoners() =>
-            PrisonerElements().Where(x => x.Character.IsHero && x.Character.HeroObject != null
-                                          && (x.Character.HeroObject.IsVampire() || x.Character.HeroObject.IsChaos()))
-                              .Select(x => x.Character.HeroObject)
-                              .ToList();
-
-        public static bool AnyTurnInAvailable() =>
-            CountChaosPrisoners() > 0 || CountUndeadPrisoners() > 0 || HereticHeroPrisoners().Count > 0;
-
-        // Dialog-line conditions: set the display count variable, hide the line when empty.
-        public static bool UpdateChaosLine()
+        public static void OpenMaterialTurnIn()
         {
-            int n = CountChaosPrisoners();
-            MBTextManager.SetTextVariable("WHL_CHAOS_COUNT", n);
-            return n > 0;
+            MaterialTurnInHelper.OpenInquiry(
+                title: new TextObject(TORTextHelper.GetText(
+                    "tor_poi_witchhunter_lodge.materials_title",
+                    "For the Pyre")),
+                description: new TextObject(TORTextHelper.GetText(
+                    "tor_poi_witchhunter_lodge.materials_description",
+                    "What have you brought the Order?")),
+                minSelect: 1, maxSelect: 32,
+                supplier: BuildMaterialOptions,
+                reward: AwardMaterialRewards);
         }
 
-        public static bool UpdateUndeadLine()
+        private static IEnumerable<TurnInOption> BuildMaterialOptions(ItemRoster roster)
         {
-            int n = CountUndeadPrisoners();
-            MBTextManager.SetTextVariable("WHL_UNDEAD_COUNT", n);
-            return n > 0;
-        }
-
-        public static bool UpdateHeroesLine()
-        {
-            int n = HereticHeroPrisoners().Count;
-            MBTextManager.SetTextVariable("WHL_HERO_COUNT", n);
-            return n > 0;
-        }
-
-        public static void TurnInChaos() =>
-            TurnInTroops(x => !x.Character.IsHero && x.Character.IsChaos(),
-                         ChaosGoldPerHead, ChaosPrestigePerHead);
-
-        public static void TurnInUndead() =>
-            TurnInTroops(x => !x.Character.IsHero && (x.Character.IsUndead() || x.Character.IsVampire()),
-                         UndeadGoldPerHead, UndeadPrestigePerHead);
-
-        public static void OpenHereticHeroSelection()
-        {
-            // Snapshot the inquisitor the player is currently speaking to — ShowMultiSelectionInquiry
-            // runs after the dialog closes, so the OneToOne reference will be gone by then.
-            var inquisitor = CharacterObject.OneToOneConversationCharacter?.HeroObject;
-
-            var heroes = HereticHeroPrisoners();
-            if (heroes.Count == 0) return;
-
-            var elements = heroes.Select(h => new InquiryElement(
-                h,
-                h.Name.ToString(),
-                new CharacterImageIdentifier(CampaignUIHelper.GetCharacterCode(h.CharacterObject)))).ToList();
-
-            var title = TORTextHelper.GetText("tor_poi_witchhunter_lodge.heroes_popup_title",
-                "Put on Trial");
-            var desc = TORTextHelper.GetText("tor_poi_witchhunter_lodge.heroes_popup_desc",
-                "Select which captives to hand to the Inquisition. They will not be seen again.");
-            var accept = TORTextHelper.GetText("tor_poi_witchhunter_lodge.heroes_popup_accept", "Execute");
-            var cancel = TORTextHelper.GetText("tor_poi_witchhunter_lodge.heroes_popup_cancel", "Cancel");
-
-            var inq = new MultiSelectionInquiryData(
-                title, desc, elements, true, 0, elements.Count, accept, cancel,
-                picked => ExecuteSelected(picked, inquisitor), null);
-            MBInformationManager.ShowMultiSelectionInquiry(inq, true);
-        }
-
-        // ---- internals
-
-        private static IEnumerable<TaleWorlds.CampaignSystem.Roster.TroopRosterElement> PrisonerElements() =>
-            MobileParty.MainParty?.PrisonRoster?.GetTroopRoster()
-                ?? Enumerable.Empty<TaleWorlds.CampaignSystem.Roster.TroopRosterElement>();
-
-        private static void TurnInTroops(
-            System.Func<TaleWorlds.CampaignSystem.Roster.TroopRosterElement, bool> match,
-            int goldPerHead, int prestigePerHead)
-        {
-            var matched = PrisonerElements().Where(match).ToList();
-            int total = 0;
-            foreach (var el in matched)
+            var warpstone = MBObjectManager.Instance.GetObject<ItemObject>("tor_tradegood_warpstone_dust");
+            if (warpstone != null)
             {
-                total += el.Number;
-                MobileParty.MainParty.PrisonRoster.RemoveTroop(el.Character, el.Number);
+                var count = roster.GetItemNumber(warpstone);
+                for (int i = 0; i < count; i += WarpstoneBatchSize)
+                {
+                    yield return new TurnInOption(
+                        warpstone, WarpstoneBatchSize,
+                        warpstone.Name.ToString(),
+                        tooltip: $"{WarpstonePrestige} Prestige + {WarpstoneGold} gold",
+                        tag: "warpstone");
+                    // One option per unit shown — player can pick as many as they
+                    // like via the multi-select. Keeps per-item visibility simple.
+                    if (i >= 99) break;   // sanity ceiling
+                }
             }
-            if (total == 0) return;
 
-            GiveGoldAction.ApplyBetweenCharacters(null, Hero.MainHero, total * goldPerHead);
-            Hero.MainHero.AddCustomResource("Prestige", total * prestigePerHead);
+            var scroll = MBObjectManager.Instance.GetObject<ItemObject>("tor_tradegood_arcane_scroll");
+            if (scroll != null)
+            {
+                var count = roster.GetItemNumber(scroll);
+                for (int i = 0; i < count; i += ScrollBatchSize)
+                {
+                    yield return new TurnInOption(
+                        scroll, ScrollBatchSize,
+                        scroll.Name.ToString(),
+                        tooltip: $"{ScrollPrestige} Prestige + {ScrollGold} gold",
+                        tag: "scroll");
+                    if (i >= 99) break;
+                }
+            }
         }
 
-        private static void ExecuteSelected(List<InquiryElement> picked, Hero inquisitor)
+        private static void AwardMaterialRewards(IReadOnlyList<TurnInOption> picked)
         {
-            if (picked == null || picked.Count == 0) return;
-
-            int paid = 0;
-            foreach (var el in picked)
+            int prestige = 0, gold = 0;
+            foreach (var opt in picked)
             {
-                var hero = el.Identifier as Hero;
-                if (hero == null || !hero.IsAlive) continue;
-
-                KillCharacterAction.ApplyByExecution(hero, Hero.MainHero, true);
-                paid++;
+                switch (opt.Tag as string)
+                {
+                    case "warpstone": prestige += WarpstonePrestige; gold += WarpstoneGold; break;
+                    case "scroll":    prestige += ScrollPrestige;    gold += ScrollGold;    break;
+                }
             }
-            if (paid == 0) return;
+            if (gold > 0) GiveGoldAction.ApplyBetweenCharacters(null, Hero.MainHero, gold);
+            if (prestige > 0) Hero.MainHero.AddCustomResource("Prestige", prestige);
+        }
 
-            GiveGoldAction.ApplyBetweenCharacters(null, Hero.MainHero, paid * HeroGoldPerHead);
-            Hero.MainHero.AddCustomResource("Prestige", paid * HeroPrestigePerHead);
-            if (inquisitor != null)
-                ChangeRelationAction.ApplyPlayerRelation(inquisitor, paid * HeroInquisitorRelation);
+        // ------- Prisoner turn-in (Druchii envoy pattern)
+
+        public const float HereticalGoldMultiplier = 2.5f;
+        public const int HereticalPrestigePerHead = 1;
+        public const int HeroPrestige = 25;
+        public const int HeroGold = 1000;
+
+        /// <summary>
+        /// True while a prisoner-donation flow originated from the lodge is in
+        /// flight. The Inquisition behavior's <c>OnPrisonersSold</c> handler
+        /// checks this before processing — the same event also fires for other
+        /// TOR flows (Eonir envoy) and vanilla donations.
+        /// </summary>
+        public static bool IsLodgeDonationActive { get; private set; }
+
+        public static void OpenPrisonerTurnIn()
+        {
+            IsLodgeDonationActive = true;
+            DonationSideEffectSuppression.Begin();
+            Helpers.PartyScreenHelper.OpenScreenAsDonatePrisoners();
+            // Flag + suppression are cleared in the behavior's OnPrisonersSold
+            // handler. If the player cancels, the stale flag is harmless until
+            // the player enters another donation flow in a non-lodge town, where
+            // the behavior's defensive settlement check will skip and clear it.
+        }
+
+        public static void EndLodgeDonation()
+        {
+            if (IsLodgeDonationActive)
+            {
+                IsLodgeDonationActive = false;
+                DonationSideEffectSuppression.End();
+            }
+        }
+
+        public static int CalculateHereticalGoldFor(CharacterObject troop)
+        {
+            if (troop == null) return 0;
+            if (troop.IsHero) return HeroGold;
+            var baseGold = 20 + troop.Tier * 20;  // placeholder tier-scaling rate
+            return IsHeretical(troop) ? (int)(baseGold * HereticalGoldMultiplier) : baseGold;
+        }
+
+        public static int CalculateHereticalPrestigeFor(CharacterObject troop)
+        {
+            if (troop == null) return 0;
+            if (troop.IsHero) return HeroPrestige;
+            return IsHeretical(troop) ? HereticalPrestigePerHead : 0;
+        }
+
+        private static bool IsHeretical(CharacterObject troop)
+        {
+            if (troop == null) return false;
+            // IsChaos covers CHAOS + CHAOS_CULTIST cultures (includes cultists).
+            if (troop.IsChaos()) return true;
+            if (troop.IsUndead()) return true;
+            if (troop.IsVampire()) return true;
+            return false;
         }
     }
 }
