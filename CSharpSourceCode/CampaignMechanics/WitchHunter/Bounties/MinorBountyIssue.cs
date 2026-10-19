@@ -134,6 +134,10 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
                     return new MinorBountyKillQuest(
                         questId, IssueOwner, duration,
                         _templateId, _targetCount, _rewardGold, _rewardPrestige);
+                case BountyObjectiveType.CaptureTroops:
+                    return new MinorBountyCaptureQuest(
+                        questId, IssueOwner, duration,
+                        _templateId, _targetCount, _rewardGold, _rewardPrestige);
                 default:
                     throw new System.NotImplementedException(
                         $"MinorBountyIssue: objective type {Template.ObjectiveType} not implemented yet.");

@@ -1,6 +1,7 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Conversation;
+using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
 using TOR_Core.Extensions;
@@ -136,6 +137,17 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
             acceptLog.SetTextVariable("TARGET", t.TargetLabel);
             AddLog(acceptLog);
         }
+
+        /// <summary>
+        /// Pushed by <see cref="WitchHunterInquisitionBehavior.OnPrisonersSold"/>
+        /// whenever the player uses the lodge's Prisoners turn-in — the behavior
+        /// already fires on the right event with the full donated roster, so
+        /// capture-type quests don't need their own subscription (which would
+        /// race against the behavior's suppression-flag teardown). Default no-op;
+        /// <see cref="MinorBountyCaptureQuest"/> overrides to count matching
+        /// donations.
+        /// </summary>
+        public virtual void OnLodgePrisonersDonated(FlattenedTroopRoster roster) { }
 
         /// <summary>
         /// Subclasses call this with the increment from whatever event they listened

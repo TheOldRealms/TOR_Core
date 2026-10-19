@@ -57,6 +57,35 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
                 briefFallback: "Undead walk the lands near our chapterhouse. Burn {COUNT} of them and return — this is the Order's work.",
                 titleKey: "tor_wh_bounty_minor_kill_undead_title",
                 titleFallback: "Cleanse the Walking Dead"),
+
+            // --- Capture-and-return templates: progress ticks when the player
+            // donates matching troops via the lodge's Prisoners turn-in. Any
+            // lodge honours the delivery.
+            ["minor_capture_cultists"] = new BountyTemplate(
+                id: "minor_capture_cultists",
+                objectiveType: BountyObjectiveType.CaptureTroops,
+                targetMatches: t => t?.IsCultist() == true,
+                targetLabel: "chaos cultists",
+                countMin: 10, countMax: 20,
+                goldMin: 0, goldMax: 0,
+                prestigeMin: 50, prestigeMax: 100,
+                briefKey: "tor_wh_bounty_minor_capture_cultists_brief",
+                briefFallback: "The Order needs captives for interrogation. Bring {COUNT} living chaos cultists to the lodge — any lodge will do.",
+                titleKey: "tor_wh_bounty_minor_capture_cultists_title",
+                titleFallback: "Captives for the Interrogators"),
+
+            ["minor_capture_chaos"] = new BountyTemplate(
+                id: "minor_capture_chaos",
+                objectiveType: BountyObjectiveType.CaptureTroops,
+                targetMatches: t => t?.IsChaos() == true,
+                targetLabel: "chaos warriors",
+                countMin: 10, countMax: 20,
+                goldMin: 2000, goldMax: 4000,
+                prestigeMin: 0, prestigeMax: 0,
+                briefKey: "tor_wh_bounty_minor_capture_chaos_brief",
+                briefFallback: "Chaos warbands grow bold. Take {COUNT} of them alive — the Order will pay well for prisoners of their calibre.",
+                titleKey: "tor_wh_bounty_minor_capture_chaos_title",
+                titleFallback: "Chaos Prisoners Wanted Alive"),
         };
 
         public static BountyTemplate GetMinor(string id) =>

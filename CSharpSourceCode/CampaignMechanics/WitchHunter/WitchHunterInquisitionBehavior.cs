@@ -258,6 +258,17 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
                 }
                 if (gold > 0) GiveGoldAction.ApplyBetweenCharacters(null, Hero.MainHero, gold);
                 if (prestige > 0) Hero.MainHero.AddCustomResource("Prestige", prestige);
+
+                // Push the donation into every active bounty quest so capture-type
+                // quests can tick progress. Non-capture subclasses ignore via the
+                // base's no-op default. Pushed from here (not subscribed per-quest)
+                // to avoid racing the suppression-flag teardown in the finally below.
+                var quests = Campaign.Current?.QuestManager?.Quests;
+                if (quests != null)
+                {
+                    foreach (var q in quests.OfType<Bounties.MinorBountyQuestBase>())
+                        q.OnLodgePrisonersDonated(roster);
+                }
             }
             finally
             {
