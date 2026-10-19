@@ -160,6 +160,10 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
                     typeof(MinorBountyIssue),
                     IssueBase.IssueFrequency.VeryCommon),
                 inquisitor);
+
+            // Tell nameplate VMs to re-render — the lodge icon flips to its
+            // "offer available" variant when the inquisitor picks up an issue.
+            SettlementPOIManagerCampaignBehavior.NotifyIconsChanged();
         }
 
         private IssueBase OnMinorBountyIssueSelected(in PotentialIssueData pid, Hero issueOwner)
@@ -179,8 +183,15 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
         /// </summary>
         private void OnIssueUpdated(IssueBase issue, IssueBase.IssueUpdateDetails details, Hero relatedHero)
         {
-            if (details != IssueBase.IssueUpdateDetails.IssueFinishedWithSuccess) return;
-            if (issue is MinorBountyIssue) CompleteMinor();
+            if (issue is MinorBountyIssue)
+            {
+                // Any state change on a bounty issue (accepted, cancelled, expired, done)
+                // means the lodge icon should re-evaluate — "H!" goes back to "H" once
+                // the inquisitor isn't carrying an offer anymore.
+                SettlementPOIManagerCampaignBehavior.NotifyIconsChanged();
+            }
+            if (details == IssueBase.IssueUpdateDetails.IssueFinishedWithSuccess && issue is MinorBountyIssue)
+                CompleteMinor();
             // Phase C: else if (issue is MajorBountyIssue) CompleteMajor();
         }
 

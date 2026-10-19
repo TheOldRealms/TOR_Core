@@ -38,6 +38,19 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public override string MapIconText => "H";   // text fallback until sprite art lands
 
         /// <summary>
+        /// Per-settlement variant: show "H!" when the lodge's inquisitor is
+        /// carrying an unaccepted Minor Bounty offer — visual hint on the map
+        /// that there's work waiting. Falls back to the plain "H" otherwise.
+        /// </summary>
+        public override string MapIconTextFor(Settlement s)
+        {
+            if (s == null) return MapIconText;
+            var inquisitor = s.HeroesWithoutParty.FirstOrDefault(h => h.IsBountyMaster());
+            if (inquisitor?.Issue is MinorBountyIssue) return "H!";
+            return MapIconText;
+        }
+
+        /// <summary>
         /// Template id for the lodge's resident Inquisitor. Historically owned by the now-
         /// retired <c>BountyMasterCampaignBehavior</c>; moving the lifecycle into the POI
         /// framework collapsed that behavior but kept the same hero template so existing

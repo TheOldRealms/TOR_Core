@@ -28,6 +28,9 @@ using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CampaignMechanics.SettlementPOIs;
 using TOR_Core.CampaignMechanics.UniqueSpawns;
+using TaleWorlds.CampaignSystem.Issues;
+using TOR_Core.CampaignMechanics.WitchHunter;
+using TOR_Core.CampaignMechanics.WitchHunter.Bounties;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Ink;
@@ -1451,6 +1454,51 @@ namespace TOR_Core.Utilities
             foreach (var poi in SettlementPOIManagerCampaignBehavior.All)
                 mgr.UnmarkDiscovered(s, poi);
             return $"Unmarked all POIs at {s.Name} as undiscovered.\n";
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("wh_bounty_offer_now", "tor")]
+        public static string ForceWitchHunterBountyOffer(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType)) return CampaignCheats.ErrorType;
+            if (CampaignCheats.CheckHelp(arguments))
+                return "Force a Minor Bounty offer onto the inquisitor in the player's current lodge town. Optional first arg: template id (minor_kill_cultists, minor_kill_chaos, minor_kill_undead). No arg = random.\n";
+
+            var s = Settlement.CurrentSettlement;
+            if (s == null) return "Not in a settlement.\n";
+
+            var lodge = s.LocationComplex?.GetLocationWithId("tor_witchhunter_lodge");
+            if (lodge == null || lodge.GetSceneCount() == 0) return $"{s.Name} has no Witch Hunter Lodge.\n";
+
+            var inquisitor = s.HeroesWithoutParty.FirstOrDefault(h => h.IsBountyMaster());
+            if (inquisitor == null) return $"No inquisitor found at {s.Name}. Try leaving + re-entering the settlement so the POI framework can place one.\n";
+
+            if (inquisitor.Issue != null) return $"Inquisitor {inquisitor.Name} already has an active issue ({inquisitor.Issue.GetType().Name}). Clear it first.\n";
+
+            // Pick a template: arg if valid, random otherwise.
+            BountyTemplate template = default;
+            if (arguments.Count > 0)
+            {
+                template = BountyTemplates.GetMinor(arguments[0]);
+                if (template.IsEmpty) return $"Unknown template id '{arguments[0]}'. Options: " + string.Join(", ", BountyTemplates.AllMinor().Select(t => t.Id)) + "\n";
+            }
+            else
+            {
+                template = BountyTemplates.PickRandomMinor();
+                if (template.IsEmpty) return "No Minor Bounty templates registered.\n";
+            }
+
+            var count    = MBRandom.RandomInt(template.CountMin,    template.CountMax + 1);
+            var gold     = MBRandom.RandomInt(template.GoldMin,     template.GoldMax + 1);
+            var prestige = MBRandom.RandomInt(template.PrestigeMin, template.PrestigeMax + 1);
+
+            Campaign.Current.IssueManager.CreateNewIssue(
+                new PotentialIssueData(
+                    (in PotentialIssueData pid, Hero owner) => new MinorBountyIssue(owner, template.Id, count, gold, prestige),
+                    typeof(MinorBountyIssue),
+                    IssueBase.IssueFrequency.VeryCommon),
+                inquisitor);
+
+            return $"Spawned '{template.Id}' on {inquisitor.Name} at {s.Name}: {count} {template.TargetLabel}, {gold}g + {prestige} prestige.\n";
         }
 
         private static string AggregateOutput(string topicHeader, List<string> matchedSpells) =>

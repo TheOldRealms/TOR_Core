@@ -91,8 +91,21 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         /// <see cref="CustomResource.GetCustomResourceIconAsText"/>). For POIs without
         /// an art asset yet, a short letter (e.g. "H") also works. Default empty = no
         /// visible icon when discovered.
+        ///
+        /// <para>POI-level static form — same icon for every settlement that has this
+        /// POI. Override <see cref="MapIconTextFor"/> instead if you need per-settlement
+        /// variation (e.g. "lodge has a bounty offer available right now").</para>
         /// </summary>
         public virtual string MapIconText => "";
+
+        /// <summary>
+        /// Per-settlement variant of <see cref="MapIconText"/>. Default forwards to the
+        /// static form so existing POIs don't change. Override when the icon reflects
+        /// per-settlement runtime state. The nameplate VM calls this when rebuilding
+        /// its slot text; refreshes fire via
+        /// <see cref="SettlementPOIManagerCampaignBehavior.IconsChanged"/>.
+        /// </summary>
+        public virtual string MapIconTextFor(Settlement s) => MapIconText;
 
         /// <summary>
         /// Does this POI exist in <paramref name="s"/>? Scene presence is the sole gate —

@@ -86,6 +86,16 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         /// </summary>
         public static event Action DiscoveryChanged;
 
+        /// <summary>
+        /// Fires when the icon text of one or more POIs changes without the discovery
+        /// state itself changing (e.g. a lodge gains a pending bounty offer and wants
+        /// to show a "!" marker). Nameplate VMs subscribe to both this event and
+        /// <see cref="DiscoveryChanged"/>.
+        /// </summary>
+        public static event Action IconsChanged;
+
+        public static void NotifyIconsChanged() => IconsChanged?.Invoke();
+
         public bool IsDiscovered(Settlement s, SettlementPOI poi)
         {
             if (s == null || poi == null) return false;
