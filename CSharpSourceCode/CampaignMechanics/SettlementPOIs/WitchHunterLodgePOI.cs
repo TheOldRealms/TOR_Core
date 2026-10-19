@@ -7,7 +7,10 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
+using System.Collections.Generic;
+using System.Linq;
 using TOR_Core.CampaignMechanics.WitchHunter;
+using TOR_Core.CampaignMechanics.WitchHunter.Bounties;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -192,11 +195,19 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                     "I cannot finish a bounty."),
                 HasAbandonableBounty, OpenAbandonBountyInquiry, 200, null);
 
-            // Ask for a new minor bounty — Phase B replaces the stub with real generation.
-            obj.AddPlayerLine("tor_witchhunter_lodge_bounties_ask_minor", "tor_witchhunter_lodge_bounties_menu", "tor_witchhunter_lodge_bounties_offer_minor_npc",
+            // Ask for a new minor bounty — two variants with identical player text.
+            // Has-issue variant routes into vanilla's hero_main_options; the issue
+            // brief flow fires. No-issue variant falls through to the stub reply.
+            obj.AddPlayerLine("tor_witchhunter_lodge_bounties_ask_minor", "tor_witchhunter_lodge_bounties_menu", "hero_main_options",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.ask_minor",
                     "Are there minor bounties the Order needs seen to?"),
-                CanOfferMinor, null, 200, null);
+                () => CanOfferMinor() && InquisitorHasMinorBounty(), null, 200, null);
+
+            obj.AddPlayerLine("tor_witchhunter_lodge_bounties_ask_minor_stub", "tor_witchhunter_lodge_bounties_menu", "tor_witchhunter_lodge_bounties_offer_minor_npc",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.ask_minor",
+                    "Are there minor bounties the Order needs seen to?"),
+                () => CanOfferMinor() && !InquisitorHasMinorBounty(), null, 200, null);
+
             obj.AddDialogLine("tor_witchhunter_lodge_bounties_offer_minor_npc", "tor_witchhunter_lodge_bounties_offer_minor_npc", "tor_witchhunter_lodge_bounties_menu",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.offer_minor_stub",
                     "Nothing in the ledger right now — return in a few days."),
@@ -286,8 +297,19 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
 
         private static bool InquisitorHasHunt()
         {
-            var partner = CharacterObject.OneToOneConversationCharacter;
-            return partner?.HeroObject?.Issue != null;
+            // Hunts covers anything that ISN'T a bounty — HuntCultists, PlaguedVillage,
+            // and whatever story-driven issue types land later. Bounties have their own
+            // branch, so filter MinorBountyIssue (and future Major) out.
+            var issue = CharacterObject.OneToOneConversationCharacter?.HeroObject?.Issue;
+            if (issue == null) return false;
+            if (issue is MinorBountyIssue) return false;
+            return true;
+        }
+
+        private static bool InquisitorHasMinorBounty()
+        {
+            var issue = CharacterObject.OneToOneConversationCharacter?.HeroObject?.Issue;
+            return issue is MinorBountyIssue;
         }
 
         private static bool IsKnown() =>
@@ -318,11 +340,46 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             return inq.MajorBountyCap > 0 && !inq.MajorFailurePending && inq.ActiveMajorBounties() < inq.MajorBountyCap;
         }
 
-        // Phase B introduces Minor/MajorBountyQuest with [SaveableField] _acceptedAt;
-        // the abandon flow reads that to list quests ≥ 3 days old. For now the stub
-        // keeps the line hidden by always returning false.
-        private static bool HasAbandonableBounty() => false;
-        private static void OpenAbandonBountyInquiry() { /* Phase B wires the inquiry. */ }
+        private static bool HasAbandonableBounty()
+        {
+            var quests = Campaign.Current?.QuestManager?.Quests;
+            if (quests == null) return false;
+            // Phase C: || q is MajorBountyQuest mjq && mjq.IsVoluntaryAbandonAvailable
+            return quests.Any(q => q is MinorBountyQuest mq && mq.IsVoluntaryAbandonAvailable);
+        }
+
+        private static void OpenAbandonBountyInquiry()
+        {
+            var quests = Campaign.Current?.QuestManager?.Quests;
+            if (quests == null) return;
+
+            var abandonable = quests
+                .OfType<MinorBountyQuest>()
+                .Where(q => q.IsVoluntaryAbandonAvailable)
+                .Cast<QuestBase>()
+                .ToList();
+            if (abandonable.Count == 0) return;
+
+            var elements = abandonable
+                .Select(q => new InquiryElement(q, q.Title.ToString(), null))
+                .ToList();
+
+            var inq = new MultiSelectionInquiryData(
+                TORTextHelper.GetText("tor_wh_bounty_abandon_title", "Which bounty will you give up on?"),
+                TORTextHelper.GetText("tor_wh_bounty_abandon_desc", "The Order will note your choice. No reward will follow."),
+                elements, true, 1, 1,
+                TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"),
+                TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
+                picked => AbandonSelectedBounty(picked),
+                null);
+            MBInformationManager.ShowMultiSelectionInquiry(inq, true);
+        }
+
+        private static void AbandonSelectedBounty(List<InquiryElement> picked)
+        {
+            if (picked == null || picked.Count == 0) return;
+            if (picked[0].Identifier is QuestBase quest) quest.CompleteQuestWithCancel();
+        }
 
         // Two-tier roster per the design: basic unlocks at Known (INQUISITION_KNOWN),
         // full set adds in at Respected (INQUISITION_RESPECTED). "Basic" is the

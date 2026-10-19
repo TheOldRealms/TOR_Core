@@ -1,10 +1,16 @@
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.Issues;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TOR_Core.CampaignMechanics.SettlementPOIs;
+using TOR_Core.CampaignMechanics.WitchHunter.Bounties;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.WitchHunter
 {
@@ -84,11 +90,17 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
             _ => 0,
         };
 
-        // Active-bounty counts aren't stored — vanilla's IssueManager is the
-        // authority. Phase B will wire real Minor/MajorBountyIssue types; until
-        // then these return 0.
-        public int ActiveMinorBounties() => 0;
-        public int ActiveMajorBounties() => 0;
+        // Active-bounty count = number of ACCEPTED bounty quests only. Un-accepted
+        // issues sitting at the lodge don't fill the cap; the cap is about
+        // concurrent commitments.
+        public int ActiveMinorBounties()
+        {
+            var quests = Campaign.Current?.QuestManager?.Quests;
+            if (quests == null) return 0;
+            return quests.Count(q => q is MinorBountyQuest);
+        }
+
+        public int ActiveMajorBounties() => 0;   // Phase C: MajorBountyQuest
 
         // ---- Mutators (invoked by dialog consequences and quest OnTimedOut)
 
@@ -115,6 +127,61 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
             CampaignEvents.OnPrisonerDonatedToSettlementEvent.AddNonSerializedListener(this, OnPrisonersSold);
+            CampaignEvents.SettlementEntered.AddNonSerializedListener(this, OnSettlementEntered);
+            CampaignEvents.OnIssueUpdatedEvent.AddNonSerializedListener(this, OnIssueUpdated);
+        }
+
+        /// <summary>
+        /// Roll for a Minor Bounty issue on each lodge-town entry. Only one issue
+        /// per hero at a time — the vanilla constraint — so the roll silently
+        /// skips if the inquisitor is already carrying something (a Hunt from
+        /// HuntCultists, a prior bounty, etc).
+        /// </summary>
+        private void OnSettlementEntered(MobileParty party, Settlement settlement, Hero leaderHero)
+        {
+            if (party != MobileParty.MainParty) return;
+            if (settlement == null) return;
+
+            var lodge = settlement.LocationComplex?.GetLocationWithId("tor_witchhunter_lodge");
+            if (lodge == null || lodge.GetSceneCount() == 0) return;
+
+            var inquisitor = settlement.HeroesWithoutParty.FirstOrDefault(h => h.IsBountyMaster());
+            if (inquisitor == null || inquisitor.Issue != null) return;
+
+            // Respect the per-rank concurrent cap — don't flood the lodge with offers
+            // when the player can't accept more anyway.
+            if (MinorBountyCap <= 0 || ActiveMinorBounties() >= MinorBountyCap) return;
+
+            if (MBRandom.RandomInt(0, 100) >= TORConstants.BOUNTY_QUEST_CHANCE) return;
+
+            Campaign.Current.IssueManager.CreateNewIssue(
+                new PotentialIssueData(
+                    new PotentialIssueData.StartIssueDelegate(OnMinorBountyIssueSelected),
+                    typeof(MinorBountyIssue),
+                    IssueBase.IssueFrequency.VeryCommon),
+                inquisitor);
+        }
+
+        private IssueBase OnMinorBountyIssueSelected(in PotentialIssueData pid, Hero issueOwner)
+        {
+            var template = BountyTemplates.PickRandomMinor();
+            if (template.IsEmpty) return null;
+            var count    = MBRandom.RandomInt(template.CountMin,    template.CountMax + 1);
+            var gold     = MBRandom.RandomInt(template.GoldMin,     template.GoldMax + 1);
+            var prestige = MBRandom.RandomInt(template.PrestigeMin, template.PrestigeMax + 1);
+            return new MinorBountyIssue(issueOwner, template.Id, count, gold, prestige);
+        }
+
+        /// <summary>
+        /// Counter bump on successful bounty completion. Fail paths bump nothing —
+        /// the pending-failure flag is set from the quest's <c>OnTimedOut</c>
+        /// directly against the behavior.
+        /// </summary>
+        private void OnIssueUpdated(IssueBase issue, IssueBase.IssueUpdateDetails details, Hero relatedHero)
+        {
+            if (details != IssueBase.IssueUpdateDetails.IssueFinishedWithSuccess) return;
+            if (issue is MinorBountyIssue) CompleteMinor();
+            // Phase C: else if (issue is MajorBountyIssue) CompleteMajor();
         }
 
         public override void SyncData(IDataStore dataStore)
