@@ -6046,6 +6046,7 @@
   <string id="tor_poi_witchhunter_lodge.excuse_major" text="{=str_tor_poi_witchhunter_lodge.excuse_major}I beg forgiveness for the last major hunt." />
   <string id="tor_poi_witchhunter_lodge.excuse_major_reply" text="{=str_tor_poi_witchhunter_lodge.excuse_major_reply}The Order is slow to forgive, but you have paid for it. See the next through." />
   <string id="tor_poi_witchhunter_lodge.bounties_abandon" text="{=str_tor_poi_witchhunter_lodge.bounties_abandon}I cannot finish a bounty." />
+  <string id="tor_poi_witchhunter_lodge.bounties_turnin" text="{=str_tor_poi_witchhunter_lodge.bounties_turnin}I have come to collect my due. The work is done." />
   <string id="tor_poi_witchhunter_lodge.ask_minor" text="{=str_tor_poi_witchhunter_lodge.ask_minor}Are there minor bounties the Order needs seen to?" />
   <string id="tor_poi_witchhunter_lodge.offer_minor_stub" text="{=str_tor_poi_witchhunter_lodge.offer_minor_stub}Nothing in the ledger right now — return in a few days." />
   <string id="tor_poi_witchhunter_lodge.ask_major" text="{=str_tor_poi_witchhunter_lodge.ask_major}Are there major bounties the Order needs seen to?" />

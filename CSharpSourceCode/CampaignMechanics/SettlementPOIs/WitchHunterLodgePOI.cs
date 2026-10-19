@@ -202,6 +202,13 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                     "The Order is slow to forgive, but you have paid for it. See the next through."),
                 null, null, 200);
 
+            // Turn in a completed bounty — any lodge inquisitor honours it, not just
+            // the one who gave it, so the dialog line is identical at every lodge.
+            obj.AddPlayerLine("tor_witchhunter_lodge_bounties_turnin", "tor_witchhunter_lodge_bounties_menu", "close_window",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.bounties_turnin",
+                    "I have come to collect my due. The work is done."),
+                HasTurnInBounty, OpenTurnInBountyInquiry, 200, null);
+
             // Voluntary abandon — hidden until Phase B wires an active-quest check.
             obj.AddPlayerLine("tor_witchhunter_lodge_bounties_abandon", "tor_witchhunter_lodge_bounties_menu", "close_window",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.bounties_abandon",
@@ -359,6 +366,46 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             if (quests == null) return false;
             // Phase C: || q is MajorBountyQuest mjq && mjq.IsVoluntaryAbandonAvailable
             return quests.Any(q => q is MinorBountyQuest mq && mq.IsVoluntaryAbandonAvailable);
+        }
+
+        private static bool HasTurnInBounty()
+        {
+            var quests = Campaign.Current?.QuestManager?.Quests;
+            if (quests == null) return false;
+            // Phase C: || q is MajorBountyQuest mjq && mjq.IsReadyForTurnIn
+            return quests.Any(q => q is MinorBountyQuest mq && mq.IsReadyForTurnIn);
+        }
+
+        private static void OpenTurnInBountyInquiry()
+        {
+            var quests = Campaign.Current?.QuestManager?.Quests;
+            if (quests == null) return;
+
+            var turnable = quests.OfType<MinorBountyQuest>()
+                .Where(q => q.IsReadyForTurnIn)
+                .ToList();
+            if (turnable.Count == 0) return;
+
+            var elements = turnable
+                .Select(q => new InquiryElement(q, q.Title.ToString(), null))
+                .ToList();
+
+            var inq = new MultiSelectionInquiryData(
+                TORTextHelper.GetText("tor_wh_bounty_turnin_title", "Collect Your Due"),
+                TORTextHelper.GetText("tor_wh_bounty_turnin_desc", "Which bounty will you claim payment for? Any lodge will honour it."),
+                elements, true, 1, elements.Count,
+                TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"),
+                TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
+                picked => TurnInSelectedBounties(picked),
+                null);
+            MBInformationManager.ShowMultiSelectionInquiry(inq, true);
+        }
+
+        private static void TurnInSelectedBounties(List<InquiryElement> picked)
+        {
+            if (picked == null) return;
+            foreach (var el in picked)
+                if (el.Identifier is MinorBountyQuest q) q.TurnInAndComplete();
         }
 
         private static void OpenAbandonBountyInquiry()

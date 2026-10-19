@@ -28,12 +28,21 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
         [SaveableField(3)] private int _rewardPrestige;
         [SaveableField(4)] private int _progressKills;
         [SaveableField(5)] private CampaignTime _acceptedAt;
+        [SaveableField(6)] private bool _readyForTurnIn;
 
         public BountyTemplate Template => BountyTemplates.GetMinor(_templateId);
         public int TargetCount => _targetCount;
         public int ProgressKills => _progressKills;
         public int RewardPrestige => _rewardPrestige;
         public CampaignTime AcceptedAt => _acceptedAt;
+
+        /// <summary>
+        /// True once the player's kill count has hit the target. Quest doesn't
+        /// auto-complete at that moment — the player must return to any Witch
+        /// Hunter Lodge inquisitor and pick the "I have come to collect my due"
+        /// dialog option to actually receive the reward.
+        /// </summary>
+        public bool IsReadyForTurnIn => _readyForTurnIn;
 
         /// <summary>True after the quest has been active long enough for the
         /// player to voluntarily abandon it via the lodge dialog.</summary>
@@ -93,6 +102,18 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
 
         protected override void OnTimedOut()
         {
+            // If the player already hit the kill count but didn't return in time,
+            // give them credit — the work was done, only the paperwork lapsed.
+            // No failure flag; the reward still pays out via CompleteQuestWithSuccess.
+            if (_readyForTurnIn)
+            {
+                AddLog(TORTextHelper.GetTextObject(
+                    "tor_wh_bounty_minor_late_turnin_log",
+                    "You were late to collect, but the Order honours the kills."));
+                CompleteQuestWithSuccess();
+                return;
+            }
+
             AddLog(TORTextHelper.GetTextObject(
                 "tor_wh_bounty_minor_timeout_log",
                 "The Order will note your failure to see this through. You will need to beg forgiveness at the lodge before taking another minor hunt."));
@@ -153,13 +174,28 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
             progressLog.SetTextVariable("TARGET", template.TargetLabel);
             AddLog(progressLog);
 
-            if (_progressKills >= _targetCount)
+            if (_progressKills >= _targetCount && !_readyForTurnIn)
             {
+                _readyForTurnIn = true;
                 AddLog(TORTextHelper.GetTextObject(
-                    "tor_wh_bounty_minor_success_log",
-                    "The Order's ledger is settled. Return to the lodge for your reward."));
-                CompleteQuestWithSuccess();
+                    "tor_wh_bounty_minor_ready_log",
+                    "All targets eliminated. Return to any Witch Hunter Lodge to collect your due."));
             }
+        }
+
+        /// <summary>
+        /// Called from the lodge's turn-in dialog line. Marks the quest complete,
+        /// which fires <see cref="OnCompleteWithSuccess"/> (reward payout) and
+        /// surfaces IssueFinishedWithSuccess so the inquisition behavior bumps
+        /// the completion counter + re-evaluates the rank attributes.
+        /// </summary>
+        public void TurnInAndComplete()
+        {
+            if (!_readyForTurnIn) return;
+            AddLog(TORTextHelper.GetTextObject(
+                "tor_wh_bounty_minor_turnedin_log",
+                "The Order's ledger is settled. Reward paid."));
+            CompleteQuestWithSuccess();
         }
 
         protected override void OnCompleteWithSuccess()
