@@ -6038,7 +6038,8 @@
   <string id="tor_poi_witchhunter_lodge.player_companions" text="{=str_tor_poi_witchhunter_lodge.player_companions}I seek a witch hunter willing to join me." />
   <string id="tor_poi_witchhunter_lodge.player_exclusive" text="{=str_tor_poi_witchhunter_lodge.player_exclusive}What of the Order's business for one of our own?" />
   <string id="tor_poi_witchhunter_lodge.notrust" text="{=str_tor_poi_witchhunter_lodge.notrust}Return once you have earned our trust." />
-  <string id="tor_poi_witchhunter_lodge.companions_todo" text="{=str_tor_poi_witchhunter_lodge.companions_todo}No witch hunters are available for the taking right now. Return in time." />
+  <string id="tor_poi_witchhunter_lodge.companions_available" text="{=str_tor_poi_witchhunter_lodge.companions_available}A promising initiate stands ready for field work. They will serve with you." />
+  <string id="tor_poi_witchhunter_lodge.companions_cooldown" text="{=str_tor_poi_witchhunter_lodge.companions_cooldown}No fresh initiates right now. Return in {WH_COMPANION_DAYS} days." />
   <string id="tor_poi_witchhunter_lodge.exclusive_todo" text="{=str_tor_poi_witchhunter_lodge.exclusive_todo}The Order has nothing for you yet, brother. Return in time." />
   <string id="tor_poi_witchhunter_lodge.bounties_hub" text="{=str_tor_poi_witchhunter_lodge.bounties_hub}What business will you take up with the Order?" />
   <string id="tor_poi_witchhunter_lodge.excuse_minor" text="{=str_tor_poi_witchhunter_lodge.excuse_minor}I beg forgiveness for the last minor hunt." />

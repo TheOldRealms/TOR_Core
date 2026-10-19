@@ -262,10 +262,19 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                     "Return once you have earned our trust."),
                 null, null, 200);
 
-            obj.AddDialogLine("tor_witchhunter_lodge_companions_todo", "tor_witchhunter_lodge_companions_stub", "tor_witchhunter_lodge_hub",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.companions_todo",
-                    "No witch hunters are available for the taking right now. Return in time."),
-                null, null, 200);
+            // Companion recruitment — two NPC branches at the stub state:
+            // available (consequence spawns a witch-hunter wanderer directly into
+            // the main party as a player-clan companion) and cooldown (shows days
+            // remaining via {WH_COMPANION_DAYS} text variable).
+            obj.AddDialogLine("tor_witchhunter_lodge_companions_available", "tor_witchhunter_lodge_companions_stub", "tor_witchhunter_lodge_hub",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.companions_available",
+                    "A promising initiate stands ready for field work. They will serve with you."),
+                CompanionRecruitAvailable, RecruitCompanionConsequence, 200);
+
+            obj.AddDialogLine("tor_witchhunter_lodge_companions_cooldown", "tor_witchhunter_lodge_companions_stub", "tor_witchhunter_lodge_hub",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.companions_cooldown",
+                    "No fresh initiates right now. Return in {WH_COMPANION_DAYS} days."),
+                CompanionRecruitOnCooldown, null, 200);
 
             obj.AddDialogLine("tor_witchhunter_lodge_exclusive_todo", "tor_witchhunter_lodge_exclusive_stub", "tor_witchhunter_lodge_hub",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.exclusive_todo",
@@ -369,6 +378,32 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             var inq = Inq();
             if (inq == null) return false;
             return inq.MajorBountyCap > 0 && !inq.MajorFailurePending && inq.ActiveMajorBounties() < inq.MajorBountyCap;
+        }
+
+        // ---- Companion recruitment helpers
+
+        private static bool CompanionRecruitAvailable() => Inq()?.CanRecruitCompanion == true;
+
+        private static bool CompanionRecruitOnCooldown()
+        {
+            var inq = Inq();
+            if (inq == null || inq.CanRecruitCompanion) return false;
+            MBTextManager.SetTextVariable("WH_COMPANION_DAYS", inq.DaysUntilRecruitAvailable);
+            return true;
+        }
+
+        private static void RecruitCompanionConsequence()
+        {
+            var inq = Inq();
+            var s = Settlement.CurrentSettlement;
+            if (inq == null || s == null) return;
+            if (!inq.TryRecruitCompanionAtLodge(s, out var newCompanion) || newCompanion == null) return;
+
+            var msg = TORTextHelper.GetTextObject(
+                "tor_wh_companion_recruited_msg",
+                "{HERO_NAME} has joined your company at the Order's request.");
+            msg.SetTextVariable("HERO_NAME", newCompanion.Name);
+            InformationManager.DisplayMessage(new InformationMessage(msg.ToString()));
         }
 
         private static bool HasAbandonableBounty()

@@ -7,6 +7,7 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.SettlementPOIs;
 using TOR_Core.CampaignMechanics.WitchHunter.Bounties;
 using TOR_Core.Extensions;
@@ -47,6 +48,12 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
         private int _majorCompleted;
         private bool _minorFailurePending;
         private bool _majorFailurePending;
+
+        // Companion Recruitment. Default CampaignTime (= Day 0) is treated as
+        // "never recruited" so a fresh campaign starts off the cooldown.
+        public const int CompanionRecruitCooldownDays = 60;
+        public const string WitchHunterWandererTemplateId = "tor_wanderer_empire_2";
+        private CampaignTime _lastCompanionRecruitAt;
 
         // ---- Public read surface
 
@@ -117,10 +124,85 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
             ApplyRankAttributes();
         }
 
+        // ---- Companion Recruitment
+
+        /// <summary>True iff enough days have passed since the last recruit
+        /// (or no recruit yet). Design doc puts this at T1 availability — no
+        /// rank gate on top.</summary>
+        public bool CanRecruitCompanion
+        {
+            get
+            {
+                if (_lastCompanionRecruitAt == default) return true;   // never recruited
+                return (CampaignTime.Now - _lastCompanionRecruitAt).ToDays >= CompanionRecruitCooldownDays;
+            }
+        }
+
+        public int DaysUntilRecruitAvailable
+        {
+            get
+            {
+                if (_lastCompanionRecruitAt == default) return 0;
+                var days = CompanionRecruitCooldownDays - (CampaignTime.Now - _lastCompanionRecruitAt).ToDays;
+                return System.Math.Max(0, (int)System.Math.Ceiling(days));
+            }
+        }
+
+        /// <summary>
+        /// Spawn a Witch Hunter wanderer hero, set them up as a player-clan
+        /// companion, and add them to the main party. Returns the new hero via
+        /// out-param on success. Fails cleanly (returns false) if the template
+        /// is missing or the player is not in a settlement.
+        /// </summary>
+        public bool TryRecruitCompanionAtLodge(Settlement s, out Hero newCompanion)
+        {
+            newCompanion = null;
+            if (s == null) return false;
+            if (!CanRecruitCompanion) return false;
+
+            var template = MBObjectManager.Instance.GetObject<CharacterObject>(WitchHunterWandererTemplateId);
+            if (template == null) return false;
+
+            // Spawn in the lodge town; TOR_wanderer_empire_2 is "{FIRSTNAME} the
+            // Witch Hunter" (confirmed in tor_charactertemplates.xml). Age is
+            // arbitrary — vanilla's companion-spawn code uses the same recipe.
+            var age = Campaign.Current.Models.AgeModel.HeroComesOfAge + 5 + MBRandom.RandomInt(12);
+            var hero = HeroCreator.CreateSpecialHero(template, s, null, null, age);
+            if (hero == null) return false;
+
+            hero.ChangeState(Hero.CharacterStates.Active);
+            hero.Clan = Clan.PlayerClan;
+            AddCompanionAction.Apply(Clan.PlayerClan, hero);
+            AddHeroToPartyAction.Apply(hero, MobileParty.MainParty, showNotification: true);
+
+            _lastCompanionRecruitAt = CampaignTime.Now;
+            newCompanion = hero;
+            return true;
+        }
+
         public void MarkMinorFailurePending() => _minorFailurePending = true;
         public void MarkMajorFailurePending() => _majorFailurePending = true;
         public void ExcuseMinorFailure() => _minorFailurePending = false;
         public void ExcuseMajorFailure() => _majorFailurePending = false;
+
+        /// <summary>
+        /// Debug/console helper — jumps the counters to the thresholds for a
+        /// specific rank and re-applies the attribute flags. Attribute flags
+        /// are monotonic (never removed), so downgrading leaves the hero
+        /// permanently flagged for the previously-reached ranks — acceptable
+        /// for debug use.
+        /// </summary>
+        public void DebugSetRank(InquisitionRank rank)
+        {
+            switch (rank)
+            {
+                case InquisitionRank.Unknown:   _minorCompleted = 0;                       _majorCompleted = 0; break;
+                case InquisitionRank.Known:     _minorCompleted = KnownMinorThreshold;     _majorCompleted = 0; break;
+                case InquisitionRank.Trusted:   _minorCompleted = TrustedMinorThreshold;   _majorCompleted = 0; break;
+                case InquisitionRank.Respected: _minorCompleted = TrustedMinorThreshold;   _majorCompleted = RespectedMajorThreshold; break;
+            }
+            ApplyRankAttributes();
+        }
 
         // ---- Lifecycle
 
@@ -223,6 +305,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
             dataStore.SyncData("_wh_inq_major_completed", ref _majorCompleted);
             dataStore.SyncData("_wh_inq_minor_failure", ref _minorFailurePending);
             dataStore.SyncData("_wh_inq_major_failure", ref _majorFailurePending);
+            dataStore.SyncData("_wh_inq_last_companion_recruit", ref _lastCompanionRecruitAt);
         }
 
         private void OnSessionLaunched(CampaignGameStarter starter)

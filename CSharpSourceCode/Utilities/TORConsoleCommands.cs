@@ -1506,6 +1506,23 @@ namespace TOR_Core.Utilities
             return $"Spawned '{template.Id}' ({tier}) on {inquisitor.Name} at {s.Name}: {count} {template.TargetLabel}, {gold}g + {prestige} prestige.\n";
         }
 
+        [CommandLineFunctionality.CommandLineArgumentFunction("wh_force_rank", "tor")]
+        public static string ForceWitchHunterRank(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType)) return CampaignCheats.ErrorType;
+            if (CampaignCheats.CheckHelp(arguments) || arguments.Count == 0)
+                return "Force the player's Inquisition rank. Arg: unknown, known, trusted, or respected. Note: attribute flags are monotonic — downgrading leaves prior flags in place.\n";
+
+            if (!System.Enum.TryParse<InquisitionRank>(arguments[0], ignoreCase: true, out var rank))
+                return $"Unknown rank '{arguments[0]}'. Options: unknown, known, trusted, respected.\n";
+
+            var inq = Campaign.Current?.GetCampaignBehavior<WitchHunterInquisitionBehavior>();
+            if (inq == null) return "Inquisition behavior not available (no active campaign?).\n";
+
+            inq.DebugSetRank(rank);
+            return $"Set Inquisition rank to {inq.Rank}. Counters: minor={inq.MinorCompleted}, major={inq.MajorCompleted}. Minor cap={inq.MinorBountyCap}, major cap={inq.MajorBountyCap}.\n";
+        }
+
         private static string AggregateOutput(string topicHeader, List<string> matchedSpells) =>
             matchedSpells.Aggregate(
                 $"\n{topicHeader}\n",
