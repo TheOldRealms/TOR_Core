@@ -365,7 +365,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             var quests = Campaign.Current?.QuestManager?.Quests;
             if (quests == null) return false;
             // Phase C: || q is MajorBountyQuest mjq && mjq.IsVoluntaryAbandonAvailable
-            return quests.Any(q => q is MinorBountyQuest mq && mq.IsVoluntaryAbandonAvailable);
+            return quests.Any(q => q is MinorBountyQuestBase mq && mq.IsVoluntaryAbandonAvailable);
         }
 
         private static bool HasTurnInBounty()
@@ -373,7 +373,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             var quests = Campaign.Current?.QuestManager?.Quests;
             if (quests == null) return false;
             // Phase C: || q is MajorBountyQuest mjq && mjq.IsReadyForTurnIn
-            return quests.Any(q => q is MinorBountyQuest mq && mq.IsReadyForTurnIn);
+            return quests.Any(q => q is MinorBountyQuestBase mq && mq.IsReadyForTurnIn);
         }
 
         private static void OpenTurnInBountyInquiry()
@@ -381,7 +381,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             var quests = Campaign.Current?.QuestManager?.Quests;
             if (quests == null) return;
 
-            var turnable = quests.OfType<MinorBountyQuest>()
+            var turnable = quests.OfType<MinorBountyQuestBase>()
                 .Where(q => q.IsReadyForTurnIn)
                 .ToList();
             if (turnable.Count == 0) return;
@@ -405,7 +405,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         {
             if (picked == null) return;
             foreach (var el in picked)
-                if (el.Identifier is MinorBountyQuest q) q.TurnInAndComplete();
+                if (el.Identifier is MinorBountyQuestBase q) q.TurnInAndComplete();
         }
 
         private static void OpenAbandonBountyInquiry()
@@ -414,7 +414,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             if (quests == null) return;
 
             var abandonable = quests
-                .OfType<MinorBountyQuest>()
+                .OfType<MinorBountyQuestBase>()
                 .Where(q => q.IsVoluntaryAbandonAvailable)
                 .Cast<QuestBase>()
                 .ToList();

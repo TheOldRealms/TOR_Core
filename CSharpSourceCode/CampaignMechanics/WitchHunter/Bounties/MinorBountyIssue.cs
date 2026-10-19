@@ -124,9 +124,20 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
 
         protected override QuestBase GenerateIssueQuest(string questId)
         {
-            return new MinorBountyQuest(
-                questId, IssueOwner, CampaignTime.DaysFromNow(20f),
-                _templateId, _targetCount, _rewardGold, _rewardPrestige);
+            // Dispatch on objective type — each has its own QuestBase subclass that
+            // listens to the appropriate vanilla event. Phase B ships KillTroops;
+            // Phase C adds capture / clear-hideout / defeat-parties.
+            var duration = CampaignTime.DaysFromNow(20f);
+            switch (Template.ObjectiveType)
+            {
+                case BountyObjectiveType.KillTroops:
+                    return new MinorBountyKillQuest(
+                        questId, IssueOwner, duration,
+                        _templateId, _targetCount, _rewardGold, _rewardPrestige);
+                default:
+                    throw new System.NotImplementedException(
+                        $"MinorBountyIssue: objective type {Template.ObjectiveType} not implemented yet.");
+            }
         }
 
         protected override void OnGameLoad() { }

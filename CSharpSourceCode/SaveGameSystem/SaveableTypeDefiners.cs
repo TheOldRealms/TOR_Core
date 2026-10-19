@@ -83,7 +83,11 @@ namespace TOR_Core.SaveGameSystem
             // registration, which meant active bounty state got silently dropped
             // across save/load. Register at the next available slot.
             AddClassDefinition(typeof(CampaignMechanics.WitchHunter.Bounties.MinorBountyIssue), 212);
-            AddClassDefinition(typeof(CampaignMechanics.WitchHunter.Bounties.MinorBountyQuest), 213);
+            // Id 213 originally held MinorBountyQuest; the Phase C refactor split it
+            // into MinorBountyQuestBase (abstract — not instantiated) + per-objective
+            // subclasses. 213 now points at the KillTroops subclass, which preserves
+            // the field layout saved under the old class name.
+            AddClassDefinition(typeof(CampaignMechanics.WitchHunter.Bounties.MinorBountyKillQuest), 213);
         }
 
         protected override void DefineEnumTypes() //watch out for the save ids used for class definitions, conflicts will cause crashes on load

@@ -97,7 +97,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
         {
             var quests = Campaign.Current?.QuestManager?.Quests;
             if (quests == null) return 0;
-            return quests.Count(q => q is MinorBountyQuest);
+            return quests.Count(q => q is MinorBountyQuestBase);
         }
 
         public int ActiveMajorBounties() => 0;   // Phase C: MajorBountyQuest
