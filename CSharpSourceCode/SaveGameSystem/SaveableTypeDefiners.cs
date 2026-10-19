@@ -78,6 +78,12 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(OrcBossQuest2), 209);
             AddClassDefinition(typeof(OrcShamanQuest1), 210);
             AddClassDefinition(typeof(OrcShamanQuest2), 211);
+
+            // Witch Hunter Lodge bounties — Phase B shipped these without
+            // registration, which meant active bounty state got silently dropped
+            // across save/load. Register at the next available slot.
+            AddClassDefinition(typeof(CampaignMechanics.WitchHunter.Bounties.MinorBountyIssue), 212);
+            AddClassDefinition(typeof(CampaignMechanics.WitchHunter.Bounties.MinorBountyQuest), 213);
         }
 
         protected override void DefineEnumTypes() //watch out for the save ids used for class definitions, conflicts will cause crashes on load
