@@ -3492,7 +3492,7 @@
       <EquipmentSet id="tor_generic_empire_femlord_medium_bow_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_emp_lord_wasteland_factionleader" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_factionleader}Staadtholder Luitpold von Rasmerswijk" occupation="Lord" culture="Culture.empire" voice="curt" age="62" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_emp_lord_wasteland_factionleader" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_factionleader}Staadtholder Luitpold van Rasmerswijk" occupation="Lord" culture="Culture.empire" voice="curt" age="62" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="62" weight="0.4383" build="0.4195" key="000D480000A01B4079BA498B47806A48E8A75AD495539410C65B778989E5149A78A776670F9B6A3967C641E9933B3972000000000000006F000000006BFC4002" />
     </face>
@@ -13505,7 +13505,7 @@
       <EquipmentSet id="tor_bertrand_bergerac_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_bergerac_2" default_group="ranged" name="{=str_tor_br_bergerac_2}Gui le Gros" occupation="Special" culture="Culture.vlandia" voice="curt" age="53" skill_template="SkillSet.tor_skills_archer_lord" is_hero="true" race="bretonnian">
+  <NPCCharacter id="tor_br_bergerac_2" default_group="ranged" name="{=str_tor_br_bergerac_2}Gui le Gros" occupation="Lord" culture="Culture.vlandia" voice="curt" age="53" skill_template="SkillSet.tor_skills_archer_lord" is_hero="true" race="bretonnian">
     <face>
       <BodyProperties version="4" age="43" weight="0.5693" build="0.8107" key="0005AC0B8070200C767887E1CE2C00A167884877557363887A4AFE1A79986896EEEFF603031985F56F5FC74A4727BAEA0000000000000003000000004C6C4002" />
     </face>
@@ -13523,7 +13523,7 @@
       <EquipmentSet id="tor_guy_le_gros_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_bergerac_3" default_group="ranged" name="{=str_tor_br_bergerac_3}Hugo le Petit" occupation="Special" culture="Culture.vlandia" voice="curt" age="53" skill_template="SkillSet.tor_skills_archer_lord" is_hero="true" race="bretonnian">
+  <NPCCharacter id="tor_br_bergerac_3" default_group="ranged" name="{=str_tor_br_bergerac_3}Hugo le Petit" occupation="Lord" culture="Culture.vlandia" voice="curt" age="53" skill_template="SkillSet.tor_skills_archer_lord" is_hero="true" race="bretonnian">
     <face>
       <BodyProperties version="4" age="43" weight="0.9988" build="0.3889" key="0013600540CC2A0EA631882B9875D476738567878385437C25DA345A465ADADD6A91D6030C78879AC9A8FE7AC24C47C2000000000000000C00000000318C2002" />
     </face>

@@ -14,6 +14,7 @@ using TaleWorlds.SaveSystem;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 using TOR_Core.CharacterDevelopment;
@@ -112,6 +113,17 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         AddAsurEnvoyDialogLines(obj);
         AddEmpireEnvoyDialogLines(obj);
         AddSpellsingerEnvoyDialogLines(obj);
+
+        // Eonir enchantment lives here (not on a POI) because the Spellsinger-Envoy
+        // dialog + favor economy is already intertwined on this behavior.
+        // Architecture: docs/town-pois-and-access-model/architecture-redesign.md.
+        EnchanterHelper.RegisterEnchanterBranch(obj,
+            culture: TORConstants.Cultures.EONIR,
+            hubToken: "spellsinger_envoy_main_hub",
+            quitToken: "start",
+            isMultiUse: true,
+            enchantmentSuffixes: new List<string> { "we_enchant", "eo_enchant" },
+            cultureAccess: HasEonirEnchanterAccess);
 
         // Populate envoys when loading a save game
         if (_torLithanel == null)
@@ -1342,6 +1354,13 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             HeroHelper.SpawnHeroForTheFirstTime(_spellsingerEnvoy, _torLithanel);
             envoys.Add(_spellsingerEnvoy);
         }
+    }
+
+    private bool HasEonirEnchanterAccess()
+    {
+        if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.EONIR) return true;
+        if (Hero.MainHero.PartyBelongedTo == null) return false;
+        return Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x != Hero.MainHero && x.Culture.StringId == TORConstants.Cultures.EONIR && x.IsSpellCaster());
     }
 
     public override void SyncData(IDataStore dataStore)

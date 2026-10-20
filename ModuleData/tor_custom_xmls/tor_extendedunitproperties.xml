@@ -2729,6 +2729,7 @@
     <Abilities />
     <Attributes>
       <string>Undead</string>
+      <string>KillingBlow</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" />
@@ -2745,6 +2746,7 @@
     <Abilities />
     <Attributes>
       <string>Undead</string>
+      <string>KillingBlow</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" />
@@ -2805,6 +2807,7 @@
     <Abilities />
     <Attributes>
       <string>Undead</string>
+      <string>KillingBlow</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" />
@@ -2821,6 +2824,7 @@
     <Abilities />
     <Attributes>
       <string>Undead</string>
+      <string>KillingBlow</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" />
@@ -2837,6 +2841,7 @@
     <Abilities />
     <Attributes>
       <string>Undead</string>
+      <string>KillingBlow</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" />
@@ -2853,6 +2858,7 @@
     <Abilities />
     <Attributes>
       <string>Undead</string>
+      <string>KillingBlow</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.10" />
@@ -9819,15 +9825,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_bergerac_2">
     <Abilities />
-    <Attributes>
-      <string>AiCompanion</string>
-    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_bergerac_3">
     <Abilities />
-    <Attributes>
-      <string>AiCompanion</string>
-    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_wainfleet_leader">
     <Abilities />
