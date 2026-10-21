@@ -6085,6 +6085,7 @@
 		</tournament_team_templates_four_participant>
 		<basic_mercenary_troops>
 			<template name="NPCCharacter.tor_beastmen_minotaur" />
+			<template name="NPCCharacter.tor_cygor" />
 		</basic_mercenary_troops>
 	</Culture>
 	<Culture id="eonir"

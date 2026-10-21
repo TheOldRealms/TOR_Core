@@ -6,6 +6,7 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
@@ -155,6 +156,16 @@ namespace TOR_Core.Models
         {
             if (!party.IsRaidingParty())
             {
+                var leader = party.LeaderHero;
+                var templateId = SelectBeastmenInitialTemplate(
+                    partyTemplate.StringId, party.IsLordParty,
+                    leader != null && leader == leader.Clan?.Kingdom?.Leader);
+                if (templateId != partyTemplate.StringId)
+                {
+                    partyTemplate = MBObjectManager.Instance.GetObject<PartyTemplateObject>(templateId)
+                        ?? throw new System.InvalidOperationException($"Missing Beastmen party template: {templateId}");
+                }
+
                 return base.FindAppropriateInitialRosterForMobileParty(party, partyTemplate);
             }
 
@@ -184,6 +195,14 @@ namespace TOR_Core.Models
             }
 
             return troopRoster;
+        }
+
+        // The clan template is shared by its lords; only the kingdom leader uses the larger Cygor stack.
+        internal static string SelectBeastmenInitialTemplate(string templateId, bool isLordParty, bool isKingdomLeader)
+        {
+            return templateId == "tor_beastmen_lordparty_template" && isLordParty && isKingdomLeader
+                ? "tor_beastmen_factionleader_party_template"
+                : templateId;
         }
 
         private void AddCareerPassivesForPartySize(Hero playerHero, PartyBase party, ref ExplainedNumber number)

@@ -79,11 +79,17 @@ LAUNCHER="$GAMEBIN/TaleWorlds.MountAndBlade.Launcher.exe"
 NATIVE="$GAMEBIN/Bannerlord.Native.exe"
 LAUNCHER_BAK="$GAMEBIN/TaleWorlds.MountAndBlade.Launcher.exe.original"
 
-if [ ! -f "$LAUNCHER_BAK" ]; then
-    [ -f "$NATIVE" ] || die "Bannerlord.Native.exe missing; can't apply swap"
-    log "applying launcher swap: Bannerlord.Native.exe -> TaleWorlds.MountAndBlade.Launcher.exe"
-    mv "$LAUNCHER" "$LAUNCHER_BAK" || die "swap: mv failed (game running?)"
+[ -f "$NATIVE" ] || die "Bannerlord.Native.exe missing; can't apply swap"
+# Compare current Launcher.exe content to Bannerlord.Native.exe. Steam
+# updates can silently restore a fresh vanilla Launcher.exe even when
+# our .original backup already exists — checking only backup presence
+# would miss that and ship the vanilla launcher back to Wine Mono (no
+# debug agent). cmp -s is a short-circuit byte comparison.
+if ! cmp -s "$LAUNCHER" "$NATIVE"; then
+    log "launcher swap needed: current Launcher.exe != Bannerlord.Native.exe"
+    cp "$LAUNCHER" "$LAUNCHER_BAK" || die "swap: backup refresh failed (game running?)"
     cp "$NATIVE" "$LAUNCHER" || die "swap: cp failed"
+    log "swap applied; .original refreshed to current vanilla"
 fi
 
 # --- 3. (removed) Workshop isolation --------------------------------------

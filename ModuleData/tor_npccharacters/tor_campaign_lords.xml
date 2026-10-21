@@ -13913,4 +13913,158 @@
       <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_lord_hryndyr" default_group="infantry" name="{=str_tor_beastmen_lord_hryndyr}Hrýndyr Split-Horn" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" race="gor2" skill_template="SkillSet.tor_skills_beastmen_ndhiub_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="35" weight="0.8" build="1.0" key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />
+    </face>
+    <Traits>
+      <Trait id="Honor" value="-5" />
+      <Trait id="Mercy" value="-8" />
+      <Trait id="Generosity" value="-3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_beast_gor_gougehorn_template" />
+      <EquipmentSet id="tor_beast_gor_gougehorn_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_lord_koka_dudlu" default_group="infantry" name="{=str_tor_beastmen_lord_koka_dudlu}Koka’Dudlu" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" race="gor2" skill_template="SkillSet.tor_skills_beastmen_caster_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="35" weight="0.35" build="0.55" key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />
+    </face>
+    <Traits>
+      <Trait id="Honor" value="-5" />
+      <Trait id="Mercy" value="-8" />
+      <Trait id="Generosity" value="-3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_beastmen_mercenary_lord_light_template" />
+      <EquipmentSet id="tor_beastmen_mercenary_lord_light_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_lord_khazrak" default_group="infantry" name="{=str_tor_beastmen_lord_khazrak}Khazrak the One-Eye" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" race="gor2" skill_template="SkillSet.tor_skills_beastmen_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="35" weight="0.8" build="1.0" key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />
+    </face>
+    <Traits>
+      <Trait id="Honor" value="-5" />
+      <Trait id="Mercy" value="-8" />
+      <Trait id="Generosity" value="-3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_beast_gor_gougehorn_template" />
+      <EquipmentSet id="tor_beast_gor_gougehorn_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_lord_khazsnorr" default_group="infantry" name="{=str_tor_beastmen_lord_khazsnorr}Khazsnorr the Red" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" race="gor2" skill_template="SkillSet.tor_skills_beastmen_berserker_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="35" weight="0.9" build="1.0" key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />
+    </face>
+    <Traits>
+      <Trait id="Honor" value="-5" />
+      <Trait id="Mercy" value="-8" />
+      <Trait id="Generosity" value="-3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_beastmen_mercenary_lord_heavy_template" />
+      <EquipmentSet id="tor_beastmen_mercenary_lord_heavy_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_lord_wunsru" default_group="infantry" name="{=str_tor_beastmen_lord_wunsru}Wunsru" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" race="gor2" skill_template="SkillSet.tor_skills_beastmen_caster_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="35" weight="0.25" build="0.5" key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />
+    </face>
+    <Traits>
+      <Trait id="Honor" value="-5" />
+      <Trait id="Mercy" value="-8" />
+      <Trait id="Generosity" value="-3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_beastmen_mercenary_lord_light_template" />
+      <EquipmentSet id="tor_beastmen_mercenary_lord_light_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_lord_khorok" default_group="infantry" name="{=str_tor_beastmen_lord_khorok}Khorok Manripper" occupation="Lord" culture="Culture.beastmen" voice="curt" age="43" race="gor2" skill_template="SkillSet.tor_skills_beastmen_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="43" weight="0.85" build="1.0" key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />
+    </face>
+    <Traits>
+      <Trait id="Honor" value="-5" />
+      <Trait id="Mercy" value="-8" />
+      <Trait id="Generosity" value="-3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_beast_gor_gougehorn_template" />
+      <EquipmentSet id="tor_beast_gor_gougehorn_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_lord_dhrothok" default_group="infantry" name="{=str_tor_beastmen_lord_dhrothok}Dhrothok Doomherald" occupation="Lord" culture="Culture.beastmen" voice="curt" age="33" race="gor2" skill_template="SkillSet.tor_skills_beastmen_commander_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="33" weight="0.6" build="0.75" key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />
+    </face>
+    <Traits>
+      <Trait id="Honor" value="-5" />
+      <Trait id="Mercy" value="-8" />
+      <Trait id="Generosity" value="-3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_beastmen_mercenary_lord_heavy_template" />
+      <EquipmentSet id="tor_beastmen_mercenary_lord_heavy_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_lord_morghur" default_group="infantry" name="{=str_tor_beastmen_lord_morghur}Morghur the Shadowgave" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" race="gor2" skill_template="SkillSet.tor_skills_beastmen_caster_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="35" weight="0.55" build="0.7" key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />
+    </face>
+    <Traits>
+      <Trait id="Honor" value="-5" />
+      <Trait id="Mercy" value="-8" />
+      <Trait id="Generosity" value="-3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_beastmen_mercenary_lord_light_template" />
+      <EquipmentSet id="tor_beastmen_mercenary_lord_light_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_lord_akhbarz" default_group="infantry" name="{=str_tor_beastmen_lord_akhbarz}Akhbarz Ashmaker" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" race="gor2" skill_template="SkillSet.tor_skills_beastmen_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="35" weight="0.7" build="0.85" key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />
+    </face>
+    <Traits>
+      <Trait id="Honor" value="-5" />
+      <Trait id="Mercy" value="-8" />
+      <Trait id="Generosity" value="-3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_beastmen_mercenary_lord_heavy_template" />
+      <EquipmentSet id="tor_beastmen_mercenary_lord_heavy_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_lord_morbagh" default_group="infantry" name="{=str_tor_beastmen_lord_morbagh}Morbagh the Blood-Choked" occupation="Lord" culture="Culture.beastmen" voice="curt" age="88" race="gor2" skill_template="SkillSet.tor_skills_beastmen_berserker_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="88" weight="0.9" build="1.0" key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />
+    </face>
+    <Traits>
+      <Trait id="Honor" value="-5" />
+      <Trait id="Mercy" value="-8" />
+      <Trait id="Generosity" value="-3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_beast_gor_gougehorn_template" />
+      <EquipmentSet id="tor_beast_gor_gougehorn_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_lord_gnarl_tooth" default_group="infantry" name="{=str_tor_beastmen_lord_gnarl_tooth}Gnarl-Tooth the Twisted" occupation="Lord" culture="Culture.beastmen" voice="curt" age="59" race="gor2" skill_template="SkillSet.tor_skills_beastmen_caster_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="59" weight="0.35" build="0.55" key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />
+    </face>
+    <Traits>
+      <Trait id="Honor" value="-5" />
+      <Trait id="Mercy" value="-8" />
+      <Trait id="Generosity" value="-3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_beastmen_mercenary_lord_light_template" />
+      <EquipmentSet id="tor_beastmen_mercenary_lord_light_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
 </NPCCharacters>

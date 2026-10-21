@@ -36429,6 +36429,7 @@
       <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
     </EquipmentSet>
+
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
       <Equipment slot="Item1" id="Item.northern_round_shield" />
