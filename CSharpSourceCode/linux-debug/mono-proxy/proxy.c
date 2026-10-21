@@ -57,7 +57,7 @@ static HMODULE g_orig = NULL;
 static int g_agent_setup_done = 0;
 
 static const char *default_agent_args =
-    "--debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:56000,embedding=1,suspend=y,loglevel=1";
+    "--debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:56000,embedding=1,suspend=n,loglevel=1";
 
 static void dbg(const char *msg) {
     /* File-based logging: under Wine, Z:\tmp\... is /tmp/... on the Linux host. */
