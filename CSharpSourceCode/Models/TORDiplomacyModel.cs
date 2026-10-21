@@ -18,7 +18,7 @@ namespace TOR_Core.Models
     public class TORDiplomacyModel : DefaultDiplomacyModel
     {
         // War declaration weights (scaled by 100 for DenarsToInfluence compatibility)
-        private const float WarCultureCompatibilityWeight = 3000f;  // Reduced to allow same-culture civil wars
+        //Sly : some of the weights currently come from TORConfig and its accompanying xml file.
 
         // Territorial Integrity weights (hierarchical claims)
         private const float DirectClaimWeight = 5000f;      // My own settlement
@@ -765,7 +765,7 @@ namespace TOR_Core.Models
 
             float averageRelation = totalRelation / lordCount;
 
-            // Map: +80 -> -3000, +-25 -> +1000, -80 -> +3000 (scaled by 100)
+            // Map: +80 -> -3000, +25 -> -1500, -25 -> +1000, -80 -> +3000 (scaled by 100)
             // Higher relation = less likely to declare war
             if (averageRelation >= 80)
                 return -3000f;
@@ -781,7 +781,7 @@ namespace TOR_Core.Models
         /// <summary>
         /// Calculates score based on distance between kingdoms.
         /// Close targets get bonus, distant targets get penalty.
-        /// Neutral point at ~500 distance. (scaled by 100)
+        /// Neutral point at ~500 distance.
         /// </summary>
         private float CalculateDistanceScore(Kingdom declaringKingdom, Kingdom targetKingdom)
         {
@@ -792,12 +792,12 @@ namespace TOR_Core.Models
 
             // Neutral distance where score is 0
             const float neutralDistance = 500f;
-            // Scale factor for how much distance affects score (scaled by 100)
-            const float distanceScaleFactor = 5f;
+
+            //Sly : distance is bounded by [0, 300[. Therefore (neutralDistance - distance) is bounded by ]200, 500]. These examples are misleading.
 
             // Below neutral: positive, above neutral: negative
             // At 0 distance: +2500, at 500: 0, at 1000: -2500, at 1500: -5000
-            float distanceScore = (neutralDistance - distance) * distanceScaleFactor;
+            float distanceScore = (neutralDistance - distance) * TORConfig.DeclareWarScoreDistanceMultiplier;
 
             // Clamp to reasonable range
             return Math.Max(-5000f, Math.Min(2500f, distanceScore));
@@ -821,8 +821,8 @@ namespace TOR_Core.Models
         private float CalculateCultureScore(Kingdom declaringKingdom, Kingdom targetKingdom)
         {
             float cultureCompat = DiplomacyHelpers.GetCultureCompatibility(declaringKingdom, targetKingdom);
-            // Negative compatibility = more likely to declare war
-            return -cultureCompat * WarCultureCompatibilityWeight;
+            // Negative compatibility = more likely to declare war (scaled by 100)
+            return -cultureCompat * TORConfig.WarCultureCompatibilityWeight * 100f;
         }
 
         /// <summary>

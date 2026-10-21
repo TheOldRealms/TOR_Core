@@ -266,6 +266,10 @@
                        weight="0.6775"
                        build="0.6929"
                        key="001BB40FDE583A54A97A637BBBBA988BBABBB5B88588BB77DBACB9BBCCDDBBC800DAA6030DBCDDEB000000000000000000000000000000000000000021AC90C0" />
+					   <tattoo_tags>
+                       <tattoo_tag name="tattoo_male_c_mat" />
+					   <tattoo_tag name="tattoo_male_m_mat" />
+                       </tattoo_tags>
   </BodyProperty>
   <BodyProperty id="bretonnianknight">
     <BodyPropertiesMin version="4"

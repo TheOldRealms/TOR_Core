@@ -6,7 +6,7 @@
 		is_main_culture="true"
 		color="0xFF612121"
 		color2="0xFFededed"
-		elite_basic_troop="NPCCharacter.tor_empire_young_noble_squire"
+		elite_basic_troop="NPCCharacter.tor_empire_noble_cavalry"
 		basic_troop="NPCCharacter.tor_empire_recruit"
 		melee_militia_troop="NPCCharacter.tor_empire_state_troop"
 		ranged_militia_troop="NPCCharacter.tor_empire_archer"

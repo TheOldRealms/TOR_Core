@@ -20,7 +20,7 @@ namespace TOR_Core.BattleMechanics.Reinforcements
         private static readonly FieldInfo BattleSideSpawnContextsField = typeof(DefaultBattleMissionAgentSpawnLogic).GetField("_battleSideSpawnContexts", BindingFlags.Instance | BindingFlags.NonPublic);
         private static readonly FieldInfo NumberSpawnedTroopsField = typeof(MissionBattleSideSpawnContext).GetField("_numSpawnedTroops", BindingFlags.Instance | BindingFlags.NonPublic);
         private static readonly FieldInfo AllocatedTroopsField = typeof(MapEventSide).GetField("_allocatedTroops", BindingFlags.Instance | BindingFlags.NonPublic);
-        private static readonly FieldInfo MapEventTypeField = typeof(MapEvent).GetField("_mapEventType", BindingFlags.Instance | BindingFlags.NonPublic);
+        private static readonly FieldInfo SiegeEventTypeField = typeof(SiegeAssaultEventComponent).GetField("_eventType", BindingFlags.Instance | BindingFlags.NonPublic);
 
         private readonly Queue<PendingReinforcementTroop>[] _pendingTroops = { new(), new() };
         private readonly Queue<List<PendingReinforcementTroop>>[] _delayedReinforcementGroups = { new(), new() };
@@ -378,7 +378,7 @@ namespace TOR_Core.BattleMechanics.Reinforcements
             if (wasSiegeAssault && _battle.EventType == MapEvent.BattleTypes.SiegeOutside)
             {
                 // restoring the context for SiegeOutside and defensive sieges with relief reinforcements
-                MapEventTypeField.SetValue(_battle, MapEvent.BattleTypes.Siege);
+                SiegeEventTypeField.SetValue(_battle.Component, MapEvent.BattleTypes.Siege);
                 var correctAddedStrength = joinedParties.Sum(x => x.Party.GetCustomStrength(side, _battle.SimulationContext));
                 _battle.StrengthOfSide[(int)side] = sideStrengthBeforeJoin + correctAddedStrength;
                 _battle.AttackerSide.CalculateRenownAndInfluenceValuesOnPartyInvolved(_battle.StrengthOfSide);

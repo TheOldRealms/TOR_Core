@@ -85,12 +85,12 @@
       <EquipmentSet id="tor_empire_greatsword_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_duke_champion" name="{=str_tor_empire_duke_champion}Empire Dukes Champion" level="26" default_group="infantry" culture="Culture.empire" occupation="Soldier" skill_template="SkillSet.tor_skills_level26" localizationId="str_tor_empire_duke_champion">
+  <NPCCharacter id="tor_empire_duke_champion" name="{=str_tor_empire_duke_champion}Empire Counts Champion" level="26" default_group="infantry" culture="Culture.empire" occupation="Soldier" skill_template="SkillSet.tor_skills_level26" localizationId="str_tor_empire_duke_champion">
     <face>
       <face_key_template value="BodyProperty.fighter_empireofman_elite" />
     </face>
     <Equipments>
-      <EquipmentSet id="tor_empire_greatsword_template" />
+      <EquipmentSet id="tor_empire_count_champion_template" />
       <EquipmentSet id="tor_empire_greatsword_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
@@ -184,28 +184,28 @@
       <EquipmentSet id="tor_empire_marksman_handgunner_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_young_noble_squire" default_group="infantry" level="16" name="{=str_tor_empire_young_noble_squire}Empire Young Noble Squire" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true" localizationId="str_tor_empire_young_noble_squire">
-    <face>
-      <face_key_template value="BodyProperty.fighter_empireofman" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_empire_noble_cavalry" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_empire_young_noble_squire_template" />
-      <EquipmentSet id="tor_empire_young_noble_squire_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_empire_noble_cavalry" default_group="cavalry" level="21" name="{=str_tor_empire_noble_cavalry}Empire Noble Cavalry" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level21" localizationId="str_tor_empire_noble_cavalry">
+  <NPCCharacter id="tor_empire_noble_cavalry" default_group="cavalry" level="21" name="{=str_tor_empire_noble_cavalry}Empire Cavalry" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level21" localizationId="str_tor_empire_noble_cavalry" is_basic_troop="true">
     <face>
       <face_key_template value="BodyProperty.fighter_empireofman_elite" />
     </face>
     <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_empire_reiksguard_knight" />
+      <upgrade_target id="NPCCharacter.tor_empire_knight" />
       <upgrade_target id="NPCCharacter.tor_empire_pistolier" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_empire_noble_cavalry_template" />
+      <EquipmentSet id="tor_empire_noble_cavalry_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_empire_knight" default_group="cavalry" level="26" name="{=str_tor_empire_knight}Empire Knight" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level26" localizationId="str_tor_empire_knight" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empireofman_elite" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_empire_innercircle_knight" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_empire_generic_knight_template" />
       <EquipmentSet id="tor_empire_noble_cavalry_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
@@ -214,11 +214,20 @@
       <face_key_template value="BodyProperty.fighter_empireofman_elite" />
     </face>
     <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_empire_reiksguard_preceptor" />
-      <upgrade_target id="NPCCharacter.tor_demigryph_knight" />
+      <upgrade_target id="NPCCharacter.tor_empire_reiksguard_innercircle_knight" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_empire_reiksguard_knight_template" />
+      <EquipmentSet id="tor_empire_reiksguard_knight_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_empire_reiksguard_innercircle_knight" default_group="cavalry" level="36" name="{=str_tor_empire_reiksguard_innercircle_knight}Empire Reiksguard Knight of the Inner Circle" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level36" localizationId="str_tor_empire_reiksguard_knight">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empireofman_elite" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_empire_reiksguard_innercircle_knight_template" />
       <EquipmentSet id="tor_empire_reiksguard_knight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
@@ -228,35 +237,21 @@
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_empire_outrider" />
+      <upgrade_target id="NPCCharacter.tor_valiant_outrider_grenade" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_empire_pistolier_template" />
       <EquipmentSet id="tor_empire_pistolier_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_outrider" default_group="horsearcher" level="31" name="{=str_tor_empire_outrider}Empire Outrider" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level31" localizationId="str_tor_empire_outrider">
+  <NPCCharacter id="tor_empire_outrider" default_group="horsearcher" level="36" name="{=str_tor_empire_outrider}Empire Outrider" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level36" localizationId="str_tor_empire_outrider">
     <face>
       <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_valiant_outrider" />
-      <upgrade_target id="NPCCharacter.tor_valiant_outrider_grenade" />
-    </upgrade_targets>
+    <upgrade_targets />
     <Equipments>
       <EquipmentSet id="tor_empire_outrider_template" />
       <EquipmentSet id="tor_empire_outrider_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_empire_reiksguard_preceptor" default_group="cavalry" level="31" name="{=str_tor_empire_reiksguard_preceptor}Empire Reiksguard Preceptor Knight" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level31" localizationId="str_tor_empire_reiksguard_preceptor">
-    <face>
-      <face_key_template value="BodyProperty.fighter_empireofman" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_empire_innercircle_knight" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_empire_reiksguard_preceptor_knight_template" />
-      <EquipmentSet id="tor_empire_reiksguard_preceptor_knight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_empire_innercircle_knight" default_group="cavalry" level="36" name="{=str_tor_empire_innercircle_knight}Empire Knight of the Inner Circle" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level36" localizationId="str_tor_empire_innercircle_knight">
@@ -264,36 +259,24 @@
       <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_reiksguard_preceptor_innercircle" />
+      <upgrade_target id="NPCCharacter.tor_demigryph_knight" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_empire_reiksguard_innercircle_knight_template" />
+      <EquipmentSet id="tor_empire_innercircle_knight_template" />
       <EquipmentSet id="tor_empire_reiksguard_innercircle_knight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_demigryph_knight" default_group="cavalry" level="36" name="{=str_tor_demigryph_knight}Empire Demigryph Knight" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level36" localizationId="str_tor_demigryph_knight">
-    <face>
-      <face_key_template value="BodyProperty.fighter_empireofman_elite" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_demigryph_innercircle" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_empire_reiksguard_demigryph_knight_template" />
-      <EquipmentSet id="tor_empire_reiksguard_demigryph_knight_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_valiant_outrider" default_group="horsearcher" level="46" name="{=str_tor_valiant_outrider}Empire Valiant Outrider" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level46" localizationId="str_tor_valiant_outrider">
+  <NPCCharacter id="tor_demigryph_knight" default_group="cavalry" level="46" name="{=str_tor_demigryph_knight}Empire Demigryph Knight" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level46" localizationId="str_tor_demigryph_knight">
     <face>
       <face_key_template value="BodyProperty.fighter_empireofman_elite" />
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_empire_valiant_outrider_template" />
-      <EquipmentSet id="tor_empire_valiant_outrider_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_empire_demigryph_knight_template" />
+      <EquipmentSet id="tor_empire_reiksguard_demigryph_knight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_valiant_outrider_grenade" default_group="horsearcher" level="46" name="{=str_tor_valiant_outrider_grenade}Empire Valiant Outrider (Grenade Launcher)" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level46" localizationId="str_tor_valiant_outrider_grenade">
+  <NPCCharacter id="tor_valiant_outrider_grenade" default_group="horsearcher" level="36" name="{=str_tor_valiant_outrider_grenade}Empire Grenadier Outrider " occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level36" localizationId="str_tor_valiant_outrider_grenade">
     <face>
       <face_key_template value="BodyProperty.fighter_empireofman_elite" />
     </face>
@@ -301,26 +284,6 @@
     <Equipments>
       <EquipmentSet id="tor_empire_valiant_outrider_grenade_template" />
       <EquipmentSet id="tor_empire_valiant_outrider_grenade_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_reiksguard_preceptor_innercircle" default_group="cavalry" level="46" name="{=str_tor_reiksguard_preceptor_innercircle}Empire Reiksguard Preceptor Knight of the Inner Circle" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level46" localizationId="str_tor_reiksguard_preceptor_innercircle">
-    <face>
-      <face_key_template value="BodyProperty.fighter_empireofman_elite" />
-    </face>
-    <upgrade_targets />
-    <Equipments>
-      <EquipmentSet id="tor_empire_reiksguard_preceptor_innercircle_template" />
-      <EquipmentSet id="tor_empire_reiksguard_preceptor_innercircle_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_demigryph_innercircle" default_group="cavalry" level="46" name="{=str_tor_demigryph_innercircle}Empire Reiksguard Demigryph of the Inner Circle" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level46" localizationId="str_tor_demigryph_innercircle">
-    <face>
-      <face_key_template value="BodyProperty.fighter_empireofman_elite" />
-    </face>
-    <upgrade_targets />
-    <Equipments>
-      <EquipmentSet id="tor_empire_reiksguard_demigryph_innercircle_template" />
-      <EquipmentSet id="tor_empire_reiksguard_demigryph_innercircle_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_empire_novice_engineer" default_group="infantry" level="6" name="{=str_tor_empire_novice_engineer}Novice Engineer" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" localizationId="str_tor_empire_novice_engineer">
@@ -4251,25 +4214,12 @@
       <EquipmentSet id="tor_merc_free_company_pistolier_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ror_kragsburg_retainer" default_group="infantry" level="16" name="{=str_tor_ror_kragsburg_retainer}Von Kragsburg Retainer" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true" localizationId="str_tor_ror_kragsburg_retainer">
-    <face>
-      <face_key_template value="BodyProperty.fighter_empireofman" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_ror_kragsburg_sergeant" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_kragsburg_retainer_template" />
-      <EquipmentSet id="tor_kragsburg_retainer_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_ror_kragsburg_sergeant" default_group="infantry" level="21" name="{=str_tor_ror_kragsburg_sergeant}Von Kragsburg Sergeant" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level21" localizationId="str_tor_ror_kragsburg_sergeant">
+  <NPCCharacter id="tor_ror_kragsburg_sergeant" default_group="infantry" level="21" name="{=str_tor_ror_kragsburg_sergeant}Von Kragsburg Retainer" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level21" localizationId="str_tor_ror_kragsburg_sergeant" is_basic_troop="true">
     <face>
       <face_key_template value="BodyProperty.fighter_empireofman" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_ror_kragsburg_house_guard" />
-      <upgrade_target id="NPCCharacter.tor_ror_kragsburg_personal_guard" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_kragsburg_sergeant_template" />
@@ -4284,16 +4234,6 @@
     <Equipments>
       <EquipmentSet id="tor_kragsburg_house_guard_template" />
       <EquipmentSet id="tor_kragsburg_house_guard_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_ror_kragsburg_personal_guard" default_group="infantry" level="26" name="{=str_tor_ror_kragsburg_personal_guard}Von Kragsburg Personal Guard" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level26" localizationId="str_tor_ror_kragsburg_personal_guard">
-    <face>
-      <face_key_template value="BodyProperty.fighter_empireofman_elite" />
-    </face>
-    <upgrade_targets />
-    <Equipments>
-      <EquipmentSet id="tor_kragsburg_personal_guard_template" />
-      <EquipmentSet id="tor_kragsburg_personal_guard_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_ror_stir_river_scout" default_group="ranged" level="16" name="{=str_tor_ror_stir_river_scout}Stir River Scout" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true" localizationId="str_tor_ror_stir_river_scout">
@@ -4375,109 +4315,6 @@
       <EquipmentSet id="tor_blazing_sun_innercircle_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ror_grundel_defender_troop" default_group="infantry" level="16" name="{=str_tor_ror_grundel_defender_troop}Grundel's Defender Troop" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true" localizationId="str_tor_ror_grundel_defender_troop">
-    <face>
-      <face_key_template value="BodyProperty.fighter_empireofman" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_ror_grundel_defender_stalwart" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_grundel_defender_troop_template" />
-      <EquipmentSet id="tor_grundel_defender_troop_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_ror_grundel_defender_stalwart" default_group="infantry" level="21" name="{=str_tor_ror_grundel_defender_stalwart}Stalwart Grundel's Defender" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level21" localizationId="str_tor_ror_grundel_defender_stalwart">
-    <face>
-      <face_key_template value="BodyProperty.fighter_empireofman" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_ror_grundel_defender_defender" />
-      <upgrade_target id="NPCCharacter.tor_ror_grundel_defender_sergeant" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_grundel_defender_stalwart_template" />
-      <EquipmentSet id="tor_grundel_defender_stalwart_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_ror_grundel_defender_sergeant" default_group="infantry" level="26" name="{=str_tor_ror_grundel_defender_sergeant}Grundel's Defender Sergeant" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level26" localizationId="str_tor_ror_grundel_defender_sergeant">
-    <face>
-      <face_key_template value="BodyProperty.fighter_empireofman" />
-    </face>
-    <upgrade_targets />
-    <Equipments>
-      <EquipmentSet id="tor_grundel_defender_sergeant_template" />
-      <EquipmentSet id="tor_grundel_defender_sergeant_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_ror_grundel_defender_defender" default_group="infantry" level="26" name="{=str_tor_ror_grundel_defender_defender}Brave Grundel's Defender" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level26" localizationId="str_tor_ror_grundel_defender_defender">
-    <face>
-      <face_key_template value="BodyProperty.fighter_empireofman" />
-    </face>
-    <upgrade_targets />
-    <Equipments>
-      <EquipmentSet id="tor_grundel_defender_defender_template" />
-      <EquipmentSet id="tor_grundel_defender_defender_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_ror_deathjack_longbowman" default_group="ranged" level="16" name="{=str_tor_ror_deathjack_longbowman}Deathjack Longbowman" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true" localizationId="str_tor_ror_deathjack_longbowman">
-    <face>
-      <face_key_template value="BodyProperty.fighter_ror_stirlander" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_ror_deathjack_marksman" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_deathjack_longbowman_template" />
-      <EquipmentSet id="tor_deathjack_longbowman_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_ror_deathjack_marksman" default_group="ranged" level="21" name="{=str_tor_ror_deathjack_marksman}Deathjack Marksman" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level21" localizationId="str_tor_ror_deathjack_marksman">
-    <face>
-      <face_key_template value="BodyProperty.fighter_ror_stirlander" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_ror_deathjack_toxophilite" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_deathjack_marksman_template" />
-      <EquipmentSet id="tor_deathjack_marksman_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_ror_deathjack_toxophilite" default_group="ranged" level="26" name="{=str_tor_ror_deathjack_toxophilite}Deathjack Toxophilite" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level26" localizationId="str_tor_ror_deathjack_toxophilite">
-    <face>
-      <face_key_template value="BodyProperty.fighter_ror_stirlander" />
-    </face>
-    <upgrade_targets />
-    <Equipments>
-      <EquipmentSet id="tor_deathjack_toxophilite_template" />
-      <EquipmentSet id="tor_deathjack_toxophilite_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_ror_ward_of_taal" default_group="infantry" level="16" name="{=str_tor_ror_ward_of_taal}Ward of Taal" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true" localizationId="str_tor_ror_ward_of_taal">
-    <face>
-      <face_key_template value="BodyProperty.hornedhunter" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_ror_hunter_of_taal" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_wardoftaal_template" />
-      <EquipmentSet id="tor_wardoftaal_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_ror_hunter_of_taal" default_group="infantry" level="21" name="{=str_tor_ror_hunter_of_taal}Hunter of Taal" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level21" localizationId="str_tor_ror_hunter_of_taal">
-    <face>
-      <face_key_template value="BodyProperty.hornedhunter" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_ror_horned_hunter" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_hunteroftaal_template" />
-      <EquipmentSet id="tor_hunteroftaal_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
   <NPCCharacter id="tor_ror_horned_hunter" default_group="infantry" level="26" name="{=str_tor_ror_horned_hunter}Horned Hunter" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level26" localizationId="str_tor_ror_horned_hunter">
     <face>
       <face_key_template value="BodyProperty.hornedhunter" />
@@ -4486,42 +4323,6 @@
     <Equipments>
       <EquipmentSet id="tor_hornedhunter_template" />
       <EquipmentSet id="tor_hornedhunter_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_ror_longshank_initiate" default_group="ranged" level="11" name="{=str_tor_ror_longshank_initiate}Longshank Initiate" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true" localizationId="str_tor_ror_longshank_initiate">
-    <face>
-      <face_key_template value="BodyProperty.hornedhunter" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_ror_longshank_strider" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_longshank_initiate_template" />
-      <EquipmentSet id="tor_longshank_initiate_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_ror_longshank_strider" default_group="ranged" level="16" name="{=str_tor_ror_longshank_strider}Longshank Strider" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" localizationId="str_tor_ror_longshank_strider">
-    <face>
-      <face_key_template value="BodyProperty.hornedhunter" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_ror_longshank_warden" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_longshank_strider_template" />
-      <EquipmentSet id="tor_longshank_strider_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_ror_longshank_warden" default_group="ranged" level="21" name="{=str_tor_ror_longshank_warden}Longshank Warden" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level21" localizationId="str_tor_ror_longshank_warden">
-    <face>
-      <face_key_template value="BodyProperty.hornedhunter" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_ror_longshank_ranger" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_longshank_warden_template" />
-      <EquipmentSet id="tor_longshank_warden_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_ror_longshank_ranger" default_group="ranged" level="26" name="{=str_tor_ror_longshank_ranger}Longshank Ranger" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level26" localizationId="str_tor_ror_longshank_ranger">
@@ -4603,40 +4404,6 @@
       <EquipmentSet id="tor_ror_griffon_demi_preceptor_knight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ror_son_of_altdorf" default_group="infantry" level="21" name="{=str_tor_ror_son_of_altdorf}Son of Altdorf" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true" localizationId="str_tor_ror_son_of_altdorf">
-    <face>
-      <face_key_template value="BodyProperty.fighter_empireofman_elite" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_ror_altdorf_companyman" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_ror_son_of_altdorf_template" />
-      <EquipmentSet id="tor_ror_son_of_altdorf_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_ror_altdorf_companyman" default_group="infantry" level="26" name="{=str_tor_ror_altdorf_companyman}Altdorf Companyman" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level26" localizationId="str_tor_ror_altdorf_companyman">
-    <face>
-      <face_key_template value="BodyProperty.fighter_empireofman_elite" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_ror_altdorf_company_sergeant" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_ror_altdorf_companyman_template" />
-      <EquipmentSet id="tor_ror_altdorf_companyman_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_ror_altdorf_company_sergeant" default_group="infantry" level="31" name="{=str_tor_ror_altdorf_company_sergeant}Altdorf Company Sergeant" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level31" localizationId="str_tor_ror_altdorf_company_sergeant">
-    <face>
-      <face_key_template value="BodyProperty.fighter_empireofman_elite" />
-    </face>
-    <upgrade_targets />
-    <Equipments>
-      <EquipmentSet id="tor_ror_altdorf_company_sergeant_template" />
-      <EquipmentSet id="tor_ror_altdorf_company_sergeant_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
   <NPCCharacter id="tor_ror_hochland_scout" default_group="ranged" level="21" name="{=str_tor_ror_hochland_scout}Hochland Scout" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true" localizationId="str_tor_ror_hochland_scout">
     <face>
       <face_key_template value="BodyProperty.fighter_empireofman" />
@@ -4693,28 +4460,6 @@
       <EquipmentSet id="tor_ostland_blackguard_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ror_hochland_drakwald_patrol" default_group="ranged" level="21" name="{=str_tor_ror_hochland_drakwald_patrol}Hochland Drakwald Patrol" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true" localizationId="str_tor_ror_hochland_drakwald_patrol">
-    <face>
-      <face_key_template value="BodyProperty.fighter_empireofman_elite" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_ror_gundermans_surefire" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_hochland_drakwald_patrol_template" />
-      <EquipmentSet id="tor_hochland_drakwald_patrol_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_ror_gundermans_surefire" default_group="ranged" level="26" name="{=str_tor_ror_gundermans_surefire}Gunderman's Surefire" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level26" localizationId="str_tor_ror_gundermans_surefire">
-    <face>
-      <face_key_template value="BodyProperty.fighter_empireofman_elite" />
-    </face>
-    <upgrade_targets />
-    <Equipments>
-      <EquipmentSet id="tor_gundermans_surefire_template" />
-      <EquipmentSet id="tor_gundermans_surefire_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
   <NPCCharacter id="tor_ror_marienburg_sailor" default_group="infantry" level="6" name="{=str_tor_ror_marienburg_sailor}Marienburg Sailor" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" localizationId="str_tor_ror_marienburg_sailor">
     <face>
       <face_key_template value="BodyProperty.fighter_ror_nordlander" />
@@ -4747,28 +4492,6 @@
     <Equipments>
       <EquipmentSet id="tor_klumpf_buccaneers_template" />
       <EquipmentSet id="tor_klumpf_buccaneers_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_ror_nordland_mariner" default_group="infantry" level="16" name="{=str_tor_ror_nordland_mariner}Nordland Marine" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true" localizationId="str_tor_ror_nordland_mariner">
-    <face>
-      <face_key_template value="BodyProperty.fighter_ror_nordlander" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_ror_nordland_seahawk" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_nordland_mariner_template" />
-      <EquipmentSet id="tor_nordland_mariner_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_ror_nordland_seahawk" default_group="infantry" level="26" name="{=str_tor_ror_nordland_seahawk}Nordland Seahawk" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level26" localizationId="str_tor_ror_nordland_seahawk">
-    <face>
-      <face_key_template value="BodyProperty.fighter_ror_nordlander" />
-    </face>
-    <upgrade_targets />
-    <Equipments>
-      <EquipmentSet id="tor_nordland_seahawk_template" />
-      <EquipmentSet id="tor_nordland_seahawk_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_ror_sternieste_skeleton" default_group="infantry" level="16" name="{=str_tor_ror_sternieste_skeleton}Castle Sternieste Skeleton" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true" race="skeleton" localizationId="str_tor_ror_sternieste_skeleton">
