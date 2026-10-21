@@ -176,7 +176,7 @@
       <Trait id="Generosity" value="-1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" />
+      <EquipmentSet id="tor_empire_averland_lord_1_template" />
       <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
@@ -194,7 +194,7 @@
       <Trait id="Generosity" value="-1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_generic_empire_lord_medium_pistol_template" />
+      <EquipmentSet id="tor_empire_averland_lord_1_template" />
       <EquipmentSet id="tor_generic_empire_lord_medium_pistol_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
@@ -212,7 +212,7 @@
       <Trait id="Generosity" value="-1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" />
+      <EquipmentSet id="tor_empire_averland_lord_1_template" />
       <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>

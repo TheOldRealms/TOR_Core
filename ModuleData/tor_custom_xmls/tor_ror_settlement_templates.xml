@@ -112,7 +112,7 @@
     />
 	<RORSettlementTemplate
         SettlementId="castle_village_RL3_2"
-        BaseTroopId="tor_empire_noble_cavalry"
+        BaseTroopId="tor_empire_reiksguard_knight"
         MenuHeaderText="{=str_tor_ror_settlement_text_reiksguard}Due to Grünburg's proximity to Castle Reikguard, the headquarters of the Grand Order of the Reiksguard Knights, some of the finest knights of the Empire often patrol these roads."
         MenuBackgroundImageId="invalid"
         RegimentName="{=str_tor_ror_settlement_name_reiksguard}Reiksguard Knights"
