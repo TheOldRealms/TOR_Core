@@ -6052,6 +6052,8 @@
   <string id="tor_poi_witchhunter_lodge.offer_minor_stub" text="{=str_tor_poi_witchhunter_lodge.offer_minor_stub}Nothing in the ledger right now — return in a few days." />
   <string id="tor_poi_witchhunter_lodge.ask_major" text="{=str_tor_poi_witchhunter_lodge.ask_major}Are there major bounties the Order needs seen to?" />
   <string id="tor_poi_witchhunter_lodge.offer_major_stub" text="{=str_tor_poi_witchhunter_lodge.offer_major_stub}The Order's heavier hunts can wait. Return when the days have turned." />
+  <string id="tor_poi_witchhunter_lodge.hunts_offer_handoff" text="{=str_tor_poi_witchhunter_lodge.hunts_offer_handoff}I have a lead for you. Step away a moment, then come back and ask me properly — I will put the details to you." />
+  <string id="tor_poi_witchhunter_lodge.bounties_offer_handoff" text="{=str_tor_poi_witchhunter_lodge.bounties_offer_handoff}There is a bounty on the ledger. Step away a moment, then come back and ask me — I will give you the particulars." />
   <string id="tor_poi_witchhunter_lodge.bounties_back" text="{=str_tor_poi_witchhunter_lodge.bounties_back}That is all for now." />
   <string id="tor_poi_witchhunter_lodge.store_open" text="{=str_tor_poi_witchhunter_lodge.store_open}The Order's wares. These will serve you better than tavern-forged scrap." />
   <string id="tor_poi_witchhunter_lodge.store_reply" text="{=str_tor_poi_witchhunter_lodge.store_reply}What else can I do for you?" />

@@ -109,13 +109,22 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 IsInquisitorPartner, null, 200, null);
 
             // --- Hunts: three mutually-exclusive variants with identical player text.
-            // Known with an issue → vanilla hero_main_options for the issue brief flow.
-            // Known with no issue → "Return soon" stub.
-            // Not Known yet → shared "earn trust" stub so the player understands why.
-            obj.AddPlayerLine("tor_witchhunter_lodge_hunts", "tor_witchhunter_lodge_hub", "hero_main_options",
+            // Known with an issue → close dialog with a brief NPC acknowledgement; the
+            //   player re-engages the Inquisitor and vanilla's natural issue intro
+            //   fires at the next conversation start. Routing straight to vanilla's
+            //   hero_main_options state from our hub dead-ends because that state
+            //   expects to be reached via vanilla's own dialog navigation path.
+            // Known with no issue → "Return soon" stub, back to hub.
+            // Not Known yet → shared "earn trust" stub, back to hub.
+            obj.AddPlayerLine("tor_witchhunter_lodge_hunts", "tor_witchhunter_lodge_hub", "tor_witchhunter_lodge_hunts_offer_npc",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_hunts",
                     "Inquisitor, I wish to aid the Empire! Do you have anything special that needs doing?"),
                 () => IsKnown() && InquisitorHasHunt(), null, 200, null);
+
+            obj.AddDialogLine("tor_witchhunter_lodge_hunts_offer_npc", "tor_witchhunter_lodge_hunts_offer_npc", "close_window",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.hunts_offer_handoff",
+                    "I have a lead for you. Step away a moment, then come back and ask me properly — I will put the details to you."),
+                null, null, 200);
 
             obj.AddPlayerLine("tor_witchhunter_lodge_hunts_none", "tor_witchhunter_lodge_hub", "tor_witchhunter_lodge_hunts_stub",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_hunts",
@@ -216,12 +225,18 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 HasAbandonableBounty, OpenAbandonBountyInquiry, 200, null);
 
             // Ask for a new minor bounty — two variants with identical player text.
-            // Has-issue variant routes into vanilla's hero_main_options; the issue
-            // brief flow fires. No-issue variant falls through to the stub reply.
-            obj.AddPlayerLine("tor_witchhunter_lodge_bounties_ask_minor", "tor_witchhunter_lodge_bounties_menu", "hero_main_options",
+            // Has-issue variant: same close+re-engage pattern as Hunts (vanilla
+            // hero_main_options doesn't work when entered from our hub). No-issue
+            // variant falls through to the stub reply.
+            obj.AddPlayerLine("tor_witchhunter_lodge_bounties_ask_minor", "tor_witchhunter_lodge_bounties_menu", "tor_witchhunter_lodge_bounties_offer_minor_handoff_npc",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.ask_minor",
                     "Are there minor bounties the Order needs seen to?"),
                 () => CanOfferMinor() && InquisitorHasMinorBounty(), null, 200, null);
+
+            obj.AddDialogLine("tor_witchhunter_lodge_bounties_offer_minor_handoff_npc", "tor_witchhunter_lodge_bounties_offer_minor_handoff_npc", "close_window",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.bounties_offer_handoff",
+                    "There is a bounty on the ledger. Step away a moment, then come back and ask me — I will give you the particulars."),
+                null, null, 200);
 
             obj.AddPlayerLine("tor_witchhunter_lodge_bounties_ask_minor_stub", "tor_witchhunter_lodge_bounties_menu", "tor_witchhunter_lodge_bounties_offer_minor_npc",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.ask_minor",
@@ -234,9 +249,9 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 null, null, 200);
 
             // Ask for a new major bounty — gated on MajorBountyCap > 0 (Trusted+).
-            // Two variants with identical text: has-issue routes to vanilla's
-            // hero_main_options for the issue brief, no-issue falls to the stub.
-            obj.AddPlayerLine("tor_witchhunter_lodge_bounties_ask_major", "tor_witchhunter_lodge_bounties_menu", "hero_main_options",
+            // Has-issue variant: same close+re-engage handoff as Minor. The handoff
+            // NPC line is shared across tiers so the player sees consistent wording.
+            obj.AddPlayerLine("tor_witchhunter_lodge_bounties_ask_major", "tor_witchhunter_lodge_bounties_menu", "tor_witchhunter_lodge_bounties_offer_minor_handoff_npc",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.ask_major",
                     "Are there major bounties the Order needs seen to?"),
                 () => CanOfferMajor() && InquisitorHasMajorBounty(), null, 200, null);
