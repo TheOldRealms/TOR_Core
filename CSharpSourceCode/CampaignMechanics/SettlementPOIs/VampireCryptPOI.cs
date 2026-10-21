@@ -72,7 +72,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         {
             obj.AddDialogLine("trainer_vampire_start", "start", "vampire_choices",
                 TORTextHelper.GetText("tor_spelltrainer_vampire_start", "Ah, a creature of the night graces my presence. What do you seek?"),
-                isVampireTrainer, null, 200, null);
+                isVampireTrainer, null, 210, null);
             obj.AddDialogLine("trainer_vampire_hub", "hub_vampire", "vampire_choices",
                 TORTextHelper.GetText("tor_spelltrainer_vampire_hub", "What else do you require?"),
                 isVampireTrainer, null, 200, null);

@@ -63,7 +63,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
 
         public override void RegisterDialogs(CampaignGameStarter obj)
         {
-            obj.AddDialogLine("trainer_prophetesse_start", "start", "choices_prophetesse", TORTextHelper.GetTextForNative("tor_spelltrainer_prophetesse_start", "Welcome, child of Bretonnia. The Lady has guided you to my presence. Speak, and let your intentions unfold."), isMorgianaLeFay, null, 200, null);
+            obj.AddDialogLine("trainer_prophetesse_start", "start", "choices_prophetesse", TORTextHelper.GetTextForNative("tor_spelltrainer_prophetesse_start", "Welcome, child of Bretonnia. The Lady has guided you to my presence. Speak, and let your intentions unfold."), isMorgianaLeFay, null, 210, null);
             obj.AddDialogLine("trainer_prophetesse_start", "hub_prophetesse", "choices_prophetesse", TORTextHelper.GetTextForNative("tor_spelltrainer_prophetesse_choices", "Is there more you seek? Speak your desires."), isMorgianaLeFay, null, 200, null);
             obj.AddPlayerLine("trainer_prophetesse_learnspells", "choices_prophetesse", "openbook_prophetesse", TORTextHelper.GetTextForNative("tor_spelltrainer_prophetesse_open_book", "Revered Fay Enchantress, share with me some of your magic teachings."), () => MobileParty.MainParty.HasSpellCasterMember() && damselCondition(), null, 200, null);
             obj.AddPlayerLine("trainer_prophetesse_scrollShop", "choices_prophetesse", "hub_prophetesse", TORTextHelper.GetTextForNative("tor_spelltrainer_prophetesse_scrolls", "Gracious Enchantress, I ask you for the tomes and scrolls that hold the keys to the Lady's wisdom."), null, SpellTrainerHelper.OpenScrollShop, 200, null);
