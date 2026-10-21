@@ -85,12 +85,12 @@
       <EquipmentSet id="tor_empire_greatsword_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_duke_champion" name="{=str_tor_empire_duke_champion}Empire Dukes Champion" level="26" default_group="infantry" culture="Culture.empire" occupation="Soldier" skill_template="SkillSet.tor_skills_level26" localizationId="str_tor_empire_duke_champion">
+  <NPCCharacter id="tor_empire_duke_champion" name="{=str_tor_empire_duke_champion}Empire Counts Champion" level="26" default_group="infantry" culture="Culture.empire" occupation="Soldier" skill_template="SkillSet.tor_skills_level26" localizationId="str_tor_empire_duke_champion">
     <face>
       <face_key_template value="BodyProperty.fighter_empireofman_elite" />
     </face>
     <Equipments>
-      <EquipmentSet id="tor_empire_greatsword_template" />
+      <EquipmentSet id="tor_empire_count_champion_template" />
       <EquipmentSet id="tor_empire_greatsword_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
