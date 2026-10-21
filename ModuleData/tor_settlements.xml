@@ -700,7 +700,7 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_chapterhouse" />
+      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -939,7 +939,7 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_chapterhouse" />
+      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -1957,7 +1957,7 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_chapterhouse" />
+      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -3404,7 +3404,7 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_chapterhouse" />
+      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -4449,7 +4449,7 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_chapterhouse" />
+      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -4538,7 +4538,7 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_chapterhouse" />
+      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -5768,7 +5768,7 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_chapterhouse" />
+      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
