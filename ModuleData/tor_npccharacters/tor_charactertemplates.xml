@@ -760,12 +760,13 @@
       <EquipmentSet id="tor_gs_goblin_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_beastman_1" name="{=str_tor_wanderer_beastman_1}{FIRSTNAME} the Wargor" occupation="Wanderer" culture="Culture.beastmen" default_group="infantry" voice="ironic" age="50" is_template="true" is_hero="false" skill_template="SkillSet.tor_skills_berserker_lord">
+  <NPCCharacter id="tor_wanderer_beastman_1" name="{=str_tor_wanderer_beastman_1}{FIRSTNAME} the Wargor" occupation="Wanderer" culture="Culture.beastmen" default_group="infantry" voice="ironic" age="50" is_template="true" is_hero="false" skill_template="SkillSet.tor_skills_berserker_lord" race="gor2">
     <face>
       <face_key_template value="BodyProperty.gor" />
     </face>
     <Equipments>
       <EquipmentSet id="tor_beast_gor_gougehorn_template" />
+      <EquipmentSet id="tor_beast_gor_gougehorn_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_empire_deserter_lord_0" default_group="cavalry" name="{=str_tor_empire_deserter_lord_0}{FIRSTNAME} the Deserter Captain" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_commander_lord" is_template="true" is_hero="false">
@@ -2806,6 +2807,34 @@
     <Equipments>
       <EquipmentSet id="tor_weapon_practice_stage_3_khuzait_template" />
       <EquipmentSet id="tor_weapon_practice_stage_3_khuzait_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_mercenary_wargor_template" default_group="infantry" name="{=str_tor_beastmen_mercenary_wargor_template}{FIRSTNAME} the Wargor" occupation="Lord" culture="Culture.beastmen" voice="curt" age="30" race="gor2" skill_template="SkillSet.tor_skills_beastmen_warrior_lord" is_hero="false" is_template="true">
+    <face>
+      <BodyProperties version="4" age="30" weight="0.7" build="0.85" key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />
+    </face>
+    <Traits>
+      <Trait id="Honor" value="-5" />
+      <Trait id="Mercy" value="-8" />
+      <Trait id="Generosity" value="-3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_beastmen_mercenary_lord_heavy_template" />
+      <EquipmentSet id="tor_beastmen_mercenary_lord_heavy_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_beastmen_mercenary_beastlord_template" default_group="infantry" name="{=str_tor_beastmen_mercenary_beastlord_template}{FIRSTNAME} the Beastlord" occupation="Lord" culture="Culture.beastmen" voice="curt" age="30" race="gor2" skill_template="SkillSet.tor_skills_beastmen_berserker_lord" is_hero="false" is_template="true">
+    <face>
+      <BodyProperties version="4" age="30" weight="0.9" build="1.0" key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />
+    </face>
+    <Traits>
+      <Trait id="Honor" value="-5" />
+      <Trait id="Mercy" value="-8" />
+      <Trait id="Generosity" value="-3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_beastmen_mercenary_lord_heavy_template" />
+      <EquipmentSet id="tor_beastmen_mercenary_lord_heavy_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 </NPCCharacters>
