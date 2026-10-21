@@ -476,15 +476,15 @@ namespace TOR_Core.Models
             if (!DiplomacyHelpers.IsWithinWarDistance(declaringKingdom, targetKingdom))
                 return -200000f; // Too far - don't even consider this war
 
-            var leader = evaluatingClan?.Leader;
+            var clanLeader = evaluatingClan?.Leader;
 
             // Get trait modifiers for the evaluating clan's leader
-            float honorModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Honor);
-            float generosityInverseModifier = DiplomacyHelpers.GetInverseTraitModifier(leader, DefaultTraits.Generosity);
-            float calculatingModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Calculating);
-            float calculatingInverseModifier = DiplomacyHelpers.GetInverseTraitModifier(leader, DefaultTraits.Calculating);
-            float mercyModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Mercy);
-            float valorModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Valor);
+            float honorModifier = DiplomacyHelpers.GetTraitModifier(clanLeader, DefaultTraits.Honor);
+            float generosityInverseModifier = DiplomacyHelpers.GetInverseTraitModifier(clanLeader, DefaultTraits.Generosity);
+            float calculatingModifier = DiplomacyHelpers.GetTraitModifier(clanLeader, DefaultTraits.Calculating);
+            float calculatingInverseModifier = DiplomacyHelpers.GetInverseTraitModifier(clanLeader, DefaultTraits.Calculating);
+            float mercyModifier = DiplomacyHelpers.GetTraitModifier(clanLeader, DefaultTraits.Mercy);
+            float valorModifier = DiplomacyHelpers.GetTraitModifier(clanLeader, DefaultTraits.Valor);
 
             // Traitorous behavior penalties (scaled by 100, modified by Honor)
             // Dishonorable lords (-2 Honor) barely care about breaking agreements
@@ -502,12 +502,12 @@ namespace TOR_Core.Models
             // Culture: Honorable lords respect cultural bonds, Pragmatists ignore cultural sentiment
             float cultureScore = CalculateCultureScore(declaringKingdom, targetKingdom) * honorModifier * calculatingInverseModifier;
             // Territorial: Greedy lords (low Generosity) protect direct claims, Merciful lords liberate kin
-            float territorialScore = CalculateTerritorialIntegrityScore(declaringKingdom, targetKingdom, leader);
+            float territorialScore = CalculateTerritorialIntegrityScore(declaringKingdom, targetKingdom, clanLeader);
             // Rivalry: Brave lords (+2 Valor) are more motivated by glory/grudges
             float rivalryScore = CalculateLorewiseRivalryScore(declaringKingdom, targetKingdom) * valorModifier;
             // Tactical: Cruel lords strike harder when strong, Brave/Merciful lords ignore unfavorable odds, Calculating amplifies
             float baseTacticalScore = CalculateTacticalScore(declaringKingdom, targetKingdom);
-            float mercyInverseModifier = DiplomacyHelpers.GetInverseTraitModifier(leader, DefaultTraits.Mercy);
+            float mercyInverseModifier = DiplomacyHelpers.GetInverseTraitModifier(clanLeader, DefaultTraits.Mercy);
             float adjustedTactical = baseTacticalScore >= 0
                 ? baseTacticalScore * valorModifier * mercyInverseModifier  // Positive: brave + cruel hit harder
                 : baseTacticalScore / Math.Max(valorModifier * mercyModifier, 0.1f);  // Negative: brave + merciful ignore bad odds
