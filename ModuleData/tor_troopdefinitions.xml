@@ -221,7 +221,7 @@
       <EquipmentSet id="tor_empire_reiksguard_knight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_reiksguard_innercircle_knight" default_group="cavalry" level="36" name="{=str_tor_empire_reiksguard_innercircle_knight}Empire Reiksguard Knight of the Inner Circle" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level36" localizationId="str_tor_empire_reiksguard_knight">
+  <NPCCharacter id="tor_empire_reiksguard_innercircle_knight" default_group="cavalry" level="36" name="{=str_tor_empire_reiksguard_innercircle_knight}Empire Reiksguard Knight of the Inner Circle" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level36" localizationId="str_tor_empire_reiksguard_innercircle_knight">
     <face>
       <face_key_template value="BodyProperty.fighter_empireofman_elite" />
     </face>
