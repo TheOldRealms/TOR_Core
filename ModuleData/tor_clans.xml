@@ -1413,6 +1413,121 @@
             <template id="NPCCharacter.tor_empire_deserter_lord_3" />
         </minor_faction_character_templates>
     </Faction>
+    <Faction id="tor_beastmen_split_horn_clan"
+             default_party_template="PartyTemplate.tor_beastmen_mercenary_party_template"
+             name="{=str_tor_beastmen_split_horn_clan_name}Split-Horn Tribe"
+             tier="3"
+             is_minor_faction="true"
+             is_outlaw="true"
+             settlement_banner_mesh="encounter_flag_f"
+             is_clan_type_mercenary="true"
+             owner="Hero.tor_beastmen_lord_hryndyr"
+             culture="Culture.beastmen"
+             initial_home_settlement="Settlement.castle_village_TB1_1"
+             banner_key="11.61.7.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_beastmen"
+             label_color="FF8B7C73"
+             color="FF74574a"
+             color2="FF8B7C73"
+             alternative_color="FF8B7C73"
+             alternative_color2="FF74574a"
+             text="{=str_tor_beastmen_split_horn_clan_desc}The Split-Horn Tribe has plagued the hills near Talabheim for many years now. Located in the Barren Hills, it is in the centre of the whole province of Talabecland and thus in a prime position to endanger any trade in the province, be it on the roads or waterways. Many attempts have been made by the Krieglitz and Feuerbach families to root out this tribe, but all have failed so far, as the hills and forests in which they hide prove too vast and dangerous.">
+        <minor_faction_character_templates>
+            <template id="NPCCharacter.tor_beastmen_mercenary_wargor_template" />
+            <template id="NPCCharacter.tor_beastmen_mercenary_beastlord_template" />
+        </minor_faction_character_templates>
+    </Faction>
+    <Faction id="tor_beastmen_one_eye_clan"
+             default_party_template="PartyTemplate.tor_beastmen_mercenary_party_template"
+             name="{=str_tor_beastmen_one_eye_clan_name}Warherd of the One-Eye"
+             tier="3"
+             is_minor_faction="true"
+             is_outlaw="true"
+             settlement_banner_mesh="encounter_flag_f"
+             is_clan_type_mercenary="true"
+             owner="Hero.tor_beastmen_lord_khazrak"
+             culture="Culture.beastmen"
+             initial_home_settlement="Settlement.herdstone_05"
+             banner_key="11.61.7.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_beastmen"
+             label_color="FF8B7C73"
+             color="FF74574a"
+             color2="FF8B7C73"
+             alternative_color="FF8B7C73"
+             alternative_color2="FF74574a"
+             text="{=str_tor_beastmen_one_eye_clan_desc}Having only grown in number since Khazrak’s most infamous defeat at the hand of Boris Todbringer, his clan is now the most numerous and dangerous host of beastmen in the whole Drakwald. They follow Khazrak’s commands without any hint of doubt or hesitation, but then again: his commands are usually to kill, pillage, burn, and defile and thus the very nature of the beastmen. Khazrak uses his followers to achieve his three-tiered plan: kill Graf Boris Todbringer, burn the whole of Middenland and any other surrounding provinces, and finally end the Age of Man.">
+        <minor_faction_character_templates>
+            <template id="NPCCharacter.tor_beastmen_mercenary_wargor_template" />
+            <template id="NPCCharacter.tor_beastmen_mercenary_beastlord_template" />
+        </minor_faction_character_templates>
+    </Faction>
+    <Faction id="tor_beastmen_manripper_clan"
+             default_party_template="PartyTemplate.tor_beastmen_mercenary_party_template"
+             name="{=str_tor_beastmen_manripper_clan_name}Warherd of Khorok Manripper"
+             tier="3"
+             is_minor_faction="true"
+             is_outlaw="true"
+             settlement_banner_mesh="encounter_flag_f"
+             is_clan_type_mercenary="true"
+             owner="Hero.tor_beastmen_lord_khorok"
+             culture="Culture.beastmen"
+             initial_home_settlement="Settlement.castle_GX3"
+             banner_key="11.61.7.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_beastmen"
+             label_color="FF8B7C73"
+             color="FF74574a"
+             color2="FF8B7C73"
+             alternative_color="FF8B7C73"
+             alternative_color2="FF74574a"
+             text="{=str_tor_beastmen_manripper_clan_desc}The Warherd’s rampage began with a single creature consumed by wrath and hatred: Khorok Manripper. It is his vision to see the entirety of Bretonnia destroyed and the way of life of its people cast into oblivion; to see this vision brought to reality, he has brought the Beastmen of the Forest of Arden beneath his rule. One by one, Wargors and beastlords were either publicly slaughtered or beaten into submission, Khorok's sheer ruthlessness eventually cowing the Gors and earning the respect of the Beastlords and Wargors of the Forest of Arden. Directly beneath him are Khorok's chief Wargors and Beastlords, those who have demonstrated unwavering loyalty. Publicly, all share in his quest to see Bretonnia annihilated. Yet the greed and quarrelsome nature of the Beastmen possess them as surely as any of their vile kind. So long as the bestial crusade against Bretonnia continues to bring bloodshed and victory, however, few would dare challenge Khorok Manripper.">
+        <minor_faction_character_templates>
+            <template id="NPCCharacter.tor_beastmen_mercenary_wargor_template" />
+            <template id="NPCCharacter.tor_beastmen_mercenary_beastlord_template" />
+        </minor_faction_character_templates>
+    </Faction>
+    <Faction id="tor_beastmen_shadowgave_clan"
+             default_party_template="PartyTemplate.tor_beastmen_mercenary_party_template"
+             name="{=str_tor_beastmen_shadowgave_clan_name}Warherd of the Shadowgave"
+             tier="3"
+             is_minor_faction="true"
+             is_outlaw="true"
+             settlement_banner_mesh="encounter_flag_f"
+             is_clan_type_mercenary="true"
+             owner="Hero.tor_beastmen_lord_morghur"
+             culture="Culture.beastmen"
+             initial_home_settlement="Settlement.village_AL4_3"
+             banner_key="11.61.7.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_beastmen"
+             label_color="FF8B7C73"
+             color="FF74574a"
+             color2="FF8B7C73"
+             alternative_color="FF8B7C73"
+             alternative_color2="FF74574a"
+             text="{=str_tor_beastmen_shadowgave_clan_desc}What might generously be called a warherd is, in truth, little more than a host of wild fanatics, mutated beasts and gibbering mad beastmen, many driven beyond sanity merely by gazing upon the Shadowgave. They do not follow Morghur through loyalty, but are instead drawn inexorably into his wake, compelled by the corrupting power that radiates from his twisted form. Amongst those few who survive an encounter with Morghur are some who emerge changed rather than destroyed. Twisted by vile blessings and judged worthy by the powers of chaos that work through the Shadowgave, these survivors rise to command warbands of their own. Beastlords and Bray-Shamans alike bear the marks of their encounters, their bodies and minds warped into forms unlike those of almost any other Beastmen found in the Old World. Now Morghur moves south once more. He gives no commands, Yet unknowingly and unwillingly, he serves the designs of the Chaos Gods all the same. Behind him comes a great tide of Beastmen, mutants and monsters, following the Shadowgave towards the ancient forest of Athel Loren.">
+        <minor_faction_character_templates>
+            <template id="NPCCharacter.tor_beastmen_mercenary_wargor_template" />
+            <template id="NPCCharacter.tor_beastmen_mercenary_beastlord_template" />
+        </minor_faction_character_templates>
+    </Faction>
+    <Faction id="tor_beastmen_gorehollow_clan"
+             default_party_template="PartyTemplate.tor_beastmen_mercenary_party_template"
+             name="{=str_tor_beastmen_gorehollow_clan_name}The Gorehollow Bray"
+             tier="3"
+             is_minor_faction="true"
+             is_outlaw="true"
+             settlement_banner_mesh="encounter_flag_f"
+             is_clan_type_mercenary="true"
+             owner="Hero.tor_beastmen_lord_morbagh"
+             culture="Culture.beastmen"
+             initial_home_settlement="Settlement.castle_OL3"
+             banner_key="11.61.7.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_beastmen"
+             label_color="FF8B7C73"
+             color="FF74574a"
+             color2="FF8B7C73"
+             alternative_color="FF8B7C73"
+             alternative_color2="FF74574a"
+             text="{=str_tor_beastmen_gorehollow_clan_desc}Many years ago, the Gorehollow Bray were defeated and hounded from their herdstone deep in the Drakwald by the Splithorn Tribe. Broken and starving, they fled east until they came upon the Blood Fane, hidden in the depths of the Forest of Shadows. There, beneath its skull-crowned stones, most of the herd fell into a terrible blood frenzy. Gor turned upon Gor, Ungor were torn apart by their own kin, and the weak were trampled into the mud. By dawn, only the strongest, the cruellest, and the most craven remained. It was during this slaughter that Morbagh gained its name-sake, gorging himself on the blood of the previous Beastlord of the clan. Since then, the beastmen have multiplied by raiding the surrounding villages for their flesh and skulls. Now emboldened by their dark deity, the Gorehollow Bray promises to bring ruin to all living things beneath the boughs of the Forest of Shadows.">
+        <minor_faction_character_templates>
+            <template id="NPCCharacter.tor_beastmen_mercenary_wargor_template" />
+            <template id="NPCCharacter.tor_beastmen_mercenary_beastlord_template" />
+        </minor_faction_character_templates>
+    </Faction>
     <Faction id="troubadours_clan_1"
              default_party_template="PartyTemplate.bretonnia_lordparty_template"
              name="{=str_tor_clan_troubadours_clan_1_name}de Troubadour"

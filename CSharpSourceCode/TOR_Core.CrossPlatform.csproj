@@ -54,7 +54,7 @@
   <!-- Configuration-specific settings -->
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
     <DefineConstants>DEBUG;TRACE;_RGL_KEEP_ASSERTS</DefineConstants>
   </PropertyGroup>

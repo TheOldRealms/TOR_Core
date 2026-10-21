@@ -59,7 +59,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         {
             obj.AddDialogLine("trainer_greenskin_start", "start", "choices_greenskin",
                 TORTextHelper.GetText("tor_spelltrainer_greenskin_start", "Whoo'z dere? Wot you want?"),
-                isGreenskinTrainer, null, 200, null);
+                isGreenskinTrainer, null, 210, null);
             obj.AddDialogLine("trainer_greenskin_hub", "hub_greenskin", "choices_greenskin",
                 TORTextHelper.GetText("tor_spelltrainer_greenskin_hub", "Wot else ya need? Speak up!"),
                 isGreenskinTrainer, null, 200, null);
