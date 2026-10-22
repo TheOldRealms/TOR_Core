@@ -386,6 +386,7 @@ namespace TOR_Core.Models
 
                     if (character.IsDwarf())
                     {
+                        //Sly : if the CanRide flag is never changed during a mission, can this riding flag instead be set in an InitializeAgentStats override?
                         agent.SetAgentFlags(agent.GetAgentFlags() & ~AgentFlag.CanRide);
 
                         if (character.IsIronbreakerUnit())
