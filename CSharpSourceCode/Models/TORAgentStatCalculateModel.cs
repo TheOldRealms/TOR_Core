@@ -389,18 +389,6 @@ namespace TOR_Core.Models
                         //Sly : if the CanRide flag is never changed during a mission, can this riding flag instead be set in an InitializeAgentStats override?
                         agent.SetAgentFlags(agent.GetAgentFlags() & ~AgentFlag.CanRide);
 
-                        if (character.IsIronbreakerUnit())
-                        {
-                            if (!character.StringId.Contains("trollhammer"))
-                            {
-                                agentDrivenProperties.WeaponInaccuracy += 0.095f;
-                            }
-                            else
-                            {
-                                agentDrivenProperties.WeaponInaccuracy += 0.02f;
-                            }
-                        }
-
                         agentDrivenProperties.MaxSpeedMultiplier *= DwarfSpeedModificatior;
                     }
 
