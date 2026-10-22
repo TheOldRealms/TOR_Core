@@ -59,7 +59,7 @@ namespace TOR_Core.HarmonyPatches
             if (!__instance.Equipment.ContainsNonConsumableRangedWeaponWithAmmo()) return;
             
             int i;
-            for (i = (int)EquipmentIndex.WeaponItemBeginSlot; i < (int)EquipmentIndex.NumAllWeaponSlots; i++)
+            for (i = (int)EquipmentIndex.WeaponItemBeginSlot; i < (int)EquipmentIndex.ExtraWeaponSlot; i++)
             {
                 var weapon = __instance.Equipment[i];
                 if (weapon.HasAnyUsageWithWeaponClass(WeaponClass.Musket) && (bool)weapon.CurrentUsageItem?.IsRangedWeapon)
