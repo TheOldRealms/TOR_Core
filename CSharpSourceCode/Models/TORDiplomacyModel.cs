@@ -896,6 +896,11 @@ namespace TOR_Core.Models
             return score;
         }
 
+        /// <remarks>
+        /// MercenaryJoinKingdomBarterable combines this value with GetScoreOfKingdomToHireMercenary to determine if a mercenary clan is worth hiring.
+        /// if (joinKingdomAsClanBarterable.GetValueForFaction(clan) + joinKingdomAsClanBarterable.GetValueForFaction(kingdom) > 0)
+        /// If clans are joining unexpected kingdoms, check the barterable calculation as well.
+        /// </remarks>
         public override float GetScoreOfMercenaryToJoinKingdom(Clan mercenaryClan, Kingdom kingdom)
         {
             var score = base.GetScoreOfMercenaryToJoinKingdom(mercenaryClan, kingdom);
