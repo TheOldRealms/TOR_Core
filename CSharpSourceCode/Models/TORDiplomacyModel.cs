@@ -953,6 +953,8 @@ namespace TOR_Core.Models
                 score = -10000;
             }
 
+            if (mercenaryClan.Culture.StringId == TORConstants.Cultures.GREENSKIN && kingdom.Culture.StringId != TORConstants.Cultures.GREENSKIN && mercenaryClan.StringId == "troll_clan_1") return -10000;
+
             return score;
         }
 
