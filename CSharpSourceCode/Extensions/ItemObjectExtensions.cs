@@ -261,7 +261,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsGunPowderWeapon(this WeaponComponentData weapon)
         {
-            if (weapon == null || (!weapon.IsRangedWeapon && !weapon.IsAmmo)) return false;//AttackCollisionData will pass the ammo weapon which is excluded by IsRangedWeapon
+            if (weapon == null || (!weapon.IsRangedWeapon && !weapon.IsAmmo)) return false;
             return weapon.WeaponClass == WeaponClass.Cartridge || weapon.AmmoClass == WeaponClass.Cartridge;
         }
 
