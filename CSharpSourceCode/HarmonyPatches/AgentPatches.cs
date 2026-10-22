@@ -66,7 +66,7 @@ namespace TOR_Core.HarmonyPatches
                 if (weapon.HasAnyUsageWithWeaponClass(WeaponClass.Musket) && (bool)weapon.CurrentUsageItem?.IsRangedWeapon)
                 {
                     var rangedWeapon = weapon.Item;
-                    if (rangedWeapon.IsGunPowderWeapon() && !rangedWeapon.IsSpecialAmmunitionItem() && !rangedWeapon.IsFlameThrowerItem())
+                    if (rangedWeapon.IsGunPowderWeapon() && !rangedWeapon.IsBlunderbussCompatible() && !rangedWeapon.IsFlameThrowerItem())
                     {
                         __result = Math.Min(100f, __result);
                     }

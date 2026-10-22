@@ -265,22 +265,6 @@ namespace TOR_Core.Extensions
             return weapon.WeaponClass == WeaponClass.Cartridge || weapon.AmmoClass == WeaponClass.Cartridge;
         }
 
-        /// <summary>
-        /// Checks if the current weapon is a blunderbuss, or is scatter/grenade ammunition
-        /// </summary>
-        public static bool IsSpecialAmmunitionItem(this ItemObject itemObject)
-        {
-            if (!IsAmmunitionItem(itemObject))
-                return false;
-
-            if (itemObject.ToString().Contains("blunderbuss"))
-            {
-                return true;
-            }
-
-            return itemObject.StringId.Contains("grenade") || itemObject.StringId.Contains("scatter");
-        }
-
         // ===== Weapon Platform Checks =====
         public static bool IsDrakeGunWeapon(this ItemObject itemObject)
         {

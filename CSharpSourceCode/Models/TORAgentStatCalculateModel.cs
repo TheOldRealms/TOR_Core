@@ -136,7 +136,7 @@ namespace TOR_Core.Models
                             {
                                 ExplainedNumber ammoCount = new ExplainedNumber(missionWeapon.Amount);
 
-                                if (agent.IsMainAgent && !missionWeapon.Item.IsSpecialAmmunitionItem())
+                                if (agent.IsMainAgent && !missionWeapon.Item.IsBlunderbussCompatible())
                                 {
                                     CareerHelper.ApplyBasicCareerPassives(character.HeroObject, ref ammoCount, PassiveEffectType.Ammo, false);
                                 }
@@ -145,7 +145,7 @@ namespace TOR_Core.Models
                                 {
                                     var choices = character.HeroObject.GetAllCareerChoices();
 
-                                    if (missionWeapon.Item.IsSpecialAmmunitionItem() && choices.Contains("MercenaryLordPassive1"))
+                                    if (missionWeapon.Item.IsBlunderbussCompatible() && choices.Contains("MercenaryLordPassive1"))
                                     {
                                         var choice = TORCareerChoices.GetChoice("MercenaryLordPassive1");
                                         if (choice != null)
