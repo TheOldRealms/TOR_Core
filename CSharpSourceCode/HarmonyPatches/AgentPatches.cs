@@ -52,6 +52,7 @@ namespace TOR_Core.HarmonyPatches
             }
         }
 
+        //Sly : is the missile range updated whenever the agent changes wielded weapons? ie. can we call just WieldedWeapon or Mainhand and avoid equipment iteration.
         [HarmonyPostfix]
         [HarmonyPatch(typeof(Agent), "GetMissileRange")]
         public static void AdjustHandgunMaxRange(ref float __result, Agent __instance)
