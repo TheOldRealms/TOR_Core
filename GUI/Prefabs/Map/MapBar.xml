@@ -169,16 +169,13 @@
                 <ListPanel DataSource="{PrimaryInfoItems}" Id="TopInfoBar" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedWidth="510" SuggestedHeight="40" HorizontalAlignment="Right" VerticalAlignment="Top" MarginTop="21" MarginLeft="40" MarginRight="35" >
                   <ItemTemplate>
 
-                    <HintWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="5" MarginRight="5" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" GamepadNavigationIndex="0" >
+                    <ListPanel DoNotPassEventsToChildren="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="5" MarginRight="5" GamepadNavigationIndex="0">
                       <Children>
-                        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsEnabled="false">
-                          <Children>
-                            <TORMapBarSpriteWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="33" SuggestedHeight="33" VerticalAlignment="Center" IconBrush="TorMapBar.Right.Icons" IconID="@VisualId" UseStylesFromSourceIcon="true" />
-                            <MapBarCustomValueTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" MinWidth="20" MaxWidth="52" SuggestedHeight="40" VerticalAlignment="Center" PositionYOffset="2" Brush="MapTextBrushWithAnim" Brush.FontSize="20" IsWarning="@HasWarning" NormalColor="!NormalMapBarTextColor" Text="@Value" ValueAsInt="@IntValue" WarningColor="!WarningMapBarTextColor"/>
-                          </Children>
-                        </ListPanel>
+                        <TORMapBarSpriteWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="33" SuggestedHeight="33" VerticalAlignment="Center" IconBrush="TorMapBar.Right.Icons" IconID="@VisualId" UseStylesFromSourceIcon="true" />
+                        <MapBarCustomValueTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" MinWidth="20" MaxWidth="52" SuggestedHeight="40" VerticalAlignment="Center" PositionYOffset="2" Brush="MapTextBrushWithAnim" Brush.FontSize="20" IsWarning="@HasWarning" NormalColor="!NormalMapBarTextColor" Text="@Value" ValueAsInt="@IntValue" WarningColor="!WarningMapBarTextColor"/>
+                        <HintWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint"/>
                       </Children>
-                    </HintWidget>
+                    </ListPanel>
 
                   </ItemTemplate>
                 </ListPanel>
@@ -187,16 +184,13 @@
                 <ListPanel DataSource="{SecondaryInfoItems}" Id="BottomInfoBar" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="40" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginLeft="40" MarginRight="35">
                   <ItemTemplate>
 
-                    <HintWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="5" MarginRight="5" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" GamepadNavigationIndex="0" >
+                    <ListPanel DoNotPassEventsToChildren="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="5" MarginRight="5" GamepadNavigationIndex="0">
                       <Children>
-                        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsEnabled="false">
-                          <Children>
-                            <TORMapBarSpriteWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="33" SuggestedHeight="33" VerticalAlignment="Center" IconBrush="TorMapBar.Right.Icons" IconID="@VisualId" UseStylesFromSourceIcon="true" />
-                            <MapBarCustomValueTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" MinWidth="20" MaxWidth="52" SuggestedHeight="40" VerticalAlignment="Center" PositionYOffset="2" Brush="MapTextBrushWithAnim" Brush.FontSize="20" IsWarning="@HasWarning" NormalColor="!NormalMapBarTextColor" Text="@Value" ValueAsInt="@IntValue" WarningColor="!WarningMapBarTextColor"/>
-                          </Children>
-                        </ListPanel>
+                        <TORMapBarSpriteWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="33" SuggestedHeight="33" VerticalAlignment="Center" IconBrush="TorMapBar.Right.Icons" IconID="@VisualId" UseStylesFromSourceIcon="true" />
+                        <MapBarCustomValueTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" MinWidth="20" MaxWidth="52" SuggestedHeight="40" VerticalAlignment="Center" PositionYOffset="2" Brush="MapTextBrushWithAnim" Brush.FontSize="20" IsWarning="@HasWarning" NormalColor="!NormalMapBarTextColor" Text="@Value" ValueAsInt="@IntValue" WarningColor="!WarningMapBarTextColor"/>
+                        <HintWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint"/>
                       </Children>
-                    </HintWidget>
+                    </ListPanel>
 
                   </ItemTemplate>
                 </ListPanel>
