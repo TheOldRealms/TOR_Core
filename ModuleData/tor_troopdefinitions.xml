@@ -221,7 +221,7 @@
       <EquipmentSet id="tor_empire_reiksguard_knight_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_empire_reiksguard_innercircle_knight" default_group="cavalry" level="36" name="{=str_tor_empire_reiksguard_innercircle_knight}Empire Reiksguard Knight of the Inner Circle" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level36" localizationId="str_tor_empire_reiksguard_knight">
+  <NPCCharacter id="tor_empire_reiksguard_innercircle_knight" default_group="cavalry" level="36" name="{=str_tor_empire_reiksguard_innercircle_knight}Empire Reiksguard Knight of the Inner Circle" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level36" localizationId="str_tor_empire_reiksguard_innercircle_knight">
     <face>
       <face_key_template value="BodyProperty.fighter_empireofman_elite" />
     </face>
@@ -2323,6 +2323,22 @@
     <Equipments>
       <EquipmentSet id="tor_gs_troll_template" />
       <EquipmentSet id="tor_gs_troll_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_gs_savage_orc" name="{=str_tor_gs_savage_orc}Savage Orc" level="16" default_group="infantry" culture="Culture.aserai" occupation="Soldier" is_basic_troop="true" skill_template="SkillSet.tor_skills_level16" race="orc">
+    <face>
+      <face_key_template value="BodyProperty.orc_savage" />
+    </face>
+    <Equipments>
+      <EquipmentSet id="tor_gs_savage_orc_template" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_gs_savage_orc_boar" name="{=str_tor_gs_savage_orc_copy}Savage Boar Orc" level="21" default_group="cavalry" culture="Culture.aserai" occupation="Soldier" is_basic_troop="true" skill_template="SkillSet.tor_skills_level21" race="orc">
+    <face>
+      <face_key_template value="BodyProperty.orc_savage" />
+    </face>
+    <Equipments>
+      <EquipmentSet id="tor_gs_savage_orc_boar_boy_template" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_gs_thug" default_group="infantry" level="6" name="{=str_tor_gs_thug}Orc Thug" occupation="Gangster" culture="Culture.aserai" skill_template="SkillSet.tor_skills_orc_boy" is_basic_troop="true" race="orc" localizationId="str_tor_gs_thug">
