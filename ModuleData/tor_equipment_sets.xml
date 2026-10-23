@@ -26794,6 +26794,74 @@
       <Equipment slot="Leg" id="Item.tor_greenskin_leg_boots_troll_001" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_gs_savage_orc_template" culture="Culture.aserai">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_savage_001" />
+      <Equipment slot="Head" id="Item.tor_greenskin_mask_savage_001" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_savage_001" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_savage_001" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_boots_savage_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_savage_001" />
+      <Equipment slot="Head" id="Item.tor_greenskin_mask_savage_001" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_savage_001" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_savage_001" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_boots_savage_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_savage_001" />
+      <Equipment slot="Head" id="Item.tor_greenskin_mask_savage_001" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_savage_001" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_savage_001" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_boots_savage_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_savage_001" />
+      <Equipment slot="Head" id="Item.tor_greenskin_mask_savage_001" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_savage_001" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_savage_001" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_boots_savage_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_gs_savage_orc_boar_boy_template" culture="Culture.aserai">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_savage_001" />
+      <Equipment slot="Head" id="Item.tor_greenskin_mask_savage_001" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_savage_001" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_savage_001" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_boots_savage_001" />
+      <Equipment slot="Horse" id="Item.tor_greenskin_mount_boar_001" />
+      <Equipment slot="HorseHarness" id="Item.tor_greenskin_mountarmor_boar_saddle_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_savage_001" />
+      <Equipment slot="Head" id="Item.tor_greenskin_mask_savage_001" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_savage_001" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_savage_001" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_boots_savage_001" />
+      <Equipment slot="Horse" id="Item.tor_greenskin_mount_boar_001" />
+      <Equipment slot="HorseHarness" id="Item.tor_greenskin_mountarmor_boar_saddle_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_savage_001" />
+      <Equipment slot="Head" id="Item.tor_greenskin_mask_savage_001" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_savage_001" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_savage_001" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_boots_savage_001" />
+      <Equipment slot="Horse" id="Item.tor_greenskin_mount_boar_001" />
+      <Equipment slot="HorseHarness" id="Item.tor_greenskin_mountarmor_boar_saddle_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_savage_001" />
+      <Equipment slot="Head" id="Item.tor_greenskin_mask_savage_001" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_savage_001" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_savage_001" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_boots_savage_001" />
+      <Equipment slot="Horse" id="Item.tor_greenskin_mount_boar_001" />
+      <Equipment slot="HorseHarness" id="Item.tor_greenskin_mountarmor_boar_saddle_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_gs_tournament_template_one_participant_v1" culture="Culture.aserai">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_mace_001" />
@@ -36201,7 +36269,6 @@
       <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
     </EquipmentSet>
-
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
       <Equipment slot="Item1" id="Item.northern_round_shield" />
