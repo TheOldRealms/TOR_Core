@@ -78,6 +78,15 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(OrcBossQuest2), 209);
             AddClassDefinition(typeof(OrcShamanQuest1), 210);
             AddClassDefinition(typeof(OrcShamanQuest2), 211);
+
+            // Witch Hunter Lodge bounties. Ids 212/213 cover both Minor and Major
+            // via the unified BountyIssue/BountyQuest classes — tier is a
+            // SaveableField on each. Earlier commits on this branch experimented
+            // with per-objective (213/214/215) and per-tier subclasses before the
+            // user pointed out those were data differences; collapsed down to one
+            // class pair. Ids 214 and 215 are now unused.
+            AddClassDefinition(typeof(CampaignMechanics.WitchHunter.Bounties.BountyIssue), 212);
+            AddClassDefinition(typeof(CampaignMechanics.WitchHunter.Bounties.BountyQuest), 213);
         }
 
         protected override void DefineEnumTypes() //watch out for the save ids used for class definitions, conflicts will cause crashes on load

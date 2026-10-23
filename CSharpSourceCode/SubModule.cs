@@ -31,7 +31,6 @@ using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.BattleMechanics.Voice;
 using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.Assimilation;
-using TOR_Core.CampaignMechanics.BountyMaster;
 using TOR_Core.CampaignMechanics.Careers;
 using TOR_Core.CampaignMechanics.Chaos;
 using TOR_Core.CampaignMechanics.Companions;
@@ -54,6 +53,7 @@ using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 using TOR_Core.CampaignMechanics.SettlementPOIs;
 using TOR_Core.CampaignMechanics.UniqueSpawns;
+using TOR_Core.CampaignMechanics.WitchHunter;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -99,7 +99,20 @@ namespace TOR_Core
             ViewModelExtensionManager.Initialize(); //has to happen before harmony PatchAll
 
             HarmonyInstance = new Harmony("mod.harmony.theoldrealms");
-            HarmonyInstance.PatchAllUncategorized();
+            // Wrap PatchAll so a signature mismatch (vanilla method renamed, args changed,
+            // return type drift) leaves a breadcrumb in the TOR log instead of a silent
+            // startup crash. Harmony throws on failed patch registration otherwise.
+            try
+            {
+                HarmonyInstance.PatchAllUncategorized();
+            }
+            catch (System.Exception harmonyEx)
+            {
+                LogManager.GetCurrentClassLogger().Fatal(harmonyEx,
+                    "Harmony PatchAllUncategorized failed — a patched vanilla method likely moved. " +
+                    "Check the stack for the offending patch class. Patches will not be applied.");
+                throw;
+            }
             UIConfig.DoNotUseGeneratedPrefabs = true;
 
             TORConfig.ReadConfig();
@@ -175,6 +188,7 @@ namespace TOR_Core
                 // SettlementPOI subclasses self-register via reflection on session launch;
                 // SubModule only needs the manager behavior itself.
                 starter.AddBehavior(new SettlementPOIManagerCampaignBehavior());
+                starter.AddBehavior(new WitchHunterInquisitionBehavior());
                 starter.AddBehavior(new PrestigeNobleTownBehavior());
                 starter.AddBehavior(new EonirFavorEnvoyTownBehavior());
                 starter.AddBehavior(new TORPerkHandlerCampaignBehavior());
@@ -184,7 +198,6 @@ namespace TOR_Core
                 starter.AddBehavior(new TORPartyUpgraderCampaignBehavior());
                 starter.AddBehavior(new InkStoryCampaignBehavior());
                 starter.AddBehavior(new ReligionCampaignBehavior());
-                starter.AddBehavior(new BountyMasterCampaignBehavior());
                 starter.AddBehavior(new HuntCultistsQuestCampaignBehavior());
                 starter.AddBehavior(new TORCareerPerkCampaignBehavior());
                 starter.AddBehavior(new RaceFixCampaignBehavior());
@@ -246,6 +259,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORPartyTroopUpgradeModel());
                 gameStarterObject.AddModel(new TORPartyWageModel());
                 gameStarterObject.AddModel(new TORPrisonerRecruitmentCalculationModel());
+                gameStarterObject.AddModel(new TORPrisonerDonationModel());
                 gameStarterObject.AddModel(new TORSettlementMilitiaModel());
                 gameStarterObject.AddModel(new TORSettlementAccessModel());
                 gameStarterObject.AddModel(new TORSettlementGarrisonModel());

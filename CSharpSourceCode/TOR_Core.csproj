@@ -284,7 +284,6 @@
     <Compile Include="CampaignMechanics\Companions\TORAICompanionCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\AssimilationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\RaceFixCampaignBehavior.cs" />
-    <Compile Include="CampaignMechanics\BountyMaster\BountyMasterCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CampaignEventHelpers.cs" />
     <Compile Include="CampaignMechanics\Careers\CareerButtonDialogs.cs" />
     <Compile Include="CampaignMechanics\Careers\CareerDialogOptionsCampaignBehavior.cs" />
@@ -418,6 +417,17 @@
     <Compile Include="CampaignMechanics\SettlementPOIs\ISpellTrainerHost.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\TrainerPlacement.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\WitchHunterLodgePOI.cs" />
+    <Compile Include="CampaignMechanics\WitchHunter\InquisitionRank.cs" />
+    <Compile Include="CampaignMechanics\WitchHunter\WitchHunterInquisitionBehavior.cs" />
+    <Compile Include="CampaignMechanics\WitchHunter\Bounties\BountyObjectiveType.cs" />
+    <Compile Include="CampaignMechanics\WitchHunter\Bounties\BountyTemplate.cs" />
+    <Compile Include="CampaignMechanics\WitchHunter\Bounties\BountyTemplates.cs" />
+    <Compile Include="CampaignMechanics\WitchHunter\Bounties\BountyTier.cs" />
+    <Compile Include="CampaignMechanics\WitchHunter\Bounties\BountyIssue.cs" />
+    <Compile Include="CampaignMechanics\WitchHunter\Bounties\BountyQuest.cs" />
+    <Compile Include="CampaignMechanics\Shared\MaterialTurnInHelper.cs" />
+    <Compile Include="CampaignMechanics\Shared\DonationSideEffectSuppression.cs" />
+    <Compile Include="Models\TORPrisonerDonationModel.cs" />
     <Compile Include="CampaignMechanics\TORAIRecruitmentCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCaptivityCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\CustomSettlementMenus\CursedSiteMenuLogic.cs" />

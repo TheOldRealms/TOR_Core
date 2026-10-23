@@ -28,6 +28,9 @@ using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CampaignMechanics.SettlementPOIs;
 using TOR_Core.CampaignMechanics.UniqueSpawns;
+using TaleWorlds.CampaignSystem.Issues;
+using TOR_Core.CampaignMechanics.WitchHunter;
+using TOR_Core.CampaignMechanics.WitchHunter.Bounties;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Ink;
@@ -1451,6 +1454,73 @@ namespace TOR_Core.Utilities
             foreach (var poi in SettlementPOIManagerCampaignBehavior.All)
                 mgr.UnmarkDiscovered(s, poi);
             return $"Unmarked all POIs at {s.Name} as undiscovered.\n";
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("wh_bounty_offer_now", "tor")]
+        public static string ForceWitchHunterBountyOffer(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType)) return CampaignCheats.ErrorType;
+            if (CampaignCheats.CheckHelp(arguments))
+                return "Force a Bounty offer onto the inquisitor in the player's current lodge town. Optional arg: template id (any of the minor_* or major_* keys from BountyTemplates). No arg = random Minor.\n";
+
+            var s = Settlement.CurrentSettlement;
+            if (s == null) return "Not in a settlement.\n";
+
+            var lodge = s.LocationComplex?.GetLocationWithId("tor_witchhunter_lodge");
+            if (lodge == null || lodge.GetSceneCount() == 0) return $"{s.Name} has no Witch Hunter Lodge.\n";
+
+            var inquisitor = s.HeroesWithoutParty.FirstOrDefault(h => h.IsBountyMaster());
+            if (inquisitor == null) return $"No inquisitor found at {s.Name}. Try leaving + re-entering the settlement so the POI framework can place one.\n";
+
+            if (inquisitor.Issue != null) return $"Inquisitor {inquisitor.Name} already has an active issue ({inquisitor.Issue.GetType().Name}). Clear it first.\n";
+
+            // Pick a template: arg if valid, random Minor otherwise.
+            BountyTemplate template = default;
+            if (arguments.Count > 0)
+            {
+                template = BountyTemplates.Get(arguments[0]);
+                if (template.IsEmpty)
+                {
+                    var all = BountyTemplates.AllMinor().Concat(BountyTemplates.AllMajor()).Select(t => t.Id);
+                    return $"Unknown template id '{arguments[0]}'. Options: " + string.Join(", ", all) + "\n";
+                }
+            }
+            else
+            {
+                template = BountyTemplates.PickRandomMinor();
+                if (template.IsEmpty) return "No Minor Bounty templates registered.\n";
+            }
+
+            var tier     = template.Tier;
+            var count    = MBRandom.RandomInt(template.CountMin,    template.CountMax + 1);
+            var gold     = MBRandom.RandomInt(template.GoldMin,     template.GoldMax + 1);
+            var prestige = MBRandom.RandomInt(template.PrestigeMin, template.PrestigeMax + 1);
+
+            Campaign.Current.IssueManager.CreateNewIssue(
+                new PotentialIssueData(
+                    (in PotentialIssueData pid, Hero owner) => new BountyIssue(owner, template.Id, tier, count, gold, prestige),
+                    typeof(BountyIssue),
+                    IssueBase.IssueFrequency.VeryCommon),
+                inquisitor);
+
+            return $"Spawned '{template.Id}' ({tier}) on {inquisitor.Name} at {s.Name}: {count} {template.TargetLabel}, {gold}g + {prestige} prestige.\n";
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("wh_force_rank", "tor")]
+        public static string ForceWitchHunterRank(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType)) return CampaignCheats.ErrorType;
+            if (CampaignCheats.CheckHelp(arguments) || arguments.Count == 0)
+                return "Force the player's Inquisition rank. Arg: unknown, known, trusted, or respected. Note: attribute flags are monotonic — downgrading leaves prior flags in place.\n";
+
+            if (!System.Enum.TryParse<InquisitionRank>(arguments[0], ignoreCase: true, out var rank))
+                return $"Unknown rank '{arguments[0]}'. Options: unknown, known, trusted, respected.\n";
+
+            var inq = Campaign.Current?.GetCampaignBehavior<WitchHunterInquisitionBehavior>();
+            if (inq == null) return "Inquisition behavior not available (no active campaign?).\n";
+
+            inq.DebugSetRank(rank);
+            return $"Set Inquisition rank to {inq.Rank}. Counters: minor={inq.MinorCompleted}, major={inq.MajorCompleted}. Minor cap={inq.MinorBountyCap}, major cap={inq.MajorBountyCap}.\n";
         }
 
         private static string AggregateOutput(string topicHeader, List<string> matchedSpells) =>

@@ -19,6 +19,7 @@ using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CampaignMechanics.Shared;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Framework;
@@ -552,65 +553,53 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         void DeliverSteel()
         {
-            var roster = Hero.MainHero.PartyBelongedTo.ItemRoster;
-            var selectable = new List<InquiryElement>();
+            MaterialTurnInHelper.OpenInquiry(
+                title:       new TextObject(TORTextHelper.GetText("tor_dw_rune_smith_deliverSteel_prompt_title", "Deliver Metals")),
+                description: new TextObject(TORTextHelper.GetText("tor_dw_rune_smith_deliverSteel_prompt_description", "Select which metals you wish to deliver to the guild.")),
+                minSelect: 1, maxSelect: 3,
+                supplier: BuildSteelOptions,
+                reward:   AwardOathGoldForSteel);
+        }
 
+        static IEnumerable<TurnInOption> BuildSteelOptions(ItemRoster roster)
+        {
             foreach (var element in roster)
             {
                 var item = element.EquipmentElement.Item;
                 if (item == null) continue;
 
-                if (item == DefaultItems.IronIngot4)
-                    AddSteelDeliveryOption(selectable, item, element.Amount, MinimumSteelAmount, SteelGain, "lesserSteel");
-                else if (item == DefaultItems.IronIngot5)
-                    AddSteelDeliveryOption(selectable, item, element.Amount, MinimumFineSteelAmount, FineSteelGain, "regularSteel");
-                else if (item == DefaultItems.IronIngot6)
-                    AddSteelDeliveryOption(selectable, item, element.Amount, MinimumGromrilAmount, GromrilGain, "gromril");
+                if (item == DefaultItems.IronIngot4 && element.Amount >= MinimumSteelAmount)
+                    yield return MakeSteelOption(item, MinimumSteelAmount, SteelGain, "lesserSteel");
+                else if (item == DefaultItems.IronIngot5 && element.Amount >= MinimumFineSteelAmount)
+                    yield return MakeSteelOption(item, MinimumFineSteelAmount, FineSteelGain, "regularSteel");
+                else if (item == DefaultItems.IronIngot6 && element.Amount >= MinimumGromrilAmount)
+                    yield return MakeSteelOption(item, MinimumGromrilAmount, GromrilGain, "gromril");
             }
-            var title = TORTextHelper.GetText("tor_dw_rune_smith_deliverSteel_prompt_title", "Deliver Metals");
-            var description = TORTextHelper.GetText("tor_dw_rune_smith_deliverSteel_prompt_description", "Select which metals you wish to deliver to the guild.");
-
-            var inquirydata = new MultiSelectionInquiryData(title, description, selectable, true, 1, 3, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
-                AddOathGoldForSteel, null);
-            MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
         }
 
-
-        void AddOathGoldForSteel(List<InquiryElement> inquiryElements)
+        static TurnInOption MakeSteelOption(ItemObject item, int threshold, int gain, string variation)
         {
-            var oathGold = 0;
-            foreach (var element in inquiryElements)
-            {
-                var reduced = 0;
+            var title = TORTextHelper.GetText("tor_dw_rune_smith_deliver_steel_item_title", variation, item.Name.ToString(), true);
+            var hint  = TORTextHelper.GetTextObject("tor_dw_rune_smith_deliver_steel_item_hint", variation, "Deliver {STEEL_COUNT} ingots for {OATH_GOLD_GAIN_STEEL} Oath Gold.", true);
+            hint.SetTextVariable("STEEL_COUNT", threshold);
+            hint.SetTextVariable("OATH_GOLD_GAIN_STEEL", gain);
+            // Tag carries the per-batch OathGold value; the aggregate reward applies the
+            // Legacy of Grungni perk bonus once at the end rather than per-item.
+            return new TurnInOption(item, threshold, title, hint.ToString(), tag: gain);
+        }
 
-                var item = (ItemObject)element.Identifier;
-
-                if (item == DefaultItems.IronIngot4)
-                {
-                    reduced = -MinimumSteelAmount;
-                    oathGold += SteelGain;
-                }
-                if (item == DefaultItems.IronIngot5)
-                {
-                    reduced = -MinimumFineSteelAmount;
-                    oathGold += FineSteelGain;
-                }
-                if (item == DefaultItems.IronIngot6)
-                {
-                    reduced = -MinimumGromrilAmount;
-                    oathGold += GromrilGain;
-                }
-
-                Hero.MainHero.PartyBelongedTo.ItemRoster.AddToCounts(item, reduced);
-            }
+        static void AwardOathGoldForSteel(IReadOnlyList<TurnInOption> picked)
+        {
+            var total = 0;
+            foreach (var opt in picked) total += (int)opt.Tag;
 
             if (Hero.MainHero.HasCareerChoice("LegacyOfGrungniPassive1"))
             {
                 var choice = TORCareerChoices.GetChoice("LegacyOfGrungniPassive1");
-                oathGold = (int)((oathGold) * (1 + choice.GetPassiveValue()));
+                total = (int)(total * (1 + choice.GetPassiveValue()));
             }
 
-            Hero.MainHero.AddCultureSpecificCustomResource(oathGold);
+            Hero.MainHero.AddCultureSpecificCustomResource(total);
         }
     }
 
@@ -636,33 +625,6 @@ public class OathGoldBehavior : CampaignBehaviorBase
         var hint = TORTextHelper.GetTextObject("tor_dw_spend_oath_gold_hint_text", "Donate {OATHGOLD_COST} Oath Gold to this guild");
         hint.SetTextVariable("OATHGOLD_COST", donationOptionValue);
         options.Add(new InquiryElement(donationOptionValue, option.ToString(), null, true, hint.ToString()));
-    }
-
-    private void AddWheatDonationOption(List<InquiryElement> options, int threshold, int currentAmount, ItemObject grainItem)
-    {
-        if (currentAmount < threshold) return;
-
-        var gainedOathGold = CalculateOathGoldFromGrain(Hero.MainHero.CurrentSettlement.Town, threshold);
-        var itemTitle = TORTextHelper.GetTextObject("tor_dw_brewers_deliverWheat_item_title", "wheat", "{WHEAT_COUNT} {WHEAT_ICON} for {OATH_GOLD_GAIN_WHEAT} {OATHGOLD_ICON}", true);
-        itemTitle.SetTextVariable("WHEAT_COUNT", threshold);
-        itemTitle.SetTextVariable("OATH_GOLD_GAIN_WHEAT", gainedOathGold);
-
-        //no hint, just show the values directly on the option.
-        //var hint = TORTextHelper.GetTextObject("tor_dw_brewers_deliverWheat_item_hint", "wheat", "Deliver {WHEAT_COUNT} grain for {OATH_GOLD_GAIN_WHEAT} Oath Gold.", true);
-        //hint.SetTextVariable("WHEAT_COUNT", threshold);
-        //hint.SetTextVariable("OATH_GOLD_GAIN_WHEAT", gainedOathGold);
-        options.Add(new InquiryElement(threshold.ToString(), itemTitle.ToString(), new ItemImageIdentifier(grainItem)));
-    }
-
-    private void AddSteelDeliveryOption(List<InquiryElement> options, ItemObject steelItem, int currentAmount, int requiredAmount, int oathGoldGain, string variation)
-    {
-        if (currentAmount < requiredAmount) return;
-
-        var itemTitle = TORTextHelper.GetText("tor_dw_rune_smith_deliver_steel_item_title", variation, steelItem.Name.ToString(), true);
-        var hint = TORTextHelper.GetTextObject("tor_dw_rune_smith_deliver_steel_item_hint", variation, "Deliver {STEEL_COUNT} ingots for {OATH_GOLD_GAIN_STEEL} Oath Gold.", true);
-        hint.SetTextVariable("STEEL_COUNT", requiredAmount);
-        hint.SetTextVariable("OATH_GOLD_GAIN_STEEL", oathGoldGain);
-        options.Add(new InquiryElement(steelItem, itemTitle, new ItemImageIdentifier(steelItem), true, hint.ToString()));
     }
 
     #endregion
@@ -1328,55 +1290,52 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         void SpendFood()
         {
-            var roster = Hero.MainHero.PartyBelongedTo.ItemRoster;
-            var selectable = new List<InquiryElement>();
-
-            foreach (var element in roster)
-            {
-                var item = element.EquipmentElement.Item;
-                if (item == null) continue;
-
-                if (item == DefaultItems.Grain)
-                {
-                    int[] optionAmounts = [30, 50, 100, 250, 500, 1000, 2000, 5000];
-                    for (int i = 0; i < optionAmounts.Length; i++)
-                    {
-                        if (element.Amount > optionAmounts[i])
-                        {
-                            AddWheatDonationOption(selectable, optionAmounts[i], element.Amount, item);
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
-                }
-            }
-            var title = TORTextHelper.GetText("tor_dw_brewers_deliverWheat_prompt_title", "Deliver Grain");
-            var description = TORTextHelper.GetText("tor_dw_brewers_deliverWheat_prompt_description", "Select how much grain you wish to deliver to the guild.");
-
             //Sly : a slider is probably a better visualisation for the player and gives more fine-tuned control with a single entry into the selection.
-            var inquirydata = new MultiSelectionInquiryData(title, description, selectable, true, 1, 1, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
-                AddOathGoldForGrain, null);
+            MaterialTurnInHelper.OpenInquiry(
+                title:       new TextObject(TORTextHelper.GetText("tor_dw_brewers_deliverWheat_prompt_title", "Deliver Grain")),
+                description: new TextObject(TORTextHelper.GetText("tor_dw_brewers_deliverWheat_prompt_description", "Select how much grain you wish to deliver to the guild.")),
+                minSelect: 1, maxSelect: 1,
+                supplier: BuildGrainOptions,
+                reward:   AwardOathGoldForGrain);
+        }
 
-            void AddOathGoldForGrain(List<InquiryElement> inquiryElements)
+        IEnumerable<TurnInOption> BuildGrainOptions(ItemRoster roster)
+        {
+            var grain = DefaultItems.Grain;
+            var currentAmount = roster.GetItemNumber(grain);
+            if (currentAmount <= 0) yield break;
+
+            int[] thresholds = { 30, 50, 100, 250, 500, 1000, 2000, 5000 };
+            var town = Hero.MainHero.CurrentSettlement?.Town;
+            if (town == null) yield break;
+
+            foreach (var threshold in thresholds)
             {
-                var amount = int.Parse(inquiryElements.FirstOrDefault().Identifier as string);
-                var grain = DefaultItems.Grain;
+                if (currentAmount <= threshold) yield break;
 
-                Hero.MainHero.PartyBelongedTo.ItemRoster.AddToCounts(grain, -amount);
-                
-                var currentSettlement = Hero.MainHero.CurrentSettlement;
-                var oathGoldToReceive = CalculateOathGoldFromGrain(currentSettlement.Town, amount);
-
-                Hero.MainHero.AddCultureSpecificCustomResource(oathGoldToReceive);
-                
-                //add the grain to the settlement and update category data to adjust for a subsequent donation within the same conversation
-                currentSettlement.ItemRoster.AddToCounts(grain, amount);
-                currentSettlement.Town.MarketData.UpdateStores();
+                // CalculateOathGoldFromGrain is an instance method on this behavior.
+                var gainedOathGold = CalculateOathGoldFromGrain(town, threshold);
+                var itemTitle = TORTextHelper.GetTextObject("tor_dw_brewers_deliverWheat_item_title", "wheat", "{WHEAT_COUNT} {WHEAT_ICON} for {OATH_GOLD_GAIN_WHEAT} {OATHGOLD_ICON}", true);
+                itemTitle.SetTextVariable("WHEAT_COUNT", threshold);
+                itemTitle.SetTextVariable("OATH_GOLD_GAIN_WHEAT", gainedOathGold);
+                // Tag carries the OathGold amount so the reward callback doesn't have to
+                // recompute from the market.
+                yield return new TurnInOption(grain, threshold, itemTitle.ToString(), tooltip: null, tag: gainedOathGold);
             }
+        }
 
-            MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
+        static void AwardOathGoldForGrain(IReadOnlyList<TurnInOption> picked)
+        {
+            if (picked.Count == 0) return;
+            var opt = picked[0];   // single-select inquiry
+            var currentSettlement = Hero.MainHero.CurrentSettlement;
+
+            Hero.MainHero.AddCultureSpecificCustomResource((int)opt.Tag);
+
+            // Add the grain to the settlement and refresh market data so a subsequent
+            // donation within the same conversation reflects the new price.
+            currentSettlement.ItemRoster.AddToCounts(opt.Item, opt.BatchSize);
+            currentSettlement.Town.MarketData.UpdateStores();
         }
 
         bool UpdateRangerRecruitmentPrices()

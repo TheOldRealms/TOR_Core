@@ -6021,6 +6021,42 @@
   <string id="tor_poi_witchhunter_lodge.Sealed" text="{=str_tor_poi_witchhunter_lodge.Sealed}This place is sealed." />
   <string id="tor_poi_witchhunter_lodge.SiegeSealed" text="{=str_tor_poi_witchhunter_lodge.SiegeSealed}The lodge is closed during the siege." />
   <string id="tor_poi_witchhunter_lodge.Rejected" text="{=str_tor_poi_witchhunter_lodge.Rejected}The templars turn you away." />
+  <string id="tor_poi_witchhunter_lodge.hub_greet" text="{=str_tor_poi_witchhunter_lodge.hub_greet}What brings you to the Lodge?" />
+  <string id="tor_poi_witchhunter_lodge.player_hunts" text="{=str_tor_poi_witchhunter_lodge.player_hunts}Inquisitor, I wish to aid the Empire! Do you have anything special that needs doing?" />
+  <string id="tor_poi_witchhunter_lodge.player_bounties" text="{=str_tor_poi_witchhunter_lodge.player_bounties}Are there any bounties the Inquisition needs done?" />
+  <string id="tor_poi_witchhunter_lodge.player_turnins" text="{=str_tor_poi_witchhunter_lodge.player_turnins}Lord Inquisitor! I have some things you might be interested in." />
+  <string id="tor_poi_witchhunter_lodge.player_store" text="{=str_tor_poi_witchhunter_lodge.player_store}I wish to acquire some Inquisition armaments." />
+  <string id="tor_poi_witchhunter_lodge.player_leave" text="{=str_tor_poi_witchhunter_lodge.player_leave}Have a good day Lord Inquisitor!" />
+  <string id="tor_poi_witchhunter_lodge.hunts_todo" text="{=str_tor_poi_witchhunter_lodge.hunts_todo}Return soon — I will have hunts to assign." />
+  <string id="tor_poi_witchhunter_lodge.bounties_todo" text="{=str_tor_poi_witchhunter_lodge.bounties_todo}Nothing new in the ledger just yet. Return in time." />
+  <string id="tor_poi_witchhunter_lodge.turnins_open" text="{=str_tor_poi_witchhunter_lodge.turnins_open}What have you brought the Order?" />
+  <string id="tor_poi_witchhunter_lodge.turnins_materials" text="{=str_tor_poi_witchhunter_lodge.turnins_materials}Materials for the pyre — scrolls, warpstone." />
+  <string id="tor_poi_witchhunter_lodge.turnins_prisoners" text="{=str_tor_poi_witchhunter_lodge.turnins_prisoners}Prisoners for the Order to deal with." />
+  <string id="tor_poi_witchhunter_lodge.turnins_done" text="{=str_tor_poi_witchhunter_lodge.turnins_done}That is all for now." />
+  <string id="tor_poi_witchhunter_lodge.materials_title" text="{=str_tor_poi_witchhunter_lodge.materials_title}For the Pyre" />
+  <string id="tor_poi_witchhunter_lodge.materials_description" text="{=str_tor_poi_witchhunter_lodge.materials_description}What have you brought the Order?" />
+  <string id="tor_poi_witchhunter_lodge.player_companions" text="{=str_tor_poi_witchhunter_lodge.player_companions}I seek a witch hunter willing to join me." />
+  <string id="tor_poi_witchhunter_lodge.player_exclusive" text="{=str_tor_poi_witchhunter_lodge.player_exclusive}What of the Order's business for one of our own?" />
+  <string id="tor_poi_witchhunter_lodge.notrust" text="{=str_tor_poi_witchhunter_lodge.notrust}Return once you have earned our trust." />
+  <string id="tor_poi_witchhunter_lodge.companions_available" text="{=str_tor_poi_witchhunter_lodge.companions_available}A promising initiate stands ready for field work. They will serve with you." />
+  <string id="tor_poi_witchhunter_lodge.companions_cooldown" text="{=str_tor_poi_witchhunter_lodge.companions_cooldown}No fresh initiates right now. Return in {WH_COMPANION_DAYS} days." />
+  <string id="tor_poi_witchhunter_lodge.exclusive_todo" text="{=str_tor_poi_witchhunter_lodge.exclusive_todo}The Order has nothing for you yet, brother. Return in time." />
+  <string id="tor_poi_witchhunter_lodge.bounties_hub" text="{=str_tor_poi_witchhunter_lodge.bounties_hub}What business will you take up with the Order?" />
+  <string id="tor_poi_witchhunter_lodge.excuse_minor" text="{=str_tor_poi_witchhunter_lodge.excuse_minor}I beg forgiveness for the last minor hunt." />
+  <string id="tor_poi_witchhunter_lodge.excuse_minor_reply" text="{=str_tor_poi_witchhunter_lodge.excuse_minor_reply}Granted. See the next one through to its end." />
+  <string id="tor_poi_witchhunter_lodge.excuse_major" text="{=str_tor_poi_witchhunter_lodge.excuse_major}I beg forgiveness for the last major hunt." />
+  <string id="tor_poi_witchhunter_lodge.excuse_major_reply" text="{=str_tor_poi_witchhunter_lodge.excuse_major_reply}The Order is slow to forgive, but you have paid for it. See the next through." />
+  <string id="tor_poi_witchhunter_lodge.bounties_abandon" text="{=str_tor_poi_witchhunter_lodge.bounties_abandon}I cannot finish a bounty." />
+  <string id="tor_poi_witchhunter_lodge.bounties_turnin" text="{=str_tor_poi_witchhunter_lodge.bounties_turnin}I have come to collect my due. The work is done." />
+  <string id="tor_poi_witchhunter_lodge.ask_minor" text="{=str_tor_poi_witchhunter_lodge.ask_minor}Are there minor bounties the Order needs seen to?" />
+  <string id="tor_poi_witchhunter_lodge.offer_minor_stub" text="{=str_tor_poi_witchhunter_lodge.offer_minor_stub}Nothing in the ledger right now — return in a few days." />
+  <string id="tor_poi_witchhunter_lodge.ask_major" text="{=str_tor_poi_witchhunter_lodge.ask_major}Are there major bounties the Order needs seen to?" />
+  <string id="tor_poi_witchhunter_lodge.offer_major_stub" text="{=str_tor_poi_witchhunter_lodge.offer_major_stub}The Order's heavier hunts can wait. Return when the days have turned." />
+  <string id="tor_poi_witchhunter_lodge.hunts_offer_handoff" text="{=str_tor_poi_witchhunter_lodge.hunts_offer_handoff}I have a lead for you. Step away a moment, then come back and ask me properly — I will put the details to you." />
+  <string id="tor_poi_witchhunter_lodge.bounties_offer_handoff" text="{=str_tor_poi_witchhunter_lodge.bounties_offer_handoff}There is a bounty on the ledger. Step away a moment, then come back and ask me — I will give you the particulars." />
+  <string id="tor_poi_witchhunter_lodge.bounties_back" text="{=str_tor_poi_witchhunter_lodge.bounties_back}That is all for now." />
+  <string id="tor_poi_witchhunter_lodge.store_open" text="{=str_tor_poi_witchhunter_lodge.store_open}The Order's wares. These will serve you better than tavern-forged scrap." />
+  <string id="tor_poi_witchhunter_lodge.store_reply" text="{=str_tor_poi_witchhunter_lodge.store_reply}What else can I do for you?" />
 
   <!-- POIs - Empire Engineer Hall -->
   <string id="tor_poi_empire_engineer_hall.Name" text="{=str_tor_poi_empire_engineer_hall.Name}Empire Engineer Hall" />

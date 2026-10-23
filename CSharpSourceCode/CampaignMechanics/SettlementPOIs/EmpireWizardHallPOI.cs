@@ -24,6 +24,13 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public string EnchanterTemplateId    => "tor_enchanter_empire_0";
         public List<string> EnchantmentSuffixes => new() { "emp_enchant" };
 
+        // Two distinct heroes: the magister trainer and a separate enchanter.
+        public override void EnsurePlaced(Settlement s)
+        {
+            PlaceResident(s, SpellTrainerTemplateId);
+            PlaceResident(s, EnchanterTemplateId);
+        }
+
         public bool IsPartyEligibleForTrainer()
         {
             if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.EMPIRE) return true;

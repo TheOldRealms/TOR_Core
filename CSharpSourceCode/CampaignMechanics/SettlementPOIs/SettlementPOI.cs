@@ -91,8 +91,21 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         /// <see cref="CustomResource.GetCustomResourceIconAsText"/>). For POIs without
         /// an art asset yet, a short letter (e.g. "H") also works. Default empty = no
         /// visible icon when discovered.
+        ///
+        /// <para>POI-level static form — same icon for every settlement that has this
+        /// POI. Override <see cref="MapIconTextFor"/> instead if you need per-settlement
+        /// variation (e.g. "lodge has a bounty offer available right now").</para>
         /// </summary>
         public virtual string MapIconText => "";
+
+        /// <summary>
+        /// Per-settlement variant of <see cref="MapIconText"/>. Default forwards to the
+        /// static form so existing POIs don't change. Override when the icon reflects
+        /// per-settlement runtime state. The nameplate VM calls this when rebuilding
+        /// its slot text; refreshes fire via
+        /// <see cref="SettlementPOIManagerCampaignBehavior.IconsChanged"/>.
+        /// </summary>
+        public virtual string MapIconTextFor(Settlement s) => MapIconText;
 
         /// <summary>
         /// Does this POI exist in <paramref name="s"/>? Scene presence is the sole gate —
@@ -151,6 +164,34 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         /// future scene-only POIs) don't need to override.
         /// </summary>
         public virtual void RegisterDialogs(CampaignGameStarter starter) { }
+
+        /// <summary>
+        /// Spawn + place any resident NPC(s) this POI hosts at <paramref name="s"/>.
+        /// Called on both session launch and before each mission open so the hero is
+        /// always present where expected. Default is no-op — POIs with no resident
+        /// (scene-only POIs, recruiter-style POIs) opt out by not overriding.
+        /// Hosts of a single NPC override by calling <see cref="PlaceResident"/>;
+        /// hosts of multiple NPCs (e.g. a wizard hall with distinct trainer and
+        /// enchanter heroes) call it per template.
+        /// </summary>
+        public virtual void EnsurePlaced(Settlement s) { }
+
+        /// <summary>
+        /// Shared resident-placement primitive: get-or-create a hero of
+        /// <paramref name="templateId"/> at <paramref name="s"/> via the POI
+        /// manager (which handles save-state and orphan adoption), then plant the
+        /// LocationCharacter into this POI's location. Idempotent — repeated calls
+        /// across session-launch and mission-open are safe.
+        /// </summary>
+        protected void PlaceResident(Settlement s, string templateId)
+        {
+            if (string.IsNullOrEmpty(templateId) || !AppliesTo(s)) return;
+            var mgr = TaleWorlds.CampaignSystem.Campaign.Current?.GetCampaignBehavior<SettlementPOIManagerCampaignBehavior>();
+            var hero = mgr?.GetOrCreateHero(s, LocationId, templateId);
+            if (hero == null || !s.HeroesWithoutParty.Contains(hero)) return;
+            var location = s.LocationComplex.GetLocationWithId(LocationId);
+            TrainerPlacement.EnsureAt(s, hero, location);
+        }
     }
 
     /// <summary>
