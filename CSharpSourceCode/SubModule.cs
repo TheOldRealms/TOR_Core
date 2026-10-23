@@ -30,6 +30,7 @@ using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.BattleMechanics.Voice;
 using TOR_Core.CampaignMechanics;
+using TOR_Core.CampaignMechanics.Ambush;
 using TOR_Core.CampaignMechanics.Assimilation;
 using TOR_Core.CampaignMechanics.BountyMaster;
 using TOR_Core.CampaignMechanics.Careers;
@@ -208,6 +209,7 @@ namespace TOR_Core
                 starter.AddBehavior(new GreenskinBrawlBehavior());
                 starter.AddBehavior(new GoblinRecruitmentBehavior());
                 starter.AddBehavior(new DuelBehavior());
+                starter.AddBehavior(new AmbushCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
@@ -264,6 +266,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORCustomResourceModel());
                 gameStarterObject.AddModel(new TORClanPoliticsModel());
                 gameStarterObject.AddModel(new TORMapVisibilityModel());
+                gameStarterObject.AddModel(new TORAmbushModel());
                 gameStarterObject.AddModel(new TORMobilePartyAIModel());
                 gameStarterObject.AddModel(new TORTournamentModel());
                 gameStarterObject.AddModel(new TORAlleyModel());
