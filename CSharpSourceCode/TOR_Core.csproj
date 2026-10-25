@@ -681,6 +681,7 @@
     <Compile Include="Models\TOREncounterGameMenuModel.cs" />
     <Compile Include="Models\TOREncounterModel.cs" />
     <Compile Include="Models\TOREquipmentSelectionModel.cs" />
+    <Compile Include="Models\TORAmbushModel.cs" />
     <Compile Include="Models\TORFaithModel.cs" />
     <Compile Include="Models\TORInventoryCapacityModel.cs" />
     <Compile Include="Models\TORKingdomDecisionPermissionModel.cs" />

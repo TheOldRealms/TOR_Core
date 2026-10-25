@@ -5,6 +5,7 @@ using SandBox.View.Map;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameMenus;
+using TaleWorlds.Core;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.InputSystem;
@@ -12,6 +13,7 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ScreenSystem;
+using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Ambush
@@ -251,7 +253,11 @@ namespace TOR_Core.CampaignMechanics.Ambush
             if (slot >= _currentTargets.Count) return false;
             var target = _currentTargets[slot];
             if (target == null || !target.IsActive) return false;
-            args.Text = new TextObject("Strike at " + GetPartyLabel(target) + ".");
+
+            float chance = (Campaign.Current.Models.GetAmbushModel()?.CalculateAmbushSuccessChance(
+                MobileParty.MainParty, target, _stealthEnteredAt) ?? 0f);
+            int chancePct = (int)(chance * 100f);
+            args.Text = new TextObject("Strike at " + GetPartyLabel(target) + " (" + chancePct + "% chance).");
             args.optionLeaveType = GameMenuOption.LeaveType.HostileAction;
             return true;
         }
@@ -262,11 +268,19 @@ namespace TOR_Core.CampaignMechanics.Ambush
             var target = _currentTargets[slot];
             if (target == null || !target.IsActive) return;
 
-            TORCommon.Say("Would ambush " + GetPartyLabel(target) + " — rolling as a regular battle (Phase C adds the success roll).");
+            float chance = (Campaign.Current.Models.GetAmbushModel()?.CalculateAmbushSuccessChance(
+                MobileParty.MainParty, target, _stealthEnteredAt) ?? 0f);
+            bool success = MBRandom.RandomFloat < chance;
+            int chancePct = (int)(chance * 100f);
 
             // Drop stealth before combat; cooldown fires regardless of outcome.
             LeaveStealth(MobileParty.MainParty);
             StampAmbushCooldown();
+
+            if (success)
+                TORCommon.Say("Ambush succeeded (" + chancePct + "%) on " + GetPartyLabel(target) + " — Phase D opens the ambush mission; for now, regular battle.");
+            else
+                TORCommon.Say("Ambush failed (" + chancePct + "%) on " + GetPartyLabel(target) + " — regular battle.");
 
             EncounterManager.StartPartyEncounter(PartyBase.MainParty, target.Party);
         }

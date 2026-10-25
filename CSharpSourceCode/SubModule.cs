@@ -266,6 +266,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORCustomResourceModel());
                 gameStarterObject.AddModel(new TORClanPoliticsModel());
                 gameStarterObject.AddModel(new TORMapVisibilityModel());
+                gameStarterObject.AddModel(new TORAmbushModel());
                 gameStarterObject.AddModel(new TORMobilePartyAIModel());
                 gameStarterObject.AddModel(new TORTournamentModel());
                 gameStarterObject.AddModel(new TORAlleyModel());

@@ -11,6 +11,11 @@ namespace TOR_Core.Extensions
             return models.GetGameModels().OfType<TORAbilityModel>().LastOrDefault();
         }
 
+        public static TORAmbushModel GetAmbushModel(this GameModels models)
+        {
+            return models.GetGameModels().OfType<TORAmbushModel>().LastOrDefault();
+        }
+
         public static TORFaithModel GetFaithModel(this GameModels models)
         {
             return models.GetGameModels().OfType<TORFaithModel>().LastOrDefault();
