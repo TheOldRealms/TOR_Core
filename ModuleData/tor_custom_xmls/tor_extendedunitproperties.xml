@@ -2823,6 +2823,7 @@
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" />
     </Resistances>
+    <Resistances><ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" /><ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" /></Resistances>
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
     </DamageAmplifiers>
@@ -2842,6 +2843,7 @@
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" />
     </Resistances>
+    <Resistances><ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" /><ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" /></Resistances>
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
     </DamageAmplifiers>
@@ -2861,6 +2863,7 @@
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" />
     </Resistances>
+    <Resistances><ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" /><ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" /></Resistances>
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
     </DamageAmplifiers>
@@ -2880,6 +2883,7 @@
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" />
     </Resistances>
+    <Resistances><ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" /><ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" /></Resistances>
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
     </DamageAmplifiers>
@@ -2899,6 +2903,7 @@
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" />
     </Resistances>
+    <Resistances><ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" /><ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" /></Resistances>
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
     </DamageAmplifiers>
@@ -11101,7 +11106,9 @@
     </DamageProportions>
     <Attributes>
       <string>Piercing</string>
+      <string>Unbreakable</string>
     </Attributes>
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="6" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_knight">
     <Attributes>

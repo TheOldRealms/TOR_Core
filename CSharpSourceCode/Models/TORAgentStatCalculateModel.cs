@@ -136,7 +136,7 @@ namespace TOR_Core.Models
                             {
                                 ExplainedNumber ammoCount = new ExplainedNumber(missionWeapon.Amount);
 
-                                if (agent.IsMainAgent && !missionWeapon.Item.IsSpecialAmmunitionItem())
+                                if (agent.IsMainAgent && !missionWeapon.Item.IsBlunderbussCompatible())
                                 {
                                     CareerHelper.ApplyBasicCareerPassives(character.HeroObject, ref ammoCount, PassiveEffectType.Ammo, false);
                                 }
@@ -145,7 +145,7 @@ namespace TOR_Core.Models
                                 {
                                     var choices = character.HeroObject.GetAllCareerChoices();
 
-                                    if (missionWeapon.Item.IsSpecialAmmunitionItem() && choices.Contains("MercenaryLordPassive1"))
+                                    if (missionWeapon.Item.IsBlunderbussCompatible() && choices.Contains("MercenaryLordPassive1"))
                                     {
                                         var choice = TORCareerChoices.GetChoice("MercenaryLordPassive1");
                                         if (choice != null)
@@ -386,19 +386,8 @@ namespace TOR_Core.Models
 
                     if (character.IsDwarf())
                     {
+                        //Sly : if the CanRide flag is never changed during a mission, can this riding flag instead be set in an InitializeAgentStats override?
                         agent.SetAgentFlags(agent.GetAgentFlags() & ~AgentFlag.CanRide);
-
-                        if (character.IsIronbreakerUnit())
-                        {
-                            if (!character.StringId.Contains("trollhammer"))
-                            {
-                                agentDrivenProperties.WeaponInaccuracy += 0.095f;
-                            }
-                            else
-                            {
-                                agentDrivenProperties.WeaponInaccuracy += 0.02f;
-                            }
-                        }
 
                         agentDrivenProperties.MaxSpeedMultiplier *= DwarfSpeedModificatior;
                     }

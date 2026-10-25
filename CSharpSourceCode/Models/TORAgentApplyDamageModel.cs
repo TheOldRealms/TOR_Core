@@ -912,7 +912,7 @@ namespace TOR_Core.Models
                         damageBonuses[(int)DamageType.Physical] += (TORPerks.Faith.Superstitious.SecondaryBonus);
                     }
 
-                    if (wieldedItem != null && wieldedItem.HasWeaponComponent && wieldedItem.IsSpecialAmmunitionItem() && attackMask.HasAnyFlag(AttackTypeMask.Ranged))
+                    if (wieldedItem != null && wieldedItem.HasWeaponComponent && wieldedItem.IsBlunderbussCompatible() && attackMask.HasAnyFlag(AttackTypeMask.Ranged))
                     {
                         if (agentCaptain != null && agentCaptain.GetPerkValue(TORPerks.GunPowder.PackItIn))
                         {
