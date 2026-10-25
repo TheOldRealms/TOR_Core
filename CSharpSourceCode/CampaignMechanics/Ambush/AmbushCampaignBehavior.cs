@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SandBox.View.Map;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameMenus;
@@ -10,6 +11,7 @@ using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.ScreenSystem;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Ambush
@@ -34,12 +36,25 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         public bool IsPlayerInStealth => _playerInStealth;
         public CampaignTime PlayerAmbushCooldownUntil => _playerAmbushCooldownUntil;
+        public bool IsOnAmbushCooldown => _playerAmbushCooldownUntil.IsFuture;
 
         public bool IsPartyInStealth(MobileParty party)
         {
             if (party == null) return false;
             if (party == MobileParty.MainParty) return _playerInStealth;
             return false;
+        }
+
+        public void OnStealthHotkeyPressed()
+        {
+            if (!CanToggleStealth()) return;
+
+            if (_playerInStealth)
+                LeaveStealth(MobileParty.MainParty);
+            else if (!IsOnAmbushCooldown)
+                EnterStealth(MobileParty.MainParty);
+            else
+                TORCommon.Say("Stealth is still on cooldown.");
         }
 
         public void EnterStealth(MobileParty party)
@@ -54,10 +69,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
             party.SetMoveModeHold();
 
             _cachedTimeControlMode = Campaign.Current.TimeControlMode;
-            Campaign.Current.TimeControlMode = CampaignTimeControlMode.Stop;
 
             TORCommon.Say("Entered stealth stance.");
             GameMenu.ActivateGameMenu(StealthMenuId);
+            // ActivateGameMenu + the wait-menu's internal StartWait set TimeControlMode to
+            // UnstoppableFastForward; override back to Stop so the player starts paused and can
+            // choose their own speed via the UI arrows.
+            Campaign.Current.TimeControlMode = CampaignTimeControlMode.Stop;
         }
 
         public void LeaveStealth(MobileParty party)
@@ -67,20 +85,19 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
             _playerInStealth = false;
             party.Ai.SetDoNotMakeNewDecisions(false);
-            party.Ai.RethinkAtNextHourlyTick = true;
             _currentTargets.Clear();
 
-            Campaign.Current.TimeControlMode = _cachedTimeControlMode;
-
             TryCloseStealthMenu();
+            Campaign.Current.TimeControlMode = _cachedTimeControlMode;
             TORCommon.Say("Left stealth stance.");
         }
 
         private static void TryCloseStealthMenu()
         {
             var ctx = Campaign.Current?.CurrentMenuContext;
-            if (ctx != null && ctx.GameMenu?.StringId == StealthMenuId)
-                GameMenu.ExitToLast();
+            if (ctx == null || ctx.GameMenu?.StringId != StealthMenuId) return;
+            ctx.GameMenu.EndWait();
+            GameMenu.ExitToLast();
         }
 
         public IReadOnlyList<MobileParty> GetAmbushTargets(MobileParty attacker)
@@ -108,13 +125,20 @@ namespace TOR_Core.CampaignMechanics.Ambush
             _playerAmbushCooldownUntil = CampaignTime.HoursFromNow(CooldownHours);
         }
 
-        public bool IsOnAmbushCooldown => _playerAmbushCooldownUntil.IsFuture;
-
         public override void RegisterEvents()
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
-            CampaignEvents.TickEvent.AddNonSerializedListener(this, OnTick);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, OnPlayerBattleEnd);
+
+            ScreenManager.OnPushScreen -= OnScreenPushed;
+            ScreenManager.OnPushScreen += OnScreenPushed;
+        }
+
+        private static void OnScreenPushed(ScreenBase pushedScreen)
+        {
+            if (pushedScreen is not MapScreen mapScreen) return;
+            if (mapScreen.GetMapView<AmbushMapView>() == null)
+                mapScreen.AddMapView<AmbushMapView>();
         }
 
         private void OnPlayerBattleEnd(MapEvent mapEvent)
@@ -127,8 +151,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             RegisterMenus(starter);
 
             // Defensive: a save mid-stealth loads with the flag set but no menu / no movement lock.
-            // Clear the flag so the player resumes with a normal map state. Phase A choice: preserving stealth
-            // across saves is not worth the menu-reopen complexity until the detection model is in (Phase B).
+            // Clear the flag so the player resumes with a normal map state.
             if (_playerInStealth)
             {
                 _playerInStealth = false;
@@ -175,7 +198,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
                     args.optionLeaveType = GameMenuOption.LeaveType.Leave;
                     return true;
                 },
-                _ => LeaveStealthViaMenu(),
+                _ => LeaveStealth(MobileParty.MainParty),
                 isLeave: true,
                 index: -1,
                 isRepeatable: false);
@@ -183,7 +206,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         private void OnStealthMenuInit(MenuCallbackArgs args)
         {
-            args.MenuContext?.GameMenu?.StartWait();
+            // Don't call StartWait() here — ActivateGameMenu already invokes it for wait menus,
+            // and StartWait sets TimeControlMode = UnstoppableFastForward. Calling it again is
+            // redundant and either way we override to Stop in EnterStealth.
 
             var culture = Hero.MainHero?.MapFaction?.Culture;
             if (culture != null && args.MenuContext != null)
@@ -232,46 +257,19 @@ namespace TOR_Core.CampaignMechanics.Ambush
             EncounterManager.StartPartyEncounter(PartyBase.MainParty, target.Party);
         }
 
-        private void LeaveStealthViaMenu()
-        {
-            // LeaveStealth closes the stealth menu via TryCloseStealthMenu — no second ExitToLast here,
-            // calling it twice leaves the menu context in a half-open state that blocks re-activation.
-            LeaveStealth(MobileParty.MainParty);
-        }
-
         private static string GetPartyLabel(MobileParty p)
         {
             if (p.LeaderHero != null) return p.LeaderHero.Name.ToString();
             return p.Name.ToString();
         }
 
-        private void OnTick(float dt)
-        {
-            if (!CanToggleStealth()) return;
-            if (!Input.IsKeyReleased(StealthToggleKey)) return;
-
-            if (_playerInStealth)
-                LeaveStealth(MobileParty.MainParty);
-            else if (!IsOnAmbushCooldown)
-                EnterStealth(MobileParty.MainParty);
-            else
-                TORCommon.Say("Stealth is still on cooldown.");
-        }
-
-        private bool CanToggleStealth()
+        private static bool CanToggleStealth()
         {
             if (Mission.Current != null) return false;
             if (Hero.MainHero == null || Hero.MainHero.IsPrisoner) return false;
             if (MobileParty.MainParty == null || !MobileParty.MainParty.IsActive) return false;
             if (MobileParty.MainParty.CurrentSettlement != null) return false;
             if (MapEvent.PlayerMapEvent != null) return false;
-
-            // While another menu is still on screen (ours is tracked via _playerInStealth),
-            // activating a new menu via ActivateGameMenu silently fails — leaving the hotkey press
-            // "eaten" with no visible effect until something else refreshes the UI.
-            var ctx = Campaign.Current?.CurrentMenuContext;
-            if (ctx != null && !_playerInStealth) return false;
-
             return true;
         }
 
