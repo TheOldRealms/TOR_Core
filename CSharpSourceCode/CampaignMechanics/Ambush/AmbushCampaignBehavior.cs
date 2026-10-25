@@ -23,6 +23,12 @@ namespace TOR_Core.CampaignMechanics.Ambush
         public const int CooldownHours = 6;
         public const int MaxTargetSlots = 6;
 
+        // Phase B: observer must be within this map distance to spot a stealthed party.
+        // Reserved for the Scouting/terrain-aware detection check in open-questions. Not currently
+        // used — AI engagement is gated via MobileParty.IgnoreByOtherPartiesTill (ShouldBeIgnored)
+        // which is a hard flag, not a radius. Keeping the constant for later detection work.
+        public const float StealthDetectionRadius = 3f;
+
         public static readonly InputKey StealthToggleKey = InputKey.X;
 
         public const string StealthMenuId = "tor_ambush_stealth_menu";
@@ -68,6 +74,11 @@ namespace TOR_Core.CampaignMechanics.Ambush
             party.Ai.SetDoNotMakeNewDecisions(true);
             party.SetMoveModeHold();
 
+            // Phase B: drop the party off the AI target list. AiEngagePartyBehavior skips
+            // targets where ShouldBeIgnored is true. Set a far-future expiry so the ignore flag
+            // persists until LeaveStealth clears it.
+            party.IgnoreByOtherPartiesTill(CampaignTime.YearsFromNow(100f));
+
             _cachedTimeControlMode = Campaign.Current.TimeControlMode;
 
             TORCommon.Say("Entered stealth stance.");
@@ -85,6 +96,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
             _playerInStealth = false;
             party.Ai.SetDoNotMakeNewDecisions(false);
+            // Phase B: clear the AI ignore flag by setting the expiry to the past.
+            party.IgnoreByOtherPartiesTill(CampaignTime.Zero);
             _currentTargets.Clear();
 
             TryCloseStealthMenu();
@@ -157,6 +170,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 _playerInStealth = false;
                 _currentTargets.Clear();
                 MobileParty.MainParty?.Ai?.SetDoNotMakeNewDecisions(false);
+                MobileParty.MainParty?.IgnoreByOtherPartiesTill(CampaignTime.Zero);
             }
         }
 
