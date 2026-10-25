@@ -44,6 +44,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         public bool IsPlayerInStealth => _playerInStealth;
         public CampaignTime PlayerAmbushCooldownUntil => _playerAmbushCooldownUntil;
+        public CampaignTime StealthEnteredAt => _stealthEnteredAt;
         public bool IsOnAmbushCooldown => _playerAmbushCooldownUntil.IsFuture;
 
         public bool IsPartyInStealth(MobileParty party)

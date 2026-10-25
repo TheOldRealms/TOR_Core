@@ -3,6 +3,7 @@ using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TOR_Core.CampaignMechanics.Ambush;
 
 namespace TOR_Core.Models
 {
@@ -26,6 +27,13 @@ namespace TOR_Core.Models
         public virtual float SlightlySmallerAttackerBonus => 0.1f;  // 0.5× ≤ ratio < 1.0×
         public virtual float OverwhelmingAttackerPenalty => -0.1f;  // attacker ≥ 2× target
 
+        // Target proximity: at zero distance = full bonus, scaling to 0 at the stealth radius edge.
+        public virtual float MaxProximityBonus => 0.1f;
+        public virtual float ProximityRadius => AmbushCampaignBehavior.StealthRadius;
+
+        // Day/night: night favours ambushers.
+        public virtual float NightTimeBonus => 0.1f;
+
         public virtual float CalculateAmbushSuccessChance(MobileParty attacker, MobileParty target, CampaignTime stealthEnteredAt)
         {
             if (attacker == null || target == null) return MinChance;
@@ -35,7 +43,25 @@ namespace TOR_Core.Models
             chance += TerrainBonus(attacker);
             chance += ForceRatioBonus(attacker, target);
             chance += StealthDurationBonus(stealthEnteredAt);
+            chance += TargetProximityBonus(attacker, target);
+            chance += NightTimeBonusValue();
             return MBMath.ClampFloat(chance, MinChance, MaxChance);
+        }
+
+        protected virtual float TargetProximityBonus(MobileParty attacker, MobileParty target)
+        {
+            if (ProximityRadius <= 0f) return 0f;
+            float distance = attacker.Position.ToVec2().Distance(target.Position.ToVec2());
+            if (distance >= ProximityRadius) return 0f;
+            // Linear fade from full bonus at distance 0 to zero at ProximityRadius.
+            float t = 1f - (distance / ProximityRadius);
+            return MaxProximityBonus * t;
+        }
+
+        protected virtual float NightTimeBonusValue()
+        {
+            if (Campaign.Current == null) return 0f;
+            return Campaign.Current.IsNight ? NightTimeBonus : 0f;
         }
 
         protected virtual float ScoutingDeltaBonus(MobileParty attacker, MobileParty target)

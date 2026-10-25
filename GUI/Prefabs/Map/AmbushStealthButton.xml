@@ -1,0 +1,32 @@
+<Prefab>
+  <Window>
+    <!-- Stealth toggle button, floating above the time widget (bottom-center of HUD). -->
+    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+            SuggestedWidth="64" SuggestedHeight="64"
+            HorizontalAlignment="Center" VerticalAlignment="Bottom"
+            PositionYOffset="-95"
+            IsVisible="@IsVisible">
+      <Children>
+        <ButtonWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                      Command.Click="ExecuteToggle"
+                      Sprite="@EyeSprite">
+          <Children>
+            <!-- Subtle red tint when stealth is active. -->
+            <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                    Sprite="BlankWhiteSquare_9" Color="#AA2A2A40"
+                    IsVisible="@IsStealthActive"/>
+            <!-- Grey tint when the ambush is on cooldown. -->
+            <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                    Sprite="BlankWhiteSquare_9" Color="#44444460"
+                    IsVisible="@IsOnCooldown"/>
+
+            <HintWidget DataSource="{Hint}" DoNotAcceptEvents="false"
+                        WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                        Command.HoverBegin="ExecuteBeginHint"
+                        Command.HoverEnd="ExecuteEndHint"/>
+          </Children>
+        </ButtonWidget>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>
