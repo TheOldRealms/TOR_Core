@@ -28,6 +28,17 @@ namespace TOR_Core.Missions.AmbushMission
         /// </summary>
         public float Radius = 10f;
 
+        /// <summary>
+        /// If true, also draw the debug sphere during a running mission (not just in
+        /// the editor). Useful for playtesting zone placement before dedicated art
+        /// is parented. Default off so shipped scenes don't accidentally leak the
+        /// debug visual into normal play.
+        /// </summary>
+        public bool ShowDebugMarkerInGame = false;
+
+        // Semi-transparent green: 0xAARRGGBB. Alpha 0x60 (~37%), full green.
+        private const uint DebugSphereColor = 0x60_00_FF_00u;
+
         private static readonly List<AmbushRetreatZone> _activeZones = new List<AmbushRetreatZone>();
 
         /// <summary>Zones currently alive in the running mission's scene.</summary>
@@ -38,6 +49,24 @@ namespace TOR_Core.Missions.AmbushMission
             base.OnInit();
             if (!_activeZones.Contains(this))
                 _activeZones.Add(this);
+            SetScriptComponentToTick(GetTickRequirement());
+        }
+
+        public override TickRequirement GetTickRequirement()
+            => base.GetTickRequirement() | TickRequirement.Tick;
+
+        protected override void OnTick(float dt)
+        {
+            base.OnTick(dt);
+            if (ShowDebugMarkerInGame)
+                MBDebug.RenderDebugSphere(GameEntity.GlobalPosition, Radius, DebugSphereColor, depthCheck: false, time: 0f);
+        }
+
+        protected override void OnEditorTick(float dt)
+        {
+            base.OnEditorTick(dt);
+            // Always visible in the editor so the scener sees the actual Radius while placing.
+            MBDebug.RenderDebugSphere(GameEntity.GlobalPosition, Radius, DebugSphereColor, depthCheck: false, time: 0f);
         }
 
         protected override void OnRemoved(int removeReason)
