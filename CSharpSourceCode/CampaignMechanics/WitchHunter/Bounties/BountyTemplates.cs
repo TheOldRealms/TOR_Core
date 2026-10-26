@@ -141,10 +141,12 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
                 titleFallback: "Root Out the Norscan Hideouts"),
 
             // ---- Major: higher-stakes rewards, broader counts, mid-to-late-game pitch.
-            // Spreadsheet reference: "Capture and return any Norscan" 20-30 → 6000-9000 gold,
-            // "Defeat Chaos Raiding parties" 3-5 → 150-250 prestige, "Clear out Troll dens"
-            // 1-3 → 4000-12000 gold. MVP set is three templates, one per common objective
-            // shape, to prove the Major flow end-to-end.
+            // Values anchor on the Empire Quests Mechanics spreadsheet with Major-tier
+            // scaling (roughly 2x Minor counts, 2-3x rewards). Pool currently covers
+            // Chaos Warriors, Norscans, Cultists and Undead across the three vanilla
+            // objective shapes (kill / defeat parties / clear hideout). Capture
+            // objectives are intentionally skipped at Major tier — vanilla's
+            // CaptureTroops cap doesn't scale cleanly past ~20.
 
             ["major_kill_chaos"] = new BountyTemplate(
                 id: "major_kill_chaos", tier: BountyTier.Major,
@@ -184,6 +186,100 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
                 briefFallback: "Fortified strongholds held by the warriors of Chaos have taken root. Burn {COUNT} of them — these are not minor cells. The Order will pay a king's ransom for the service.",
                 titleKey: "tor_wh_bounty_major_clear_chaos_lairs_title",
                 titleFallback: "Burn the Chaos Strongholds"),
+
+            // Major Norscan — larger-scale raids than the Minor variants.
+            ["major_kill_norscan"] = new BountyTemplate(
+                id: "major_kill_norscan", tier: BountyTier.Major,
+                objectiveType: BountyObjectiveType.KillTroops,
+                targetMatches: t => t?.IsNorscan() == true,
+                targetLabel: "Norscan raiders",
+                countMin: 60, countMax: 100,
+                goldMin: 5000, goldMax: 8000,
+                prestigeMin: 50, prestigeMax: 100,
+                briefKey: "tor_wh_bounty_major_kill_norscan_brief",
+                briefFallback: "A Norscan horde has crossed the Sea of Claws in force. Put {COUNT} of them in the ground before they reach the heartlands.",
+                titleKey: "tor_wh_bounty_major_kill_norscan_title",
+                titleFallback: "Scour the Norscan Horde"),
+
+            ["major_defeat_norscan_warbands"] = new BountyTemplate(
+                id: "major_defeat_norscan_warbands", tier: BountyTier.Major,
+                objectiveType: BountyObjectiveType.DefeatParties,
+                targetMatches: t => t?.IsNorscan() == true,
+                targetLabel: "Norscan warbands",
+                countMin: 4, countMax: 6,
+                goldMin: 0, goldMax: 0,
+                prestigeMin: 150, prestigeMax: 250,
+                briefKey: "tor_wh_bounty_major_defeat_norscan_warbands_brief",
+                briefFallback: "The Norscans move as a warhost, not raiders. Scatter {COUNT} of their warbands and the Order will see your deeds remembered.",
+                titleKey: "tor_wh_bounty_major_defeat_norscan_warbands_title",
+                titleFallback: "Scatter the Norscan Warhost"),
+
+            // Major Cultists — the heretical campaigns the Order answers in force.
+            ["major_kill_cultists"] = new BountyTemplate(
+                id: "major_kill_cultists", tier: BountyTier.Major,
+                objectiveType: BountyObjectiveType.KillTroops,
+                targetMatches: t => t?.IsCultist() == true,
+                targetLabel: "chaos cultists",
+                countMin: 40, countMax: 70,
+                goldMin: 0, goldMax: 0,
+                prestigeMin: 150, prestigeMax: 250,
+                briefKey: "tor_wh_bounty_major_kill_cultists_brief",
+                briefFallback: "A cult has grown bold enough to muster in the hundreds. Purge {COUNT} of the heretics and the Order will know your work.",
+                titleKey: "tor_wh_bounty_major_kill_cultists_title",
+                titleFallback: "Grand Purge of the Cults"),
+
+            ["major_defeat_cultist_warbands"] = new BountyTemplate(
+                id: "major_defeat_cultist_warbands", tier: BountyTier.Major,
+                objectiveType: BountyObjectiveType.DefeatParties,
+                targetMatches: t => t?.IsCultist() == true,
+                targetLabel: "cult warbands",
+                countMin: 4, countMax: 6,
+                goldMin: 0, goldMax: 0,
+                prestigeMin: 150, prestigeMax: 250,
+                briefKey: "tor_wh_bounty_major_defeat_cultist_warbands_brief",
+                briefFallback: "Cult cells have organised into warbands and march in the open. Break {COUNT} of them before their numbers grow further.",
+                titleKey: "tor_wh_bounty_major_defeat_cultist_warbands_title",
+                titleFallback: "Break the Cult Warbands"),
+
+            ["major_clear_cultist_lairs"] = new BountyTemplate(
+                id: "major_clear_cultist_lairs", tier: BountyTier.Major,
+                objectiveType: BountyObjectiveType.ClearHideout,
+                targetMatches: t => t?.IsCultist() == true,
+                targetLabel: "cult sanctums",
+                countMin: 2, countMax: 4,
+                goldMin: 2000, goldMax: 4000,
+                prestigeMin: 100, prestigeMax: 150,
+                briefKey: "tor_wh_bounty_major_clear_cultist_lairs_brief",
+                briefFallback: "The cult has built sanctums deep enough to require a proper burning. Clear {COUNT} of them — root and branch.",
+                titleKey: "tor_wh_bounty_major_clear_cultist_lairs_title",
+                titleFallback: "Burn the Cult Sanctums"),
+
+            // Major Undead — Sylvanian risings and necromantic hosts.
+            ["major_kill_undead"] = new BountyTemplate(
+                id: "major_kill_undead", tier: BountyTier.Major,
+                objectiveType: BountyObjectiveType.KillTroops,
+                targetMatches: t => t?.IsUndead() == true,
+                targetLabel: "undead",
+                countMin: 40, countMax: 70,
+                goldMin: 0, goldMax: 0,
+                prestigeMin: 150, prestigeMax: 250,
+                briefKey: "tor_wh_bounty_major_kill_undead_brief",
+                briefFallback: "A necromancer has raised a host from the barrows. Return {COUNT} of them to the earth and the Order will reward you.",
+                titleKey: "tor_wh_bounty_major_kill_undead_title",
+                titleFallback: "Cleanse the Risen Host"),
+
+            ["major_defeat_undead_warbands"] = new BountyTemplate(
+                id: "major_defeat_undead_warbands", tier: BountyTier.Major,
+                objectiveType: BountyObjectiveType.DefeatParties,
+                targetMatches: t => t?.IsUndead() == true,
+                targetLabel: "undead legions",
+                countMin: 4, countMax: 6,
+                goldMin: 0, goldMax: 0,
+                prestigeMin: 150, prestigeMax: 250,
+                briefKey: "tor_wh_bounty_major_defeat_undead_warbands_brief",
+                briefFallback: "The dead walk in companies, not knots and stragglers. Scatter {COUNT} of their legions.",
+                titleKey: "tor_wh_bounty_major_defeat_undead_warbands_title",
+                titleFallback: "Scatter the Legions of the Dead"),
         };
 
         public static BountyTemplate Get(string id) =>
