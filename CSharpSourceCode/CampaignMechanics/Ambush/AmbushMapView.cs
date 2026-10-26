@@ -1,3 +1,4 @@
+using SandBox.GauntletUI.Map;
 using SandBox.View.Map;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine.GauntletUI;
@@ -15,10 +16,14 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             base.CreateLayout();
             _vm = new AmbushButtonVM();
-            Layer = new GauntletLayer("AmbushStealthButton", 100);
+            // Reuse the main map's GauntletLayer (same pattern as WaaaghMeterMapView).
+            // Creating a fresh GauntletLayer leaves input routing unconfigured, so
+            // ButtonWidget clicks never fire. The main map layer already has input
+            // wired for the campaign HUD.
+            var mapBasicView = MapScreen.GetMapView<GauntletMapBasicView>();
+            Layer = mapBasicView.GauntletLayer;
             _layer = Layer as GauntletLayer;
             _movie = _layer.LoadMovie("AmbushStealthButton", _vm);
-            MapScreen.AddLayer(Layer);
         }
 
         protected override void OnMapScreenUpdate(float dt)
@@ -32,11 +37,10 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         protected override void OnFinalize()
         {
+            // We don't own the layer — it belongs to GauntletMapBasicView — so only
+            // release the movie we loaded onto it; don't remove the layer.
             if (_layer != null)
-            {
-                MapScreen.RemoveLayer(_layer);
                 _layer.ReleaseMovie(_movie);
-            }
             _movie = null;
             _layer = null;
             Layer = null;

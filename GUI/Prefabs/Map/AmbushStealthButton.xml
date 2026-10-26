@@ -1,26 +1,25 @@
 <Prefab>
   <Window>
-    <!-- Stealth toggle button, floating above the time widget (bottom-center of HUD). -->
+    <!-- Stealth toggle button, floating above the time widget (bottom-center of HUD).
+         Eye icon alone conveys state (closed = covered, open = exposed); no tints
+         needed. Click OR the X hotkey toggles stealth. -->
     <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
             SuggestedWidth="64" SuggestedHeight="64"
             HorizontalAlignment="Center" VerticalAlignment="Bottom"
-            PositionYOffset="-95"
+            PositionYOffset="-45"
             IsVisible="@IsVisible">
       <Children>
-        <ButtonWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+        <!-- Pattern lifted from CareerScreen.xml's BattlePrayers button:
+             DoNotPassEventsToChildren on the ButtonWidget so clicks don't propagate
+             down to the HintWidget child (which would eat them), and
+             DoNotAcceptEvents on the HintWidget so hover events still fire for the
+             tooltip but the hint doesn't absorb other events. -->
+        <ButtonWidget DoNotPassEventsToChildren="true"
+                      WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
                       Command.Click="ExecuteToggle"
                       Sprite="@EyeSprite">
           <Children>
-            <!-- Subtle red tint when stealth is active. -->
-            <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                    Sprite="BlankWhiteSquare_9" Color="#AA2A2A40"
-                    IsVisible="@IsStealthActive"/>
-            <!-- Grey tint when the ambush is on cooldown. -->
-            <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                    Sprite="BlankWhiteSquare_9" Color="#44444460"
-                    IsVisible="@IsOnCooldown"/>
-
-            <HintWidget DataSource="{Hint}" DoNotAcceptEvents="false"
+            <HintWidget DataSource="{Hint}" DoNotAcceptEvents="true"
                         WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
                         Command.HoverBegin="ExecuteBeginHint"
                         Command.HoverEnd="ExecuteEndHint"/>
