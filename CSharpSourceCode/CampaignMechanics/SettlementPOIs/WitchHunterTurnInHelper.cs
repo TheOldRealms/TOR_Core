@@ -7,6 +7,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.Shared;
+using TOR_Core.CampaignMechanics.Shared.MaterialPicker;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.SettlementPOIs
@@ -43,66 +44,45 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
 
         public static void OpenMaterialTurnIn()
         {
-            MaterialTurnInHelper.OpenInquiry(
-                title: new TextObject(TORTextHelper.GetText(
-                    "tor_poi_witchhunter_lodge.materials_title",
-                    "For the Pyre")),
-                description: new TextObject(TORTextHelper.GetText(
-                    "tor_poi_witchhunter_lodge.materials_description",
-                    "What have you brought the Order?")),
-                minSelect: 1, maxSelect: 32,
-                supplier: BuildMaterialOptions,
-                reward: AwardMaterialRewards);
-        }
+            var roster = Hero.MainHero?.PartyBelongedTo?.ItemRoster;
+            if (roster == null) return;
 
-        private static IEnumerable<TurnInOption> BuildMaterialOptions(ItemRoster roster)
-        {
+            var options = new List<MaterialPickerOption>();
+
             var warpstone = MBObjectManager.Instance.GetObject<ItemObject>("tor_tradegood_warpstone_dust");
             if (warpstone != null)
             {
-                var count = roster.GetItemNumber(warpstone);
-                for (int i = 0; i < count; i += WarpstoneBatchSize)
-                {
-                    yield return new TurnInOption(
-                        warpstone, WarpstoneBatchSize,
-                        warpstone.Name.ToString(),
-                        tooltip: $"{WarpstonePrestige} Prestige + {WarpstoneGold} gold",
-                        tag: "warpstone");
-                    // One option per unit shown — player can pick as many as they
-                    // like via the multi-select. Keeps per-item visibility simple.
-                    if (i >= 99) break;   // sanity ceiling
-                }
+                var available = roster.GetItemNumber(warpstone) / WarpstoneBatchSize;
+                if (available > 0)
+                    options.Add(new MaterialPickerOption(warpstone, WarpstoneBatchSize, available,
+                        WarpstoneGold, WarpstonePrestige, tag: "warpstone"));
             }
 
             var scroll = MBObjectManager.Instance.GetObject<ItemObject>("tor_tradegood_arcane_scroll");
             if (scroll != null)
             {
-                var count = roster.GetItemNumber(scroll);
-                for (int i = 0; i < count; i += ScrollBatchSize)
-                {
-                    yield return new TurnInOption(
-                        scroll, ScrollBatchSize,
-                        scroll.Name.ToString(),
-                        tooltip: $"{ScrollPrestige} Prestige + {ScrollGold} gold",
-                        tag: "scroll");
-                    if (i >= 99) break;
-                }
+                var available = roster.GetItemNumber(scroll) / ScrollBatchSize;
+                if (available > 0)
+                    options.Add(new MaterialPickerOption(scroll, ScrollBatchSize, available,
+                        ScrollGold, ScrollPrestige, tag: "scroll"));
             }
-        }
 
-        private static void AwardMaterialRewards(IReadOnlyList<TurnInOption> picked)
-        {
-            int prestige = 0, gold = 0;
-            foreach (var opt in picked)
+            if (options.Count == 0) return;
+
+            var title = new TextObject(TORTextHelper.GetText(
+                "tor_poi_witchhunter_lodge.materials_title",
+                "For the Pyre"));
+
+            Shared.MaterialPicker.MaterialPicker.Open(title, options, picked =>
             {
-                switch (opt.Tag as string)
-                {
-                    case "warpstone": prestige += WarpstonePrestige; gold += WarpstoneGold; break;
-                    case "scroll":    prestige += ScrollPrestige;    gold += ScrollGold;    break;
-                }
-            }
-            if (gold > 0) GiveGoldAction.ApplyBetweenCharacters(null, Hero.MainHero, gold);
-            if (prestige > 0) Hero.MainHero.AddCustomResource("Prestige", prestige);
+                var r = Hero.MainHero?.PartyBelongedTo?.ItemRoster;
+                if (r == null || picked.Item == null) return;
+                r.AddToCounts(picked.Item, -picked.TotalUnits);
+                var gold = picked.GoldPerBatch * picked.Quantity;
+                var prestige = picked.PrestigePerBatch * picked.Quantity;
+                if (gold > 0) GiveGoldAction.ApplyBetweenCharacters(null, Hero.MainHero, gold);
+                if (prestige > 0) Hero.MainHero.AddCustomResource("Prestige", prestige);
+            });
         }
 
         // ------- Prisoner turn-in (Druchii envoy pattern)
