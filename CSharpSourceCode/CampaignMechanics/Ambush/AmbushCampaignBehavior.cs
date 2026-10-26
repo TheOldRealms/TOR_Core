@@ -145,9 +145,43 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, OnPlayerBattleEnd);
+            CampaignEvents.QuarterHourlyTickEvent.AddNonSerializedListener(this, OnQuarterHourlyTick);
 
             ScreenManager.OnPushScreen -= OnScreenPushed;
             ScreenManager.OnPushScreen += OnScreenPushed;
+        }
+
+        private void OnQuarterHourlyTick()
+        {
+            // Only roll detection while the player is actively hiding. Game-time stopped
+            // (menu paused) → no quarter-hourly ticks → no rolls, which is intended.
+            if (!_playerInStealth) return;
+
+            var mainParty = MobileParty.MainParty;
+            if (mainParty == null) return;
+
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (model == null) return;
+
+            float scanRadius = model.DetectionScanRadius;
+            var mainPos = mainParty.Position.ToVec2();
+            float scanRadiusSq = scanRadius * scanRadius;
+
+            // Cheap spatial pre-filter so we don't ask the model about every party on
+            // the map each tick. Eligibility (hostility etc.) is the model's CanDetect
+            // responsibility, invoked inside TryDetect.
+            foreach (var observer in MobileParty.All)
+            {
+                if (observer == null || !observer.IsActive) continue;
+                if (observer.Position.ToVec2().DistanceSquared(mainPos) > scanRadiusSq) continue;
+
+                if (model.TryDetect(observer, mainParty, _stealthEnteredAt, out string reason))
+                {
+                    TORCommon.Say(reason);
+                    LeaveStealth(mainParty);
+                    return; // one break per tick is enough — stealth is gone
+                }
+            }
         }
 
         private static void OnScreenPushed(ScreenBase pushedScreen)
