@@ -104,7 +104,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             // the hub appearing in a tavern where the bounty master may still live
             // (Empire towns without a lodge).
             obj.AddDialogLine("tor_witchhunter_lodge_greet", "start", "tor_witchhunter_lodge_hub",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.hub_greet",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "hub_greet",
                     "What brings you to the Lodge?"),
                 IsInquisitorPartner, null, 200, null);
 
@@ -117,66 +117,66 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             // Known with no issue → "Return soon" stub, back to hub.
             // Not Known yet → shared "earn trust" stub, back to hub.
             obj.AddPlayerLine("tor_witchhunter_lodge_hunts", "tor_witchhunter_lodge_hub", "tor_witchhunter_lodge_hunts_offer_npc",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_hunts",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "player_hunts",
                     "Inquisitor, I wish to aid the Empire! Do you have anything special that needs doing?"),
                 () => IsKnown() && InquisitorHasHunt(), null, 200, null);
 
             obj.AddDialogLine("tor_witchhunter_lodge_hunts_offer_npc", "tor_witchhunter_lodge_hunts_offer_npc", "close_window",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.hunts_offer_handoff",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "hunts_offer_handoff",
                     "I have a lead for you. Step away a moment, then come back and ask me properly — I will put the details to you."),
                 null, null, 200);
 
             obj.AddPlayerLine("tor_witchhunter_lodge_hunts_none", "tor_witchhunter_lodge_hub", "tor_witchhunter_lodge_hunts_stub",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_hunts",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "player_hunts",
                     "Inquisitor, I wish to aid the Empire! Do you have anything special that needs doing?"),
                 () => IsKnown() && !InquisitorHasHunt(), null, 200, null);
 
             obj.AddPlayerLine("tor_witchhunter_lodge_hunts_locked", "tor_witchhunter_lodge_hub", "tor_witchhunter_lodge_notrust_stub",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_hunts",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "player_hunts",
                     "Inquisitor, I wish to aid the Empire! Do you have anything special that needs doing?"),
                 () => !IsKnown(), null, 200, null);
 
             obj.AddPlayerLine("tor_witchhunter_lodge_bounties", "tor_witchhunter_lodge_hub", "tor_witchhunter_lodge_bounties_stub",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_bounties",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "player_bounties",
                     "Are there any bounties the Inquisition needs done?"),
                 null, null, 200, null);
 
             obj.AddPlayerLine("tor_witchhunter_lodge_turnins", "tor_witchhunter_lodge_hub", "tor_witchhunter_lodge_turnins_stub",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_turnins",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "player_turnins",
                     "Lord Inquisitor! I have some things you might be interested in."),
                 null, null, 200, null);
 
             // --- Store: gated by rank; T6 adds the tiered roster inside the stub.
             obj.AddPlayerLine("tor_witchhunter_lodge_store", "tor_witchhunter_lodge_hub", "tor_witchhunter_lodge_store_stub",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_store",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "player_store",
                     "I wish to acquire some Inquisition armaments."),
                 IsKnown, null, 200, null);
 
             obj.AddPlayerLine("tor_witchhunter_lodge_store_locked", "tor_witchhunter_lodge_hub", "tor_witchhunter_lodge_notrust_stub",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_store",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "player_store",
                     "I wish to acquire some Inquisition armaments."),
                 () => !IsKnown(), null, 200, null);
 
             // --- Companion Recruitment: open at Unknown rank per design; Phase D fills in.
             obj.AddPlayerLine("tor_witchhunter_lodge_companions", "tor_witchhunter_lodge_hub", "tor_witchhunter_lodge_companions_stub",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_companions",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "player_companions",
                     "I seek a witch hunter willing to join me."),
                 null, null, 200, null);
 
             // --- Witch Hunter Exclusive: career-gated; design doc explicitly defers the mechanic.
             obj.AddPlayerLine("tor_witchhunter_lodge_exclusive", "tor_witchhunter_lodge_hub", "tor_witchhunter_lodge_exclusive_stub",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_exclusive",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "player_exclusive",
                     "What of the Order's business for one of our own?"),
                 IsWitchHunterCareer, null, 200, null);
 
             obj.AddPlayerLine("tor_witchhunter_lodge_leave", "tor_witchhunter_lodge_hub", "close_window",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.player_leave",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "player_leave",
                     "Have a good day Lord Inquisitor!"),
                 null, null, 200, null);
 
             // --- stub replies
             obj.AddDialogLine("tor_witchhunter_lodge_hunts_todo", "tor_witchhunter_lodge_hunts_stub", "tor_witchhunter_lodge_hub",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.hunts_todo",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "hunts_todo",
                     "Return soon — I will have hunts to assign."),
                 null, null, 200);
 
@@ -187,40 +187,40 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             // condition returns false, keeping the line hidden). Normal offers run only
             // when the player is under cap and has no pending failure of that tier.
             obj.AddDialogLine("tor_witchhunter_lodge_bounties_hub_npc", "tor_witchhunter_lodge_bounties_stub", "tor_witchhunter_lodge_bounties_menu",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.bounties_hub",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "bounties_hub",
                     "What business will you take up with the Order?"),
                 null, null, 200);
 
             // Excuse — minor
             obj.AddPlayerLine("tor_witchhunter_lodge_bounties_excuse_minor", "tor_witchhunter_lodge_bounties_menu", "tor_witchhunter_lodge_bounties_excuse_minor_npc",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.excuse_minor",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "excuse_minor",
                     "I beg forgiveness for the last minor hunt."),
                 HasMinorFailurePending, ExcuseMinorFailure, 200, null);
             obj.AddDialogLine("tor_witchhunter_lodge_bounties_excuse_minor_npc", "tor_witchhunter_lodge_bounties_excuse_minor_npc", "tor_witchhunter_lodge_bounties_menu",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.excuse_minor_reply",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "excuse_minor_reply",
                     "Granted. See the next one through to its end."),
                 null, null, 200);
 
             // Excuse — major
             obj.AddPlayerLine("tor_witchhunter_lodge_bounties_excuse_major", "tor_witchhunter_lodge_bounties_menu", "tor_witchhunter_lodge_bounties_excuse_major_npc",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.excuse_major",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "excuse_major",
                     "I beg forgiveness for the last major hunt."),
                 HasMajorFailurePending, ExcuseMajorFailure, 200, null);
             obj.AddDialogLine("tor_witchhunter_lodge_bounties_excuse_major_npc", "tor_witchhunter_lodge_bounties_excuse_major_npc", "tor_witchhunter_lodge_bounties_menu",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.excuse_major_reply",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "excuse_major_reply",
                     "The Order is slow to forgive, but you have paid for it. See the next through."),
                 null, null, 200);
 
             // Turn in a completed bounty — any lodge inquisitor honours it, not just
             // the one who gave it, so the dialog line is identical at every lodge.
             obj.AddPlayerLine("tor_witchhunter_lodge_bounties_turnin", "tor_witchhunter_lodge_bounties_menu", "close_window",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.bounties_turnin",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "bounties_turnin",
                     "I have come to collect my due. The work is done."),
                 HasTurnInBounty, OpenTurnInBountyInquiry, 200, null);
 
             // Voluntary abandon — hidden until Phase B wires an active-quest check.
             obj.AddPlayerLine("tor_witchhunter_lodge_bounties_abandon", "tor_witchhunter_lodge_bounties_menu", "close_window",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.bounties_abandon",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "bounties_abandon",
                     "I cannot finish a bounty."),
                 HasAbandonableBounty, OpenAbandonBountyInquiry, 200, null);
 
@@ -229,22 +229,22 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             // hero_main_options doesn't work when entered from our hub). No-issue
             // variant falls through to the stub reply.
             obj.AddPlayerLine("tor_witchhunter_lodge_bounties_ask_minor", "tor_witchhunter_lodge_bounties_menu", "tor_witchhunter_lodge_bounties_offer_minor_handoff_npc",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.ask_minor",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "ask_minor",
                     "Are there minor bounties the Order needs seen to?"),
                 () => CanOfferMinor() && InquisitorHasMinorBounty(), null, 200, null);
 
             obj.AddDialogLine("tor_witchhunter_lodge_bounties_offer_minor_handoff_npc", "tor_witchhunter_lodge_bounties_offer_minor_handoff_npc", "close_window",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.bounties_offer_handoff",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "bounties_offer_handoff",
                     "There is a bounty on the ledger. Step away a moment, then come back and ask me — I will give you the particulars."),
                 null, null, 200);
 
             obj.AddPlayerLine("tor_witchhunter_lodge_bounties_ask_minor_stub", "tor_witchhunter_lodge_bounties_menu", "tor_witchhunter_lodge_bounties_offer_minor_npc",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.ask_minor",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "ask_minor",
                     "Are there minor bounties the Order needs seen to?"),
                 () => CanOfferMinor() && !InquisitorHasMinorBounty(), null, 200, null);
 
             obj.AddDialogLine("tor_witchhunter_lodge_bounties_offer_minor_npc", "tor_witchhunter_lodge_bounties_offer_minor_npc", "tor_witchhunter_lodge_bounties_menu",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.offer_minor_stub",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "offer_minor_stub",
                     "Nothing in the ledger right now — return in a few days."),
                 null, null, 200);
 
@@ -252,28 +252,28 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             // Has-issue variant: same close+re-engage handoff as Minor. The handoff
             // NPC line is shared across tiers so the player sees consistent wording.
             obj.AddPlayerLine("tor_witchhunter_lodge_bounties_ask_major", "tor_witchhunter_lodge_bounties_menu", "tor_witchhunter_lodge_bounties_offer_minor_handoff_npc",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.ask_major",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "ask_major",
                     "Are there major bounties the Order needs seen to?"),
                 () => CanOfferMajor() && InquisitorHasMajorBounty(), null, 200, null);
 
             obj.AddPlayerLine("tor_witchhunter_lodge_bounties_ask_major_stub", "tor_witchhunter_lodge_bounties_menu", "tor_witchhunter_lodge_bounties_offer_major_npc",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.ask_major",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "ask_major",
                     "Are there major bounties the Order needs seen to?"),
                 () => CanOfferMajor() && !InquisitorHasMajorBounty(), null, 200, null);
 
             obj.AddDialogLine("tor_witchhunter_lodge_bounties_offer_major_npc", "tor_witchhunter_lodge_bounties_offer_major_npc", "tor_witchhunter_lodge_bounties_menu",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.offer_major_stub",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "offer_major_stub",
                     "The Order's heavier hunts can wait. Return when the days have turned."),
                 null, null, 200);
 
             obj.AddPlayerLine("tor_witchhunter_lodge_bounties_back", "tor_witchhunter_lodge_bounties_menu", "tor_witchhunter_lodge_hub",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.bounties_back",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "bounties_back",
                     "That is all for now."),
                 null, null, 200, null);
 
             // Shared "not yet trusted" fallback — Hunts and Store both land here below rank.
             obj.AddDialogLine("tor_witchhunter_lodge_notrust", "tor_witchhunter_lodge_notrust_stub", "tor_witchhunter_lodge_hub",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.notrust",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "notrust",
                     "Return once you have earned our trust."),
                 null, null, 200);
 
@@ -282,17 +282,17 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             // the main party as a player-clan companion) and cooldown (shows days
             // remaining via {WH_COMPANION_DAYS} text variable).
             obj.AddDialogLine("tor_witchhunter_lodge_companions_available", "tor_witchhunter_lodge_companions_stub", "tor_witchhunter_lodge_hub",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.companions_available",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "companions_available",
                     "A promising initiate stands ready for field work. They will serve with you."),
                 CompanionRecruitAvailable, RecruitCompanionConsequence, 200);
 
             obj.AddDialogLine("tor_witchhunter_lodge_companions_cooldown", "tor_witchhunter_lodge_companions_stub", "tor_witchhunter_lodge_hub",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.companions_cooldown",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "companions_cooldown",
                     "No fresh initiates right now. Return in {WH_COMPANION_DAYS} days."),
                 CompanionRecruitOnCooldown, null, 200);
 
             obj.AddDialogLine("tor_witchhunter_lodge_exclusive_todo", "tor_witchhunter_lodge_exclusive_stub", "tor_witchhunter_lodge_hub",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.exclusive_todo",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "exclusive_todo",
                     "The Order has nothing for you yet, brother. Return in time."),
                 null, null, 200);
 
@@ -302,22 +302,22 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             // the UI entirely (inquiry popup / donate-to-town screen), so both target
             // close_window as their consequence point.
             obj.AddDialogLine("tor_witchhunter_lodge_turnins_open", "tor_witchhunter_lodge_turnins_stub", "tor_witchhunter_lodge_turnins_menu",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.turnins_open",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "turnins_open",
                     "What have you brought the Order?"),
                 null, null, 200);
 
             obj.AddPlayerLine("tor_witchhunter_lodge_turnins_materials", "tor_witchhunter_lodge_turnins_menu", "close_window",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.turnins_materials",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "turnins_materials",
                     "Materials for the pyre — scrolls, warpstone."),
                 null, WitchHunterTurnInHelper.OpenMaterialTurnIn, 200, null);
 
             obj.AddPlayerLine("tor_witchhunter_lodge_turnins_prisoners", "tor_witchhunter_lodge_turnins_menu", "close_window",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.turnins_prisoners",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "turnins_prisoners",
                     "Prisoners for the Order to deal with."),
                 null, WitchHunterTurnInHelper.OpenPrisonerTurnIn, 200, null);
 
             obj.AddPlayerLine("tor_witchhunter_lodge_turnins_done", "tor_witchhunter_lodge_turnins_menu", "tor_witchhunter_lodge_hub",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.turnins_done",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "turnins_done",
                     "That is all for now."),
                 null, null, 200, null);
 
@@ -325,11 +325,11 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             // plus musket-ball + silver-bullet ammo). Opens as trade so the player can both
             // buy and sell gear in one screen.
             obj.AddDialogLine("tor_witchhunter_lodge_store_open", "tor_witchhunter_lodge_store_stub", "tor_witchhunter_lodge_store_reply",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.store_open",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "store_open",
                     "The Order's wares. These will serve you better than tavern-forged scrap."),
                 null, OpenInquisitionStore, 200);
             obj.AddDialogLine("tor_witchhunter_lodge_store_reply", "tor_witchhunter_lodge_store_reply", "tor_witchhunter_lodge_hub",
-                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge.store_reply",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "store_reply",
                     "What else can I do for you?"),
                 null, null, 200);
         }

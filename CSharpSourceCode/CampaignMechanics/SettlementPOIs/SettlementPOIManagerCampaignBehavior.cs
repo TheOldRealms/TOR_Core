@@ -294,10 +294,19 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                     // menus. Suffix the LocationId with the menu to keep ids distinct
                     // across attachments.
                     var optionId = captured.LocationId + "@" + attach.MenuId;
+                    // Split the POI's dotted text id into (group, field) for the
+                    // two-arg GameTexts lookup — Bannerlord stores dotted ids that
+                    // way at load. Single-arg lookup silently misses and the menu
+                    // option permanently shows the C# fallback. See CLAUDE.md
+                    // "Known gotchas".
+                    var enterLabelId = captured.EnterLabelId;
+                    var dotIdx = enterLabelId.LastIndexOf('.');
+                    var groupId = dotIdx > 0 ? enterLabelId.Substring(0, dotIdx) : enterLabelId;
+                    var field = dotIdx > 0 ? enterLabelId.Substring(dotIdx + 1) : string.Empty;
                     starter.AddGameMenuOption(
                         menuId: attach.MenuId,
                         optionId: optionId,
-                        optionText: TORTextHelper.GetTextForNative(captured.EnterLabelId, captured.EnterLabelDefault),
+                        optionText: TORTextHelper.GetTextForNative(groupId, field, captured.EnterLabelDefault),
                         condition: args => MenuCondition(args, captured),
                         consequence: args => MenuConsequence(args, captured),
                         isLeave: false);

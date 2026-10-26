@@ -138,12 +138,14 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         /// Localized denial-reason lookup. Resolves <c>tor_poi_&lt;shortName&gt;.&lt;field&gt;</c>
         /// against <c>tor_strings.xml</c>; falls back to <paramref name="fallback"/> if the
         /// string isn't registered. Cached per instance so reference equality works.
+        /// Uses the two-arg API because Bannerlord's GameText loader splits dotted
+        /// ids into (id, variation) at load time — see CLAUDE.md "Known gotchas".
         /// </summary>
         protected TextObject R(string field, string fallback)
         {
             if (!_reasonCache.TryGetValue(field, out var cached))
             {
-                cached = TORTextHelper.GetTextObject($"tor_poi_{PoiShortName}.{field}", fallback);
+                cached = TORTextHelper.GetTextObject($"tor_poi_{PoiShortName}", field, fallback);
                 _reasonCache[field] = cached;
             }
             return cached;
