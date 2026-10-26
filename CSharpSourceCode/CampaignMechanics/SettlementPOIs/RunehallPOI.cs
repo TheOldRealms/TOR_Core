@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Localization;
@@ -12,7 +13,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
     /// template at <c>house_1</c>, so Runehall-equipped towns will show the Runesmith
     /// at two locations. Parked for a follow-up — makes dialog work today.
     /// </summary>
-    public class RunehallPOI : SettlementPOI, ISpellTrainerHost
+    public class RunehallPOI : SettlementPOI, ISpellTrainerHost, ISkillTrainerHost
     {
         public override string LocationId => "tor_runehall";
         public override string ParentMenuId => "town_artisan";
@@ -43,6 +44,20 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             }
             denialReason = null;
             return true;
+        }
+
+        // Companion Spellcraft training plugs into the dwarf guildmaster
+        // runesmith dialog hub (states registered by the OathGold guild tree).
+        // Restricted to Runesmith companions.
+        public IEnumerable<SkillTrainerConfig> GetSkillTrainers()
+        {
+            yield return new SkillTrainerConfig(
+                templateId:   SpellTrainerTemplateId,
+                dialogSuffix: "DwarfRunelord",
+                skillId:      "Spellcraft",
+                hubState:     "tor_dw_guildmaster_runesmith_hub",
+                reintroState: "tor_dw_guildmaster_runesmith_start_reintro",
+                restrictions: new[] { "Runesmith" });
         }
     }
 }

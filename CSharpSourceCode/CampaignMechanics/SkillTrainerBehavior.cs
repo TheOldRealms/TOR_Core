@@ -30,13 +30,10 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
         {"tor_priest_trainer_empire_sigmar_0",("SigmarTrain","Faith", "priest_hubcult_of_sigmar","priest_hub_reintrocult_of_sigmar",[])},
         {"tor_priest_trainer_empire_shallya_0",("ShallyaTrainRE","Medicine", "priest_hubcult_of_shallya","priest_hub_reintrocult_of_shallya",[])},
         {"tor_priest_trainer_empire_shallya_1",("ShallyaTrainCO","Medicine", "priest_hubcult_of_shallya","priest_hub_reintrocult_of_shallya",[])},
-        {"tor_spelltrainer_empire_0",("EmpireMagister","Spellcraft", "choices","start",["SpellCaster"])},
-        {"tor_dawi_runelord_trainer_0",("DwarfRunelord","Spellcraft", "tor_dw_guildmaster_runesmith_hub","tor_dw_guildmaster_runesmith_start_reintro",["Runesmith"])},
-        {"tor_spelltrainer_vc_0",("Necromancer","Spellcraft", "choices","start",["SpellCaster"])},
-        // POI-hosted trainers (e.g. the lodge Inquisitor's Crossbow line) are
-        // contributed via ISkillTrainerHost — see the discovery pass in
-        // OnSessionLaunched. Keep this literal only for dialog hubs that aren't
-        // SettlementPOIs (priest hubs, dwarf runelord, bespoke spelltrainer hubs).
+        // POI-hosted trainers contribute their configs via ISkillTrainerHost
+        // — see the discovery pass in OnSessionLaunched. Only priest trainers
+        // remain here because their dialog hubs are owned by the religion
+        // dialog system, not by a SettlementPOI.
     };
 
     private Dictionary<string, HeroTrainingData> _heroesInTraining = new();

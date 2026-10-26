@@ -10,7 +10,7 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.SettlementPOIs
 {
-    public class EmpireWizardHallPOI : SettlementPOI, ISpellTrainerHost, IEnchanterHost
+    public class EmpireWizardHallPOI : SettlementPOI, ISpellTrainerHost, IEnchanterHost, ISkillTrainerHost
     {
         public override string LocationId => "tor_wizardhall";
         public override string ParentMenuId => "town_artisan";
@@ -87,6 +87,21 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 isMultiUse: false,
                 enchantmentSuffixes: EnchantmentSuffixes,
                 cultureAccess: IsPartyEligibleForEnchanter);
+        }
+
+        // Companion Spellcraft training plugs into the shared spelltrainer hub
+        // ("choices"/"start") registered by SpellTrainerHelper.RegisterCommonDialogs.
+        // TrainerCondition filters by partner.Template so this line only shows
+        // when the player is talking to the Empire Magister specifically.
+        public IEnumerable<SkillTrainerConfig> GetSkillTrainers()
+        {
+            yield return new SkillTrainerConfig(
+                templateId:   SpellTrainerTemplateId,
+                dialogSuffix: "EmpireMagister",
+                skillId:      "Spellcraft",
+                hubState:     "choices",
+                reintroState: "start",
+                restrictions: new[] { "SpellCaster" });
         }
     }
 }
