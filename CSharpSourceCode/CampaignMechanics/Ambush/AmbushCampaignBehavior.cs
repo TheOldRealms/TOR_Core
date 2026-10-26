@@ -36,9 +36,11 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         public const string StealthMenuId = "tor_ambush_stealth_menu";
 
-        // Phase D placeholder: vanilla field-battle scene used until the scener
-        // ships dedicated ambush scenes. Lookup by terrain comes later.
-        public const string DefaultAmbushScene = "battle_terrain_001";
+        // First delivered scene from the scener (TOR_Environment/SceneObj/test_ambush/).
+        // Has an authored AmbushRetreatZone (Radius=10) + TacticalRegion=Forest for
+        // cover semantics. Will become a lookup table (terrain → scene[]) once more
+        // scenes land; for now every successful ambush opens here.
+        public const string DefaultAmbushScene = "test_ambush";
 
         private bool _playerInStealth;
         private CampaignTime _stealthEnteredAt = CampaignTime.Zero;
