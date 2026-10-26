@@ -44,6 +44,44 @@ namespace TOR_Core.Missions.AmbushMission
         /// <summary>Zones currently alive in the running mission's scene.</summary>
         public static IReadOnlyList<AmbushRetreatZone> ActiveZones => _activeZones;
 
+        /// <summary>Called by AmbushMissionController at mission-boot to purge any
+        /// stale references left over from a prior scene (scripts don't always
+        /// call OnRemoved on scene teardown).</summary>
+        public static void ResetRegistry()
+        {
+            _activeZones.Clear();
+            ProceduralFallbackPosition = null;
+        }
+
+        /// <summary>Procedural fallback zone position set by
+        /// AmbushMissionController when a scene has no scener-authored zones.
+        /// Null = scene has authored zones (or the controller hasn't run yet).</summary>
+        public static Vec3? ProceduralFallbackPosition { get; set; }
+
+        /// <summary>Radius for the procedural fallback. Slightly generous
+        /// vs the authored default because the player doesn't have a visual
+        /// to home in on.</summary>
+        public static float ProceduralFallbackRadius { get; set; } = 15f;
+
+        /// <summary>Returns true if the agent is inside any authored zone OR
+        /// inside the procedural fallback. One-stop query for AmbushEndLogic.</summary>
+        public static bool IsAgentInsideAnyZone(Agent agent)
+        {
+            if (agent == null || !agent.IsActive()) return false;
+            for (int i = 0; i < _activeZones.Count; i++)
+            {
+                if (_activeZones[i].IsAgentInside(agent)) return true;
+            }
+            if (ProceduralFallbackPosition.HasValue)
+            {
+                var pos = ProceduralFallbackPosition.Value;
+                var dx = agent.Position.x - pos.x;
+                var dy = agent.Position.y - pos.y;
+                return (dx * dx + dy * dy) <= ProceduralFallbackRadius * ProceduralFallbackRadius;
+            }
+            return false;
+        }
+
         protected override void OnInit()
         {
             base.OnInit();

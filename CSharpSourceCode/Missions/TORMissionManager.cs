@@ -28,6 +28,7 @@ using TaleWorlds.MountAndBlade.View.MissionViews;
 using TaleWorlds.MountAndBlade.View.MissionViews.Order;
 using TOR_Core.BattleMechanics.CustomArenaModes;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
+using TOR_Core.Missions.AmbushMission;
 using static TaleWorlds.MountAndBlade.Mission;
 
 namespace TOR_Core.Missions
@@ -232,6 +233,72 @@ namespace TOR_Core.Missions
                 return list.ToArray();
             }, true, true);
         }
+        /// <summary>
+        /// Open an ambush mission against the player's current MapEvent target.
+        /// Caller must have run EncounterManager.StartPartyEncounter +
+        /// PlayerEncounter.StartBattle so MapEvent.PlayerMapEvent is set.
+        ///
+        /// Phase D first-pass: scene is passed in by the caller. Terrain-driven
+        /// scene selection (plus a bank of scener-authored ambush scenes) is a
+        /// later improvement — the hybrid procedural / authored RetreatZone
+        /// handles missing authored content for Phase D ship.
+        /// </summary>
+        [MissionMethod]
+        public static Mission OpenAmbushMission(string scene)
+        {
+            var rec = SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All);
+            return MissionState.OpenNew("Battle", rec, delegate (Mission mission)
+            {
+                IMissionTroopSupplier[] suppliers =
+                [
+                    new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Defender),
+                    new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Attacker),
+                ];
+                int playerTroopCount = MapEvent.PlayerMapEvent.AttackerSide.TroopCount;
+                int targetTroopCount = MapEvent.PlayerMapEvent.DefenderSide.TroopCount;
+                List<MissionBehavior> list =
+                [
+                    new DefaultBattleMissionAgentSpawnLogic(suppliers, BattleSideEnum.Defender, BattleSizeType.Battle),
+                    new BattlePowerCalculationLogic(),
+                    new BattleSpawnLogic("battle_set"),
+                    new AmbushMission.AmbushMissionController(playerTroopCount, targetTroopCount),
+                    new AmbushMission.AmbushEndLogic(),
+                    new MissionExperienceBehavior(),
+                    new CampaignMissionComponent(),
+                    new BattleAgentLogic(),
+                    new MountAgentLogic(),
+                    new MissionOptionsComponent(),
+                    new BattleEndLogic(),
+                    new MissionCombatantsLogic(
+                        MobileParty.MainParty.MapEvent.InvolvedParties,
+                        PartyBase.MainParty,
+                        MobileParty.MainParty.MapEvent.GetLeaderParty(BattleSideEnum.Defender),
+                        MobileParty.MainParty.MapEvent.GetLeaderParty(BattleSideEnum.Attacker),
+                        Mission.MissionTeamAITypeEnum.FieldBattle, false),
+                    new BattleObserverMissionLogic(),
+                    new AgentHumanAILogic(),
+                    new AgentVictoryLogic(),
+                    new MissionAgentPanicHandler(),
+                    new BattleMissionAgentInteractionLogic(),
+                    new AgentMoraleInteractionLogic(),
+                    new AssignPlayerRoleInTeamMissionController(true, false, false),
+                    new BannerBearerLogic(),
+                ];
+                Hero attackerHero = MapEvent.PlayerMapEvent.AttackerSide.LeaderParty.LeaderHero;
+                Hero defenderHero = MapEvent.PlayerMapEvent.DefenderSide.LeaderParty.LeaderHero;
+                list.Add(new SandboxGeneralsAndCaptainsAssignmentLogic(attackerHero?.Name, defenderHero?.Name, null, null, false));
+                list.Add(new EquipmentControllerLeaveLogic());
+                list.Add(new MissionHardBorderPlacer());
+                list.Add(new MissionBoundaryPlacer());
+                list.Add(new MissionBoundaryCrossingHandler());
+                list.Add(new HighlightsController());
+                list.Add(new BattleHighlightsController());
+                list.Add(new BattleDeploymentMissionController(false));
+                list.Add(new BattleDeploymentHandler(false));
+                return list.ToArray();
+            }, true, true);
+        }
+
         [MissionMethod]
         public static Mission OpenBrawlFightMission(Location location, TroopRoster playerSideTroops,
             TroopRoster enemyPartyRoster, int enemyPartySize, Action<BrawlMissionResult> onMissionEnd = null)
