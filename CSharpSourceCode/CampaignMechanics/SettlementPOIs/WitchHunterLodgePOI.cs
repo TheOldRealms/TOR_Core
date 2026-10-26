@@ -516,6 +516,8 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             "tor_empire_weapon_rapier_001",
             "tor_empire_weapon_gun_handgun_003",
             "tor_neutral_weapon_ammo_musket_ball",
+            "tor_empire_weapon_crossbow_empire_crossbow_001",
+            "bolt_a",
         };
 
         private static readonly string[] StoreTierFullAdds = new[]
