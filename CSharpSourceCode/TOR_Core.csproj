@@ -414,6 +414,7 @@
     <Compile Include="Missions\PoiCivilianAgentSpawner.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\IEnchanterHost.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\ISkillTrainerHost.cs" />
+    <Compile Include="CampaignMechanics\SkillTrainerConfig.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\ISpellTrainerHost.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\TrainerPlacement.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\WitchHunterLodgePOI.cs" />

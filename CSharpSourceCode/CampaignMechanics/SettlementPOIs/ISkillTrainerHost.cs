@@ -1,40 +1,23 @@
-using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.Settlements;
+using System.Collections.Generic;
 
 namespace TOR_Core.CampaignMechanics.SettlementPOIs
 {
     /// <summary>
-    /// POI capability: hosts a skill-trainer hero (non-magic trainer, e.g. the
-    /// Empire Engineer Hall master). The POI framework creates one hero per
-    /// settlement using <see cref="SkillTrainerTemplateId"/>, places them at
-    /// the POI's Location, and routes dialog triggers.
+    /// POI capability: hosts one or more companion-skill trainers.
+    /// <see cref="SkillTrainerBehavior"/> discovers hosts on session launch
+    /// and merges each one's configs into its runtime registry so the
+    /// standard training dialog lines attach to the host's hub.
+    ///
+    /// <para>Constraints the host should respect (behavior does not enforce):
+    /// one trainer teaches one skill (one <see cref="SkillTrainerConfig"/>
+    /// per NPC), and ideally no two trainers at the same
+    /// <see cref="SkillTrainerConfig.HubState"/> teach the same skill.
+    /// Multi-trainer locations place each NPC separately via
+    /// <see cref="SettlementPOI.PlaceResident"/> inside their
+    /// <see cref="SettlementPOI.EnsurePlaced"/> override.</para>
     /// </summary>
     public interface ISkillTrainerHost
     {
-        /// <summary>Template id used to create / find this POI's trainer hero.</summary>
-        string SkillTrainerTemplateId { get; }
-    }
-
-    /// <summary>
-    /// Lifecycle helpers for <see cref="ISkillTrainerHost"/>: get-or-create the
-    /// trainer hero, place them at the POI's Location, identify a trainer-hero by
-    /// template id. Co-located with the interface so new host subclasses discover
-    /// the full capability contract in one file.
-    /// </summary>
-    public static class SkillTrainerHostExtensions
-    {
-        public static Hero GetOrCreateSkillTrainer(this ISkillTrainerHost host, Settlement s)
-        {
-            if (!(host is SettlementPOI poi)) return null;
-            var mgr = Campaign.Current?.GetCampaignBehavior<SettlementPOIManagerCampaignBehavior>();
-            return mgr?.GetOrCreateHero(s, poi.LocationId, host.SkillTrainerTemplateId);
-        }
-
-        public static bool IsSkillTrainerHero(this Hero h, ISkillTrainerHost host)
-        {
-            return h?.Template?.StringId != null
-                   && host?.SkillTrainerTemplateId != null
-                   && h.Template.StringId == host.SkillTrainerTemplateId;
-        }
+        IEnumerable<SkillTrainerConfig> GetSkillTrainers();
     }
 }

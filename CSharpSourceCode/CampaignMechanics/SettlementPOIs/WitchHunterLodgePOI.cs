@@ -25,7 +25,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
     /// humans; no career gate. The lodge NPC — currently the relocated BountyMaster —
     /// hosts the hub dialog defined in <see cref="RegisterDialogs"/>.
     /// </summary>
-    public class WitchHunterLodgePOI : SettlementPOI
+    public class WitchHunterLodgePOI : SettlementPOI, ISkillTrainerHost
     {
         public override string LocationId => "tor_witchhunter_lodge";
         public override string ParentMenuId => "town_artisan";
@@ -552,6 +552,21 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 }
             }
             InventoryScreenHelper.OpenScreenAsTrade(roster, Settlement.CurrentSettlement.Town);
+        }
+
+        // ---- ISkillTrainerHost
+        // Yields one SkillTrainerConfig per trainer NPC the lodge hosts.
+        // Currently just the Inquisitor teaching Crossbow — the Scouting
+        // trainer (if/when added) wants its own NPC template per the
+        // "one hero, one skill" convention and would be yielded here.
+        public IEnumerable<SkillTrainerConfig> GetSkillTrainers()
+        {
+            yield return new SkillTrainerConfig(
+                templateId:   InquisitorTemplateId,
+                dialogSuffix: "InquisitorCrossbow",
+                skillId:      "Crossbow",
+                hubState:     "tor_witchhunter_lodge_hub",
+                reintroState: "tor_witchhunter_lodge_hub");
         }
     }
 }

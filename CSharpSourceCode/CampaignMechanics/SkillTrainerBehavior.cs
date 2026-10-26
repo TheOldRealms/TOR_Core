@@ -13,6 +13,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Core.ImageIdentifiers;
 using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
+using TOR_Core.CampaignMechanics.SettlementPOIs;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using static TOR_Core.Utilities.TORConstants;
@@ -29,11 +30,13 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
         {"tor_priest_trainer_empire_sigmar_0",("SigmarTrain","Faith", "priest_hubcult_of_sigmar","priest_hub_reintrocult_of_sigmar",[])},
         {"tor_priest_trainer_empire_shallya_0",("ShallyaTrainRE","Medicine", "priest_hubcult_of_shallya","priest_hub_reintrocult_of_shallya",[])},
         {"tor_priest_trainer_empire_shallya_1",("ShallyaTrainCO","Medicine", "priest_hubcult_of_shallya","priest_hub_reintrocult_of_shallya",[])},
-        {"tor_nulnengineernpc_empire",("EngineerEmpire","Engineering", "hub","hubaftermission",[])},
         {"tor_spelltrainer_empire_0",("EmpireMagister","Spellcraft", "choices","start",["SpellCaster"])},
         {"tor_dawi_runelord_trainer_0",("DwarfRunelord","Spellcraft", "tor_dw_guildmaster_runesmith_hub","tor_dw_guildmaster_runesmith_start_reintro",["Runesmith"])},
         {"tor_spelltrainer_vc_0",("Necromancer","Spellcraft", "choices","start",["SpellCaster"])},
-        {"tor_bountymaster_empire_0",("InquisitorCrossbow","Crossbow", "tor_witchhunter_lodge_hub","tor_witchhunter_lodge_hub",[])},
+        // POI-hosted trainers (e.g. the lodge Inquisitor's Crossbow line) are
+        // contributed via ISkillTrainerHost — see the discovery pass in
+        // OnSessionLaunched. Keep this literal only for dialog hubs that aren't
+        // SettlementPOIs (priest hubs, dwarf runelord, bespoke spelltrainer hubs).
     };
 
     private Dictionary<string, HeroTrainingData> _heroesInTraining = new();
@@ -202,9 +205,7 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
 
     private void OnSessionLaunched(CampaignGameStarter campaignStarter)
     {
-        var skills = new List<SkillObject>();
-
-        skills = Game.Current.DefaultSkills.GetDefaultSkills();
+        var skills = Game.Current.DefaultSkills.GetDefaultSkills();
         skills.AddRange(TORSkills.Instance.GetTorSkills());
 
         foreach (var skill in skills)
@@ -212,96 +213,82 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
             var icon = "gui_skills_icon_" + skill.StringId.ToLower() + "_small";
             MBTextManager.SetTextVariable("SKILL_ICON_" + skill.StringId.ToLower(), string.Format("<img src=\"{0}\" extend=\"8\">", icon));
         }
+
+        // Discover POI-hosted trainers and merge into _skilltrainers.
+        // SettlementPOIManagerCampaignBehavior registers before this behavior
+        // in SubModule.InitializeGameStarter, so its POI list is populated by
+        // the time this fires. First-registration wins — the literal dict
+        // takes precedence over anything a host tries to re-register.
+        foreach (var host in SettlementPOIManagerCampaignBehavior.All.OfType<ISkillTrainerHost>())
+        {
+            foreach (var cfg in host.GetSkillTrainers())
+            {
+                if (_skilltrainers.ContainsKey(cfg.TemplateId)) continue;
+                _skilltrainers[cfg.TemplateId] = (cfg.DialogSuffix, cfg.SkillId, cfg.HubState, cfg.ReintroState, cfg.Restrictions.ToList());
+            }
+        }
+
         foreach (var entry in _skilltrainers)
         {
-            var hub = entry.Value.HubId;
-            var reintro_hub = entry.Value.HubReintroKey;
-            var trainerDialogId = entry.Value.TrainerDialogId;
-            var trainerId = entry.Key;
-            var skillId = entry.Value.SkillId;
-            var restrictions = entry.Value.Restrictions;
-
-            campaignStarter.AddPlayerLine("tor_teach_skills_dialog_p" + trainerDialogId + skillId, hub, "tor_skill_teacher_train_1" + trainerDialogId + skillId,
-                TORTextHelper.GetText("tor_teach_skills_dialog_p", trainerDialogId, "I would like to arrange training for one of my companions.", true), () => TrainerCondition(trainerId, skillId), null, 210);
-
-
-            //train companion
-            campaignStarter.AddDialogLine("tor_skill_teacher_train_1" + trainerDialogId + skillId, "tor_skill_teacher_train_1" + trainerDialogId + skillId, "tor_skill_teacher_train_2" + trainerDialogId + skillId,
-                TORTextHelper.GetText("tor_skill_teacher_train_1", trainerDialogId, "Of course. I can train your companions in the necessary skills.", true), null, null, 200);
-
-            campaignStarter.AddDialogLine("tor_skill_teacher_train_2" + trainerDialogId + skillId, "tor_skill_teacher_train_2" + trainerDialogId + skillId, "skilltrainer_train_hub" + trainerDialogId + skillId,
-                TORTextHelper.GetText("tor_skill_teacher_train_2", trainerDialogId, "The training will take some time, but your companion will learn much. What do you wish to do?", true), null, null, 200);
-
-            campaignStarter.AddPlayerLine("tor_skill_train_hub_select_companion_p" + trainerDialogId + skillId, "skilltrainer_train_hub" + trainerDialogId + skillId, "priest_train_hub_select_companion" + trainerDialogId + skillId,
-                TORTextHelper.GetText("tor_skill_train_hub_select_companion_p", trainerDialogId, "I would like to send a companion for training.", true), null, null, 200);
-
-
-            campaignStarter.AddDialogLine("tor_skill_train_hub_select_companion" + trainerDialogId + skillId, "priest_train_hub_select_companion" + trainerDialogId + skillId, "tor_skill_teacher_train_2" + trainerDialogId,
-                                TORTextHelper.GetText("tor_skill_train_hub_select_companion", trainerDialogId, "Very well. Choose which companion you wish to send for training.", true), () => IsAnyCompanionEligableForTraining(skillId, restrictions), () => SelectCompanionForTraining(skillId, restrictions), 200);
-
-            campaignStarter.AddDialogLine("tor_skill_train_hub_select_companion_decline" + trainerDialogId + skillId, "priest_train_hub_select_companion" + trainerDialogId + skillId, "tor_skill_teacher_train_2" + trainerDialogId + skillId,
-                TORTextHelper.GetText("tor_skill_train_hub_select_companion_decline", trainerDialogId, "I'm afraid none of your companions are eligible for training at this time.", true), () => !IsAnyCompanionEligableForTraining(skillId, restrictions), null, 200);
-
-
-
-            campaignStarter.AddPlayerLine("skilltrain_train_hub_quit_p" + trainerDialogId + skillId, "skilltrainer_train_hub" + trainerDialogId + skillId, reintro_hub,
-                TORTextHelper.GetText("tor_priest_train_hub_quit_p", trainerDialogId, "That is all for now.", true), null, null, 200);
+            AddTrainerDialogs(campaignStarter, entry.Key, entry.Value.TrainerDialogId, entry.Value.SkillId,
+                entry.Value.HubId, entry.Value.HubReintroKey, entry.Value.Restrictions);
         }
+    }
 
-        bool TrainerCondition(string trainerId, string skillId)
+    private void AddTrainerDialogs(CampaignGameStarter campaignStarter, string trainerId, string trainerDialogId, string skillId, string hub, string reintro_hub, List<string> restrictions)
+    {
+        campaignStarter.AddPlayerLine("tor_teach_skills_dialog_p" + trainerDialogId + skillId, hub, "tor_skill_teacher_train_1" + trainerDialogId + skillId,
+            TORTextHelper.GetText("tor_teach_skills_dialog_p", trainerDialogId, "I would like to arrange training for one of my companions.", true), () => TrainerCondition(trainerId, skillId), null, 210);
+
+        //train companion
+        campaignStarter.AddDialogLine("tor_skill_teacher_train_1" + trainerDialogId + skillId, "tor_skill_teacher_train_1" + trainerDialogId + skillId, "tor_skill_teacher_train_2" + trainerDialogId + skillId,
+            TORTextHelper.GetText("tor_skill_teacher_train_1", trainerDialogId, "Of course. I can train your companions in the necessary skills.", true), null, null, 200);
+
+        campaignStarter.AddDialogLine("tor_skill_teacher_train_2" + trainerDialogId + skillId, "tor_skill_teacher_train_2" + trainerDialogId + skillId, "skilltrainer_train_hub" + trainerDialogId + skillId,
+            TORTextHelper.GetText("tor_skill_teacher_train_2", trainerDialogId, "The training will take some time, but your companion will learn much. What do you wish to do?", true), null, null, 200);
+
+        campaignStarter.AddPlayerLine("tor_skill_train_hub_select_companion_p" + trainerDialogId + skillId, "skilltrainer_train_hub" + trainerDialogId + skillId, "priest_train_hub_select_companion" + trainerDialogId + skillId,
+            TORTextHelper.GetText("tor_skill_train_hub_select_companion_p", trainerDialogId, "I would like to send a companion for training.", true), null, null, 200);
+
+        campaignStarter.AddDialogLine("tor_skill_train_hub_select_companion" + trainerDialogId + skillId, "priest_train_hub_select_companion" + trainerDialogId + skillId, "tor_skill_teacher_train_2" + trainerDialogId,
+                            TORTextHelper.GetText("tor_skill_train_hub_select_companion", trainerDialogId, "Very well. Choose which companion you wish to send for training.", true), () => IsAnyCompanionEligableForTraining(skillId, restrictions), () => SelectCompanionForTraining(skillId, restrictions), 200);
+
+        campaignStarter.AddDialogLine("tor_skill_train_hub_select_companion_decline" + trainerDialogId + skillId, "priest_train_hub_select_companion" + trainerDialogId + skillId, "tor_skill_teacher_train_2" + trainerDialogId + skillId,
+            TORTextHelper.GetText("tor_skill_train_hub_select_companion_decline", trainerDialogId, "I'm afraid none of your companions are eligible for training at this time.", true), () => !IsAnyCompanionEligableForTraining(skillId, restrictions), null, 200);
+
+        campaignStarter.AddPlayerLine("skilltrain_train_hub_quit_p" + trainerDialogId + skillId, "skilltrainer_train_hub" + trainerDialogId + skillId, reintro_hub,
+            TORTextHelper.GetText("tor_priest_train_hub_quit_p", trainerDialogId, "That is all for now.", true), null, null, 200);
+    }
+
+    private static bool TrainerCondition(string trainerId, string skillId)
+    {
+        var partner = CharacterObject.OneToOneConversationCharacter;
+        if (!partner.HeroObject.HasAttribute(CharacterAttributes.SKILL_TRAINER)) return false;
+        if (partner.HeroObject.Template.StringId != trainerId) return false;
+        if (!partner.HeroObject.HasAttribute(skillId)) return false;
+        return true;
+    }
+
+    private bool IsAnyCompanionEligableForTraining(string skillId, List<string> restrictions)
+    {
+        var skill = Skills.All.FirstOrDefault(x => x.StringId == skillId);
+        if (skill == null) return false;
+
+        var model = Campaign.Current.Models.GetCompanionTrainingModel();
+        var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
+
+        foreach (var hero in heroes.Where(hero => hero != Hero.MainHero))
         {
-            var partner = CharacterObject.OneToOneConversationCharacter;
-
-            if (!partner.HeroObject.HasAttribute(CharacterAttributes.SKILL_TRAINER))
+            if (hero.PartyBelongedTo == MobileParty.MainParty)
             {
-                return false;
+                _heroesInTraining.Remove(hero.StringId);
             }
 
-
-            if (partner.HeroObject.Template.StringId != trainerId)
-            {
-                return false;
-            }
-
-            if (!partner.HeroObject.HasAttribute(skillId))
-
-                return false;
-
-            return true;
+            if (!HeroMatchesTrainingRestrictions(hero, restrictions)) continue;
+            if (model.HeroIsEligibleForTraining(hero, skill)) return true;
         }
 
-        bool IsAnyCompanionEligableForTraining(string skillId, List<string> restrictions)
-        {
-            var skill = Skills.All.FirstOrDefault(x => x.StringId == skillId);
-
-            if (skill == null)
-            {
-                return false;
-            }
-
-            var model = Campaign.Current.Models.GetCompanionTrainingModel();
-            var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
-
-            foreach (var hero in heroes.Where(hero => hero != Hero.MainHero))
-            {
-                if (hero.PartyBelongedTo == MobileParty.MainParty)
-                {
-                    _heroesInTraining.Remove(hero.StringId);
-                }
-
-                if (!HeroMatchesTrainingRestrictions(hero, restrictions))
-                {
-                    continue;
-                }
-
-                if (model.HeroIsEligibleForTraining(hero, skill))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
+        return false;
     }
     private bool HeroMatchesTrainingRestrictions(Hero hero, List<string> restrictions)
     {
