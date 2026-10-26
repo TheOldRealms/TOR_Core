@@ -428,6 +428,9 @@
     <Compile Include="CampaignMechanics\WitchHunter\Bounties\BountyQuest.cs" />
     <Compile Include="CampaignMechanics\Shared\MaterialTurnInHelper.cs" />
     <Compile Include="CampaignMechanics\Shared\DonationSideEffectSuppression.cs" />
+    <Compile Include="CampaignMechanics\Shared\MaterialPicker\MaterialPicker.cs" />
+    <Compile Include="CampaignMechanics\Shared\MaterialPicker\MaterialPickerVM.cs" />
+    <Compile Include="CampaignMechanics\Shared\MaterialPicker\MaterialPickerOptionVM.cs" />
     <Compile Include="Models\TORPrisonerDonationModel.cs" />
     <Compile Include="CampaignMechanics\TORAIRecruitmentCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCaptivityCampaignBehavior.cs" />

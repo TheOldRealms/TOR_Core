@@ -6061,6 +6061,11 @@
   <string id="tor_poi_witchhunter_lodge.scout_leave" text="{=str_tor_poi_witchhunter_lodge.scout_leave}That is all. Good hunting." />
   <string id="tor_scoutmaster_empire_0" text="{=str_tor_scoutmaster_empire_0}{FIRSTNAME} the Order Scout" />
 
+  <!-- Material picker overlay -->
+  <string id="tor_material_picker.subtitle" text="{=str_tor_material_picker.subtitle}Pick a material and a quantity." />
+  <string id="tor_material_picker.available" text="{=str_tor_material_picker.available}Available: {COUNT}" />
+  <string id="tor_material_picker.reward" text="{=str_tor_material_picker.reward}Reward: {PRESTIGE} Prestige + {GOLD} gold" />
+
   <!-- Witch Hunter Bounties - shared quest strings -->
   <string id="tor_wh_bounty_accept_player" text="{=str_tor_wh_bounty_accept_player}I will see it done." />
   <string id="tor_wh_bounty_quest_accept_player" text="{=str_tor_wh_bounty_quest_accept_player}Consider it done." />
