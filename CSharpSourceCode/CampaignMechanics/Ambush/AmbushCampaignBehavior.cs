@@ -14,6 +14,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Missions;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Ambush
@@ -35,6 +36,11 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         public const string StealthMenuId = "tor_ambush_stealth_menu";
 
+        // First delivered scene from the scener (TOR_Environment/SceneObj/test_ambush/).
+        // Has an authored AmbushRetreatZone (Radius=10) + TacticalRegion=Forest.
+        // Will become a lookup table (terrain → scene[]) once more scenes land.
+        public const string DefaultAmbushScene = "test_ambush";
+
         private bool _playerInStealth;
         private CampaignTime _stealthEnteredAt = CampaignTime.Zero;
         private CampaignTime _playerAmbushCooldownUntil = CampaignTime.Zero;
@@ -46,6 +52,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
         public CampaignTime PlayerAmbushCooldownUntil => _playerAmbushCooldownUntil;
         public CampaignTime StealthEnteredAt => _stealthEnteredAt;
         public bool IsOnAmbushCooldown => _playerAmbushCooldownUntil.IsFuture;
+
+        /// <summary>
+        /// Outcome of the most recent ambush mission. Set by AmbushEndLogic as the
+        /// mission closes; read by Phase E's aftermath handler to pick escape vs
+        /// press-attack / wounded-flow. Reset to <c>None</c> once consumed.
+        /// </summary>
+        public AmbushOutcome LastAmbushOutcome { get; set; } = AmbushOutcome.None;
 
         public bool IsPartyInStealth(MobileParty party)
         {
@@ -194,6 +207,44 @@ namespace TOR_Core.CampaignMechanics.Ambush
         private void OnPlayerBattleEnd(MapEvent mapEvent)
         {
             if (_playerInStealth) LeaveStealth(MobileParty.MainParty);
+
+            // Phase D failed-retreat consequences. Fires when AmbushEndLogic set
+            // the outcome before vanilla BattleEndLogic closed the mission.
+            // Phase E's aftermath (escape vs press-attack menu, army
+            // disorganization debuff) layers on top — for now this is the full
+            // consequence surface.
+            switch (LastAmbushOutcome)
+            {
+                case AmbushOutcome.ExtractionFailed:
+                    ApplyFailedExtractionConsequences();
+                    break;
+                case AmbushOutcome.ExtractionSuccessful:
+                    TORCommon.Say("Ambush extracted cleanly. Escape vs press-attack menu lands in Phase E.");
+                    break;
+                case AmbushOutcome.PlayerDefeated:
+                case AmbushOutcome.PlayerDied:
+                    // Vanilla casualty / captivity flow already fired via
+                    // BattleEndLogic; nothing extra here.
+                    break;
+            }
+            LastAmbushOutcome = AmbushOutcome.None;
+        }
+
+        private static void ApplyFailedExtractionConsequences()
+        {
+            TORCommon.Say("You barely escape — your ambush party is wounded.");
+            Hero.MainHero?.MakeWounded();
+
+            var roster = MobileParty.MainParty?.MemberRoster;
+            if (roster == null) return;
+            // Move surviving healthy troops into the wounded bucket (total count
+            // unchanged, wounded increases, healthy drops to 0).
+            for (int i = 0; i < roster.Count; i++)
+            {
+                int healthy = roster.GetElementNumber(i) - roster.GetElementWoundedNumber(i);
+                if (healthy > 0)
+                    roster.AddToCountsAtIndex(i, 0, healthy);
+            }
         }
 
         private void OnSessionLaunched(CampaignGameStarter starter)
@@ -313,11 +364,25 @@ namespace TOR_Core.CampaignMechanics.Ambush
             StampAmbushCooldown();
 
             if (success)
-                TORCommon.Say("Ambush succeeded (" + chancePct + "%) on " + GetPartyLabel(target) + " — Phase D opens the ambush mission; for now, regular battle.");
+            {
+                TORCommon.Say("Ambush succeeded (" + chancePct + "%) on " + GetPartyLabel(target) + ".");
+                // Bypass EncounterManager.StartPartyEncounter — it fires encounter_meeting
+                // menu + enemy-leader conversation, both of which deadlock our mission open.
+                // RestartPlayerEncounter(defender, attacker) skips straight to encounter
+                // state (same pattern TrollCaveMenuLogic uses).
+                PlayerEncounter.RestartPlayerEncounter(target.Party, PartyBase.MainParty, false);
+                if (PlayerEncounter.Battle == null)
+                {
+                    PlayerEncounter.StartBattle();
+                    PlayerEncounter.Update();
+                }
+                TorMissionManager.OpenAmbushMission(DefaultAmbushScene);
+            }
             else
+            {
                 TORCommon.Say("Ambush failed (" + chancePct + "%) on " + GetPartyLabel(target) + " — regular battle.");
-
-            EncounterManager.StartPartyEncounter(PartyBase.MainParty, target.Party);
+                EncounterManager.StartPartyEncounter(PartyBase.MainParty, target.Party);
+            }
         }
 
         private static string GetPartyLabel(MobileParty p)
