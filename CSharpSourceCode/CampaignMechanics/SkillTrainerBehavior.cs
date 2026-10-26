@@ -33,6 +33,7 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
         {"tor_spelltrainer_empire_0",("EmpireMagister","Spellcraft", "choices","start",["SpellCaster"])},
         {"tor_dawi_runelord_trainer_0",("DwarfRunelord","Spellcraft", "tor_dw_guildmaster_runesmith_hub","tor_dw_guildmaster_runesmith_start_reintro",["Runesmith"])},
         {"tor_spelltrainer_vc_0",("Necromancer","Spellcraft", "choices","start",["SpellCaster"])},
+        {"tor_bountymaster_empire_0",("InquisitorCrossbow","Crossbow", "tor_witchhunter_lodge_hub","tor_witchhunter_lodge_hub",[])},
     };
 
     private Dictionary<string, HeroTrainingData> _heroesInTraining = new();
@@ -45,6 +46,11 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
 
         CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
         CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this, Setup);
+        // POI framework spawns NPC heroes (e.g. the lodge Inquisitor) lazily
+        // via SettlementPOIManagerCampaignBehavior.GetOrCreateHero, which fires
+        // after Setup. Without this listener those heroes never get the
+        // SKILL_TRAINER / skill attributes and TrainerCondition rejects them.
+        CampaignEvents.HeroCreated.AddNonSerializedListener(this, OnNewHeroCreated);
         CampaignEvents.BeforeMissionOpenedEvent.AddNonSerializedListener(this, OnBeforeMissionStart);
 
 
