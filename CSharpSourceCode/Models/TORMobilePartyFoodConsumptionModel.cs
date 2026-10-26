@@ -118,7 +118,7 @@ namespace TOR_Core.Models
         {
             var value = base.DoesPartyConsumeFood(mobileParty);
 
-            //Sly : Raiding parties would stop starving once they've been away from their spawn settlement after ~40 days (they receive 2 food per party member on spawn).
+            //Sly : Raiding parties would start starving once they've been away from their spawn settlement after ~40 days (they receive 2 food per party member on spawn).
             if (mobileParty.IsRaidingParty())
             {
                 return false;
