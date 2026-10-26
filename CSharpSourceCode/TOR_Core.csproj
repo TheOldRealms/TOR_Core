@@ -284,6 +284,7 @@
     <Compile Include="CampaignMechanics\Ambush\AmbushButtonVM.cs" />
     <Compile Include="CampaignMechanics\Ambush\AmbushCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Ambush\AmbushMapView.cs" />
+    <Compile Include="Missions\AmbushMission\AmbushRetreatZone.cs" />
     <Compile Include="CampaignMechanics\Companions\TORAICompanionCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\AssimilationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\RaceFixCampaignBehavior.cs" />
