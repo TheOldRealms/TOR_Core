@@ -546,7 +546,8 @@
 		<Followers>
 		</Followers>
 		<ReligiousTroops>
-		</ReligiousTroops>
+            <ReligiousTroop id="NPCCharacter.tor_gs_savage_orc" />
+        </ReligiousTroops>
 		<ReligiousArtifacts>
 			<ArtifactItem id="Item.tor_learn_gs_enchant_gork_brutal_kunnin" />
 		</ReligiousArtifacts>
@@ -578,7 +579,8 @@
 		<Followers>
 		</Followers>
 		<ReligiousTroops>
-		</ReligiousTroops>
+            <ReligiousTroop id="NPCCharacter.tor_gs_savage_orc" />
+        </ReligiousTroops>
 		<ReligiousArtifacts>
 			<ArtifactItem id="Item.tor_learn_gs_enchant_mork_kunningly_brutal" />
 		</ReligiousArtifacts>

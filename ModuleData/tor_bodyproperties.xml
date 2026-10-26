@@ -266,10 +266,10 @@
                        weight="0.6775"
                        build="0.6929"
                        key="001BB40FDE583A54A97A637BBBBA988BBABBB5B88588BB77DBACB9BBCCDDBBC800DAA6030DBCDDEB000000000000000000000000000000000000000021AC90C0" />
-					   <tattoo_tags>
-                       <tattoo_tag name="tattoo_male_c_mat" />
-					   <tattoo_tag name="tattoo_male_m_mat" />
-                       </tattoo_tags>
+    <tattoo_tags>
+      <tattoo_tag name="tattoo_male_c_mat" />
+      <tattoo_tag name="tattoo_male_m_mat" />
+    </tattoo_tags>
   </BodyProperty>
   <BodyProperty id="bretonnianknight">
     <BodyPropertiesMin version="4"
@@ -596,6 +596,25 @@
                        weight="0.5478"
                        build="1"
                        key="001E100000CC00005C12429B61532471D9656C584FA9A47724B588AAD7B53C5DDACBA6130F578778F8CCBADBCCBCBABC000000000000001F000000002FFC2000" />
+  </BodyProperty>
+  <BodyProperty id="orc_savage">
+    <BodyPropertiesMin age="22"
+                       weight="0.3657"
+                       build="0.2978"
+                       key="003F100000CC00005C12429361532471D9656C584FA9A47724B588AAD7B53C5D006456040657877845CCBADB4CBCBABC0000000000000016000000002ECC0000" />
+    <BodyPropertiesMax age="22"
+                       weight="0.4742"
+                       build="0.3855"
+                       key="0036980345CC000158C5B792A667D4DC71ADA61A5966575B487AD565666843A4003676040364A9ED45CCBADB4CBCBABC000000000000001600000000565C0000" />
+	<tattoo_tags>
+      <tattoo_tag name="Cleanface" />
+      <tattoo_tag name="tattoo_male_a_mat" />
+	  <tattoo_tag name="tattoo_male_b_mat" />
+	  <tattoo_tag name="orc_warpaint_001" />
+      <tattoo_tag name="orc_warpaint_002" />
+      <tattoo_tag name="orc_warpaint_003" />
+							  
+    </tattoo_tags>
   </BodyProperty>
   <BodyProperty id="goblin">
     <BodyPropertiesMin version="4"

@@ -13,6 +13,8 @@
     khuzait  = Vampire Counts
     vlandia  = Bretonnia
     battania = Wood Elves
+	sturgia = Dwarf
+	eonir = Eonir
     (Empire / Dwarfs / Chaos / Orcs / High Elves — add rows once ids are confirmed)
 
   VANILLA TRIGGERS (short name -> vanilla subclass -> vanilla scene id)
@@ -59,4 +61,12 @@
   <Scene trigger="FactionJoin"
          culture="battania"
          scene_id="TOR_cutscene_factionjoin_we_01" />
+		 
+		   <Scene trigger="FactionJoin"
+         culture="eonir"
+         scene_id="TOR_cutscene_factionjoin_eonir_01" />
+		 
+		   <Scene trigger="FactionJoin"
+         culture="sturgia"
+         scene_id="TOR_cutscene_factionjoin_dwarf_01" />
 </FactionScenes>

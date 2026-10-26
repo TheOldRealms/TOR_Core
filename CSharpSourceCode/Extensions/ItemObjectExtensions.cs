@@ -261,24 +261,8 @@ namespace TOR_Core.Extensions
 
         public static bool IsGunPowderWeapon(this WeaponComponentData weapon)
         {
-            if (weapon == null || (!weapon.IsRangedWeapon && !weapon.IsAmmo)) return false;//AttackCollisionData will pass the ammo weapon which is excluded by IsRangedWeapon
+            if (weapon == null || (!weapon.IsRangedWeapon && !weapon.IsAmmo)) return false;
             return weapon.WeaponClass == WeaponClass.Cartridge || weapon.AmmoClass == WeaponClass.Cartridge;
-        }
-
-        /// <summary>
-        /// Checks if the current weapon is a blunderbuss, or is scatter/grenade ammunition
-        /// </summary>
-        public static bool IsSpecialAmmunitionItem(this ItemObject itemObject)
-        {
-            if (!IsAmmunitionItem(itemObject))
-                return false;
-
-            if (itemObject.ToString().Contains("blunderbuss"))
-            {
-                return true;
-            }
-
-            return itemObject.StringId.Contains("grenade") || itemObject.StringId.Contains("scatter");
         }
 
         // ===== Weapon Platform Checks =====

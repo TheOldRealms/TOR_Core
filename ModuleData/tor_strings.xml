@@ -4603,7 +4603,7 @@
   <string id="tor_extendedInfo.TheHunger" text="{=str_tor_extendedinfo_the_hunger}The Hunger - Restores {VALUE}% Maximum Health after Killing an enemy(...)" />
 
   <!-- ExtendedInfo.Frenzy -->
-  <string id="tor_extendedInfo.Frenzy" text="{=str_tor_extendedinfo_frenzy}Frenzy - Kill Grants {VALUE}% Movement Speed {VALUE}% Attack Speed for {DURATION} (...)" />
+  <string id="tor_extendedInfo.Frenzy" text="{=str_tor_extendedinfo_frenzy}Frenzy - Kill Grants 10% Movement Speed 15% Attack Speed for {DURATION} (...)" />
 
   <!-- ExtendedInfo.UndeadSlayer -->
   <string id="tor_extendedInfo.UndeadSlayer" text="{=str_tor_extendedinfo_undead_slayer}Undead Slayer - +{VALUE}% Damage against Undead Units (...)" />
