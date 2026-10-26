@@ -87,11 +87,18 @@ namespace TOR_Core.CampaignMechanics.Shared.MaterialPicker
 
         public static bool IsOpen => _layer != null;
 
+        /// <summary>Callback that formats the "Reward: ..." preview on each slider
+        /// tick. Receives the currently-selected row and the slider's quantity. If
+        /// null, the VM falls back to "<c>{PRESTIGE} Prestige + {GOLD} gold</c>"
+        /// using the row's per-batch Gold/Prestige fields.</summary>
+        public delegate string RewardPreviewFn(MaterialPickerOptionVM option, int quantity);
+
         public static void Open(
             TextObject title,
             IEnumerable<MaterialPickerOption> options,
             ConfirmHandler onConfirm,
-            Action onCancel = null)
+            Action onCancel = null,
+            RewardPreviewFn rewardPreview = null)
         {
             if (IsOpen) return;
             if (options == null) return;
@@ -99,6 +106,7 @@ namespace TOR_Core.CampaignMechanics.Shared.MaterialPicker
             _vm = new MaterialPickerVM(
                 title,
                 options,
+                rewardPreview,
                 (opt, qty) =>
                 {
                     var picked = new PickedMaterial(opt.Item, opt.BatchSize, qty,

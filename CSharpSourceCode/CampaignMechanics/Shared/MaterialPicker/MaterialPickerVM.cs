@@ -18,6 +18,7 @@ namespace TOR_Core.CampaignMechanics.Shared.MaterialPicker
     {
         private readonly Action<MaterialPickerOptionVM, int> _onConfirm;
         private readonly Action _onCancel;
+        private readonly MaterialPicker.RewardPreviewFn _rewardPreviewFn;
 
         private string _screenTitle;
         private string _subtitle;
@@ -35,11 +36,13 @@ namespace TOR_Core.CampaignMechanics.Shared.MaterialPicker
         public MaterialPickerVM(
             TextObject title,
             IEnumerable<MaterialPickerOption> options,
+            MaterialPicker.RewardPreviewFn rewardPreviewFn,
             Action<MaterialPickerOptionVM, int> onConfirm,
             Action onCancel)
         {
             _onConfirm = onConfirm;
             _onCancel = onCancel;
+            _rewardPreviewFn = rewardPreviewFn;
             ScreenTitle = title?.ToString() ?? string.Empty;
             Subtitle = TORTextHelper.GetText("tor_material_picker.subtitle", "Pick a material and a quantity.");
             ConfirmText = TORTextHelper.GetText("tor_inquiry_accept_text", "Accept");
@@ -85,6 +88,11 @@ namespace TOR_Core.CampaignMechanics.Shared.MaterialPicker
             if (_selectedOption == null)
             {
                 RewardPreview = string.Empty;
+                return;
+            }
+            if (_rewardPreviewFn != null)
+            {
+                RewardPreview = _rewardPreviewFn(_selectedOption, Quantity) ?? string.Empty;
                 return;
             }
             var totalGold = _selectedOption.GoldPerBatch * Quantity;
