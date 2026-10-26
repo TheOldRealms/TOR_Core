@@ -49,7 +49,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
 
         public static string GetEffectForCharacter (string characterId)
         {
-            var triggeredEffectId = Instance.AnimationTriggers.FirstOrDefault(x => x.CharacterId == characterId).TriggeredEffectId;
+            var triggeredEffectId = Instance.AnimationTriggers.FirstOrDefault(x => x.CharacterId == characterId)?.TriggeredEffectId;
             return triggeredEffectId;
         }
 
