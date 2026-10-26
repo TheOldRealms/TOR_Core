@@ -246,9 +246,12 @@ namespace TOR_Core.Missions
         [MissionMethod]
         public static Mission OpenAmbushMission(string scene)
         {
+            TaleWorlds.Library.Debug.Print("[AmbushMission] OpenAmbushMission scene=" + scene);
             var rec = SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All);
+            TaleWorlds.Library.Debug.Print("[AmbushMission] rec built, calling MissionState.OpenNew");
             return MissionState.OpenNew("Battle", rec, delegate (Mission mission)
             {
+                TaleWorlds.Library.Debug.Print("[AmbushMission] behaviors lambda enter");
                 IMissionTroopSupplier[] suppliers =
                 [
                     new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Defender),
@@ -258,7 +261,9 @@ namespace TOR_Core.Missions
                 int targetTroopCount = MapEvent.PlayerMapEvent.DefenderSide.TroopCount;
                 List<MissionBehavior> list =
                 [
-                    new DefaultBattleMissionAgentSpawnLogic(suppliers, BattleSideEnum.Defender, BattleSizeType.Battle),
+                    // Player side = Attacker (user-confirmed; previous read of EncounterManager
+                    // internals was misleading).
+                    new DefaultBattleMissionAgentSpawnLogic(suppliers, BattleSideEnum.Attacker, BattleSizeType.Battle),
                     new BattlePowerCalculationLogic(),
                     new BattleSpawnLogic("battle_set"),
                     new AmbushMission.AmbushMissionController(playerTroopCount, targetTroopCount),

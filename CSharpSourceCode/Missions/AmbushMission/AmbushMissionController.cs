@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
 using TOR_Core.Models;
@@ -32,23 +33,26 @@ namespace TOR_Core.Missions.AmbushMission
 
         public override void OnBehaviorInitialize()
         {
+            Debug.Print("[AmbushMission] OnBehaviorInitialize enter");
             base.OnBehaviorInitialize();
-            // New mission → clear any stale retreat zones left over from a prior
-            // scene. Zones re-register as this scene's scripts init.
             AmbushRetreatZone.ResetRegistry();
             _spawnLogic = Mission.GetMissionBehavior<DefaultBattleMissionAgentSpawnLogic>();
             _model = Campaign.Current?.Models?.GetMissionAmbushModel() ?? new TORMissionAmbushModel();
             AmbushRetreatZone.ProceduralFallbackRadius = _model.ProceduralFallbackRadius;
+            Debug.Print("[AmbushMission] OnBehaviorInitialize done (spawnLogic=" + (_spawnLogic != null) + ")");
         }
 
         public override void AfterStart()
         {
+            Debug.Print("[AmbushMission] AfterStart enter");
             base.AfterStart();
             SetupInitialSpawn();
+            Debug.Print("[AmbushMission] AfterStart done");
         }
 
         public override void OnDeploymentFinished()
         {
+            Debug.Print("[AmbushMission] OnDeploymentFinished enter");
             base.OnDeploymentFinished();
             // Mirror vanilla's "besieger activation" shape: defender team (our
             // AI opponent) is frozen for AiActivationDelay seconds so the player
@@ -84,7 +88,12 @@ namespace TOR_Core.Missions.AmbushMission
 
         private void SetupInitialSpawn()
         {
-            if (_spawnLogic == null) return;
+            Debug.Print("[AmbushMission] SetupInitialSpawn (playerTroops=" + _playerTroopCount + " targetTroops=" + _targetTroopCount + ")");
+            if (_spawnLogic == null)
+            {
+                Debug.Print("[AmbushMission] SetupInitialSpawn: _spawnLogic is null, aborting");
+                return;
+            }
 
             // Mirror vanilla's AdjustTotalTroopCounts shape: clamp both sides
             // against the battle-size budget split, then rebalance so one side's

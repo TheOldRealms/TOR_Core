@@ -37,9 +37,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
         public const string StealthMenuId = "tor_ambush_stealth_menu";
 
         // First delivered scene from the scener (TOR_Environment/SceneObj/test_ambush/).
-        // Has an authored AmbushRetreatZone (Radius=10) + TacticalRegion=Forest for
-        // cover semantics. Will become a lookup table (terrain → scene[]) once more
-        // scenes land; for now every successful ambush opens here.
+        // Has an authored AmbushRetreatZone (Radius=10) + TacticalRegion=Forest.
+        // Will become a lookup table (terrain → scene[]) once more scenes land.
         public const string DefaultAmbushScene = "test_ambush";
 
         private bool _playerInStealth;
@@ -364,15 +363,14 @@ namespace TOR_Core.CampaignMechanics.Ambush
             LeaveStealth(MobileParty.MainParty);
             StampAmbushCooldown();
 
-            EncounterManager.StartPartyEncounter(PartyBase.MainParty, target.Party);
-
             if (success)
             {
                 TORCommon.Say("Ambush succeeded (" + chancePct + "%) on " + GetPartyLabel(target) + ".");
-                // Pattern cribbed from RaiseDeadInTownBehavior.SetupBattle: force the
-                // encounter into Battle state so PlayerMapEvent exists for the mission
-                // suppliers, then open our ambush mission directly (bypasses the vanilla
-                // encounter menu).
+                // Bypass EncounterManager.StartPartyEncounter — it fires encounter_meeting
+                // menu + enemy-leader conversation, both of which deadlock our mission open.
+                // RestartPlayerEncounter(defender, attacker) skips straight to encounter
+                // state (same pattern TrollCaveMenuLogic uses).
+                PlayerEncounter.RestartPlayerEncounter(target.Party, PartyBase.MainParty, false);
                 if (PlayerEncounter.Battle == null)
                 {
                     PlayerEncounter.StartBattle();
@@ -383,7 +381,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             else
             {
                 TORCommon.Say("Ambush failed (" + chancePct + "%) on " + GetPartyLabel(target) + " — regular battle.");
-                // Encounter menu takes over; player can choose Attack / Flee etc.
+                EncounterManager.StartPartyEncounter(PartyBase.MainParty, target.Party);
             }
         }
 

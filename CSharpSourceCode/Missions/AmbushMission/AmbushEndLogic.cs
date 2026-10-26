@@ -27,6 +27,7 @@ namespace TOR_Core.Missions.AmbushMission
 
         public override void AfterStart()
         {
+            TaleWorlds.Library.Debug.Print("[AmbushEndLogic] AfterStart");
             base.AfterStart();
             _model = Campaign.Current?.Models?.GetMissionAmbushModel() ?? new TORMissionAmbushModel();
         }
