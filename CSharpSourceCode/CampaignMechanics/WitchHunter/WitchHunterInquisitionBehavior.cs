@@ -99,7 +99,10 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
 
         // Active-bounty count = number of ACCEPTED bounty quests of the matching
         // tier only. Un-accepted issues sitting at the lodge don't fill the cap;
-        // the cap is about concurrent commitments.
+        // the cap is about concurrent commitments. Must filter by IsOngoing —
+        // vanilla QuestManager.Quests retains finished quests, so without it
+        // every completed Minor keeps occupying its cap slot and the player
+        // can't accept a new one even after rank-up.
         public int ActiveMinorBounties() => CountActive(BountyTier.Minor);
         public int ActiveMajorBounties() => CountActive(BountyTier.Major);
 
@@ -107,7 +110,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
         {
             var quests = Campaign.Current?.QuestManager?.Quests;
             if (quests == null) return 0;
-            return quests.Count(q => q is BountyQuest bq && bq.Tier == tier);
+            return quests.Count(q => q is BountyQuest bq && bq.Tier == tier && q.IsOngoing);
         }
 
         // ---- Mutators (invoked by dialog consequences and quest OnTimedOut)
