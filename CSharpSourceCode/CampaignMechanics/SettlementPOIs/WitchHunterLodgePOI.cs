@@ -57,9 +57,17 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         /// saves adopt their current bounty-master hero into the lodge via
         /// <see cref="SettlementPOIManagerCampaignBehavior.GetOrCreateHero"/>'s orphan scan.
         /// </summary>
-        public string InquisitorTemplateId => "tor_bountymaster_empire_0";
+        public string InquisitorTemplateId  => "tor_bountymaster_empire_0";
+        public string ScoutMasterTemplateId => "tor_scoutmaster_empire_0";
 
-        public override void EnsurePlaced(Settlement s) => PlaceResident(s, InquisitorTemplateId);
+        // Two residents per lodge: the Inquisitor (Crossbow trainer) and
+        // the Order Scout (Scouting trainer). One hero → one skill is the
+        // convention; multi-skill locations grow by adding more NPCs.
+        public override void EnsurePlaced(Settlement s)
+        {
+            PlaceResident(s, InquisitorTemplateId);
+            PlaceResident(s, ScoutMasterTemplateId);
+        }
 
         public override bool CheckAccess(Settlement s, Hero h, out TextObject denialReason)
         {
@@ -107,6 +115,19 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "hub_greet",
                     "What brings you to the Lodge?"),
                 IsInquisitorPartner, null, 200, null);
+
+            // Scout Master's mini-hub — a separate dialog branch so the Inquisitor
+            // keeps his Hunts/Bounties/Turn-ins/Store/etc. tree uncluttered. The
+            // training line attaches to this state via SkillTrainerConfig.HubState.
+            obj.AddDialogLine("tor_witchhunter_lodge_scout_greet", "start", "tor_witchhunter_lodge_scout_hub",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "scout_greet",
+                    "The Order sent you? Fine. What do you need?"),
+                IsScoutPartner, null, 200, null);
+
+            obj.AddPlayerLine("tor_witchhunter_lodge_scout_leave", "tor_witchhunter_lodge_scout_hub", "close_window",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_lodge", "scout_leave",
+                    "That is all. Good hunting."),
+                null, null, 100, null);
 
             // --- Hunts: three mutually-exclusive variants with identical player text.
             // Known with an issue → close dialog with a brief NPC acknowledgement; the
@@ -347,6 +368,19 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             return loc != null && loc.StringId == "tor_witchhunter_lodge";
         }
 
+        // Mirror of IsInquisitorPartner, scoped to the Scout Master's template.
+        // No BountyMaster attribute check — the Scout isn't one.
+        private static bool IsScoutPartner()
+        {
+            var partner = CharacterObject.OneToOneConversationCharacter;
+            if (partner?.HeroObject?.Template == null) return false;
+            if (partner.HeroObject.Template.StringId != "tor_scoutmaster_empire_0") return false;
+
+            var complex = LocationComplex.Current;
+            var loc = complex?.GetLocationOfCharacter(partner.HeroObject);
+            return loc != null && loc.StringId == "tor_witchhunter_lodge";
+        }
+
         private static bool InquisitorHasHunt()
         {
             // Hunts covers anything that ISN'T a bounty — HuntCultists, PlaguedVillage,
@@ -555,10 +589,11 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         }
 
         // ---- ISkillTrainerHost
-        // Yields one SkillTrainerConfig per trainer NPC the lodge hosts.
-        // Currently just the Inquisitor teaching Crossbow — the Scouting
-        // trainer (if/when added) wants its own NPC template per the
-        // "one hero, one skill" convention and would be yielded here.
+        // One config per trainer NPC. Both plug into the lodge hub dialog
+        // state so the "arrange training" line appears alongside Hunts,
+        // Bounties, etc. TrainerCondition filters by partner.Template so
+        // only the Crossbow line shows next to the Inquisitor and only
+        // the Scouting line shows next to the Order Scout.
         public IEnumerable<SkillTrainerConfig> GetSkillTrainers()
         {
             yield return new SkillTrainerConfig(
@@ -567,6 +602,13 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 skillId:      "Crossbow",
                 hubState:     "tor_witchhunter_lodge_hub",
                 reintroState: "tor_witchhunter_lodge_hub");
+
+            yield return new SkillTrainerConfig(
+                templateId:   ScoutMasterTemplateId,
+                dialogSuffix: "OrderScout",
+                skillId:      "Scouting",
+                hubState:     "tor_witchhunter_lodge_scout_hub",
+                reintroState: "tor_witchhunter_lodge_scout_hub");
         }
     }
 }

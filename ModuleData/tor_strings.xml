@@ -6057,6 +6057,9 @@
   <string id="tor_poi_witchhunter_lodge.bounties_back" text="{=str_tor_poi_witchhunter_lodge.bounties_back}That is all for now." />
   <string id="tor_poi_witchhunter_lodge.store_open" text="{=str_tor_poi_witchhunter_lodge.store_open}The Order's wares. These will serve you better than tavern-forged scrap." />
   <string id="tor_poi_witchhunter_lodge.store_reply" text="{=str_tor_poi_witchhunter_lodge.store_reply}What else can I do for you?" />
+  <string id="tor_poi_witchhunter_lodge.scout_greet" text="{=str_tor_poi_witchhunter_lodge.scout_greet}The Order sent you? Fine. What do you need?" />
+  <string id="tor_poi_witchhunter_lodge.scout_leave" text="{=str_tor_poi_witchhunter_lodge.scout_leave}That is all. Good hunting." />
+  <string id="tor_scoutmaster_empire_0" text="{=str_tor_scoutmaster_empire_0}{FIRSTNAME} the Order Scout" />
 
   <!-- Witch Hunter Bounties - shared quest strings -->
   <string id="tor_wh_bounty_accept_player" text="{=str_tor_wh_bounty_accept_player}I will see it done." />
