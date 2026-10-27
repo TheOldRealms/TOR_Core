@@ -6072,52 +6072,52 @@
   <string id="tor_wh_bounty_quest_explanation" text="{=str_tor_wh_bounty_quest_explanation}Deal with {COUNT} {TARGET}. On the deed the Order will pay you {REWARD_GOLD}{GOLD_ICON} and {REWARD_PRESTIGE} prestige." />
   <string id="tor_wh_bounty_offer_dialog" text="{=str_tor_wh_bounty_offer_dialog}The Order is watching. See it done." />
   <string id="tor_wh_bounty_discuss_dialog" text="{=str_tor_wh_bounty_discuss_dialog}There are still heads to be taken. The ledger does not close itself." />
-  <string id="tor_wh_bounty_started_log" text="{=str_tor_wh_bounty_started_log}The Order expects {COUNT} {TARGET} dealt with by your hand before the sand runs out." />
+  <string id="tor_wh_bounty_started_log" text="{=str_tor_wh_bounty_started_log}The Order expects {COUNT} {TARGET} dealt with, and be quick about it!" />
   <string id="tor_wh_bounty_progress_log" text="{=str_tor_wh_bounty_progress_log}Progress: {PROGRESS}/{TARGET_COUNT} {TARGET}." />
-  <string id="tor_wh_bounty_ready_log" text="{=str_tor_wh_bounty_ready_log}All targets eliminated. Return to any Witch Hunter Lodge to collect your due." />
+  <string id="tor_wh_bounty_ready_log" text="{=str_tor_wh_bounty_ready_log}All targets eliminated. Return to any Witch Hunter Chapterhouse to collect your due." />
   <string id="tor_wh_bounty_turnedin_log" text="{=str_tor_wh_bounty_turnedin_log}The Order's ledger is settled. Reward paid." />
   <string id="tor_wh_bounty_late_turnin_log" text="{=str_tor_wh_bounty_late_turnin_log}You were late to collect, but the Order honours the kills." />
-  <string id="tor_wh_bounty_timeout_log" text="{=str_tor_wh_bounty_timeout_log}The Order will note your failure to see this through. You will need to beg forgiveness at the lodge before taking another hunt of this kind." />
+  <string id="tor_wh_bounty_timeout_log" text="{=str_tor_wh_bounty_timeout_log}The Silver Hammer will note your failure to see this through. You will need to return and report this failure at the chapterhouse before taking another bounty of this kind." />
   <string id="tor_wh_bounty_turnin_title" text="{=str_tor_wh_bounty_turnin_title}Collect Your Due" />
-  <string id="tor_wh_bounty_turnin_desc" text="{=str_tor_wh_bounty_turnin_desc}Which bounty will you claim payment for? Any lodge will honour it." />
-  <string id="tor_wh_bounty_abandon_title" text="{=str_tor_wh_bounty_abandon_title}Which bounty will you give up on?" />
-  <string id="tor_wh_bounty_abandon_desc" text="{=str_tor_wh_bounty_abandon_desc}The Order will note your choice. No reward will follow." />
+  <string id="tor_wh_bounty_turnin_desc" text="{=str_tor_wh_bounty_turnin_desc}Which bounty will you claim payment for? Any chapterhouse will honour it." />
+  <string id="tor_wh_bounty_abandon_title" text="{=str_tor_wh_bounty_abandon_title}Which bounty will you relinquish?" />
+  <string id="tor_wh_bounty_abandon_desc" text="{=str_tor_wh_bounty_abandon_desc}The Order of the Silver Hammer will note your choice. No reward will follow." />
 
   <!-- Witch Hunter Bounties - Minor templates -->
   <string id="tor_wh_bounty_minor_kill_cultists_title" text="{=str_tor_wh_bounty_minor_kill_cultists_title}Cull the Cultists" />
-  <string id="tor_wh_bounty_minor_kill_cultists_brief" text="{=str_tor_wh_bounty_minor_kill_cultists_brief}There is cult activity we have confirmed. Put {COUNT} of them to the sword and the Order will pay you in prestige." />
+  <string id="tor_wh_bounty_minor_kill_cultists_brief" text="{=str_tor_wh_bounty_minor_kill_cultists_brief}My hunters have confirmed rampant cult activity. Put {COUNT} of them to the sword and the Order shall aid in elevating your prestige." />
   <string id="tor_wh_bounty_minor_kill_chaos_title" text="{=str_tor_wh_bounty_minor_kill_chaos_title}Thin the Norscan Hordes" />
-  <string id="tor_wh_bounty_minor_kill_chaos_brief" text="{=str_tor_wh_bounty_minor_kill_chaos_brief}The Norscans raid our villages. Put {COUNT} of their heads on pikes — the Order can spare gold for that work." />
+  <string id="tor_wh_bounty_minor_kill_chaos_brief" text="{=str_tor_wh_bounty_minor_kill_chaos_brief}Reports of Norscans raiding parties on our beaches have become far too frequent. Put {COUNT} of their heads on pikes — the Order can always spare coin for such work." />
   <string id="tor_wh_bounty_minor_kill_undead_title" text="{=str_tor_wh_bounty_minor_kill_undead_title}Cleanse the Walking Dead" />
   <string id="tor_wh_bounty_minor_kill_undead_brief" text="{=str_tor_wh_bounty_minor_kill_undead_brief}Undead walk the lands near our chapterhouse. Burn {COUNT} of them and return — this is the Order's work." />
   <string id="tor_wh_bounty_minor_capture_cultists_title" text="{=str_tor_wh_bounty_minor_capture_cultists_title}Captives for the Interrogators" />
-  <string id="tor_wh_bounty_minor_capture_cultists_brief" text="{=str_tor_wh_bounty_minor_capture_cultists_brief}The Order needs captives for interrogation. Bring {COUNT} living chaos cultists to the lodge — any lodge will do." />
+  <string id="tor_wh_bounty_minor_capture_cultists_brief" text="{=str_tor_wh_bounty_minor_capture_cultists_brief}The Order needs more captives for interrogation. Bring {COUNT} chaos cultists to any of our chapterhouses." />
   <string id="tor_wh_bounty_minor_capture_chaos_title" text="{=str_tor_wh_bounty_minor_capture_chaos_title}Norscan Prisoners Wanted Alive" />
-  <string id="tor_wh_bounty_minor_capture_chaos_brief" text="{=str_tor_wh_bounty_minor_capture_chaos_brief}Norscan warbands grow bold. Take {COUNT} of them alive — the Order will pay well for prisoners of their calibre." />
+  <string id="tor_wh_bounty_minor_capture_chaos_brief" text="{=str_tor_wh_bounty_minor_capture_chaos_brief}Norscan raiders continue to be a thorn in our Emporer's side. Take {COUNT} of them alive and return them to one of our chapterhouses so that we can... soothe the Emporer's troubles." />
   <string id="tor_wh_bounty_minor_defeat_cultists_title" text="{=str_tor_wh_bounty_minor_defeat_cultists_title}Scatter the Cultist Bands" />
-  <string id="tor_wh_bounty_minor_defeat_cultists_brief" text="{=str_tor_wh_bounty_minor_defeat_cultists_brief}Our scouts have spotted {COUNT} cultist bands on the roads. Scatter them." />
+  <string id="tor_wh_bounty_minor_defeat_cultists_brief" text="{=str_tor_wh_bounty_minor_defeat_cultists_brief}Our scouts have spotted a few bands of heretics moving in broad daylight. {COUNT} of them to be exact. Send them to their masters before they gain any more traction in our Empire!" />
   <string id="tor_wh_bounty_minor_defeat_chaos_raids_title" text="{=str_tor_wh_bounty_minor_defeat_chaos_raids_title}Break the Norscan Raiders" />
   <string id="tor_wh_bounty_minor_defeat_chaos_raids_brief" text="{=str_tor_wh_bounty_minor_defeat_chaos_raids_brief}Norscans are burning villages. Break {COUNT} of their raiding parties and the Order will see you paid." />
   <string id="tor_wh_bounty_minor_clear_cultist_hideouts_title" text="{=str_tor_wh_bounty_minor_clear_cultist_hideouts_title}Burn the Cult Lairs" />
-  <string id="tor_wh_bounty_minor_clear_cultist_hideouts_brief" text="{=str_tor_wh_bounty_minor_clear_cultist_hideouts_brief}The Order has mapped {COUNT} active cult lairs. Burn them out." />
+  <string id="tor_wh_bounty_minor_clear_cultist_hideouts_brief" text="{=str_tor_wh_bounty_minor_clear_cultist_hideouts_brief}Our informants have warned me of an increasing number of heretical cults in the forest. Only {COUNT} of them are known so far, and they must be culled! Do so and the Order shall reward you." />
   <string id="tor_wh_bounty_minor_clear_chaos_hideouts_title" text="{=str_tor_wh_bounty_minor_clear_chaos_hideouts_title}Root Out the Norscan Hideouts" />
-  <string id="tor_wh_bounty_minor_clear_chaos_hideouts_brief" text="{=str_tor_wh_bounty_minor_clear_chaos_hideouts_brief}Norscan bands have dug in near our settlements. Dig {COUNT} of them out." />
+  <string id="tor_wh_bounty_minor_clear_chaos_hideouts_brief" text="{=str_tor_wh_bounty_minor_clear_chaos_hideouts_brief}Reports of Norscans raiding parties continue to flood in. Meaning they must've decided to set up camp somewhere. I want you to find {COUNT} of these, and root them out." />
 
   <!-- Witch Hunter Bounties - Major templates -->
   <string id="tor_wh_bounty_major_kill_chaos_title" text="{=str_tor_wh_bounty_major_kill_chaos_title}Cull the Chaos Warriors" />
-  <string id="tor_wh_bounty_major_kill_chaos_brief" text="{=str_tor_wh_bounty_major_kill_chaos_brief}The plate-armoured warriors of the Dark Gods march south. Put {COUNT} chaos warriors in the ground. The Order will reward you handsomely." />
+  <string id="tor_wh_bounty_major_kill_chaos_brief" text="{=str_tor_wh_bounty_major_kill_chaos_brief}Word has reached me that warriors of the dark gods now taint our blessed soil. Send {COUNT} of these chaos warriors back to their foul patrons! The Order will reward you handsomely." />
   <string id="tor_wh_bounty_major_defeat_chaos_warbands_title" text="{=str_tor_wh_bounty_major_defeat_chaos_warbands_title}Break the Chaos Warbands" />
   <string id="tor_wh_bounty_major_defeat_chaos_warbands_brief" text="{=str_tor_wh_bounty_major_defeat_chaos_warbands_brief}Full warbands of chaos warriors bear down on the north. Break {COUNT} of them — not Norscan raiders, warbands led by the warriors of the Dark Gods. The Order will know your name afterwards." />
   <string id="tor_wh_bounty_major_clear_chaos_lairs_title" text="{=str_tor_wh_bounty_major_clear_chaos_lairs_title}Burn the Chaos Strongholds" />
   <string id="tor_wh_bounty_major_clear_chaos_lairs_brief" text="{=str_tor_wh_bounty_major_clear_chaos_lairs_brief}Fortified strongholds held by the warriors of Chaos have taken root. Burn {COUNT} of them — these are not minor cells. The Order will pay a king's ransom for the service." />
   <string id="tor_wh_bounty_major_kill_norscan_title" text="{=str_tor_wh_bounty_major_kill_norscan_title}Scour the Norscan Horde" />
-  <string id="tor_wh_bounty_major_kill_norscan_brief" text="{=str_tor_wh_bounty_major_kill_norscan_brief}A Norscan horde has crossed the Sea of Claws in force. Put {COUNT} of them in the ground before they reach the heartlands." />
-  <string id="tor_wh_bounty_major_defeat_norscan_warbands_title" text="{=str_tor_wh_bounty_major_defeat_norscan_warbands_title}Scatter the Norscan Warhost" />
-  <string id="tor_wh_bounty_major_defeat_norscan_warbands_brief" text="{=str_tor_wh_bounty_major_defeat_norscan_warbands_brief}The Norscans move as a warhost, not raiders. Scatter {COUNT} of their warbands and the Order will see your deeds remembered." />
+  <string id="tor_wh_bounty_major_kill_norscan_brief" text="{=str_tor_wh_bounty_major_kill_norscan_brief}A Norscan horde has crossed the Sea of Claws in force. Go north, and put {COUNT} of them in the ground before they reach the heartlands." />
+  <string id="tor_wh_bounty_major_defeat_norscan_warbands_title" text="{=str_tor_wh_bounty_major_defeat_norscan_warbands_title}Scatter the Norscan Raiders" />
+  <string id="tor_wh_bounty_major_defeat_norscan_warbands_brief" text="{=str_tor_wh_bounty_major_defeat_norscan_warbands_brief}Norscans dont seem to understand when they are not wanted without a bit of force. Scatter {COUNT} of their warbands and the Order will see your deeds remembered." />
   <string id="tor_wh_bounty_major_kill_cultists_title" text="{=str_tor_wh_bounty_major_kill_cultists_title}Grand Purge of the Cults" />
-  <string id="tor_wh_bounty_major_kill_cultists_brief" text="{=str_tor_wh_bounty_major_kill_cultists_brief}A cult has grown bold enough to muster in the hundreds. Purge {COUNT} of the heretics and the Order will know your work." />
+  <string id="tor_wh_bounty_major_kill_cultists_brief" text="{=str_tor_wh_bounty_major_kill_cultists_brief}A cult of the ruinous powers has grown bold enough to muster in the hundreds. Purge {COUNT} of these heretics and the Silver Hammer will spread word of your deed." />
   <string id="tor_wh_bounty_major_defeat_cultist_warbands_title" text="{=str_tor_wh_bounty_major_defeat_cultist_warbands_title}Break the Cult Warbands" />
-  <string id="tor_wh_bounty_major_defeat_cultist_warbands_brief" text="{=str_tor_wh_bounty_major_defeat_cultist_warbands_brief}Cult cells have organised into warbands and march in the open. Break {COUNT} of them before their numbers grow further." />
+  <string id="tor_wh_bounty_major_defeat_cultist_warbands_brief" text="{=str_tor_wh_bounty_major_defeat_cultist_warbands_brief}Heretical cells have organised into warbands and march in the open, an affront to Sigmar himself! Purge {COUNT} of them before their numbers grow further." />
   <string id="tor_wh_bounty_major_clear_cultist_lairs_title" text="{=str_tor_wh_bounty_major_clear_cultist_lairs_title}Burn the Cult Sanctums" />
   <string id="tor_wh_bounty_major_clear_cultist_lairs_brief" text="{=str_tor_wh_bounty_major_clear_cultist_lairs_brief}The cult has built sanctums deep enough to require a proper burning. Clear {COUNT} of them — root and branch." />
   <string id="tor_wh_bounty_major_kill_undead_title" text="{=str_tor_wh_bounty_major_kill_undead_title}Cleanse the Risen Host" />
