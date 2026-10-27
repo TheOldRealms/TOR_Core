@@ -62,11 +62,19 @@
          culture="battania"
          scene_id="TOR_cutscene_factionjoin_we_01" />
 		 
-		   <Scene trigger="FactionJoin"
+  <Scene trigger="FactionJoin"
          culture="eonir"
          scene_id="TOR_cutscene_factionjoin_eonir_01" />
 		 
-		   <Scene trigger="FactionJoin"
+  <Scene trigger="FactionJoin"
          culture="sturgia"
          scene_id="TOR_cutscene_factionjoin_dwarf_01" />
+		 
+  <Scene trigger="FactionJoin"
+         culture="empire"
+         scene_id="TOR_cutscene_factionjoin_empire_01" />
+		 
+  <Scene trigger="FactionJoin"
+         culture="mousillon"
+         scene_id="TOR_cutscene_factionjoin_mousillon_01" />
 </FactionScenes>
