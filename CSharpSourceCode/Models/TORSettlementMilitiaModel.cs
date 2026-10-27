@@ -75,7 +75,7 @@ namespace TOR_Core.Models
             }
             if (settlement.OwnerClan != null && settlement.OwnerClan.Leader != null)
             {
-                PerkHelper.AddPerkBonusForCharacter(TORPerks.Faith.DivineMission, BattleEnvironment.Any, settlement.OwnerClan.Leader.CharacterObject, false, ref result);
+                PerkHelper.AddPerkBonusForCharacter(TORPerks.Faith.DivineMission, settlement.OwnerClan.Leader.CharacterObject, false, ref result, BattleEnvironment.Any);
             }
 
             if (settlement.Culture.StringId == TORConstants.Cultures.DAWI && settlement.IsDwarfKarak())

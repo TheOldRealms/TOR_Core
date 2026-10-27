@@ -1623,6 +1623,46 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_arm_bracers_gor_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>  
+   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_truegor_facemask_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_truegor_facemask_002" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_truegor_facemask_003" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>   
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_truegor_shoulderpads_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_truegor_shoulderpads_002" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>   
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_body_armour_truegor_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_body_armour_truegor_002" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>   
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_arm_bracers_truegor_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties> 
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_legs_truegor_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>    
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_young_gor" RaceLock="gor2">
     <ItemTraits />
     <Description />
@@ -4210,6 +4250,12 @@
     <ItemTraits>
       <ItemTrait>emp_miracle_taal_stoneaxe</ItemTrait>
     </ItemTraits>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_thaxe_taal_unenchanted">
+    <ItemTraits />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
