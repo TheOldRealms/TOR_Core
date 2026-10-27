@@ -74,12 +74,12 @@ namespace TOR_Core.Models
                     SkillHelper.AddSkillBonusForCharacter(TORSkillEffects.GunAccuracy, character, ref accuracy);
                     if (agent.HasMount)
                     {
-                        PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.MountedHeritage, BattleEnvironment.Any, character, true, ref accuracy);
+                        PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.MountedHeritage, character, true, ref accuracy, BattleEnvironment.Any);
                     }
 
                     if (weapon.WeaponClass == WeaponClass.Musket)
                     {
-                        PerkHelper.AddPerkBonusFromCaptain(TORPerks.GunPowder.DeadEye, agent.CurrentBattleEnvironment, captain, ref accuracy);
+                        PerkHelper.AddPerkBonusFromCaptain(TORPerks.GunPowder.DeadEye, captain, ref accuracy, agent.CurrentBattleEnvironment);
                     }
                 }
             }
@@ -649,7 +649,7 @@ namespace TOR_Core.Models
 
                 if (applyRunAndGun)
                 {
-                    PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.RunAndGun, agent.CurrentBattleEnvironment, character, true, ref movementAccuracyPenalty);
+                    PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.RunAndGun, character, true, ref movementAccuracyPenalty, agent.CurrentBattleEnvironment);
                 }
 
                 if (applyMainAgentCareerPassives)
@@ -745,7 +745,7 @@ namespace TOR_Core.Models
 
             if (agent.Character is CharacterObject character)
             {
-                PerkHelper.AddPerkBonusForCharacter(DefaultPerks.Athletics.FormFittingArmor, agent.CurrentBattleEnvironment, character, true, ref armorEncumbrance);
+                PerkHelper.AddPerkBonusForCharacter(DefaultPerks.Athletics.FormFittingArmor, character, true, ref armorEncumbrance, agent.CurrentBattleEnvironment);
 
                 if (character.IsHero && character.HeroObject == Hero.MainHero)
                 {

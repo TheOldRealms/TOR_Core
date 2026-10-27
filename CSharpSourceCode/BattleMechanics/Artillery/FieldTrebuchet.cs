@@ -614,7 +614,7 @@ namespace TOR_Core.BattleMechanics.Artillery
 			return (Enumerable.Contains<StandingPoint>(this._ammoLoadPoints, standingPoint) && this.LoadAmmoStandingPoint != standingPoint) || base.IsStandingPointNotUsedOnAccountOfBeingAmmoLoad(standingPoint);
 		}
 
-		public override TextObject GetDescriptionText(WeakGameEntity gameEntity)
+		public override TextObject GetDescriptionText(WeakGameEntity gameEntity, Agent _)
 		{
 			if (!gameEntity.HasTag(this.AmmoPickUpTag))
 			{

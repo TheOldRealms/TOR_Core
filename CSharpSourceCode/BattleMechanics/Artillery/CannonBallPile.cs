@@ -13,7 +13,7 @@ namespace TOR_Core.BattleMechanics.Artillery
             return TORTextHelper.GetTextObject("tor_cannonball_pile", "Cannonball Pile");
         }
 
-        public override TextObject GetDescriptionText(WeakGameEntity weakGameEntity)
+        public override TextObject GetDescriptionText(WeakGameEntity weakGameEntity, Agent _)
         {
             return TORTextHelper.GetTextObject("tor_cannonball_pile", "Cannonball Pile");
         }
