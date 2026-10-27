@@ -16,7 +16,7 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.SettlementPOIs
 {
-    public class VampireCryptPOI : SettlementPOI, ISpellTrainerHost, IEnchanterHost
+    public class VampireCryptPOI : SettlementPOI, ISpellTrainerHost, IEnchanterHost, ISkillTrainerHost
     {
         public override string LocationId => "tor_vampire_crypt";
         public override string ParentMenuId => "town_artisan";
@@ -39,6 +39,9 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public string SpellTrainerTemplateId => "tor_spelltrainer_vc_0";
         public string EnchanterTemplateId    => "tor_spelltrainer_vc_0";
         public List<string> EnchantmentSuffixes => new() { "vc_enchant" };
+
+        // Same template fills both roles; template-id dedup in the manager keeps it one hero.
+        public override void EnsurePlaced(Settlement s) => PlaceResident(s, SpellTrainerTemplateId);
 
         public bool IsPartyEligibleForTrainer()
         {
@@ -258,6 +261,20 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 if (Hero.MainHero.HasUnlockedCareerChoiceTier(2)) return 5;
                 return 3;
             }
+        }
+
+        // Companion Spellcraft training plugs into the shared spelltrainer hub
+        // ("choices"/"start"). TrainerCondition filters by partner.Template so
+        // the line only shows when the player is talking to the Necromancer.
+        public IEnumerable<SkillTrainerConfig> GetSkillTrainers()
+        {
+            yield return new SkillTrainerConfig(
+                templateId:   SpellTrainerTemplateId,
+                dialogSuffix: "Necromancer",
+                skillId:      "Spellcraft",
+                hubState:     "choices",
+                reintroState: "start",
+                restrictions: new[] { "SpellCaster" });
         }
     }
 }

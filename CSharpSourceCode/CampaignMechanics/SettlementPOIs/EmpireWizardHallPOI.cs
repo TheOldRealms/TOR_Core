@@ -10,7 +10,7 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.SettlementPOIs
 {
-    public class EmpireWizardHallPOI : SettlementPOI, ISpellTrainerHost, IEnchanterHost
+    public class EmpireWizardHallPOI : SettlementPOI, ISpellTrainerHost, IEnchanterHost, ISkillTrainerHost
     {
         public override string LocationId => "tor_wizardhall";
         public override string ParentMenuId => "town_artisan";
@@ -23,6 +23,13 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public string SpellTrainerTemplateId => "tor_spelltrainer_empire_0";
         public string EnchanterTemplateId    => "tor_enchanter_empire_0";
         public List<string> EnchantmentSuffixes => new() { "emp_enchant" };
+
+        // Two distinct heroes: the magister trainer and a separate enchanter.
+        public override void EnsurePlaced(Settlement s)
+        {
+            PlaceResident(s, SpellTrainerTemplateId);
+            PlaceResident(s, EnchanterTemplateId);
+        }
 
         public bool IsPartyEligibleForTrainer()
         {
@@ -80,6 +87,21 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 isMultiUse: false,
                 enchantmentSuffixes: EnchantmentSuffixes,
                 cultureAccess: IsPartyEligibleForEnchanter);
+        }
+
+        // Companion Spellcraft training plugs into the shared spelltrainer hub
+        // ("choices"/"start") registered by SpellTrainerHelper.RegisterCommonDialogs.
+        // TrainerCondition filters by partner.Template so this line only shows
+        // when the player is talking to the Empire Magister specifically.
+        public IEnumerable<SkillTrainerConfig> GetSkillTrainers()
+        {
+            yield return new SkillTrainerConfig(
+                templateId:   SpellTrainerTemplateId,
+                dialogSuffix: "EmpireMagister",
+                skillId:      "Spellcraft",
+                hubState:     "choices",
+                reintroState: "start",
+                restrictions: new[] { "SpellCaster" });
         }
     }
 }

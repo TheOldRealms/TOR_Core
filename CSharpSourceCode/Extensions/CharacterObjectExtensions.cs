@@ -356,6 +356,30 @@ namespace TOR_Core.Extensions
             return characterObject.Culture.StringId == TORConstants.Cultures.CHAOS || characterObject.Culture.StringId == TORConstants.Cultures.CHAOS_CULTIST;
         }
 
+        // Norscans are the low-tier marauder-coded tribals under chaos_culture
+        // (tor_chaos_norscan_*: tribesman/raider/marauder/champion/whaler/
+        // reaver/horseman/horsemaster, levels 6–26). Minor bounties target these.
+        public static bool IsNorscan(this CharacterObject characterObject)
+        {
+            return characterObject.Culture.StringId == TORConstants.Cultures.CHAOS
+                   && characterObject.StringId.Contains("norscan");
+        }
+
+        // Chaos Warriors are the canonical plate-armoured Northmen under
+        // chaos_culture whose ids contain "warrior" or "knight":
+        // tor_chaos_aspiring_warrior (26), tor_chaos_undivided_warrior (36),
+        // tor_chaos_{slaanesh,khorne,nurgle,tzeench}_warrior (36),
+        // tor_chaos_undivided_knight (46). Excludes caravan troops, pit
+        // fighters, enslaved villagers, cultist militia, darksouls, acolytes
+        // and the tor_cult_* cults that share chaos_culture. Major bounties
+        // target these.
+        public static bool IsChaosWarrior(this CharacterObject characterObject)
+        {
+            return characterObject.Culture.StringId == TORConstants.Cultures.CHAOS
+                   && (characterObject.StringId.Contains("warrior")
+                       || characterObject.StringId.Contains("knight"));
+        }
+
         public static bool IsBloodDragon(this BasicCharacterObject characterObject)
         {
             return characterObject.IsVampire() && characterObject.HasAttribute(CharacterAttributes.BLOOD_DRAGON);

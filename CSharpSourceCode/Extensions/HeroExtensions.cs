@@ -7,7 +7,6 @@ using TaleWorlds.LinQuick;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
-using TOR_Core.CampaignMechanics.BountyMaster;
 using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
@@ -513,12 +512,8 @@ namespace TOR_Core.Extensions
 
         public static bool IsBountyMaster(this Hero hero)
         {
-            var behavior = Campaign.Current.GetCampaignBehavior<BountyMasterCampaignBehavior>();
-            if (behavior != null)
-            {
-                return behavior.IsBountyMaster(hero);
-            }
-            else return false;
+            if (hero?.Template == null) return false;
+            return hero.Occupation == Occupation.Special && hero.Template.StringId.Contains("bountymaster");
         }
 
         public static bool IsSpellTrainer(this Hero hero) => SpellTrainerHelper.IsSpellTrainer(hero);

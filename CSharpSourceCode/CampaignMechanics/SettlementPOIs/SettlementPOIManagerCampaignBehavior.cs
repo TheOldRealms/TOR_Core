@@ -86,6 +86,16 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         /// </summary>
         public static event Action DiscoveryChanged;
 
+        /// <summary>
+        /// Fires when the icon text of one or more POIs changes without the discovery
+        /// state itself changing (e.g. a lodge gains a pending bounty offer and wants
+        /// to show a "!" marker). Nameplate VMs subscribe to both this event and
+        /// <see cref="DiscoveryChanged"/>.
+        /// </summary>
+        public static event Action IconsChanged;
+
+        public static void NotifyIconsChanged() => IconsChanged?.Invoke();
+
         public bool IsDiscovered(Settlement s, SettlementPOI poi)
         {
             if (s == null || poi == null) return false;
@@ -152,10 +162,9 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             if (loc == null) return false;   // template doesn't define this Location in the settlement's complex
             if (loc.GetSceneCount() == 0) loc.SetSceneName(0, sceneName);
             _dynamicScenes[$"{s.StringId}|{poi.LocationId}"] = sceneName;
-            // Place any resident NPCs that newly apply at this settlement.
-            foreach (var h in _byLocationId.Values.OfType<ISpellTrainerHost>())  if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
-            foreach (var h in _byLocationId.Values.OfType<IEnchanterHost>())      if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
-            foreach (var h in _byLocationId.Values.OfType<ISkillTrainerHost>())  if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
+            // Place any resident NPC(s) this POI hosts. The POI's EnsurePlaced is a
+            // no-op if it doesn't host anyone, so the single dispatch covers every POI.
+            poi.EnsurePlaced(s);
             return poi.AppliesTo(s);
         }
 
@@ -192,6 +201,17 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             {
                 var h = Hero.FindFirst(x => x.StringId == id);
                 if (h != null && h.IsAlive && h.Template?.StringId == templateId) return h;
+            }
+
+            // Orphan adoption: before spawning a fresh hero, scan the settlement for an
+            // unregistered hero already matching the template. Covers the save-migration
+            // case where a legacy behavior (e.g. BountyMasterCampaignBehavior) created the
+            // hero outside the POI residents dict, and we don't want duplicates.
+            var orphan = s.HeroesWithoutParty.FirstOrDefault(h => h.IsAlive && h.Template?.StringId == templateId);
+            if (orphan != null)
+            {
+                ids.Add(orphan.StringId);
+                return orphan;
             }
 
             var template = MBObjectManager.Instance.GetObject<CharacterObject>(templateId);
@@ -244,12 +264,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         /// </summary>
         private void PlaceResidentsFor(Settlement s)
         {
-            foreach (var host in _byLocationId.Values.OfType<ISpellTrainerHost>())
-                host.EnsurePlaced(s);
-            foreach (var host in _byLocationId.Values.OfType<IEnchanterHost>())
-                host.EnsurePlaced(s);
-            foreach (var host in _byLocationId.Values.OfType<ISkillTrainerHost>())
-                host.EnsurePlaced(s);
+            foreach (var poi in _byLocationId.Values) poi.EnsurePlaced(s);
         }
 
         private void OnSessionLaunched(CampaignGameStarter starter)
@@ -279,10 +294,19 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                     // menus. Suffix the LocationId with the menu to keep ids distinct
                     // across attachments.
                     var optionId = captured.LocationId + "@" + attach.MenuId;
+                    // Split the POI's dotted text id into (group, field) for the
+                    // two-arg GameTexts lookup — Bannerlord stores dotted ids that
+                    // way at load. Single-arg lookup silently misses and the menu
+                    // option permanently shows the C# fallback. See CLAUDE.md
+                    // "Known gotchas".
+                    var enterLabelId = captured.EnterLabelId;
+                    var dotIdx = enterLabelId.LastIndexOf('.');
+                    var groupId = dotIdx > 0 ? enterLabelId.Substring(0, dotIdx) : enterLabelId;
+                    var field = dotIdx > 0 ? enterLabelId.Substring(dotIdx + 1) : string.Empty;
                     starter.AddGameMenuOption(
                         menuId: attach.MenuId,
                         optionId: optionId,
-                        optionText: TORTextHelper.GetTextForNative(captured.EnterLabelId, captured.EnterLabelDefault),
+                        optionText: TORTextHelper.GetTextForNative(groupId, field, captured.EnterLabelDefault),
                         condition: args => MenuCondition(args, captured),
                         consequence: args => MenuConsequence(args, captured),
                         isLeave: false);

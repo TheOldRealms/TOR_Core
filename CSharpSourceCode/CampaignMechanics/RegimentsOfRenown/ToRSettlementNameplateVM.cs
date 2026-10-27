@@ -32,6 +32,7 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
             for (int i = 0; i < SlotCount; i++) _slotText[i] = "";
             RefreshPoiState();
             SettlementPOIManagerCampaignBehavior.DiscoveryChanged += OnDiscoveryChanged;
+            SettlementPOIManagerCampaignBehavior.IconsChanged     += OnDiscoveryChanged;
         }
 
         private void OnDiscoveryChanged() => RefreshPoiState();
@@ -54,7 +55,7 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
                 if (slot >= SlotCount) break;
                 if (!poi.AppliesTo(_settlement)) continue;
                 _slotVisible[slot] = true;
-                _slotText[slot] = mgr.IsDiscovered(_settlement, poi) ? poi.MapIconText : "?";
+                _slotText[slot] = mgr.IsDiscovered(_settlement, poi) ? poi.MapIconTextFor(_settlement) : "?";
                 slot++;
             }
             NotifyAllSlots();

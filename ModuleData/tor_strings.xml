@@ -6015,12 +6015,115 @@
   <string id="tor_poi_wizardhall.MustHaveCareer" text="{=str_tor_poi_wizardhall.MustHaveCareer}Only {REQUIRED_CAREER} may enter the College." />
 
   <!-- POIs - Witch Hunter Lodge -->
-  <string id="tor_poi_witchhunter_lodge.Name" text="{=str_tor_poi_witchhunter_lodge.Name}Witch Hunter Lodge" />
-  <string id="tor_poi_witchhunter_lodge.EnterLabel" text="{=str_tor_poi_witchhunter_lodge.EnterLabel}Visit the Witch Hunter Lodge" />
+  <string id="tor_poi_witchhunter_lodge.Name" text="{=str_tor_poi_witchhunter_lodge.Name}Witch Hunter Chapterhouse" />
+  <string id="tor_poi_witchhunter_lodge.EnterLabel" text="{=str_tor_poi_witchhunter_lodge.EnterLabel}Visit the Witch Hunter Chapterhouse" />
   <string id="tor_poi_witchhunter_lodge.Undiscovered" text="{=str_tor_poi_witchhunter_lodge.Undiscovered}You have not yet found this place." />
   <string id="tor_poi_witchhunter_lodge.Sealed" text="{=str_tor_poi_witchhunter_lodge.Sealed}This place is sealed." />
-  <string id="tor_poi_witchhunter_lodge.SiegeSealed" text="{=str_tor_poi_witchhunter_lodge.SiegeSealed}The lodge is closed during the siege." />
+  <string id="tor_poi_witchhunter_lodge.SiegeSealed" text="{=str_tor_poi_witchhunter_lodge.SiegeSealed}The chapterhouse is locked due to the ongoing siege." />
   <string id="tor_poi_witchhunter_lodge.Rejected" text="{=str_tor_poi_witchhunter_lodge.Rejected}The templars turn you away." />
+  <string id="tor_poi_witchhunter_lodge.hub_greet" text="{=str_tor_poi_witchhunter_lodge.hub_greet}What do you want of the Silver Hammer?" />
+  <string id="tor_poi_witchhunter_lodge.player_hunts" text="{=str_tor_poi_witchhunter_lodge.player_hunts}Lord Inquisitor, I wish to aid the Empire! Do you have anything special that needs doing?" />
+  <string id="tor_poi_witchhunter_lodge.player_bounties" text="{=str_tor_poi_witchhunter_lodge.player_bounties}Got any open Bounties?" />
+  <string id="tor_poi_witchhunter_lodge.player_turnins" text="{=str_tor_poi_witchhunter_lodge.player_turnins}I have acquired some things the Order may desire" />
+  <string id="tor_poi_witchhunter_lodge.player_store" text="{=str_tor_poi_witchhunter_lodge.player_store}I wish to acquire some Inquisition armaments." />
+  <string id="tor_poi_witchhunter_lodge.player_leave" text="{=str_tor_poi_witchhunter_lodge.player_leave}May Sigmar keep you, Lord Inquisitor!" />
+  <string id="tor_poi_witchhunter_lodge.hunts_todo" text="{=str_tor_poi_witchhunter_lodge.hunts_todo}Not at the moment. We are still searching for leads on potential Hunts. Return later." />
+  <string id="tor_poi_witchhunter_lodge.bounties_todo" text="{=str_tor_poi_witchhunter_lodge.bounties_todo}Nothing new in the ledger just yet. Return in time as there is always work to be done." />
+  <string id="tor_poi_witchhunter_lodge.turnins_open" text="{=str_tor_poi_witchhunter_lodge.turnins_open}What have you brought the Order?" />
+  <string id="tor_poi_witchhunter_lodge.turnins_materials" text="{=str_tor_poi_witchhunter_lodge.turnins_materials}Wyrdstone, and sorcerous scrolls for the pyres." />
+  <string id="tor_poi_witchhunter_lodge.turnins_prisoners" text="{=str_tor_poi_witchhunter_lodge.turnins_prisoners}Monsters and heretics for the cells, Lord Inquisitor!" />
+  <string id="tor_poi_witchhunter_lodge.turnins_done" text="{=str_tor_poi_witchhunter_lodge.turnins_done}That is all for now." />
+  <string id="tor_poi_witchhunter_lodge.materials_title" text="{=str_tor_poi_witchhunter_lodge.materials_title}For the Pyre" />
+  <string id="tor_poi_witchhunter_lodge.materials_description" text="{=str_tor_poi_witchhunter_lodge.materials_description}What have you brought the Order?" />
+  <string id="tor_poi_witchhunter_lodge.player_companions" text="{=str_tor_poi_witchhunter_lodge.player_companions}I wish to commision a hunter to aid me." />
+  <string id="tor_poi_witchhunter_lodge.player_exclusive" text="{=str_tor_poi_witchhunter_lodge.player_exclusive}What of the Order's business for one of our own?" />
+  <string id="tor_poi_witchhunter_lodge.notrust" text="{=str_tor_poi_witchhunter_lodge.notrust}First, prove yourself trustworthy by doing other work for the order, then we'll speak further." />
+  <string id="tor_poi_witchhunter_lodge.companions_available" text="{=str_tor_poi_witchhunter_lodge.companions_available}One of our hunters returned recently. However, their presence will require a payment of XXXXXX." />
+  <string id="tor_poi_witchhunter_lodge.companions_cooldown" text="{=str_tor_poi_witchhunter_lodge.companions_cooldown}All of our hunters are busy. One should return in {WH_COMPANION_DAYS} days." />
+  <string id="tor_poi_witchhunter_lodge.exclusive_todo" text="{=str_tor_poi_witchhunter_lodge.exclusive_todo}The Order has nothing for you yet, brother. Return in time." />
+  <string id="tor_poi_witchhunter_lodge.bounties_hub" text="{=str_tor_poi_witchhunter_lodge.bounties_hub}What kind did you have in mind?" />
+  <string id="tor_poi_witchhunter_lodge.excuse_minor" text="{=str_tor_poi_witchhunter_lodge.excuse_minor}I was unable to finish the task Lord Inquisitor." />
+  <string id="tor_poi_witchhunter_lodge.excuse_minor_reply" text="{=str_tor_poi_witchhunter_lodge.excuse_minor_reply}Your weakness is noted. Pray, do not make this a common occurance." />
+  <string id="tor_poi_witchhunter_lodge.excuse_major" text="{=str_tor_poi_witchhunter_lodge.excuse_major}My apologies Lord Inquisitor. I was unable to finish the task." />
+  <string id="tor_poi_witchhunter_lodge.excuse_major_reply" text="{=str_tor_poi_witchhunter_lodge.excuse_major_reply}Incompetence is no stranger to you, is it? The Order expects better from its associates." />
+  <string id="tor_poi_witchhunter_lodge.bounties_abandon" text="{=str_tor_poi_witchhunter_lodge.bounties_abandon}I wish to withdraw from one of my bounties." />
+  <string id="tor_poi_witchhunter_lodge.bounties_turnin" text="{=str_tor_poi_witchhunter_lodge.bounties_turnin}I have come to collect my due. The work is done." />
+  <string id="tor_poi_witchhunter_lodge.ask_minor" text="{=str_tor_poi_witchhunter_lodge.ask_minor}Do you have any Minor Bounties available?" />
+  <string id="tor_poi_witchhunter_lodge.offer_minor_stub" text="{=str_tor_poi_witchhunter_lodge.offer_minor_stub}Nothing in the ledger right now — return in a few days, something always comes up." />
+  <string id="tor_poi_witchhunter_lodge.ask_major" text="{=str_tor_poi_witchhunter_lodge.ask_major}Are there any Major Bounties the Order needs done?" />
+  <string id="tor_poi_witchhunter_lodge.offer_major_stub" text="{=str_tor_poi_witchhunter_lodge.offer_major_stub}There are none at the moment, however i'm sure something will occur in the coming days, return later." />
+  <string id="tor_poi_witchhunter_lodge.hunts_offer_handoff" text="{=str_tor_poi_witchhunter_lodge.hunts_offer_handoff}I have a lead for you. Step away a moment, then come back and ask me properly — I will put the details to you." />
+  <string id="tor_poi_witchhunter_lodge.bounties_offer_handoff" text="{=str_tor_poi_witchhunter_lodge.bounties_offer_handoff}There is a bounty on the ledger. Step away a moment, then come back and ask me — I will give you the particulars." />
+  <string id="tor_poi_witchhunter_lodge.bounties_back" text="{=str_tor_poi_witchhunter_lodge.bounties_back}That is all for now." />
+  <string id="tor_poi_witchhunter_lodge.store_open" text="{=str_tor_poi_witchhunter_lodge.store_open}The Order's wares. These will serve you better than tavern-forged scrap." />
+  <string id="tor_poi_witchhunter_lodge.store_reply" text="{=str_tor_poi_witchhunter_lodge.store_reply}What else can I do for you?" />
+  <string id="tor_poi_witchhunter_lodge.scout_greet" text="{=str_tor_poi_witchhunter_lodge.scout_greet}The Order sent you? Fine. What do you need?" />
+  <string id="tor_poi_witchhunter_lodge.scout_leave" text="{=str_tor_poi_witchhunter_lodge.scout_leave}That is all. Good hunting." />
+  <string id="tor_scoutmaster_empire_0" text="{=str_tor_scoutmaster_empire_0}{FIRSTNAME} the Order Scout" />
+
+  <!-- Material picker overlay -->
+  <string id="tor_material_picker.subtitle" text="{=str_tor_material_picker.subtitle}Pick a material and a quantity." />
+  <string id="tor_material_picker.available" text="{=str_tor_material_picker.available}Available: {COUNT}" />
+  <string id="tor_material_picker.reward" text="{=str_tor_material_picker.reward}Reward: {PRESTIGE} Prestige + {GOLD} gold" />
+
+  <!-- Witch Hunter Bounties - shared quest strings -->
+  <string id="tor_wh_bounty_accept_player" text="{=str_tor_wh_bounty_accept_player}I will see it done." />
+  <string id="tor_wh_bounty_quest_accept_player" text="{=str_tor_wh_bounty_quest_accept_player}Consider it done." />
+  <string id="tor_wh_bounty_quest_explanation" text="{=str_tor_wh_bounty_quest_explanation}Deal with {COUNT} {TARGET}. On the deed the Order will pay you {REWARD_GOLD}{GOLD_ICON} and {REWARD_PRESTIGE} prestige." />
+  <string id="tor_wh_bounty_offer_dialog" text="{=str_tor_wh_bounty_offer_dialog}The Order is watching. See it done." />
+  <string id="tor_wh_bounty_discuss_dialog" text="{=str_tor_wh_bounty_discuss_dialog}There are still heads to be taken. The ledger does not close itself." />
+  <string id="tor_wh_bounty_started_log" text="{=str_tor_wh_bounty_started_log}The Order expects {COUNT} {TARGET} dealt with, and be quick about it!" />
+  <string id="tor_wh_bounty_progress_log" text="{=str_tor_wh_bounty_progress_log}Progress: {PROGRESS}/{TARGET_COUNT} {TARGET}." />
+  <string id="tor_wh_bounty_ready_log" text="{=str_tor_wh_bounty_ready_log}All targets eliminated. Return to any Witch Hunter Chapterhouse to collect your due." />
+  <string id="tor_wh_bounty_turnedin_log" text="{=str_tor_wh_bounty_turnedin_log}The Order's ledger is settled. Reward paid." />
+  <string id="tor_wh_bounty_late_turnin_log" text="{=str_tor_wh_bounty_late_turnin_log}You were late to collect, but the Order honours the kills." />
+  <string id="tor_wh_bounty_timeout_log" text="{=str_tor_wh_bounty_timeout_log}The Silver Hammer will note your failure to see this through. You will need to return and report this failure at the chapterhouse before taking another bounty of this kind." />
+  <string id="tor_wh_bounty_turnin_title" text="{=str_tor_wh_bounty_turnin_title}Collect Your Due" />
+  <string id="tor_wh_bounty_turnin_desc" text="{=str_tor_wh_bounty_turnin_desc}Which bounty will you claim payment for? Any chapterhouse will honour it." />
+  <string id="tor_wh_bounty_abandon_title" text="{=str_tor_wh_bounty_abandon_title}Which bounty will you relinquish?" />
+  <string id="tor_wh_bounty_abandon_desc" text="{=str_tor_wh_bounty_abandon_desc}The Order of the Silver Hammer will note your choice. No reward will follow." />
+
+  <!-- Witch Hunter Bounties - Minor templates -->
+  <string id="tor_wh_bounty_minor_kill_cultists_title" text="{=str_tor_wh_bounty_minor_kill_cultists_title}Cull the Cultists" />
+  <string id="tor_wh_bounty_minor_kill_cultists_brief" text="{=str_tor_wh_bounty_minor_kill_cultists_brief}My hunters have confirmed rampant cult activity. Put {COUNT} of them to the sword and the Order shall aid in elevating your prestige." />
+  <string id="tor_wh_bounty_minor_kill_chaos_title" text="{=str_tor_wh_bounty_minor_kill_chaos_title}Thin the Norscan Hordes" />
+  <string id="tor_wh_bounty_minor_kill_chaos_brief" text="{=str_tor_wh_bounty_minor_kill_chaos_brief}Reports of Norscans raiding parties on our beaches have become far too frequent. Put {COUNT} of their heads on pikes — the Order can always spare coin for such work." />
+  <string id="tor_wh_bounty_minor_kill_undead_title" text="{=str_tor_wh_bounty_minor_kill_undead_title}Cleanse the Walking Dead" />
+  <string id="tor_wh_bounty_minor_kill_undead_brief" text="{=str_tor_wh_bounty_minor_kill_undead_brief}Undead walk the lands near our chapterhouse. Burn {COUNT} of them and return — this is the Order's work." />
+  <string id="tor_wh_bounty_minor_capture_cultists_title" text="{=str_tor_wh_bounty_minor_capture_cultists_title}Captives for the Interrogators" />
+  <string id="tor_wh_bounty_minor_capture_cultists_brief" text="{=str_tor_wh_bounty_minor_capture_cultists_brief}The Order needs more captives for interrogation. Bring {COUNT} chaos cultists to any of our chapterhouses." />
+  <string id="tor_wh_bounty_minor_capture_chaos_title" text="{=str_tor_wh_bounty_minor_capture_chaos_title}Norscan Prisoners Wanted Alive" />
+  <string id="tor_wh_bounty_minor_capture_chaos_brief" text="{=str_tor_wh_bounty_minor_capture_chaos_brief}Norscan raiders continue to be a thorn in our Emporer's side. Take {COUNT} of them alive and return them to one of our chapterhouses so that we can... soothe the Emporer's troubles." />
+  <string id="tor_wh_bounty_minor_defeat_cultists_title" text="{=str_tor_wh_bounty_minor_defeat_cultists_title}Scatter the Cultist Bands" />
+  <string id="tor_wh_bounty_minor_defeat_cultists_brief" text="{=str_tor_wh_bounty_minor_defeat_cultists_brief}Our scouts have spotted a few bands of heretics moving in broad daylight. {COUNT} of them to be exact. Send them to their masters before they gain any more traction in our Empire!" />
+  <string id="tor_wh_bounty_minor_defeat_chaos_raids_title" text="{=str_tor_wh_bounty_minor_defeat_chaos_raids_title}Break the Norscan Raiders" />
+  <string id="tor_wh_bounty_minor_defeat_chaos_raids_brief" text="{=str_tor_wh_bounty_minor_defeat_chaos_raids_brief}Norscans are burning villages. Break {COUNT} of their raiding parties and the Order will see you paid." />
+  <string id="tor_wh_bounty_minor_clear_cultist_hideouts_title" text="{=str_tor_wh_bounty_minor_clear_cultist_hideouts_title}Burn the Cult Lairs" />
+  <string id="tor_wh_bounty_minor_clear_cultist_hideouts_brief" text="{=str_tor_wh_bounty_minor_clear_cultist_hideouts_brief}Our informants have warned me of an increasing number of heretical cults in the forest. Only {COUNT} of them are known so far, and they must be culled! Do so and the Order shall reward you." />
+  <string id="tor_wh_bounty_minor_clear_chaos_hideouts_title" text="{=str_tor_wh_bounty_minor_clear_chaos_hideouts_title}Root Out the Norscan Hideouts" />
+  <string id="tor_wh_bounty_minor_clear_chaos_hideouts_brief" text="{=str_tor_wh_bounty_minor_clear_chaos_hideouts_brief}Reports of Norscans raiding parties continue to flood in. Meaning they must've decided to set up camp somewhere. I want you to find {COUNT} of these, and root them out." />
+
+  <!-- Witch Hunter Bounties - Major templates -->
+  <string id="tor_wh_bounty_major_kill_chaos_title" text="{=str_tor_wh_bounty_major_kill_chaos_title}Cull the Chaos Warriors" />
+  <string id="tor_wh_bounty_major_kill_chaos_brief" text="{=str_tor_wh_bounty_major_kill_chaos_brief}Word has reached me that warriors of the dark gods now taint our blessed soil. Send {COUNT} of these chaos warriors back to their foul patrons! The Order will reward you handsomely." />
+  <string id="tor_wh_bounty_major_defeat_chaos_warbands_title" text="{=str_tor_wh_bounty_major_defeat_chaos_warbands_title}Break the Chaos Warbands" />
+  <string id="tor_wh_bounty_major_defeat_chaos_warbands_brief" text="{=str_tor_wh_bounty_major_defeat_chaos_warbands_brief}Full warbands of chaos warriors bear down on the north. Break {COUNT} of them — not Norscan raiders, warbands led by the warriors of the Dark Gods. The Order will know your name afterwards." />
+  <string id="tor_wh_bounty_major_clear_chaos_lairs_title" text="{=str_tor_wh_bounty_major_clear_chaos_lairs_title}Burn the Chaos Strongholds" />
+  <string id="tor_wh_bounty_major_clear_chaos_lairs_brief" text="{=str_tor_wh_bounty_major_clear_chaos_lairs_brief}Fortified strongholds held by the warriors of Chaos have taken root. Burn {COUNT} of them — these are not minor cells. The Order will pay a king's ransom for the service." />
+  <string id="tor_wh_bounty_major_kill_norscan_title" text="{=str_tor_wh_bounty_major_kill_norscan_title}Scour the Norscan Horde" />
+  <string id="tor_wh_bounty_major_kill_norscan_brief" text="{=str_tor_wh_bounty_major_kill_norscan_brief}A Norscan horde has crossed the Sea of Claws in force. Go north, and put {COUNT} of them in the ground before they reach the heartlands." />
+  <string id="tor_wh_bounty_major_defeat_norscan_warbands_title" text="{=str_tor_wh_bounty_major_defeat_norscan_warbands_title}Scatter the Norscan Raiders" />
+  <string id="tor_wh_bounty_major_defeat_norscan_warbands_brief" text="{=str_tor_wh_bounty_major_defeat_norscan_warbands_brief}Norscans dont seem to understand when they are not wanted without a bit of force. Scatter {COUNT} of their warbands and the Order will see your deeds remembered." />
+  <string id="tor_wh_bounty_major_kill_cultists_title" text="{=str_tor_wh_bounty_major_kill_cultists_title}Grand Purge of the Cults" />
+  <string id="tor_wh_bounty_major_kill_cultists_brief" text="{=str_tor_wh_bounty_major_kill_cultists_brief}A cult of the ruinous powers has grown bold enough to muster in the hundreds. Purge {COUNT} of these heretics and the Silver Hammer will spread word of your deed." />
+  <string id="tor_wh_bounty_major_defeat_cultist_warbands_title" text="{=str_tor_wh_bounty_major_defeat_cultist_warbands_title}Break the Cult Warbands" />
+  <string id="tor_wh_bounty_major_defeat_cultist_warbands_brief" text="{=str_tor_wh_bounty_major_defeat_cultist_warbands_brief}Heretical cells have organised into warbands and march in the open, an affront to Sigmar himself! Purge {COUNT} of them before their numbers grow further." />
+  <string id="tor_wh_bounty_major_clear_cultist_lairs_title" text="{=str_tor_wh_bounty_major_clear_cultist_lairs_title}Burn the Cult Sanctums" />
+  <string id="tor_wh_bounty_major_clear_cultist_lairs_brief" text="{=str_tor_wh_bounty_major_clear_cultist_lairs_brief}The cult has built sanctums deep enough to require a proper burning. Clear {COUNT} of them — root and branch." />
+  <string id="tor_wh_bounty_major_kill_undead_title" text="{=str_tor_wh_bounty_major_kill_undead_title}Cleanse the Risen Host" />
+  <string id="tor_wh_bounty_major_kill_undead_brief" text="{=str_tor_wh_bounty_major_kill_undead_brief}A necromancer has raised a host from the barrows. Return {COUNT} of them to the earth and the Order will reward you." />
+  <string id="tor_wh_bounty_major_defeat_undead_warbands_title" text="{=str_tor_wh_bounty_major_defeat_undead_warbands_title}Scatter the Legions of the Dead" />
+  <string id="tor_wh_bounty_major_defeat_undead_warbands_brief" text="{=str_tor_wh_bounty_major_defeat_undead_warbands_brief}The dead walk in companies, not knots and stragglers. Scatter {COUNT} of their legions." />
 
   <!-- POIs - Empire Engineer Hall -->
   <string id="tor_poi_empire_engineer_hall.Name" text="{=str_tor_poi_empire_engineer_hall.Name}Empire Engineer Hall" />
