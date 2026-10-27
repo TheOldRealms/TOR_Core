@@ -96,6 +96,16 @@ namespace TOR_Core.AbilitySystem
 
         public delegate void OnHideOutBossFightInit();
         public event OnHideOutBossFightInit OnInitHideOutBossFight;
+
+        /// <summary>
+        /// Fires once a cast completes successfully (same site as the Specialize-
+        /// Lore quest counter / cast skill XP). Subscribers see the raw
+        /// <see cref="Ability"/> and the caster <see cref="Agent"/> and can filter
+        /// by whatever criteria they want (ability type, lore, agent team, etc.).
+        /// Used by <c>AmbushLoudnessTracker</c> to count non-silent casts as
+        /// loudness events during an ambush mission.
+        /// </summary>
+        public event System.Action<Ability, Agent> OnAbilityCastComplete;
         private static ActionIndexCache IdleAnimation
         {
             get
@@ -395,6 +405,8 @@ namespace TOR_Core.AbilitySystem
                     }
                 }
             }
+
+            OnAbilityCastComplete?.Invoke(ability, agent);
         }
 
         private void HandleInput(float dt)

@@ -246,19 +246,19 @@ namespace TOR_Core.Missions
         [MissionMethod]
         public static Mission OpenAmbushMission(string scene)
         {
-            TaleWorlds.Library.Debug.Print("[AmbushMission] OpenAmbushMission scene=" + scene);
             var rec = SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All);
-            TaleWorlds.Library.Debug.Print("[AmbushMission] rec built, calling MissionState.OpenNew");
             return MissionState.OpenNew("Battle", rec, delegate (Mission mission)
             {
-                TaleWorlds.Library.Debug.Print("[AmbushMission] behaviors lambda enter");
                 IMissionTroopSupplier[] suppliers =
                 [
                     new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Defender),
                     new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Attacker),
                 ];
-                int playerTroopCount = MapEvent.PlayerMapEvent.AttackerSide.TroopCount;
-                int targetTroopCount = MapEvent.PlayerMapEvent.DefenderSide.TroopCount;
+                // Phase D: player (ambusher) sits on Attacker, target
+                // (victim) on Defender. Pass the two parties through to the
+                // controller — it resolves sides and counts from them.
+                var ambusherParty = PartyBase.MainParty;
+                var victimParty = MapEvent.PlayerMapEvent.DefenderSide.LeaderParty;
                 List<MissionBehavior> list =
                 [
                     // Player side = Attacker (user-confirmed; previous read of EncounterManager
@@ -266,8 +266,85 @@ namespace TOR_Core.Missions
                     new DefaultBattleMissionAgentSpawnLogic(suppliers, BattleSideEnum.Attacker, BattleSizeType.Battle),
                     new BattlePowerCalculationLogic(),
                     new BattleSpawnLogic("battle_set"),
-                    new AmbushMission.AmbushMissionController(playerTroopCount, targetTroopCount),
+                    new AmbushMission.AmbushMissionController(ambusherParty, victimParty),
                     new AmbushMission.AmbushEndLogic(),
+                    new AmbushMission.AmbushLoudnessTracker(),
+                    new MissionExperienceBehavior(),
+                    new CampaignMissionComponent(),
+                    new BattleAgentLogic(),
+                    new MountAgentLogic(),
+                    new MissionOptionsComponent(),
+                    new BattleEndLogic(),
+                    new MissionCombatantsLogic(
+                        MobileParty.MainParty.MapEvent.InvolvedParties,
+                        PartyBase.MainParty,
+                        MobileParty.MainParty.MapEvent.GetLeaderParty(BattleSideEnum.Defender),
+                        MobileParty.MainParty.MapEvent.GetLeaderParty(BattleSideEnum.Attacker),
+                        Mission.MissionTeamAITypeEnum.FieldBattle, false),
+                    new BattleObserverMissionLogic(),
+                    new AgentHumanAILogic(),
+                    new AgentVictoryLogic(),
+                    new MissionAgentPanicHandler(),
+                    new BattleMissionAgentInteractionLogic(),
+                    new AgentMoraleInteractionLogic(),
+                    new AssignPlayerRoleInTeamMissionController(true, false, false),
+                    new BannerBearerLogic(),
+                ];
+                Hero attackerHero = MapEvent.PlayerMapEvent.AttackerSide.LeaderParty.LeaderHero;
+                Hero defenderHero = MapEvent.PlayerMapEvent.DefenderSide.LeaderParty.LeaderHero;
+                list.Add(new SandboxGeneralsAndCaptainsAssignmentLogic(attackerHero?.Name, defenderHero?.Name, null, null, false));
+                list.Add(new EquipmentControllerLeaveLogic());
+                list.Add(new MissionHardBorderPlacer());
+                list.Add(new MissionBoundaryPlacer());
+                list.Add(new MissionBoundaryCrossingHandler());
+                list.Add(new HighlightsController());
+                list.Add(new BattleHighlightsController());
+                list.Add(new BattleDeploymentMissionController(false));
+                list.Add(new BattleDeploymentHandler(false));
+                return list.ToArray();
+            }, true, true);
+        }
+
+        /// <summary>
+        /// Phase F — open the "player is being ambushed" mission. Same scene +
+        /// controller as <see cref="OpenAmbushMission"/>; only the end logic
+        /// differs so the 4-outcome state machine fires instead of Phase D's
+        /// 5-outcome one.
+        ///
+        /// Side mapping follows the fiction: the ambusher (AI) sits on the
+        /// Attacker side, the victim (player) on the Defender side. The
+        /// controller teleports the Attacker team to the ambush_attacker_*
+        /// scene slots in both phases — the "ambusher = Attacker" invariant
+        /// is what lets the same controller serve both missions without
+        /// per-phase branching inside it.
+        /// </summary>
+        [MissionMethod]
+        public static Mission OpenAmbushedMission(string scene)
+        {
+            var rec = SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All);
+            return MissionState.OpenNew("Battle", rec, delegate (Mission mission)
+            {
+                IMissionTroopSupplier[] suppliers =
+                [
+                    new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Defender),
+                    new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Attacker),
+                ];
+                // Phase F: AI ambusher on Attacker, player (victim) on
+                // Defender. Pass the two parties through to the controller.
+                var ambusherParty = MapEvent.PlayerMapEvent.AttackerSide.LeaderParty;
+                var victimParty = PartyBase.MainParty;
+                List<MissionBehavior> list =
+                [
+                    // Player is on the Defender side here. The spawn logic's
+                    // "player side" arg is purely informational for vanilla's
+                    // deployment-UI / hiding behaviour; it doesn't gate the
+                    // spawn pipeline.
+                    new DefaultBattleMissionAgentSpawnLogic(suppliers, BattleSideEnum.Defender, BattleSizeType.Battle),
+                    new BattlePowerCalculationLogic(),
+                    new BattleSpawnLogic("battle_set"),
+                    new AmbushMission.AmbushMissionController(ambusherParty, victimParty),
+                    new AmbushMission.AmbushedEndLogic(),
+                    new AmbushMission.AmbushLoudnessTracker(),
                     new MissionExperienceBehavior(),
                     new CampaignMissionComponent(),
                     new BattleAgentLogic(),

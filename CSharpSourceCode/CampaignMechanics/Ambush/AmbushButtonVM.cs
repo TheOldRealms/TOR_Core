@@ -13,6 +13,10 @@ namespace TOR_Core.CampaignMechanics.Ambush
         private const string EyeSpritePrefix = "ambush_eye_";
         private const int EyeFullyExposedIndex = 9;    // wide open: no stealth / fully visible
         private const int EyeFullyCoveredIndex = 0;    // closed: perfectly hidden
+        // 11th state. Takes priority over the 0..9 chance mapping while the
+        // ambush cooldown is ticking. Placeholder art ships; 2D artist will
+        // repaint the whole 11-sprite stack later.
+        private const string EyeSpriteCooldown = EyeSpritePrefix + "cooldown";
 
         private bool _isVisible = true;
         private bool _isStealthActive;
@@ -29,7 +33,16 @@ namespace TOR_Core.CampaignMechanics.Ambush
         private string ComputeHintText()
         {
             if (_isStealthActive) return "Break cover (X)";
-            if (_isOnCooldown) return "Cooling down";
+            if (_isOnCooldown)
+            {
+                var until = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>()?.PlayerAmbushCooldownUntil;
+                if (until.HasValue && until.Value.IsFuture)
+                {
+                    int hours = (int)System.Math.Ceiling((until.Value - CampaignTime.Now).ToHours);
+                    return hours > 0 ? ("Cooling down — available in " + hours + "h") : "Cooling down";
+                }
+                return "Cooling down";
+            }
             return "Enter stealth stance (X)";
         }
 
@@ -117,6 +130,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         private static string ComputeEyeSprite(AmbushCampaignBehavior ambush)
         {
+            // Cooldown takes priority over all other states — the player can't
+            // enter stealth right now and the icon should scream that.
+            if (ambush.IsOnAmbushCooldown) return EyeSpriteCooldown;
             // Not stealthed → wide-open eye (player is exposed by default).
             if (!ambush.IsPlayerInStealth) return EyeSpritePrefix + EyeFullyExposedIndex;
 
