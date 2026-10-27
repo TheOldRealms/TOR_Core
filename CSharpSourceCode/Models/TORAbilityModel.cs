@@ -303,7 +303,7 @@ namespace TOR_Core.Models
             ExplainedNumber explainedNumber = new(1f, false, null);
             if (character.GetPerkValue(TORPerks.Spellcraft.Selfish) && template.IsSpell)
             {
-                PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.Selfish, BattleEnvironment.Any, character, false, ref explainedNumber);
+                PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.Selfish, character, false, ref explainedNumber, BattleEnvironment.Any);
             }
 
             if (character.IsHero && character.HeroObject == Hero.MainHero && Agent.Main != null && Agent.Main.IsActive())
@@ -389,14 +389,14 @@ namespace TOR_Core.Models
                 {
                     if (victim.Character is CharacterObject victimCharacter && character == victimCharacter)
                     {
-                        PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.Selfish, victim.CurrentBattleEnvironment, character, true, ref explainedNumber);
+                        PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.Selfish, character, true, ref explainedNumber, victim.CurrentBattleEnvironment);
                     }
                 }
                 if (character.GetPerkValue(TORPerks.Spellcraft.WellControlled) && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)
                 {
                     if (victimLeader != null && character == victimLeader)
                     {
-                        PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.WellControlled, victim.CurrentBattleEnvironment, character, true, ref explainedNumber);
+                        PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.WellControlled, character, true, ref explainedNumber, victim.CurrentBattleEnvironment);
                     }
                 }
                 if (character.IsPlayerCharacter && character.IsHero && character.HeroObject == Hero.MainHero)
@@ -405,15 +405,15 @@ namespace TOR_Core.Models
                 }
                 if (character.GetPerkValue(TORPerks.Spellcraft.OverCaster) && abilityTemplate.IsSpell && (abilityTemplate.DoesDamage || abilityTemplate.DoesHeal))
                 {
-                    PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.OverCaster, victim.CurrentBattleEnvironment, character, true, ref explainedNumber);
+                    PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.OverCaster, character, true, ref explainedNumber, victim.CurrentBattleEnvironment);
                 }
                 if (character.GetPerkValue(TORPerks.Spellcraft.EfficientSpellCaster) && abilityTemplate.IsSpell && (abilityTemplate.DoesDamage || abilityTemplate.DoesHeal))
                 {
-                    PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.EfficientSpellCaster, victim.CurrentBattleEnvironment, character, true, ref explainedNumber);
+                    PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.EfficientSpellCaster, character, true, ref explainedNumber, victim.CurrentBattleEnvironment);
                 }
                 if (character.GetPerkValue(TORPerks.Spellcraft.Dampener) && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)
                 {
-                    PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.Dampener, victim.CurrentBattleEnvironment, character, true, ref explainedNumber);
+                    PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.Dampener, character, true, ref explainedNumber, victim.CurrentBattleEnvironment);
                 }
                 if (victimCaptain != null && victimCaptain.GetPerkValue(TORPerks.Spellcraft.Dampener) && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)
                 {
@@ -441,9 +441,9 @@ namespace TOR_Core.Models
         public int GetSpellGoldCostForHero(Hero hero, AbilityTemplate spellTemplate)
         {
             ExplainedNumber goldCost = new(spellTemplate.GoldCost);
-            if (hero.GetPerkValue(TORPerks.Spellcraft.Librarian))
+            if (hero != null && hero.GetPerkValue(TORPerks.Spellcraft.Librarian))
             {
-                PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.Librarian, BattleEnvironment.Any, hero.CharacterObject, false, ref goldCost);
+                PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.Librarian, hero.CharacterObject, false, ref goldCost, BattleEnvironment.Any);
             }
             return (int)goldCost.ResultNumber;
         }

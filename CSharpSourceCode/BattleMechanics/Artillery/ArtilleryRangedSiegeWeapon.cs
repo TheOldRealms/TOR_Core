@@ -445,7 +445,7 @@ namespace TOR_Core.BattleMechanics.Artillery
             return textObject;
         }
 
-        public override TextObject GetDescriptionText(WeakGameEntity gameEntity)
+        public override TextObject GetDescriptionText(WeakGameEntity gameEntity, Agent _)
         {
             return new TextObject(DisplayName);
         }
