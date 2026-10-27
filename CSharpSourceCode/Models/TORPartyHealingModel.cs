@@ -115,7 +115,7 @@ namespace TOR_Core.Models
             AddScaledSurgeonSurvivalBonus(mobileParty, ref survivalChanceDenominator);
 
             if (enemyParty?.MobileParty != null &&
-                enemyParty.MobileParty.HasPerk(DefaultPerks.Medicine.DoctorsOath, out Hero perkOwnerHero, checkSecondaryRole: false))
+                enemyParty.MobileParty.HasPerk(DefaultPerks.Medicine.DoctorsOath, checkSecondaryRole: false))
             {
                 AddScaledSurgeonSurvivalBonus(enemyParty.MobileParty, ref survivalChanceDenominator);
                 SkillLevelingManager.OnSurgeryApplied(enemyParty.MobileParty, surgerySuccess: false, character.Tier);
