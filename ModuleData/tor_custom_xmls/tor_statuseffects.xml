@@ -2273,7 +2273,7 @@
     		id="frenzy_movement_speed"
     		particle_id=""
    		 do_not_attach_to_agent_skeleton="true"
-   		 base_effect_value="0.20"
+   		 base_effect_value="0.10"
     		applies_for_attack_type="All"
     		type="MovementManipulation"
    		 damage_type="Physical">
@@ -2283,7 +2283,7 @@
    		 id="frenzy_attack_speed"
   		  particle_id=""
   		  do_not_attach_to_agent_skeleton="true"
-  		  base_effect_value="0.20"
+  		  base_effect_value="0.15"
    		 applies_for_attack_type="All"
    		 type="AttackSpeedManipulation"
   		  damage_type="Physical">
