@@ -88,6 +88,10 @@ namespace TOR_Core.Missions.AmbushMission
             if (!_activeZones.Contains(this))
                 _activeZones.Add(this);
             SetScriptComponentToTick(GetTickRequirement());
+            TaleWorlds.Library.Debug.Print(
+                "[AmbushRetreatZone] OnInit at " + GameEntity.GlobalPosition
+                + "  Radius=" + Radius
+                + "  totalZones=" + _activeZones.Count);
         }
 
         public override TickRequirement GetTickRequirement()

@@ -15,6 +15,7 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Missions;
+using TOR_Core.Missions.AmbushMission;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Ambush
@@ -376,6 +377,11 @@ namespace TOR_Core.CampaignMechanics.Ambush
                     PlayerEncounter.StartBattle();
                     PlayerEncounter.Update();
                 }
+                // Clear any stale AmbushRetreatZone registrations from a prior
+                // scene BEFORE OpenNew — the current scene's AmbushRetreatZone
+                // OnInit will fire during scene load that follows, so clearing
+                // after would wipe the just-registered zone.
+                AmbushRetreatZone.ResetRegistry();
                 TorMissionManager.OpenAmbushMission(DefaultAmbushScene);
             }
             else

@@ -22,6 +22,8 @@ namespace TOR_Core.Missions.AmbushMission
     {
         private float _timeInZone;
         private bool _outcomeDecided;
+        private bool _deploymentFinished;
+        private float _diagnosticAccumulator;
         private MissionResult _result;
         private TORMissionAmbushModel _model;
 
@@ -32,10 +34,36 @@ namespace TOR_Core.Missions.AmbushMission
             _model = Campaign.Current?.Models?.GetMissionAmbushModel() ?? new TORMissionAmbushModel();
         }
 
+        public override void OnDeploymentFinished()
+        {
+            base.OnDeploymentFinished();
+            _deploymentFinished = true;
+            TaleWorlds.Library.Debug.Print("[AmbushEndLogic] OnDeploymentFinished — end-checks armed");
+        }
+
         public override void OnMissionTick(float dt)
         {
             base.OnMissionTick(dt);
             if (_outcomeDecided) return;
+            // Don't run end-condition checks until the engine signals deployment
+            // is done. Before that, teams can report 0 active human agents simply
+            // because the vanilla spawn pipeline hasn't placed them yet, and
+            // we'd auto-defeat on frame 1.
+            if (!_deploymentFinished) return;
+
+            _diagnosticAccumulator += dt;
+            if (_diagnosticAccumulator >= 2f)
+            {
+                _diagnosticAccumulator = 0f;
+                int atk = CountActiveHumans(Mission.AttackerTeam);
+                int def = CountActiveHumans(Mission.DefenderTeam);
+                var fallback = AmbushRetreatZone.ProceduralFallbackPosition;
+                var fallbackStr = fallback.HasValue ? fallback.Value.ToString() : "<none>";
+                TaleWorlds.Library.Debug.Print(
+                    "[AmbushEndLogic] tick atk=" + atk + " def=" + def
+                    + " zones=" + AmbushRetreatZone.ActiveZones.Count
+                    + " fallback=" + fallbackStr);
+            }
 
             // Catch player death / player-side wipe early so the right outcome
             // enum is set before vanilla BattleEndLogic ends the mission.
@@ -57,6 +85,7 @@ namespace TOR_Core.Missions.AmbushMission
                 _timeInZone += dt;
                 if (_timeInZone >= _model.ZoneHoldDuration)
                 {
+                    TaleWorlds.Library.Debug.Print("[AmbushEndLogic] zone-hold complete — extraction successful");
                     TORCommon.Say("Extraction successful.");
                     SetOutcome(AmbushOutcome.ExtractionSuccessful, successful: true);
                 }
@@ -65,6 +94,15 @@ namespace TOR_Core.Missions.AmbushMission
             {
                 _timeInZone = 0f;
             }
+        }
+
+        private static int CountActiveHumans(Team team)
+        {
+            if (team == null) return 0;
+            int n = 0;
+            foreach (var a in team.ActiveAgents)
+                if (a != null && a.IsHuman && a.IsActive()) n++;
+            return n;
         }
 
         public override bool MissionEnded(ref MissionResult missionResult)
