@@ -2819,10 +2819,6 @@
       <string>Undead</string>
       <string>Ethereal</string>
     </Attributes>
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
-      <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" />
-    </Resistances>
     <Resistances><ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" /><ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" /></Resistances>
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
@@ -2839,10 +2835,6 @@
       <string>Undead</string>
       <string>Ethereal</string>
     </Attributes>
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
-      <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" />
-    </Resistances>
     <Resistances><ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" /><ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" /></Resistances>
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
@@ -2859,10 +2851,6 @@
       <string>Undead</string>
       <string>Ethereal</string>
     </Attributes>
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
-      <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" />
-    </Resistances>
     <Resistances><ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" /><ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" /></Resistances>
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
@@ -2879,10 +2867,6 @@
       <string>Undead</string>
       <string>Ethereal</string>
     </Attributes>
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
-      <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" />
-    </Resistances>
     <Resistances><ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" /><ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" /></Resistances>
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
@@ -2899,10 +2883,6 @@
       <string>Undead</string>
       <string>Ethereal</string>
     </Attributes>
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
-      <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" />
-    </Resistances>
     <Resistances><ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" /><ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" /></Resistances>
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />

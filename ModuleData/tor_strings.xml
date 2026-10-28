@@ -4616,6 +4616,7 @@
 
   <!-- ExtendedInfo.Ethereal -->
   <string id="tor_extendedInfo.Ethereal" text="{=str_tor_extendedinfo_ethereal}Ethereal - {VALUE}% Chance to Ignore Purely Physical Hits(...)" />
+  <string id="tor_ethereal_hit_ignored" text="{=str_tor_ethereal_hit_ignored}Your blow passes harmlessly through the ethereal form!" />
 
   <!-- ExtendedInfo.KillingBlow -->
   <string id="tor_extendedInfo.KillingBlow" text="{=str_tor_extendedinfo_killing_blow}Killing Blow - has a chance to instantly kill enemy units(...)" />
