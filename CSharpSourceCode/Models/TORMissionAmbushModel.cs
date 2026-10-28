@@ -46,16 +46,35 @@ namespace TOR_Core.Models
         /// is a one-shot commitment of the force the player strikes with.</summary>
         public virtual float PlayerReinforcementBatchFraction => 0f;
 
-        // ---- Retreat zone ----
+        /// <summary>
+        /// Fractional bonus to the current reinforcement timer when the player
+        /// kills the entire initial patrol while the next-wave timer is still
+        /// ticking. 0.3 → "next wave was 20s away, now it's 26s away." One-shot
+        /// per mission. Rewards fast Phase 1 clears with a regroup window.
+        /// </summary>
+        public virtual float InitialPatrolClearedWaveDelayBonus => 0.3f;
 
-        /// <summary>Seconds the main agent must stay inside a retreat zone for
-        /// the extraction to register. Prevents accidental retreat from the
-        /// player running past the zone chasing a kill.</summary>
-        public virtual float ZoneHoldDuration => 3f;
+        // ---- Retreat / extraction ----
+
+        /// <summary>Seconds the hero must stay inside a retreat zone to fill
+        /// the extraction bar. Design calls for 10s continuous.</summary>
+        public virtual float ExtractionBarSeconds => 10f;
+
+        /// <summary>Progress threshold (0..1) at which the "troops left behind
+        /// will be wounded" warning fires once per mission.</summary>
+        public virtual float LeftBehindWarningThreshold => 0.5f;
 
         /// <summary>Radius of the procedural fallback zone (used when the scene
         /// has no scener-authored <c>AmbushRetreatZone</c>). Slightly generous
         /// vs the authored default because there's no visual aura.</summary>
         public virtual float ProceduralFallbackRadius => 15f;
+
+        // ---- Stalemate ----
+
+        /// <summary>Real-time minutes before an in-progress ambush where the
+        /// initial patrol is still alive is force-ended as Stalemate (defeat).
+        /// Safety net for navmesh / geometry bugs that leave the enemy unable
+        /// to reach the player.</summary>
+        public virtual float StalemateMinutes => 10f;
     }
 }

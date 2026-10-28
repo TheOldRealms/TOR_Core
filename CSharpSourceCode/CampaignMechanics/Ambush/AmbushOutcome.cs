@@ -1,33 +1,46 @@
 namespace TOR_Core.CampaignMechanics.Ambush
 {
     /// <summary>
-    /// Result bucket Phase E (post-mission aftermath) reads to pick the follow-up
-    /// path. Set by <c>AmbushEndLogic</c> before the mission closes.
+    /// Final mission result the campaign side reads to pick the follow-up path.
+    /// Set once by <c>AmbushEndLogic</c> immediately before the mission closes;
+    /// consumed and reset to <see cref="None"/> by
+    /// <c>AmbushCampaignBehavior.OnPlayerBattleEnd</c>.
+    ///
+    /// Priority / semantics are defined in TORTasks/ambush-feature/mission-design.md.
     /// </summary>
     public enum AmbushOutcome
     {
-        /// <summary>No ambush ran — default when the behavior boots or after a
-        /// successful press-attack / escape follow-up has already consumed the
-        /// previous outcome.</summary>
+        /// <summary>No ambush ran, or the previous outcome has already been
+        /// consumed by the post-mission flow.</summary>
         None,
 
-        /// <summary>Player made it into a retreat zone (either held long enough,
-        /// or was inside when the pressure clock elapsed). Escape vs press-attack
-        /// menu lands next.</summary>
-        ExtractionSuccessful,
+        /// <summary>Entire enemy party destroyed — initial patrol plus every
+        /// reinforcement wave. "No witnesses": stealth cooldown resets to zero
+        /// so the player can immediately re-enter stealth. Loot / prisoner
+        /// flow fires via vanilla "destroyed party" bookkeeping.</summary>
+        TotalVictory,
 
-        /// <summary>Pressure clock ran out without the player reaching a retreat
-        /// zone. Troops wounded, hero wounded, follow-up disorganisation debuff
-        /// (Phase E).</summary>
-        ExtractionFailed,
+        /// <summary>Initial patrol dead and the extraction bar filled with the
+        /// hero in the retreat zone. Post-mission "Ambush Escape" menu
+        /// (engage-now vs teleport-away). Troops left outside the zone when
+        /// the bar completed are wounded post-battle.</summary>
+        Extracted,
 
-        /// <summary>Player's spawned ambush roster was wiped before extraction.
-        /// Treated like a normal lost battle (vanilla BattleEndLogic handles
-        /// casualty bookkeeping).</summary>
-        PlayerDefeated,
+        /// <summary>Hero (main agent) went down during the mission. Post-mission
+        /// "Ambush Failed" menu offers run-with-losses vs auto-battle fight.
+        /// The surviving party is not automatically wiped — the player picks.
+        /// </summary>
+        HeroWounded,
 
-        /// <summary>Main hero went down. Captivity flow applies via vanilla
-        /// handling.</summary>
-        PlayerDied,
+        /// <summary>Attacker team has no active human agents remaining (routed
+        /// / wiped) but the hero is still up. Normal vanilla defeat flow —
+        /// casualties, prisoners.</summary>
+        Defeated,
+
+        /// <summary>Soft stalemate timer elapsed in Phase 1 (initial patrol
+        /// still alive). Forced defeat so the mission can't run forever if a
+        /// navmesh / geometry bug makes the enemy unable to reach the player.
+        /// </summary>
+        Stalemate,
     }
 }

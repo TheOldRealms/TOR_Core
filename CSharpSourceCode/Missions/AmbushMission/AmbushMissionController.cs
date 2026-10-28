@@ -29,6 +29,7 @@ namespace TOR_Core.Missions.AmbushMission
         private const float FallbackGraceSeconds = 2f;
 
         private DefaultBattleMissionAgentSpawnLogic _spawnLogic;
+        private AmbushReinforcementSpawnTimer _reinforcementTimer;
         private BasicMissionTimer _aiActivationTimer;
         private BasicMissionTimer _fallbackGraceTimer;
         private bool _aiActivated;
@@ -36,6 +37,22 @@ namespace TOR_Core.Missions.AmbushMission
         private TORMissionAmbushModel _model;
         private readonly int _playerTroopCount;
         private readonly int _targetTroopCount;
+
+        // Snapshot of defender agents present at OnDeploymentFinished — the
+        // "initial patrol". Reinforcement waves are NOT in this set. Phase 1
+        // → Phase 2 transition fires when every member is inactive.
+        private readonly List<Agent> _initialPatrol = new List<Agent>();
+        private bool _initialPatrolDefeated;
+
+        /// <summary>True once every member of the initial defender spawn is
+        /// inactive. Readers: <see cref="AmbushEndLogic"/> gates Phase 2
+        /// behaviours on this; <see cref="AmbushReinforcementSpawnTimer"/>
+        /// applies the one-shot delay bonus when it flips.</summary>
+        public bool IsInitialPatrolDefeated => _initialPatrolDefeated;
+
+        /// <summary>Fires once, the frame <see cref="IsInitialPatrolDefeated"/>
+        /// flips from false to true.</summary>
+        public event System.Action InitialPatrolDefeated;
 
         public AmbushMissionController(int playerTroopCount, int targetTroopCount)
         {
@@ -84,6 +101,19 @@ namespace TOR_Core.Missions.AmbushMission
             TeleportTeamToTag(Mission.AttackerTeam, "ambush_attacker");
             TeleportTeamToTag(Mission.DefenderTeam, "dynamic_patrol_area_tag");
 
+            // Snapshot the initial-patrol defender agent set now. Reinforcement
+            // waves spawn later via DefaultBattleMissionAgentSpawnLogic and are
+            // NOT members. Phase 2 begins when all of these go inactive.
+            _initialPatrol.Clear();
+            if (Mission.DefenderTeam != null)
+            {
+                foreach (var a in Mission.DefenderTeam.ActiveAgents)
+                {
+                    if (a != null && a.IsHuman) _initialPatrol.Add(a);
+                }
+            }
+            Debug.Print("[AmbushMission] initial patrol snapshot: " + _initialPatrol.Count + " agents");
+
             // Mirror vanilla's "besieger activation" shape: defender team (our
             // AI opponent) is frozen for AiActivationDelay seconds so the player
             // gets a clean opening.
@@ -131,6 +161,15 @@ namespace TOR_Core.Missions.AmbushMission
             Debug.Print("[AmbushMission] TeleportTeamToTag(" + tag + "): placed " + idx + " agents across " + positions.Count + " tagged points");
         }
 
+        public override InquiryData OnEndMissionRequest(out bool canLeave)
+        {
+            // Tab-leave is disabled. The only exits are the extraction bar,
+            // dying, getting wiped, or the stalemate timer. See mission-design.md.
+            canLeave = false;
+            TOR_Core.Utilities.TORCommon.Say("You can't flee the ambush like this — look for the extraction point.");
+            return null;
+        }
+
         public override void OnMissionTick(float dt)
         {
             base.OnMissionTick(dt);
@@ -156,6 +195,25 @@ namespace TOR_Core.Missions.AmbushMission
                 else
                 {
                     Debug.Print("[AmbushMission] Authored zones present: " + AmbushRetreatZone.ActiveZones.Count + "; procedural fallback skipped.");
+                }
+            }
+
+            // Phase 1 → Phase 2 transition. Check once per tick while Phase 1
+            // is still active; cheap since _initialPatrol is small.
+            if (!_initialPatrolDefeated && _initialPatrol.Count > 0)
+            {
+                bool allDown = true;
+                for (int i = 0; i < _initialPatrol.Count; i++)
+                {
+                    var a = _initialPatrol[i];
+                    if (a != null && a.IsActive() && a.IsHuman) { allDown = false; break; }
+                }
+                if (allDown)
+                {
+                    _initialPatrolDefeated = true;
+                    Debug.Print("[AmbushMission] initial patrol defeated → Phase 2 (extraction) armed");
+                    _reinforcementTimer?.OnInitialPatrolDefeated();
+                    InitialPatrolDefeated?.Invoke();
                 }
             }
         }
@@ -212,7 +270,8 @@ namespace TOR_Core.Missions.AmbushMission
                 spawnDefenders: false, spawnAttackers: false,
                 in spawnSettings);
 
-            _spawnLogic.SetCustomReinforcementSpawnTimer(new AmbushReinforcementSpawnTimer(_model));
+            _reinforcementTimer = new AmbushReinforcementSpawnTimer(_model);
+            _spawnLogic.SetCustomReinforcementSpawnTimer(_reinforcementTimer);
         }
 
         private void FreezeDefenderAi()

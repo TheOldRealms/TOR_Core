@@ -36,6 +36,12 @@ namespace TOR_Core.CampaignMechanics.Ambush
         public static readonly InputKey StealthToggleKey = InputKey.X;
 
         public const string StealthMenuId = "tor_ambush_stealth_menu";
+        public const string AmbushEscapeMenuId = "tor_ambush_escape_menu";
+        public const string AmbushFailedMenuId = "tor_ambush_failed_menu";
+        // Distance (metres) the player's party is teleported along the escape
+        // vector when picking "escape" from the Ambush Escape menu. Enough to
+        // prevent immediate re-engagement by the target party's AI.
+        private const float AmbushEscapeTeleportDistance = 50f;
 
         // First delivered scene from the scener (TOR_Environment/SceneObj/test_ambush/).
         // Has an authored AmbushRetreatZone (Radius=10) + TacticalRegion=Forest.
@@ -60,6 +66,22 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// press-attack / wounded-flow. Reset to <c>None</c> once consumed.
         /// </summary>
         public AmbushOutcome LastAmbushOutcome { get; set; } = AmbushOutcome.None;
+
+        /// <summary>
+        /// Number of attacker troops who were outside the retreat zone when the
+        /// extraction bar completed. Set by AmbushEndLogic before mission close;
+        /// consumed by <see cref="OnPlayerBattleEnd"/> to wound that many healthy
+        /// survivors from the main party roster. Reset to 0 on consumption.
+        /// </summary>
+        public int ExtractionTroopsLeftBehind { get; set; }
+
+        /// <summary>
+        /// The target party of the most recent ambush. Needed by the Ambush
+        /// Escape menu's "engage now" / "escape" options; AmbushCampaignBehavior
+        /// can't rediscover it from the MapEvent after the mission closes.
+        /// Set in OnStrike, cleared in OnPlayerBattleEnd.
+        /// </summary>
+        private MobileParty _lastAmbushTarget;
 
         public bool IsPartyInStealth(MobileParty party)
         {
@@ -209,43 +231,64 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             if (_playerInStealth) LeaveStealth(MobileParty.MainParty);
 
-            // Phase D failed-retreat consequences. Fires when AmbushEndLogic set
-            // the outcome before vanilla BattleEndLogic closed the mission.
-            // Phase E's aftermath (escape vs press-attack menu, army
-            // disorganization debuff) layers on top — for now this is the full
-            // consequence surface.
+            // Routes outcome → aftermath. Full map in
+            // TORTasks/ambush-feature/mission-design.md.
             switch (LastAmbushOutcome)
             {
-                case AmbushOutcome.ExtractionFailed:
-                    ApplyFailedExtractionConsequences();
+                case AmbushOutcome.TotalVictory:
+                    // No witnesses, no alarm — stealth is immediately available.
+                    // Vanilla "destroyed party" flow (loot + prisoners) already
+                    // fired via BattleEndLogic.
+                    _playerAmbushCooldownUntil = CampaignTime.Zero;
+                    TORCommon.Say("No one escaped the ambush. You can slip back into cover immediately.");
                     break;
-                case AmbushOutcome.ExtractionSuccessful:
-                    TORCommon.Say("Ambush extracted cleanly. Escape vs press-attack menu lands in Phase E.");
+                case AmbushOutcome.Extracted:
+                    WoundLeftBehindTroops(ExtractionTroopsLeftBehind);
+                    GameMenu.ActivateGameMenu(AmbushEscapeMenuId);
                     break;
-                case AmbushOutcome.PlayerDefeated:
-                case AmbushOutcome.PlayerDied:
-                    // Vanilla casualty / captivity flow already fired via
-                    // BattleEndLogic; nothing extra here.
+                case AmbushOutcome.HeroWounded:
+                    // Hero down. The "Ambush Failed" menu offers run-with-losses
+                    // vs auto-battle fight; vanilla wounded flow for the hero
+                    // itself already fired via BattleEndLogic.
+                    GameMenu.ActivateGameMenu(AmbushFailedMenuId);
+                    break;
+                case AmbushOutcome.Defeated:
+                case AmbushOutcome.Stalemate:
+                    // Vanilla defeat flow already handled casualties / prisoners.
                     break;
             }
             LastAmbushOutcome = AmbushOutcome.None;
+            ExtractionTroopsLeftBehind = 0;
+            // _lastAmbushTarget is cleared when the escape/engage option fires,
+            // not here — the Ambush Escape menu may still need it after this.
         }
 
-        private static void ApplyFailedExtractionConsequences()
+        /// <summary>
+        /// Convert <paramref name="count"/> healthy survivors in the main party
+        /// roster into wounded troops. Used to apply the "left behind at
+        /// extraction" penalty: the extraction bar completed with the hero in
+        /// the zone, but some troops were outside and didn't make it to the
+        /// pickup. Hero itself is unaffected; vanilla casualty flow has already
+        /// run by the time this fires.
+        /// </summary>
+        private static void WoundLeftBehindTroops(int count)
         {
-            TORCommon.Say("You barely escape — your ambush party is wounded.");
-            Hero.MainHero?.MakeWounded();
-
+            if (count <= 0) return;
             var roster = MobileParty.MainParty?.MemberRoster;
             if (roster == null) return;
-            // Move surviving healthy troops into the wounded bucket (total count
-            // unchanged, wounded increases, healthy drops to 0).
-            for (int i = 0; i < roster.Count; i++)
+            int remaining = count;
+            for (int i = 0; i < roster.Count && remaining > 0; i++)
             {
+                // Skip hero rows — they're handled by vanilla wounded flow.
+                if (roster.GetCharacterAtIndex(i).IsHero) continue;
                 int healthy = roster.GetElementNumber(i) - roster.GetElementWoundedNumber(i);
-                if (healthy > 0)
-                    roster.AddToCountsAtIndex(i, 0, healthy);
+                if (healthy <= 0) continue;
+                int toWound = healthy < remaining ? healthy : remaining;
+                roster.AddToCountsAtIndex(i, 0, toWound);
+                remaining -= toWound;
             }
+            if (count - remaining > 0)
+                TORCommon.Say((count - remaining) + " of your troops were left behind and will take time to recover.");
         }
 
         private void OnSessionLaunched(CampaignGameStarter starter)
@@ -305,6 +348,124 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 isLeave: true,
                 index: -1,
                 isRepeatable: false);
+
+            RegisterAmbushEscapeMenu(starter);
+            RegisterAmbushFailedMenu(starter);
+        }
+
+        private void RegisterAmbushEscapeMenu(CampaignGameStarter starter)
+        {
+            // Shown after AmbushOutcome.Extracted. The hero made it through the
+            // bar; the surviving target party is still at the ambush point.
+            // Player picks: resume the fight on the campaign map (full battle)
+            // or peel away.
+            starter.AddGameMenu(
+                AmbushEscapeMenuId,
+                "{=tor_ambush_escape_intro}Your party pulls back from the ambush site. The remainder of the enemy column is forming up where you struck. You can press the attack while they are disorganised, or slip away before they regroup.",
+                _ => { },
+                GameMenu.MenuOverlayType.None);
+
+            starter.AddGameMenuOption(
+                AmbushEscapeMenuId,
+                "tor_ambush_escape_engage",
+                "{=tor_ambush_escape_engage}Press the attack now.",
+                args => { args.optionLeaveType = GameMenuOption.LeaveType.HostileAction; return true; },
+                _ => OnAmbushEscapeEngage(),
+                isLeave: false, index: 0, isRepeatable: false);
+
+            starter.AddGameMenuOption(
+                AmbushEscapeMenuId,
+                "tor_ambush_escape_slip",
+                "{=tor_ambush_escape_slip}Slip away before they regroup.",
+                args => { args.optionLeaveType = GameMenuOption.LeaveType.Escape; return true; },
+                _ => OnAmbushEscapeSlip(),
+                isLeave: true, index: 1, isRepeatable: false);
+        }
+
+        private void RegisterAmbushFailedMenu(CampaignGameStarter starter)
+        {
+            // Shown after AmbushOutcome.HeroWounded. The hero is down but the
+            // surviving party is still in the field. Player picks: cut losses
+            // and flee (take more casualties) or let the survivors finish the
+            // fight without the hero (auto-resolved battle, can wipe entirely).
+            starter.AddGameMenu(
+                AmbushFailedMenuId,
+                "{=tor_ambush_failed_intro}You are down. Your surviving troops have broken contact and are regrouping around your fallen banner. They can carry you clear at the cost of more wounded, or press the fight without you — if they lose, your army is gone.",
+                _ => { },
+                GameMenu.MenuOverlayType.None);
+
+            starter.AddGameMenuOption(
+                AmbushFailedMenuId,
+                "tor_ambush_failed_run",
+                "{=tor_ambush_failed_run}Run — carry me clear, cost be damned.",
+                args => { args.optionLeaveType = GameMenuOption.LeaveType.Escape; return true; },
+                _ => OnAmbushFailedRun(),
+                isLeave: true, index: 0, isRepeatable: false);
+
+            starter.AddGameMenuOption(
+                AmbushFailedMenuId,
+                "tor_ambush_failed_fight",
+                "{=tor_ambush_failed_fight}Fight on — finish what we started.",
+                args => { args.optionLeaveType = GameMenuOption.LeaveType.HostileAction; return true; },
+                _ => OnAmbushFailedFight(),
+                isLeave: false, index: 1, isRepeatable: false);
+        }
+
+        private void OnAmbushEscapeEngage()
+        {
+            // Open a vanilla field battle at current positions. Target party is
+            // whoever we just ambushed.
+            if (_lastAmbushTarget == null || !_lastAmbushTarget.IsActive) { GameMenu.ExitToLast(); _lastAmbushTarget = null; return; }
+            var target = _lastAmbushTarget;
+            _lastAmbushTarget = null;
+            EncounterManager.StartPartyEncounter(PartyBase.MainParty, target.Party);
+        }
+
+        private void OnAmbushEscapeSlip()
+        {
+            // Teleport the player's party a short distance along the vector
+            // pointing away from the target so the AI doesn't immediately
+            // re-engage.
+            var main = MobileParty.MainParty;
+            if (main != null && _lastAmbushTarget != null && _lastAmbushTarget.IsActive)
+            {
+                var away = CampaignVec2.Normalized(main.Position - _lastAmbushTarget.Position);
+                main.Position = main.Position + away * AmbushEscapeTeleportDistance;
+            }
+            _lastAmbushTarget = null;
+            GameMenu.ExitToLast();
+        }
+
+        private void OnAmbushFailedRun()
+        {
+            // Flat casualty hit on top of what the battle already took.
+            // Hero itself was already marked wounded by vanilla; we add roster
+            // wounds for the survivors.
+            var roster = MobileParty.MainParty?.MemberRoster;
+            if (roster != null)
+            {
+                for (int i = 0; i < roster.Count; i++)
+                {
+                    if (roster.GetCharacterAtIndex(i).IsHero) continue;
+                    int healthy = roster.GetElementNumber(i) - roster.GetElementWoundedNumber(i);
+                    if (healthy > 0) roster.AddToCountsAtIndex(i, 0, healthy);
+                }
+            }
+            _lastAmbushTarget = null;
+            TORCommon.Say("Your surviving troops carry you clear. The ambush is over.");
+            GameMenu.ExitToLast();
+        }
+
+        private void OnAmbushFailedFight()
+        {
+            // Resume as a vanilla battle with the hero already down. Vanilla
+            // battle flow will auto-resolve or allow further player involvement
+            // if any survivors can continue. If the hero is wounded (not dead),
+            // the player watches via spectate mode.
+            if (_lastAmbushTarget == null || !_lastAmbushTarget.IsActive) { GameMenu.ExitToLast(); _lastAmbushTarget = null; return; }
+            var target = _lastAmbushTarget;
+            _lastAmbushTarget = null;
+            EncounterManager.StartPartyEncounter(PartyBase.MainParty, target.Party);
         }
 
         private void OnStealthMenuInit(MenuCallbackArgs args)
@@ -367,6 +528,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             if (success)
             {
                 TORCommon.Say("Ambush succeeded (" + chancePct + "%) on " + GetPartyLabel(target) + ".");
+                _lastAmbushTarget = target;
                 // Bypass EncounterManager.StartPartyEncounter — it fires encounter_meeting
                 // menu + enemy-leader conversation, both of which deadlock our mission open.
                 // RestartPlayerEncounter(defender, attacker) skips straight to encounter
