@@ -1602,13 +1602,13 @@
 			 is_clan_type_mercenary="true"
              is_outlaw="false"
              settlement_banner_mesh="encounter_flag_f"
-             text="{=str_tor_clan_greenknight_clan_desc}Ride for Bretonnia (...)"
+             text="{=str_tor_clan_greenknight_clan_desc}On rare occasions, Bretonnian children may manifest some form of supernatural talent during their youth. Should this occur, the children are soon visited by Morgiana the Fay, who takes them away (steals them?) from their families, bringing them to an unknown location where they can fully develop their magical potential. While females are permitted to return to Bretonnia to serve as damsels in the courts of various lords; the males, known as 'Lost Sons' or 'Sons of Bretonnia' remain with The Lady, serving as her attendants and her armed force. Upon reaching adulthood, these youths’ skin turns pale, and their eyes take on a mystical glow (a sign of the power bestowed upon them by the goddess of Bretonnia). Both their equipment and their combat prowess are on par with those of the Grail Knights. It is said that The Lady only permits these blessed warriors to enter battle in the most extreme or desperate circumstances, appearing miraculously as a sign that their goddess is watching over them."
              default_party_template="PartyTemplate.bretonnia_lordparty_template" >
 			<minor_faction_character_templates>
             </minor_faction_character_templates>
 	</Faction>
     <Faction id="the_fay_enchantress_clan_1"
-             name="Fay Enchantress"
+             name="{=str_tor_clan_fayenchantress_clan_name}Fay Enchantress"
              banner_key="11.2.7.1500.1500.764.764.1.1.0.125.20.41.600.600.764.764.0.0.0:kingdom_sons_of_lady"
 			 label_color="FF34671e"
              color="FF34671e"
@@ -1622,7 +1622,7 @@
              is_outlaw="false"
              default_party_template="PartyTemplate.bretonnia_lordparty_template"
              settlement_banner_mesh="encounter_flag_f"
-             text="Morgiana the Fey (...)"
+             text="{=str_tor_clan_fayenchantress_clan_desc}Morgiana the Fey (...)"
              owner="Hero.tor_br_fey_leader" >
 			 <minor_faction_character_templates>
             </minor_faction_character_templates>
