@@ -79,12 +79,28 @@ def _parse_vec3(s: str) -> Optional[tuple[float, float, float]]:
 
 
 def _collect_entities(root: ET.Element) -> list[dict]:
-    """Flatten every game_entity in the tree (including nested children)."""
+    """Flatten every game_entity in the tree (including nested children).
+
+    This scener uses both forms side by side:
+      - `prefab="X"` or `name="X"` (sometimes with `old_prefab_name=`).
+      - Tags as either `tag="X"` attribute or `<tags><tag name="X"/></tags>`
+        child element block. We normalise to a `tags` list containing both.
+      - When `prefab=` is empty we fall back to `old_prefab_name` so the
+        histogram and filters still find named-only entities like
+        `sp_battle_set`.
+    """
     out: list[dict] = []
     for ge in root.iter("game_entity"):
-        prefab = ge.get("prefab", "")
+        prefab = ge.get("prefab", "") or ge.get("old_prefab_name", "")
         name = ge.get("name", "")
-        tag = ge.get("tag", "")
+        tags: list[str] = []
+        attr_tag = ge.get("tag", "")
+        if attr_tag:
+            tags.append(attr_tag)
+        for t in ge.findall("tags/tag"):
+            tn = t.get("name", "")
+            if tn:
+                tags.append(tn)
         tr = ge.find("transform")
         position = _parse_vec3(tr.get("position", "")) if tr is not None else None
         rotation = tr.get("rotation_euler", "") if tr is not None else ""
@@ -95,7 +111,7 @@ def _collect_entities(root: ET.Element) -> list[dict]:
         out.append({
             "prefab": prefab,
             "name": name,
-            "tag": tag,
+            "tags": tags,
             "position": position,
             "rotation": rotation,
             "scripts": scripts,
@@ -172,7 +188,7 @@ def _filter_entities(
             elif key == "name":
                 if needle_l not in e["name"].lower(): return False
             elif key == "tag":
-                if needle_l not in e["tag"].lower(): return False
+                if not any(needle_l in t.lower() for t in e["tags"]): return False
             elif key == "script":
                 if not any(needle_l in s["name"].lower() for s in e["scripts"]): return False
             else:
@@ -187,7 +203,7 @@ def _filter_entities(
 
 
 def _entity_label(e: dict) -> str:
-    return e["prefab"] or e["name"] or e["tag"] or "<untagged>"
+    return e["prefab"] or e["name"] or (e["tags"][0] if e["tags"] else "") or "<untagged>"
 
 
 def _print_entity_row(e: dict, show_scripts: bool = True) -> None:
@@ -231,9 +247,11 @@ def report_scene(scene: dict, verbose: bool = False) -> None:
     for prefab, n in prefab_counts.most_common():
         print(f"    {n:3d}  {prefab}")
 
-    tags = sorted({e["tag"] for e in scene["entities"] if e["tag"]})
-    if tags:
-        print(f"\n  Tags: {', '.join(tags)}")
+    all_tags = Counter(t for e in scene["entities"] for t in e["tags"])
+    if all_tags:
+        print(f"\n  Tag histogram ({len(all_tags)} distinct):")
+        for tag, n in all_tags.most_common():
+            print(f"    {n:3d}  {tag}")
 
     all_scripts = [(e, s) for e in scene["entities"] for s in e["scripts"]]
     script_counts = Counter(s["name"] for _, s in all_scripts)
@@ -252,7 +270,10 @@ def report_scene(scene: dict, verbose: bool = False) -> None:
 
     print("\n  Ambush diagnostics:")
     ambush_zones = [(e, s) for e, s in all_scripts if s["name"] == "AmbushRetreatZone"]
-    battle_sets = [e for e in scene["entities"] if e["prefab"] == "sp_battle_set"]
+    battle_sets = [e for e in scene["entities"]
+                   if e["prefab"] == "sp_battle_set"
+                   or e["name"] == "sp_battle_set"
+                   or "battle_set" in e["tags"]]
     flee_attackers = [e for e in scene["entities"] if e["prefab"] == "flee_line_attacker"]
     flee_defenders = [e for e in scene["entities"] if e["prefab"] == "flee_line_defender"]
 
@@ -299,7 +320,7 @@ def report_scripts_by_prefab(entities: list[dict]) -> None:
     for e in entities:
         if not e["scripts"]:
             continue
-        key = e["prefab"] or e["name"] or e["tag"] or "<untagged>"
+        key = e["prefab"] or e["name"] or (e["tags"][0] if e["tags"] else "") or "<untagged>"
         row = rows.setdefault(key, {"instances": 0, "scripts": Counter(), "sample_pos": e["position"]})
         row["instances"] += 1
         for s in e["scripts"]:
