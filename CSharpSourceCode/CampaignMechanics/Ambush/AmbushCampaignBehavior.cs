@@ -324,10 +324,18 @@ namespace TOR_Core.CampaignMechanics.Ambush
             for (int i = 0; i < MaxTargetSlots; i++)
             {
                 int slot = i;
+                // Each strike option gets its own placeholder variable
+                // (STRIKE_OPT_TEXT_0 .. STRIKE_OPT_TEXT_<MaxTargetSlots-1>) so
+                // we can set per-slot text in OnStealthMenuInit. A single shared
+                // placeholder gets overwritten by whichever call fires last and
+                // leaves the other options blank — that's the bug we're
+                // fixing. Setting args.Text in the condition delegate is NOT a
+                // substitute (the menu reads the template, not args.Text, for
+                // its label).
                 starter.AddGameMenuOption(
                     StealthMenuId,
                     "tor_ambush_strike_" + slot,
-                    "{STRIKE_OPT_TEXT}",
+                    "{STRIKE_OPT_TEXT_" + slot + "}",
                     args => StrikeSlotCondition(args, slot),
                     args => OnStrike(slot),
                     isLeave: false,
@@ -494,6 +502,32 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 intro = new TextObject(sb.ToString());
             }
             MBTextManager.SetTextVariable("STEALTH_MENU_TEXT", intro);
+
+            // Populate the per-slot label variables. StrikeSlotCondition shows
+            // the option when _currentTargets[slot] is valid; the label text
+            // for that option comes from these variables (set at menu-init time
+            // to avoid every-tick recomputation of the chance %).
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            for (int i = 0; i < MaxTargetSlots; i++)
+            {
+                string varName = "STRIKE_OPT_TEXT_" + i;
+                if (i < _currentTargets.Count)
+                {
+                    var p = _currentTargets[i];
+                    float chance = model != null
+                        ? model.CalculateAmbushSuccessChance(MobileParty.MainParty, p, _stealthEnteredAt)
+                        : 0f;
+                    int chancePct = (int)(chance * 100f);
+                    MBTextManager.SetTextVariable(varName,
+                        new TextObject("Strike at " + GetPartyLabel(p) + " (" + chancePct + "% chance)."));
+                }
+                else
+                {
+                    // Empty — condition returns false, option hides. Variable
+                    // still cleared defensively.
+                    MBTextManager.SetTextVariable(varName, new TextObject(""));
+                }
+            }
         }
 
         private bool StrikeSlotCondition(MenuCallbackArgs args, int slot)
@@ -502,10 +536,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             var target = _currentTargets[slot];
             if (target == null || !target.IsActive) return false;
 
-            float chance = (Campaign.Current.Models.GetAmbushModel()?.CalculateAmbushSuccessChance(
-                MobileParty.MainParty, target, _stealthEnteredAt) ?? 0f);
-            int chancePct = (int)(chance * 100f);
-            args.Text = new TextObject("Strike at " + GetPartyLabel(target) + " (" + chancePct + "% chance).");
+            // Option label text is set via the per-slot MBTextManager variable
+            // in OnStealthMenuInit — the menu reads its template from the
+            // registered placeholder, not from args.Text.
             args.optionLeaveType = GameMenuOption.LeaveType.HostileAction;
             return true;
         }
