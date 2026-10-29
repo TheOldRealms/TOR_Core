@@ -375,6 +375,7 @@
     <Compile Include="CampaignMechanics\Villages\TORVillageTypes.cs" />
     <Compile Include="CampaignMechanics\FactionScenes\FactionSceneEntry.cs" />
     <Compile Include="CampaignMechanics\FactionScenes\TORFactionSceneRegistry.cs" />
+    <Compile Include="Extensions\CultureExtensions.cs" />
     <Compile Include="Extensions\UI\PartyVMExtension.cs" />
     <Compile Include="CampaignMechanics\CustomResources\TeefHelper.cs" />
     <Compile Include="CampaignMechanics\RaidingParties\IRaidingParty.cs" />
