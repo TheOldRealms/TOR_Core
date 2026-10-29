@@ -49,7 +49,7 @@ namespace TOR_Core.Items
                 var movedItem = result.EffectedItemRosterElement.EquipmentElement.Item;
                 var targetEquipment = result.TransferCharacter.GetCharacterEquipment(
                     EquipmentIndex.Weapon0,
-                    EquipmentIndex.NumAllWeaponSlots);
+                    EquipmentIndex.ExtraWeaponSlot);
 
                 var movedIsShield = movedItem.IsShield();
                 var movedIsOffhandStaff =
