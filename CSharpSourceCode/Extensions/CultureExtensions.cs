@@ -10,37 +10,81 @@ namespace TOR_Core.Extensions;
 
 public static class CultureExtensions
 {
-    public static bool IsEmpire(this CultureObject culture)
+    public static bool IsEquivalentCulture(this CultureObject culture, CultureObject queriedCulture)
+    {
+        switch (culture.StringId)
+        {
+            //Empire
+            case TORConstants.Cultures.EMPIRE:
+            case TORConstants.Cultures.EMPIRE_DESERTERS:
+                return queriedCulture.IsEmpire();
+            //Greenskins
+            case TORConstants.Cultures.GREENSKIN:
+            case TORConstants.Cultures.GOBLIN_BANDIT:
+            case TORConstants.Cultures.GREENSKIN_BANDIT:
+                return queriedCulture.IsGreenskin();
+            //Bretonnians
+            case TORConstants.Cultures.BRETONNIA:
+            case TORConstants.Cultures.HERRIMAULT:
+                return queriedCulture.IsBretonnian();
+            //Undead cultures
+            case TORConstants.Cultures.SYLVANIA:
+            case TORConstants.Cultures.MOUSILLON:
+                return queriedCulture.IsUndead();
+            //Elfs
+            case TORConstants.Cultures.ASRAI:
+                return queriedCulture.IsEonir();
+            case TORConstants.Cultures.EONIR:
+                return queriedCulture.IsAsrai();
+            case TORConstants.Cultures.DRUCHII:
+                return queriedCulture.IsDruchii();
+            //Beastmen
+            case TORConstants.Cultures.BEASTMEN:
+            case TORConstants.Cultures.BEASTMEN_BANDIT:
+                return queriedCulture.IsBeastmen();
+            //Dwarfs
+            case TORConstants.Cultures.DAWI:
+                return queriedCulture.IsDawi();
+            //Chaos cultures
+            case TORConstants.Cultures.CHAOS:
+            case TORConstants.Cultures.CHAOS_CULTIST:
+                return queriedCulture.IsChaosStrict();
+            default:
+                return false;
+        }
+    }
+
+    public static bool IsEmpire (this CultureObject culture)
     {
         if (culture.StringId == TORConstants.Cultures.EMPIRE || culture.StringId == TORConstants.Cultures.EMPIRE_DESERTERS) return true;
         else return false;
     }
 
-    public static bool IsGreenskin(this CultureObject culture)
+    public static bool IsGreenskin (this CultureObject culture)
     {
         if (culture.StringId == TORConstants.Cultures.GREENSKIN || culture.StringId == TORConstants.Cultures.GREENSKIN_BANDIT || culture.StringId == TORConstants.Cultures.GOBLIN_BANDIT) return true;
         else return false;
     }
 
-    public static bool IsBretonnian(this CultureObject culture)
+    public static bool IsBretonnian (this CultureObject culture)
     {
         if (culture.StringId == TORConstants.Cultures.BRETONNIA || culture.StringId == TORConstants.Cultures.HERRIMAULT) return true;
         else return false;
     }
 
-    public static bool IsUndead(this CultureObject culture)
+    public static bool IsUndead (this CultureObject culture)
     {
         if (culture.StringId == TORConstants.Cultures.SYLVANIA || culture.StringId == TORConstants.Cultures.MOUSILLON) return true;
         else return false;
     }
 
-    public static bool IsElf(this CultureObject culture)
+    public static bool IsElf (this CultureObject culture)
     {
         if (culture.StringId == TORConstants.Cultures.EONIR || culture.StringId == TORConstants.Cultures.ASRAI || culture.StringId == TORConstants.Cultures.DRUCHII) return true;
         else return false;
     }
 
-    public static bool IsBeastmen(this CultureObject culture)
+    public static bool IsBeastmen (this CultureObject culture)
     {
         if (culture.StringId == TORConstants.Cultures.BEASTMEN || culture.StringId == TORConstants.Cultures.BEASTMEN_BANDIT) return true;
         else return false;
@@ -49,9 +93,33 @@ public static class CultureExtensions
     /// <remarks>
     /// Excludes f.e. Beastmen who are considered forces of chaos.
     /// </remarks>
-    public static bool IsChaosStrict(this CultureObject culture)
+    public static bool IsChaosStrict (this CultureObject culture)
     {
         if (culture.StringId == TORConstants.Cultures.CHAOS || culture.StringId == TORConstants.Cultures.CHAOS_CULTIST) return true;
+        else return false;
+    }
+
+    public static bool IsAsrai (this CultureObject culture)
+    {
+        if (culture.StringId == TORConstants.Cultures.ASRAI) return true;
+        else return false;
+    }
+
+    public static bool IsEonir(this CultureObject culture)
+    {
+        if (culture.StringId == TORConstants.Cultures.EONIR) return true;
+        else return false;
+    }
+
+    public static bool IsDruchii (this CultureObject culture)
+    {
+        if (culture.StringId == TORConstants.Cultures.DRUCHII) return true;
+        else return false;
+    }
+
+    public static bool IsDawi (this CultureObject culture)
+    {
+        if (culture.StringId == TORConstants.Cultures.DAWI) return true;
         else return false;
     }
 }
