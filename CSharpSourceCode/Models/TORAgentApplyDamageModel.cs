@@ -433,8 +433,7 @@ namespace TOR_Core.Models
             // Apply career passives for damage values
             TORDamageHelper.ApplyCareerPassives(attackerAgent, victimAgent, attackTypeMask, additionalDamagePercentages, resistancePercentages);
 
-            if (collisionData.IsMissile &&
-                TORDamageHelper.IsNonMagicalSiegeOrExplosiveAmmunition(attackInformation.AttackerWeapon.Item))
+            if (collisionData.IsMissile && attackInformation.AttackerWeapon.Item.IsExplosiveAmmunition())
             {
                 TORDamageHelper.ApplyNestCleansingExplosionResistance(victimAgent, resistancePercentages);
             }

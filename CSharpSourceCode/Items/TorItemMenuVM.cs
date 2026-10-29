@@ -92,19 +92,25 @@ namespace TOR_Core.Items
                     }
                 }
 
-                if (!movedItem.IsAmmunitionItem()) //skip  check if no ammunition item is involved.
+                //Potentially problematic equipment is gunpowder weapons : grenades, buckshots, flame throwers, and their accompanying ammos (Cartridge type).
+
+                if (!movedItem.IsRangedOrAmmoItem()) //skip items that aren't ranged or ammos
                     continue;
+
+
+                //If the weapon class of the moved item is none of (Musket, Pistol, Cartridge) AND the target item is none of those classes, it can be safely ignored because musket and pistol are the only ranged weapons that consume cartridge ammo.
+                //Ie. exclude bows, crossbows, throwing weapons as they either don't share ammos with guns, or have no ammo item.
+
+                if (movedItem.PrimaryWeapon.WeaponClass != WeaponClass.Musket && movedItem.PrimaryWeapon.WeaponClass != WeaponClass.Cartridge && movedItem.PrimaryWeapon.WeaponClass != WeaponClass.Pistol) continue;
+
 
                 foreach (var equipmentItem in targetEquipment.Where(x => x.ToString() != result.EffectedItemRosterElement.EquipmentElement.Item.ToString()))
                 {
-                    if (!equipmentItem.IsAmmunitionItem())
-                        continue; //we are only interested for now in ranged and ammo items
+                    if (!equipmentItem.IsRangedOrAmmoItem())
+                        continue;
 
-                    if ((movedItem.PrimaryWeapon.WeaponClass != WeaponClass.Musket && movedItem.PrimaryWeapon.WeaponClass != WeaponClass.Cartridge) ||
-                        movedItem.PrimaryWeapon.AmmoClass != WeaponClass.Undefined && movedItem.PrimaryWeapon.AmmoClass != WeaponClass.Cartridge)
-                    {
-                        continue; // the only problematic ones are gun powder weapons - grenades, buckshots flames throwers. rest is allowed. 
-                    }
+                    if (equipmentItem.PrimaryWeapon.WeaponClass != WeaponClass.Musket && equipmentItem.PrimaryWeapon.WeaponClass != WeaponClass.Cartridge && equipmentItem.PrimaryWeapon.WeaponClass != WeaponClass.Pistol) continue;
+
 
                     var invalid = false;
 
@@ -160,6 +166,8 @@ namespace TOR_Core.Items
                         result.EffectedEquipmentIndex,
                         EquipmentIndex.None,
                         result.TransferCharacter);
+
+                    //Sly : This should at least have a quick information banner stating why the transfer has been denied.
 
                     inventoryLogic.AddTransferCommand(command);
 
