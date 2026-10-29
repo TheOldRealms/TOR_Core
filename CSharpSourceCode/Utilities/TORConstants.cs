@@ -32,6 +32,9 @@ namespace TOR_Core.Utilities
         public const int TREESPIRIT_VOICES_COUNT = 1;
         public const float SHRINE_PRAYING_DURATION = 6f;
 
+        /// <remarks>
+        /// <see cref="CultureExtensions.IsEquivalentCulture"/> for how cultures are grouped together in usage.
+        /// </remarks>
         public readonly struct Cultures
         {
             public const string EMPIRE = "empire";
