@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.ObjectSystem;
@@ -98,30 +99,129 @@ namespace TOR_Core.CampaignMechanics.Ambush
         private void TickTargetDetection()
         {
             if (_stealthedParties.Count == 0) return;
-            var main = MobileParty.MainParty;
-            if (main == null || !main.IsActive) return;
-            if (main.CurrentSettlement != null) return;
-            if (MapEvent.PlayerMapEvent != null) return;
-            if (TaleWorlds.MountAndBlade.Mission.Current != null) return;
 
             float strikeRadius = AmbushCampaignBehavior.StealthRadius;
             float strikeRadiusSq = strikeRadius * strikeRadius;
-            var mainPos = main.Position.ToVec2();
+
+            bool playerAvailable = IsPlayerAvailableAsTarget();
+            var main = MobileParty.MainParty;
+            Vec2 mainPos = main != null ? main.Position.ToVec2() : Vec2.Zero;
 
             // Grab a snapshot — triggering an ambush mutates the dict.
             var snapshot = new List<MBGUID>(_stealthedParties.Keys);
             foreach (var id in snapshot)
             {
-                var party = FindPartyById(id);
-                if (party == null || !party.IsActive) continue;
-                if (party.MapFaction == null || main.MapFaction == null) continue;
-                if (!FactionManager.IsAtWarAgainstFaction(party.MapFaction, main.MapFaction)) continue;
-                if (party.Position.ToVec2().DistanceSquared(mainPos) > strikeRadiusSq) continue;
+                var ambusher = FindPartyById(id);
+                if (ambusher == null || !ambusher.IsActive) continue;
+                if (ambusher.MapFaction == null) continue;
 
-                TriggerAmbushAgainstPlayer(party);
-                // Only one trigger per tick — the player can't be in two
-                // ambushes at once, and PlayerEncounter is now occupied.
-                return;
+                // Priority 1: player in strike range. Fiction: the player
+                // always counts as a notable target, so a stealthed party
+                // springs on them when they walk past.
+                if (playerAvailable
+                    && FactionManager.IsAtWarAgainstFaction(ambusher.MapFaction, main.MapFaction)
+                    && ambusher.Position.ToVec2().DistanceSquared(mainPos) <= strikeRadiusSq)
+                {
+                    TriggerAmbushAgainstPlayer(ambusher);
+                    // One player-ambush per tick: PlayerEncounter is now
+                    // occupied, no other stealthed party can trigger.
+                    playerAvailable = false;
+                    continue;
+                }
+
+                // Priority 2: closest AI victim. Keep looking across all
+                // stealthed parties so multiple AI-vs-AI skirmishes can
+                // fire in the same tick — they're independent.
+                var aiVictim = FindClosestHostileAiParty(ambusher, strikeRadiusSq);
+                if (aiVictim != null)
+                {
+                    TriggerSkirmishAgainstAiParty(ambusher, aiVictim);
+                }
+            }
+        }
+
+        private static bool IsPlayerAvailableAsTarget()
+        {
+            var main = MobileParty.MainParty;
+            if (main == null || !main.IsActive) return false;
+            if (main.CurrentSettlement != null) return false;
+            if (MapEvent.PlayerMapEvent != null) return false;
+            if (TaleWorlds.MountAndBlade.Mission.Current != null) return false;
+            if (main.MapFaction == null) return false;
+            return true;
+        }
+
+        private static MobileParty FindClosestHostileAiParty(MobileParty ambusher, float strikeRadiusSq)
+        {
+            var ambusherPos = ambusher.Position.ToVec2();
+            MobileParty closest = null;
+            float closestDistSq = strikeRadiusSq;
+            foreach (var p in MobileParty.All)
+            {
+                if (p == null || !p.IsActive || p == ambusher) continue;
+                if (p == MobileParty.MainParty) continue;    // player handled above
+                if (p.CurrentSettlement != null) continue;
+                if (p.MapEvent != null) continue;
+                if (p.MapFaction == null) continue;
+                if (!FactionManager.IsAtWarAgainstFaction(ambusher.MapFaction, p.MapFaction)) continue;
+                // Only engage proper fighting parties; caravans / villagers
+                // use their vanilla engagement paths.
+                if (!p.IsLordParty && !p.IsBandit) continue;
+                if (p.MemberRoster == null || p.MemberRoster.TotalHealthyCount < 5) continue;
+                float distSq = p.Position.ToVec2().DistanceSquared(ambusherPos);
+                if (distSq > closestDistSq) continue;
+                closest = p;
+                closestDistSq = distSq;
+            }
+            return closest;
+        }
+
+        private void TriggerSkirmishAgainstAiParty(MobileParty ambusher, MobileParty victim)
+        {
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (model == null) return;
+
+            var (ambusherWounds, victimWounds) = model.CalculateSkirmishCasualties(ambusher, victim);
+            WoundTroops(ambusher.Party, ambusherWounds);
+            WoundTroops(victim.Party, victimWounds);
+
+            bool press = model.ShouldPressAttackAfterSkirmish(ambusher, victim);
+            LeaveAiStealth(ambusher);
+
+            if (press)
+            {
+                // Teleport the ambusher onto the victim and open a vanilla
+                // field battle. The vanilla engagement AI + auto-resolve
+                // take over from here — nearby allied-party reinforcements,
+                // morale, composition all fold in naturally.
+                ambusher.Position = victim.Position;
+                FieldBattleEventComponent.CreateFieldBattleEvent(ambusher.Party, victim.Party);
+            }
+            // Retreat branch: nothing further — ambusher is out of stealth,
+            // victim is weakened. Both parties resume vanilla AI from here.
+        }
+
+        private static void WoundTroops(PartyBase party, int count)
+        {
+            if (party?.MemberRoster == null || count <= 0) return;
+            // Snapshot the elements so we don't mutate the roster while
+            // iterating it. Hero troop elements are skipped — only common
+            // troops get wounded in a skirmish.
+            var elements = new List<TroopRosterElement>();
+            for (int i = 0; i < party.MemberRoster.Count; i++)
+                elements.Add(party.MemberRoster.GetElementCopyAtIndex(i));
+
+            int remaining = count;
+            foreach (var elem in elements)
+            {
+                if (remaining <= 0) break;
+                if (elem.Character == null || elem.Character.IsHero) continue;
+                int available = elem.Number - elem.WoundedNumber;
+                if (available <= 0) continue;
+                int toWound = System.Math.Min(available, remaining);
+                // count=0 keeps the total; woundedCount shifts healthy→wounded.
+                party.MemberRoster.AddToCounts(elem.Character, 0, false, toWound);
+                remaining -= toWound;
             }
         }
 

@@ -333,6 +333,65 @@ namespace TOR_Core.Models
         /// across the whole AI population.</summary>
         public virtual float AiDecisionTickFraction => 1f;
 
+        // ---- Phase F Slice 2b: AI-vs-AI skirmish ----
+
+        /// <summary>Fraction of the ambusher's roster that counts as the
+        /// "strike" force in a headless AI-vs-AI ambush. The strike delivers
+        /// casualties to the victim and takes some itself; the rest of the
+        /// ambusher roster sits in reserve. Default 0.5 — half the party
+        /// commits to the surprise salvo.</summary>
+        public virtual float AmbushSkirmishStrikePowerFraction => 0.5f;
+
+        /// <summary>Fraction of the strike force's power that lands as
+        /// wounds on the victim. Default 0.4 → a 50-troop strike wounds
+        /// ~20 of the victim's roster.</summary>
+        public virtual float AmbushSkirmishVictimCasualtyFraction => 0.4f;
+
+        /// <summary>Fraction of the strike force itself that gets wounded
+        /// in the exchange. Default 0.1 → surprise advantage keeps the
+        /// ambusher's own losses light.</summary>
+        public virtual float AmbushSkirmishAmbusherCasualtyFraction => 0.1f;
+
+        /// <summary>Strength ratio above which the ambusher presses the
+        /// attack into a full field battle instead of melting away.
+        /// Mirrors design doc § 6 — same gate the Phase F AmbushedFled
+        /// follow-up uses on the player side.</summary>
+        public virtual float AmbushFollowupThreshold => 1.5f;
+
+        /// <summary>Returns (ambusherWounds, victimWounds) for a headless
+        /// skirmish. The strike power is the ambusher's healthy count ×
+        /// <see cref="AmbushSkirmishStrikePowerFraction"/>; victim wounds
+        /// are clamped against the victim's available healthy count.
+        /// </summary>
+        public virtual (int ambusherWounds, int victimWounds) CalculateSkirmishCasualties(
+            MobileParty ambusher, MobileParty victim)
+        {
+            if (ambusher?.MemberRoster == null || victim?.MemberRoster == null)
+                return (0, 0);
+            int ambusherHealthy = ambusher.MemberRoster.TotalHealthyCount;
+            int victimHealthy = victim.MemberRoster.TotalHealthyCount;
+            int strikePower = (int)(ambusherHealthy * AmbushSkirmishStrikePowerFraction);
+            int victimWounds = System.Math.Min(victimHealthy,
+                (int)(strikePower * AmbushSkirmishVictimCasualtyFraction));
+            int ambusherWounds = System.Math.Min(ambusherHealthy,
+                (int)(ambusherHealthy * AmbushSkirmishAmbusherCasualtyFraction));
+            return (ambusherWounds, victimWounds);
+        }
+
+        /// <summary>True when the ambusher's post-skirmish healthy count
+        /// clears the follow-up threshold against the victim's healthy
+        /// count — the signal to press the attack rather than fade back
+        /// into cover. First-pass uses raw healthy counts; a Slice 2c
+        /// refinement can promote to tier-weighted strength.</summary>
+        public virtual bool ShouldPressAttackAfterSkirmish(MobileParty ambusher, MobileParty victim)
+        {
+            if (ambusher?.MemberRoster == null || victim?.MemberRoster == null) return false;
+            int ambusherHealthy = ambusher.MemberRoster.TotalHealthyCount;
+            int victimHealthy = victim.MemberRoster.TotalHealthyCount;
+            if (victimHealthy <= 0) return true;
+            return ambusherHealthy >= victimHealthy * AmbushFollowupThreshold;
+        }
+
         /// <summary>Returns the ambush propensity (0..1) for a given AI
         /// party, defaulting to the party culture's baseline when there's
         /// no hero override. Hero overrides take precedence — e.g. a
