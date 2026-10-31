@@ -255,6 +255,13 @@ namespace TOR_Core.Missions.AmbushMission
             float inverse = 1f - ratio;
             int besiegedCap = (int)(_spawnLogic.BattleSize * ratio);
             int besiegerCap = (int)(_spawnLogic.BattleSize * inverse);
+
+            // Tactics scaling: the player hero's Tactics skill raises the cap
+            // on how many troops they can commit to an ambush. Model-tunable
+            // via TORMissionAmbushModel.TacticsPerAmbushTroopBonus.
+            int tactics = Hero.MainHero?.GetSkillValue(DefaultSkills.Tactics) ?? 0;
+            besiegerCap += (int)(tactics * _model.TacticsPerAmbushTroopBonus);
+
             if (besiegedTotal > besiegedCap) besiegedTotal = besiegedCap;
             if (besiegerTotal > besiegerCap) besiegerTotal = besiegerCap;
 

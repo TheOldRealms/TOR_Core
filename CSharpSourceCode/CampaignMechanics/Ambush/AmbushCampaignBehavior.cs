@@ -17,6 +17,7 @@ using TaleWorlds.ScreenSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Missions;
 using TOR_Core.Missions.AmbushMission;
+using TOR_Core.Models;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Ambush
@@ -55,6 +56,18 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         private readonly List<MobileParty> _currentTargets = new List<MobileParty>();
         private CampaignTimeControlMode _cachedTimeControlMode = CampaignTimeControlMode.StoppablePlay;
+
+        // Real-time timestamp (System seconds) of the last stealth-hotkey press
+        // that resolved. Used by the 2-second input cooldown that prevents
+        // panic double-tap from toggling off stealth you just paid to enter.
+        private float _lastHotkeyRealTime = -10f;
+        private const float HotkeyInputCooldownSeconds = 2f;
+
+        /// <summary>Loudness tally from the most recent ambush mission —
+        /// player-side gunpowder shots + non-Shadow magic casts. Set by
+        /// AmbushLoudnessTracker before mission close; consumed by
+        /// StampAmbushCooldown and the TotalVictory cooldown-zero gate.</summary>
+        public int LastAmbushLoudness { get; set; }
 
         public bool IsPlayerInStealth => _playerInStealth;
         public CampaignTime PlayerAmbushCooldownUntil => _playerAmbushCooldownUntil;
@@ -112,14 +125,67 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         public void OnStealthHotkeyPressed()
         {
+            // 2-second real-time input cooldown so panic double-tap can't
+            // accidentally toggle off stealth you just entered. Environment.TickCount
+            // is milliseconds since boot — overflows every ~24 days but we only
+            // care about short deltas.
+            float nowRealTime = System.Environment.TickCount / 1000f;
+            if (nowRealTime - _lastHotkeyRealTime < HotkeyInputCooldownSeconds) return;
+
             if (!CanToggleStealth()) return;
 
             if (_playerInStealth)
+            {
                 LeaveStealth(MobileParty.MainParty);
-            else if (!IsOnAmbushCooldown)
-                EnterStealth(MobileParty.MainParty);
-            else
+                _lastHotkeyRealTime = nowRealTime;
+                return;
+            }
+
+            if (IsOnAmbushCooldown)
+            {
                 TORCommon.Say("Stealth is still on cooldown.");
+                _lastHotkeyRealTime = nowRealTime;
+                return;
+            }
+
+            // Entry chance roll — scouting / terrain / night / nearby hostiles.
+            // Failed entry stamps the cooldown just like a failed strike would.
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (model != null)
+            {
+                int hostilesInRange = CountHostileObserversInScanRadius(model);
+                float chance = model.CalculateEntryChance(MobileParty.MainParty, hostilesInRange);
+                if (MBRandom.RandomFloat >= chance)
+                {
+                    TORCommon.Say("You couldn't slip away in time.");
+                    StampAmbushCooldown();
+                    _lastHotkeyRealTime = nowRealTime;
+                    return;
+                }
+            }
+
+            EnterStealth(MobileParty.MainParty);
+            _lastHotkeyRealTime = nowRealTime;
+        }
+
+        private int CountHostileObserversInScanRadius(TORAmbushModel model)
+        {
+            var mainParty = MobileParty.MainParty;
+            if (mainParty == null) return 0;
+            float scanRadius = model.DetectionScanRadius;
+            float scanRadiusSq = scanRadius * scanRadius;
+            var mainPos = mainParty.Position.ToVec2();
+            int n = 0;
+            foreach (var observer in MobileParty.All)
+            {
+                if (observer == null || !observer.IsActive) continue;
+                if (observer == mainParty) continue;
+                if (!observer.IsVisible) continue;   // fog-of-war hidden parties don't count
+                if (observer.Position.ToVec2().DistanceSquared(mainPos) > scanRadiusSq) continue;
+                if (!model.CanDetect(observer, mainParty)) continue;
+                n++;
+            }
+            return n;
         }
 
         public void EnterStealth(MobileParty party)
@@ -183,6 +249,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 .Where(p => p != null
                             && p.IsActive
                             && p != attacker
+                            && p.IsVisible   // fog-of-war-hidden parties can't be targeted
                             && p.MapFaction != null
                             && attackerFaction != null
                             && FactionManager.IsAtWarAgainstFaction(attackerFaction, p.MapFaction)
@@ -194,7 +261,11 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         public void StampAmbushCooldown()
         {
-            _playerAmbushCooldownUntil = CampaignTime.HoursFromNow(CooldownHours);
+            float hours = CooldownHours;
+            var missionModel = Campaign.Current?.Models?.GetMissionAmbushModel();
+            if (missionModel != null && LastAmbushLoudness >= missionModel.LoudnessEventThreshold)
+                hours += missionModel.LoudnessPenaltyHours;
+            _playerAmbushCooldownUntil = CampaignTime.HoursFromNow(hours);
         }
 
         public override void RegisterEvents()
@@ -231,20 +302,40 @@ namespace TOR_Core.CampaignMechanics.Ambush
             var mainPos = mainParty.Position.ToVec2();
             float scanRadiusSq = scanRadius * scanRadius;
 
-            // Cheap spatial pre-filter so we don't ask the model about every party on
-            // the map each tick. Eligibility (hostility etc.) is the model's CanDetect
-            // responsibility, invoked inside TryDetect.
+            // Collect eligible observers once per tick so we can both roll detection
+            // AND award hidden-tick Roguery XP on the "not revealed" path.
+            int observerCount = 0;
+            int highestObserverScouting = 0;
             foreach (var observer in MobileParty.All)
             {
                 if (observer == null || !observer.IsActive) continue;
+                if (!observer.IsVisible) continue;   // fog-of-war-hidden parties don't observe us either
                 if (observer.Position.ToVec2().DistanceSquared(mainPos) > scanRadiusSq) continue;
+                if (!model.CanDetect(observer, mainParty)) continue;
+
+                observerCount++;
+                int s = observer.LeaderHero?.GetSkillValue(DefaultSkills.Scouting) ?? 0;
+                if (s > highestObserverScouting) highestObserverScouting = s;
 
                 if (model.TryDetect(observer, mainParty, _stealthEnteredAt, out string reason))
                 {
                     TORCommon.Say(reason);
                     LeaveStealth(mainParty);
-                    return; // one break per tick is enough — stealth is gone
+                    StampAmbushCooldown();   // being spotted locks us out for the normal cooldown window
+                    return;
                 }
+            }
+
+            // Not revealed and at least one hostile within scan range → Roguery XP tick.
+            if (observerCount > 0 && Hero.MainHero != null)
+            {
+                int hostileBonus = System.Math.Min(observerCount * model.RogueryXpPerHostileInRange,
+                                                   model.RogueryXpPerHostileCap);
+                int scoutingBonus = model.RogueryXpScoutingDivisor > 0
+                    ? highestObserverScouting / model.RogueryXpScoutingDivisor
+                    : 0;
+                int xp = model.RogueryXpBasePerHiddenTick + hostileBonus + scoutingBonus;
+                Hero.MainHero.AddSkillXp(DefaultSkills.Roguery, xp);
             }
         }
 
@@ -330,32 +421,59 @@ namespace TOR_Core.CampaignMechanics.Ambush
             switch (LastAmbushOutcome)
             {
                 case AmbushOutcome.TotalVictory:
-                    // No witnesses, no alarm — stealth is immediately available.
+                    // Quiet TotalVictory: no witnesses, no alarm — stealth is
+                    // immediately available. Loud TotalVictory: the gunpowder /
+                    // magic noise carried, cooldown stays at the extended value
+                    // StampAmbushCooldown just set.
                     //
                     // DO NOT force-destroy the target party here. OnPlayerBattleEnd
-                    // fires at vanilla's ApplyResults state, which is MID-flow —
-                    // vanilla still has PlayerVictory → LootParty → LootInventory
-                    // → End ahead. The End state is where vanilla handles 0-troop
-                    // / empty-party cleanup itself. Firing DestroyPartyAction here
-                    // crashes vanilla's state machine (observed: encounter menu
-                    // opens for loot screen, our destroy fires 2ms later, native
-                    // crash). We leave the party alone; vanilla's natural flow
-                    // destroys 0-troop parties as part of DoEnd.
-                    _playerAmbushCooldownUntil = CampaignTime.Zero;
-                    TORCommon.Say("No one escaped the ambush. You can slip back into cover immediately.");
-                    if (_lastAmbushTarget != null)
+                    // fires at vanilla's ApplyResults state, mid-flow — vanilla
+                    // still has PlayerVictory → LootParty → LootInventory → End
+                    // ahead. End handles 0-troop party cleanup itself. Firing
+                    // DestroyPartyAction mid-state-machine crashes native.
                     {
-                        var roster = _lastAmbushTarget.MemberRoster;
-                        int total = roster != null ? roster.TotalManCount : -1;
-                        bool active = _lastAmbushTarget.IsActive;
-                        TaleWorlds.Library.Debug.Print(
-                            "[AmbushCampaignBehavior] TotalVictory post-mission:"
-                            + " target=" + GetPartyLabel(_lastAmbushTarget)
-                            + " active=" + active
-                            + " totalManCount=" + total
-                            + " (letting vanilla finish the cleanup)");
+                        int eliminated = _lastAmbushTarget?.MemberRoster?.TotalManCount ?? 0;
+                        // Pre-mission snapshot would be more accurate; roster at
+                        // this point is already reduced. For the XP bonus we use
+                        // the "eliminated" scale as a proxy — refined later if
+                        // we snapshot in OnStrike.
+                        var ambushModel = Campaign.Current?.Models?.GetAmbushModel();
+                        var missionModel = Campaign.Current?.Models?.GetMissionAmbushModel();
+                        bool loud = missionModel != null
+                                    && LastAmbushLoudness >= missionModel.LoudnessEventThreshold;
+                        if (!loud)
+                        {
+                            _playerAmbushCooldownUntil = CampaignTime.Zero;
+                            TORCommon.Say("No one escaped the ambush. You can slip back into cover immediately.");
+                        }
+                        else
+                        {
+                            TORCommon.Say("The noise of your attack carries far. Scouts are looking for you — stealth will be slow to re-establish.");
+                        }
+
+                        if (ambushModel != null && Hero.MainHero != null)
+                        {
+                            int xp = ambushModel.RogueryXpTotalVictoryBase
+                                   + (int)(eliminated * ambushModel.RogueryXpTotalVictoryPerMember);
+                            Hero.MainHero.AddSkillXp(DefaultSkills.Roguery, xp);
+                        }
+
+                        if (_lastAmbushTarget != null)
+                        {
+                            var roster = _lastAmbushTarget.MemberRoster;
+                            int total = roster != null ? roster.TotalManCount : -1;
+                            bool active = _lastAmbushTarget.IsActive;
+                            TaleWorlds.Library.Debug.Print(
+                                "[AmbushCampaignBehavior] TotalVictory post-mission:"
+                                + " target=" + GetPartyLabel(_lastAmbushTarget)
+                                + " active=" + active
+                                + " totalManCount=" + total
+                                + " loudness=" + LastAmbushLoudness
+                                + (loud ? " (loud: cooldown extended)" : " (quiet: cooldown zeroed)"));
+                        }
                     }
                     _lastAmbushTarget = null;
+                    LastAmbushLoudness = 0;
                     break;
                 case AmbushOutcome.Extracted:
                     WoundLeftBehindTroops(ExtractionTroopsLeftBehind);

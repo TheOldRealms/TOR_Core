@@ -76,5 +76,45 @@ namespace TOR_Core.Models
         /// Safety net for navmesh / geometry bugs that leave the enemy unable
         /// to reach the player.</summary>
         public virtual float StalemateMinutes => 10f;
+
+        // ---- Tactics skill scaling ----
+
+        /// <summary>
+        /// Per-skill-point bonus to the player's initial troop cap in an
+        /// ambush. 0.1 → +30 troops at Tactics 300. Applied on top of the
+        /// battle-size budget split.
+        /// </summary>
+        public virtual float TacticsPerAmbushTroopBonus => 0.1f;
+
+        /// <summary>
+        /// Per-skill-point reduction of the player's reinforcement wave
+        /// interval when the player is being ambushed (Phase F). Multiplicative
+        /// shrink: 0.002 × 300 Tactics = 60% reduction → 40% of base. Floored
+        /// by <see cref="TacticsReinforcementSpeedupFloor"/>.
+        /// </summary>
+        public virtual float TacticsReinforcementSpeedup => 0.002f;
+
+        /// <summary>
+        /// Minimum fraction of the base wave interval. Even an infinite Tactics
+        /// skill can't shrink intervals below this fraction.
+        /// </summary>
+        public virtual float TacticsReinforcementSpeedupFloor => 0.25f;
+
+        // ---- Loudness ----
+
+        /// <summary>
+        /// How many player-side loudness events (gunpowder shots + non-Shadow
+        /// magic casts) tip a mission from "quiet" to "loud" at mission end.
+        /// Loud missions get the full extended cooldown; quiet TotalVictory
+        /// skips the cooldown entirely. See campaign-stealth-design.md § 6b.
+        /// </summary>
+        public virtual int LoudnessEventThreshold => 3;
+
+        /// <summary>
+        /// Extra hours added to <see cref="AmbushCampaignBehavior.CooldownHours"/>
+        /// when a mission ends classified as loud. Default +6h → effective
+        /// cooldown doubles when gunpowder / magic was involved.
+        /// </summary>
+        public virtual float LoudnessPenaltyHours => 6f;
     }
 }

@@ -265,6 +265,7 @@ namespace TOR_Core.Missions
                     new BattleSpawnLogic("battle_set"),
                     new AmbushMission.AmbushMissionController(playerTroopCount, targetTroopCount),
                     new AmbushMission.AmbushEndLogic(),
+                    new AmbushMission.AmbushLoudnessTracker(),
                     new MissionExperienceBehavior(),
                     new CampaignMissionComponent(),
                     new BattleAgentLogic(),

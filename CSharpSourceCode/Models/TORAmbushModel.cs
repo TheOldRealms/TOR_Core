@@ -34,6 +34,30 @@ namespace TOR_Core.Models
         // Day/night: night favours ambushers.
         public virtual float NightTimeBonus => 0.1f;
 
+        // ---- Entry chance ----
+        //
+        // Chance of successfully slipping into stealth stance on the hotkey
+        // press. Separate from CalculateAmbushSuccessChance (chance of a
+        // successful strike). Entry has a high floor so clean cover is near-
+        // automatic; drops sharply with nearby hostiles so mid-chase stealth
+        // is nearly impossible but never fully 0.
+        public virtual float BaseEntryChance => 0.9f;
+        public virtual float MinEntryChance => 0.5f;
+        public virtual float MaxEntryChance => 0.98f;
+        public virtual float EntryHostilePenaltyPerParty => 0.12f;
+        public virtual float EntryHostilePenaltyCap => 0.4f;
+        public virtual float EntryScoutingPerPointBonus => 0.001f;
+        public virtual float EntryScoutingBonusCap => 0.08f;
+
+        // ---- Roguery XP (hidden-tick + perfect-ambush bonus) ----
+
+        public virtual int RogueryXpBasePerHiddenTick => 5;
+        public virtual int RogueryXpPerHostileInRange => 1;
+        public virtual int RogueryXpPerHostileCap => 5;
+        public virtual int RogueryXpScoutingDivisor => 50;  // +1 XP per 50 Scouting on the highest-skilled observer in range
+        public virtual int RogueryXpTotalVictoryBase => 50;
+        public virtual float RogueryXpTotalVictoryPerMember => 1f;
+
         // ---- Detection model (Phase B v2) ----
         //
         // Fires on QuarterHourlyTickEvent per nearby hostile observer while the
@@ -233,6 +257,64 @@ namespace TOR_Core.Models
             if (enteredAt == CampaignTime.Zero) return 0f;
             float hours = (float)(CampaignTime.Now - enteredAt).ToHours;
             return MBMath.ClampFloat(hours * StealthDurationPerHour, 0f, StealthDurationCap);
+        }
+
+        /// <summary>
+        /// Chance that the player successfully slips into stealth stance on
+        /// the hotkey press. Factors: Scouting (+), terrain (+/-), night (+),
+        /// nearby hostile count (- per party, capped). Clamp
+        /// [MinEntryChance..MaxEntryChance]. See campaign-stealth-design.md § 1.
+        /// </summary>
+        public virtual float CalculateEntryChance(MobileParty self, int nearbyHostileCount)
+        {
+            if (self == null) return MinEntryChance;
+            float chance = BaseEntryChance
+                + EntryScoutingBonus(self)
+                + EntryTerrainBonus(self)
+                + EntryNightBonus()
+                - EntryHostilePenalty(nearbyHostileCount);
+            return MBMath.ClampFloat(chance, MinEntryChance, MaxEntryChance);
+        }
+
+        protected virtual float EntryScoutingBonus(MobileParty self)
+        {
+            int s = self.LeaderHero?.GetSkillValue(DefaultSkills.Scouting) ?? 0;
+            return MBMath.ClampFloat(s * EntryScoutingPerPointBonus, 0f, EntryScoutingBonusCap);
+        }
+
+        protected virtual float EntryTerrainBonus(MobileParty self)
+        {
+            var face = self.CurrentNavigationFace;
+            if (!face.IsValid()) return 0f;
+            var terrain = Campaign.Current.MapSceneWrapper.GetFaceTerrainType(face);
+            switch (terrain)
+            {
+                case TerrainType.Forest:
+                case TerrainType.Mountain:
+                case TerrainType.Canyon:
+                case TerrainType.Swamp:
+                    return ConcealingTerrainBonus;
+                case TerrainType.Plain:
+                case TerrainType.Desert:
+                case TerrainType.Steppe:
+                case TerrainType.Dune:
+                    return OpenTerrainPenalty;
+                default:
+                    return 0f;
+            }
+        }
+
+        protected virtual float EntryNightBonus()
+        {
+            if (Campaign.Current == null) return 0f;
+            return Campaign.Current.IsNight ? NightTimeBonus : 0f;
+        }
+
+        protected virtual float EntryHostilePenalty(int hostileCount)
+        {
+            if (hostileCount <= 0) return 0f;
+            return MBMath.ClampFloat(hostileCount * EntryHostilePenaltyPerParty,
+                                     0f, EntryHostilePenaltyCap);
         }
     }
 }
