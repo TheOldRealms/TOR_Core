@@ -210,6 +210,7 @@ namespace TOR_Core
                 starter.AddBehavior(new GoblinRecruitmentBehavior());
                 starter.AddBehavior(new DuelBehavior());
                 starter.AddBehavior(new AmbushCampaignBehavior());
+                starter.AddBehavior(new AiAmbushBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }

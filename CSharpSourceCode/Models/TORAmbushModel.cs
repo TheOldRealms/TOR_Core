@@ -4,6 +4,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TOR_Core.CampaignMechanics.Ambush;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.Models
 {
@@ -315,6 +316,49 @@ namespace TOR_Core.Models
             if (hostileCount <= 0) return 0f;
             return MBMath.ClampFloat(hostileCount * EntryHostilePenaltyPerParty,
                                      0f, EntryHostilePenaltyCap);
+        }
+
+        // ---- Phase F: AI-side propensity ----
+
+        /// <summary>Per-tick chance that an eligible AI lord/bandit party even
+        /// considers trying for an ambush. Baseline for a culture with no
+        /// override registered; keeps the system quiet until propensity data
+        /// is tuned per culture / hero.</summary>
+        public virtual float DefaultCulturePropensity => 0f;
+
+        /// <summary>How often an eligible AI party rolls for ambush entry on
+        /// the decision tick. Multiplied against the full
+        /// <see cref="CalculateEntryChance"/> result + the propensity to get
+        /// the final roll chance. Scales the per-quarter-hour frequency
+        /// across the whole AI population.</summary>
+        public virtual float AiDecisionTickFraction => 1f;
+
+        /// <summary>Returns the ambush propensity (0..1) for a given AI
+        /// party, defaulting to the party culture's baseline when there's
+        /// no hero override. Hero overrides take precedence — e.g. a
+        /// chivalric-culture hero known for banditry can still have a high
+        /// propensity (<see cref="AmbushPropensityRegistry"/>).</summary>
+        public virtual float GetAmbushPropensity(MobileParty party)
+        {
+            if (party == null) return 0f;
+            var hero = party.LeaderHero;
+            if (hero != null)
+            {
+                float heroOverride = AmbushPropensityRegistry.GetHeroPropensity(hero);
+                if (heroOverride >= 0f) return heroOverride;
+            }
+            var culture = party.MapFaction?.Culture ?? hero?.Culture;
+            if (culture == null) return DefaultCulturePropensity;
+
+            // Greenskin exception: the registry entry is the goblin-led
+            // value. Orcs are too thick to pull off an ambush, so a
+            // non-goblin leader zeroes propensity.
+            if (culture.StringId == "greenskin")
+            {
+                if (hero == null || !hero.IsGoblin()) return 0f;
+            }
+
+            return AmbushPropensityRegistry.GetCulturePropensity(culture, DefaultCulturePropensity);
         }
     }
 }
