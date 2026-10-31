@@ -61,9 +61,9 @@ namespace TOR_Core.Missions.AmbushMission
                 return;
             }
 
-            // Priority 2 — player (defender) team wiped. Needs the reinforcement
-            // queue drained too, mirroring Phase D's logic: don't call it a
-            // defeat while queued player waves are seconds from arriving.
+            // Priority 2 — player (defender) team wiped. Needs the
+            // reinforcement queue drained too, mirroring Phase D's logic:
+            // don't call it a defeat while queued waves are seconds away.
             if (CountActiveHumans(Mission.DefenderTeam) == 0
                 && !AreReinforcementsStillPending(BattleSideEnum.Defender))
             {
@@ -72,9 +72,10 @@ namespace TOR_Core.Missions.AmbushMission
                 return;
             }
 
-            // Priority 3 — AI ambusher team wiped. AI reinforcement is deferred
-            // (design doc § 4), but the check reads IsSideDepleted anyway so
-            // when the model lands later this gate stays honest without edit.
+            // Priority 3 — AI ambusher team wiped. AI sits on AttackerTeam
+            // (matches the ambusher = Attacker invariant). AI reinforcement
+            // is deferred (design doc § 4) but the check reads IsSideDepleted
+            // anyway so the gate stays honest when the model lands later.
             if (CountActiveHumans(Mission.AttackerTeam) == 0
                 && !AreReinforcementsStillPending(BattleSideEnum.Attacker))
             {

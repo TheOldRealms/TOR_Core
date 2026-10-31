@@ -40,6 +40,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
         public const string StealthMenuId = "tor_ambush_stealth_menu";
         public const string AmbushEscapeMenuId = "tor_ambush_escape_menu";
         public const string AmbushFailedMenuId = "tor_ambush_failed_menu";
+        public const string AmbushedIntroMenuId = "tor_ambushed_intro_menu";
         // Distance (metres) the player's party is teleported along the escape
         // vector when picking "escape" from the Ambush Escape menu. Enough to
         // prevent immediate re-engagement by the target party's AI.
@@ -524,22 +525,35 @@ namespace TOR_Core.CampaignMechanics.Ambush
             // battle, wounded troops) are built out in subsequent slices;
             // for now we log the outcome so a debug-triggered mission has
             // a visible closing beat.
-            switch (LastAmbushedOutcome)
+            if (LastAmbushedOutcome != AmbushedOutcome.None)
             {
-                case AmbushedOutcome.None:
-                    break;
-                case AmbushedOutcome.AmbushRepelled:
-                    TORCommon.Say("You drove them off. You got a good look at them — they won't stay hidden for long.");
-                    break;
-                case AmbushedOutcome.AmbushedFled:
-                    TORCommon.Say("You broke contact. Your troops are shaken.");
-                    break;
-                case AmbushedOutcome.AmbushedHeroWounded:
-                    TORCommon.Say("You were cut down in the ambush.");
-                    break;
-                case AmbushedOutcome.AmbushedWiped:
-                    // Vanilla defeat flow handles casualties / prisoners.
-                    break;
+                switch (LastAmbushedOutcome)
+                {
+                    case AmbushedOutcome.AmbushRepelled:
+                        TORCommon.Say("You drove them off. You got a good look at them — they won't stay hidden for long.");
+                        break;
+                    case AmbushedOutcome.AmbushedFled:
+                        TORCommon.Say("You broke contact. Your troops are shaken.");
+                        break;
+                    case AmbushedOutcome.AmbushedHeroWounded:
+                        TORCommon.Say("You were cut down in the ambush.");
+                        break;
+                    case AmbushedOutcome.AmbushedWiped:
+                        // Vanilla defeat flow handles casualties / prisoners.
+                        break;
+                }
+
+                // Close the AmbushedIntroMenu if it survived the mission.
+                // OnAmbushedIntroPrepare now ExitToLast()s before opening
+                // the mission so the usual case is already fine; this is
+                // the belt-and-suspenders half for state-machine corners
+                // where vanilla re-pushed the menu during PlayerEncounter
+                // cleanup.
+                var ambushedCtx = Campaign.Current?.CurrentMenuContext;
+                if (ambushedCtx?.GameMenu?.StringId == AmbushedIntroMenuId)
+                {
+                    GameMenu.ExitToLast();
+                }
             }
 
             LastAmbushOutcome = AmbushOutcome.None;
@@ -651,6 +665,51 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
             RegisterAmbushEscapeMenu(starter);
             RegisterAmbushFailedMenu(starter);
+            RegisterAmbushedIntroMenu(starter);
+        }
+
+        /// <summary>
+        /// Phase F pre-mission encounter beat. The AI party has sprung on the
+        /// player; this menu renders a narrative line + a single "Prepare to
+        /// fight!" option that opens the Phase F mission. Matches vanilla's
+        /// encounter_meeting cadence (narrative beat before combat) and gives
+        /// the MapEvent an extra tick to finalize before the mission opener
+        /// reads AttackerSide.TroopCount — fixes an empty-ambusher-team bug
+        /// seen when opening the mission directly from the debug trigger.
+        /// </summary>
+        private void RegisterAmbushedIntroMenu(CampaignGameStarter starter)
+        {
+            starter.AddGameMenu(
+                AmbushedIntroMenuId,
+                "{=tor_ambushed_intro}Your column has been moving through the pass for some time, no sign of anyone else on the road. A sudden movement in the brush. Steel on steel. Then they are on you — a lord's war band, waiting for exactly this.",
+                _ => { },
+                GameMenu.MenuOverlayType.Encounter);
+
+            starter.AddGameMenuOption(
+                AmbushedIntroMenuId,
+                "tor_ambushed_intro_prepare",
+                "{=tor_ambushed_intro_prepare}Prepare to fight!",
+                args => { args.optionLeaveType = GameMenuOption.LeaveType.HostileAction; return true; },
+                _ => OnAmbushedIntroPrepare(),
+                isLeave: false, index: 0, isRepeatable: false);
+        }
+
+        /// <summary>
+        /// Consequence of the Phase F intro menu's "Prepare to fight!" option.
+        /// By this point PlayerEncounter + MapEvent have been set up by the
+        /// caller (debug command or, in Slice 2, the AI decision tick). We
+        /// just need to reset the retreat zone registry (shared with Phase D)
+        /// and open the mission.
+        ///
+        /// Close the intro menu first — otherwise the mission screen pushes
+        /// on top of it, and when the mission ends vanilla pops back here
+        /// (infinite "Prepare to fight?" loop).
+        /// </summary>
+        private void OnAmbushedIntroPrepare()
+        {
+            GameMenu.ExitToLast();
+            AmbushRetreatZone.ResetRegistry();
+            TorMissionManager.OpenAmbushedMission(DefaultAmbushScene);
         }
 
         private void RegisterAmbushEscapeMenu(CampaignGameStarter starter)

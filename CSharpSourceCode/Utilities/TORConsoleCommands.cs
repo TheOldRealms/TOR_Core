@@ -24,6 +24,7 @@ using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.Reinforcements;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TaleWorlds.CampaignSystem.Encounters;
+using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TOR_Core.CampaignMechanics.Ambush;
 using TOR_Core.Missions.AmbushMission;
@@ -1495,13 +1496,22 @@ namespace TOR_Core.Utilities
                 if (p == null || !p.IsActive || p == main) continue;
                 if (p.MapFaction == null || mainFaction == null) continue;
                 if (!FactionManager.IsAtWarAgainstFaction(mainFaction, p.MapFaction)) continue;
+                // Only lord / bandit parties ambush — caravans and villagers
+                // are non-combatants. Matches the "AI ambusher eligibility"
+                // design in ai-ambushes-player-design.md § 7.
+                if (!p.IsLordParty && !p.IsBandit) continue;
+                // Filter out parties with no healthy troops. A roster of
+                // wounded troops reports IsActive=true but PartyGroupTroopSupplier
+                // only spawns healthy agents, so the ambusher team would be
+                // empty — the "4 wounded ungors" case.
+                if (p.MemberRoster == null || p.MemberRoster.TotalHealthyCount < 5) continue;
                 float distSq = p.Position.DistanceSquared(mainPos);
                 if (distSq > closestDistSq) continue;
                 closestDistSq = distSq;
                 closest = p;
             }
             if (closest == null)
-                return $"no eligible hostile party within {DebugAmbusherSearchRadius} units";
+                return $"no eligible hostile lord/bandit party with 5+ healthy troops within {DebugAmbusherSearchRadius} units";
 
             // Teleport the AI ambusher onto the player — Phase F fiction is
             // "they were lying in wait and sprang on you", so the engagement
@@ -1510,15 +1520,20 @@ namespace TOR_Core.Utilities
             // chose to walk up and strike.)
             closest.Position = main.Position;
 
-            // Role reversal: player on defender side, AI party on attacker side.
+            // Natural fiction wiring: ambusher goes on Attacker side,
+            // victim on Defender side. RestartPlayerEncounter arg order is
+            // (defender, attacker), so player→Defender, AI→Attacker.
             PlayerEncounter.RestartPlayerEncounter(PartyBase.MainParty, closest.Party, false);
             if (PlayerEncounter.Battle == null)
             {
                 PlayerEncounter.StartBattle();
                 PlayerEncounter.Update();
             }
-            AmbushRetreatZone.ResetRegistry();
-            TorMissionManager.OpenAmbushedMission(AmbushCampaignBehavior.DefaultAmbushScene);
+            // Open the intro menu instead of jumping straight to the mission.
+            // The "Prepare to fight!" option fires OnAmbushedIntroPrepare which
+            // opens the mission; a tick in between lets the MapEvent finalize
+            // its attacker/defender sides.
+            GameMenu.ActivateGameMenu(AmbushCampaignBehavior.AmbushedIntroMenuId);
             return "ambushed by " + (closest.LeaderHero?.Name?.ToString() ?? closest.Name?.ToString() ?? "?");
         }
     }

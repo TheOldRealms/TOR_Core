@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
@@ -33,8 +34,15 @@ namespace TOR_Core.Missions.AmbushMission
         private BasicMissionTimer _fallbackGraceTimer;
         private bool _fallbackResolved;
         private TORMissionAmbushModel _model;
-        private readonly int _playerTroopCount;
-        private readonly int _targetTroopCount;
+        // The two parties involved in the ambush. The controller works out
+        // which battle side each is on at AfterStart time (reads
+        // PartyBase.MapEventSide.MissionSide), so Phase D (player ambushes
+        // AI) and Phase F (AI ambushes player) share this class with no
+        // per-phase branching.
+        private readonly PartyBase _ambusherParty;
+        private readonly PartyBase _victimParty;
+        private BattleSideEnum _ambusherSide;
+        private BattleSideEnum _victimSide;
 
         // Scener-authored attacker spawn positions, grouped by formation class.
         // Each class maps to a list of world-space Vec3s pulled from entities
@@ -67,10 +75,10 @@ namespace TOR_Core.Missions.AmbushMission
         /// flips from false to true.</summary>
         public event System.Action InitialPatrolDefeated;
 
-        public AmbushMissionController(int playerTroopCount, int targetTroopCount)
+        public AmbushMissionController(PartyBase ambusherParty, PartyBase victimParty)
         {
-            _playerTroopCount = playerTroopCount;
-            _targetTroopCount = targetTroopCount;
+            _ambusherParty = ambusherParty;
+            _victimParty = victimParty;
         }
 
         public override void OnBehaviorInitialize()
@@ -92,6 +100,11 @@ namespace TOR_Core.Missions.AmbushMission
         public override void AfterStart()
         {
             base.AfterStart();
+            // Resolve each party's battle side from its MapEventSide. Both
+            // parties are expected to be on the PlayerMapEvent at this point
+            // (set up by the opener via PlayerEncounter.RestartPlayerEncounter).
+            _ambusherSide = _ambusherParty?.MapEventSide?.MissionSide ?? BattleSideEnum.Attacker;
+            _victimSide = _victimParty?.MapEventSide?.MissionSide ?? BattleSideEnum.Defender;
             SetupInitialSpawn();
             CollectAttackerSpawnPositions();
         }
@@ -145,7 +158,7 @@ namespace TOR_Core.Missions.AmbushMission
         {
             base.OnAgentCreated(agent);
             if (agent == null || !agent.IsHuman) return;
-            if (agent.Team != Mission.AttackerTeam) return;
+            if (agent.Team == null || agent.Team.Side != _ambusherSide) return;
 
             var formationClass = agent.Character?.DefaultFormationClass ?? FormationClass.Infantry;
             if (_attackerSpawnPositions.TryGetValue(formationClass, out var positions)
@@ -245,39 +258,54 @@ namespace TOR_Core.Missions.AmbushMission
         {
             if (_spawnLogic == null) return;
 
-            // Mirror vanilla's AdjustTotalTroopCounts shape: clamp both sides
-            // against the battle-size budget split, then rebalance so one side's
-            // roster doesn't dwarf the other's spawn allocation.
-            int besiegedTotal = _targetTroopCount;
-            int besiegerTotal = _playerTroopCount;
+            // Read counts off the two parties directly. MapEventSide.TroopCount
+            // is the battle-ready count (vanilla folds in wounded / etc.) so
+            // we use that over raw roster size.
+            int ambusherTotal = _ambusherParty?.MapEventSide?.TroopCount
+                                ?? _ambusherParty?.MemberRoster?.TotalManCount ?? 0;
+            int victimTotal = _victimParty?.MapEventSide?.TroopCount
+                              ?? _victimParty?.MemberRoster?.TotalManCount ?? 0;
 
+            // Battle-size budget split. Victim side gets the larger slice
+            // because the "patrol" is the mission's visible force.
             float ratio = _model.TargetTotalTroopRatio;
             float inverse = 1f - ratio;
-            int besiegedCap = (int)(_spawnLogic.BattleSize * ratio);
-            int besiegerCap = (int)(_spawnLogic.BattleSize * inverse);
+            int victimCap = (int)(_spawnLogic.BattleSize * ratio);
+            int ambusherCap = (int)(_spawnLogic.BattleSize * inverse);
 
-            // Tactics scaling: the player hero's Tactics skill raises the cap
-            // on how many troops they can commit to an ambush. Model-tunable
-            // via TORMissionAmbushModel.TacticsPerAmbushTroopBonus.
+            // Tactics scaling. The player's hero contributes the bonus; it
+            // applies to whichever side the player is on (ambusher in Phase D,
+            // victim in Phase F — design doc § 4 asks for Tactics scaling on
+            // the Phase F defensive side too).
             int tactics = Hero.MainHero?.GetSkillValue(DefaultSkills.Tactics) ?? 0;
-            besiegerCap += (int)(tactics * _model.TacticsPerAmbushTroopBonus);
+            int tacticsBonus = (int)(tactics * _model.TacticsPerAmbushTroopBonus);
+            bool playerIsAmbusher = _ambusherParty == PartyBase.MainParty;
+            if (playerIsAmbusher) ambusherCap += tacticsBonus;
+            else victimCap += tacticsBonus;
 
-            if (besiegedTotal > besiegedCap) besiegedTotal = besiegedCap;
-            if (besiegerTotal > besiegerCap) besiegerTotal = besiegerCap;
+            if (ambusherTotal > ambusherCap) ambusherTotal = ambusherCap;
+            if (victimTotal > victimCap) victimTotal = victimCap;
 
-            int sum = besiegedTotal + besiegerTotal;
-            // Defender (ambushed patrol): the entire visible patrol spawns upfront.
-            // Fiction is "the patrol you're ambushing" — a 10% scout wave feels
-            // like 3 lost scouts, not the actual force. Reinforcements then come
-            // in as "second patrol responding to the alarm" waves on top of this.
-            // There are 54 dynamic_patrol_area_tag points to receive them.
-            int defenderInitial = besiegedTotal;
-            // Attacker (player ambush party): entire force spawns upfront. There
-            // are no player reinforcements — the ambush is a fixed-roster strike,
-            // intended to be preselected like TrollCave later. Cap only against
-            // the battle-size slice we already clamped above.
-            int attackerInitial = besiegerTotal;
+            // Map "ambusher" / "victim" totals back onto the Attacker /
+            // Defender slot slots the vanilla spawn pipeline expects.
+            int attackerTotal, defenderTotal;
+            if (_ambusherSide == BattleSideEnum.Attacker)
+            {
+                attackerTotal = ambusherTotal;
+                defenderTotal = victimTotal;
+            }
+            else
+            {
+                attackerTotal = victimTotal;
+                defenderTotal = ambusherTotal;
+            }
 
+            // Victim (patrol): entire force spawns upfront. Fiction is "the
+            // patrol being ambushed" — a 10% scout wave feels like 3 lost
+            // scouts, not the real force. Reinforcements arrive as alarm
+            // response later; 54 dynamic_patrol_area_tag spawn points.
+            // Ambusher: entire force spawns upfront; no reinforcements for
+            // the ambusher in the first-pass model.
             _spawnLogic.SetSpawnHorses(BattleSideEnum.Defender, spawnHorses: true);
             _spawnLogic.SetSpawnHorses(BattleSideEnum.Attacker, spawnHorses: false);
 
@@ -290,8 +318,8 @@ namespace TOR_Core.Missions.AmbushMission
                 attackerReinforcementBatchPercentage: _model.PlayerReinforcementBatchFraction);
 
             _spawnLogic.InitWithSinglePhase(
-                besiegedTotal, besiegerTotal,
-                defenderInitial, attackerInitial,
+                defenderTotal, attackerTotal,
+                defenderTotal, attackerTotal,
                 spawnDefenders: false, spawnAttackers: false,
                 in spawnSettings);
 

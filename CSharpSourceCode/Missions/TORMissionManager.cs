@@ -254,8 +254,11 @@ namespace TOR_Core.Missions
                     new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Defender),
                     new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Attacker),
                 ];
-                int playerTroopCount = MapEvent.PlayerMapEvent.AttackerSide.TroopCount;
-                int targetTroopCount = MapEvent.PlayerMapEvent.DefenderSide.TroopCount;
+                // Phase D: player (ambusher) sits on Attacker, target
+                // (victim) on Defender. Pass the two parties through to the
+                // controller — it resolves sides and counts from them.
+                var ambusherParty = PartyBase.MainParty;
+                var victimParty = MapEvent.PlayerMapEvent.DefenderSide.LeaderParty;
                 List<MissionBehavior> list =
                 [
                     // Player side = Attacker (user-confirmed; previous read of EncounterManager
@@ -263,7 +266,7 @@ namespace TOR_Core.Missions
                     new DefaultBattleMissionAgentSpawnLogic(suppliers, BattleSideEnum.Attacker, BattleSizeType.Battle),
                     new BattlePowerCalculationLogic(),
                     new BattleSpawnLogic("battle_set"),
-                    new AmbushMission.AmbushMissionController(playerTroopCount, targetTroopCount),
+                    new AmbushMission.AmbushMissionController(ambusherParty, victimParty),
                     new AmbushMission.AmbushEndLogic(),
                     new AmbushMission.AmbushLoudnessTracker(),
                     new MissionExperienceBehavior(),
@@ -306,9 +309,14 @@ namespace TOR_Core.Missions
         /// Phase F — open the "player is being ambushed" mission. Same scene +
         /// controller as <see cref="OpenAmbushMission"/>; only the end logic
         /// differs so the 4-outcome state machine fires instead of Phase D's
-        /// 5-outcome one. Caller must have run EncounterManager.
-        /// StartPartyEncounter + PlayerEncounter.StartBattle with the AI
-        /// ambusher as the attacker and the player as the defender.
+        /// 5-outcome one.
+        ///
+        /// Side mapping follows the fiction: the ambusher (AI) sits on the
+        /// Attacker side, the victim (player) on the Defender side. The
+        /// controller teleports the Attacker team to the ambush_attacker_*
+        /// scene slots in both phases — the "ambusher = Attacker" invariant
+        /// is what lets the same controller serve both missions without
+        /// per-phase branching inside it.
         /// </summary>
         [MissionMethod]
         public static Mission OpenAmbushedMission(string scene)
@@ -321,17 +329,20 @@ namespace TOR_Core.Missions
                     new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Defender),
                     new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Attacker),
                 ];
-                int attackerCount = MapEvent.PlayerMapEvent.AttackerSide.TroopCount;
-                int defenderCount = MapEvent.PlayerMapEvent.DefenderSide.TroopCount;
+                // Phase F: AI ambusher on Attacker, player (victim) on
+                // Defender. Pass the two parties through to the controller.
+                var ambusherParty = MapEvent.PlayerMapEvent.AttackerSide.LeaderParty;
+                var victimParty = PartyBase.MainParty;
                 List<MissionBehavior> list =
                 [
-                    // Role reversal: player is Defender here. The attacker side
-                    // is still the ambusher force so AmbushMissionController's
-                    // "teleport attacker team to ambush slots" invariant holds.
+                    // Player is on the Defender side here. The spawn logic's
+                    // "player side" arg is purely informational for vanilla's
+                    // deployment-UI / hiding behaviour; it doesn't gate the
+                    // spawn pipeline.
                     new DefaultBattleMissionAgentSpawnLogic(suppliers, BattleSideEnum.Defender, BattleSizeType.Battle),
                     new BattlePowerCalculationLogic(),
                     new BattleSpawnLogic("battle_set"),
-                    new AmbushMission.AmbushMissionController(defenderCount, attackerCount),
+                    new AmbushMission.AmbushMissionController(ambusherParty, victimParty),
                     new AmbushMission.AmbushedEndLogic(),
                     new AmbushMission.AmbushLoudnessTracker(),
                     new MissionExperienceBehavior(),
