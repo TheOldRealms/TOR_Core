@@ -45,13 +45,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
             // Gated on hero.IsGoblin() in the model:
             { Cultures.GREENSKIN, 0.6f },
 
-            // ---- Bandit sub-cultures — ambush is their core gameplay ----
-            { Cultures.GOBLIN_BANDIT, 0.6f },    // "looters" = goblin bandits, no gate
-            { Cultures.GREENSKIN_BANDIT, 0.5f },
-            { Cultures.BEASTMEN_BANDIT, 0.6f },
-            { Cultures.CHAOS_CULTIST, 0.5f },    // "forest_bandits" = chaos cultists
-            { Cultures.EMPIRE_DESERTERS, 0.4f }, // "mountain_bandits" = empire deserters
-            { Cultures.HERRIMAULT, 0.4f },       // "desert_bandits" = herrimault
+            // Bandit sub-cultures (goblin bandits, chaos cultists, etc.)
+            // are intentionally not listed. IsEligibleAmbusher excludes
+            // IsBandit parties entirely — the base-Bannerlord bandit
+            // population is too dense to enrol into the stealth pool
+            // without hanging the quarter-hourly tick. Bandits are still
+            // valid *victims* via FindClosestHostileAiParty. Re-add
+            // entries here if we decide to let a subset ambush later.
 
             // ---- Moderate ----
             { Cultures.EMPIRE, 0.15f },          // professional soldiery, formation warfare

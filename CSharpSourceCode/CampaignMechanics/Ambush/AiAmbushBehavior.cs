@@ -37,6 +37,18 @@ namespace TOR_Core.CampaignMechanics.Ambush
         // the stealth pool from accumulating indefinitely.
         private const float MaxStealthHoldHours = 48f;
 
+        // Minimum healthy troop count for a party to count as "ambush-
+        // capable". Below this, an ambush is logically possible but
+        // produces a near-empty mission (healthy agents are the only ones
+        // the spawn pipeline uses). 20 keeps the fiction tight — the
+        // ambusher must have a real fighting force, not 5 stragglers.
+        private const int MinHealthyForAmbush = 20;
+
+        // Max AI-vs-AI skirmishes allowed to fire in a single tick. Each
+        // one calls CreateFieldBattleEvent + roster mutations; stacking
+        // many in one tick can hang vanilla's engagement pipeline.
+        private const int MaxSkirmishesPerTick = 2;
+
         public override void RegisterEvents()
         {
             CampaignEvents.QuarterHourlyTickEvent.AddNonSerializedListener(this, OnQuarterHourlyTick);
@@ -58,17 +70,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             if (Campaign.Current == null) return;
 
-            // Housekeeping first: parties that got into a map event /
-            // settlement / were destroyed shouldn't remain in the stealth
-            // dict. Also expire parties that have held stealth too long.
+            TaleWorlds.Library.Debug.Print("[AI Ambush] tick: start, stealthed=" + _stealthedParties.Count);
             PruneStealthedParties();
-
-            // Decision tick: every eligible party rolls for entry.
+            TaleWorlds.Library.Debug.Print("[AI Ambush] tick: pruned, stealthed=" + _stealthedParties.Count);
             TickDecisions();
-
-            // Target check: any stealthed party close enough to the player
-            // triggers the mission.
+            TaleWorlds.Library.Debug.Print("[AI Ambush] tick: decisions done, stealthed=" + _stealthedParties.Count);
             TickTargetDetection();
+            TaleWorlds.Library.Debug.Print("[AI Ambush] tick: targets done, stealthed=" + _stealthedParties.Count);
         }
 
         private void TickDecisions()
@@ -109,11 +117,29 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
             // Grab a snapshot — triggering an ambush mutates the dict.
             var snapshot = new List<MBGUID>(_stealthedParties.Keys);
+            int skirmishesFired = 0;
             foreach (var id in snapshot)
             {
                 var ambusher = FindPartyById(id);
                 if (ambusher == null || !ambusher.IsActive) continue;
                 if (ambusher.MapFaction == null) continue;
+                // Ambusher may have been dragged into a map event by
+                // vanilla engagement AI while stealthed — IgnoreByOther-
+                // PartiesTill isn't honoured by every vanilla path.
+                // Drop them from stealth; vanilla will handle the event.
+                if (ambusher.MapEvent != null)
+                {
+                    LeaveAiStealth(ambusher);
+                    continue;
+                }
+                // Post-skirmish-wounding may have dropped the ambusher
+                // below the fighting threshold since the last tick.
+                if (ambusher.MemberRoster == null
+                    || ambusher.MemberRoster.TotalHealthyCount < MinHealthyForAmbush)
+                {
+                    LeaveAiStealth(ambusher);
+                    continue;
+                }
 
                 // Priority 1: player in strike range. Fiction: the player
                 // always counts as a notable target, so a stealthed party
@@ -129,13 +155,17 @@ namespace TOR_Core.CampaignMechanics.Ambush
                     continue;
                 }
 
-                // Priority 2: closest AI victim. Keep looking across all
-                // stealthed parties so multiple AI-vs-AI skirmishes can
-                // fire in the same tick — they're independent.
+                // Priority 2: closest AI victim. Multiple skirmishes CAN
+                // fire in a tick but we cap them — each one touches
+                // vanilla's engagement pipeline (CreateFieldBattleEvent +
+                // roster mutation), and stacking too many at once can
+                // hang the campaign-map tick.
+                if (skirmishesFired >= MaxSkirmishesPerTick) continue;
                 var aiVictim = FindClosestHostileAiParty(ambusher, strikeRadiusSq);
                 if (aiVictim != null)
                 {
                     TriggerSkirmishAgainstAiParty(ambusher, aiVictim);
+                    skirmishesFired++;
                 }
             }
         }
@@ -167,7 +197,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 // Only engage proper fighting parties; caravans / villagers
                 // use their vanilla engagement paths.
                 if (!p.IsLordParty && !p.IsBandit) continue;
-                if (p.MemberRoster == null || p.MemberRoster.TotalHealthyCount < 5) continue;
+                if (p.MemberRoster == null || p.MemberRoster.TotalHealthyCount < MinHealthyForAmbush) continue;
                 float distSq = p.Position.ToVec2().DistanceSquared(ambusherPos);
                 if (distSq > closestDistSq) continue;
                 closest = p;
@@ -188,17 +218,42 @@ namespace TOR_Core.CampaignMechanics.Ambush
             bool press = model.ShouldPressAttackAfterSkirmish(ambusher, victim);
             LeaveAiStealth(ambusher);
 
-            if (press)
+            TORCommon.Say("[AI Ambush] " + PartyLabel(ambusher) + " struck "
+                          + PartyLabel(victim) + ": wounded " + victimWounds
+                          + " (took " + ambusherWounds + ") — "
+                          + (press ? "pressing the attack." : "fading back into cover."));
+
+            // Only open the field battle if neither party has drifted into
+            // a map event during this tick (another skirmish, player
+            // engagement, etc.). CreateFieldBattleEvent on a party already
+            // in a MapEvent hangs vanilla.
+            if (press && ambusher.MapEvent == null && victim.MapEvent == null)
             {
+                TaleWorlds.Library.Debug.Print("[AI Ambush] press-attack opening field battle: "
+                    + PartyLabel(ambusher) + " -> " + PartyLabel(victim));
                 // Teleport the ambusher onto the victim and open a vanilla
                 // field battle. The vanilla engagement AI + auto-resolve
                 // take over from here — nearby allied-party reinforcements,
                 // morale, composition all fold in naturally.
                 ambusher.Position = victim.Position;
                 FieldBattleEventComponent.CreateFieldBattleEvent(ambusher.Party, victim.Party);
+                TaleWorlds.Library.Debug.Print("[AI Ambush] press-attack field battle opened");
             }
-            // Retreat branch: nothing further — ambusher is out of stealth,
-            // victim is weakened. Both parties resume vanilla AI from here.
+            // Retreat branch (and the drifted-into-map-event guard above):
+            // nothing further — ambusher is out of stealth, victim is
+            // weakened. Both parties resume vanilla AI from here.
+        }
+
+        private static string PartyLabel(MobileParty p)
+        {
+            if (p == null) return "?";
+            if (p.LeaderHero != null) return p.LeaderHero.Name.ToString();
+            return p.Name?.ToString() ?? "?";
+        }
+
+        private static string CultureLabel(MobileParty p)
+        {
+            return p?.MapFaction?.Culture?.StringId ?? "?";
         }
 
         private static void WoundTroops(PartyBase party, int count)
@@ -262,6 +317,12 @@ namespace TOR_Core.CampaignMechanics.Ambush
             party.Ai.SetDoNotMakeNewDecisions(true);
             party.SetMoveModeHold();
             party.IgnoreByOtherPartiesTill(CampaignTime.YearsFromNow(100f));
+            // Mono-log only — many parties can enter per tick, and spamming
+            // the top-left feed with "X entered stealth" was swamping real
+            // user-facing messages. The dramatic beats (skirmish fire,
+            // player ambush) still go to the feed via TORCommon.Say below.
+            TaleWorlds.Library.Debug.Print("[AI Ambush] " + PartyLabel(party)
+                + " (" + CultureLabel(party) + ") entered stealth stance.");
         }
 
         private void LeaveAiStealth(MobileParty party)
@@ -278,7 +339,12 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             if (_stealthedParties.Count == 0) return;
             var now = CampaignTime.Now;
+            // Can't call LeaveAiStealth during the foreach — it removes from
+            // _stealthedParties and would throw InvalidOperationException
+            // (collection modified mid-iteration). Collect first, apply
+            // after.
             var expired = new List<MBGUID>();
+            var toLeave = new List<MobileParty>();
             foreach (var kv in _stealthedParties)
             {
                 var party = FindPartyById(kv.Key);
@@ -289,15 +355,16 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 }
                 if (party.CurrentSettlement != null || party.MapEvent != null)
                 {
-                    LeaveAiStealth(party);
+                    toLeave.Add(party);
                     continue;
                 }
                 if ((now - kv.Value).ToHours >= MaxStealthHoldHours)
                 {
-                    LeaveAiStealth(party);
+                    toLeave.Add(party);
                 }
             }
             foreach (var id in expired) _stealthedParties.Remove(id);
+            foreach (var party in toLeave) LeaveAiStealth(party);
         }
 
         private void OnPartyRemoved(PartyBase party)
@@ -313,9 +380,15 @@ namespace TOR_Core.CampaignMechanics.Ambush
             if (party.LeaderHero == Hero.MainHero) return false;
             if (party.CurrentSettlement != null) return false;
             if (party.MapEvent != null) return false;
-            if (!party.IsLordParty && !party.IsBandit) return false;
+            // Only lord parties ambush. Bandit parties get excluded for
+            // now — base Bannerlord spawns dozens of them continuously and
+            // enrolling the whole bandit population into the stealth pool
+            // was swamping the quarter-hourly tick (freezes). Bandits
+            // remain valid *victims* in the AI-vs-AI skirmish check (that
+            // filter is in FindClosestHostileAiParty).
+            if (!party.IsLordParty) return false;
             if (party.MemberRoster == null) return false;
-            if (party.MemberRoster.TotalHealthyCount < 5) return false;
+            if (party.MemberRoster.TotalHealthyCount < MinHealthyForAmbush) return false;
             return true;
         }
 
