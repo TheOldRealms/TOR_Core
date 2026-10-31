@@ -295,6 +295,14 @@ namespace TOR_Core.CampaignMechanics.Ambush
             var mainParty = MobileParty.MainParty;
             if (mainParty == null) return;
 
+            // Keep the stealth menu's target list current — parties moving in /
+            // out of ambush range during the stealth hold would otherwise go
+            // stale until the player re-opens the menu. Piggybacks the detection
+            // cadence so refresh happens with the same tempo as party-movement
+            // beats; the wait-menu tick-delegate hook raced the condition-
+            // delegate renderer and caused strike buttons to disappear.
+            RefreshStealthMenuTargets();
+
             var model = Campaign.Current?.Models?.GetAmbushModel();
             if (model == null) return;
 
@@ -547,6 +555,11 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 OnStealthMenuInit,
                 _ => true,
                 null,
+                // Tick delegate intentionally empty — refresh is driven from
+                // OnQuarterHourlyTick instead so the cadence matches the
+                // detection roll and we don't clobber the condition-delegate
+                // state mid-render (observed: strike buttons failed to appear
+                // when the wait-menu tick cleared _currentTargets each frame).
                 (args, dt) => { },
                 GameMenu.MenuAndOptionType.WaitMenuHideProgressAndHoursOption,
                 GameMenu.MenuOverlayType.Encounter,
@@ -719,6 +732,17 @@ namespace TOR_Core.CampaignMechanics.Ambush
             if (culture != null && args.MenuContext != null)
                 args.MenuContext.SetBackgroundMeshName(culture.EncounterBackgroundMesh);
 
+            RefreshStealthMenuTargets();
+        }
+
+        /// <summary>
+        /// Rebuilds <see cref="_currentTargets"/> and the per-slot menu text
+        /// variables from the live world state. Called on menu init AND on
+        /// each quarter-hourly tick (while in stealth) so the strike slot
+        /// list stays current without racing the condition-delegate render.
+        /// </summary>
+        private void RefreshStealthMenuTargets()
+        {
             _currentTargets.Clear();
             _currentTargets.AddRange(GetAmbushTargets(MobileParty.MainParty));
 
@@ -738,8 +762,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
             // Populate the per-slot label variables. StrikeSlotCondition shows
             // the option when _currentTargets[slot] is valid; the label text
-            // for that option comes from these variables (set at menu-init time
-            // to avoid every-tick recomputation of the chance %).
+            // comes from these variables so chance % updates per refresh too.
             var model = Campaign.Current?.Models?.GetAmbushModel();
             for (int i = 0; i < MaxTargetSlots; i++)
             {
@@ -756,8 +779,6 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 }
                 else
                 {
-                    // Empty — condition returns false, option hides. Variable
-                    // still cleared defensively.
                     MBTextManager.SetTextVariable(varName, new TextObject(""));
                 }
             }
@@ -814,8 +835,22 @@ namespace TOR_Core.CampaignMechanics.Ambush
             }
             else
             {
+                // Strike roll fail: commit the player to the fight directly
+                // instead of routing through EncounterManager.StartPartyEncounter.
+                // EncounterManager opens the vanilla encounter_meeting game menu,
+                // which includes a Leave option — letting the player bail out of
+                // a botched ambush. Design calls for no bail: the attempt costs
+                // you the fight regardless of outcome. Same no-menu pattern as
+                // the success branch (RestartPlayerEncounter + StartBattle)
+                // minus the TorMissionManager.OpenAmbushMission call, so
+                // vanilla's field-battle flow takes over.
                 TORCommon.Say("Ambush failed (" + chancePct + "%) on " + GetPartyLabel(target) + " — regular battle.");
-                EncounterManager.StartPartyEncounter(PartyBase.MainParty, target.Party);
+                PlayerEncounter.RestartPlayerEncounter(target.Party, PartyBase.MainParty, false);
+                if (PlayerEncounter.Battle == null)
+                {
+                    PlayerEncounter.StartBattle();
+                    PlayerEncounter.Update();
+                }
             }
         }
 
