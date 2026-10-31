@@ -246,12 +246,9 @@ namespace TOR_Core.Missions
         [MissionMethod]
         public static Mission OpenAmbushMission(string scene)
         {
-            TaleWorlds.Library.Debug.Print("[AmbushMission] OpenAmbushMission scene=" + scene);
             var rec = SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All);
-            TaleWorlds.Library.Debug.Print("[AmbushMission] rec built, calling MissionState.OpenNew");
             return MissionState.OpenNew("Battle", rec, delegate (Mission mission)
             {
-                TaleWorlds.Library.Debug.Print("[AmbushMission] behaviors lambda enter");
                 IMissionTroopSupplier[] suppliers =
                 [
                     new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Defender),

@@ -73,10 +73,6 @@ namespace TOR_Core.Missions.AmbushMission
             float remaining = currentInterval - _timer.ElapsedTime;
             if (remaining <= 0f) return;  // next wave is already overdue; nothing to delay
             _currentWaveDelayBonus = remaining * _patrolClearedDelayBonus;
-            TaleWorlds.Library.Debug.Print(
-                "[AmbushReinforcementSpawnTimer] patrol cleared bonus: +"
-                + _currentWaveDelayBonus.ToString("F1") + "s on current wave (interval "
-                + currentInterval + "s, remaining " + remaining.ToString("F1") + "s)");
         }
     }
 }

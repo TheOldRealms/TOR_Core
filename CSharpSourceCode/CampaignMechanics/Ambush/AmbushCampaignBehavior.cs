@@ -278,10 +278,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             // mission — if any OTHER menu opens, let it be.
             if (args?.MenuContext?.GameMenu?.StringId != StealthMenuId) return;
 
-            TaleWorlds.Library.Debug.Print(
-                "[AmbushCampaignBehavior] post-ambush via GameMenuOpened: closing stuck stealth wait-menu + starting burst");
             PendingPostAmbushCleanup = false;
-
             args.MenuContext.GameMenu.EndWait();
             GameMenu.ExitToLast();
 
@@ -290,9 +287,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             // over from the next tick (which can now actually fire because
             // time isn't Stop anymore).
             if (Campaign.Current != null)
-            {
                 Campaign.Current.TimeControlMode = CampaignTimeControlMode.UnstoppablePlay;
-            }
         }
 
         private void OnCampaignTick(float dt)
@@ -302,23 +297,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 PendingPostAmbushCleanup = false;
 
                 var ctx = Campaign.Current?.CurrentMenuContext;
-                bool stealthMenuWasActive = ctx?.GameMenu?.StringId == StealthMenuId;
-                if (stealthMenuWasActive)
+                if (ctx?.GameMenu?.StringId == StealthMenuId)
                 {
-                    TaleWorlds.Library.Debug.Print(
-                        "[AmbushCampaignBehavior] post-ambush: closing stuck stealth wait-menu");
                     ctx.GameMenu.EndWait();
                     GameMenu.ExitToLast();
                 }
 
-                // Start the forced-tick burst so vanilla's PlayerEncounter.Update
-                // state machine actually progresses to the loot UI without
-                // waiting on the player manually resuming time. See the ticks-
-                // remaining branch below.
                 _postAmbushForceTicksRemaining = PostAmbushForceTickCount;
-                TaleWorlds.Library.Debug.Print(
-                    "[AmbushCampaignBehavior] post-ambush: starting "
-                    + PostAmbushForceTickCount + "-tick UnstoppablePlay burst");
             }
 
             // Force time to advance for a short window so the state machine
@@ -327,18 +312,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             // further ticks naturally once it appears.
             if (_postAmbushForceTicksRemaining > 0 && Campaign.Current != null)
             {
-                var modeBefore = Campaign.Current.TimeControlMode;
                 _postAmbushForceTicksRemaining--;
-                if (modeBefore != CampaignTimeControlMode.UnstoppablePlay)
-                {
+                if (Campaign.Current.TimeControlMode != CampaignTimeControlMode.UnstoppablePlay)
                     Campaign.Current.TimeControlMode = CampaignTimeControlMode.UnstoppablePlay;
-                }
-                TaleWorlds.Library.Debug.Print(
-                    "[AmbushCampaignBehavior] post-ambush burst tick remaining="
-                    + _postAmbushForceTicksRemaining
-                    + " modeBefore=" + modeBefore
-                    + " modeAfter=" + Campaign.Current.TimeControlMode
-                    + " encounterCurrent=" + (TaleWorlds.CampaignSystem.Encounters.PlayerEncounter.Current != null));
                 // When the burst runs out we DON'T forcibly restore the time
                 // control — vanilla's own menus / loot screen will have set
                 // their own mode by then, and overriding would stomp them.

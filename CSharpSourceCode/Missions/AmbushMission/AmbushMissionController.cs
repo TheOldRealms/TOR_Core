@@ -75,7 +75,6 @@ namespace TOR_Core.Missions.AmbushMission
 
         public override void OnBehaviorInitialize()
         {
-            Debug.Print("[AmbushMission] OnBehaviorInitialize enter");
             base.OnBehaviorInitialize();
             // DO NOT call AmbushRetreatZone.ResetRegistry() here. Scene scripts
             // (including AmbushRetreatZone.OnInit) fire during scene load, which
@@ -88,16 +87,13 @@ namespace TOR_Core.Missions.AmbushMission
             _spawnLogic = Mission.GetMissionBehavior<DefaultBattleMissionAgentSpawnLogic>();
             _model = Campaign.Current?.Models?.GetMissionAmbushModel() ?? new TORMissionAmbushModel();
             AmbushRetreatZone.ProceduralFallbackRadius = _model.ProceduralFallbackRadius;
-            Debug.Print("[AmbushMission] OnBehaviorInitialize done (spawnLogic=" + (_spawnLogic != null) + ", activeZones=" + AmbushRetreatZone.ActiveZones.Count + ")");
         }
 
         public override void AfterStart()
         {
-            Debug.Print("[AmbushMission] AfterStart enter");
             base.AfterStart();
             SetupInitialSpawn();
             CollectAttackerSpawnPositions();
-            Debug.Print("[AmbushMission] AfterStart done");
         }
 
         /// <summary>
@@ -173,7 +169,6 @@ namespace TOR_Core.Missions.AmbushMission
 
         public override void OnDeploymentFinished()
         {
-            Debug.Print("[AmbushMission] OnDeploymentFinished enter");
             base.OnDeploymentFinished();
 
             // Attacker initial placement happens per-agent via OnAgentCreated
@@ -194,7 +189,6 @@ namespace TOR_Core.Missions.AmbushMission
                     if (a != null && a.IsHuman) _initialPatrol.Add(a);
                 }
             }
-            Debug.Print("[AmbushMission] initial patrol snapshot: " + _initialPatrol.Count + " agents");
 
             // Start the grace clock for the procedural-fallback decision. The
             // actual check happens in OnMissionTick once script OnInits have
@@ -224,14 +218,7 @@ namespace TOR_Core.Missions.AmbushMission
                 {
                     var mainAgent = Mission.MainAgent;
                     if (mainAgent != null && mainAgent.IsActive())
-                    {
                         AmbushRetreatZone.ProceduralFallbackPosition = mainAgent.Position;
-                        Debug.Print("[AmbushMission] No authored zones after grace; procedural fallback at " + mainAgent.Position);
-                    }
-                }
-                else
-                {
-                    Debug.Print("[AmbushMission] Authored zones present: " + AmbushRetreatZone.ActiveZones.Count + "; procedural fallback skipped.");
                 }
             }
 
@@ -248,7 +235,6 @@ namespace TOR_Core.Missions.AmbushMission
                 if (allDown)
                 {
                     _initialPatrolDefeated = true;
-                    Debug.Print("[AmbushMission] initial patrol defeated → Phase 2 (extraction) armed");
                     _reinforcementTimer?.OnInitialPatrolDefeated();
                     InitialPatrolDefeated?.Invoke();
                 }
@@ -257,12 +243,7 @@ namespace TOR_Core.Missions.AmbushMission
 
         private void SetupInitialSpawn()
         {
-            Debug.Print("[AmbushMission] SetupInitialSpawn (playerTroops=" + _playerTroopCount + " targetTroops=" + _targetTroopCount + ")");
-            if (_spawnLogic == null)
-            {
-                Debug.Print("[AmbushMission] SetupInitialSpawn: _spawnLogic is null, aborting");
-                return;
-            }
+            if (_spawnLogic == null) return;
 
             // Mirror vanilla's AdjustTotalTroopCounts shape: clamp both sides
             // against the battle-size budget split, then rebalance so one side's
