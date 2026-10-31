@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using SandBox.View.Map;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.Core;
@@ -237,10 +238,46 @@ namespace TOR_Core.CampaignMechanics.Ambush
             {
                 case AmbushOutcome.TotalVictory:
                     // No witnesses, no alarm — stealth is immediately available.
-                    // Vanilla "destroyed party" flow (loot + prisoners) already
-                    // fired via BattleEndLogic.
+                    //
+                    // Why we also force-destroy here: vanilla's post-battle state
+                    // machine (PlayerEncounter.Update → DoWait → DoPrepareResults
+                    // → DoApplyMapEventResults → DoPlayerVictory → DoLootParty →
+                    // DoLootInventory → DoEnd) ticks per campaign frame. After
+                    // our mission ends the player lands back in the stealth
+                    // wait-menu with TimeControlMode = Stop, which stalls those
+                    // ticks and the state machine never actually progresses.
+                    // The ambushed party sits at 0 troops but still "active" on
+                    // the map, and the player can re-ambush the ghost. Vanilla
+                    // never gets to the DestroyPartyAction call.
+                    //
+                    // Hard clean-up ourselves: force the party gone, cancel the
+                    // cooldown, and move on. We lose the vanilla loot screen for
+                    // the moment; that's a known regression we'll address once
+                    // we untangle the state-machine stall (either by advancing
+                    // TimeControlMode after mission close, or by calling
+                    // PlayerEncounter.Update ourselves until EncounterState
+                    // reaches End).
                     _playerAmbushCooldownUntil = CampaignTime.Zero;
                     TORCommon.Say("No one escaped the ambush. You can slip back into cover immediately.");
+                    if (_lastAmbushTarget != null)
+                    {
+                        var roster = _lastAmbushTarget.MemberRoster;
+                        int total = roster != null ? roster.TotalManCount : -1;
+                        bool active = _lastAmbushTarget.IsActive;
+                        TaleWorlds.Library.Debug.Print(
+                            "[AmbushCampaignBehavior] TotalVictory post-mission:"
+                            + " target=" + GetPartyLabel(_lastAmbushTarget)
+                            + " active=" + active
+                            + " totalManCount=" + total);
+                        if (active)
+                        {
+                            TaleWorlds.Library.Debug.Print(
+                                "[AmbushCampaignBehavior] force-destroying target party"
+                                + " (state machine stall workaround)");
+                            DestroyPartyAction.Apply(null, _lastAmbushTarget);
+                        }
+                    }
+                    _lastAmbushTarget = null;
                     break;
                 case AmbushOutcome.Extracted:
                     WoundLeftBehindTroops(ExtractionTroopsLeftBehind);

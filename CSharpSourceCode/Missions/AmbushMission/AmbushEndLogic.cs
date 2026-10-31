@@ -1,4 +1,9 @@
+using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.Encounters;
+using TaleWorlds.CampaignSystem.MapEvents;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.CampaignMechanics.Ambush;
@@ -226,6 +231,81 @@ namespace TOR_Core.Missions.AmbushMission
             return true;
         }
 
+        /// <summary>
+        /// Fires after the mission result is agreed by all MissionLogics.
+        /// Vanilla <c>BattleEndLogic</c> normally finalises the MapEvent +
+        /// PlayerEncounter chain, which fires <c>OnPlayerBattleEndEvent</c>
+        /// and runs party-destruction / loot bookkeeping. In our ambush
+        /// mission the chain doesn't fire reliably when we're the one that
+        /// drove the mission end: we win the <c>MissionEnded</c> race against
+        /// <c>BattleEndLogic</c> and vanilla never kicks off the cleanup.
+        /// Observed symptom: TotalVictory leaves the target party on the
+        /// campaign map with 0 troops instead of destroying it.
+        ///
+        /// Force the finalise by calling <c>PlayerEncounter.Finish(true)</c>
+        /// here. That drives the usual MapEvent → DestroyPartyAction →
+        /// OnPlayerBattleEnd chain and the campaign side gets to run its
+        /// bookkeeping properly.
+        /// </summary>
+        public override void OnMissionResultReady(MissionResult missionResult)
+        {
+            base.OnMissionResultReady(missionResult);
+            if (missionResult == null) return;
+            var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
+            var outcome = behavior?.LastAmbushOutcome ?? AmbushOutcome.None;
+            TaleWorlds.Library.Debug.Print(
+                "[AmbushEndLogic] OnMissionResultReady playerVictory="
+                + missionResult.PlayerVictory + " outcome=" + outcome);
+
+            // Only TotalVictory needs to force-close PlayerEncounter — that's
+            // the path where the vanilla party-destruction / loot chain must
+            // run, and our MissionEnded wins the race against BattleEndLogic
+            // so vanilla's own finalize call never fires.
+            //
+            // The other outcomes DELIBERATELY keep PlayerEncounter alive:
+            //   - Extracted → Ambush Escape menu (engage / slip-away teleport)
+            //     needs the encounter state intact to open the engage battle
+            //     or move the player's party.
+            //   - HeroWounded → Ambush Failed menu (run / auto-battle fight)
+            //     needs the encounter state intact to open the fight battle.
+            //   - Defeated / Stalemate → vanilla loss flow; let its own path
+            //     handle it (if a stuck party surfaces for these too, we'll
+            //     extend this).
+            if (outcome == AmbushOutcome.TotalVictory)
+            {
+                // Set the winner so vanilla's state machine has the right
+                // BattleState when it eventually ticks (confirmed via decompile:
+                // SetPlayerVictorious → _mapEvent.SetOverrideWinner(PlayerSide)
+                // → BattleState = AttackerVictory). Do NOT call DestroyPartyAction
+                // here — the defender party is still in the live MapEvent and
+                // destroying it from inside OnMissionResultReady hard-crashes
+                // the native layer (observed, no stack trace).
+                //
+                // Known limitation: vanilla's post-battle state machine
+                // (PlayerEncounter.UpdateInternal) only ticks when campaign
+                // time advances. Our mission ends with the player returning
+                // to the stealth wait-menu which sets TimeControlMode = Stop,
+                // stalling those ticks. The defender party sits at 0 troops
+                // but still "active" on the map until something else drives
+                // the state machine (opening another encounter, closing the
+                // stealth menu, etc.). Tracked as a follow-up — the proper
+                // fix is to either untangle the TimeControlMode on mission
+                // close, or drive PlayerEncounter.Update from the campaign
+                // behavior until EncounterState reaches End.
+                if (PlayerEncounter.Current != null)
+                {
+                    TaleWorlds.Library.Debug.Print(
+                        "[AmbushEndLogic] TotalVictory — PlayerEncounter.SetPlayerVictorious()");
+                    PlayerEncounter.SetPlayerVictorious();
+                }
+                else
+                {
+                    TaleWorlds.Library.Debug.Print(
+                        "[AmbushEndLogic] TotalVictory but PlayerEncounter.Current is null — skipping");
+                }
+            }
+        }
+
         private void SetOutcome(AmbushOutcome outcome, bool successful, string reason)
         {
             _outcomeDecided = true;
@@ -237,6 +317,28 @@ namespace TOR_Core.Missions.AmbushMission
             TaleWorlds.Library.Debug.Print(
                 "[AmbushEndLogic] outcome=" + outcome + "  successful=" + successful
                 + "  (" + reason + ")");
+
+            // Extra diagnostics on TotalVictory to track a reported bug where the
+            // target party sometimes survives on the map with 0 troops instead of
+            // vanilla's DestroyPartyAction firing. Dumping the state at the
+            // outcome moment so a reproduction log tells us whether the defender
+            // team / MapEvent / PlayerEncounter was in an unusual shape.
+            if (outcome == AmbushOutcome.TotalVictory)
+            {
+                int defHumans = CountActiveHumans(Mission.DefenderTeam);
+                int defAll = Mission.DefenderTeam?.ActiveAgents?.Count ?? -1;
+                int atkHumans = CountActiveHumans(Mission.AttackerTeam);
+                bool pcCurrent = TaleWorlds.CampaignSystem.Encounters.PlayerEncounter.Current != null;
+                bool pcBattle = TaleWorlds.CampaignSystem.Encounters.PlayerEncounter.Battle != null;
+                bool mapEvent = TaleWorlds.CampaignSystem.MapEvents.MapEvent.PlayerMapEvent != null;
+                TaleWorlds.Library.Debug.Print(
+                    "[AmbushEndLogic] TotalVictory state dump:"
+                    + " defAll=" + defAll + " defHumans=" + defHumans
+                    + " atkHumans=" + atkHumans
+                    + " PlayerEncounter.Current=" + pcCurrent
+                    + " PlayerEncounter.Battle=" + pcBattle
+                    + " MapEvent.PlayerMapEvent=" + mapEvent);
+            }
         }
     }
 }
