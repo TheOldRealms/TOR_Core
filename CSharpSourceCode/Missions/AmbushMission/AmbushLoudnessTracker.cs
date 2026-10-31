@@ -26,9 +26,16 @@ namespace TOR_Core.Missions.AmbushMission
         private int _loudnessCount;
         private AbilityManagerMissionLogic _abilityLogic;
 
-        public override void OnBehaviorInitialize()
+        public override void AfterStart()
         {
-            base.OnBehaviorInitialize();
+            base.AfterStart();
+            // Subscribe here, not in OnBehaviorInitialize: the mission init
+            // sequence runs behavior OnBehaviorInitialize BEFORE submodules'
+            // OnMissionBehaviorInitialize, and TOR's SubModule adds
+            // AbilityManagerMissionLogic in that submodule pass. By AfterStart
+            // (after the EarlyStart loop) all behaviors from both passes are
+            // registered, so GetMissionBehavior<AbilityManagerMissionLogic>
+            // actually finds the instance to subscribe to.
             _abilityLogic = Mission.GetMissionBehavior<AbilityManagerMissionLogic>();
             if (_abilityLogic != null)
                 _abilityLogic.OnAbilityCastComplete += OnAbilityCastComplete;
