@@ -456,6 +456,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
                         }
                         else
                         {
+                            // Re-stamp with current-mission loudness. The
+                            // OnStrike pre-stamp ran before LastAmbushLoudness
+                            // was known, so it used only the base cooldown.
+                            // StampAmbushCooldown reads the current loudness
+                            // and adds LoudnessPenaltyHours → full extended
+                            // cooldown kicks in (12h by default, not 6h).
+                            StampAmbushCooldown();
                             TORCommon.Say("The noise of your attack carries far. Scouts are looking for you — stealth will be slow to re-establish.");
                         }
 
@@ -481,25 +488,32 @@ namespace TOR_Core.CampaignMechanics.Ambush
                         }
                     }
                     _lastAmbushTarget = null;
-                    LastAmbushLoudness = 0;
                     break;
                 case AmbushOutcome.Extracted:
+                    // Re-stamp with current-mission loudness; see TotalVictory
+                    // branch for the reasoning. OnStrike pre-stamp ran before
+                    // LastAmbushLoudness was known.
+                    StampAmbushCooldown();
                     WoundLeftBehindTroops(ExtractionTroopsLeftBehind);
                     GameMenu.ActivateGameMenu(AmbushEscapeMenuId);
                     break;
                 case AmbushOutcome.HeroWounded:
                     // Hero down. The "Ambush Failed" menu offers run-with-losses
                     // vs auto-battle fight; vanilla wounded flow for the hero
-                    // itself already fired via BattleEndLogic.
+                    // itself already fired via BattleEndLogic. Re-stamp cooldown
+                    // with current loudness so a loud failure extends it too.
+                    StampAmbushCooldown();
                     GameMenu.ActivateGameMenu(AmbushFailedMenuId);
                     break;
                 case AmbushOutcome.Defeated:
                 case AmbushOutcome.Stalemate:
                     // Vanilla defeat flow already handled casualties / prisoners.
+                    StampAmbushCooldown();
                     break;
             }
             LastAmbushOutcome = AmbushOutcome.None;
             ExtractionTroopsLeftBehind = 0;
+            LastAmbushLoudness = 0;
             // _lastAmbushTarget is cleared when the escape/engage option fires,
             // not here — the Ambush Escape menu may still need it after this.
         }
