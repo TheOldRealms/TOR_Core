@@ -356,24 +356,15 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 case AmbushOutcome.TotalVictory:
                     // No witnesses, no alarm — stealth is immediately available.
                     //
-                    // Why we also force-destroy here: vanilla's post-battle state
-                    // machine (PlayerEncounter.Update → DoWait → DoPrepareResults
-                    // → DoApplyMapEventResults → DoPlayerVictory → DoLootParty →
-                    // DoLootInventory → DoEnd) ticks per campaign frame. After
-                    // our mission ends the player lands back in the stealth
-                    // wait-menu with TimeControlMode = Stop, which stalls those
-                    // ticks and the state machine never actually progresses.
-                    // The ambushed party sits at 0 troops but still "active" on
-                    // the map, and the player can re-ambush the ghost. Vanilla
-                    // never gets to the DestroyPartyAction call.
-                    //
-                    // Hard clean-up ourselves: force the party gone, cancel the
-                    // cooldown, and move on. We lose the vanilla loot screen for
-                    // the moment; that's a known regression we'll address once
-                    // we untangle the state-machine stall (either by advancing
-                    // TimeControlMode after mission close, or by calling
-                    // PlayerEncounter.Update ourselves until EncounterState
-                    // reaches End).
+                    // DO NOT force-destroy the target party here. OnPlayerBattleEnd
+                    // fires at vanilla's ApplyResults state, which is MID-flow —
+                    // vanilla still has PlayerVictory → LootParty → LootInventory
+                    // → End ahead. The End state is where vanilla handles 0-troop
+                    // / empty-party cleanup itself. Firing DestroyPartyAction here
+                    // crashes vanilla's state machine (observed: encounter menu
+                    // opens for loot screen, our destroy fires 2ms later, native
+                    // crash). We leave the party alone; vanilla's natural flow
+                    // destroys 0-troop parties as part of DoEnd.
                     _playerAmbushCooldownUntil = CampaignTime.Zero;
                     TORCommon.Say("No one escaped the ambush. You can slip back into cover immediately.");
                     if (_lastAmbushTarget != null)
@@ -385,22 +376,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
                             "[AmbushCampaignBehavior] TotalVictory post-mission:"
                             + " target=" + GetPartyLabel(_lastAmbushTarget)
                             + " active=" + active
-                            + " totalManCount=" + total);
-                        // Only force-destroy if the party is literally empty.
-                        // TotalVictory in the mission sense means "field clear
-                        // + reinforcement queue drained", NOT "every roster
-                        // slot dead" — vanilla keeps wounded / routed troops
-                        // in the roster post-battle. If any survivors remain
-                        // (count > 0), let vanilla's natural loot/prisoner
-                        // screens run; destroying a non-empty party here mid-
-                        // state-machine freezes the game.
-                        if (active && total == 0)
-                        {
-                            TaleWorlds.Library.Debug.Print(
-                                "[AmbushCampaignBehavior] target party has 0 troops but is still active;"
-                                + " force-destroying (safety net)");
-                            DestroyPartyAction.Apply(null, _lastAmbushTarget);
-                        }
+                            + " totalManCount=" + total
+                            + " (letting vanilla finish the cleanup)");
                     }
                     _lastAmbushTarget = null;
                     break;
