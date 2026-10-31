@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CampaignMechanics.Ambush
 {
@@ -20,27 +21,45 @@ namespace TOR_Core.CampaignMechanics.Ambush
     /// </summary>
     public static class AmbushPropensityRegistry
     {
-        // Culture StringId → propensity.
+        // Culture StringId → propensity. Keys come from TORConstants.Cultures;
+        // mapping of in-engine ID to lore faction is NOT what the raw ID
+        // suggests (e.g. ASRAI = "battania", GREENSKIN = "aserai").
         //
-        // Note on greenskin: the entry here is the "goblin-led" value. Orcs
-        // are too thick to ambush, so the model gates greenskin propensity
-        // on the leader hero actually being a goblin (see TORAmbushModel.
-        // GetAmbushPropensity). Non-goblin-led greenskin parties fall back
-        // to the default (0).
+        // Any culture not registered falls through to the model's
+        // DefaultCulturePropensity (0).
+        //
+        // Note on greenskin kingdom culture: gated on hero.IsGoblin() in
+        // TORAmbushModel.GetAmbushPropensity — orcs are too thick for
+        // ambushes, so a non-goblin-led greenskin kingdom party scores 0.
+        // GOBLIN_BANDIT ("looters") skips the gate — by definition goblin.
         private static readonly Dictionary<string, float> _culturePropensity
             = new Dictionary<string, float>
         {
-            // Aggressive ambushers per § 7.
-            { "greenskin", 0.6f },      // only applied when leader IsGoblin
-            { "beastmen", 0.6f },
-            { "asrai", 0.7f },          // wood elves — ambush is their defining tactic
-            { "eonir", 0.6f },          // forest-dwelling elves, similar flavour
-            // Moderate.
-            { "empire", 0.15f },
-            { "dwarf", 0.1f },
-            // Chivalric — low per § 7.
-            { "bretonnia", 0.05f },
-            // Others left to default until the Slice 2c tuning pass.
+            // ---- Aggressive (defining tactic / culture-coded for ambush) ----
+            { Cultures.ASRAI, 0.7f },            // wood elves — defining tactic
+            { Cultures.EONIR, 0.7f },            // northern forest elves — defining tactic
+            { Cultures.BEASTMEN, 0.6f },         // beast-herds — iconic ambushers
+            { Cultures.DRUCHII, 0.6f },          // dark elves — treacherous raiders
+            { Cultures.MOUSILLON, 0.5f },        // Vampire Counts (Mousillon) — night ambushes
+            { Cultures.SYLVANIA, 0.5f },         // Vampire Counts (Sylvania) — same flavour
+            // Gated on hero.IsGoblin() in the model:
+            { Cultures.GREENSKIN, 0.6f },
+
+            // ---- Bandit sub-cultures — ambush is their core gameplay ----
+            { Cultures.GOBLIN_BANDIT, 0.6f },    // "looters" = goblin bandits, no gate
+            { Cultures.GREENSKIN_BANDIT, 0.5f },
+            { Cultures.BEASTMEN_BANDIT, 0.6f },
+            { Cultures.CHAOS_CULTIST, 0.5f },    // "forest_bandits" = chaos cultists
+            { Cultures.EMPIRE_DESERTERS, 0.4f }, // "mountain_bandits" = empire deserters
+            { Cultures.HERRIMAULT, 0.4f },       // "desert_bandits" = herrimault
+
+            // ---- Moderate ----
+            { Cultures.EMPIRE, 0.15f },          // professional soldiery, formation warfare
+
+            // ---- Low (chivalric / formal / glory-focused / disciplined) ----
+            { Cultures.BRETONNIA, 0.05f },       // chivalry — § 7's canonical "low"
+            { Cultures.DAWI, 0.05f },            // dwarfs — formal mountain warfare, grudge-driven
+            { Cultures.CHAOS, 0.05f },           // Warriors of Chaos — glory-seeking charge
         };
 
         // Hero StringId → propensity. Overrides culture when present.

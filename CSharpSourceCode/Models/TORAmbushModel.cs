@@ -5,6 +5,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TOR_Core.CampaignMechanics.Ambush;
 using TOR_Core.Extensions;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
@@ -409,10 +410,11 @@ namespace TOR_Core.Models
             var culture = party.MapFaction?.Culture ?? hero?.Culture;
             if (culture == null) return DefaultCulturePropensity;
 
-            // Greenskin exception: the registry entry is the goblin-led
-            // value. Orcs are too thick to pull off an ambush, so a
-            // non-goblin leader zeroes propensity.
-            if (culture.StringId == "greenskin")
+            // Greenskin kingdom-culture exception: the registry entry is
+            // the goblin-led value. Orcs are too thick to pull off an
+            // ambush, so a non-goblin leader zeroes propensity. GOBLIN_BANDIT
+            // ("looters") skips this gate — by definition goblin.
+            if (culture.StringId == Cultures.GREENSKIN)
             {
                 if (hero == null || !hero.IsGoblin()) return 0f;
             }
