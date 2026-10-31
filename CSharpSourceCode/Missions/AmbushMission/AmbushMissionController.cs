@@ -30,13 +30,26 @@ namespace TOR_Core.Missions.AmbushMission
 
         private DefaultBattleMissionAgentSpawnLogic _spawnLogic;
         private AmbushReinforcementSpawnTimer _reinforcementTimer;
-        private BasicMissionTimer _aiActivationTimer;
         private BasicMissionTimer _fallbackGraceTimer;
-        private bool _aiActivated;
         private bool _fallbackResolved;
         private TORMissionAmbushModel _model;
         private readonly int _playerTroopCount;
         private readonly int _targetTroopCount;
+
+        // Scener-authored attacker spawn positions, grouped by formation class.
+        // Each class maps to a list of world-space Vec3s pulled from entities
+        // tagged `attacker_<role>`. Agents land at a role-matching position via
+        // OnAgentCreated; the counter in _attackerSpawnIndex per class round-robins
+        // through the list when a class has more agents than slots.
+        private readonly Dictionary<FormationClass, List<Vec3>> _attackerSpawnPositions
+            = new Dictionary<FormationClass, List<Vec3>>();
+        private readonly Dictionary<FormationClass, int> _attackerSpawnIndex
+            = new Dictionary<FormationClass, int>();
+        // Legacy fallback for scenes authored before the role-tag scheme —
+        // uses the flat `ambush_attacker` tag. Only populated if the role-
+        // specific lists come up empty.
+        private readonly List<Vec3> _legacyAttackerSpawnPositions = new List<Vec3>();
+        private int _legacyAttackerSpawnIndex;
 
         // Snapshot of defender agents present at OnDeploymentFinished — the
         // "initial patrol". Reinforcement waves are NOT in this set. Phase 1
@@ -83,7 +96,79 @@ namespace TOR_Core.Missions.AmbushMission
             Debug.Print("[AmbushMission] AfterStart enter");
             base.AfterStart();
             SetupInitialSpawn();
+            CollectAttackerSpawnPositions();
             Debug.Print("[AmbushMission] AfterStart done");
+        }
+
+        /// <summary>
+        /// Reads the scener-tagged attacker spawn entities and buckets them by
+        /// formation class, so <see cref="OnAgentCreated"/> can teleport each
+        /// agent to a role-matching position. The scener's convention is:
+        /// `attacker_infantry` / `attacker_archer` / `attacker_cavalry` /
+        /// `attacker_horsearcher`. If none of those exist in the scene, we
+        /// fall back to a flat `ambush_attacker` tag (legacy pre-slot scheme).
+        /// </summary>
+        private void CollectAttackerSpawnPositions()
+        {
+            _attackerSpawnPositions.Clear();
+            _attackerSpawnIndex.Clear();
+            _attackerSpawnPositions[FormationClass.Infantry]    = CollectPositionsForTag("attacker_infantry");
+            _attackerSpawnPositions[FormationClass.Ranged]      = CollectPositionsForTag("attacker_archer");
+            _attackerSpawnPositions[FormationClass.Cavalry]     = CollectPositionsForTag("attacker_cavalry");
+            _attackerSpawnPositions[FormationClass.HorseArcher] = CollectPositionsForTag("attacker_horsearcher");
+            foreach (var kv in _attackerSpawnPositions) _attackerSpawnIndex[kv.Key] = 0;
+
+            _legacyAttackerSpawnPositions.Clear();
+            _legacyAttackerSpawnPositions.AddRange(CollectPositionsForTag("ambush_attacker"));
+            _legacyAttackerSpawnIndex = 0;
+
+            Debug.Print(
+                "[AmbushMission] attacker spawn slots:"
+                + " infantry=" + _attackerSpawnPositions[FormationClass.Infantry].Count
+                + " archer=" + _attackerSpawnPositions[FormationClass.Ranged].Count
+                + " cavalry=" + _attackerSpawnPositions[FormationClass.Cavalry].Count
+                + " horsearcher=" + _attackerSpawnPositions[FormationClass.HorseArcher].Count
+                + " legacy=" + _legacyAttackerSpawnPositions.Count);
+        }
+
+        private List<Vec3> CollectPositionsForTag(string tag)
+        {
+            var list = new List<Vec3>();
+            foreach (var e in Mission.Scene.FindEntitiesWithTag(tag))
+                list.Add(e.GetGlobalFrame().origin);
+            return list;
+        }
+
+        /// <summary>
+        /// Fires per agent at creation time. For attacker humans we route to
+        /// a role-matching scener-tagged slot; for defenders we don't touch
+        /// anything (vanilla sp_defender_* placement is the authored default
+        /// now, no more `dynamic_patrol_area_tag` teleport).
+        /// </summary>
+        public override void OnAgentCreated(Agent agent)
+        {
+            base.OnAgentCreated(agent);
+            if (agent == null || !agent.IsHuman) return;
+            if (agent.Team != Mission.AttackerTeam) return;
+
+            var formationClass = agent.Character?.DefaultFormationClass ?? FormationClass.Infantry;
+            if (_attackerSpawnPositions.TryGetValue(formationClass, out var positions)
+                && positions.Count > 0)
+            {
+                int idx = _attackerSpawnIndex[formationClass]++;
+                agent.TeleportToPosition(positions[idx % positions.Count]);
+                return;
+            }
+
+            // Legacy fallback: scene has no role-typed slots but has the flat
+            // `ambush_attacker` tag. Mixes all classes in one list; worse but
+            // still better than default spawn.
+            if (_legacyAttackerSpawnPositions.Count > 0)
+            {
+                int idx = _legacyAttackerSpawnIndex++;
+                agent.TeleportToPosition(
+                    _legacyAttackerSpawnPositions[idx % _legacyAttackerSpawnPositions.Count]);
+            }
         }
 
         public override void OnDeploymentFinished()
@@ -91,15 +176,12 @@ namespace TOR_Core.Missions.AmbushMission
             Debug.Print("[AmbushMission] OnDeploymentFinished enter");
             base.OnDeploymentFinished();
 
-            // Teleport the just-spawned initial batch onto the scener-tagged
-            // positions. Attacker (player) → `ambush_attacker` points (cover /
-            // overlook). Defender (ambushed patrol) → `dynamic_patrol_area_tag`
-            // points (the road / clearing). Reinforcement spawns are untouched
-            // — they stay on the sp_*_reinforcement children of sp_battle_set,
-            // which is the user's intended "current spawners become reinforcement
-            // spawners" model.
-            TeleportTeamToTag(Mission.AttackerTeam, "ambush_attacker");
-            TeleportTeamToTag(Mission.DefenderTeam, "dynamic_patrol_area_tag");
+            // Attacker initial placement happens per-agent via OnAgentCreated
+            // (role-aware teleport to scener-tagged slots). Defender initial
+            // placement is left to vanilla sp_defender_* spawns inside the
+            // sp_battle_set subtree — the scener dropped dynamic_patrol_area_tag
+            // in favour of this. Reinforcement spawns on both sides use the
+            // sp_*_reinforcement subchildren naturally.
 
             // Snapshot the initial-patrol defender agent set now. Reinforcement
             // waves spawn later via DefaultBattleMissionAgentSpawnLogic and are
@@ -114,51 +196,12 @@ namespace TOR_Core.Missions.AmbushMission
             }
             Debug.Print("[AmbushMission] initial patrol snapshot: " + _initialPatrol.Count + " agents");
 
-            // Mirror vanilla's "besieger activation" shape: defender team (our
-            // AI opponent) is frozen for AiActivationDelay seconds so the player
-            // gets a clean opening.
-            FreezeDefenderAi();
-            _aiActivationTimer = new BasicMissionTimer();
-
             // Start the grace clock for the procedural-fallback decision. The
             // actual check happens in OnMissionTick once script OnInits have
             // reliably fired — doing it here races with the script lifecycle
             // and plants the fallback on the player, which auto-triggers
             // extraction. See FallbackGraceSeconds.
             _fallbackGraceTimer = new BasicMissionTimer();
-        }
-
-        private void TeleportTeamToTag(Team team, string tag)
-        {
-            if (team == null) return;
-            var entities = Mission.Scene.FindEntitiesWithTag(tag).ToList();
-            if (entities.Count == 0)
-            {
-                Debug.Print("[AmbushMission] TeleportTeamToTag: no entities with tag " + tag);
-                return;
-            }
-            // Collect world-space positions once.
-            var positions = new List<Vec3>(entities.Count);
-            foreach (var e in entities)
-            {
-                positions.Add(e.GetGlobalFrame().origin);
-            }
-            // Shuffle so repeat ambushes don't always deposit the same unit at
-            // the same point.
-            for (int i = positions.Count - 1; i > 0; i--)
-            {
-                int j = MBRandom.RandomInt(i + 1);
-                (positions[i], positions[j]) = (positions[j], positions[i]);
-            }
-            // Round-robin across positions when there are more agents than tags.
-            int idx = 0;
-            foreach (var agent in team.ActiveAgents.ToList())
-            {
-                if (agent == null || !agent.IsActive() || !agent.IsHuman) continue;
-                agent.TeleportToPosition(positions[idx % positions.Count]);
-                idx++;
-            }
-            Debug.Print("[AmbushMission] TeleportTeamToTag(" + tag + "): placed " + idx + " agents across " + positions.Count + " tagged points");
         }
 
         public override InquiryData OnEndMissionRequest(out bool canLeave)
@@ -173,12 +216,6 @@ namespace TOR_Core.Missions.AmbushMission
         public override void OnMissionTick(float dt)
         {
             base.OnMissionTick(dt);
-            if (!_aiActivated && _aiActivationTimer != null
-                && _aiActivationTimer.ElapsedTime >= _model.AiActivationDelay)
-            {
-                UnfreezeDefenderAi();
-                _aiActivated = true;
-            }
             if (!_fallbackResolved && _fallbackGraceTimer != null
                 && _fallbackGraceTimer.ElapsedTime >= FallbackGraceSeconds)
             {
@@ -272,26 +309,6 @@ namespace TOR_Core.Missions.AmbushMission
 
             _reinforcementTimer = new AmbushReinforcementSpawnTimer(_model);
             _spawnLogic.SetCustomReinforcementSpawnTimer(_reinforcementTimer);
-        }
-
-        private void FreezeDefenderAi()
-        {
-            if (Mission.DefenderTeam == null) return;
-            foreach (var formation in Mission.DefenderTeam.FormationsIncludingSpecialAndEmpty)
-            {
-                formation.SetMovementOrder(MovementOrder.MovementOrderStop);
-                formation.SetFiringOrder(FiringOrder.FiringOrderHoldYourFire);
-                formation.SetControlledByAI(isControlledByAI: false);
-            }
-        }
-
-        private void UnfreezeDefenderAi()
-        {
-            if (Mission.DefenderTeam == null) return;
-            foreach (var formation in Mission.DefenderTeam.FormationsIncludingSpecialAndEmpty)
-            {
-                formation.SetControlledByAI(isControlledByAI: true);
-            }
         }
     }
 }
