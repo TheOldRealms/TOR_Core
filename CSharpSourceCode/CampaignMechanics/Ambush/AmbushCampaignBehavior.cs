@@ -82,6 +82,14 @@ namespace TOR_Core.CampaignMechanics.Ambush
         public AmbushOutcome LastAmbushOutcome { get; set; } = AmbushOutcome.None;
 
         /// <summary>
+        /// Phase F counterpart. Set by <c>AmbushedEndLogic.SetOutcome</c>;
+        /// consumed by <see cref="OnPlayerBattleEnd"/> to drive the Phase F
+        /// aftermath (reveal window, follow-up battle, wounded troops).
+        /// Reset to <c>None</c> once consumed.
+        /// </summary>
+        public AmbushedOutcome LastAmbushedOutcome { get; set; } = AmbushedOutcome.None;
+
+        /// <summary>
         /// Set by <c>AmbushEndLogic.OnMissionResultReady</c> when a TotalVictory
         /// fires. Consumed by <see cref="OnCampaignTick"/> on the first tick
         /// after the mission closes to drive the stalled vanilla state machine:
@@ -511,7 +519,31 @@ namespace TOR_Core.CampaignMechanics.Ambush
                     StampAmbushCooldown();
                     break;
             }
+
+            // Phase F aftermath. The full flows (reveal window, follow-up
+            // battle, wounded troops) are built out in subsequent slices;
+            // for now we log the outcome so a debug-triggered mission has
+            // a visible closing beat.
+            switch (LastAmbushedOutcome)
+            {
+                case AmbushedOutcome.None:
+                    break;
+                case AmbushedOutcome.AmbushRepelled:
+                    TORCommon.Say("You drove them off. You got a good look at them — they won't stay hidden for long.");
+                    break;
+                case AmbushedOutcome.AmbushedFled:
+                    TORCommon.Say("You broke contact. Your troops are shaken.");
+                    break;
+                case AmbushedOutcome.AmbushedHeroWounded:
+                    TORCommon.Say("You were cut down in the ambush.");
+                    break;
+                case AmbushedOutcome.AmbushedWiped:
+                    // Vanilla defeat flow handles casualties / prisoners.
+                    break;
+            }
+
             LastAmbushOutcome = AmbushOutcome.None;
+            LastAmbushedOutcome = AmbushedOutcome.None;
             ExtractionTroopsLeftBehind = 0;
             LastAmbushLoudness = 0;
             // _lastAmbushTarget is cleared when the escape/engage option fires,
@@ -845,6 +877,15 @@ namespace TOR_Core.CampaignMechanics.Ambush
             // Drop stealth before combat; cooldown fires regardless of outcome.
             LeaveStealth(MobileParty.MainParty);
             StampAmbushCooldown();
+
+            // Teleport the player onto the target before starting the encounter
+            // so the campaign-map visualization matches the fiction: the player
+            // walked up to the target and struck. Without this the engagement
+            // happens at wherever the player was when they entered stealth and
+            // the target "snaps" to the player's location — immersion-breaking,
+            // and (worse) picks the wrong terrain for vanilla's fail-path field
+            // battle.
+            MobileParty.MainParty.Position = target.Position;
 
             if (success)
             {

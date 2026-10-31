@@ -23,6 +23,10 @@ using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.Reinforcements;
 using TOR_Core.BattleMechanics.TriggeredEffect;
+using TaleWorlds.CampaignSystem.Encounters;
+using TaleWorlds.CampaignSystem.MapEvents;
+using TOR_Core.CampaignMechanics.Ambush;
+using TOR_Core.Missions.AmbushMission;
 using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
@@ -1459,5 +1463,63 @@ namespace TOR_Core.Utilities
                 (current, spell) =>
                     $"{current}{spell}\n"
             );
+
+        /// <summary>
+        /// Debug: force the nearest hostile party to ambush the player.
+        /// Smoke-tests the Phase F mission (OpenAmbushedMission) before the
+        /// Slice 2 AI decision tick exists. Scope is deliberately narrow:
+        /// uses the current main party position, picks the closest at-war
+        /// MobileParty within <c>DebugAmbusherSearchRadius</c>, forces a
+        /// PlayerEncounter with the player as defender, opens the mission.
+        /// Removed once the AI tick drives this naturally.
+        /// </summary>
+        private const float DebugAmbusherSearchRadius = 30f;
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("trigger_ambushed", "tor_ambush")]
+        public static string TriggerAmbushed(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+            if (Campaign.Current == null) return "no active campaign";
+            var main = MobileParty.MainParty;
+            if (main == null || !main.IsActive) return "main party not active";
+            if (main.CurrentSettlement != null) return "leave the settlement first";
+            if (MapEvent.PlayerMapEvent != null) return "player is already in an encounter";
+
+            var mainFaction = main.MapFaction;
+            var mainPos = main.Position;
+            MobileParty closest = null;
+            float closestDistSq = DebugAmbusherSearchRadius * DebugAmbusherSearchRadius;
+            foreach (var p in MobileParty.All)
+            {
+                if (p == null || !p.IsActive || p == main) continue;
+                if (p.MapFaction == null || mainFaction == null) continue;
+                if (!FactionManager.IsAtWarAgainstFaction(mainFaction, p.MapFaction)) continue;
+                float distSq = p.Position.DistanceSquared(mainPos);
+                if (distSq > closestDistSq) continue;
+                closestDistSq = distSq;
+                closest = p;
+            }
+            if (closest == null)
+                return $"no eligible hostile party within {DebugAmbusherSearchRadius} units";
+
+            // Teleport the AI ambusher onto the player — Phase F fiction is
+            // "they were lying in wait and sprang on you", so the engagement
+            // happens at the player's position, not at the ambusher's. (Phase D
+            // teleports the opposite direction for the same reason: the player
+            // chose to walk up and strike.)
+            closest.Position = main.Position;
+
+            // Role reversal: player on defender side, AI party on attacker side.
+            PlayerEncounter.RestartPlayerEncounter(PartyBase.MainParty, closest.Party, false);
+            if (PlayerEncounter.Battle == null)
+            {
+                PlayerEncounter.StartBattle();
+                PlayerEncounter.Update();
+            }
+            AmbushRetreatZone.ResetRegistry();
+            TorMissionManager.OpenAmbushedMission(AmbushCampaignBehavior.DefaultAmbushScene);
+            return "ambushed by " + (closest.LeaderHero?.Name?.ToString() ?? closest.Name?.ToString() ?? "?");
+        }
     }
 }

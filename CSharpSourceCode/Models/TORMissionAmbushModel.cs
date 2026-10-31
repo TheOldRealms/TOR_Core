@@ -116,5 +116,15 @@ namespace TOR_Core.Models
         /// cooldown doubles when gunpowder / magic was involved.
         /// </summary>
         public virtual float LoudnessPenaltyHours => 6f;
+
+        // ---- Phase F (player gets ambushed) ----
+
+        /// <summary>
+        /// How long the player must stay outside the soft mission boundary
+        /// before the Phase F mission resolves as <c>AmbushedFled</c>. The
+        /// countdown resets to 0 the moment the player re-enters the boundary.
+        /// See ai-ambushes-player-design.md § 3 row 4.
+        /// </summary>
+        public virtual float AmbushedFledCountdownSeconds => 10f;
     }
 }

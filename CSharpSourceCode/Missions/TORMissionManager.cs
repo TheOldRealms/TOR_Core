@@ -302,6 +302,74 @@ namespace TOR_Core.Missions
             }, true, true);
         }
 
+        /// <summary>
+        /// Phase F — open the "player is being ambushed" mission. Same scene +
+        /// controller as <see cref="OpenAmbushMission"/>; only the end logic
+        /// differs so the 4-outcome state machine fires instead of Phase D's
+        /// 5-outcome one. Caller must have run EncounterManager.
+        /// StartPartyEncounter + PlayerEncounter.StartBattle with the AI
+        /// ambusher as the attacker and the player as the defender.
+        /// </summary>
+        [MissionMethod]
+        public static Mission OpenAmbushedMission(string scene)
+        {
+            var rec = SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All);
+            return MissionState.OpenNew("Battle", rec, delegate (Mission mission)
+            {
+                IMissionTroopSupplier[] suppliers =
+                [
+                    new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Defender),
+                    new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Attacker),
+                ];
+                int attackerCount = MapEvent.PlayerMapEvent.AttackerSide.TroopCount;
+                int defenderCount = MapEvent.PlayerMapEvent.DefenderSide.TroopCount;
+                List<MissionBehavior> list =
+                [
+                    // Role reversal: player is Defender here. The attacker side
+                    // is still the ambusher force so AmbushMissionController's
+                    // "teleport attacker team to ambush slots" invariant holds.
+                    new DefaultBattleMissionAgentSpawnLogic(suppliers, BattleSideEnum.Defender, BattleSizeType.Battle),
+                    new BattlePowerCalculationLogic(),
+                    new BattleSpawnLogic("battle_set"),
+                    new AmbushMission.AmbushMissionController(defenderCount, attackerCount),
+                    new AmbushMission.AmbushedEndLogic(),
+                    new AmbushMission.AmbushLoudnessTracker(),
+                    new MissionExperienceBehavior(),
+                    new CampaignMissionComponent(),
+                    new BattleAgentLogic(),
+                    new MountAgentLogic(),
+                    new MissionOptionsComponent(),
+                    new BattleEndLogic(),
+                    new MissionCombatantsLogic(
+                        MobileParty.MainParty.MapEvent.InvolvedParties,
+                        PartyBase.MainParty,
+                        MobileParty.MainParty.MapEvent.GetLeaderParty(BattleSideEnum.Defender),
+                        MobileParty.MainParty.MapEvent.GetLeaderParty(BattleSideEnum.Attacker),
+                        Mission.MissionTeamAITypeEnum.FieldBattle, false),
+                    new BattleObserverMissionLogic(),
+                    new AgentHumanAILogic(),
+                    new AgentVictoryLogic(),
+                    new MissionAgentPanicHandler(),
+                    new BattleMissionAgentInteractionLogic(),
+                    new AgentMoraleInteractionLogic(),
+                    new AssignPlayerRoleInTeamMissionController(true, false, false),
+                    new BannerBearerLogic(),
+                ];
+                Hero attackerHero = MapEvent.PlayerMapEvent.AttackerSide.LeaderParty.LeaderHero;
+                Hero defenderHero = MapEvent.PlayerMapEvent.DefenderSide.LeaderParty.LeaderHero;
+                list.Add(new SandboxGeneralsAndCaptainsAssignmentLogic(attackerHero?.Name, defenderHero?.Name, null, null, false));
+                list.Add(new EquipmentControllerLeaveLogic());
+                list.Add(new MissionHardBorderPlacer());
+                list.Add(new MissionBoundaryPlacer());
+                list.Add(new MissionBoundaryCrossingHandler());
+                list.Add(new HighlightsController());
+                list.Add(new BattleHighlightsController());
+                list.Add(new BattleDeploymentMissionController(false));
+                list.Add(new BattleDeploymentHandler(false));
+                return list.ToArray();
+            }, true, true);
+        }
+
         [MissionMethod]
         public static Mission OpenBrawlFightMission(Location location, TroopRoster playerSideTroops,
             TroopRoster enemyPartyRoster, int enemyPartySize, Action<BrawlMissionResult> onMissionEnd = null)

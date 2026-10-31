@@ -285,6 +285,8 @@
     <Compile Include="CampaignMechanics\Ambush\AmbushCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Ambush\AmbushMapView.cs" />
     <Compile Include="CampaignMechanics\Ambush\AmbushOutcome.cs" />
+    <Compile Include="CampaignMechanics\Ambush\AmbushedOutcome.cs" />
+    <Compile Include="Missions\AmbushMission\AmbushedEndLogic.cs" />
     <Compile Include="Missions\AmbushMission\AmbushEndLogic.cs" />
     <Compile Include="Missions\AmbushMission\AmbushMissionController.cs" />
     <Compile Include="Missions\AmbushMission\AmbushReinforcementSpawnTimer.cs" />
