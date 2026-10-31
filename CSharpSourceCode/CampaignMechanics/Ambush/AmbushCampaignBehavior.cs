@@ -69,6 +69,25 @@ namespace TOR_Core.CampaignMechanics.Ambush
         public AmbushOutcome LastAmbushOutcome { get; set; } = AmbushOutcome.None;
 
         /// <summary>
+        /// Set by <c>AmbushEndLogic.OnMissionResultReady</c> when a TotalVictory
+        /// fires. Consumed by <see cref="OnCampaignTick"/> on the first tick
+        /// after the mission closes to drive the stalled vanilla state machine:
+        /// close the stealth wait-menu (which has TimeControlMode = Stop) and
+        /// resume normal time so <c>PlayerEncounter.Update</c> can tick through
+        /// to End → loot + party destruction.
+        /// </summary>
+        public bool PendingPostAmbushCleanup { get; set; }
+
+        // Short burst of forced UnstoppablePlay after the post-ambush cleanup
+        // so vanilla's PlayerEncounter.Update state machine actually ticks
+        // through to the loot UI without waiting on the player manually
+        // resuming time. Decremented each OnCampaignTick; stops forcing once
+        // the counter hits 0 so a paused-by-choice player isn't left in
+        // UnstoppablePlay forever.
+        private const int PostAmbushForceTickCount = 10;
+        private int _postAmbushForceTicksRemaining;
+
+        /// <summary>
         /// Number of attacker troops who were outside the retreat zone when the
         /// extraction bar completed. Set by AmbushEndLogic before mission close;
         /// consumed by <see cref="OnPlayerBattleEnd"/> to wound that many healthy
@@ -183,6 +202,14 @@ namespace TOR_Core.CampaignMechanics.Ambush
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, OnPlayerBattleEnd);
             CampaignEvents.QuarterHourlyTickEvent.AddNonSerializedListener(this, OnQuarterHourlyTick);
+            CampaignEvents.TickEvent.AddNonSerializedListener(this, OnCampaignTick);
+            // GameMenuOpened fires regardless of TimeControlMode — unlike
+            // TickEvent, which stalls when time is Stop. Needed because the
+            // stealth wait-menu reopening after a TotalVictory mission puts
+            // the campaign into Stop → no TickEvent → the OnCampaignTick
+            // cleanup never gets to un-stop time (chicken-and-egg). The menu-
+            // opened event is our handle to break that cycle.
+            CampaignEvents.GameMenuOpened.AddNonSerializedListener(this, OnGameMenuOpened);
 
             ScreenManager.OnPushScreen -= OnScreenPushed;
             ScreenManager.OnPushScreen += OnScreenPushed;
@@ -228,6 +255,96 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 mapScreen.AddMapView<AmbushMapView>();
         }
 
+        /// <summary>
+        /// Fires every campaign tick while the map is active. One-shot drain
+        /// of <see cref="PendingPostAmbushCleanup"/> on the first tick after
+        /// the TotalVictory mission ends: closes the stealth wait-menu and
+        /// restores the previously-cached time control mode. Why: the wait-
+        /// menu reopens after mission close with TimeControlMode = Stop,
+        /// which stalls vanilla's PlayerEncounter.Update ticks and leaves
+        /// the loot/finalize state machine stuck. Clearing both lets vanilla
+        /// drive the state machine to End.
+        /// </summary>
+        /// <summary>
+        /// Fires when any game menu opens, including the stealth wait-menu
+        /// restored after a mission closes. Catches the TotalVictory
+        /// post-mission moment that TickEvent misses because of the Stop
+        /// time-control stall.
+        /// </summary>
+        private void OnGameMenuOpened(MenuCallbackArgs args)
+        {
+            if (!PendingPostAmbushCleanup) return;
+            // Only react to the stealth wait-menu restoring itself after a
+            // mission — if any OTHER menu opens, let it be.
+            if (args?.MenuContext?.GameMenu?.StringId != StealthMenuId) return;
+
+            TaleWorlds.Library.Debug.Print(
+                "[AmbushCampaignBehavior] post-ambush via GameMenuOpened: closing stuck stealth wait-menu + starting burst");
+            PendingPostAmbushCleanup = false;
+
+            args.MenuContext.GameMenu.EndWait();
+            GameMenu.ExitToLast();
+
+            _postAmbushForceTicksRemaining = PostAmbushForceTickCount;
+            // Set time control immediately — the OnCampaignTick burst takes
+            // over from the next tick (which can now actually fire because
+            // time isn't Stop anymore).
+            if (Campaign.Current != null)
+            {
+                Campaign.Current.TimeControlMode = CampaignTimeControlMode.UnstoppablePlay;
+            }
+        }
+
+        private void OnCampaignTick(float dt)
+        {
+            if (PendingPostAmbushCleanup && TaleWorlds.MountAndBlade.Mission.Current == null)
+            {
+                PendingPostAmbushCleanup = false;
+
+                var ctx = Campaign.Current?.CurrentMenuContext;
+                bool stealthMenuWasActive = ctx?.GameMenu?.StringId == StealthMenuId;
+                if (stealthMenuWasActive)
+                {
+                    TaleWorlds.Library.Debug.Print(
+                        "[AmbushCampaignBehavior] post-ambush: closing stuck stealth wait-menu");
+                    ctx.GameMenu.EndWait();
+                    GameMenu.ExitToLast();
+                }
+
+                // Start the forced-tick burst so vanilla's PlayerEncounter.Update
+                // state machine actually progresses to the loot UI without
+                // waiting on the player manually resuming time. See the ticks-
+                // remaining branch below.
+                _postAmbushForceTicksRemaining = PostAmbushForceTickCount;
+                TaleWorlds.Library.Debug.Print(
+                    "[AmbushCampaignBehavior] post-ambush: starting "
+                    + PostAmbushForceTickCount + "-tick UnstoppablePlay burst");
+            }
+
+            // Force time to advance for a short window so the state machine
+            // can tick through Begin → Wait → PrepareResults → ApplyResults →
+            // PlayerVictory → LootParty → LootInventory. Loot UI will block
+            // further ticks naturally once it appears.
+            if (_postAmbushForceTicksRemaining > 0 && Campaign.Current != null)
+            {
+                var modeBefore = Campaign.Current.TimeControlMode;
+                _postAmbushForceTicksRemaining--;
+                if (modeBefore != CampaignTimeControlMode.UnstoppablePlay)
+                {
+                    Campaign.Current.TimeControlMode = CampaignTimeControlMode.UnstoppablePlay;
+                }
+                TaleWorlds.Library.Debug.Print(
+                    "[AmbushCampaignBehavior] post-ambush burst tick remaining="
+                    + _postAmbushForceTicksRemaining
+                    + " modeBefore=" + modeBefore
+                    + " modeAfter=" + Campaign.Current.TimeControlMode
+                    + " encounterCurrent=" + (TaleWorlds.CampaignSystem.Encounters.PlayerEncounter.Current != null));
+                // When the burst runs out we DON'T forcibly restore the time
+                // control — vanilla's own menus / loot screen will have set
+                // their own mode by then, and overriding would stomp them.
+            }
+        }
+
         private void OnPlayerBattleEnd(MapEvent mapEvent)
         {
             if (_playerInStealth) LeaveStealth(MobileParty.MainParty);
@@ -269,11 +386,19 @@ namespace TOR_Core.CampaignMechanics.Ambush
                             + " target=" + GetPartyLabel(_lastAmbushTarget)
                             + " active=" + active
                             + " totalManCount=" + total);
-                        if (active)
+                        // Only force-destroy if the party is literally empty.
+                        // TotalVictory in the mission sense means "field clear
+                        // + reinforcement queue drained", NOT "every roster
+                        // slot dead" — vanilla keeps wounded / routed troops
+                        // in the roster post-battle. If any survivors remain
+                        // (count > 0), let vanilla's natural loot/prisoner
+                        // screens run; destroying a non-empty party here mid-
+                        // state-machine freezes the game.
+                        if (active && total == 0)
                         {
                             TaleWorlds.Library.Debug.Print(
-                                "[AmbushCampaignBehavior] force-destroying target party"
-                                + " (state machine stall workaround)");
+                                "[AmbushCampaignBehavior] target party has 0 troops but is still active;"
+                                + " force-destroying (safety net)");
                             DestroyPartyAction.Apply(null, _lastAmbushTarget);
                         }
                     }

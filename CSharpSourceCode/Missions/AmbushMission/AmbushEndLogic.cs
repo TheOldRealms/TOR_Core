@@ -303,6 +303,12 @@ namespace TOR_Core.Missions.AmbushMission
                     TaleWorlds.Library.Debug.Print(
                         "[AmbushEndLogic] TotalVictory but PlayerEncounter.Current is null — skipping");
                 }
+
+                // Mark that we need the post-mission cleanup pass on the next
+                // campaign tick. AmbushCampaignBehavior.OnCampaignTick handles
+                // the stealth-menu close + time-control restore so vanilla's
+                // PlayerEncounter.Update can drive the state machine to End.
+                if (behavior != null) behavior.PendingPostAmbushCleanup = true;
             }
         }
 
