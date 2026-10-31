@@ -796,6 +796,26 @@ namespace TOR_Core.CampaignMechanics.Ambush
                     MBTextManager.SetTextVariable(varName, new TextObject(""));
                 }
             }
+
+            // Updating _currentTargets alone doesn't make previously-hidden
+            // strike buttons appear: the game-menu UI caches which options are
+            // visible when the menu activates and only re-evaluates condition
+            // delegates on an explicit refresh. Nudge the manager so the new
+            // target slots light up (and emptied slots disappear) mid-wait.
+            // RefreshMenuOptions → Handler.OnMenuRefresh → GameMenuDataSource.
+            // Refresh(true), which rebuilds ItemList by re-running every
+            // option's condition delegate (incl. our StrikeSlotCondition).
+            //
+            // Handler null-check matters: on the first-time init path we're
+            // called via OnStealthMenuInit, which runs inside MenuContext.
+            // Refresh() *before* MapScreen's UpdateMenuView has constructed
+            // the view-side MenuViewContext — so ctx.Handler is still null
+            // and vanilla's RefreshMenuOptions NPEs on it. Skip the refresh
+            // in that case; the init path is about to render the options
+            // list for the first time with the fresh _currentTargets anyway.
+            var ctx = Campaign.Current?.CurrentMenuContext;
+            if (ctx?.GameMenu?.StringId == StealthMenuId && ctx.Handler != null)
+                Campaign.Current?.GameMenuManager?.RefreshMenuOptions(ctx);
         }
 
         private bool StrikeSlotCondition(MenuCallbackArgs args, int slot)

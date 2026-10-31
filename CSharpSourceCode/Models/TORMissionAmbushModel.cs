@@ -108,7 +108,7 @@ namespace TOR_Core.Models
         /// Loud missions get the full extended cooldown; quiet TotalVictory
         /// skips the cooldown entirely. See campaign-stealth-design.md § 6b.
         /// </summary>
-        public virtual int LoudnessEventThreshold => 3;
+        public virtual int LoudnessEventThreshold => 1;
 
         /// <summary>
         /// Extra hours added to <see cref="AmbushCampaignBehavior.CooldownHours"/>
