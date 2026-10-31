@@ -2,27 +2,46 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.AbilitySystem;
 using TOR_Core.CampaignMechanics.Ambush;
 
 namespace TOR_Core.Missions.AmbushMission
 {
     /// <summary>
     /// Counts player-side loudness events during the ambush — gunpowder shots
-    /// (handgun / pistol / musket / grenade weapons) and non-Shadow magic
-    /// casts. The tally lands on <see cref="AmbushCampaignBehavior.LastAmbushLoudness"/>
+    /// (Musket / Pistol <see cref="WeaponClass"/>) and non-silent magic casts.
+    /// The tally lands on <see cref="AmbushCampaignBehavior.LastAmbushLoudness"/>
     /// at mission close; the campaign-side cooldown stamp + TotalVictory
     /// cooldown-zero gate read it to decide whether the mission was quiet
     /// enough to keep the stealth cooldown short / zero.
     ///
     /// Design: campaign-stealth-design.md § 6b.
     ///
-    /// Magic hook is deferred: TOR's ability system doesn't expose a clean
-    /// cast event we can subscribe to without a Harmony patch; the gunpowder
-    /// side carries the first-pass mechanic. See the TODO in <see cref="OnAgentShootMissile"/>.
+    /// Shadow-lore exception is forward-looking: the lore isn't implemented
+    /// in TOR yet, so every spell counts as loud today. Once Shadow lands,
+    /// filter by its <c>BelongsToLoreID</c> in <see cref="OnAbilityCastComplete"/>.
     /// </summary>
     public class AmbushLoudnessTracker : MissionLogic
     {
         private int _loudnessCount;
+        private AbilityManagerMissionLogic _abilityLogic;
+
+        public override void OnBehaviorInitialize()
+        {
+            base.OnBehaviorInitialize();
+            _abilityLogic = Mission.GetMissionBehavior<AbilityManagerMissionLogic>();
+            if (_abilityLogic != null)
+                _abilityLogic.OnAbilityCastComplete += OnAbilityCastComplete;
+        }
+
+        protected override void OnEndMission()
+        {
+            base.OnEndMission();
+            if (_abilityLogic != null)
+                _abilityLogic.OnAbilityCastComplete -= OnAbilityCastComplete;
+            var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
+            if (behavior != null) behavior.LastAmbushLoudness = _loudnessCount;
+        }
 
         public override void OnAgentShootMissile(Agent shooterAgent, EquipmentIndex weaponIndex,
             Vec3 position, Vec3 velocity, Mat3 orientation, bool hasRigidBody,
@@ -53,18 +72,22 @@ namespace TOR_Core.Missions.AmbushMission
         }
 
         /// <summary>
-        /// TODO: non-Shadow magic cast hook. TOR's AbilityManagerMissionLogic
-        /// doesn't expose a cast event we can subscribe to from here; wiring
-        /// this up needs either a new event on AbilityComponent/AbilityManager
-        /// or a Harmony patch. Deferred to a follow-up pass.
+        /// Fired by AbilityManagerMissionLogic.OnCastComplete whenever any
+        /// agent successfully completes a cast. We count the player side's
+        /// Spell-type casts; Prayer and CareerAbility are deliberately
+        /// excluded (not visible-magic in the "sends up a flare" sense).
+        /// Shadow-lore exclusion is a future filter — not yet implemented
+        /// upstream so there's nothing to check today.
         /// </summary>
-        private void OnMagicCastPlaceholder() { }
-
-        protected override void OnEndMission()
+        private void OnAbilityCastComplete(Ability ability, Agent agent)
         {
-            base.OnEndMission();
-            var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
-            if (behavior != null) behavior.LastAmbushLoudness = _loudnessCount;
+            if (ability?.Template == null || agent == null) return;
+            if (agent.Team != Mission.AttackerTeam) return;
+            if (ability.Template.AbilityType != AbilityType.Spell) return;
+            // TODO: once Shadow lore lands, skip when
+            // ability.Template.BelongsToLoreID equals its StringId. For now
+            // every Spell is loud by design-doc default.
+            _loudnessCount++;
         }
     }
 }
