@@ -28,10 +28,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
         // Any culture not registered falls through to the model's
         // DefaultCulturePropensity (0).
         //
-        // Note on greenskin kingdom culture: gated on hero.IsGoblin() in
-        // TORAmbushModel.GetAmbushPropensity — orcs are too thick for
-        // ambushes, so a non-goblin-led greenskin kingdom party scores 0.
-        // GOBLIN_BANDIT ("looters") skips the gate — by definition goblin.
+        // Propensity is PURE inclination — "does this culture try?". The
+        // CAPABILITY ("is this specific party any good at hiding?") is
+        // delegated entirely to AmbushTroopStealthScore, which already
+        // folds in race / mount / weight / knightly tier at precompute
+        // time. An orc-led greenskin party has normal propensity but
+        // its roster score is low → entry chance roll naturally fails.
+        // No per-culture race gates here.
         private static readonly Dictionary<string, float> _culturePropensity
             = new Dictionary<string, float>
         {
@@ -42,7 +45,6 @@ namespace TOR_Core.CampaignMechanics.Ambush
             { Cultures.DRUCHII, 0.6f },          // dark elves — treacherous raiders
             { Cultures.MOUSILLON, 0.5f },        // Vampire Counts (Mousillon) — night ambushes
             { Cultures.SYLVANIA, 0.5f },         // Vampire Counts (Sylvania) — same flavour
-            // Gated on hero.IsGoblin() in the model:
             { Cultures.GREENSKIN, 0.6f },
 
             // Bandit sub-cultures (goblin bandits, chaos cultists, etc.)

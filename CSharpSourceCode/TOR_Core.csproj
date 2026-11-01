@@ -285,6 +285,7 @@
     <Compile Include="CampaignMechanics\Ambush\AiAmbushBehavior.cs" />
     <Compile Include="CampaignMechanics\Ambush\AmbushCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Ambush\AmbushPropensityRegistry.cs" />
+    <Compile Include="CampaignMechanics\Ambush\AmbushTroopStealthScore.cs" />
     <Compile Include="CampaignMechanics\Ambush\AmbushMapView.cs" />
     <Compile Include="CampaignMechanics\Ambush\AmbushOutcome.cs" />
     <Compile Include="CampaignMechanics\Ambush\AmbushedOutcome.cs" />

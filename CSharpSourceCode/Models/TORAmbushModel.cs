@@ -189,18 +189,131 @@ namespace TOR_Core.Models
             return "You've been spotted by " + who + ".";
         }
 
+        // ---- Skill contest (party-level) ----
+
+        /// <summary>How much of the lower hero's skill contributes when
+        /// combining the leader + Scout-role hero into an effective
+        /// party skill. 0.5 = the specialist carries, but a second
+        /// decent hero still helps.</summary>
+        public virtual float SkillPairLowerWeight => 0.5f;
+
+        /// <summary>Weights for the ambush success contest. Roguery
+        /// dominates on the ambusher side; Scouting + Tactics share
+        /// detection duty on the defender side.</summary>
+        public virtual float ContestRogueryWeight  => 1.5f;
+        public virtual float ContestScoutingWeight => 1.0f;
+        public virtual float ContestTacticsWeight  => 0.7f;
+
+        /// <summary>Divisor applied to the raw skill-delta before it folds
+        /// into the chance. 300 = a 300-point weighted-Roguery advantage
+        /// shifts the chance by ~1.0 (clamped), so a typical 50-point
+        /// delta shifts ~0.17.</summary>
+        public virtual float ContestNormalizer => 300f;
+
+        /// <summary>Base strike range for the ambusher (what used to be
+        /// the <c>StealthRadius</c> constant). Scouting of the ambusher's
+        /// leader + Scout-role hero scales this up — a well-scouted
+        /// party reaches further.</summary>
+        public virtual float BaseStrikeRange => 15f;
+        public virtual float StrikeRangeScoutingPerPoint => 0.05f;
+        public virtual float MaxStrikeRange => 35f;
+
+        /// <summary>Combine two heroes' skill values using the half-weight-
+        /// lower rule: the higher score carries full weight, the lower
+        /// contributes <see cref="SkillPairLowerWeight"/> of its value.
+        /// A solo specialist equals max(solo, 0); two decent heroes stack
+        /// without doubling.</summary>
+        public virtual int CombineSkillPair(int a, int b)
+        {
+            int high = a > b ? a : b;
+            int low = a > b ? b : a;
+            return high + (int)(low * SkillPairLowerWeight);
+        }
+
+        /// <summary>Effective Roguery for the AMBUSHER side — leader + the
+        /// party's <c>EffectiveScout</c> hero, combined via the pair rule.
+        /// Drives the ambush success chance.</summary>
+        public virtual int GetAmbusherRoguery(MobileParty party)
+        {
+            if (party == null) return 0;
+            int leader = party.LeaderHero?.GetSkillValue(DefaultSkills.Roguery) ?? 0;
+            int scout = party.EffectiveScout?.GetSkillValue(DefaultSkills.Roguery) ?? 0;
+            return CombineSkillPair(leader, scout);
+        }
+
+        /// <summary>Effective Scouting for the AMBUSHER side. Drives the
+        /// strike range — a well-scouted ambusher can execute a successful
+        /// ambush from further away.</summary>
+        public virtual int GetAmbusherScouting(MobileParty party)
+        {
+            if (party == null) return 0;
+            int leader = party.LeaderHero?.GetSkillValue(DefaultSkills.Scouting) ?? 0;
+            int scout = party.EffectiveScout?.GetSkillValue(DefaultSkills.Scouting) ?? 0;
+            return CombineSkillPair(leader, scout);
+        }
+
+        /// <summary>Effective Scouting for the DEFENDER side. Drives
+        /// ambush detection; contested against the ambusher's Roguery
+        /// in the success chance formula.</summary>
+        public virtual int GetDefenderScouting(MobileParty party)
+        {
+            if (party == null) return 0;
+            int leader = party.LeaderHero?.GetSkillValue(DefaultSkills.Scouting) ?? 0;
+            int scout = party.EffectiveScout?.GetSkillValue(DefaultSkills.Scouting) ?? 0;
+            return CombineSkillPair(leader, scout);
+        }
+
+        /// <summary>Tactics is a leader-only skill — unlike Scouting, it's
+        /// not tied to the Scout role. Only the leader's value counts
+        /// toward reading the terrain for ambush spots.</summary>
+        public virtual int GetDefenderTactics(MobileParty party)
+            => party?.LeaderHero?.GetSkillValue(DefaultSkills.Tactics) ?? 0;
+
+        /// <summary>Dynamic strike range: how far around the ambusher's
+        /// position a successful ambush can be executed. Scales with the
+        /// ambusher's effective Scouting (not Roguery — Scouting is "where
+        /// can we usefully lie in wait").</summary>
+        public virtual float CalculateStrikeRange(MobileParty ambusher)
+        {
+            int scouting = GetAmbusherScouting(ambusher);
+            float range = BaseStrikeRange + scouting * StrikeRangeScoutingPerPoint;
+            if (range > MaxStrikeRange) range = MaxStrikeRange;
+            return range;
+        }
+
+        /// <summary>
+        /// Ambush success chance for a given (ambusher, target) pair.
+        /// Combines a baseline, the skill contest (Roguery vs Scouting
+        /// + Tactics via the pair-combined effective skills), terrain,
+        /// force ratio, stealth-duration freshness, proximity, and night
+        /// bonus. Clamped to [MinChance, MaxChance].
+        /// </summary>
         public virtual float CalculateAmbushSuccessChance(MobileParty attacker, MobileParty target, CampaignTime stealthEnteredAt)
         {
             if (attacker == null || target == null) return MinChance;
 
             float chance = BaseAmbushChance;
-            chance += ScoutingDeltaBonus(attacker, target);
+            chance += SkillContestBonus(attacker, target);
             chance += TerrainBonus(attacker);
             chance += ForceRatioBonus(attacker, target);
             chance += StealthDurationBonus(stealthEnteredAt);
             chance += TargetProximityBonus(attacker, target);
             chance += NightTimeBonusValue();
             return MBMath.ClampFloat(chance, MinChance, MaxChance);
+        }
+
+        /// <summary>Skill contest: ambusher Roguery vs defender Scouting +
+        /// Tactics. Positive when the ambusher's weighted skill advantage
+        /// clears the defender's awareness. Normalized by
+        /// <see cref="ContestNormalizer"/>; clamp mirrors the old
+        /// Scouting-delta bounds so no single factor dominates.</summary>
+        protected virtual float SkillContestBonus(MobileParty attacker, MobileParty target)
+        {
+            float attackerScore = GetAmbusherRoguery(attacker) * ContestRogueryWeight;
+            float defenderScore = GetDefenderScouting(target) * ContestScoutingWeight
+                                + GetDefenderTactics(target)  * ContestTacticsWeight;
+            float delta = (attackerScore - defenderScore) / ContestNormalizer;
+            return MBMath.ClampFloat(delta, -ScoutingBonusCap, ScoutingBonusCap);
         }
 
         protected virtual float TargetProximityBonus(MobileParty attacker, MobileParty target)
@@ -217,13 +330,6 @@ namespace TOR_Core.Models
         {
             if (Campaign.Current == null) return 0f;
             return Campaign.Current.IsNight ? NightTimeBonus : 0f;
-        }
-
-        protected virtual float ScoutingDeltaBonus(MobileParty attacker, MobileParty target)
-        {
-            int a = attacker.LeaderHero?.GetSkillValue(DefaultSkills.Scouting) ?? 0;
-            int t = target.LeaderHero?.GetSkillValue(DefaultSkills.Scouting) ?? 0;
-            return MBMath.ClampFloat((a - t) * ScoutingPerPointBonus, -ScoutingBonusCap, ScoutingBonusCap);
         }
 
         protected virtual float TerrainBonus(MobileParty attacker)
@@ -411,6 +517,42 @@ namespace TOR_Core.Models
         /// "is it worth even trying" entry gate.</summary>
         public virtual float AiMinEntryViabilityChance => 0.3f;
 
+        /// <summary>Radius in which other already-stealthed friendlies
+        /// count as "cluster" — too many hiding in the same spot makes
+        /// the position obvious. Shared with the planned scoring
+        /// formula so the friendly-stealth multiplier reads the same
+        /// local density as this penalty.</summary>
+        public virtual float FriendlyStealthClusterRadius => 15f;
+
+        /// <summary>Entry-chance penalty per nearby already-stealthed
+        /// friendly party. Rationale: ten lords hiding behind the same
+        /// hill compound each other's trail / profile — enemies will
+        /// catch on. Capped by <see cref="FriendlyStealthClusterPenaltyCap"/>
+        /// so a dense cluster can't drive entry below the minimum
+        /// floor on its own.</summary>
+        public virtual float FriendlyStealthClusterPenaltyPerParty => 0.1f;
+        public virtual float FriendlyStealthClusterPenaltyCap => 0.4f;
+
+        /// <summary>Returns the cluster penalty to subtract from entry
+        /// chance given the number of friendlies already stealthed in
+        /// range. Clamped at the cap. Zero if no cluster.</summary>
+        public virtual float FriendlyStealthClusterPenalty(int nearbyStealthedFriendlies)
+        {
+            if (nearbyStealthedFriendlies <= 0) return 0f;
+            float raw = nearbyStealthedFriendlies * FriendlyStealthClusterPenaltyPerParty;
+            return MBMath.ClampFloat(raw, 0f, FriendlyStealthClusterPenaltyCap);
+        }
+
+        /// <summary>Runtime stealth-score delta for a party, on top of
+        /// its precomputed <see cref="AmbushTroopStealthScore.GetBasePartyScore"/>.
+        /// This is the hook for perks / buffs / culture-level dynamic
+        /// effects — anything that shifts stealth value during a session
+        /// (base is fixed per troop StringId). Returns 0 by default; a
+        /// subclass or future design pass fills in actual perks (e.g.
+        /// Roguery leader bonus, "Shadow Rites" career choice, etc.).
+        /// </summary>
+        public virtual float GetDynamicStealthBonus(MobileParty party) => 0f;
+
         /// <summary>Returns (ambusherWounds, victimWounds) for a headless
         /// skirmish. The strike power is the ambusher's healthy count ×
         /// <see cref="AmbushSkirmishStrikePowerFraction"/>; victim wounds
@@ -461,16 +603,12 @@ namespace TOR_Core.Models
             }
             var culture = party.MapFaction?.Culture ?? hero?.Culture;
             if (culture == null) return DefaultCulturePropensity;
-
-            // Greenskin kingdom-culture exception: the registry entry is
-            // the goblin-led value. Orcs are too thick to pull off an
-            // ambush, so a non-goblin leader zeroes propensity. GOBLIN_BANDIT
-            // ("looters") skips this gate — by definition goblin.
-            if (culture.StringId == Cultures.GREENSKIN)
-            {
-                if (hero == null || !hero.IsGoblin()) return 0f;
-            }
-
+            // No greenskin-goblin gate here — the "orcs are bad at
+            // stealth" penalty is already baked into the precomputed
+            // AmbushTroopStealthScore via RaceFactor. An orc-heavy
+            // greenskin party will naturally score too low to pass
+            // the entry chance; the culture-level propensity is only
+            // the inclination to try, not the capability.
             return AmbushPropensityRegistry.GetCulturePropensity(culture, DefaultCulturePropensity);
         }
     }

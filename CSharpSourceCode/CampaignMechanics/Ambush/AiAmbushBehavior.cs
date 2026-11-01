@@ -76,6 +76,14 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// </summary>
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
+            // Precompute per-troop base stealth scores for the whole
+            // CharacterObject roster. All factors in the base layer
+            // (race / mount / knightly / weight / MasterAmbusher) are
+            // static per troop StringId, so one sweep at session launch
+            // avoids per-tick compute during decision ticks.
+            AmbushTroopStealthScore.PrecomputeAll();
+            TORCommon.Log(LogLevel.Info, "[AI Ambush] stealth-score base precomputed");
+
             if (_stealthedParties.Count == 0) return;
             var snapshot = new List<MBGUID>(_stealthedParties.Keys);
             foreach (var id in snapshot)
@@ -99,6 +107,30 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// bonus) query via this; nothing else should poke the dict.</summary>
         public bool IsPartyStealthed(MobileParty party)
             => party != null && _stealthedParties.ContainsKey(party.Id);
+
+        /// <summary>Count already-stealthed friendly parties within
+        /// <paramref name="radius"/> of <paramref name="party"/>. Used by
+        /// the cluster penalty — too many friends hiding in the same
+        /// spot makes the position obvious. "Friendly" = same MapFaction
+        /// (allies, same-kingdom lords).</summary>
+        public int CountStealthedFriendliesInRadius(MobileParty party, float radius)
+        {
+            if (party == null || _stealthedParties.Count == 0) return 0;
+            var faction = party.MapFaction;
+            if (faction == null) return 0;
+            var selfPos = party.Position.ToVec2();
+            float radiusSq = radius * radius;
+            int n = 0;
+            foreach (var id in _stealthedParties.Keys)
+            {
+                var other = FindPartyById(id);
+                if (other == null || other == party) continue;
+                if (other.MapFaction != faction) continue;
+                if (other.Position.ToVec2().DistanceSquared(selfPos) > radiusSq) continue;
+                n++;
+            }
+            return n;
+        }
 
         private bool IsOnCooldown(MobileParty party)
         {
@@ -157,6 +189,14 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 // time, since that's what the entry calc expects).
                 var observers = CollectNearbyHostiles(party, model.DetectionScanRadius);
                 float entryChance = model.CalculateEntryChance(party, observers);
+                // Cluster penalty: too many friendlies already stealthed
+                // in the same area makes this one more obvious. Compounds
+                // the base entry chance down; clamp against the min floor
+                // so a dense cluster can't zero us out below the model's
+                // own minimum.
+                int clusterCount = CountStealthedFriendliesInRadius(party, model.FriendlyStealthClusterRadius);
+                entryChance -= model.FriendlyStealthClusterPenalty(clusterCount);
+                if (entryChance < model.MinEntryChance) entryChance = model.MinEntryChance;
                 if (MBRandom.RandomFloat >= entryChance) continue;
 
                 EnterAiStealth(party);
