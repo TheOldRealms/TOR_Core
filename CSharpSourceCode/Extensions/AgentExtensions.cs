@@ -157,7 +157,11 @@ namespace TOR_Core.Extensions
 
         public static float GetPiercingArmorReduction(this Agent agent)
         {
-            var attributes = agent.GetAttributes();
+            return GetPiercingArmorReduction(agent.GetAttributes());
+        }
+
+        public static float GetPiercingArmorReduction(List<string> attributes)
+        {
             if (attributes.Contains(CharacterAttributes.PIERCING_2))
             {
                 return 0.40f;
@@ -168,7 +172,11 @@ namespace TOR_Core.Extensions
 
         public static float GetBulwarkRangedDamageReduction(this Agent agent)
         {
-            var attributes = agent.GetAttributes();
+            return GetBulwarkRangedDamageReduction(agent.GetAttributes());
+        }
+
+        public static float GetBulwarkRangedDamageReduction(List<string> attributes)
+        {
             if (attributes.Contains(CharacterAttributes.BULWARK_3))
             {
                 return 0.60f;
@@ -184,7 +192,11 @@ namespace TOR_Core.Extensions
 
         public static float GetSwiftMovementSpeedBonus(this Agent agent)
         {
-            var attributes = agent.GetAttributes();
+            return GetSwiftMovementSpeedBonus(agent.GetAttributes());
+        }
+
+        public static float GetSwiftMovementSpeedBonus(List<string> attributes)
+        {
             if (attributes.Contains(CharacterAttributes.SWIFT_3))
             {
                 return 0.40f;
@@ -200,7 +212,11 @@ namespace TOR_Core.Extensions
 
         public static float GetPoisonousHitChance(this Agent agent)
         {
-            var attributes = agent.GetAttributes();
+            return GetPoisonousHitChance(agent.GetAttributes());
+        }
+
+        public static float GetPoisonousHitChance(List<string> attributes)
+        {
             if (attributes.Contains(CharacterAttributes.POISONOUS_2))
             {
                 return 0.35f;
@@ -262,7 +278,11 @@ namespace TOR_Core.Extensions
 
         public static float GetUndeadSlayerDamageBonus(this Agent agent)
         {
-            var attributes = agent.GetAttributes();
+            return GetUndeadSlayerDamageBonus(agent.GetAttributes());
+        }
+
+        public static float GetUndeadSlayerDamageBonus(List<string> attributes)
+        {
             if (attributes.Contains(CharacterAttributes.UNDEAD_SLAYER_2))
             {
                 return 0.60f;
@@ -283,7 +303,11 @@ namespace TOR_Core.Extensions
 
         public static float GetEtherealIgnoreChance(this Agent agent)
         {
-            var attributes = agent.GetAttributes();
+            return GetEtherealIgnoreChance(agent.GetAttributes());
+        }
+
+        public static float GetEtherealIgnoreChance(List<string> attributes)
+        {
             if (attributes.Contains(CharacterAttributes.ETHEREAL_2))
             {
                 return 0.40f;
@@ -299,7 +323,11 @@ namespace TOR_Core.Extensions
 
         public static float GetMonsterSlayerDamageBonus(this Agent agent)
         {
-            var attributes = agent.GetAttributes();
+            return GetMonsterSlayerDamageBonus(agent.GetAttributes());
+        }
+
+        public static float GetMonsterSlayerDamageBonus(List<string> attributes)
+        {
             if (attributes.Contains(CharacterAttributes.MONSTER_SLAYER_2))
             {
                 return 1.50f;

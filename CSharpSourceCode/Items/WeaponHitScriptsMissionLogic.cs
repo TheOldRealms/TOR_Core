@@ -151,7 +151,7 @@ namespace TOR_Core.Items
                 return;
             }
 
-            var poisonDuration = 9f; // first second is consumed before the damage tick
+            var poisonDuration = StatusEffectManager.GetStatusEffectTemplate("poisonous_dot").Duration;
             ApplyWeaponStatusEffect(victim, "poisonous_dot", attacker, poisonDuration, false);
         }
 

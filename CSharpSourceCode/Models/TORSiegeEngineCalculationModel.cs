@@ -1,4 +1,5 @@
 ﻿using TaleWorlds.CampaignSystem;
+﻿using System.Collections.Generic;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.ComponentInterfaces;
 using TOR_Core.Extensions;
@@ -13,6 +14,13 @@ namespace TOR_Core.Models
 
         public static TORSiegeEngineCalculationModel Current => Campaign.Current?.Models?.GetSiegeEngineCalculationModel();
 
+        public static float GetCannonCrewReloadBonus(List<string> attributes)
+        {
+            if (attributes.Contains(CharacterAttributes.CREW_3)) return 0.35f;
+            if (attributes.Contains(CharacterAttributes.CREW_2)) return 0.20f;
+            return 0f;
+        }
+
         public float CalculateCannonReloadSpeed(float cannonReloadSpeed, Agent user , Agent reloader)
         {
             if (user == null || reloader == null) return cannonReloadSpeed;
@@ -20,13 +28,10 @@ namespace TOR_Core.Models
             var explainedNumber = new ExplainedNumber(cannonReloadSpeed);
             foreach (var crewMember in new[] { user, reloader })
             {
-                if (crewMember.HasAttribute(CharacterAttributes.CREW_3))
+                var reloadBonus = GetCannonCrewReloadBonus(crewMember.GetAttributes());
+                if (reloadBonus > 0f)
                 {
-                    explainedNumber.AddFactor(-0.35f);
-                }
-                else if (crewMember.HasAttribute(CharacterAttributes.CREW_2))
-                {
-                    explainedNumber.AddFactor(-0.20f);
+                    explainedNumber.AddFactor(-reloadBonus);
                 }
             }
 
