@@ -501,12 +501,15 @@ namespace TOR_Core.Models
         /// is tuned per culture / hero.</summary>
         public virtual float DefaultCulturePropensity => 0f;
 
-        /// <summary>How often an eligible AI party rolls for ambush entry on
-        /// the decision tick. Multiplied against the full
-        /// <see cref="CalculateEntryChance"/> result + the propensity to get
-        /// the final roll chance. Scales the per-quarter-hour frequency
-        /// across the whole AI population.</summary>
-        public virtual float AiDecisionTickFraction => 1f;
+        /// <summary>Multiplicative scalar on the per-tick propensity roll.
+        /// Each quarter-hour tick, every eligible party rolls
+        /// <c>MBRandom.RandomFloat &lt; propensity × AiDecisionTickFraction</c>
+        /// to decide whether to even try entering stealth. 1.0 means the
+        /// raw propensity drives the per-tick rate; 0.1 means ten times
+        /// fewer attempts per party per tick. Keep this as the primary
+        /// volume dial — propensity values stay flavor-shaped, this
+        /// knob controls world-wide rate.</summary>
+        public virtual float AiDecisionTickFraction => 0.1f;
 
         // ---- Phase F Slice 2b: AI-vs-AI skirmish ----
 

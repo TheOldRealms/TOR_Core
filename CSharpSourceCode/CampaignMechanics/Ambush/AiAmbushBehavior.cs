@@ -8,7 +8,6 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
-using TaleWorlds.ObjectSystem;
 using NLog;
 using TOR_Core.Extensions;
 using TOR_Core.Models;
@@ -30,21 +29,29 @@ namespace TOR_Core.CampaignMechanics.Ambush
     public class AiAmbushBehavior : CampaignBehaviorBase
     {
         // Parties currently in stealth stance → the time they entered.
-        // Serialized so stealth survives save/load.
-        private Dictionary<MBGUID, CampaignTime> _stealthedParties
-            = new Dictionary<MBGUID, CampaignTime>();
+        // Serialized so stealth survives save/load. Keyed by MobileParty
+        // directly (not MBGUID) because MBObjectManager.GetObject does
+        // not resolve live MobileParty objects — only CharacterObjects /
+        // Items / Settlements are reliably in the manager under their
+        // Id. The vanilla idiom for party-keyed state is a Dictionary<
+        // MobileParty, …>; TOR already uses it in RetreatPatches.
+        private Dictionary<MobileParty, CampaignTime> _stealthedParties
+            = new Dictionary<MobileParty, CampaignTime>();
 
         // Parties on ambush cooldown → when the cooldown expires. Mirror
         // of the player-side cooldown; stamped whenever a party leaves
         // stealth (burned the surprise, visibility compromised) and read
         // by IsEligibleAmbusher to block immediate re-stealth.
-        private Dictionary<MBGUID, CampaignTime> _partyCooldownUntil
-            = new Dictionary<MBGUID, CampaignTime>();
+        private Dictionary<MobileParty, CampaignTime> _partyCooldownUntil
+            = new Dictionary<MobileParty, CampaignTime>();
 
         // How long a stealthed AI party stays hidden before giving up and
-        // leaving stealth on its own (no viable target walked past). Keeps
-        // the stealth pool from accumulating indefinitely.
-        private const float MaxStealthHoldHours = 48f;
+        // leaving stealth on its own (no viable target walked past). Half
+        // a game-day — long enough for one patrol pass to walk through
+        // the strike radius, short enough that a kingdom's lords don't
+        // sit frozen out of the vanilla AI pipeline (recruitment,
+        // army-forming, kingdom council) for days at a time.
+        private const float MaxStealthHoldHours = 12f;
 
         // Minimum healthy troop count for a party to count as "ambush-
         // capable". Below this, an ambush is logically possible but
@@ -85,12 +92,11 @@ namespace TOR_Core.CampaignMechanics.Ambush
             TORCommon.Log(LogLevel.Info, "[AI Ambush] stealth-score base precomputed");
 
             if (_stealthedParties.Count == 0) return;
-            var snapshot = new List<MBGUID>(_stealthedParties.Keys);
-            foreach (var id in snapshot)
+            var snapshot = new List<MobileParty>(_stealthedParties.Keys);
+            foreach (var party in snapshot)
             {
-                var party = FindPartyById(id);
-                if (party != null) LeaveAiStealth(party);
-                else _stealthedParties.Remove(id);
+                if (party != null && party.IsActive) LeaveAiStealth(party);
+                else _stealthedParties.Remove(party);
             }
             TORCommon.Log(LogLevel.Info, "[AI Ambush] OnSessionLaunched: cleared "
                 + snapshot.Count + " stealthed parties from loaded save");
@@ -106,7 +112,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// stance. Readers (future Slice 3 reveal, Slice 2b auto-resolve
         /// bonus) query via this; nothing else should poke the dict.</summary>
         public bool IsPartyStealthed(MobileParty party)
-            => party != null && _stealthedParties.ContainsKey(party.Id);
+            => party != null && _stealthedParties.ContainsKey(party);
 
         /// <summary>Count already-stealthed friendly parties within
         /// <paramref name="radius"/> of <paramref name="party"/>. Used by
@@ -121,10 +127,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             var selfPos = party.Position.ToVec2();
             float radiusSq = radius * radius;
             int n = 0;
-            foreach (var id in _stealthedParties.Keys)
+            foreach (var other in _stealthedParties.Keys)
             {
-                var other = FindPartyById(id);
-                if (other == null || other == party) continue;
+                if (other == null || !other.IsActive || other == party) continue;
                 if (other.MapFaction != faction) continue;
                 if (other.Position.ToVec2().DistanceSquared(selfPos) > radiusSq) continue;
                 n++;
@@ -135,10 +140,10 @@ namespace TOR_Core.CampaignMechanics.Ambush
         private bool IsOnCooldown(MobileParty party)
         {
             if (party == null) return false;
-            if (!_partyCooldownUntil.TryGetValue(party.Id, out var until)) return false;
+            if (!_partyCooldownUntil.TryGetValue(party, out var until)) return false;
             if (until.IsFuture) return true;
             // Expired — tidy up so the dict doesn't accumulate forever.
-            _partyCooldownUntil.Remove(party.Id);
+            _partyCooldownUntil.Remove(party);
             return false;
         }
 
@@ -163,7 +168,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             foreach (var party in MobileParty.All)
             {
                 if (!IsEligibleAmbusher(party)) continue;
-                if (_stealthedParties.ContainsKey(party.Id)) continue;
+                if (_stealthedParties.ContainsKey(party)) continue;
                 if (IsOnCooldown(party)) continue;
 
                 float propensity = model.GetAmbushPropensity(party);
@@ -246,11 +251,10 @@ namespace TOR_Core.CampaignMechanics.Ambush
             Vec2 mainPos = main != null ? main.Position.ToVec2() : Vec2.Zero;
 
             // Grab a snapshot — triggering an ambush mutates the dict.
-            var snapshot = new List<MBGUID>(_stealthedParties.Keys);
+            var snapshot = new List<MobileParty>(_stealthedParties.Keys);
             int skirmishesFired = 0;
-            foreach (var id in snapshot)
+            foreach (var ambusher in snapshot)
             {
-                var ambusher = FindPartyById(id);
                 if (ambusher == null || !ambusher.IsActive) continue;
                 if (ambusher.MapFaction == null) continue;
                 // Ambusher may have been dragged into a map event by
@@ -447,14 +451,6 @@ namespace TOR_Core.CampaignMechanics.Ambush
             }
         }
 
-        private static MobileParty FindPartyById(MBGUID id)
-        {
-            // MBObjectManager keys by (type, GUID) with O(1) lookup inside
-            // each type bucket. Beats the previous MobileParty.All linear
-            // scan by a wide margin when the stealth dict grows.
-            return MBObjectManager.Instance.GetObject(id) as MobileParty;
-        }
-
         private void TriggerAmbushAgainstPlayer(MobileParty ambusher)
         {
             // Teleport AI onto the player — matches the Phase F fiction
@@ -484,7 +480,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         private void EnterAiStealth(MobileParty party)
         {
-            _stealthedParties[party.Id] = CampaignTime.Now;
+            _stealthedParties[party] = CampaignTime.Now;
             party.Ai.SetDoNotMakeNewDecisions(true);
             party.SetMoveModeHold();
             // Cap the ignore window at the max stealth hold (48h). If
@@ -505,13 +501,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
         private void LeaveAiStealth(MobileParty party)
         {
             if (party == null) return;
-            _stealthedParties.Remove(party.Id);
+            _stealthedParties.Remove(party);
             // Stamp cooldown unconditionally — covers burned strikes
             // (player ambush / skirmish), vanilla-engagement drag-in, and
             // the max-hold-expired "gave up" case. All three share the
             // "position revealed / recently stealthed" semantics that
             // justify a cooldown before the party tries again.
-            _partyCooldownUntil[party.Id] =
+            _partyCooldownUntil[party] =
                 CampaignTime.HoursFromNow(AmbushCampaignBehavior.CooldownHours);
             if (party.IsActive)
             {
@@ -532,14 +528,14 @@ namespace TOR_Core.CampaignMechanics.Ambush
             // _stealthedParties and would throw InvalidOperationException
             // (collection modified mid-iteration). Collect first, apply
             // after.
-            var expired = new List<MBGUID>();
+            var expired = new List<MobileParty>();
             var toLeave = new List<MobileParty>();
             foreach (var kv in _stealthedParties)
             {
-                var party = FindPartyById(kv.Key);
+                var party = kv.Key;
                 if (party == null || !party.IsActive)
                 {
-                    expired.Add(kv.Key);
+                    expired.Add(party);
                     continue;
                 }
                 if (party.CurrentSettlement != null || party.MapEvent != null)
@@ -552,7 +548,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
                     toLeave.Add(party);
                 }
             }
-            foreach (var id in expired) _stealthedParties.Remove(id);
+            foreach (var party in expired) _stealthedParties.Remove(party);
             foreach (var party in toLeave) LeaveAiStealth(party);
             if (expired.Count > 0 || toLeave.Count > 0)
             {
@@ -564,7 +560,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
         private void OnPartyRemoved(PartyBase party)
         {
             if (party?.MobileParty == null) return;
-            _stealthedParties.Remove(party.MobileParty.Id);
+            _stealthedParties.Remove(party.MobileParty);
+            _partyCooldownUntil.Remove(party.MobileParty);
         }
 
         /// <summary>
@@ -583,6 +580,35 @@ namespace TOR_Core.CampaignMechanics.Ambush
             if (!party.IsLordParty && !party.IsBandit) return false;
             if (party.MemberRoster == null) return false;
             if (party.MemberRoster.TotalHealthyCount < MinHealthyForAmbush) return false;
+
+            // Army followers are committed to the army's movement/plan.
+            // Only lone lords and army leaders decide for themselves.
+            if (party.Army != null && party.Army.LeaderParty != party) return false;
+
+            // Stealth suspends ALL vanilla AI decisions
+            // (SetDoNotMakeNewDecisions + Hold mode), so pulling a lord
+            // mid-task starves the kingdom pipeline: no recruitment,
+            // no army-forming, no fief visits, no kingdom-council
+            // participation. Only lords without a committed goal are
+            // candidates. Fleeing counts as a committed situation but
+            // the fiction fits — a cornered lord "melts into the trees"
+            // as guerrilla tactics. Bandits bypass this gate; they
+            // don't participate in kingdom-level AI at all.
+            if (party.IsLordParty)
+            {
+                switch (party.DefaultBehavior)
+                {
+                    case AiBehavior.Hold:
+                    case AiBehavior.None:
+                    case AiBehavior.PatrolAroundPoint:
+                    case AiBehavior.FleeToPoint:
+                    case AiBehavior.FleeToGate:
+                    case AiBehavior.FleeToParty:
+                        break;
+                    default:
+                        return false;
+                }
+            }
             return true;
         }
 
