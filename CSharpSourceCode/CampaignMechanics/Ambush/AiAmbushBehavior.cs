@@ -178,7 +178,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 //   check — they're not planning a strike against AI.
                 var nearbyHostiles = CollectNearbyHostiles(party, model.AiOpportunityScanRadius);
                 if (nearbyHostiles.Count == 0) continue;
-                if (!IsHiderOnly(party))
+                if (!HideFromAIParties(party))
                 {
                     var bestTarget = FindBestEntryCandidate(party, nearbyHostiles, model, out float bestChance);
                     if (bestTarget == null || bestChance < model.AiMinEntryViabilityChance) continue;
@@ -291,7 +291,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 // times out. Multiple skirmishes CAN fire in a tick but
                 // we cap them — each one touches vanilla's engagement
                 // pipeline (CreateFieldBattleEvent + roster mutation).
-                if (IsHiderOnly(ambusher)) continue;
+                if (HideFromAIParties(ambusher)) continue;
                 if (skirmishesFired >= MaxSkirmishesPerTick) continue;
                 var aiVictim = FindClosestHostileAiParty(ambusher, strikeRadius);
                 if (aiVictim != null)
@@ -564,7 +564,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// <summary>
         /// Any party that CAN enter stealth. Lord parties count (strikers)
         /// and bandit parties count (hiders — see
-        /// <see cref="IsHiderOnly"/>). Non-combatant parties, main hero,
+        /// <see cref="HideFromAIParties"/>). Non-combatant parties, main hero,
         /// in-settlement, in-encounter, and too-small parties are out.
         /// </summary>
         private static bool IsEligibleAmbusher(MobileParty party)
@@ -587,7 +587,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// on AI-vs-AI skirmishes. Lord parties (beastmen, chaos
         /// warbands, etc.) are the real strikers.
         /// </summary>
-        private static bool IsHiderOnly(MobileParty party) => party != null && party.IsBandit;
+        private static bool HideFromAIParties(MobileParty party) => party != null && party.IsBandit;
 
         private static List<MobileParty> CollectNearbyHostiles(MobileParty self, float scanRadius)
         {
