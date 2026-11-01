@@ -42,6 +42,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
         public const string AmbushEscapeMenuId = "tor_ambush_escape_menu";
         public const string AmbushFailedMenuId = "tor_ambush_failed_menu";
         public const string AmbushedIntroMenuId = "tor_ambushed_intro_menu";
+        public const string AmbushedFledOutcomeMenuId = "tor_ambushed_fled_outcome_menu";
         // Distance (metres) the player's party is teleported along the escape
         // vector when picking "escape" from the Ambush Escape menu. Enough to
         // prevent immediate re-engagement by the target party's AI.
@@ -150,6 +151,24 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// vanilla's encounter cleanup — see outcome-graph.md
         /// "Why OpenFollowUpFieldBattle must defer".</summary>
         private MobileParty _pendingFollowUpAmbusher;
+
+        /// <summary>Phase F outcome queue — set by
+        /// <c>AmbushedEndLogic.OnMissionResultReady</c> for outcomes
+        /// that don't naturally close the vanilla <c>PlayerEncounter</c>
+        /// (<c>AmbushedFled</c>, <c>AmbushedHeroWounded</c>). The
+        /// outcome menu is activated from <see cref="OnCampaignTick"/>
+        /// on the first tick after <c>Mission.Current == null</c>, so
+        /// the mission is fully torn down before we interact with
+        /// vanilla UI again. See outcome-graph.md.</summary>
+        private AmbushedOutcome _pendingPhaseFOutcome = AmbushedOutcome.None;
+        private MobileParty _pendingPhaseFAmbusher;
+
+        /// <summary>Branch result cached by the outcome menu's init
+        /// delegate so the "Continue" option knows what to do without
+        /// re-running the <c>AmbusherPressesAttack</c> roll (keeps the
+        /// menu description and the consequence consistent — one roll,
+        /// one outcome).</summary>
+        private bool _phaseFOutcomeMenuPressBranch;
 
         public bool IsPartyInStealth(MobileParty party)
         {
@@ -522,12 +541,25 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         private void OnCampaignTick(float dt)
         {
+            // Phase F §6: open the outcome menu once the mission has
+            // fully torn down. AmbushedFled / AmbushedHeroWounded don't
+            // close PlayerEncounter via vanilla, so this is where the
+            // narrative transition from the mission to the aftermath
+            // actually happens.
+            if (_pendingPhaseFOutcome != AmbushedOutcome.None
+                && TaleWorlds.MountAndBlade.Mission.Current == null
+                && MapEvent.PlayerMapEvent == null)
+            {
+                GameMenu.ActivateGameMenu(AmbushedFledOutcomeMenuId);
+                // Fields cleared by the menu's init-delegate once it
+                // has committed its branch choice.
+            }
+
             // Phase F §6: open the follow-up field battle one tick AFTER
-            // the Phase F mission closes. Opening it from inside
-            // OnPlayerBattleEnd races vanilla's own encounter cleanup
-            // for the just-closed mission — the queued pattern waits
-            // for Mission.Current to be null (vanilla fully torn down)
-            // and only fires once per queued ambusher.
+            // the outcome menu's "Continue" picks the press branch (which
+            // stashes the ambusher). Opening the vanilla PlayerEncounter
+            // immediately after menu-close races vanilla's menu teardown;
+            // one tick of delay is the safety margin.
             if (_pendingFollowUpAmbusher != null
                 && TaleWorlds.MountAndBlade.Mission.Current == null
                 && MapEvent.PlayerMapEvent == null)
@@ -566,7 +598,22 @@ namespace TOR_Core.CampaignMechanics.Ambush
             }
         }
 
-        // ---- Phase F §6: AmbushedFled follow-up ----
+        // ---- Phase F §6: AmbushedFled / AmbushedHeroWounded outcome queue ----
+
+        /// <summary>Called from <c>AmbushedEndLogic.OnMissionResultReady</c>
+        /// for the two Phase F outcomes that don't naturally fire
+        /// <c>OnPlayerBattleEnd</c> (because PlayerEncounter stays
+        /// alive). Stashes the outcome + ambusher for
+        /// <see cref="OnCampaignTick"/> to pick up and open the
+        /// narrative menu once the mission has fully torn down.</summary>
+        public void QueuePhaseFOutcomeMenu(AmbushedOutcome outcome, MobileParty ambusher)
+        {
+            _pendingPhaseFOutcome = outcome;
+            _pendingPhaseFAmbusher = ambusher;
+            TORCommon.Log(LogLevel.Info, "[Ambush] Phase F outcome menu queued: outcome="
+                + outcome + " ambusher="
+                + (ambusher?.LeaderHero?.Name?.ToString() ?? ambusher?.Name?.ToString() ?? "?"));
+        }
 
         /// <summary>Called right after a Phase F AmbushedFled outcome.
         /// Marks spawned victim troops as wounded, then branches on the
@@ -837,13 +884,12 @@ namespace TOR_Core.CampaignMechanics.Ambush
                     case AmbushedOutcome.AmbushRepelled:
                         TORCommon.Say("You drove them off. You got a good look at them — they won't stay hidden for long.");
                         break;
-                    case AmbushedOutcome.AmbushedFled:
-                        TORCommon.Say("You broke contact. Your troops are shaken.");
-                        HandleAmbushedFledFollowUp(ambusher);
-                        break;
-                    case AmbushedOutcome.AmbushedHeroWounded:
-                        TORCommon.Say("You were cut down in the ambush.");
-                        break;
+                    // AmbushedFled and AmbushedHeroWounded don't close
+                    // PlayerEncounter, so OnPlayerBattleEnd never fires
+                    // for them. Their aftermath runs via the
+                    // AmbushedFledOutcomeMenuId path, queued from
+                    // AmbushedEndLogic.OnMissionResultReady and opened
+                    // from OnCampaignTick once the mission has torn down.
                     case AmbushedOutcome.AmbushedWiped:
                         // Vanilla defeat flow handles casualties / prisoners.
                         break;
@@ -976,6 +1022,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             RegisterAmbushEscapeMenu(starter);
             RegisterAmbushFailedMenu(starter);
             RegisterAmbushedIntroMenu(starter);
+            RegisterAmbushedFledOutcomeMenu(starter);
         }
 
         /// <summary>
@@ -1078,6 +1125,134 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 args => { args.optionLeaveType = GameMenuOption.LeaveType.HostileAction; return true; },
                 _ => OnAmbushFailedFight(),
                 isLeave: false, index: 1, isRepeatable: false);
+        }
+
+        /// <summary>Phase F §6 outcome menu — the graceful transition
+        /// between the Phase F mission closing and whatever comes next.
+        /// Fires for the two outcomes that don't trigger
+        /// <c>OnPlayerBattleEnd</c>:
+        /// <list type="bullet">
+        ///   <item><c>AmbushedFled</c>: wounded promotion runs in the
+        ///   init-delegate, then <c>AmbusherPressesAttack</c> picks
+        ///   vanish-vs-press. The flavor text and "Continue"
+        ///   consequence both read the branch choice.</item>
+        ///   <item><c>AmbushedHeroWounded</c>: flavor-only; "Continue"
+        ///   returns to the campaign map without a follow-up battle.</item>
+        /// </list>
+        /// </summary>
+        private void RegisterAmbushedFledOutcomeMenu(CampaignGameStarter starter)
+        {
+            starter.AddGameMenu(
+                AmbushedFledOutcomeMenuId,
+                "{=!}{AMBUSH_OUTCOME_TEXT}",
+                OnAmbushedFledOutcomeMenuInit,
+                GameMenu.MenuOverlayType.None);
+
+            starter.AddGameMenuOption(
+                AmbushedFledOutcomeMenuId,
+                "tor_ambushed_fled_outcome_continue",
+                "{=tor_ambushed_fled_outcome_continue}Continue.",
+                args =>
+                {
+                    args.optionLeaveType = _phaseFOutcomeMenuPressBranch
+                        ? GameMenuOption.LeaveType.HostileAction
+                        : GameMenuOption.LeaveType.Continue;
+                    return true;
+                },
+                _ => OnAmbushedFledOutcomeContinue(),
+                isLeave: true, index: 0, isRepeatable: false);
+        }
+
+        /// <summary>Init-delegate for the outcome menu. Runs once when
+        /// the menu opens. Branches on the stashed outcome, prepares
+        /// the flavor text via <c>MBTextManager</c>, applies the
+        /// wound-promotion for AmbushedFled, and caches the
+        /// press-vs-vanish decision so <c>OnAmbushedFledOutcomeContinue</c>
+        /// can act on it. Clears the pending-outcome fields.</summary>
+        private void OnAmbushedFledOutcomeMenuInit(MenuCallbackArgs args)
+        {
+            var outcome = _pendingPhaseFOutcome;
+            var ambusher = _pendingPhaseFAmbusher;
+            _pendingPhaseFOutcome = AmbushedOutcome.None;
+            _pendingPhaseFAmbusher = null;
+
+            TextObject flavor;
+            if (outcome == AmbushedOutcome.AmbushedFled)
+            {
+                PromoteSpawnedParticipantsToWounded();
+                var model = Campaign.Current?.Models?.GetAmbushModel();
+                bool presses = model != null
+                               && ambusher != null && ambusher.IsActive
+                               && model.AmbusherPressesAttack(ambusher, MobileParty.MainParty);
+                _phaseFOutcomeMenuPressBranch = presses;
+
+                if (presses)
+                {
+                    var culture = ambusher.MapFaction?.Culture?.Name
+                                 ?? new TextObject("{=!}enemy");
+                    flavor = new TextObject("{=tor_ambushed_outcome_press}You broke contact — but the {CULTURE} are not done. They regroup and move to pin you down. They mean to finish what they started.");
+                    flavor.SetTextVariable("CULTURE", culture);
+                }
+                else
+                {
+                    flavor = new TextObject("{=tor_ambushed_outcome_vanish}You broke contact. The enemy melted away. Your troops are shattered, but the survivors are getting picked up and tending to their wounds.");
+                }
+                TORCommon.Log(LogLevel.Info,
+                    "[Ambush] outcome menu opened: AmbushedFled presses=" + presses
+                    + " ambusher=" + (ambusher?.LeaderHero?.Name?.ToString()
+                                      ?? ambusher?.Name?.ToString() ?? "?"));
+            }
+            else if (outcome == AmbushedOutcome.AmbushedHeroWounded)
+            {
+                _phaseFOutcomeMenuPressBranch = false;
+                flavor = new TextObject("{=tor_ambushed_outcome_hero_wounded}You were cut down in the ambush. Your troops carried you clear of the fighting; the enemy did not pursue.");
+                TORCommon.Log(LogLevel.Info, "[Ambush] outcome menu opened: AmbushedHeroWounded");
+            }
+            else
+            {
+                _phaseFOutcomeMenuPressBranch = false;
+                flavor = new TextObject("{=tor_ambushed_outcome_generic}The ambush is over.");
+                TORCommon.Log(LogLevel.Info, "[Ambush] outcome menu opened: fallthrough outcome=" + outcome);
+            }
+            MBTextManager.SetTextVariable("AMBUSH_OUTCOME_TEXT", flavor);
+        }
+
+        /// <summary>"Continue" option consequence. Vanish branch applies
+        /// the morale penalty and stamps the pair-record; press branch
+        /// queues the follow-up field battle for the next
+        /// <see cref="OnCampaignTick"/> (so vanilla's menu teardown
+        /// completes before <c>PlayerEncounter.RestartPlayerEncounter</c>
+        /// runs).</summary>
+        private void OnAmbushedFledOutcomeContinue()
+        {
+            var aiBehavior = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
+            var ambusher = aiBehavior?.CurrentAmbusherOnPlayer;
+
+            if (_phaseFOutcomeMenuPressBranch
+                && ambusher != null && ambusher.IsActive)
+            {
+                _pendingFollowUpAmbusher = ambusher;
+                TORCommon.Log(LogLevel.Info, "[Ambush] outcome menu continue: press — queued follow-up battle.");
+                GameMenu.ExitToLast();
+                return;
+            }
+
+            // Vanish branch — morale penalty, pair-record, back to map.
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            float moraleHit = model?.AmbushedFledVanishMoralePenalty ?? 5f;
+            ApplyMoraleDelta(-moraleHit);
+            if (aiBehavior != null && ambusher != null && ambusher.IsActive)
+            {
+                aiBehavior.RecordAmbush(ambusher, MobileParty.MainParty,
+                    repelled: false, wasLoud: false);
+            }
+            // Clear the Phase F ambusher ref now that the vanish branch
+            // consumed it (press branch keeps it for OpenFollowUpFieldBattle
+            // to teleport the ambusher onto the player).
+            if (aiBehavior != null && !_phaseFOutcomeMenuPressBranch)
+                aiBehavior.CurrentAmbusherOnPlayer = null;
+            TORCommon.Log(LogLevel.Info, "[Ambush] outcome menu continue: vanish — morale -" + moraleHit);
+            GameMenu.ExitToLast();
         }
 
         private void OnAmbushEscapeEngage()

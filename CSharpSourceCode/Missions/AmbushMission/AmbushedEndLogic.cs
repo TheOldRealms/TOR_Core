@@ -145,13 +145,33 @@ namespace TOR_Core.Missions.AmbushMission
             base.OnMissionResultReady(missionResult);
             if (missionResult == null) return;
             var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
-            var outcome = behavior?.LastAmbushedOutcome ?? AmbushedOutcome.None;
+            if (behavior == null) return;
+            var outcome = behavior.LastAmbushedOutcome;
+
             if (outcome == AmbushedOutcome.AmbushRepelled)
             {
+                // Nudges vanilla's victory flow → MapEvent closes
+                // → OnPlayerBattleEnd fires → repelled record stamped.
                 if (PlayerEncounter.Current != null)
                     PlayerEncounter.SetPlayerVictorious();
-                if (behavior != null) behavior.PendingPostAmbushCleanup = true;
+                behavior.PendingPostAmbushCleanup = true;
+                return;
             }
+            if (outcome == AmbushedOutcome.AmbushedFled
+                || outcome == AmbushedOutcome.AmbushedHeroWounded)
+            {
+                // These outcomes don't close PlayerEncounter, so
+                // OnPlayerBattleEnd never fires for them. Queue the
+                // narrative outcome menu — AmbushCampaignBehavior's
+                // OnCampaignTick activates it once the mission has
+                // fully torn down. See outcome-graph.md.
+                var ambusher = Campaign.Current
+                    ?.GetCampaignBehavior<AiAmbushBehavior>()
+                    ?.CurrentAmbusherOnPlayer;
+                behavior.QueuePhaseFOutcomeMenu(outcome, ambusher);
+            }
+            // AmbushedWiped: MissionResult.CreateDefeated — vanilla's
+            // defeat flow fires OnPlayerBattleEnd naturally.
         }
 
         private void SetOutcome(AmbushedOutcome outcome, bool successful, string reason)
