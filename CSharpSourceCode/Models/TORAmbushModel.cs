@@ -44,8 +44,8 @@ namespace TOR_Core.Models
         // successful strike). Entry has a high floor so clean cover is near-
         // automatic; drops sharply with nearby hostiles so mid-chase stealth
         // is nearly impossible but never fully 0.
-        public virtual float BaseEntryChance => 0.9f;
-        public virtual float MinEntryChance => 0.5f;
+        public virtual float BaseEntryChance => 0.5f;
+        public virtual float MinEntryChance => 0.05f;
         public virtual float MaxEntryChance => 0.98f;
         public virtual float EntryHostilePenaltyPerParty => 0.12f;
         public virtual float EntryHostilePenaltyCap => 0.4f;
