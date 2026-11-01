@@ -379,6 +379,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
             if (pushedScreen is not MapScreen mapScreen) return;
             if (mapScreen.GetMapView<AmbushMapView>() == null)
                 mapScreen.AddMapView<AmbushMapView>();
+            if (mapScreen.GetMapView<AmbushRangeDebugMapView>() == null)
+                mapScreen.AddMapView<AmbushRangeDebugMapView>();
         }
 
         /// <summary>
