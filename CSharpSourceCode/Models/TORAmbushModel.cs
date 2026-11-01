@@ -30,9 +30,16 @@ namespace TOR_Core.Models
         public virtual float SlightlySmallerAttackerBonus => 0.1f;  // 0.5× ≤ ratio < 1.0×
         public virtual float OverwhelmingAttackerPenalty => -0.1f;  // attacker ≥ 2× target
 
-        // Target proximity: at zero distance = full bonus, scaling to 0 at the stealth radius edge.
-        public virtual float MaxProximityBonus => 0.1f;
-        public virtual float ProximityRadius => AmbushCampaignBehavior.StealthRadius;
+        // Target proximity: applied as a MULTIPLICATIVE factor on the
+        // summed additive chance, so it dominates even when the chance
+        // has already saturated at MaxChance. At point-blank the factor
+        // is 1.0 (no reduction); at the strike-range edge it's
+        // EdgeProximityMultiplier (default 0.5 → half the chance). Half
+        // range → ~0.75× via linear interpolation, so edge vs 50 % → a
+        // ~24-point delta on a 95 % base chance. Pivot comes from the
+        // ambusher's live CalculateStrikeRange, not a static 15u
+        // constant.
+        public virtual float EdgeProximityMultiplier => 0.5f;
 
         // Day/night: night favours ambushers.
         public virtual float NightTimeBonus => 0.1f;
@@ -96,7 +103,7 @@ namespace TOR_Core.Models
         // Distance multiplier: closer = higher. Lerped from AdjacentDistanceMultiplier
         // at distance 0 to FarDistanceMultiplier at the scan-radius edge.
         public virtual float AdjacentDistanceMultiplier => 2.5f;
-        public virtual float FarDistanceMultiplier => 0.4f;
+        public virtual float FarDistanceMultiplier => 0.2f;
 
         public virtual float DetectionScoutingPerPointBonus => 0.004f;   // observer scouting bias
         public virtual float DetectionScoutingBonusCap => 0.5f;
@@ -224,13 +231,15 @@ namespace TOR_Core.Models
         /// delta shifts ~0.17.</summary>
         public virtual float ContestNormalizer => 300f;
 
-        /// <summary>Base strike range for the ambusher (what used to be
-        /// the <c>StealthRadius</c> constant). Scouting of the ambusher's
-        /// leader + Scout-role hero scales this up — a well-scouted
-        /// party reaches further.</summary>
-        public virtual float BaseStrikeRange => 15f;
-        public virtual float StrikeRangeScoutingPerPoint => 0.05f;
-        public virtual float MaxStrikeRange => 35f;
+        /// <summary>Base strike range for the ambusher. Scouting of the
+        /// ambusher's leader + Scout-role hero scales this up — a well-
+        /// scouted party reaches further. Calibrated against the player's
+        /// in-game perception of "mid-tier distance" at Scouting 15 ≈
+        /// 0.5× that distance, Scouting 125 ≈ 1×, 250 ≈ 1.5×, cap at 300.
+        /// Anchor X ≈ 6 map units — iterate from stealth-entry diagnostics.</summary>
+        public virtual float BaseStrikeRange => 2.6f;
+        public virtual float StrikeRangeScoutingPerPoint => 0.0273f;
+        public virtual float MaxStrikeRange => 10.5f;
 
         /// <summary>Combine two heroes' skill values using the half-weight-
         /// lower rule: the higher score carries full weight, the lower
@@ -311,8 +320,11 @@ namespace TOR_Core.Models
             chance += TerrainBonus(attacker);
             chance += ForceRatioBonus(attacker, target);
             chance += StealthDurationBonus(stealthEnteredAt);
-            chance += TargetProximityBonus(attacker, target);
             chance += NightTimeBonusValue();
+            // Proximity is multiplicative — applied LAST so it survives
+            // the saturation that was previously pinning ambush chance
+            // at the 0.95 cap regardless of distance.
+            chance *= ProximityMultiplier(attacker, target);
             return MBMath.ClampFloat(chance, MinChance, MaxChance);
         }
 
@@ -330,14 +342,17 @@ namespace TOR_Core.Models
             return MBMath.ClampFloat(delta, -ScoutingBonusCap, ScoutingBonusCap);
         }
 
-        protected virtual float TargetProximityBonus(MobileParty attacker, MobileParty target)
+        protected virtual float ProximityMultiplier(MobileParty attacker, MobileParty target)
         {
-            if (ProximityRadius <= 0f) return 0f;
+            float strikeRange = CalculateStrikeRange(attacker);
+            if (strikeRange <= 0f) return 1f;
             float distance = attacker.Position.ToVec2().Distance(target.Position.ToVec2());
-            if (distance >= ProximityRadius) return 0f;
-            // Linear fade from full bonus at distance 0 to zero at ProximityRadius.
-            float t = 1f - (distance / ProximityRadius);
-            return MaxProximityBonus * t;
+            // Linear fade from 1.0 at distance 0 to EdgeProximityMultiplier
+            // at the strike-range edge. Pinned at the edge value beyond
+            // the ring (same cliff whether you're just inside or just
+            // outside the attacker's live strike radius).
+            float t = MBMath.ClampFloat(distance / strikeRange, 0f, 1f);
+            return MBMath.Lerp(1f, EdgeProximityMultiplier, t);
         }
 
         protected virtual float NightTimeBonusValue()

@@ -6,6 +6,7 @@ using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.Ambush;
 using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -25,6 +26,20 @@ namespace TOR_Core.Models
             if (party.IsMainParty && party.LeaderHero != null && party.LeaderHero.HasAnyCareer())
             {
                 CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref result, PassiveEffectType.PartySpottingRange, true);
+            }
+
+            // Ambush stance: a crouched, watchful party notices approaching
+            // hostiles sooner. +25 % to the player's spotting range while in
+            // stealth. Player-only — AI stealth is handled separately via
+            // IgnoreByOtherPartiesTill, and we don't want a world-wide
+            // sighting bonus firing every tick for every AI stealther.
+            if (party.IsMainParty)
+            {
+                var ambush = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
+                if (ambush != null && ambush.IsPlayerInStealth)
+                {
+                    result.AddFactor(0.25f, new TextObject("{=!}Ambush stance"));
+                }
             }
 
             // DwarfBrewers handling

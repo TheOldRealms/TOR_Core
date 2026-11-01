@@ -4,6 +4,7 @@ using TaleWorlds.CampaignSystem.Election;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.CustomArenaModes;
@@ -112,6 +113,9 @@ namespace TOR_Core.SaveGameSystem
             ConstructContainerDefinition(typeof(List<ReinforcementBehavior.ReinforcementCandidateState>));
             ConstructContainerDefinition(typeof(List<ScriptUseData>));
             ConstructContainerDefinition(typeof(List<string>));
+            // AiAmbushBehavior serialises these two dictionaries keyed by party MBGUID.
+            // Without the container definition the save system fails with "cannot save data".
+            ConstructContainerDefinition(typeof(Dictionary<MBGUID, CampaignTime>));
         }
     }
 }

@@ -176,6 +176,18 @@ namespace TOR_Core.CampaignMechanics.Ambush
             }
 
             EnterStealth(MobileParty.MainParty);
+
+            // One-shot diagnostic so the next tuning cycle can lock the
+            // X anchor precisely instead of eyeballing it from a screenshot.
+            if (model != null)
+            {
+                var main = MobileParty.MainParty;
+                TORCommon.Log(LogLevel.Info, "[Ambush] entry: pos=" + main.Position.ToVec2()
+                    + " strikeRange=" + model.CalculateStrikeRange(main).ToString("F2")
+                    + " effectiveScouting=" + model.GetAmbusherScouting(main)
+                    + " seeingRange=" + main.SeeingRange.ToString("F2"));
+            }
+
             _lastHotkeyRealTime = nowRealTime;
         }
 
